@@ -1,0 +1,229 @@
+id: gustos
+number: 14
+level: A1
+title: Мне нравится
+goals:
+  - рассказать о хобби и свободном времени
+  - сказать, что нравится и что нет
+  - согласиться или не согласиться с собеседником
+
+lessons:
+  - id: vocab1
+    kind: vocab
+    title: Свободное время
+    vocab:
+      - "🕊 el tiempo libre [тьэ́мпо ли́брэ] — свободное время"
+      - "💃 bailar [байла́р] — танцевать"
+      - "🎤 cantar [канта́р] — петь"
+      - "🧳 viajar [бьяха́р] — путешествовать"
+      - "🏊 nadar [нада́р] — плавать"
+      - "🏃 correr [коррэ́р] — бегать"
+      - "📺 ver [бэр] — смотреть, видеть {forms: veo ves ve vemos} :: Veo la tele. — Я смотрю телевизор."
+    blocks:
+      - "Что вы делаете в свободное время? Почти все глаголы здесь правильные — вы уже умеете их спрягать."
+      - examples:
+          items:
+            - "En mi tiempo libre leo y veo la tele. — В свободное время я читаю и смотрю телевизор."
+            - "Mi hermana baila muy bien. — Моя сестра очень хорошо танцует."
+            - "¿Viajas mucho? — Ты много путешествуешь?"
+            - "Corremos en el parque. — Мы бегаем в парке."
+      - note: "**ver** — неправильный глагол: veo, ves, ve, vemos… Его формы запомните отдельно."
+      - exercise:
+          title: Traduce
+          items:
+            - "Я пою и танцую. => Canto y bailo."
+            - "Мы много путешествуем. => Viajamos mucho."
+            - "Ты плаваешь? => ¿Nadas?"
+            - "Они бегают в парке. => Corren en el parque."
+            - "Я смотрю телевизор. => Veo la tele."
+
+  - id: gustar
+    kind: grammar
+    title: "Me gusta, me gustan"
+    vocab:
+      - "❤️ gustar [густа́р] — нравиться {forms: gusta gustan}"
+      - "🙂 me gusta [мэ гу́ста] — мне нравится :: Me gusta el café. — Мне нравится кофе."
+      - "❓ ¿Te gusta...? [тэ гу́ста] — тебе нравится...? :: ¿Te gusta bailar? — Ты любишь танцевать?"
+      - "👤 le gusta [лэ гу́ста] — ему, ей, вам (usted) нравится"
+      - "👥 nos / os / les gusta [нос, ос, лэс] — нам / вам / им нравится"
+    blocks:
+      - "Глагол **gustar** устроен как русское «нравиться». Посмотрите: когда **gusta**, а когда **gustan**?"
+      - examples:
+          items:
+            - "Me gusta el café. — Мне нравится кофе."
+            - "Me gustan los perros. — Мне нравятся собаки."
+            - "¿Te gusta bailar? — Тебе нравится танцевать?"
+            - "A Ana le gusta la música. — Ане нравится музыка."
+            - "No nos gustan los gatos. — Нам не нравятся кошки."
+      - rule: |
+          Как в русском: «**мне** нравится» — **me** gusta. Кому: **me, te, le, nos, os, les**.
+          Глагол согласуется с тем, **что** нравится: одна вещь или действие — **gusta**, много вещей — **gustan**.
+          Перед существительным нужен артикль: _Me gusta **el** café_ (кофе вообще).
+      - table:
+          rows:
+            - ["мне", "**me** gusta / gustan"]
+            - ["тебе", "**te** gusta / gustan"]
+            - ["ему, ей, вам (usted)", "**le** gusta / gustan"]
+            - ["нам", "**nos** gusta / gustan"]
+            - ["вам (vosotros)", "**os** gusta / gustan"]
+            - ["им, вам (ustedes)", "**les** gusta / gustan"]
+      - exercise:
+          title: "¿Gusta o gustan?"
+          items:
+            - "Me ___ el chocolate. => gusta"
+            - "Me ___ las tapas. => gustan"
+            - "¿Te ___ viajar? => gusta"
+            - "A mi padre le ___ los coches. => gustan"
+            - "Nos ___ la paella. => gusta"
+
+  - id: vocab2
+    kind: vocab
+    title: Спорт, кино, природа
+    vocab:
+      - "🏅 el deporte [дэпо́ртэ] — спорт"
+      - "⚽ el fútbol [фу́тболь] — футбол"
+      - "🏀 el baloncesto [балонθэ́сто] — баскетбол"
+      - "🎞 la película [пэли́кула] — фильм"
+      - "📺 la serie [сэ́рьэ] — сериал"
+      - "🏖 la playa [пла́я] — пляж; море (отдых)"
+      - "⛰ la montaña [монта́нья] — гора; горы"
+    blocks:
+      - "Слова, без которых не обойтись в разговоре о хобби."
+      - examples:
+          items:
+            - "Me gusta el deporte. — Я люблю спорт."
+            - "¿Te gusta el fútbol? — Тебе нравится футбол?"
+            - "Me gustan las películas francesas. — Мне нравятся французские фильмы."
+            - "¿Playa o montaña? — Море или горы?"
+      - culture: "Вопрос **¿Playa o montaña?** — классика испанской светской беседы: отдыхать на море или в горах. А **el fútbol** — почти религия: «Реал» или «Барса» — тоже вопрос с подвохом 😉"
+      - exercise:
+          title: Responde
+          items:
+            - "¿Playa o montaña? => Me gusta la playa / la montaña."
+            - "¿Te gusta el fútbol? => Sí, me gusta. / No, no me gusta."
+            - "¿Te gustan las series? => ..."
+
+  - id: tambien
+    kind: grammar
+    title: "A mí también, a mí tampoco"
+    vocab:
+      - "❓ ¿Y a ti? [и а ти] — а тебе?"
+      - "👍 a mí también [а ми тамбье́н] — мне тоже (нравится)"
+      - "👎 tampoco [тампо́ко] — тоже не :: A mí tampoco. — Мне тоже нет."
+      - "↔️ a mí sí / a mí no [а ми си, а ми но] — а мне да / а мне нет"
+      - "😍 me encanta [мэ энка́нта] — мне очень нравится, обожаю {forms: encanta encantan}"
+      - "🚫 no... nada [но... на́да] — совсем не; ничего :: No me gusta nada. — Мне совсем не нравится."
+    blocks:
+      - "Как согласиться или не согласиться с собеседником? Посмотрите на две пары диалогов."
+      - examples:
+          items:
+            - "Me gusta el cine. — A mí también. — Мне нравится кино. — Мне тоже."
+            - "Me gusta el cine. — A mí no. — Мне нравится кино. — А мне нет."
+            - "No me gusta el fútbol. — A mí tampoco. — Мне не нравится футбол. — Мне тоже."
+            - "No me gusta el fútbol. — A mí sí. — Мне не нравится футбол. — А мне нравится."
+      - rule: |
+          Согласиться с «да» — **también**, согласиться с «нет» — **tampoco**.
+          Не согласиться: на «да» — **a mí no**, на «нет» — **a mí sí**.
+      - table:
+          title: От «обожаю» до «терпеть не могу»
+          rows:
+            - ["😍", "me encanta"]
+            - ["😊", "me gusta mucho"]
+            - ["🙂", "me gusta"]
+            - ["😕", "no me gusta mucho"]
+            - ["😖", "no me gusta nada"]
+      - exercise:
+          title: Responde
+          items:
+            - "Me gusta viajar. (вам тоже) => A mí también."
+            - "No me gustan los gatos. (вам тоже нет) => A mí tampoco."
+            - "Me encanta bailar. (а вам нет) => A mí no."
+            - "No me gusta el té. (а вам да) => A mí sí."
+            - "Me gusta el chocolate, ¿y a ti? => A mí también / A mí no."
+
+  - id: dialogo
+    kind: dialogue
+    title: ¿Qué te gusta hacer?
+    vocab:
+      - "🛠 hacer [аθэ́р] — делать"
+      - "❓ ¿Qué te gusta hacer? [кэ тэ гу́ста аθэ́р] — что ты любишь делать?"
+      - "📅 el fin de semana [фин дэ сэма́на] — выходные {pl: los fines de semana}"
+      - "⚽ jugar [хуга́р] — играть {forms: juego juegas juega} :: Juego al fútbol. — Я играю в футбол."
+    blocks:
+      - "Лусия и Диего знакомятся на языковом обмене."
+      - dialogue:
+          lines:
+            - "Lucía: Diego, ¿qué te gusta hacer en tu tiempo libre? | Диего, что ты любишь делать в свободное время?"
+            - "Diego: Me encanta el deporte. Juego al fútbol el fin de semana. ¿Y a ti? ¿Te gusta el fútbol? | Обожаю спорт. По выходным играю в футбол. А тебе? Нравится футбол?"
+            - "Lucía: No, no me gusta nada. | Нет, совсем не нравится."
+            - "Diego: ¿Y qué te gusta? | А что тебе нравится?"
+            - "Lucía: Me gusta leer y ver películas. Y me encanta viajar. | Мне нравится читать и смотреть фильмы. И обожаю путешествовать."
+            - "Diego: ¡A mí también! ¿Playa o montaña? | Мне тоже! Море или горы?"
+            - "Lucía: Montaña. No me gusta la playa. | Горы. Я не люблю пляж."
+            - "Diego: ¿No? A mí sí. ¡Me encanta nadar! | Нет? А я люблю. Обожаю плавать!"
+      - note: "**jugar al fútbol** — «играть в футбол»: после **jugar** ставят **a** (a + el = al)."
+      - exercise:
+          title: Responde
+          items:
+            - "¿Qué hace Diego el fin de semana? => Juega al fútbol."
+            - "¿A Lucía le gusta el fútbol? => No, no le gusta nada."
+            - "¿Qué le gusta a Lucía? => Leer, ver películas y viajar."
+            - "¿Playa o montaña: qué le gusta a Diego? => La playa: le encanta nadar."
+      - task: "Расскажите в комментариях: **¿Qué te gusta hacer en tu tiempo libre?** Ответьте кому-нибудь: **¡A mí también!** или **A mí no**."
+
+  - id: lectura
+    kind: reading
+    title: Анкета для языкового обмена
+    vocab:
+      - "🔍 buscar [буска́р] — искать"
+      - "🔄 el intercambio [интэрка́мбьо] — обмен; языковой обмен"
+      - "🏋️ practicar [практика́р] — практиковать, тренировать"
+      - "🧗 difícil [дифи́θиль] — трудный, сложный {pos: adj}"
+      - "💡 la idea [идэ́а] — идея"
+    blocks:
+      - "Марта ищет партнёра для языкового обмена — это отличный способ практиковать язык. Прочитайте её анкету."
+      - reading:
+          title: Busco intercambio
+          text: |
+            ¡Hola! Me llamo Marta y tengo diecinueve años. Soy de Granada, pero vivo en Barcelona. Estudio en la universidad.
+
+            En mi tiempo libre me gusta mucho leer y viajar. Me encantan las películas y las series rusas. También me gusta bailar, pero no me gusta nada el fútbol.
+
+            Hablo español e inglés y aprendo ruso. ¡El ruso es muy difícil! Busco un intercambio: yo practico ruso y tú practicas español. ¿Te gusta la idea?
+          translation: |
+            Привет! Меня зовут Марта, мне девятнадцать лет. Я из Гранады, но живу в Барселоне. Учусь в университете.
+
+            В свободное время очень люблю читать и путешествовать. Обожаю русские фильмы и сериалы. Ещё люблю танцевать, но совсем не люблю футбол.
+
+            Говорю по-испански и по-английски, учу русский. Русский очень трудный! Ищу языковой обмен: я практикую русский, а ты — испанский. Нравится идея?
+      - exercise:
+          title: Responde
+          items:
+            - "¿De dónde es Marta? => De Granada."
+            - "¿Dónde vive? => En Barcelona."
+            - "¿Qué le gusta hacer? => Leer, viajar y bailar."
+            - "¿Le gusta el fútbol? => No, no le gusta nada."
+            - "¿Qué busca Marta? => Un intercambio."
+      - task: "Напишите в комментариях свою анкету: **Me llamo... Me gusta... No me gusta... Busco...**"
+
+  - id: quiz
+    kind: quiz
+    title: Мне нравится
+    blocks:
+      - "Тест по теме «Мне нравится»."
+      - cando:
+          - "рассказать о хобби: En mi tiempo libre leo, bailo..."
+          - "сказать, что нравится: me gusta, me gustan, me encanta"
+          - "согласиться или нет: a mí también, a mí tampoco, a mí sí, a mí no"
+    quiz:
+      - q: "Me ___ los perros."
+        options: "gustan | gusta | gusto"
+      - q: "A mi madre ___ gusta bailar."
+        options: "le | la | me"
+      - q: "— No me gusta el café. — A mí ___"
+        options: "tampoco | también | sí también"
+        explain: "Согласие с отрицанием — tampoco."
+      - q: Как сказать «Обожаю путешествовать»?
+        options: "Me encanta viajar. | Me encantan viajar. | Encanto viajar."
+      - q: Как спросить «Что ты любишь делать?»
+        options: "¿Qué te gusta hacer? | ¿Qué haces gusta? | ¿Qué te gustas hacer?"

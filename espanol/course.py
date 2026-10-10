@@ -333,6 +333,13 @@ def parse_vocab(raw: Any, where: str) -> VocabItem:
     )
 
 
+def _text(value: Any) -> str:
+    """Строка из элемента списка. YAML превращает «текст: текст» в словарь — склеиваем обратно."""
+    if isinstance(value, dict):
+        return "; ".join(f"{k}: {v}" for k, v in value.items())
+    return str(value)
+
+
 def _items(value: Any) -> list:
     if value is None:
         return []
@@ -360,7 +367,7 @@ def parse_block(raw: Any, where: str) -> Block:
     if btype == "words":
         return Block(btype, None)
     if btype in ("cando", "list"):
-        return Block(btype, [str(v) for v in _items(value)])
+        return Block(btype, [_text(v) for v in _items(value)])
     if btype == "examples":
         spec = value if isinstance(value, dict) else {"items": value}
         items = []
@@ -502,7 +509,7 @@ def load_course(content_dir: str | Path) -> Course:
             number=int(data.get("number", number)),
             level=str(data.get("level", "A1")),
             title=str(data.get("title", path.stem)),
-            goals=[str(g) for g in data.get("goals", []) or []],
+            goals=[_text(g) for g in data.get("goals", []) or []],
             source=str(path),
         )
         for raw in data.get("lessons", []) or []:
