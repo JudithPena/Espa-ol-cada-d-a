@@ -100,7 +100,7 @@ def test_dry_run_sends_nothing(course, renderer, tmp_path, capsys):
     pub = make(course, renderer, tmp_path, api)
     result = pub.publish_next(dry_run=True)
     assert "dry-run" in result and api.sent == []
-    assert "Урок 1" in capsys.readouterr().out
+    assert "Урок 0" in capsys.readouterr().out
     assert not (tmp_path / "state.json").exists()
 
 

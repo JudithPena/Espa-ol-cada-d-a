@@ -189,7 +189,7 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("validate", help="проверить курс")
     sub.add_parser("stats", help="статистика курса")
     p = sub.add_parser("preview", help="показать урок")
-    p.add_argument("ref", help="номер урока (с 1) или id")
+    p.add_argument("ref", help="номер урока (вводный — 0) или id")
     p.add_argument("--html", action="store_true", help="показать HTML вместо текста")
     p = sub.add_parser("export", help="HTML-превью курса")
     p.add_argument("-o", "--out", default="preview/index.html")

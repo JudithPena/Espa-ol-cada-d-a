@@ -168,7 +168,8 @@ class Lesson:
 
     @property
     def number(self) -> int:
-        return self.index + 1
+        """Номер в канале: вводный урок — 0, дальше 1, 2, 3…"""
+        return self.index
 
     @property
     def kind_emoji(self) -> str:
@@ -209,12 +210,12 @@ class Course:
         return [item for lesson in self.lessons for item in lesson.vocab]
 
     def lesson(self, ref: str | int) -> Lesson:
-        """Урок по номеру (с 1) или по id вида «saludos/vocab»."""
+        """Урок по номеру (вводный — 0) или по id вида «saludos/vocab»."""
         if isinstance(ref, int) or str(ref).isdigit():
             n = int(ref)
-            if not 1 <= n <= len(self.lessons):
-                raise KeyError(f"нет урока №{n} (всего {len(self.lessons)})")
-            return self.lessons[n - 1]
+            if not 0 <= n < len(self.lessons):
+                raise KeyError(f"нет урока №{n} (номера от 0 до {len(self.lessons) - 1})")
+            return self.lessons[n]
         for lesson in self.lessons:
             if lesson.id == ref:
                 return lesson

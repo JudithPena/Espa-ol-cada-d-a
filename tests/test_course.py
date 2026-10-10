@@ -41,6 +41,12 @@ def test_small_steps(course):
     assert all(len(lesson.vocab) <= limit for lesson in course.lessons)
 
 
+def test_intro_lesson_is_number_zero(course, renderer):
+    assert course.lesson(0) is course.lessons[0]
+    assert "Урок 0" in renderer.render(course.lessons[0])[0].html
+    assert course.lesson(len(course.lessons) - 1) is course.lessons[-1]
+
+
 def test_lesson_ids_are_unique(course):
     ids = [lesson.id for lesson in course.lessons]
     assert len(ids) == len(set(ids))
@@ -55,7 +61,7 @@ def test_course_goes_from_a0_to_a1(course):
 def test_immersion_labels_switch_to_spanish(course, renderer):
     first = renderer.render(course.lessons[1])[0].html
     last = renderer.render(course.lessons[-2])[0].html
-    assert "Урок 2" in first
+    assert "Урок 1" in first
     assert f"Lección {course.lessons[-2].number}" in last
 
 
