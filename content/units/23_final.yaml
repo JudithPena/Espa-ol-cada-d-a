@@ -1,0 +1,124 @@
+id: final
+number: 23
+level: A1
+title: Финал
+goals:
+  - повторить весь курс
+  - прочитать связный текст на испанском без словаря
+  - проверить себя в итоговом тесте
+
+lessons:
+  - id: repaso
+    kind: review
+    title: Большое повторение A1
+    recall: 20
+    blocks:
+      - |
+        Финишная прямая! Впереди — итоговый текст и большой тест. Сегодня повторяем слова, которые давно не встречались. Не подглядывайте: сначала ответ вслух, потом спойлер.
+
+  - id: lectura
+    kind: reading
+    title: Неделя в Мадриде
+    vocab:
+      - "📦 la cosa [ко́са] — вещь, дело"
+      - "🚶 pasear [пасэа́р] — гулять :: Paseo por el parque. — Я гуляю по парку."
+    blocks:
+      - "Итоговый текст. В нём собрано почти всё, что вы прошли: настоящее время, **estar + герундий**, **ir a**, прошедшее время, **gustar**. Прочитайте без перевода — а потом проверьте себя."
+      - reading:
+          title: Una semana en Madrid
+          text: |
+            ¡Hola! Me llamo Irina y ahora mismo estoy en Madrid con mi novio. Es mi primer viaje a España.
+
+            Esta semana hemos visto muchas cosas: hemos visitado el museo del Prado, hemos paseado por el parque del Retiro y hemos comido tapas en muchos bares. ¡Me encanta la comida española!
+
+            Madrid es una ciudad muy grande y muy bonita. Hay mucha gente en las calles, también por la noche. Aquí la gente cena muy tarde, a las diez o a las once.
+
+            Hoy hace mucho calor: ¡treinta y ocho grados! Por eso ahora estamos descansando en el hotel.
+
+            Mañana vamos a ir a Toledo en tren. El sábado tenemos que volver a Moscú. ¡Pero el año que viene voy a volver a España!
+          translation: |
+            Привет! Меня зовут Ирина, и прямо сейчас я в Мадриде с моим парнем. Это моя первая поездка в Испанию.
+
+            На этой неделе мы видели много всего: побывали в музее Прадо, погуляли по парку Ретиро и ели тапас во многих барах. Я обожаю испанскую еду!
+
+            Мадрид — очень большой и очень красивый город. На улицах много людей, даже ночью. Здесь ужинают очень поздно, в десять или в одиннадцать.
+
+            Сегодня очень жарко: тридцать восемь градусов! Поэтому сейчас мы отдыхаем в гостинице.
+
+            Завтра мы поедем в Толедо на поезде. В субботу нам нужно возвращаться в Москву. Но в следующем году я снова поеду в Испанию!
+      - note: "**por eso** — «поэтому»."
+      - exercise:
+          title: Responde
+          items:
+            - "¿Dónde está Irina ahora? => En Madrid, en el hotel."
+            - "¿Qué ha visitado esta semana? => El museo del Prado y el parque del Retiro."
+            - "¿Qué tiempo hace hoy? => Hace mucho calor: treinta y ocho grados."
+            - "¿Qué van a hacer mañana? => Van a ir a Toledo en tren."
+            - "¿Cuándo tienen que volver a Moscú? => El sábado."
+    forms: [eso]
+    quiz:
+      - q: ¿Qué le encanta a Irina?
+        options: "la comida española | el calor | el tren"
+      - q: ¿A qué hora cena la gente en Madrid?
+        options: "a las diez o a las once | a las siete | a las ocho"
+
+  - id: examen
+    kind: final
+    title: Итоговый тест A1
+    auto_quiz: 2
+    blocks:
+      - |
+        Итоговый тест по всему курсу: двенадцать вопросов по грамматике и словам из разных тем. Отвечайте спокойно, по памяти. Если ошиблись — откройте пояснение под вопросом и вернитесь к нужной теме по хештегам.
+    quiz:
+      - q: "— ¿Cómo te llamas? — ..."
+        options: "Me llamo Irina. | Soy llamo Irina. | Mi llamo Irina."
+      - q: "Ella ___ rusa, pero ahora ___ en Madrid."
+        options: "es / está | está / es | es / es"
+        explain: "Происхождение — ser, местонахождение — estar."
+      - q: "En la mesa ___ dos libros."
+        options: "hay | están | son"
+      - q: "Nosotros ___ en una oficina."
+        options: "trabajamos | trabajan | trabajáis"
+      - q: "Mis hermanas son muy ___"
+        options: "simpáticas | simpáticos | simpática"
+      - q: "A mí me ___ las tapas."
+        options: "encantan | encanta | encanto"
+      - q: "¿Cuánto ___ estos zapatos?"
+        options: "cuestan | cuesta | costan"
+      - q: "¿A qué hora ___ normalmente? (ты встаёшь)"
+        options: "te levantas | se levanta | levantas te"
+      - q: "Hoy hace ___ frío."
+        options: "mucho | muy | mucha"
+      - q: "Mañana ___ visitar el museo."
+        options: "voy a | he | estoy"
+      - q: "Ahora mismo ___ (yo, comer)."
+        options: "estoy comiendo | estoy comer | soy comiendo"
+      - q: "Esta semana ___ dos películas."
+        options: "hemos visto | hemos vido | estamos visto"
+        explain: "ver → visto (неправильное причастие)."
+
+  - id: fin
+    kind: finale
+    title: ¡Enhorabuena!
+    vocab:
+      - "🎉 ¡Enhorabuena! [энорабуэ́на] — поздравляю! поздравляем!"
+      - "🍀 ¡Mucha suerte! [му́ча суэ́ртэ] — удачи!"
+    blocks:
+      - |
+        **¡Enhorabuena!** Вы прошли путь от первого слова **¡Hola!** до уровня **A1**. Больше шестисот слов и выражений, двадцать три темы, сотни упражнений и тестов — и всё это маленькими шагами, день за днём.
+      - cando:
+          - "познакомиться, рассказать о себе, семье, работе и учёбе"
+          - "описать людей, свой дом и город"
+          - "спросить дорогу и поехать на транспорте"
+          - "заказать еду в кафе и сделать покупки"
+          - "договориться о встрече, рассказать о хобби и планах"
+          - "рассказать, что вы сделали сегодня и что делаете сейчас"
+          - "объясниться у врача"
+      - header: Что дальше?
+      - list:
+          - "🔁 **Повторяйте**: пролистайте канал с начала по хештегам #тест и #повторение"
+          - "🎬 **Смотрите и слушайте**: сериалы и видео для начинающих с испанскими субтитрами, песни"
+          - "💬 **Говорите**: найдите партнёра для языкового обмена — вы уже умеете написать о себе анкету"
+          - "📝 **Проверьте уровень**: Институт Сервантеса проводит международный экзамен DELE A1"
+          - "📚 **Следующий шаг — A2**: прошедшие времена, сравнения, советы и инструкции"
+      - "Спасибо, что учились с нами! Напишите в комментариях по-испански, что вам больше всего понравилось в курсе. **¡Mucha suerte!** 🇪🇸"

@@ -26,6 +26,22 @@ LABELS = {
     "hidden_text": ("📝 <b>Текст</b> (откройте после прослушивания):", "📝 <b>Texto</b>"),
     "exercise": ("Проверьте себя", "Responde"),
     "polls": ("👇 <b>Проверьте себя</b> в опросах ниже.", "👇 <b>Responde</b> a las preguntas."),
+    "lesson": ("Урок", "Lección"),
+    "unit": ("Тема", "Tema"),
+}
+
+# Испанские названия типов постов — включаются так же, когда слова пройдены.
+KIND_ES = {
+    "vocab": "Vocabulario",
+    "grammar": "Gramática",
+    "dialogue": "Diálogo",
+    "listening": "Escucha",
+    "reading": "Lectura",
+    "practice": "Práctica",
+    "quiz": "Test",
+    "review": "Repaso",
+    "final": "Examen",
+    "finale": "Fin",
 }
 
 
@@ -107,7 +123,7 @@ class Renderer:
         if lesson.audio and out.audio:
             messages.append(AudioMessage(
                 segments=out.audio,
-                title=f"Урок {lesson.number} · {lesson.kind_label}",
+                title=f"{self._label('lesson', lesson)} {lesson.number} · {self.kind_label(lesson)}",
                 caption=self._label("audio", lesson),
                 pauses=lesson.kind in ("vocab", "phonetics"),
             ))
@@ -120,12 +136,18 @@ class Renderer:
         ru, es = LABELS[key]
         return es if not self.lexicon.unknown_words(strip_tags(es), lesson) else ru
 
+    def kind_label(self, lesson: Lesson) -> str:
+        es = KIND_ES.get(lesson.kind)
+        if es and not self.lexicon.unknown_words(es, lesson):
+            return es
+        return lesson.kind_label
+
     def _header(self, lesson: Lesson) -> str:
         unit = lesson.unit
         return (
-            f"🇪🇸 <b>Урок {lesson.number}</b> · {escape(lesson.level)} · "
-            f"Тема {unit.number}. {to_html(unit.title)}\n"
-            f"{lesson.kind_emoji} {lesson.kind_label} · <b>{to_html(lesson.title)}</b>"
+            f"🇪🇸 <b>{self._label('lesson', lesson)} {lesson.number}</b> · {escape(lesson.level)} · "
+            f"{self._label('unit', lesson)} {unit.number}. {to_html(unit.title)}\n"
+            f"{lesson.kind_emoji} {self.kind_label(lesson)} · <b>{to_html(lesson.title)}</b>"
         )
 
     def _footer(self, lesson: Lesson) -> str:
