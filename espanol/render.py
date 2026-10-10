@@ -19,7 +19,7 @@ REFLEXIVE_BY_PERSON = ("me", "te", "se", "nos", "os", "se")
 # как только все его слова пройдены, — так язык постов постепенно становится испанским.
 LABELS = {
     "new_words": ("🆕 <b>Новые слова</b>", "🆕 <b>Palabras nuevas</b>"),
-    "recall": ("🔁 <b>Вспомним</b> (нажмите на скрытое, чтобы проверить себя)", "🔁 <b>Repaso</b>"),
+    "recall": ("🔁 <b>Вспомним</b> (нажмите на скрытый текст, чтобы проверить себя)", "🔁 <b>Repaso</b>"),
     "translation": ("🇷🇺 <b>Перевод</b>", "🇷🇺 <b>Traducción</b>"),
     "task": ("✍️ <b>Задание:</b>", "✍️ <b>Tarea:</b>"),
     "audio": ("🎧 Слушайте и повторяйте вслух за диктором.", "🎧 Escucha y repite."),
@@ -113,8 +113,8 @@ class Renderer:
         polls = polls[:max_polls] if lesson.kind != "final" else polls
 
         if polls and lesson.kind in ("quiz", "final"):
-            out.parts.append(f"👇 <b>Вопросов: {len(polls)}.</b> Отвечайте по памяти, не подглядывая, "
-                             "— именно попытка вспомнить и закрепляет материал.")
+            out.parts.append(f"👇 <b>Вопросов: {len(polls)}.</b> Отвечайте по памяти и не подглядывайте, "
+                             "потому что именно попытка вспомнить и закрепляет материал.")
         elif polls:
             out.parts.append(self._label("polls", lesson))
 
@@ -306,14 +306,14 @@ class Renderer:
         produce = [p for p in picks if p.production]
         parts = []
         if recognise:
-            parts.append("\n".join(["<b>1. Узнайте слово</b> — переведите на русский:"]
+            parts.append("\n".join(["<b>1. Узнайте слово</b> и переведите его на русский:"]
                                    + [self._recall_line(p) for p in recognise]))
         if produce:
             parts.append("\n".join([f"<b>{2 if recognise else 1}. Вспомните по-испански:</b>"]
                                    + [self._recall_line(p) for p in produce]))
         examples = [p.item.example for p in picks if p.item.example][:6]
         if examples:
-            parts.append("\n".join(["<b>В контексте</b> — прочитайте вслух и переведите:"]
+            parts.append("\n".join(["<b>Слова в контексте:</b> прочитайте примеры вслух и переведите их."]
                                    + [f"▫️ <i>{to_html(e.es)}</i> — <tg-spoiler>{to_html(e.ru)}</tg-spoiler>"
                                       for e in examples]))
         return parts
