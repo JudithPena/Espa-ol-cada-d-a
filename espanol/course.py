@@ -243,19 +243,20 @@ def _as_list(value: Any) -> list[str]:
 
 _HAS_LETTER = re.compile(r"[A-Za-zА-Яа-яЁёÁÉÍÓÚÜÑáéíóúüñ¿¡]")
 _PRON = re.compile(r"\s*\[([^\]]+)\]\s*$")
+_OPTIONS = re.compile(r"\s(\{[^{}]*\})\s*(?=::|$)")
 
 
 def parse_vocab_line(line: str, where: str) -> dict:
     """Разбирает компактную запись слова в словарь полей."""
     s = line.strip()
     opts: dict = {}
-    if s.endswith("}") and " {" in s:
-        cut = s.rfind(" {")
+    m = _OPTIONS.search(s)  # {опции} — в конце строки или перед «::»
+    if m:
         try:
-            opts = yaml.safe_load(s[cut + 1:]) or {}
+            opts = yaml.safe_load(m.group(1)) or {}
         except yaml.YAMLError as exc:
-            raise ContentError(f"{where}: ошибка в опциях {s[cut + 1:]!r}: {exc}") from exc
-        s = s[:cut].rstrip()
+            raise ContentError(f"{where}: ошибка в опциях {m.group(1)!r}: {exc}") from exc
+        s = (s[: m.start()] + " " + s[m.end():]).strip()
     example = None
     if " :: " in s:
         s, example = (part.strip() for part in s.split(" :: ", 1))
@@ -340,7 +341,7 @@ def _items(value: Any) -> list:
 
 def parse_block(raw: Any, where: str) -> Block:
     if isinstance(raw, str):
-        return Block("text", raw)
+        return Block("text", raw.strip())
     if not isinstance(raw, dict) or not raw:
         raise ContentError(f"{where}: непонятный блок {raw!r}")
     if "type" in raw:

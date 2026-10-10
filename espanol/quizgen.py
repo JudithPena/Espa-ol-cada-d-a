@@ -67,6 +67,13 @@ def explanation_for(item: VocabItem) -> str:
     return f"<b>{escape(item.es)}</b> — {escape(plain(item.ru))}"[:MAX_EXPLANATION]
 
 
+def _ask(prefix: str, text: str) -> str:
+    """«Что значит «casa»?», но без двойного знака: «Что значит: «¿Qué tal?»»."""
+    if text.rstrip().endswith(("?", "!", "…", "...")):
+        return f"{prefix}: «{text}»"
+    return f"{prefix} «{text}»?"
+
+
 def vocab_poll(pick: Pick, known: list[VocabItem], seed: str) -> Poll | None:
     item = pick.item
     rng = random.Random(seed)
@@ -75,10 +82,10 @@ def vocab_poll(pick: Pick, known: list[VocabItem], seed: str) -> Poll | None:
     if len(wrong) < 2:
         return None
     if production:
-        question = f"Как по-испански «{plain(item.ru)}»?"
+        question = _ask("Как по-испански", plain(item.ru))
         options = [item.es] + [w.es for w in wrong]
     else:
-        question = f"Что значит «{item.es}»?"
+        question = _ask("Что значит", item.es)
         options = [plain(item.ru)] + [plain(w.ru) for w in wrong]
     order = list(range(len(options)))
     rng.shuffle(order)

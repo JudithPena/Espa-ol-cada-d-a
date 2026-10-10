@@ -1,0 +1,239 @@
+id: cosas
+number: 6
+level: A0
+title: Вещи вокруг нас
+goals:
+  - назвать предметы вокруг себя
+  - понимать род слов и выбирать артикль el, la, un, una
+  - образовывать множественное число и говорить, что где есть
+
+lessons:
+  - id: vocab1
+    kind: vocab
+    title: ¿Qué es esto?
+    vocab:
+      - "❓ ¿Qué es esto? [кэ эс э́сто] — что это? :: ¿Qué es esto? Es un libro. — Что это? Это книга."
+      - "☝️ un / una [ун, у́на] — (какой-то) один, одна; неопределённый артикль :: Es una llave. — Это ключ."
+      - "📕 el libro [ли́бро] — книга"
+      - "📓 el cuaderno [куадэ́рно] — тетрадь"
+      - "🖊 el bolígrafo [боли́графо] — ручка"
+      - "🎒 la mochila [мочи́ла] — рюкзак"
+      - "🔑 la llave [лья́бэ] — ключ"
+    blocks:
+      - "Самый простой способ узнать новое слово — показать на предмет и спросить: **¿Qué es esto?**"
+      - examples:
+          items:
+            - "¿Qué es esto? Es un cuaderno. — Что это? Это тетрадь."
+            - "¿Qué es esto? Es una mochila. — Что это? Это рюкзак."
+            - "¿Es un libro? No, es un cuaderno. — Это книга? Нет, это тетрадь."
+      - tip: "Заметили? Перед одними словами **un**, перед другими — **una**. Это род слова. Завтра разберёмся, как его узнать."
+      - exercise:
+          title: Responde
+          items:
+            - "📕 ¿Qué es esto? => Es un libro."
+            - "🔑 ¿Qué es esto? => Es una llave."
+            - "🖊 ¿Qué es esto? => Es un bolígrafo."
+            - "🎒 ¿Qué es esto? => Es una mochila."
+
+  - id: genero
+    kind: grammar
+    title: "Мужской и женский род: el, la, un, una"
+    vocab:
+      - "🪑 la mesa [мэ́са] — стол"
+      - "💺 la silla [си́лья] — стул"
+      - "📅 el día [ди́а] — день"
+      - "📷 la foto [фо́то] — фотография"
+      - "🗺 el mapa [ма́па] — карта"
+      - "🔀 o [о] — или :: ¿El o la? — El или la?"
+    blocks:
+      - "Посмотрите на три группы слов. Можно ли по окончанию угадать артикль?"
+      - table:
+          rows:
+            - ["el libro, el cuaderno, el bolígrafo", "на `-o` → **el**"]
+            - ["la mochila, la mesa, la silla", "на `-a` → **la**"]
+            - ["el café, el hotel, la llave", "другие окончания → запоминаем"]
+      - rule: |
+          Слова на **-o** обычно мужского рода (**el**), на **-a** — женского (**la**). У остальных род нужно запомнить, поэтому учите слова **с артиклем**.
+          Исключения: **el día**, **el mapa** — мужского рода; **la foto** — женского (это сокращение от `la fotografía`).
+      - table:
+          title: Артикли
+          rows:
+            - ["тот самый, известный", "**el** libro, **la** mesa"]
+            - ["какой-то, один из", "**un** libro, **una** mesa"]
+      - examples:
+          items:
+            - "Es un libro. El libro es de Ana. — Это книга. Книга — Аны."
+            - "Es una foto. La foto es de Pablo. — Это фотография. Фото — Пабло."
+      - note: "**de** показывает принадлежность: _el libro de Ana_ — «книга Аны», _el amigo de Pablo_ — «друг Пабло»."
+      - exercise:
+          title: "El o la?"
+          items:
+            - "___ mesa => la"
+            - "___ cuaderno => el"
+            - "___ llave => la"
+            - "___ día => el"
+            - "___ foto => la"
+            - "___ mapa => el"
+      - exercise:
+          title: "Un o una?"
+          items:
+            - "Es ___ silla. => una"
+            - "Es ___ bolígrafo. => un"
+            - "Es ___ mochila. => una"
+            - "Es ___ hotel. => un"
+
+  - id: vocab2
+    kind: vocab
+    title: В комнате
+    vocab:
+      - "💻 el ordenador [ордэнадо́р] — компьютер"
+      - "📱 el móvil [мо́биль] — мобильный телефон"
+      - "🚪 la puerta [пуэ́рта] — дверь"
+      - "🪟 la ventana [бэнта́на] — окно"
+      - "⌚ el reloj [рэло́х] — часы"
+      - "💡 la lámpara [ла́мпара] — лампа"
+    blocks:
+      - "Шесть слов о том, что вас окружает прямо сейчас. Посмотрите вокруг и назовите вслух всё, что знаете: **Es una ventana. Es un móvil...**"
+      - latam: "компьютер — **la computadora**, мобильный — **el celular**."
+      - tip: "В слове **reloj** последняя `j` почти не слышна: [рэло́]."
+      - exercise:
+          title: "Traduce (с артиклем!)"
+          items:
+            - "окно => la ventana"
+            - "часы => el reloj"
+            - "дверь => la puerta"
+            - "компьютер => el ordenador"
+            - "Это мобильный Пабло. => Es el móvil de Pablo."
+    forms: [computadora, celular]
+
+  - id: plural
+    kind: grammar
+    title: "Много вещей: los, las, hay"
+    unlocks: [plural]
+    vocab:
+      - "👥 los / las [лос, лас] — артикль во множественном числе :: los libros, las mesas — книги, столы"
+      - "👥 unos / unas [у́нос, у́нас] — несколько, какие-то :: unos cuadernos — несколько тетрадей"
+      - "✅ hay [ай] — есть, имеется :: En la mesa hay un libro. — На столе (лежит) книга."
+      - "❓ ¿Qué hay en...? [кэ ай эн] — что есть в / на...? :: ¿Qué hay en la mochila? — Что в рюкзаке?"
+      - "✏️ el lápiz [ла́пиθ] — карандаш"
+    blocks:
+      - "Посмотрите, как меняются слова, когда предметов много. Видите три разных случая?"
+      - table:
+          rows:
+            - ["el libro → los libro**s**", "la mesa → las mesa**s**"]
+            - ["el reloj → los reloj**es**", "el móvil → los móvil**es**"]
+            - ["el lápiz → los lápi**ces**", "`z` → `c` + `es`"]
+      - rule: |
+          Слово кончается на гласную → `+s`: libros, mesas, cafés.
+          На согласную → `+es`: relojes, hoteles.
+          На `z` → `z` меняется на `c` + `es`: lápiz → lápices.
+          Артикли: **el → los**, **la → las**, **un → unos**, **una → unas**.
+      - header: "Hay — «есть, имеется»"
+      - |
+        **hay** не меняется: _hay un libro_, _hay dos libros_. С ним обычно не ставят **el/la**: говорят _hay un libro_, а не `hay el libro`.
+      - examples:
+          items:
+            - "En la mesa hay un ordenador y dos libros. — На столе компьютер и две книги."
+            - "¿Qué hay en la mochila? Hay unas llaves. — Что в рюкзаке? Какие-то ключи."
+            - "No hay ventanas. — Окон нет."
+      - exercise:
+          title: Множественное число
+          items:
+            - "el cuaderno => los cuadernos"
+            - "la llave => las llaves"
+            - "el hotel => los hoteles"
+            - "el lápiz => los lápices"
+            - "una silla => unas sillas"
+            - "el día => los días"
+
+  - id: lectura
+    kind: reading
+    title: ¿Qué hay en la mochila?
+    vocab:
+      - "🍼 la botella [ботэ́лья] — бутылка"
+      - "👓 las gafas [га́фас] — очки"
+      - "💶 el dinero [дине́ро] — деньги"
+    blocks:
+      - "Прочитайте текст, потом послушайте аудио. В конце — вопросы на испанском: вы уже сможете ответить."
+      - reading:
+          title: La mochila de Ana
+          text: |
+            Ana tiene una mochila. ¿Qué hay en la mochila de Ana?
+
+            Hay un libro, dos cuadernos, tres bolígrafos y un lápiz. También hay unas llaves, unas gafas y un móvil. Hay una botella, pero no hay dinero.
+
+            ¿Y el ordenador? ¡No hay ordenador! El ordenador de Ana está en casa.
+          translation: |
+            У Аны есть рюкзак. Что в рюкзаке у Аны?
+
+            Там книга, две тетради, три ручки и карандаш. Ещё там ключи, очки и мобильный. Есть бутылка, но нет денег.
+
+            А компьютер? Компьютера нет! Компьютер Аны дома.
+      - note: "**está en casa** — «находится дома». Этот глагол подробно разберём позже, а **en casa** — «дома» — запомните как готовую фразу."
+      - exercise:
+          title: Responde
+          items:
+            - "¿Cuántos cuadernos hay? => Hay dos cuadernos."
+            - "¿Hay un móvil? => Sí, hay un móvil."
+            - "¿Hay dinero? => No, no hay dinero."
+            - "¿Dónde está el ordenador? => En casa."
+    quiz:
+      - q: ¿Cuántos bolígrafos hay en la mochila?
+        options: "tres | dos | uno"
+      - q: ¿Qué no hay en la mochila?
+        options: "dinero | gafas | llaves"
+
+  - id: practica
+    kind: practice
+    title: el, la, los, las
+    blocks:
+      - "Тренировка на артикли и множественное число. Сначала ответьте вслух, потом проверьте."
+      - exercise:
+          title: "El, la, los o las?"
+          items:
+            - "___ ventanas => las"
+            - "___ reloj => el"
+            - "___ gafas => las"
+            - "___ días => los"
+            - "___ mapa => el"
+            - "___ fotos => las"
+      - exercise:
+          title: Traduce
+          items:
+            - "Что это? Это ключи. => ¿Qué es esto? Son unas llaves."
+            - "На столе две бутылки. => En la mesa hay dos botellas."
+            - "В рюкзаке нет денег. => En la mochila no hay dinero."
+            - "Это телефон Пабло. => Es el teléfono de Pablo."
+      - note: "**son** — «(они) есть», форма глагола **ser** для множественного числа: _Es una llave_, но _Son unas llaves_. Подробнее — в следующей теме."
+      - exercise:
+          title: Найдите ошибку
+          items:
+            - "la día => el día"
+            - "`los lápizes` => los lápices"
+            - "Hay el libro en la mesa. => Hay un libro en la mesa."
+      - task: "Что лежит у вас на столе? Напишите в комментариях: **En mi mesa hay...**"
+    forms: [son]
+
+  - id: quiz
+    kind: quiz
+    title: Вещи вокруг нас
+    blocks:
+      - "Тест по теме «Вещи вокруг нас»."
+      - cando:
+          - "спросить ¿Qué es esto? и ответить"
+          - "выбрать артикль: el / la, un / una"
+          - "образовать множественное число: libros, relojes, lápices"
+          - "сказать, что где есть: En la mesa hay..."
+    quiz:
+      - q: Какой артикль у слова «día»?
+        options: "el | la"
+        answer: 0
+        explain: "el día — исключение: мужской род, хотя на -a."
+      - q: Множественное число от «el lápiz»
+        options: "los lápices | los lápizes | los lápizs"
+      - q: Множественное число от «el reloj»
+        options: "los relojes | los relojs | las relojes"
+      - q: "En la mesa ___ un libro."
+        options: "hay | es | tiene"
+      - q: Как сказать «какие-то ключи»?
+        options: "unas llaves | unos llaves | las llave"
