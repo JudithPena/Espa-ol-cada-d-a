@@ -101,7 +101,7 @@ VERBS: dict[str, dict] = {
     "descubrir": _v(participle="descubierto"),
 }
 
-_VERB_RE = re.compile(r"^[a-záéíóúñü]+(ar|er|ir|ír)(se)?$")
+_VERB_RE = re.compile(r"^[a-záéíóúñü]*(ar|er|ir|ír)(se)?$")  # * — чтобы «ir» тоже был глаголом
 # Слова на -ar/-er/-ir, которые не являются глаголами.
 NOT_VERBS = {
     "ayer", "mujer", "mayor", "mejor", "peor", "menor", "lugar", "bar", "mar",

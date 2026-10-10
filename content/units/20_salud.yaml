@@ -1,0 +1,165 @@
+id: salud
+number: 20
+level: A1
+title: Здоровье
+goals:
+  - назвать части тела
+  - сказать, что болит, и описать самочувствие
+  - объясниться у врача и в аптеке
+
+lessons:
+  - id: cuerpo
+    kind: vocab
+    title: Тело
+    vocab:
+      - "🧍 el cuerpo [куэ́рпо] — тело"
+      - "🗣 la cabeza [кабэ́θа] — голова"
+      - "💪 el brazo [бра́θо] — рука (вся)"
+      - "✋ la mano [ма́но] — кисть руки, рука"
+      - "🦵 la pierna [пьэ́рна] — нога"
+      - "🦶 el pie [пьэ] — ступня, нога (ниже щиколотки)"
+      - "🔙 la espalda [эспа́льда] — спина"
+      - "🫃 el estómago [эсто́маго] — желудок, живот"
+    blocks:
+      - "Тело человека. Покажите на себе каждую часть и назовите её вслух — так слова запоминаются быстрее (метод «полного физического отклика»)."
+      - rule: "**la mano** — женского рода, хотя кончается на `-o`: _la mano derecha_, _las manos_."
+      - examples:
+          items:
+            - "Tengo dos manos y dos pies. — У меня две руки и две ноги."
+            - "Mi hermano es alto y tiene las piernas muy largas. — Мой брат высокий, у него очень длинные ноги."
+            - "Me lavo las manos antes de comer. — Я мою руки перед едой."
+      - exercise:
+          title: Traduce
+          items:
+            - "голова => la cabeza"
+            - "спина => la espalda"
+            - "две ноги => dos piernas"
+            - "Я мою руки. => Me lavo las manos."
+
+  - id: doler
+    kind: grammar
+    title: Me duele la cabeza
+    vocab:
+      - "🤕 doler [долэ́р] — болеть :: Me duele la cabeza. — У меня болит голова."
+      - "❓ ¿Qué te duele? [кэ тэ дуэ́лэ] — что у тебя болит?"
+      - "🗣 la garganta [гарга́нта] — горло"
+      - "🦷 la muela [муэ́ла] — коренной зуб :: Me duelen las muelas. — У меня болят зубы."
+    blocks:
+      - "Глагол **doler** работает как **gustar**. Помните: _me gusta — me gustan_? Посмотрите на примеры."
+      - examples:
+          items:
+            - "Me duele la cabeza. — У меня болит голова."
+            - "Me duelen los pies. — У меня болят ноги."
+            - "¿Te duele la garganta? — У тебя болит горло?"
+            - "A mi padre le duele la espalda. — У моего отца болит спина."
+      - rule: |
+          **me / te / le / nos / os / les** + **duele** (одно) / **duelen** (много) + артикль + часть тела.
+          По-испански не говорят «моя голова»: _Me duele **la** cabeza_, а не `mi cabeza`.
+      - exercise:
+          title: "¿Duele o duelen?"
+          items:
+            - "Me ___ el estómago. => duele"
+            - "Me ___ las piernas. => duelen"
+            - "¿Te ___ la cabeza? => duele"
+            - "A Ana le ___ los ojos. => duelen"
+            - "Nos ___ la espalda. => duele"
+      - exercise:
+          title: Traduce
+          items:
+            - "У меня болит горло. => Me duele la garganta."
+            - "Что у тебя болит? => ¿Qué te duele?"
+            - "У неё болят ноги. => Le duelen los pies."
+
+  - id: tener
+    kind: grammar
+    title: "Tengo hambre, tengo frío"
+    vocab:
+      - "🍽 tener hambre [тэнэ́р а́мбрэ] — хотеть есть"
+      - "🥤 tener sed [тэнэ́р сэд] — хотеть пить"
+      - "😴 tener sueño [тэнэ́р суэ́ньо] — хотеть спать"
+      - "🥶 tener frío / tener calor [фри́о, кало́р] — мёрзнуть / быть жарко"
+      - "🤒 tener fiebre [тэнэ́р фьэ́брэ] — температурить"
+      - "😱 tener miedo [тэнэ́р мьэ́до] — бояться"
+      - "🤧 el resfriado [рэсфрья́до] — простуда"
+      - "🧒 el niño / la niña [ни́ньо, ни́нья] — ребёнок; мальчик / девочка"
+    blocks:
+      - "В русском «мне холодно», «я хочу есть», а в испанском — «я **имею** холод», «я **имею** голод». Посмотрите на примеры."
+      - examples:
+          items:
+            - "Tengo hambre. ¿Vamos a comer? — Я голоден. Пойдём поедим?"
+            - "¿Tienes sed? — Хочешь пить?"
+            - "Los niños tienen sueño. — Дети хотят спать."
+            - "Tengo frío. ¿Puedes cerrar la ventana? — Мне холодно. Можешь закрыть окно?"
+            - "Mi hijo tiene fiebre y tiene un resfriado. — У моего сына температура и простуда."
+      - rule: |
+          **tener + существительное** — о самочувствии: _tengo hambre, sed, sueño, frío, calor, fiebre, miedo_.
+          «Очень» здесь — **mucho / mucha**: _tengo **mucha** hambre_, _tengo **mucho** frío_ (hambre — женского рода).
+      - note: "Сравните: **hace frío** — «на улице холодно» (погода), **tengo frío** — «мне холодно» (я мёрзну)."
+      - exercise:
+          title: Traduce
+          items:
+            - "Мне жарко. => Tengo calor."
+            - "Ты хочешь спать? => ¿Tienes sueño?"
+            - "Я очень хочу пить. => Tengo mucha sed."
+            - "Он боится собак. => Tiene miedo de los perros."
+            - "Сегодня холодно, и я мёрзну. => Hoy hace frío y tengo frío."
+
+  - id: medico
+    kind: dialogue
+    title: У врача
+    vocab:
+      - "🩺 ¿Qué le pasa? [кэ лэ па́са] — что с вами? (вежливо)"
+      - "📅 ¿Desde cuándo? [дэ́сдэ куа́ндо] — с каких пор? :: Desde el lunes. — С понедельника."
+      - "💊 la pastilla [пасти́йя] — таблетка"
+      - "💊 tome [то́мэ] — примите (вежливо) :: Tome una pastilla. — Примите таблетку."
+      - "📄 la receta [рэθэ́та] — рецепт"
+      - "🍀 ¡Que te mejores! / ¡Que se mejore! [кэ тэ мэхо́рэс, кэ сэ мэхо́рэ] — выздоравливай! / выздоравливайте!"
+    blocks:
+      - "Серхио пришёл к врачу. Этот разговор пригодится в поездке — сохраните пост."
+      - dialogue:
+          lines:
+            - "Médica: Buenos días. ¿Qué le pasa? | Добрый день. Что с вами?"
+            - "Sergio: Me duele mucho la garganta y tengo fiebre. | У меня сильно болит горло и температура."
+            - "Médica: ¿Desde cuándo? | С какого времени?"
+            - "Sergio: Desde el lunes. Y estoy muy cansado. | С понедельника. И я очень устал."
+            - "Médica: ¿Le duele la cabeza? | Голова болит?"
+            - "Sergio: Sí, un poco. | Да, немного."
+            - "Médica: Es un resfriado. Tome estas pastillas tres veces al día. | Это простуда. Принимайте эти таблетки три раза в день."
+            - "Sergio: ¿Puedo ir a trabajar? | Мне можно ходить на работу?"
+            - "Médica: No, tiene que descansar dos o tres días y beber mucha agua. Aquí tiene la receta. | Нет, нужно отдохнуть два-три дня и пить много воды. Вот рецепт."
+            - "Sergio: Muchas gracias. | Большое спасибо."
+            - "Médica: De nada. ¡Que se mejore! | Не за что. Выздоравливайте!"
+      - note: "**tres veces al día** — «три раза в день». **una vez** — «один раз», **dos veces** — «два раза»."
+      - culture: "Испанскую аптеку легко найти по светящемуся **зелёному кресту**. Многие лекарства там продают только по рецепту."
+      - exercise:
+          title: Responde
+          items:
+            - "¿Qué le duele a Sergio? => La garganta y un poco la cabeza."
+            - "¿Desde cuándo está enfermo? => Desde el lunes."
+            - "¿Qué tiene? => Un resfriado."
+            - "¿Puede ir a trabajar? => No, tiene que descansar."
+    forms: [vez]
+
+  - id: quiz
+    kind: quiz
+    title: Здоровье
+    blocks:
+      - "Тест по теме «Здоровье»."
+      - cando:
+          - "назвать части тела"
+          - "сказать, что болит: me duele, me duelen"
+          - "описать самочувствие: tengo hambre, frío, fiebre"
+          - "объясниться у врача"
+    quiz:
+      - q: "Me ___ los pies."
+        options: "duelen | duele | duelo"
+      - q: Как сказать «Я хочу пить»?
+        options: "Tengo sed. | Estoy sed. | Quiero sed."
+      - q: "___ mano (артикль)"
+        options: "la | el"
+        answer: 0
+        explain: "la mano — исключение: женский род на -o."
+      - q: Как сказать «У меня болит голова»?
+        options: "Me duele la cabeza. | Me duele mi cabeza. | Tengo duele la cabeza."
+      - q: "Hoy ___ mucho frío y yo ___ frío."
+        options: "hace / tengo | tengo / hace | es / estoy"

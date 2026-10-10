@@ -1,0 +1,135 @@
+id: ahora
+number: 21
+level: A1
+title: Прямо сейчас
+goals:
+  - рассказать, что вы делаете прямо сейчас
+  - образовывать герундий: hablando, comiendo, viviendo
+  - поговорить по телефону
+
+lessons:
+  - id: gerundio
+    kind: grammar
+    title: "Estoy hablando: что происходит сейчас"
+    unlocks: [gerund]
+    vocab:
+      - "⚡ ahora mismo [ао́ра ми́смо] — прямо сейчас"
+      - "⏱ en este momento [эн э́стэ момэ́нто] — в данный момент"
+      - "⏳ esperar [эспэра́р] — ждать :: Estoy esperando el autobús. — Я жду автобус."
+    blocks:
+      - "Посмотрите на примеры. Из каких двух частей состоит сказуемое?"
+      - examples:
+          items:
+            - "¿Qué estás haciendo? Estoy cocinando. — Что ты делаешь? Готовлю."
+            - "Ana está leyendo un libro. — Ана читает книгу."
+            - "Los niños están durmiendo. — Дети спят."
+            - "Estamos esperando el autobús. — Мы ждём автобус."
+            - "Ahora mismo estoy estudiando español. — Прямо сейчас я учу испанский."
+      - rule: |
+          **estar + герундий** — действие, которое происходит **прямо сейчас**.
+          Герундий: **-ar → -ando** (habl**ando**), **-er / -ir → -iendo** (com**iendo**, viv**iendo**).
+      - table:
+          title: Особые формы
+          rows:
+            - ["leer", "**leyendo**"]
+            - ["dormir", "**durmiendo**"]
+            - ["pedir", "**pidiendo**"]
+            - ["ir", "**yendo**"]
+      - rule: |
+          Сравните: обычное настоящее время — привычки, **estar + герундий** — именно сейчас.
+          _Normalmente trabajo en la oficina, pero hoy estoy trabajando en casa._
+      - note: "Возвратное местоимение ставят перед **estar**: _Me estoy duchando_ — «Я принимаю душ (сейчас)»."
+      - exercise:
+          title: Responde
+          items:
+            - "hablar => hablando"
+            - "comer => comiendo"
+            - "escribir => escribiendo"
+            - "leer => leyendo"
+            - "dormir => durmiendo"
+            - "(yo) ___ (estudiar) => Estoy estudiando"
+            - "Ellos ___ (ver) la tele. => están viendo"
+
+  - id: practica
+    kind: practice
+    title: ¿Qué están haciendo?
+    blocks:
+      - "Опишите, что делают люди прямо сейчас. Используйте **estar + герундий**."
+      - exercise:
+          title: "¿Qué está haciendo?"
+          items:
+            - "🏊 Pablo => Está nadando."
+            - "📖 Ana => Está leyendo."
+            - "😴 el gato => Está durmiendo."
+            - "🍳 mis padres => Están cocinando."
+            - "💃 nosotras => Estamos bailando."
+            - "☕ tú => Estás tomando un café."
+      - exercise:
+          title: Traduce
+          items:
+            - "Что ты сейчас делаешь? => ¿Qué estás haciendo ahora?"
+            - "Я жду друга. => Estoy esperando a un amigo."
+            - "Идёт дождь. (прямо сейчас) => Está lloviendo."
+            - "Мы обедаем. => Estamos comiendo."
+            - "Они смотрят фильм. => Están viendo una película."
+      - exercise:
+          title: "Обычное настоящее или estar + герундий?"
+          items:
+            - "Normalmente (yo) ___ (trabajar) en casa. => trabajo"
+            - "Ahora mismo (yo) ___ (trabajar). => estoy trabajando"
+            - "Los sábados ___ (nosotros, jugar) al fútbol. => jugamos"
+            - "No puedo hablar: ___ (yo, comer). => estoy comiendo"
+      - task: "Что вы делаете прямо сейчас (кроме чтения этого поста 😉)? Напишите в комментариях: **Ahora mismo estoy...**"
+
+  - id: llamada
+    kind: listening
+    title: Телефонный звонок
+    vocab:
+      - "📞 ¿Diga? [ди́га] — алло? (ответ на звонок)"
+      - "📝 el examen [экса́мэн] — экзамен {pl: exámenes}"
+      - "👂 oye [о́йэ] — слушай (чтобы привлечь внимание)"
+      - "📲 luego te llamo [луэ́го тэ лья́мо] — я тебе перезвоню"
+    blocks:
+      - "Пабло звонит Ане. Послушайте разговор (текст ниже под спойлером) и ответьте на вопросы."
+      - dialogue:
+          hidden: true
+          lines:
+            - "Ana: ¿Diga? | Алло?"
+            - "Pablo: Hola, Ana. Soy Pablo. ¿Qué estás haciendo? | Привет, Ана. Это Пабло. Что делаешь?"
+            - "Ana: Estoy cocinando. Mis padres van a cenar en casa esta noche. | Готовлю. Мои родители сегодня ужинают у нас."
+            - "Pablo: ¿Y Lucía? | А Лусия?"
+            - "Ana: Está estudiando en su habitación. Mañana tiene un examen. | Занимается в своей комнате. У неё завтра экзамен."
+            - "Pablo: ¿Y tu hermano? | А твой брат?"
+            - "Ana: Está durmiendo. ¡Siempre está durmiendo! | Спит. Он всегда спит!"
+            - "Pablo: Oye, ¿quedamos mañana? | Слушай, встретимся завтра?"
+            - "Ana: Vale, pero ahora estoy muy ocupada. Luego te llamo. | Давай, но сейчас я очень занята. Перезвоню тебе."
+            - "Pablo: ¡Hasta luego! | Пока!"
+      - note: "В Испании на звонок отвечают **¿Diga?** или **¿Sí?**, а в Мексике — **¿Bueno?**"
+    quiz:
+      - q: ¿Qué está haciendo Ana?
+        options: "Está cocinando. | Está estudiando. | Está durmiendo."
+      - q: ¿Por qué está estudiando Lucía?
+        options: "Porque mañana tiene un examen. | Porque le gusta. | Porque es profesora."
+      - q: ¿Qué está haciendo el hermano de Ana?
+        options: "Está durmiendo. | Está cenando. | Está viendo la tele."
+
+  - id: quiz
+    kind: quiz
+    title: Прямо сейчас
+    blocks:
+      - "Тест по теме «Прямо сейчас»."
+      - cando:
+          - "рассказать, что происходит сейчас: Estoy cocinando"
+          - "образовывать герундий: hablando, comiendo, leyendo, durmiendo"
+          - "ответить на звонок и договориться перезвонить"
+    quiz:
+      - q: "Ahora mismo ___ un libro. (я читаю)"
+        options: "estoy leyendo | estoy leendo | soy leyendo"
+      - q: Герундий от «dormir»
+        options: "durmiendo | dormiendo | dormando"
+      - q: "Los niños ___ en el parque. (играют сейчас)"
+        options: "están jugando | están jugar | son jugando"
+      - q: Как ответить на телефонный звонок в Испании?
+        options: "¿Diga? | ¿Qué tal? | ¡Hola, adiós!"
+      - q: "Normalmente ___ en casa, pero hoy estoy comiendo en un restaurante."
+        options: "como | estoy comiendo | comiendo"

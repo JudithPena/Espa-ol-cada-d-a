@@ -34,7 +34,8 @@ KINDS: dict[str, tuple[str, str, str]] = {
     "quiz": ("🧠", "Тест", "тест"),
     "review": ("🔁", "Повторение", "повторение"),
     "culture": ("🌍", "Культура", "культура"),
-    "final": ("🎓", "Финал", "финал"),
+    "final": ("🎓", "Итоговый тест", "итог"),
+    "finale": ("🎉", "Финиш", "финиш"),
 }
 AUDIO_KINDS = {"phonetics", "vocab", "dialogue", "listening", "reading"}
 

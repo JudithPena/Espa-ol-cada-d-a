@@ -53,7 +53,7 @@ class Schedule:
     def capacity(self, lesson: Lesson) -> tuple[int, int]:
         """(сколько слов повторить, до скольких добирать, если «созревших» мало)."""
         s = self.settings
-        if lesson.kind == "intro":
+        if lesson.kind in ("intro", "finale"):
             return 0, 0
         if lesson.kind == "review":
             n = s["review_size"] if lesson.recall is None else lesson.recall
