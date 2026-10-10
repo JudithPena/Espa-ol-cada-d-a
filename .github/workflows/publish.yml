@@ -1,0 +1,70 @@
+name: Публикация урока
+
+on:
+  schedule:
+    # Каждый день в 06:00 UTC = 09:00 по Москве. Время меняется здесь (формат cron, часы в UTC).
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Опубликовать, даже если сегодня пост уже был"
+        type: boolean
+        default: false
+      dry_run:
+        description: "Только показать урок в логе, ничего не отправлять"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Установить зависимости
+        run: pip install -r requirements.txt
+
+      - name: Опубликовать следующий урок
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TIMEZONE: ${{ vars.TIMEZONE || 'Europe/Moscow' }}
+          POSTS_PER_DAY: ${{ vars.POSTS_PER_DAY || '1' }}
+          ENABLE_AUDIO: ${{ vars.ENABLE_AUDIO || '1' }}
+          FORCE: ${{ inputs.force }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          args=()
+          [ "$FORCE" = "true" ] && args+=(--force)
+          [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
+          python -m espanol publish "${args[@]}"
+
+      - name: Сохранить прогресс в репозитории
+        if: always() && inputs.dry_run != true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/state.json
+          if git diff --cached --quiet; then
+            echo "Прогресс не изменился"
+            exit 0
+          fi
+          git commit -m "Прогресс публикации [skip ci]"
+          for attempt in 1 2 3; do
+            git pull --rebase --autostash && git push && exit 0
+            sleep $((attempt * 5))
+          done
+          exit 1
