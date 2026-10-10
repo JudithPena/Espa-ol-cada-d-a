@@ -78,7 +78,8 @@ class Schedule:
 
             n, fill = self.capacity(lesson)
             pool = [c for c in cards if c.srs and c.idx not in exposed]
-            due = sorted((c for c in pool if c.due <= p), key=lambda c: (c.due, c.stage, c.intro))
+            # сначала слова, которые повторяли меньше двух раз: первые повторения важнее всего
+            due = sorted((c for c in pool if c.due <= p), key=lambda c: (c.stage > 1, c.due, c.intro))
             chosen = due[:n]
             if len(chosen) < fill:
                 taken = {c.idx for c in chosen}
