@@ -1,0 +1,163 @@
+id: presentarse
+number: 2
+level: A0
+title: Me llamo… Знакомство
+goals:
+  - представиться и спросить имя
+  - сказать «очень приятно» и ответить
+  - говорить «я», «ты», «он», «она» и «вы» с глаголом «быть»
+
+lessons:
+  - id: vocab
+    kind: vocab
+    title: Как тебя зовут?
+    vocab:
+      - "🏷 me llamo... [мэ лья́мо] — меня зовут... :: Hola, me llamo Ana. — Привет, меня зовут Ана."
+      - "❓ ¿Cómo te llamas? [ко́мо тэ лья́мас] — как тебя зовут? :: Hola, ¿cómo te llamas? — Привет, как тебя зовут?"
+      - "❓ ¿Cómo se llama usted? [ко́мо сэ лья́ма устэ́д] — как вас зовут? :: Perdón, ¿cómo se llama usted? — Извините, как вас зовут?"
+      - "😊 encantado/a [энканта́до, энканта́да] — очень приятно (о себе: мужчина / женщина) :: Encantada, Pablo. — Очень приятно, Пабло."
+      - "🤝 mucho gusto [му́чо гу́сто] — очень приятно :: Mucho gusto, señora. — Очень приятно, сеньора."
+      - "🔁 igualmente [игуальмэ́нтэ] — взаимно; мне тоже"
+    blocks:
+      - |
+        Сегодня учимся знакомиться. Обратите внимание на **encantado / encantada**: окончание зависит от того, **кто говорит**. Пабло скажет _encantado_, а Ана — _encantada_. **Mucho gusto** подходит всем.
+      - examples:
+          title: Как это звучит в жизни
+          items:
+            - "Hola, me llamo Pablo. ¿Y tú? — Привет, меня зовут Пабло. А тебя?"
+            - "Me llamo Ana. Encantada. — Меня зовут Ана. Очень приятно."
+            - "Mucho gusto, Ana. — Очень приятно, Ана."
+      - exercise:
+          title: Ваша очередь
+          items:
+            - "Представьтесь => Me llamo..."
+            - "Спросите имя у друга => ¿Cómo te llamas?"
+            - "Спросите имя у пожилой сеньоры => ¿Cómo se llama usted?"
+            - "Вам сказали «Encantado». Ответьте => Igualmente. / Encantado (Encantada)."
+
+  - id: grammar
+    kind: grammar
+    title: "Я, ты, он, она: глагол ser"
+    vocab:
+      - "🙋 yo [йо] — я"
+      - "👨 él [эль] — он"
+      - "👩 ella [э́йя] — она"
+      - "🟰 ser [сэр] — быть, являться {forms: soy eres es}"
+      - "🏷 llamarse [льяма́рсэ] — называться, зваться {forms: llamo llamas llama}"
+      - "🤔 ¿Quién es? [кьен эс] — кто это? :: ¿Quién es? ¿Es Pablo? — Кто это? Это Пабло?"
+    blocks:
+      - "Посмотрите на примеры и подумайте: что в испанском есть такого, чего нет в русском?"
+      - examples:
+          items:
+            - "Yo soy Ana. — Я Ана."
+            - "Tú eres Pablo. — Ты Пабло."
+            - "Él es Carlos. — Он Карлос."
+            - "Ella es Lucía. — Она Лусия."
+            - "Usted es el señor García. — Вы сеньор Гарсия."
+      - rule: |
+          В русском «быть» в настоящем времени пропускаем: «я Ана». В испанском глагол **ser** («быть») нужен всегда: **Soy Ana.** И у каждого лица своя форма.
+      - table:
+          title: "ser — быть"
+          rows:
+            - ["yo", "**soy**"]
+            - ["tú", "**eres**"]
+            - ["él / ella / usted", "**es**"]
+      - table:
+          title: "llamarse — зваться (букв. «называть себя»)"
+          rows:
+            - ["yo", "**me llamo**"]
+            - ["tú", "**te llamas**"]
+            - ["él / ella / usted", "**se llama**"]
+      - note: |
+          **usted** («вы») сочетается с той же формой, что **él** и **ella**: _¿Cómo se llama usted?_
+          Местоимения обычно опускают — форма глагола и так показывает, кто говорит. _Soy Ana_ звучит естественнее, чем _Yo soy Ana_. **yo** и **tú** оставляют для контраста: _Yo soy Ana, ¿y tú?_
+      - tip: "**él** со значком — «он», а **el** без значка — артикль: _el café_. Так же **sí** — «да», а `si` — «если»."
+      - exercise:
+          title: Вставьте пропущенное слово
+          items:
+            - "Yo ___ Pablo. => soy"
+            - "¿Tú ___ Ana? => eres"
+            - "Ella ___ María. => es"
+            - "¿Cómo ___ llamas? => te"
+            - "Él ___ llama Carlos. => se"
+            - "Usted ___ el señor López, ¿no? => es"
+      - culture: "У испанцев **два имени и две фамилии**: первая — от отца, вторая — от матери. Полное имя Пикассо — Pablo Ruiz Picasso: Ruiz — фамилия отца, Picasso — матери. Женщины после свадьбы фамилию не меняют."
+
+  - id: dialogue
+    kind: dialogue
+    title: На вечеринке
+    blocks:
+      - "В этом диалоге нет новых слов — только то, что вы уже знаете. Прочитайте вслух, потом послушайте аудио."
+      - dialogue:
+          lines:
+            - "Pablo: ¡Hola! Me llamo Pablo. ¿Y tú? ¿Cómo te llamas? | Привет! Меня зовут Пабло. А тебя? Как тебя зовут?"
+            - "Ana: Hola, Pablo. Me llamo Ana. | Привет, Пабло. Меня зовут Ана."
+            - "Pablo: Encantado, Ana. | Очень приятно, Ана."
+            - "Ana: Encantada. Perdón, ¿quién es ella? | Очень приятно. Извини, а кто она?"
+            - "Pablo: Es Lucía. ¡Lucía! | Это Лусия. Лусия!"
+            - "Lucía: ¡Hola! ¿Qué tal? | Привет! Как дела?"
+            - "Ana: Muy bien. Soy Ana. Mucho gusto. | Очень хорошо. Я Ана. Очень приятно."
+            - "Lucía: Igualmente, Ana. | Взаимно, Ана."
+      - dialogue:
+          title: В гостинице
+          lines:
+            - "Recepcionista: Buenas noches. ¿Cómo se llama usted? | Добрый вечер. Как вас зовут?"
+            - "Carlos: Me llamo Carlos López. | Меня зовут Карлос Лопес."
+            - "Recepcionista: Muchas gracias, señor López. ¡Buenas noches! | Большое спасибо, сеньор Лопес. Доброй ночи!"
+      - exercise:
+          title: Поняли?
+          items:
+            - "Почему Пабло говорит encantado, а Ана — encantada? => Пабло — мужчина, Ана — женщина"
+            - "Кто такая Лусия? => подруга, которую Пабло знакомит с Аной"
+            - "Почему администратор говорит ¿Cómo se llama usted?, а не ¿Cómo te llamas? => Это официальная ситуация — на «вы»"
+      - task: "Представьтесь в комментариях по-испански: поздоровайтесь и назовите своё имя. Ответьте кому-нибудь: **Mucho gusto** или **Encantado / Encantada**."
+
+  - id: listening
+    kind: listening
+    title: Кто есть кто?
+    blocks:
+      - "Задание на слух: сначала **послушайте аудио** (оно ниже) два-три раза и ответьте на вопросы в опросах. Текст спрятан — откройте его только в конце."
+      - dialogue:
+          hidden: true
+          lines:
+            - "Profesora: Buenos días. Me llamo Elena. ¿Y usted? ¿Cómo se llama? | Доброе утро. Меня зовут Елена. А вас? Как вас зовут?"
+            - "Iván: Me llamo Iván. | Меня зовут Иван."
+            - "Profesora: Encantada, Iván. ¿Y ella? ¿Quién es? | Очень приятно, Иван. А она? Кто это?"
+            - "Iván: Es Olga. | Это Ольга."
+            - "Olga: Hola. Sí, soy Olga. Mucho gusto. | Здравствуйте. Да, я Ольга. Очень приятно."
+            - "Profesora: Igualmente, Olga. | Взаимно, Ольга."
+    quiz:
+      - q: Как зовут преподавательницу?
+        options: "Elena | Olga | Ana"
+      - q: Как Иван отвечает на вопрос «¿Quién es?»
+        options: "Es Olga. | Soy Olga. | Me llamo Iván."
+        explain: "Es Olga — «Это Ольга»."
+      - q: Что говорит Ольга при знакомстве?
+        options: "Mucho gusto. | Igualmente. | Encantado."
+      - q: Почему преподавательница говорит «encantada», а не «encantado»?
+        options: "Она женщина | Она говорит с женщиной | Это вежливая форма"
+        explain: "Окончание -a / -o зависит от того, кто говорит."
+
+  - id: quiz
+    kind: quiz
+    title: Знакомство
+    blocks:
+      - "Тест по теме «Знакомство»."
+      - cando:
+          - "представиться: Me llamo... / Soy..."
+          - "спросить имя на «ты» и на «вы»"
+          - "ответить на знакомство: Encantado, Mucho gusto, Igualmente"
+          - "сказать, кто это: ¿Quién es? — Es..."
+    quiz:
+      - q: Как сказать «Меня зовут Ана»?
+        options: "Me llamo Ana. | Soy llamo Ana. | Me llamas Ana."
+      - q: "Tú ___ Pablo."
+        options: "eres | soy | es"
+        explain: "ser: yo soy, tú eres, él/ella/usted es."
+      - q: "Ella ___ Lucía."
+        options: "es | eres | soy"
+      - q: Что скажет женщина при знакомстве?
+        options: "Encantada. | Encantado. | Igualmente, señor."
+        explain: "Окончание зависит от того, кто говорит: женщина — encantada."
+      - q: Как вежливо спросить имя?
+        options: "¿Cómo se llama usted? | ¿Cómo te llamas? | ¿Quién eres?"
