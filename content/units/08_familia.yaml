@@ -1,0 +1,240 @@
+id: familia
+number: 8
+level: A0
+title: Семья
+goals:
+  - рассказать о своей семье
+  - говорить «мой», «твой», «наш»
+  - спросить, есть ли у человека братья, сёстры, дети
+
+lessons:
+  - id: vocab1
+    kind: vocab
+    title: Моя семья
+    vocab:
+      - "👨‍👩‍👧 la familia [фами́лья] — семья"
+      - "👨 el padre [па́дрэ] — отец"
+      - "👩 la madre [ма́дрэ] — мать"
+      - "👫 los padres [па́дрэс] — родители"
+      - "👦 el hermano / la hermana [эрма́но, эрма́на] — брат / сестра"
+      - "👶 el hijo / la hija [и́хо, и́ха] — сын / дочь"
+      - "❓ ¿Tienes hermanos? [тьэ́нэс эрма́нос] — у тебя есть братья и сёстры?"
+    blocks:
+      - "Семья — одна из главных тем для разговора в испаноязычном мире. Начнём с самых близких."
+      - rule: |
+          Мужской род во множественном числе называет **всю группу**:
+          **los padres** — отец и мать, родители;
+          **los hermanos** — братья и сёстры;
+          **los hijos** — сыновья и дочери, дети.
+      - examples:
+          items:
+            - "Mi padre se llama Antonio. — Моего отца зовут Антонио."
+            - "Mi madre es médica. — Моя мама врач."
+            - "¿Tienes hermanos? Sí, tengo una hermana. — У тебя есть братья или сёстры? Да, у меня есть сестра."
+            - "No tengo hijos. — У меня нет детей."
+      - tip: "В слове **hijo** буква `h` не читается, а `j` звучит как «х»: [и́хо]."
+      - exercise:
+          title: Traduce
+          items:
+            - "мои родители => mis padres"
+            - "У меня есть брат. => Tengo un hermano."
+            - "Моя сестра студентка. => Mi hermana es estudiante."
+            - "У тебя есть дети? => ¿Tienes hijos?"
+
+  - id: vocab2
+    kind: vocab
+    title: Бабушки, дедушки и другие
+    vocab:
+      - "👴 el abuelo / la abuela [абуэ́ло, абуэ́ла] — дедушка / бабушка"
+      - "🧔 el tío / la tía [ти́о, ти́а] — дядя / тётя"
+      - "🧒 el primo / la prima [при́мо, при́ма] — двоюродный брат / сестра"
+      - "💍 el marido [мари́до] — муж"
+      - "👩 la mujer [мухэ́р] — жена; женщина"
+      - "💑 el novio / la novia [но́бьо, но́бья] — парень / девушка (в паре); жених / невеста"
+      - "🐱 el gato [га́то] — кот, кошка"
+    blocks:
+      - "Расширяем семью. Не забывайте: **los abuelos** — это дедушка и бабушка вместе, **los tíos** — дядя и тётя."
+      - examples:
+          items:
+            - "Mis abuelos viven en Sevilla. — Мои бабушка и дедушка живут в Севилье."
+            - "Mi tía Rosa tiene dos hijos: mis primos. — У моей тёти Росы двое детей — мои двоюродные братья."
+            - "El marido de Ana es médico. — Муж Аны — врач."
+            - "¿Tienes novia? — У тебя есть девушка?"
+      - note: "**la mujer** — и «женщина», и «жена»: _mi mujer_ — «моя жена»."
+      - exercise:
+          title: "¿Quién es? (Кто это?)"
+          items:
+            - "el padre de mi padre => mi abuelo"
+            - "la hermana de mi madre => mi tía"
+            - "el hijo de mi tío => mi primo"
+            - "la madre de mi madre => mi abuela"
+
+  - id: posesivos
+    kind: grammar
+    title: "Мой, твой, наш. Глагол tener"
+    vocab:
+      - "🏠 nuestro/a [нуэ́стро, нуэ́стра] — наш, наша"
+      - "🏡 vuestro/a [буэ́стро, буэ́стра] — ваш, ваша (группе, неформально)"
+    forms: [tus, sus]
+    blocks:
+      - "Посмотрите на пары примеров. Что происходит со словами **mi, tu, su**, когда предметов много?"
+      - examples:
+          items:
+            - "mi hermano — mis hermanos — мой брат — мои братья"
+            - "tu casa — tus casas — твой дом — твои дома"
+            - "su hijo — sus hijos — его (её, ваш) сын — его (её, ваши) сыновья"
+            - "nuestro padre — nuestra madre — наш отец — наша мать"
+            - "nuestros abuelos — vuestras primas — наши дедушка и бабушка — ваши двоюродные сёстры"
+      - rule: |
+          **mi, tu, su** во множественном числе получают **-s**: mis, tus, sus.
+          **nuestro, vuestro** меняются по роду и числу: nuestro, nuestr**a**, nuestr**os**, nuestr**as**.
+          **su / sus** — «его», «её», «их» и «ваш» (при usted / ustedes). Кого имеют в виду — понятно из контекста.
+      - header: "Глагол tener полностью"
+      - conjugation:
+          verb: tener
+          ru: иметь
+          highlight: false
+          forms: [tengo, tienes, tiene, tenemos, tenéis, tienen]
+      - examples:
+          items:
+            - "Tenemos un perro y dos gatos. — У нас собака и две кошки."
+            - "¿Tenéis hijos? — У вас есть дети?"
+            - "Mis tíos tienen una casa en Málaga. — У моих дяди и тёти есть дом в Малаге."
+      - exercise:
+          title: Responde
+          items:
+            - "(yo) ___ hermanos => mis hermanos"
+            - "(nosotros) ___ casa => nuestra casa"
+            - "(tú) ___ padres => tus padres"
+            - "(vosotros) ___ perro => vuestro perro"
+            - "Nosotros ___ (tener) dos hijos. => tenemos"
+            - "¿Ellos ___ (tener) un gato? => tienen"
+
+  - id: lectura
+    kind: reading
+    title: La familia de Pablo
+    vocab:
+      - "⬆️ mayor [майо́р] — старший; пожилой {pos: adj}"
+      - "⬇️ pequeño/a [пэкэ́ньо, пэкэ́нья] — маленький; младший"
+    blocks:
+      - "Прочитайте рассказ Пабло о семье. Сначала без перевода — вы поймёте почти всё!"
+      - reading:
+          title: Mi familia
+          text: |
+            Hola. Me llamo Pablo. Tengo diecisiete años y estudio en la escuela.
+
+            Mi padre se llama Antonio. Es ingeniero y trabaja mucho. Mi madre se llama Isabel. Es profesora de inglés.
+
+            Tengo una hermana y un hermano. Mi hermana mayor se llama Carmen. Tiene veinte años y estudia en la universidad. Mi hermano pequeño se llama Luis. Tiene doce años.
+
+            Mis abuelos viven en Sevilla. Mi abuelo tiene un perro, Rufo. ¡Y nosotros tenemos un gato!
+
+            Mi tía Elena vive en Argentina. Su marido es argentino. Tienen dos hijos: mis primos Diego y Sofía.
+          translation: |
+            Привет. Меня зовут Пабло. Мне семнадцать лет, я учусь в школе.
+
+            Моего отца зовут Антонио. Он инженер и много работает. Маму зовут Исабель. Она преподаёт английский.
+
+            У меня есть сестра и брат. Мою старшую сестру зовут Кармен. Ей двадцать лет, она учится в университете. Младшего брата зовут Луис. Ему двенадцать лет.
+
+            Бабушка с дедушкой живут в Севилье. У дедушки есть собака Руфо. А у нас кот!
+
+            Моя тётя Елена живёт в Аргентине. Её муж — аргентинец. У них двое детей — мои двоюродные брат и сестра Диего и София.
+      - exercise:
+          title: Responde
+          items:
+            - "¿Cuántos años tiene Pablo? => Tiene diecisiete años."
+            - "¿Qué es su padre? => Es ingeniero."
+            - "¿Cómo se llama su hermana? => Carmen."
+            - "¿Dónde viven sus abuelos? => En Sevilla."
+            - "¿Diego y Sofía son hermanos de Pablo? => No, son sus primos."
+    allow: [Rufo]
+    quiz:
+      - q: ¿Cuántos años tiene Luis?
+        options: "doce | veinte | diecisiete"
+      - q: ¿Quién tiene un perro?
+        options: "el abuelo de Pablo | Pablo | la tía Elena"
+
+  - id: dialogo
+    kind: dialogue
+    title: ¿Quién es?
+    vocab:
+      - "👀 mira [ми́ра] — смотри, посмотри"
+    blocks:
+      - "Лусия и Пабло смотрят семейные фотографии. Прочитайте, послушайте и разыграйте диалог."
+      - dialogue:
+          lines:
+            - "Pablo: Mira, Lucía: es mi familia. | Смотри, Лусия: это моя семья."
+            - "Lucía: ¿Quién es? ¿Es tu padre? | Кто это? Твой отец?"
+            - "Pablo: Sí, es mi padre, y ella es mi madre. | Да, это мой отец, а это мама."
+            - "Lucía: ¿Y ella? ¿Es tu hermana? | А она? Твоя сестра?"
+            - "Pablo: Sí, es Carmen. Tiene veinte años. | Да, это Кармен. Ей двадцать лет."
+            - "Lucía: ¿Y el perro? | А собака?"
+            - "Pablo: Es Rufo, el perro de mi abuelo. ¿Tienes hermanos, Lucía? | Это Руфо, собака моего дедушки. У тебя есть братья или сёстры, Лусия?"
+            - "Lucía: No, no tengo hermanos. Pero tengo cuatro primos. | Нет. Но у меня четверо двоюродных."
+            - "Pablo: ¿Y tienes novio? | А парень у тебя есть?"
+            - "Lucía: ¡Pablo! | Пабло!"
+      - exercise:
+          title: Responde
+          items:
+            - "¿Cuántos años tiene Carmen? => Tiene veinte años."
+            - "¿Quién es Rufo? => El perro del abuelo de Pablo."
+            - "¿Lucía tiene hermanos? => No, pero tiene cuatro primos."
+      - note: "**del** = **de + el**: _el perro del abuelo_ — «собака дедушки». Это слияние обязательно."
+      - task: "Опишите свою семью в комментариях: **Tengo... Mi padre se llama... Mi madre es...**"
+    allow: [Rufo]
+    forms: [del]
+
+  - id: escucha
+    kind: listening
+    title: Семья Ольги
+    blocks:
+      - "Послушайте рассказ Ольги два раза и ответьте на вопросы. Текст — под спойлером, откройте его в конце."
+      - dialogue:
+          hidden: true
+          lines:
+            - "Olga: Hola, me llamo Olga. Soy rusa, de Kazán, pero vivo en Valencia. | Привет, меня зовут Ольга. Я русская, из Казани, но живу в Валенсии."
+            - "Olga: Mi marido se llama Sergio. Es médico y trabaja en un hospital. | Моего мужа зовут Сергей. Он врач, работает в больнице."
+            - "Olga: Tenemos dos hijos: Iván y Natalia. Iván tiene ocho años y Natalia tiene cinco. | У нас двое детей — Иван и Наталья. Ивану восемь лет, Наталье пять."
+            - "Olga: Mis padres viven en Kazán. Mi madre es profesora y mi padre es ingeniero. | Мои родители живут в Казани. Мама учительница, папа инженер."
+    quiz:
+      - q: ¿Cómo se llama el marido de Olga?
+        options: "Sergio | Iván | Antonio"
+      - q: ¿Cuántos hijos tienen Olga y Sergio?
+        options: "dos | tres | uno"
+      - q: ¿Cuántos años tiene Natalia?
+        options: "cinco | ocho | quince"
+      - q: ¿Dónde viven los padres de Olga?
+        options: "En Kazán. | En Valencia. | En Moscú."
+
+  - id: quiz
+    kind: quiz
+    title: Семья
+    blocks:
+      - "Тест по теме «Семья»."
+      - cando:
+          - "назвать членов семьи"
+          - "сказать «мой, твой, его, наш, ваш»: mi, tu, su, nuestro, vuestro"
+          - "спросить ¿Tienes hermanos? и рассказать о своей семье"
+    quiz:
+      - q: Что значит «los padres»?
+        options: "родители | отцы | братья"
+      - q: "___ abuelos viven en Sevilla. (мои)"
+        options: "Mis | Mi | Nuestro"
+      - q: "Nosotros ___ un gato."
+        options: "tenemos | tienen | tengo"
+      - q: Кто такая «la prima»?
+        options: "двоюродная сестра | тётя | бабушка"
+      - q: "___ casa está en Sevilla. (наш)"
+        options: "Nuestra | Nuestro | Nuestros"
+        explain: "casa — женского рода: nuestra casa."
+
+  - id: repaso
+    kind: review
+    title: Итоги уровня A0
+    blocks:
+      - |
+        🎉 **Поздравляем: уровень A0 позади!** Вы умеете здороваться и знакомиться, считать до двадцати, рассказывать, откуда вы, на каких языках говорите, где работаете или учитесь, и описывать свою семью.
+
+        Дальше — уровень **A1**: описание людей, дом, город, еда, хобби, время, покупки и планы. Испанского в постах станет больше.
+      - "Сегодня — большое повторение слов, которые давно не встречались. Произносите ответ вслух и только потом открывайте спойлер."
