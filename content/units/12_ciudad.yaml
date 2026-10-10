@@ -1,0 +1,235 @@
+id: ciudad
+number: 12
+level: A1
+title: Город
+goals:
+  - назвать места в городе
+  - сказать, куда и на чём вы едете
+  - спросить дорогу и понять ответ
+
+lessons:
+  - id: vocab1
+    kind: vocab
+    title: Места в городе
+    vocab:
+      - "🏙 la ciudad [θьуда́д] — город"
+      - "🛣 la calle [ка́йе] — улица"
+      - "🌳 el parque [па́ркэ] — парк"
+      - "🛍 la tienda [тьэ́нда] — магазин"
+      - "🛒 el supermercado [супэрмэрка́до] — супермаркет"
+      - "💊 la farmacia [фарма́θья] — аптека"
+      - "🏦 el banco [ба́нко] — банк"
+      - "🖼 el museo [мусэ́о] — музей"
+    blocks:
+      - "Новая тема — город. Сначала самые нужные места."
+      - examples:
+          items:
+            - "Madrid es una ciudad muy grande. — Мадрид — очень большой город."
+            - "En mi calle hay una farmacia. — На моей улице есть аптека."
+            - "El banco está al lado del supermercado. — Банк рядом с супермаркетом."
+            - "El museo del Prado está en Madrid. — Музей Прадо находится в Мадриде."
+      - tip: "В **calle** двойное `ll` читается как «й»: [ка́йе]."
+      - exercise:
+          title: Traduce
+          items:
+            - "Где аптека? => ¿Dónde está la farmacia?"
+            - "Рядом с парком есть магазин. => Al lado del parque hay una tienda."
+            - "Музей далеко? => ¿El museo está lejos?"
+            - "В моём городе два супермаркета. => En mi ciudad hay dos supermercados."
+
+  - id: vocab2
+    kind: vocab
+    title: Вокзал, кино, рынок
+    vocab:
+      - "🚉 la estación [эстаθьо́н] — вокзал; станция"
+      - "🚏 la parada [пара́да] — остановка"
+      - "🎬 el cine [θи́нэ] — кино; кинотеатр"
+      - "🍷 el bar [бар] — бар, кафе"
+      - "📚 la biblioteca [библьотэ́ка] — библиотека"
+      - "🧺 el mercado [мэрка́до] — рынок"
+      - "✈️ el aeropuerto [аэропуэ́рто] — аэропорт"
+    blocks:
+      - "Ещё семь мест. **El bar** в Испании — не ночной клуб, а обычное кафе, где завтракают, пьют кофе и едят тапас."
+      - examples:
+          items:
+            - "La parada está delante del mercado. — Остановка перед рынком."
+            - "La estación está lejos del centro. — Вокзал далеко от центра."
+            - "Hay un bar en la plaza. — На площади есть кафе."
+            - "¿Hay una biblioteca cerca? — Поблизости есть библиотека?"
+      - exercise:
+          title: "¿Dónde...?"
+          items:
+            - "Где можно сесть на автобус? => En la parada."
+            - "Где смотрят фильмы? => En el cine."
+            - "Где берут книги? => En la biblioteca."
+            - "Где покупают фрукты? => En el mercado."
+
+  - id: ir
+    kind: grammar
+    title: "¿Adónde vas? Глагол ir"
+    vocab:
+      - "🚶 ir [ир] — идти, ехать"
+      - "❓ ¿Adónde vas? [адо́ндэ бас] — куда ты идёшь?"
+      - "➡️ a [а] — в, на (куда); к :: Voy a la tienda. — Я иду в магазин."
+      - "🤝 con [кон] — с :: Voy al cine con mi amiga. — Я иду в кино с подругой."
+    blocks:
+      - "Посмотрите на примеры с глаголом **ir** — «идти, ехать». Какой маленький предлог стоит после него?"
+      - examples:
+          items:
+            - "¿Adónde vas? Voy a la farmacia. — Куда ты идёшь? В аптеку."
+            - "Vamos al cine. — Мы идём в кино."
+            - "Mis padres van a Madrid. — Мои родители едут в Мадрид."
+            - "Ana va al parque con el perro. — Ана идёт в парк с собакой."
+      - conjugation:
+          verb: ir
+          ru: идти, ехать
+          highlight: false
+          forms: [voy, vas, va, vamos, vais, van]
+      - rule: |
+          Куда? — **a**: _voy **a** la tienda_.
+          **a + el = al**: _voy **al** cine_, _vamos **al** parque_.
+          **¿Dónde?** — где (estar), **¿Adónde?** — куда (ir).
+      - note: "**a casa** — «домой», **en casa** — «дома»: _Voy a casa. Estoy en casa._"
+      - exercise:
+          title: Responde
+          items:
+            - "(yo) ___ al banco. => Voy"
+            - "Nosotros ___ a la biblioteca. => vamos"
+            - "¿Adónde ___ (vosotros)? => vais"
+            - "Ellos van ___ museo. => al"
+            - "¿___ estás? — En casa. => Dónde"
+            - "¿___ vas? — A casa. => Adónde"
+
+  - id: transporte
+    kind: vocab
+    title: Транспорт
+    vocab:
+      - "🚇 el metro [мэ́тро] — метро"
+      - "🚌 el autobús [аутобу́с] — автобус"
+      - "🚗 el coche [ко́чэ] — машина, автомобиль"
+      - "🚆 el tren [трэн] — поезд"
+      - "🚲 la bici [би́θи] — велосипед (сокр. от la bicicleta)"
+      - "🚶 a pie [а пьэ] — пешком"
+      - "💼 el trabajo [траба́хо] — работа"
+    blocks:
+      - "На чём вы ездите? Посмотрите, какой предлог здесь стоит."
+      - examples:
+          items:
+            - "Voy al trabajo en metro. — Я езжу на работу на метро."
+            - "Ana va a la universidad en bici. — Ана ездит в университет на велосипеде."
+            - "¿Vas en coche o en autobús? — Ты едешь на машине или на автобусе?"
+            - "Vamos a pie: está cerca. — Идём пешком: это близко."
+      - rule: "Транспорт — **en** без артикля: _en metro_, _en tren_, _en taxi_. Но пешком — **a pie**."
+      - latam: "машина — **el carro** или **el auto**, а автобус в Мексике — **el camión**, в Аргентине — **el colectivo**."
+      - exercise:
+          title: Traduce
+          items:
+            - "Я еду на работу на автобусе. => Voy al trabajo en autobús."
+            - "Мы идём в парк пешком. => Vamos al parque a pie."
+            - "Ты едешь в аэропорт на такси? => ¿Vas al aeropuerto en taxi?"
+            - "Мой отец ездит на машине. => Mi padre va en coche."
+    forms: [bicicleta, carro, auto, camión, colectivo]
+
+  - id: direcciones
+    kind: dialogue
+    title: Как пройти?
+    vocab:
+      - "🙇 perdone [пэрдо́нэ] — извините (вежливо, чтобы обратиться)"
+      - "📍 por aquí [пор аки́] — поблизости, здесь"
+      - "⬆️ todo recto [то́до рэ́кто] — прямо"
+      - "➡️ a la derecha [а ла дэрэ́ча] — направо, справа"
+      - "⬅️ a la izquierda [а ла иθкьэ́рда] — налево, слева"
+      - "1️⃣ primero/a [примэ́ро, примэ́ра] — первый"
+      - "2️⃣ segundo/a [сэгу́ндо, сэгу́нда] — второй"
+    blocks:
+      - "Турист Том спрашивает дорогу. Обратите внимание, как вежливо начать разговор с незнакомым человеком: **Perdone, ¿hay... por aquí?**"
+      - dialogue:
+          voices: {Señora: f}
+          lines:
+            - "Tom: Perdone, ¿hay una farmacia por aquí? | Извините, здесь поблизости есть аптека?"
+            - "Señora: Sí, hay una farmacia en la calle Mayor. | Да, на улице Майор есть аптека."
+            - "Tom: ¿Está lejos? | Это далеко?"
+            - "Señora: No, está muy cerca. Todo recto y la primera calle a la derecha. | Нет, очень близко. Прямо и первая улица направо."
+            - "Tom: ¿La primera a la derecha? | Первая направо?"
+            - "Señora: Sí. La farmacia está al lado del banco. | Да. Аптека рядом с банком."
+            - "Tom: ¿Y la estación de metro? | А станция метро?"
+            - "Señora: La segunda calle a la izquierda, entre el cine y el supermercado. | Вторая улица налево, между кинотеатром и супермаркетом."
+            - "Tom: ¡Muchas gracias! | Большое спасибо!"
+            - "Señora: De nada. | Не за что."
+      - exercise:
+          title: Responde
+          items:
+            - "¿Dónde está la farmacia? => En la calle Mayor, al lado del banco."
+            - "¿Está lejos? => No, está muy cerca."
+            - "¿Dónde está la estación de metro? => La segunda calle a la izquierda, entre el cine y el supermercado."
+      - note: "**perdón** — «простите» (извиниться), а **perdone** — «извините» (обратиться к незнакомому на «вы»). Другу скажете **perdona**."
+    forms: [perdona]
+
+  - id: lectura
+    kind: reading
+    title: Mi barrio
+    vocab:
+      - "🏘 el barrio [ба́рьо] — район, квартал"
+      - "😌 tranquilo/a [транки́ло, транки́ла] — спокойный, тихий"
+      - "➕ mucho/a [му́чо, му́ча] — много (+ существительное) :: muchos bares — много баров"
+      - "👥 la gente [хэ́нтэ] — люди"
+    blocks:
+      - "Обратите внимание: **la gente** («люди») — в испанском единственное число: _hay mucha gente_."
+      - reading:
+          title: Mi barrio
+          text: |
+            Me llamo Javier y vivo en Madrid, en un barrio del centro. Mi barrio es muy bonito, pero no es muy tranquilo: hay mucha gente, muchos bares y muchos restaurantes.
+
+            En mi calle hay un supermercado, una farmacia y una tienda pequeña. Cerca de mi casa hay un parque y una biblioteca. La estación de metro está al lado del mercado.
+
+            Voy al trabajo en metro. Mi amiga Clara vive lejos, en un barrio muy tranquilo. Ella va al trabajo en coche.
+          translation: |
+            Меня зовут Хавьер, я живу в Мадриде, в районе в центре. Мой район очень красивый, но не очень спокойный: много людей, много баров и ресторанов.
+
+            На моей улице есть супермаркет, аптека и маленький магазин. Рядом с домом — парк и библиотека. Станция метро рядом с рынком.
+
+            На работу я езжу на метро. Моя подруга Клара живёт далеко, в очень тихом районе. Она ездит на работу на машине.
+      - exercise:
+          title: Responde
+          items:
+            - "¿Dónde vive Javier? => En Madrid, en un barrio del centro."
+            - "¿Es tranquilo su barrio? => No, hay mucha gente."
+            - "¿Qué hay cerca de su casa? => Un parque y una biblioteca."
+            - "¿Cómo va Javier al trabajo? => En metro."
+            - "¿Y Clara? => Va en coche."
+    quiz:
+      - q: ¿Dónde está la estación de metro?
+        options: "al lado del mercado | al lado del parque | en la calle de Javier"
+      - q: ¿Cómo es el barrio de Clara?
+        options: "muy tranquilo | muy grande | muy bonito"
+
+  - id: quiz
+    kind: quiz
+    title: Город
+    blocks:
+      - "Тест по теме «Город»."
+      - cando:
+          - "назвать места в городе"
+          - "сказать, куда вы идёте: Voy al cine, a la farmacia"
+          - "сказать, на чём едете: en metro, en coche, a pie"
+          - "спросить дорогу и понять ответ"
+    quiz:
+      - q: "Mañana ___ al museo. (мы)"
+        options: "vamos | van | vais"
+      - q: "Voy ___ parque."
+        options: "al | a el | en el"
+        explain: "a + el = al."
+      - q: Как сказать «на автобусе»?
+        options: "en autobús | a autobús | en el autobús"
+      - q: "¿___ vas? — Al banco."
+        options: "Adónde | Dónde | Cómo"
+      - q: Что значит «todo recto»?
+        options: "прямо | направо | налево"
+      - q: Как вежливо обратиться к незнакомому человеку?
+        options: "Perdone, ... | Perdón, ... | De nada, ..."
+
+  - id: repaso
+    kind: review
+    title: Повторение
+    blocks:
+      - "Половина уровня A1 позади! Сегодня — повторение слов, которые давно не встречались в постах. Скажите ответ вслух, потом откройте спойлер."

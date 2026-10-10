@@ -1,0 +1,161 @@
+id: ser_estar
+number: 11
+level: A1
+title: ¿Cómo estás? Состояния
+goals:
+  - рассказать о своём самочувствии и настроении
+  - понимать разницу между ser и estar
+  - спросить «почему?» и объяснить причину
+
+lessons:
+  - id: vocab
+    kind: vocab
+    title: Как вы себя чувствуете?
+    vocab:
+      - "📅 hoy [ой] — сегодня :: Hoy estoy bien. — Сегодня у меня всё хорошо."
+      - "😴 cansado/a [канса́до, канса́да] — уставший"
+      - "😃 contento/a [контэ́нто, контэ́нта] — довольный, радостный"
+      - "😢 triste [три́стэ] — грустный {pos: adj}"
+      - "😬 nervioso/a [нэрбьо́со, нэрбьо́са] — взволнованный, нервный"
+      - "🤒 enfermo/a [энфэ́рмо, энфэ́рма] — больной"
+      - "⏳ ocupado/a [окупа́до, окупа́да] — занятой"
+      - "🥱 aburrido/a [абурри́до, абурри́да] — скучающий; скучный"
+    blocks:
+      - "Помните вопрос **¿Cómo estás?** — «как ты?». Теперь сможете ответить подробнее."
+      - examples:
+          items:
+            - "¿Cómo estás? Estoy cansado. — Как ты? Я устал."
+            - "Hoy Ana está muy contenta. — Сегодня Ана очень довольна."
+            - "¿Estás triste? — Тебе грустно?"
+            - "Mi padre está enfermo. — Мой отец болеет."
+            - "Estamos muy ocupados. — Мы очень заняты."
+      - tip: "Состояние — тоже прилагательное и согласуется: _Pablo está cansado_, _Ana está cansada_, _Estamos cansados_."
+      - exercise:
+          title: Traduce
+          items:
+            - "Я сегодня устала. => Hoy estoy cansada."
+            - "Ты занят? => ¿Estás ocupado?"
+            - "Они очень довольны. => Están muy contentos."
+            - "Моя сестра болеет. => Mi hermana está enferma."
+
+  - id: gramatica
+    kind: grammar
+    title: Ser или estar?
+    vocab:
+      - "⏰ ahora [ао́ра] — сейчас :: Ahora estoy en casa. — Сейчас я дома."
+      - "♾ siempre [сьэ́мпрэ] — всегда"
+    blocks:
+      - "В испанском два глагола «быть». Посмотрите на пары и подумайте, в чём разница."
+      - examples:
+          items:
+            - "Pablo es alto. — Пабло высокий. (всегда)"
+            - "Pablo está cansado. — Пабло устал. (сейчас)"
+            - "Ana es médica. — Ана — врач."
+            - "Ana está en el hospital. — Ана в больнице."
+            - "Soy de Moscú. — Я из Москвы."
+            - "Estoy en Madrid. — Я в Мадриде."
+      - rule: |
+          **SER** — **кто или что это**, какое оно по сути: имя, профессия, национальность, происхождение, внешность, характер.
+          **ESTAR** — **где** и **в каком состоянии** сейчас: местонахождение, самочувствие, настроение.
+      - tip: "Подсказка: «как ты себя чувствуешь» и «где ты» — всегда **estar**."
+      - examples:
+          title: Одно слово — разный смысл
+          items:
+            - "Pablo es aburrido. — Пабло скучный (человек)."
+            - "Pablo está aburrido. — Пабло скучно (сейчас)."
+            - "Mi abuelo siempre es muy serio, pero ahora está contento. — Мой дедушка всегда очень серьёзный, но сейчас доволен."
+      - exercise:
+          title: "¿Ser o estar?"
+          items:
+            - "Yo ___ de Rusia. => soy"
+            - "Ahora ___ en la oficina. (yo) => estoy"
+            - "Mi hermana ___ muy simpática. => es"
+            - "Hoy mi hermana ___ triste. => está"
+            - "Nosotros ___ estudiantes. => somos"
+            - "¿Dónde ___ tus padres? => están"
+            - "Javier ___ médico, pero hoy ___ enfermo. => es / está"
+
+  - id: dialogo
+    kind: dialogue
+    title: ¿Qué te pasa?
+    vocab:
+      - "❓ ¿Qué te pasa? [кэ тэ па́са] — что с тобой? что случилось?"
+      - "❓ ¿Por qué? [пор кэ] — почему?"
+      - "💡 porque [по́ркэ] — потому что :: Estoy cansado porque trabajo mucho. — Я устал, потому что много работаю."
+      - "👔 el jefe / la jefa [хэ́фэ, хэ́фа] — начальник, начальница"
+      - "🎉 ¡Qué bien! [кэ бьен] — как здорово!"
+    blocks:
+      - "Обратите внимание: **¿por qué?** («почему?») пишется раздельно и с ударением, а **porque** («потому что») — слитно и без него."
+      - dialogue:
+          lines:
+            - "Ana: Hola, Pablo. ¿Qué tal? | Привет, Пабло. Как дела?"
+            - "Pablo: Regular. | Так себе."
+            - "Ana: ¿Qué te pasa? ¿Estás enfermo? | Что с тобой? Ты заболел?"
+            - "Pablo: No, no estoy enfermo. Estoy cansado. | Нет, не заболел. Я устал."
+            - "Ana: ¿Por qué? | Почему?"
+            - "Pablo: Porque trabajo mucho. Y mi jefe es muy antipático. | Потому что много работаю. И мой начальник очень неприятный."
+            - "Ana: Vaya... | Вот как..."
+            - "Pablo: ¿Y tú? ¿Qué tal? | А ты? Как дела?"
+            - "Ana: ¡Muy bien! Estoy muy contenta: ¡tengo un piso nuevo! | Отлично! Я очень довольна: у меня новая квартира!"
+            - "Pablo: ¡Qué bien! ¿Dónde está? | Как здорово! Где она?"
+            - "Ana: En el centro, cerca de la universidad. ¡Y es muy bonito! | В центре, недалеко от университета. И очень красивая!"
+      - note: "**¡Vaya!** — «вот как», «ну и ну»: так реагируют на неожиданную или неприятную новость."
+      - exercise:
+          title: Responde
+          items:
+            - "¿Cómo está Pablo? => Está cansado."
+            - "¿Por qué? => Porque trabaja mucho."
+            - "¿Cómo es su jefe? => Es muy antipático."
+            - "¿Por qué está contenta Ana? => Porque tiene un piso nuevo."
+    forms: [vaya]
+
+  - id: practica
+    kind: practice
+    title: Ser и estar на практике
+    blocks:
+      - "Тренировка на самую важную пару глаголов уровня A1. Не торопитесь: для каждого предложения спросите себя — «кто/какой» или «где/в каком состоянии»?"
+      - exercise:
+          title: "¿Ser o estar?"
+          items:
+            - "Madrid ___ en España. => está"
+            - "Lucía ___ española, de Sevilla. => es"
+            - "¿Por qué ___ (tú) nervioso? => estás"
+            - "Mis abuelos ___ mayores. => son"
+            - "El café ___ en la mesa. => está"
+            - "Vosotros ___ muy divertidos. => sois"
+            - "Hoy (yo) ___ muy ocupada. => estoy"
+      - exercise:
+          title: Traduce
+          items:
+            - "Мой брат — программист. Сейчас он в офисе. => Mi hermano es programador. Ahora está en la oficina."
+            - "Почему ты грустная? — Потому что мой кот болеет. => ¿Por qué estás triste? — Porque mi gato está enfermo."
+            - "Мы из Москвы, но сейчас мы в Барселоне. => Somos de Moscú, pero ahora estamos en Barcelona."
+      - exercise:
+          title: Найдите ошибку
+          items:
+            - "`Soy` cansado. => Estoy cansado."
+            - "Mi padre `está` ingeniero. => Mi padre es ingeniero."
+            - "¿Dónde `es` el baño? => ¿Dónde está el baño?"
+      - task: "Как вы сегодня? Напишите в комментариях: **Hoy estoy... porque...**"
+
+  - id: quiz
+    kind: quiz
+    title: Ser и estar
+    blocks:
+      - "Тест по теме «Состояния. Ser и estar»."
+      - cando:
+          - "рассказать о самочувствии: Estoy cansado, contenta, enfermo..."
+          - "выбрать ser или estar"
+          - "спросить ¿Por qué? и ответить Porque..."
+    quiz:
+      - q: "Hoy ___ muy cansada."
+        options: "estoy | soy | es"
+      - q: "Mi madre ___ profesora."
+        options: "es | está | estoy"
+      - q: "¿Dónde ___ la universidad?"
+        options: "está | es | hay"
+      - q: Как сказать «почему»?
+        options: "¿Por qué? | ¿Porque? | ¿Qué?"
+      - q: "Pablo ___ alto y moreno."
+        options: "es | está | están"
+        explain: "Внешность — постоянное качество: ser."
