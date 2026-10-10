@@ -101,7 +101,7 @@ def cmd_export(args, settings) -> int:
     from .export import export_html
 
     course, _, renderer = build(settings)
-    path = export_html(course, renderer, args.out)
+    path = export_html(course, renderer, args.out, fragment=args.fragment)
     print(f"Превью сохранено: {path}")
     return 0
 
@@ -193,6 +193,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--html", action="store_true", help="показать HTML вместо текста")
     p = sub.add_parser("export", help="HTML-превью курса")
     p.add_argument("-o", "--out", default="preview/index.html")
+    p.add_argument("--fragment", action="store_true", help="без <html>/<head>, только содержимое страницы")
     p = sub.add_parser("lookup", help="где впервые встречается слово")
     p.add_argument("words", nargs="+")
     sub.add_parser("status", help="прогресс публикации")

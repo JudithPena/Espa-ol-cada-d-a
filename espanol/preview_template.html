@@ -1,0 +1,285 @@
+<title>Español cada día</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Golos+Text:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Лента канала: одна колонка постов на «обоях» чата, темы — как плашки дат в Telegram. */
+:root {
+  --wall: #d9e1e8;
+  --wall-dot: #cbd5de;
+  --bubble: #ffffff;
+  --fg: #16202a;
+  --muted: #627384;
+  --accent: #2a52b0;
+  --accent-soft: #e3eaf8;
+  --pill-bg: rgba(22, 32, 42, 0.55);
+  --pill-fg: #ffffff;
+  --spoiler: #c3ccd6;
+  --ok: #23845a;
+  --ok-soft: #dff2e8;
+  --bad: #c2453b;
+  --bad-soft: #f9e2df;
+  --line: #e2e8ee;
+  --shadow: 0 1px 2px rgba(16, 28, 40, 0.12);
+  --font-display: "Alegreya", "Georgia", "Times New Roman", serif;
+  --font-body: "Golos Text", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  --step--1: 0.8125rem;
+  --step-0: 0.9375rem;
+  --step-1: 1.125rem;
+  --step-3: clamp(2rem, 6vw, 3rem);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --wall: #0e1821; --wall-dot: #142230; --bubble: #19262f; --fg: #e4ebf1; --muted: #8c9cab;
+    --accent: #84a6f2; --accent-soft: #22324d; --pill-bg: rgba(255, 255, 255, 0.12); --pill-fg: #e4ebf1;
+    --spoiler: #3a4a59; --ok: #5cc28c; --ok-soft: #1c3a2c; --bad: #ef7d73; --bad-soft: #452523;
+    --line: #26343f; --shadow: 0 1px 2px rgba(0, 0, 0, 0.4); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --wall: #0e1821; --wall-dot: #142230; --bubble: #19262f; --fg: #e4ebf1; --muted: #8c9cab;
+  --accent: #84a6f2; --accent-soft: #22324d; --pill-bg: rgba(255, 255, 255, 0.12); --pill-fg: #e4ebf1;
+  --spoiler: #3a4a59; --ok: #5cc28c; --ok-soft: #1c3a2c; --bad: #ef7d73; --bad-soft: #452523;
+  --line: #26343f; --shadow: 0 1px 2px rgba(0, 0, 0, 0.4); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background-color: var(--wall);
+  background-image: radial-gradient(var(--wall-dot) 1px, transparent 1px);
+  background-size: 22px 22px;
+  color: var(--fg);
+  font: 400 var(--step-0)/1.5 var(--font-body);
+}
+.page { max-width: 720px; margin: 0 auto; padding-inline: 16px; padding-block: 28px 64px; }
+.masthead { display: grid; gap: 10px; padding-block: 8px 20px; }
+.masthead h1 {
+  margin: 0; font: 700 var(--step-3)/1.05 var(--font-display); letter-spacing: -0.01em; text-wrap: balance;
+}
+.masthead h1 em { font-style: italic; font-weight: 500; color: var(--accent); }
+.masthead p { margin: 0; max-width: 60ch; color: var(--muted); }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 4px 0 0; padding: 0; list-style: none;
+  font: 500 var(--step--1)/1.4 var(--font-mono); font-variant-numeric: tabular-nums; }
+.facts b { color: var(--fg); font-weight: 500; }
+.facts li { color: var(--muted); }
+
+.toolbar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  display: grid; gap: 10px; margin-inline: -16px; padding: 12px 16px;
+  background: color-mix(in srgb, var(--wall) 88%, transparent);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.row > * { min-width: 0; }
+input[type="search"], select {
+  font: inherit; color: var(--fg); background: var(--bubble); border: 1px solid var(--line);
+  border-radius: 10px; padding: 8px 12px; min-height: 40px;
+}
+input[type="search"] { flex: 1 1 220px; }
+select { flex: 0 1 260px; max-width: 100%; }
+.chip {
+  font: 500 var(--step--1)/1 var(--font-body); color: var(--fg); background: var(--bubble);
+  border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px; cursor: pointer;
+}
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--bubble); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.status { font-size: var(--step--1); color: var(--muted); }
+
+.feed { display: grid; gap: 14px; padding-top: 18px; }
+.divider { justify-self: center; display: grid; justify-items: center; gap: 6px; padding-block: 18px 4px; text-align: center; }
+.divider .pill {
+  background: var(--pill-bg); color: var(--pill-fg); border-radius: 999px; padding: 5px 14px;
+  font: 500 var(--step--1)/1.3 var(--font-body);
+}
+.divider .goals { margin: 0; color: var(--muted); font-size: var(--step--1); max-width: 52ch; }
+
+.post { display: grid; gap: 6px; scroll-margin-top: 140px; }
+.meta { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; padding-inline: 4px;
+  font: 500 var(--step--1)/1.3 var(--font-mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.meta .kind { color: var(--accent); }
+.bubble {
+  background: var(--bubble); border-radius: 14px 14px 14px 4px; box-shadow: var(--shadow);
+  padding: 12px 14px; white-space: pre-wrap; overflow-wrap: anywhere; min-width: 0;
+}
+.bubble b { font-weight: 600; }
+.bubble code { font: 400 0.9em var(--font-mono); background: var(--accent-soft); border-radius: 4px; padding: 0 3px; }
+.bubble blockquote {
+  margin: 4px 0; padding: 6px 10px; border-left: 3px solid var(--accent);
+  background: var(--accent-soft); border-radius: 0 8px 8px 0; white-space: pre-wrap;
+}
+.bubble blockquote.expandable { max-height: 4.6em; overflow: hidden; cursor: pointer; position: relative; }
+.bubble blockquote.expandable::after {
+  content: "показать ▾"; position: absolute; right: 8px; bottom: 4px; font-size: var(--step--1);
+  color: var(--accent); background: var(--accent-soft); padding-left: 8px;
+}
+.bubble blockquote.expandable.open { max-height: none; }
+.bubble blockquote.expandable.open::after { content: none; }
+.spoiler { background: var(--spoiler); color: transparent; border-radius: 4px; cursor: pointer; transition: color 0.2s, background 0.2s; }
+.spoiler * { color: transparent; }
+.spoiler.shown, .spoiler.shown * { background: transparent; color: inherit; }
+.tags { color: var(--accent); }
+
+.audio, .poll { background: var(--bubble); border-radius: 14px; box-shadow: var(--shadow); padding: 12px 14px; display: grid; gap: 8px; min-width: 0; }
+.audio .head { display: flex; gap: 10px; align-items: center; }
+.audio .play {
+  flex: none; width: 36px; height: 36px; border-radius: 50%; background: var(--accent); color: var(--bubble);
+  display: grid; place-items: center; font-size: 14px;
+}
+.audio .t { font-weight: 600; }
+.audio .sub { color: var(--muted); font-size: var(--step--1); }
+.poll .q { font-weight: 600; }
+.poll .type { color: var(--muted); font-size: var(--step--1); }
+.poll .options { display: grid; gap: 6px; }
+.poll button {
+  font: inherit; text-align: left; color: var(--fg); background: transparent; cursor: pointer;
+  border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; display: flex; gap: 8px; align-items: center;
+}
+.poll button:hover:not(:disabled) { border-color: var(--accent); }
+.poll button:disabled { cursor: default; }
+.poll button.correct { background: var(--ok-soft); border-color: var(--ok); }
+.poll button.wrong { background: var(--bad-soft); border-color: var(--bad); }
+.poll .mark { width: 1.2em; flex: none; font-weight: 600; }
+.poll .correct .mark { color: var(--ok); }
+.poll .wrong .mark { color: var(--bad); }
+.poll .explain { font-size: var(--step--1); color: var(--muted); border-top: 1px solid var(--line); padding-top: 8px; }
+.empty { text-align: center; color: var(--muted); padding: 40px 0; }
+@media (max-width: 600px) {
+  .toolbar { position: static; }
+  #kinds { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
+  #kinds .chip { flex: none; }
+}
+@media (prefers-reduced-motion: reduce) { .spoiler { transition: none; } }
+</style>
+
+<div class="page">
+  <header class="masthead">
+    <h1>Español <em>cada día</em></h1>
+    <p>Превью Telegram-курса испанского с нуля до A1: все посты в том порядке, в котором бот публикует их в канал. Спойлеры открываются нажатием, на викторины можно отвечать.</p>
+    <ul class="facts" id="facts"></ul>
+  </header>
+
+  <div class="toolbar" role="search">
+    <div class="row">
+      <input type="search" id="q" placeholder="Поиск: слово, тема, фраза…" aria-label="Поиск по постам">
+      <select id="unit" aria-label="Перейти к теме"></select>
+    </div>
+    <div class="row" id="kinds" aria-label="Тип поста"></div>
+    <div class="status" id="status" aria-live="polite"></div>
+  </div>
+
+  <main class="feed" id="feed"></main>
+</div>
+
+<script type="application/json" id="data">/*__DATA__*/{}</script>
+<script>
+(function () {
+  const data = JSON.parse(document.getElementById("data").textContent);
+  const feed = document.getElementById("feed");
+  const q = document.getElementById("q");
+  const unitSelect = document.getElementById("unit");
+  const kindsBox = document.getElementById("kinds");
+  const status = document.getElementById("status");
+  const units = new Map(data.units.map(u => [u.number, u]));
+  const activeKinds = new Set();
+
+  const months = Math.round(data.posts.length / 30);
+  document.getElementById("facts").innerHTML = [
+    ["постов", data.posts.length], ["тем", data.units.length], ["слов и выражений", data.words],
+    ["уровни", "A0 → A1"], ["по посту в день", "≈ " + months + " мес."]
+  ].map(([k, v]) => `<li><b>${v}</b> ${k}</li>`).join("");
+
+  unitSelect.innerHTML = '<option value="">Все темы</option>' + data.units
+    .map(u => `<option value="${u.number}">Тема ${u.number}. ${u.title.replace(/[*_|`]/g, "")}</option>`).join("");
+
+  const kinds = [];
+  data.posts.forEach(p => { if (!kinds.some(k => k.kind === p.kind)) kinds.push({ kind: p.kind, label: p.kindLabel, emoji: p.emoji }); });
+  kindsBox.innerHTML = kinds.map(k =>
+    `<button type="button" class="chip" aria-pressed="false" data-kind="${k.kind}">${k.emoji} ${k.label}</button>`).join("");
+
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const textOf = html => html.replace(/<[^>]+>/g, " ");
+
+  function pollHtml(m, key) {
+    const opts = m.options.map((o, i) =>
+      `<button type="button" data-poll="${key}" data-i="${i}"><span class="mark" aria-hidden="true"></span><span>${esc(o)}</span></button>`).join("");
+    return `<div class="poll" data-correct="${m.correct}">
+      <div class="q">${esc(m.q)}</div><div class="type">Викторина</div>
+      <div class="options">${opts}</div>
+      ${m.explain ? `<div class="explain" hidden>💡 ${m.explain}</div>` : ""}</div>`;
+  }
+
+  function postHtml(p) {
+    const parts = p.messages.map((m, i) => {
+      if (m.type === "text") return `<div class="bubble">${m.html}</div>`;
+      if (m.type === "audio") return `<div class="audio"><div class="head"><span class="play" aria-hidden="true">▶</span>
+        <div><div class="t">${esc(m.title)}</div><div class="sub">${esc(m.caption)} · ${m.count} фрагм. — озвучка создаётся при публикации</div></div></div>
+        <div class="sub">${esc(m.text)}${m.count > 6 ? " …" : ""}</div></div>`;
+      return pollHtml(m, p.n + "-" + i);
+    }).join("");
+    const words = p.words ? ` · новых слов: ${p.words}` : "";
+    return `<article class="post" id="post-${p.n}">
+      <div class="meta"><span>День ${p.n}</span><span class="kind">${p.emoji} ${esc(p.kindLabel)}</span><span>${p.level}${words}</span></div>
+      ${parts}</article>`;
+  }
+
+  const search = data.posts.map(p => (p.title + " " + p.messages.map(m => m.html ? textOf(m.html) : (m.q || "") + " " + (m.options || []).join(" ")).join(" ")).toLowerCase());
+
+  function render() {
+    const term = q.value.trim().toLowerCase();
+    const unit = unitSelect.value === "" ? null : Number(unitSelect.value);
+    let html = "", shown = 0, lastUnit = null;
+    data.posts.forEach((p, i) => {
+      if (unit !== null && p.unit !== unit) return;
+      if (activeKinds.size && !activeKinds.has(p.kind)) return;
+      if (term && !search[i].includes(term)) return;
+      if (p.unit !== lastUnit) {
+        const u = units.get(p.unit);
+        html += `<div class="divider"><span class="pill">${u.level} · Тема ${u.number}. ${esc(u.title)}</span>` +
+          (u.goals.length ? `<p class="goals">${u.goals.map(esc).join(" · ")}</p>` : "") + `</div>`;
+        lastUnit = p.unit;
+      }
+      html += postHtml(p);
+      shown++;
+    });
+    feed.innerHTML = html || '<p class="empty">Ничего не найдено. Попробуйте другое слово или снимите фильтры.</p>';
+    status.textContent = shown === data.posts.length ? `Показаны все ${shown} постов` : `Показано постов: ${shown} из ${data.posts.length}`;
+  }
+
+  feed.addEventListener("click", e => {
+    const spoiler = e.target.closest(".spoiler");
+    if (spoiler) { spoiler.classList.add("shown"); return; }
+    const quote = e.target.closest("blockquote.expandable");
+    if (quote) { quote.classList.add("open"); }
+    const btn = e.target.closest("button[data-poll]");
+    if (btn) {
+      const poll = btn.closest(".poll");
+      const correct = Number(poll.dataset.correct);
+      poll.querySelectorAll("button").forEach((b, i) => {
+        b.disabled = true;
+        if (i === correct) { b.classList.add("correct"); b.querySelector(".mark").textContent = "✓"; }
+        else if (b === btn) { b.classList.add("wrong"); b.querySelector(".mark").textContent = "✗"; }
+      });
+      const ex = poll.querySelector(".explain");
+      if (ex) ex.hidden = false;
+    }
+  });
+  feed.addEventListener("keydown", e => {
+    if ((e.key === "Enter" || e.key === " ") && e.target.classList.contains("spoiler")) {
+      e.preventDefault(); e.target.classList.add("shown");
+    }
+  });
+  kindsBox.addEventListener("click", e => {
+    const chip = e.target.closest(".chip");
+    if (!chip) return;
+    const on = chip.getAttribute("aria-pressed") !== "true";
+    chip.setAttribute("aria-pressed", String(on));
+    on ? activeKinds.add(chip.dataset.kind) : activeKinds.delete(chip.dataset.kind);
+    render();
+  });
+  q.addEventListener("input", render);
+  unitSelect.addEventListener("change", () => { render(); window.scrollTo({ top: 0 }); });
+  render();
+})();
+</script>
