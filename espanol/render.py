@@ -118,10 +118,14 @@ class Renderer:
         elif polls:
             out.parts.append(self._label("polls", lesson))
 
-        messages: list[Message] = [TextMessage(h) for h in self._pack(self._header(lesson), out.parts,
-                                                                       self._footer(lesson))]
+        # Уведомление приходит только о первом сообщении урока, продолжения — без звука.
+        messages: list[Message] = [TextMessage(h, silent=n > 0) for n, h in enumerate(
+            self._pack(self._header(lesson), out.parts, self._footer(lesson)))]
         if lesson.audio and out.audio:
-            messages.append(AudioMessage(
+            # Аудио идёт сразу после материала урока, а «Вспомним» — уже после него.
+            recall = self._label("recall", lesson)
+            at = next((n for n, m in enumerate(messages) if n and m.html.startswith(recall)), len(messages))
+            messages.insert(at, AudioMessage(
                 segments=out.audio,
                 title=f"{self._label('lesson', lesson)} {lesson.number} · {self.kind_label(lesson)}",
                 caption=self._label("audio", lesson),
@@ -154,14 +158,18 @@ class Renderer:
         return f"#{lesson.level} #{lesson.kind_tag}"
 
     def _pack(self, header: str, parts: list[str], footer: str) -> list[str]:
-        messages, current = [], header
+        # Telegram открывает все спойлеры сообщения одним нажатием, поэтому каждая
+        # рубрика со скрытым текстом («Проверьте себя», «Вспомним», перевод диалога…)
+        # уходит своим сообщением: ответы одной не открываются вместе с другой.
+        messages, current, hidden = [], header, False
         for part in [p for p in parts if p] + [footer]:
             candidate = f"{current}\n\n{part}"
-            if visible_len(candidate) > TEXT_LIMIT and current:
+            has_spoiler = "<tg-spoiler>" in part
+            if (visible_len(candidate) > TEXT_LIMIT or hidden and has_spoiler) and current:
                 messages.append(current)
-                current = part
+                current, hidden = part, has_spoiler
             else:
-                current = candidate
+                current, hidden = candidate, hidden or has_spoiler
         messages.append(current)
         return messages
 

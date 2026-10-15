@@ -25,6 +25,22 @@ def test_every_message_fits_telegram_limits(course, renderer):
                 assert message.segments, lesson.id
 
 
+def test_hidden_sections_go_in_separate_messages(course, renderer):
+    """Telegram открывает все спойлеры сообщения разом — у каждой рубрики свои ответы."""
+    for lesson in course.lessons:
+        messages = renderer.render(lesson)
+        texts = [m for m in messages if isinstance(m, TextMessage)]
+        for message in texts:
+            hidden = [p for p in message.html.split("\n\n") if "<tg-spoiler>" in p]
+            assert len(hidden) <= 1, lesson.id
+        assert not texts[0].silent and all(m.silent for m in messages[1:]), lesson.id
+        recall = [n for n, m in enumerate(messages) if n and isinstance(m, TextMessage)
+                  and m.html.startswith(renderer._label("recall", lesson))]
+        audio = [n for n, m in enumerate(messages) if isinstance(m, AudioMessage)]
+        if recall and audio:
+            assert audio[0] < recall[0], lesson.id
+
+
 def test_auto_generated_text_uses_only_known_words(course, renderer):
     """Повторения и автотесты собираются из пройденных слов — проверяем и их."""
     for lesson in course.lessons:
