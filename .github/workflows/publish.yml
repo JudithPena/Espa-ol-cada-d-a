@@ -2,9 +2,11 @@ name: Публикация урока
 
 on:
   schedule:
-    # Каждый день в 04:00 UTC = 07:00 по Киеву и Москве. GitHub обычно запускает с опозданием
-    # на несколько часов, поэтому пост выходит ближе к обеду. Время меняется здесь (часы в UTC).
-    - cron: "0 4 * * *"
+    # Два запуска в день: 03:00 UTC = 06:00 по Киеву и 09:00 UTC = 12:00 по Киеву.
+    # GitHub обычно опаздывает на несколько часов, поэтому посты выходят примерно до обеда и до вечера.
+    # Время меняется здесь (часы в UTC). Для одного поста в день оставьте одну строку и POSTS_PER_DAY 1.
+    - cron: "0 3 * * *"
+    - cron: "0 9 * * *"
   workflow_dispatch:
     inputs:
       force:
@@ -43,7 +45,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           TIMEZONE: ${{ vars.TIMEZONE || 'Europe/Moscow' }}
-          POSTS_PER_DAY: ${{ vars.POSTS_PER_DAY || '1' }}
+          POSTS_PER_DAY: ${{ vars.POSTS_PER_DAY || '2' }}
           ENABLE_AUDIO: ${{ vars.ENABLE_AUDIO || '1' }}
           FORCE: ${{ inputs.force }}
           DRY_RUN: ${{ inputs.dry_run }}
