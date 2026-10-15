@@ -20,6 +20,7 @@ from . import tts
 from .course import Course, Lesson
 from .markup import strip_tags
 from .render import AudioMessage, Message, PollMessage, Renderer, TextMessage
+from .rich import RichMessage, describe_rich, drop_media
 from .telegram import TelegramAPI
 
 log = logging.getLogger(__name__)
@@ -64,6 +65,8 @@ def describe(message: Message) -> str:
     """Текстовое представление сообщения для --dry-run и предпросмотра."""
     if isinstance(message, TextMessage):
         return strip_tags(message.html)
+    if isinstance(message, RichMessage):
+        return describe_rich(message)
     if isinstance(message, PollMessage):
         lines = [f"📊 ОПРОС: {message.question}"]
         for i, option in enumerate(message.options):
@@ -150,10 +153,32 @@ class Publisher:
                                    message.explanation, silent=message.silent)
             elif isinstance(message, AudioMessage):
                 self._send_audio(chat_id, message, lesson)
+            elif isinstance(message, RichMessage):
+                self._send_rich(chat_id, message)
             if on_sent:
                 on_sent(n + 1)
             if n < len(messages) - 1:
                 time.sleep(self.delay)
+
+    def _send_rich(self, chat_id: str, message: RichMessage) -> None:
+        """Рисует картинки и озвучивает аудио статьи; то, что не вышло, убирает из текста."""
+        html, media, files = message.html, [], {}
+        for m in message.media:
+            try:
+                if m.kind == "photo":
+                    files[m.id] = (f"{m.id}.png", m.draw(), "image/png")
+                    media.append((m.id, {"type": "photo"}))
+                    continue
+                if not self.audio:
+                    raise RuntimeError("озвучка выключена")
+                mp3 = self.synth(m.segments, rate=self.tts_rate, pauses=m.pauses, voices=self.voices)
+                files[m.id] = (f"{m.id}.mp3", mp3, "audio/mpeg")
+                media.append((m.id, {"type": "audio", "title": m.title, "performer": self.course.title,
+                                     "duration": tts.duration(mp3)}))
+            except Exception as exc:  # картинки и аудио — бонус, статью отправляем и без них
+                log.warning("медиа %s пропущено: %s", m.id, exc)
+                html = drop_media(html, m.id)
+        self.api.send_rich_message(chat_id, html, media, files, silent=message.silent)
 
     def _send_audio(self, chat_id: str, message: AudioMessage, lesson: Lesson | None) -> None:
         if not self.audio:

@@ -9,6 +9,7 @@
     check               проверить токен бота и доступ к каналу
     publish             опубликовать следующий урок (для cron / GitHub Actions)
     send N|id           отправить конкретный урок (например, себе для проверки)
+                        --rich — постом-статьёй, --chat auto — в личку тому, кто последним написал боту
     run --at 09:00      постоянный режим с расписанием
 """
 
@@ -88,11 +89,19 @@ def cmd_stats(args, settings) -> int:
     return 0
 
 
+def render_lesson(renderer, lesson, rich: bool):
+    if rich:
+        from .rich import RichRenderer
+
+        return RichRenderer(renderer).render(lesson)
+    return renderer.render(lesson)
+
+
 def cmd_preview(args, settings) -> int:
     course, _, renderer = build(settings)
     lesson = course.lesson(args.ref)
-    for i, message in enumerate(renderer.render(lesson), 1):
-        body = message.html if args.html and isinstance(message, TextMessage) else describe(message)
+    for i, message in enumerate(render_lesson(renderer, lesson, args.rich), 1):
+        body = message.html if args.html and hasattr(message, "html") else describe(message)
         print(f"\n——— сообщение {i} ———\n{body}")
     return 0
 
@@ -166,9 +175,16 @@ def cmd_send(args, settings) -> int:
     course, _, renderer = build(settings)
     publisher = make_publisher(settings, course, renderer)
     chat = args.chat or settings.chat_id
+    where = chat
+    if chat == "auto":  # id не попадает в публичный лог GitHub Actions
+        found = publisher.api.latest_private_chat()
+        if not found:
+            print("Не нашёл личного чата: напишите боту любое сообщение (например, /start) и повторите.")
+            return 1
+        chat, where = str(found["id"]), "личный чат того, кто последним написал боту"
     lesson = course.lesson(args.ref)
-    publisher.send(renderer.render(lesson), chat, lesson=lesson)
-    print(f"Отправлен урок {lesson.number} ({lesson.id}) в {chat}")
+    publisher.send(render_lesson(renderer, lesson, args.rich), chat, lesson=lesson)
+    print(f"Отправлен урок {lesson.number} ({lesson.id}) в {where}")
     return 0
 
 
@@ -191,6 +207,7 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("preview", help="показать урок")
     p.add_argument("ref", help="номер урока (вводный — 0) или id")
     p.add_argument("--html", action="store_true", help="показать HTML вместо текста")
+    p.add_argument("--rich", action="store_true", help="в виде поста-статьи (Rich Messages)")
     p = sub.add_parser("export", help="HTML-превью курса")
     p.add_argument("-o", "--out", default="preview/index.html")
     p.add_argument("--fragment", action="store_true", help="без <html>/<head>, только содержимое страницы")
@@ -203,7 +220,9 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--force", action="store_true", help="игнорировать лимит постов в день")
     p = sub.add_parser("send", help="отправить урок в указанный чат")
     p.add_argument("ref")
-    p.add_argument("--chat", help="chat_id (по умолчанию TELEGRAM_CHAT_ID)")
+    p.add_argument("--chat", help="chat_id (по умолчанию TELEGRAM_CHAT_ID); auto — личный чат, "
+                                  "из которого боту последним написали")
+    p.add_argument("--rich", action="store_true", help="отправить постом-статьёй (Rich Messages)")
     p = sub.add_parser("run", help="постоянный режим")
     p.add_argument("--at", action="append", help="время публикации ЧЧ:ММ (можно несколько)")
 

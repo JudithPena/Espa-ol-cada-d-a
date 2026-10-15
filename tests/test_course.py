@@ -95,3 +95,12 @@ def test_vocab_item_inference():
     assert adj.pos == "adj" and adj.base_forms() == {"alto", "alta"}
     verb = parse_vocab("llamarse — называться {forms: llamo}", "test")
     assert verb.pos == "verb" and {"llamarse", "llamar", "llamo"} <= verb.base_forms()
+
+
+def test_rich_articles_fit_telegram_limits(course, renderer):
+    from espanol.rich import RichRenderer, rich_problems
+
+    rich = RichRenderer(renderer, images=True)
+    for lesson in course.lessons:
+        article = rich.render(lesson)[0]
+        assert rich_problems(article) == [], lesson.id

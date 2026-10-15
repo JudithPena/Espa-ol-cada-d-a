@@ -1,0 +1,47 @@
+name: Тест урока в личку
+
+# Отправляет урок не в канал, а в личный чат тому, кто последним написал боту
+# (например, /start в @Eduardo_maestro_bot). Прогресс публикации не меняется.
+on:
+  workflow_dispatch:
+    inputs:
+      lesson:
+        description: "Номер урока (вводный — 0)"
+        default: "8"
+      rich:
+        description: "Новый формат: пост-статья с картинками и аудио внутри"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Шрифт для эмодзи на картинках
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends fonts-noto-color-emoji
+
+      - name: Установить зависимости
+        run: pip install -r requirements.txt
+
+      - name: Отправить урок в личный чат
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ENABLE_AUDIO: ${{ vars.ENABLE_AUDIO || '1' }}
+          LESSON: ${{ inputs.lesson }}
+          RICH: ${{ inputs.rich }}
+        run: |
+          args=(--chat auto)
+          [ "$RICH" = "true" ] && args+=(--rich)
+          python -m espanol send "$LESSON" "${args[@]}"

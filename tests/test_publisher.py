@@ -110,3 +110,39 @@ def test_course_finished(course, renderer, tmp_path):
     }))
     pub = make(course, renderer, tmp_path, FakeAPI())
     assert "полностью опубликован" in pub.publish_next()
+
+
+def test_rich_lesson_is_one_article_with_media(course, renderer, tmp_path):
+    from espanol.rich import RichMessage, RichRenderer
+
+    class RichAPI(FakeAPI):
+        def send_rich_message(self, chat_id, html, media, files, silent=False):
+            self.rich = (html, media, files)
+            return self._record(("rich", html))
+
+    lesson = course.lesson(8)
+    messages = RichRenderer(renderer, images=False).render(lesson)
+    assert isinstance(messages[0], RichMessage)
+    assert all(isinstance(m, PollMessage) for m in messages[1:])
+    api = RichAPI()
+    make(course, renderer, tmp_path, api).send(messages, "@me", lesson=lesson)
+    html, media, files = api.rich
+    audio = [mid for mid, spec in media if spec["type"] == "audio"]
+    assert audio and set(files) == {mid for mid, _ in media}
+    assert all(f'tg://audio?id={mid}"' in html for mid in audio)
+
+
+def test_rich_article_without_audio_drops_players(course, renderer, tmp_path):
+    from espanol.rich import RichRenderer
+
+    class RichAPI(FakeAPI):
+        def send_rich_message(self, chat_id, html, media, files, silent=False):
+            self.rich = (html, media, files)
+            return self._record(("rich", html))
+
+    lesson = course.lesson(8)
+    api = RichAPI()
+    make(course, renderer, tmp_path, api, audio=False).send(
+        RichRenderer(renderer, images=False).render(lesson), "@me", lesson=lesson)
+    html, media, _ = api.rich
+    assert media == [] and "tg://audio" not in html and "<figure>" not in html

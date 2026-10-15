@@ -70,6 +70,24 @@ class TelegramAPI:
             "disable_notification": silent,
         })
 
+    def send_rich_message(self, chat_id: str, html: str, media: list[tuple[str, dict]],
+                          files: dict[str, tuple], silent: bool = False) -> dict:
+        """Пост-статья (Rich Messages). media — (id, InputMedia без поля media), files — {id: файл}."""
+        rich: dict[str, Any] = {"html": html}
+        if media:
+            rich["media"] = [{"id": mid, "media": {**spec, "media": f"attach://{mid}"}} for mid, spec in media]
+        payload = {"chat_id": chat_id, "rich_message": rich, "disable_notification": silent}
+        return self.call("sendRichMessage", payload, files=files or None)
+
+    def latest_private_chat(self) -> dict | None:
+        """Личный чат, из которого боту последним написали (например, /start)."""
+        updates = self.call("getUpdates", {"allowed_updates": ["message"], "timeout": 0})
+        for update in reversed(updates):
+            chat = (update.get("message") or {}).get("chat") or {}
+            if chat.get("type") == "private":
+                return chat
+        return None
+
     def send_poll(self, chat_id: str, question: str, options: list[str], correct: int,
                   explanation: str = "", silent: bool = True) -> dict:
         payload = {
