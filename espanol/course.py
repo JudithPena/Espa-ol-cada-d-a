@@ -68,6 +68,7 @@ DEFAULT_SETTINGS: dict[str, Any] = {
     },
     "max_polls": 8,
     "max_new_words": 8,  # маленькие шаги: не больше стольких новых слов за пост
+    "rich_posts": [],    # уроки, которые уходят постом-статьёй: список id или all
 }
 
 
@@ -220,6 +221,11 @@ class Course:
             if lesson.id == ref:
                 return lesson
         raise KeyError(f"нет урока «{ref}»")
+
+    def is_rich(self, lesson: Lesson) -> bool:
+        """Публиковать ли урок постом-статьёй (настройка rich_posts в course.yaml)."""
+        rich = self.settings.get("rich_posts") or []
+        return rich in ("all", True) or lesson.id in rich
 
     def gender_of(self, speaker: str) -> str:
         return self.names.get(speaker, "")

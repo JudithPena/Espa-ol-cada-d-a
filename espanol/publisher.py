@@ -20,7 +20,7 @@ from . import tts
 from .course import Course, Lesson
 from .markup import strip_tags
 from .render import AudioMessage, Message, PollMessage, Renderer, TextMessage
-from .rich import RichMessage, describe_rich, drop_media
+from .rich import RichMessage, RichRenderer, describe_rich, drop_media
 from .telegram import TelegramAPI
 
 log = logging.getLogger(__name__)
@@ -121,7 +121,7 @@ class Publisher:
         if not force and not state.current and state.count_on_day(today, self.tz) >= self.posts_per_day:
             return f"Сегодня ({today}) уже опубликовано постов: {self.posts_per_day}. Пропускаю."
 
-        messages = self.renderer.render(lesson)
+        messages = self.render(lesson)
         if dry_run:
             for i, message in enumerate(messages[start:], start + 1):
                 print(f"\n——— сообщение {i}/{len(messages)} ———\n{describe(message)}")
@@ -139,6 +139,11 @@ class Publisher:
         state.published.append({"id": lesson.id, "at": now_utc().isoformat()})
         state.save()
         return f"✅ Опубликован урок {lesson.number}: {lesson.kind_label} · {lesson.title} ({lesson.id})"
+
+    def render(self, lesson: Lesson, rich: bool = False) -> list[Message]:
+        if rich or self.course.is_rich(lesson):
+            return RichRenderer(self.renderer).render(lesson)
+        return self.renderer.render(lesson)
 
     def send(self, messages: list[Message], chat_id: str, start: int = 0,
              on_sent: Callable[[int], None] | None = None, lesson: Lesson | None = None) -> None:

@@ -29,6 +29,7 @@ jobs:
           cache: pip
 
       - name: Шрифт для эмодзи на картинках
+        continue-on-error: true
         run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends fonts-noto-color-emoji
 
       - name: Установить зависимости

@@ -40,6 +40,11 @@ jobs:
       - name: Установить зависимости
         run: pip install -r requirements.txt
 
+      - name: Шрифт для эмодзи на картинках постов-статей
+        # Без него картинки всё равно рисуются, только без эмодзи — публикацию это не останавливает.
+        continue-on-error: true
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends fonts-noto-color-emoji
+
       - name: Опубликовать следующий урок
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}

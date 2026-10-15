@@ -59,6 +59,15 @@ def validate(course, lexicon, renderer) -> list[str]:
                 problems += [f"{where}: {p}" for p in check_html(message.html)]
             elif isinstance(message, PollMessage):
                 problems += [f"{where}: {p}" for p in poll_problems(message)]
+        if course.is_rich(lesson):
+            from .rich import RichRenderer, rich_problems
+
+            article = RichRenderer(renderer).render(lesson)[0]
+            problems += [f"Урок {lesson.number} ({lesson.id}), статья: {p}" for p in rich_problems(article)]
+    rich = course.settings.get("rich_posts") or []
+    if isinstance(rich, list):
+        ids = {lesson.id for lesson in course.lessons}
+        problems += [f"rich_posts: нет урока «{r}»" for r in rich if r not in ids]
     return problems
 
 
@@ -89,18 +98,11 @@ def cmd_stats(args, settings) -> int:
     return 0
 
 
-def render_lesson(renderer, lesson, rich: bool):
-    if rich:
-        from .rich import RichRenderer
-
-        return RichRenderer(renderer).render(lesson)
-    return renderer.render(lesson)
-
-
 def cmd_preview(args, settings) -> int:
     course, _, renderer = build(settings)
     lesson = course.lesson(args.ref)
-    for i, message in enumerate(render_lesson(renderer, lesson, args.rich), 1):
+    publisher = make_publisher(settings, course, renderer, need_api=False)
+    for i, message in enumerate(publisher.render(lesson, rich=args.rich), 1):
         body = message.html if args.html and hasattr(message, "html") else describe(message)
         print(f"\n——— сообщение {i} ———\n{body}")
     return 0
@@ -183,7 +185,7 @@ def cmd_send(args, settings) -> int:
             return 1
         chat, where = str(found["id"]), "личный чат того, кто последним написал боту"
     lesson = course.lesson(args.ref)
-    publisher.send(render_lesson(renderer, lesson, args.rich), chat, lesson=lesson)
+    publisher.send(publisher.render(lesson, rich=args.rich), chat, lesson=lesson)
     print(f"Отправлен урок {lesson.number} ({lesson.id}) в {where}")
     return 0
 
