@@ -183,7 +183,20 @@ lessons:
             - "¿Cómo estás, señor García? => С сеньором говорят на «вы»: ¿Cómo está usted?"
             - "23:00 — ¡Buenos días! => Поздно вечером говорят ¡Buenas noches!"
             - "Muchas gracias! => Нужен перевёрнутый знак: ¡Muchas gracias!"
-      - task: "Напишите в комментариях приветствие, которое подходит к тому времени дня, когда вы читаете этот пост, и ответьте на вопрос **¿Qué tal?**"
+      - task: "Поздоровайтесь вслух так, как подходит к тому времени дня, когда вы читаете этот пост, и ответьте вслух на вопрос **¿Qué tal?** А потом проверьте себя в опросах."
+    quiz:
+      - q: "Сейчас 22:30, и вы заходите к соседям. Как поздороваться?"
+        options: "¡Buenas noches! | ¡Buenos días! | ¡Buenas tardes!"
+        explain: "Поздно вечером и ночью и здороваются, и прощаются словами buenas noches. Buenos días говорят утром, а buenas tardes говорят после обеда."
+      - q: "Сейчас 16:00, и вы здороваетесь с сеньором Гарсией. Что сказать?"
+        options: "Buenas tardes, señor García. | Buenos días, señor García. | Buenas noches, señor García."
+        explain: "После обеда и до позднего вечера говорят buenas tardes. Buenos días говорят до обеда, а buenas noches говорят поздно вечером."
+      - q: "Вам говорят: ¡Muchas gracias! Что ответить?"
+        options: "De nada. | Por favor. | Perdón."
+        explain: "На «спасибо» отвечают de nada, что значит «не за что». Por favor значит «пожалуйста», когда о чём-то просят, а perdón значит «извините»."
+      - q: "Как ответить на ¿Qué tal?, если дела так себе?"
+        options: "Regular. | Muy bien. | De nada."
+        explain: "Regular значит «так себе». Muy bien значит «очень хорошо», а de nada значит «не за что», и так отвечают на «спасибо»."
 
   - id: quiz
     kind: quiz
