@@ -62,7 +62,7 @@ class Schedule:
             n = s["quiz_auto"] if lesson.auto_quiz is None else lesson.auto_quiz
             return n, n
         n = s["recall_size"] if lesson.recall is None else lesson.recall
-        return n, 0
+        return n, min(n, s["recall_min"])
 
     def _interval(self, stage: int) -> int:
         intervals = self.settings["intervals"]

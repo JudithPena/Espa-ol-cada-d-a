@@ -62,6 +62,7 @@ DEFAULT_SETTINGS: dict[str, Any] = {
     "srs": {
         "intervals": [1, 3, 7, 14, 30, 60, 120],
         "recall_size": 4,
+        "recall_min": 3,
         "review_size": 16,
         "review_quiz": 4,
         "quiz_auto": 4,

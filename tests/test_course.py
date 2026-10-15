@@ -104,3 +104,12 @@ def test_rich_articles_fit_telegram_limits(course, renderer):
     for lesson in course.lessons:
         article = rich.render(lesson)[0]
         assert rich_problems(article) == [], lesson.id
+
+
+def test_recall_block_has_at_least_min_words(course, schedule):
+    """«Вспомним» не сжимается до одного слова: недостающие добираются из давно не встречавшихся."""
+    minimum = course.settings["srs"]["recall_min"]
+    for lesson in course.lessons[2:]:
+        if lesson.kind in ("review", "quiz", "final", "intro", "finale"):
+            continue
+        assert len(schedule.picks_for(lesson)) >= minimum, lesson.id
