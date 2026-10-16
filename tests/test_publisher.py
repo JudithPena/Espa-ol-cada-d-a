@@ -148,11 +148,12 @@ def test_rich_article_without_audio_drops_players(course, renderer, tmp_path):
     assert media == [] and "tg://audio" not in html and "<figure>" not in html
 
 
-def test_rich_posts_setting_switches_channel_format(course, renderer, tmp_path):
+def test_rich_posts_setting_switches_channel_format(course, renderer, tmp_path, monkeypatch):
     from espanol.rich import RichMessage
 
     pub = make(course, renderer, tmp_path, FakeAPI())
-    assert course.is_rich(course.lesson(8)) and course.is_rich(course.lesson(19))
-    assert not course.is_rich(course.lesson(20))
+    monkeypatch.setitem(course.settings, "rich_posts", ["saludos/dialogue"])
     assert isinstance(pub.render(course.lesson(8))[0], RichMessage)
     assert isinstance(pub.render(course.lesson(20))[0], TextMessage)
+    monkeypatch.setitem(course.settings, "rich_posts", "all")
+    assert isinstance(pub.render(course.lesson(20))[0], RichMessage)
