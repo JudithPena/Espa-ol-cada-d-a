@@ -152,7 +152,7 @@ def test_rich_posts_setting_switches_channel_format(course, renderer, tmp_path):
     from espanol.rich import RichMessage
 
     pub = make(course, renderer, tmp_path, FakeAPI())
-    assert course.is_rich(course.lesson(8)) and course.is_rich(course.lesson(9))
-    assert not course.is_rich(course.lesson(10))
+    assert course.is_rich(course.lesson(8)) and course.is_rich(course.lesson(19))
+    assert not course.is_rich(course.lesson(20))
     assert isinstance(pub.render(course.lesson(8))[0], RichMessage)
-    assert isinstance(pub.render(course.lesson(10))[0], TextMessage)
+    assert isinstance(pub.render(course.lesson(20))[0], TextMessage)
