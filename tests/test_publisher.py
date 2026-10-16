@@ -30,6 +30,10 @@ class FakeAPI:
                    silent=True):
         return self._record(("audio", title))
 
+    def send_rich_message(self, chat_id, html, media, files, silent=False):
+        self.rich = (html, media, files)
+        return self._record(("rich", html))
+
 
 def make(course, renderer, tmp_path, api, **kw):
     return Publisher(course, renderer, api, "@test", tmp_path / "state.json", delay=0,
@@ -44,7 +48,7 @@ def test_publishes_lessons_in_order(course, renderer, tmp_path):
     state = State.load(tmp_path / "state.json")
     assert [p["id"] for p in state.published] == [course.lessons[0].id, course.lessons[1].id]
     assert state.current is None
-    assert api.sent[0][0] == "text"
+    assert api.sent[0][0] == ("rich" if course.is_rich(course.lessons[0]) else "text")
 
 
 def test_daily_limit_and_force(course, renderer, tmp_path):
@@ -60,7 +64,7 @@ def test_daily_limit_and_force(course, renderer, tmp_path):
 
 def test_resume_after_failure_without_duplicates(course, renderer, tmp_path):
     lesson = course.lessons[2]  # урок с текстом, аудио и опросами
-    total = len(renderer.render(lesson))
+    total = len(make(course, renderer, tmp_path, FakeAPI()).render(lesson))  # в том формате, что уйдёт в канал
     assert total > 2
     state_path = tmp_path / "state.json"
     state_path.write_text(json.dumps({
@@ -115,16 +119,11 @@ def test_course_finished(course, renderer, tmp_path):
 def test_rich_lesson_is_one_article_with_media(course, renderer, tmp_path):
     from espanol.rich import RichMessage, RichRenderer
 
-    class RichAPI(FakeAPI):
-        def send_rich_message(self, chat_id, html, media, files, silent=False):
-            self.rich = (html, media, files)
-            return self._record(("rich", html))
-
     lesson = course.lesson(8)
     messages = RichRenderer(renderer, images=False).render(lesson)
     assert isinstance(messages[0], RichMessage)
     assert all(isinstance(m, PollMessage) for m in messages[1:])
-    api = RichAPI()
+    api = FakeAPI()
     make(course, renderer, tmp_path, api).send(messages, "@me", lesson=lesson)
     html, media, files = api.rich
     audio = [mid for mid, spec in media if spec["type"] == "audio"]
@@ -135,13 +134,8 @@ def test_rich_lesson_is_one_article_with_media(course, renderer, tmp_path):
 def test_rich_article_without_audio_drops_players(course, renderer, tmp_path):
     from espanol.rich import RichRenderer
 
-    class RichAPI(FakeAPI):
-        def send_rich_message(self, chat_id, html, media, files, silent=False):
-            self.rich = (html, media, files)
-            return self._record(("rich", html))
-
     lesson = course.lesson(8)
-    api = RichAPI()
+    api = FakeAPI()
     make(course, renderer, tmp_path, api, audio=False).send(
         RichRenderer(renderer, images=False).render(lesson), "@me", lesson=lesson)
     html, media, _ = api.rich
