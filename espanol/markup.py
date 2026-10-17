@@ -1,10 +1,11 @@
 """Мини-разметка контента → HTML для Telegram.
 
 Поддерживается:
-    **жирный**   _курсив_   ||спойлер||   ~~зачёркнутый~~   `код`
+    **жирный**   _курсив_   ||спойлер||   ~~зачёркнутый~~   `код`   https://ссылка
 
 Текст внутри `код` не форматируется и не проверяется валидатором словаря:
 так помечаются буквы, слоги, окончания и прочий «метаязык».
+Ссылки становятся кликабельными и тоже не проверяются.
 """
 
 from __future__ import annotations
@@ -13,6 +14,7 @@ import html
 import re
 
 _CODE = re.compile(r"`([^`\n]+)`")
+_URL = re.compile(r"https?://[^\s<>]+[^\s<>.,;:!?)»]")
 _SPOILER = re.compile(r"\|\|(.+?)\|\|", re.S)
 _BOLD = re.compile(r"\*\*(.+?)\*\*", re.S)
 # Одиночное подчёркивание — курсив; «___» (пропуск в упражнении) не трогаем.
@@ -37,7 +39,13 @@ def to_html(text: str) -> str:
         codes.append("<code>" + escape(m.group(1)) + "</code>")
         return _PLACEHOLDER.format(len(codes) - 1)
 
+    def stash_url(m: re.Match) -> str:
+        url = html.escape(m.group(0))
+        codes.append(f'<a href="{url}">{url}</a>')
+        return _PLACEHOLDER.format(len(codes) - 1)
+
     text = _CODE.sub(stash, text)
+    text = _URL.sub(stash_url, text)
     text = escape(text)
     text = _SPOILER.sub(r"<tg-spoiler>\1</tg-spoiler>", text)
     text = _BOLD.sub(r"<b>\1</b>", text)
@@ -55,8 +63,9 @@ def plain(text: str) -> str:
 
 
 def checkable(text: str) -> str:
-    """Текст для проверки словаря: без разметки и без фрагментов в `коде`."""
+    """Текст для проверки словаря: без разметки, ссылок и фрагментов в `коде`."""
     text = _CODE.sub(" ", text)
+    text = _URL.sub(" ", text)
     for rx in (_SPOILER, _BOLD, _ITALIC, _STRIKE):
         text = rx.sub(r"\1", text)
     return text
