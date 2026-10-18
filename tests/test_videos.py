@@ -71,12 +71,13 @@ def test_after_decides_what_is_passed(tmp_path, course, lexicon):
     assert any("«comer» уже пройдено" in p for p in check_video(video, lexicon))
 
 
-def test_post_is_compact_and_has_no_lesson_numbers(tmp_path, course, lexicon, renderer):
+def test_post_layout(tmp_path, course, lexicon, renderer):
     video = write(tmp_path, course)[0]
     messages = VideoRenderer(renderer, lexicon, images=False).render_video(video)
     article = messages[0]
     assert isinstance(article, RichMessage) and all(isinstance(m, PollMessage) for m in messages[1:])
     assert to_html(video.url) in article.html
-    assert "<details><summary>📜 Текст видео</summary>" in article.html
-    assert "<details><summary>🇷🇺 Перевод</summary>" in article.html
-    assert "Подробнее" not in article.html and "cover" not in article.html
+    assert "<h3>📜 Текст видео</h3>" in article.html
+    assert article.html.count("<details>") == 1  # упражнений в тестовом разборе нет: свёрнут только перевод
+    assert "<details><summary>🔤 <b>Перевод</b></summary>" in article.html
+    assert "🇷🇺" not in article.html and "Подробнее" not in article.html

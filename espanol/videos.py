@@ -18,7 +18,8 @@ from pathlib import Path
 
 import yaml
 
-from .course import Block, ContentError, Course, Lesson, Unit, VocabItem, parse_lesson
+from . import cards
+from .course import ContentError, Course, Lesson, Unit, VocabItem, parse_lesson
 from .lexicon import Lexicon, generated_forms, lesson_texts
 from .markup import checkable, escape, plain, strip_tags, to_html
 from .render import Message, PollMessage, Renderer, poll_problems
@@ -159,12 +160,7 @@ def check_video(video: Video, lexicon: Lexicon) -> list[str]:
 
 
 class VideoRenderer(RichRenderer):
-    """Разбор видео одной статьёй.
-
-    Чтобы Telegram не сворачивал длинную статью под «Show more», открытыми
-    остаются только шапка, ссылка и вступление, а разделы (слова, текст видео,
-    перевод, пояснения, задания) — раскрывающиеся блоки. Обложки нет по той же причине.
-    """
+    """Разбор видео одной статьёй: обложка, ссылка, слова, текст видео с переводом, пояснения, опросы."""
 
     def __init__(self, renderer: Renderer, lexicon: Lexicon, images: bool | None = None):
         super().__init__(renderer, images)
@@ -175,26 +171,28 @@ class VideoRenderer(RichRenderer):
         self.video = video
         lesson = video.lesson
         media: list[RichMedia] = []
-        out = [
-            f"<p>{lesson.kind_emoji} <b>{escape(video.label)}</b> · {escape(lesson.level)}</p>",
-            f"<h2>{to_html(video.title)}</h2>",
-            f"<p>👉 <b>Видео:</b> {to_html(video.url)}</p>",
-        ]
+        out: list[str] = []
+        if self.images:
+            media.append(RichMedia("cover", "photo", draw=lambda: cards.cover(
+                f"{video.label} · {lesson.level}", plain(video.title), f"После урока {video.after}",
+                lesson.kind_emoji)))
+            out.append('<figure><img src="tg://photo?id=cover"/></figure>')
+        out.append(f"<p>{lesson.kind_emoji} <b>{escape(video.label)}</b> · {escape(lesson.level)} · "
+                   f"после урока {video.after}</p>")
+        out.append(f"<h2>{to_html(video.title)}</h2>")
+        out.append(f"<p>👉 <b>Видео:</b> {to_html(video.url)}</p>")
+
         blocks = list(lesson.blocks)
         voices: dict[str, str] = {}
         while blocks and blocks[0].type == "text":
             out.append(self._block(blocks.pop(0), lesson, media, voices))
-
         if lesson.vocab:
-            words = self._words(lesson, media)
-            head = strip_tags(self.r._label("new_words", lesson))
-            out.append(details(f"{head} ({len(lesson.vocab)})", words.split("</h3>", 1)[1]))
-        out.append(details("📜 Текст видео", paragraphs(to_html(video.transcript))))
-        out.append(details(strip_tags(self.r._label("translation", lesson)),
-                           paragraphs(to_html(video.translation))))
-        for title, section in self._sections(blocks):
-            body = "".join(self._block(b, lesson, media, voices) for b in section)
-            out.append(details(title, body) if title else body)
+            out.append(self._words(lesson, media))
+        # Флаг у перевода не ставим: в рубрике просто «Перевод».
+        out.append("<h3>📜 Текст видео</h3>" + paragraphs(to_html(video.transcript))
+                   + details("🔤 <b>Перевод</b>", paragraphs(to_html(video.translation))))
+        for block in blocks:
+            out.append(self._block(block, lesson, media, voices))
 
         polls = [PollMessage(p.question, p.options, p.correct, p.explanation)
                  for p in (self.r._manual_poll(lesson, i) for i in range(len(lesson.quiz)))]
@@ -202,34 +200,6 @@ class VideoRenderer(RichRenderer):
             out.append(f"<p>{self.r._label('polls', lesson)}</p>")
         out.append(f"<p>#{lesson.kind_tag} #{lesson.level}</p>")
         return [RichMessage("".join(p for p in out if p), media), *polls]
-
-    def _sections(self, blocks: list[Block]) -> list[tuple[str, list[Block]]]:
-        """Блоки после текста видео → раскрывающиеся разделы.
-
-        Блок header открывает раздел «Что заметить» и т. п., каждое упражнение и
-        задание — свой раздел с заголовком из title.
-        """
-        sections: list[tuple[str, list[Block]]] = []
-        for block in blocks:
-            if block.type == "header":
-                sections.append((strip_tags(to_html(block.data)), []))
-            elif block.type == "exercise":
-                title = block.data.get("title") or strip_tags(self.r._label("exercise", self.video.lesson))
-                sections.append((f"✍️ {strip_tags(to_html(title))}", [Block("exercise_items", block.data)]))
-            elif block.type == "task":
-                sections.append((strip_tags(self.r._label("task", self.video.lesson)).rstrip(":"), [block]))
-            elif sections:
-                sections[-1][1].append(block)
-            else:
-                sections.append(("", [block]))
-        return sections
-
-    def _block(self, block: Block, lesson: Lesson, media: list[RichMedia], voices: dict[str, str]) -> str:
-        if block.type == "exercise_items":  # упражнение внутри своего раздела — без заголовка
-            return super()._block(Block("exercise", block.data), lesson, media, voices).split("</h3>", 1)[1]
-        if block.type == "task":
-            return paragraphs(to_html(block.data))
-        return super()._block(block, lesson, media, voices)
 
     def _audio(self, lesson: Lesson, media: list[RichMedia], segments: list[tuple[str, str]],
                name: str, caption: str = "", pauses: bool = False) -> str:
