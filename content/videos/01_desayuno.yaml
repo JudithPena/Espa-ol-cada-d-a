@@ -8,70 +8,49 @@ level: A1
 # Имена и слова не по-испански, которые звучат в видео.
 allow: [Europa, Alexa, stop]
 
-# Текст видео по фразам: под каждой фразой — её новые слова (words, по полю es из vocab),
-# пояснение (note) и перевод (ru, в посте спрятан).
+# Текст видео — 10 смысловых блоков: под каждым его новые слова (words, по полю es из vocab),
+# пояснения (note) и перевод (ru, в посте спрятан).
 segments:
-  - es: "Hola, yo por la mañana a las 9... No, a las 8. A las 8 yo como huevo."
-    ru: "Привет! Я утром в девять... Нет, в восемь. В восемь я ем яйца."
-    words: [por la mañana, a las ocho / a las nueve, comer, el huevo]
-    note: "**Como** — это «я ем», форма глагола **comer**. Перед _huevo_ нет артикля, потому что речь идёт о еде вообще: _Como huevo_ значит «я ем яйца», а не какое-то одно яйцо."
-  - es: "Huevo. Yo como huevo y como pan. Yo como pan, pero no como pan solo. No, no, no."
-    ru: "Яйца. Я ем яйца и ем хлеб. Я ем хлеб, но не ем просто хлеб. Нет, нет, нет."
-    words: [el pan, pero, solo/a]
-    note: "Чтобы сказать, что вы чего-то **не** делаете, поставьте **no** прямо перед глаголом: _No como pan solo._ (Я не ем просто хлеб.) Если вы отвечаете на вопрос «нет», то **no** звучит два раза: первое значит «нет», а второе стоит перед глаголом: _¿Comes pan solo? — No, no como pan solo._"
-  - es: "Como pan, pero no pan solo. Como... Como pan con mermelada."
-    ru: "Ем хлеб, но не просто хлеб. Ем... Ем хлеб с джемом."
-    words: [con, la mermelada]
-  - es: "Mermelada. Como pan con mermelada. Pan. Pan con mantequilla."
-    ru: "Джем. Ем хлеб с джемом. Хлеб. Хлеб со сливочным маслом."
-    words: [la mantequilla]
-  - es: "Pero no como pan... pan con huevo. No, no como, no como pan con huevo. Como fruta."
-    ru: "Но я не ем хлеб... хлеб с яйцом. Нет, не ем, не ем хлеб с яйцом. Ем фрукты."
+  - es: "Hola, yo por la mañana a las 9... No, a las 8. A las 8 yo como huevo. Huevo. Yo como huevo y como pan. Yo como pan, pero no como pan solo. No, no, no."
+    ru: "Привет! Я утром в девять... Нет, в восемь. В восемь я ем яйца. Яйца. Я ем яйца и ем хлеб. Я ем хлеб, но не ем просто хлеб. Нет, нет, нет."
+    words: [por la mañana, a las ocho / a las nueve, comer, el huevo, el pan, pero, solo/a]
+    note:
+      - "**Como** — это «я ем», форма глагола **comer**. Перед _huevo_ нет артикля, потому что речь идёт о еде вообще: _Como huevo_ значит «я ем яйца», а не какое-то одно яйцо."
+      - "Чтобы сказать, что вы чего-то **не** делаете, поставьте **no** прямо перед глаголом: _No como pan solo._ (Я не ем просто хлеб.) Если вы отвечаете на вопрос «нет», то **no** звучит два раза: первое значит «нет», а второе стоит перед глаголом: _¿Comes pan solo? — No, no como pan solo._"
+  - es: "Como pan, pero no pan solo. Como... Como pan con mermelada. Mermelada. Como pan con mermelada. Pan. Pan con mantequilla."
+    ru: "Ем хлеб, но не просто хлеб. Ем... Ем хлеб с джемом. Джем. Ем хлеб с джемом. Хлеб. Хлеб со сливочным маслом."
+    words: [con, la mermelada, la mantequilla]
+  - es: "Pero no como pan... pan con huevo. No, no como, no como pan con huevo. Como fruta. Como fruta, como fruta, pero no como pan. ¿Pan con fruta? No, no, no."
+    ru: "Но я не ем хлеб... хлеб с яйцом. Нет, не ем, не ем хлеб с яйцом. Ем фрукты. Ем фрукты, ем фрукты, но не ем хлеб. Хлеб с фруктами? Нет, нет, нет."
     words: [la fruta]
-  - es: "Como fruta, como fruta, pero no como pan. ¿Pan con fruta? No, no, no."
-    ru: "Ем фрукты, ем фрукты, но не ем хлеб. Хлеб с фруктами? Нет, нет, нет."
-  - es: "Como fruta. Fruta sola. Como huevo solo. Pero no como pan."
-    ru: "Ем фрукты. Просто фрукты. Ем просто яйца. Но не ем хлеб."
-    note: "Слово **solo** согласуется с существительным, как и любое прилагательное. Поэтому говорят _huevo solo_ (просто яйца), но _fruta sola_ (просто фрукты), потому что слово _fruta_ женского рода."
-  - es: "Pan solo no como. No, no. Como pan con mermelada y pan con mantequilla."
-    ru: "Просто хлеб я не ем. Нет, нет. Ем хлеб с джемом и хлеб с маслом."
-    note: "Преподаватель ставит в начало то, что для него главное, поэтому говорит _Pan solo no como_ вместо _No como pan solo_. Обе фразы значат одно и то же: «Просто хлеб я не ем». Сами начинайте с обычного порядка слов: _No como pan solo._"
-  - es: "Por la mañana no como queso. Queso no como. No, no, no."
-    ru: "Утром я не ем сыр. Сыр я не ем. Нет, нет, нет."
-  - es: "No como jamón. Jamón no como. Y no como ensalada."
-    ru: "Не ем хамон. Хамон не ем. И не ем салат."
+  - es: "Como fruta. Fruta sola. Como huevo solo. Pero no como pan. Pan solo no como. No, no. Como pan con mermelada y pan con mantequilla."
+    ru: "Ем фрукты. Просто фрукты. Ем просто яйца. Но не ем хлеб. Просто хлеб я не ем. Нет, нет. Ем хлеб с джемом и хлеб с маслом."
+    note:
+      - "Слово **solo** согласуется с существительным, как и любое прилагательное. Поэтому говорят _huevo solo_ (просто яйца), но _fruta sola_ (просто фрукты), потому что слово _fruta_ женского рода."
+      - "Преподаватель ставит в начало то, что для него главное, поэтому говорит _Pan solo no como_ вместо _No como pan solo_. Обе фразы значат одно и то же: «Просто хлеб я не ем». Сами начинайте с обычного порядка слов: _No como pan solo._"
+  - es: "Por la mañana no como queso. Queso no como. No, no, no. No como jamón. Jamón no como. Y no como ensalada."
+    ru: "Утром я не ем сыр. Сыр я не ем. Нет, нет, нет. Не ем хамон. Хамон не ем. И не ем салат."
     words: [la ensalada]
-  - es: "Ensalada. No como ensalada. No, no."
-    ru: "Салат. Не ем салат. Нет, нет."
-  - es: "En Europa comen queso, comen jamón por la mañana. Por la mañana. Sí, sí, sí, sí. Pero yo no."
-    ru: "В Европе едят сыр, едят хамон утром. Утром. Да, да, да, да. Но я — нет."
+  - es: "Ensalada. No como ensalada. No, no. En Europa comen queso, comen jamón por la mañana. Por la mañana. Sí, sí, sí, sí. Pero yo no."
+    ru: "Салат. Не ем салат. Нет, нет. В Европе едят сыр, едят хамон утром. Утром. Да, да, да, да. Но я — нет."
     words: [en]
     note: "**Comen** значит «едят»: так говорят о многих людях, здесь — о людях в Европе. Глагол меняет окончание, когда меняется тот, кто действует: _yo como_ (я ем), _tú comes_ (ты ешь), _comen_ (они едят)."
-  - es: "Y yo tampoco como caca. No, no, no. Yo no como caca. No, no, no."
-    ru: "И какашки я тоже не ем. Нет, нет, нет. Я не ем какашки. Нет, нет, нет."
-    words: [tampoco, la caca]
-    note: "Чтобы сказать «тоже не», используйте **tampoco**. Тогда второе **no** перед глаголом уже не нужно: _Tampoco como caca._ (Какашки я тоже не ем.)"
-  - es: "Por la mañana yo bebo té. Té. Yo por la mañana bebo té."
-    ru: "Утром я пью чай. Чай. Я утром пью чай."
-    words: [beber, el té]
-    note: "**Bebo** — это «я пью», форма глагола **beber**. Она образуется так же, как _como_ от _comer_: _yo bebo_ (я пью), _¿qué bebes?_ (что ты пьёшь?)."
-  - es: "No bebo café. Café no bebo. No, no, no."
-    ru: "Не пью кофе. Кофе я не пью. Нет, нет, нет."
-  - es: "Bebo agua. Bebo agua y té. Pero no bebo café. Tampoco bebo leche."
-    ru: "Пью воду. Пью воду и чай. Но не пью кофе. Молоко тоже не пью."
+  - es: "Y yo tampoco como caca. No, no, no. Yo no como caca. No, no, no. Por la mañana yo bebo té. Té. Yo por la mañana bebo té."
+    ru: "И какашки я тоже не ем. Нет, нет, нет. Я не ем какашки. Нет, нет, нет. Утром я пью чай. Чай. Я утром пью чай."
+    words: [tampoco, la caca, beber, el té]
+    note:
+      - "Чтобы сказать «тоже не», используйте **tampoco**. Тогда второе **no** перед глаголом уже не нужно: _Tampoco como caca._ (Какашки я тоже не ем.)"
+      - "**Bebo** — это «я пью», форма глагола **beber**. Она образуется так же, как _como_ от _comer_: _yo bebo_ (я пью), _¿qué bebes?_ (что ты пьёшь?)."
+  - es: "No bebo café. Café no bebo. No, no, no. Bebo agua. Bebo agua y té. Pero no bebo café. Tampoco bebo leche."
+    ru: "Не пью кофе. Кофе я не пью. Нет, нет, нет. Пью воду. Пью воду и чай. Но не пью кофе. Молоко тоже не пью."
     words: [el agua, la leche]
-  - es: "Leche yo no bebo. Y tampoco bebo gasolina. No, no, no."
-    ru: "Молоко я не пью. И бензин тоже не пью. Нет, нет, нет."
-    words: [la gasolina]
-  - es: "No bebo gasolina, porque yo no soy un coche. Yo no soy un coche. Yo soy una persona."
-    ru: "Не пью бензин, потому что я не машина. Я не машина. Я человек."
-    words: [porque, el coche, una, la persona]
-  - es: "Sí, sí. Y tú, por la mañana, ¿tú qué comes? Y tú, ¿qué bebes por la mañana?"
-    ru: "Да, да. А ты что ешь утром? А ты что пьёшь утром?"
-    note: "**Comes** и **bebes** — это формы для «ты»: _¿Qué comes?_ (Что ты ешь?) _¿Qué bebes?_ (Что ты пьёшь?)."
-  - es: "Venga. Hasta luego. _После титров:_ Leche yo no bebo. Alexa, stop."
-    ru: "Давай! Пока! _После титров:_ Молоко я не пью. Алекса, стоп."
+  - es: "Leche yo no bebo. Y tampoco bebo gasolina. No, no, no. No bebo gasolina, porque yo no soy un coche. Yo no soy un coche. Yo soy una persona."
+    ru: "Молоко я не пью. И бензин тоже не пью. Нет, нет, нет. Не пью бензин, потому что я не машина. Я не машина. Я человек."
+    words: [la gasolina, porque, el coche, una, la persona]
+  - es: "Sí, sí. Y tú, por la mañana, ¿tú qué comes? Y tú, ¿qué bebes por la mañana? Venga. Hasta luego. _После титров:_ Leche yo no bebo. Alexa, stop."
+    ru: "Да, да. А ты что ешь утром? А ты что пьёшь утром? Давай! Пока! _После титров:_ Молоко я не пью. Алекса, стоп."
     words: [¡venga!]
+    note: "**Comes** и **bebes** — это формы для «ты»: _¿Qué comes?_ (Что ты ешь?) _¿Qué bebes?_ (Что ты пьёшь?)."
 
 vocab:
   - "🌅 por la mañana [пор ла манья́на] — утром"

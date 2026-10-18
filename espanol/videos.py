@@ -13,14 +13,14 @@
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
 import yaml
 
 from . import cards
-from .course import ContentError, Course, Lesson, Unit, VocabItem, parse_lesson
+from .course import ContentError, _as_list, Course, Lesson, Unit, VocabItem, parse_lesson
 from .lexicon import Lexicon, generated_forms, lesson_texts
 from .markup import checkable, escape, plain, strip_tags, to_html
 from .render import Message, PollMessage, Renderer, poll_problems
@@ -36,7 +36,7 @@ class Segment:
     es: str
     ru: str
     words: list[VocabItem]
-    note: str = ""
+    notes: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -96,7 +96,8 @@ def load_videos(content_dir: str | Path, course: Course) -> list[Video]:
 
 
 def _segments(raw: Any, lesson: Lesson, where: str) -> list[Segment]:
-    """Фразы видео; words — слова из vocab (по полю es), которые разбираются под этой фразой."""
+    """Фразы видео; words — слова из vocab (по полю es), которые разбираются под этой фразой,
+    note — пояснение или список пояснений к ней."""
     by_es = {item.es: item for item in lesson.vocab}
     placed: set[str] = set()
     segments = []
@@ -112,7 +113,7 @@ def _segments(raw: Any, lesson: Lesson, where: str) -> list[Segment]:
             placed.add(es)
             words.append(by_es[es])
         segments.append(Segment(str(seg["es"]).strip(), str(seg["ru"]).strip(), words,
-                                str(seg.get("note") or "").strip()))
+                                [str(n).strip() for n in _as_list(seg.get("note")) if str(n).strip()]))
     missing = [item.es for item in lesson.vocab if item.es not in placed]
     if missing:
         raise ContentError(f"{where}: слова не стоят ни под одной фразой: {', '.join(missing)}")
@@ -167,7 +168,8 @@ class VideoWords:
 def video_texts(video: Video) -> list[tuple[str, str]]:
     out = [("название", video.title)]
     for n, seg in enumerate(video.segments, 1):
-        out += [(f"фраза {n}", seg.es), (f"пояснение к фразе {n}", seg.note)]
+        out.append((f"фраза {n}", seg.es))
+        out += [(f"пояснение к фразе {n}", note) for note in seg.notes]
     return [*out, *lesson_texts(video.lesson)]
 
 
@@ -270,8 +272,7 @@ class VideoRenderer(RichRenderer):
                     line += f"<br><i>{to_html(item.example.es)}</i> — {to_html(item.example.ru)}"
                 items.append(f"<li>{line}</li>")
             out.append("<ul>" + "".join(items) + "</ul>")
-        if seg.note:
-            out.append(paragraphs(f"📝 {to_html(seg.note)}"))
+        out += [paragraphs(f"📝 {to_html(note)}") for note in seg.notes]
         # Флаг у перевода не ставим: в рубрике просто «Перевод».
         out.append(details("🔤 Перевод", paragraphs(to_html(seg.ru))))
         return "".join(out)
