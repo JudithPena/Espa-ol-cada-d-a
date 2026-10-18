@@ -20,7 +20,7 @@ from typing import Any
 import yaml
 
 from . import cards
-from .course import ContentError, _as_list, Course, Lesson, Unit, VocabItem, parse_lesson
+from .course import ContentError, Course, Lesson, Unit, VocabItem, parse_lesson
 from .lexicon import Lexicon, generated_forms, lesson_texts
 from .markup import checkable, escape, plain, strip_tags, to_html
 from .render import Message, PollMessage, Renderer, poll_problems
@@ -113,11 +113,17 @@ def _segments(raw: Any, lesson: Lesson, where: str) -> list[Segment]:
             placed.add(es)
             words.append(by_es[es])
         segments.append(Segment(str(seg["es"]).strip(), str(seg["ru"]).strip(), words,
-                                [str(n).strip() for n in _as_list(seg.get("note")) if str(n).strip()]))
+                                _notes(seg.get("note"))))
     missing = [item.es for item in lesson.vocab if item.es not in placed]
     if missing:
         raise ContentError(f"{where}: слова не стоят ни под одной фразой: {', '.join(missing)}")
     return segments
+
+
+def _notes(raw: Any) -> list[str]:
+    """Пояснение к фразе: одна строка или список строк (строку целиком, не по словам)."""
+    items = [raw] if isinstance(raw, str) else list(raw or [])
+    return [str(n).strip() for n in items if str(n).strip()]
 
 
 def find_video(videos: list[Video], ref: str) -> Video:

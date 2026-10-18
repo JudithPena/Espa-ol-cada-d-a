@@ -98,3 +98,16 @@ def test_every_word_stands_under_a_segment(tmp_path, course):
 
     with pytest.raises(ContentError, match="ни под одной фразой"):
         write(tmp_path, course, vocab=VOCAB + '  - "🧈 la mantequilla — масло"\n')
+
+
+def test_note_string_stays_one_paragraph(tmp_path, course, lexicon, renderer):
+    video = write(tmp_path, course)[0]
+    assert video.segments[0].notes == ["Пояснение к фразе."]
+    html = VideoRenderer(renderer, lexicon, images=False).render_video(video)[0].html
+    assert html.count("📝") == 1
+
+
+def test_course_video_notes_are_whole_sentences(course):
+    for video in load_videos(CONTENT, course):
+        for seg in video.segments:
+            assert all(len(note.split()) > 3 for note in seg.notes), seg.notes
