@@ -15,6 +15,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 import yaml
 
@@ -23,10 +24,19 @@ from .course import ContentError, Course, Lesson, Unit, VocabItem, parse_lesson
 from .lexicon import Lexicon, generated_forms, lesson_texts
 from .markup import checkable, escape, plain, strip_tags, to_html
 from .render import Message, PollMessage, Renderer, poll_problems
-from .rich import RichMedia, RichMessage, RichRenderer, details, paragraphs, rich_problems
+from .rich import RichMedia, RichMessage, RichRenderer, _card, details, paragraphs, rich_problems
 from .tokens import spanish_words
 
 VIDEO_REF = re.compile(r"(?:video|видео):(\w+)$", re.I)
+
+
+@dataclass
+class Segment:
+    """Фраза из видео: оригинал, её новые слова, пояснение и перевод."""
+    es: str
+    ru: str
+    words: list[VocabItem]
+    note: str = ""
 
 
 @dataclass
@@ -36,10 +46,13 @@ class Video:
     title: str
     url: str
     after: int            # последний вышедший урок курса, на который опирается разбор
-    transcript: str       # полный текст видео в оригинале
-    translation: str      # перевод (в посте спрятан)
+    segments: list[Segment]  # полный текст видео по фразам
     lesson: Lesson        # слова, блоки и опросы в формате урока
     source: str
+
+    @property
+    def transcript(self) -> str:
+        return " ".join(seg.es for seg in self.segments)
 
     @property
     def label(self) -> str:
@@ -62,7 +75,7 @@ def load_videos(content_dir: str | Path, course: Course) -> list[Video]:
         prefix = path.stem.split("_", 1)[0]
         if not prefix.isdigit():
             raise ContentError(f"{where}: имя файла должно начинаться с номера разбора (01_…)")
-        for key in ("title", "url", "after", "transcript", "translation"):
+        for key in ("title", "url", "after", "segments"):
             if key not in raw:
                 raise ContentError(f"{where}: нет поля {key}")
         after = int(raw["after"])
@@ -77,10 +90,33 @@ def load_videos(content_dir: str | Path, course: Course) -> list[Video]:
         lesson.index = after  # подписи и проверка слов — как в уроке after
         videos.append(Video(
             number=int(prefix), id=local_id, title=str(raw["title"]).strip(), url=str(raw["url"]).strip(),
-            after=after, transcript=str(raw["transcript"]).strip(),
-            translation=str(raw["translation"]).strip(), lesson=lesson, source=str(path),
+            after=after, segments=_segments(raw["segments"], lesson, where), lesson=lesson, source=str(path),
         ))
     return videos
+
+
+def _segments(raw: Any, lesson: Lesson, where: str) -> list[Segment]:
+    """Фразы видео; words — слова из vocab (по полю es), которые разбираются под этой фразой."""
+    by_es = {item.es: item for item in lesson.vocab}
+    placed: set[str] = set()
+    segments = []
+    for n, seg in enumerate(raw or [], 1):
+        if not isinstance(seg, dict) or "es" not in seg or "ru" not in seg:
+            raise ContentError(f"{where}: у фразы {n} должны быть поля es и ru")
+        words = []
+        for es in seg.get("words") or []:
+            if es not in by_es:
+                raise ContentError(f"{where}, фраза {n}: слова «{es}» нет в vocab")
+            if es in placed:
+                raise ContentError(f"{where}, фраза {n}: слово «{es}» уже разобрано под другой фразой")
+            placed.add(es)
+            words.append(by_es[es])
+        segments.append(Segment(str(seg["es"]).strip(), str(seg["ru"]).strip(), words,
+                                str(seg.get("note") or "").strip()))
+    missing = [item.es for item in lesson.vocab if item.es not in placed]
+    if missing:
+        raise ContentError(f"{where}: слова не стоят ни под одной фразой: {', '.join(missing)}")
+    return segments
 
 
 def find_video(videos: list[Video], ref: str) -> Video:
@@ -129,7 +165,10 @@ class VideoWords:
 
 
 def video_texts(video: Video) -> list[tuple[str, str]]:
-    return [("название", video.title), ("текст видео", video.transcript), *lesson_texts(video.lesson)]
+    out = [("название", video.title)]
+    for n, seg in enumerate(video.segments, 1):
+        out += [(f"фраза {n}", seg.es), (f"пояснение к фразе {n}", seg.note)]
+    return [*out, *lesson_texts(video.lesson)]
 
 
 def check_video(video: Video, lexicon: Lexicon) -> list[str]:
@@ -160,7 +199,8 @@ def check_video(video: Video, lexicon: Lexicon) -> list[str]:
 
 
 class VideoRenderer(RichRenderer):
-    """Разбор видео одной статьёй: обложка, ссылка, слова, текст видео с переводом, пояснения, опросы."""
+    """Разбор видео одной статьёй: обложка, ссылка, карточки слов, затем текст видео по фразам —
+    под каждой фразой её новые слова, пояснение и перевод (спрятан); в конце задания и опросы."""
 
     def __init__(self, renderer: Renderer, lexicon: Lexicon, images: bool | None = None):
         super().__init__(renderer, images)
@@ -187,10 +227,9 @@ class VideoRenderer(RichRenderer):
         while blocks and blocks[0].type == "text":
             out.append(self._block(blocks.pop(0), lesson, media, voices))
         if lesson.vocab:
-            out.append(self._words(lesson, media))
-        # Флаг у перевода не ставим: в рубрике просто «Перевод».
-        out.append("<h3>📜 Текст видео</h3>" + paragraphs(to_html(video.transcript))
-                   + details("🔤 <b>Перевод</b>", paragraphs(to_html(video.translation))))
+            out.append(self._cards(lesson, media))
+        out.append("<h3>📜 Разбор текста видео</h3>")
+        out += [self._segment(seg) for seg in video.segments]
         for block in blocks:
             out.append(self._block(block, lesson, media, voices))
 
@@ -200,6 +239,44 @@ class VideoRenderer(RichRenderer):
             out.append(f"<p>{self.r._label('polls', lesson)}</p>")
         out.append(f"<p>#{lesson.kind_tag} #{lesson.level}</p>")
         return [RichMessage("".join(p for p in out if p), media), *polls]
+
+    def _cards(self, lesson: Lesson, media: list[RichMedia]) -> str:
+        """Карточки и аудио всех новых слов; сами слова разбираются под фразами."""
+        out = [f"<h3>{strip_tags(self.r._label('new_words', lesson))}</h3>"]
+        if self.images:
+            ids = []
+            for n, item in enumerate(lesson.vocab, 1):
+                ids.append(f"w{n}")
+                media.append(RichMedia(f"w{n}", "photo", draw=_card(item)))
+            imgs = "".join(f'<img src="tg://photo?id={i}"/>' for i in ids)
+            out.append(f"<tg-slideshow>{imgs}</tg-slideshow>" if len(ids) > 1 else f"<figure>{imgs}</figure>")
+        segments = []
+        for item in lesson.vocab:
+            segments.append(("f1", item.speech))
+            if item.example:
+                segments.append(("f1", plain(item.example.es)))
+        out.append(self._audio(lesson, media, segments, strip_tags(self.r._label("new_words", lesson))[2:]))
+        return "".join(out)
+
+    def _segment(self, seg: Segment) -> str:
+        """Фраза в оригинале, под ней — её новые слова, пояснение и перевод (спрятан)."""
+        out = [f"<blockquote>{to_html(seg.es)}</blockquote>"]
+        if seg.words:
+            items = []
+            for item in seg.words:
+                line = f"{item.emoji or '▫️'} <b>{escape(item.es)}</b>"
+                if item.pron:
+                    line += f" [{escape(item.pron)}]"
+                line += f" — {to_html(item.ru)}"
+                if item.example:
+                    line += f"<br><i>{to_html(item.example.es)}</i> — {to_html(item.example.ru)}"
+                items.append(f"<li>{line}</li>")
+            out.append("<ul>" + "".join(items) + "</ul>")
+        if seg.note:
+            out.append(paragraphs(f"📝 {to_html(seg.note)}"))
+        # Флаг у перевода не ставим: в рубрике просто «Перевод».
+        out.append(details("🔤 Перевод", paragraphs(to_html(seg.ru))))
+        return "".join(out)
 
     def _audio(self, lesson: Lesson, media: list[RichMedia], segments: list[tuple[str, str]],
                name: str, caption: str = "", pauses: bool = False) -> str:

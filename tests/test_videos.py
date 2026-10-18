@@ -11,10 +11,11 @@ VIDEO = """
 title: Тест
 url: https://example.com/v
 after: {after}
-transcript: |
-  Hola. Yo como pan con mermelada.
-translation: |
-  Привет. Я ем хлеб с джемом.
+segments:
+  - es: "Hola. Yo como pan con mermelada."
+    ru: "Привет. Я ем хлеб с джемом."
+    words: [comer, el pan, con, la mermelada]
+    note: "Пояснение к фразе."
 vocab:
 {vocab}
 blocks:
@@ -55,13 +56,21 @@ def test_find_video_by_number_or_id(tmp_path, course):
 
 
 def test_new_words_must_be_explained(tmp_path, course, lexicon):
-    video = write(tmp_path, course, vocab=VOCAB.replace('  - "🍓 la mermelada — джем"\n', ""))[0]
+    (tmp_path / "videos").mkdir()
+    (tmp_path / "videos" / "01_test.yaml").write_text(
+        VIDEO.format(after=13, vocab=VOCAB.replace('  - "🍓 la mermelada — джем"\n', ""))
+        .replace(", la mermelada]", "]"), encoding="utf-8")
+    video = load_videos(tmp_path, course)[0]
     problems = check_video(video, lexicon)
     assert any("«mermelada»" in p and "в курсе его нет" in p for p in problems)
 
 
 def test_passed_words_are_not_explained(tmp_path, course, lexicon):
-    video = write(tmp_path, course, vocab=VOCAB + '  - "👋 hola — привет"\n')[0]
+    (tmp_path / "videos").mkdir()
+    (tmp_path / "videos" / "01_test.yaml").write_text(
+        VIDEO.format(after=13, vocab=VOCAB + '  - "👋 hola — привет"\n')
+        .replace("words: [comer,", "words: [hola, comer,"), encoding="utf-8")
+    video = load_videos(tmp_path, course)[0]
     assert any("«hola» уже пройдено" in p for p in check_video(video, lexicon))
 
 
@@ -77,7 +86,15 @@ def test_post_layout(tmp_path, course, lexicon, renderer):
     article = messages[0]
     assert isinstance(article, RichMessage) and all(isinstance(m, PollMessage) for m in messages[1:])
     assert to_html(video.url) in article.html
-    assert "<h3>📜 Текст видео</h3>" in article.html
-    assert article.html.count("<details>") == 1  # упражнений в тестовом разборе нет: свёрнут только перевод
-    assert "<details><summary>🔤 <b>Перевод</b></summary>" in article.html
+    # фраза в оригинале, под ней её слова, пояснение и спрятанный перевод
+    segment = article.html.split("<blockquote>Hola. Yo como pan con mermelada.</blockquote>", 1)[1]
+    assert segment.index("<b>la mermelada</b>") < segment.index("📝 Пояснение") < segment.index("Привет.")
+    assert "<details><summary>🔤 Перевод</summary><p>Привет. Я ем хлеб с джемом.</p></details>" in segment
     assert "🇷🇺" not in article.html and "Подробнее" not in article.html
+
+
+def test_every_word_stands_under_a_segment(tmp_path, course):
+    from espanol.course import ContentError
+
+    with pytest.raises(ContentError, match="ни под одной фразой"):
+        write(tmp_path, course, vocab=VOCAB + '  - "🧈 la mantequilla — масло"\n')
