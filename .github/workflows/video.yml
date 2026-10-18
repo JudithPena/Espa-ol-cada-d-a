@@ -1,0 +1,50 @@
+name: Разбор видео
+
+# Рубрика «Разбор видео» (content/videos/, правила — docs/video_guide.md).
+# Сначала разбор уходит в личку на проверку, в канал — только после «можно» от автора.
+# Прогресс курса не меняется, в дневной лимит уроков разбор не считается.
+on:
+  workflow_dispatch:
+    inputs:
+      video:
+        description: "Номер разбора (1, 2, …)"
+        default: "1"
+      target:
+        description: "Куда отправить"
+        type: choice
+        options: [личка, канал]
+        default: личка
+
+permissions:
+  contents: read
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Шрифт для эмодзи на картинках
+        continue-on-error: true
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends fonts-noto-color-emoji
+
+      - name: Установить зависимости
+        run: pip install -r requirements.txt
+
+      - name: Отправить разбор
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ENABLE_AUDIO: ${{ vars.ENABLE_AUDIO || '1' }}
+          VIDEO: ${{ inputs.video }}
+          TARGET: ${{ inputs.target }}
+        run: |
+          args=()
+          [ "$TARGET" = "личка" ] && args+=(--chat auto)
+          python -m espanol send "video:$VIDEO" "${args[@]}"

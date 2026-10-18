@@ -10,6 +10,7 @@
     publish             опубликовать следующий урок (для cron / GitHub Actions)
     send N|id           отправить конкретный урок (например, себе для проверки)
                         --rich — постом-статьёй, --chat auto — в личку тому, кто последним написал боту
+    preview/send video:N  то же для разбора видео №N (рубрика вне курса, content/videos/)
     run --at 09:00      постоянный режим с расписанием
 """
 
@@ -48,7 +49,19 @@ def make_publisher(settings, course, renderer, need_api: bool = True) -> Publish
     )
 
 
-def validate(course, lexicon, renderer) -> list[str]:
+def load_video(settings, course, ref):
+    from .videos import find_video, load_videos
+
+    return find_video(load_videos(settings.content_dir, course), ref)
+
+
+def render_video(video, lexicon, renderer):
+    from .videos import VideoRenderer
+
+    return VideoRenderer(renderer, lexicon).render_video(video)
+
+
+def validate(course, lexicon, renderer, content_dir=None) -> list[str]:
     problems = [str(issue) for issue in lexicon.check()]
     for lesson in course.lessons:
         for message in renderer.render(lesson):
@@ -68,12 +81,16 @@ def validate(course, lexicon, renderer) -> list[str]:
     if isinstance(rich, list):
         ids = {lesson.id for lesson in course.lessons}
         problems += [f"rich_posts: нет урока «{r}»" for r in rich if r not in ids]
+    if content_dir is not None:
+        from .videos import load_videos, video_problems
+
+        problems += video_problems(load_videos(content_dir, course), lexicon, renderer)
     return problems
 
 
 def cmd_validate(args, settings) -> int:
     course, lexicon, renderer = build(settings)
-    problems = validate(course, lexicon, renderer)
+    problems = validate(course, lexicon, renderer, settings.content_dir)
     for p in problems:
         print("❌", p)
     words = len(course.items)
@@ -99,10 +116,15 @@ def cmd_stats(args, settings) -> int:
 
 
 def cmd_preview(args, settings) -> int:
-    course, _, renderer = build(settings)
-    lesson = course.lesson(args.ref)
-    publisher = make_publisher(settings, course, renderer, need_api=False)
-    for i, message in enumerate(publisher.render(lesson, rich=args.rich), 1):
+    from .videos import is_video_ref
+
+    course, lexicon, renderer = build(settings)
+    if is_video_ref(args.ref):
+        messages = render_video(load_video(settings, course, args.ref), lexicon, renderer)
+    else:
+        publisher = make_publisher(settings, course, renderer, need_api=False)
+        messages = publisher.render(course.lesson(args.ref), rich=args.rich)
+    for i, message in enumerate(messages, 1):
         body = message.html if args.html and hasattr(message, "html") else describe(message)
         print(f"\n——— сообщение {i} ———\n{body}")
     return 0
@@ -174,7 +196,9 @@ def cmd_publish(args, settings) -> int:
 
 
 def cmd_send(args, settings) -> int:
-    course, _, renderer = build(settings)
+    from .videos import is_video_ref
+
+    course, lexicon, renderer = build(settings)
     publisher = make_publisher(settings, course, renderer)
     chat = args.chat or settings.chat_id
     where = chat
@@ -184,6 +208,11 @@ def cmd_send(args, settings) -> int:
             print("Не нашёл личного чата: напишите боту любое сообщение (например, /start) и повторите.")
             return 1
         chat, where = str(found["id"]), "личный чат того, кто последним написал боту"
+    if is_video_ref(args.ref):  # разбор видео: прогресс курса не меняется
+        video = load_video(settings, course, args.ref)
+        publisher.send(render_video(video, lexicon, renderer), chat)
+        print(f"Отправлен {video.label} ({video.id}) в {where}")
+        return 0
     lesson = course.lesson(args.ref)
     publisher.send(publisher.render(lesson, rich=args.rich), chat, lesson=lesson)
     print(f"Отправлен урок {lesson.number} ({lesson.id}) в {where}")
@@ -207,7 +236,7 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("validate", help="проверить курс")
     sub.add_parser("stats", help="статистика курса")
     p = sub.add_parser("preview", help="показать урок")
-    p.add_argument("ref", help="номер урока (вводный — 0) или id")
+    p.add_argument("ref", help="номер урока (вводный — 0), id или video:N — разбор видео")
     p.add_argument("--html", action="store_true", help="показать HTML вместо текста")
     p.add_argument("--rich", action="store_true", help="в виде поста-статьи (Rich Messages)")
     p = sub.add_parser("export", help="HTML-превью курса")
@@ -221,7 +250,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--dry-run", action="store_true", help="только показать, ничего не отправлять")
     p.add_argument("--force", action="store_true", help="игнорировать лимит постов в день")
     p = sub.add_parser("send", help="отправить урок в указанный чат")
-    p.add_argument("ref")
+    p.add_argument("ref", help="номер урока (вводный — 0), id или video:N — разбор видео")
     p.add_argument("--chat", help="chat_id (по умолчанию TELEGRAM_CHAT_ID); auto — личный чат, "
                                   "из которого боту последним написали")
     p.add_argument("--rich", action="store_true", help="отправить постом-статьёй (Rich Messages)")

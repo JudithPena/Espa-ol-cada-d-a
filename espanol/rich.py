@@ -204,6 +204,7 @@ class RichRenderer:
                 line += f"<br><i>{to_html(item.example.es)}</i> — {to_html(item.example.ru)}"
             if item.note:
                 line += f"<br>💡 {to_html(item.note)}"
+            line += self._item_extra(item)
             items.append(f"<li>{line}</li>")
             segments.append(("f1", item.speech))
             if item.example:
@@ -212,6 +213,10 @@ class RichRenderer:
         out.append(self._audio(lesson, media, segments, strip_tags(self.r._label("new_words", lesson))[2:],
                                pauses=lesson.kind in ("vocab", "phonetics")))
         return "".join(out)
+
+    def _item_extra(self, item: VocabItem) -> str:
+        """Дополнительная строка к слову в списке новых слов (разборы видео: ссылка на урок)."""
+        return ""
 
     def _examples(self, d: dict, lesson: Lesson, media: list[RichMedia]) -> str:
         out = [f"<p><b>{to_html(d['title'])}</b></p>"] if d.get("title") else []

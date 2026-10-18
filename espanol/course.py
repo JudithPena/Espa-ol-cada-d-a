@@ -36,6 +36,7 @@ KINDS: dict[str, tuple[str, str, str]] = {
     "culture": ("🌍", "Культура", "культура"),
     "final": ("🎓", "Итоговый тест", "итог"),
     "finale": ("🎉", "Финиш", "финиш"),
+    "video": ("🎬", "Разбор видео", "разбор_видео"),  # отдельная рубрика, см. videos.py
 }
 AUDIO_KINDS = {"phonetics", "vocab", "dialogue", "listening", "reading"}
 
