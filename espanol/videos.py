@@ -214,11 +214,9 @@ class VideoRenderer(RichRenderer):
         out: list[str] = []
         if self.images:
             media.append(RichMedia("cover", "photo", draw=lambda: cards.cover(
-                f"{video.label} · {lesson.level}", plain(video.title), f"После урока {video.after}",
-                lesson.kind_emoji)))
+                video.label, plain(video.title), "", lesson.kind_emoji)))
             out.append('<figure><img src="tg://photo?id=cover"/></figure>')
-        out.append(f"<p>{lesson.kind_emoji} <b>{escape(video.label)}</b> · {escape(lesson.level)} · "
-                   f"после урока {video.after}</p>")
+        out.append(f"<p>{lesson.kind_emoji} <b>{escape(video.label)}</b></p>")
         out.append(f"<h2>{to_html(video.title)}</h2>")
         out.append(f"<p>👉 <b>Видео:</b> {to_html(video.url)}</p>")
 
