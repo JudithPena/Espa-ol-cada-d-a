@@ -3,36 +3,28 @@
 Разборы лежат в content/videos/NN_имя.yaml и в нумерацию курса не входят:
 у них свои номера (№1, №2…), а прогресс публикации они не меняют.
 Каждый разбор опирается на уроки 0…after — те, что уже вышли в канал,
-когда разбор публикуется. Отсюда правила для слов:
-
-- слово уже пройдено в уроках 0…after — его не разбираем;
-- слово будет в одном из следующих уроков — разбираем и пишем,
-  в каком уроке оно будет подробнее (это бот добавляет сам);
-- слова нет в курсе — просто разбираем.
+когда разбор публикуется. Слова из этих уроков в разборе не разбираем,
+а все остальные слова из видео разбираем. Номера уроков курса в посте
+не указываем.
 
 Курс под разборы не меняется: разборы подстраиваются под курс, а не наоборот.
-В текстах разбора можно сослаться на урок курса: [[comida/er_ir]] превращается
-в «93 «Глаголы на -er и -ir»», так что номер не устареет, если курс поменяется.
 """
 
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
 
 import yaml
 
-from . import cards
-from .course import ContentError, Course, Lesson, Unit, VocabItem, parse_lesson
+from .course import Block, ContentError, Course, Lesson, Unit, VocabItem, parse_lesson
 from .lexicon import Lexicon, generated_forms, lesson_texts
 from .markup import checkable, escape, plain, strip_tags, to_html
 from .render import Message, PollMessage, Renderer, poll_problems
 from .rich import RichMedia, RichMessage, RichRenderer, details, paragraphs, rich_problems
 from .tokens import spanish_words
 
-LESSON_REF = re.compile(r"\[\[([\w/-]+)\]\]")
 VIDEO_REF = re.compile(r"(?:video|видео):(\w+)$", re.I)
 
 
@@ -47,8 +39,6 @@ class Video:
     translation: str      # перевод (в посте спрятан)
     lesson: Lesson        # слова, блоки и опросы в формате урока
     source: str
-    links: dict[str, Lesson] = field(default_factory=dict)  # слово → урок курса, если его не найти само
-    ref_titles: set[str] = field(default_factory=set)       # названия уроков из ссылок [[…]]
 
     @property
     def label(self) -> str:
@@ -57,27 +47,6 @@ class Video:
 
 def is_video_ref(ref: str) -> bool:
     return bool(VIDEO_REF.match(str(ref)))
-
-
-def _expand_refs(value: Any, course: Course, where: str, titles: set[str]) -> Any:
-    """[[unit/lesson]] → «93 «Название урока»» во всех строках разбора.
-
-    Вставленные названия уроков собираются в titles: их слова проверять не нужно.
-    """
-    if isinstance(value, str):
-        def sub(m: re.Match) -> str:
-            try:
-                lesson = course.lesson(m.group(1))
-            except KeyError as exc:
-                raise ContentError(f"{where}: ссылка на несуществующий урок [[{m.group(1)}]]") from exc
-            titles.add(f"«{lesson.title}»")
-            return f"{lesson.number} «{lesson.title}»"
-        return LESSON_REF.sub(sub, value)
-    if isinstance(value, list):
-        return [_expand_refs(v, course, where, titles) for v in value]
-    if isinstance(value, dict):
-        return {k: _expand_refs(v, course, where, titles) for k, v in value.items()}
-    return value
 
 
 def load_videos(content_dir: str | Path, course: Course) -> list[Video]:
@@ -98,8 +67,6 @@ def load_videos(content_dir: str | Path, course: Course) -> list[Video]:
         after = int(raw["after"])
         if not 0 <= after < len(course.lessons):
             raise ContentError(f"{where}: after = {after}, а уроки курса — от 0 до {len(course.lessons) - 1}")
-        titles: set[str] = set()
-        raw = _expand_refs(raw, course, where, titles)
         local_id = str(raw.get("id") or path.stem.split("_", 1)[-1])
         lesson = parse_lesson({
             "id": local_id, "kind": "video", "title": raw["title"], "level": raw.get("level"),
@@ -107,17 +74,10 @@ def load_videos(content_dir: str | Path, course: Course) -> list[Video]:
             "forms": raw.get("forms"), "allow": raw.get("allow"), "audio": raw.get("audio", True),
         }, unit, where)
         lesson.index = after  # подписи и проверка слов — как в уроке after
-        links = {}
-        for es, ref in (raw.get("links") or {}).items():
-            try:
-                links[str(es)] = course.lesson(str(ref))
-            except KeyError as exc:
-                raise ContentError(f"{where}: в links нет урока «{ref}»") from exc
         videos.append(Video(
             number=int(prefix), id=local_id, title=str(raw["title"]).strip(), url=str(raw["url"]).strip(),
             after=after, transcript=str(raw["transcript"]).strip(),
-            translation=str(raw["translation"]).strip(), lesson=lesson, source=str(path), links=links,
-            ref_titles=titles,
+            translation=str(raw["translation"]).strip(), lesson=lesson, source=str(path),
         ))
     return videos
 
@@ -135,7 +95,7 @@ def find_video(videos: list[Video], ref: str) -> Video:
 
 
 class VideoWords:
-    """Что из слов разбора уже пройдено, что будет в курсе позже."""
+    """Какие слова разбора ученик уже знает по урокам 0…after."""
 
     def __init__(self, lexicon: Lexicon, video: Video):
         self.lexicon = lexicon
@@ -166,19 +126,6 @@ class VideoWords:
                 return lesson
         return None
 
-    def planned_lesson(self, item: VocabItem) -> Lesson | None:
-        """Следующий урок курса, где это слово разбирается подробнее."""
-        after = self.video.after
-        if item.es in self.video.links:
-            return self.video.links[item.es]
-        found = [it.lesson for it in self.lexicon.items
-                 if it.lesson.index > after and (it.key == item.key or set(it.cores) & set(item.cores))]
-        for form in item.base_forms():
-            lesson = self.lexicon.first_seen.get(form)
-            if lesson and lesson.index > after:
-                found.append(lesson)
-        return min(found, key=lambda lesson: lesson.index) if found else None
-
 
 def video_texts(video: Video) -> list[tuple[str, str]]:
     return [("название", video.title), ("текст видео", video.transcript), *lesson_texts(video.lesson)]
@@ -190,8 +137,6 @@ def check_video(video: Video, lexicon: Lexicon) -> list[str]:
     problems: list[str] = []
     unknown: dict[str, str] = {}
     for place, text in video_texts(video):
-        for title in video.ref_titles:
-            text = text.replace(title, " ")
         for word in spanish_words(checkable(text)):
             if not words.is_known(word):
                 unknown.setdefault(word, f"{place}: «{plain(text)[:50]}»")
@@ -214,44 +159,42 @@ def check_video(video: Video, lexicon: Lexicon) -> list[str]:
 
 
 class VideoRenderer(RichRenderer):
-    """Разбор видео одной статьёй: ссылка, слова, текст видео с переводом, пояснения, опросы."""
+    """Разбор видео одной статьёй.
+
+    Чтобы Telegram не сворачивал длинную статью под «Show more», открытыми
+    остаются только шапка, ссылка и вступление, а разделы (слова, текст видео,
+    перевод, пояснения, задания) — раскрывающиеся блоки. Обложки нет по той же причине.
+    """
 
     def __init__(self, renderer: Renderer, lexicon: Lexicon, images: bool | None = None):
         super().__init__(renderer, images)
         self.lexicon = lexicon
-        self.words: VideoWords | None = None
         self.video: Video | None = None
 
     def render_video(self, video: Video) -> list[Message]:
-        self.video, self.words = video, VideoWords(self.lexicon, video)
+        self.video = video
         lesson = video.lesson
         media: list[RichMedia] = []
-        out: list[str] = []
-        kicker = f"{video.label} · {lesson.level}"
-        if self.images:
-            media.append(RichMedia("cover", "photo", draw=lambda: cards.cover(
-                kicker, plain(video.title), f"После урока {video.after}", lesson.kind_emoji)))
-            out.append('<figure><img src="tg://photo?id=cover"/></figure>')
-        out.append(f"<p>{lesson.kind_emoji} <b>{escape(video.label)}</b> · {escape(lesson.level)} · "
-                   f"после урока {video.after}</p>")
-        out.append(f"<h2>{to_html(video.title)}</h2>")
-        out.append(f"<p>👉 <b>Видео:</b> {to_html(video.url)}</p>")
-
+        out = [
+            f"<p>{lesson.kind_emoji} <b>{escape(video.label)}</b> · {escape(lesson.level)}</p>",
+            f"<h2>{to_html(video.title)}</h2>",
+            f"<p>👉 <b>Видео:</b> {to_html(video.url)}</p>",
+        ]
         blocks = list(lesson.blocks)
-        intro = []
-        while blocks and blocks[0].type == "text":
-            intro.append(blocks.pop(0))
         voices: dict[str, str] = {}
-        for block in intro:
-            out.append(self._block(block, lesson, media, voices))
+        while blocks and blocks[0].type == "text":
+            out.append(self._block(blocks.pop(0), lesson, media, voices))
+
         if lesson.vocab:
-            out.append(self._words(lesson, media))
-        out.append("<h3>📜 Текст видео</h3>" + paragraphs(to_html(video.transcript))
-                   + details(strip_tags(self.r._label("translation", lesson)),
-                             paragraphs(to_html(video.translation))))
-        for block in blocks:
-            out.append(self._block(block, lesson, media, voices))
-        out.append(self._course_links(lesson))
+            words = self._words(lesson, media)
+            head = strip_tags(self.r._label("new_words", lesson))
+            out.append(details(f"{head} ({len(lesson.vocab)})", words.split("</h3>", 1)[1]))
+        out.append(details("📜 Текст видео", paragraphs(to_html(video.transcript))))
+        out.append(details(strip_tags(self.r._label("translation", lesson)),
+                           paragraphs(to_html(video.translation))))
+        for title, section in self._sections(blocks):
+            body = "".join(self._block(b, lesson, media, voices) for b in section)
+            out.append(details(title, body) if title else body)
 
         polls = [PollMessage(p.question, p.options, p.correct, p.explanation)
                  for p in (self.r._manual_poll(lesson, i) for i in range(len(lesson.quiz)))]
@@ -260,25 +203,33 @@ class VideoRenderer(RichRenderer):
         out.append(f"<p>#{lesson.kind_tag} #{lesson.level}</p>")
         return [RichMessage("".join(p for p in out if p), media), *polls]
 
-    def _item_extra(self, item: VocabItem) -> str:
-        planned = self.words.planned_lesson(item) if self.words else None
-        if not planned:
-            return ""
-        return f"<br>📌 Подробнее — в уроке {planned.number} «{to_html(planned.title)}»"
+    def _sections(self, blocks: list[Block]) -> list[tuple[str, list[Block]]]:
+        """Блоки после текста видео → раскрывающиеся разделы.
 
-    def _course_links(self, lesson: Lesson) -> str:
-        """Сводка: в каких уроках курса эти слова будут подробнее."""
-        planned: dict[int, tuple[Lesson, list[str]]] = {}
-        for item in lesson.vocab:
-            target = self.words.planned_lesson(item)
-            if target:
-                planned.setdefault(target.index, (target, []))[1].append(item.es)
-        if not planned:
-            return ""
-        rows = [f"<li>урок {target.number} «{to_html(target.title)}»: <i>{escape(', '.join(words))}</i></li>"
-                for _, (target, words) in sorted(planned.items())]
-        return ("<h3>📚 Где это будет в курсе</h3><p>Эти слова мы ещё разберём подробно "
-                "в уроках курса:</p><ul>" + "".join(rows) + "</ul>")
+        Блок header открывает раздел «Что заметить» и т. п., каждое упражнение и
+        задание — свой раздел с заголовком из title.
+        """
+        sections: list[tuple[str, list[Block]]] = []
+        for block in blocks:
+            if block.type == "header":
+                sections.append((strip_tags(to_html(block.data)), []))
+            elif block.type == "exercise":
+                title = block.data.get("title") or strip_tags(self.r._label("exercise", self.video.lesson))
+                sections.append((f"✍️ {strip_tags(to_html(title))}", [Block("exercise_items", block.data)]))
+            elif block.type == "task":
+                sections.append((strip_tags(self.r._label("task", self.video.lesson)).rstrip(":"), [block]))
+            elif sections:
+                sections[-1][1].append(block)
+            else:
+                sections.append(("", [block]))
+        return sections
+
+    def _block(self, block: Block, lesson: Lesson, media: list[RichMedia], voices: dict[str, str]) -> str:
+        if block.type == "exercise_items":  # упражнение внутри своего раздела — без заголовка
+            return super()._block(Block("exercise", block.data), lesson, media, voices).split("</h3>", 1)[1]
+        if block.type == "task":
+            return paragraphs(to_html(block.data))
+        return super()._block(block, lesson, media, voices)
 
     def _audio(self, lesson: Lesson, media: list[RichMedia], segments: list[tuple[str, str]],
                name: str, caption: str = "", pauses: bool = False) -> str:

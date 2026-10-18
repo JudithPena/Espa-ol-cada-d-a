@@ -1,10 +1,9 @@
 import pytest
 
-from espanol.course import ContentError
 from espanol.markup import to_html
 from espanol.render import PollMessage
 from espanol.rich import RichMessage
-from espanol.videos import VideoRenderer, VideoWords, check_video, find_video, load_videos, video_problems
+from espanol.videos import VideoRenderer, check_video, find_video, load_videos, video_problems
 
 from conftest import CONTENT
 
@@ -19,7 +18,7 @@ translation: |
 vocab:
 {vocab}
 blocks:
-  - "Подробнее — в уроке [[comida/er_ir]]."
+  - "Новая рубрика."
 quiz:
   - q: "Что он ест?"
     options: "pan | queso"
@@ -55,20 +54,6 @@ def test_find_video_by_number_or_id(tmp_path, course):
         find_video(videos, "video:2")
 
 
-def test_lesson_refs_are_expanded(tmp_path, course):
-    video = write(tmp_path, course)[0]
-    target = course.lesson("comida/er_ir")
-    assert video.lesson.blocks[0].data == f"Подробнее — в уроке {target.number} «{target.title}»."
-
-
-def test_unknown_ref_is_an_error(tmp_path, course):
-    (tmp_path / "videos").mkdir()
-    (tmp_path / "videos" / "01_x.yaml").write_text(
-        VIDEO.format(after=13, vocab=VOCAB).replace("comida/er_ir", "nope/nope"), encoding="utf-8")
-    with pytest.raises(ContentError):
-        load_videos(tmp_path, course)
-
-
 def test_new_words_must_be_explained(tmp_path, course, lexicon):
     video = write(tmp_path, course, vocab=VOCAB.replace('  - "🍓 la mermelada — джем"\n', ""))[0]
     problems = check_video(video, lexicon)
@@ -86,15 +71,12 @@ def test_after_decides_what_is_passed(tmp_path, course, lexicon):
     assert any("«comer» уже пройдено" in p for p in check_video(video, lexicon))
 
 
-def test_planned_words_point_to_course_lessons(tmp_path, course, lexicon, renderer):
+def test_post_is_compact_and_has_no_lesson_numbers(tmp_path, course, lexicon, renderer):
     video = write(tmp_path, course)[0]
-    words = VideoWords(lexicon, video)
-    pan, mermelada = video.lesson.vocab[1], video.lesson.vocab[3]
-    assert words.planned_lesson(pan).id == "comida/comida1"
-    assert words.planned_lesson(mermelada) is None
     messages = VideoRenderer(renderer, lexicon, images=False).render_video(video)
     article = messages[0]
     assert isinstance(article, RichMessage) and all(isinstance(m, PollMessage) for m in messages[1:])
-    assert f"Подробнее — в уроке {course.lesson('comida/comida1').number}" in article.html
     assert to_html(video.url) in article.html
+    assert "<details><summary>📜 Текст видео</summary>" in article.html
     assert "<details><summary>🇷🇺 Перевод</summary>" in article.html
+    assert "Подробнее" not in article.html and "cover" not in article.html
