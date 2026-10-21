@@ -111,3 +111,45 @@ def test_course_video_notes_are_whole_sentences(course):
     for video in load_videos(CONTENT, course):
         for seg in video.segments:
             assert all(len(note.split()) > 3 for note in seg.notes), seg.notes
+
+
+SECOND = """
+title: Второй
+url: https://example.com/v2
+after: 13
+segments:
+  - es: "Yo como pan con mantequilla."
+    ru: "Я ем хлеб со сливочным маслом."
+    words: [la mantequilla]
+vocab:
+{vocab}
+blocks:
+  - "Вторая часть рубрики."
+quiz:
+  - q: "Что он ест?"
+    options: "pan | queso"
+"""
+
+
+def write_two(tmp_path, course, vocab='  - "🧈 la mantequilla — сливочное масло"', words="la mantequilla"):
+    write(tmp_path, course)
+    text = SECOND.format(vocab=vocab).replace("words: [la mantequilla]", f"words: [{words}]")
+    (tmp_path / "videos" / "02_second.yaml").write_text(text, encoding="utf-8")
+    return load_videos(tmp_path, course)
+
+
+def test_words_from_earlier_videos_are_reviewed_not_explained(tmp_path, course, lexicon, renderer):
+    video = write_two(tmp_path, course)[1]
+    assert check_video(video, lexicon) == []
+    html = VideoRenderer(renderer, lexicon, images=True).render_video(video)[0].html
+    review = html.split("<h3>🔁 Слова из прошлых разборов</h3>", 1)[1].split("<h3>", 1)[0]
+    # comer, el pan, con — из разбора №1: коротко в списке, без карточек; mermelada в тексте нет
+    assert review.index("<b>comer</b>") < review.index("<b>el pan</b>") < review.index("<b>con</b>")
+    assert "mermelada" not in review
+    assert html.count("tg://photo?id=w") == 1  # карточка только у нового слова
+
+
+def test_earlier_video_words_must_not_be_explained_again(tmp_path, course, lexicon):
+    video = write_two(tmp_path, course, vocab='  - "🧈 la mantequilla — масло"\n  - "➕ con — с"',
+                      words="la mantequilla, con")[1]
+    assert any("«con» уже разобрано в разборе №1" in p for p in check_video(video, lexicon))

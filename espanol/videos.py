@@ -49,6 +49,7 @@ class Video:
     segments: list[Segment]  # полный текст видео по фразам
     lesson: Lesson        # слова, блоки и опросы в формате урока
     source: str
+    earlier: list[tuple[int, VocabItem]] = field(default_factory=list)  # слова прошлых разборов
 
     @property
     def transcript(self) -> str:
@@ -92,6 +93,9 @@ def load_videos(content_dir: str | Path, course: Course) -> list[Video]:
             number=int(prefix), id=local_id, title=str(raw["title"]).strip(), url=str(raw["url"]).strip(),
             after=after, segments=_segments(raw["segments"], lesson, where), lesson=lesson, source=str(path),
         ))
+    for video in videos:
+        video.earlier = [(v.number, item) for v in sorted(videos, key=lambda v: v.number)
+                         if v.number < video.number for item in v.lesson.vocab]
     return videos
 
 
@@ -139,18 +143,42 @@ def find_video(videos: list[Video], ref: str) -> Video:
 
 
 class VideoWords:
-    """Какие слова разбора ученик уже знает по урокам 0…after."""
+    """Какие слова разбора ученик уже знает: по урокам 0…after и по прошлым разборам."""
 
     def __init__(self, lexicon: Lexicon, video: Video):
         self.lexicon = lexicon
         self.video = video
         after = video.after
+        self.features = lexicon.features_at[after]
         self.known = set(lexicon.known_at[after])
-        features = lexicon.features_at[after]
         for item in video.lesson.vocab:
-            self.known |= item.base_forms() | generated_forms(item, features)
+            self.known |= self.forms(item)
         self.known |= set(video.lesson.forms)
         self.allow = {a.lower() for a in video.lesson.allow}
+        self.review = self._review()
+        for _, item in self.review:
+            self.known |= self.forms(item)
+
+    def forms(self, item: VocabItem) -> set[str]:
+        return item.base_forms() | generated_forms(item, self.features)
+
+    def _review(self) -> list[tuple[int, VocabItem]]:
+        """Слова из прошлых разборов, которые звучат в этом видео и ещё не пройдены в курсе:
+        их не разбираем заново, а кратко повторяем."""
+        tokens = [w.lower() for w in spanish_words(checkable(self.video.transcript))]
+        text = f" {' '.join(tokens)} "
+        found: dict[str, tuple[int, int, VocabItem]] = {}
+        for number, item in self.video.earlier:
+            if item.key in found or self.passed_lesson(item) or self.earlier_match(item, self.video.lesson.vocab):
+                continue
+            at = _position(item, self.forms(item), tokens, text)
+            if at is not None:
+                found[item.key] = (at, number, item)
+        return [(number, item) for _, number, item in sorted(found.values(), key=lambda f: f[0])]
+
+    @staticmethod
+    def earlier_match(item: VocabItem, items: list[VocabItem]) -> VocabItem | None:
+        return next((it for it in items if it.key == item.key or set(it.cores) & set(item.cores)), None)
 
     def is_known(self, word: str) -> bool:
         low = word.lower()
@@ -169,6 +197,22 @@ class VideoWords:
             if lesson and lesson.index <= after:
                 return lesson
         return None
+
+
+def _position(item: VocabItem, forms: set[str], tokens: list[str], text: str) -> int | None:
+    """Где слово впервые звучит в тексте видео (номер слова) или None. Артикли у существительных
+    не считаются: «la leche» находится по «leche»."""
+    spots = []
+    for core in item.cores:
+        core_words = [w.lower() for w in spanish_words(core)]
+        if len(core_words) > 1:
+            at = text.find(f" {' '.join(core_words)} ")
+            if at >= 0:
+                spots.append(text[:at].count(" "))
+            continue
+        extra = {w.lower() for w in spanish_words(item.es)} - set(core_words)
+        spots += [i for i, t in enumerate(tokens) if t in forms - extra]
+    return min(spots) if spots else None
 
 
 def video_texts(video: Video) -> list[tuple[str, str]]:
@@ -198,6 +242,12 @@ def check_video(video: Video, lexicon: Lexicon) -> list[str]:
         if passed:
             problems.append(f"{where}: «{item.es}» уже пройдено в уроке {passed.number} — "
                             "по правилам рубрики его не разбираем")
+            continue
+        for number, old in video.earlier:
+            if words.earlier_match(item, [old]):
+                problems.append(f"{where}: «{item.es}» уже разобрано в разборе №{number} — заново его "
+                                "не разбираем, оно само попадёт в «Слова из прошлых разборов»")
+                break
     if not re.match(r"https?://", video.url):
         problems.append(f"{where}: url должен быть ссылкой на видео")
     return problems
@@ -234,6 +284,7 @@ class VideoRenderer(RichRenderer):
             out.append(self._block(blocks.pop(0), lesson, media, voices))
         if lesson.vocab:
             out.append(self._cards(lesson, media))
+        out.append(self._review(video))
         out.append("<h3>📜 Разбор текста видео</h3>")
         out += [self._segment(seg) for seg in video.segments]
         for block in blocks:
@@ -263,6 +314,17 @@ class VideoRenderer(RichRenderer):
                 segments.append(("f1", plain(item.example.es)))
         out.append(self._audio(lesson, media, segments, strip_tags(self.r._label("new_words", lesson))[2:]))
         return "".join(out)
+
+    def _review(self, video: Video) -> str:
+        """Слова из прошлых разборов, которые звучат и здесь: без карточек, коротким списком."""
+        review = VideoWords(self.lexicon, video).review
+        if not review:
+            return ""
+        items = "".join(f"<li>{item.emoji or '▫️'} <b>{escape(item.es)}</b> — {to_html(item.ru)}</li>"
+                        for _, item in review)
+        return ("<h3>🔁 Слова из прошлых разборов</h3>"
+                "<p>Эти слова мы уже разбирали в прошлых видео, здесь они звучат снова.</p>"
+                f"<ul>{items}</ul>")
 
     def _segment(self, seg: Segment) -> str:
         """Фраза в оригинале, под ней — её новые слова, пояснение и перевод (спрятан)."""

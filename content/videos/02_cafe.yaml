@@ -13,7 +13,7 @@ allow: [Ah, Ay]
 segments:
   - es: "— ¡Hola! — Hola, bienvenida. ¿Qué quieres tomar? — Quiero un café. — Perfecto. ¿Con leche o sin leche?"
     ru: "— Привет! — Привет, добро пожаловать. Что будешь пить? — Я хочу кофе. — Отлично. С молоком или без молока?"
-    words: [bienvenido/a, querer, tomar, perfecto, con, sin, o, la leche]
+    words: [bienvenido/a, querer, tomar, perfecto, sin, o]
     note:
       - "**Quiero** — это «я хочу», а **quieres** — «ты хочешь», формы глагола **querer**. Если вы хотите что-то заказать, назовите это сразу после глагола: _Quiero un café._ (Я хочу кофе.)"
       - "Глагол **tomar** значит «брать», а в кафе так говорят о напитках и еде: _¿Qué quieres tomar?_ (Что ты будешь пить?)"
@@ -26,7 +26,7 @@ segments:
       - "Прилагательное обычно стоит **после** существительного: _café negro_ значит «чёрный кофе»."
   - es: "— Perdón. Espere un poco. — Pero este café está frío. Yo quiero un café negro caliente. — Ah, disculpa."
     ru: "— Простите. Подождите немного. — Но этот кофе холодный. Я хочу горячий чёрный кофе. — Ах, извини."
-    words: [esperar, un poco, pero, este, frío/a, caliente]
+    words: [esperar, un poco, este, frío/a, caliente]
     note:
       - "**Espere** и **espera** значат «подождите» и «подожди», это формы глагола **esperar**. Если вы обращаетесь на «вы» (_usted_), говорите _Espere un poco_, а если на «ты» — _Espera un minuto_. В видео официантка говорит и так, и так."
       - "Когда говорят о состоянии, которое может измениться, используют **está**: _El café está frío._ (Кофе холодный.) _El café está caliente._ (Кофе горячий.)"
@@ -43,7 +43,7 @@ segments:
       - "Слово **mucho** согласуется с существительным: _mucho café_ (много кофе), но _mucha leche_ (много молока). Слово **azúcar** бывает и мужского, и женского рода, а в видео оно женского рода, поэтому звучит _mucha azúcar_."
   - es: "— ¿Sabe? — Muy bien. Perfecto. — Adiós. — Pero... Ahora que la taza es muy pequeña, yo quiero un café negro caliente, sin azúcar y en una taza grande."
     ru: "— Ну как на вкус? — Очень хорошо. Отлично. — До свидания. — Но... Теперь вот чашка очень маленькая. Я хочу горячий чёрный кофе без сахара и в большой чашке."
-    words: [saber, ahora, que, la taza, pequeño/a, una, grande]
+    words: [saber, ahora, que, la taza, pequeño/a, grande]
     note:
       - "Глагол **saber** значит «знать», но о еде и напитках он значит «иметь вкус». Поэтому _¿Sabe?_ здесь значит «Как на вкус?», а _¿Sabe bien?_ — «Вкусно?»"
       - "Сравните **es** и **está**. Если говорят о свойстве самой вещи, используют **es**: _La taza es muy pequeña._ (Чашка очень маленькая.) Если говорят о состоянии, которое меняется, используют **está**: _El café está frío._ (Кофе остыл.)"
@@ -74,16 +74,13 @@ vocab:
   - "🙋 querer [кэрэ́р] — хотеть {forms: quiero quieres quiere} :: Quiero un café. — Я хочу кофе."
   - "☕ tomar [тома́р] — брать; пить (о напитках) {forms: tomo tomas toma} :: ¿Qué quieres tomar? — Что ты будешь пить?"
   - "👌 perfecto [пэрфэ́кто] — отлично, прекрасно"
-  - "➕ con [кон] — с :: café con leche — кофе с молоком"
   - "➖ sin [син] — без :: café sin leche — кофе без молока"
   - "🔀 o [о] — или :: ¿Con leche o sin leche? — С молоком или без?"
-  - "🥛 la leche [лэ́чэ] — молоко"
   - "🙇 disculpa [диску́льпа] — извини"
   - "⚫ negro [нэ́гро] — чёрный :: café negro — чёрный кофе"
   - "🍦 la crema [крэ́ма] — сливки"
   - "⏳ esperar [эспэра́р] — ждать {forms: espera espere} :: Espere un poco. — Подождите немного."
   - "🤏 un poco [ун по́ко] — немного"
-  - "🔸 pero [пэ́ро] — но"
   - "👉 este [э́стэ] — этот :: este café — этот кофе"
   - "🧊 frío/a [фри́о, фри́а] — холодный :: El café está frío. — Кофе холодный."
   - "🔥 caliente [калье́нтэ] — горячий"
@@ -96,7 +93,6 @@ vocab:
   - "🔗 que [кэ] — что (связывает части фразы)"
   - "☕ la taza [та́θа] — чашка"
   - "🐜 pequeño/a [пэкэ́ньо, пэкэ́нья] — маленький"
-  - "🔹 una [у́на] — одна; женский род от un :: una taza — (одна) чашка"
   - "🐘 grande [гра́ндэ] — большой"
   - "👍 bueno/a [буэ́но, буэ́на] — хороший; ладно (в начале ответа) :: Está muy bueno. — Очень вкусно."
   - "⏱ el minuto [мину́то] — минута :: Espera un minuto. — Подожди минутку."
@@ -111,7 +107,7 @@ vocab:
   - "🇨🇴 colombiano/a [коломбья́но, коломбья́на] — колумбийский"
 
 blocks:
-  - "Новая рубрика — **разборы коротких видео** на испанском."
+  - "Вторая часть рубрики — **разборы коротких видео** на испанском."
   - |
     **Как смотреть.** Выберите один из двух способов.
 
