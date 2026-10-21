@@ -98,6 +98,7 @@ class VocabItem:
     plural_override: str | None = None
     gender: str | None = None
     srs: bool = True
+    clue: str = ""  # загадка для викторины, если слово похоже на русское (content/clues.yaml)
     lesson: "Lesson | None" = field(default=None, repr=False)
 
     @property
@@ -531,6 +532,14 @@ def load_course(content_dir: str | Path) -> Course:
             unit.lessons.append(lesson)
             lessons.append(lesson)
         units.append(unit)
+
+    clues_path = content_dir / "clues.yaml"
+    clues = yaml.safe_load(clues_path.read_text(encoding="utf-8")) or {} if clues_path.exists() else {}
+    by_es = {item.es: item for lesson in lessons for item in lesson.vocab}
+    for es, clue in clues.items():
+        if es not in by_es:
+            raise ContentError(f"clues.yaml: нет такого слова в курсе: {es}")
+        by_es[es].clue = _text(clue)
 
     return Course(
         title=str(meta.get("title", "Español")),

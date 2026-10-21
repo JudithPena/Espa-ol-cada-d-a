@@ -113,3 +113,16 @@ def test_recall_block_has_at_least_min_words(course, schedule):
         if lesson.kind in ("review", "quiz", "final", "intro", "finale"):
             continue
         assert len(schedule.picks_for(lesson)) >= minimum, lesson.id
+
+
+def test_lookalike_words_are_asked_as_riddles(course, renderer, lexicon):
+    """«Как по-испански «тортилья»?» — ответ в самом вопросе; такие слова спрашиваем загадкой."""
+    from espanol.quizgen import looks_alike
+
+    alike = [item for item in lexicon.items if looks_alike(item)]
+    assert all(item.clue for item in alike), [i.es for i in alike if not i.clue]
+    for lesson in course.lessons:
+        for message in renderer.render(lesson):
+            if isinstance(message, PollMessage):
+                for item in alike:
+                    assert f"«{plain(item.ru)}»" not in message.question, (lesson.id, item.es)

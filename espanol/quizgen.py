@@ -2,14 +2,18 @@
 
 Для каждого слова из расписания повторений строится вопрос «Что значит…?»
 (узнавание) или «Как по-испански…?» (воспроизведение — с третьего
-повторения). Неверные варианты берутся только из уже изученных слов той же
+повторения). Слова, похожие на русские («la tortilla» — «тортилья»), так
+спрашивать бессмысленно: для них вопрос — загадка из content/clues.yaml,
+а без загадки опроса нет. Неверные варианты берутся только из уже изученных слов той же
 части речи, а синонимы исключаются, чтобы правильный ответ был один.
 """
 
 from __future__ import annotations
 
+import difflib
 import random
 import re
+import unicodedata
 from dataclasses import dataclass
 
 from .course import VocabItem
@@ -33,6 +37,21 @@ def meanings(ru: str) -> set[str]:
     """«доброе утро; добрый день (до обеда)» → {"доброе утро", "добрый день"}."""
     text = re.sub(r"\([^)]*\)", "", plain(ru).lower())
     return {m.strip(" .!?«»") for m in re.split(r"[,;/]", text) if m.strip(" .!?«»")}
+
+
+def _sound(text: str) -> str:
+    text = unicodedata.normalize("NFD", text.lower())
+    text = "".join(ch for ch in text if not unicodedata.combining(ch))  # ударения
+    return text.translate(str.maketrans("йёэ", "иее", "ьъ"))
+
+
+def looks_alike(item: VocabItem, threshold: float = 0.72) -> bool:
+    """Звучит ли слово почти как перевод: «la tortilla» [торти́йя] — «тортилья»."""
+    if len(item.pron) < 3:
+        return False
+    sound = _sound(item.pron)
+    return any(difflib.SequenceMatcher(None, sound, _sound(m)).ratio() >= threshold
+               for m in meanings(item.ru))
 
 
 def _group(item: VocabItem) -> str:
@@ -78,10 +97,16 @@ def vocab_poll(pick: Pick, known: list[VocabItem], seed: str) -> Poll | None:
     item = pick.item
     rng = random.Random(seed)
     production = pick.production
-    wrong = distractors(item, known, rng, production=production)
+    riddle = looks_alike(item)
+    if riddle and not item.clue:
+        return None
+    wrong = distractors(item, known, rng, production=production or riddle)
     if len(wrong) < 2:
         return None
-    if production:
+    if riddle:
+        question = item.clue
+        options = [item.es] + [w.es for w in wrong]
+    elif production:
         question = _ask("Как по-испански", plain(item.ru))
         options = [item.es] + [w.es for w in wrong]
     else:
