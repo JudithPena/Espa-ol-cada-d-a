@@ -146,10 +146,12 @@ async function handleCallback(cq, env, origin) {
   return tg(env, "sendMessage", {
     chat_id: chat,
     parse_mode: "HTML",
-    text: `🎉 <b>Повторение закончено!</b> Помню: ${s.right}, не помню: ${s.wrong}.\n\n` +
-      `Выучено слов: ${p.learned} из ${p.available}. ` +
-      (p.due ? `Повторить ещё сегодня: ${p.due}.` : "На сегодня всё повторено, приходите завтра."),
-    reply_markup: p.due || p.fresh ? keyboard([[{ text: "🔁 Повторить ещё", callback_data: "go" }]]) : undefined,
+    text: `🎉 <b>Готово!</b> Помню: ${s.right}, не помню: ${s.wrong}.\n\n${summary(p)}\n\n` +
+      (p.due ? `Ещё пора повторить сегодня: ${p.due}.`
+        : p.fresh ? "Всё, что было на сегодня, повторено. Можно взять ещё новых слов или вернуться завтра."
+          : "На сегодня всё повторено, приходите завтра."),
+    reply_markup: p.due || p.fresh
+      ? keyboard([[{ text: p.due ? "🔁 Повторить ещё" : "🆕 Ещё новые слова", callback_data: "go" }]]) : undefined,
   });
 }
 
@@ -214,6 +216,14 @@ function editCard(env, message, text, markup) {
     : tg(env, "editMessageCaption", { ...target, caption: text });
 }
 
+// Слово «выучено», когда его вспомнили три раза подряд с перерывами и помнят уже неделю.
+function summary(p) {
+  return `📚 Слов в вышедших уроках: ${p.available}\n` +
+    `🌱 Учите сейчас: ${p.seen - p.learned}\n` +
+    `🏆 Выучено: ${p.learned} — помните неделю и дольше\n` +
+    `🆕 Ещё не начинали: ${p.fresh}`;
+}
+
 async function sendProgress(env, chat, userId) {
   const words = await availableWords(env);
   const user = await loadUser(env, userId);
@@ -221,9 +231,7 @@ async function sendProgress(env, chat, userId) {
   return tg(env, "sendMessage", {
     chat_id: chat,
     parse_mode: "HTML",
-    text: `📊 <b>Ваш прогресс</b>\n\nСлов в вышедших уроках: ${p.available}\n` +
-      `Уже встречались в повторении: ${p.seen}\nВыучено (помните неделю и дольше): ${p.learned}\n` +
-      `Пора повторить: ${p.due}\nЕщё не повторяли: ${p.fresh}`,
+    text: `📊 <b>Ваш прогресс</b>\n\n${summary(p)}\n\nПора повторить сейчас: ${p.due}`,
     reply_markup: p.due || p.fresh ? START_BUTTON : undefined,
   });
 }

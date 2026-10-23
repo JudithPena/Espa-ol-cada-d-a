@@ -67,7 +67,8 @@ test("повторение: карточка, перевод, ответ и ит
   assert.ok((shown.body.caption || shown.body.text).includes(first.ru));
 
   for (const w of lessonWords.slice(0, 5)) await post(press(`y:${w.id}`, !!w.audio));
-  assert.match(calls.at(-1).body.text, /Повторение закончено/);
+  assert.match(calls.at(-1).body.text, /Готово!/);
+  assert.match(calls.at(-1).body.text, new RegExp(`Учите сейчас: ${Math.min(5, lessonWords.length)}`));
   const user = JSON.parse(kv.get("user:9"));
   assert.equal(user.session, null);
   assert.deepEqual(user.cards[first.id][0], 1);
