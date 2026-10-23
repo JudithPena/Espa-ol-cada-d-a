@@ -1,11 +1,13 @@
 // Личные повторения: у каждого ученика своё расписание (система Лейтнера).
 // Слово, которое вы знаете, возвращается всё реже: через 1, 3, 7, 14, 30, 60, 120 дней.
-// Слово, которое вы не вспомнили, снова показывается в конце этого же повторения и завтра.
+// Слово, которое вы не вспомнили, возвращается через несколько карточек этого же повторения
+// (если они ещё есть), а потом — в следующем повторении.
 
 export const INTERVALS = [1, 3, 7, 14, 30, 60, 120]; // дней до следующего показа для коробок 1…7
 export const SESSION_SIZE = 10; // карточек за одно повторение
 export const NEW_PER_SESSION = 5; // новых слов за одно повторение, не больше
 export const LEARNED_BOX = 3; // с этой коробки слово считается выученным (интервал — неделя)
+export const RETRY_GAP = 3; // забытое слово возвращается через столько карточек, не сразу
 
 // Номер дня по местному времени: дни меняются в полночь по Киеву, а не по UTC.
 export function dayNumber(date, timeZone) {
@@ -50,10 +52,11 @@ export function currentId(user) {
   return s && s.pos < s.queue.length ? s.queue[s.pos] : null;
 }
 
-// Ответ на карточку. Возвращает true, если в повторении есть ещё карточки.
+// Ответ на карточку. Возвращает { more: есть ли ещё карточки, retry: вернётся ли слово в этом повторении }.
 export function answer(user, id, known, today) {
   const s = user.session;
   const [box] = user.cards[id] || [0, today];
+  let retry = false;
   if (known) {
     const next = Math.min(box + 1, INTERVALS.length);
     user.cards[id] = [next, today + INTERVALS[next - 1]];
@@ -61,13 +64,16 @@ export function answer(user, id, known, today) {
   } else {
     user.cards[id] = [0, today]; // начинаем сначала: слово снова в очереди уже сегодня
     s.wrong += 1;
-    if (!s.retry.includes(id)) { // один раз повторяем в конце этого же повторения
+    // Один раз повторяем в этом же повторении, но не сразу: через RETRY_GAP карточек.
+    // Если столько карточек уже не осталось, слово подождёт следующего повторения.
+    if (!s.retry.includes(id) && s.queue.length - s.pos - 1 >= RETRY_GAP) {
       s.retry.push(id);
-      s.queue.push(id);
+      s.queue.splice(s.pos + 1 + RETRY_GAP, 0, id);
+      retry = true;
     }
   }
   s.pos += 1;
-  return s.pos < s.queue.length;
+  return { more: s.pos < s.queue.length, retry };
 }
 
 export function progress(user, words, today) {

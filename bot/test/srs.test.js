@@ -16,24 +16,34 @@ test("в первом повторении — 5 новых слов по пор
   assert.deepEqual(buildQueue(newUser(), words, 100), ["w0", "w1", "w2", "w3", "w4"]);
 });
 
-test("знакомое слово возвращается всё реже, забытое — в конце повторения и снова сегодня", () => {
+test("знакомое слово возвращается всё реже, забытое — через 3 карточки, а не сразу", () => {
   const user = newUser();
   startSession(user, words, 100);
-  assert.equal(answer(user, "w0", true, 100), true);
+  assert.deepEqual(answer(user, "w0", true, 100), { more: true, retry: false });
   assert.deepEqual(user.cards.w0, [1, 101]);
-  answer(user, "w1", false, 100);
+  assert.deepEqual(answer(user, "w1", false, 100), { more: true, retry: true });
   assert.deepEqual(user.cards.w1, [0, 100]);
-  assert.equal(user.session.queue.at(-1), "w1"); // повторим в конце
-  for (const id of ["w2", "w3", "w4"]) answer(user, id, true, 100);
-  assert.equal(answer(user, "w1", false, 100), false); // второй раз в конец не добавляется
-  assert.equal(user.session.wrong, 2);
-  // назавтра: w1 (забыто) и слова первой коробки, потом новые
+  assert.deepEqual(user.session.queue, ["w0", "w1", "w2", "w3", "w4", "w1"]); // после трёх других карточек
+  answer(user, "w2", true, 100);
+  assert.deepEqual(answer(user, "w3", false, 100), { more: true, retry: false }); // осталось меньше 3 карточек
+  answer(user, "w4", true, 100);
+  assert.deepEqual(answer(user, "w1", false, 100), { more: false, retry: false }); // второй раз не возвращаем
+  assert.equal(user.session.wrong, 3);
+  // назавтра: забытые и слова первой коробки, потом новые
   const next = buildQueue(user, words, 101);
   assert.deepEqual(next.slice(0, 5).sort(), ["w0", "w1", "w2", "w3", "w4"]);
   assert.deepEqual(next.slice(5), ["w5", "w6", "w7", "w8", "w9"]);
   user.cards.w0 = [2, 101];
   answer({ ...user, session: { queue: ["w0"], pos: 0, retry: [], right: 0, wrong: 0 } }, "w0", true, 101);
   assert.deepEqual(user.cards.w0, [3, 108]);
+});
+
+test("последнюю забытую карточку сразу не повторяем", () => {
+  const user = newUser();
+  startSession(user, words, 100);
+  for (const id of ["w0", "w1", "w2", "w3"]) answer(user, id, true, 100);
+  assert.deepEqual(answer(user, "w4", false, 100), { more: false, retry: false });
+  assert.deepEqual(user.session.queue, ["w0", "w1", "w2", "w3", "w4"]);
 });
 
 test("повторять нечего — повторение не начинается", () => {

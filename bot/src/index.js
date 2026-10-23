@@ -133,9 +133,9 @@ async function handleCallback(cq, env, origin) {
   if (action !== "y" && action !== "n") return;
   const known = action === "y";
   const shown = back(word, s); // до ответа: потом номер карточки уже следующий
-  const mark = known ? "✅ Помню" : s.retry.includes(id) ? "❌ Не помню — повторим завтра" : "🔁 Повторим в конце";
   const today = dayNumber(new Date(), env.TIMEZONE);
-  const more = answer(user, id, known, today);
+  const { more, retry } = answer(user, id, known, today);
+  const mark = known ? "✅ Помню" : retry ? "🔁 Не помню — вернётся через пару карточек" : "🔁 Не помню — повторим в следующий раз";
   if (!more) user.session = null;
   await saveUser(env, cq.from.id, user);
   await tg(env, "answerCallbackQuery", { callback_query_id: cq.id });
