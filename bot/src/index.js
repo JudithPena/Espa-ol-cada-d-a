@@ -191,14 +191,16 @@ async function sendCard(env, chat, user, origin) {
   const s = user.session;
   const word = BY_ID.get(currentId(user));
   const markup = keyboard([[{ text: "👀 Показать перевод", callback_data: `s:${word.id}` }]]);
-  if (word.audio) { // карточка — голосовое сообщение: слово и пример звучат сразу
-    const cached = await env.SRS.get(`voice:${word.audio}`);
-    const sent = await tg(env, "sendVoice", {
-      chat_id: chat, voice: cached || `${origin}/audio/${word.audio}`,
+  if (word.audio) { // карточка с озвучкой: слово и пример можно сразу послушать
+    const cached = await env.SRS.get(`audio:${word.audio}`);
+    const sent = await tg(env, "sendAudio", {
+      chat_id: chat, audio: cached || `${origin}/audio/${word.audio}`,
+      title: word.es, performer: "Español cada día",
       caption: front(word, s), parse_mode: "HTML", reply_markup: markup,
     });
     if (sent.ok) {
-      if (!cached && sent.result.voice) await env.SRS.put(`voice:${word.audio}`, sent.result.voice.file_id);
+      const file = sent.result.audio || sent.result.voice;
+      if (!cached && file) await env.SRS.put(`audio:${word.audio}`, file.file_id);
       return sent;
     }
   }
@@ -207,9 +209,9 @@ async function sendCard(env, chat, user, origin) {
 
 function editCard(env, message, text, markup) {
   const target = { chat_id: message.chat.id, message_id: message.message_id, parse_mode: "HTML", reply_markup: markup };
-  return message.voice
-    ? tg(env, "editMessageCaption", { ...target, caption: text })
-    : tg(env, "editMessageText", { ...target, text });
+  return typeof message.text === "string" // карточка без озвучки — текст, с озвучкой — подпись к аудио
+    ? tg(env, "editMessageText", { ...target, text })
+    : tg(env, "editMessageCaption", { ...target, caption: text });
 }
 
 async function sendProgress(env, chat, userId) {
