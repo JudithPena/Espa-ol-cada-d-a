@@ -39,6 +39,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_REVIEW_CHAT_ID: ${{ secrets.TELEGRAM_REVIEW_CHAT_ID }}  # личка автора, когда бот на Cloudflare
           ENABLE_AUDIO: ${{ vars.ENABLE_AUDIO || '1' }}
           LESSON: ${{ inputs.lesson }}
           RICH: ${{ inputs.rich }}

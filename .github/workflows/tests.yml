@@ -18,3 +18,10 @@ jobs:
         run: python -m espanol validate
       - name: Тесты
         run: python -m pytest -q
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+      - name: Тесты бота на Cloudflare
+        run: |
+          python -m espanol bot-data --no-audio
+          node --test bot/test/*.test.js

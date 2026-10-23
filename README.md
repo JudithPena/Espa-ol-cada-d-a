@@ -100,6 +100,12 @@ python -m espanol run --at 09:00 --at 19:00 # два поста в день (POS
 не входят и опираются на уже вышедшие уроки. Правила — `docs/video_guide.md`.
 Отправка: Actions → «Разбор видео» → номер разбора, «личка» (на проверку) или «канал».
 
+### 6. Бот на Cloudflare
+
+Бот на Cloudflare Workers (`bot/`) запускает публикацию точно в срок (у `cron` GitHub опоздания на часы)
+и повторяет с учениками слова в личке: `/repaso` — карточки с озвучкой и кнопками «Помню» / «Не помню»,
+у каждого своё расписание повторений, `/progreso` — сколько слов выучено. Как включить — `docs/bot_guide.md`.
+
 ## Команды
 
 | Команда | Что делает |
@@ -114,6 +120,7 @@ python -m espanol run --at 09:00 --at 19:00 # два поста в день (POS
 | `python -m espanol send 12 --chat 123456789` | отправить урок №12 в любой чат — например, себе в личку (ваш id покажет @userinfobot; сначала напишите своему боту /start) |
 | `python -m espanol send 8 --rich --chat auto` | отправить урок постом-статьёй в личку тому, кто последним написал боту |
 | `python -m espanol check` | проверить токен и права бота |
+| `python -m espanol bot-data` | слова курса с озвучкой для бота на Cloudflare (`bot/data/`, `bot/public/audio/`) |
 | `python -m espanol preview video:1` | показать разбор видео №1 (`send video:1 --chat auto` — в личку) |
 
 ## Как редактировать курс
@@ -163,9 +170,11 @@ espanol/            код бота
   publisher.py      публикация с сохранением прогресса
   scheduler.py      постоянный режим по расписанию
   export.py         HTML-превью курса
+  botdata.py        слова курса для бота на Cloudflare
+bot/                бот на Cloudflare Workers: расписание публикации и повторения /repaso
 content/            курс: course.yaml и темы
 state/state.json    прогресс публикации
-tests/              тесты: pytest
+tests/              тесты: pytest (бот на Cloudflare — node --test bot/test/*.test.js)
 ```
 
 Тесты: `pip install pytest && pytest -q`. Проверка курса и тесты запускаются в GitHub Actions при каждом пуше.

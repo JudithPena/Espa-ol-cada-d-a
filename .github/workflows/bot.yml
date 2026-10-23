@@ -1,0 +1,142 @@
+name: Бот на Cloudflare
+
+# Выкладывает бота (bot/) на Cloudflare Workers: слова курса с озвучкой, расписание публикации
+# и вебхук Telegram. Инструкция — docs/bot_guide.md. Пока в Secrets нет CLOUDFLARE_API_TOKEN,
+# workflow ничего не делает. Запускается сам после правок бота или уроков.
+on:
+  workflow_dispatch:
+  push:
+    branches: [ccr-f4c9bfd6-txio5n]
+    paths:
+      - "bot/**"
+      - "content/**"
+      - "espanol/botdata.py"
+      - ".github/workflows/bot.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bot-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - name: Настроен ли Cloudflare
+        id: check
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::notice::Бот на Cloudflare ещё не настроен (нет CLOUDFLARE_API_TOKEN или CLOUDFLARE_ACCOUNT_ID в Secrets) — пропускаю. См. docs/bot_guide.md."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v5
+        if: steps.check.outputs.ready == 'true'
+
+      - uses: actions/setup-python@v6
+        if: steps.check.outputs.ready == 'true'
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - uses: actions/setup-node@v5
+        if: steps.check.outputs.ready == 'true'
+        with:
+          node-version: "22"
+
+      - name: Установить зависимости
+        if: steps.check.outputs.ready == 'true'
+        run: |
+          pip install -r requirements.txt
+          cd bot && npm install --no-audit --no-fund
+
+      - name: Озвучка из прошлых запусков
+        if: steps.check.outputs.ready == 'true'
+        uses: actions/cache@v4
+        with:
+          path: .cache/bot-audio
+          key: bot-audio-${{ github.run_id }}
+          restore-keys: bot-audio-
+
+      - name: Слова курса и озвучка
+        if: steps.check.outputs.ready == 'true'
+        run: python -m espanol bot-data --out bot --audio-cache .cache/bot-audio
+
+      - name: Тесты бота
+        if: steps.check.outputs.ready == 'true'
+        run: cd bot && npm test
+
+      - name: Хранилище прогресса учеников (KV)
+        if: steps.check.outputs.ready == 'true'
+        run: |
+          api="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/storage/kv/namespaces"
+          auth=(-H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H "Content-Type: application/json")
+          id=$(curl -fsS "${auth[@]}" "$api?per_page=100" \
+            | python3 -c "import sys,json; print(next((n['id'] for n in json.load(sys.stdin)['result'] if n['title']=='espanol-cada-dia-srs'), ''))")
+          if [ -z "$id" ]; then
+            id=$(curl -fsS "${auth[@]}" -X POST "$api" -d '{"title":"espanol-cada-dia-srs"}' \
+              | python3 -c "import sys,json; print(json.load(sys.stdin)['result']['id'])")
+            echo "Создано хранилище espanol-cada-dia-srs"
+          fi
+          sed -i "s/KV_NAMESPACE_ID/$id/" bot/wrangler.toml
+
+      - name: Выложить бота
+        id: deploy
+        if: steps.check.outputs.ready == 'true'
+        run: |
+          cd bot
+          npx wrangler deploy | tee ../deploy.log
+          url=$(grep -oE 'https://[a-zA-Z0-9.-]+\.workers\.dev' ../deploy.log | head -1)
+          if [ -z "$url" ]; then
+            echo "::error::Не нашёл адрес бота *.workers.dev в выводе wrangler. Включите workers.dev в Cloudflare (Workers & Pages → бот → Settings → Domains & Routes)."
+            exit 1
+          fi
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+
+      - name: Секреты бота
+        if: steps.check.outputs.ready == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          BOT_GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
+          ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_REVIEW_CHAT_ID }}
+        run: |
+          # Секрет вебхука выводится из токена бота: так он одинаковый при каждом запуске и нигде не хранится.
+          webhook=$(printf 'webhook:%s' "$TELEGRAM_BOT_TOKEN" | sha256sum | cut -c1-48)
+          echo "::add-mask::$webhook"
+          [ -z "$BOT_GITHUB_TOKEN" ] && echo "::warning::Нет BOT_GITHUB_TOKEN в Secrets — бот не сможет запускать публикацию по расписанию."
+          WEBHOOK_SECRET="$webhook" python3 - > "$RUNNER_TEMP/secrets.json" <<'EOF'
+          import json, os
+          print(json.dumps({k: v for k, v in {
+              "TELEGRAM_BOT_TOKEN": os.environ["TELEGRAM_BOT_TOKEN"],
+              "WEBHOOK_SECRET": os.environ["WEBHOOK_SECRET"],
+              "GITHUB_TOKEN": os.environ.get("BOT_GITHUB_TOKEN", ""),
+              "ADMIN_CHAT_ID": os.environ.get("ADMIN_CHAT_ID", ""),
+          }.items() if v}))
+          EOF
+          cd bot && npx wrangler secret bulk "$RUNNER_TEMP/secrets.json"
+          rm -f "$RUNNER_TEMP/secrets.json"
+
+      - name: Вебхук и команды Telegram
+        if: steps.check.outputs.ready == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          BOT_URL: ${{ steps.deploy.outputs.url }}
+        run: |
+          webhook=$(printf 'webhook:%s' "$TELEGRAM_BOT_TOKEN" | sha256sum | cut -c1-48)
+          echo "::add-mask::$webhook"
+          tg="https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN"
+          curl -fsS "$tg/setWebhook" -H "Content-Type: application/json" -d "{
+            \"url\": \"$BOT_URL/telegram\", \"secret_token\": \"$webhook\",
+            \"allowed_updates\": [\"message\", \"callback_query\"]}" > /dev/null
+          curl -fsS "$tg/setMyCommands" -H "Content-Type: application/json" -d '{"commands": [
+            {"command": "repaso", "description": "Повторить слова"},
+            {"command": "progreso", "description": "Сколько слов выучено"}]}' > /dev/null
+          echo "Бот работает: $BOT_URL"

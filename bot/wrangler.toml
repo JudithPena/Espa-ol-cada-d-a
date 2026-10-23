@@ -1,0 +1,24 @@
+# Бот курса на Cloudflare Workers. Выкладывает его workflow «Бот на Cloudflare» (.github/workflows/bot.yml),
+# инструкция — docs/bot_guide.md. Секреты (TELEGRAM_BOT_TOKEN, GITHUB_TOKEN, WEBHOOK_SECRET, ADMIN_CHAT_ID)
+# workflow передаёт сам из GitHub Secrets, в этот файл их не пишите.
+name = "espanol-cada-dia-bot"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+workers_dev = true
+
+[triggers]
+crons = ["0 * * * *"]  # каждый час; публикует только в часы PUBLISH_HOURS по TIMEZONE
+
+[vars]
+PUBLISH_HOURS = "9,15"  # во сколько по Киеву выходят уроки (два поста в день)
+TIMEZONE = "Europe/Kyiv"
+GITHUB_REPO = "JudithPena/Espa-ol-cada-d-a"
+GITHUB_BRANCH = "ccr-f4c9bfd6-txio5n"
+PUBLISH_WORKFLOW = "publish.yml"
+
+[[kv_namespaces]]
+binding = "SRS"
+id = "KV_NAMESPACE_ID"  # workflow подставляет id хранилища «espanol-cada-dia-srs»
+
+[assets]
+directory = "./public"  # озвучка слов: public/audio/*.mp3

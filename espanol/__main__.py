@@ -18,7 +18,9 @@ from __future__ import annotations
 
 import argparse
 import logging
+import os
 import sys
+from pathlib import Path
 
 from .config import load_settings
 from .course import load_course
@@ -27,6 +29,7 @@ from .markup import check_html, visible_len
 from .publisher import Publisher, describe
 from .render import PollMessage, Renderer, TextMessage, poll_problems
 from .srs import Schedule
+from .telegram import TelegramError
 
 
 def build(settings):
@@ -203,11 +206,22 @@ def cmd_send(args, settings) -> int:
     chat = args.chat or settings.chat_id
     where = chat
     if chat == "auto":  # id не попадает в публичный лог GitHub Actions
-        found = publisher.api.latest_private_chat()
-        if not found:
-            print("Не нашёл личного чата: напишите боту любое сообщение (например, /start) и повторите.")
-            return 1
-        chat, where = str(found["id"]), "личный чат того, кто последним написал боту"
+        review = os.environ.get("TELEGRAM_REVIEW_CHAT_ID", "").strip()
+        if review:  # бот на Cloudflare сам получает сообщения, getUpdates тогда не работает
+            chat, where = review, "личный чат автора (TELEGRAM_REVIEW_CHAT_ID)"
+        else:
+            try:
+                found = publisher.api.latest_private_chat()
+            except TelegramError as exc:
+                if "webhook" not in str(exc).lower() and "409" not in str(exc):
+                    raise
+                print("Бот работает на Cloudflare, поэтому личный чат так не найти. Напишите боту /id "
+                      "и впишите число из ответа в GitHub Secrets как TELEGRAM_REVIEW_CHAT_ID.")
+                return 1
+            if not found:
+                print("Не нашёл личного чата: напишите боту любое сообщение (например, /start) и повторите.")
+                return 1
+            chat, where = str(found["id"]), "личный чат того, кто последним написал боту"
     if is_video_ref(args.ref):  # разбор видео: прогресс курса не меняется
         video = load_video(settings, course, args.ref)
         publisher.send(render_video(video, lexicon, renderer), chat)
@@ -216,6 +230,16 @@ def cmd_send(args, settings) -> int:
     lesson = course.lesson(args.ref)
     publisher.send(publisher.render(lesson, rich=args.rich), chat, lesson=lesson)
     print(f"Отправлен урок {lesson.number} ({lesson.id}) в {where}")
+    return 0
+
+
+def cmd_bot_data(args, settings) -> int:
+    from .botdata import export
+
+    course, _, _ = build(settings)
+    result = export(course, Path(args.out), audio=not args.no_audio,
+                    cache=Path(args.audio_cache) if args.audio_cache else None)
+    print(f"Слов для бота: {result['words']}, с озвучкой: {result['audio']} → {args.out}/data/words.json")
     return 0
 
 
@@ -254,6 +278,10 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--chat", help="chat_id (по умолчанию TELEGRAM_CHAT_ID); auto — личный чат, "
                                   "из которого боту последним написали")
     p.add_argument("--rich", action="store_true", help="отправить постом-статьёй (Rich Messages)")
+    p = sub.add_parser("bot-data", help="слова курса для бота на Cloudflare (bot/)")
+    p.add_argument("--out", default="bot", help="папка бота")
+    p.add_argument("--audio-cache", help="папка с готовой озвучкой (кеш между запусками)")
+    p.add_argument("--no-audio", action="store_true", help="без озвучки")
     p = sub.add_parser("run", help="постоянный режим")
     p.add_argument("--at", action="append", help="время публикации ЧЧ:ММ (можно несколько)")
 
@@ -261,7 +289,7 @@ def main(argv: list[str] | None = None) -> int:
     logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO,
                         format="%(asctime)s %(levelname)s %(message)s")
     settings = load_settings()
-    handler = globals()[f"cmd_{args.command}"]
+    handler = globals()[f"cmd_{args.command.replace('-', '_')}"]
     return handler(args, settings)
 
 
