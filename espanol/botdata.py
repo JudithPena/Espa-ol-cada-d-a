@@ -26,6 +26,7 @@ log = logging.getLogger(__name__)
 
 VOICE = "f1"
 RATE = "-10%"
+ARTIST = "Español cada día"
 
 
 def word_id(item: VocabItem) -> str:
@@ -43,6 +44,24 @@ def _audio_name(item: VocabItem) -> str:
     voice = tts.DEFAULT_VOICES[VOICE]
     text = "|".join(t for _, t in _speech(item))
     return hashlib.sha1(f"{voice}|{RATE}|{text}".encode("utf-8")).hexdigest()[:16] + ".mp3"
+
+
+def id3_tag(title: str, artist: str) -> bytes:
+    """Тег ID3v2.3 с названием и исполнителем: по нему Telegram подписывает аудио словом,
+    а не именем файла."""
+    def frame(name: str, text: str) -> bytes:
+        data = b"\x01" + "\ufeff".encode("utf-16-le") + text.encode("utf-16-le")
+        return name.encode() + len(data).to_bytes(4, "big") + b"\x00\x00" + data
+
+    body = frame("TIT2", title) + frame("TPE1", artist)
+    size = len(body)
+    syncsafe = bytes([(size >> 21) & 0x7F, (size >> 14) & 0x7F, (size >> 7) & 0x7F, size & 0x7F])
+    return b"ID3\x03\x00\x00" + syncsafe + body
+
+
+def _public_name(item: VocabItem) -> str:
+    """Имя файла на сайте бота: новое при каждой смене слова или тега, чтобы Telegram не брал старый файл."""
+    return hashlib.sha1(f"id3|{_audio_name(item)}|{plain(item.es)}".encode("utf-8")).hexdigest()[:16] + ".mp3"
 
 
 def bot_words(course: Course) -> list[VocabItem]:
@@ -96,8 +115,10 @@ def export(course: Course, out: Path, audio: bool = True, cache: Path | None = N
         for item in words:
             name = _audio_name(item)
             if (cache / name).exists():
-                shutil.copyfile(cache / name, audio_dir / name)
-                names[item.key] = name
+                public = _public_name(item)
+                tag = id3_tag(plain(item.es), ARTIST)
+                (audio_dir / public).write_bytes(tag + (cache / name).read_bytes())
+                names[item.key] = public
     records = [word_record(item, names.get(item.key, "")) for item in words]
     if len({r["id"] for r in records}) != len(records):
         raise ValueError("у двух слов совпал id — поменяйте длину хеша в botdata.word_id")

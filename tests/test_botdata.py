@@ -47,3 +47,17 @@ def test_send_auto_uses_review_chat_when_bot_has_webhook(monkeypatch, capsys):
     monkeypatch.setenv("TELEGRAM_REVIEW_CHAT_ID", "12345")
     assert cli.main(["send", "0", "--chat", "auto"]) == 0
     assert sent == ["12345"]
+
+
+def test_audio_has_word_as_title(tmp_path, course, monkeypatch):
+    """Telegram подписывает аудио по тегу ID3 — там слово, а не имя файла."""
+    from espanol import botdata, tts
+
+    monkeypatch.setattr(tts, "available", lambda: True)
+    monkeypatch.setattr(tts, "synthesize", lambda segments, rate: b"\xff\xfbMP3")
+    monkeypatch.setattr(botdata, "bot_words", lambda c: bot_words(c)[:2])
+    export(course, tmp_path, cache=tmp_path / "cache")
+    record = json.loads((tmp_path / "data" / "words.json").read_text(encoding="utf-8"))[0]
+    data = (tmp_path / "public" / "audio" / record["audio"]).read_bytes()
+    assert data.startswith(b"ID3\x03") and data.endswith(b"\xff\xfbMP3")
+    assert record["es"].encode("utf-16-le") in data and "Español cada día".encode("utf-16-le") in data
