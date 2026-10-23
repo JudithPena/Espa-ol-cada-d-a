@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { answer, buildQueue, dayNumber, localHour, newUser, progress, startSession } from "../src/srs.js";
+import {
+  answer, buildLessonQueue, buildQueue, dayNumber, localHour, localWeekday, newUser, progress, startSession,
+} from "../src/srs.js";
 
 const words = Array.from({ length: 30 }, (_, i) => ({ id: `w${i}` }));
 
@@ -10,6 +12,16 @@ test("день и час — по Киеву, с переходом на зим�
     dayNumber(new Date("2026-10-24T12:00:00Z"), "Europe/Kyiv"), 1);
   assert.equal(localHour(new Date("2026-10-23T06:00:00Z"), "Europe/Kyiv"), 9); // летнее UTC+3
   assert.equal(localHour(new Date("2026-10-27T07:00:00Z"), "Europe/Kyiv"), 9); // зимнее UTC+2
+});
+
+test("по ссылке из урока: слова урока, потом слова, которые пора повторить", () => {
+  const user = newUser();
+  user.cards.w20 = [2, 90];
+  user.cards.w21 = [1, 99];
+  user.cards.w22 = [3, 150]; // ещё рано
+  const own = words.slice(0, 3);
+  assert.deepEqual(buildLessonQueue(user, own, words, 100), ["w0", "w1", "w2", "w20", "w21"]);
+  assert.equal(localWeekday(new Date("2026-10-28T17:00:00Z"), "Europe/Kyiv"), 3); // среда
 });
 
 test("в первом повторении — 5 новых слов по порядку курса", () => {

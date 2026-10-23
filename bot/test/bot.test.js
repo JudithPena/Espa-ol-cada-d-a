@@ -8,7 +8,7 @@ let kv;
 const env = {
   TELEGRAM_BOT_TOKEN: "T", WEBHOOK_SECRET: "S", GITHUB_TOKEN: "G", ADMIN_CHAT_ID: "1",
   GITHUB_REPO: "o/r", GITHUB_BRANCH: "main", PUBLISH_WORKFLOW: "publish.yml",
-  PUBLISH_HOURS: "9,15", TIMEZONE: "Europe/Kyiv",
+  PUBLISH_HOURS: "9,15", TIMEZONE: "Europe/Kyiv", REMIND_DAYS: "3,6", REMIND_HOUR: "19",
 };
 const first = WORDS[0];
 
@@ -74,13 +74,15 @@ test("повторение: карточка, перевод, ответ и ит
   assert.deepEqual(user.cards[first.id][0], 1);
 });
 
-test("ссылка из урока открывает слова этого урока", async () => {
+test("ссылка из урока: сначала слова урока, потом прошлые слова, которые пора повторить", async () => {
   const lessonId = WORDS[WORDS.length - 1].lesson; // урок ещё не вышел — по ссылке слова всё равно есть
   const own = WORDS.filter((w) => w.lesson === lessonId);
+  kv.set("user:9", JSON.stringify({ cards: { [first.id]: [1, 0] }, session: null })); // слово из вышедшего урока, срок подошёл
   await post(message(`/start l-${lessonId.replace(/[^A-Za-z0-9_-]/g, "-")}`));
   const card = calls.at(-1);
-  assert.match(card.body.caption || card.body.text, new RegExp(`1/${Math.min(10, own.length)}`));
+  assert.match(card.body.caption || card.body.text, new RegExp(`1/${Math.min(10, own.length + 1)}`));
   assert.ok((card.body.caption || card.body.text).includes(own[0].es.replace(/[<>&]/g, "")));
+  assert.equal(JSON.parse(kv.get("user:9")).session.queue.at(-1), first.id);
   await post(message("/start repaso")); // обычная ссылка — обычное повторение
   assert.ok((calls.at(-1).body.caption || calls.at(-1).body.text).includes(first.es));
 });
@@ -122,4 +124,27 @@ test("карточка с озвучкой: аудио с названием с�
   } finally {
     first.audio = saved;
   }
+});
+
+test("по средам и субботам в 19:00 бот сам предлагает повторить слова", async () => {
+  await post(message("/start")); // бот запомнил ученика
+  kv.set("user:10", JSON.stringify({ cards: {}, session: null, noRemind: true }));
+  kv.set("users", JSON.stringify([9, 10]));
+  calls = [];
+  const run = async (iso) => {
+    const waits = [];
+    await bot.scheduled({ scheduledTime: Date.parse(iso) }, env, { waitUntil: (p) => waits.push(p) });
+    await Promise.all(waits);
+  };
+  await run("2026-10-27T17:00:00Z"); // вторник, 19:00 по Киеву
+  assert.equal(calls.length, 0);
+  await run("2026-10-28T17:00:00Z"); // среда, 19:00 (зимнее время)
+  assert.equal(calls.length, 1, "только тому, кто не отключал напоминания");
+  assert.equal(calls[0].body.chat_id, 9);
+  assert.match(calls[0].body.text, /Время повторить слова/);
+  await post(press("off"));
+  assert.equal(JSON.parse(kv.get("user:9")).noRemind, true);
+  calls = [];
+  await run("2026-10-31T17:00:00Z"); // суббота — уже не напоминаем
+  assert.equal(calls.length, 0);
 });

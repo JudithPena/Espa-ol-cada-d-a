@@ -3,11 +3,15 @@
 //    у Cloudflare расписание точное, а cron в GitHub Actions опаздывает на несколько часов.
 //  • Отвечает в личке: /repaso — личные повторения слов из вышедших уроков с кнопками,
 //    /progreso — сколько слов выучено, /id — номер чата (для TELEGRAM_REVIEW_CHAT_ID).
+//  • В дни REMIND_DAYS в REMIND_HOUR по Киеву сам предлагает в личке повторить слова
+//    всем, кто уже писал боту (кроме тех, кто нажал «Не напоминать»).
 // Слова — bot/data/words.json (python -m espanol bot-data), озвучка — bot/public/audio/.
 // Прогресс каждого ученика хранится в KV (binding SRS).
 
 import WORDS from "../data/words.json" with { type: "json" };
-import { SESSION_SIZE, answer, currentId, dayNumber, localHour, newUser, progress, startSession } from "./srs.js";
+import {
+  answer, buildLessonQueue, currentId, dayNumber, localHour, localWeekday, newUser, progress, startSession,
+} from "./srs.js";
 
 const BY_ID = new Map(WORDS.map((w) => [w.id, w]));
 
@@ -30,11 +34,16 @@ export default {
   },
 
   async scheduled(event, env, ctx) {
-    const hours = String(env.PUBLISH_HOURS || "").split(",").map((h) => Number(h.trim())).filter((h) => h >= 0);
-    if (!hours.includes(localHour(new Date(event.scheduledTime), env.TIMEZONE))) return;
-    ctx.waitUntil(dispatchPublish(env));
+    const now = new Date(event.scheduledTime);
+    const hour = localHour(now, env.TIMEZONE);
+    if (numbers(env.PUBLISH_HOURS).includes(hour)) ctx.waitUntil(dispatchPublish(env));
+    if (hour === Number(env.REMIND_HOUR) && numbers(env.REMIND_DAYS).includes(localWeekday(now, env.TIMEZONE))) {
+      ctx.waitUntil(sendReminders(env));
+    }
   },
 };
+
+const numbers = (list) => String(list || "").split(",").map((n) => n.trim()).filter(Boolean).map(Number);
 
 // ---------------------------------------------------------------- публикация
 
@@ -83,9 +92,13 @@ const keyboard = (rows) => ({ inline_keyboard: rows });
 const START_BUTTON = keyboard([[{ text: "🔁 Повторить слова", callback_data: "go" }]]);
 
 async function handleUpdate(update, env, origin) {
-  if (update.callback_query) return handleCallback(update.callback_query, env, origin);
+  if (update.callback_query) {
+    await rememberUser(env, update.callback_query.from.id);
+    return handleCallback(update.callback_query, env, origin);
+  }
   const msg = update.message;
   if (!msg || !msg.chat || msg.chat.type !== "private") return;
+  await rememberUser(env, msg.from.id);
   const [command, param = ""] = (msg.text || "").trim().split(/\s+/);
   const cmd = command.split("@")[0].toLowerCase();
   const chat = msg.chat.id;
@@ -103,6 +116,7 @@ async function handleUpdate(update, env, origin) {
       "Каждый раз — 10 карточек: слова, которые пора повторить, и несколько новых из вышедших уроков. " +
       "Вспомните перевод, откройте карточку и честно отметьте, помните ли вы слово. " +
       "Если помните, слово вернётся через несколько дней, а если нет — повторим его ещё раз.\n\n" +
+      "По средам и субботам вечером я сам напомню, если есть что повторить.\n\n" +
       "/repaso — повторить слова\n/progreso — сколько слов уже выучено",
     reply_markup: START_BUTTON,
   });
@@ -116,6 +130,17 @@ async function handleCallback(cq, env, origin) {
     return startRepaso(env, chat, cq.from.id, origin);
   }
   const user = await loadUser(env, cq.from.id);
+  if (action === "off" || action === "on") { // напоминания по средам и субботам
+    user.noRemind = action === "off";
+    await saveUser(env, cq.from.id, user);
+    return tg(env, "answerCallbackQuery", {
+      callback_query_id: cq.id,
+      show_alert: true,
+      text: user.noRemind
+        ? "Хорошо, больше не напоминаю. Повторять можно командой /repaso, включить напоминания — в /progreso."
+        : "Напоминания включены: по средам и субботам вечером.",
+    });
+  }
   if (!user.session || currentId(user) !== id) { // старая кнопка от прошлой карточки
     return tg(env, "answerCallbackQuery", { callback_query_id: cq.id, text: "Эта карточка уже пройдена" });
   }
@@ -166,12 +191,12 @@ async function startRepaso(env, chat, userId, origin, lesson = "") {
   const user = await loadUser(env, userId);
   const today = dayNumber(new Date(), env.TIMEZONE);
   const own = lesson ? WORDS.filter((w) => w.lesson.replace(/[^A-Za-z0-9_-]/g, "-") === lesson) : [];
-  if (own.length) {
-    user.session = { queue: own.slice(0, SESSION_SIZE).map((w) => w.id), pos: 0, retry: [], right: 0, wrong: 0 };
+  const words = (await availableWords(env)).filter((w) => BY_ID.has(w.id));
+  if (own.length) { // сначала слова урока, потом — прошлые слова, которые пора повторить
+    user.session = { queue: buildLessonQueue(user, own, words, today), pos: 0, retry: [], right: 0, wrong: 0 };
     await saveUser(env, userId, user);
     return sendCard(env, chat, user, origin);
   }
-  const words = (await availableWords(env)).filter((w) => BY_ID.has(w.id));
   if (!startSession(user, words, today)) {
     return tg(env, "sendMessage", {
       chat_id: chat,
@@ -242,9 +267,47 @@ async function sendProgress(env, chat, userId) {
   return tg(env, "sendMessage", {
     chat_id: chat,
     parse_mode: "HTML",
-    text: `📊 <b>Ваш прогресс</b>\n\n${summary(p)}\n\nПора повторить сейчас: ${p.due}`,
-    reply_markup: p.due || p.fresh ? START_BUTTON : undefined,
+    text: `📊 <b>Ваш прогресс</b>\n\n${summary(p)}\n\nПора повторить сейчас: ${p.due}\n` +
+      `🔔 Напоминания по средам и субботам: ${user.noRemind ? "выключены" : "включены"}`,
+    reply_markup: keyboard([
+      ...(p.due || p.fresh ? [[{ text: "🔁 Повторить слова", callback_data: "go" }]] : []),
+      [user.noRemind
+        ? { text: "🔔 Включить напоминания", callback_data: "on" }
+        : { text: "🔕 Не напоминать", callback_data: "off" }],
+    ]),
   });
+}
+
+// ---------------------------------------------------------------- напоминания
+
+export async function sendReminders(env) {
+  const words = (await availableWords(env)).filter((w) => BY_ID.has(w.id));
+  const today = dayNumber(new Date(), env.TIMEZONE);
+  for (const userId of (await env.SRS.get("users", "json")) || []) {
+    const user = await loadUser(env, userId);
+    if (user.noRemind) continue;
+    const p = progress(user, words, today);
+    if (!p.due && !p.fresh) continue;
+    const what = [p.due && `пора повторить: ${p.due}`, p.fresh && `новых слов из уроков: ${p.fresh}`].filter(Boolean);
+    await tg(env, "sendMessage", { // личный чат с ботом — тот же номер, что и у пользователя
+      chat_id: userId,
+      parse_mode: "HTML",
+      text: `🔔 <b>Время повторить слова!</b>\n\nСейчас ${what.join(", ")}. ` +
+        "Десять карточек — это 3–5 минут.",
+      reply_markup: keyboard([
+        [{ text: "🔁 Повторить слова", callback_data: "go" }],
+        [{ text: "🔕 Не напоминать", callback_data: "off" }],
+      ]),
+    });
+  }
+}
+
+async function rememberUser(env, userId) {
+  const users = (await env.SRS.get("users", "json")) || [];
+  if (!users.includes(userId)) {
+    users.push(userId);
+    await env.SRS.put("users", JSON.stringify(users));
+  }
 }
 
 // ---------------------------------------------------------------- данные

@@ -23,6 +23,11 @@ export function localHour(date, timeZone) {
   return Number(hour);
 }
 
+export function localWeekday(date, timeZone) { // 0 — воскресенье, 3 — среда, 6 — суббота
+  const day = new Intl.DateTimeFormat("en-US", { timeZone, weekday: "short" }).format(date);
+  return ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(day);
+}
+
 export function newUser() {
   return { cards: {}, session: null };
 }
@@ -38,6 +43,18 @@ export function buildQueue(user, words, today) {
   if (room > 0) {
     queue.push(...words.filter((w) => !user.cards[w.id]).slice(0, room).map((w) => w.id));
   }
+  return queue;
+}
+
+// Повторение по ссылке из урока: сначала все слова этого урока, потом до SESSION_SIZE карточек —
+// слова прошлых уроков, которые пора повторить (самые давние первыми).
+export function buildLessonQueue(user, own, words, today) {
+  const queue = own.slice(0, SESSION_SIZE).map((w) => w.id);
+  const taken = new Set(queue);
+  const due = words
+    .filter((w) => !taken.has(w.id) && user.cards[w.id] && user.cards[w.id][1] <= today)
+    .sort((a, b) => user.cards[a.id][1] - user.cards[b.id][1]);
+  queue.push(...due.slice(0, SESSION_SIZE - queue.length).map((w) => w.id));
   return queue;
 }
 
