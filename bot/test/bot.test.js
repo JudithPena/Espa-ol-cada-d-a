@@ -74,6 +74,17 @@ test("повторение: карточка, перевод, ответ и ит
   assert.deepEqual(user.cards[first.id][0], 1);
 });
 
+test("ссылка из урока открывает слова этого урока", async () => {
+  const lessonId = WORDS[WORDS.length - 1].lesson; // урок ещё не вышел — по ссылке слова всё равно есть
+  const own = WORDS.filter((w) => w.lesson === lessonId);
+  await post(message(`/start l-${lessonId.replace(/[^A-Za-z0-9_-]/g, "-")}`));
+  const card = calls.at(-1);
+  assert.match(card.body.caption || card.body.text, new RegExp(`1/${Math.min(10, own.length)}`));
+  assert.ok((card.body.caption || card.body.text).includes(own[0].es.replace(/[<>&]/g, "")));
+  await post(message("/start repaso")); // обычная ссылка — обычное повторение
+  assert.ok((calls.at(-1).body.caption || calls.at(-1).body.text).includes(first.es));
+});
+
 test("старая кнопка не сбивает повторение", async () => {
   await post(message("/repaso"));
   await post(press("y:нет-такого"));

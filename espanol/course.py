@@ -208,6 +208,7 @@ class Course:
     names: dict[str, str]  # имя → пол (f/m/"")
     meta_words: set[str]
     settings: dict[str, Any]
+    bot: str = ""  # бот для повторений (без @): ссылка «Повторить слова» в конце уроков
 
     @property
     def items(self) -> list[VocabItem]:
@@ -549,4 +550,5 @@ def load_course(content_dir: str | Path) -> Course:
         names=names,
         meta_words={str(w).lower() for w in meta.get("meta_words", []) or []},
         settings=settings,
+        bot=str(meta.get("bot", "") or "").lstrip("@"),
     )

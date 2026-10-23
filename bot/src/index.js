@@ -7,7 +7,7 @@
 // Прогресс каждого ученика хранится в KV (binding SRS).
 
 import WORDS from "../data/words.json" with { type: "json" };
-import { answer, currentId, dayNumber, localHour, newUser, progress, startSession } from "./srs.js";
+import { SESSION_SIZE, answer, currentId, dayNumber, localHour, newUser, progress, startSession } from "./srs.js";
 
 const BY_ID = new Map(WORDS.map((w) => [w.id, w]));
 
@@ -86,11 +86,14 @@ async function handleUpdate(update, env, origin) {
   if (update.callback_query) return handleCallback(update.callback_query, env, origin);
   const msg = update.message;
   if (!msg || !msg.chat || msg.chat.type !== "private") return;
-  const command = (msg.text || "").trim().split(/[\s@]/)[0].toLowerCase();
+  const [command, param = ""] = (msg.text || "").trim().split(/\s+/);
+  const cmd = command.split("@")[0].toLowerCase();
   const chat = msg.chat.id;
-  if (command === "/repaso") return startRepaso(env, chat, msg.from.id, origin);
-  if (command === "/progreso") return sendProgress(env, chat, msg.from.id);
-  if (command === "/id") {
+  // Ссылки из уроков: t.me/бот?start=l-<урок> — слова этого урока, ?start=repaso — обычное повторение.
+  if (cmd === "/start" && param.startsWith("l-")) return startRepaso(env, chat, msg.from.id, origin, param.slice(2));
+  if (cmd === "/repaso" || (cmd === "/start" && param === "repaso")) return startRepaso(env, chat, msg.from.id, origin);
+  if (cmd === "/progreso") return sendProgress(env, chat, msg.from.id);
+  if (cmd === "/id") {
     return tg(env, "sendMessage", { chat_id: chat, parse_mode: "HTML", text: `Номер этого чата: <code>${chat}</code>` });
   }
   return tg(env, "sendMessage", {
@@ -157,10 +160,18 @@ async function handleCallback(cq, env, origin) {
 
 // ---------------------------------------------------------------- повторение
 
-async function startRepaso(env, chat, userId, origin) {
-  const words = (await availableWords(env)).filter((w) => BY_ID.has(w.id));
+// lesson — id урока из ссылки (с «-» вместо «/»): тогда в повторении все слова этого урока,
+// даже если урок вышел только что и state.json на GitHub ещё не обновился.
+async function startRepaso(env, chat, userId, origin, lesson = "") {
   const user = await loadUser(env, userId);
   const today = dayNumber(new Date(), env.TIMEZONE);
+  const own = lesson ? WORDS.filter((w) => w.lesson.replace(/[^A-Za-z0-9_-]/g, "-") === lesson) : [];
+  if (own.length) {
+    user.session = { queue: own.slice(0, SESSION_SIZE).map((w) => w.id), pos: 0, retry: [], right: 0, wrong: 0 };
+    await saveUser(env, userId, user);
+    return sendCard(env, chat, user, origin);
+  }
+  const words = (await availableWords(env)).filter((w) => BY_ID.has(w.id));
   if (!startSession(user, words, today)) {
     return tg(env, "sendMessage", {
       chat_id: chat,

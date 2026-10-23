@@ -119,6 +119,8 @@ class RichRenderer:
                        "потому что именно попытка вспомнить и закрепляет материал.</p>")
         elif polls:
             out.append(f"<p>{self.r._label('polls', lesson)}</p>")
+        if self.r.repaso_link(lesson):
+            out.append(f"<p>{self.r.repaso_link(lesson)}</p>")
         out.append(f"<p>{self.r._footer(lesson)}</p>")
         return [RichMessage("".join(p for p in out if p), media), *polls]
 

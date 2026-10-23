@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import random
+import re
 from dataclasses import dataclass, field
 
 from . import morphology as morph
@@ -117,6 +118,8 @@ class Renderer:
                              "потому что именно попытка вспомнить и закрепляет материал.")
         elif polls:
             out.parts.append(self._label("polls", lesson))
+        if self.repaso_link(lesson):
+            out.parts.append(self.repaso_link(lesson))
 
         # Уведомление приходит только о первом сообщении урока, продолжения — без звука.
         messages: list[Message] = [TextMessage(h, silent=n > 0) for n, h in enumerate(
@@ -153,6 +156,18 @@ class Renderer:
             f"{self._label('unit', lesson)} {unit.number}. {to_html(unit.title)}\n"
             f"{lesson.kind_emoji} {self.kind_label(lesson)} · <b>{to_html(lesson.title)}</b>"
         )
+
+    def repaso_link(self, lesson: Lesson) -> str:
+        """Ссылка на повторение в боте: слова этого урока, а если в уроке нет новых слов — все пройденные."""
+        bot = self.course.bot
+        if not bot:
+            return ""
+        if any(item.srs for item in lesson.vocab):
+            start = "l-" + re.sub(r"[^A-Za-z0-9_-]", "-", lesson.id)
+            text = "Повторить слова урока"
+        else:
+            start, text = "repaso", "Повторить пройденные слова"
+        return f'🔁 <a href="https://t.me/{bot}?start={start}">{text}</a> в боте: карточки с озвучкой.'
 
     def _footer(self, lesson: Lesson) -> str:
         return f"#{lesson.level} #{lesson.kind_tag}"

@@ -61,3 +61,14 @@ def test_audio_has_word_as_title(tmp_path, course, monkeypatch):
     data = (tmp_path / "public" / "audio" / record["audio"]).read_bytes()
     assert data.startswith(b"ID3\x03") and data.endswith(b"\xff\xfbMP3")
     assert record["es"].encode("utf-16-le") in data and "Español cada día".encode("utf-16-le") in data
+
+
+def test_lessons_end_with_repaso_link(course, renderer):
+    """В конце урока — ссылка на бота: слова этого урока, а без новых слов — обычное повторение."""
+    with_words = next(lesson for lesson in course.lessons if any(i.srs for i in lesson.vocab))
+    link = renderer.repaso_link(with_words)
+    assert f"t.me/{course.bot}?start=l-{with_words.id.replace('/', '-')}" in link
+    no_words = next(lesson for lesson in course.lessons if not lesson.vocab)
+    assert "?start=repaso" in renderer.repaso_link(no_words)
+    html = "".join(getattr(m, "html", "") for m in renderer.render(with_words))
+    assert link in html
