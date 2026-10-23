@@ -148,3 +148,11 @@ test("по средам и субботам в 19:00 бот сам предла�
   await run("2026-10-31T17:00:00Z"); // суббота — уже не напоминаем
   assert.equal(calls.length, 0);
 });
+
+test("/recordatorio присылает пробное напоминание только автору", async () => {
+  await post({ message: { text: "/recordatorio", chat: { id: 1, type: "private" }, from: { id: 1 } } }); // ADMIN_CHAT_ID = 1
+  assert.match(calls.at(-1).body.text, /Время повторить слова/);
+  assert.equal(calls.at(-1).body.chat_id, 1);
+  await post(message("/recordatorio")); // другой ученик — обычное приветствие
+  assert.doesNotMatch(calls.at(-1).body.text, /Время повторить/);
+});

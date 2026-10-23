@@ -106,6 +106,11 @@ async function handleUpdate(update, env, origin) {
   if (cmd === "/start" && param.startsWith("l-")) return startRepaso(env, chat, msg.from.id, origin, param.slice(2));
   if (cmd === "/repaso" || (cmd === "/start" && param === "repaso")) return startRepaso(env, chat, msg.from.id, origin);
   if (cmd === "/progreso") return sendProgress(env, chat, msg.from.id);
+  if (cmd === "/recordatorio" && env.ADMIN_CHAT_ID && String(chat) === String(env.ADMIN_CHAT_ID)) {
+    // проверка для автора: так выглядит напоминание по средам и субботам
+    const words = (await availableWords(env)).filter((w) => BY_ID.has(w.id));
+    return sendReminder(env, msg.from.id, await loadUser(env, msg.from.id), words, true);
+  }
   if (cmd === "/id") {
     return tg(env, "sendMessage", { chat_id: chat, parse_mode: "HTML", text: `Номер этого чата: <code>${chat}</code>` });
   }
@@ -282,24 +287,27 @@ async function sendProgress(env, chat, userId) {
 
 export async function sendReminders(env) {
   const words = (await availableWords(env)).filter((w) => BY_ID.has(w.id));
-  const today = dayNumber(new Date(), env.TIMEZONE);
   for (const userId of (await env.SRS.get("users", "json")) || []) {
     const user = await loadUser(env, userId);
-    if (user.noRemind) continue;
-    const p = progress(user, words, today);
-    if (!p.due && !p.fresh) continue;
-    const what = [p.due && `пора повторить: ${p.due}`, p.fresh && `новых слов из уроков: ${p.fresh}`].filter(Boolean);
-    await tg(env, "sendMessage", { // личный чат с ботом — тот же номер, что и у пользователя
-      chat_id: userId,
-      parse_mode: "HTML",
-      text: `🔔 <b>Время повторить слова!</b>\n\nСейчас ${what.join(", ")}. ` +
-        "Десять карточек — это 3–5 минут.",
-      reply_markup: keyboard([
-        [{ text: "🔁 Повторить слова", callback_data: "go" }],
-        [{ text: "🔕 Не напоминать", callback_data: "off" }],
-      ]),
-    });
+    if (!user.noRemind) await sendReminder(env, userId, user, words);
   }
+}
+
+// Напоминание одному ученику; если повторять нечего, не пишем (кроме проверки автором — force).
+async function sendReminder(env, userId, user, words, force = false) {
+  const p = progress(user, words, dayNumber(new Date(), env.TIMEZONE));
+  if (!p.due && !p.fresh && !force) return;
+  const what = [p.due && `пора повторить: ${p.due}`, p.fresh && `новых слов из уроков: ${p.fresh}`].filter(Boolean);
+  await tg(env, "sendMessage", { // личный чат с ботом — тот же номер, что и у пользователя
+    chat_id: userId,
+    parse_mode: "HTML",
+    text: `🔔 <b>Время повторить слова!</b>\n\nСейчас ${what.join(", ") || "повторять нечего"}. ` +
+      "Десять карточек — это 3–5 минут.",
+    reply_markup: keyboard([
+      [{ text: "🔁 Повторить слова", callback_data: "go" }],
+      [{ text: "🔕 Не напоминать", callback_data: "off" }],
+    ]),
+  });
 }
 
 async function rememberUser(env, userId) {
