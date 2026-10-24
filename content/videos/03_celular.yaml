@@ -1,0 +1,139 @@
+# Разбор видео №3. Правила рубрики — docs/video_guide.md.
+id: celular
+title: Где мой телефон?
+url: https://app.dreaming.com/spanish/watch?id=67e66bc9891bcf6812fa87d6
+after: 24          # опираемся на уроки 0–24: всё, что уже вышло в канал
+level: A1
+
+# Имена и слова не по-испански, которые звучат в видео.
+allow: [Shell, Shelcin, Rory, hoodie]
+# Множественное число слова из разбора №1 (el huevo): пояснено под фразой.
+forms: [huevos]
+
+# Текст видео — 10 смысловых блоков: под каждым его новые слова (words, по полю es из vocab),
+# пояснения (note) и перевод (ru, в посте спрятан). В субтитрах были ошибки распознавания:
+# «ampede» → arepa, «juego de naranja» → jugo de naranja, «este video me gusta» → este vestido me gusta.
+segments:
+  - es: "¿La leche? ¿Dónde está la leche? ¿Dónde está mi celular? ¿Qué hora es? ¿Son las siete? ¿Cuál es la última vez?"
+    ru: "Молоко? Где молоко? Где мой телефон? Который час? Семь часов? Когда же был последний раз?"
+    words: [mi / mis, el celular, "¿qué hora es?", son las..., "¿cuál?", la última vez]
+    note:
+      - "**Mi** значит «мой» или «моя» и стоит перед существительным: _mi celular_ (мой телефон), _mi leche_ (моё молоко). Перед словом во множественном числе говорят **mis**: _mis cosas_ (мои вещи)."
+      - "Чтобы спросить время, говорят _¿Qué hora es?_ (Который час?), а отвечают с **son las** и числом: _Son las siete._ (Семь часов.) _Son las seis._ (Шесть часов.)"
+  - es: "Tengo arepa. Tengo arepa, huevo, jugo de naranja, pan y la leche. ¿Dónde está la leche?"
+    ru: "У меня есть арепа. У меня есть арепа, яйца, апельсиновый сок, хлеб и молоко. Где молоко?"
+    words: [la arepa, el jugo de naranja]
+    note:
+      - "Арепа — круглая кукурузная лепёшка, её едят на завтрак в Колумбии и Венесуэле. Ведущая этого видео Шелл как раз из Колумбии."
+  - es: "Jugo de naranja, huevos, pan y leche. Pero, ¿en dónde está la leche? ¡Muy bueno! ¡Vamos!"
+    ru: "Апельсиновый сок, яйца, хлеб и молоко. Но где же молоко? Очень вкусно! Пошли!"
+    note:
+      - "**Huevos** — множественное число от _huevo_: если предметов несколько, к слову добавляют **-s**."
+      - "_¿En dónde está?_ значит то же, что _¿Dónde está?_, то есть «где?». Так часто говорят в Латинской Америке."
+      - "**¡Vamos!** значит «пошли!» или «вперёд!»: так говорят, когда пора идти или начинать."
+  - es: "¿Qué me pongo? ¿Qué me pongo? Una camiseta. Esto, no. Vamos a ver. Sí."
+    ru: "Что мне надеть? Что мне надеть? Футболку. Это — нет. Посмотрим. Да."
+    words: ["¿qué me pongo?", la camiseta, esto, vamos a ver]
+    note:
+      - "_¿Qué me pongo?_ значит «что мне надеть?»: так говорят, когда выбирают одежду."
+      - "Когда показывают на вещь, которая рядом, говорят **esto** — «это»: _Esto, no._ (Это — нет.)"
+  - es: "Un vestido. Un vestido. Esto... No. ¿Y mi pantalón? ¿Dónde está mi pantalón?"
+    ru: "Платье. Платье. Это... Нет. А мои брюки? Где мои брюки?"
+    words: [el vestido, el pantalón]
+    note:
+      - "Перед словом мужского рода стоит **un**, а перед словом женского рода — **una**: _un vestido_ (платье), но _una camiseta_ (футболка)."
+      - "Слово **pantalón** значит «брюки». В Латинской Америке его часто говорят в единственном числе: _mi pantalón_ — «мои брюки»."
+  - es: "Un hoodie. Esto... Sí. Mira. ¿Te gusta? ¿Te gusta? A ver... Este vestido me gusta."
+    ru: "Худи. Это... Да. Смотри. Тебе нравится? Тебе нравится? Так... Это платье мне нравится."
+    words: [mira, "¿te gusta? / me gusta"]
+    note:
+      - "_¿Te gusta?_ значит «тебе нравится?», а _me gusta_ — «мне нравится»: _Este vestido me gusta._ (Это платье мне нравится.)"
+      - "Слово **mira** значит «смотри»: так говорят собеседнику, когда хотят ему что-то показать."
+      - "_Hoodie_ — английское слово, так по-испански тоже называют толстовку с капюшоном."
+  - es: "¿Y mi celular? ¿Dónde está mi celular? ¿Dónde está mi celular? ¿Dónde está mi celular? ¿Dónde está?"
+    ru: "А мой телефон? Где мой телефон? Где мой телефон? Где мой телефон? Где же он?"
+    note:
+      - "Чтобы спросить «а где мой...?», начните вопрос с **y**: _¿Y mi celular?_ (А мой телефон?)"
+      - "Когда понятно, о чём речь, слово можно не повторять: _¿Dónde está?_ значит «где он?»."
+  - es: "¿Y mi celular? ¿Dónde está? ¿Dónde está mi celular? ¿Qué hora es? Son las seis. Vamos."
+    ru: "А мой телефон? Где он? Где мой телефон? Который час? Шесть часов. Пошли."
+    note: "Если часов больше одного, время называют с **son las**: _Son las seis._ (Шесть часов.) _Son las siete._ (Семь часов.)"
+  - es: "Este es mi estudio. Aquí yo hago videos. Aquí yo grabo videos. ¡Acción! Hola. Yo soy Shell. ¿Y mi micrófono? ¿Dónde está mi micrófono?"
+    ru: "Это моя студия. Здесь я делаю видео. Здесь я записываю видео. Мотор! Привет. Я Шелл. А мой микрофон? Где мой микрофон?"
+    words: [el estudio, hacer, grabar, el video, "¡acción!", el micrófono]
+    note:
+      - "**Hago** значит «я делаю», это форма глагола **hacer**. **Grabo** значит «я записываю», это форма глагола **grabar**: _Aquí yo hago videos._ (Здесь я делаю видео.) _Aquí yo grabo videos._ (Здесь я записываю видео.)"
+      - "Слово **¡acción!** значит «мотор!»: так командуют на съёмке, когда начинают снимать."
+  - es: "¿Qué es eso? ¡Rory! Esas son mis cosas. Eso es mío. Mi leche. Mi celular. Mi micrófono. Mi pantalón."
+    ru: "Что это? Рори! Это мои вещи. Это моё. Моё молоко. Мой телефон. Мой микрофон. Мои брюки."
+    words: [eso, esas, la cosa, mío]
+    note:
+      - "Слово **mío** («моё») ставят после глагола, а **mi** — перед существительным: _Eso es mío._ (Это моё.), но _mi leche_ (моё молоко)."
+      - "**Esas** значит «эти» или «те», так говорят о вещах женского рода во множественном числе: _Esas son mis cosas._ (Это мои вещи.)"
+
+vocab:
+  - "👤 mi / mis [ми, мис] — мой, моя / мои :: mi celular — мой телефон"
+  - "📱 el celular [θэлула́р] — мобильный телефон (в Латинской Америке)"
+  - "🕐 ¿qué hora es? [кэ о́ра эс] — который час?"
+  - "🕖 son las... [сон лас] — (сейчас) ... часов :: Son las siete. — Семь часов."
+  - "❓ ¿cuál? [куа́ль] — какой? который?"
+  - "🔚 la última vez [у́льтима бэθ] — последний раз"
+  - "🫓 la arepa [арэ́па] — арепа (кукурузная лепёшка)"
+  - "🍊 el jugo de naranja [ху́го дэ нара́нха] — апельсиновый сок"
+  - "🤷 ¿qué me pongo? [кэ мэ по́нго] — что мне надеть?"
+  - "👕 la camiseta [камисэ́та] — футболка"
+  - "👇 esto [э́сто] — это (о том, что рядом) :: Esto, no. — Это — нет."
+  - "🤔 vamos a ver [ба́мос а бэр] — посмотрим; так-так"
+  - "👗 el vestido [бэсти́до] — платье"
+  - "👖 el pantalón [панталóн] — брюки"
+  - "👀 mira [ми́ра] — смотри"
+  - "😍 ¿te gusta? / me gusta [тэ гу́ста, мэ гу́ста] — тебе нравится? / мне нравится :: Este vestido me gusta. — Это платье мне нравится."
+  - "🎬 el estudio [эсту́дьо] — студия"
+  - "🛠 hacer [аθэ́р] — делать {forms: hago hace} :: Hago videos. — Я делаю видео."
+  - "⏺ grabar [граба́р] — записывать (видео, звук) {forms: grabo graba} :: Grabo videos. — Я записываю видео."
+  - "📹 el video [би́дэо] — видео {forms: videos}"
+  - "🎥 ¡acción! [акθьóн] — мотор! (на съёмке)"
+  - "🎤 el micrófono [микро́фоно] — микрофон"
+  - "👉 eso [э́со] — это, то :: ¿Qué es eso? — Что это?"
+  - "👈 esas [э́сас] — эти, те (о вещах женского рода) :: esas cosas — эти вещи"
+  - "📦 la cosa [ко́са] — вещь {forms: cosas} :: mis cosas — мои вещи"
+  - "🙋 mío [ми́о] — мой, моё (после глагола) :: Eso es mío. — Это моё."
+
+blocks:
+  - "Третья часть рубрики — **разборы коротких видео** на испанском. Ведущая — Шелл (Shelcin) из Колумбии."
+  - |
+    **Как смотреть.** Сначала видео, потом разбор. Посмотрите видео целиком и не подглядывайте в текст: постарайтесь понять, что она всё время ищет и что надевает. Потом прочитайте разбор и посмотрите видео ещё раз.
+
+    Смотреть лучше с **испанскими субтитрами**: так вы одновременно слышите и видите каждую фразу.
+  - exercise:
+      title: "Ответьте на вопросы"
+      items:
+        - "¿Qué tiene? => Arepa, huevo, jugo de naranja, pan y leche."
+        - "Что она ищет всё видео? => El celular. Y la leche, el pantalón y el micrófono."
+        - "Какую одежду она выбирает? => Una camiseta, un vestido y un hoodie."
+        - "В конце видео: ¿qué hora es? => Son las seis."
+        - "Что она делает в студии? => Hace videos. Graba videos."
+        - "Кто взял её вещи? => Rory."
+  - exercise:
+      title: Переведите
+      items:
+        - "Где мой телефон? => ¿Dónde está mi celular?"
+        - "Который час? — Семь часов. => ¿Qué hora es? — Son las siete."
+        - "Это платье мне нравится. => Este vestido me gusta."
+        - "Это мои вещи. => Esas son mis cosas."
+  - task: "Утром ведущая спрашивает себя: _¿Qué me pongo?_ Напишите в комментариях, что у вас есть на завтрак и что вы надеваете утром, по образцу: **Tengo... ¿Qué me pongo? Una camiseta... Me gusta...**"
+
+quiz:
+  - q: "Что она всё время ищет?"
+    options: "Мобильный телефон | Платье | Апельсиновый сок"
+    explain: "Она много раз спрашивает: «¿Dónde está mi celular?» — «Где мой телефон?»"
+  - q: "Как спросить «Который час?»"
+    options: "¿Qué hora es? | ¿Dónde está? | ¿Qué me pongo?"
+  - q: "Что значит «¿Qué me pongo?»"
+    options: "Что мне надеть? | Что мне поесть? | Где мои вещи?"
+  - q: "«Eso es ___.» — «Это моё». Какое слово пропущено?"
+    options: "mío | mi | mis"
+    explain: "Mío ставится после глагола, а mi и mis — перед существительным."
+  - q: "Что у неё на завтрак?"
+    options: "Arepa, huevo, jugo de naranja, pan y leche | Café con leche y pan | Queso y jamón"
+    explain: "Она говорит: «Tengo arepa, huevo, jugo de naranja, pan y la leche»."
