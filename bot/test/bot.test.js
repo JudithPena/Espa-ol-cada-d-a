@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { beforeEach, test } from "node:test";
+import DECK from "../data/mywords.json" with { type: "json" };
 import WORDS from "../data/words.json" with { type: "json" };
 import bot from "../src/index.js";
 
@@ -155,4 +156,90 @@ test("/recordatorio присылает пробное напоминание т�
   assert.equal(calls.at(-1).body.chat_id, 1);
   await post(message("/recordatorio")); // другой ученик — обычное приветствие
   assert.doesNotMatch(calls.at(-1).body.text, /Время повторить/);
+});
+
+// ---------------------------------------------------------------- «Мои слова»
+
+const owner = (text) => ({ message: { text, chat: { id: 1, type: "private" }, from: { id: 1 } } });
+const ownerPress = (data, text = true) => ({
+  callback_query: {
+    id: "q", data, from: { id: 1 },
+    message: text ? { chat: { id: 1 }, message_id: 8, text: "…" } : { chat: { id: 1 }, message_id: 8, audio: {}, caption: "…" },
+  },
+});
+
+async function withDeck(words, fn) {
+  DECK.push(...words);
+  try {
+    await fn();
+  } finally {
+    DECK.length = 0;
+  }
+}
+
+const sample = (id, extra = {}) => ({
+  id, word: `palabra ${id}`, lang: "es", ru: `слово ${id}`, ipa: "/paˈlaβɾa/",
+  ex: ["Una palabra.", "Одно слово."], card: `<b>palabra ${id}</b> — разбор`, audio: "", ...extra,
+});
+
+test("«Мои слова» только у автора: другим — обычное приветствие", async () => {
+  await withDeck([sample("a")], async () => {
+    await post(message("/palabras"));
+    assert.doesNotMatch(calls.at(-1).body.text, /Мои слова/);
+    assert.equal(kv.has("deck:9"), false);
+    await post(press("pgo"));
+    assert.equal(kv.has("deck:9"), false);
+  });
+});
+
+test("«Мои слова»: разбор нового слова → «Дальше» → проверка → итог", async () => {
+  await withDeck([sample("a"), sample("b")], async () => {
+    await post(owner("/palabras"));
+    assert.match(calls.at(-2).body.text, /Новых слов: 2/);
+    const card = calls.at(-1);
+    assert.equal(card.method, "sendMessage");
+    assert.match(card.body.text, /🆕 1\/4[\s\S]*разбор/);
+    assert.equal(card.body.reply_markup.inline_keyboard[0][0].callback_data, "pl:a");
+
+    await post(ownerPress("pl:a"));
+    assert.equal(JSON.parse(kv.get("deck:1")).fresh, 1);
+    await post(ownerPress("pl:a")); // повторное нажатие ничего не ломает
+    assert.equal(calls.at(-1).body.text, "Эта карточка уже пройдена");
+    await post(ownerPress("pl:b"));
+    const front = calls.at(-1);
+    assert.match(front.body.text, /🔁 3\/4[\s\S]*palabra a/);
+    assert.ok(!front.body.text.includes("слово a"), "значение спрятано");
+
+    await post(ownerPress("ps:a"));
+    assert.equal(calls.at(-1).method, "editMessageText");
+    assert.match(calls.at(-1).body.text, /слово a/);
+    await post(ownerPress("pc:a")); // весь разбор отдельным сообщением
+    assert.match(calls.at(-1).body.text, /разбор/);
+    await post(ownerPress("py:a:c"));
+    await post(ownerPress("py:b"));
+    const end = calls.at(-1);
+    assert.match(end.body.text, /Готово![\s\S]*Новых слов: 2[\s\S]*Помню: 2/);
+    assert.match(end.body.text, /Новые слова в колоде закончились/);
+    const deck = JSON.parse(kv.get("deck:1"));
+    assert.equal(deck.session, null);
+    assert.equal(deck.cards.a[0], 1);
+  });
+});
+
+test("«Мои слова»: каждый день в WORDS_HOUR бот сам зовёт заниматься", async () => {
+  const run = async (iso) => {
+    const waits = [];
+    await bot.scheduled({ scheduledTime: Date.parse(iso) }, { ...env, WORDS_HOUR: "8" }, { waitUntil: (p) => waits.push(p) });
+    await Promise.all(waits);
+  };
+  await withDeck([sample("a"), sample("b")], async () => {
+    await run("2026-10-27T06:00:00Z"); // 08:00 по Киеву
+    assert.equal(calls.length, 1);
+    assert.equal(calls[0].body.chat_id, "1");
+    assert.match(calls[0].body.text, /Новых слов: 2[\s\S]*последние новые слова/);
+    assert.equal(calls[0].body.reply_markup.inline_keyboard[0][0].callback_data, "pgo");
+    calls = [];
+    await run("2026-10-27T07:00:00Z"); // 09:00 — уже не зовёт (только публикация)
+    assert.deepEqual(calls.map((c) => c.method), ["dispatch"]);
+  });
 });

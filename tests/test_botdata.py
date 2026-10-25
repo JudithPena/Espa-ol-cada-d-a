@@ -15,7 +15,7 @@ def test_bot_words_cover_course_once_in_order(course):
 def test_export_without_audio(tmp_path, course):
     result = export(course, tmp_path, audio=False)
     records = json.loads((tmp_path / "data" / "words.json").read_text(encoding="utf-8"))
-    assert result == {"words": len(records), "audio": 0}
+    assert result == {"words": len(records), "audio": 0, "deck": 0}
     lesson_ids = {lesson.id for lesson in course.lessons}
     for r in records:
         assert r["lesson"] in lesson_ids and r["es"] and r["ru"] and not r["audio"]
@@ -54,7 +54,7 @@ def test_audio_has_word_as_title(tmp_path, course, monkeypatch):
     from espanol import botdata, tts
 
     monkeypatch.setattr(tts, "available", lambda: True)
-    monkeypatch.setattr(tts, "synthesize", lambda segments, rate: b"\xff\xfbMP3")
+    monkeypatch.setattr(tts, "synthesize", lambda segments, rate, **kw: b"\xff\xfbMP3")
     monkeypatch.setattr(botdata, "bot_words", lambda c: bot_words(c)[:2])
     export(course, tmp_path, cache=tmp_path / "cache")
     record = json.loads((tmp_path / "data" / "words.json").read_text(encoding="utf-8"))[0]

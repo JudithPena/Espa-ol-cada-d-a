@@ -11,6 +11,7 @@
     send N|id           отправить конкретный урок (например, себе для проверки)
                         --rich — постом-статьёй, --chat auto — в личку тому, кто последним написал боту
     preview/send video:N  то же для разбора видео №N (рубрика вне курса, content/videos/)
+    palabras [слово]    «Мои слова» — личная колода автора в боте: сколько слов, карточка слова
     run --at 09:00      постоянный режим с расписанием
 """
 
@@ -88,6 +89,9 @@ def validate(course, lexicon, renderer, content_dir=None) -> list[str]:
         from .videos import load_videos, video_problems
 
         problems += video_problems(load_videos(content_dir, course), lexicon, renderer)
+        from .mywords import deck_problems, load_deck
+
+        problems += deck_problems(load_deck(content_dir))
     return problems
 
 
@@ -235,11 +239,35 @@ def cmd_send(args, settings) -> int:
 
 def cmd_bot_data(args, settings) -> int:
     from .botdata import export
+    from .mywords import load_deck
 
     course, _, _ = build(settings)
     result = export(course, Path(args.out), audio=not args.no_audio,
-                    cache=Path(args.audio_cache) if args.audio_cache else None)
-    print(f"Слов для бота: {result['words']}, с озвучкой: {result['audio']} → {args.out}/data/words.json")
+                    cache=Path(args.audio_cache) if args.audio_cache else None,
+                    deck=load_deck(settings.content_dir))
+    print(f"Слов для бота: {result['words']}, «Моих слов»: {result['deck']}, с озвучкой: {result['audio']} "
+          f"→ {args.out}/data/")
+    return 0
+
+
+def cmd_palabras(args, settings) -> int:
+    from .markup import strip_tags
+    from .mywords import FOLDER, find_word, load_deck, render_card
+
+    words = load_deck(settings.content_dir)
+    if args.word:
+        word = find_word(words, args.word)
+        card = render_card(word)
+        print(f"{word.source} · id {word.id}\n")
+        print(card if args.html else strip_tags(card))
+        return 0
+    by_file: dict[str, int] = {}
+    for w in words:
+        name = w.source.split(",")[0]
+        by_file[name] = by_file.get(name, 0) + 1
+    for name, count in by_file.items():
+        print(f"{name}: {count}")
+    print(f"В колоде «Мои слова»: {len(words)} (content/{FOLDER}/)")
     return 0
 
 
@@ -282,6 +310,9 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--out", default="bot", help="папка бота")
     p.add_argument("--audio-cache", help="папка с готовой озвучкой (кеш между запусками)")
     p.add_argument("--no-audio", action="store_true", help="без озвучки")
+    p = sub.add_parser("palabras", help="«Мои слова»: личная колода автора в боте")
+    p.add_argument("word", nargs="?", help="слово или id — показать его карточку")
+    p.add_argument("--html", action="store_true", help="показать HTML вместо текста")
     p = sub.add_parser("run", help="постоянный режим")
     p.add_argument("--at", action="append", help="время публикации ЧЧ:ММ (можно несколько)")
 

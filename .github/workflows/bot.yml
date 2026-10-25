@@ -128,6 +128,7 @@ jobs:
         if: steps.check.outputs.ready == 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_REVIEW_CHAT_ID }}
           BOT_URL: ${{ steps.deploy.outputs.url }}
         run: |
           webhook=$(printf 'webhook:%s' "$TELEGRAM_BOT_TOKEN" | sha256sum | cut -c1-48)
@@ -139,4 +140,12 @@ jobs:
           curl -fsS "$tg/setMyCommands" -H "Content-Type: application/json" -d '{"commands": [
             {"command": "repaso", "description": "Повторить слова"},
             {"command": "progreso", "description": "Сколько слов выучено"}]}' > /dev/null
+          if [ -n "$ADMIN_CHAT_ID" ]; then  # у автора в меню ещё «Мои слова»
+            curl -fsS "$tg/setMyCommands" -H "Content-Type: application/json" -d "{
+              \"scope\": {\"type\": \"chat\", \"chat_id\": $ADMIN_CHAT_ID}, \"commands\": [
+              {\"command\": \"palabras\", \"description\": \"Мои слова: новые и повторение\"},
+              {\"command\": \"repaso\", \"description\": \"Повторить слова курса\"},
+              {\"command\": \"progreso\", \"description\": \"Сколько слов выучено\"}]}" > /dev/null \
+              || echo "::warning::Не удалось поставить меню «Мои слова»: проверьте TELEGRAM_REVIEW_CHAT_ID."
+          fi
           echo "Бот работает: $BOT_URL"

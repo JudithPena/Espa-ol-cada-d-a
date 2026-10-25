@@ -5,15 +5,22 @@
 //    /progreso — сколько слов выучено, /id — номер чата (для TELEGRAM_REVIEW_CHAT_ID).
 //  • В дни REMIND_DAYS в REMIND_HOUR по Киеву сам предлагает в личке повторить слова
 //    всем, кто уже писал боту (кроме тех, кто нажал «Не напоминать»).
-// Слова — bot/data/words.json (python -m espanol bot-data), озвучка — bot/public/audio/.
+//  • «Мои слова» — личная колода автора (только чат ADMIN_CHAT_ID): /palabras — разборы новых слов
+//    и повторение, каждый день в WORDS_HOUR по Киеву бот сам зовёт заниматься (deck.js).
+// Слова — bot/data/words.json и bot/data/mywords.json (python -m espanol bot-data), озвучка — bot/public/audio/.
 // Прогресс каждого ученика хранится в KV (binding SRS).
 
+import DECK from "../data/mywords.json" with { type: "json" };
 import WORDS from "../data/words.json" with { type: "json" };
+import {
+  currentItem, deckProgress, freshLeft, learn, newDeck, NEW_PER_DAY, recall, startDeckSession,
+} from "./deck.js";
 import {
   answer, buildLessonQueue, currentId, dayNumber, localHour, localWeekday, newUser, progress, startSession,
 } from "./srs.js";
 
 const BY_ID = new Map(WORDS.map((w) => [w.id, w]));
+const deckWord = (id) => DECK.find((w) => w.id === id); // колода небольшая, тесты дополняют её на ходу
 
 export default {
   async fetch(request, env, ctx) {
@@ -40,6 +47,7 @@ export default {
     if (hour === Number(env.REMIND_HOUR) && numbers(env.REMIND_DAYS).includes(localWeekday(now, env.TIMEZONE))) {
       ctx.waitUntil(sendReminders(env));
     }
+    if (hour === Number(env.WORDS_HOUR)) ctx.waitUntil(sendDeckDaily(env));
   },
 };
 
@@ -102,6 +110,10 @@ async function handleUpdate(update, env, origin) {
   const [command, param = ""] = (msg.text || "").trim().split(/\s+/);
   const cmd = command.split("@")[0].toLowerCase();
   const chat = msg.chat.id;
+  const owner = isOwner(env, msg.from.id);
+  if (owner && (cmd === "/palabras" || (cmd === "/start" && param === "palabras"))) {
+    return startDeck(env, chat, msg.from.id, origin);
+  }
   // Ссылки из уроков: t.me/бот?start=l-<урок> — слова этого урока, ?start=repaso — обычное повторение.
   if (cmd === "/start" && param.startsWith("l-")) return startRepaso(env, chat, msg.from.id, origin, param.slice(2));
   if (cmd === "/repaso" || (cmd === "/start" && param === "repaso")) return startRepaso(env, chat, msg.from.id, origin);
@@ -122,7 +134,8 @@ async function handleUpdate(update, env, origin) {
       "Вспомните перевод, откройте карточку и честно отметьте, помните ли вы слово. " +
       "Если помните, слово вернётся через несколько дней, а если нет — повторим его ещё раз.\n\n" +
       "По средам и субботам вечером я сам напомню, если есть что повторить.\n\n" +
-      "/repaso — повторить слова\n/progreso — сколько слов уже выучено",
+      "/repaso — повторить слова\n/progreso — сколько слов уже выучено" +
+      (owner ? "\n/palabras — ваши слова: разборы новых и повторение" : ""),
     reply_markup: START_BUTTON,
   });
 }
@@ -130,6 +143,7 @@ async function handleUpdate(update, env, origin) {
 async function handleCallback(cq, env, origin) {
   const chat = cq.message && cq.message.chat.id;
   const [action, id] = String(cq.data || "").split(":");
+  if (action.startsWith("p") && isOwner(env, cq.from.id)) return handleDeckCallback(cq, env, origin);
   if (action === "go") {
     await tg(env, "answerCallbackQuery", { callback_query_id: cq.id });
     return startRepaso(env, chat, cq.from.id, origin);
@@ -234,20 +248,22 @@ async function sendCard(env, chat, user, origin) {
   const s = user.session;
   const word = BY_ID.get(currentId(user));
   const markup = keyboard([[{ text: "👀 Показать перевод", callback_data: `s:${word.id}` }]]);
-  if (word.audio) { // карточка с озвучкой: слово и пример можно сразу послушать
-    const cached = await env.SRS.get(`audio:${word.audio}`);
-    const sent = await tg(env, "sendAudio", {
-      chat_id: chat, audio: cached || `${origin}/audio/${word.audio}`,
-      title: word.es, performer: "Español cada día",
-      caption: front(word, s), parse_mode: "HTML", reply_markup: markup,
-    });
-    if (sent.ok) {
-      const file = sent.result.audio || sent.result.voice;
-      if (!cached && file) await env.SRS.put(`audio:${word.audio}`, file.file_id);
-      return sent;
-    }
-  }
-  return tg(env, "sendMessage", { chat_id: chat, text: front(word, s), parse_mode: "HTML", reply_markup: markup });
+  return (word.audio && await sendAudio(env, chat, origin, word.audio, word.es, front(word, s), markup)) ||
+    tg(env, "sendMessage", { chat_id: chat, text: front(word, s), parse_mode: "HTML", reply_markup: markup });
+}
+
+// Карточка с озвучкой: слово и пример можно сразу послушать. Если аудио не ушло — null, тогда шлём текстом.
+async function sendAudio(env, chat, origin, file, title, caption, markup) {
+  const cached = await env.SRS.get(`audio:${file}`);
+  const sent = await tg(env, "sendAudio", {
+    chat_id: chat, audio: cached || `${origin}/audio/${file}`,
+    title, performer: "Español cada día",
+    caption, parse_mode: "HTML", reply_markup: markup,
+  });
+  if (!sent.ok) return null;
+  const audio = sent.result.audio || sent.result.voice;
+  if (!cached && audio) await env.SRS.put(`audio:${file}`, audio.file_id); // дальше Telegram берёт из своего кеша
+  return sent;
 }
 
 function editCard(env, message, text, markup) {
@@ -316,6 +332,199 @@ async function rememberUser(env, userId) {
     users.push(userId);
     await env.SRS.put("users", JSON.stringify(users));
   }
+}
+
+// ---------------------------------------------------------------- «Мои слова»
+
+// Колода только у автора: его личный чат — TELEGRAM_REVIEW_CHAT_ID (ADMIN_CHAT_ID).
+function isOwner(env, userId) {
+  return Boolean(env.ADMIN_CHAT_ID) && String(userId) === String(env.ADMIN_CHAT_ID);
+}
+
+const perDay = (env) => Number(env.WORDS_PER_DAY) || NEW_PER_DAY;
+
+async function startDeck(env, chat, userId, origin) {
+  const deck = await loadDeck(env, userId);
+  const today = dayNumber(new Date(), env.TIMEZONE);
+  if (deck.session && deck.session.day === today && currentItem(deck)) { // занятие уже идёт — продолжаем
+    return sendDeckCard(env, chat, deck, origin);
+  }
+  const s = startDeckSession(deck, DECK, today, perDay(env));
+  await saveDeck(env, userId, deck);
+  if (!s) {
+    const p = deckProgress(deck, DECK, today);
+    return tg(env, "sendMessage", {
+      chat_id: chat,
+      text: !DECK.length ? "В колоде пока нет слов. Пришлите Claude список — он напишет к каждому слову разбор."
+        : p.fresh ? "👏 На сегодня всё: новые слова будут завтра, а повторять пока нечего."
+          : "👏 Всё повторено, а новые слова в колоде закончились. Пришлите Claude ещё список.",
+    });
+  }
+  const fresh = s.queue.filter((q) => q.startsWith("l:")).length;
+  const due = s.queue.length - 2 * fresh;
+  await tg(env, "sendMessage", {
+    chat_id: chat,
+    parse_mode: "HTML",
+    text: "📒 <b>Мои слова</b>\n\n" +
+      [fresh && `🆕 Новых слов: ${fresh} — сначала прочитайте разборы, в конце проверим`,
+        due && `🔁 Повторить: ${due}`].filter(Boolean).join("\n"),
+  });
+  return sendDeckCard(env, chat, deck, origin);
+}
+
+function deckHeader(deck, mode) {
+  const s = deck.session;
+  return `${mode === "l" ? "🆕" : "🔁"} ${s.pos + 1}/${s.queue.length}`;
+}
+
+function deckBack(word, header) {
+  let text = `${header}\n\n<b>${esc(word.word)}</b> ${esc(word.ipa)}\n— ${esc(word.ru)}`;
+  if (word.ex) text += `\n\n<i>${esc(word.ex[0])}</i> — ${esc(word.ex[1])}`;
+  return text;
+}
+
+const recallButtons = (id, from = "") => [
+  { text: "✅ Помню", callback_data: `py:${id}${from}` },
+  { text: "❌ Не помню", callback_data: `pn:${id}${from}` },
+];
+
+async function sendDeckCard(env, chat, deck, origin) {
+  const [mode, id] = currentItem(deck);
+  const word = deckWord(id);
+  if (!word) { // слово убрали из колоды, пока шло занятие
+    deck.session = null;
+    await saveDeck(env, chat, deck);
+    return tg(env, "sendMessage", { chat_id: chat, text: "Колода обновилась — начните заново: /palabras" });
+  }
+  const header = deckHeader(deck, mode);
+  if (mode === "l") { // разбор нового слова: сначала озвучка, потом карточка целиком
+    if (word.audio) await sendAudio(env, chat, origin, word.audio, word.word, `${header} · <b>${esc(word.word)}</b>`);
+    return tg(env, "sendMessage", {
+      chat_id: chat, parse_mode: "HTML", text: `${header}\n\n${word.card}`,
+      link_preview_options: { is_disabled: true },
+      reply_markup: keyboard([[{ text: "➡️ Дальше", callback_data: `pl:${id}` }]]),
+    });
+  }
+  const text = `${header}\n\n<b>${esc(word.word)}</b>\n\nВспомните значение и откройте карточку.`;
+  const markup = keyboard([[{ text: "👀 Показать", callback_data: `ps:${id}` }]]);
+  return (word.audio && await sendAudio(env, chat, origin, word.audio, word.word, text, markup)) ||
+    tg(env, "sendMessage", { chat_id: chat, text, parse_mode: "HTML", reply_markup: markup });
+}
+
+async function handleDeckCallback(cq, env, origin) {
+  const chat = cq.message && cq.message.chat.id;
+  const [action, id, from] = String(cq.data || "").split(":");
+  const done = (text) => tg(env, "answerCallbackQuery", { callback_query_id: cq.id, text });
+  if (action === "pgo") {
+    await done();
+    return startDeck(env, chat, cq.from.id, origin);
+  }
+  const deck = await loadDeck(env, cq.from.id);
+  const item = currentItem(deck);
+  const word = deckWord(id);
+  const mode = action === "pl" ? "l" : "r";
+  if (!item || item[0] !== mode || item[1] !== id || !word) return done("Эта карточка уже пройдена");
+  const today = dayNumber(new Date(), env.TIMEZONE);
+  const header = deckHeader(deck, mode);
+  if (action === "pl") { // разбор прочитан
+    const more = learn(deck, id, today);
+    if (!more) deck.session = null;
+    await saveDeck(env, cq.from.id, deck);
+    await done();
+    await tg(env, "editMessageReplyMarkup", {
+      chat_id: chat, message_id: cq.message.message_id, reply_markup: keyboard([]),
+    });
+    return more ? sendDeckCard(env, chat, deck, origin) : finishDeck(env, chat, cq.from.id, deck, deck.session);
+  }
+  if (action === "ps") { // показать оборот
+    await done();
+    return editCard(env, cq.message, deckBack(word, header), keyboard([
+      recallButtons(id), [{ text: "📖 Весь разбор", callback_data: `pc:${id}` }],
+    ]));
+  }
+  if (action === "pc") { // разбор целиком — отдельным сообщением, с теми же кнопками
+    await done();
+    return tg(env, "sendMessage", {
+      chat_id: chat, parse_mode: "HTML", text: `${header}\n\n${word.card}`,
+      link_preview_options: { is_disabled: true }, reply_markup: keyboard([recallButtons(id, ":c")]),
+    });
+  }
+  if (action !== "py" && action !== "pn") return done();
+  const known = action === "py";
+  const s = deck.session;
+  const { more, retry } = recall(deck, id, known, today);
+  if (!more) deck.session = null;
+  await saveDeck(env, cq.from.id, deck);
+  await done();
+  const mark = known ? "✅ Помню" : retry ? "🔁 Не помню — вернётся через пару карточек" : "🔁 Не помню — повторим в следующий раз";
+  if (from === "c") { // ответили под полным разбором: его не трогаем, только убираем кнопки
+    await tg(env, "editMessageReplyMarkup", {
+      chat_id: chat, message_id: cq.message.message_id, reply_markup: keyboard([]),
+    });
+    await tg(env, "sendMessage", { chat_id: chat, text: `${word.word}: ${mark}` });
+  } else {
+    await editCard(env, cq.message, `${deckBack(word, header)}\n\n${mark}`, keyboard([]));
+  }
+  return more ? sendDeckCard(env, chat, deck, origin) : finishDeck(env, chat, cq.from.id, deck, s);
+}
+
+async function finishDeck(env, chat, userId, deck, s) {
+  const today = dayNumber(new Date(), env.TIMEZONE);
+  const p = deckProgress(deck, DECK, today);
+  const next = p.due ? `Ещё пора повторить: ${p.due}.`
+    : !p.fresh ? "Новые слова в колоде закончились — пришлите Claude ещё список."
+      : freshLeft(deck, today, perDay(env)) ? "" : "Новые слова — завтра. ¡Hasta mañana!";
+  return tg(env, "sendMessage", {
+    chat_id: chat,
+    parse_mode: "HTML",
+    text: `🎉 <b>Готово!</b> ` + (s && s.learned ? `Новых слов: ${s.learned}. ` : "") +
+      (s ? `Помню: ${s.right}, не помню: ${s.wrong}.` : "") + `\n\n${deckSummary(p)}` + (next ? `\n\n${next}` : ""),
+    reply_markup: p.due ? keyboard([[{ text: "🔁 Повторить ещё", callback_data: "pgo" }]]) : undefined,
+  });
+}
+
+function deckSummary(p) {
+  return `📒 Слов в колоде: ${p.total}\n` +
+    `🌱 Учите сейчас: ${p.seen - p.learned}\n` +
+    `🏆 Выучено: ${p.learned} — помните неделю и дольше\n` +
+    `🆕 Ещё не начинали: ${p.fresh}`;
+}
+
+// Каждый день в WORDS_HOUR: сколько сегодня новых слов и повторений. Если заниматься нечем, молчим;
+// о том, что новые слова кончились, говорим один раз (до пополнения колоды).
+export async function sendDeckDaily(env) {
+  if (!env.ADMIN_CHAT_ID || !DECK.length) return;
+  const deck = await loadDeck(env, env.ADMIN_CHAT_ID);
+  const today = dayNumber(new Date(), env.TIMEZONE);
+  const p = deckProgress(deck, DECK, today);
+  const fresh = Math.min(freshLeft(deck, today, perDay(env)), p.fresh);
+  if (!fresh && !p.due) {
+    if (p.fresh || deck.toldEmpty === DECK.length) return;
+    deck.toldEmpty = DECK.length;
+    await saveDeck(env, env.ADMIN_CHAT_ID, deck);
+    return tg(env, "sendMessage", {
+      chat_id: env.ADMIN_CHAT_ID,
+      text: "📒 Все слова из колоды уже в работе, сегодня повторять нечего. Пришлите Claude новый список слов.",
+    });
+  }
+  const minutes = Math.max(3, Math.round(fresh * 1.5 + p.due * 0.3));
+  const last = p.fresh && p.fresh === fresh ? "\n\n⚠️ Это последние новые слова в колоде — пришлите Claude ещё список." : "";
+  return tg(env, "sendMessage", {
+    chat_id: env.ADMIN_CHAT_ID,
+    parse_mode: "HTML",
+    text: "☀️ <b>Мои слова на сегодня</b>\n\n" +
+      [fresh && `🆕 Новых слов: ${fresh}`, p.due && `🔁 Повторить: ${p.due}`].filter(Boolean).join("\n") +
+      `\n\nЭто примерно ${minutes} мин.${last}`,
+    reply_markup: keyboard([[{ text: "▶️ Начать", callback_data: "pgo" }]]),
+  });
+}
+
+async function loadDeck(env, userId) {
+  return (await env.SRS.get(`deck:${userId}`, "json")) || newDeck();
+}
+
+function saveDeck(env, userId, deck) {
+  return env.SRS.put(`deck:${userId}`, JSON.stringify(deck));
 }
 
 // ---------------------------------------------------------------- данные
