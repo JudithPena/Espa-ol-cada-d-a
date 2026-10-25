@@ -198,7 +198,7 @@ test("«Мои слова»: разбор нового слова → «Даль
     assert.match(calls.at(-2).body.text, /Новых слов: 2/);
     const card = calls.at(-1);
     assert.equal(card.method, "sendMessage");
-    assert.match(card.body.text, /🆕 1\/4[\s\S]*разбор/);
+    assert.match(card.body.text, /🆕 Новое слово 1\/2[\s\S]*разбор/);
     assert.equal(card.body.reply_markup.inline_keyboard[0][0].callback_data, "pl:a");
 
     await post(ownerPress("pl:a"));
@@ -207,7 +207,7 @@ test("«Мои слова»: разбор нового слова → «Даль
     assert.equal(calls.at(-1).body.text, "Эта карточка уже пройдена");
     await post(ownerPress("pl:b"));
     const front = calls.at(-1);
-    assert.match(front.body.text, /🔁 3\/4[\s\S]*palabra a/);
+    assert.match(front.body.text, /🔁 Повторение 1\/2[\s\S]*palabra a/);
     assert.ok(!front.body.text.includes("слово a"), "значение спрятано");
 
     await post(ownerPress("ps:a"));

@@ -372,9 +372,12 @@ async function startDeck(env, chat, userId, origin) {
   return sendDeckCard(env, chat, deck, origin);
 }
 
+// Свой счёт у разборов новых слов и у повторения (с проверкой новых): «Новое слово 3/10», «Повторение 1/12».
 function deckHeader(deck, mode) {
   const s = deck.session;
-  return `${mode === "l" ? "🆕" : "🔁"} ${s.pos + 1}/${s.queue.length}`;
+  const mine = (q) => q.startsWith(`${mode}:`);
+  const n = s.queue.slice(0, s.pos + 1).filter(mine).length;
+  return `${mode === "l" ? "🆕 Новое слово" : "🔁 Повторение"} ${n}/${s.queue.filter(mine).length}`;
 }
 
 function deckBack(word, header) {
