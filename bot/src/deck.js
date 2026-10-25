@@ -36,13 +36,24 @@ export function startDeckSession(deck, words, today, perDay = NEW_PER_DAY) {
 }
 
 // Варианты ответа: перевод слова и CHOICES - 1 переводов других слов того же языка, вперемешку.
+// Переводы с общим значением не ставим рядом («поведение» и «отношение, поведение»): верным был бы не один.
 // Если похожих слов в колоде меньше двух, вариантов нет — тогда карточка «Помню / Не помню».
 export function choices(word, words, n = CHOICES, random = Math.random) {
-  const seen = new Set([word.ru]);
-  const others = shuffle(words.filter((w) => w.id !== word.id && w.lang === word.lang), random)
-    .filter((w) => !seen.has(w.ru) && seen.add(w.ru))
-    .slice(0, n - 1);
+  const taken = meanings(word.ru);
+  const others = [];
+  for (const w of shuffle(words.filter((x) => x.id !== word.id && x.lang === word.lang), random)) {
+    if (others.length >= n - 1) break;
+    const m = meanings(w.ru);
+    if ([...m].some((x) => taken.has(x))) continue;
+    m.forEach((x) => taken.add(x));
+    others.push(w);
+  }
   return others.length ? shuffle([word, ...others], random).map((w) => w.id) : [];
+}
+
+// «понять, осознать (что-то)» → {понять, осознать}
+function meanings(ru) {
+  return new Set(String(ru).toLowerCase().replace(/\([^)]*\)/g, "").split(/[,;/]/).map((x) => x.trim()).filter(Boolean));
 }
 
 function shuffle(list, random) {

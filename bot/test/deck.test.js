@@ -66,4 +66,7 @@ test("варианты ответа: перевод слова и перевод
   }
   assert.equal(choices(deck[0], deck, 6).length, 4, "сколько есть разных переводов");
   assert.deepEqual(choices(deck[5], deck), [], "одно английское слово — вариантов нет");
+  const close = [{ id: "x", lang: "es", ru: "поведение" }, { id: "y", lang: "es", ru: "отношение, поведение" },
+    { id: "z", lang: "es", ru: "ревность (к кому-то)" }];
+  for (let i = 0; i < 20; i++) assert.deepEqual(choices(close[0], close).sort(), ["x", "z"], "общее значение — не вариант");
 });
