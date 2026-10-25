@@ -7,6 +7,7 @@
 import { INTERVALS, LEARNED_BOX, RETRY_GAP } from "./srs.js";
 
 export const NEW_PER_DAY = 10;
+export const CHOICES = 4; // вариантов перевода на карточке повторения
 export const REVIEW_LIMIT = 60; // повторений за одно занятие, не больше
 
 export function newDeck() {
@@ -32,6 +33,25 @@ export function startDeckSession(deck, words, today, perDay = NEW_PER_DAY) {
   const queue = deckQueue(deck, words, today, perDay);
   deck.session = queue.length ? { queue, pos: 0, retry: [], right: 0, wrong: 0, learned: 0, day: today } : null;
   return deck.session;
+}
+
+// Варианты ответа: перевод слова и CHOICES - 1 переводов других слов того же языка, вперемешку.
+// Если похожих слов в колоде меньше двух, вариантов нет — тогда карточка «Помню / Не помню».
+export function choices(word, words, n = CHOICES, random = Math.random) {
+  const seen = new Set([word.ru]);
+  const others = shuffle(words.filter((w) => w.id !== word.id && w.lang === word.lang), random)
+    .filter((w) => !seen.has(w.ru) && seen.add(w.ru))
+    .slice(0, n - 1);
+  return others.length ? shuffle([word, ...others], random).map((w) => w.id) : [];
+}
+
+function shuffle(list, random) {
+  const a = [...list];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
 }
 
 // Текущая карточка: ["l" | "r", id] или null.

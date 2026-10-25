@@ -192,37 +192,62 @@ test("«Мои слова» только у автора: другим — об�
   });
 });
 
-test("«Мои слова»: разбор нового слова → «Дальше» → проверка → итог", async () => {
-  await withDeck([sample("a"), sample("b")], async () => {
+test("«Мои слова»: разбор нового слова → «Дальше» → проверка с вариантами перевода → итог", async () => {
+  await withDeck([sample("a"), sample("b"), sample("c"), sample("d"), sample("e", { lang: "en" })], async () => {
+    env.WORDS_PER_DAY = "2";
+    try {
+      await post(owner("/palabras"));
+      assert.match(calls.at(-2).body.text, /Новых слов: 2/);
+      const card = calls.at(-1);
+      assert.equal(card.method, "sendMessage");
+      assert.match(card.body.text, /🆕 Новое слово 1\/2[\s\S]*разбор/);
+      assert.equal(card.body.reply_markup.inline_keyboard[0][0].callback_data, "pl:a");
+
+      await post(ownerPress("pl:a"));
+      assert.equal(JSON.parse(kv.get("deck:1")).fresh, 1);
+      await post(ownerPress("pl:a")); // повторное нажатие ничего не ломает
+      assert.equal(calls.at(-1).body.text, "Эта карточка уже пройдена");
+      await post(ownerPress("pl:b"));
+      const front = calls.at(-1);
+      assert.match(front.body.text, /🔁 Повторение 1\/2[\s\S]*palabra a[\s\S]*Выберите перевод/);
+      const options = front.body.reply_markup.inline_keyboard.map((row) => row[0]);
+      assert.equal(options.length, 4, "4 варианта: перевод и 3 перевода других испанских слов");
+      assert.ok(options.some((o) => o.text === "слово a") && !options.some((o) => o.text === "слово e"));
+
+      await post(ownerPress(options.find((o) => o.text === "слово a").callback_data)); // верно
+      assert.match(calls.find((c) => c.method === "editMessageText" && /Верно/.test(c.body.text)).body.text, /слово a/);
+      assert.match(calls.at(-1).body.text, /Повторение 2\/2[\s\S]*palabra b/);
+
+      const wrong = calls.at(-1).body.reply_markup.inline_keyboard.map((row) => row[0]).find((o) => o.text !== "слово b");
+      await post(ownerPress(wrong.callback_data)); // ошибка — правильный ответ и «Дальше»
+      assert.match(calls.at(-1).body.text, /Вы выбрали[\s\S]*Повторим в следующий раз/);
+      assert.equal(calls.at(-1).body.reply_markup.inline_keyboard[0][0].callback_data, "pf");
+      await post(ownerPress("pc:b")); // весь разбор можно открыть и после ответа
+      assert.match(calls.at(-1).body.text, /разбор/);
+      await post(ownerPress("pf"));
+      const end = calls.at(-1);
+      assert.match(end.body.text, /Готово![\s\S]*Новых слов: 2[\s\S]*Верно: 1, ошибок: 1/);
+      await post(ownerPress("pf"));
+      assert.equal(calls.at(-1).body.text, "Эта карточка уже пройдена");
+      const deck = JSON.parse(kv.get("deck:1"));
+      assert.equal(deck.session, null);
+      assert.equal(deck.cards.a[0], 1);
+      assert.equal(deck.cards.b[0], 0);
+    } finally {
+      delete env.WORDS_PER_DAY;
+    }
+  });
+});
+
+test("«Мои слова»: если вариантов нет — карточка «Помню / Не помню»", async () => {
+  await withDeck([sample("a")], async () => {
     await post(owner("/palabras"));
-    assert.match(calls.at(-2).body.text, /Новых слов: 2/);
-    const card = calls.at(-1);
-    assert.equal(card.method, "sendMessage");
-    assert.match(card.body.text, /🆕 Новое слово 1\/2[\s\S]*разбор/);
-    assert.equal(card.body.reply_markup.inline_keyboard[0][0].callback_data, "pl:a");
-
     await post(ownerPress("pl:a"));
-    assert.equal(JSON.parse(kv.get("deck:1")).fresh, 1);
-    await post(ownerPress("pl:a")); // повторное нажатие ничего не ломает
-    assert.equal(calls.at(-1).body.text, "Эта карточка уже пройдена");
-    await post(ownerPress("pl:b"));
-    const front = calls.at(-1);
-    assert.match(front.body.text, /🔁 Повторение 1\/2[\s\S]*palabra a/);
-    assert.ok(!front.body.text.includes("слово a"), "значение спрятано");
-
+    assert.equal(calls.at(-1).body.reply_markup.inline_keyboard[0][0].callback_data, "ps:a");
     await post(ownerPress("ps:a"));
-    assert.equal(calls.at(-1).method, "editMessageText");
     assert.match(calls.at(-1).body.text, /слово a/);
-    await post(ownerPress("pc:a")); // весь разбор отдельным сообщением
-    assert.match(calls.at(-1).body.text, /разбор/);
-    await post(ownerPress("py:a:c"));
-    await post(ownerPress("py:b"));
-    const end = calls.at(-1);
-    assert.match(end.body.text, /Готово![\s\S]*Новых слов: 2[\s\S]*Помню: 2/);
-    assert.match(end.body.text, /Новые слова в колоде закончились/);
-    const deck = JSON.parse(kv.get("deck:1"));
-    assert.equal(deck.session, null);
-    assert.equal(deck.cards.a[0], 1);
+    await post(ownerPress("py:a"));
+    assert.match(calls.at(-1).body.text, /Готово![\s\S]*Верно: 1/);
   });
 });
 

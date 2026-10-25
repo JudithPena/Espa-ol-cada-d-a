@@ -13,7 +13,7 @@
 import DECK from "../data/mywords.json" with { type: "json" };
 import WORDS from "../data/words.json" with { type: "json" };
 import {
-  currentItem, deckProgress, freshLeft, learn, newDeck, NEW_PER_DAY, recall, startDeckSession,
+  choices, currentItem, deckProgress, freshLeft, learn, newDeck, NEW_PER_DAY, recall, startDeckSession,
 } from "./deck.js";
 import {
   answer, buildLessonQueue, currentId, dayNumber, localHour, localWeekday, newUser, progress, startSession,
@@ -386,14 +386,16 @@ function deckBack(word, header) {
   return text;
 }
 
-const recallButtons = (id, from = "") => [
-  { text: "✅ Помню", callback_data: `py:${id}${from}` },
-  { text: "❌ Не помню", callback_data: `pn:${id}${from}` },
+const recallButtons = (id) => [
+  { text: "✅ Помню", callback_data: `py:${id}` },
+  { text: "❌ Не помню", callback_data: `pn:${id}` },
 ];
+const fullButton = (id) => [{ text: "📖 Весь разбор", callback_data: `pc:${id}` }];
 
 async function sendDeckCard(env, chat, deck, origin) {
   const [mode, id] = currentItem(deck);
   const word = deckWord(id);
+  const s = deck.session;
   if (!word) { // слово убрали из колоды, пока шло занятие
     deck.session = null;
     await saveDeck(env, chat, deck);
@@ -408,21 +410,44 @@ async function sendDeckCard(env, chat, deck, origin) {
       reply_markup: keyboard([[{ text: "➡️ Дальше", callback_data: `pl:${id}` }]]),
     });
   }
-  const text = `${header}\n\n<b>${esc(word.word)}</b>\n\nВспомните значение и откройте карточку.`;
-  const markup = keyboard([[{ text: "👀 Показать", callback_data: `ps:${id}` }]]);
+  // Повторение: слово и варианты перевода — бот сам видит, верно ли. Варианты помним до ответа.
+  s.opts = choices(word, DECK, Number(env.CHOICES) || undefined);
+  s.waiting = false;
+  await saveDeck(env, chat, deck);
+  const text = `${header}\n\n<b>${esc(word.word)}</b>\n\n` +
+    (s.opts.length ? "Выберите перевод:" : "Вспомните значение и откройте карточку.");
+  const markup = keyboard(s.opts.length
+    ? s.opts.map((opt, k) => [{ text: deckWord(opt).ru, callback_data: `pa:${id}:${k}` }])
+    : [[{ text: "👀 Показать", callback_data: `ps:${id}` }]]);
   return (word.audio && await sendAudio(env, chat, origin, word.audio, word.word, text, markup)) ||
     tg(env, "sendMessage", { chat_id: chat, text, parse_mode: "HTML", reply_markup: markup });
 }
 
 async function handleDeckCallback(cq, env, origin) {
   const chat = cq.message && cq.message.chat.id;
-  const [action, id, from] = String(cq.data || "").split(":");
+  const [action, id, choice] = String(cq.data || "").split(":");
   const done = (text) => tg(env, "answerCallbackQuery", { callback_query_id: cq.id, text });
   if (action === "pgo") {
     await done();
     return startDeck(env, chat, cq.from.id, origin);
   }
   const deck = await loadDeck(env, cq.from.id);
+  const s = deck.session;
+  if (action === "pc") { // разбор целиком — отдельным сообщением, в любой момент
+    const word = deckWord(id);
+    await done();
+    return word && tg(env, "sendMessage", {
+      chat_id: chat, parse_mode: "HTML", text: `📖 ${word.card}`, link_preview_options: { is_disabled: true },
+    });
+  }
+  if (action === "pf") { // «Дальше» после ошибки
+    if (!s || !s.waiting) return done("Эта карточка уже пройдена");
+    await done();
+    if (currentItem(deck)) return sendDeckCard(env, chat, deck, origin);
+    deck.session = null;
+    await saveDeck(env, cq.from.id, deck);
+    return finishDeck(env, chat, deck, s);
+  }
   const item = currentItem(deck);
   const word = deckWord(id);
   const mode = action === "pl" ? "l" : "r";
@@ -437,41 +462,41 @@ async function handleDeckCallback(cq, env, origin) {
     await tg(env, "editMessageReplyMarkup", {
       chat_id: chat, message_id: cq.message.message_id, reply_markup: keyboard([]),
     });
-    return more ? sendDeckCard(env, chat, deck, origin) : finishDeck(env, chat, cq.from.id, deck, deck.session);
+    return more ? sendDeckCard(env, chat, deck, origin) : finishDeck(env, chat, deck, s);
   }
-  if (action === "ps") { // показать оборот
+  if (action === "ps") { // показать оборот (когда вариантов нет)
     await done();
-    return editCard(env, cq.message, deckBack(word, header), keyboard([
-      recallButtons(id), [{ text: "📖 Весь разбор", callback_data: `pc:${id}` }],
-    ]));
+    return editCard(env, cq.message, deckBack(word, header), keyboard([recallButtons(id), fullButton(id)]));
   }
-  if (action === "pc") { // разбор целиком — отдельным сообщением, с теми же кнопками
-    await done();
-    return tg(env, "sendMessage", {
-      chat_id: chat, parse_mode: "HTML", text: `${header}\n\n${word.card}`,
-      link_preview_options: { is_disabled: true }, reply_markup: keyboard([recallButtons(id, ":c")]),
-    });
+  let known;
+  let chosen = null;
+  if (action === "pa") { // выбран вариант перевода
+    chosen = deckWord((s.opts || [])[Number(choice)]);
+    if (!chosen) return done("Эта карточка уже пройдена");
+    known = chosen.id === id;
+  } else if (action === "py" || action === "pn") {
+    known = action === "py";
+  } else {
+    return done();
   }
-  if (action !== "py" && action !== "pn") return done();
-  const known = action === "py";
-  const s = deck.session;
   const { more, retry } = recall(deck, id, known, today);
+  const later = retry ? "Слово вернётся через пару карточек." : "Повторим в следующий раз.";
+  if (!known && chosen) { // ошибка: показываем правильный ответ и ждём «Дальше», чтобы успеть прочитать
+    s.waiting = true;
+    await saveDeck(env, cq.from.id, deck);
+    await done("❌ Неверно");
+    return editCard(env, cq.message, `${deckBack(word, header)}\n\n❌ Вы выбрали: ${esc(chosen.ru)} — ` +
+      `это <b>${esc(chosen.word)}</b>. ${later}`, keyboard([[{ text: "➡️ Дальше", callback_data: "pf" }], fullButton(id)]));
+  }
   if (!more) deck.session = null;
   await saveDeck(env, cq.from.id, deck);
-  await done();
-  const mark = known ? "✅ Помню" : retry ? "🔁 Не помню — вернётся через пару карточек" : "🔁 Не помню — повторим в следующий раз";
-  if (from === "c") { // ответили под полным разбором: его не трогаем, только убираем кнопки
-    await tg(env, "editMessageReplyMarkup", {
-      chat_id: chat, message_id: cq.message.message_id, reply_markup: keyboard([]),
-    });
-    await tg(env, "sendMessage", { chat_id: chat, text: `${word.word}: ${mark}` });
-  } else {
-    await editCard(env, cq.message, `${deckBack(word, header)}\n\n${mark}`, keyboard([]));
-  }
-  return more ? sendDeckCard(env, chat, deck, origin) : finishDeck(env, chat, cq.from.id, deck, s);
+  await done(known && chosen ? "✅ Верно!" : undefined);
+  const mark = known ? (chosen ? "✅ Верно!" : "✅ Помню") : `🔁 Не помню. ${later}`;
+  await editCard(env, cq.message, `${deckBack(word, header)}\n\n${mark}`, keyboard([fullButton(id)]));
+  return more ? sendDeckCard(env, chat, deck, origin) : finishDeck(env, chat, deck, s);
 }
 
-async function finishDeck(env, chat, userId, deck, s) {
+async function finishDeck(env, chat, deck, s) {
   const today = dayNumber(new Date(), env.TIMEZONE);
   const p = deckProgress(deck, DECK, today);
   const next = p.due ? `Ещё пора повторить: ${p.due}.`
@@ -481,7 +506,7 @@ async function finishDeck(env, chat, userId, deck, s) {
     chat_id: chat,
     parse_mode: "HTML",
     text: `🎉 <b>Готово!</b> ` + (s && s.learned ? `Новых слов: ${s.learned}. ` : "") +
-      (s ? `Помню: ${s.right}, не помню: ${s.wrong}.` : "") + `\n\n${deckSummary(p)}` + (next ? `\n\n${next}` : ""),
+      (s && s.right + s.wrong ? `Верно: ${s.right}, ошибок: ${s.wrong}.` : "") + `\n\n${deckSummary(p)}` + (next ? `\n\n${next}` : ""),
     reply_markup: p.due ? keyboard([[{ text: "🔁 Повторить ещё", callback_data: "pgo" }]]) : undefined,
   });
 }

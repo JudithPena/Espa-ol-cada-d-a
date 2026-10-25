@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
-  currentItem, deckProgress, deckQueue, freshLeft, learn, newDeck, recall, startDeckSession,
+  choices, currentItem, deckProgress, deckQueue, freshLeft, learn, newDeck, recall, startDeckSession,
 } from "../src/deck.js";
 
 const words = Array.from({ length: 25 }, (_, i) => ({ id: `w${i}` }));
@@ -51,4 +51,19 @@ test("забытое слово возвращается через нескол
   assert.equal(retry, true);
   assert.equal(deck.session.queue[4], "r:w0");
   assert.deepEqual(deckProgress(deck, words.slice(0, 6), 3), { total: 6, seen: 6, learned: 0, due: 6, fresh: 0 });
+});
+
+test("варианты ответа: перевод слова и переводы других слов того же языка, без повторов", () => {
+  const deck = [
+    { id: "a", lang: "es", ru: "яд" }, { id: "b", lang: "es", ru: "месть" }, { id: "c", lang: "es", ru: "яд" },
+    { id: "d", lang: "es", ru: "могила" }, { id: "e", lang: "es", ru: "убийца" }, { id: "f", lang: "en", ru: "тонкий" },
+  ];
+  for (let i = 0; i < 20; i++) {
+    const opts = choices(deck[0], deck);
+    assert.equal(opts.length, 4);
+    assert.ok(opts.includes("a") && !opts.includes("c") && !opts.includes("f"));
+    assert.equal(new Set(opts).size, 4);
+  }
+  assert.equal(choices(deck[0], deck, 6).length, 4, "сколько есть разных переводов");
+  assert.deepEqual(choices(deck[5], deck), [], "одно английское слово — вариантов нет");
 });
