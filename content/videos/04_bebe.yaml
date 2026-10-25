@@ -1,0 +1,141 @@
+# Разбор видео №4. Правила рубрики — docs/video_guide.md.
+id: bebe
+title: Не плачь!
+url: https://app.dreaming.com/spanish/watch?id=688cde8da96f7e266f6be865
+after: 27          # опираемся на уроки 0–27: всё, что уже вышло в канал
+level: A1
+
+# Имена, названия и звуки, которые звучат в видео.
+allow: [Abel, ChatGPT, TikTok, Shh, Buah, Ay]
+
+# Текст видео — 10 смысловых блоков: под каждым его новые слова (words, по полю es из vocab),
+# пояснения (note) и перевод (ru, в посте спрятан). После текста — раздел «Грамматика из видео» (blocks).
+segments:
+  - es: "El bebé está durmiendo. Sí. Tengo sueño. Voy a dormir."
+    ru: "Малыш спит. Да. Я хочу спать. Пойду посплю."
+    words: [el bebé, dormir, tengo sueño, voy a...]
+    note:
+      - "**Tengo sueño** значит «я хочу спать», а дословно — «у меня есть сон». По-испански многие состояния так и говорят через «у меня есть»: _Tengo sueño._ (Я хочу спать.) _Tengo una idea._ (У меня есть идея.)"
+      - "Чем _está durmiendo_ отличается от простого «спит» и что значит _voy a dormir_, смотрите в разделе «📚 Грамматика из видео» сразу после текста."
+  - es: "¡Ay, no! El bebé está llorando. ¡Shh! ¡Shh! ¡No llores! ¡No! ¡Shh! ¡Shh! ¡Buah! ¡Buah! ¡Buah! ¡Espera!"
+    ru: "Ой, нет! Малыш плачет. Тсс! Тсс! Не плачь! Нет! Тсс! Тсс! Уа! Уа! Уа! Подожди!"
+    words: [llorar]
+    note:
+      - "**¡No llores!** значит «не плачь!». Когда что-то запрещают, у глагола меняется окончание: _llora_ (плачет), но _¡No llores!_ (не плачь!). Пока просто запомните эту фразу целиком."
+      - "_¡Buah!_ — так по-испански передают детский плач, а _¡Shh!_ значит «тише!»."
+  - es: "No llores. Un peluche. ¡No! ¡No llores! Ya sé. Mira, ¿te gusta? Un juguete."
+    ru: "Не плачь. Плюшевая игрушка. Нет! Не плачь! Придумала! Смотри, тебе нравится? Игрушка."
+    words: [el peluche, ya sé / no sé, el juguete]
+    note:
+      - "**Ya sé** значит «знаю!» или «придумала!»: так говорят, когда пришла идея. А **no sé** значит «не знаю»."
+  - es: "No me gusta. ¿No te gusta? ¿Qué hago? ¡Ya sé! Mira, ¿te gusta?"
+    ru: "Мне не нравится. Тебе не нравится? Что мне делать? Придумала! Смотри, тебе нравится?"
+    note:
+      - "В этом видео малыш отвечает сам, и в этом вся шутка: _No me gusta._ (Мне не нравится.) Чтобы сказать «не нравится», **no** ставят в самое начало, перед _me_ или _te_: _¿No te gusta?_ (Тебе не нравится?)"
+      - "**¿Qué hago?** значит «что мне делать?»: _hago_ — «я делаю», форма глагола _hacer_."
+  - es: "No me gustan las palomas. Me gustan los pingüinos. Pero no tengo un pingüino."
+    ru: "Мне не нравятся голуби. Мне нравятся пингвины. Но у меня нет пингвина."
+    words: [me gustan, los / las, la paloma, el pingüino]
+    note:
+      - "Во множественном числе артикли тоже меняются: **el** становится **los**, а **la** становится **las**: _el pingüino → los pingüinos_, _la paloma → las palomas_."
+      - "Здесь _me gustan_, а не _me gusta_, потому что пингвинов много. Подробно — в разделе «📚 Грамматика из видео»."
+  - es: "¡No llores! ¡Ya sé! Mira, videojuegos. ¿Videojuegos? Soy un bebé."
+    ru: "Не плачь! Придумала! Смотри, видеоигры. Видеоигры? Я же малыш."
+    words: [el videojuego]
+    note:
+      - "_Soy un bebé._ значит «я малыш»: так малыш отвечает на предложение поиграть в видеоигры. Здесь **soy**, потому что он говорит о том, кто он такой."
+  - es: "¿Qué hago? ¡Ya sé! ¿Hola? Abel, ayuda, por favor. El bebé llora mucho. ¿Qué hago?"
+    ru: "Что мне делать? Придумала! Алло? Абель, помоги, пожалуйста. Малыш всё время плачет. Что мне делать?"
+    words: ["¡ayuda!"]
+    note:
+      - "**¡Ayuda!** значит «помоги!» или «помогите!». Чтобы просьба звучала вежливо, добавляют _por favor_: _Ayuda, por favor._"
+      - "Сравните: _El bebé llora mucho._ значит «малыш много плачет», то есть вообще, часто. А _El bebé está llorando._ значит «малыш плачет прямо сейчас»."
+  - es: "No sé. Escribe a ChatGPT. ¿Qué? ¿ChatGPT? ¡No! Bueno, busca en TikTok."
+    ru: "Не знаю. Напиши ChatGPT. Что? ChatGPT? Нет! Ладно, поищи в ТикТоке."
+    words: [buscar]
+    note:
+      - "**Escribe** значит «напиши», а **busca** — «поищи»: так советуют, что сделать. _Escribe a ChatGPT._ (Напиши ChatGPT.) _Busca en TikTok._ (Поищи в ТикТоке.)"
+  - es: "¿TikTok? Tengo una idea. ¡Adiós! Mira. TikTok. ¿Te gusta?"
+    ru: "ТикТок? У меня есть идея. Пока! Смотри. ТикТок. Тебе нравится?"
+    words: [la idea]
+    note:
+      - "В _Tengo una idea_ стоит **una**, потому что слово _idea_ женского рода."
+  - es: "¡Perfecto! Sí. Voy a dormir. ¿Qué? ¡No!"
+    ru: "Отлично! Да. Пойду посплю. Что? Нет!"
+    note:
+      - "В конце она снова говорит _Voy a dormir._ — «пойду посплю». Это то же _voy a_ и глагол, что и в начале видео."
+
+vocab:
+  - "👶 el bebé [бэбэ́] — малыш, младенец"
+  - "😴 dormir [дорми́р] — спать {forms: durmiendo} :: Voy a dormir. — Пойду посплю."
+  - "🥱 tengo sueño [тэ́нго суэ́ньо] — я хочу спать"
+  - "🚶 voy a... [бой а] — я собираюсь..., сейчас я (сделаю) :: Voy a dormir. — Пойду посплю."
+  - "😭 llorar [йора́р] — плакать {forms: llora llorando llores} :: ¡No llores! — Не плачь!"
+  - "🧸 el peluche [пэлу́чэ] — плюшевая игрушка"
+  - "💡 ya sé / no sé [йа сэ, но сэ] — знаю! придумала! / не знаю"
+  - "🪀 el juguete [хугэ́тэ] — игрушка"
+  - "😍 me gustan [мэ гу́стан] — мне нравятся (о нескольких) :: Me gustan los pingüinos. — Мне нравятся пингвины."
+  - "👥 los / las [лос, лас] — артикли во множественном числе :: los pingüinos, las palomas — пингвины, голуби"
+  - "🕊 la paloma [пало́ма] — голубь {forms: palomas}"
+  - "🐧 el pingüino [пингуи́но] — пингвин {forms: pingüinos}"
+  - "🎮 el videojuego [бидэохуэ́го] — видеоигра {forms: videojuegos}"
+  - "🆘 ¡ayuda! [айу́да] — помоги! помогите! :: Ayuda, por favor. — Помоги, пожалуйста."
+  - "🔍 buscar [буска́р] — искать {forms: busca} :: Busca en TikTok. — Поищи в ТикТоке."
+  - "💭 la idea [идэ́а] — идея :: Tengo una idea. — У меня есть идея."
+
+blocks:
+  - "Четвёртая часть рубрики — **разборы коротких видео** на испанском. В этот раз — ещё и немного грамматики: после текста видео вас ждёт раздел «📚 Грамматика из видео»."
+  - |
+    **Как смотреть.** Сначала видео, потом разбор. Посмотрите видео целиком и не подглядывайте в текст: постарайтесь понять, чем мама пытается успокоить малыша и что ему нравится. Потом прочитайте разбор и посмотрите видео ещё раз.
+
+    Смотреть лучше с **испанскими субтитрами**: так вы одновременно слышите и видите каждую фразу.
+  - header: "📚 Грамматика из видео"
+  - rule: |
+      **1. Me gusta и me gustan — «мне нравится» и «мне нравятся».** Если нравится один предмет, говорят **me gusta**: _Me gusta el juguete._ (Мне нравится игрушка.) Если нравятся несколько предметов, говорят **me gustan**: _Me gustan los pingüinos._ (Мне нравятся пингвины.)
+      Чтобы спросить собеседника, вместо **me** ставят **te**: _¿Te gusta?_ (Тебе нравится?) А чтобы сказать «не нравится», в самое начало ставят **no**: _No me gusta._ _No me gustan las palomas._
+  - table:
+      title: "Нравится или нравятся"
+      rows:
+        - ["**me gusta** el juguete", "мне нравится игрушка"]
+        - ["**me gustan** los pingüinos", "мне нравятся пингвины"]
+        - ["¿**te gusta**?", "тебе нравится?"]
+        - ["**no me gustan** las palomas", "мне не нравятся голуби"]
+  - rule: |
+      **2. Está durmiendo — то, что происходит прямо сейчас.** Чтобы сказать, что действие идёт в эту минуту, говорят **está** и особую форму глагола: _El bebé está durmiendo._ (Малыш сейчас спит.) _El bebé está llorando._ (Малыш сейчас плачет.)
+      У глаголов на **-ar** эта форма заканчивается на **-ando**: _llorar → llorando_. У глаголов на **-er** и **-ir** — на **-iendo**: _dormir → durmiendo_ (здесь ещё `o` меняется на `u`).
+      Сравните: _El bebé llora mucho._ — малыш много плачет (вообще, часто), а _El bebé está llorando._ — плачет прямо сейчас.
+  - rule: |
+      **3. Voy a dormir — что я сейчас сделаю.** Если сказать **voy a** и глагол в начальной форме, получится «я собираюсь…» или «сейчас я…»: _Voy a dormir._ (Пойду посплю.) Так говорят о том, что вы сделаете очень скоро.
+  - exercise:
+      title: "Ответьте на вопросы"
+      items:
+        - "¿Qué hace el bebé? => Está llorando."
+        - "Что говорит малыш про игрушку? => No me gusta."
+        - "Кто нравится малышу, а кто нет? => No me gustan las palomas. Me gustan los pingüinos."
+        - "Кому она звонит? => A Abel."
+        - "Что советует Абель? => Escribe a ChatGPT. Busca en TikTok."
+        - "Что она говорит, когда хочет спать? => Tengo sueño. Voy a dormir."
+  - exercise:
+      title: Переведите
+      items:
+        - "Мне нравятся пингвины. => Me gustan los pingüinos."
+        - "Мне не нравится игрушка. => No me gusta el juguete."
+        - "Малыш (сейчас) спит. => El bebé está durmiendo."
+        - "Пойду посплю. => Voy a dormir."
+  - task: "Напишите в комментариях, что вам нравится и что не нравится, по образцу: **Me gusta... Me gustan... No me gusta... No me gustan...** Помните: если предметов несколько — _gustan_."
+
+quiz:
+  - q: "Как сказать «Мне нравятся пингвины»?"
+    options: "Me gustan los pingüinos. | Me gusta los pingüinos. | Me gustan el pingüino."
+    explain: "Пингвинов много, поэтому gustan, а перед словом во множественном числе — los."
+  - q: "Что значит «El bebé está durmiendo»?"
+    options: "Малыш сейчас спит. | Малыш хочет спать. | Малыш плачет."
+    explain: "Está и форма на -iendo показывают, что действие идёт прямо сейчас."
+  - q: "«___ a dormir.» — «Пойду посплю». Какое слово пропущено?"
+    options: "Voy | Tengo | Soy"
+  - q: "Что значит «Tengo sueño»?"
+    options: "Я хочу спать. | Мне снится сон. | Я сплю."
+    explain: "Дословно «у меня есть сон», а по смыслу — «я хочу спать»."
+  - q: "Что советует Абель?"
+    options: "Busca en TikTok. | Mira videojuegos. | Tengo una idea."
+    explain: "Абель говорит: «Escribe a ChatGPT» и «Busca en TikTok»."
