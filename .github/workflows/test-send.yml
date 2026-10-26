@@ -2,6 +2,7 @@ name: Тест урока в личку
 
 # Отправляет урок не в канал, а в личный чат тому, кто последним написал боту
 # (например, /start в @Eduardo_maestro_bot). Прогресс публикации не меняется.
+# «канал» — повторно опубликовать уже вышедший урок (например, если пост удалили, чтобы исправить).
 on:
   workflow_dispatch:
     inputs:
@@ -12,6 +13,11 @@ on:
         description: "Новый формат: пост-статья с картинками и аудио внутри"
         type: boolean
         default: true
+      target:
+        description: "Куда отправить"
+        type: choice
+        options: [личка, канал]
+        default: личка
 
 permissions:
   contents: read
@@ -43,7 +49,9 @@ jobs:
           ENABLE_AUDIO: ${{ vars.ENABLE_AUDIO || '1' }}
           LESSON: ${{ inputs.lesson }}
           RICH: ${{ inputs.rich }}
+          TARGET: ${{ inputs.target }}
         run: |
-          args=(--chat auto)
+          args=()
+          [ "$TARGET" != "канал" ] && args+=(--chat auto)
           [ "$RICH" = "true" ] && args+=(--rich)
           python -m espanol send "$LESSON" "${args[@]}"
