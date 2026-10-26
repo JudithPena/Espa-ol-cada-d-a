@@ -12,8 +12,10 @@ const env = {
   PUBLISH_HOURS: "9,15", TIMEZONE: "Europe/Kyiv", REMIND_DAYS: "3,6", REMIND_HOUR: "19",
 };
 const first = WORDS[0];
+let published; // уроки, которые «вышли в канал»
 
 beforeEach(() => {
+  published = [first.lesson, "start/vowels"];
   calls = [];
   kv = new Map();
   env.SRS = {
@@ -23,7 +25,7 @@ beforeEach(() => {
   globalThis.fetch = async (url, init = {}) => {
     url = String(url);
     if (url.includes("raw.githubusercontent.com")) {
-      return Response.json({ published: [{ id: first.lesson }] });
+      return Response.json({ published: published.map((id) => ({ id })) });
     }
     if (url.includes("api.github.com")) {
       calls.push({ method: "dispatch", url, body: JSON.parse(init.body) });
@@ -53,26 +55,36 @@ test("чужие запросы без секрета не принимаютс�
   assert.equal(calls.length, 0);
 });
 
-test("повторение: карточка, перевод, ответ и итог — только слова вышедших уроков", async () => {
+const buttons = (call) => call.body.reply_markup.inline_keyboard.map((row) => row[0]);
+const textOf = (call) => call.body.caption || call.body.text;
+
+test("/repaso: карточка нового слова → «Дальше» → выбор перевода → итог; только слова вышедших уроков", async () => {
+  const available = WORDS.filter((w) => published.includes(w.lesson));
+  const fresh = available.slice(0, 5);
   await post(message("/repaso"));
+  assert.match(calls.find((c) => /Повторение слов/.test(c.body.text || "")).body.text, /Новых слов: 5/);
   const card = calls.at(-1);
-  const lessonWords = WORDS.filter((w) => w.lesson === first.lesson);
-  assert.equal(card.method, first.audio ? "sendAudio" : "sendMessage");
-  if (first.audio) assert.equal(card.body.title, first.es); // в плеере — слово, а не имя файла
-  assert.match(card.body.caption || card.body.text, new RegExp(`1/${Math.min(5, lessonWords.length)}`));
-  assert.ok(!(card.body.caption || card.body.text).includes(first.ru), "перевод спрятан");
+  assert.equal(card.method, "sendMessage");
+  assert.match(card.body.text, /🆕 Новое слово 1\/5/);
+  assert.ok(card.body.text.includes(first.card), "карточка слова целиком");
+  assert.equal(buttons(card)[0].callback_data, `cl:${first.id}`);
 
-  await post(press(`s:${first.id}`, !!first.audio));
-  const shown = calls.at(-1);
-  assert.equal(shown.method, first.audio ? "editMessageCaption" : "editMessageText");
-  assert.ok((shown.body.caption || shown.body.text).includes(first.ru));
-
-  for (const w of lessonWords.slice(0, 5)) await post(press(`y:${w.id}`, !!w.audio));
-  assert.match(calls.at(-1).body.text, /Готово!/);
-  assert.match(calls.at(-1).body.text, new RegExp(`Учите сейчас: ${Math.min(5, lessonWords.length)}`));
+  for (const w of fresh) await post(press(`cl:${w.id}`, false));
+  const front = calls.at(-1);
+  assert.match(textOf(front), /🔁 Повторение 1\/5/);
+  const options = buttons(front);
+  assert.equal(options.length, 4, "перевод и ещё 3 перевода слов вышедших уроков");
+  assert.ok(options.every((o) => available.some((w) => w.ru === o.text)));
+  for (const w of fresh) {
+    const opts = buttons(calls.filter((c) => /Выберите перевод/.test(textOf(c) || "")).at(-1));
+    await post(press(opts.find((o) => o.text === w.ru).callback_data, !!w.audio));
+  }
+  const end = calls.at(-1);
+  assert.match(end.body.text, /Готово![\s\S]*Новых слов: 5[\s\S]*Верно: 5[\s\S]*Слов в вышедших уроках: 8/);
   const user = JSON.parse(kv.get("user:9"));
   assert.equal(user.session, null);
-  assert.deepEqual(user.cards[first.id][0], 1);
+  assert.equal(user.cards[first.id][0], 1);
+  assert.equal(end.body.reply_markup.inline_keyboard[0][0].callback_data, "cgo", "можно взять ещё новых слов");
 });
 
 test("ссылка из урока: сначала слова урока, потом прошлые слова, которые пора повторить", async () => {
@@ -80,18 +92,43 @@ test("ссылка из урока: сначала слова урока, пот
   const own = WORDS.filter((w) => w.lesson === lessonId);
   kv.set("user:9", JSON.stringify({ cards: { [first.id]: [1, 0] }, session: null })); // слово из вышедшего урока, срок подошёл
   await post(message(`/start l-${lessonId.replace(/[^A-Za-z0-9_-]/g, "-")}`));
-  const card = calls.at(-1);
-  assert.match(card.body.caption || card.body.text, new RegExp(`1/${Math.min(10, own.length + 1)}`));
-  assert.ok((card.body.caption || card.body.text).includes(own[0].es.replace(/[<>&]/g, "")));
-  assert.equal(JSON.parse(kv.get("user:9")).session.queue.at(-1), first.id);
-  await post(message("/start repaso")); // обычная ссылка — обычное повторение
-  assert.ok((calls.at(-1).body.caption || calls.at(-1).body.text).includes(first.es));
+  assert.match(textOf(calls.at(-1)), new RegExp(`🆕 Новое слово 1/${own.length}`));
+  assert.ok(textOf(calls.at(-1)).includes(own[0].card));
+  const queue = JSON.parse(kv.get("user:9")).session.queue;
+  assert.deepEqual(queue, [...own.map((w) => `l:${w.id}`), `r:${first.id}`, ...own.map((w) => `r:${w.id}`)]);
+  await post(message("/start repaso")); // обычная ссылка — продолжаем то же занятие
+  assert.ok(textOf(calls.at(-1)).includes(own[0].card));
 });
 
-test("старая кнопка не сбивает повторение", async () => {
+test("кнопки старого повторения и чужие кнопки не сбивают занятие", async () => {
   await post(message("/repaso"));
   await post(press("y:нет-такого"));
+  assert.match(calls.at(-1).body.text, /Повторение обновилось/);
+  await post(press("cl:нет-такого"));
   assert.equal(calls.at(-1).body.text, "Эта карточка уже пройдена");
+  await post(press("pgo")); // «Мои слова» — только у автора
+  assert.equal(kv.has("deck:9"), false);
+});
+
+test("карточка с озвучкой: сначала аудио с названием слова, потом карточка; на повторении — аудио с вариантами", async () => {
+  const saved = first.audio;
+  first.audio = "a.mp3"; // те же объекты, что и в боте
+  try {
+    await post(message("/repaso"));
+    const audio = calls.at(-2);
+    assert.equal(audio.method, "sendAudio");
+    assert.equal(audio.body.audio, "https://bot.example/audio/a.mp3");
+    assert.equal(audio.body.title, first.es);
+    assert.equal(kv.get("audio:a.mp3"), "F"); // дальше Telegram берёт файл из своего кеша
+    const fresh = WORDS.filter((w) => published.includes(w.lesson)).slice(0, 5);
+    for (const w of fresh) await post(press(`cl:${w.id}`, false));
+    const front = calls.at(-1);
+    assert.equal(front.method, "sendAudio");
+    assert.equal(front.body.audio, "F");
+    assert.match(front.body.caption, /Выберите перевод/);
+  } finally {
+    first.audio = saved;
+  }
 });
 
 test("публикация запускается только в часы PUBLISH_HOURS по Киеву", async () => {
@@ -107,24 +144,6 @@ test("публикация запускается только в часы PUBLI
   assert.deepEqual(calls.map((c) => c.method), ["dispatch", "dispatch"]);
   assert.match(calls[0].url, /repos\/o\/r\/actions\/workflows\/publish\.yml\/dispatches$/);
   assert.deepEqual(calls[0].body, { ref: "main" });
-});
-
-test("карточка с озвучкой: аудио с названием слова, перевод — в подписи", async () => {
-  const saved = first.audio;
-  first.audio = "a.mp3"; // те же объекты, что и в боте
-  try {
-    await post(message("/repaso"));
-    const card = calls.at(-1);
-    assert.equal(card.method, "sendAudio");
-    assert.equal(card.body.audio, "https://bot.example/audio/a.mp3");
-    assert.equal(card.body.title, first.es);
-    assert.equal(kv.get("audio:a.mp3"), "F"); // дальше Telegram берёт файл из своего кеша
-    await post(press(`s:${first.id}`, true));
-    assert.equal(calls.at(-1).method, "editMessageCaption");
-    assert.ok(calls.at(-1).body.caption.includes(first.ru));
-  } finally {
-    first.audio = saved;
-  }
 });
 
 test("по средам и субботам в 19:00 бот сам предлагает повторить слова", async () => {

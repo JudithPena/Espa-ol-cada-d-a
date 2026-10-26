@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
-  choices, currentItem, deckProgress, deckQueue, freshLeft, learn, newDeck, recall, startDeckSession,
+  choices, currentItem, studyQueue, deckProgress, deckQueue, freshLeft, learn, newDeck, recall, startDeckSession,
 } from "../src/deck.js";
 
 const words = Array.from({ length: 25 }, (_, i) => ({ id: `w${i}` }));
@@ -69,4 +69,19 @@ test("варианты ответа: перевод слова и перевод
   const close = [{ id: "x", lang: "es", ru: "поведение" }, { id: "y", lang: "es", ru: "отношение, поведение" },
     { id: "z", lang: "es", ru: "ревность (к кому-то)" }];
   for (let i = 0; i < 20; i++) assert.deepEqual(choices(close[0], close).sort(), ["x", "z"], "общее значение — не вариант");
+});
+
+test("слова курса: по ссылке из урока — слова урока первыми (новые — карточкой, знакомые — повторением)", () => {
+  const state = newDeck();
+  state.cards = { w1: [2, 50], w20: [2, 90], w21: [1, 99], w22: [3, 150] }; // w22 — ещё рано
+  const own = words.slice(0, 3);
+  assert.deepEqual(studyQueue(state, words, 100, { first: own, reviews: 7 }),
+    ["l:w0", "l:w2", "r:w1", "r:w20", "r:w21", "r:w0", "r:w2"]);
+  assert.deepEqual(studyQueue(newDeck(), words, 100, { fresh: 2 }), ["l:w0", "l:w1", "r:w0", "r:w1"]);
+});
+
+test("занятие старого формата не продолжаем", () => {
+  const state = newDeck();
+  state.session = { queue: ["w0", "w1"], pos: 0, retry: [] };
+  assert.equal(currentItem(state), null);
 });

@@ -24,6 +24,7 @@ from . import tts
 from .course import Course, VocabItem
 from .markup import plain
 from .mywords import Word, record
+from .wordcards import WordCard, render_card
 
 log = logging.getLogger(__name__)
 
@@ -115,9 +116,13 @@ def bot_words(course: Course) -> list[VocabItem]:
     return words
 
 
-def word_record(item: VocabItem, audio: str = "") -> dict:
+def word_record(item: VocabItem, audio: str = "", card: WordCard | None = None) -> dict:
     return {
         "id": word_id(item),
+        "word": plain(item.es),  # общие поля с «Моими словами»: word, ipa, card — для занятия в боте
+        "ipa": f"[{item.pron}]" if item.pron else "",
+        "card": render_card(item, card),
+        "lang": "es",
         "es": plain(item.es),
         "ru": plain(item.ru),
         "pron": item.pron,
@@ -129,7 +134,7 @@ def word_record(item: VocabItem, audio: str = "") -> dict:
 
 
 def export(course: Course, out: Path, audio: bool = True, cache: Path | None = None,
-           workers: int = 6, deck: list[Word] | None = None) -> dict:
+           workers: int = 6, deck: list[Word] | None = None, cards: dict[str, WordCard] | None = None) -> dict:
     """Пишет out/data/words.json (слова курса), out/data/mywords.json («Мои слова»)
     и озвучку в out/public/audio/. Готовые mp3 берутся из cache."""
     words = bot_words(course)
@@ -146,7 +151,8 @@ def export(course: Course, out: Path, audio: bool = True, cache: Path | None = N
             [(item.key, _speech(item), plain(item.es)) for item in words]
             + [(f"deck:{w.id}", _deck_speech(w), w.word) for w in deck],
             audio_dir, cache, workers)
-    records = [word_record(item, names.get(item.key, "")) for item in words]
+    cards = cards or {}
+    records = [word_record(item, names.get(item.key, ""), cards.get(item.key)) for item in words]
     if len({r["id"] for r in records}) != len(records):
         raise ValueError("у двух слов совпал id — поменяйте длину хеша в botdata.word_id")
     (out / "data").mkdir(parents=True, exist_ok=True)

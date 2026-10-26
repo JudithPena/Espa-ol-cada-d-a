@@ -1,8 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import {
-  answer, buildLessonQueue, buildQueue, dayNumber, localHour, localWeekday, newUser, progress, startSession,
-} from "../src/srs.js";
+import { dayNumber, localHour, localWeekday, newUser, progress } from "../src/srs.js";
 
 const words = Array.from({ length: 30 }, (_, i) => ({ id: `w${i}` }));
 
@@ -12,55 +10,11 @@ test("день и час — по Киеву, с переходом на зим�
     dayNumber(new Date("2026-10-24T12:00:00Z"), "Europe/Kyiv"), 1);
   assert.equal(localHour(new Date("2026-10-23T06:00:00Z"), "Europe/Kyiv"), 9); // летнее UTC+3
   assert.equal(localHour(new Date("2026-10-27T07:00:00Z"), "Europe/Kyiv"), 9); // зимнее UTC+2
-});
-
-test("по ссылке из урока: слова урока, потом слова, которые пора повторить", () => {
-  const user = newUser();
-  user.cards.w20 = [2, 90];
-  user.cards.w21 = [1, 99];
-  user.cards.w22 = [3, 150]; // ещё рано
-  const own = words.slice(0, 3);
-  assert.deepEqual(buildLessonQueue(user, own, words, 100), ["w0", "w1", "w2", "w20", "w21"]);
   assert.equal(localWeekday(new Date("2026-10-28T17:00:00Z"), "Europe/Kyiv"), 3); // среда
 });
 
-test("в первом повторении — 5 новых слов по порядку курса", () => {
-  assert.deepEqual(buildQueue(newUser(), words, 100), ["w0", "w1", "w2", "w3", "w4"]);
-});
-
-test("знакомое слово возвращается всё реже, забытое — через 3 карточки, а не сразу", () => {
+test("прогресс: выучено — с третьей коробки, пора повторить — срок подошёл", () => {
   const user = newUser();
-  startSession(user, words, 100);
-  assert.deepEqual(answer(user, "w0", true, 100), { more: true, retry: false });
-  assert.deepEqual(user.cards.w0, [1, 101]);
-  assert.deepEqual(answer(user, "w1", false, 100), { more: true, retry: true });
-  assert.deepEqual(user.cards.w1, [0, 100]);
-  assert.deepEqual(user.session.queue, ["w0", "w1", "w2", "w3", "w4", "w1"]); // после трёх других карточек
-  answer(user, "w2", true, 100);
-  assert.deepEqual(answer(user, "w3", false, 100), { more: true, retry: false }); // осталось меньше 3 карточек
-  answer(user, "w4", true, 100);
-  assert.deepEqual(answer(user, "w1", false, 100), { more: false, retry: false }); // второй раз не возвращаем
-  assert.equal(user.session.wrong, 3);
-  // назавтра: забытые и слова первой коробки, потом новые
-  const next = buildQueue(user, words, 101);
-  assert.deepEqual(next.slice(0, 5).sort(), ["w0", "w1", "w2", "w3", "w4"]);
-  assert.deepEqual(next.slice(5), ["w5", "w6", "w7", "w8", "w9"]);
-  user.cards.w0 = [2, 101];
-  answer({ ...user, session: { queue: ["w0"], pos: 0, retry: [], right: 0, wrong: 0 } }, "w0", true, 101);
-  assert.deepEqual(user.cards.w0, [3, 108]);
-});
-
-test("последнюю забытую карточку сразу не повторяем", () => {
-  const user = newUser();
-  startSession(user, words, 100);
-  for (const id of ["w0", "w1", "w2", "w3"]) answer(user, id, true, 100);
-  assert.deepEqual(answer(user, "w4", false, 100), { more: false, retry: false });
-  assert.deepEqual(user.session.queue, ["w0", "w1", "w2", "w3", "w4"]);
-});
-
-test("повторять нечего — повторение не начинается", () => {
-  const user = newUser();
-  for (const w of words) user.cards[w.id] = [3, 200];
-  assert.equal(startSession(user, words, 100), null);
-  assert.deepEqual(progress(user, words, 100), { available: 30, seen: 30, learned: 30, due: 0, fresh: 0 });
+  user.cards = { w0: [3, 200], w1: [1, 100], w2: [0, 90] };
+  assert.deepEqual(progress(user, words, 100), { available: 30, seen: 3, learned: 1, due: 2, fresh: 27 });
 });

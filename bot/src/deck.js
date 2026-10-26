@@ -1,8 +1,8 @@
-// «Мои слова» — личная колода автора: content/mis_palabras/ → bot/data/mywords.json.
-// Каждый день — до WORDS_PER_DAY новых карточек-разборов и повторение по интервалам из srs.js:
-// слово, которое помните, возвращается через 1, 3, 7, 14, 30, 60, 120 дней — новые чаще, старые реже;
-// забытое — через несколько карточек этого же занятия и снова на следующий день.
-// Занятие: разборы новых слов («l») → повторение старых → проверка сегодняшних новых («r»).
+// Занятие со словами — одно и то же для слов курса (/repaso, все ученики) и «Моих слов» (/palabras, автор):
+// разборы новых слов («l») → повторение старых → проверка сегодняшних новых («r») с выбором перевода.
+// Интервалы — из srs.js: слово, которое помните, возвращается через 1, 3, 7, 14, 30, 60, 120 дней —
+// новые чаще, старые реже; забытое — через несколько карточек этого же занятия и снова на следующий день.
+// «Мои слова»: до WORDS_PER_DAY новых в день; слова курса — до NEW_PER_SESSION новых за занятие.
 
 import { INTERVALS, LEARNED_BOX, RETRY_GAP } from "./srs.js";
 
@@ -19,20 +19,35 @@ export function freshLeft(deck, today, perDay = NEW_PER_DAY) {
   return Math.max(0, perDay - (deck.day === today ? deck.fresh : 0));
 }
 
-export function deckQueue(deck, words, today, perDay = NEW_PER_DAY) {
+// Очередь занятия. first — слова урока по ссылке: они идут первыми (новые — разбором, знакомые — повторением);
+// fresh — сколько ещё новых слов взять по порядку; reviews — сколько слов, которые пора повторить.
+export function studyQueue(state, words, today, { first = [], fresh = 0, reviews = REVIEW_LIMIT } = {}) {
+  const firstIds = new Set(first.map((w) => w.id));
+  const isNew = (w) => !state.cards[w.id];
+  const learnNow = [...first.filter(isNew), ...words.filter((w) => !firstIds.has(w.id) && isNew(w)).slice(0, fresh)];
   const due = words
-    .filter((w) => deck.cards[w.id] && deck.cards[w.id][1] <= today)
-    .sort((a, b) => deck.cards[a.id][1] - deck.cards[b.id][1] || deck.cards[a.id][0] - deck.cards[b.id][0])
-    .slice(0, REVIEW_LIMIT)
-    .map((w) => `r:${w.id}`);
-  const fresh = words.filter((w) => !deck.cards[w.id]).slice(0, freshLeft(deck, today, perDay)).map((w) => w.id);
-  return [...fresh.map((id) => `l:${id}`), ...due, ...fresh.map((id) => `r:${id}`)];
+    .filter((w) => !firstIds.has(w.id) && state.cards[w.id] && state.cards[w.id][1] <= today)
+    .sort((a, b) => state.cards[a.id][1] - state.cards[b.id][1] || state.cards[a.id][0] - state.cards[b.id][0])
+    .slice(0, reviews);
+  return [
+    ...learnNow.map((w) => `l:${w.id}`),
+    ...first.filter((w) => !isNew(w)).map((w) => `r:${w.id}`),
+    ...due.map((w) => `r:${w.id}`),
+    ...learnNow.map((w) => `r:${w.id}`),
+  ];
+}
+
+export function deckQueue(deck, words, today, perDay = NEW_PER_DAY) {
+  return studyQueue(deck, words, today, { fresh: freshLeft(deck, today, perDay) });
+}
+
+export function startSession(state, queue, today) {
+  state.session = queue.length ? { queue, pos: 0, retry: [], right: 0, wrong: 0, learned: 0, day: today } : null;
+  return state.session;
 }
 
 export function startDeckSession(deck, words, today, perDay = NEW_PER_DAY) {
-  const queue = deckQueue(deck, words, today, perDay);
-  deck.session = queue.length ? { queue, pos: 0, retry: [], right: 0, wrong: 0, learned: 0, day: today } : null;
-  return deck.session;
+  return startSession(deck, deckQueue(deck, words, today, perDay), today);
 }
 
 // Варианты ответа: перевод слова и CHOICES - 1 переводов других слов того же языка, вперемешку.
@@ -65,10 +80,10 @@ function shuffle(list, random) {
   return a;
 }
 
-// Текущая карточка: ["l" | "r", id] или null.
+// Текущая карточка: ["l" | "r", id] или null. Занятия старого формата (без «l:»/«r:») не продолжаем.
 export function currentItem(deck) {
   const s = deck.session;
-  if (!s || s.pos >= s.queue.length) return null;
+  if (!s || s.pos >= s.queue.length || !/^[lr]:/.test(s.queue[s.pos])) return null;
   const item = s.queue[s.pos];
   return [item.slice(0, 1), item.slice(2)];
 }

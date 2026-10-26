@@ -12,6 +12,7 @@
                         --rich — постом-статьёй, --chat auto — в личку тому, кто последним написал боту
     preview/send video:N  то же для разбора видео №N (рубрика вне курса, content/videos/)
     palabras [слово]    «Мои слова» — личная колода автора в боте: сколько слов, карточка слова
+    carta [слово]       карточка слова курса для /repaso; без слова — сколько слов уже с разбором
     run --at 09:00      постоянный режим с расписанием
 """
 
@@ -90,8 +91,10 @@ def validate(course, lexicon, renderer, content_dir=None) -> list[str]:
 
         problems += video_problems(load_videos(content_dir, course), lexicon, renderer)
         from .mywords import deck_problems, load_deck
+        from .wordcards import card_problems, load_cards
 
         problems += deck_problems(load_deck(content_dir))
+        problems += card_problems(course, lexicon, load_cards(content_dir))
     return problems
 
 
@@ -240,11 +243,12 @@ def cmd_send(args, settings) -> int:
 def cmd_bot_data(args, settings) -> int:
     from .botdata import export
     from .mywords import load_deck
+    from .wordcards import load_cards
 
     course, _, _ = build(settings)
     result = export(course, Path(args.out), audio=not args.no_audio,
                     cache=Path(args.audio_cache) if args.audio_cache else None,
-                    deck=load_deck(settings.content_dir))
+                    deck=load_deck(settings.content_dir), cards=load_cards(settings.content_dir))
     print(f"Слов для бота: {result['words']}, «Моих слов»: {result['deck']}, с озвучкой: {result['audio']} "
           f"→ {args.out}/data/")
     return 0
@@ -268,6 +272,31 @@ def cmd_palabras(args, settings) -> int:
     for name, count in by_file.items():
         print(f"{name}: {count}")
     print(f"В колоде «Мои слова»: {len(words)} (content/{FOLDER}/)")
+    return 0
+
+
+def cmd_carta(args, settings) -> int:
+    from .botdata import bot_words
+    from .markup import strip_tags
+    from .wordcards import load_cards, render_card
+
+    course, _, _ = build(settings)
+    cards = load_cards(settings.content_dir)
+    items = bot_words(course)
+    if not args.word:  # сколько слов уже с разбором — по темам
+        for unit in course.units:
+            keys = [i.key for i in items if i.lesson.unit is unit]
+            done = sum(k in cards for k in keys)
+            print(f"{unit.number:>3}  {unit.title[:38]:<38} {done:>3}/{len(keys)}")
+        print(f"\nС разбором: {sum(i.key in cards for i in items)} из {len(items)} (content/repaso/)")
+        return 0
+    item = next((i for i in items if i.key == args.word.lower() or i.key.strip("¡!¿?") == args.word.lower()), None)
+    if not item:
+        print(f"«{args.word}»: такого слова в уроках нет")
+        return 1
+    card = render_card(item, cards.get(item.key))
+    print(f"Урок {item.lesson.number} ({item.lesson.id}){'' if item.key in cards else ' · разбора ещё нет'}\n")
+    print(card if args.html else strip_tags(card))
     return 0
 
 
@@ -312,6 +341,9 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--no-audio", action="store_true", help="без озвучки")
     p = sub.add_parser("palabras", help="«Мои слова»: личная колода автора в боте")
     p.add_argument("word", nargs="?", help="слово или id — показать его карточку")
+    p.add_argument("--html", action="store_true", help="показать HTML вместо текста")
+    p = sub.add_parser("carta", help="карточка слова курса для повторения в боте (/repaso)")
+    p.add_argument("word", nargs="?", help="слово ровно как в уроке; без слова — сколько уже с разбором")
     p.add_argument("--html", action="store_true", help="показать HTML вместо текста")
     p = sub.add_parser("run", help="постоянный режим")
     p.add_argument("--at", action="append", help="время публикации ЧЧ:ММ (можно несколько)")
