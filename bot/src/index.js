@@ -218,14 +218,14 @@ const BOOKS = {
     empty(env, state, words, today) {
       const p = deckProgress(state, words, today);
       return !words.length ? "В колоде пока нет слов. Пришлите Claude список — он напишет к каждому слову разбор."
-        : p.fresh ? "👏 На сегодня всё: новые слова будут завтра, а повторять пока нечего."
+        : p.fresh ? `👏 Пока всё: ${laterShift(env) ? `следующие новые слова — в ${laterShift(env)}:00` : "новые слова будут завтра"}, а повторять пока нечего.`
           : "👏 Всё повторено, а новые слова в колоде закончились. Пришлите Claude ещё список.";
     },
     finish(env, state, words, today) {
       const p = deckProgress(state, words, today);
       const next = p.due ? `Ещё пора повторить: ${p.due}.`
         : !p.fresh ? "Новые слова в колоде закончились — пришлите Claude ещё список."
-          : freshLeft(state, today, perDay(env), deckShifts(env)) ? "" : deckShifts(env) < numbers(env.WORDS_HOURS).length ? "Следующие новые слова — вечером." : "Новые слова — завтра. ¡Hasta mañana!";
+          : freshLeft(state, today, perDay(env), deckShifts(env)) ? "" : laterShift(env) ? `Следующие новые слова — в ${laterShift(env)}:00.` : "Новые слова — завтра. ¡Hasta mañana!";
       return { text: deckSummary(p) + (next ? `\n\n${next}` : ""), button: p.due ? "🔁 Повторить ещё" : "" };
     },
   },
@@ -481,6 +481,12 @@ function isOwner(env, userId) {
 }
 
 const perDay = (env) => Number(env.WORDS_PER_DAY) || NEW_PER_DAY;
+
+// Час ближайшей следующей смены сегодня (или 0, если смен больше нет).
+function laterShift(env, now = new Date()) {
+  const hour = localHour(now, env.TIMEZONE);
+  return numbers(env.WORDS_HOURS).find((h) => h > hour) || 0;
+}
 
 // Сколько смен «Моих слов» (WORDS_HOURS) уже началось сегодня; до первой — одна, чтобы утром до срока тоже можно было заниматься.
 function deckShifts(env, now = new Date()) {
