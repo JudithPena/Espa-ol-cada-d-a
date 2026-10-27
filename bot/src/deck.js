@@ -2,7 +2,7 @@
 // разборы новых слов («l») → повторение старых → проверка сегодняшних новых («r») с выбором перевода.
 // Интервалы — из srs.js: слово, которое помните, возвращается через 1, 3, 7, 14, 30, 60, 120 дней —
 // новые чаще, старые реже; забытое — через несколько карточек этого же занятия и снова на следующий день.
-// «Мои слова»: до WORDS_PER_DAY новых в день; слова курса — до NEW_PER_SESSION новых за занятие.
+// «Мои слова»: до WORDS_PER_DAY новых в каждую смену (WORDS_HOURS: утро и вечер); слова курса — до NEW_PER_SESSION новых за занятие.
 
 import { INTERVALS, LEARNED_BOX, RETRY_GAP } from "./srs.js";
 
@@ -14,9 +14,12 @@ export function newDeck() {
   return { cards: {}, session: null, day: 0, fresh: 0 };
 }
 
-// Сколько новых слов ещё можно взять сегодня.
-export function freshLeft(deck, today, perDay = NEW_PER_DAY) {
-  return Math.max(0, perDay - (deck.day === today ? deck.fresh : 0));
+// Сколько новых слов ещё можно взять сейчас. В день несколько смен (утро, вечер), в каждой до perDay новых:
+// пропущенная смена не копится — если утром не занимались, вечером всё равно perDay, а не вдвое больше.
+// shifts — сколько смен уже началось сегодня.
+export function freshLeft(deck, today, perDay = NEW_PER_DAY, shifts = 1) {
+  const done = deck.day === today ? deck.fresh : 0;
+  return Math.max(0, Math.min(perDay, perDay * shifts - done));
 }
 
 // Очередь занятия. first — слова урока по ссылке: они идут первыми (новые — разбором, знакомые — повторением);
@@ -37,8 +40,8 @@ export function studyQueue(state, words, today, { first = [], fresh = 0, reviews
   ];
 }
 
-export function deckQueue(deck, words, today, perDay = NEW_PER_DAY) {
-  return studyQueue(deck, words, today, { fresh: freshLeft(deck, today, perDay) });
+export function deckQueue(deck, words, today, perDay = NEW_PER_DAY, shifts = 1) {
+  return studyQueue(deck, words, today, { fresh: freshLeft(deck, today, perDay, shifts) });
 }
 
 export function startSession(state, queue, today) {
@@ -46,8 +49,8 @@ export function startSession(state, queue, today) {
   return state.session;
 }
 
-export function startDeckSession(deck, words, today, perDay = NEW_PER_DAY) {
-  return startSession(deck, deckQueue(deck, words, today, perDay), today);
+export function startDeckSession(deck, words, today, perDay = NEW_PER_DAY, shifts = 1) {
+  return startSession(deck, deckQueue(deck, words, today, perDay, shifts), today);
 }
 
 // Варианты ответа: перевод слова и CHOICES - 1 переводов других слов того же языка, вперемешку.

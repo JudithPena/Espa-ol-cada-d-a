@@ -23,6 +23,8 @@ test("новые слова не копятся: в тот же день бол�
   startDeckSession(deck, words, 100); // занятие начали заново — новых осталось 6
   assert.equal(deck.session.queue.filter((q) => q.startsWith("l:")).length, 6);
   assert.equal(freshLeft(deck, 101), 10); // завтра снова 10
+  assert.equal(freshLeft(deck, 100, 10, 2), 10); // вечерняя смена: 20 − 4 = 16, но не больше 10 за смену
+  assert.equal(freshLeft(newDeck(), 100, 10, 2), 10); // утром не занимались — вечером 10, не 20
 });
 
 test("интервалы: новые слова — чаще, старые — реже; забытое начинается сначала", () => {

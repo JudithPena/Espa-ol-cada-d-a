@@ -270,10 +270,10 @@ test("«Мои слова»: если вариантов нет — карточ
   });
 });
 
-test("«Мои слова»: каждый день в WORDS_HOUR бот сам зовёт заниматься", async () => {
+test("«Мои слова»: утром и вечером (WORDS_HOURS) бот сам зовёт заниматься", async () => {
   const run = async (iso) => {
     const waits = [];
-    await bot.scheduled({ scheduledTime: Date.parse(iso) }, { ...env, WORDS_HOUR: "8" }, { waitUntil: (p) => waits.push(p) });
+    await bot.scheduled({ scheduledTime: Date.parse(iso) }, { ...env, WORDS_HOURS: "8,19" }, { waitUntil: (p) => waits.push(p) });
     await Promise.all(waits);
   };
   await withDeck([sample("a"), sample("b")], async () => {
@@ -282,8 +282,13 @@ test("«Мои слова»: каждый день в WORDS_HOUR бот сам �
     assert.equal(calls[0].body.chat_id, "1");
     assert.match(calls[0].body.text, /Новых слов: 2[\s\S]*последние новые слова/);
     assert.equal(calls[0].body.reply_markup.inline_keyboard[0][0].callback_data, "pgo");
+    assert.match(calls[0].body.text, /утренняя смена/);
     calls = [];
     await run("2026-10-27T07:00:00Z"); // 09:00 — уже не зовёт (только публикация)
     assert.deepEqual(calls.map((c) => c.method), ["dispatch"]);
+    calls = [];
+    await run("2026-10-27T17:00:00Z"); // 19:00 — утром не занимались: вечерняя смена, те же 2 слова, а не вдвое больше
+    assert.equal(calls.length, 1);
+    assert.match(calls[0].body.text, /вечерняя смена[\s\S]*Новых слов: 2/);
   });
 });
