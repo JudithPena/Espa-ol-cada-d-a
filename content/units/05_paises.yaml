@@ -66,61 +66,47 @@ lessons:
 
   - id: nacionalidad
     kind: grammar
-    title: "Национальность: ucraniano — ucraniana"
+    title: "Национальности: ucraniano — ucraniana"
     vocab:
       - "🇺🇦 ucraniano/a [укранья́но, укранья́на] — украинец / украинка :: Iván es ucraniano. Olga es ucraniana. — Иван украинец. Ольга украинка."
       - "🇪🇸 español/a [эспаньо́ль, эспаньо́ла] — испанец / испанка; испанский :: Pablo es español. — Пабло испанец."
       - "🇲🇽 mexicano/a [мэхика́но] — мексиканец / мексиканка"
       - "🇦🇷 argentino/a [архэнти́но] — аргентинец / аргентинка"
       - "🇨🇴 colombiano/a [коломбья́но] — колумбиец / колумбийка"
+      - "🇮🇹 italiano/a [италья́но] — итальянец / итальянка"
+      - "🇺🇸 americano/a [амэрика́но] — американец / американка"
+      - "🇨🇳 chino/a [чи́но] — китаец / китаянка"
+      - "🇫🇷 francés/a [франθэ́с, франθэ́са] — француз / француженка; французский"
+      - "🇩🇪 alemán/a [алема́н, алема́на] — немец / немка; немецкий"
+      - "🇬🇧 inglés/a [ингле́с, ингле́са] — англичанин / англичанка; английский"
     blocks:
-      - "Сравните пары примеров. Как меняется слово, когда речь идёт о женщине?"
+      - "Сегодня вы узнаете, как назвать национальность человека. Сравните пары примеров. Как меняется слово, когда речь идёт о женщине?"
       - examples:
           items:
             - "Iván es ucraniano. — Иван украинец."
             - "Olga es ucraniana. — Ольга украинка."
             - "Pablo es español. — Пабло испанец."
             - "Lucía es española. — Лусия испанка."
+            - "Pierre es francés. — Пьер француз."
+            - "Marie es francesa. — Мари француженка."
       - rule: |
-          1. Если национальность в мужском роде заканчивается на **-o**, то в женском роде **-o** меняется на **-a**: ucranian**a**, mexican**a**, argentin**a**, colombian**a**. _Iván es ucraniano y Olga es ucraniana._ _Diego es argentino y Sofía es argentina._
+          1. Если национальность в мужском роде заканчивается на **-o**, то в женском роде **-o** меняется на **-a**: ucranian**a**, mexican**a**, argentin**a**, colombian**a**, italian**a**, american**a**, chin**a**. _Iván es ucraniano y Olga es ucraniana._ _Marco es italiano y Clara es italiana._
           2. Если национальность в мужском роде заканчивается на согласную, то в женском роде к ней добавляется **-a**: из español получается español**a**. _Pablo es español y Lucía es española._ _Carlos es español y Carmen es española._
-          3. Национальности пишутся **с маленькой буквы**, а названия стран пишутся с большой: _Soy ucraniana, de Ucrania._ _Diego es argentino, de Argentina._ _Carmen es española, de España._
+          3. Если на последнем слоге стоит значок ударения, как в словах francés, alemán и inglés, то в женском роде он пропадает: frances**a**, aleman**a**, ingles**a**. Значок больше не нужен, потому что в слове появляется ещё один слог, и ударение по общему правилу и так падает на предпоследний слог: fran**ce**sa, ale**ma**na, in**gle**sa. _Pierre es francés y Marie es francesa._ _Hans es alemán y Emma es inglesa._
+          4. Национальности пишутся **с маленькой буквы**, а названия стран пишутся с большой: _Soy ucraniana, de Ucrania._ _Diego es argentino, de Argentina._ _Carmen es española, de España._
+      - note: "Официально жителей США называют `estadounidense`, но в разговоре чаще говорят **americano** и **americana**: _Él es americano._ _Ella es americana._ _¿Eres americano?_"
       - exercise:
           title: Responde
           items:
             - "Ana es de México. Es ___ => mexicana"
             - "Diego es de Argentina. Es ___ => argentino"
-            - "Sofía es de Colombia. Es ___ => colombiana"
             - "Carmen es de España. Es ___ => española"
             - "Iván es de Ucrania. Es ___ => ucraniano"
-      - task: "Напишите в комментариях несколько фраз о себе: **Me llamo... Soy de... Soy ucraniano / ucraniana**. Если у вас другая национальность, то назовите свою."
-
-  - id: vocab3
-    kind: vocab
-    title: Национальности Европы и мира
-    vocab:
-      - "🇫🇷 francés/a [франθэ́с, франθэ́са] — француз / француженка; французский"
-      - "🇩🇪 alemán/a [алема́н, алема́на] — немец / немка; немецкий"
-      - "🇬🇧 inglés/a [ингле́с, ингле́са] — англичанин / англичанка; английский"
-      - "🇮🇹 italiano/a [италья́но] — итальянец / итальянка"
-      - "🇺🇸 americano/a [амэрика́но] — американец / американка"
-      - "🇨🇳 chino/a [чи́но] — китаец / китаянка"
-    blocks:
-      - "Сегодня вы узнаете ещё шесть национальностей. Обратите внимание на значок ударения: в женском роде он иногда пропадает."
-      - rule: |
-          1. Если национальность заканчивается на **-o**, то женский род образуется как обычно: **-o** меняется на **-a**, и получается italian**a**, american**a**, chin**a**. _Marco es italiano y Clara es italiana._ _Tom es americano y Laura es americana._
-          2. Если национальность заканчивается на согласную, то в женском роде добавляется **-a**, как в слове española. Но у слов francés, alemán и inglés при этом пропадает значок ударения: из francés получается frances**a**, из alemán получается aleman**a**, а из inglés получается ingles**a**. _Pierre es francés y Marie es francesa._ _Hans es alemán y Emma es inglesa._
-          3. Значок пропадает потому, что в женском роде в слове появляется ещё один слог. Теперь слово заканчивается на гласную, и ударение по общему правилу и так падает на предпоследний слог: fran**ce**sa, ale**ma**na, in**gle**sa. Поэтому значок больше не нужен.
-      - note: "Официально жителей США называют `estadounidense`, но в разговоре чаще говорят **americano** и **americana**: _Él es americano._ _Ella es americana._ _¿Eres americano?_"
-      - exercise:
-          title: Responde
-          items:
-            - "Pierre es de Francia. Es ___ => francés"
             - "Marie es de Francia. Es ___ => francesa"
             - "Hans es de Alemania. Es ___ => alemán"
             - "Emma es de Inglaterra. Es ___ => inglesa"
-            - "Marco es de Italia. Es ___ => italiano"
             - "Li es de China. Es ___ => chino"
+      - task: "Напишите в комментариях несколько фраз о себе: **Me llamo... Soy de... Soy ucraniano / ucraniana**. Если у вас другая национальность, то назовите свою."
     allow: [Marie, Hans, Emma]
 
   - id: idiomas
