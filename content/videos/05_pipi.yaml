@@ -1,0 +1,181 @@
+# Разбор видео №5. Правила рубрики — docs/video_guide.md.
+id: pipi
+title: Где туалет?
+url: https://app.dreaming.com/spanish/watch?id=6a290eff09d2527916e040e6
+after: 31          # опираемся на уроки 0–31: всё, что уже вышло в канал
+level: A1
+
+# Звуки и название кафе, которые звучат в видео.
+allow: [Mmm, Ay, Ah, Eh, Starbucks]
+# Формы слов из прошлых разборов (la persona, hacer): пояснены под фразами и в грамматике.
+forms: [personas, haciendo]
+
+# Текст видео — 10 смысловых блоков: под каждым его новые слова (words, по полю es из vocab),
+# пояснения (note) и перевод (ru, в посте спрятан). Реплики разных людей — через тире.
+# Рекламу приложения посреди видео («Esto es la app de Dreaming… ¡Descárgala ya!») и в конце не включаем.
+segments:
+  - es: "Mmm. Esto se ve rico y huele delicioso. Yo amo los nachos. Mmm. Es muy rico. Mmm. Pero... es picante. Es muy picante."
+    ru: "Ммм. Выглядит вкусно и пахнет восхитительно. Я обожаю начос. Ммм. Очень вкусно. Ммм. Но... остро. Очень остро."
+    words: [se ve..., huele..., delicioso/a, amar, los nachos, picante]
+    note:
+      - "_Se ve rico_ значит «выглядит вкусно», а _huele delicioso_ — «пахнет восхитительно». После **se ve** и **huele** говорят, какое что-то на вид и на запах."
+      - "**Amo** значит «я обожаю», это форма глагола **amar** («любить»): _Yo amo los nachos._ (Я обожаю начос.)"
+  - es: "— ¡Mesera! ¡Mesera! — ¿Sí? — ¡Agua! ¡Agua, por favor! — ¡Claro! Aquí tienes. — Más agua. — ¡Claro! Aquí tienes. — ¡Ah! Gracias. — De nada."
+    ru: "— Официантка! Официантка! — Да? — Воды! Воды, пожалуйста! — Конечно! Вот, пожалуйста. — Ещё воды. — Конечно! Вот, пожалуйста. — Ах! Спасибо. — Не за что."
+    words: ["¡claro!"]
+    note:
+      - "**¡Claro!** значит «конечно!»: так охотно соглашаются выполнить просьбу."
+      - "Чтобы попросить чего-то ещё, достаточно сказать **más** и само слово: _Más agua._ (Ещё воды.)"
+  - es: "— ¡Ay! Es mucha agua. Quiero ir al baño. Quiero hacer pipí. Pero... ¿dónde está el baño? ¿Mesera? — ¿Sí? — ¿Dónde está el baño? — El baño está allá. — ¡Ah! Gracias."
+    ru: "— Ой! Это много воды. Хочу в туалет. Хочу пописать. Но... где туалет? Официантка? — Да? — Где туалет? — Туалет вон там. — А! Спасибо."
+    words: [ir, al, hacer pipí]
+    note:
+      - "**Al** — это **a** и **el**, слитые в одно слово: _Quiero ir a + el baño_ превращается в _Quiero ir al baño._ (Хочу в туалет.)"
+      - "_Hacer pipí_ значит «пописать». Так говорят дети и так говорят в шутку, а в видео на этом построена вся история."
+  - es: "¿Qué? ¿Una fila? ¡Ay! Uno, dos, tres, cuatro, cinco... ¿Seis personas? ¡Ay! ¡Bueno! ¡Qué aburrido! ¡No me gustan las filas!"
+    ru: "Что? Очередь? Ой! Один, два, три, четыре, пять... Шесть человек? Ой! Ладно! Как скучно! Не люблю очереди!"
+    words: [la fila, "¡qué aburrido!"]
+    note:
+      - "**Personas** — это «люди», множественное число от слова «человек» из разбора №1: _seis personas_ значит «шесть человек»."
+      - "_¡Qué aburrido!_ значит «как скучно!»: с **qué** в начале говорят, когда что-то очень нравится или очень не нравится."
+  - es: "— ¡Ay! ¡Quiero hacer pipí! ¡Cuánto tiempo es! ¡Mesera! — ¡Sí! — ¡Quiero ir al baño! ¡Quiero hacer pipí! — ¡Pero ahí está el baño! — ¡Sí! ¡Pero hay fila! ¡Y quiero hacer pipí! — ¡Arriba hay un baño!"
+    ru: "— Ой! Хочу пописать! Сколько можно ждать! Официантка! — Да! — Хочу в туалет! Хочу пописать! — Но туалет же вон там! — Да! Но там очередь! А я хочу пописать! — Наверху есть туалет!"
+    words: ["¿cuánto?", el tiempo, ahí, hay, arriba]
+    note:
+      - "**Hay** значит «есть», «имеется»: _Hay fila._ (Там очередь.) _Arriba hay un baño._ (Наверху есть туалет.) Чем _hay_ отличается от _está_, смотрите в разделе «📚 Грамматика из видео»."
+      - "_¡Cuánto tiempo es!_ значит «сколько можно!», а дословно — «сколько же это времени!»."
+  - es: "— ¿Arriba? ¿Y las escaleras? ¿Dónde están las escaleras? ¿Están por allá? ¿Por allá? ¡Gracias! ¿El baño? ¿Dónde está? ¡Quiero hacer pipí! ¿Dónde está? ¡Ah! ¡Allá! ¿Qué? ¡Ay, no! ¿El baño está fuera de servicio? ¡No, no, no, no, no!"
+    ru: "— Наверху? А лестница? Где лестница? Вон там? Там? Спасибо! Туалет? Где он? Хочу пописать! Где он? А! Вон там! Что? Ой, нет! Туалет не работает? Нет, нет, нет, нет, нет!"
+    words: [estar, la escalera, fuera de servicio]
+    note:
+      - "Если предметов несколько, вместо **está** говорят **están**: _¿Dónde está el baño?_, но _¿Dónde están las escaleras?_"
+      - "_Fuera de servicio_ значит «не работает». Такую табличку вешают на туалеты, лифты и автоматы."
+  - es: "— ¿Ahora qué? ¿Qué hago? ¡Quiero ir al baño! ¡Quiero hacer pipí! Un baño. ¿Dónde hay un baño? ¡Ah! ¡Ahí! ¡En el Starbucks! ¡Sí! ¡Hola! ¿Dónde está el baño? — El baño está por allí. — ¡Gracias! — ¡Eh, eh, eh! ¡Espera! — ¿Qué? — Primero, compra un café."
+    ru: "— И что теперь? Что мне делать? Хочу в туалет! Хочу пописать! Туалет. Где бы найти туалет? А! Вон! В «Старбаксе»! Да! Здравствуйте! Где туалет? — Туалет вон там. — Спасибо! — Эй, эй, эй! Подожди! — Что? — Сначала купи кофе."
+    words: [allí, primero, comprar]
+    note:
+      - "Сравните два вопроса: _¿Dónde hay un baño?_ — «где здесь вообще есть туалет?», а _¿Dónde está el baño?_ — «где тот самый туалет?»."
+      - "**Compra** значит «купи», так советуют или требуют: _Primero, compra un café._ (Сначала купи кофе.)"
+  - es: "— ¡Pero quiero ir al baño! — ¡Ah, ah, ah, ah! ¡No hay café! ¡No hay baño! — ¡Pero yo no tomo café! — ¡Entonces no hay baño! — ¡Pero!... — ¡Ah, ah, ah, ah! — ¡Pero!... ¡Ah, bueno! ¿Cuánto cuesta un café? — Son veinte dólares. — ¿Veinte dólares? ¿Un café? — ¿Efectivo o tarjeta? — ¡Me voy! ¡No me gusta tu café!"
+    ru: "— Но я хочу в туалет! — А-а-а-а! Нет кофе — нет туалета! — Но я не пью кофе! — Тогда нет туалета! — Но!.. — А-а-а-а! — Но!.. Ну ладно! Сколько стоит кофе? — Двадцать долларов. — Двадцать долларов? За кофе? — Наличными или картой? — Я ухожу! Мне не нравится твой кофе!"
+    words: [entonces, "¿cuánto cuesta...?", son, el dólar, efectivo, la tarjeta, me voy]
+    note:
+      - "Чтобы спросить цену, говорят _¿Cuánto cuesta...?_: _¿Cuánto cuesta un café?_ (Сколько стоит кофе?) А цену называют с **son**: _Son veinte dólares._ (Двадцать долларов.)"
+      - "_¡No hay café! ¡No hay baño!_ значит «нет кофе — нет туалета»: так коротко ставят условие."
+  - es: "— ¿Veinte dólares? ¡Ay, pero quiero hacer pipí! ¡Sí! ¡Ahí! ¡Ahí voy a hacer pipí! ¡Sí! ¡No hay nadie! ¡Ahora sí! ¡Voy a hacer pipí! — ¡Eh, tú! — ¡Ay, no! — ¿Estás haciendo pipí? — ¿Yo? No, no, policía. — Hacer pipí aquí está prohibido. — ¿Pero no estoy haciendo pipí? — ¡Sí! ¡Estás haciendo pipí!"
+    ru: "— Двадцать долларов? Ой, но я хочу пописать! Да! Вон там! Вот там я и пописаю! Да! Никого нет! Ну вот теперь! Сейчас пописаю! — Эй, ты! — Ой, нет! — Ты что, писаешь? — Я? Нет, нет, полиция. — Писать здесь запрещено. — Но я же не писаю? — Да! Ты писаешь!"
+    words: [nadie, la policía / el policía, prohibido/a]
+    note:
+      - "_No hay nadie_ значит «никого нет». Если **nadie** стоит после глагола, перед глаголом всё равно нужно **no**."
+      - "_¿Estás haciendo pipí?_ значит «ты (прямо сейчас) писаешь?». Это та же форма, что «малыш спит прямо сейчас» в разборе №4: _estar_ и глагол на _-iendo_."
+  - es: "— ¡Perdón! Es que quiero hacer pipí. — ¡Sube al carro ahora, delincuente! — ¡No! ¡No, no, no! ¡Por favor! ¡No! ¡Señor policía! — ¿Qué pasa? — ¡Quiero hacer pipí! — Pues vas a hacer pipí en la cárcel. — ¡No, señor policía! ¡Quiero hacer pipí ahora! — ¡Que no! ¡Que vas a la cárcel! ¡Vas a hacer pipí en la cárcel! — No. No tengo tiempo. Voy a hacer pipí. Ahora. — ¡No! ¿En mi carro? ¡No! ¡Eh! ¡No! ¡En mi carro no! ¡No! ¿Qué? ¿Qué es esto? Está mojado. ¡Ay, no!"
+    ru: "— Простите! Просто я хочу пописать. — Садись в машину, живо, нарушитель! — Нет! Нет, нет, нет! Пожалуйста! Нет! Сеньор полицейский! — Что такое? — Я хочу пописать! — Ну так пописаешь в тюрьме. — Нет, сеньор полицейский! Я хочу пописать сейчас! — Да нет же! Ты едешь в тюрьму! Пописаешь в тюрьме! — Нет. У меня нет времени. Я пописаю. Сейчас. — Нет! В моей машине? Нет! Эй! Нет! Только не в моей машине! Нет! Что? Что это? Тут мокро. Ой, нет!"
+    words: [subir, el carro, el delincuente, "¿qué pasa?", pues, la cárcel, "¡que no!", mojado/a]
+    note:
+      - "_¡Sube al carro!_ значит «садись в машину!», а дословно — «поднимись в машину». **Carro** так называют машину в Латинской Америке."
+      - "_Vas a hacer pipí en la cárcel_ значит «пописаешь в тюрьме»: _vas a_ — это то же, что _voy a_, только о «ты»."
+
+vocab:
+  - "👀 se ve... [сэ бэ] — выглядит... :: Se ve rico. — Выглядит вкусно."
+  - "👃 huele... [уэ́лэ] — пахнет... :: Huele delicioso. — Пахнет восхитительно."
+  - "😋 delicioso/a [дэлиθьо́со, дэлиθьо́са] — очень вкусный, восхитительный"
+  - "❤️ amar [ама́р] — любить, обожать {forms: amo} :: Yo amo los nachos. — Я обожаю начос."
+  - "🌮 los nachos [на́чос] — начос (кукурузные чипсы)"
+  - "🌶 picante [пика́нтэ] — острый"
+  - "👌 ¡claro! [кла́ро] — конечно!"
+  - "🚶 ir [ир] — идти, ехать {forms: vas va} :: Quiero ir al baño. — Хочу в туалет."
+  - "➡️ al [аль] — a + el :: al baño — в туалет"
+  - "🚽 hacer pipí [аθэ́р пипи́] — пописать (по-детски, в шутку)"
+  - "🧍 la fila [фи́ла] — очередь {forms: filas}"
+  - "🥱 ¡qué aburrido! [кэ абурри́до] — как скучно!"
+  - "❓ ¿cuánto? [куа́нто] — сколько?"
+  - "⏳ el tiempo [тье́мпо] — время :: No tengo tiempo. — У меня нет времени."
+  - "👉 ahí [аи́] — там, вот там :: Ahí está el baño. — Вон там туалет."
+  - "✅ hay [ай] — есть, имеется :: Arriba hay un baño. — Наверху есть туалет."
+  - "⬆️ arriba [арри́ба] — наверху, наверх"
+  - "📍 estar [эста́р] — быть, находиться {forms: estoy están} :: ¿Dónde están las escaleras? — Где лестница?"
+  - "🪜 la escalera [эскалэ́ра] — лестница {forms: escaleras}"
+  - "🚫 fuera de servicio [фуэ́ра дэ сэрби́θьо] — не работает"
+  - "👈 allí [айи́] — там"
+  - "1️⃣ primero [примэ́ро] — сначала"
+  - "🛒 comprar [компра́р] — покупать {forms: compra} :: Compra un café. — Купи кофе."
+  - "➡️ entonces [энто́нθэс] — тогда, значит"
+  - "💰 ¿cuánto cuesta...? [куа́нто куэ́ста] — сколько стоит...? :: ¿Cuánto cuesta un café? — Сколько стоит кофе?"
+  - "🟰 son [сон] — (это) есть; форма ser для «они» :: Son veinte dólares. — Двадцать долларов."
+  - "💵 el dólar [до́лар] — доллар {forms: dólares}"
+  - "💶 efectivo [эфэкти́бо] — наличными, наличные"
+  - "💳 la tarjeta [тархэ́та] — карта (банковская)"
+  - "🏃 me voy [мэ бой] — я ухожу"
+  - "🙅 nadie [на́дьэ] — никто :: No hay nadie. — Никого нет."
+  - "👮 la policía / el policía [полиθи́а] — полиция / полицейский"
+  - "⛔ prohibido/a [проиби́до, проиби́да] — запрещённый; запрещено"
+  - "🚓 subir [суби́р] — подниматься; садиться (в машину) {forms: sube} :: ¡Sube al carro! — Садись в машину!"
+  - "🚗 el carro [ка́рро] — машина (в Латинской Америке)"
+  - "🦹 el delincuente [дэлинкуэ́нтэ] — преступник, нарушитель"
+  - "❔ ¿qué pasa? [кэ па́са] — что такое? что случилось?"
+  - "🤷 pues [пуэс] — ну, что ж; тогда"
+  - "🏛 la cárcel [ка́рθэль] — тюрьма"
+  - "🙅 ¡que no! [кэ но] — да нет же!"
+  - "💧 mojado/a [моха́до, моха́да] — мокрый"
+
+blocks:
+  - "Пятая часть рубрики — **разборы коротких видео** на испанском. После текста видео — раздел «📚 Грамматика из видео»."
+  - |
+    **Как смотреть.** Сначала видео, потом разбор. Посмотрите видео целиком и не подглядывайте в текст: постарайтесь понять, что ей нужно и почему у неё всё время ничего не получается. Потом прочитайте разбор и посмотрите видео ещё раз.
+
+    Смотреть лучше с **испанскими субтитрами**: так вы одновременно слышите и видите каждую фразу.
+  - header: "📚 Грамматика из видео"
+  - rule: |
+      **1. Hay и está — «есть» и «находится».** Если вы спрашиваете, есть ли где-то что-то вообще, говорят **hay**: _¿Dónde hay un baño?_ (Где здесь есть туалет?) _Arriba hay un baño._ (Наверху есть туалет.) _No hay nadie._ (Никого нет.)
+      Если вы спрашиваете о конкретной вещи, про которую уже известно, говорят **está**: _¿Dónde está el baño?_ (Где туалет?) _El baño está allá._ (Туалет вон там.) Если вещей несколько, говорят **están**: _¿Dónde están las escaleras?_
+      Подсказка: после **hay** обычно стоит _un_, _una_ или вообще ничего (_hay fila_), а перед **está** — _el_ или _la_ (_el baño está..._).
+  - table:
+      title: "Hay или está"
+      rows:
+        - ["**hay** un baño", "есть (какой-то) туалет"]
+        - ["no **hay** nadie", "никого нет"]
+        - ["el baño **está** allá", "туалет (тот самый) вон там"]
+        - ["las escaleras **están** por allá", "лестница вон там"]
+  - rule: |
+      **2. Quiero + глагол и voy a + глагол.** Если сказать **quiero** и глагол в начальной форме, получится «хочу что-то сделать»: _Quiero ir al baño._ (Хочу в туалет.) _Quiero hacer pipí._ (Хочу пописать.)
+      Если сказать **voy a** и глагол, получится «сейчас сделаю», «собираюсь»: _Voy a hacer pipí._ (Сейчас пописаю.) О «ты» говорят **vas a**: _Vas a hacer pipí en la cárcel._ (Пописаешь в тюрьме.)
+  - table:
+      title: "Хочу, собираюсь"
+      rows:
+        - ["**quiero** ir al baño", "хочу в туалет"]
+        - ["**voy a** hacer pipí", "(я) сейчас пописаю"]
+        - ["**vas a** hacer pipí", "(ты) пописаешь"]
+  - rule: |
+      **3. Повторим: estar и глагол на -iendo.** Как в разборе №4, это действие прямо сейчас: _¿Estás haciendo pipí?_ (Ты сейчас писаешь?) _No estoy haciendo pipí._ (Я не писаю.) У глагола **hacer** эта форма — **haciendo**.
+  - exercise:
+      title: "Ответьте на вопросы"
+      items:
+        - "Что она ест в начале видео? => Nachos. Es muy picante."
+        - "Что она просит у официантки? => Agua."
+        - "Почему она не может сходить в туалет в кафе? => Hay fila. Y arriba el baño está fuera de servicio."
+        - "¿Cuánto cuesta un café en el Starbucks? => Son veinte dólares."
+        - "Что говорит полицейский про улицу? => Hacer pipí aquí está prohibido."
+        - "Куда полицейский хочет её отвезти? => A la cárcel."
+  - exercise:
+      title: Переведите
+      items:
+        - "Где туалет? => ¿Dónde está el baño?"
+        - "Наверху есть туалет. => Arriba hay un baño."
+        - "Сколько стоит кофе? => ¿Cuánto cuesta un café?"
+        - "Я хочу в туалет. => Quiero ir al baño."
+  - task: "Представьте, что вы в кафе и ищете туалет. Напишите в комментариях короткий диалог по образцу: **¿Hay un baño aquí? — Sí, arriba hay un baño. — ¿Dónde están las escaleras? — Están allá.**"
+
+quiz:
+  - q: "Как спросить «Где туалет?», если в кафе он точно есть?"
+    options: "¿Dónde está el baño? | ¿Dónde hay el baño? | ¿Qué es el baño?"
+    explain: "О конкретном месте, про которое известно, говорят está: ¿Dónde está el baño?"
+  - q: "«Arriba ___ un baño.» — «Наверху есть туалет». Какое слово пропущено?"
+    options: "hay | está | es"
+    explain: "Есть ли где-то что-то вообще — hay: Arriba hay un baño."
+  - q: "Что значит «fuera de servicio»?"
+    options: "не работает | очень далеко | очень дорого"
+  - q: "Сколько стоит кофе в «Старбаксе»?"
+    options: "Veinte dólares | Diez dólares | Cinco dólares"
+    explain: "Бариста говорит: «Son veinte dólares»."
+  - q: "Что значит «¿Cuánto cuesta?»"
+    options: "Сколько стоит? | Сколько времени? | Где это?"
