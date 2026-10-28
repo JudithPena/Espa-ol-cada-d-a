@@ -1,5 +1,6 @@
 import pytest
 
+from espanol.course import ContentError
 from espanol.markup import to_html
 from espanol.render import PollMessage
 from espanol.rich import RichMessage
@@ -53,6 +54,21 @@ def test_find_video_by_number_or_id(tmp_path, course):
     assert find_video(videos, "video:test").number == 1
     with pytest.raises(KeyError):
         find_video(videos, "video:2")
+
+
+def test_publish_at_is_kyiv_time_for_the_bot(tmp_path, course):
+    """publish_at — по Киеву; бот получает время в UTC (30 октября Киев уже на зимнем времени, UTC+2)."""
+    from espanol.botdata import video_schedule
+
+    (tmp_path / "videos").mkdir()
+    path = tmp_path / "videos" / "01_test.yaml"
+    path.write_text(VIDEO.format(after=13, vocab=VOCAB) + 'publish_at: "2026-10-30 18:00"\n', encoding="utf-8")
+    assert video_schedule(load_videos(tmp_path, course)) == [
+        {"number": 1, "title": "Тест", "at": "2026-10-30T16:00:00Z"}]
+    for bad in ("2026-10-30 18:30", "30.10.2026 18:00"):
+        path.write_text(VIDEO.format(after=13, vocab=VOCAB) + f'publish_at: "{bad}"\n', encoding="utf-8")
+        with pytest.raises(ContentError, match="publish_at"):
+            load_videos(tmp_path, course)
 
 
 def test_new_words_must_be_explained(tmp_path, course, lexicon):

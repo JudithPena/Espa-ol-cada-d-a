@@ -15,7 +15,8 @@ def test_bot_words_cover_course_once_in_order(course):
 def test_export_without_audio(tmp_path, course):
     result = export(course, tmp_path, audio=False)
     records = json.loads((tmp_path / "data" / "words.json").read_text(encoding="utf-8"))
-    assert result == {"words": len(records), "audio": 0, "deck": 0}
+    assert result == {"words": len(records), "audio": 0, "deck": 0, "videos": 0}
+    assert json.loads((tmp_path / "data" / "videos.json").read_text(encoding="utf-8")) == []
     lesson_ids = {lesson.id for lesson in course.lessons}
     for r in records:
         assert r["lesson"] in lesson_ids and r["es"] and r["ru"] and not r["audio"]

@@ -8,14 +8,19 @@
 не указываем.
 
 Курс под разборы не меняется: разборы подстраиваются под курс, а не наоборот.
+
+publish_at («2026-10-30 18:00», время по Киеву, ровный час) — когда бот на Cloudflare сам выпустит
+разбор в канал (bot-data выгружает расписание в bot/data/videos.json).
 """
 
 from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
+from datetime import datetime
 from pathlib import Path
 from typing import Any
+from zoneinfo import ZoneInfo
 
 import yaml
 
@@ -27,6 +32,7 @@ from .render import Message, PollMessage, Renderer, poll_problems
 from .rich import RichMedia, RichMessage, RichRenderer, _card, details, paragraphs, rich_problems
 from .tokens import spanish_words
 
+PUBLISH_TZ = ZoneInfo("Europe/Kyiv")  # publish_at — по Киеву, как часы бота (TIMEZONE в bot/wrangler.toml)
 VIDEO_REF = re.compile(r"(?:video|видео):(\w+)$", re.I)
 
 
@@ -50,6 +56,7 @@ class Video:
     lesson: Lesson        # слова, блоки и опросы в формате урока
     source: str
     earlier: list[tuple[int, VocabItem]] = field(default_factory=list)  # слова прошлых разборов
+    publish_at: datetime | None = None  # когда бот сам выпустит разбор в канал
 
     @property
     def transcript(self) -> str:
@@ -92,11 +99,24 @@ def load_videos(content_dir: str | Path, course: Course) -> list[Video]:
         videos.append(Video(
             number=int(prefix), id=local_id, title=str(raw["title"]).strip(), url=str(raw["url"]).strip(),
             after=after, segments=_segments(raw["segments"], lesson, where), lesson=lesson, source=str(path),
+            publish_at=_publish_at(raw.get("publish_at"), where),
         ))
     for video in videos:
         video.earlier = [(v.number, item) for v in sorted(videos, key=lambda v: v.number)
                          if v.number < video.number for item in v.lesson.vocab]
     return videos
+
+
+def _publish_at(raw: Any, where: str) -> datetime | None:
+    if raw is None:
+        return None
+    try:
+        at = datetime.strptime(str(raw).strip(), "%Y-%m-%d %H:%M")
+    except ValueError:
+        raise ContentError(f"{where}: publish_at = «{raw}», нужно «ГГГГ-ММ-ДД ЧЧ:00» по Киеву") from None
+    if at.minute:
+        raise ContentError(f"{where}: publish_at = «{raw}» — бот выпускает разборы в начале часа, нужно «ЧЧ:00»")
+    return at.replace(tzinfo=PUBLISH_TZ)
 
 
 def _segments(raw: Any, lesson: Lesson, where: str) -> list[Segment]:

@@ -243,14 +243,16 @@ def cmd_send(args, settings) -> int:
 def cmd_bot_data(args, settings) -> int:
     from .botdata import export
     from .mywords import load_deck
+    from .videos import load_videos
     from .wordcards import load_cards
 
     course, _, _ = build(settings)
     result = export(course, Path(args.out), audio=not args.no_audio,
                     cache=Path(args.audio_cache) if args.audio_cache else None,
-                    deck=load_deck(settings.content_dir), cards=load_cards(settings.content_dir))
-    print(f"Слов для бота: {result['words']}, «Моих слов»: {result['deck']}, с озвучкой: {result['audio']} "
-          f"→ {args.out}/data/")
+                    deck=load_deck(settings.content_dir), cards=load_cards(settings.content_dir),
+                    videos=load_videos(settings.content_dir, course))
+    print(f"Слов для бота: {result['words']}, «Моих слов»: {result['deck']}, с озвучкой: {result['audio']}, "
+          f"разборов по расписанию: {result['videos']} → {args.out}/data/")
     return 0
 
 

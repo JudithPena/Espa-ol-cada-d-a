@@ -1,6 +1,7 @@
 // Бот курса на Cloudflare Workers.
 //  • По расписанию (каждый час) в часы PUBLISH_HOURS по Киеву запускает на GitHub публикацию урока —
 //    у Cloudflare расписание точное, а cron в GitHub Actions опаздывает на несколько часов.
+//    Так же в свой час выпускает в канал разборы видео (publish_at в content/videos/ → data/videos.json).
 //  • Отвечает в личке: /repaso — слова из вышедших уроков: карточка нового слова, потом выбор перевода
 //    (занятие — deck.js, интервалы — srs.js), /progreso — сколько слов выучено, /id — номер чата.
 //  • В дни REMIND_DAYS в REMIND_HOUR по Киеву сам предлагает в личке повторить слова
@@ -11,6 +12,7 @@
 // Прогресс каждого ученика хранится в KV (binding SRS).
 
 import DECK from "../data/mywords.json" with { type: "json" };
+import VIDEOS from "../data/videos.json" with { type: "json" };
 import WORDS from "../data/words.json" with { type: "json" };
 import {
   choices, currentItem, deckProgress, freshLeft, learn, newDeck, NEW_PER_DAY, recall, startDeckSession, startSession,
@@ -45,6 +47,7 @@ export default {
     const now = new Date(event.scheduledTime);
     const hour = localHour(now, env.TIMEZONE);
     if (numbers(env.PUBLISH_HOURS).includes(hour)) ctx.waitUntil(dispatchPublish(env));
+    ctx.waitUntil(publishVideos(env, now));
     if (hour === Number(env.REMIND_HOUR) && numbers(env.REMIND_DAYS).includes(localWeekday(now, env.TIMEZONE))) {
       ctx.waitUntil(sendReminders(env));
     }
@@ -56,8 +59,34 @@ const numbers = (list) => String(list || "").split(",").map((n) => n.trim()).fil
 
 // ---------------------------------------------------------------- публикация
 
-export async function dispatchPublish(env) {
-  const api = `https://api.github.com/repos/${env.GITHUB_REPO}/actions/workflows/${env.PUBLISH_WORKFLOW}/dispatches`;
+export function dispatchPublish(env) {
+  return dispatch(env, env.PUBLISH_WORKFLOW, {}, "публикацию урока");
+}
+
+// Разборы видео по расписанию: в час publish_at бот запускает workflow «Разбор видео» в канал. Если Cloudflare
+// этот час пропустил, разбор выйдет в следующий, но не позже VIDEO_LATE_HOURS. Что разбор уже запущен, бот помнит в KV.
+const VIDEO_LATE_HOURS = 3;
+
+export async function publishVideos(env, now = new Date(), videos = VIDEOS) {
+  for (const v of videos) {
+    const late = now.getTime() - Date.parse(v.at);
+    if (late < 0 || late >= VIDEO_LATE_HOURS * 3600 * 1000) continue;
+    const key = `video-sent:${v.number}`;
+    if (await env.SRS.get(key)) continue;
+    const inputs = { video: String(v.number), target: "канал" };
+    if (!(await dispatch(env, env.VIDEO_WORKFLOW || "video.yml", inputs, `разбор видео №${v.number}`))) continue;
+    await env.SRS.put(key, now.toISOString());
+    if (env.ADMIN_CHAT_ID) {
+      await tg(env, "sendMessage", {
+        chat_id: env.ADMIN_CHAT_ID,
+        text: `🎬 Разбор видео №${v.number} «${v.title}» уходит в канал, через пару минут он там появится.`,
+      });
+    }
+  }
+}
+
+async function dispatch(env, workflow, inputs, what) {
+  const api = `https://api.github.com/repos/${env.GITHUB_REPO}/actions/workflows/${workflow}/dispatches`;
   const resp = await fetch(api, {
     method: "POST",
     headers: {
@@ -66,15 +95,15 @@ export async function dispatchPublish(env) {
       "X-GitHub-Api-Version": "2022-11-28",
       "User-Agent": "espanol-cada-dia-bot",
     },
-    body: JSON.stringify({ ref: env.GITHUB_BRANCH }),
+    body: JSON.stringify(Object.keys(inputs).length ? { ref: env.GITHUB_BRANCH, inputs } : { ref: env.GITHUB_BRANCH }),
   });
   if (resp.status === 204) return true;
   const text = (await resp.text()).slice(0, 300);
-  console.error("dispatch failed", resp.status, text);
+  console.error("dispatch failed", workflow, resp.status, text);
   if (env.ADMIN_CHAT_ID) {
     await tg(env, "sendMessage", {
       chat_id: env.ADMIN_CHAT_ID,
-      text: `⚠️ Не смог запустить публикацию урока на GitHub (ответ ${resp.status}). ` +
+      text: `⚠️ Не смог запустить ${what} на GitHub (ответ ${resp.status}). ` +
         "Проверьте токен BOT_GITHUB_TOKEN: возможно, у него закончился срок.",
     });
   }

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { beforeEach, test } from "node:test";
 import DECK from "../data/mywords.json" with { type: "json" };
 import WORDS from "../data/words.json" with { type: "json" };
-import bot from "../src/index.js";
+import bot, { publishVideos } from "../src/index.js";
 
 let calls;
 let kv;
@@ -144,6 +144,27 @@ test("публикация запускается только в часы PUBLI
   assert.deepEqual(calls.map((c) => c.method), ["dispatch", "dispatch"]);
   assert.match(calls[0].url, /repos\/o\/r\/actions\/workflows\/publish\.yml\/dispatches$/);
   assert.deepEqual(calls[0].body, { ref: "main" });
+});
+
+test("разбор видео выходит в канал в час publish_at, один раз; пропущенный час — не позже чем через 3 часа", async () => {
+  const videos = [{ number: 6, title: "Обувной магазин", at: "2026-10-30T16:00:00Z" }]; // 18:00 по Киеву
+  const run = (iso) => publishVideos(env, new Date(iso), videos);
+  await run("2026-10-30T15:00:00Z");
+  assert.equal(calls.length, 0, "раньше срока — ничего");
+  await run("2026-10-30T16:00:00Z");
+  assert.deepEqual(calls.map((c) => c.method), ["dispatch", "sendMessage"]);
+  assert.match(calls[0].url, /workflows\/video\.yml\/dispatches$/);
+  assert.deepEqual(calls[0].body, { ref: "main", inputs: { video: "6", target: "канал" } });
+  assert.match(calls[1].body.text, /№6 «Обувной магазин»/);
+  calls = [];
+  await run("2026-10-30T17:00:00Z");
+  assert.equal(calls.length, 0, "второй раз не выпускает");
+
+  kv.clear();
+  await run("2026-10-30T19:00:00Z");
+  assert.equal(calls.length, 0, "на 3 часа позже — уже не выпускает");
+  await run("2026-10-30T18:00:00Z");
+  assert.equal(calls[0].method, "dispatch", "через 2 часа после срока — ещё выпускает");
 });
 
 test("по средам и субботам в 19:00 бот сам предлагает повторить слова", async () => {

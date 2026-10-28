@@ -3,6 +3,9 @@
     python -m espanol bot-data                  # bot/data/words.json и озвучка в bot/public/audio/
     python -m espanol bot-data --no-audio       # без озвучки
 
+Там же — расписание разборов видео (bot/data/videos.json): у каких разборов есть publish_at,
+в этот час бот сам запускает workflow «Разбор видео» в канал.
+
 Там же — личная колода автора «Мои слова» (/palabras): bot/data/mywords.json, см. espanol/mywords.py.
 
 Бот показывает только слова уже вышедших уроков: какие уроки вышли, он сам читает
@@ -18,6 +21,7 @@ import json
 import logging
 import shutil
 from concurrent.futures import ThreadPoolExecutor
+from datetime import timezone
 from pathlib import Path
 
 from . import tts
@@ -133,10 +137,18 @@ def word_record(item: VocabItem, audio: str = "", card: WordCard | None = None) 
     }
 
 
+def video_schedule(videos: list) -> list[dict]:
+    """Разборы с publish_at: номер, название и время выхода (UTC, ISO) — для бота."""
+    return [{"number": v.number, "title": v.title,
+             "at": v.publish_at.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")}
+            for v in sorted(videos, key=lambda v: v.number) if v.publish_at]
+
+
 def export(course: Course, out: Path, audio: bool = True, cache: Path | None = None,
-           workers: int = 6, deck: list[Word] | None = None, cards: dict[str, WordCard] | None = None) -> dict:
-    """Пишет out/data/words.json (слова курса), out/data/mywords.json («Мои слова»)
-    и озвучку в out/public/audio/. Готовые mp3 берутся из cache."""
+           workers: int = 6, deck: list[Word] | None = None, cards: dict[str, WordCard] | None = None,
+           videos: list | None = None) -> dict:
+    """Пишет out/data/words.json (слова курса), out/data/mywords.json («Мои слова»),
+    out/data/videos.json (расписание разборов) и озвучку в out/public/audio/. Готовые mp3 берутся из cache."""
     words = bot_words(course)
     deck = deck or []
     audio_dir = out / "public" / "audio"
@@ -159,4 +171,6 @@ def export(course: Course, out: Path, audio: bool = True, cache: Path | None = N
     (out / "data" / "words.json").write_text(json.dumps(records, ensure_ascii=False, indent=1), encoding="utf-8")
     mine = [record(w, names.get(f"deck:{w.id}", "")) for w in deck]
     (out / "data" / "mywords.json").write_text(json.dumps(mine, ensure_ascii=False, indent=1), encoding="utf-8")
-    return {"words": len(records), "audio": len(names), "deck": len(mine)}
+    schedule = video_schedule(videos or [])
+    (out / "data" / "videos.json").write_text(json.dumps(schedule, ensure_ascii=False, indent=1), encoding="utf-8")
+    return {"words": len(records), "audio": len(names), "deck": len(mine), "videos": len(schedule)}

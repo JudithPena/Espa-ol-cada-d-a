@@ -1,0 +1,179 @@
+# Разбор видео №6. Правила рубрики — docs/video_guide.md.
+id: zapatos
+title: Обувной магазин
+url: https://app.dreaming.com/spanish/watch?id=69903d7fb0b7b6f8877034e9
+after: 36          # к пятнице 30 октября 18:00 выйдут уроки 0–36 (новых слов из видео в 33–36 нет)
+level: A1
+publish_at: "2026-10-30 18:00"   # по Киеву: в этот час бот на Cloudflare сам выпустит разбор в канал
+
+# Звуки, которые звучат в видео.
+allow: [Ok, Ah, Ay, Uh]
+# Форма слова из курса (mucho) и слов из прошлых разборов (buscar, cuesta, estar, haciendo): пояснены под фразами.
+forms: [muchos, cuesta, estar, haciendo]
+
+# Текст видео — 10 смысловых блоков: под каждым его новые слова (words, по полю es из vocab),
+# пояснения (note) и перевод (ru, в посте спрятан). Реплики разных людей — через тире.
+# Быстрый повтор сцены с деньгами («Vamos. Toma. Gracias. De nada. Adiós…») перед приходом хозяйки не включаем:
+# это те же реплики ещё раз. Цифры из субтитров (8, 7, 50, 100, 80) пишем словами, как их говорят.
+segments:
+  - es: "— Hola. — Hola. Busco zapatos. — Bien. Esta es una tienda de zapatos. — Sí, lo sé. — Aquí hay muchos zapatos. — Sí, lo sé. — Es una tienda de zapatos."
+    ru: "— Здравствуйте. — Здравствуйте. Я ищу туфли. — Хорошо. Это обувной магазин. — Да, я знаю. — Здесь много обуви. — Да, я знаю. — Это обувной магазин."
+    words: [el zapato, este/esta, la tienda, lo sé]
+    note:
+      - "**Busco** значит «я ищу», это форма глагола **buscar** («искать») из прошлого разбора: _Busco zapatos._ (Я ищу туфли.)"
+      - "_Una tienda de zapatos_ — «обувной магазин», а дословно «магазин туфель». Так называют любой магазин: сначала **tienda**, потом **de** и то, что там продают."
+      - "_Lo sé_ значит «я (это) знаю». Так отвечают, когда вам говорят то, что вы и так знаете."
+      - "**Muchos** — это **mucho** во множественном числе: _muchos zapatos_ значит «много туфель»."
+  - es: "— Quiero zapatos blancos. — Mira, estos son muy buenos. — Ah, pero estos zapatos no son blancos. — Sí son blancos. — No, no son blancos. — Sí son blancos. — No. Estos zapatos son blancos con negro. — ¿Ves? Son blancos. — Quiero zapatos blancos sin color negro."
+    ru: "— Я хочу белые туфли. — Смотри, вот эти очень хорошие. — Ах, но эти туфли не белые. — Да белые же. — Нет, не белые. — Да белые же. — Нет. Эти туфли белые с чёрным. — Видишь? Белые. — Я хочу белые туфли без чёрного цвета."
+    words: [blanco/a, "¿ves?", el color]
+    note:
+      - "Если туфель несколько, то и цвет стоит во множественном числе: _zapato blanco_, но _zapatos blancos_. Подробнее — в разделе «📚 Грамматика из видео»."
+      - "_Sí son blancos_ значит «да белые же!». Если поставить **sí** перед глаголом, фраза звучит как спор."
+      - "_Blancos con negro_ значит «белые с чёрным», а _sin color negro_ — «без чёрного цвета»."
+  - es: "— No, estos también son blancos. — No, estos no son blancos. — Sí. Sí son blancos. — No, esto no es color blanco. Es color crema. Esto es blanco. Y esto es crema. — No, no, no. No, eso sí es blanco, señorita. — No, no es."
+    ru: "— Нет, эти тоже белые. — Нет, эти не белые. — Да. Белые же. — Нет, это не белый цвет. Это кремовый. Вот это белое. А это кремовое. — Нет, нет, нет. Нет, вот это как раз белое, девушка. — Нет, не белое."
+    words: [la señorita]
+    note:
+      - "**Esto** и **eso** говорят, когда вещь не называют: _Esto es blanco._ (Вот это белое.) _Eso sí es blanco._ (Вот это как раз белое.)"
+      - "**Señorita** — вежливое обращение к молодой женщине, как «девушка»."
+  - es: "— ¿Sabes qué? No quiero zapatos. Quiero tacones. ¿Tienes tacones? — ¿Tacones? No. No tengo tacones. — ¿Qué? Pero... allá hay tacones. — No. — Sí tienes tacones. Allá hay muchos tacones. Mira. — No, no tengo tacones."
+    ru: "— Знаешь что? Не хочу туфли. Хочу на каблуках. У тебя есть туфли на каблуках? — На каблуках? Нет. Туфель на каблуках у меня нет. — Что? Но... вон там есть туфли на каблуках. — Нет. — Да есть у тебя каблуки. Вон там много каблуков. Смотри. — Нет, у меня нет каблуков."
+    words: ["¿sabes qué?", el tacón]
+    note:
+      - "_¿Sabes qué?_ значит «знаешь что?»: так говорят, когда передумали или хотят сказать что-то новое."
+      - "**Tacones** — «каблуки», и так же коротко называют туфли на каблуках: _Quiero tacones._ (Хочу туфли на каблуках.)"
+  - es: "— ¿Y esos? ¿Qué son esos? — Ah, esos son tacones. — Entonces, sí tienes tacones. — No. No, no, no. No tengo tacones. Tengo estos. — Ay. — ¿Ves? No son tacones."
+    ru: "— А те? Что это там? — А, это туфли на каблуках. — Значит, каблуки у тебя всё-таки есть. — Нет. Нет, нет, нет. Каблуков у меня нет. У меня есть вот эти. — Ой. — Видишь? Это не каблуки."
+    words: [ese/esa]
+    note:
+      - "**Esos** говорят о вещах подальше от себя: _¿Qué son esos?_ (А те что такое?) О вещах рядом с собой говорят **estos**: _Tengo estos._ (У меня есть вот эти.)"
+  - es: "— Ok, ok. Quiero tacones. Tacones altos. — Mira estos. — Estos son tacones bajos. Quiero tacones altos. — ¿Cómo? — Tacones altos. — Ah, altos, altos. Bueno, mira estos. — Uh, me gustan. — Sí, sí. Ah, pero son talla ocho. Yo quiero talla siete. ¿Tú tienes talla siete? — No. Yo tengo talla ocho. — ¿No tienes tacones talla siete? — No, no tengo tacones."
+    ru: "— Ладно, ладно. Хочу на каблуках. На высоких каблуках. — Смотри вот эти. — Это низкие каблуки. Я хочу высокие. — Что? — Высокие каблуки. — А, высокие-высокие. Ну, смотри вот эти. — О, мне нравятся. — Да, да. Ах, но они восьмого размера. Я хочу седьмой. У тебя есть седьмой размер? — Нет. У меня восьмой размер. — У тебя нет туфель на каблуках седьмого размера? — Нет, у меня нет каблуков."
+    words: [alto/a, bajo/a, la talla]
+    note:
+      - "**Alto** значит «высокий», а **bajo** — «низкий»: _tacones altos_ (высокие каблуки), _tacones bajos_ (низкие каблуки)."
+      - "**Talla** — размер одежды и обуви: _talla ocho_ значит «восьмой размер». В видео размеры американские: восьмой — это примерно наш 38-й, а седьмой — 37-й."
+      - "Шутка в том, что продавщица всё время отвечает про себя: _¿Tú tienes talla siete?_ (У тебя есть седьмой размер?) — _Yo tengo talla ocho._ (У меня восьмой размер.)"
+  - es: "— Ok, quiero estos. ¿Cuánto cuestan? — Esos cuestan cincuenta dólares. — Cincuenta dólares. ¿Cincuenta? Bueno. Toma. — ¿Qué? — Son cincuenta. — Ah, sí."
+    ru: "— Ладно, хочу эти. Сколько они стоят? — Эти стоят пятьдесят долларов. — Пятьдесят долларов. Пятьдесят? Ну ладно. Держи. — Что? — Тут пятьдесят. — А, ну да."
+    words: [cuestan, cincuenta]
+    note:
+      - "Если вещь одна, говорят **cuesta**, а если вещей несколько, говорят **cuestan**: _¿Cuánto cuesta un café?_, но _¿Cuánto cuestan?_ (Сколько они стоят?), потому что туфель две."
+      - "**Toma** значит «держи», «вот, возьми»: так говорят, когда что-то кому-то даёте."
+  - es: "— Cincuenta el izquierdo y cincuenta el derecho. — ¿Qué? Pero eso es muy caro. ¿Cien dólares? Toma. — ¡Gracias! — De nada. — ¡Adiós! — ¿Adiós? ¿Qué fue eso?"
+    ru: "— Пятьдесят за левую и пятьдесят за правую. — Что? Но это очень дорого. Сто долларов? Держи. — Спасибо! — Не за что. — Пока! — Пока? Что это было?"
+    words: [izquierdo/a, derecho/a, caro/a, cien, "¿qué fue eso?"]
+    note:
+      - "_Cincuenta el izquierdo y cincuenta el derecho_ значит «пятьдесят за левую и пятьдесят за правую». Слова стоят в мужском роде, потому что **zapato** мужского рода."
+      - "_¿Qué fue eso?_ значит «что это было?»: **fue** — это «было» в прошедшем времени."
+  - es: "— ¿Qué está pasando aquí? Tú debes pagar esos zapatos. — Pero sí pagué. Pagué cien dólares. — ¿A quién? Esta es mi tienda. — ¿Tu tienda? — Sí, mi tienda."
+    ru: "— Что здесь происходит? Ты должна заплатить за эти туфли. — Но я же заплатила. Я заплатила сто долларов. — Кому? Это мой магазин. — Твой магазин? — Да, мой магазин."
+    words: ["¿qué está pasando?", deber, pagar, "¿a quién?"]
+    note:
+      - "_¿Qué está pasando aquí?_ значит «что здесь происходит?». Это та же форма, что _estás haciendo_ в прошлом разборе: _estar_ и глагол на _-ando_."
+      - "_Tú debes pagar_ значит «ты должна заплатить»: после **debes**, как и после **quiero**, глагол стоит в начальной форме."
+      - "**Pagué** значит «я заплатила», это прошедшее время глагола **pagar**: _Pagué cien dólares._ (Я заплатила сто долларов.) А **sí** перед глаголом снова спорит: _Pero sí pagué._ (Но я же заплатила!)"
+  - es: "— Pero, ¿y la otra mujer? — ¿Una mujer mayor? — Sí, esa. — Ah, esa es una señora loca. — ¿Ella no trabaja aquí? — No. Pero son ochenta dólares. ¿Efectivo o tarjeta? — Pero..."
+    ru: "— Но... а другая женщина? — Пожилая женщина? — Да, та. — А, это одна сумасшедшая сеньора. — Она здесь не работает? — Нет. Но с тебя восемьдесят долларов. Наличными или картой? — Но..."
+    words: [la mujer, mayor, loco/a, trabajar, ochenta]
+    note:
+      - "_Una mujer mayor_ значит «пожилая женщина». Слово **mayor** звучит вежливее, чем «старая»."
+      - "**Loca** значит «сумасшедшая», а в мужском роде — **loco**: _una señora loca_."
+      - "Шутка в конце: туфли стоят не сто, а восемьдесят долларов, но платить за них нужно ещё раз: _Pero son ochenta dólares. ¿Efectivo o tarjeta?_"
+
+vocab:
+  - "👞 el zapato [θапа́то] — туфля, ботинок {forms: zapatos} :: Quiero zapatos blancos. — Я хочу белые туфли."
+  - "👇 este/esta [э́стэ, э́ста] — этот, эта (рядом со мной) {pos: adj, forms: estos estas} :: Estos zapatos no son blancos. — Эти туфли не белые."
+  - "🏪 la tienda [тье́нда] — магазин :: una tienda de zapatos — обувной магазин"
+  - "🙄 lo sé [ло сэ] — я (это) знаю"
+  - "⚪ blanco/a [бла́нко, бла́нка] — белый {forms: blancos blancas}"
+  - "👁 ¿ves? [бэс] — видишь?"
+  - "🎨 el color [коло́р] — цвет :: color crema — кремовый цвет"
+  - "👩 la señorita [сэньори́та] — девушка (обращение), сеньорита"
+  - "💡 ¿sabes qué? [са́бэс кэ] — знаешь что?"
+  - "👠 el tacón [тако́н] — каблук; туфли на каблуках {forms: tacones} :: Quiero tacones altos. — Хочу высокие каблуки."
+  - "👉 ese/esa [э́сэ, э́са] — тот, та; этот (подальше от меня) {pos: adj, forms: esos esas} :: ¿Qué son esos? — А те что такое?"
+  - "⬆️ alto/a [а́льто, а́льта] — высокий {forms: altos altas}"
+  - "⬇️ bajo/a [ба́хо, ба́ха] — низкий {forms: bajos bajas}"
+  - "📏 la talla [та́йя] — размер (одежды, обуви) :: Quiero talla siete. — Мне нужен седьмой размер."
+  - "💲 cuestan [куэ́стан] — (они) стоят :: ¿Cuánto cuestan? — Сколько они стоят?"
+  - "5️⃣0️⃣ cincuenta [θинкуэ́нта] — пятьдесят {pos: num}"
+  - "⬅️ izquierdo/a [иθкье́рдо, иθкье́рда] — левый"
+  - "➡️ derecho/a [дэрэ́чо, дэрэ́ча] — правый"
+  - "💸 caro/a [ка́ро, ка́ра] — дорогой :: Es muy caro. — Это очень дорого."
+  - "💯 cien [θьен] — сто {pos: num}"
+  - "😳 ¿qué fue eso? [кэ фуэ э́со] — что это было?"
+  - "🤨 ¿qué está pasando? [кэ эста́ паса́ндо] — что происходит?"
+  - "☝️ deber [дэбэ́р] — быть должным {forms: debes} :: Tú debes pagar. — Ты должна заплатить."
+  - "💳 pagar [пага́р] — платить {forms: pagué} :: Pagué cien dólares. — Я заплатила сто долларов."
+  - "🫵 ¿a quién? [а кьен] — кому?"
+  - "👩 la mujer [мухэ́р] — женщина"
+  - "👵 mayor [майо́р] — пожилой; старший :: una mujer mayor — пожилая женщина"
+  - "🤪 loco/a [ло́ко, ло́ка] — сумасшедший"
+  - "💼 trabajar [трабаха́р] — работать {forms: trabaja} :: ¿Ella no trabaja aquí? — Она здесь не работает?"
+  - "8️⃣0️⃣ ochenta [оче́нта] — восемьдесят {pos: num}"
+
+blocks:
+  - "Шестая часть рубрики — **разборы коротких видео** на испанском. После текста видео — раздел «📚 Грамматика из видео»."
+  - |
+    **Как смотреть.** Сначала видео, потом разбор. Посмотрите видео целиком и не подглядывайте в текст: постарайтесь понять, какие туфли она хочет и почему в конце ей снова нужно платить. Потом прочитайте разбор и посмотрите видео ещё раз.
+
+    Смотреть лучше с **испанскими субтитрами**: так вы одновременно слышите и видите каждую фразу.
+  - header: "📚 Грамматика из видео"
+  - rule: |
+      **1. Este, ese, esto, eso — «этот», «тот», «это».** Если вещь рядом с вами, говорят **este** (мужской род) или **esta** (женский род), а если вещей несколько, говорят **estos** или **estas**: _Esta es una tienda de zapatos._ (Это обувной магазин.) _Estos zapatos no son blancos._ (Эти туфли не белые.)
+      Если вещь подальше от вас, например рядом с собеседником, говорят **ese**, **esa**, **esos**, **esas**: _¿Qué son esos?_ (А те что такое?) _Esa es una señora loca._ (Это одна сумасшедшая сеньора.)
+      Если вещь не называют, говорят **esto** или **eso**: _Esto es blanco._ (Вот это белое.) _¿Qué fue eso?_ (Что это было?)
+  - table:
+      title: "Этот и тот"
+      rows:
+        - ["**este** / **esta**", "этот / эта (рядом со мной)"]
+        - ["**estos** / **estas**", "эти (рядом со мной)"]
+        - ["**ese** / **esa**", "тот / та (подальше)"]
+        - ["**esos** / **esas**", "те (подальше)"]
+        - ["**esto** / **eso**", "это / то (вещь не называем)"]
+  - rule: |
+      **2. Признак стоит в том же числе и роде, что и вещь.** Если вещей несколько, то и признак стоит во множественном числе: _zapato blanco_, но _zapatos blancos_; _tacón alto_, но _tacones altos_.
+      Если слово женского рода, признак тоже стоит в женском роде: _una señora loca_ (сумасшедшая сеньора), _una mujer mayor_ (пожилая женщина). У слова **mayor** женской формы нет, поэтому оно не меняется.
+  - table:
+      title: "Одна вещь или несколько"
+      rows:
+        - ["zapato **blanco**", "zapatos **blancos**"]
+        - ["tacón **alto**", "tacones **altos**"]
+        - ["tacón **bajo**", "tacones **bajos**"]
+  - rule: |
+      **3. Sí перед глаголом — «да ...же».** Если поставить **sí** перед глаголом, фраза звучит как спор: «нет, всё именно так!». _Sí son blancos._ (Да белые же!) _Sí tienes tacones._ (Да есть у тебя каблуки!) _Pero sí pagué._ (Но я же заплатила!) _Eso sí es blanco._ (Вот это как раз белое.)
+  - exercise:
+      title: "Ответьте на вопросы"
+      items:
+        - "Что она ищет в начале видео? => Zapatos blancos."
+        - "Почему ей не нравятся вторые туфли? => No son blancos. Son color crema."
+        - "Какие каблуки она хочет? => Tacones altos."
+        - "Какой размер ей нужен? => Talla siete."
+        - "Сколько на самом деле стоят туфли? => Son ochenta dólares."
+        - "Кто такая пожилая женщина? => Una señora loca. No trabaja en la tienda."
+  - exercise:
+      title: Переведите
+      items:
+        - "Я ищу туфли. => Busco zapatos."
+        - "Я хочу белые туфли. => Quiero zapatos blancos."
+        - "Сколько они стоят? => ¿Cuánto cuestan?"
+        - "Это очень дорого. => Es muy caro."
+        - "Это мой магазин. => Esta es mi tienda."
+  - task: "Представьте, что вы в обувном магазине. Напишите в комментариях короткий диалог по образцу: **Busco zapatos. — ¿De qué color? — Blancos. Talla siete. — Mira estos. — ¿Cuánto cuestan? — Cincuenta dólares. — ¡Es muy caro!**"
+
+quiz:
+  - q: "Как сказать «эти туфли»?"
+    options: "estos zapatos | esto zapatos | esta zapatos"
+    explain: "Туфель несколько, и слово zapato мужского рода, поэтому estos: estos zapatos."
+  - q: "Что значит «tacones altos»?"
+    options: "высокие каблуки | низкие каблуки | белые туфли"
+    explain: "Alto — «высокий», bajo — «низкий»."
+  - q: "«Busco zapatos» значит…"
+    options: "Я ищу туфли | Я покупаю туфли | Я продаю туфли"
+  - q: "Сколько на самом деле стоят туфли в этом магазине?"
+    options: "Ochenta dólares | Cien dólares | Cincuenta dólares"
+    explain: "Хозяйка магазина говорит: «Son ochenta dólares»."
+  - q: "Что значит «Es muy caro»?"
+    options: "Это очень дорого | Это очень красиво | Это очень далеко"
