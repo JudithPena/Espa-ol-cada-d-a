@@ -258,6 +258,20 @@ test("колода Гали: свои слова и свой прогресс, �
   }
 });
 
+test("колода Гали: по 5 новых слов за занятие", async () => {
+  saved.push(...GALYA.splice(0));
+  GALYA.push(...["a", "b", "c", "d", "e", "f", "g"].map((x) => sample(x)));
+  env.GALYA_CHAT_ID = "5";
+  try {
+    await post(galya("/palabras"));
+    assert.match(calls.at(-2).body.text, /Новых слов: 5/);
+  } finally {
+    delete env.GALYA_CHAT_ID;
+    GALYA.length = 0;
+    GALYA.push(...saved.splice(0));
+  }
+});
+
 test("колода Гали: без GALYA_CHAT_ID /palabras никому, кроме автора, не открывается", async () => {
   saved.push(...GALYA.splice(0));
   GALYA.push(sample("g"));
