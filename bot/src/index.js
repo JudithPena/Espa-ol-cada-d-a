@@ -53,7 +53,7 @@ export default {
     if (hour === Number(env.REMIND_HOUR) && numbers(env.REMIND_DAYS).includes(localWeekday(now, env.TIMEZONE))) {
       ctx.waitUntil(sendReminders(env));
     }
-    if (numbers(env.WORDS_HOURS).includes(hour)) ctx.waitUntil(sendDeckDaily(env, now));
+    ctx.waitUntil(sendDeckDaily(env, now)); // у каждой колоды свои часы и свой часовой пояс
   },
 };
 
@@ -202,6 +202,11 @@ async function handleCallback(cq, env, origin) {
 
 // ---------------------------------------------------------------- колоды
 
+// Колода Гали: одно занятие в день, в GALYA_HOURS по времени GALYA_TIMEZONE (по умолчанию 16:00 в Испании).
+function galyaEnv(env) {
+  return { ...env, WORDS_HOURS: env.GALYA_HOURS || "16", TIMEZONE: env.GALYA_TIMEZONE || "Europe/Madrid" };
+}
+
 // Две колоды с одним и тем же занятием (deck.js). В кнопках — буква колоды и действие:
 // l — разбор прочитан, a — выбран вариант, s — показать оборот, y/n — помню / не помню, f — «Дальше» после ошибки,
 // c — карточка целиком, go — начать занятие.
@@ -239,13 +244,14 @@ const BOOKS = {
     },
   },
   p: deckBookOf("p", () => DECK, "Пришлите Claude"), // «Мои слова» автора
-  w: deckBookOf("w", () => GALYA, "Передайте автору бота"), // колода Гали
+  w: deckBookOf("w", () => GALYA, "Передайте автору бота", galyaEnv), // колода Гали
 };
 
 // «Мои слова»: личная колода одного ученика (автора или Гали). id — буква кнопок, words — слова колоды,
 // ask — кому писать, когда слова кончились.
-function deckBookOf(id, words, ask) {
+function deckBookOf(id, words, ask, own = (env) => env) {
   return {
+    own, // настройки смен колоды: у Гали свои часы и свой часовой пояс
     id,
     ask,
     command: "/palabras",
@@ -255,18 +261,18 @@ function deckBookOf(id, words, ask) {
     words: async () => words(),
     load: (env, userId) => loadDeck(env, userId),
     save: (env, userId, state) => saveDeck(env, userId, state),
-    queue: (env, state, list, today) => startDeckSession(state, list, today, perDay(env), deckShifts(env)) ? state.session.queue : [],
+    queue: (env, state, list, today) => startDeckSession(state, list, today, perDay(env), deckShifts(own(env))) ? state.session.queue : [],
     empty(env, state, list, today) {
       const p = deckProgress(state, list, today);
       return !list.length ? `В колоде пока нет слов. ${ask} список слов — к каждому будет написан разбор.`
-        : p.fresh ? `👏 Пока всё: ${laterShift(env) ? `следующие новые слова — в ${laterShift(env)}:00` : "новые слова будут завтра"}, а повторять пока нечего.`
+        : p.fresh ? `👏 Пока всё: ${laterShift(own(env)) ? `следующие новые слова — в ${laterShift(own(env))}:00` : "новые слова будут завтра"}, а повторять пока нечего.`
           : `👏 Всё повторено, а новые слова в колоде закончились. ${ask} ещё список.`;
     },
     finish(env, state, list, today) {
       const p = deckProgress(state, list, today);
       const next = p.due ? `Ещё пора повторить: ${p.due}.`
         : !p.fresh ? `Новые слова в колоде закончились. ${ask} ещё список.`
-          : freshLeft(state, today, perDay(env), deckShifts(env)) ? "" : laterShift(env) ? `Следующие новые слова — в ${laterShift(env)}:00.` : "Новые слова — завтра. ¡Hasta mañana!";
+          : freshLeft(state, today, perDay(env), deckShifts(own(env))) ? "" : laterShift(own(env)) ? `Следующие новые слова — в ${laterShift(own(env))}:00.` : "Новые слова — завтра. ¡Hasta mañana!";
       return { text: deckSummary(p) + (next ? `\n\n${next}` : ""), button: p.due ? "🔁 Повторить ещё" : "" };
     },
   };
@@ -556,12 +562,14 @@ export async function sendDeckDaily(env, now = new Date()) {
 }
 
 async function sendDeckDailyTo(env, now, chat, book) {
+  const own = book.own(env);
+  if (!chat || !numbers(own.WORDS_HOURS).includes(localHour(now, own.TIMEZONE))) return;
   const words = await book.words(env);
-  if (!chat || !words.length) return;
+  if (!words.length) return;
   const deck = await loadDeck(env, chat);
   const today = dayNumber(new Date(), env.TIMEZONE);
   const p = deckProgress(deck, words, today);
-  const shifts = deckShifts(env, now);
+  const shifts = deckShifts(own, now);
   const fresh = Math.min(freshLeft(deck, today, perDay(env), shifts), p.fresh);
   if (!fresh && !p.due) {
     if (p.fresh || deck.toldEmpty === words.length) return;
@@ -572,12 +580,14 @@ async function sendDeckDailyTo(env, now, chat, book) {
       text: `📒 Все слова из колоды уже в работе, сегодня повторять нечего. ${book.ask} новый список слов.`,
     });
   }
+  const once = numbers(own.WORDS_HOURS).length === 1;
+  const shift = once ? { icon: "📒", name: "занятие на сегодня" } : shifts > 1 ? { icon: "🌙", name: "вечерняя смена" } : { icon: "☀️", name: "утренняя смена" };
   const minutes = Math.max(3, Math.round(fresh * 1.5 + p.due * 0.3));
   const last = p.fresh && p.fresh === fresh ? `\n\n⚠️ Это последние новые слова в колоде — ${book.ask.toLowerCase()} ещё список.` : "";
   return tg(env, "sendMessage", {
     chat_id: chat,
     parse_mode: "HTML",
-    text: `${shifts > 1 ? "🌙" : "☀️"} <b>Мои слова: ${shifts > 1 ? "вечерняя" : "утренняя"} смена</b>\n\n` +
+    text: `${shift.icon} <b>Мои слова: ${shift.name}</b>\n\n` +
       [fresh && `🆕 Новых слов: ${fresh}`, p.due && `🔁 Повторить: ${p.due}`].filter(Boolean).join("\n") +
       `\n\nЭто примерно ${minutes} мин.${last}`,
     reply_markup: keyboard([[{ text: "▶️ Начать", callback_data: `${book.id}go` }]]),

@@ -233,10 +233,12 @@ test("«Мои слова» только у автора: другим — об�
   });
 });
 
+const saved = []; // настоящая колода Гали (её выгружает bot-data) на время теста убираем
 const galya = (text) => ({ message: { text, chat: { id: 5, type: "private" }, from: { id: 5 } } });
 
 test("колода Гали: свои слова и свой прогресс, слов автора она не видит", async () => {
   DECK.push(sample("a", { word: "secreto" }));
+  saved.push(...GALYA.splice(0));
   GALYA.push(sample("g", { word: "hola" }));
   env.GALYA_CHAT_ID = "5";
   try {
@@ -252,10 +254,12 @@ test("колода Гали: свои слова и свой прогресс, �
     delete env.GALYA_CHAT_ID;
     DECK.length = 0;
     GALYA.length = 0;
+    GALYA.push(...saved.splice(0));
   }
 });
 
 test("колода Гали: без GALYA_CHAT_ID /palabras никому, кроме автора, не открывается", async () => {
+  saved.push(...GALYA.splice(0));
   GALYA.push(sample("g"));
   try {
     await post(galya("/palabras"));
@@ -263,6 +267,7 @@ test("колода Гали: без GALYA_CHAT_ID /palabras никому, кро
     assert.equal(kv.has("deck:5"), false);
   } finally {
     GALYA.length = 0;
+    GALYA.push(...saved.splice(0));
   }
 });
 
@@ -349,16 +354,24 @@ test("«Мои слова»: утром и вечером (WORDS_HOURS) бот �
 });
 
 test("колода Гали: смены приходят и ей, со своими кнопками", async () => {
+  saved.push(...GALYA.splice(0));
   GALYA.push(sample("g"));
   const waits = [];
   try {
-    await bot.scheduled({ scheduledTime: Date.parse("2026-10-27T06:00:00Z") },
-      { ...env, GALYA_CHAT_ID: "5", WORDS_HOURS: "8,19" }, { waitUntil: (p) => waits.push(p) });
-    await Promise.all(waits);
+    const run = async (iso) => {
+      await bot.scheduled({ scheduledTime: Date.parse(iso) },
+        { ...env, GALYA_CHAT_ID: "5", WORDS_HOURS: "8,19" }, { waitUntil: (p) => waits.push(p) });
+      await Promise.all(waits);
+    };
+    await run("2026-10-27T06:00:00Z"); // 8:00 по Киеву — у Гали занятия ещё нет
+    assert.deepEqual(calls.map((c) => c.method), []);
+    await run("2026-10-27T15:00:00Z"); // 16:00 в Испании
     assert.equal(calls.length, 1);
+    assert.match(calls[0].body.text, /занятие на сегодня/);
     assert.equal(calls[0].body.chat_id, "5");
     assert.equal(calls[0].body.reply_markup.inline_keyboard[0][0].callback_data, "wgo");
   } finally {
     GALYA.length = 0;
+    GALYA.push(...saved.splice(0));
   }
 });
