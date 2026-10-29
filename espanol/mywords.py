@@ -25,6 +25,7 @@ from .course import ContentError
 from .markup import check_html, escape, plain, tg_len, to_html, visible_len
 
 FOLDER = "mis_palabras"
+GALYA_FOLDER = "mis_palabras/galya"  # колода Гали: своя папка внутри, у автора её файлы не видны (glob не заходит в папки)
 LANGS = {"es": ("🇬🇧", "По-английски"), "en": ("🇪🇸", "По-испански")}  # язык слова → раздел аналогов
 SPEAKER = re.compile(r"^([\w ]{1,15}):\s+(.+)$")
 CEFR = re.compile(r"^(A1|A2|B1|B2|C1|C2)\b")
@@ -85,10 +86,10 @@ def _lines(raw: Any) -> list[str]:
     return [str(x).strip() for x in items if str(x).strip()]
 
 
-def load_deck(content_dir: str | Path) -> list[Word]:
+def load_deck(content_dir: str | Path, folder: str = FOLDER) -> list[Word]:
     words: list[Word] = []
-    for path in sorted((Path(content_dir) / FOLDER).glob("*.yaml")):
-        where = f"{FOLDER}/{path.name}"
+    for path in sorted((Path(content_dir) / folder).glob("*.yaml")):
+        where = f"{folder}/{path.name}"
         try:
             raw = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
         except yaml.YAMLError as exc:

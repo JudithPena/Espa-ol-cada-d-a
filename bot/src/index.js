@@ -12,6 +12,7 @@
 // Прогресс каждого ученика хранится в KV (binding SRS).
 
 import DECK from "../data/mywords.json" with { type: "json" };
+import GALYA from "../data/mywords_galya.json" with { type: "json" };
 import VIDEOS from "../data/videos.json" with { type: "json" };
 import WORDS from "../data/words.json" with { type: "json" };
 import {
@@ -23,7 +24,8 @@ import {
 } from "./srs.js";
 
 const BY_ID = new Map(WORDS.map((w) => [w.id, w]));
-const deckWord = (id) => DECK.find((w) => w.id === id); // колода небольшая, тесты дополняют её на ходу
+// Личные колоды: у автора (ADMIN_CHAT_ID) и у Гали (GALYA_CHAT_ID), у каждой свой прогресс в KV и свои слова.
+// Колоды небольшие, тесты дополняют их на ходу.
 
 export default {
   async fetch(request, env, ctx) {
@@ -141,8 +143,9 @@ async function handleUpdate(update, env, origin) {
   const cmd = command.split("@")[0].toLowerCase();
   const chat = msg.chat.id;
   const owner = isOwner(env, msg.from.id);
-  if (owner && (cmd === "/palabras" || (cmd === "/start" && param === "palabras"))) {
-    return startStudy(BOOKS.p, env, chat, msg.from.id, origin);
+  const mine = deckBook(env, msg.from.id);
+  if (mine && (cmd === "/palabras" || (cmd === "/start" && param === "palabras"))) {
+    return startStudy(mine, env, chat, msg.from.id, origin);
   }
   // Ссылки из уроков: t.me/бот?start=l-<урок> — слова этого урока, ?start=repaso — обычное повторение.
   if (cmd === "/start" && param.startsWith("l-")) {
@@ -167,7 +170,7 @@ async function handleUpdate(update, env, origin) {
       "Если ответ верный, слово вернётся через несколько дней, а если нет — повторим его ещё раз.\n\n" +
       "По средам и субботам вечером я сам напомню, если есть что повторить.\n\n" +
       "/repaso — повторить слова\n/progreso — сколько слов уже выучено" +
-      (owner ? "\n/palabras — ваши слова: разборы новых и повторение" : ""),
+      (mine ? "\n/palabras — ваши слова: разборы новых и повторение" : ""),
     reply_markup: START_BUTTON,
   });
 }
@@ -175,7 +178,8 @@ async function handleUpdate(update, env, origin) {
 async function handleCallback(cq, env, origin) {
   const [action] = String(cq.data || "").split(":");
   if (action.startsWith("c")) return handleStudyCallback(BOOKS.c, cq, env, origin);
-  if (action.startsWith("p") && isOwner(env, cq.from.id)) return handleStudyCallback(BOOKS.p, cq, env, origin);
+  const mine = deckBook(env, cq.from.id); // кнопки колоды: у автора «p…», у Гали «w…»
+  if (mine && action.startsWith(mine.id)) return handleStudyCallback(mine, cq, env, origin);
   if (action === "go") { // кнопки из старых сообщений
     await tg(env, "answerCallbackQuery", { callback_query_id: cq.id });
     return startStudy(BOOKS.c, env, cq.message.chat.id, cq.from.id, origin);
@@ -234,31 +238,39 @@ const BOOKS = {
       };
     },
   },
-  p: { // «Мои слова» — только автор
-    id: "p",
+  p: deckBookOf("p", () => DECK, "Пришлите Claude"), // «Мои слова» автора
+  w: deckBookOf("w", () => GALYA, "Передайте автору бота"), // колода Гали
+};
+
+// «Мои слова»: личная колода одного ученика (автора или Гали). id — буква кнопок, words — слова колоды,
+// ask — кому писать, когда слова кончились.
+function deckBookOf(id, words, ask) {
+  return {
+    id,
+    ask,
     command: "/palabras",
     title: "📒 <b>Мои слова</b>",
     fullLabel: "📖 Весь разбор",
-    find: (id) => deckWord(id),
-    words: async () => DECK,
+    find: (wordId) => words().find((w) => w.id === wordId),
+    words: async () => words(),
     load: (env, userId) => loadDeck(env, userId),
     save: (env, userId, state) => saveDeck(env, userId, state),
-    queue: (env, state, words, today) => startDeckSession(state, words, today, perDay(env), deckShifts(env)) ? state.session.queue : [],
-    empty(env, state, words, today) {
-      const p = deckProgress(state, words, today);
-      return !words.length ? "В колоде пока нет слов. Пришлите Claude список — он напишет к каждому слову разбор."
+    queue: (env, state, list, today) => startDeckSession(state, list, today, perDay(env), deckShifts(env)) ? state.session.queue : [],
+    empty(env, state, list, today) {
+      const p = deckProgress(state, list, today);
+      return !list.length ? `В колоде пока нет слов. ${ask} список слов — к каждому будет написан разбор.`
         : p.fresh ? `👏 Пока всё: ${laterShift(env) ? `следующие новые слова — в ${laterShift(env)}:00` : "новые слова будут завтра"}, а повторять пока нечего.`
-          : "👏 Всё повторено, а новые слова в колоде закончились. Пришлите Claude ещё список.";
+          : `👏 Всё повторено, а новые слова в колоде закончились. ${ask} ещё список.`;
     },
-    finish(env, state, words, today) {
-      const p = deckProgress(state, words, today);
+    finish(env, state, list, today) {
+      const p = deckProgress(state, list, today);
       const next = p.due ? `Ещё пора повторить: ${p.due}.`
-        : !p.fresh ? "Новые слова в колоде закончились — пришлите Claude ещё список."
+        : !p.fresh ? `Новые слова в колоде закончились. ${ask} ещё список.`
           : freshLeft(state, today, perDay(env), deckShifts(env)) ? "" : laterShift(env) ? `Следующие новые слова — в ${laterShift(env)}:00.` : "Новые слова — завтра. ¡Hasta mañana!";
       return { text: deckSummary(p) + (next ? `\n\n${next}` : ""), button: p.due ? "🔁 Повторить ещё" : "" };
     },
-  },
-};
+  };
+}
 
 async function startStudy(book, env, chat, userId, origin, lesson = "") {
   const state = await book.load(env, userId);
@@ -504,9 +516,15 @@ async function rememberUser(env, userId) {
 
 // ---------------------------------------------------------------- «Мои слова»
 
-// Колода только у автора: его личный чат — TELEGRAM_REVIEW_CHAT_ID (ADMIN_CHAT_ID).
+// Личные колоды есть у автора — его личный чат TELEGRAM_REVIEW_CHAT_ID (ADMIN_CHAT_ID) — и у Гали (GALYA_CHAT_ID).
 function isOwner(env, userId) {
   return Boolean(env.ADMIN_CHAT_ID) && String(userId) === String(env.ADMIN_CHAT_ID);
+}
+
+// Колода этого человека или null: чужие слова никому не показываем.
+function deckBook(env, userId) {
+  if (isOwner(env, userId)) return BOOKS.p;
+  return env.GALYA_CHAT_ID && String(userId) === String(env.GALYA_CHAT_ID) ? BOOKS.w : null;
 }
 
 const perDay = (env) => Number(env.WORDS_PER_DAY) || NEW_PER_DAY;
@@ -533,30 +551,36 @@ function deckSummary(p) {
 // Каждый день в WORDS_HOURS (утром и вечером): сколько сейчас новых слов и повторений. Если заниматься нечем, молчим;
 // о том, что новые слова кончились, говорим один раз (до пополнения колоды).
 export async function sendDeckDaily(env, now = new Date()) {
-  if (!env.ADMIN_CHAT_ID || !DECK.length) return;
-  const deck = await loadDeck(env, env.ADMIN_CHAT_ID);
+  await sendDeckDailyTo(env, now, env.ADMIN_CHAT_ID, BOOKS.p);
+  await sendDeckDailyTo(env, now, env.GALYA_CHAT_ID, BOOKS.w);
+}
+
+async function sendDeckDailyTo(env, now, chat, book) {
+  const words = await book.words(env);
+  if (!chat || !words.length) return;
+  const deck = await loadDeck(env, chat);
   const today = dayNumber(new Date(), env.TIMEZONE);
-  const p = deckProgress(deck, DECK, today);
+  const p = deckProgress(deck, words, today);
   const shifts = deckShifts(env, now);
   const fresh = Math.min(freshLeft(deck, today, perDay(env), shifts), p.fresh);
   if (!fresh && !p.due) {
-    if (p.fresh || deck.toldEmpty === DECK.length) return;
-    deck.toldEmpty = DECK.length;
-    await saveDeck(env, env.ADMIN_CHAT_ID, deck);
+    if (p.fresh || deck.toldEmpty === words.length) return;
+    deck.toldEmpty = words.length;
+    await saveDeck(env, chat, deck);
     return tg(env, "sendMessage", {
-      chat_id: env.ADMIN_CHAT_ID,
-      text: "📒 Все слова из колоды уже в работе, сегодня повторять нечего. Пришлите Claude новый список слов.",
+      chat_id: chat,
+      text: `📒 Все слова из колоды уже в работе, сегодня повторять нечего. ${book.ask} новый список слов.`,
     });
   }
   const minutes = Math.max(3, Math.round(fresh * 1.5 + p.due * 0.3));
-  const last = p.fresh && p.fresh === fresh ? "\n\n⚠️ Это последние новые слова в колоде — пришлите Claude ещё список." : "";
+  const last = p.fresh && p.fresh === fresh ? `\n\n⚠️ Это последние новые слова в колоде — ${book.ask.toLowerCase()} ещё список.` : "";
   return tg(env, "sendMessage", {
-    chat_id: env.ADMIN_CHAT_ID,
+    chat_id: chat,
     parse_mode: "HTML",
     text: `${shifts > 1 ? "🌙" : "☀️"} <b>Мои слова: ${shifts > 1 ? "вечерняя" : "утренняя"} смена</b>\n\n` +
       [fresh && `🆕 Новых слов: ${fresh}`, p.due && `🔁 Повторить: ${p.due}`].filter(Boolean).join("\n") +
       `\n\nЭто примерно ${minutes} мин.${last}`,
-    reply_markup: keyboard([[{ text: "▶️ Начать", callback_data: "pgo" }]]),
+    reply_markup: keyboard([[{ text: "▶️ Начать", callback_data: `${book.id}go` }]]),
   });
 }
 

@@ -90,10 +90,11 @@ def validate(course, lexicon, renderer, content_dir=None) -> list[str]:
         from .videos import load_videos, video_problems
 
         problems += video_problems(load_videos(content_dir, course), lexicon, renderer)
-        from .mywords import deck_problems, load_deck
+        from .mywords import GALYA_FOLDER, deck_problems, load_deck
         from .wordcards import card_problems, load_cards
 
         problems += deck_problems(load_deck(content_dir))
+        problems += deck_problems(load_deck(content_dir, GALYA_FOLDER))
         problems += card_problems(course, lexicon, load_cards(content_dir))
     return problems
 
@@ -242,16 +243,16 @@ def cmd_send(args, settings) -> int:
 
 def cmd_bot_data(args, settings) -> int:
     from .botdata import export
-    from .mywords import load_deck
+    from .mywords import GALYA_FOLDER, load_deck
     from .videos import load_videos
     from .wordcards import load_cards
 
     course, _, _ = build(settings)
     result = export(course, Path(args.out), audio=not args.no_audio,
                     cache=Path(args.audio_cache) if args.audio_cache else None,
-                    deck=load_deck(settings.content_dir), cards=load_cards(settings.content_dir),
+                    deck=load_deck(settings.content_dir), galya=load_deck(settings.content_dir, GALYA_FOLDER), cards=load_cards(settings.content_dir),
                     videos=load_videos(settings.content_dir, course))
-    print(f"Слов для бота: {result['words']}, «Моих слов»: {result['deck']}, с озвучкой: {result['audio']}, "
+    print(f"Слов для бота: {result['words']}, «Моих слов»: {result['deck']}, слов Гали: {result['galya']}, с озвучкой: {result['audio']}, "
           f"разборов по расписанию: {result['videos']} → {args.out}/data/")
     return 0
 

@@ -82,3 +82,9 @@ New repository secret). В чат и в файлы репозитория их �
 python -m espanol bot-data --no-audio   # bot/data/words.json
 node --test bot/test/*.test.js          # тесты бота (повторения, расписание, кнопки)
 ```
+
+## Колода Гали
+
+Вторая личная колода в том же боте. Слова — `content/mis_palabras/galya/NN_имя.yaml` (формат и правила как в `docs/mis_palabras_guide.md`),
+чат Гали — секрет `GALYA_CHAT_ID` (Галя пишет боту `/id`, номер идёт в Secrets). Своё расписание (8:00 и 19:00), свой прогресс,
+слов автора она не видит. Без секрета колода не работает.

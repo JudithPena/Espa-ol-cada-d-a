@@ -95,3 +95,13 @@ def test_deck_audio_uses_voice_of_word_language(tmp_path, course, monkeypatch):
     assert voices == {"echar de menos": "es-ES-ElviraNeural", "subtle": "en-US-AriaNeural"}
     records = json.loads((tmp_path / "data" / "mywords.json").read_text(encoding="utf-8"))
     assert all((tmp_path / "public" / "audio" / r["audio"]).exists() for r in records)
+
+
+def test_galya_deck_is_separate(tmp_path):
+    from espanol.mywords import GALYA_FOLDER
+
+    (tmp_path / GALYA_FOLDER).mkdir(parents=True)
+    (tmp_path / FOLDER / "x").parent.mkdir(exist_ok=True)
+    (tmp_path / GALYA_FOLDER / "01_x.yaml").write_text("words:\n  - word: hola\n", encoding="utf-8")
+    assert load_deck(tmp_path) == []  # папка Гали в колоду автора не попадает
+    assert [w.word for w in load_deck(tmp_path, GALYA_FOLDER)] == ["hola"]

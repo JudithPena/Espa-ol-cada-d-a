@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { beforeEach, test } from "node:test";
 import DECK from "../data/mywords.json" with { type: "json" };
+import GALYA from "../data/mywords_galya.json" with { type: "json" };
 import WORDS from "../data/words.json" with { type: "json" };
 import bot, { publishVideos } from "../src/index.js";
 
@@ -232,6 +233,39 @@ test("«Мои слова» только у автора: другим — об�
   });
 });
 
+const galya = (text) => ({ message: { text, chat: { id: 5, type: "private" }, from: { id: 5 } } });
+
+test("колода Гали: свои слова и свой прогресс, слов автора она не видит", async () => {
+  DECK.push(sample("a", { word: "secreto" }));
+  GALYA.push(sample("g", { word: "hola" }));
+  env.GALYA_CHAT_ID = "5";
+  try {
+    await post(galya("/palabras"));
+    assert.match(calls.at(-1).body.text, /🆕 Новое слово 1\/1[\s\S]*palabra g/);
+    assert.equal(calls.at(-1).body.reply_markup.inline_keyboard[0][0].callback_data, "wl:g");
+    await post({ callback_query: { id: "q", data: "wl:g", from: { id: 5 }, message: { chat: { id: 5 }, message_id: 8, text: "…" } } });
+    assert.equal(JSON.parse(kv.get("deck:5")).cards.g[0], 0);
+    assert.equal(kv.has("deck:1"), false, "прогресс автора не затронут");
+    await post({ callback_query: { id: "q", data: "pl:a", from: { id: 5 }, message: { chat: { id: 5 }, message_id: 8, text: "…" } } });
+    assert.equal(JSON.parse(kv.get("deck:5")).cards.a, undefined, "кнопки колоды автора Гале не подходят");
+  } finally {
+    delete env.GALYA_CHAT_ID;
+    DECK.length = 0;
+    GALYA.length = 0;
+  }
+});
+
+test("колода Гали: без GALYA_CHAT_ID /palabras никому, кроме автора, не открывается", async () => {
+  GALYA.push(sample("g"));
+  try {
+    await post(galya("/palabras"));
+    assert.doesNotMatch(calls.at(-1).body.text, /Мои слова/);
+    assert.equal(kv.has("deck:5"), false);
+  } finally {
+    GALYA.length = 0;
+  }
+});
+
 test("«Мои слова»: разбор нового слова → «Дальше» → проверка с вариантами перевода → итог", async () => {
   await withDeck([sample("a"), sample("b"), sample("c"), sample("d"), sample("e", { lang: "en" })], async () => {
     env.WORDS_PER_DAY = "2";
@@ -312,4 +346,19 @@ test("«Мои слова»: утром и вечером (WORDS_HOURS) бот �
     assert.equal(calls.length, 1);
     assert.match(calls[0].body.text, /вечерняя смена[\s\S]*Новых слов: 2/);
   });
+});
+
+test("колода Гали: смены приходят и ей, со своими кнопками", async () => {
+  GALYA.push(sample("g"));
+  const waits = [];
+  try {
+    await bot.scheduled({ scheduledTime: Date.parse("2026-10-27T06:00:00Z") },
+      { ...env, GALYA_CHAT_ID: "5", WORDS_HOURS: "8,19" }, { waitUntil: (p) => waits.push(p) });
+    await Promise.all(waits);
+    assert.equal(calls.length, 1);
+    assert.equal(calls[0].body.chat_id, "5");
+    assert.equal(calls[0].body.reply_markup.inline_keyboard[0][0].callback_data, "wgo");
+  } finally {
+    GALYA.length = 0;
+  }
 });
