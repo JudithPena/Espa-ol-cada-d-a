@@ -15,8 +15,10 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from .course import Block, Course, Lesson, VocabItem
+from .course import FEATURES, Block, Course, Lesson, VocabItem
+from .lexicon import _FUNCTION_WORDS, generated_forms
 from .markup import plain, to_html
+from .tokens import spanish_words
 from .wordcards import WordCard
 
 TEMPLATE = Path(__file__).with_name("site_template.html")
@@ -116,6 +118,34 @@ def lesson_data(lesson: Lesson, cards: dict[str, WordCard]) -> dict:
     }
 
 
+def word_forms(course: Course) -> dict[str, str]:
+    """Форма слова → слово курса (es): по нажатию на «tengo» страница покажет «tener».
+
+    Сначала слова из одного слова (существительное без артикля, глагол, прилагательное), потом
+    фразы: «buenos» из «buenos días» не перебьёт отдельное слово. Артикли и предлоги
+    из чужих фраз не берём: «la» не должно открывать «la casa».
+    """
+    single, phrases = [], []
+    for item in course.items:
+        (single if all(len(core.split()) == 1 for core in item.cores) else phrases).append(item)
+    verbs = {core.lower(): item for item in course.items if item.pos == "verb" for core in item.cores}
+    forms: dict[str, str] = {}
+    for item in single + phrases:
+        own = {w.lower() for core in item.cores for w in spanish_words(core)} if item in single else set()
+        found = item.base_forms() | generated_forms(item, set(FEATURES)) | {f.lower() for f in item.extra_forms}
+        for form in sorted(found):
+            if form in own or form not in _FUNCTION_WORDS:
+                forms.setdefault(form, plain(item.es))
+    for lesson in course.lessons:  # формы из таблиц спряжения
+        for block in lesson.blocks:
+            verb = verbs.get(block.data["verb"].lower()) if block.type == "conjugation" else None
+            if verb:
+                for form in block.data["forms"]:
+                    for word in spanish_words(form):
+                        forms.setdefault(word.lower(), plain(verb.es))
+    return forms
+
+
 def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None = None) -> dict:
     lessons = [lesson for lesson in course.lessons if units is None or lesson.unit.number in units]
     return {
@@ -125,6 +155,7 @@ def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None
         "units": [{"number": u.number, "title": plain(u.title), "level": u.level, "goals": [plain(g) for g in u.goals]}
                   for u in course.units if units is None or u.number in units],
         "lessons": [lesson_data(lesson, cards) for lesson in lessons],
+        "forms": word_forms(course),
     }
 
 

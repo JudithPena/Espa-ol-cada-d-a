@@ -46,3 +46,12 @@ def test_build_site(course, tmp_path):
     assert '"title": "Español cada día"' in page
     fragment = build_site(course, load_cards(CONTENT), tmp_path / "f.html", units={0}, fragment=True)
     assert fragment.read_text(encoding="utf-8").startswith("<title>")
+
+
+def test_word_forms(course):
+    from espanol.site import word_forms
+
+    forms = word_forms(course)
+    assert forms["tengo"] == "tener" and forms["soy"] == "ser"
+    assert forms["casas"] == "la casa" and forms["alta"] == "alto/a"
+    assert "la" not in forms and "de" not in forms  # артикли и предлоги из фраз не открывают фразу

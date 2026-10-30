@@ -270,6 +270,25 @@ main { padding-block: 16px 110px; }
 .bank { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
 .tok { border: 2px solid var(--line); background: var(--surface); border-radius: 12px; padding: 8px 12px; font-weight: 700; font-size: 17px; box-shadow: 0 2px 0 var(--line); }
 .tok.used { visibility: hidden; }
+.tok.bad { border-color: var(--bad); background: var(--bad-soft); animation: shake .3s; }
+.tok.hint { border-color: var(--good); background: var(--good-soft); }
+@keyframes shake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+.mf { display: flex; flex-wrap: wrap; gap: 8px 10px; justify-content: center; font-size: 20px; font-weight: 700; }
+.slot { padding: 6px 10px; border-radius: 10px; background: var(--sunken); color: var(--muted); letter-spacing: 2px; font-variant-numeric: tabular-nums; }
+.slot.open { background: var(--good-soft); color: var(--ink); letter-spacing: 0; }
+.slot.cur { outline: 2px solid var(--accent); }
+.slot.bad { outline-color: var(--bad); background: var(--bad-soft); animation: shake .3s; }
+.letter { text-align: center; }
+.lw { border-bottom: 1.5px dotted var(--muted); cursor: pointer; }
+.lw:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.sheet-wrap { position: fixed; inset: 0; z-index: 30; background: rgb(10 14 30 / .45); display: flex; align-items: flex-end; }
+.sheet { width: 100%; background: var(--surface); border-radius: 20px 20px 0 0; padding-bottom: env(safe-area-inset-bottom, 0px); box-shadow: 0 -6px 30px rgb(0 0 0 / .2); }
+.sheet .wrap { padding-block: 20px; display: grid; gap: 14px; }
+.sheet .head { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; }
+.sheet .emo { font-size: 38px; line-height: 1; }
+.sheet .word { font-family: var(--display); font-size: 22px; font-weight: 600; }
+.sheet .pron { color: var(--muted); font-weight: 600; }
+.sheet .tr { font-size: 18px; font-weight: 700; }
 .field { width: 100%; padding: 14px; border-radius: var(--r); border: 2px solid var(--line); background: var(--surface); font: 600 18px var(--body); color: var(--ink); resize: none; }
 .field:focus { border-color: var(--accent); outline: none; }
 .hint { font-size: 14px; color: var(--muted); }
@@ -318,7 +337,8 @@ const LESSONS = COURSE.lessons;
 const INTERVALS = COURSE.intervals || [1, 3, 7, 14, 30, 60, 120];
 // Все слова курса по написанию: в каком уроке слово впервые появилось.
 const WORDS = new Map();
-LESSONS.forEach((L, i) => L.words.forEach(w => { if (w.srs && !WORDS.has(w.es)) WORDS.set(w.es, { ...w, li: i }); }));
+LESSONS.forEach((L, i) => L.words.forEach(w => { if (!WORDS.has(w.es)) WORDS.set(w.es, { ...w, li: i }); }));
+const FORMS = COURSE.forms || {};   // форма слова → слово курса: «tengo» → «tener»
 
 const isDone = i => !!P.done[LESSONS[i].id];
 const isOpen = i => P.openAll || i === 0 || isDone(i - 1) || isDone(i);
@@ -393,9 +413,27 @@ function wordQuestion(w, pool, mode) {
   return { type: "mc", mode, word: w, options: options.map(o => o[field]), correct: options.indexOf(w), say: w.say,
            explain: w.ex ? `<i>${esc(w.ex[0][0])}</i> — ${esc(w.ex[0][1])}` : "" };
 }
-function exerciseSteps(L) {
-  const out = [];
-  L.blocks.filter(b => b.t === "exercise").forEach(b => b.items.forEach(it => out.push({ type: it.ap ? "type" : "task", title: b.title, ...it })));
+// Упражнение урока «вопрос => ответ» становится викториной: неверные варианты — ответы
+// на соседние вопросы того же упражнения, потом других упражнений урока, потом слова курса.
+const isCyr = s => /[А-Яа-яЁё]/.test(s);
+function exerciseSteps(L, pool) {
+  const blocks = L.blocks.filter(b => b.t === "exercise"), out = [];
+  const all = blocks.flatMap(b => b.items.filter(it => it.ap));
+  blocks.forEach(b => b.items.forEach(it => {
+    if (!it.ap) return out.push({ type: "task", title: b.title, ...it });
+    const seen = new Set([norm(it.ap), norm(it.qp)]), wrong = [];   // сам вопрос вариантом не бывает
+    const take = cands => { for (const c of shuffle(cands)) {
+      const k = norm(c.ap);
+      if (wrong.length < 3 && k && !seen.has(k) && isCyr(c.ap) === isCyr(it.ap)) { seen.add(k); wrong.push(c); }
+    } };
+    take(b.items.filter(x => x.ap && x !== it));
+    if (wrong.length < 3) take(all.filter(x => !b.items.includes(x)));
+    if (wrong.length < 2 && !isCyr(it.ap) && it.ap.split(" ").length <= 3) take(pool.map(w => ({ a: esc(w.es), ap: w.es })));
+    if (wrong.length < 2) return;   // без двух правдоподобных вариантов вопрос не задаём
+    const options = shuffle([it, ...wrong]);
+    out.push({ type: "mc", mode: "ex", title: b.title, q: it.q, html: true,
+               options: options.map(o => o.a), plain: options.map(o => o.ap), correct: options.indexOf(it) });
+  }));
   return out;
 }
 function practiceFor(i) {
@@ -403,9 +441,11 @@ function practiceFor(i) {
   const fresh = L.words.filter(w => w.srs);
   fresh.forEach((w, k) => { const q = wordQuestion(w, pool, k % 2 ? "prod" : "rec"); if (q) steps.push(q); });
   shuffle(fresh).slice(0, 2).forEach(w => { const q = wordQuestion(w, pool, "listen"); if (q) steps.push(q); });
-  shuffle(L.sentences).slice(0, 2).forEach(([es, ru]) => steps.push({ type: "build", es, ru }));
+  const phrases = shuffle(L.sentences), heard = TTS.ok && phrases.length ? 1 : 0;
+  phrases.slice(0, heard).forEach(([es, ru]) => steps.push({ type: "mf", es, ru }));
+  phrases.slice(heard, heard + 2).forEach(([es, ru]) => steps.push({ type: "build", es, ru }));
   const vocab = shuffle(steps);
-  const ex = exerciseSteps(L).slice(0, 10);
+  const ex = exerciseSteps(L, pool).slice(0, 10);
   const quiz = L.quiz.map(q => {
     const order = q.shuffle ? shuffle(q.options.map((_, k) => k)) : q.options.map((_, k) => k);
     return { type: "mc", mode: "quiz", q: q.q, options: order.map(k => q.options[k]), correct: order.indexOf(q.correct), explain: q.explain };
@@ -420,27 +460,11 @@ function practiceFor(i) {
   return all;
 }
 
-// Мягкая проверка письменного ответа: регистр, пунктуация и ¿¡ не важны; ударения — подсказываем.
+// Сравнение без регистра, пунктуации и ¿¡; deaccent — ещё и без ударений (á → a, ñ → n).
 const norm = s => s.toLowerCase().normalize("NFC").replace(/[¿¡?!.,;:«»"“”'…()\[\]—–-]/g, " ").replace(/\s+/g, " ").trim();
 const deaccent = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "");
-function variants(ap) {
-  const out = new Set();
-  for (const v of ap.split(/\s+\/\s+|\n/)) {
-    out.add(v);
-    if (v.includes(" — ")) v.split(" — ").forEach(p => out.add(p));
-    if (v.includes(": ")) out.add(v.split(": ").pop());
-    out.add(v.replace(/\([^)]*\)/g, ""));
-  }
-  return [...out].map(norm).filter(Boolean);
-}
-function checkTyped(input, ap) {
-  const a = norm(input);
-  if (!a) return "empty";
-  const vs = variants(ap);
-  if (vs.includes(a)) return "ok";
-  if (vs.map(deaccent).includes(deaccent(a))) return "accent";
-  return "no";
-}
+// Первая буква слова для «Мастера фраз»: «¡Hola,» → «h», «Ávila» → «a».
+const firstLetter = tok => deaccent(tok.toLowerCase()).replace(/^[^a-z0-9]+/, "").charAt(0);
 
 /* ================================================================ шаги урока */
 function theoryScreens(L) {
@@ -449,7 +473,9 @@ function theoryScreens(L) {
   for (const b of L.blocks) {
     if (b.t === "exercise") continue;
     const w = JSON.stringify(b).length;
-    if (["header", "dialogue", "reading"].includes(b.t) || weight + w > 1500) flush();
+    // Короткое вступление («Прочитайте диалог вслух…») остаётся на одном экране с диалогом.
+    const lead = ["dialogue", "reading"].includes(b.t) && weight < 400;
+    if ((["header", "dialogue", "reading"].includes(b.t) && !lead) || weight + w > 1500) flush();
     cur.push(b); weight += w;
     if (["dialogue", "reading"].includes(b.t)) flush();
   }
@@ -467,7 +493,7 @@ function startLesson(i) {
   theoryScreens(L).forEach(blocks => learn.push({ type: "theory", blocks }));
   const practice = practiceFor(i);
   if (practice.length) learn.push({ type: "gate" });
-  S = { kind: "lesson", li: i, steps: learn.concat(practice), at: 0, firstTry: 0, graded: 0, seen: new Set(), state: null };
+  S = { kind: "lesson", li: i, pool: knownPool(i), steps: learn.concat(practice), at: 0, firstTry: 0, graded: 0, seen: new Set(), state: null };
   render();
 }
 function startReview(list) {
@@ -477,19 +503,35 @@ function startReview(list) {
     return wordQuestion(w, pool, st >= 2 ? (Math.random() < .3 ? "listen" : "prod") : "rec");
   }).filter(Boolean);
   if (!steps.length) return toast("Пока нечего повторять");
-  S = { kind: "review", steps, at: 0, firstTry: 0, graded: 0, seen: new Set(), state: null };
+  S = { kind: "review", pool, steps, at: 0, firstTry: 0, graded: 0, seen: new Set(), state: null };
   render();
 }
 
-const isGraded = st => ["mc", "build", "type"].includes(st.type);
+const isGraded = st => ["mc", "build", "mf"].includes(st.type);
+const NEXT_MODE = { rec: "prod", prod: "listen", listen: "rec" };
 
-function answer(ok, st) {
+// Ошибка возвращается в конце урока в другом виде, как в Busuu: «Что значит» → «Как по-испански»
+// → на слух; у викторины перемешиваются варианты. Повтор в счёт «с первой попытки» не идёт.
+function retryOf(st) {
+  if (st.word && NEXT_MODE[st.mode]) {
+    const q = wordQuestion(st.word, S.pool, NEXT_MODE[st.mode]);
+    if (q) return { ...q, retry: true };
+  }
+  if (st.type === "mc") {
+    const order = shuffle(st.options.map((_, k) => k));
+    return { ...st, options: order.map(k => st.options[k]), plain: st.plain && order.map(k => st.plain[k]),
+             correct: order.indexOf(st.correct), retry: true };
+  }
+  return { ...st, retry: true };
+}
+function answer(ok, st, { requeue = true } = {}) {
   S.state.result = ok ? "good" : "bad";
-  const first = !S.seen.has(st);
-  if (first) { S.seen.add(st); S.graded++; if (ok) S.firstTry++; }
-  if (st.word && first) grade(st.word.es, ok);   // в повторении меняем расписание сразу
-  if (!ok) S.steps.push(st);                      // ошибку возвращаем в конец, как в Busuu
-  if (ok) say(st.type === "build" ? st.es : st.mode === "prod" || st.mode === "listen" ? st.word?.say : "");
+  if (!st.retry && !S.seen.has(st)) {
+    S.seen.add(st); S.graded++; if (ok) S.firstTry++;
+    if (st.word) grade(st.word.es, ok);           // расписание повторения меняем сразу
+  }
+  if (!ok && requeue) S.steps.push(retryOf(st));
+  if (ok) say(["build", "mf"].includes(st.type) ? st.es : st.mode === "prod" || st.mode === "listen" ? st.word?.say : "");
   render();
 }
 function next() {
@@ -499,6 +541,7 @@ function next() {
   const st = S.steps[S.at];
   if (st.type === "word") say(st.word.say);
   if (st.type === "mc" && (st.mode === "listen" || st.mode === "rec")) say(st.say);
+  if (st.type === "mf") say(st.es);
 }
 function finish() {
   const acc = S.graded ? S.firstTry / S.graded : 1;
@@ -691,7 +734,7 @@ function stepBody(st) {
           ${L.blocks.some(b => b.t !== "exercise") ? `<li>${L.kindLabel.toLowerCase()}: объяснение по шагам</li>` : ""}
           ${nq ? `<li>${nq} ${plural(nq, "задание", "задания", "заданий")} на проверку</li>` : ""}
         </ul></div>
-        <p class="muted">Нажимайте ▶, чтобы услышать испанский, и повторяйте вслух. Ошибки не страшны: задание вернётся в конце урока.</p></div>`;
+        <p class="muted">Нажимайте ▶, чтобы услышать испанский, и повторяйте вслух. Нажмите на испанское слово с пунктиром, чтобы увидеть перевод и добавить слово в повторение. Ошибки не страшны: задание вернётся в конце урока.</p></div>`;
     }
     case "word": return `<span class="kicker">Новое слово</span>${wordCard(st.word)}`;
     case "theory": return `<div class="theory">${st.blocks.map(blockHTML).join("")}</div>`;
@@ -701,30 +744,75 @@ function stepBody(st) {
       const s = S.state, locked = s.result ? "locked" : "";
       let prompt;
       if (st.mode === "quiz") prompt = `<span class="kicker">Тест</span><div class="q" style="font-family:var(--body);font-weight:700;font-size:20px">${esc(st.q)}</div>`;
+      else if (st.mode === "ex") prompt = `<span class="kicker">${st.title || "Упражнение"}</span><div class="q" style="font-family:var(--body);font-weight:700;font-size:20px">${st.q}</div>`;
       else if (st.mode === "rec") prompt = `<span class="kicker">Что значит</span><div class="q"><span>${esc(st.word.emoji)} ${esc(st.word.es)}</span>${playBtn(st.say)}</div>`;
       else if (st.mode === "prod") prompt = `<span class="kicker">Как по-испански</span><div class="q">${esc(st.word.ru)}</div>`;
       else prompt = `<span class="kicker">Послушайте и выберите</span><div class="listen"><div class="row2">${playBtn(st.say, "big")}${slowBtn(st.say)}</div></div>`;
-      const long = st.options.some(o => o.length > 24);
+      const long = (st.plain || st.options).some(o => o.length > 24);
       return `<div class="prompt">${prompt}</div>
         <div class="opts ${long ? "" : "grid2"} ${locked}" role="group">${st.options.map((o, k) => {
           let cls = "";
           if (s.result) cls = k === st.correct ? "right" : k === s.pick ? "wrong" : "";
-          return `<button class="opt ${cls}" data-opt="${k}" aria-pressed="${s.pick === k}" ${s.result ? "disabled" : ""}><span class="k">${k + 1}</span><span>${esc(o)}</span></button>`;
+          return `<button class="opt ${cls}" data-opt="${k}" aria-pressed="${s.pick === k}" ${s.result ? "disabled" : ""}><span class="k">${k + 1}</span><span>${st.html ? o : esc(o)}</span></button>`;
         }).join("")}</div>`;
     }
     case "build": {
       const s = S.state;
-      return `<div class="prompt"><span class="kicker">Соберите фразу</span><div class="q" style="font-size:19px">${esc(st.ru)}</div></div>
-        <div class="answer-line">${s.picked.map((k, n) => `<button class="tok" data-unpick="${n}" ${s.result ? "disabled" : ""}>${esc(s.tiles[k])}</button>`).join("")}</div>
-        <div class="bank">${s.tiles.map((t, k) => `<button class="tok ${s.picked.includes(k) ? "used" : ""}" data-pick="${k}" ${s.result ? "disabled" : ""}>${esc(t)}</button>`).join("")}</div>`;
+      return `<div class="prompt"><span class="kicker">Соберите фразу</span><div class="q" style="font-size:19px">${esc(st.ru)}</div>
+          <span class="sub">Нажимайте слова по порядку. Неверное слово подсветится красным.</span></div>
+        <div class="answer-line">${st.es.split(" ").slice(0, s.n).map(w => `<span class="tok">${esc(w)}</span>`).join("")}</div>
+        <div class="bank">${s.tiles.map((t, k) => `<button class="tok ${s.used[k] ? "used" : ""} ${s.flash === k ? "bad" : ""} ${s.hint === k ? "hint" : ""}" data-pick="${k}" ${s.result ? "disabled" : ""}>${esc(t)}</button>`).join("")}</div>`;
     }
-    case "type":
+    case "mf":
+      return `<div class="prompt"><span class="kicker">Мастер фраз</span>
+          <span class="sub">Послушайте фразу и введите первую букву каждого слова. Угаданное слово откроется.</span></div>
+        <div class="listen"><div class="row2">${playBtn(st.es, "big")}${slowBtn(st.es)}</div></div>
+        ${mfSlots(st, S.state)}
+        ${S.state.result ? "" : `<input class="field letter" id="letter" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Первая буква слова" aria-label="Первая буква следующего слова">`}`;
     case "task":
       return `<div class="prompt"><span class="kicker">${st.title ? st.title : "Упражнение"}</span><div class="q" style="font-family:var(--body);font-weight:700;font-size:20px">${st.q}</div></div>
-        ${st.type === "type" ? `<textarea class="field" id="typed" rows="2" placeholder="Ваш ответ" autocomplete="off" autocapitalize="off" spellcheck="false" ${S.state.result ? "disabled" : ""}>${esc(S.state.text || "")}</textarea>
-        <span class="hint">Можно не печатать: проговорите ответ вслух и нажмите «Проверить».</span>` : ""}`;
+        ${st.a ? `<div class="box"><span class="lbl">Ответ</span><span class="spoiler" tabindex="0">${st.a}</span></div>` : ""}`;
   }
   return "";
+}
+
+function mfSlots(st, s) {
+  return `<div class="mf">${st.es.split(" ").map((t, k) => {
+    if (k < s.n || s.result) return `<span class="slot open">${esc(t)}</span>`;
+    const len = Math.max(2, t.replace(/[^\p{L}\d]/gu, "").length);
+    const shown = k === s.n && s.hint ? firstLetter(t).toUpperCase() + "·".repeat(len - 1) : "·".repeat(len);
+    return `<span class="slot ${k === s.n ? "cur" : ""} ${k === s.n && s.flash ? "bad" : ""}">${shown}</span>`;
+  }).join("")}</div>`;
+}
+const tokens = st => st.es.split(" ");
+// Пропускаем «слова» без букв и цифр (тире): их угадывать не нужно.
+function mfSkip(st, s) { const t = tokens(st); while (s.n < t.length && !firstLetter(t[s.n])) s.n++; }
+function mfLetter(ch) {
+  const st = S.steps[S.at], s = S.state, t = tokens(st);
+  if (s.result || !ch.trim()) return;
+  if (deaccent(ch.toLowerCase()) === firstLetter(t[s.n])) { s.n++; s.here = 0; s.flash = false; s.hint = false; mfSkip(st, s); }
+  else { s.err++; s.here++; s.flash = true; if (s.here >= 2) s.hint = true; }
+  if (s.n >= t.length) return answer(s.err === 0, st, { requeue: false });
+  $(".mf").outerHTML = mfSlots(st, s);
+}
+function buildPick(k) {
+  const st = S.steps[S.at], s = S.state, want = tokens(st)[s.n];
+  if (s.tiles[k] === want) {
+    s.used[k] = true; s.n++; s.here = 0; s.hint = null; s.flash = null; say(want);
+    if (s.n >= tokens(st).length) return answer(s.err === 0, st, { requeue: false });
+  } else {
+    s.err++; s.here++; s.flash = k;
+    if (s.here >= 2) s.hint = s.tiles.findIndex((w, j) => w === want && !s.used[j]);
+  }
+  render();
+}
+function hint() {
+  const st = S.steps[S.at], s = S.state;
+  s.err++;
+  if (st.type === "build") { s.hint = s.tiles.findIndex((w, j) => w === tokens(st)[s.n] && !s.used[j]); return render(); }
+  s.n++; s.here = 0; s.flash = false; s.hint = false; mfSkip(st, s);   // мастер фраз: открыть слово
+  if (s.n >= tokens(st).length) return answer(false, st, { requeue: false });
+  $(".mf").outerHTML = mfSlots(st, s); $("#letter")?.focus();
 }
 
 function stepFoot(st) {
@@ -732,31 +820,34 @@ function stepFoot(st) {
   if (s.result) {
     const good = s.result === "good";
     let right = "";
-    if (st.type === "mc" && !good) right = `<span class="ans">Верно: ${esc(st.options[st.correct])}</span>`;
-    if (st.type === "build" && !good) right = `<span class="ans">Верно: ${esc(st.es)}</span>`;
-    if (st.type === "type") right = `<span class="ans">${s.note ? s.note + " " : ""}Ответ: ${st.a}</span>`;
+    if (st.type === "mc" && !good && !st.html) right = `<span class="ans">Верно: ${esc(st.options[st.correct])}</span>`;
+    if (st.type === "mc" && !good && st.html) right = `<span class="ans">Верно: ${st.options[st.correct]}</span>`;
+    if (["build", "mf"].includes(st.type)) right = `<span class="ans">${esc(st.es)}</span><span class="ex">${esc(st.ru)}</span>`;
     const ex = st.explain ? `<span class="ex">${st.explain}</span>` : "";
+    const title = good ? ["Отлично!", "Верно!", "¡Muy bien!", "¡Perfecto!"][Math.floor(Math.random() * 4)]
+      : ["build", "mf"].includes(st.type) ? `Готово, но с подсказками: ${s.err}` : "Ошибка, это задание вернётся";
     return `<div class="pfoot ${good ? "good" : "bad"}"><div class="wrap">
-      <div class="fb"><h3>${good ? ["Отлично!", "Верно!", "¡Muy bien!", "¡Perfecto!"][Math.floor(Math.random() * 4)] : "Ошибка, это задание вернётся"}</h3>${right}${ex}</div>
+      <div class="fb"><h3>${title}</h3>${right}${ex}</div>
       <button class="btn wide ${good ? "good" : "bad"}" data-next>Продолжить</button></div></div>`;
   }
-  if (st.type === "type" && s.revealed) {
-    return `<div class="pfoot"><div class="wrap"><div class="fb"><h3>Сравните с ответом</h3><span class="ans">${st.a}</span></div>
-      <div class="two"><button class="btn bad" data-self="0">Ошибся</button><button class="btn good" data-self="1">Мой ответ верный</button></div></div></div>`;
+  if (st.type === "build" || st.type === "mf") {
+    return `<div class="pfoot"><div class="wrap"><button class="btn ghost wide" data-hint>${st.type === "mf" ? "Не знаю — открыть слово" : "Подсказка"}</button></div></div>`;
   }
   let label = "Дальше", dis = "";
   if (st.type === "intro") label = "Начать";
   if (st.type === "gate") label = "Поехали";
   if (st.type === "mc") { label = "Проверить"; dis = s.pick == null ? "disabled" : ""; }
-  if (st.type === "build") { label = "Проверить"; dis = s.picked.length ? "" : "disabled"; }
-  if (st.type === "type") label = "Проверить";
   if (st.type === "task") label = "Готово";
   return `<div class="pfoot"><div class="wrap"><button class="btn wide" data-primary ${dis}>${label}</button></div></div>`;
 }
 
 function playerView() {
   const st = S.steps[S.at];
-  if (!S.state) S.state = st.type === "build" ? { picked: [], tiles: shuffle(st.es.split(" ")) } : {};
+  if (!S.state) {
+    S.state = { n: 0, err: 0, here: 0 };
+    if (st.type === "build") Object.assign(S.state, { tiles: shuffle(tokens(st)), used: [] });
+    if (st.type === "mf") mfSkip(st, S.state);
+  }
   const total = S.steps.length, pct = Math.round(S.at / total * 100);
   return `<div class="player">
     <div class="ptop"><div class="wrap"><button class="x" data-quit aria-label="Выйти из урока">×</button><div class="bar"><i style="width:${pct}%"></i></div><span class="pcount">${S.at + 1}/${total}</span></div></div>
@@ -784,7 +875,14 @@ const app = $("#app");
 function render() {
   document.documentElement.classList.toggle("no-tts", !TTS.ok);
   if (S && S.kind === "result") { app.innerHTML = resultView(); window.scrollTo(0, 0); return; }
-  if (S) { app.innerHTML = playerView(); $(".pbody")?.scrollTo(0, 0); $("#typed")?.focus(); return; }
+  if (S) {
+    app.innerHTML = playerView(); $(".pbody")?.scrollTo(0, 0); $("#letter")?.focus();
+    // Перевод по нажатию — в карточках и объяснениях, а в заданиях только после ответа, чтобы не подсказывать.
+    const st = S.steps[S.at];
+    if (["word", "theory", "task"].includes(st.type)) wrapWords($(".pbody"));
+    if (S.state?.result) wrapWords($(".pfoot .fb"));
+    return;
+  }
   const body = { course: courseView, review: reviewView, words: wordsView, stats: statsView }[view.tab]();
   app.innerHTML = `${topBar()}<main><div class="wrap">${body}</div></main>${tabsBar()}`;
 }
@@ -798,22 +896,58 @@ function primary() {
   const st = S.steps[S.at], s = S.state;
   if (s.result) return next();
   if (st.type === "mc") { if (s.pick != null) answer(s.pick === st.correct, st); return; }
-  if (st.type === "build") { if (s.picked.length) answer(s.picked.map(k => s.tiles[k]).join(" ") === st.es, st); return; }
-  if (st.type === "type") {
-    s.text = $("#typed")?.value || "";
-    const res = checkTyped(s.text, st.ap);
-    if (res === "ok") return answer(true, st);
-    if (res === "accent") { s.note = "Почти! Проверьте ударения и ñ."; return answer(true, st); }
-    s.revealed = true; return render();
-  }
+  if (st.type === "build" || st.type === "mf") return;
   next();
 }
 
+/* ================================================================ перевод по нажатию на слово */
+const WORD_RE = /(?<![\p{L}\d-])[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+(?![\p{L}\d-])/gu;
+function wrapWords(root) {
+  if (!root) return;
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+    acceptNode: n => n.parentElement.closest("code, .lw, .play, .btn, .kicker, .lbl") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
+  const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+  for (const node of nodes) {
+    const text = node.nodeValue; let html = "", last = 0;
+    for (const m of text.matchAll(WORD_RE)) {
+      const es = FORMS[m[0].toLowerCase()];
+      if (!es || !WORDS.has(es)) continue;
+      html += esc(text.slice(last, m.index)) + `<span class="lw" data-w="${esc(es)}">${esc(m[0])}</span>`;
+      last = m.index + m[0].length;
+    }
+    if (!last) continue;
+    const box = document.createElement("span"); box.innerHTML = html + esc(text.slice(last));
+    node.replaceWith(...box.childNodes);
+  }
+}
+function closeSheet() { document.querySelectorAll(".sheet-wrap").forEach(x => x.remove()); }
+function lookup(es) {
+  const w = WORDS.get(es); if (!w) return;
+  closeSheet();
+  const has = !!P.words[es], ex = w.ex?.[0];
+  const el = document.createElement("div"); el.className = "sheet-wrap"; el.dataset.closeSheet = "";
+  el.innerHTML = `<div class="sheet" role="dialog" aria-label="${esc(w.es)}"><div class="wrap">
+    <div class="head"><span class="emo">${esc(w.emoji)}</span><span><span class="word">${esc(w.es)}</span>${w.pron ? `<br><span class="pron">[${esc(w.pron)}]</span>` : ""}</span>${playBtn(w.say)}</div>
+    <div class="tr">${esc(w.ru)}</div>
+    ${ex ? `<ul class="exl"><li>${playBtn(ex[0])}<span><span class="es">${esc(ex[0])}</span><small>${esc(ex[1])}</small></span></li></ul>` : ""}
+    <div class="two"><button class="btn ghost" data-close-sheet>Закрыть</button><button class="btn" data-add="${esc(es)}" ${has ? "disabled" : ""}>${has ? "Уже в моих словах" : "В мои слова"}</button></div>
+  </div></div>`;
+  document.body.appendChild(el);
+  say(w.say);
+}
+
 document.addEventListener("click", e => {
+  const closed = e.target.closest(".spoiler:not(.open)");
+  if (closed) return closed.classList.add("open");
+  const lw = e.target.closest(".lw");
+  if (lw) return lookup(lw.dataset.w);
+  if (e.target.classList.contains("sheet-wrap")) return closeSheet();
   const el = e.target.closest("button, .spoiler, [data-say]");
   if (!el) return;
   const d = el.dataset;
-  if (el.classList.contains("spoiler")) return el.classList.toggle("open");
+  if (el.classList.contains("spoiler")) return el.classList.remove("open");
+  if ("closeSheet" in d) return closeSheet();
+  if (d.add) { P.words[d.add] = { s: 0, due: dayNum() + INTERVALS[0] }; save(); closeSheet(); return toast("Слово добавлено: повторим завтра"); }
   if (d.say != null) { say(d.say, { slow: "slow" in d }); if (!el.classList.contains("bubble")) return; }
   if (d.dialog) { const lines = JSON.parse(d.dialog); speechSynthesis.cancel(); lines.forEach(([who, text]) => say(text, { queue: true, pitch: who % 2 ? 0.75 : 1.15 })); return; }
   if ("toggleTr" in d) {
@@ -844,22 +978,22 @@ document.addEventListener("click", e => {
   if (!S || S.kind === "result") return;
   const st = S.steps[S.at], s = S.state;
   if (d.opt != null && !s.result) { s.pick = +d.opt; render(); return; }
-  if (d.pick != null && !s.result) { s.picked.push(+d.pick); say(s.tiles[+d.pick]); render(); return; }
-  if (d.unpick != null && !s.result) { s.picked.splice(+d.unpick, 1); render(); return; }
-  if (d.self != null) { s.revealed = false; return answer(d.self === "1", st); }
+  if (d.pick != null && !s.result) return buildPick(+d.pick);
+  if ("hint" in d && !s.result) return hint();
   if ("primary" in d || "next" in d) return primary();
 });
 document.addEventListener("input", e => {
+  if (e.target.id === "letter") { const v = e.target.value; e.target.value = ""; return mfLetter(v.slice(-1)); }
   if (e.target.id === "wsearch") {
     view.q = e.target.value; const pos = e.target.selectionStart; render();
     const f = $("#wsearch"); f.focus(); f.setSelectionRange(pos, pos);
   }
 });
 document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeSheet();
   if (!S || S.kind === "result") return;
   const st = S.steps[S.at], s = S.state;
   if (e.key === "Enter" && !e.shiftKey) {
-    if (s.revealed) return;
     e.preventDefault();
     const btn = $("[data-primary], [data-next]"); if (btn && !btn.disabled) primary();
     return;
