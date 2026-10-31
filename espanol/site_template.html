@@ -71,6 +71,11 @@ a { color: var(--accent); }
 .mcard small { color: var(--muted); font-size: 14px; }
 .sech { margin: 22px 0 0; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
 .back { margin-bottom: 12px; }
+.tag { display: inline-block; vertical-align: 2px; margin-left: 6px; padding: 2px 8px; border-radius: 99px; background: var(--sun-soft); color: var(--ink); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+.wip { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; margin: 12px 0 4px; padding: 14px 16px; border-radius: 16px; background: var(--sun-soft); border: 1px dashed var(--sun); }
+.wip .wi { font-size: 28px; line-height: 1; }
+.wip b { display: block; font-size: 16px; }
+.wip small { color: var(--muted); font-size: 14px; display: block; margin-top: 2px; }
 h2 + .btn.wide, h2 + .muted { margin-top: 10px; display: flex; }
 .vseg { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; display: grid; gap: 10px; margin-top: 12px; }
 .vseg .es { font-size: 17px; font-weight: 600; }
@@ -656,7 +661,7 @@ function homeView() {
   }).join("")}</div>`;
   const grammar = LESSONS.filter(L => L.kind === "grammar").length;
   html += `<h2 class="sech">Ещё</h2><div class="menu">
-    <button class="mcard" data-tab="grammar"><span class="mi">📐</span><span><b>Грамматика</b><small>${grammar} ${plural(grammar, "тема", "темы", "тем")} из курса, все в одном месте</small></span><span aria-hidden="true">›</span></button>
+    <button class="mcard" data-tab="grammar"><span class="mi">📐</span><span><b>Грамматика <span class="tag">в работе</span></b><small>Скоро: разборы по учебнику. Пока — ${grammar} ${plural(grammar, "тема", "темы", "тем")} из курса</small></span><span aria-hidden="true">›</span></button>
     ${COURSE.videos.length ? `<button class="mcard" data-tab="videos"><span class="mi">🎬</span><span><b>Разбор видео</b><small>${COURSE.videos.length} ${plural(COURSE.videos.length, "разбор", "разбора", "разборов")}: фразы, слова и перевод</small></span><span aria-hidden="true">›</span></button>` : ""}
   </div>`;
   return html;
@@ -671,7 +676,8 @@ function lessonRow(i, free = false) {
 }
 
 function grammarView() {
-  let html = `<button class="btn ghost sm back" data-tab="home">← Главная</button><h2>📐 Грамматика</h2>`;
+  let html = `<button class="btn ghost sm back" data-tab="home">← Главная</button><h2>📐 Грамматика</h2>
+    <div class="wip"><span class="wi">🚧</span><span><b>Разборы по учебнику — в работе</b><small>Скоро здесь появятся разборы тем из «Gramática de uso del español» (A1–B2): теория и упражнения. Пока можно повторить грамматику из уроков курса.</small></span></div>`;
   for (const U of COURSE.units) {
     const idx = LESSONS.map((L, i) => L.unit === U.number && L.kind === "grammar" ? i : -1).filter(i => i >= 0);
     if (!idx.length) continue;
