@@ -35,6 +35,11 @@ class FakeAPI:
         return self._record(("rich", html))
 
 
+    def edit_rich_message(self, chat_id, message_id, html, media, files):
+        self.edited = (message_id, html)
+        return {}
+
+
 def make(course, renderer, tmp_path, api, **kw):
     return Publisher(course, renderer, api, "@test", tmp_path / "state.json", delay=0,
                      synth=lambda segments, **_: b"\xff\xf3\x64\xc0" + bytes(140), **kw)
@@ -151,3 +156,11 @@ def test_rich_posts_setting_switches_channel_format(course, renderer, tmp_path, 
     assert isinstance(pub.render(course.lesson(20))[0], TextMessage)
     monkeypatch.setitem(course.settings, "rich_posts", "all")
     assert isinstance(pub.render(course.lesson(20))[0], RichMessage)
+
+
+def test_edit_rewrites_published_article(course, renderer, tmp_path):
+    api = FakeAPI()
+    pub = make(course, renderer, tmp_path, api)
+    pub.edit_rich("@test", 160, course.lesson(38))
+    assert api.edited[0] == 160 and "la mesa" in api.edited[1]
+    assert api.sent == []  # новых сообщений нет, прогресс не меняется

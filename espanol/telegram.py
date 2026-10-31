@@ -79,6 +79,15 @@ class TelegramAPI:
         payload = {"chat_id": chat_id, "rich_message": rich, "disable_notification": silent}
         return self.call("sendRichMessage", payload, files=files or None)
 
+    def edit_rich_message(self, chat_id: str, message_id: int, html: str, media: list[tuple[str, dict]],
+                          files: dict[str, tuple]) -> dict:
+        """Заменяет содержимое уже отправленного поста-статьи (картинки и аудио загружаются заново)."""
+        rich: dict[str, Any] = {"html": html}
+        if media:
+            rich["media"] = [{"id": mid, "media": {**spec, "media": f"attach://{mid}"}} for mid, spec in media]
+        payload = {"chat_id": chat_id, "message_id": message_id, "rich_message": rich}
+        return self.call("editMessageText", payload, files=files or None)
+
     def latest_private_chat(self) -> dict | None:
         """Личный чат, из которого боту последним написали (например, /start)."""
         updates = self.call("getUpdates", {"allowed_updates": ["message"], "timeout": 0})
