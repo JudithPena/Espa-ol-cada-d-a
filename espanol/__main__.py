@@ -158,12 +158,7 @@ def cmd_site(args, settings) -> int:
     course, _, _ = build(settings)
     cards = load_cards(settings.content_dir)
     videos = load_videos(settings.content_dir, course)
-    published = None
-    if args.published:  # только вышедшие в канале уроки (по state/state.json)
-        _, _, renderer = build(settings)
-        published = make_publisher(settings, course, renderer, need_api=False).state().published_ids()
-    path = build_site(course, cards, args.out, units=parse_units(args.units), fragment=args.fragment, videos=videos,
-                      published=published, preview=args.preview)
+    path = build_site(course, cards, args.out, units=parse_units(args.units), fragment=args.fragment, videos=videos)
     print(f"Сайт сохранён: {path}")
     return 0
 
@@ -353,8 +348,6 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("-o", "--out", default="site/index.html")
     p.add_argument("--units", help="только эти темы: 0-5 или 0,2,4 (по умолчанию весь курс)")
     p.add_argument("--fragment", action="store_true", help="без <html>/<head>, только содержимое страницы")
-    p.add_argument("--published", action="store_true", help="только вышедшие в канале уроки (по state/state.json)")
-    p.add_argument("--preview", action="store_true", help="тестовая версия: метка «тест» и все уроки открыты")
     p = sub.add_parser("lookup", help="где впервые встречается слово")
     p.add_argument("words", nargs="+")
     sub.add_parser("status", help="прогресс публикации")

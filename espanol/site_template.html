@@ -370,7 +370,7 @@ LESSONS.forEach((L, i) => L.words.forEach(w => { if (!WORDS.has(w.es)) WORDS.set
 const FORMS = COURSE.forms || {};   // форма слова → слово курса: «tengo» → «tener»
 
 const isDone = i => !!P.done[LESSONS[i].id];
-const isOpen = i => COURSE.preview || P.openAll || i === 0 || isDone(i - 1) || isDone(i);
+const isOpen = i => P.openAll || i === 0 || isDone(i - 1) || isDone(i);
 const currentIndex = () => { const i = LESSONS.findIndex((_, k) => !isDone(k)); return i < 0 ? LESSONS.length - 1 : i; };
 const knownPool = upto => [...WORDS.values()].filter(w => w.li <= upto);
 const dueWords = () => { const t = dayNum(); return Object.entries(P.words).filter(([es, s]) => s.due <= t && WORDS.has(es)).map(([es]) => WORDS.get(es)); };
@@ -625,7 +625,7 @@ function finish() {
 function topBar() {
   const g = Math.min(1, todayXP() / P.goal), c = 2 * Math.PI * 12, st = streakNow();
   return `<header class="top"><div class="wrap">
-    <div class="brand">${esc(COURSE.title).replace("cada día", "<span>cada día</span>")}${COURSE.preview ? ' <span class="tag">тест</span>' : ""}</div>
+    <div class="brand">${esc(COURSE.title).replace("cada día", "<span>cada día</span>")}</div>
     <span class="chip ${st ? "fire" : "off"}" title="Дней подряд">🔥 ${st}</span>
     <span class="chip" title="Опыт">⚡ ${P.xp}</span>
     <svg class="ring" viewBox="0 0 30 30" role="img" aria-label="Цель дня: ${todayXP()} из ${P.goal} опыта"><circle class="bgc" cx="15" cy="15" r="12"/><circle class="fg" cx="15" cy="15" r="12" stroke-dasharray="${g * c} ${c}"/></svg>
