@@ -259,9 +259,10 @@ def cmd_bot_data(args, settings) -> int:
 
 def cmd_palabras(args, settings) -> int:
     from .markup import strip_tags
-    from .mywords import FOLDER, find_word, load_deck, render_card
+    from .mywords import FOLDER, GALYA_FOLDER, find_word, load_deck, render_card
 
-    words = load_deck(settings.content_dir)
+    folder = GALYA_FOLDER if args.galya else FOLDER
+    words = load_deck(settings.content_dir, folder)
     if args.word:
         word = find_word(words, args.word)
         card = render_card(word)
@@ -274,7 +275,7 @@ def cmd_palabras(args, settings) -> int:
         by_file[name] = by_file.get(name, 0) + 1
     for name, count in by_file.items():
         print(f"{name}: {count}")
-    print(f"В колоде «Мои слова»: {len(words)} (content/{FOLDER}/)")
+    print(f"В колоде «Мои слова»: {len(words)} (content/{folder}/)")
     return 0
 
 
@@ -345,6 +346,7 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("palabras", help="«Мои слова»: личная колода автора в боте")
     p.add_argument("word", nargs="?", help="слово или id — показать его карточку")
     p.add_argument("--html", action="store_true", help="показать HTML вместо текста")
+    p.add_argument("--galya", action="store_true", help="колода Гали вместо колоды автора")
     p = sub.add_parser("carta", help="карточка слова курса для повторения в боте (/repaso)")
     p.add_argument("word", nargs="?", help="слово ровно как в уроке; без слова — сколько уже с разбором")
     p.add_argument("--html", action="store_true", help="показать HTML вместо текста")
