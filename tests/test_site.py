@@ -84,3 +84,20 @@ def test_stress_questions(course):
               for it in b["items"] if "opts" in it}
     assert set(stress) == {"la casa", "el hotel", "el taxi"}
     assert stress["la casa"]["opts"] == ["CA-sa", "ca-SA"]
+
+
+def test_without_telegram():
+    """На сайте нет спойлеров, опросов и комментариев: такие предложения и задания убираются."""
+    from espanol.site import without_telegram
+
+    assert without_telegram("Давайте проверим, как вы освоили чтение. Ответ спрятан под спойлером.") == (
+        "Давайте проверим, как вы освоили чтение.")
+    assert without_telegram("Спасибо, что учились с нами! Напишите в комментариях, что понравилось. "
+                            "Можно начать так: _Me ha encantado..._") == "Спасибо, что учились с нами!"
+    assert "вопрос" in without_telegram("Задайте вопрос **¿Cómo estás?** другу, а потом ответьте сами.")
+
+
+def test_no_comment_tasks(course):
+    data = site_data(course, load_cards(CONTENT))
+    texts = [b.get("html", "") for lesson in data["lessons"] for b in lesson["blocks"]]
+    assert not any("комментари" in t or "спойлер" in t for t in texts)

@@ -103,11 +103,42 @@ def stress_options(answer: str) -> list[str] | None:
     return ["-".join(x.upper() if k == n else x for k, x in enumerate(syllables)) for n in range(len(syllables))]
 
 
+# Предложения про механику канала: на сайте нет спойлеров, опросов, комментариев и постов.
+_TELEGRAM = re.compile(r"\b(?:спойлер|опрос|комментари|голосов\w* сообщ|пост\w{0,3}\b|спрятан|откройте (?:его|ответ|текст)|вместо «(?:урок|вспомним|перевод)»)", re.I)
+_SENTENCE = re.compile(r"(?<=[.!?…])\s+(?=[А-ЯЁA-Z¿¡«_*])")
+
+
+def without_telegram(text: str) -> str:
+    """Текст блока без предложений про канал; пустая строка — блок на сайте не нужен.
+
+    Вслед за убранным предложением уходит и «Можно начать так: …» — это образец для комментария.
+    Если от разметки остался непарный ** или _, блок убираем целиком: обрывок хуже, чем ничего.
+    """
+    lines = []
+    for line in text.split("\n"):
+        kept, dropped = [], False
+        for sentence in _SENTENCE.split(line):
+            dropped = bool(_TELEGRAM.search(sentence)) or (dropped and sentence.startswith(("Можно начать", "Например")))
+            if not dropped:
+                kept.append(sentence)
+        if kept or not line.strip():
+            lines.append(" ".join(kept))
+    out = "\n".join(lines).strip()
+    if out.count("**") % 2 or out.count("_") % 2 or len(plain(out)) < 25:
+        return ""
+    return out
+
+
 def _block(block: Block) -> dict | None:
     t, d = block.type, block.data
     if t == "words":
         return None  # новые слова страница показывает карточками в начале урока
-    if t in ("text", "rule", "tip", "note", "latam", "culture", "task", "header"):
+    if t == "task" and _TELEGRAM.search(d):
+        return None  # «Напишите в комментариях…»: на сайте писать некуда
+    if t in ("text", "tip", "note", "task"):
+        text = without_telegram(d)
+        return {"t": t, "html": _html(text)} if text else None
+    if t in ("rule", "latam", "culture", "header"):
         return {"t": t, "html": _html(d)}
     if t in ("list", "cando"):
         return {"t": t, "items": [_html(x) for x in d]}

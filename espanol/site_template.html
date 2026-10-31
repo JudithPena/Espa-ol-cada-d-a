@@ -492,11 +492,13 @@ let view = { tab: "course" };
 
 function startLesson(i) {
   const L = LESSONS[i];
-  const learn = [{ type: "intro" }];
+  const screens = theoryScreens(L);
+  // Короткое вступление («Давайте проверим, как вы освоили чтение») — на первом экране, а не отдельным слайдом.
+  const lead = screens.length && screens[0].every(b => b.t === "text") && JSON.stringify(screens[0]).length < 400 ? screens.shift() : [];
+  const learn = [{ type: "intro", lead }];
   L.words.forEach(w => learn.push({ type: "word", word: w }));
-  theoryScreens(L).forEach(blocks => learn.push({ type: "theory", blocks }));
-  const practice = practiceFor(i);
-  if (practice.length) learn.push({ type: "gate" });
+  screens.forEach(blocks => learn.push({ type: "theory", blocks }));
+  const practice = practiceFor(i);   // задания сразу после объяснения, без заставки
   S = { kind: "lesson", li: i, pool: knownPool(i), steps: learn.concat(practice), at: 0, firstTry: 0, graded: 0, seen: new Set(), state: null };
   render();
 }
@@ -733,17 +735,15 @@ function stepBody(st) {
     case "intro": {
       const nw = L.words.length, nq = S.steps.filter(isGraded).length;
       return `<span class="kicker">Урок ${L.n} · Тема ${L.unit}</span><h2>${esc(L.title)}</h2>
-        <div class="theory"><div class="box"><ul class="cando">
+        <div class="theory">${st.lead.map(blockHTML).join("")}<div class="box"><ul class="cando">
           ${nw ? `<li>${words(nw)} с озвучкой и примерами</li>` : ""}
-          ${L.blocks.some(b => b.t !== "exercise") ? `<li>${L.kindLabel.toLowerCase()}: объяснение по шагам</li>` : ""}
+          ${S.steps.some(s => s.type === "theory") ? `<li>объяснение по шагам</li>` : ""}
           ${nq ? `<li>${nq} ${plural(nq, "задание", "задания", "заданий")} на проверку</li>` : ""}
         </ul></div>
         <p class="muted">Нажимайте ▶, чтобы услышать испанский, и повторяйте вслух. Нажмите на испанское слово с пунктиром, чтобы увидеть перевод и добавить слово в повторение. Ошибки не страшны: задание вернётся в конце урока.</p></div>`;
     }
     case "word": return `<span class="kicker">Новое слово</span>${wordCard(st.word)}`;
     case "theory": return `<div class="theory">${st.blocks.map(blockHTML).join("")}</div>`;
-    case "gate": return `<div class="result" style="padding-top:40px"><span class="medal">🧩</span><h2>Теперь проверим себя</h2>
-      <p class="muted" style="margin:0">${S.steps.length - S.at - 1} ${plural(S.steps.length - S.at - 1, "задание", "задания", "заданий")}. Сначала вспомните ответ сами, потом проверьте.</p></div>`;
     case "mc": {
       const s = S.state, locked = s.result ? "locked" : "";
       let prompt;
@@ -839,7 +839,6 @@ function stepFoot(st) {
   }
   let label = "Дальше", dis = "";
   if (st.type === "intro") label = "Начать";
-  if (st.type === "gate") label = "Поехали";
   if (st.type === "mc") { label = "Проверить"; dis = s.pick == null ? "disabled" : ""; }
   if (st.type === "task") label = "Готово";
   return `<div class="pfoot"><div class="wrap"><button class="btn wide" data-primary ${dis}>${label}</button></div></div>`;
@@ -883,7 +882,7 @@ function render() {
     app.innerHTML = playerView(); $(".pbody")?.scrollTo(0, 0); $("#letter")?.focus();
     // Перевод по нажатию — в карточках и объяснениях, а в заданиях только после ответа, чтобы не подсказывать.
     const st = S.steps[S.at];
-    if (["word", "theory", "task"].includes(st.type)) wrapWords($(".pbody"));
+    if (["intro", "word", "theory", "task"].includes(st.type)) wrapWords($(".pbody .theory") || $(".pbody"));
     if (S.state?.result) wrapWords($(".pfoot .fb"));
     return;
   }
