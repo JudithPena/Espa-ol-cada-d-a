@@ -15,6 +15,7 @@ import DECK from "../data/mywords.json" with { type: "json" };
 import GALYA from "../data/mywords_galya.json" with { type: "json" };
 import VIDEOS from "../data/videos.json" with { type: "json" };
 import WORDS from "../data/words.json" with { type: "json" };
+import { handleSite } from "./site.js";
 import {
   choices, currentItem, deckProgress, freshLeft, learn, newDeck, NEW_PER_DAY, recall, startDeckSession, startSession,
   stretchChain, studyQueue,
@@ -42,6 +43,7 @@ export default {
       }
       return new Response("ok");
     }
+    if (url.pathname.startsWith("/site/")) return handleSite(request, env); // прогресс сайта: вход через Telegram
     return new Response("Español cada día bot");
   },
 
