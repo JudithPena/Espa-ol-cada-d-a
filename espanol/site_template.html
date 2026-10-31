@@ -756,25 +756,12 @@ function wordCard(w) {
   </div>`;
 }
 
-// Подсказки на первом экране — только про то, что в этом уроке действительно есть.
-function introHints() {
-  const steps = S.steps, hints = [];
-  const audio = TTS.ok && steps.some(st => st.type === "word" || st.type === "mf" || st.mode === "listen" || st.mode === "rec"
-    || (st.type === "theory" && st.blocks.some(b => ["examples", "dialogue", "reading", "conjugation"].includes(b.t))));
-  if (audio) hints.push("Нажимайте ▶, чтобы услышать испанский, и повторяйте вслух.");
-  if (steps.some(st => st.type === "word" || st.type === "theory"))
-    hints.push("Нажмите на испанское слово с пунктиром, чтобы увидеть перевод и добавить слово в повторение.");
-  if (steps.some(isGraded)) hints.push("Ошибки не страшны: задание с ошибкой вернётся в конце урока.");
-  return hints;
-}
-
 function stepBody(st) {
   const L = S.kind === "lesson" ? LESSONS[S.li] : null;
   switch (st.type) {
     case "intro": {
       return `<span class="kicker">Урок ${L.n} · Тема ${L.unit}</span><h2>${esc(L.title)}</h2>
-        <div class="theory">${st.lead.map(blockHTML).join("")}
-        <p class="muted">${introHints().join(" ")}</p></div>`;
+        <div class="theory">${st.lead.map(blockHTML).join("")}</div>`;
     }
     case "word": return `<span class="kicker">Новое слово</span>${wordCard(st.word)}`;
     case "theory": return `<div class="theory">${st.blocks.map(blockHTML).join("")}</div>`;
