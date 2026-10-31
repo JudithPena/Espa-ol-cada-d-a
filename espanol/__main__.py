@@ -150,6 +150,17 @@ def cmd_export(args, settings) -> int:
     return 0
 
 
+def cmd_site(args, settings) -> int:
+    from .site import build_site, parse_units
+    from .wordcards import load_cards
+
+    course, _, _ = build(settings)
+    cards = load_cards(settings.content_dir)
+    path = build_site(course, cards, args.out, units=parse_units(args.units), fragment=args.fragment)
+    print(f"Сайт сохранён: {path}")
+    return 0
+
+
 def cmd_lookup(args, settings) -> int:
     course, lexicon, _ = build(settings)
     for word in args.words:
@@ -330,6 +341,10 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--rich", action="store_true", help="в виде поста-статьи (Rich Messages)")
     p = sub.add_parser("export", help="HTML-превью курса")
     p.add_argument("-o", "--out", default="preview/index.html")
+    p.add_argument("--fragment", action="store_true", help="без <html>/<head>, только содержимое страницы")
+    p = sub.add_parser("site", help="сайт курса: уроки по порядку, упражнения и прогресс")
+    p.add_argument("-o", "--out", default="site/index.html")
+    p.add_argument("--units", help="только эти темы: 0-5 или 0,2,4 (по умолчанию весь курс)")
     p.add_argument("--fragment", action="store_true", help="без <html>/<head>, только содержимое страницы")
     p = sub.add_parser("lookup", help="где впервые встречается слово")
     p.add_argument("words", nargs="+")
