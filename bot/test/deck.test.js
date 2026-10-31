@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
-  choices, currentItem, studyQueue, deckProgress, deckQueue, freshLeft, learn, newDeck, recall, startDeckSession,
+  choices, currentItem, stretchChain, studyQueue, deckProgress, deckQueue, freshLeft, learn, newDeck, recall, startDeckSession,
 } from "../src/deck.js";
 import { LONG_INTERVALS, learnedBox } from "../src/srs.js";
 
@@ -61,6 +61,16 @@ test("растянутая цепочка (колода Гали): каждый 
   assert.deepEqual(deck.cards.w0, [6, 103], "пять раз через день, потом через 3 дня");
   const p = deckProgress({ cards: { w0: [10, 1], w1: [11, 1] } }, [{ id: "w0" }, { id: "w1" }], 0, LONG_INTERVALS);
   assert.equal(p.learned, 1);
+});
+
+test("переход на растянутую цепочку: тот же интервал, пересчёт один раз", () => {
+  const deck = newDeck();
+  deck.cards = { a: [0, 5], b: [1, 6], c: [3, 9], d: [5, 40] };
+  assert.equal(stretchChain(deck), true);
+  assert.deepEqual(deck.cards, { a: [0, 5], b: [1, 6], c: [11, 9], d: [21, 40] });
+  assert.equal(learnedBox(LONG_INTERVALS), 11, "слово из старой коробки 3 осталось выученным");
+  assert.equal(stretchChain(deck), false);
+  assert.equal(deck.cards.c[0], 11);
 });
 
 test("забытое слово возвращается через несколько карточек этого же занятия", () => {

@@ -10,6 +10,19 @@ export const NEW_PER_DAY = 10;
 export const CHOICES = 4; // вариантов перевода на карточке повторения
 export const REVIEW_LIMIT = 60; // повторений за одно занятие, не больше
 
+// Колода перешла со старой цепочки (1, 3, 7, … дней) на растянутую (каждый шаг ×5, srs.js LONG_INTERVALS):
+// коробка b старой цепочки («прошли b-й интервал») становится коробкой (b-1)·5+1 — тот же интервал, один раз пройденный.
+// Метка chain не даёт пересчитать колоду второй раз.
+export function stretchChain(deck, times = 5) {
+  if (deck.chain === times) return false;
+  for (const id of Object.keys(deck.cards)) {
+    const [box, due] = deck.cards[id];
+    if (box > 0) deck.cards[id] = [(box - 1) * times + 1, due];
+  }
+  deck.chain = times;
+  return true;
+}
+
 export function newDeck() {
   return { cards: {}, session: null, day: 0, fresh: 0 };
 }

@@ -17,7 +17,7 @@ import VIDEOS from "../data/videos.json" with { type: "json" };
 import WORDS from "../data/words.json" with { type: "json" };
 import {
   choices, currentItem, deckProgress, freshLeft, learn, newDeck, NEW_PER_DAY, recall, startDeckSession, startSession,
-  studyQueue,
+  stretchChain, studyQueue,
 } from "./deck.js";
 import {
   dayNumber, INTERVALS, localHour, localWeekday, LONG_INTERVALS, NEW_PER_SESSION, newUser, progress, SESSION_SIZE,
@@ -243,7 +243,7 @@ const BOOKS = {
       };
     },
   },
-  p: deckBookOf("p", () => DECK, "Пришлите Claude"), // «Мои слова» автора
+  p: deckBookOf("p", () => DECK, "Пришлите Claude", undefined, LONG_INTERVALS), // «Мои слова» автора
   w: deckBookOf("w", () => GALYA, "Передайте автору бота", galyaEnv, LONG_INTERVALS), // колода Гали
 };
 
@@ -260,7 +260,11 @@ function deckBookOf(id, words, ask, own = (env) => env, intervals = INTERVALS) {
     fullLabel: "📖 Весь разбор",
     find: (wordId) => words().find((w) => w.id === wordId),
     words: async () => words(),
-    load: (env, userId) => loadDeck(env, userId),
+    load: async (env, userId) => {
+      const deck = await loadDeck(env, userId);
+      if (intervals === LONG_INTERVALS) stretchChain(deck);
+      return deck;
+    },
     save: (env, userId, state) => saveDeck(env, userId, state),
     queue: (env, state, list, today) => startDeckSession(state, list, today, perDay(own(env)), deckShifts(own(env))) ? state.session.queue : [],
     empty(env, state, list, today) {
@@ -567,7 +571,7 @@ async function sendDeckDailyTo(env, now, chat, book) {
   if (!chat || !numbers(own.WORDS_HOURS).includes(localHour(now, own.TIMEZONE))) return;
   const words = await book.words(env);
   if (!words.length) return;
-  const deck = await loadDeck(env, chat);
+  const deck = await book.load(env, chat);
   const today = dayNumber(new Date(), env.TIMEZONE);
   const p = deckProgress(deck, words, today, book.intervals);
   const shifts = deckShifts(own, now);
