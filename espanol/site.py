@@ -46,6 +46,10 @@ ART_SLUGS = {
     "el jamón": "jamon", "el queso": "queso", "la guitarra": "guitarra", "la paella": "paella",
     "la tortilla": "tortilla", "España": "espana", "la cerveza": "cerveza", "la plaza": "plaza",
     "el chocolate": "chocolate", "el perro": "perro", "el vino": "vino",
+    "¡Hola!": "hola", "gracias": "gracias", "sí": "si", "no": "no", "el señor": "senor", "la señora": "senora",
+    "por favor": "por_favor", "perdón": "perdon", "bien": "bien", "muy bien": "muy_bien", "regular": "regular",
+    "mal": "mal", "buenos días": "buenos_dias", "buenas tardes": "buenas_tardes", "buenas noches": "buenas_noches",
+    "adiós": "adios",
 }
 
 
