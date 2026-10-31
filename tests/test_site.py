@@ -113,3 +113,15 @@ def test_art(course):
     words = [w for lesson in data["lessons"] for w in lesson["words"]]
     assert words and all(w.get("art", "").startswith("<svg") for w in words)
     assert set(art) <= {art_slug(item.es) for item in course.items}  # лишних картинок нет
+
+
+def test_word_phrases(course):
+    """Фразы курса ищутся целиком, длинные раньше коротких; фразы с пропуском не ищем."""
+    from espanol.site import word_phrases
+
+    phrases = {" ".join(words): es for words, es in word_phrases(course)}
+    assert phrases["buenos días"] == "buenos días" and phrases["qué tal"] == "¿Qué tal?"
+    assert phrases["cómo está usted"] == "¿Cómo está usted?"
+    assert not any("dice en" in p for p in phrases)  # «¿Cómo se dice... en español?»
+    lengths = [len(" ".join(w)) for w, _ in word_phrases(course)]
+    assert lengths == sorted(lengths, reverse=True)

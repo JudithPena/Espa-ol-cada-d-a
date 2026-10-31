@@ -254,6 +254,24 @@ def load_art(content_dir: str | Path) -> dict[str, str]:
             for path in sorted((Path(content_dir) / ART_FOLDER).glob("*.svg"))}
 
 
+def word_phrases(course: Course) -> list[list]:
+    """Фразы курса для перевода по нажатию: [[слова фразы], слово курса].
+
+    Страница ищет их в тексте раньше отдельных слов, поэтому «buenos días» открывается целиком,
+    а не как «bueno/a» и «el día». Фразы с пропуском («¿Cómo se dice... en español?») не ищем.
+    """
+    out, seen = [], set()
+    for item in course.items:
+        for core in item.cores:
+            if "  " in core.strip() or len(core.split()) < 2:
+                continue
+            words = [w.lower() for w in spanish_words(core)]
+            if len(words) > 1 and tuple(words) not in seen:
+                seen.add(tuple(words))
+                out.append([words, plain(item.es)])
+    return sorted(out, key=lambda p: -len(" ".join(p[0])))
+
+
 def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None = None,
               art: dict[str, str] | None = None) -> dict:
     lessons, carried = [], []
@@ -279,6 +297,7 @@ def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None
                   for u in course.units if units is None or u.number in units],
         "lessons": lessons,
         "forms": word_forms(course),
+        "phrases": word_phrases(course),
     }
 
 

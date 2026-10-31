@@ -929,21 +929,40 @@ function primary() {
 
 /* ================================================================ перевод по нажатию на слово */
 const WORD_RE = /(?<![\p{L}\d-])[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+(?![\p{L}\d-])/gu;
+// Фразы курса ищем раньше отдельных слов, самые длинные первыми: «buenos días» — одна фраза.
+const PHRASE_ES = new Map((COURSE.phrases || []).map(([ws, es]) => [ws.join(" "), es]));
+const PHRASE_RE = PHRASE_ES.size ? new RegExp("(?<![\\p{L}\\d-])(?:" + (COURSE.phrases || [])
+  .map(([ws]) => ws.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("[\\s,]+")).join("|") + ")(?![\\p{L}\\d-])", "giu") : null;
+// Куски текста: [кусок, слово курса или null].
+function lookupParts(text) {
+  const parts = []; let last = 0;
+  const words = chunk => {
+    let at = 0;
+    for (const m of chunk.matchAll(WORD_RE)) {
+      const es = FORMS[m[0].toLowerCase()];
+      if (!es || !WORDS.has(es)) continue;
+      parts.push([chunk.slice(at, m.index), null], [m[0], es]); at = m.index + m[0].length;
+    }
+    parts.push([chunk.slice(at), null]);
+  };
+  if (PHRASE_RE) for (const m of text.matchAll(PHRASE_RE)) {
+    const es = PHRASE_ES.get(m[0].toLowerCase().split(/[\s,]+/).join(" "));
+    if (!es || !WORDS.has(es)) continue;
+    words(text.slice(last, m.index)); parts.push([m[0], es]); last = m.index + m[0].length;
+  }
+  words(text.slice(last));
+  return parts;
+}
 function wrapWords(root) {
   if (!root) return;
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
     acceptNode: n => n.parentElement.closest("code, .lw, .play, .btn, .kicker, .lbl, h3, .word") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
   const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
   for (const node of nodes) {
-    const text = node.nodeValue; let html = "", last = 0;
-    for (const m of text.matchAll(WORD_RE)) {
-      const es = FORMS[m[0].toLowerCase()];
-      if (!es || !WORDS.has(es)) continue;
-      html += esc(text.slice(last, m.index)) + `<span class="lw" data-w="${esc(es)}">${esc(m[0])}</span>`;
-      last = m.index + m[0].length;
-    }
-    if (!last) continue;
-    const box = document.createElement("span"); box.innerHTML = html + esc(text.slice(last));
+    const parts = lookupParts(node.nodeValue);
+    if (!parts.some(([, es]) => es)) continue;
+    const box = document.createElement("span");
+    box.innerHTML = parts.map(([t, es]) => es ? `<span class="lw" data-w="${esc(es)}">${esc(t)}</span>` : esc(t)).join("");
     node.replaceWith(...box.childNodes);
   }
 }
