@@ -127,3 +127,14 @@ def test_videos_on_site(course):
     seg = first["segments"][0]
     assert seg["es"] and seg["ru"] and seg["words"] and {"es", "ru", "say"} <= set(seg["words"][0])
     assert site_data(course, load_cards(CONTENT), units={0})["videos"] == []
+
+
+def test_published_only_and_preview(course):
+    """Основной сайт — только вышедшие в канале уроки; предпросмотр — весь курс с пометкой."""
+    cards = load_cards(CONTENT)
+    ids = {lesson.id for lesson in course.lessons[:10]}
+    data = site_data(course, cards, published=ids)
+    assert {lesson["id"] for lesson in data["lessons"]} <= ids and 0 < len(data["lessons"]) < 10
+    assert data["preview"] is False
+    full = site_data(course, cards, preview=True)
+    assert len(full["lessons"]) == len(course.lessons) - 1 and full["preview"] is True

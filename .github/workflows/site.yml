@@ -5,6 +5,7 @@ name: Сайт курса
 # Пока их нет, workflow ничего не делает.
 # Рабочая ветка выкладывается на основной адрес; ветки claude/** — отдельным предпросмотром
 # (https://<имя-ветки>.espanolcadadia.pages.dev), основной сайт при этом не меняется.
+# Основной сайт показывает только вышедшие в канале уроки (state/state.json), предпросмотр — весь курс и все уроки открыты.
 
 on:
   push:
@@ -12,7 +13,11 @@ on:
     paths:
       - "content/**"
       - "espanol/**"
+      - "state/state.json"
       - ".github/workflows/site.yml"
+  schedule:
+    # Новые вышедшие в канале уроки попадают на основной сайт: после выхода уроков в 9:00 и 15:00 по Киеву.
+    - cron: "40 8,14 * * *"
   workflow_dispatch:
 
 concurrency:
@@ -58,7 +63,13 @@ jobs:
         if: steps.check.outputs.ready == 'true'
         run: |
           pip install -r requirements.txt
-          python -m espanol site -o _site/index.html
+          if [ "$GITHUB_REF_NAME" = "ccr-f4c9bfd6-txio5n" ]; then
+            # основной сайт: только вышедшие в канале уроки
+            python -m espanol site --published -o _site/index.html
+          else
+            # тестовая версия: все уроки, все открыты
+            python -m espanol site --preview -o _site/index.html
+          fi
 
       - name: Проект на Cloudflare Pages
         if: steps.check.outputs.ready == 'true'
