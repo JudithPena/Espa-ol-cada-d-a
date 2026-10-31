@@ -73,6 +73,11 @@ Telegram-курс испанского с нуля до A1: канал **@espano
   пройденные к уроку этого слова. Проверка — `python -m espanol validate`, карточка — `python -m espanol carta слово`.
 - Новые уроки: когда добавляете слова в урок, допишите им разборы в `content/repaso/`.
 
+## Модели
+
+- В `.claude/settings.json`: основная модель Sonnet, советник Opus (`advisorModel`) — Opus зовут на развилках
+  и перед тем, как объявить задачу готовой. Сменить: `/model`, `/advisor`; выключить: `/advisor off`.
+
 ## Сайт курса (прототип)
 
 - `python -m espanol site` собирает `site/index.html` (в `.gitignore`): курс в духе Busuu — уроки по порядку,
