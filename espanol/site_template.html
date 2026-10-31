@@ -328,7 +328,7 @@ const words = n => `${n} ${plural(n, "слово", "слова", "слов")}`;
 
 /* ================================================================ прогресс (в браузере ученика) */
 const KEY = "espanol-cada-dia.v1";
-const fresh = () => ({ done: {}, xp: 0, days: {}, streak: { n: 0, best: 0, last: "" }, words: {}, goal: 30, openAll: false });
+const fresh = () => ({ done: {}, xp: 0, days: {}, streak: { n: 0, best: 0, last: "" }, words: {}, goal: 30, openAll: false, sound: true });
 let P = fresh();
 try { P = Object.assign(fresh(), JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) { /* без хранилища — прогресс только до перезагрузки */ }
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(P)); } catch (e) {} };
@@ -539,8 +539,34 @@ function answer(ok, st, { requeue = true } = {}) {
   if (!ok && requeue) S.steps.push(retryOf(st));
   if (ok) say(["build", "mf"].includes(st.type) ? st.es : st.mode === "prod" || st.mode === "listen" ? st.word?.say : "");
   render();
+  sfx(ok);
+  // Как в Duolingo: верный ответ на мгновение подсвечивается и сам ведёт дальше; ошибку оставляем на экране.
+  if (ok) autoTimer = setTimeout(() => { if (S?.state?.result === "good") next(); }, st.explain ? 2200 : 1100);
+}
+let autoTimer = null;
+/* ================================================================ звуки (Web Audio, без файлов) */
+let audioCtx = null;
+function sfx(ok) {
+  if (!P.sound) return;
+  try {
+    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    const t0 = audioCtx.currentTime;
+    // Верно — два коротких восходящих тона; ошибка — низкий нисходящий «бз».
+    const notes = ok ? [[659, 0, .12], [988, .09, .22]] : [[196, 0, .16], [147, .12, .26]];
+    for (const [freq, start, end] of notes) {
+      const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+      o.type = ok ? "triangle" : "sawtooth";
+      o.frequency.value = freq;
+      g.gain.setValueAtTime(0.0001, t0 + start);
+      g.gain.exponentialRampToValueAtTime(ok ? 0.25 : 0.09, t0 + start + 0.015);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + end);
+      o.connect(g).connect(audioCtx.destination);
+      o.start(t0 + start); o.stop(t0 + end + 0.02);
+    }
+  } catch (e) {}
 }
 function next() {
+  clearTimeout(autoTimer);
   S.at++; S.state = null;
   if (S.at >= S.steps.length) return finish();
   render();
@@ -669,6 +695,7 @@ function statsView() {
     <div class="level-bar"><div class="lb"><span>Сегодня</span><span>${todayXP()} из ${P.goal} опыта</span></div><div class="bar sun"><i style="width:${Math.min(100, todayXP() / P.goal * 100)}%"></i></div></div>
   </section>
   <section class="panel settings"><h2>Настройки</h2>
+    <div class="row"><span>Звуки ответов</span><button class="switch" data-sound aria-pressed="${P.sound !== false}" aria-label="Звуки ответов"></button></div>
     <div class="row"><span>Цель на день</span><span class="seg">${[20, 30, 50].map(g => `<button data-goal="${g}" aria-pressed="${P.goal === g}">${g}</button>`).join("")}</span></div>
     <div class="row"><span>Открыть все уроки<br><small class="muted">чтобы посмотреть любой урок без очереди</small></span><button class="switch" data-openall aria-pressed="${!!P.openAll}" aria-label="Открыть все уроки"></button></div>
     <div class="row"><span>Сбросить прогресс</span>${view.confirmReset ? `<span class="confirm"><button class="btn bad" data-reset="yes">Да, сбросить</button><button class="btn ghost" data-reset="no">Отмена</button></span>` : `<button class="btn ghost" data-reset="ask">Сбросить</button>`}</div>
@@ -839,7 +866,7 @@ function stepFoot(st) {
   }
   let label = "Дальше", dis = "";
   if (st.type === "intro") label = "Начать";
-  if (st.type === "mc") { label = "Проверить"; dis = s.pick == null ? "disabled" : ""; }
+  if (st.type === "mc") return `<div class="pfoot"><div class="wrap"><span class="hint" style="text-align:center">Нажмите на ответ</span></div></div>`;
   if (st.type === "task") label = "Готово";
   return `<div class="pfoot"><div class="wrap"><button class="btn wide" data-primary ${dis}>${label}</button></div></div>`;
 }
@@ -908,7 +935,7 @@ const WORD_RE = /(?<![\p{L}\d-])[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+(?![\p{L}\d
 function wrapWords(root) {
   if (!root) return;
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
-    acceptNode: n => n.parentElement.closest("code, .lw, .play, .btn, .kicker, .lbl") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
+    acceptNode: n => n.parentElement.closest("code, .lw, .play, .btn, .kicker, .lbl, h3") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
   const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
   for (const node of nodes) {
     const text = node.nodeValue; let html = "", last = 0;
@@ -970,8 +997,9 @@ document.addEventListener("click", e => {
     return startReview(d.review === "due" ? dueWords() : d.review === "weak" ? all.filter(w => (P.words[w.es].s || 0) <= 1) : all);
   }
   if ("home" in d) { S = null; view.tab = "course"; render(); const c = $(`#unit-${LESSONS[currentIndex()].unit}`); if (c) c.scrollIntoView({ block: "start" }); return; }
-  if ("quit" in d) { speechSynthesis?.cancel?.(); S = null; render(); return; }
+  if ("quit" in d) { clearTimeout(autoTimer); speechSynthesis?.cancel?.(); S = null; render(); return; }
   if (d.goal) { P.goal = +d.goal; save(); render(); return; }
+  if ("sound" in d) { P.sound = P.sound === false; save(); render(); if (P.sound) sfx(true); return; }
   if ("openall" in d) { P.openAll = !P.openAll; save(); render(); return; }
   if (d.reset) {
     if (d.reset === "ask") view.confirmReset = true;
@@ -980,7 +1008,7 @@ document.addEventListener("click", e => {
   }
   if (!S || S.kind === "result") return;
   const st = S.steps[S.at], s = S.state;
-  if (d.opt != null && !s.result) { s.pick = +d.opt; render(); return; }
+  if (d.opt != null && !s.result) { s.pick = +d.opt; return answer(s.pick === st.correct, st); }
   if (d.pick != null && !s.result) return buildPick(+d.pick);
   if ("hint" in d && !s.result) return hint();
   if ("primary" in d || "next" in d) return primary();
@@ -1002,7 +1030,7 @@ document.addEventListener("keydown", e => {
     return;
   }
   if (e.target.tagName === "TEXTAREA" || e.target.tagName === "INPUT") return;
-  if (st.type === "mc" && !s.result && /^[1-9]$/.test(e.key) && +e.key <= st.options.length) { s.pick = +e.key - 1; render(); }
+  if (st.type === "mc" && !s.result && /^[1-9]$/.test(e.key) && +e.key <= st.options.length) { s.pick = +e.key - 1; answer(s.pick === st.correct, st); }
 });
 
 render();
