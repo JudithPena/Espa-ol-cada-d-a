@@ -4,7 +4,7 @@
 // новые чаще, старые реже; забытое — через несколько карточек этого же занятия и снова на следующий день.
 // «Мои слова»: до WORDS_PER_DAY новых в каждую смену (WORDS_HOURS: утро и вечер); слова курса — до NEW_PER_SESSION новых за занятие.
 
-import { INTERVALS, LEARNED_BOX, RETRY_GAP } from "./srs.js";
+import { INTERVALS, learnedBox, RETRY_GAP } from "./srs.js";
 
 export const NEW_PER_DAY = 10;
 export const CHOICES = 4; // вариантов перевода на карточке повторения
@@ -108,13 +108,13 @@ export function learn(deck, id, today) {
 }
 
 // Ответ «помню / не помню». Возвращает { more: есть ли ещё карточки, retry: вернётся ли слово в этом занятии }.
-export function recall(deck, id, known, today) {
+export function recall(deck, id, known, today, intervals = INTERVALS) {
   const s = deck.session;
   const [box] = deck.cards[id] || [0, today];
   let retry = false;
   if (known) {
-    const next = Math.min(box + 1, INTERVALS.length);
-    deck.cards[id] = [next, today + INTERVALS[next - 1]];
+    const next = Math.min(box + 1, intervals.length);
+    deck.cards[id] = [next, today + intervals[next - 1]];
     s.right += 1;
   } else {
     deck.cards[id] = [0, today];
@@ -129,12 +129,12 @@ export function recall(deck, id, known, today) {
   return { more: s.pos < s.queue.length, retry };
 }
 
-export function deckProgress(deck, words, today) {
+export function deckProgress(deck, words, today, intervals = INTERVALS) {
   const seen = words.filter((w) => deck.cards[w.id]);
   return {
     total: words.length,
     seen: seen.length,
-    learned: seen.filter((w) => deck.cards[w.id][0] >= LEARNED_BOX).length,
+    learned: seen.filter((w) => deck.cards[w.id][0] >= learnedBox(intervals)).length,
     due: seen.filter((w) => deck.cards[w.id][1] <= today).length,
     fresh: words.length - seen.length,
   };

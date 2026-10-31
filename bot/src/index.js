@@ -20,7 +20,7 @@ import {
   studyQueue,
 } from "./deck.js";
 import {
-  dayNumber, localHour, localWeekday, NEW_PER_SESSION, newUser, progress, SESSION_SIZE,
+  dayNumber, INTERVALS, localHour, localWeekday, LONG_INTERVALS, NEW_PER_SESSION, newUser, progress, SESSION_SIZE,
 } from "./srs.js";
 
 const BY_ID = new Map(WORDS.map((w) => [w.id, w]));
@@ -244,13 +244,14 @@ const BOOKS = {
     },
   },
   p: deckBookOf("p", () => DECK, "Пришлите Claude"), // «Мои слова» автора
-  w: deckBookOf("w", () => GALYA, "Передайте автору бота", galyaEnv), // колода Гали
+  w: deckBookOf("w", () => GALYA, "Передайте автору бота", galyaEnv, LONG_INTERVALS), // колода Гали
 };
 
 // «Мои слова»: личная колода одного ученика (автора или Гали). id — буква кнопок, words — слова колоды,
 // ask — кому писать, когда слова кончились.
-function deckBookOf(id, words, ask, own = (env) => env) {
+function deckBookOf(id, words, ask, own = (env) => env, intervals = INTERVALS) {
   return {
+    intervals,
     own, // настройки смен колоды: у Гали свои часы и свой часовой пояс
     id,
     ask,
@@ -263,13 +264,13 @@ function deckBookOf(id, words, ask, own = (env) => env) {
     save: (env, userId, state) => saveDeck(env, userId, state),
     queue: (env, state, list, today) => startDeckSession(state, list, today, perDay(own(env)), deckShifts(own(env))) ? state.session.queue : [],
     empty(env, state, list, today) {
-      const p = deckProgress(state, list, today);
+      const p = deckProgress(state, list, today, intervals);
       return !list.length ? `В колоде пока нет слов. ${ask} список слов — к каждому будет написан разбор.`
         : p.fresh ? `👏 Пока всё: ${laterShift(own(env)) ? `следующие новые слова — в ${laterShift(own(env))}:00` : "новые слова будут завтра"}, а повторять пока нечего.`
           : `👏 Всё повторено, а новые слова в колоде закончились. ${ask} ещё список.`;
     },
     finish(env, state, list, today) {
-      const p = deckProgress(state, list, today);
+      const p = deckProgress(state, list, today, intervals);
       const next = p.due ? `Ещё пора повторить: ${p.due}.`
         : !p.fresh ? `Новые слова в колоде закончились. ${ask} ещё список.`
           : freshLeft(state, today, perDay(own(env)), deckShifts(own(env))) ? "" : laterShift(own(env)) ? `Следующие новые слова — в ${laterShift(own(env))}:00.` : "Новые слова — завтра. ¡Hasta mañana!";
@@ -409,7 +410,7 @@ async function handleStudyCallback(book, cq, env, origin) {
   } else {
     return done();
   }
-  const { more, retry } = recall(state, id, known, today);
+  const { more, retry } = recall(state, id, known, today, book.intervals);
   const later = retry ? "Слово вернётся через пару карточек." : "Повторим в следующий раз.";
   if (!known && chosen) { // ошибка: показываем правильный ответ и ждём «Дальше», чтобы успеть прочитать
     s.waiting = true;
@@ -568,7 +569,7 @@ async function sendDeckDailyTo(env, now, chat, book) {
   if (!words.length) return;
   const deck = await loadDeck(env, chat);
   const today = dayNumber(new Date(), env.TIMEZONE);
-  const p = deckProgress(deck, words, today);
+  const p = deckProgress(deck, words, today, book.intervals);
   const shifts = deckShifts(own, now);
   const fresh = Math.min(freshLeft(deck, today, perDay(own), shifts), p.fresh);
   if (!fresh && !p.due) {

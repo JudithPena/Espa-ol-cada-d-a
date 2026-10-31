@@ -3,6 +3,7 @@ import { test } from "node:test";
 import {
   choices, currentItem, studyQueue, deckProgress, deckQueue, freshLeft, learn, newDeck, recall, startDeckSession,
 } from "../src/deck.js";
+import { LONG_INTERVALS, learnedBox } from "../src/srs.js";
 
 const words = Array.from({ length: 25 }, (_, i) => ({ id: `w${i}` }));
 
@@ -43,6 +44,23 @@ test("интервалы: новые слова — чаще, старые — �
   deck.session.pos = 0;
   recall(deck, "w0", false, day);
   assert.deepEqual(deck.cards.w0, [0, day]);
+});
+
+test("растянутая цепочка (колода Гали): каждый шаг по 5 раз", () => {
+  assert.equal(LONG_INTERVALS.length, 35);
+  assert.deepEqual(LONG_INTERVALS.slice(0, 11), [1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 7]);
+  assert.equal(learnedBox(LONG_INTERVALS), 11, "выучено, когда следующий показ — через неделю");
+  assert.equal(learnedBox(), 3);
+  const deck = newDeck();
+  deck.session = { queue: ["r:w0"], pos: 0, retry: [], right: 0, wrong: 0, learned: 0, day: 0 };
+  deck.cards.w0 = [0, 0];
+  for (let i = 0; i < 6; i++) {
+    deck.session.pos = 0;
+    recall(deck, "w0", true, 100, LONG_INTERVALS);
+  }
+  assert.deepEqual(deck.cards.w0, [6, 103], "пять раз через день, потом через 3 дня");
+  const p = deckProgress({ cards: { w0: [10, 1], w1: [11, 1] } }, [{ id: "w0" }, { id: "w1" }], 0, LONG_INTERVALS);
+  assert.equal(p.learned, 1);
 });
 
 test("забытое слово возвращается через несколько карточек этого же занятия", () => {
