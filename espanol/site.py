@@ -12,6 +12,7 @@
 
 from __future__ import annotations
 
+import base64
 import json
 import re
 from pathlib import Path
@@ -39,11 +40,31 @@ def _html(text: str | None) -> str:
     return html.replace("<tg-spoiler>", '<span class="spoiler" tabindex="0">').replace("</tg-spoiler>", "</span>")
 
 
+ART = Path(__file__).resolve().parent.parent / "content" / "art"
+ART_SLUGS = {
+    "la casa": "casa", "el café": "cafe", "el taxi": "taxi", "el hotel": "hotel", "la música": "musica",
+    "el jamón": "jamon", "el queso": "queso", "la guitarra": "guitarra", "la paella": "paella",
+    "la tortilla": "tortilla", "España": "espana", "la cerveza": "cerveza", "la plaza": "plaza",
+    "el chocolate": "chocolate", "el perro": "perro", "el vino": "vino",
+}
+
+
+def art_uri(es: str) -> str | None:
+    """Картинка слова из content/art (лист из нейросети, нарезанный на части) как data-URI."""
+    slug = ART_SLUGS.get(es)
+    path = ART / f"{slug}.webp" if slug else None
+    if not path or not path.exists():
+        return None
+    return "data:image/webp;base64," + base64.b64encode(path.read_bytes()).decode()
+
+
 def _word(item: VocabItem, card: WordCard | None) -> dict:
     data = {
         "es": plain(item.es), "ru": plain(item.ru), "pron": item.pron, "emoji": item.emoji,
         "pos": item.pos, "say": item.speech, "srs": item.srs,
     }
+    if img := art_uri(data["es"]):
+        data["img"] = img
     if item.note:
         data["note"] = _html(item.note)
     examples = card.examples if card and card.examples else (
