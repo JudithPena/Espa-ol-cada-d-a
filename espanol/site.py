@@ -14,7 +14,6 @@ from __future__ import annotations
 
 import json
 import re
-import unicodedata
 from pathlib import Path
 
 from .course import FEATURES, Block, Course, Lesson, QuizItem, VocabItem
@@ -238,22 +237,6 @@ def word_forms(course: Course) -> dict[str, str]:
     return forms
 
 
-ART_FOLDER = "art"
-
-
-def art_slug(es: str) -> str:
-    """Имя картинки слова: «¡Hola!» → hola, «¿Y tú?» → y_tu, «la señora» → la_senora."""
-    text = unicodedata.normalize("NFD", plain(es).lower())
-    text = "".join(ch for ch in text if not unicodedata.combining(ch))
-    return re.sub(r"[^a-z0-9]+", "_", text).strip("_")
-
-
-def load_art(content_dir: str | Path) -> dict[str, str]:
-    """Картинки к словам для сайта (content/art/<slug>.svg, рисует tools/art/scenes.py)."""
-    return {path.stem: path.read_text(encoding="utf-8").strip()
-            for path in sorted((Path(content_dir) / ART_FOLDER).glob("*.svg"))}
-
-
 def word_phrases(course: Course) -> list[list]:
     """Фразы курса для перевода по нажатию: [[слова фразы], слово курса].
 
@@ -272,17 +255,12 @@ def word_phrases(course: Course) -> list[list]:
     return sorted(out, key=lambda p: -len(" ".join(p[0])))
 
 
-def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None = None,
-              art: dict[str, str] | None = None) -> dict:
+def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None = None) -> dict:
     lessons, carried = [], []
     for lesson in course.lessons:
         if units is not None and lesson.unit.number not in units:
             continue
         data = lesson_data(lesson, cards)
-        for word in data["words"]:
-            picture = (art or {}).get(art_slug(word["es"]))
-            if picture:
-                word["art"] = picture
         if lesson.kind in SKIP_KINDS:  # слова вводного урока переходят в следующий урок сайта
             carried += data["words"]
             continue
@@ -313,8 +291,8 @@ def parse_units(spec: str | None) -> set[int] | None:
 
 
 def build_site(course: Course, cards: dict[str, WordCard], out: str | Path, units: set[int] | None = None,
-               fragment: bool = False, art: dict[str, str] | None = None) -> Path:
-    data = json.dumps(site_data(course, cards, units, art), ensure_ascii=False).replace("</", "<\\/")
+               fragment: bool = False) -> Path:
+    data = json.dumps(site_data(course, cards, units), ensure_ascii=False).replace("</", "<\\/")
     page = TEMPLATE.read_text(encoding="utf-8").replace("/*__DATA__*/{}", data)
     if not fragment:
         # <title>, <meta> и <style> из шаблона браузер сам отнесёт в <head>.

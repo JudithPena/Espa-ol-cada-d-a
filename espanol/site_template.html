@@ -207,10 +207,6 @@ main { padding-block: 16px 110px; }
 .wcard { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 22px 20px; display: grid; gap: 14px; box-shadow: var(--shadow); }
 .wcard .head { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; }
 .wcard .emo { font-size: 46px; line-height: 1; }
-.wcard .emo:empty { display: none; }
-.wcard:has(.emo:empty) .head { grid-template-columns: 1fr auto; }
-.wcard .art { margin: -8px -6px 0; }
-.wcard .art svg { display: block; width: 100%; height: auto; border-radius: 14px; }
 .wcard .word { font-family: var(--display); font-size: 26px; font-weight: 600; line-height: 1.15; overflow-wrap: anywhere; }
 .wcard .pron { color: var(--muted); font-size: 15px; font-weight: 600; }
 .wcard .tr { font-size: 19px; font-weight: 700; padding-top: 12px; border-top: 1px dashed var(--line); }
@@ -746,10 +742,8 @@ function blockHTML(b) {
 
 function wordCard(w) {
   const sec = (lbl, html) => `<div class="sec"><b>${lbl}</b><div>${html}</div></div>`;
-  // Картинка к слову (content/art) — крупно сверху, как видео в Busuu; тогда эмодзи не нужен.
   return `<div class="wcard">
-    ${w.art ? `<div class="art">${w.art}</div>` : ""}
-    <div class="head"><span class="emo">${w.art ? "" : esc(w.emoji)}</span><span><span class="word">${esc(w.es)}</span>${w.pron ? `<br><span class="pron">[${esc(w.pron)}]</span>` : ""}</span>
+    <div class="head"><span class="emo">${esc(w.emoji)}</span><span><span class="word">${esc(w.es)}</span>${w.pron ? `<br><span class="pron">[${esc(w.pron)}]</span>` : ""}</span>
       <span class="row" style="gap:6px">${playBtn(w.say)}${slowBtn(w.say)}</span></div>
     <div class="tr">${esc(w.ru)}</div>
     ${w.meaning ? sec("Значение", w.meaning) : ""}

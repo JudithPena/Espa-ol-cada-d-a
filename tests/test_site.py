@@ -103,18 +103,6 @@ def test_no_comment_tasks(course):
     assert not any("комментари" in t or "спойлер" in t for t in texts)
 
 
-def test_art(course):
-    """У каждого слова тем 0–1 есть картинка (content/art, рисует tools/art/scenes.py)."""
-    from espanol.site import art_slug, load_art
-
-    assert art_slug("¡Hola!") == "hola" and art_slug("¿Y tú?") == "y_tu" and art_slug("la señora") == "la_senora"
-    art = load_art(CONTENT)
-    data = site_data(course, load_cards(CONTENT), units={0, 1}, art=art)
-    words = [w for lesson in data["lessons"] for w in lesson["words"]]
-    assert words and all(w.get("art", "").startswith("<svg") for w in words)
-    assert set(art) <= {art_slug(item.es) for item in course.items}  # лишних картинок нет
-
-
 def test_word_phrases(course):
     """Фразы курса ищутся целиком, длинные раньше коротких; фразы с пропуском не ищем."""
     from espanol.site import word_phrases
