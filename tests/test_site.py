@@ -113,3 +113,17 @@ def test_word_phrases(course):
     assert not any("dice en" in p for p in phrases)  # «¿Cómo se dice... en español?»
     lengths = [len(" ".join(w)) for w, _ in word_phrases(course)]
     assert lengths == sorted(lengths, reverse=True)
+
+
+def test_videos_on_site(course):
+    """Разборы видео попадают на сайт: ссылка, фразы с новыми словами и переводом."""
+    from espanol.videos import load_videos
+
+    videos = load_videos(CONTENT, course)
+    data = site_data(course, load_cards(CONTENT), units={0}, videos=videos)
+    assert len(data["videos"]) == len(videos) >= 1
+    first = data["videos"][0]
+    assert first["url"].startswith("http") and first["segments"]
+    seg = first["segments"][0]
+    assert seg["es"] and seg["ru"] and seg["words"] and {"es", "ru", "say"} <= set(seg["words"][0])
+    assert site_data(course, load_cards(CONTENT), units={0})["videos"] == []

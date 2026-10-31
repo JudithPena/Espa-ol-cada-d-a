@@ -152,11 +152,13 @@ def cmd_export(args, settings) -> int:
 
 def cmd_site(args, settings) -> int:
     from .site import build_site, parse_units
+    from .videos import load_videos
     from .wordcards import load_cards
 
     course, _, _ = build(settings)
     cards = load_cards(settings.content_dir)
-    path = build_site(course, cards, args.out, units=parse_units(args.units), fragment=args.fragment)
+    videos = load_videos(settings.content_dir, course)
+    path = build_site(course, cards, args.out, units=parse_units(args.units), fragment=args.fragment, videos=videos)
     print(f"Сайт сохранён: {path}")
     return 0
 

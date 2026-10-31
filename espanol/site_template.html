@@ -57,6 +57,27 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .9em; 
 a { color: var(--accent); }
 .wrap { max-width: 640px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
 .muted { color: var(--muted); }
+.levels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
+.lvl { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px 8px 12px; display: grid; gap: 4px; justify-items: center; text-align: center; color: var(--ink); box-shadow: var(--shadow); }
+.lvl b { font-family: var(--display); font-size: 28px; line-height: 1; color: var(--accent); }
+.lvl small { color: var(--muted); font-size: 12px; font-weight: 700; }
+.lvl .bar { width: 100%; margin-top: 4px; }
+.lvl.soon { background: var(--sunken); box-shadow: none; opacity: .75; }
+.lvl.soon b { color: var(--muted); }
+.menu { display: grid; gap: 10px; margin-top: 10px; }
+.mcard { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px; color: var(--ink); box-shadow: var(--shadow); width: 100%; }
+.mcard .mi { font-size: 34px; line-height: 1; }
+.mcard b { display: block; font-size: 17px; }
+.mcard small { color: var(--muted); font-size: 14px; }
+.sech { margin: 22px 0 0; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.back { margin-bottom: 12px; }
+h2 + .btn.wide, h2 + .muted { margin-top: 10px; display: flex; }
+.vseg { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; display: grid; gap: 10px; margin-top: 12px; }
+.vseg .es { font-size: 17px; font-weight: 600; }
+.vseg details { background: var(--sunken); border-radius: 10px; padding: 8px 12px; }
+.vseg summary { cursor: pointer; font-weight: 700; color: var(--accent); }
+.vseg ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 15px; }
+.vseg .nt { font-size: 14px; color: var(--muted); }
 .es { font-weight: 700; }
 
 /* ---------- верхняя панель */
@@ -76,7 +97,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 /* ---------- нижние вкладки */
 main { padding-block: 16px 110px; }
 .tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; background: var(--surface); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom, 0px); }
-.tabs .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
+.tabs .wrap { display: grid; grid-template-columns: repeat(5, 1fr); }
 .tab { background: none; border: 0; padding: 8px 0 10px; display: grid; justify-items: center; gap: 2px; font-size: 12px; font-weight: 700; color: var(--muted); position: relative; }
 .tab .ico { font-size: 20px; line-height: 1.2; filter: grayscale(1); opacity: .7; }
 .tab[aria-current="page"] { color: var(--accent); }
@@ -491,7 +512,7 @@ function theoryScreens(L) {
 }
 
 let S = null;   // текущее занятие
-let view = { tab: "course" };
+let view = { tab: "home", level: null };
 
 function startLesson(i) {
   const L = LESSONS[i];
@@ -608,29 +629,94 @@ function topBar() {
 function tabsBar() {
   const due = dueWords().length;
   const t = (id, ico, label, badge = "") => `<button class="tab" data-tab="${id}" ${view.tab === id ? 'aria-current="page"' : ""}><span class="ico">${ico}</span>${label}${badge}</button>`;
+  const homeTab = `<button class="tab" data-tab="home" ${["home", "grammar", "videos", "video"].includes(view.tab) ? 'aria-current="page"' : ""}><span class="ico">🏠</span>Главная</button>`;
   return `<nav class="tabs" aria-label="Разделы"><div class="wrap">
-    ${t("course", "🗺️", "Курс")}${t("review", "🔁", "Повторить", due ? `<span class="badge">${due > 99 ? "99+" : due}</span>` : "")}
+    ${homeTab}${t("course", "🗺️", "Курс")}${t("review", "🔁", "Повторить", due ? `<span class="badge">${due > 99 ? "99+" : due}</span>` : "")}
     ${t("words", "📚", "Слова")}${t("stats", "📈", "Прогресс")}
   </div></nav>`;
 }
 function stepTitle(L) { return `${L.emoji} ${L.kindLabel}${L.words.length ? " · " + words(L.words.length) : ""}`; }
 
+const LEVELS = ["A0", "A1", "A2", "B1", "B2", "C1"];
+const levelOf = i => COURSE.units.find(u => u.number === LESSONS[i].unit)?.level;
+function levelStats(lv) {
+  const idx = LESSONS.map((L, i) => levelOf(i) === lv ? i : -1).filter(i => i >= 0);
+  return { n: idx.length, done: idx.filter(isDone).length };
+}
+
+function homeView() {
+  const ci = currentIndex(), doneN = LESSONS.filter((_, i) => isDone(i)).length, due = dueWords().length;
+  let html = "";
+  if (doneN && doneN < LESSONS.length) html += `<div class="notice" style="margin-top:0">▶️ Урок ${LESSONS[ci].n}. ${esc(LESSONS[ci].title)}<button class="btn" data-lesson="${ci}">Продолжить</button></div>`;
+  if (due) html += `<div class="notice">🔁 Пора повторить ${words(due)}<button class="btn" data-review="due">Повторить</button></div>`;
+  html += `<h2 class="sech">Курс по уровням</h2><div class="levels">${LEVELS.map(lv => {
+    const st = levelStats(lv);
+    if (!st.n) return `<div class="lvl soon" aria-label="Уровень ${lv}, скоро"><b>${lv}</b><small>скоро</small></div>`;
+    return `<button class="lvl" data-level="${lv}"><b>${lv}</b><small>${st.done} из ${st.n} уроков</small><div class="bar"><i style="width:${Math.round(st.done / st.n * 100)}%"></i></div></button>`;
+  }).join("")}</div>`;
+  const grammar = LESSONS.filter(L => L.kind === "grammar").length;
+  html += `<h2 class="sech">Ещё</h2><div class="menu">
+    <button class="mcard" data-tab="grammar"><span class="mi">📐</span><span><b>Грамматика</b><small>${grammar} ${plural(grammar, "тема", "темы", "тем")} из курса, все в одном месте</small></span><span aria-hidden="true">›</span></button>
+    ${COURSE.videos.length ? `<button class="mcard" data-tab="videos"><span class="mi">🎬</span><span><b>Разбор видео</b><small>${COURSE.videos.length} ${plural(COURSE.videos.length, "разбор", "разбора", "разборов")}: фразы, слова и перевод</small></span><span aria-hidden="true">›</span></button>` : ""}
+  </div>`;
+  return html;
+}
+
+function lessonRow(i, free = false) {
+  const L = LESSONS[i], d = P.done[L.id], open = free || isOpen(i), cur = i === currentIndex() && !d;
+  const cls = d ? "done" : cur ? "current" : open ? "open" : "locked";
+  const right = d ? `<span class="stars" aria-label="${d.stars} из 3">${"★".repeat(d.stars)}${"☆".repeat(3 - d.stars)}</span>` : cur ? `<span class="go">Начать</span>` : open ? "" : "🔒";
+  return `<li><button class="step ${cls}" data-lesson="${i}"${free ? " data-free" : ""}><span class="node">${d ? "✓" : L.emoji}</span>
+    <span class="t"><b>${L.n}. ${esc(L.title)}</b><small>${stepTitle(L)}</small></span>${right}</button></li>`;
+}
+
+function grammarView() {
+  let html = `<button class="btn ghost sm back" data-tab="home">← Главная</button><h2>📐 Грамматика</h2>`;
+  for (const U of COURSE.units) {
+    const idx = LESSONS.map((L, i) => L.unit === U.number && L.kind === "grammar" ? i : -1).filter(i => i >= 0);
+    if (!idx.length) continue;
+    html += `<section class="unit"><div class="unit-head"><div class="tile" aria-hidden="true"></div>
+      <span class="num">Тема ${U.number} · ${esc(U.level)}</span><h3>${esc(U.title)}</h3></div>
+      <ol class="path">${idx.map(i => lessonRow(i, true)).join("")}</ol></section>`;
+  }
+  return html;
+}
+
+function videosView() {
+  return `<button class="btn ghost sm back" data-tab="home">← Главная</button><h2>🎬 Разбор видео</h2>
+    <span class="muted">Смотрите видео, потом читайте его по фразам: у каждой фразы свои новые слова и перевод.</span>
+    <div class="menu">${COURSE.videos.map(v => `<button class="mcard" data-video="${esc(v.id)}"><span class="mi">🎬</span><span><b>№${v.n}. ${esc(v.title)}</b><small>${v.segments.length} ${plural(v.segments.length, "фраза", "фразы", "фраз")}</small></span><span aria-hidden="true">›</span></button>`).join("")}</div>`;
+}
+
+function videoView() {
+  const v = COURSE.videos.find(x => x.id === view.video);
+  if (!v) { view.tab = "videos"; return videosView(); }
+  return `<button class="btn ghost sm back" data-tab="videos">← Все разборы</button><h2>№${v.n}. ${esc(v.title)}</h2>
+    <a class="btn wide" href="${esc(v.url)}" target="_blank" rel="noopener">▶ Смотреть видео</a>
+    ${v.segments.map(s => `<section class="vseg">
+      <div class="es">${playBtn(s.es)} ${esc(s.es)}</div>
+      ${s.words.length ? `<ul>${s.words.map(w => `<li>${playBtn(w.say)} <b>${esc(w.es)}</b> — ${esc(w.ru)}</li>`).join("")}</ul>` : ""}
+      ${s.notes.map(n => `<div class="nt">${n}</div>`).join("")}
+      <details><summary>Перевод</summary><div>${s.ru}</div></details>
+    </section>`).join("")}`;
+}
+
 function courseView() {
   const ci = currentIndex(), L = LESSONS[ci], due = dueWords().length;
+  const lv = view.level || levelOf(ci);
   const doneN = LESSONS.filter((_, i) => isDone(i)).length;
-  const a1 = Math.round(doneN / LESSONS.length * 100);
-  let html = `<section class="hero">
+  let html = `<button class="btn ghost sm back" data-tab="home">← Уровни</button><section class="hero">
     <span class="eyebrow">${doneN === LESSONS.length ? "Курс пройден, можно повторять" : doneN ? "Продолжить" : "Начать с нуля"}</span>
     <h2>Урок ${L.n}. ${esc(L.title)}</h2>
     <div class="meta"><span>${stepTitle(L)}</span><span>Тема ${L.unit}</span></div>
     <button class="btn wide" data-lesson="${ci}">${doneN ? "Продолжить" : "Начать"}</button>
-    <div class="level-bar"><div class="lb"><span>A0 → A1</span><span>${doneN} из ${LESSONS.length} уроков</span></div><div class="bar"><i style="width:${a1}%"></i></div></div>
+    <div class="level-bar"><div class="lb"><span>Уровень ${lv}</span><span>${levelStats(lv).done} из ${levelStats(lv).n} уроков</span></div><div class="bar"><i style="width:${Math.round(levelStats(lv).done / levelStats(lv).n * 100)}%"></i></div></div>
   </section>`;
   if (!doneN && !P.joined) html += `<button class="btn ghost wide" style="margin-top:12px" data-join>Я уже учусь в канале</button>`;
   if (due) html += `<div class="notice">🔁 Пора повторить ${words(due)}<button class="btn" data-review="due">Повторить</button></div>`;
   for (const U of COURSE.units) {
     const idx = LESSONS.map((L, i) => L.unit === U.number ? i : -1).filter(i => i >= 0);
-    if (!idx.length) continue;
+    if (!idx.length || U.level !== lv) continue;
     const done = idx.filter(isDone).length, locked = !isOpen(idx[0]);
     html += `<section class="unit ${locked ? "locked" : ""}" id="unit-${U.number}">
       <div class="unit-head"><div class="tile" aria-hidden="true"></div>
@@ -910,7 +996,7 @@ function render() {
     if (S.state?.result) wrapWords($(".pfoot .fb"));
     return;
   }
-  const body = { course: courseView, review: reviewView, words: wordsView, stats: statsView }[view.tab]();
+  const body = { home: homeView, course: courseView, grammar: grammarView, videos: videosView, video: videoView, review: reviewView, words: wordsView, stats: statsView }[view.tab]();
   app.innerHTML = `${topBar()}<main><div class="wrap">${body}</div></main>${tabsBar()}`;
 }
 function toast(text) {
@@ -1037,17 +1123,19 @@ document.addEventListener("click", e => {
     el.setAttribute("aria-pressed", box.classList.contains("hide-tr"));
     box.classList.toggle("hide-tr"); return;
   }
-  if (d.tab) { view.tab = d.tab; view.confirmReset = false; render(); window.scrollTo(0, 0); return; }
+  if (d.level) { view.level = d.level; view.tab = "course"; render(); window.scrollTo(0, 0); return; }
+  if (d.video) { view.video = d.video; view.tab = "video"; render(); window.scrollTo(0, 0); return; }
+  if (d.tab) { if (d.tab === "course") view.level = null; view.tab = d.tab; view.confirmReset = false; render(); window.scrollTo(0, 0); return; }
   if (d.lesson != null) {
     const i = +d.lesson;
-    if (!isOpen(i)) return toast(`Сначала пройдите урок ${LESSONS[i - 1].n}`);
+    if (!isOpen(i) && !("free" in d)) return toast(`Сначала пройдите урок ${LESSONS[i - 1].n}`);
     return startLesson(i);
   }
   if (d.review) {
     const all = Object.keys(P.words).filter(es => WORDS.has(es)).map(es => WORDS.get(es));
     return startReview(d.review === "due" ? dueWords() : d.review === "weak" ? all.filter(w => (P.words[w.es].s || 0) <= 1) : all);
   }
-  if ("home" in d) { S = null; view.tab = "course"; render(); const c = $(`#unit-${LESSONS[currentIndex()].unit}`); if (c) c.scrollIntoView({ block: "start" }); return; }
+  if ("home" in d) { S = null; view.tab = "course"; view.level = null; render(); const c = $(`#unit-${LESSONS[currentIndex()].unit}`); if (c) c.scrollIntoView({ block: "start" }); return; }
   if ("quit" in d) { clearTimeout(autoTimer); speechSynthesis?.cancel?.(); S = null; render(); return; }
   if (d.goal) { P.goal = +d.goal; save(); render(); return; }
   if ("sound" in d) { P.sound = P.sound === false; save(); render(); if (P.sound) sfx(true); return; }
