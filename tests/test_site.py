@@ -69,3 +69,18 @@ def test_no_transcription_choice(course):
     questions = [q["q"] for lesson in data["lessons"] for q in lesson["quiz"]]
     assert "Как читается «queso»?" not in questions and "Как читается «vino»?" not in questions
     assert "Где ударение в слове «hotel»?" in questions  # правила ударения остаются
+
+
+def test_stress_questions(course):
+    """Где ударение видно по значку ´, не спрашиваем; варианты — то же слово с ударением на разных слогах."""
+    from espanol.site import stress_options
+
+    assert stress_options("ho-TEL") == ["HO-tel", "ho-TEL"]
+    assert stress_options("la casa") is None
+    data = site_data(course, load_cards(CONTENT), units={0})
+    questions = [q["q"] for lesson in data["lessons"] for q in lesson["quiz"]]
+    assert not any("café" in q or "música" in q for q in questions)
+    stress = {it["qp"]: it for lesson in data["lessons"] for b in lesson["blocks"] if b["t"] == "exercise"
+              for it in b["items"] if "opts" in it}
+    assert set(stress) == {"la casa", "el hotel", "el taxi"}
+    assert stress["la casa"]["opts"] == ["CA-sa", "ca-SA"]

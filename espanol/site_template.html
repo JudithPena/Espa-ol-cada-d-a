@@ -421,6 +421,10 @@ function exerciseSteps(L, pool) {
   const all = blocks.flatMap(b => b.items.filter(it => it.ap));
   blocks.forEach(b => b.items.forEach(it => {
     if (!it.ap) return out.push({ type: "task", title: b.title, ...it });
+    if (it.opts) {   // «Где ударение?»: то же слово с ударением на разных слогах
+      const opts = shuffle(it.opts);
+      return out.push({ type: "mc", mode: "ex", title: b.title, q: it.q, options: opts, plain: opts, correct: opts.indexOf(it.ap) });
+    }
     const seen = new Set([norm(it.ap), norm(it.qp)]), wrong = [];   // сам вопрос вариантом не бывает
     const take = cands => { for (const c of shuffle(cands)) {
       const k = norm(c.ap);

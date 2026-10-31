@@ -81,6 +81,28 @@ def is_transcription_quiz(quiz: QuizItem) -> bool:
     return "читается" in quiz.question.lower() and not any(_LATIN.search(plain(o)) for o in quiz.options)
 
 
+# «Где ударение?»: если в слове есть значок ударения (café, música), ответ виден и спрашивать нечего.
+_SYLLABLES = re.compile(r"[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+(?:-[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+)+")
+_ACCENT = re.compile(r"[áéíóú]", re.I)
+
+
+def is_visible_stress_quiz(quiz: QuizItem) -> bool:
+    """«Где ударение в слове «café»?» — значок ´ уже показывает ответ."""
+    word = re.search(r"«([^»]+)»", quiz.question)
+    return "ударени" in quiz.question.lower() and bool(word and _ACCENT.search(word.group(1)))
+
+
+def stress_options(answer: str) -> list[str] | None:
+    """Ответ «ho-TEL» → варианты с ударением на каждом слоге: [«HO-tel», «ho-TEL»].
+
+    Так вопрос проверяет правило: соседние ответы («CA-sa», «TA-xi») выдали бы слово по буквам.
+    """
+    if not _SYLLABLES.fullmatch(answer) or answer == answer.lower():
+        return None
+    syllables = answer.lower().split("-")
+    return ["-".join(x.upper() if k == n else x for k, x in enumerate(syllables)) for n in range(len(syllables))]
+
+
 def _block(block: Block) -> dict | None:
     t, d = block.type, block.data
     if t == "words":
@@ -104,9 +126,18 @@ def _block(block: Block) -> dict | None:
         return {"t": t, "title": _html(d["title"]), "html": _html(d["text"]),
                 "tr": _html(d["translation"]), "say": plain(d["text"])}
     if t == "exercise":
-        pairs = [(q, without_transcription(a)) for q, a in d["items"]]
-        items = [{"q": _html(q), "a": _html(a), "qp": plain(q), "ap": plain(a or "")}
-                 for (q, a), (_, raw) in zip(pairs, d["items"]) if a or not raw]
+        items = []
+        for q, raw in d["items"]:
+            a = without_transcription(raw)
+            if raw and not a:
+                continue
+            item = {"q": _html(q), "a": _html(a), "qp": plain(q), "ap": plain(a or "")}
+            options = stress_options(item["ap"])
+            if options:
+                if _ACCENT.search(item["qp"]):
+                    continue  # «el café => ca-FÉ»: значок ´ уже показывает ответ
+                item["opts"] = options
+            items.append(item)
         return {"t": t, "title": _html(d["title"]), "items": items} if items else None
     raise ValueError(f"блок {t} не поддерживается сайтом")  # pragma: no cover
 
@@ -142,7 +173,7 @@ def lesson_data(lesson: Lesson, cards: dict[str, WordCard]) -> dict:
         "blocks": blocks,
         "quiz": [{"q": plain(q.question), "options": [plain(o) for o in q.options], "correct": q.correct,
                   "shuffle": q.shuffle, "explain": _html(q.explain)}
-                 for q in lesson.quiz if not is_transcription_quiz(q)],
+                 for q in lesson.quiz if not is_transcription_quiz(q) and not is_visible_stress_quiz(q)],
         "sentences": _sentences(lesson),
     }
 
