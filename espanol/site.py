@@ -293,7 +293,8 @@ def video_data(video) -> dict:
 
 
 def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None = None,
-              videos: list | None = None) -> dict:
+              videos: list | None = None, preview: bool = False) -> dict:
+    """preview — тестовая версия сайта: в шапке метка «тест»."""
     lessons, carried = [], []
     for lesson in course.lessons:
         if units is not None and lesson.unit.number not in units:
@@ -307,6 +308,7 @@ def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None
         lessons.append(data)
     return {
         "title": course.title,
+        "preview": preview,
         "bot": course.bot,
         "intervals": course.settings["srs"]["intervals"],
         "units": [{"number": u.number, "title": plain(u.title), "level": u.level, "goals": [plain(g) for g in u.goals]}
@@ -330,8 +332,8 @@ def parse_units(spec: str | None) -> set[int] | None:
 
 
 def build_site(course: Course, cards: dict[str, WordCard], out: str | Path, units: set[int] | None = None,
-               fragment: bool = False, videos: list | None = None) -> Path:
-    data = json.dumps(site_data(course, cards, units, videos), ensure_ascii=False).replace("</", "<\\/")
+               fragment: bool = False, videos: list | None = None, preview: bool = False) -> Path:
+    data = json.dumps(site_data(course, cards, units, videos, preview), ensure_ascii=False).replace("</", "<\\/")
     page = TEMPLATE.read_text(encoding="utf-8").replace("/*__DATA__*/{}", data)
     if not fragment:
         # <title>, <meta> и <style> из шаблона браузер сам отнесёт в <head>.

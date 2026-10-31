@@ -625,7 +625,7 @@ function finish() {
 function topBar() {
   const g = Math.min(1, todayXP() / P.goal), c = 2 * Math.PI * 12, st = streakNow();
   return `<header class="top"><div class="wrap">
-    <div class="brand">${esc(COURSE.title).replace("cada día", "<span>cada día</span>")}</div>
+    <div class="brand">${esc(COURSE.title).replace("cada día", "<span>cada día</span>")}${COURSE.preview ? ' <span class="tag">тест</span>' : ""}</div>
     <span class="chip ${st ? "fire" : "off"}" title="Дней подряд">🔥 ${st}</span>
     <span class="chip" title="Опыт">⚡ ${P.xp}</span>
     <svg class="ring" viewBox="0 0 30 30" role="img" aria-label="Цель дня: ${todayXP()} из ${P.goal} опыта"><circle class="bgc" cx="15" cy="15" r="12"/><circle class="fg" cx="15" cy="15" r="12" stroke-dasharray="${g * c} ${c}"/></svg>
@@ -659,9 +659,8 @@ function homeView() {
     if (!st.n) return `<div class="lvl soon" aria-label="Уровень ${lv}, скоро"><b>${lv}</b><small>скоро</small></div>`;
     return `<button class="lvl" data-level="${lv}"><b>${lv}</b><small>${st.done} из ${st.n} уроков</small><div class="bar"><i style="width:${Math.round(st.done / st.n * 100)}%"></i></div></button>`;
   }).join("")}</div>`;
-  const grammar = LESSONS.filter(L => L.kind === "grammar").length;
   html += `<h2 class="sech">Ещё</h2><div class="menu">
-    <button class="mcard" data-tab="grammar"><span class="mi">📐</span><span><b>Грамматика <span class="tag">в работе</span></b><small>Скоро: разборы по учебнику. Пока — ${grammar} ${plural(grammar, "тема", "темы", "тем")} из курса</small></span><span aria-hidden="true">›</span></button>
+    <button class="mcard" data-tab="grammar"><span class="mi">📐</span><span><b>Грамматика <span class="tag">в работе</span></b></span><span aria-hidden="true">›</span></button>
     ${COURSE.videos.length ? `<button class="mcard" data-tab="videos"><span class="mi">🎬</span><span><b>Разбор видео</b><small>${COURSE.videos.length} ${plural(COURSE.videos.length, "разбор", "разбора", "разборов")}: фразы, слова и перевод</small></span><span aria-hidden="true">›</span></button>` : ""}
   </div>`;
   return html;
@@ -676,16 +675,8 @@ function lessonRow(i, free = false) {
 }
 
 function grammarView() {
-  let html = `<button class="btn ghost sm back" data-tab="home">← Главная</button><h2>📐 Грамматика</h2>
-    <div class="wip"><span class="wi">🚧</span><span><b>Разборы по учебнику — в работе</b><small>Скоро здесь появятся разборы тем из «Gramática de uso del español» (A1–B2): теория и упражнения. Пока можно повторить грамматику из уроков курса.</small></span></div>`;
-  for (const U of COURSE.units) {
-    const idx = LESSONS.map((L, i) => L.unit === U.number && L.kind === "grammar" ? i : -1).filter(i => i >= 0);
-    if (!idx.length) continue;
-    html += `<section class="unit"><div class="unit-head"><div class="tile" aria-hidden="true"></div>
-      <span class="num">Тема ${U.number} · ${esc(U.level)}</span><h3>${esc(U.title)}</h3></div>
-      <ol class="path">${idx.map(i => lessonRow(i, true)).join("")}</ol></section>`;
-  }
-  return html;
+  return `<button class="btn ghost sm back" data-tab="home">← Главная</button><h2>📐 Грамматика</h2>
+    <div class="wip"><span class="wi">🚧</span><span><b>В работе</b></span></div>`;
 }
 
 function videosView() {

@@ -58,7 +58,12 @@ jobs:
         if: steps.check.outputs.ready == 'true'
         run: |
           pip install -r requirements.txt
-          python -m espanol site -o _site/index.html
+          if [ "$GITHUB_REF_NAME" = "ccr-f4c9bfd6-txio5n" ]; then
+            python -m espanol site -o _site/index.html
+          else
+            # тестовая версия: то же самое, но с меткой «тест» в шапке
+            python -m espanol site --preview -o _site/index.html
+          fi
 
       - name: Проект на Cloudflare Pages
         if: steps.check.outputs.ready == 'true'
