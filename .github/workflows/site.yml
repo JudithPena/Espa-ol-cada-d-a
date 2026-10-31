@@ -1,7 +1,8 @@
 name: Сайт курса
 
-# Собирает сайт (python -m espanol site) и выкладывает на GitHub Pages.
-# Один раз включите Pages: Settings → Pages → Source: GitHub Actions.
+# Собирает сайт (python -m espanol site) и выкладывает на Cloudflare Pages: https://espanolcadadia.pages.dev
+# Нужны те же секреты, что и боту: CLOUDFLARE_API_TOKEN (с правом «Cloudflare Pages: Edit») и CLOUDFLARE_ACCOUNT_ID.
+# Пока их нет, workflow ничего не делает.
 
 on:
   push:
@@ -12,37 +13,62 @@ on:
       - ".github/workflows/site.yml"
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 concurrency:
-  group: pages
+  group: site-deploy
   cancel-in-progress: false
 
+env:
+  PROJECT: espanolcadadia
+
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
     steps:
+      - name: Настроен ли Cloudflare
+        id: check
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::notice::Cloudflare не настроен (нет CLOUDFLARE_API_TOKEN или CLOUDFLARE_ACCOUNT_ID в Secrets) — сайт не выкладываю."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/checkout@v5
+        if: steps.check.outputs.ready == 'true'
+
       - uses: actions/setup-python@v6
+        if: steps.check.outputs.ready == 'true'
         with:
           python-version: "3.12"
           cache: pip
-      - run: pip install -r requirements.txt
-      - name: Сборка сайта
-        run: python -m espanol site -o _site/index.html
-      - uses: actions/upload-pages-artifact@v4
-        with:
-          path: _site
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - uses: actions/setup-node@v5
+        if: steps.check.outputs.ready == 'true'
+        with:
+          node-version: "22"
+
+      - name: Сборка сайта
+        if: steps.check.outputs.ready == 'true'
+        run: |
+          pip install -r requirements.txt
+          python -m espanol site -o _site/index.html
+
+      - name: Проект на Cloudflare Pages
+        if: steps.check.outputs.ready == 'true'
+        run: |
+          # Проект создаётся один раз; если он уже есть, команда сообщит об этом и мы идём дальше.
+          npx --yes wrangler@4 pages project create "$PROJECT" --production-branch main || echo "Проект уже существует или не создался: смотрим на выкладку ниже."
+
+      - name: Выложить сайт
+        if: steps.check.outputs.ready == 'true'
+        run: |
+          npx --yes wrangler@4 pages deploy _site --project-name "$PROJECT" --branch main --commit-dirty=true | tee deploy.log
+          {
+            echo "### Сайт выложен"
+            grep -oE 'https://[a-zA-Z0-9.-]+\.pages\.dev' deploy.log | head -1
+          } >> "$GITHUB_STEP_SUMMARY"
