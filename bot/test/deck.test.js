@@ -47,6 +47,22 @@ test("интервалы: новые слова — чаще, старые — �
   assert.deepEqual(deck.cards.w0, kept, "ошибка ничего не сбрасывает");
 });
 
+test("ошибка за ошибкой: слово возвращается в том же занятии, пока не ответят верно", () => {
+  const deck = newDeck();
+  deck.cards.w0 = [4, 0];
+  deck.session = { queue: ["r:w0"], pos: 0, retry: [], right: 0, wrong: 0, learned: 0, day: 0 };
+  for (let i = 0; i < 3; i++) {
+    const { more, retry } = recall(deck, "w0", false, 1);
+    assert.equal(more, true);
+    assert.equal(retry, true);
+  }
+  assert.deepEqual(deck.cards.w0, [4, 0], "коробка и срок не тронуты");
+  const last = recall(deck, "w0", true, 1);
+  assert.equal(last.more, false);
+  assert.equal(deck.cards.w0[0], 5);
+  assert.equal(deck.session.wrong, 3);
+});
+
 test("растянутая цепочка (колода Гали): каждый шаг по 5 раз", () => {
   assert.equal(LONG_INTERVALS.length, 35);
   assert.deepEqual(LONG_INTERVALS.slice(0, 11), [1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 7]);

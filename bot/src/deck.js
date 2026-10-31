@@ -130,15 +130,14 @@ export function recall(deck, id, known, today, intervals = INTERVALS) {
     deck.cards[id] = [next, today + intervals[next - 1]];
     s.right += 1;
   } else {
-    // Ошибка ничего не сбрасывает: коробка и срок остаются прежними, слово просто попадётся ещё раз в этом же занятии
-    // (через RETRY_GAP карточек или в конце, если карточек мало); верный ответ тогда засчитается как обычное повторение.
+    // Ошибка ничего не сбрасывает: коробка и срок остаются прежними, слово попадётся ещё раз в этом же занятии
+    // (через RETRY_GAP карточек или в конце, если карточек мало) — и так каждый раз, пока ответ не будет верным;
+    // верный ответ тогда засчитается как обычное повторение.
     if (!deck.cards[id]) deck.cards[id] = [0, today];
     s.wrong += 1;
-    if (!s.retry.includes(id)) {
-      s.retry.push(id);
-      s.queue.splice(Math.min(s.pos + 1 + RETRY_GAP, s.queue.length), 0, `r:${id}`);
-      retry = true;
-    }
+    if (!s.retry.includes(id)) s.retry.push(id);
+    s.queue.splice(Math.min(s.pos + 1 + RETRY_GAP, s.queue.length), 0, `r:${id}`);
+    retry = true;
   }
   s.pos += 1;
   return { more: s.pos < s.queue.length, retry };
