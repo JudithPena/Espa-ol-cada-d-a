@@ -13,9 +13,10 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
-from .course import FEATURES, Block, Course, Lesson, VocabItem
+from .course import FEATURES, Block, Course, Lesson, QuizItem, VocabItem
 from .lexicon import _FUNCTION_WORDS, generated_forms
 from .markup import plain, to_html
 from .tokens import spanish_words
@@ -58,6 +59,28 @@ def _word(item: VocabItem, card: WordCard | None) -> dict:
     return data
 
 
+# Выбор транскрипции («Как читается queso? кэ́со | куэ́со») на сайте не задаём: произношение
+# проверяем на слух. В канале эти задания остаются.
+_TRANSCRIPTION = re.compile(r"\s*\[[^\]]+\]\s*(?:—\s*)?")
+_LATIN = re.compile(r"[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]")
+
+
+def without_transcription(answer: str | None) -> str | None:
+    """Ответ упражнения без транскрипции: «[ла пла́θа] — площадь» → «площадь».
+
+    Если в ответе была одна транскрипция («el queso => [эль кэ́со]»), то ответа не остаётся: None.
+    """
+    if not answer:
+        return answer
+    m = _TRANSCRIPTION.match(answer)
+    return answer if not m else (answer[m.end():].strip() or None)
+
+
+def is_transcription_quiz(quiz: QuizItem) -> bool:
+    """«Как читается «vino»?» с вариантами без латиницы: би́но | ви́но | фи́но."""
+    return "читается" in quiz.question.lower() and not any(_LATIN.search(plain(o)) for o in quiz.options)
+
+
 def _block(block: Block) -> dict | None:
     t, d = block.type, block.data
     if t == "words":
@@ -81,8 +104,10 @@ def _block(block: Block) -> dict | None:
         return {"t": t, "title": _html(d["title"]), "html": _html(d["text"]),
                 "tr": _html(d["translation"]), "say": plain(d["text"])}
     if t == "exercise":
-        items = [{"q": _html(q), "a": _html(a), "qp": plain(q), "ap": plain(a or "")} for q, a in d["items"]]
-        return {"t": t, "title": _html(d["title"]), "items": items}
+        pairs = [(q, without_transcription(a)) for q, a in d["items"]]
+        items = [{"q": _html(q), "a": _html(a), "qp": plain(q), "ap": plain(a or "")}
+                 for (q, a), (_, raw) in zip(pairs, d["items"]) if a or not raw]
+        return {"t": t, "title": _html(d["title"]), "items": items} if items else None
     raise ValueError(f"блок {t} не поддерживается сайтом")  # pragma: no cover
 
 
@@ -116,7 +141,8 @@ def lesson_data(lesson: Lesson, cards: dict[str, WordCard]) -> dict:
         "words": [_word(item, cards.get(item.key)) for item in lesson.vocab],
         "blocks": blocks,
         "quiz": [{"q": plain(q.question), "options": [plain(o) for o in q.options], "correct": q.correct,
-                  "shuffle": q.shuffle, "explain": _html(q.explain)} for q in lesson.quiz],
+                  "shuffle": q.shuffle, "explain": _html(q.explain)}
+                 for q in lesson.quiz if not is_transcription_quiz(q)],
         "sentences": _sentences(lesson),
     }
 

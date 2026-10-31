@@ -58,3 +58,14 @@ def test_word_forms(course):
     assert forms["tengo"] == "tener" and forms["soy"] == "ser"
     assert forms["casas"] == "la casa" and forms["alta"] == "alto/a"
     assert "la" not in forms and "de" not in forms  # артикли и предлоги из фраз не открывают фразу
+
+
+def test_no_transcription_choice(course):
+    """Выбор транскрипции на сайте не задаём, произношение проверяется на слух."""
+    data = site_data(course, load_cards(CONTENT), units={0})
+    exercises = [it for lesson in data["lessons"] for b in lesson["blocks"] if b["t"] == "exercise" for it in b["items"]]
+    assert exercises and not any("[" in it["ap"] for it in exercises)
+    assert any(it["qp"] == "la plaza" and it["ap"] == "площадь" for it in exercises)  # перевод остаётся
+    questions = [q["q"] for lesson in data["lessons"] for q in lesson["quiz"]]
+    assert "Как читается «queso»?" not in questions and "Как читается «vino»?" not in questions
+    assert "Где ударение в слове «hotel»?" in questions  # правила ударения остаются
