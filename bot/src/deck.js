@@ -120,7 +120,7 @@ export function learn(deck, id, today) {
   return s.pos < s.queue.length;
 }
 
-// Ответ «помню / не помню». Возвращает { more: есть ли ещё карточки, retry: вернётся ли слово в этом занятии }.
+// Ответ «помню / не помню» (ошибка цепочку не сбрасывает). Возвращает { more: есть ли ещё карточки, retry: вернётся ли слово в этом занятии }.
 export function recall(deck, id, known, today, intervals = INTERVALS) {
   const s = deck.session;
   const [box] = deck.cards[id] || [0, today];
@@ -130,11 +130,13 @@ export function recall(deck, id, known, today, intervals = INTERVALS) {
     deck.cards[id] = [next, today + intervals[next - 1]];
     s.right += 1;
   } else {
-    deck.cards[id] = [0, today];
+    // Ошибка ничего не сбрасывает: коробка и срок остаются прежними, слово просто попадётся ещё раз в этом же занятии
+    // (через RETRY_GAP карточек или в конце, если карточек мало); верный ответ тогда засчитается как обычное повторение.
+    if (!deck.cards[id]) deck.cards[id] = [0, today];
     s.wrong += 1;
-    if (!s.retry.includes(id) && s.queue.length - s.pos - 1 >= RETRY_GAP) {
+    if (!s.retry.includes(id)) {
       s.retry.push(id);
-      s.queue.splice(s.pos + 1 + RETRY_GAP, 0, `r:${id}`);
+      s.queue.splice(Math.min(s.pos + 1 + RETRY_GAP, s.queue.length), 0, `r:${id}`);
       retry = true;
     }
   }

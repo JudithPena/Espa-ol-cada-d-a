@@ -313,19 +313,22 @@ test("«Мои слова»: разбор нового слова → «Даль
 
       const wrong = calls.at(-1).body.reply_markup.inline_keyboard.map((row) => row[0]).find((o) => o.text !== "слово b");
       await post(ownerPress(wrong.callback_data)); // ошибка — правильный ответ и «Дальше»
-      assert.match(calls.at(-1).body.text, /Вы выбрали[\s\S]*Повторим в следующий раз/);
+      assert.match(calls.at(-1).body.text, /Вы выбрали[\s\S]*Слово вернётся через пару карточек/);
       assert.equal(calls.at(-1).body.reply_markup.inline_keyboard[0][0].callback_data, "pf");
       await post(ownerPress("pc:b")); // весь разбор можно открыть и после ответа
       assert.match(calls.at(-1).body.text, /разбор/);
-      await post(ownerPress("pf"));
+      await post(ownerPress("pf")); // ошибка ничего не сбросила, слово попадается ещё раз в этом же занятии
+      assert.match(calls.at(-1).body.text, /Повторение 3\/3[\s\S]*palabra b/);
+      const again = calls.at(-1).body.reply_markup.inline_keyboard.map((row) => row[0]);
+      await post(ownerPress(again.find((o) => o.text === "слово b").callback_data)); // теперь верно
       const end = calls.at(-1);
-      assert.match(end.body.text, /Готово![\s\S]*Новых слов: 2[\s\S]*Верно: 1, ошибок: 1/);
+      assert.match(end.body.text, /Готово![\s\S]*Новых слов: 2[\s\S]*Верно: 2, ошибок: 1/);
       await post(ownerPress("pf"));
       assert.equal(calls.at(-1).body.text, "Эта карточка уже пройдена");
       const deck = JSON.parse(kv.get("deck:1"));
       assert.equal(deck.session, null);
       assert.equal(deck.cards.a[0], 1);
-      assert.equal(deck.cards.b[0], 0);
+      assert.equal(deck.cards.b[0], 1, "слово b вспомнили со второй попытки");
     } finally {
       delete env.WORDS_PER_DAY;
     }

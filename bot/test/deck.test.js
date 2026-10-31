@@ -28,7 +28,7 @@ test("новые слова не копятся: в тот же день бол�
   assert.equal(freshLeft(newDeck(), 100, 10, 2), 10); // утром не занимались — вечером 10, не 20
 });
 
-test("интервалы: новые слова — чаще, старые — реже; забытое начинается сначала", () => {
+test("интервалы: новые слова — чаще, старые — реже; ошибка цепочку не сбрасывает", () => {
   const deck = newDeck();
   deck.session = { queue: ["r:w0", "r:w0"], pos: 0, retry: [], right: 0, wrong: 0, learned: 0, day: 0 };
   deck.cards.w0 = [0, 0];
@@ -41,9 +41,10 @@ test("интервалы: новые слова — чаще, старые — �
     days.push(day);
   }
   assert.deepEqual(days, [1, 4, 11, 25, 55]); // через 1, 3, 7, 14, 30 дней
+  const kept = [...deck.cards.w0];
   deck.session.pos = 0;
   recall(deck, "w0", false, day);
-  assert.deepEqual(deck.cards.w0, [0, day]);
+  assert.deepEqual(deck.cards.w0, kept, "ошибка ничего не сбрасывает");
 });
 
 test("растянутая цепочка (колода Гали): каждый шаг по 5 раз", () => {
