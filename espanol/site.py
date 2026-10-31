@@ -12,6 +12,7 @@
 
 from __future__ import annotations
 
+import base64
 import json
 import re
 from pathlib import Path
@@ -39,11 +40,35 @@ def _html(text: str | None) -> str:
     return html.replace("<tg-spoiler>", '<span class="spoiler" tabindex="0">').replace("</tg-spoiler>", "</span>")
 
 
+ART = Path(__file__).resolve().parent.parent / "content" / "art"
+ART_SLUGS = {
+    "la casa": "casa", "el café": "cafe", "el taxi": "taxi", "el hotel": "hotel", "la música": "musica",
+    "el jamón": "jamon", "el queso": "queso", "la guitarra": "guitarra", "la paella": "paella",
+    "la tortilla": "tortilla", "España": "espana", "la cerveza": "cerveza", "la plaza": "plaza",
+    "el chocolate": "chocolate", "el perro": "perro", "el vino": "vino",
+    "¡Hola!": "hola", "gracias": "gracias", "sí": "si", "no": "no", "el señor": "senor", "la señora": "senora",
+    "por favor": "por_favor", "perdón": "perdon", "bien": "bien", "muy bien": "muy_bien", "regular": "regular",
+    "mal": "mal", "buenos días": "buenos_dias", "buenas tardes": "buenas_tardes", "buenas noches": "buenas_noches",
+    "adiós": "adios",
+}
+
+
+def art_uri(es: str) -> str | None:
+    """Картинка слова из content/art (лист из нейросети, нарезанный на части) как data-URI."""
+    slug = ART_SLUGS.get(es)
+    path = ART / f"{slug}.webp" if slug else None
+    if not path or not path.exists():
+        return None
+    return "data:image/webp;base64," + base64.b64encode(path.read_bytes()).decode()
+
+
 def _word(item: VocabItem, card: WordCard | None) -> dict:
     data = {
         "es": plain(item.es), "ru": plain(item.ru), "pron": item.pron, "emoji": item.emoji,
         "pos": item.pos, "say": item.speech, "srs": item.srs,
     }
+    if img := art_uri(data["es"]):
+        data["img"] = img
     if item.note:
         data["note"] = _html(item.note)
     examples = card.examples if card and card.examples else (
@@ -255,7 +280,20 @@ def word_phrases(course: Course) -> list[list]:
     return sorted(out, key=lambda p: -len(" ".join(p[0])))
 
 
-def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None = None) -> dict:
+def video_data(video) -> dict:
+    """Разбор видео для сайта: ссылка, текст по фразам, новые слова и пояснения к каждой фразе."""
+    return {
+        "id": video.id, "n": video.number, "title": plain(video.title), "url": video.url,
+        "segments": [{
+            "es": plain(seg.es), "ru": _html(seg.ru),
+            "words": [{"es": plain(w.es), "ru": plain(w.ru), "pron": w.pron, "say": w.speech} for w in seg.words],
+            "notes": [_html(n) for n in seg.notes],
+        } for seg in video.segments],
+    }
+
+
+def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None = None,
+              videos: list | None = None) -> dict:
     lessons, carried = [], []
     for lesson in course.lessons:
         if units is not None and lesson.unit.number not in units:
@@ -274,6 +312,7 @@ def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None
         "units": [{"number": u.number, "title": plain(u.title), "level": u.level, "goals": [plain(g) for g in u.goals]}
                   for u in course.units if units is None or u.number in units],
         "lessons": lessons,
+        "videos": [video_data(v) for v in videos or []],
         "forms": word_forms(course),
         "phrases": word_phrases(course),
     }
@@ -291,8 +330,8 @@ def parse_units(spec: str | None) -> set[int] | None:
 
 
 def build_site(course: Course, cards: dict[str, WordCard], out: str | Path, units: set[int] | None = None,
-               fragment: bool = False) -> Path:
-    data = json.dumps(site_data(course, cards, units), ensure_ascii=False).replace("</", "<\\/")
+               fragment: bool = False, videos: list | None = None) -> Path:
+    data = json.dumps(site_data(course, cards, units, videos), ensure_ascii=False).replace("</", "<\\/")
     page = TEMPLATE.read_text(encoding="utf-8").replace("/*__DATA__*/{}", data)
     if not fragment:
         # <title>, <meta> и <style> из шаблона браузер сам отнесёт в <head>.

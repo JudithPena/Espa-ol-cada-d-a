@@ -3,10 +3,12 @@ name: Сайт курса
 # Собирает сайт (python -m espanol site) и выкладывает на Cloudflare Pages: https://espanolcadadia.pages.dev
 # Нужны те же секреты, что и боту: CLOUDFLARE_API_TOKEN (с правом «Cloudflare Pages: Edit») и CLOUDFLARE_ACCOUNT_ID.
 # Пока их нет, workflow ничего не делает.
+# Рабочая ветка выкладывается на основной адрес; ветки claude/** — отдельным предпросмотром
+# (https://<имя-ветки>.espanolcadadia.pages.dev), основной сайт при этом не меняется.
 
 on:
   push:
-    branches: [ccr-f4c9bfd6-txio5n]
+    branches: [ccr-f4c9bfd6-txio5n, "claude/**"]
     paths:
       - "content/**"
       - "espanol/**"
@@ -14,7 +16,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: site-deploy
+  group: site-deploy-${{ github.ref_name }}
   cancel-in-progress: false
 
 env:
@@ -67,8 +69,19 @@ jobs:
       - name: Выложить сайт
         if: steps.check.outputs.ready == 'true'
         run: |
-          npx --yes wrangler@4 pages deploy _site --project-name "$PROJECT" --branch main --commit-dirty=true | tee deploy.log
+          if [ "$GITHUB_REF_NAME" = "ccr-f4c9bfd6-txio5n" ]; then
+            BRANCH=main
+            TITLE="Сайт выложен"
+          else
+            BRANCH="$GITHUB_REF_NAME"
+            TITLE="Предпросмотр выложен (основной сайт не изменился)"
+          fi
+          npx --yes wrangler@4 pages deploy _site --project-name "$PROJECT" --branch "$BRANCH" --commit-dirty=true | tee deploy.log
           {
-            echo "### Сайт выложен"
+            echo "### $TITLE"
             grep -oE 'https://[a-zA-Z0-9.-]+\.pages\.dev' deploy.log | head -1
+            if [ "$BRANCH" != main ]; then
+              ALIAS=$(echo "$BRANCH" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g')
+              echo "Постоянный адрес этой ветки: https://$ALIAS.$PROJECT.pages.dev"
+            fi
           } >> "$GITHUB_STEP_SUMMARY"
