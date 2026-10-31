@@ -18,6 +18,9 @@ on:
         type: choice
         options: [личка, канал]
         default: личка
+      edit:
+        description: "Номер поста, чтобы исправить его, а не отправлять новый (из ссылки t.me/espanol_cada_dia/160)"
+        default: ""
 
 permissions:
   contents: read
@@ -50,8 +53,10 @@ jobs:
           LESSON: ${{ inputs.lesson }}
           RICH: ${{ inputs.rich }}
           TARGET: ${{ inputs.target }}
+          EDIT: ${{ inputs.edit }}
         run: |
           args=()
           [ "$TARGET" != "канал" ] && args+=(--chat auto)
+          [ -n "$EDIT" ] && args+=(--edit "$EDIT")
           [ "$RICH" = "true" ] && args+=(--rich)
           python -m espanol send "$LESSON" "${args[@]}"

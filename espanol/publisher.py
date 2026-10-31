@@ -165,7 +165,12 @@ class Publisher:
             if n < len(messages) - 1:
                 time.sleep(self.delay)
 
-    def _send_rich(self, chat_id: str, message: RichMessage) -> None:
+    def edit_rich(self, chat_id: str, message_id: int, lesson: Lesson) -> None:
+        """Переписывает вышедший пост-статью урока (например, чтобы исправить картинку)."""
+        article = next(m for m in self.render(lesson, rich=True) if isinstance(m, RichMessage))
+        self._send_rich(chat_id, article, edit=message_id)
+
+    def _send_rich(self, chat_id: str, message: RichMessage, edit: int | None = None) -> None:
         """Рисует картинки и озвучивает аудио статьи; то, что не вышло, убирает из текста."""
         html, media, files = message.html, [], {}
         for m in message.media:
@@ -183,7 +188,10 @@ class Publisher:
             except Exception as exc:  # картинки и аудио — бонус, статью отправляем и без них
                 log.warning("медиа %s пропущено: %s", m.id, exc)
                 html = drop_media(html, m.id)
-        self.api.send_rich_message(chat_id, html, media, files, silent=message.silent)
+        if edit:
+            self.api.edit_rich_message(chat_id, edit, html, media, files)
+        else:
+            self.api.send_rich_message(chat_id, html, media, files, silent=message.silent)
 
     def _send_audio(self, chat_id: str, message: AudioMessage, lesson: Lesson | None) -> None:
         if not self.audio:

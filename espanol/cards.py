@@ -14,6 +14,9 @@ from pathlib import Path
 FONTS = Path(__file__).parent / "assets" / "fonts"
 SPANISH_FONT = FONTS / "Baloo2-ExtraBold.ttf"   # испанские слова, как «¡Hola!» на аватарке
 TEXT_FONT = FONTS / "Rubik-ExtraBold.ttf"       # русский текст
+# Свои картинки для слов, у которых нет подходящего эмодзи (например, стола):
+# assets/emoji/la_mesa.png — рисуется на карточке вместо эмодзи.
+PICTURES = Path(__file__).parent / "assets" / "emoji"
 # Запасной шрифт для знаков, которых нет в Rubik (например, θ в произношении)
 FALLBACK_FONTS = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
@@ -106,6 +109,20 @@ def _emoji(img, emoji: str, center: tuple[int, int], size: int) -> bool:
     return True
 
 
+def picture(es: str) -> Path | None:
+    path = PICTURES / (es.lower().replace(" ", "_") + ".png")
+    return path if path.exists() else None
+
+
+def _paste_picture(img, path: Path, center: tuple[int, int], size: int) -> None:
+    from PIL import Image
+
+    pic = Image.open(path).convert("RGBA")
+    scale = size / max(pic.width, pic.height)
+    pic = pic.resize((max(1, round(pic.width * scale)), max(1, round(pic.height * scale))), Image.LANCZOS)
+    img.paste(pic, (center[0] - pic.width // 2, center[1] - pic.height // 2), pic)
+
+
 def _png(img) -> bytes:
     buf = io.BytesIO()
     img.save(buf, "PNG", optimize=True)
@@ -151,10 +168,14 @@ def word_card(es: str, ru: str, emoji: str = "", pron: str = "") -> bytes:
         lines.append((f"[{pron}]", _fit(f"[{pron}]", TEXT_FONT, inner, 44, 24), MUTED, 50))
     lines.append((ru, _fit(ru, TEXT_FONT, inner, 60, 26), NAVY, 0))
     heights = [draw.textbbox((0, 0), text, font=font, anchor="ls")[1] for text, font, _, _ in lines]
-    emoji_size = 230 if emoji else 0
-    total = emoji_size + (60 if emoji else 0) + sum(-hh + gap for hh, (_, _, _, gap) in zip(heights, lines))
+    own = picture(es)
+    emoji_size = 230 if emoji or own else 0
+    total = emoji_size + (60 if emoji_size else 0) + sum(-hh + gap for hh, (_, _, _, gap) in zip(heights, lines))
     y = (box[1] + box[3]) // 2 - total // 2
-    if emoji_size:
+    if own:
+        _paste_picture(img, own, (w // 2, y + emoji_size // 2), round(emoji_size * 1.15))
+        y += emoji_size + 60
+    elif emoji_size:
         if _emoji(img, emoji, (w // 2, y + emoji_size // 2), emoji_size):
             y += emoji_size + 60
         else:

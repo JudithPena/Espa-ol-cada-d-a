@@ -236,6 +236,10 @@ def cmd_send(args, settings) -> int:
         print(f"Отправлен {video.label} ({video.id}) в {where}")
         return 0
     lesson = course.lesson(args.ref)
+    if args.edit:
+        publisher.edit_rich(chat, args.edit, lesson)
+        print(f"Пост {args.edit} переписан: урок {lesson.number} ({lesson.id}) в {where}")
+        return 0
     publisher.send(publisher.render(lesson, rich=args.rich), chat, lesson=lesson)
     print(f"Отправлен урок {lesson.number} ({lesson.id}) в {where}")
     return 0
@@ -339,6 +343,8 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--chat", help="chat_id (по умолчанию TELEGRAM_CHAT_ID); auto — личный чат, "
                                   "из которого боту последним написали")
     p.add_argument("--rich", action="store_true", help="отправить постом-статьёй (Rich Messages)")
+    p.add_argument("--edit", type=int, help="не отправлять, а переписать вышедший пост-статью с этим номером "
+                                            "(номер — в ссылке на пост: t.me/espanol_cada_dia/160)")
     p = sub.add_parser("bot-data", help="слова курса для бота на Cloudflare (bot/)")
     p.add_argument("--out", default="bot", help="папка бота")
     p.add_argument("--audio-cache", help="папка с готовой озвучкой (кеш между запусками)")
