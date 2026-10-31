@@ -23,6 +23,9 @@ from .wordcards import WordCard
 
 TEMPLATE = Path(__file__).with_name("site_template.html")
 
+# Вводный урок рассказывает о канале: как выходят посты, где комментировать. На сайте он не нужен.
+SKIP_KINDS = {"intro"}
+
 # Фразы для упражнения «Соберите фразу»: столько слов, не больше и не меньше.
 BUILD_MIN, BUILD_MAX = 3, 8
 
@@ -147,14 +150,24 @@ def word_forms(course: Course) -> dict[str, str]:
 
 
 def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None = None) -> dict:
-    lessons = [lesson for lesson in course.lessons if units is None or lesson.unit.number in units]
+    lessons, carried = [], []
+    for lesson in course.lessons:
+        if units is not None and lesson.unit.number not in units:
+            continue
+        data = lesson_data(lesson, cards)
+        if lesson.kind in SKIP_KINDS:  # слова вводного урока переходят в следующий урок сайта
+            carried += data["words"]
+            continue
+        data["words"] = carried + data["words"]
+        carried = []
+        lessons.append(data)
     return {
         "title": course.title,
         "bot": course.bot,
         "intervals": course.settings["srs"]["intervals"],
         "units": [{"number": u.number, "title": plain(u.title), "level": u.level, "goals": [plain(g) for g in u.goals]}
                   for u in course.units if units is None or u.number in units],
-        "lessons": [lesson_data(lesson, cards) for lesson in lessons],
+        "lessons": lessons,
         "forms": word_forms(course),
     }
 

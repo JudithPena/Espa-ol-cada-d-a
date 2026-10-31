@@ -14,8 +14,8 @@ def test_parse_units():
 
 def test_site_data_covers_course(course):
     data = site_data(course, load_cards(CONTENT))
-    assert len(data["lessons"]) == len(course.lessons)
-    assert [lesson["n"] for lesson in data["lessons"]] == list(range(len(course.lessons)))
+    assert len(data["lessons"]) == len(course.lessons) - 1
+    assert [lesson["n"] for lesson in data["lessons"]] == list(range(1, len(course.lessons)))
     json.dumps(data, ensure_ascii=False)
 
 
@@ -35,7 +35,10 @@ def test_lesson_content(course):
 
 def test_cards_from_repaso(course):
     data = site_data(course, load_cards(CONTENT), units={0})
-    hola = data["lessons"][0]["words"][0]
+    # Вводного урока о канале на сайте нет, его «¡Hola!» — первое слово следующего урока.
+    first = data["lessons"][0]
+    assert first["kind"] != "intro" and first["n"] == 1
+    hola = first["words"][0]
     assert hola["es"] == "¡Hola!" and hola["meaning"] and hola["trap"]
 
 
