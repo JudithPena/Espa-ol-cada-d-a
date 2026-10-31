@@ -772,13 +772,8 @@ function stepBody(st) {
   const L = S.kind === "lesson" ? LESSONS[S.li] : null;
   switch (st.type) {
     case "intro": {
-      const nw = L.words.length, nq = S.steps.filter(isGraded).length;
       return `<span class="kicker">Урок ${L.n} · Тема ${L.unit}</span><h2>${esc(L.title)}</h2>
-        <div class="theory">${st.lead.map(blockHTML).join("")}<div class="box"><ul class="cando">
-          ${nw ? `<li>${words(nw)} с озвучкой и примерами</li>` : ""}
-          ${S.steps.some(s => s.type === "theory") ? `<li>объяснение по шагам</li>` : ""}
-          ${nq ? `<li>${nq} ${plural(nq, "задание", "задания", "заданий")} на проверку</li>` : ""}
-        </ul></div>
+        <div class="theory">${st.lead.map(blockHTML).join("")}
         <p class="muted">${introHints().join(" ")}</p></div>`;
     }
     case "word": return `<span class="kicker">Новое слово</span>${wordCard(st.word)}`;
