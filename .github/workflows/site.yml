@@ -1,0 +1,48 @@
+name: Сайт курса
+
+# Собирает сайт (python -m espanol site) и выкладывает на GitHub Pages.
+# Один раз включите Pages: Settings → Pages → Source: GitHub Actions.
+
+on:
+  push:
+    branches: [ccr-f4c9bfd6-txio5n]
+    paths:
+      - "content/**"
+      - "espanol/**"
+      - ".github/workflows/site.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Сборка сайта
+        run: python -m espanol site -o _site/index.html
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
