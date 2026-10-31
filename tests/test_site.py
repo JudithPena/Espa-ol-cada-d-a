@@ -127,3 +127,9 @@ def test_videos_on_site(course):
     seg = first["segments"][0]
     assert seg["es"] and seg["ru"] and seg["words"] and {"es", "ru", "say"} <= set(seg["words"][0])
     assert site_data(course, load_cards(CONTENT), units={0})["videos"] == []
+
+
+def test_site_api(course):
+    """Сайт знает адрес бота для входа через Telegram."""
+    data = site_data(course, load_cards(CONTENT), units={0})
+    assert data["api"].startswith("https://") and data["api"].endswith(".workers.dev")

@@ -360,7 +360,108 @@ const KEY = "espanol-cada-dia.v1";
 const fresh = () => ({ done: {}, xp: 0, days: {}, streak: { n: 0, best: 0, last: "" }, words: {}, goal: 30, openAll: false, sound: true });
 let P = fresh();
 try { P = Object.assign(fresh(), JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) { /* без хранилища — прогресс только до перезагрузки */ }
-const save = () => { try { localStorage.setItem(KEY, JSON.stringify(P)); } catch (e) {} };
+const saveLocal = () => { try { localStorage.setItem(KEY, JSON.stringify(P)); } catch (e) {} };
+const save = () => { saveLocal(); markDirty(); };
+
+/* ================================================================ вход через Telegram и копия прогресса на сервере */
+// Без входа прогресс живёт только в браузере. После входа его копия лежит у бота на Cloudflare (ключ — номер
+// в Telegram), поэтому очистка данных браузера и другое устройство ничего не стирают. На сервер отправляем редко
+// (раз в 5 минут и при закрытии страницы): у бесплатного хранилища дневной лимит записей, общий с ботом.
+const TOKEN_KEY = "espanol-cada-dia.token", NAME_KEY = "espanol-cada-dia.name";
+const API = COURSE.api || "", MAIN_HOST = "espanolcadadia.pages.dev", SYNC_EVERY = 5 * 60e3;
+const store = { get: k => { try { return localStorage.getItem(k) || ""; } catch (e) { return ""; } },
+  set: (k, v) => { try { v ? localStorage.setItem(k, v) : localStorage.removeItem(k); } catch (e) {} } };
+let token = store.get(TOKEN_KEY);
+const sync = { dirty: false, timer: 0, last: 0, sent: "", busy: false };
+
+// Объединение двух копий: только «объединить» и «взять большее», поэтому повторная синхронизация ничего не раздувает.
+function mergeProgress(a, b) {
+  b = b || {};
+  const pristine = !Object.keys(a.done || {}).length && !(a.xp > 0) && !Object.keys(a.words || {}).length;
+  const out = pristine ? { ...a, ...b } : { ...b, ...a };   // настройки: в пустом браузере берём сохранённые
+  out.done = { ...(b.done || {}) };
+  for (const [id, d] of Object.entries(a.done || {})) if (!out.done[id] || (d.stars || 0) >= (out.done[id].stars || 0)) out.done[id] = d;
+  out.words = { ...(b.words || {}) };
+  for (const [w, s] of Object.entries(a.words || {})) {
+    const o = out.words[w];
+    if (!o || (s.s || 0) > (o.s || 0) || ((s.s || 0) === (o.s || 0) && (s.due || 0) >= (o.due || 0))) out.words[w] = s;
+  }
+  out.xp = Math.max(a.xp || 0, b.xp || 0);
+  out.days = { ...(b.days || {}) };
+  for (const [d, v] of Object.entries(a.days || {})) out.days[d] = Math.max(v, out.days[d] || 0);
+  const sa = a.streak || {}, sb = b.streak || {}, newer = (sa.last || "") >= (sb.last || "") ? sa : sb;
+  out.streak = { n: newer.n || 0, last: newer.last || "", best: Math.max(sa.best || 0, sb.best || 0, newer.n || 0) };
+  return out;
+}
+
+function logout(msg) { token = ""; store.set(TOKEN_KEY, ""); store.set(NAME_KEY, ""); if (msg) toast(msg); }
+function markDirty() {
+  if (!token) return;
+  sync.dirty = true;
+  if (!sync.timer) sync.timer = setTimeout(() => { sync.timer = 0; push(); }, SYNC_EVERY);
+}
+async function api(path, init = {}) {
+  const r = await fetch(API + path, { ...init, headers: { "Content-Type": "application/json", Authorization: "Bearer " + token } });
+  if (r.status === 401) { logout("Войдите снова: срок входа закончился"); throw new Error("unauthorized"); }
+  if (!r.ok) throw new Error("http " + r.status);
+  return r.json();
+}
+// Забрать копию с сервера, объединить с этим браузером, при изменении записать обратно.
+async function syncNow(render_ = true) {
+  if (!token || sync.busy) return;
+  sync.busy = true;
+  try {
+    const { progress } = await api("/site/progress");
+    P = Object.assign(fresh(), mergeProgress(P, progress));
+    saveLocal();
+    sync.sent = JSON.stringify(progress || null) === JSON.stringify(P) ? JSON.stringify(P) : sync.sent;
+    sync.busy = false;
+    await push(true);
+    if (render_ && !S) render();
+  } catch (e) { /* нет сети или вход закончился: прогресс останется в браузере */ } finally { sync.busy = false; }
+}
+async function push(force = false, keepalive = false) {
+  if (!token || (!force && !sync.dirty)) return;
+  const body = JSON.stringify(P);
+  if (body === sync.sent) { sync.dirty = false; return; }
+  if (keepalive && body.length > 60000) keepalive = false;
+  try {
+    const r = await fetch(API + "/site/progress", { method: "PUT", keepalive, body, headers: { "Content-Type": "application/json", Authorization: "Bearer " + token } });
+    if (r.status === 401) return logout("Войдите снова: срок входа закончился");
+    if (r.ok) { sync.sent = body; sync.dirty = false; sync.last = Date.now(); clearTimeout(sync.timer); sync.timer = 0; }
+  } catch (e) { /* повторим при следующем изменении */ }
+}
+window.onTelegramAuth = async user => {
+  try {
+    const r = await fetch(API + "/site/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(user) });
+    if (!r.ok) throw new Error("login");
+    token = (await r.json()).token; store.set(TOKEN_KEY, token); store.set(NAME_KEY, user.first_name || user.username || "");
+    await syncNow(); render(); toast("Вы вошли: прогресс сохраняется");
+  } catch (e) { toast("Не удалось войти, попробуйте ещё раз"); }
+};
+function mountLogin() {
+  const box = document.getElementById("tglogin");
+  if (!box || !COURSE.bot) return;
+  const s = document.createElement("script");
+  s.async = true; s.src = "https://telegram.org/js/telegram-widget.js?22";
+  s.dataset.telegramLogin = COURSE.bot; s.dataset.size = "large"; s.dataset.radius = "12"; s.dataset.onauth = "onTelegramAuth(user)";
+  box.appendChild(s);
+}
+function accountPanel() {
+  if (!API) return "";
+  const name = store.get(NAME_KEY);
+  if (token) return `<section class="panel"><h2>Аккаунт</h2><span>✅ Прогресс сохраняется в Telegram${name ? `: ${esc(name)}` : ""}</span>
+    <div class="two"><button class="btn ghost" data-sync>Сохранить сейчас</button><button class="btn ghost" data-logout>Выйти</button></div></section>`;
+  if (location.hostname !== MAIN_HOST) return `<section class="panel"><h2>Аккаунт</h2><span class="muted">Вход через Telegram работает на основном сайте.</span></section>`;
+  return `<section class="panel"><h2>Сохранить прогресс</h2><span>Войдите через Telegram: прогресс не пропадёт, даже если очистить данные браузера.</span><div id="tglogin"></div></section>`;
+}
+addEventListener("pagehide", () => { push(false, true); });
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "hidden") push(false, true);
+  else if (token && Date.now() - sync.last > 60e3) syncNow();
+});
+try { navigator.storage?.persist?.(); } catch (e) { /* не страшно */ }
+if (token) setTimeout(() => syncNow(), 800);
 
 const LESSONS = COURSE.lessons;
 const INTERVALS = COURSE.intervals || [1, 3, 7, 14, 30, 60, 120];
@@ -779,13 +880,13 @@ function statsView() {
     <div class="week">${days.map(d => { const v = P.days[d] || 0; return `<div class="col ${v ? "" : "zero"}"><span>${v || ""}</span><i style="height:${Math.max(3, v / max * 90)}px"></i><span>${wd(d)}</span></div>`; }).join("")}</div>
     <div class="level-bar"><div class="lb"><span>Сегодня</span><span>${todayXP()} из ${P.goal} опыта</span></div><div class="bar sun"><i style="width:${Math.min(100, todayXP() / P.goal * 100)}%"></i></div></div>
   </section>
+  ${accountPanel()}
   <section class="panel settings"><h2>Настройки</h2>
     <div class="row"><span>Звуки ответов</span><button class="switch" data-sound aria-pressed="${P.sound !== false}" aria-label="Звуки ответов"></button></div>
     <div class="row"><span>Цель на день</span><span class="seg">${[20, 30, 50].map(g => `<button data-goal="${g}" aria-pressed="${P.goal === g}">${g}</button>`).join("")}</span></div>
     <div class="row"><span>Я учусь в канале</span><button class="btn ghost sm" data-join>Начать с урока…</button></div>
     <div class="row"><span>Открыть все уроки<br><small class="muted">чтобы посмотреть любой урок без очереди</small></span><button class="switch" data-openall aria-pressed="${!!P.openAll}" aria-label="Открыть все уроки"></button></div>
     <div class="row"><span>Сбросить прогресс</span>${view.confirmReset ? `<span class="confirm"><button class="btn bad" data-reset="yes">Да, сбросить</button><button class="btn ghost" data-reset="no">Отмена</button></span>` : `<button class="btn ghost" data-reset="ask">Сбросить</button>`}</div>
-    <p class="muted" style="margin:0;font-size:14px">Прогресс хранится в этом браузере: на другом устройстве он начнётся заново.</p>
   </section>`;
 }
 
@@ -994,6 +1095,7 @@ function render() {
   }
   const body = { home: homeView, course: courseView, grammar: grammarView, videos: videosView, video: videoView, review: reviewView, words: wordsView, stats: statsView }[view.tab]();
   app.innerHTML = `${topBar()}<main><div class="wrap">${body}</div></main>${tabsBar()}`;
+  mountLogin();
 }
 function toast(text) {
   document.querySelectorAll(".toast").forEach(t => t.remove());
@@ -1134,6 +1236,8 @@ document.addEventListener("click", e => {
   if ("home" in d) { S = null; view.tab = "course"; view.level = null; render(); const c = $(`#unit-${LESSONS[currentIndex()].unit}`); if (c) c.scrollIntoView({ block: "start" }); return; }
   if ("quit" in d) { clearTimeout(autoTimer); speechSynthesis?.cancel?.(); S = null; render(); return; }
   if (d.goal) { P.goal = +d.goal; save(); render(); return; }
+  if ("sync" in d) { push(true).then(() => toast("Сохранено")); return; }
+  if ("logout" in d) { logout("Вы вышли, прогресс остался в этом браузере"); render(); return; }
   if ("sound" in d) { P.sound = P.sound === false; save(); render(); if (P.sound) sfx(true); return; }
   if ("openall" in d) { P.openAll = !P.openAll; save(); render(); return; }
   if (d.reset) {

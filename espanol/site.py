@@ -40,6 +40,8 @@ def _html(text: str | None) -> str:
     return html.replace("<tg-spoiler>", '<span class="spoiler" tabindex="0">').replace("</tg-spoiler>", "</span>")
 
 
+# Бот на Cloudflare: вход через Telegram и хранение прогресса учеников сайта (bot/src/site.js).
+SITE_API = "https://espanol-cada-dia-bot.zhurnal.workers.dev"
 ART = Path(__file__).resolve().parent.parent / "content" / "art"
 ART_SLUGS = {
     "la casa": "casa", "el café": "cafe", "el taxi": "taxi", "el hotel": "hotel", "la música": "musica",
@@ -309,6 +311,7 @@ def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None
     return {
         "title": course.title,
         "preview": preview,
+        "api": SITE_API,
         "bot": course.bot,
         "intervals": course.settings["srs"]["intervals"],
         "units": [{"number": u.number, "title": plain(u.title), "level": u.level, "goals": [plain(g) for g in u.goals]}
