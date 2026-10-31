@@ -849,7 +849,7 @@ function wordCard(w) {
     ${w.ex ? `<div class="sec"><b>Примеры</b><ul class="exl">${w.ex.map(([es, ru]) => `<li>${playBtn(es)}<span><span class="es">${esc(es)}</span><small>${esc(ru)}</small></span></li>`).join("")}</ul></div>` : ""}
     ${w.coll ? sec("Сочетания", w.coll.join("<br>")) : ""}
     ${w.note ? sec("Заметка", w.note) : ""}
-    ${w.trap ? `<div class="sec trap"><b>Ловушка</b><div>${w.trap}</div></div>` : ""}
+    ${w.trap ? `<div class="sec trap"><b>На заметку</b><div>${w.trap}</div></div>` : ""}
   </div>`;
 }
 
