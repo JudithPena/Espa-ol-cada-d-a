@@ -623,6 +623,7 @@ function courseView() {
     <button class="btn wide" data-lesson="${ci}">${doneN ? "Продолжить" : "Начать"}</button>
     <div class="level-bar"><div class="lb"><span>A0 → A1</span><span>${doneN} из ${LESSONS.length} уроков</span></div><div class="bar"><i style="width:${a1}%"></i></div></div>
   </section>`;
+  if (!doneN && !P.joined) html += `<button class="btn ghost wide" style="margin-top:12px" data-join>Я уже учусь в канале</button>`;
   if (due) html += `<div class="notice">🔁 Пора повторить ${words(due)}<button class="btn" data-review="due">Повторить</button></div>`;
   for (const U of COURSE.units) {
     const idx = LESSONS.map((L, i) => L.unit === U.number ? i : -1).filter(i => i >= 0);
@@ -696,6 +697,7 @@ function statsView() {
   <section class="panel settings"><h2>Настройки</h2>
     <div class="row"><span>Звуки ответов</span><button class="switch" data-sound aria-pressed="${P.sound !== false}" aria-label="Звуки ответов"></button></div>
     <div class="row"><span>Цель на день</span><span class="seg">${[20, 30, 50].map(g => `<button data-goal="${g}" aria-pressed="${P.goal === g}">${g}</button>`).join("")}</span></div>
+    <div class="row"><span>Я учусь в канале</span><button class="btn ghost sm" data-join>Начать с урока…</button></div>
     <div class="row"><span>Открыть все уроки<br><small class="muted">чтобы посмотреть любой урок без очереди</small></span><button class="switch" data-openall aria-pressed="${!!P.openAll}" aria-label="Открыть все уроки"></button></div>
     <div class="row"><span>Сбросить прогресс</span>${view.confirmReset ? `<span class="confirm"><button class="btn bad" data-reset="yes">Да, сбросить</button><button class="btn ghost" data-reset="no">Отмена</button></span>` : `<button class="btn ghost" data-reset="ask">Сбросить</button>`}</div>
     <p class="muted" style="margin:0;font-size:14px">Прогресс хранится в этом браузере: на другом устройстве он начнётся заново.</p>
@@ -960,6 +962,35 @@ function wrapWords(root) {
     node.replaceWith(...box.childNodes);
   }
 }
+/* ================================================================ «Я уже учусь в канале» */
+// Уроки до выбранного отмечаются пройденными, а их слова встают в повторение не все сразу:
+// по 12 слов в день, сначала слова самых свежих уроков. Иначе в первый же день набралось бы несколько сотен.
+const JOIN_PER_DAY = 12;
+function joinFrom(n) {
+  const at = LESSONS.findIndex(L => L.n === n);
+  if (at < 1) return { lessons: 0, words: 0 };
+  let lessons = 0, queue = [];
+  for (let i = 0; i < at; i++) {
+    const L = LESSONS[i];
+    if (!P.done[L.id]) { P.done[L.id] = { stars: 1, acc: 0, at: dayStr(), joined: true }; lessons++; }
+    L.words.filter(w => w.srs && !P.words[w.es]).forEach(w => queue.push(w));
+  }
+  queue.reverse().forEach((w, k) => { P.words[w.es] = { s: 1, due: dayNum() + 1 + Math.floor(k / JOIN_PER_DAY) }; });
+  P.joined = true; save();
+  return { lessons, words: queue.length };
+}
+function joinSheet() {
+  closeSheet();
+  const el = document.createElement("div"); el.className = "sheet-wrap"; el.dataset.closeSheet = "";
+  el.innerHTML = `<div class="sheet" role="dialog" aria-label="Начать с урока"><div class="wrap">
+    <div class="word" style="font-family:var(--display);font-size:20px;font-weight:600">С какого урока продолжить?</div>
+    <select id="joinfrom" class="search">${LESSONS.map(L => `<option value="${L.n}">Урок ${L.n}. ${esc(L.title)}</option>`).join("")}</select>
+    <div class="two"><button class="btn ghost" data-close-sheet>Отмена</button><button class="btn" data-join-go>Продолжить</button></div>
+  </div></div>`;
+  document.body.appendChild(el);
+  const sel = $("#joinfrom"); sel.value = String(LESSONS[Math.min(LESSONS.length - 1, currentIndex())].n);
+}
+
 function closeSheet() { document.querySelectorAll(".sheet-wrap").forEach(x => x.remove()); }
 function lookup(es) {
   const w = WORDS.get(es); if (!w) return;
@@ -987,6 +1018,11 @@ document.addEventListener("click", e => {
   const d = el.dataset;
   if (el.classList.contains("spoiler")) return el.classList.remove("open");
   if ("closeSheet" in d) return closeSheet();
+  if ("join" in d) return joinSheet();
+  if ("joinGo" in d) {
+    const r = joinFrom(+$("#joinfrom").value); closeSheet(); view.tab = "course"; render();
+    return toast(r.lessons ? `Пройдено уроков: ${r.lessons}, слов в повторении: ${r.words}` : "Начнём с первого урока");
+  }
   if (d.add) { P.words[d.add] = { s: 0, due: dayNum() + INTERVALS[0] }; save(); closeSheet(); return toast("Слово добавлено: повторим завтра"); }
   if (d.say != null) { say(d.say, { slow: "slow" in d }); if (!el.classList.contains("bubble")) return; }
   if (d.dialog) { const lines = JSON.parse(d.dialog); speechSynthesis.cancel(); lines.forEach(([who, text]) => say(text, { queue: true, pitch: who % 2 ? 0.75 : 1.15 })); return; }
