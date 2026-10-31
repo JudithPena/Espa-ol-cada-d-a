@@ -653,7 +653,6 @@ function reviewView() {
   return `<section class="panel"><span class="kicker">Повторение по интервалам</span>
       <div class="big-num">${due.length}</div><span>${due.length ? plural(due.length, "слово ждёт", "слова ждут", "слов ждут") + " повторения сегодня" : "Сегодня всё повторено"}</span>
       ${due.length ? `<button class="btn wide" data-review="due">Повторить ${due.length > 15 ? "15 слов" : ""}</button>` : next ? `<span class="muted">Следующее повторение: ${new Date(numDay(next)).toLocaleDateString("ru", { day: "numeric", month: "long" })}</span>` : ""}
-      <p class="muted" style="margin:0;font-size:14px">Слово возвращается через ${INTERVALS.slice(0, 5).join(", ")} … дней. Если ответить с ошибкой, оно придёт снова завтра.</p>
     </section>
     <section class="panel"><h2>Трудные слова</h2>
       <span class="muted">${weak.length ? `${words(weak.length)}, которые ещё не закрепились.` : "Трудных слов нет."}</span>
@@ -783,14 +782,12 @@ function stepBody(st) {
     }
     case "build": {
       const s = S.state;
-      return `<div class="prompt"><span class="kicker">Соберите фразу</span><div class="q" style="font-size:19px">${esc(st.ru)}</div>
-          <span class="sub">Нажимайте слова по порядку. Неверное слово подсветится красным.</span></div>
+      return `<div class="prompt"><span class="kicker">Соберите фразу</span><div class="q" style="font-size:19px">${esc(st.ru)}</div></div>
         <div class="answer-line">${st.es.split(" ").slice(0, s.n).map(w => `<span class="tok">${esc(w)}</span>`).join("")}</div>
         <div class="bank">${s.tiles.map((t, k) => `<button class="tok ${s.used[k] ? "used" : ""} ${s.flash === k ? "bad" : ""} ${s.hint === k ? "hint" : ""}" data-pick="${k}" ${s.result ? "disabled" : ""}>${esc(t)}</button>`).join("")}</div>`;
     }
     case "mf":
-      return `<div class="prompt"><span class="kicker">Мастер фраз</span>
-          <span class="sub">Послушайте фразу и введите первую букву каждого слова. Угаданное слово откроется.</span></div>
+      return `<div class="prompt"><span class="kicker">Мастер фраз</span></div>
         <div class="listen"><div class="row2">${playBtn(st.es, "big")}${slowBtn(st.es)}</div></div>
         ${mfSlots(st, S.state)}
         ${S.state.result ? "" : `<input class="field letter" id="letter" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Первая буква слова" aria-label="Первая буква следующего слова">`}`;
@@ -860,7 +857,7 @@ function stepFoot(st) {
   }
   let label = "Дальше", dis = "";
   if (st.type === "intro") label = "Начать";
-  if (st.type === "mc") return `<div class="pfoot"><div class="wrap"><span class="hint" style="text-align:center">Нажмите на ответ</span></div></div>`;
+  if (st.type === "mc") return "";   // ответ — нажатием на вариант
   if (st.type === "task") label = "Готово";
   return `<div class="pfoot"><div class="wrap"><button class="btn wide" data-primary ${dis}>${label}</button></div></div>`;
 }
@@ -888,7 +885,7 @@ function resultView() {
     <h2>${r.from === "lesson" ? `Урок ${L.n} пройден!` : "Повторение закончено!"}</h2>
     <span class="stars-big" aria-label="${r.stars} из 3">${"★".repeat(r.stars)}${"☆".repeat(3 - r.stars)}</span>
     <div class="cells"><div class="cell"><b>+${r.xp}</b><span>опыта</span></div><div class="cell"><b>${Math.round(r.acc * 100)}%</b><span>с первой попытки</span></div><div class="cell"><b>${streakNow()} 🔥</b><span>дней подряд</span></div></div>
-    ${r.learned.length ? `<div class="panel learned"><b>Новые слова в повторении</b><span class="muted">${r.learned.map(w => esc(w.es)).join(", ")}</span><span class="muted" style="font-size:14px">Курс напомнит их завтра, потом через 3 и 7 дней.</span></div>` : ""}
+    ${r.learned.length ? `<div class="panel learned"><b>Новые слова в повторении</b><span class="muted">${r.learned.map(w => esc(w.es)).join(", ")}</span></div>` : ""}
     ${nextI != null ? `<button class="btn wide" data-lesson="${nextI}">Следующий урок: ${esc(LESSONS[nextI].title)}</button>` : ""}
     <button class="btn ghost wide" data-home>На карту курса</button>
   </div>`;
