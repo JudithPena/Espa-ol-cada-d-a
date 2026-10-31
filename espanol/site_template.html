@@ -690,7 +690,6 @@ function grammarView() {
 
 function videosView() {
   return `<button class="btn ghost sm back" data-tab="home">← Главная</button><h2>🎬 Разбор видео</h2>
-    <span class="muted">Смотрите видео, потом читайте его по фразам: у каждой фразы свои новые слова и перевод.</span>
     <div class="menu">${COURSE.videos.map(v => `<button class="mcard" data-video="${esc(v.id)}"><span class="mi">🎬</span><span><b>№${v.n}. ${esc(v.title)}</b><small>${v.segments.length} ${plural(v.segments.length, "фраза", "фразы", "фраз")}</small></span><span aria-hidden="true">›</span></button>`).join("")}</div>`;
 }
 
