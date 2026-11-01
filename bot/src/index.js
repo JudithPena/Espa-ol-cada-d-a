@@ -340,6 +340,7 @@ async function sendStudyCard(book, env, chat, userId, state, origin) {
   }
   const header = studyHeader(state, mode);
   if (mode === "l") { // новое слово: сначала озвучка, потом карточка целиком
+    await sendStudyImage(env, chat, origin, word);
     if (word.audio) await sendAudio(env, chat, origin, word.audio, word.word, `${header} · <b>${esc(word.word)}</b>`);
     return tg(env, "sendMessage", {
       chat_id: chat, parse_mode: "HTML", text: `${header}\n\n${word.card}`,
@@ -377,6 +378,7 @@ async function handleStudyCallback(book, cq, env, origin) {
   if (action === "c") { // карточка целиком — отдельным сообщением, в любой момент
     const word = book.find(id);
     await done();
+    if (word) await sendStudyImage(env, chat, origin, word);
     return word && tg(env, "sendMessage", {
       chat_id: chat, parse_mode: "HTML", text: `📖 ${word.card}`, link_preview_options: { is_disabled: true },
     });
@@ -450,6 +452,16 @@ async function finishStudy(book, env, chat, state, s) {
       (s && s.right + s.wrong ? `Верно: ${s.right}, ошибок: ${s.wrong}.` : "") + `\n\n${text}`,
     reply_markup: button ? keyboard([[{ text: button, callback_data: `${book.id}go` }]]) : undefined,
   });
+}
+
+// Иллюстрация отдельно: полный разбор длиннее лимита подписи к фото.
+// На вопросах повторения картинки нет — она подсказывает перевод.
+async function sendStudyImage(env, chat, origin, word) {
+  if (!word.image) return;
+  const sent = await tg(env, "sendPhoto", {
+    chat_id: chat, photo: `${origin}/${word.image}`,
+  });
+  if (!sent.ok) console.warn("Не удалось отправить иллюстрацию", word.id);
 }
 
 // Карточка с озвучкой: слово и пример можно сразу послушать. Если аудио не ушло — null, тогда шлём текстом.

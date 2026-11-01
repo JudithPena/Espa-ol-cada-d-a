@@ -420,3 +420,23 @@ test("колода Гали: смены приходят и ей, со свои�
     GALYA.push(...saved.splice(0));
   }
 });
+
+test("папа: фото при изучении и открытии разбора, без фото в вопросе повторения", async () => {
+  env.PAPA_CHAT_ID = "9";
+  try {
+    assert.ok(PAPA[0].image);
+    await post(message("/palabras"));
+    const photo = calls.find((c) => c.method === "sendPhoto");
+    assert.equal(photo.body.photo, `https://bot.example/${PAPA[0].image}`);
+    assert.ok(calls.at(-1).body.text.includes(PAPA[0].card));
+    for (const word of PAPA.slice(0, 4)) await post(press(`dl:${word.id}`, false));
+    calls.length = 0;
+    await post(press(`dl:${PAPA[4].id}`, false));
+    assert.equal(calls.filter((c) => c.method === "sendPhoto").length, 0);
+    assert.match(textOf(calls.at(-1)), /Выберите перевод/);
+    await post(press(`dc:${PAPA[0].id}`, false));
+    assert.equal(calls.filter((c) => c.method === "sendPhoto").length, 1);
+  } finally {
+    delete env.PAPA_CHAT_ID;
+  }
+});

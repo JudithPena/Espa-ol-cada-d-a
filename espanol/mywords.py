@@ -66,6 +66,7 @@ class Word:
     collocations: list[str] = field(default_factory=list)
     collocation_example: tuple[str, str] | None = None
     trap: str = ""
+    image: str = ""     # local illustration path, resolved when loading
     source: str = ""
     problems: list[str] = field(default_factory=list)  # найдены при загрузке, выводит validate
 
@@ -102,7 +103,13 @@ def load_deck(content_dir: str | Path, folder: str = FOLDER) -> list[Word]:
         for n, entry in enumerate(raw["words"], 1):
             if not isinstance(entry, dict) or not entry.get("word"):
                 raise ContentError(f"{where}, слово {n}: нет поля word")
-            words.append(_parse(entry, str(entry.get("lang", lang)), f"{where}, «{entry['word']}»"))
+            word = _parse(entry, str(entry.get("lang", lang)), f"{where}, «{entry['word']}»")
+            if entry.get("image"):
+                image = (Path(content_dir) / entry["image"]).resolve()
+                if not image.is_relative_to(Path(content_dir).resolve()) or not image.is_file():
+                    raise ContentError(f"{where}: картинка не найдена внутри content: {entry['image']}")
+                word.image = str(image)
+            words.append(word)
     return words
 
 

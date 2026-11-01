@@ -73,3 +73,19 @@ def test_lessons_end_with_repaso_link(course, renderer):
     assert "?start=repaso" in renderer.repaso_link(no_words)
     html = "".join(getattr(m, "html", "") for m in renderer.render(with_words))
     assert link in html
+
+
+def test_papa_images_are_exported_with_content_addressed_urls(tmp_path, course):
+    from pathlib import Path
+    from espanol.mywords import load_deck, PAPA_FOLDER
+
+    papa = load_deck(Path(__file__).resolve().parents[1] / 'content', PAPA_FOLDER)
+    export(course, tmp_path, audio=False, papa=papa)
+    records = json.loads((tmp_path / 'data/mywords_papa.json').read_text())
+    assert len(records) == 31
+    for word, record in zip(papa, records):
+        image = tmp_path / 'public' / record['image']
+        assert image.read_bytes() == Path(word.image).read_bytes()
+        assert 'Регистр' not in record['card'] and 'Ловушка' not in record['card']
+    export(course, tmp_path, audio=False, papa=papa)
+    assert records == json.loads((tmp_path / 'data/mywords_papa.json').read_text())

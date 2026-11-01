@@ -178,6 +178,15 @@ def export(course: Course, out: Path, audio: bool = True, cache: Path | None = N
     theirs = [record(w, names.get(f"galya:{w.id}", "")) for w in galya]
     (out / "data" / "mywords_galya.json").write_text(json.dumps(theirs, ensure_ascii=False, indent=1), encoding="utf-8")
     dads = [record(w, names.get(f"papa:{w.id}", "")) for w in papa]
+    image_dir = out / "public" / "images" / "papa"
+    image_dir.mkdir(parents=True, exist_ok=True)
+    for word, data in zip(papa, dads):
+        if word.image:
+            image = Path(word.image)
+            content = image.read_bytes()
+            filename = hashlib.sha256(content).hexdigest()[:20] + image.suffix.lower()
+            (image_dir / filename).write_bytes(content)
+            data["image"] = f"images/papa/{filename}"
     (out / "data" / "mywords_papa.json").write_text(json.dumps(dads, ensure_ascii=False, indent=1), encoding="utf-8")
     schedule = video_schedule(videos or [])
     (out / "data" / "videos.json").write_text(json.dumps(schedule, ensure_ascii=False, indent=1), encoding="utf-8")
