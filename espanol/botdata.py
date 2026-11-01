@@ -146,12 +146,13 @@ def video_schedule(videos: list) -> list[dict]:
 
 def export(course: Course, out: Path, audio: bool = True, cache: Path | None = None,
            workers: int = 6, deck: list[Word] | None = None, cards: dict[str, WordCard] | None = None,
-           videos: list | None = None, galya: list[Word] | None = None) -> dict:
+           videos: list | None = None, galya: list[Word] | None = None, papa: list[Word] | None = None) -> dict:
     """Пишет out/data/words.json (слова курса), out/data/mywords.json («Мои слова»), out/data/mywords_galya.json (колода Гали),
     out/data/videos.json (расписание разборов) и озвучку в out/public/audio/. Готовые mp3 берутся из cache."""
     words = bot_words(course)
     deck = deck or []
     galya = galya or []
+    papa = papa or []
     audio_dir = out / "public" / "audio"
     if audio_dir.exists():
         shutil.rmtree(audio_dir)
@@ -163,7 +164,8 @@ def export(course: Course, out: Path, audio: bool = True, cache: Path | None = N
         names = _write_audio(
             [(item.key, _speech(item), plain(item.es)) for item in words]
             + [(f"deck:{w.id}", _deck_speech(w), w.word) for w in deck]
-            + [(f"galya:{w.id}", _deck_speech(w), w.word) for w in galya],
+            + [(f"galya:{w.id}", _deck_speech(w), w.word) for w in galya]
+            + [(f"papa:{w.id}", _deck_speech(w), w.word) for w in papa],
             audio_dir, cache, workers)
     cards = cards or {}
     records = [word_record(item, names.get(item.key, ""), cards.get(item.key)) for item in words]
@@ -175,6 +177,8 @@ def export(course: Course, out: Path, audio: bool = True, cache: Path | None = N
     (out / "data" / "mywords.json").write_text(json.dumps(mine, ensure_ascii=False, indent=1), encoding="utf-8")
     theirs = [record(w, names.get(f"galya:{w.id}", "")) for w in galya]
     (out / "data" / "mywords_galya.json").write_text(json.dumps(theirs, ensure_ascii=False, indent=1), encoding="utf-8")
+    dads = [record(w, names.get(f"papa:{w.id}", "")) for w in papa]
+    (out / "data" / "mywords_papa.json").write_text(json.dumps(dads, ensure_ascii=False, indent=1), encoding="utf-8")
     schedule = video_schedule(videos or [])
     (out / "data" / "videos.json").write_text(json.dumps(schedule, ensure_ascii=False, indent=1), encoding="utf-8")
-    return {"words": len(records), "audio": len(names), "deck": len(mine), "galya": len(theirs), "videos": len(schedule)}
+    return {"words": len(records), "audio": len(names), "deck": len(mine), "galya": len(theirs), "papa": len(dads), "videos": len(schedule)}

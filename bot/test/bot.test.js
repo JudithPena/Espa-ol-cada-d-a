@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { beforeEach, test } from "node:test";
 import DECK from "../data/mywords.json" with { type: "json" };
 import GALYA from "../data/mywords_galya.json" with { type: "json" };
+import PAPA from "../data/mywords_papa.json" with { type: "json" };
 import WORDS from "../data/words.json" with { type: "json" };
 import bot, { publishVideos } from "../src/index.js";
 
@@ -255,6 +256,33 @@ test("колода Гали: свои слова и свой прогресс, �
     DECK.length = 0;
     GALYA.length = 0;
     GALYA.push(...saved.splice(0));
+  }
+});
+
+test("колода папы: в 8:00 по Испании шлёт занятие, кнопки «d», слов автора и Гали не видит", async () => {
+  const savedPapa = PAPA.splice(0);
+  PAPA.push(...["a", "b", "c", "d", "e", "f", "g"].map((x) => sample(x)));
+  env.PAPA_CHAT_ID = "7";
+  try {
+    const waits = [];
+    const run = async (iso) => {
+      await bot.scheduled({ scheduledTime: Date.parse(iso) }, { ...env, WORDS_HOURS: "8,19" }, { waitUntil: (p) => waits.push(p) });
+      await Promise.all(waits);
+    };
+    await run("2026-10-27T06:00:00Z"); // 8:00 по Киеву = 7:00 в Испании: папе ещё рано
+    assert.equal(calls.filter((c) => c.body.chat_id === "7").length, 0);
+    calls = [];
+    await run("2026-10-27T07:00:00Z"); // 8:00 в Испании
+    const mine = calls.filter((c) => c.body.chat_id === "7");
+    assert.equal(mine.length, 1);
+    assert.equal(mine[0].body.reply_markup.inline_keyboard[0][0].callback_data, "dgo");
+    await post({ message: { text: "/palabras", chat: { id: 7, type: "private" }, from: { id: 7 } } });
+    assert.match(calls.at(-2).body.text, /Новых слов: 5/);
+    assert.equal(calls.at(-1).body.reply_markup.inline_keyboard[0][0].callback_data.startsWith("dl:"), true);
+  } finally {
+    delete env.PAPA_CHAT_ID;
+    PAPA.length = 0;
+    PAPA.push(...savedPapa);
   }
 });
 

@@ -90,11 +90,12 @@ def validate(course, lexicon, renderer, content_dir=None) -> list[str]:
         from .videos import load_videos, video_problems
 
         problems += video_problems(load_videos(content_dir, course), lexicon, renderer)
-        from .mywords import GALYA_FOLDER, deck_problems, load_deck
+        from .mywords import GALYA_FOLDER, PAPA_FOLDER, deck_problems, load_deck
         from .wordcards import card_problems, load_cards
 
         problems += deck_problems(load_deck(content_dir))
         problems += deck_problems(load_deck(content_dir, GALYA_FOLDER))
+        problems += deck_problems(load_deck(content_dir, PAPA_FOLDER))
         problems += card_problems(course, lexicon, load_cards(content_dir))
     return problems
 
@@ -261,25 +262,25 @@ def cmd_send(args, settings) -> int:
 
 def cmd_bot_data(args, settings) -> int:
     from .botdata import export
-    from .mywords import GALYA_FOLDER, load_deck
+    from .mywords import GALYA_FOLDER, PAPA_FOLDER, load_deck
     from .videos import load_videos
     from .wordcards import load_cards
 
     course, _, _ = build(settings)
     result = export(course, Path(args.out), audio=not args.no_audio,
                     cache=Path(args.audio_cache) if args.audio_cache else None,
-                    deck=load_deck(settings.content_dir), galya=load_deck(settings.content_dir, GALYA_FOLDER), cards=load_cards(settings.content_dir),
+                    deck=load_deck(settings.content_dir), galya=load_deck(settings.content_dir, GALYA_FOLDER), papa=load_deck(settings.content_dir, PAPA_FOLDER), cards=load_cards(settings.content_dir),
                     videos=load_videos(settings.content_dir, course))
-    print(f"Слов для бота: {result['words']}, «Моих слов»: {result['deck']}, слов Гали: {result['galya']}, с озвучкой: {result['audio']}, "
+    print(f"Слов для бота: {result['words']}, «Моих слов»: {result['deck']}, слов Гали: {result['galya']}, слов папы: {result['papa']}, с озвучкой: {result['audio']}, "
           f"разборов по расписанию: {result['videos']} → {args.out}/data/")
     return 0
 
 
 def cmd_palabras(args, settings) -> int:
     from .markup import strip_tags
-    from .mywords import FOLDER, GALYA_FOLDER, find_word, load_deck, render_card
+    from .mywords import FOLDER, GALYA_FOLDER, PAPA_FOLDER, find_word, load_deck, render_card
 
-    folder = GALYA_FOLDER if args.galya else FOLDER
+    folder = GALYA_FOLDER if args.galya else PAPA_FOLDER if args.papa else FOLDER
     words = load_deck(settings.content_dir, folder)
     if args.word:
         word = find_word(words, args.word)
@@ -372,6 +373,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("word", nargs="?", help="слово или id — показать его карточку")
     p.add_argument("--html", action="store_true", help="показать HTML вместо текста")
     p.add_argument("--galya", action="store_true", help="колода Гали вместо колоды автора")
+    p.add_argument("--papa", action="store_true", help="колода папы вместо колоды автора")
     p = sub.add_parser("carta", help="карточка слова курса для повторения в боте (/repaso)")
     p.add_argument("word", nargs="?", help="слово ровно как в уроке; без слова — сколько уже с разбором")
     p.add_argument("--html", action="store_true", help="показать HTML вместо текста")

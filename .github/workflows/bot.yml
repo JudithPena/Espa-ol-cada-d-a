@@ -110,6 +110,7 @@ jobs:
           BOT_GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
           ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_REVIEW_CHAT_ID }}
           GALYA_CHAT_ID: ${{ secrets.GALYA_CHAT_ID }}
+          PAPA_CHAT_ID: ${{ secrets.PAPA_CHAT_ID }}
         run: |
           # Секрет вебхука выводится из токена бота: так он одинаковый при каждом запуске и нигде не хранится.
           webhook=$(printf 'webhook:%s' "$TELEGRAM_BOT_TOKEN" | sha256sum | cut -c1-48)
@@ -123,6 +124,7 @@ jobs:
               "GITHUB_TOKEN": os.environ.get("BOT_GITHUB_TOKEN", ""),
               "ADMIN_CHAT_ID": os.environ.get("ADMIN_CHAT_ID", ""),
               "GALYA_CHAT_ID": os.environ.get("GALYA_CHAT_ID", ""),
+              "PAPA_CHAT_ID": os.environ.get("PAPA_CHAT_ID", ""),
           }.items() if v}))
           EOF
           cd bot && npx wrangler secret bulk "$RUNNER_TEMP/secrets.json"
@@ -134,6 +136,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_REVIEW_CHAT_ID }}
           GALYA_CHAT_ID: ${{ secrets.GALYA_CHAT_ID }}
+          PAPA_CHAT_ID: ${{ secrets.PAPA_CHAT_ID }}
           BOT_URL: ${{ steps.deploy.outputs.url }}
         run: |
           webhook=$(printf 'webhook:%s' "$TELEGRAM_BOT_TOKEN" | sha256sum | cut -c1-48)
@@ -160,5 +163,13 @@ jobs:
               {\"command\": \"repaso\", \"description\": \"Повторить слова курса\"},
               {\"command\": \"progreso\", \"description\": \"Сколько слов выучено\"}]}" > /dev/null \
               || echo "::warning::Не удалось поставить меню Гали: проверьте GALYA_CHAT_ID."
+          fi
+          if [ -n "$PAPA_CHAT_ID" ]; then  # у папы своя колода
+            curl -fsS "$tg/setMyCommands" -H "Content-Type: application/json" -d "{
+              \"scope\": {\"type\": \"chat\", \"chat_id\": $PAPA_CHAT_ID}, \"commands\": [
+              {\"command\": \"palabras\", \"description\": \"Мои слова: новые и повторение\"},
+              {\"command\": \"repaso\", \"description\": \"Повторить слова курса\"},
+              {\"command\": \"progreso\", \"description\": \"Сколько слов выучено\"}]}" > /dev/null \
+              || echo "::warning::Не удалось поставить меню папы: проверьте PAPA_CHAT_ID."
           fi
           echo "Бот работает: $BOT_URL"

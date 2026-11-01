@@ -25,6 +25,7 @@ from .course import ContentError
 from .markup import check_html, escape, plain, tg_len, to_html, visible_len
 
 FOLDER = "mis_palabras"
+PAPA_FOLDER = "mis_palabras/papa"  # колода папы автора (уровень A0–A1)
 GALYA_FOLDER = "mis_palabras/galya"  # колода Гали: своя папка внутри, у автора её файлы не видны (glob не заходит в папки)
 LANGS = {"es": ("🇬🇧", "По-английски"), "en": ("🇪🇸", "По-испански")}  # язык слова → раздел аналогов
 SPEAKER = re.compile(r"^([\w ]{1,15}):\s+(.+)$")

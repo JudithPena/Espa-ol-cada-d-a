@@ -13,6 +13,7 @@
 
 import DECK from "../data/mywords.json" with { type: "json" };
 import GALYA from "../data/mywords_galya.json" with { type: "json" };
+import PAPA from "../data/mywords_papa.json" with { type: "json" };
 import VIDEOS from "../data/videos.json" with { type: "json" };
 import WORDS from "../data/words.json" with { type: "json" };
 import { handleSite } from "./site.js";
@@ -209,6 +210,11 @@ function galyaEnv(env) {
   return { ...env, WORDS_HOURS: env.GALYA_HOURS || "16", TIMEZONE: env.GALYA_TIMEZONE || "Europe/Madrid", WORDS_PER_DAY: env.GALYA_PER_DAY || "5" };
 }
 
+// Колода папы (A0–A1): одно занятие в день, в PAPA_HOURS по времени PAPA_TIMEZONE (по умолчанию 8:00 в Испании), по PAPA_PER_DAY новых слов.
+function papaEnv(env) {
+  return { ...env, WORDS_HOURS: env.PAPA_HOURS || "8", TIMEZONE: env.PAPA_TIMEZONE || "Europe/Madrid", WORDS_PER_DAY: env.PAPA_PER_DAY || "5" };
+}
+
 // Две колоды с одним и тем же занятием (deck.js). В кнопках — буква колоды и действие:
 // l — разбор прочитан, a — выбран вариант, s — показать оборот, y/n — помню / не помню, f — «Дальше» после ошибки,
 // c — карточка целиком, go — начать занятие.
@@ -247,6 +253,7 @@ const BOOKS = {
   },
   p: deckBookOf("p", () => DECK, "Пришлите Claude", undefined, LONG_INTERVALS), // «Мои слова» автора
   w: deckBookOf("w", () => GALYA, "Передайте автору бота", galyaEnv, LONG_INTERVALS), // колода Гали
+  d: deckBookOf("d", () => PAPA, "Передайте автору бота", papaEnv, LONG_INTERVALS), // колода папы
 };
 
 // «Мои слова»: личная колода одного ученика (автора или Гали). id — буква кнопок, words — слова колоды,
@@ -537,7 +544,8 @@ function isOwner(env, userId) {
 // Колода этого человека или null: чужие слова никому не показываем.
 function deckBook(env, userId) {
   if (isOwner(env, userId)) return BOOKS.p;
-  return env.GALYA_CHAT_ID && String(userId) === String(env.GALYA_CHAT_ID) ? BOOKS.w : null;
+  if (env.GALYA_CHAT_ID && String(userId) === String(env.GALYA_CHAT_ID)) return BOOKS.w;
+  return env.PAPA_CHAT_ID && String(userId) === String(env.PAPA_CHAT_ID) ? BOOKS.d : null;
 }
 
 const perDay = (env) => Number(env.WORDS_PER_DAY) || NEW_PER_DAY;
@@ -566,6 +574,7 @@ function deckSummary(p) {
 export async function sendDeckDaily(env, now = new Date()) {
   await sendDeckDailyTo(env, now, env.ADMIN_CHAT_ID, BOOKS.p);
   await sendDeckDailyTo(env, now, env.GALYA_CHAT_ID, BOOKS.w);
+  await sendDeckDailyTo(env, now, env.PAPA_CHAT_ID, BOOKS.d);
 }
 
 async function sendDeckDailyTo(env, now, chat, book) {
