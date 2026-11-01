@@ -59,6 +59,7 @@ class Word:
     register: str = ""
     synonyms: list[Synonym] = field(default_factory=list)
     analogs: list[str] = field(default_factory=list)
+    forms: list[str] = field(default_factory=list)  # «Как изменяется» (колода для начинающих): формы глагола, род и число
     dialogue: list[tuple[str, str]] = field(default_factory=list)
     cefr: str = ""
     frequency: str = ""
@@ -140,7 +141,7 @@ def _parse(raw: dict, lang: str, where: str) -> Word:
         say=str(raw.get("say", "")).strip(), pron=str(raw.get("pron", "")).strip(),
         homonym=str(raw.get("homonym", "")).strip(), origin=str(raw.get("origin", "")).strip(),
         register=str(raw.get("register", "")).strip(), synonyms=synonyms,
-        analogs=_lines(raw.get("analogs")), dialogue=dialogue, cefr=str(raw.get("cefr", "")).strip(),
+        analogs=_lines(raw.get("analogs")), forms=_lines(raw.get("forms")), dialogue=dialogue, cefr=str(raw.get("cefr", "")).strip(),
         frequency=str(raw.get("frequency", "")).strip(), collocations=_lines(raw.get("collocations")),
         collocation_example=colloc_example, trap=str(raw.get("trap", "")).strip(),
         source=where, problems=problems,
@@ -167,6 +168,8 @@ def render_card(w: Word) -> str:
     head += [f"• {_example(ex)}" for ex in w.examples]
 
     more = []
+    if w.forms:
+        more += ["📐 <b>Как изменяется</b>"] + [f"• {to_html(f)}" for f in w.forms] + [""]
     if w.origin:
         more += [f"🧩 <b>Происхождение.</b> {to_html(w.origin)}", ""]
     if w.register:
@@ -229,6 +232,8 @@ def deck_problems(words: list[Word]) -> list[str]:
             problems.append(f"{where}: примеров {len(w.examples)}, нужно 2–4")
         if len(w.synonyms) > 2:
             problems.append(f"{where}: синонимов больше двух")
+        if len(w.forms) > 8:
+            problems.append(f"{where}: «как изменяется» — не больше 8 строк")
         if w.dialogue and not 2 <= len(w.dialogue) <= 4:
             problems.append(f"{where}: в мини-диалоге 2–4 реплики")
         if w.collocations and not 3 <= len(w.collocations) <= 5:
