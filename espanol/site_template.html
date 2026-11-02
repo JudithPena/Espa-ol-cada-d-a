@@ -265,8 +265,7 @@ main { padding-block: 16px 110px; }
 .exs { display: flex; flex-wrap: wrap; gap: 8px; }
 .exw { font-family: var(--display); font-weight: 600; font-size: 17px; padding: 3px 10px; border-radius: 9px; background: var(--sunken); color: var(--ink); border: 0; cursor: pointer; }
 .exw b { color: var(--accent); background: var(--accent-soft); border-radius: 5px; padding: 0 3px; }
-.picrow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-.picrow img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 12px; background: #fff; display: block; }
+.rowpic { display: block; width: 64px; height: 64px; object-fit: contain; border-radius: 12px; margin-bottom: 6px; background: #fff; }
 .theory p.sent { padding: 9px 12px; border-left: 3px solid var(--line); background: var(--surface); border-radius: 0 10px 10px 0; }
 .theory p.sent.key { border-left-color: var(--accent); background: var(--accent-soft); }
 .theory p.sent code { font-size: 1.25em; }
@@ -745,7 +744,7 @@ const deaccent = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "");
 const firstLetter = tok => deaccent(tok.toLowerCase()).replace(/^[^a-z0-9]+/, "").charAt(0);
 
 /* ================================================================ шаги урока */
-const visLen = b => JSON.stringify({ ...b, pics: undefined }).replace(/<[^>]*>/g, "").length;
+const visLen = b => JSON.stringify({ ...b, rowpics: undefined }).replace(/<[^>]*>/g, "").length;
 // Экраны объяснения: одна мысль на экран. Заголовок идёт вместе с тем, что под ним; правило, заметка, таблица —
 // каждые на своём экране; упражнение стоит сразу после своей темы (экран-маркер {ex: блок}).
 function theoryScreens(L) {
@@ -758,7 +757,7 @@ function theoryScreens(L) {
     // Короткое вступление («Прочитайте диалог вслух…») остаётся на одном экране с диалогом.
     const lead = ["dialogue", "reading"].includes(b.t) && weight < 400;
     const own = ["header", "rule", "note", "table", "conjugation", "dialogue", "reading", "examples"].includes(b.t);
-    if (!onlyHeader() && ((own && !lead) || weight + w > 450)) flush();
+    if (!onlyHeader() && ((own && !lead) || weight + w > (b.t === "text" && w < 250 ? 1200 : 450))) flush();
     cur.push(b); weight += w;
     if (["dialogue", "reading"].includes(b.t)) flush();
   }
@@ -1127,11 +1126,6 @@ function sentences(html) {
   return parts.length > 1 && parts.every(balanced) ? parts : null;
 }
 function blockHTML(b) {
-  const row = b.pics ? `<div class="picrow">${b.pics.map(u => `<img src="${u}" alt="">`).join("")}</div>` : "";
-  const out = blockHTML0(b);
-  return b.t === "header" ? out + row : row + out;
-}
-function blockHTML0(b) {
   const box = (cls, lbl, html) => `<div class="box ${cls}"><span class="lbl">${lbl}</span>${html}</div>`;
   switch (b.t) {
     case "text": { const parts = sentences(b.html);
@@ -1146,7 +1140,7 @@ function blockHTML0(b) {
     case "list": return `<ul>${b.items.map(x => `<li>${x}</li>`).join("")}</ul>`;
     case "cando": return box("cando-box", "Теперь вы умеете", `<ul class="cando">${b.items.map(x => `<li>${x}</li>`).join("")}</ul>`);
     case "examples": return `<div class="box">${b.title ? `<span class="lbl">${b.title}</span>` : ""}<ul class="exl">${b.items.map(([es, ru, sp]) => `<li>${playBtn(sp)}<span><span class="es">${es}</span><small>${ru}</small></span></li>`).join("")}</ul></div>`;
-    case "table": return `<div class="tbl"><table>${b.title ? `<caption>${b.title}</caption>` : ""}${b.rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join("")}</tr>`).join("")}</table></div>`;
+    case "table": return `<div class="tbl"><table>${b.title ? `<caption>${b.title}</caption>` : ""}${b.rows.map((r, ri) => `<tr>${r.map((c, ci) => `<td>${ci === 0 && b.rowpics?.[ri] ? `<img class="rowpic" src="${b.rowpics[ri]}" alt="">` : ""}${c}</td>`).join("")}</tr>`).join("")}</table></div>`;
     case "conjugation": {
       const who = ["yo", "tú", "él / ella / usted", "nosotros", "vosotros", "ellos / ustedes"];
       return `<div class="tbl"><table><caption>${b.title || `${esc(b.verb)}${b.ru ? " — " + b.ru : ""}`}</caption>${b.forms.map((f, k) => `<tr><td class="muted">${who[k]}</td><td class="es">${esc(f)}</td><td style="width:44px">${playBtn(f)}</td></tr>`).join("")}</table></div>`;

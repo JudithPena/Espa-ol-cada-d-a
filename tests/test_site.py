@@ -147,14 +147,13 @@ def test_site_icons(course, tmp_path):
         assert (tmp_path / name).is_file(), name
 
 
-def test_block_art(course):
-    """Картинки к объяснениям стоят рядом с текстом темы, а не отдельным экраном."""
-    from espanol.site import BLOCK_ART
+def test_row_art(course):
+    """Картинки к объяснению стоят в своей строке таблицы, рядом с поясняемой буквой."""
+    from espanol.site import ROW_ART
 
     data = site_data(course, load_cards(CONTENT), units={0})
     lessons = {x["id"]: x for x in data["lessons"]}
-    for lesson_id, items in BLOCK_ART.items():
-        with_pics = [b for b in lessons[lesson_id]["blocks"] if b.get("pics")]
-        assert len(with_pics) == len(items), lesson_id
-        assert all(len(b["pics"]) == 4 and b["pics"][0].startswith("data:image/webp") for b in with_pics)
-        assert not any(b["t"] == "pic" for b in lessons[lesson_id]["blocks"])
+    for lesson_id, by_cell in ROW_ART.items():
+        table = next(b for b in lessons[lesson_id]["blocks"] if b["t"] == "table")
+        assert len(table["rowpics"]) == len(by_cell)
+        assert all(u.startswith("data:image/webp") for u in table["rowpics"].values())

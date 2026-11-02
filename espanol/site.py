@@ -57,20 +57,15 @@ ART_SLUGS = {
 }
 
 
-# Картинки к объяснениям (листы 2×2 из ChatGPT): урок → [(тип блока:начало текста, префикс файлов content/art)].
-# Картинки встают рядом с указанным блоком на том же экране (над текстом, под заголовком).
-BLOCK_ART = {
-    "start/vowels": [("text:Гласных всего пять", "vowels"), ("header:Где ударение", "stress")],
-    "start/consonants1": [("table:", "cons")],
+# Картинки к объяснениям (листы 2×2 из ChatGPT): урок → {первая ячейка строки таблицы: файл в content/art}.
+# Картинка встаёт в свою строку таблицы, рядом с буквой, которую поясняет.
+ROW_ART = {
+    "start/consonants1": {"h": "cons-1", "ñ": "cons-2", "ll": "cons-3", "j": "cons-4"},
 }
 
 
-def _pic_block(prefix: str) -> dict:
-    uris = []
-    for k in range(1, 5):
-        data = (ART / f"{prefix}-{k}.webp").read_bytes()
-        uris.append("data:image/webp;base64," + base64.b64encode(data).decode())
-    return uris
+def _art_file(slug: str) -> str:
+    return "data:image/webp;base64," + base64.b64encode((ART / f"{slug}.webp").read_bytes()).decode()
 
 
 def art_uri(es: str) -> str | None:
@@ -276,12 +271,11 @@ def _split(block: Block) -> list[dict]:
 
 def lesson_data(lesson: Lesson, cards: dict[str, WordCard]) -> dict:
     blocks = [b for block in lesson.blocks for b in _split(block)]
-    for anchor, prefix in BLOCK_ART.get(lesson.id, []):
-        kind, _, start = anchor.partition(":")
-        at = next((k for k, b in enumerate(blocks)
-                   if b["t"] == kind and plain(b.get("html", "")).startswith(start)), None)
-        if at is not None:
-            blocks[at]["pics"] = _pic_block(prefix)
+    by_cell = ROW_ART.get(lesson.id, {})
+    for blk in blocks:
+        if by_cell and blk["t"] == "table":
+            cells = [re.sub("<[^>]*>", "", row[0]) for row in blk["rows"]]
+            blk["rowpics"] = {str(k): _art_file(by_cell[c]) for k, c in enumerate(cells) if c in by_cell}
     return {
         "n": lesson.number, "id": lesson.id, "unit": lesson.unit.number, "level": lesson.level,
         "kind": lesson.kind, "kindLabel": lesson.kind_label, "emoji": lesson.kind_emoji,
