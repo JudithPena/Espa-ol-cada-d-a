@@ -133,10 +133,33 @@ function gTheory(section) {
     ${section.agreement ? `<div class="gagreement">${section.agreement.map(w => `<div><small>${esc(w.label)}</small><b>${esc(w.from)}</b><span>↓</span><b>${esc(w.to)}</b></div>`).join("")}</div>` : ""}
     ${section.notes?.length ? `<aside class="gnotes">${section.notes.map(n => `<p>${esc(n)}</p>`).join("")}</aside>` : ""}`;
 }
+function gUnitFinished(unit) {
+  const last = unit.exercises.at(-1);
+  return !!last && (G.route === "all" || G.route === `exercise:${last.id}`) && unit.exercises.every(g => !!P.grammar?.[grammarKey(unit,g)]);
+}
+function gFireworks() {
+  const colors = ["#7357dd","#f0aa36","#46a890","#ed7183"];
+  return `<div class="gfireworks" aria-hidden="true">${[20,50,80].map((x,k) => `<div class="gburst" style="left:${x}%;top:${20+k%2*15}%">${Array.from({length:16},(_,i) => {
+    const angle = i * Math.PI / 8;
+    return `<i style="--dx:${Math.round(Math.cos(angle)*110)}px;--dy:${Math.round(Math.sin(angle)*110)}px;--delay:${k*.3}s;--spark:${colors[i%colors.length]}"></i>`;
+  }).join("")}</div>`).join("")}</div>`;
+}
+function gFinalView(unit, tested, good) {
+  const nextUnit = COURSE.grammar[COURSE.grammar.findIndex(u => u.id === unit.id)+1];
+  const total = unit.exercises.reduce((n,g) => n+g.questions.length,0);
+  const correct = unit.exercises.reduce((n,g) => n+(P.grammar[grammarKey(unit,g)]?.correct||0),0);
+  return `<div class="player gplayer gfinal"><div class="ptop"><div class="wrap"><button class="x" data-gmain aria-label="На главную">×</button><div class="bar"><i style="width:100%"></i></div><span class="pcount">✓</span></div></div>
+    <div class="pbody">${gFireworks()}<div class="wrap gresult"><span class="gresult-icon" aria-hidden="true">🏆</span><span class="kicker" lang="es">¡Enhorabuena!</span><h2 id="g-title" tabindex="-1">Поздравляю! Урок пройден!</h2><p>${esc(unit.title)} · ${esc(unit.subtitle)}</p>
+    <div class="gfinal-score"><b>${unit.exercises.length} упражнения завершены</b><span>Лучший результат: ${correct} из ${total}</span></div>
+    ${tested.length && good<tested.length ? '<button class="btn ghost wide" data-gretry-mistakes>Повторить ошибки</button>' : ""}
+    ${nextUnit ? `<button class="btn wide" data-gnext-unit="${esc(nextUnit.id)}">Следующий урок →</button><button class="btn ghost wide" data-gmain>На главную</button>` : '<button class="btn wide" data-gmain>На главную</button>'}
+    <button class="btn ghost wide" data-gexit>К разделам урока</button></div></div><div></div></div>`;
+}
 function gPlayerView() {
   const unit = gUnit();
   if (G.ended) {
     const tested = G.steps.filter(s => s.type === "question"), good = tested.filter(s => G.responses[s.group]?.[s.qi]?.good).length;
+    if (gUnitFinished(unit)) return gFinalView(unit, tested, good);
     const next = gNextRoute(unit, G.route);
     return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="К разделам урока">×</button><div class="bar"><i style="width:100%"></i></div></div></div><div class="pbody"><div class="wrap gresult"><span class="gresult-icon">${tested.length && good < tested.length ? "🌱" : "✓"}</span><h2 id="g-title" tabindex="-1">${tested.length ? "Практика завершена" : "Раздел прочитан"}</h2>${tested.length ? `<p>Верно: <b>${good} из ${tested.length}</b></p>` : ""}<p class="muted">Лучшие результаты сохранены.</p>${good < tested.length ? '<button class="btn" data-gretry-mistakes>Повторить ошибки</button>' : ""}${next ? `<button class="btn ${good < tested.length ? "ghost" : ""}" data-gstart="${esc(next)}">Следующий раздел →</button>` : ""}<button class="btn ghost" data-gexit>К разделам урока</button></div></div><div></div></div>`;
   }

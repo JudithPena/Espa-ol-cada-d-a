@@ -172,3 +172,16 @@ test('typed answers always keep manual next, whether correct or incorrect', () =
  assert.equal(run('scheduled'),0);
  assert.ok(run('gPlayerView()').includes('data-gnext'));
 });
+test('completion celebrates the whole unit and offers a next lesson only when available', () => {
+ const run=context();
+ unlockUntil(run,'exercise:1.3');
+ run('gStart(COURSE.grammar[0].id,"exercise:1.3");gMove(1);while(!G.ended){const step=G.steps[G.at],group=gGroups(gUnit()).find(g=>g.id===step.group);gResponse(step).value=group.questions[step.qi].answers[0];gCheck();gMove(1);}');
+ let html=run('gPlayerView()');
+ assert.ok(html.includes('Поздравляю! Урок пройден!'));
+ assert.ok(html.includes('gfireworks') && html.includes('data-gmain'));
+ assert.ok(!html.includes('data-gnext-unit'));
+ run('COURSE.grammar.push({...COURSE.grammar[0],id:"next-unit"})');
+ assert.ok(run('gPlayerView()').includes('data-gnext-unit="next-unit"'));
+ run('G.route="section:0";');
+ assert.ok(!run('gPlayerView()').includes('Поздравляю! Урок пройден!'));
+});

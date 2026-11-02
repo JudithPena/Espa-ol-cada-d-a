@@ -437,6 +437,15 @@ html.grammar-playing, html.grammar-playing body { overflow: hidden; }
 .mcard.glocked { opacity: .58; box-shadow: none; }
 .gresult { justify-items: center; text-align: center; padding-top: 8vh !important; }
 .gresult-icon { font-size: 64px; color: var(--good); }
+.gfinal .pbody { position: relative; }
+.gfinal .gresult { position: relative; z-index: 1; max-width: 560px; padding-top: 5vh !important; padding-bottom: 32px; }
+.gfinal-score { display: grid; gap: 6px; padding: 16px 22px; border-radius: 16px; background: var(--accent-soft); width: 100%; }
+.gfinal-score span { font-size: 14px; color: var(--muted); }
+.gfireworks { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.gburst { position: absolute; }
+.gburst i { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: var(--spark); opacity: 0; animation: grammar-firework 1.6s var(--delay) ease-out both; }
+@keyframes grammar-firework { 0% { transform: translate(0,0) scale(.2); opacity: 0; } 12% { opacity: 1; } 80% { opacity: .6; } 100% { transform: translate(var(--dx),var(--dy)) scale(.2); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .gfireworks { display: none; } }
 .gplayer .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 @media (min-width: 680px) {
   .gquestion-work.has-image { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 28px; }
@@ -1411,6 +1420,8 @@ document.addEventListener("click", e => {
   const el = e.target.closest("button, .spoiler, [data-say]");
   if (!el) return;
   const d = el.dataset;
+  if ("gmain" in d) { gCancelAuto(); gSave(); G = null; view.tab = "home"; render(); window.scrollTo(0,0); return; }
+  if (d.gnextUnit) return gStart(d.gnextUnit,"all");
   if (d.gstart) return gStart(G?.unit || view.grammar, d.gstart);
   if ("gresume" in d) return gStart(view.grammar, "all", true);
   if ("gexit" in d) return gExit();
