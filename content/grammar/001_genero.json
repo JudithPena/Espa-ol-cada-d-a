@@ -175,7 +175,7 @@
         }
       ],
       "notes": [
-        "Это частые модели, а не правило для всех слов. Например, piloto и modelo сохраняют -o: el piloto → la piloto, el modelo → la modelo.",
+        "Эти модели подходят не всем словам: modelo сохраняет -o — el modelo / la modelo. Для женщины-пилота верны la piloto и la pilota; вариант la piloto более распространён.",
         "В написании некоторых пар меняется значок ударения: bailarín → bailarina, marqués → marquesa."
       ]
     },
@@ -183,7 +183,7 @@
       "title": "C. Меняем только артикль",
       "paragraphs": [
         "У многих названий людей на -ante и -ista мужская и женская формы совпадают. Чтобы назвать женщину, меняем el на la, а само слово оставляем прежним.",
-        "Так же ведут себя некоторые другие слова: piloto, modelo, paciente, joven."
+        "Так же сохраняют форму modelo, paciente и joven. У piloto возможны два варианта женского рода: la piloto и la pilota."
       ],
       "table": {
         "heads": [
@@ -262,7 +262,7 @@
             "answers": [
               "dependiente"
             ],
-            "explain": "Dependiente → dependienta. У estudiante и cantante форма сохраняется.",
+            "explain": "У dependiente есть женская форма dependienta; допустимо и la dependiente. У estudiante и cantante форма сохраняется.",
             "options": [
               "estudiante",
               "cantante",
@@ -281,7 +281,7 @@
         }
       ],
       "notes": [
-        "Сравни: dependiente → dependienta, но paciente → paciente."
+        "Частая пара — dependiente / dependienta. Допустимо и la dependiente. У paciente форма не меняется: el paciente / la paciente."
       ]
     },
     {
@@ -333,7 +333,7 @@
           ],
           [
             "el médico",
-            "la médica / la médico",
+            "la médica",
             "врач"
           ],
           [
@@ -388,7 +388,7 @@
       },
       "notes": [
         "Mujer = «женщина» или «жена»: hombre — mujer, marido — mujer.",
-        "Два варианта по учебнику: la médica / la médico; la jefa / la jefe. В упражнениях принимаются оба."
+        "Для женщины-врача используем la médica. Для начальницы чаще говорят la jefa; вариант la jefe тоже допустим."
       ]
     },
     {
@@ -583,9 +583,10 @@
         {
           "prompt": "№ 7",
           "answers": [
-            "la piloto"
+            "la piloto",
+            "la pilota"
           ],
-          "explain": "По модели со страницы учебника: el piloto — la piloto.",
+          "explain": "Оба варианта верны: la piloto и la pilota. La piloto более распространено; RAE также допускает la pilota.",
           "options": [
             "el piloto",
             "la piloto",
@@ -656,7 +657,7 @@
             "jefa",
             "jefe"
           ],
-          "explain": "Основная форма — jefa. Вариант jefe с женским артиклем тоже указан на странице учебника."
+          "explain": "Чаще употребляется jefa. Вариант la jefe также допустим по DPD RAE–ASALE."
         },
         {
           "prompt": "el marido → la ___",
@@ -731,9 +732,10 @@
         {
           "prompt": "el dependiente → la ___",
           "answers": [
-            "dependienta"
+            "dependienta",
+            "dependiente"
           ],
-          "explain": "У этого слова окончание -e заменяется на -a: dependienta."
+          "explain": "Частая женская форма — dependienta. По DPD также допустимо la dependiente."
         },
         {
           "prompt": "el amigo → la ___",
@@ -745,10 +747,9 @@
         {
           "prompt": "el médico → la ___",
           "answers": [
-            "médica",
-            "médico"
+            "médica"
           ],
-          "explain": "Основная форма — médica. На странице также дано la médico. Значок ударения сохраняется."
+          "explain": "По DPD женская форма названия профессии — médica: la médica. Для женщины не используем la médico. Значок ударения сохраняется."
         }
       ]
     },

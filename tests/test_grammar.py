@@ -16,7 +16,9 @@ def test_unit_covers_supplied_page(course):
     assert all(s.get("check") for s in unit["sections"])
     feminine = unit["exercises"][1]["questions"]
     assert feminine[1]["answers"] == ["jefa", "jefe"]
-    assert feminine[-1]["answers"] == ["médica", "médico"]
+    assert feminine[-1]["answers"] == ["médica"]
+    assert feminine[12]["answers"] == ["dependienta", "dependiente"]
+    assert pictures[6]["answers"] == ["la piloto", "la pilota"]
     family = unit["exercises"][2]
     assert [b["child"] for b in family["family"]["branches"]] == ["Julio", "Laura"]
     assert family["questions"][2]["answers"] == ["hermana"]

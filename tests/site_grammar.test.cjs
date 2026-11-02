@@ -29,6 +29,13 @@ test('Spanish answers accept alternatives and NFC but preserve ñ and stress', (
  assert.equal(run('grammarCorrect(COURSE.grammar[0].exercises[1].questions[14], "medica")'),false);
  assert.equal(run('grammarCorrect(COURSE.grammar[0].exercises[1].questions[11], "nina")'),false);
 });
+test('current RAE variants are accepted without preserving obsolete textbook answers', () => {
+ const run=context();
+ assert.equal(run('grammarCorrect(COURSE.grammar[0].exercises[0].questions[6], "la pilota")'),true);
+ assert.equal(run('grammarCorrect(COURSE.grammar[0].exercises[0].questions[6], "la piloto")'),true);
+ assert.equal(run('grammarCorrect(COURSE.grammar[0].exercises[1].questions[12], "dependiente")'),true);
+ assert.equal(run('grammarCorrect(COURSE.grammar[0].exercises[1].questions[14], "médico")'),false);
+});
 test('retries cannot farm XP and progress keeps the best score', () => {
  const run=context();
  run('var u=COURSE.grammar[0], g=u.exercises[0]; gradeGrammar(u,g,g.questions.map(q=>q.answers[0]));');
