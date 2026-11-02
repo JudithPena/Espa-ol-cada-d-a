@@ -15,6 +15,8 @@ import DECK from "../data/mywords.json" with { type: "json" };
 import GALYA from "../data/mywords_galya.json" with { type: "json" };
 import PAPA from "../data/mywords_papa.json" with { type: "json" };
 import VIDEOS from "../data/videos.json" with { type: "json" };
+import GRAMMAR from "../../content/grammar.json" with { type: "json" };
+import { sendGrammarDaily } from "./grammar.js";
 import WORDS from "../data/words.json" with { type: "json" };
 import { handleSite } from "./site.js";
 import {
@@ -53,6 +55,7 @@ export default {
     const hour = localHour(now, env.TIMEZONE);
     if (numbers(env.PUBLISH_HOURS).includes(hour)) ctx.waitUntil(dispatchPublish(env));
     ctx.waitUntil(publishVideos(env, now));
+    ctx.waitUntil(sendGrammarDaily(env, now, GRAMMAR));
     ctx.waitUntil(sendDeckDaily(env, now)); // у каждой колоды свои часы и свой часовой пояс
   },
 };
