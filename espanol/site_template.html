@@ -775,12 +775,15 @@ function exerciseSteps(L, pool, only) {
   }));
   return out;
 }
-function practiceFor(i) {
+// asked — ответы, которые урок уже спросил в упражнениях объяснения: их второй раз не задаём.
+// Каждое слово — один вопрос: «Что значит», «Как по-испански» или на слух (двум словам).
+function practiceFor(i, asked = new Set()) {
   const L = LESSONS[i], pool = knownPool(i), steps = [];
-  const fresh = L.words.filter(w => w.srs);
-  fresh.forEach((w, k) => { const q = wordQuestion(w, pool, k % 2 ? "prod" : "rec"); if (q) steps.push(q); });
-  shuffle(fresh).slice(0, 2).forEach(w => { const q = wordQuestion(w, pool, "listen"); if (q) steps.push(q); });
-  const phrases = shuffle(L.sentences), heard = phrases.length && canSay(phrases[0][0]) ? 1 : 0;
+  const fresh = L.words.filter(w => w.srs && !asked.has(norm(w.es)));
+  const heardWords = new Set(shuffle(fresh).slice(0, 2));
+  fresh.forEach((w, k) => { const q = (heardWords.has(w) && wordQuestion(w, pool, "listen")) || wordQuestion(w, pool, k % 2 ? "prod" : "rec"); if (q) steps.push(q); });
+  const wordSet = new Set(fresh.map(w => norm(w.es)));
+  const phrases = shuffle(L.sentences.filter(([es]) => !asked.has(norm(es)) && !wordSet.has(norm(es)))), heard = phrases.length && canSay(phrases[0][0]) ? 1 : 0;
   phrases.slice(0, heard).forEach(([es, ru]) => steps.push({ type: "mf", es, ru }));
   phrases.slice(heard, heard + 2).forEach(([es, ru]) => steps.push({ type: "build", es, ru }));
   const vocab = shuffle(steps);
@@ -793,7 +796,8 @@ function practiceFor(i) {
   // Тест темы и повторение без своих слов: добавляем слова этой темы и прошлых.
   if (all.filter(s => s.type !== "task").length < 6) {
     const unitPool = pool.filter(w => LESSONS[w.li].unit === L.unit);
-    const extra = shuffle(unitPool.length >= 6 ? unitPool : pool).slice(0, 8 - Math.min(all.length, 4));
+    const used = new Set([...asked, ...all.filter(s => s.word).map(s => norm(s.word.es))]);
+    const extra = shuffle((unitPool.length >= 6 ? unitPool : pool).filter(w => !used.has(norm(w.es)))).slice(0, 8 - Math.min(all.length, 4));
     extra.forEach((w, k) => { const q = wordQuestion(w, pool, k % 3 === 2 ? "listen" : k % 2 ? "prod" : "rec"); if (q) all.unshift(q); });
   }
   return all;
@@ -839,7 +843,8 @@ function startLesson(i) {
   L.words.forEach(w => learn.push({ type: "word", word: w }));
   const pool = knownPool(i);
   screens.forEach(sc => Array.isArray(sc) ? learn.push({ type: "theory", blocks: sc }) : learn.push(...exerciseSteps(L, pool, sc.ex).slice(0, 6)));
-  const practice = practiceFor(i);   // задания сразу после объяснения, без заставки
+  const asked = new Set(learn.filter(s => s.type === "mc" && s.plain).map(s => norm(s.plain[s.correct])));
+  const practice = practiceFor(i, asked);   // задания сразу после объяснения, без заставки
   S = { kind: "lesson", li: i, pool: knownPool(i), steps: learn.concat(practice), at: 0, firstTry: 0, graded: 0, seen: new Set(), state: null };
   render();
 }
@@ -877,7 +882,7 @@ function answer(ok, st, { requeue = true } = {}) {
     S.seen.add(st); S.graded++; if (ok) S.firstTry++;
     if (st.word) grade(st.word.es, ok);           // расписание повторения меняем сразу
   }
-  if (!ok && requeue) S.steps.push(retryOf(st));
+  if (!ok && requeue && !st.retry) S.steps.push(retryOf(st));   // ошибка возвращается один раз, не по кругу
   if (ok) say(["build", "mf"].includes(st.type) ? st.es : st.mode === "prod" || st.mode === "listen" ? st.word?.say : "");
   render();
   sfx(ok);
@@ -1331,7 +1336,7 @@ function stepFoot(st) {
     if (["build", "mf"].includes(st.type)) right = `<span class="ans">${esc(st.es)}</span><span class="ex">${esc(st.ru)}</span>`;
     const ex = st.explain ? `<span class="ex">${st.explain}</span>` : "";
     const title = good ? ["Отлично!", "Верно!", "¡Muy bien!", "¡Perfecto!"][Math.floor(Math.random() * 4)]
-      : ["build", "mf"].includes(st.type) ? `Готово, но с подсказками: ${s.err}` : "Ошибка, это задание вернётся";
+      : ["build", "mf"].includes(st.type) ? `Готово, но с подсказками: ${s.err}` : st.retry ? "Ошибка" : "Ошибка, это задание вернётся";
     return `<div class="pfoot ${good ? "good" : "bad"}"><div class="wrap">
       <div class="fb"><h3>${title}</h3>${right}${ex}</div>
       <button class="btn wide ${good ? "good" : "bad"}" data-next>Продолжить</button></div></div>`;
