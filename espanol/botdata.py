@@ -144,6 +144,19 @@ def video_schedule(videos: list) -> list[dict]:
             for v in sorted(videos, key=lambda v: v.number) if v.publish_at]
 
 
+def _copy_images(out: Path, folder: str, words: list, records: list[dict]) -> None:
+    """Иллюстрации колоды: файл с именем по хешу содержимого, адрес — в записи слова."""
+    image_dir = out / "public" / "images" / folder
+    image_dir.mkdir(parents=True, exist_ok=True)
+    for word, data in zip(words, records):
+        if word.image:
+            image = Path(word.image)
+            content = image.read_bytes()
+            filename = hashlib.sha256(content).hexdigest()[:20] + image.suffix.lower()
+            (image_dir / filename).write_bytes(content)
+            data["image"] = f"images/{folder}/{filename}"
+
+
 def export(course: Course, out: Path, audio: bool = True, cache: Path | None = None,
            workers: int = 6, deck: list[Word] | None = None, cards: dict[str, WordCard] | None = None,
            videos: list | None = None, galya: list[Word] | None = None, papa: list[Word] | None = None) -> dict:
@@ -176,17 +189,10 @@ def export(course: Course, out: Path, audio: bool = True, cache: Path | None = N
     mine = [record(w, names.get(f"deck:{w.id}", "")) for w in deck]
     (out / "data" / "mywords.json").write_text(json.dumps(mine, ensure_ascii=False, indent=1), encoding="utf-8")
     theirs = [record(w, names.get(f"galya:{w.id}", "")) for w in galya]
+    _copy_images(out, "galya", galya, theirs)
     (out / "data" / "mywords_galya.json").write_text(json.dumps(theirs, ensure_ascii=False, indent=1), encoding="utf-8")
     dads = [record(w, names.get(f"papa:{w.id}", "")) for w in papa]
-    image_dir = out / "public" / "images" / "papa"
-    image_dir.mkdir(parents=True, exist_ok=True)
-    for word, data in zip(papa, dads):
-        if word.image:
-            image = Path(word.image)
-            content = image.read_bytes()
-            filename = hashlib.sha256(content).hexdigest()[:20] + image.suffix.lower()
-            (image_dir / filename).write_bytes(content)
-            data["image"] = f"images/papa/{filename}"
+    _copy_images(out, "papa", papa, dads)
     (out / "data" / "mywords_papa.json").write_text(json.dumps(dads, ensure_ascii=False, indent=1), encoding="utf-8")
     schedule = video_schedule(videos or [])
     (out / "data" / "videos.json").write_text(json.dumps(schedule, ensure_ascii=False, indent=1), encoding="utf-8")
