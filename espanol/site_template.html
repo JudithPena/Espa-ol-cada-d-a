@@ -210,6 +210,7 @@ main { padding-block: 16px 110px; }
 .player { position: fixed; inset: 0; z-index: 6; background: var(--bg); padding-top: env(safe-area-inset-top, 0px); display: grid; grid-template-rows: auto 1fr auto; }
 .ptop .wrap { display: flex; align-items: center; gap: 14px; padding-block: 12px; }
 .x { border: 0; background: none; font-size: 26px; line-height: 1; color: var(--muted); padding: 4px; }
+.x.prev { font-size: 22px; margin-left: -6px; }
 .ptop .bar { flex: 1; height: 14px; border-radius: 8px; }
 .ptop .bar i { background: var(--good); }
 .pcount { font-size: 13px; font-weight: 800; color: var(--muted); font-variant-numeric: tabular-nums; }
@@ -840,6 +841,20 @@ function sfx(ok) {
     }
   } catch (e) {}
 }
+// Назад — к ближайшему экрану с объяснением (слово, теория): уже отвеченные вопросы не пересдаём.
+function prevIndex() {
+  if (!S || S.kind === "result") return -1;
+  for (let k = S.at - 1; k >= 0; k--) if (!isGraded(S.steps[k]) && S.steps[k].type !== "task") return k;
+  return -1;
+}
+function prev() {
+  const k = prevIndex();
+  if (k < 0) return;
+  clearTimeout(autoTimer);
+  S.at = k; S.state = null;
+  render();
+  window.scrollTo(0, 0);
+}
 function next() {
   clearTimeout(autoTimer);
   S.at++; S.state = null;
@@ -1266,7 +1281,7 @@ function playerView() {
   }
   const total = S.steps.length, pct = Math.round(S.at / total * 100);
   return `<div class="player">
-    <div class="ptop"><div class="wrap"><button class="x" data-quit aria-label="Выйти из урока">×</button><div class="bar"><i style="width:${pct}%"></i></div><span class="pcount">${S.at + 1}/${total}</span></div></div>
+    <div class="ptop"><div class="wrap"><button class="x" data-quit aria-label="Выйти из урока">×</button>${prevIndex() >= 0 ? '<button class="x prev" data-prev aria-label="Назад">←</button>' : ""}<div class="bar"><i style="width:${pct}%"></i></div><span class="pcount">${S.at + 1}/${total}</span></div></div>
     <div class="pbody"><div class="wrap">${stepBody(st)}</div></div>
     ${stepFoot(st)}
   </div>`;
@@ -1501,6 +1516,7 @@ document.addEventListener("click", e => {
     return render();
   }
   if (!S || S.kind === "result") return;
+  if ("prev" in d) return prev();
   const st = S.steps[S.at], s = S.state;
   if (d.opt != null && !s.result) { s.pick = +d.opt; return answer(s.pick === st.correct, st); }
   if (d.pick != null && !s.result) return buildPick(+d.pick);
