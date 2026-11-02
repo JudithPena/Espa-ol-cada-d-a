@@ -105,7 +105,7 @@ function grammarView() {
   };
   return `<button class="btn ghost sm back" data-grammar-list>← Все уроки грамматики</button><span class="eyebrow">Unidad ${unit.number} · ${esc(unit.level)}</span><h2>${esc(unit.title)}</h2><p class="muted">${esc(unit.subtitle)}</p>
     <div class="gactions">${resume ? '<button class="btn" data-gresume>Продолжить урок</button>' : ""}<button class="btn ${resume ? "ghost" : ""}" data-gstart="all">${resume ? "Начать сначала" : "Пройти весь урок"}</button></div>
-    <h3 class="sech">Теория и мини-проверки</h3><div class="menu">${unit.sections.map((s, i) => row(`section:${i}`, s.title, "Правило → мини-проверка", s.check)).join("")}${row("summary", "Что запомнить", "Краткая таблица правил")}</div>
+    <h3 class="sech">Теория и мини-проверки</h3><div class="menu">${unit.sections.map((s, i) => row(`section:${i}`, s.title, "Правило → мини-проверка", s.check)).join("")}${row("summary", "Что запомнить", "Правила с примерами")}</div>
     <h3 class="sech">Упражнения</h3><div class="menu">${unit.exercises.map(g => row(`exercise:${g.id}`, g.title, `${g.questions.length} заданий · по одному на экран`, g)).join("")}</div>`;
 }
 function gTheory(section) {
@@ -147,7 +147,7 @@ function gPlayerView() {
   const step = G.steps[G.at], group = step.group && gGroups(unit).find(g => g.id === step.group), response = gResponse(step);
   let title, content, kicker = "Грамматика";
   if (step.type === "theory") { const section = unit.sections[step.section]; title = section.title; content = gTheory(section); kicker = "Правило"; }
-  if (step.type === "summary") { title = "Что запомнить"; content = grammarTable(unit.summary); kicker = "Кратко"; }
+  if (step.type === "summary") { title = "Что запомнить"; content = unit.summary.schemes ? `<div class="gsummary-cards">${grammarSchemes(unit.summary.schemes)}</div>` : grammarTable(unit.summary); kicker = "Кратко"; }
   if (step.type === "intro") {
     title = group.title; kicker = "Упражнение";
     content = `<p>${esc(group.instruction)}</p>${group.family ? grammarFamily(group.family) : ""}${group.example ? `<div class="gworked-example"><small>${esc(group.example.label)}</small><b>${esc(group.example.es)}</b><small>${esc(group.example.ru)}</small></div>` : ""}<p class="muted">${group.questions.length} заданий. Отвечай по одному — пояснение появится после проверки.</p>`;

@@ -517,6 +517,86 @@
         "Другое слово",
         "padre → madre"
       ]
+    ],
+    "schemes": [
+      {
+        "label": "1. Заменяем окончание -o на -a",
+        "from": "el hijo",
+        "to": "la hija",
+        "change": {
+          "from": "o",
+          "to": "a"
+        },
+        "translations": [
+          [
+            "сын",
+            "дочь"
+          ]
+        ]
+      },
+      {
+        "label": "2. В некоторых словах заменяем -e на -a",
+        "from": "el dependiente",
+        "to": "la dependienta",
+        "change": {
+          "from": "e",
+          "to": "a"
+        },
+        "translations": [
+          [
+            "продавец",
+            "продавщица"
+          ]
+        ]
+      },
+      {
+        "label": "3. После согласной добавляем -a",
+        "from": "el profesor",
+        "to": "la profesora",
+        "change": {
+          "from": "",
+          "to": "a"
+        },
+        "translations": [
+          [
+            "преподаватель",
+            "преподавательница"
+          ]
+        ]
+      },
+      {
+        "label": "4. Меняем артикль, сохраняем слово",
+        "from": "el estudiante",
+        "to": "la estudiante",
+        "translations": [
+          [
+            "студент",
+            "студентка"
+          ]
+        ]
+      },
+      {
+        "label": "5. Запоминаем особую женскую форму",
+        "from": "el actor",
+        "to": "la actriz",
+        "translations": [
+          [
+            "актёр",
+            "актриса"
+          ]
+        ]
+      },
+      {
+        "label": "6. Используем другое слово",
+        "from": "el padre",
+        "to": "la madre",
+        "translations": [
+          [
+            "отец",
+            "мать"
+          ]
+        ]
+      }
     ]
   },
   "exercises": [
