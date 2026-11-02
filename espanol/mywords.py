@@ -185,8 +185,6 @@ def render_card(w: Word) -> str:
         more += [f"🔄 <b>Синоним: {escape(syn.word)}</b>"]
         more += [f"• <i>{to_html(s)}</i>" for s in syn.pair]
         more += [f"– {to_html(d)}" for d in syn.diff] + [""]
-    if not w.synonyms:
-        more += ["🔄 Близких синонимов нет.", ""]
     if w.analogs:
         flag, title = LANGS.get(w.lang, LANGS["es"])
         more += [f"{flag} <b>{title}</b>"] + [f"• {to_html(a)}" for a in w.analogs]

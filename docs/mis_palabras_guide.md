@@ -43,7 +43,7 @@ words:
       - "Echo de menos a mi familia. — Я скучаю по своей семье."
     origin: "Морфология и этимология."
     register: "Регистр."
-    synonyms:                          # 1–2, или [] — тогда «Близких синонимов нет.»
+    synonyms:                          # 1–2, или [] — тогда рубрики синонимов в карточке нет
       - word: extrañar
         pair: ["Echo de menos mi casa.", "Extraño mi casa."]  # то же предложение с синонимом
         diff: ["extrañar — обычное слово в Латинской Америке"]
