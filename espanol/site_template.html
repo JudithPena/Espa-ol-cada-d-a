@@ -451,6 +451,25 @@ html.grammar-playing, html.grammar-playing body { overflow: hidden; }
 .gplayer .gschemes, .gplayer .gnotes, .gplayer .gagreement { margin: 0; }
 .gplayer .gscheme { padding: 12px 14px; }
 .gplayer .ginstruction { margin: 0; }
+.gplayer:has(.gintro) .pbody .wrap { padding-block: clamp(24px, 6vh, 64px); }
+.gintro { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 28px; display: grid; gap: 28px; box-shadow: var(--shadow); }
+.gintro.has-visual { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; }
+.gintro-copy p { font-size: 19px; line-height: 1.6; margin: 18px 0 0; }
+.gintro-copy .gintro-tip { font-size: 14px; }
+.gintro-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.gintro-tags span { background: var(--accent-soft); color: var(--accent); border-radius: 20px; padding: 5px 12px; font-size: 13px; font-weight: 700; }
+.gintro-art { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; padding: 28px 0; }
+.gintro-art img { width: 125%; height: auto; border-radius: 18px; border: 4px solid var(--surface); box-shadow: var(--shadow); transform: rotate(-9deg); }
+.gintro-art img:nth-child(2) { position: relative; z-index: 1; transform: translateY(-18px) rotate(4deg); }
+.gintro-art img:last-child { width: 100%; transform: translateY(14px) rotate(10deg); }
+.gintro-demo { display: grid; gap: 14px; padding: 24px; border-radius: 18px; background: var(--accent-soft); }
+.gintro-source { font-size: 21px; font-weight: 700; }
+.gintro-source span { padding-inline: 8px; color: var(--accent); }
+.gintro-answer { display: flex; justify-content: space-between; gap: 12px; background: var(--surface); padding: 12px 16px; border: 2px solid var(--good); border-radius: 12px; font-size: 24px; font-weight: 700; }
+.gintro-answer span { color: var(--good); }
+.gintro-family { grid-column: 1 / -1; }
+.gintro-family .gfamily { margin: 0; }
+@media (max-width: 600px) { .gintro { padding: 20px; gap: 20px; } .gintro.has-visual { grid-template-columns: 1fr; } .gintro-art { max-width: 280px; justify-self: center; } .gintro-copy p { font-size: 17px; } .gintro-demo { padding: 18px; } }
 .gplayer .ginput { font-size: 19px; }
 .gplayer-actions { display: grid; grid-template-columns: auto 1fr; gap: 12px; }
 .gpick-hint { align-self: center; justify-self: center; text-align: center; font-size: 14px; }

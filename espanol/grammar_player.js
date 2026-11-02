@@ -136,6 +136,12 @@ function gFinalView(unit, tested, good) {
     ${nextUnit ? `<button class="btn wide" data-gnext-unit="${esc(nextUnit.id)}">Следующий урок →</button><button class="btn ghost wide" data-gmain>На главную</button>` : '<button class="btn wide" data-gmain>На главную</button>'}
     <button class="btn ghost wide" data-gexit>К разделам урока</button></div></div><div></div></div>`;
 }
+function gIntro(group) {
+  const pictures = group.questions.filter(q => q.image).slice(0,3);
+  const preview = group.preview;
+  const visual = pictures.length ? `<div class="gintro-art" aria-hidden="true">${pictures.map(q => `<img src="${esc(q.image)}" alt="" width="384" height="384">`).join("")}</div>` : preview ? `<div class="gintro-demo"><span class="kicker">Образец</span><div class="gintro-source" lang="es">${esc(preview.source)} <span aria-hidden="true">→</span> la</div><div class="gintro-answer" lang="es">${esc(preview.answer)}<span aria-hidden="true">✓</span></div><span class="muted">${esc(preview.translation)}</span></div>` : "";
+  return `<div class="gintro ${visual ? "has-visual" : ""}">${visual}<div class="gintro-copy"><div class="gintro-tags"><span>${group.questions.length} заданий</span><span>${pictures.length ? "Выбор ответа" : group.family ? "Родственные связи" : "Ввод слова"}</span></div><p>${esc(group.instruction)}</p>${preview ? '<p class="muted gintro-tip">Как в образце: впиши только недостающее слово.</p>' : ""}</div>${group.family ? `<div class="gintro-family">${grammarFamily(group.family)}</div>` : ""}${group.example ? `<div class="gworked-example gintro-family"><small>${esc(group.example.label)}</small><b>${esc(group.example.es)}</b><small>${esc(group.example.ru)}</small></div>` : ""}</div>`;
+}
 function gPlayerView() {
   const unit = gUnit();
   if (G.ended) {
@@ -150,7 +156,7 @@ function gPlayerView() {
   if (step.type === "summary") { title = "Что запомнить"; content = unit.summary.schemes ? `<div class="gsummary-cards">${grammarSchemes(unit.summary.schemes)}</div>` : grammarTable(unit.summary); kicker = "Кратко"; }
   if (step.type === "intro") {
     title = group.title; kicker = "Упражнение";
-    content = `<p>${esc(group.instruction)}</p>${group.family ? grammarFamily(group.family) : ""}${group.example ? `<div class="gworked-example"><small>${esc(group.example.label)}</small><b>${esc(group.example.es)}</b><small>${esc(group.example.ru)}</small></div>` : ""}<p class="muted">${group.questions.length} заданий. Отвечай по одному — пояснение появится после проверки.</p>`;
+    content = gIntro(group);
   }
   if (step.type === "question") {
     const q = group.questions[step.qi], block = (group.questionBlocks || []).filter(b => b.at <= step.qi).at(-1);
