@@ -57,6 +57,22 @@ ART_SLUGS = {
 }
 
 
+# Картинки к объяснениям (листы 2×2 из ChatGPT): урок → [(тип блока:начало текста, префикс файлов content/art)].
+# Лист показывается отдельным экраном перед указанным блоком.
+BLOCK_ART = {
+    "start/vowels": [("text:Гласных всего пять", "vowels"), ("header:Где ударение", "stress")],
+    "start/consonants1": [("table:", "cons")],
+}
+
+
+def _pic_block(prefix: str) -> dict:
+    uris = []
+    for k in range(1, 5):
+        data = (ART / f"{prefix}-{k}.webp").read_bytes()
+        uris.append("data:image/webp;base64," + base64.b64encode(data).decode())
+    return {"t": "pic", "imgs": uris}
+
+
 def art_uri(es: str) -> str | None:
     """Картинка слова из content/art (лист из нейросети, нарезанный на части) как data-URI."""
     slug = ART_SLUGS.get(es)
@@ -260,6 +276,12 @@ def _split(block: Block) -> list[dict]:
 
 def lesson_data(lesson: Lesson, cards: dict[str, WordCard]) -> dict:
     blocks = [b for block in lesson.blocks for b in _split(block)]
+    for anchor, prefix in BLOCK_ART.get(lesson.id, []):
+        kind, _, start = anchor.partition(":")
+        at = next((k for k, b in enumerate(blocks)
+                   if b["t"] == kind and plain(b.get("html", "")).startswith(start)), None)
+        if at is not None:
+            blocks.insert(at, _pic_block(prefix))
     return {
         "n": lesson.number, "id": lesson.id, "unit": lesson.unit.number, "level": lesson.level,
         "kind": lesson.kind, "kindLabel": lesson.kind_label, "emoji": lesson.kind_emoji,

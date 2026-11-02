@@ -145,3 +145,15 @@ def test_site_icons(course, tmp_path):
     assert 'rel="apple-touch-icon"' in html and 'rel="manifest"' in html
     for name in ("apple-touch-icon.png", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "manifest.webmanifest"):
         assert (tmp_path / name).is_file(), name
+
+
+def test_block_art(course):
+    """Картинки к объяснениям встают отдельными экранами перед своей темой."""
+    from espanol.site import BLOCK_ART
+
+    data = site_data(course, load_cards(CONTENT), units={0})
+    lessons = {x["id"]: x for x in data["lessons"]}
+    for lesson_id, items in BLOCK_ART.items():
+        pics = [b for b in lessons[lesson_id]["blocks"] if b["t"] == "pic"]
+        assert len(pics) == len(items), lesson_id
+        assert all(len(p["imgs"]) == 4 and p["imgs"][0].startswith("data:image/webp") for p in pics)

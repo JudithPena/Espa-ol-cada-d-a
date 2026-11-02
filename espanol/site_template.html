@@ -265,6 +265,8 @@ main { padding-block: 16px 110px; }
 .exs { display: flex; flex-wrap: wrap; gap: 8px; }
 .exw { font-family: var(--display); font-weight: 600; font-size: 17px; padding: 3px 10px; border-radius: 9px; background: var(--sunken); color: var(--ink); border: 0; cursor: pointer; }
 .exw b { color: var(--accent); background: var(--accent-soft); border-radius: 5px; padding: 0 3px; }
+.picgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.picgrid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 14px; background: #fff; display: block; }
 .theory ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
 .cando { list-style: none; padding: 0 !important; }
 .cando li::before { content: "✓ "; color: var(--good); font-weight: 800; }
@@ -752,7 +754,7 @@ function theoryScreens(L) {
     const w = visLen(b);
     // Короткое вступление («Прочитайте диалог вслух…») остаётся на одном экране с диалогом.
     const lead = ["dialogue", "reading"].includes(b.t) && weight < 400;
-    const own = ["header", "rule", "note", "table", "conjugation", "dialogue", "reading", "examples"].includes(b.t);
+    const own = ["pic", "header", "rule", "note", "table", "conjugation", "dialogue", "reading", "examples"].includes(b.t);
     if (!onlyHeader() && ((own && !lead) || weight + w > 450)) flush();
     cur.push(b); weight += w;
     if (["dialogue", "reading"].includes(b.t)) flush();
@@ -1116,6 +1118,7 @@ function blockHTML(b) {
   const box = (cls, lbl, html) => `<div class="box ${cls}"><span class="lbl">${lbl}</span>${html}</div>`;
   switch (b.t) {
     case "text": return `<p>${b.html}</p>`;
+    case "pic": return `<div class="picgrid">${b.imgs.map(u => `<img src="${u}" alt="">`).join("")}</div>`;
     case "header": return `<h3>${b.html}</h3>`;
     case "rule": return b.items ? box("rule", "Правило", `<ol class="steps">${b.items.map(it => `<li><span class="cond">${it.html}</span>${it.ex.length ? `<span class="exs">${it.ex.map(([h, say]) => `<button class="exw" data-say="${esc(say)}">${h}</button>`).join("")}</span>` : ""}</li>`).join("")}</ol>`) : box("rule", "Правило", b.html);
     case "tip": return box("tip", "Подсказка", b.html);
