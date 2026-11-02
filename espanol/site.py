@@ -184,13 +184,54 @@ def _rule_items(text: str) -> list[dict] | None:
     items = []
     for ln in lines:
         body = _NUMBERED.match(ln).group(1)
-        head, sep, tail = body.rpartition(": ")
-        words = [w.strip(" .") for w in tail.split(",")]
-        if sep and head and 1 <= len(words) <= 6 and not re.search("[А-Яа-яЁё]", tail) and all(words):
-            items.append({"html": _html(head), "ex": [[_html(w), plain(w)] for w in words]})
-        else:
-            items.append({"html": _html(body), "ex": []})
+        items.append(_card(body))
     return items
+
+
+_CYR = re.compile("[А-Яа-яЁё]")
+_EXAMPLE = re.compile(r"^(?P<es>[^\[\]]+?)(?:\s*\[(?P<pron>[^\]]+)\])?$")
+_SENTENCE_END = re.compile(r"(?<=[.!?…»)])\s+(?=[A-ZА-ЯЁ¡¿«(*`])")
+
+
+def _examples(tail: str) -> list[list[str]] | None:
+    """«casa, taxi» или «café [кафэ́], hotel [отэ́ль]» → [[html, озвучка, транскрипция]]; иначе None."""
+    items = [w.strip(" .") for w in tail.rstrip(" .").split(",")]
+    if not 1 <= len(items) <= 6:
+        return None
+    out = []
+    for item in items:
+        if item.count("**") % 2 or item.replace("**", "").count("_") % 2 or "..." in item or "…" in item:
+            return None  # «_¡Hola, buenos días!_» — одна фраза с запятой внутри, а не перечень
+        if ("¡" in item) != ("!" in item) or ("¿" in item) != ("?" in item):
+            return None
+        m = _EXAMPLE.match(item)
+        if not m or _CYR.search(m["es"]) or len(m["es"].split()) > 3 or not plain(m["es"]).strip():
+            return None
+        out.append([_html(m["es"]), plain(m["es"]), m["pron"] or ""])
+    return out
+
+
+def _card(text: str) -> dict:
+    """Одна мысль: условие текстом, примеры после последнего «: » — крупными плитками с озвучкой."""
+    head, sep, tail = text.rpartition(": ")
+    ex = _examples(tail) if sep and head.strip() else None
+    body = head if ex else text
+    # Выделяем цветом главную мысль — жирный русский текст, а не жирные испанские слова-примеры.
+    key = any(_CYR.search(m) for m in re.findall(r"\*\*(.+?)\*\*", body))
+    return {"html": _html(body), "ex": ex or [], "key": key}
+
+
+def _text_cards(text: str) -> list[dict] | None:
+    """Абзац → карточки по предложению, если в нём больше одной мысли или есть примеры; иначе None."""
+    parts = [p.strip() for p in _SENTENCE_END.split(text.strip()) if p.strip()]
+    if any(p.count("**") % 2 or p.count("`") % 2 for p in parts):
+        parts = [text.strip()]
+    cards = [_card(p) for p in parts]
+    if len(cards) == 1 and not cards[0]["ex"]:
+        return None
+    if len(cards) > 1 and len(plain(text)) < 170 and not any(c["ex"] for c in cards):
+        return None
+    return cards
 
 
 def _block(block: Block) -> dict | None:
@@ -201,7 +242,10 @@ def _block(block: Block) -> dict | None:
         return None  # «Напишите в комментариях…»: на сайте писать некуда
     if t in ("text", "tip", "note", "task"):
         text = without_telegram(d)
-        return {"t": t, "html": _html(text)} if text else None
+        if not text:
+            return None
+        cards = _text_cards(text) if t == "text" and "\n" not in text.strip() else None
+        return {"t": t, "html": _html(text), **({"cards": cards} if cards else {})}
     if t == "rule" and (items := _rule_items(d)):
         return {"t": t, "html": "", "items": items}
     if t in ("rule", "latam", "culture", "header"):

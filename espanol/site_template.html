@@ -266,9 +266,13 @@ main { padding-block: 16px 110px; }
 .exw { font-family: var(--display); font-weight: 600; font-size: 17px; padding: 3px 10px; border-radius: 9px; background: var(--sunken); color: var(--ink); border: 0; cursor: pointer; }
 .exw b { color: var(--accent); background: var(--accent-soft); border-radius: 5px; padding: 0 3px; }
 .rowpic { display: block; width: 64px; height: 64px; object-fit: contain; border-radius: 12px; margin-bottom: 6px; background: #fff; }
-.theory p.sent { padding: 9px 12px; border-left: 3px solid var(--line); background: var(--surface); border-radius: 0 10px 10px 0; }
-.theory p.sent.key { border-left-color: var(--accent); background: var(--accent-soft); }
-.theory p.sent code { font-size: 1.25em; }
+.cards { display: grid; gap: 10px; }
+.sent { padding: 11px 14px; background: var(--surface); border-radius: 12px; display: grid; gap: 8px; box-shadow: var(--shadow); }
+.sent.key { background: var(--accent-soft); box-shadow: none; }
+.sent.key b { color: var(--accent); }
+.sent code { font-size: 1.25em; }
+.exw { display: inline-grid; justify-items: center; line-height: 1.25; }
+.exw small { font-family: var(--body); font-size: 13px; font-weight: 500; color: var(--muted); }
 .theory ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
 .cando { list-style: none; padding: 0 !important; }
 .cando li::before { content: "✓ "; color: var(--good); font-weight: 800; }
@@ -1116,22 +1120,14 @@ function statsView() {
 }
 
 /* ================================================================ отрисовка: занятие */
-// Длинный абзац — короткими строками; строка с главной мыслью (жирным) выделена цветом.
-const SENT = /(?<=[.!?…»)])\s+(?=[A-ZА-ЯЁ¡¿«“"(])/;
-function sentences(html) {
-  const plainLen = html.replace(/<[^>]*>/g, "").length;
-  if (plainLen < 170) return null;
-  const parts = html.split(SENT).map(x => x.trim()).filter(Boolean);
-  const balanced = x => (x.match(/<(b|code|span)\b[^>]*>/g) || []).length === (x.match(/<\/(b|code|span)>/g) || []).length;
-  return parts.length > 1 && parts.every(balanced) ? parts : null;
-}
+// Примеры крупными плитками: по нажатию слово звучит, под ним транскрипция.
+const exChips = ex => ex.length ? `<span class="exs">${ex.map(([h, say, pron]) => `<button class="exw" data-say="${esc(say)}"><span>${h}</span>${pron ? `<small>[${esc(pron)}]</small>` : ""}</button>`).join("")}</span>` : "";
 function blockHTML(b) {
   const box = (cls, lbl, html) => `<div class="box ${cls}"><span class="lbl">${lbl}</span>${html}</div>`;
   switch (b.t) {
-    case "text": { const parts = sentences(b.html);
-      return parts ? parts.map(x => `<p class="sent${/<b>/.test(x) ? " key" : ""}">${x}</p>`).join("") : `<p>${b.html}</p>`; }
+    case "text": return b.cards ? `<div class="cards">${b.cards.map(c => `<div class="sent${c.key ? " key" : ""}">${c.html ? `<span>${c.html}</span>` : ""}${exChips(c.ex)}</div>`).join("")}</div>` : `<p>${b.html}</p>`;
     case "header": return `<h3>${b.html}</h3>`;
-    case "rule": return b.items ? box("rule", "Правило", `<ol class="steps">${b.items.map(it => `<li><span class="cond">${it.html}</span>${it.ex.length ? `<span class="exs">${it.ex.map(([h, say]) => `<button class="exw" data-say="${esc(say)}">${h}</button>`).join("")}</span>` : ""}</li>`).join("")}</ol>`) : box("rule", "Правило", b.html);
+    case "rule": return b.items ? box("rule", "Правило", `<ol class="steps">${b.items.map(it => `<li><span class="cond">${it.html}</span>${exChips(it.ex)}</li>`).join("")}</ol>`) : box("rule", "Правило", b.html);
     case "tip": return box("tip", "Подсказка", b.html);
     case "note": return box("note", "Обратите внимание", b.html);
     case "latam": return box("latam", "🌎 В Латинской Америке", b.html);
