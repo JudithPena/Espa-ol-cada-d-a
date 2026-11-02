@@ -257,6 +257,13 @@ main { padding-block: 16px 110px; }
 .box.rule > .lbl { color: var(--accent); }
 .box.tip, .box.culture { background: var(--sun-soft); border-color: transparent; }
 .box.latam { border-style: dashed; }
+.theory code { font-size: 1.05em; font-weight: 800; background: var(--accent-soft); color: var(--accent); padding: .05em .45em; border-radius: 7px; }
+.theory ol.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; counter-reset: st; }
+.theory ol.steps li { counter-increment: st; background: var(--surface); border-radius: 12px; padding: 9px 12px 9px 44px; position: relative; display: grid; gap: 6px; }
+.theory ol.steps li::before { content: counter(st); position: absolute; left: 12px; top: 10px; width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-weight: 800; font-size: 13px; display: grid; place-items: center; }
+.exs { display: flex; flex-wrap: wrap; gap: 8px; }
+.exw { font-family: var(--display); font-weight: 600; font-size: 17px; padding: 3px 10px; border-radius: 9px; background: var(--sunken); color: var(--ink); border: 0; cursor: pointer; }
+.exw b { color: var(--accent); background: var(--accent-soft); border-radius: 5px; padding: 0 3px; }
 .theory ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
 .cando { list-style: none; padding: 0 !important; }
 .cando li::before { content: "✓ "; color: var(--good); font-weight: 800; }
@@ -677,9 +684,9 @@ function wordQuestion(w, pool, mode) {
 // Упражнение урока «вопрос => ответ» становится викториной: неверные варианты — ответы
 // на соседние вопросы того же упражнения, потом других упражнений урока, потом слова курса.
 const isCyr = s => /[А-Яа-яЁё]/.test(s);
-function exerciseSteps(L, pool) {
-  const blocks = L.blocks.filter(b => b.t === "exercise"), out = [];
-  const all = blocks.flatMap(b => b.items.filter(it => it.ap));
+function exerciseSteps(L, pool, only) {
+  const blocks = only ? [only] : L.blocks.filter(b => b.t === "exercise"), out = [];
+  const all = L.blocks.filter(b => b.t === "exercise").flatMap(b => b.items.filter(it => it.ap));
   blocks.forEach(b => b.items.forEach(it => {
     if (!it.ap) return out.push({ type: "task", title: b.title, ...it });
     if (it.opts) {   // «Где ударение?»: то же слово с ударением на разных слогах
@@ -710,7 +717,7 @@ function practiceFor(i) {
   phrases.slice(0, heard).forEach(([es, ru]) => steps.push({ type: "mf", es, ru }));
   phrases.slice(heard, heard + 2).forEach(([es, ru]) => steps.push({ type: "build", es, ru }));
   const vocab = shuffle(steps);
-  const ex = exerciseSteps(L, pool).slice(0, 10);
+  const ex = [];   // упражнения стоят в самом объяснении, сразу после своей темы (см. startLesson)
   const quiz = L.quiz.map(q => {
     const order = q.shuffle ? shuffle(q.options.map((_, k) => k)) : q.options.map((_, k) => k);
     return { type: "mc", mode: "quiz", q: q.q, options: order.map(k => q.options[k]), correct: order.indexOf(q.correct), explain: q.explain };
@@ -732,15 +739,20 @@ const deaccent = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "");
 const firstLetter = tok => deaccent(tok.toLowerCase()).replace(/^[^a-z0-9]+/, "").charAt(0);
 
 /* ================================================================ шаги урока */
+const visLen = b => JSON.stringify(b).replace(/<[^>]*>/g, "").length;
+// Экраны объяснения: одна мысль на экран. Заголовок идёт вместе с тем, что под ним; правило, заметка, таблица —
+// каждые на своём экране; упражнение стоит сразу после своей темы (экран-маркер {ex: блок}).
 function theoryScreens(L) {
   const screens = []; let cur = [], weight = 0;
   const flush = () => { if (cur.length) screens.push(cur); cur = []; weight = 0; };
+  const onlyHeader = () => cur.length && cur.every(b => b.t === "header");
   for (const b of L.blocks) {
-    if (b.t === "exercise") continue;
-    const w = JSON.stringify(b).length;
+    if (b.t === "exercise") { flush(); screens.push({ ex: b }); continue; }
+    const w = visLen(b);
     // Короткое вступление («Прочитайте диалог вслух…») остаётся на одном экране с диалогом.
     const lead = ["dialogue", "reading"].includes(b.t) && weight < 400;
-    if ((["header", "dialogue", "reading"].includes(b.t) && !lead) || weight + w > 1500) flush();
+    const own = ["header", "rule", "note", "table", "conjugation", "dialogue", "reading", "examples"].includes(b.t);
+    if (!onlyHeader() && ((own && !lead) || weight + w > 450)) flush();
     cur.push(b); weight += w;
     if (["dialogue", "reading"].includes(b.t)) flush();
   }
@@ -755,10 +767,11 @@ function startLesson(i) {
   const L = LESSONS[i];
   const screens = theoryScreens(L);
   // Короткое вступление («Давайте проверим, как вы освоили чтение») — на первом экране, а не отдельным слайдом.
-  const lead = screens.length && screens[0].every(b => b.t === "text") && JSON.stringify(screens[0]).length < 400 ? screens.shift() : [];
+  const lead = screens.length && Array.isArray(screens[0]) && screens[0].every(b => b.t === "text") && visLen(screens[0]) < 400 ? screens.shift() : [];
   const learn = [{ type: "intro", lead }];
   L.words.forEach(w => learn.push({ type: "word", word: w }));
-  screens.forEach(blocks => learn.push({ type: "theory", blocks }));
+  const pool = knownPool(i);
+  screens.forEach(sc => Array.isArray(sc) ? learn.push({ type: "theory", blocks: sc }) : learn.push(...exerciseSteps(L, pool, sc.ex).slice(0, 6)));
   const practice = practiceFor(i);   // задания сразу после объяснения, без заставки
   S = { kind: "lesson", li: i, pool: knownPool(i), steps: learn.concat(practice), at: 0, firstTry: 0, graded: 0, seen: new Set(), state: null };
   render();
@@ -1089,7 +1102,7 @@ function blockHTML(b) {
   switch (b.t) {
     case "text": return `<p>${b.html}</p>`;
     case "header": return `<h3>${b.html}</h3>`;
-    case "rule": return box("rule", "Правило", b.html);
+    case "rule": return b.items ? box("rule", "Правило", `<ol class="steps">${b.items.map(it => `<li><span class="cond">${it.html}</span>${it.ex.length ? `<span class="exs">${it.ex.map(([h, say]) => `<button class="exw" data-say="${esc(say)}">${h}</button>`).join("")}</span>` : ""}</li>`).join("")}</ol>`) : box("rule", "Правило", b.html);
     case "tip": return box("tip", "Подсказка", b.html);
     case "note": return box("note", "Обратите внимание", b.html);
     case "latam": return box("latam", "🌎 В Латинской Америке", b.html);

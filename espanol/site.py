@@ -158,6 +158,30 @@ def without_telegram(text: str) -> str:
     return out
 
 
+_NUMBERED = re.compile(r"^\s*\d+[.)]\s+(.*)$")
+
+
+def _rule_items(text: str) -> list[dict] | None:
+    """Правило «1. … 2. … 3. …» → карточки: условие и примеры отдельно (примеры — крупно, с озвучкой).
+
+    Примеры выделяем, только если после последнего «: » идёт короткий испанский перечень без кириллицы.
+    Если правило не в виде нумерованного списка, возвращаем None и показываем его как раньше.
+    """
+    lines = [ln for ln in text.strip().split("\n") if ln.strip()]
+    if len(lines) < 2 or not all(_NUMBERED.match(ln) for ln in lines):
+        return None
+    items = []
+    for ln in lines:
+        body = _NUMBERED.match(ln).group(1)
+        head, sep, tail = body.rpartition(": ")
+        words = [w.strip(" .") for w in tail.split(",")]
+        if sep and head and 1 <= len(words) <= 6 and not re.search("[А-Яа-яЁё]", tail) and all(words):
+            items.append({"html": _html(head), "ex": [[_html(w), plain(w)] for w in words]})
+        else:
+            items.append({"html": _html(body), "ex": []})
+    return items
+
+
 def _block(block: Block) -> dict | None:
     t, d = block.type, block.data
     if t == "words":
@@ -167,6 +191,8 @@ def _block(block: Block) -> dict | None:
     if t in ("text", "tip", "note", "task"):
         text = without_telegram(d)
         return {"t": t, "html": _html(text)} if text else None
+    if t == "rule" and (items := _rule_items(d)):
+        return {"t": t, "html": "", "items": items}
     if t in ("rule", "latam", "culture", "header"):
         return {"t": t, "html": _html(d)}
     if t in ("list", "cando"):
@@ -223,8 +249,17 @@ def _sentences(lesson: Lesson) -> list[list[str]]:
     return out
 
 
+def _split(block: Block) -> list[dict]:
+    """Длинный текст делим по пустым строкам: один абзац — одна мысль, а не простыня на экран."""
+    if block.type == "text":
+        parts = [p for p in re.split(r"\n\s*\n", str(block.data)) if p.strip()]
+        return [b for part in parts if (b := _block(Block("text", part)))]
+    b = _block(block)
+    return [b] if b else []
+
+
 def lesson_data(lesson: Lesson, cards: dict[str, WordCard]) -> dict:
-    blocks = [b for b in (_block(block) for block in lesson.blocks) if b]
+    blocks = [b for block in lesson.blocks for b in _split(block)]
     return {
         "n": lesson.number, "id": lesson.id, "unit": lesson.unit.number, "level": lesson.level,
         "kind": lesson.kind, "kindLabel": lesson.kind_label, "emoji": lesson.kind_emoji,
