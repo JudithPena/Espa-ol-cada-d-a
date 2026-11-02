@@ -343,6 +343,22 @@ main { padding-block: 16px 110px; }
 .grammar-section .theory { line-height: 1.65; }
 .grammar-section .tbl { margin: 14px 0; }
 .grammar-section th { text-align: left; padding: 9px 12px; background: var(--accent-soft); }
+.gschemes { display: grid; gap: 10px; margin: 12px 0; }
+.gscheme { background: var(--accent-soft); border-radius: 12px; padding: 14px; }
+.gscheme-label { font-weight: 800; margin-bottom: 10px; }
+.gscheme-pair { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 10px; align-items: center; }
+.gscheme-pair b { display: block; white-space: pre-line; line-height: 1.7; font-size: 17px; overflow-wrap: anywhere; }
+.gscheme-pair small { display: block; font-size: 12px; margin-bottom: 4px; color: var(--muted); }
+.gscheme-arrow { color: var(--accent); font-size: 22px; }
+.gscheme-note { font-size: 13px; color: var(--muted); margin-top: 8px; }
+.gnotes { padding: 10px 14px; background: var(--sun-soft); border-radius: 10px; margin: 10px 0; font-size: 14px; }
+.gnotes p { margin: 4px 0; }
+.gagreement { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin: 12px 0; }
+.gagreement > div { border: 1px solid var(--line); border-radius: 10px; padding: 10px 4px; text-align: center; }
+.gagreement small { display: block; font-size: 11px; color: var(--muted); overflow-wrap: anywhere; }
+.gagreement b, .gagreement span { display: block; }
+.gagreement span { color: var(--accent); }
+.ginstruction { font-size: 14px; margin: 8px 0 14px; padding-left: 12px; border-left: 3px solid var(--accent); }
 .gquestion { border: 0; border-top: 1px solid var(--line); margin: 18px 0 0; padding: 16px 0 0; min-width: 0; }
 .gquestion legend { font-weight: 700; padding: 8px 0; max-width: 100%; }
 .gchoices { display: grid; gap: 8px; }
@@ -816,7 +832,10 @@ function grammarView() {
     <div id="g-theory">${unit.sections.map(s => `<section class="grammar-section"><h3>${esc(s.title)}</h3>
       <div class="theory">${s.paragraphs.map(p => `<p>${esc(p)}</p>`).join("")}
       ${(s.examples || []).map(([es, ru]) => `<div class="box rule"><span lang="es">${playBtn(es)} ${esc(es)}</span><br><span class="muted">${esc(ru)}</span></div>`).join("")}</div>
-      ${s.table ? grammarTable(s.table) : ""}${s.check ? grammarForm(unit, s.check) : ""}</section>`).join("")}</div>
+      ${s.schemes ? grammarSchemes(s.schemes) : ""}${s.table ? grammarTable(s.table) : ""}
+      ${s.agreement ? `<div class="gagreement" aria-label="Согласование слов">${s.agreement.map(w => `<div><small>${esc(w.label)}</small><b lang="es">${esc(w.from)}</b><span aria-label="переходит в">↓</span><b lang="es">${esc(w.to)}</b></div>`).join("")}</div>` : ""}
+      ${s.notes?.length ? `<aside class="gnotes">${s.notes.map(n => `<p>${esc(n)}</p>`).join("")}</aside>` : ""}
+      ${s.check ? grammarForm(unit, s.check) : ""}</section>`).join("")}</div>
     <section class="grammar-section"><h3>Что запомнить</h3>${grammarTable(unit.summary)}</section>
     <h2 id="g-exercises">Упражнения</h2>${unit.exercises.map(g => `<section class="grammar-section"><h3>${esc(g.title)}</h3><p>${esc(g.instruction)}</p>${g.family ? grammarFamily(g.family) : ""}${g.vocabulary ? grammarTable(g.vocabulary) : ""}${grammarForm(unit, g)}</section>`).join("")}`;
 }
@@ -830,6 +849,11 @@ const grammarCorrect = (q, value) => q.answers.some(a => grammarNormalize(a) ===
 function grammarTable(t) {
   return `<div class="tbl" tabindex="0" role="region" aria-label="Таблица примеров"><table><thead><tr>${t.heads.map(h => `<th scope="col">${esc(h)}</th>`).join("")}</tr></thead><tbody>${t.rows.map(r => `<tr>${r.map(c => `<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
 }
+function grammarSchemes(schemes) {
+  return `<div class="gschemes">${schemes.map(s => `<div class="gscheme"><div class="gscheme-label">${esc(s.label)}</div>
+    <div class="gscheme-pair"><div>${s.fromLabel ? `<small>${esc(s.fromLabel)}</small>` : ""}<b lang="es">${esc(s.from)}</b></div><span class="gscheme-arrow" aria-label="сравни">→</span><div>${s.toLabel ? `<small>${esc(s.toLabel)}</small>` : ""}<b lang="es">${esc(s.to)}</b></div></div>
+    ${s.note ? `<div class="gscheme-note">${esc(s.note)}</div>` : ""}</div>`).join("")}</div>`;
+}
 function grammarFamily(f) {
   return `<div class="gfamily" aria-label="Семейное дерево"><b>${f.parents.map(esc).join(" + ")}</b><small>Их дети — Julio и Laura</small><div class="gfamily-branches">${f.branches.map(b => `<div><b>${b.couple.map(esc).join(" + ")}</b><small>${esc(b.child)} — ${b.child === "Julio" ? "сын" : "дочь"} Luis и Ana</small><span aria-hidden="true">↓</span><div>${b.children.map(esc).join(" · ")}</div><small>их дети</small></div>`).join("")}</div></div>`;
 }
@@ -837,6 +861,7 @@ function grammarForm(unit, group) {
   const key = grammarKey(unit, group), attempt = grammarAttempts.get(key), best = P.grammar?.[key];
   return `<form data-grammar-form="${esc(group.id)}" class="gform">
     ${group.title === "Мини-проверка" ? "<h4>Мини-проверка</h4>" : ""}
+    ${group.title === "Мини-проверка" && group.instruction ? `<p class="ginstruction">${esc(group.instruction)}</p>` : ""}
     ${best ? `<p class="muted">Лучший результат: ${best.correct} из ${best.total}</p>` : ""}
     ${group.questions.map((q, i) => {
       const value = (attempt?.values || grammarDrafts.get(key) || [])[i] || "", good = attempt && grammarCorrect(q, value);
