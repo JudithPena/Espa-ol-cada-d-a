@@ -184,7 +184,8 @@ def _rule_items(text: str) -> list[dict] | None:
     items = []
     for ln in lines:
         body = _NUMBERED.match(ln).group(1)
-        items.append(_card(body))
+        cards = _card(body)
+        items.append(cards[0] if len(cards) == 1 else _one(body))
     return items
 
 
@@ -211,27 +212,59 @@ def _examples(tail: str) -> list[list[str]] | None:
     return out
 
 
-def _card(text: str) -> dict:
-    """Одна мысль: условие текстом, примеры после последнего «: » — крупными плитками с озвучкой."""
+def esc_html(text: str) -> str:
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+_KEY = re.compile(r"\*\*(.+?)\*\*")
+_MEANS = re.compile(r"(?P<w>\*\*[^*]+\*\*|`[^`]+`)(?P<mid>[^«»:*`]*?)означает «(?P<ru>[^»]+)»")
+_PARENS = re.compile(r"\s*\(([^()]+)\)")
+
+
+def _one(text: str, **extra) -> dict:
+    # Цветом выделяем главную мысль — жирный русский текст, а не жирные испанские слова-примеры.
+    text = text.strip()
+    key = any(_CYR.search(m) for m in _KEY.findall(text))
+    return {"html": _html(text), "ex": [], "key": key, **extra}
+
+
+def _card(text: str) -> list[dict]:
+    """Одна мысль → карточки: условие текстом, испанские примеры — крупными плитками с озвучкой.
+
+    • «**sí** со значком означает «да», а `si` без значка означает «если»» → пары «слово → значение»;
+    • «… мужского рода (el café, el hotel), а … женского рода (la casa)» → по карточке на каждую скобку;
+    • «…: casa, taxi» или «…: café [кафэ́], hotel [отэ́ль]» → плитки после последнего «: ».
+    """
+    means = list(_MEANS.finditer(text))
+    if len(means) >= 2:
+        head = text[:means[0].start()].rstrip(" :")
+        pairs = [[esc_html(plain(m["w"])), plain(m["w"]), _html(m["mid"].strip(" ,")), m["ru"]] for m in means]
+        return [_one(head, pairs=pairs)]
+    groups = [m for m in _PARENS.finditer(text) if (ex := _examples(m[1])) and len(ex) >= 2]
+    if groups:
+        cards, start = [], 0
+        for m in groups:
+            card = _one(re.sub(r"^(а|и|но)\s+", "", text[start:m.start()].strip(" ,")))
+            card["ex"] = _examples(m[1])
+            cards.append(card)
+            start = m.end()
+        rest = text[start:].strip(" ,.")
+        if rest:
+            cards.append(_one(rest))
+        return cards
     head, sep, tail = text.rpartition(": ")
     ex = _examples(tail) if sep and head.strip() else None
-    body = head if ex else text
-    # Выделяем цветом главную мысль — жирный русский текст, а не жирные испанские слова-примеры.
-    key = any(_CYR.search(m) for m in re.findall(r"\*\*(.+?)\*\*", body))
-    return {"html": _html(body), "ex": ex or [], "key": key}
+    card = _one(head if ex else text)
+    card["ex"] = ex or []
+    return [card]
 
 
-def _text_cards(text: str) -> list[dict] | None:
-    """Абзац → карточки по предложению, если в нём больше одной мысли или есть примеры; иначе None."""
+def _text_cards(text: str) -> list[dict]:
+    """Абзац → карточки, по одной мысли (предложению) на карточку."""
     parts = [p.strip() for p in _SENTENCE_END.split(text.strip()) if p.strip()]
     if any(p.count("**") % 2 or p.count("`") % 2 for p in parts):
         parts = [text.strip()]
-    cards = [_card(p) for p in parts]
-    if len(cards) == 1 and not cards[0]["ex"]:
-        return None
-    if len(cards) > 1 and len(plain(text)) < 170 and not any(c["ex"] for c in cards):
-        return None
-    return cards
+    return [c for p in parts for c in _card(p)]
 
 
 def _block(block: Block) -> dict | None:
@@ -244,7 +277,7 @@ def _block(block: Block) -> dict | None:
         text = without_telegram(d)
         if not text:
             return None
-        cards = _text_cards(text) if t == "text" and "\n" not in text.strip() else None
+        cards = _text_cards(text) if t in ("text", "note", "tip") and "\n" not in text.strip() else None
         return {"t": t, "html": _html(text), **({"cards": cards} if cards else {})}
     if t == "rule" and (items := _rule_items(d)):
         return {"t": t, "html": "", "items": items}
@@ -279,7 +312,9 @@ def _block(block: Block) -> dict | None:
                     continue  # «el café => ca-FÉ»: значок ´ уже показывает ответ
                 item["opts"] = options
             items.append(item)
-        return {"t": t, "title": _html(d["title"]), "items": items} if items else None
+        # На сайте упражнение — выбор из вариантов, поэтому «проверьте» в заголовке → «выберите».
+        title = re.sub(r"\bпроверьте\b", "выберите", d["title"] or "")
+        return {"t": t, "title": _html(title), "items": items} if items else None
     raise ValueError(f"блок {t} не поддерживается сайтом")  # pragma: no cover
 
 

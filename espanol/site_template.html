@@ -267,6 +267,15 @@ main { padding-block: 16px 110px; }
 .exw b { color: var(--accent); background: var(--accent-soft); border-radius: 5px; padding: 0 3px; }
 .rowpic { display: block; width: 64px; height: 64px; object-fit: contain; border-radius: 12px; margin-bottom: 6px; background: #fff; }
 .cards { display: grid; gap: 10px; }
+.cardsbox { display: grid; gap: 8px; }
+.cardsbox > .lbl { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.cardsbox.tip .sent { background: var(--sun-soft); box-shadow: none; }
+.pairs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.pair { display: grid; justify-items: center; gap: 2px; padding: 12px 8px; border-radius: 12px; border: 0; background: var(--sunken); color: var(--ink); cursor: pointer; }
+.pair .pw { font-family: var(--display); font-weight: 700; font-size: 26px; color: var(--accent); }
+.pair small { font-size: 13px; color: var(--muted); }
+.pair .pr { font-weight: 800; font-size: 17px; }
+.leadin .sent { font-size: 18px; padding: 16px 18px; background: var(--accent-soft); box-shadow: none; }
 .sent { padding: 11px 14px; background: var(--surface); border-radius: 12px; display: grid; gap: 8px; box-shadow: var(--shadow); }
 .sent.key { background: var(--accent-soft); box-shadow: none; }
 .sent.key b { color: var(--accent); }
@@ -1122,14 +1131,16 @@ function statsView() {
 /* ================================================================ отрисовка: занятие */
 // Примеры крупными плитками: по нажатию слово звучит, под ним транскрипция.
 const exChips = ex => ex.length ? `<span class="exs">${ex.map(([h, say, pron]) => `<button class="exw" data-say="${esc(say)}"><span>${h}</span>${pron ? `<small>[${esc(pron)}]</small>` : ""}</button>`).join("")}</span>` : "";
+const pairsHTML = ps => ps?.length ? `<div class="pairs">${ps.map(([w, say, mid, ru]) => `<button class="pair" data-say="${esc(say)}"><span class="pw">${w}</span>${mid ? `<small>${mid}</small>` : ""}<span class="pr">«${esc(ru)}»</span></button>`).join("")}</div>` : "";
+const cardsHTML = cs => `<div class="cards">${cs.map(c => `<div class="sent${c.key ? " key" : ""}">${c.html ? `<span>${c.html}</span>` : ""}${exChips(c.ex)}${pairsHTML(c.pairs)}</div>`).join("")}</div>`;
 function blockHTML(b) {
   const box = (cls, lbl, html) => `<div class="box ${cls}"><span class="lbl">${lbl}</span>${html}</div>`;
   switch (b.t) {
-    case "text": return b.cards ? `<div class="cards">${b.cards.map(c => `<div class="sent${c.key ? " key" : ""}">${c.html ? `<span>${c.html}</span>` : ""}${exChips(c.ex)}</div>`).join("")}</div>` : `<p>${b.html}</p>`;
+    case "text": return b.cards ? cardsHTML(b.cards) : `<p>${b.html}</p>`;
     case "header": return `<h3>${b.html}</h3>`;
     case "rule": return b.items ? box("rule", "Правило", `<ol class="steps">${b.items.map(it => `<li><span class="cond">${it.html}</span>${exChips(it.ex)}</li>`).join("")}</ol>`) : box("rule", "Правило", b.html);
-    case "tip": return box("tip", "Подсказка", b.html);
-    case "note": return box("note", "Обратите внимание", b.html);
+    case "tip": return b.cards ? `<div class="cardsbox tip"><span class="lbl">💡 Подсказка</span>${cardsHTML(b.cards)}</div>` : box("tip", "Подсказка", b.html);
+    case "note": return b.cards ? `<div class="cardsbox"><span class="lbl">👀 Обратите внимание</span>${cardsHTML(b.cards)}</div>` : box("note", "Обратите внимание", b.html);
     case "latam": return box("latam", "🌎 В Латинской Америке", b.html);
     case "culture": return box("culture", "Культура", b.html);
     case "task": return box("task", "Задание", b.html);
@@ -1180,7 +1191,7 @@ function stepBody(st) {
   switch (st.type) {
     case "intro": {
       return `<span class="kicker">Урок ${L.n} · Тема ${L.unit}</span><h2>${esc(L.title)}</h2>
-        <div class="theory">${st.lead.map(blockHTML).join("")}</div>`;
+        <div class="theory leadin">${st.lead.map(blockHTML).join("")}</div>`;
     }
     case "word": return `<span class="kicker">Новое слово</span>${wordCard(st.word)}`;
     case "theory": return `<div class="theory">${st.blocks.map(blockHTML).join("")}</div>`;
