@@ -265,6 +265,23 @@ main { padding-block: 16px 110px; }
 .exs { display: flex; flex-wrap: wrap; gap: 8px; }
 .exw { font-family: var(--display); font-weight: 600; font-size: 17px; padding: 3px 10px; border-radius: 9px; background: var(--sunken); color: var(--ink); border: 0; cursor: pointer; }
 .exw b { color: var(--accent); background: var(--accent-soft); border-radius: 5px; padding: 0 3px; }
+.rowpic { display: block; width: 64px; height: 64px; object-fit: contain; border-radius: 12px; margin-bottom: 6px; background: #fff; }
+.cards { display: grid; gap: 10px; }
+.cardsbox { display: grid; gap: 8px; }
+.cardsbox > .lbl { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.cardsbox.tip .sent { background: var(--sun-soft); box-shadow: none; }
+.pairs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.pair { display: grid; justify-items: center; gap: 2px; padding: 12px 8px; border-radius: 12px; border: 0; background: var(--sunken); color: var(--ink); cursor: pointer; }
+.pair .pw { font-family: var(--display); font-weight: 700; font-size: 26px; color: var(--accent); }
+.pair small { font-size: 13px; color: var(--muted); }
+.pair .pr { font-weight: 800; font-size: 17px; }
+.leadin .sent { font-size: 18px; padding: 16px 18px; background: var(--accent-soft); box-shadow: none; }
+.sent { padding: 11px 14px; background: var(--surface); border-radius: 12px; display: grid; gap: 8px; box-shadow: var(--shadow); }
+.sent.key { background: var(--accent-soft); box-shadow: none; }
+.sent.key b { color: var(--accent); }
+.sent code { font-size: 1.25em; }
+.exw { display: inline-grid; justify-items: center; line-height: 1.25; }
+.exw small { font-family: var(--body); font-size: 13px; font-weight: 500; color: var(--muted); }
 .theory ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
 .cando { list-style: none; padding: 0 !important; }
 .cando li::before { content: "✓ "; color: var(--good); font-weight: 800; }
@@ -740,7 +757,7 @@ const deaccent = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "");
 const firstLetter = tok => deaccent(tok.toLowerCase()).replace(/^[^a-z0-9]+/, "").charAt(0);
 
 /* ================================================================ шаги урока */
-const visLen = b => JSON.stringify(b).replace(/<[^>]*>/g, "").length;
+const visLen = b => JSON.stringify({ ...b, rowpics: undefined }).replace(/<[^>]*>/g, "").length;
 // Экраны объяснения: одна мысль на экран. Заголовок идёт вместе с тем, что под ним; правило, заметка, таблица —
 // каждые на своём экране; упражнение стоит сразу после своей темы (экран-маркер {ex: блок}).
 function theoryScreens(L) {
@@ -753,7 +770,7 @@ function theoryScreens(L) {
     // Короткое вступление («Прочитайте диалог вслух…») остаётся на одном экране с диалогом.
     const lead = ["dialogue", "reading"].includes(b.t) && weight < 400;
     const own = ["header", "rule", "note", "table", "conjugation", "dialogue", "reading", "examples"].includes(b.t);
-    if (!onlyHeader() && ((own && !lead) || weight + w > 450)) flush();
+    if (!onlyHeader() && ((own && !lead) || weight + w > (b.t === "text" && w < 250 ? 1200 : 450))) flush();
     cur.push(b); weight += w;
     if (["dialogue", "reading"].includes(b.t)) flush();
   }
@@ -1112,21 +1129,25 @@ function statsView() {
 }
 
 /* ================================================================ отрисовка: занятие */
+// Примеры крупными плитками: по нажатию слово звучит, под ним транскрипция.
+const exChips = ex => ex.length ? `<span class="exs">${ex.map(([h, say, pron]) => `<button class="exw" data-say="${esc(say)}"><span>${h}</span>${pron ? `<small>[${esc(pron)}]</small>` : ""}</button>`).join("")}</span>` : "";
+const pairsHTML = ps => ps?.length ? `<div class="pairs">${ps.map(([w, say, mid, ru]) => `<button class="pair" data-say="${esc(say)}"><span class="pw">${w}</span>${mid ? `<small>${mid}</small>` : ""}<span class="pr">«${esc(ru)}»</span></button>`).join("")}</div>` : "";
+const cardsHTML = cs => `<div class="cards">${cs.map(c => `<div class="sent${c.key ? " key" : ""}">${c.html ? `<span>${c.html}</span>` : ""}${exChips(c.ex)}${pairsHTML(c.pairs)}</div>`).join("")}</div>`;
 function blockHTML(b) {
   const box = (cls, lbl, html) => `<div class="box ${cls}"><span class="lbl">${lbl}</span>${html}</div>`;
   switch (b.t) {
-    case "text": return `<p>${b.html}</p>`;
+    case "text": return b.cards ? cardsHTML(b.cards) : `<p>${b.html}</p>`;
     case "header": return `<h3>${b.html}</h3>`;
-    case "rule": return b.items ? box("rule", "Правило", `<ol class="steps">${b.items.map(it => `<li><span class="cond">${it.html}</span>${it.ex.length ? `<span class="exs">${it.ex.map(([h, say]) => `<button class="exw" data-say="${esc(say)}">${h}</button>`).join("")}</span>` : ""}</li>`).join("")}</ol>`) : box("rule", "Правило", b.html);
-    case "tip": return box("tip", "Подсказка", b.html);
-    case "note": return box("note", "Обратите внимание", b.html);
+    case "rule": return b.items ? box("rule", "Правило", `<ol class="steps">${b.items.map(it => `<li><span class="cond">${it.html}</span>${exChips(it.ex)}</li>`).join("")}</ol>`) : box("rule", "Правило", b.html);
+    case "tip": return b.cards ? `<div class="cardsbox tip"><span class="lbl">💡 Подсказка</span>${cardsHTML(b.cards)}</div>` : box("tip", "Подсказка", b.html);
+    case "note": return b.cards ? `<div class="cardsbox"><span class="lbl">👀 Обратите внимание</span>${cardsHTML(b.cards)}</div>` : box("note", "Обратите внимание", b.html);
     case "latam": return box("latam", "🌎 В Латинской Америке", b.html);
     case "culture": return box("culture", "Культура", b.html);
     case "task": return box("task", "Задание", b.html);
     case "list": return `<ul>${b.items.map(x => `<li>${x}</li>`).join("")}</ul>`;
     case "cando": return box("cando-box", "Теперь вы умеете", `<ul class="cando">${b.items.map(x => `<li>${x}</li>`).join("")}</ul>`);
     case "examples": return `<div class="box">${b.title ? `<span class="lbl">${b.title}</span>` : ""}<ul class="exl">${b.items.map(([es, ru, sp]) => `<li>${playBtn(sp)}<span><span class="es">${es}</span><small>${ru}</small></span></li>`).join("")}</ul></div>`;
-    case "table": return `<div class="tbl"><table>${b.title ? `<caption>${b.title}</caption>` : ""}${b.rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join("")}</tr>`).join("")}</table></div>`;
+    case "table": return `<div class="tbl"><table>${b.title ? `<caption>${b.title}</caption>` : ""}${b.rows.map((r, ri) => `<tr>${r.map((c, ci) => `<td>${ci === 0 && b.rowpics?.[ri] ? `<img class="rowpic" src="${b.rowpics[ri]}" alt="">` : ""}${c}</td>`).join("")}</tr>`).join("")}</table></div>`;
     case "conjugation": {
       const who = ["yo", "tú", "él / ella / usted", "nosotros", "vosotros", "ellos / ustedes"];
       return `<div class="tbl"><table><caption>${b.title || `${esc(b.verb)}${b.ru ? " — " + b.ru : ""}`}</caption>${b.forms.map((f, k) => `<tr><td class="muted">${who[k]}</td><td class="es">${esc(f)}</td><td style="width:44px">${playBtn(f)}</td></tr>`).join("")}</table></div>`;
@@ -1170,7 +1191,7 @@ function stepBody(st) {
   switch (st.type) {
     case "intro": {
       return `<span class="kicker">Урок ${L.n} · Тема ${L.unit}</span><h2>${esc(L.title)}</h2>
-        <div class="theory">${st.lead.map(blockHTML).join("")}</div>`;
+        <div class="theory leadin">${st.lead.map(blockHTML).join("")}</div>`;
     }
     case "word": return `<span class="kicker">Новое слово</span>${wordCard(st.word)}`;
     case "theory": return `<div class="theory">${st.blocks.map(blockHTML).join("")}</div>`;

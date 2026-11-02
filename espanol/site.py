@@ -57,6 +57,17 @@ ART_SLUGS = {
 }
 
 
+# Картинки к объяснениям (листы 2×2 из ChatGPT): урок → {первая ячейка строки таблицы: файл в content/art}.
+# Картинка встаёт в свою строку таблицы, рядом с буквой, которую поясняет.
+ROW_ART = {
+    "start/consonants1": {"h": "cons-1", "ñ": "cons-2", "ll": "cons-3", "j": "cons-4"},
+}
+
+
+def _art_file(slug: str) -> str:
+    return "data:image/webp;base64," + base64.b64encode((ART / f"{slug}.webp").read_bytes()).decode()
+
+
 def art_uri(es: str) -> str | None:
     """Картинка слова из content/art (лист из нейросети, нарезанный на части) как data-URI."""
     slug = ART_SLUGS.get(es)
@@ -173,13 +184,87 @@ def _rule_items(text: str) -> list[dict] | None:
     items = []
     for ln in lines:
         body = _NUMBERED.match(ln).group(1)
-        head, sep, tail = body.rpartition(": ")
-        words = [w.strip(" .") for w in tail.split(",")]
-        if sep and head and 1 <= len(words) <= 6 and not re.search("[А-Яа-яЁё]", tail) and all(words):
-            items.append({"html": _html(head), "ex": [[_html(w), plain(w)] for w in words]})
-        else:
-            items.append({"html": _html(body), "ex": []})
+        cards = _card(body)
+        items.append(cards[0] if len(cards) == 1 else _one(body))
     return items
+
+
+_CYR = re.compile("[А-Яа-яЁё]")
+_EXAMPLE = re.compile(r"^(?P<es>[^\[\]]+?)(?:\s*\[(?P<pron>[^\]]+)\])?$")
+_SENTENCE_END = re.compile(r"(?<=[.!?…»)])\s+(?=[A-ZА-ЯЁ¡¿«(*`])")
+
+
+def _examples(tail: str) -> list[list[str]] | None:
+    """«casa, taxi» или «café [кафэ́], hotel [отэ́ль]» → [[html, озвучка, транскрипция]]; иначе None."""
+    items = [w.strip(" .") for w in tail.rstrip(" .").split(",")]
+    if not 1 <= len(items) <= 6:
+        return None
+    out = []
+    for item in items:
+        if item.count("**") % 2 or item.replace("**", "").count("_") % 2 or "..." in item or "…" in item:
+            return None  # «_¡Hola, buenos días!_» — одна фраза с запятой внутри, а не перечень
+        if ("¡" in item) != ("!" in item) or ("¿" in item) != ("?" in item):
+            return None
+        m = _EXAMPLE.match(item)
+        if not m or _CYR.search(m["es"]) or len(m["es"].split()) > 3 or not plain(m["es"]).strip():
+            return None
+        out.append([_html(m["es"]), plain(m["es"]), m["pron"] or ""])
+    return out
+
+
+def esc_html(text: str) -> str:
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+_KEY = re.compile(r"\*\*(.+?)\*\*")
+_MEANS = re.compile(r"(?P<w>\*\*[^*]+\*\*|`[^`]+`)(?P<mid>[^«»:*`]*?)означает «(?P<ru>[^»]+)»")
+_PARENS = re.compile(r"\s*\(([^()]+)\)")
+
+
+def _one(text: str, **extra) -> dict:
+    # Цветом выделяем главную мысль — жирный русский текст, а не жирные испанские слова-примеры.
+    text = text.strip()
+    key = any(_CYR.search(m) for m in _KEY.findall(text))
+    return {"html": _html(text), "ex": [], "key": key, **extra}
+
+
+def _card(text: str) -> list[dict]:
+    """Одна мысль → карточки: условие текстом, испанские примеры — крупными плитками с озвучкой.
+
+    • «**sí** со значком означает «да», а `si` без значка означает «если»» → пары «слово → значение»;
+    • «… мужского рода (el café, el hotel), а … женского рода (la casa)» → по карточке на каждую скобку;
+    • «…: casa, taxi» или «…: café [кафэ́], hotel [отэ́ль]» → плитки после последнего «: ».
+    """
+    means = list(_MEANS.finditer(text))
+    if len(means) >= 2:
+        head = text[:means[0].start()].rstrip(" :")
+        pairs = [[esc_html(plain(m["w"])), plain(m["w"]), _html(m["mid"].strip(" ,")), m["ru"]] for m in means]
+        return [_one(head, pairs=pairs)]
+    groups = [m for m in _PARENS.finditer(text) if (ex := _examples(m[1])) and len(ex) >= 2]
+    if groups:
+        cards, start = [], 0
+        for m in groups:
+            card = _one(re.sub(r"^(а|и|но)\s+", "", text[start:m.start()].strip(" ,")))
+            card["ex"] = _examples(m[1])
+            cards.append(card)
+            start = m.end()
+        rest = text[start:].strip(" ,.")
+        if rest:
+            cards.append(_one(rest))
+        return cards
+    head, sep, tail = text.rpartition(": ")
+    ex = _examples(tail) if sep and head.strip() else None
+    card = _one(head if ex else text)
+    card["ex"] = ex or []
+    return [card]
+
+
+def _text_cards(text: str) -> list[dict]:
+    """Абзац → карточки, по одной мысли (предложению) на карточку."""
+    parts = [p.strip() for p in _SENTENCE_END.split(text.strip()) if p.strip()]
+    if any(p.count("**") % 2 or p.count("`") % 2 for p in parts):
+        parts = [text.strip()]
+    return [c for p in parts for c in _card(p)]
 
 
 def _block(block: Block) -> dict | None:
@@ -190,7 +275,10 @@ def _block(block: Block) -> dict | None:
         return None  # «Напишите в комментариях…»: на сайте писать некуда
     if t in ("text", "tip", "note", "task"):
         text = without_telegram(d)
-        return {"t": t, "html": _html(text)} if text else None
+        if not text:
+            return None
+        cards = _text_cards(text) if t in ("text", "note", "tip") and "\n" not in text.strip() else None
+        return {"t": t, "html": _html(text), **({"cards": cards} if cards else {})}
     if t == "rule" and (items := _rule_items(d)):
         return {"t": t, "html": "", "items": items}
     if t in ("rule", "latam", "culture", "header"):
@@ -224,7 +312,9 @@ def _block(block: Block) -> dict | None:
                     continue  # «el café => ca-FÉ»: значок ´ уже показывает ответ
                 item["opts"] = options
             items.append(item)
-        return {"t": t, "title": _html(d["title"]), "items": items} if items else None
+        # На сайте упражнение — выбор из вариантов, поэтому «проверьте» в заголовке → «выберите».
+        title = re.sub(r"\bпроверьте\b", "выберите", d["title"] or "")
+        return {"t": t, "title": _html(title), "items": items} if items else None
     raise ValueError(f"блок {t} не поддерживается сайтом")  # pragma: no cover
 
 
@@ -260,6 +350,11 @@ def _split(block: Block) -> list[dict]:
 
 def lesson_data(lesson: Lesson, cards: dict[str, WordCard]) -> dict:
     blocks = [b for block in lesson.blocks for b in _split(block)]
+    by_cell = ROW_ART.get(lesson.id, {})
+    for blk in blocks:
+        if by_cell and blk["t"] == "table":
+            cells = [re.sub("<[^>]*>", "", row[0]) for row in blk["rows"]]
+            blk["rowpics"] = {str(k): _art_file(by_cell[c]) for k, c in enumerate(cells) if c in by_cell}
     return {
         "n": lesson.number, "id": lesson.id, "unit": lesson.unit.number, "level": lesson.level,
         "kind": lesson.kind, "kindLabel": lesson.kind_label, "emoji": lesson.kind_emoji,

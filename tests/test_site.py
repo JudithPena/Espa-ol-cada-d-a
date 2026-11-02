@@ -145,3 +145,15 @@ def test_site_icons(course, tmp_path):
     assert 'rel="apple-touch-icon"' in html and 'rel="manifest"' in html
     for name in ("apple-touch-icon.png", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "manifest.webmanifest"):
         assert (tmp_path / name).is_file(), name
+
+
+def test_row_art(course):
+    """Картинки к объяснению стоят в своей строке таблицы, рядом с поясняемой буквой."""
+    from espanol.site import ROW_ART
+
+    data = site_data(course, load_cards(CONTENT), units={0})
+    lessons = {x["id"]: x for x in data["lessons"]}
+    for lesson_id, by_cell in ROW_ART.items():
+        table = next(b for b in lessons[lesson_id]["blocks"] if b["t"] == "table")
+        assert len(table["rowpics"]) == len(by_cell)
+        assert all(u.startswith("data:image/webp") for u in table["rowpics"].values())
