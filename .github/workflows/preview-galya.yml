@@ -1,0 +1,26 @@
+name: Карточки Гали в личку автора
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ccr-f4c9bfd6-txio5n]
+    paths: [".github/workflows/preview-galya.yml"]
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Отправить три карточки автору
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_REVIEW_CHAT_ID: ${{ secrets.TELEGRAM_REVIEW_CHAT_ID }}
+        run: python -m scripts.preview_galya
