@@ -1205,18 +1205,12 @@ function blockHTML(b) {
 }
 
 function wordCard(w) {
-  const sec = (lbl, html) => `<div class="sec"><b>${lbl}</b><div>${html}</div></div>`;
   return `<div class="wcard">
     ${w.img ? `<img class="pic" src="${w.img}" alt="">` : ""}
     <div class="head${w.img ? " noemo" : ""}">${w.img ? "" : `<span class="emo">${esc(w.emoji)}</span>`}<span><span class="word">${esc(w.es)}</span>${w.pron ? `<br><span class="pron">[${esc(w.pron)}]</span>` : ""}</span>
       <span class="row" style="gap:6px">${playBtn(w.say)}${slowBtn(w.say)}</span></div>
     <div class="tr">${esc(w.ru)}</div>
-    ${w.meaning ? sec("Значение", w.meaning) : ""}
-    ${w.pronNote ? sec("Произношение", w.pronNote) : ""}
-    ${w.ex ? `<div class="sec"><b>Примеры</b><ul class="exl">${w.ex.map(([es, ru]) => `<li>${playBtn(es)}<span><span class="es">${esc(es)}</span><small>${esc(ru)}</small></span></li>`).join("")}</ul></div>` : ""}
-    ${w.coll ? sec("Сочетания", w.coll.join("<br>")) : ""}
-    ${w.note ? sec("Заметка", w.note) : ""}
-    ${w.trap ? `<div class="sec trap"><b>На заметку</b><div>${w.trap}</div></div>` : ""}
+    ${(n => n ? `<div class="sec trap"><b>На заметку</b><div>${n}</div></div>` : "")(w.trap || w.pronNote || w.note)}
   </div>`;
 }
 
