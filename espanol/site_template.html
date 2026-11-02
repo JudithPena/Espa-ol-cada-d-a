@@ -756,7 +756,8 @@ function exerciseSteps(L, pool, only) {
       const opts = shuffle(it.opts);
       return out.push({ type: "mc", mode: "ex", title: b.title, q: it.q, options: opts, plain: opts, correct: opts.indexOf(it.ap) });
     }
-    const seen = new Set([norm(it.ap), norm(it.qp)]), wrong = [];   // сам вопрос вариантом не бывает
+    // сам вопрос вариантом не бывает, и с подсказкой в скобках тоже: «¿Qué tal? (у вас всё отлично)»
+    const seen = new Set([norm(it.ap), norm(it.qp), norm(String(it.qp ?? "").replace(/\([^)]*\)/g, " "))]), wrong = [];
     const take = cands => { for (const c of shuffle(cands)) {
       const k = norm(c.ap);
       if (wrong.length < 3 && k && !seen.has(k) && isCyr(c.ap) === isCyr(it.ap)) { seen.add(k); wrong.push(c); }
@@ -764,6 +765,9 @@ function exerciseSteps(L, pool, only) {
     take(b.items.filter(x => x.ap && x !== it));
     if (wrong.length < 3) take(all.filter(x => !b.items.includes(x)));
     if (wrong.length < 2 && !isCyr(it.ap) && it.ap.split(" ").length <= 3) take(pool.map(w => ({ a: esc(w.es), ap: w.es })));
+    // Мало вариантов — слова урока, но не части ответа, вопроса и других вариантов («bien», «¿Y tú?» тоже были бы верны).
+    if (wrong.length < 2 && !isCyr(it.ap)) take(L.words.map(w => ({ a: esc(w.es), ap: w.es }))
+      .filter(c => ![it.ap, it.qp ?? "", ...wrong.map(x => x.ap)].some(t => ` ${norm(t)} `.includes(` ${norm(c.ap)} `))));
     if (wrong.length < 2) return;   // без двух правдоподобных вариантов вопрос не задаём
     const options = shuffle([it, ...wrong]);
     out.push({ type: "mc", mode: "ex", title: b.title, q: it.q, html: true,
