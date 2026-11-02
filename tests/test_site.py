@@ -157,3 +157,25 @@ def test_row_art(course):
         table = next(b for b in lessons[lesson_id]["blocks"] if b["t"] == "table")
         assert len(table["rowpics"]) == len(by_cell)
         assert all(u.startswith("data:image/webp") for u in table["rowpics"].values())
+
+
+def test_audio_texts(course):
+    """Озвучка сайта: слова, примеры, реплики диалогов своим голосом, слова «Соберите фразу», разборы видео."""
+    from espanol.site_audio import DIALOGUE_VOICES, VOICES, audio_texts, file_id
+    from espanol.videos import load_videos
+
+    data = site_data(course, load_cards(CONTENT), videos=load_videos(CONTENT, course))
+    texts = audio_texts(data)
+    assert texts["la casa"][0] == "la casa" and texts["la casa"][1] in VOICES
+    assert {v for _, v in texts.values()} == set(VOICES)  # и женские, и мужской голос
+    dialogue = [k for k in texts if k.startswith("@")]
+    assert dialogue and all(texts[k][1] in DIALOGUE_VOICES for k in dialogue)
+    assert any(k.startswith("@0|") for k in dialogue) and any(k.startswith("@1|") for k in dialogue)
+    first = next(k for k in dialogue if k.startswith("@1|"))
+    assert texts[first][1] == DIALOGUE_VOICES[1]
+    sentence = next(x["sentences"][0][0] for x in data["lessons"] if x["sentences"])
+    assert all(tok in texts for tok in sentence.split(" ") if any(ch.isalpha() for ch in tok))
+    seg = data["videos"][0]["segments"][0]
+    assert seg["es"] in texts
+    assert all(not k.startswith(" ") and "  " not in k for k in texts)  # ключи — как clean() на странице
+    assert file_id("la casa", VOICES[0]) != file_id("la casa", VOICES[1])

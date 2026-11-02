@@ -481,8 +481,16 @@ MANIFEST = json.dumps({
 
 
 def build_site(course: Course, cards: dict[str, WordCard], out: str | Path, units: set[int] | None = None,
-               fragment: bool = False, videos: list | None = None, preview: bool = False) -> Path:
-    data = json.dumps(site_data(course, cards, units, videos, preview), ensure_ascii=False).replace("</", "<\\/")
+               fragment: bool = False, videos: list | None = None, preview: bool = False,
+               audio_cache: str | Path | None = None) -> Path:
+    """audio_cache — папка с записями озвучки (espanol/site_audio.py): недостающее записывается, нужное
+    копируется в a/ рядом со страницей. Без неё сайт собирается без записей (так в тестах)."""
+    site = site_data(course, cards, units, videos, preview)
+    out = Path(out)
+    if audio_cache and not fragment:
+        from .site_audio import record
+        site["audio"] = record(site, out.parent, audio_cache)
+    data = json.dumps(site, ensure_ascii=False).replace("</", "<\\/")
     page = TEMPLATE.read_text(encoding="utf-8").replace("/*__DATA__*/{}", data)
     page = page.replace("/*__GRAMMAR_PLAYER__*/", TEMPLATE.with_name("grammar_player.js").read_text(encoding="utf-8"))
     if not fragment:
@@ -497,7 +505,6 @@ def build_site(course: Course, cards: dict[str, WordCard], out: str | Path, unit
                 '<meta name="mobile-web-app-capable" content="yes">\n'
                 '<meta name="apple-mobile-web-app-title" content="Español">\n'
                 f"{page}\n</html>\n")
-    out = Path(out)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(page, encoding="utf-8")
     if not fragment:  # иконки и манифест лежат рядом со страницей
