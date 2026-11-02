@@ -179,3 +179,12 @@ def test_audio_texts(course):
     assert seg["es"] in texts
     assert all(not k.startswith(" ") and "  " not in k for k in texts)  # ключи — как clean() на странице
     assert file_id("la casa", VOICES[0]) != file_id("la casa", VOICES[1])
+
+
+def test_site_note_drops_unknown_and_offtopic():
+    from espanol.site import site_note
+
+    unknown = lambda text: [w for w in ("caza", "tomar") if w in text]
+    assert site_note("c перед a читается как «к». Не путайте с caza (с z) — «охота».", unknown) == "c перед a читается как «к»."
+    assert site_note("x между гласными — «кс». В Латинской Америке «взять такси» — tomar un taxi 🌎.", unknown) == "x между гласными — «кс»."
+    assert site_note("Не путайте с caza.", unknown) is None
