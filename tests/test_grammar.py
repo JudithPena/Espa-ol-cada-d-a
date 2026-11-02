@@ -7,7 +7,7 @@ from espanol.site import site_data
 
 
 def test_unit_covers_supplied_page(course):
-    unit, = site_data(course, {})["grammar"]
+    unit = site_data(course, {})["grammar"][0]
     assert unit["id"] == "001_el_hijo_la_hija"
     assert [len(g["questions"]) for g in unit["exercises"]] == [10, 15, 10]
     pictures = unit["exercises"][0]["questions"]
@@ -30,8 +30,31 @@ def test_unit_covers_supplied_page(course):
 
 
 def test_reject_answer_missing_from_options(tmp_path):
-    unit, = load_grammar()
+    unit = load_grammar()[0]
     unit["exercises"][0]["questions"][0]["answers"] = ["missing"]
     (tmp_path / "001.json").write_text(json.dumps(unit), encoding="utf-8")
     with pytest.raises(ValueError, match="correct answer missing"):
         load_grammar(tmp_path)
+
+
+def test_second_unit_covers_pages_and_current_norm():
+    first, unit = load_grammar()
+    assert unit['id'] == '002_el_libro_la_mesa'
+    assert [len(g['questions']) for g in unit['exercises']] == [32, 6, 10]
+    assert len(unit['sections']) == 7
+    assert all(s.get('check') for s in unit['sections'])
+    classification = unit['exercises'][0]['questions']
+    assert len({q['prompt'] for q in classification}) == 32
+    assert next(q for q in classification if q['prompt'] == '___ radio')['translation'] == 'радиоприёмник в Испании'
+    assert next(q for q in classification if q['prompt'] == '___ mano')['answers'] == ['la']
+    assert next(q for q in classification if q['prompt'] == '___ problema')['answers'] == ['el']
+    animals = unit['sections'][-2]
+    fixed = [w[0] for g in animals['wordGroups'] for w in g['words']]
+    assert 'el conejo' not in fixed and 'el ratón' not in fixed
+    assert 'la coneja' in unit['sections'][-1]['schemes'][0]['to']
+    pictures = unit['exercises'][2]['questions']
+    assert all(q['image'].startswith('data:image/webp;base64,') and q['imageAlt'] for q in pictures)
+    assert pictures[4]['answers'] == ['el gorila']
+    assert pictures[-1]['answers'] == ['la nariz']
+    assert unit['exercises'][1]['questions'][1]['answers'] == ['caballo']
+    assert first['id'] != unit['id']

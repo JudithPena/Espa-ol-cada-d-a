@@ -6,7 +6,8 @@ const vm = require('node:vm');
 const template = fs.readFileSync('espanol/site_template.html', 'utf8');
 const script = template.match(/<script>([\s\S]*?)<\/script>/)[1].replace('/*__GRAMMAR_PLAYER__*/', fs.readFileSync('espanol/grammar_player.js','utf8'));
 const unit = JSON.parse(fs.readFileSync('content/grammar/001_genero.json','utf8'));
-function context() {
+const unit2 = JSON.parse(fs.readFileSync('content/grammar/002_objetos_animales.json','utf8'));
+function context(grammar = [unit]) {
   const noop = () => {};
   const storage = new Map();
   const ctx = vm.createContext({console, setTimeout:noop, clearTimeout:noop, addEventListener:noop,
@@ -14,7 +15,7 @@ function context() {
     window:{addEventListener:noop}, document:{documentElement:{classList:{toggle:noop}},addEventListener:noop,getElementById:()=>null,querySelector:()=>({focus:noop})},
     navigator:{}, speechSynthesis:{getVoices:()=>[],addEventListener:noop},
   });
-  const data = {lessons:[],units:[],intervals:[1],grammar:[unit]};
+  const data = {lessons:[],units:[],intervals:[1],grammar};
   // Execute the production script, excluding only the initial DOM render.
   vm.runInContext(script.replace('/*__DATA__*/{}',JSON.stringify(data)).replace(/render\(\);\s*$/, ''),ctx);
   return (code) => vm.runInContext(code,ctx);
@@ -195,4 +196,36 @@ test('completion celebrates the whole unit and offers a next lesson only when av
  assert.ok(run('gPlayerView()').includes('data-gnext-unit="next-unit"'));
  run('G.route="section:0";');
  assert.ok(!run('gPlayerView()').includes('Поздравляю! Урок пройден!'));
+});
+
+test('second unit runs through locks, choice and typed questions and preserves first-unit progress', () => {
+ const run=context([unit,unit2]);
+ run(`var original=COURSE.grammar[0];gradeGrammar(original,original.exercises[0],original.exercises[0].questions.map(q=>q.answers[0]));
+ gStart(COURSE.grammar[1].id); var count=0;
+ while(!G.ended && count++<200) {
+  const step=G.steps[G.at];
+  if(step.type==='question') {const group=gGroups(gUnit()).find(g=>g.id===step.group);gResponse(step).value=group.questions[step.qi].answers[0];gCheck();}
+  gMove(1);
+ }`);
+ assert.equal(run('G.ended'),true);
+ assert.equal(run('P.grammar["002_el_libro_la_mesa/2.1"].correct'),32);
+ assert.equal(run('P.grammar["002_el_libro_la_mesa/2.2"].correct'),6);
+ assert.equal(run('P.grammar["002_el_libro_la_mesa/2.3"].correct'),10);
+ assert.equal(run('P.grammar["001_el_hijo_la_hija/1.1"].correct'),10);
+ assert.ok(run('gPlayerView()').includes('Поздравляю! Урок пройден!'));
+});
+
+test('new unit renders noun groups and typed pictures with matching instructions', () => {
+ const run=context([unit2]);
+ const theory=run('gTheory(COURSE.grammar[0].sections[0])');
+ assert.ok(theory.includes('el libro') && theory.includes('(книга)'));
+ assert.ok(!theory.includes('gscheme-arrow'));
+ unlockUntil(run,'exercise:2.3');
+ run('gStart(COURSE.grammar[0].id,"exercise:2.3");gMove(1);');
+ const picture=run('gPlayerView()');
+ assert.ok(picture.includes('Напиши название с артиклем'));
+ assert.ok(picture.includes('id="g-answer"') && picture.includes('Слова для упражнения'));
+ assert.ok(!picture.includes('профессии'));
+ const intro=run('gIntro(COURSE.grammar[0].exercises[2])');
+ assert.ok(intro.includes('Ввод слова') && !intro.includes('Выбор ответа'));
 });

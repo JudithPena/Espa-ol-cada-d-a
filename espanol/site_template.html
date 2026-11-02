@@ -378,6 +378,17 @@ main { padding-block: 16px 110px; }
 .gscheme-arrow { color: var(--accent); display: block; width: 24px; height: 24px; }
 .gscheme-arrow svg { display: block; width: 100%; height: 100%; overflow: visible; }
 .gscheme-note { font-size: 13px; color: var(--muted); margin-top: 8px; }
+.gword-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-block: 20px; }
+.gword-group { background: var(--accent-soft); border-radius: 18px; padding: 20px; min-width: 0; }
+.gword-group h3 { font-size: 16px; margin: 0 0 8px; }
+.gword-group > small { display: block; color: var(--muted); margin-bottom: 14px; }
+.gword-group ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.gword-group li { display: flex; flex-wrap: wrap; gap: 3px 8px; align-items: baseline; }
+.gword-group b { font-size: 18px; }
+.gword-group li span { color: var(--muted); font-size: 13px; }
+.gword-group.is-exception { background: var(--warn-soft, #fff1d2); }
+.gintro .gword-groups { margin: 0; }
+@media (max-width: 600px) { .gword-groups { grid-template-columns: 1fr; } .gword-group { padding: 16px; } }
 .gchange { --g-arrow-width: 32px; }
 .gchange .gscheme-pair { grid-template-columns: minmax(0, 1fr) var(--g-arrow-width) minmax(0, 1fr); max-width: 600px; margin-inline: auto; gap: 10px; align-items: start; }
 .gchange .gscheme-arrow { width: var(--g-arrow-width); height: 30px; align-self: start; }
@@ -1041,6 +1052,9 @@ const grammarNormalize = value => String(value).normalize("NFC").trim().toLocale
 const grammarCorrect = (q, value) => q.answers.some(a => grammarNormalize(a) === grammarNormalize(value));
 function grammarTable(t) {
   return `<div class="tbl" tabindex="0" role="region" aria-label="Таблица примеров"><table><thead><tr>${t.heads.map(h => `<th scope="col">${esc(h)}</th>`).join("")}</tr></thead><tbody>${t.rows.map(r => `<tr>${r.map(c => `<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+}
+function grammarWordGroups(groups) {
+  return `<div class="gword-groups">${groups.map(g => `<section class="gword-group${g.exception ? " is-exception" : ""}"><h3>${esc(g.title)}</h3>${g.label ? `<small>${esc(g.label)}</small>` : ""}<ul>${g.words.map(([es,ru]) => `<li><b lang="es">${esc(es)}</b><span>(${esc(ru)})</span></li>`).join("")}</ul></section>`).join("")}</div>`;
 }
 function grammarSchemes(schemes) {
   return `<div class="gschemes">${schemes.map(s => s.translations ? grammarChangeScheme(s) : `<div class="gscheme"><div class="gscheme-label">${esc(s.label)}</div>

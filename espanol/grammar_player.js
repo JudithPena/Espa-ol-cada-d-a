@@ -106,11 +106,11 @@ function grammarView() {
   return `<button class="btn ghost sm back" data-grammar-list>← Все уроки грамматики</button><span class="eyebrow">Unidad ${unit.number} · ${esc(unit.level)}</span><h2>${esc(unit.title)}</h2><p class="muted">${esc(unit.subtitle)}</p>
     <div class="gactions">${resume ? '<button class="btn" data-gresume>Продолжить урок</button>' : ""}<button class="btn ${resume ? "ghost" : ""}" data-gstart="all">${resume ? "Начать сначала" : "Пройти весь урок"}</button></div>
     <h3 class="sech">Теория и мини-проверки</h3><div class="menu">${unit.sections.map((s, i) => row(`section:${i}`, s.title, "Правило → мини-проверка", s.check)).join("")}${row("summary", "Что запомнить", "Правила с примерами")}</div>
-    <h3 class="sech">Упражнения</h3><div class="menu">${unit.exercises.map(g => row(`exercise:${g.id}`, g.title, `${g.questions.length} заданий · по одному на экран`, g)).join("")}</div>`;
+    <h3 class="sech">Упражнения</h3><div class="menu">${unit.exercises.map(g => row(`exercise:${g.id}`, g.title, `${g.questions.length} ${plural(g.questions.length,"задание","задания","заданий")} · по одному на экран`, g)).join("")}</div>`;
 }
 function gTheory(section) {
   return `<div class="theory">${section.paragraphs.map(p => `<p>${esc(p)}</p>`).join("")}${(section.examples || []).map(([es,ru]) => `<div class="box rule">${playBtn(es)} <b lang="es">${esc(es)}</b><br>${esc(ru)}</div>`).join("")}</div>
-    ${section.schemes ? grammarSchemes(section.schemes) : ""}${section.table ? grammarTable(section.table) : ""}
+    ${section.wordGroups ? grammarWordGroups(section.wordGroups) : ""}${section.schemes ? grammarSchemes(section.schemes) : ""}${section.table ? grammarTable(section.table) : ""}
     ${section.agreement ? `<div class="gagreement">${section.agreement.map(w => `<div><small>${esc(w.label)}</small><b>${esc(w.from)}</b><span>↓</span><b>${esc(w.to)}</b></div>`).join("")}</div>` : ""}
     ${section.notes?.length ? `<aside class="gnotes">${section.notes.map(n => `<p>${esc(n)}</p>`).join("")}</aside>` : ""}`;
 }
@@ -139,8 +139,9 @@ function gFinalView(unit, tested, good) {
 function gIntro(group) {
   const pictures = group.questions.filter(q => q.image).slice(0,3);
   const preview = group.preview;
-  const visual = pictures.length ? `<div class="gintro-art" aria-hidden="true">${pictures.map(q => `<img src="${esc(q.image)}" alt="" width="384" height="384">`).join("")}</div>` : preview ? `<div class="gintro-demo"><span class="kicker">Образец</span><div class="gintro-source" lang="es">${esc(preview.source)} <span aria-hidden="true">→</span> la</div><div class="gintro-answer" lang="es">${esc(preview.answer)}<span aria-hidden="true">✓</span></div><span class="muted">${esc(preview.translation)}</span></div>` : "";
-  return `<div class="gintro ${visual ? "has-visual" : ""}">${visual}<div class="gintro-copy"><div class="gintro-tags"><span>${group.questions.length} заданий</span><span>${pictures.length ? "Выбор ответа" : group.family ? "Родственные связи" : "Ввод слова"}</span></div><p>${esc(group.instruction)}</p>${preview ? '<p class="muted gintro-tip">Как в образце: впиши только недостающее слово.</p>' : ""}</div>${group.family ? `<div class="gintro-family">${grammarFamily(group.family)}</div>` : ""}${group.example ? `<div class="gworked-example gintro-family"><small>${esc(group.example.label)}</small><b>${esc(group.example.es)}</b><small>${esc(group.example.ru)}</small></div>` : ""}</div>`;
+  const visual = pictures.length ? `<div class="gintro-art" aria-hidden="true">${pictures.map(q => `<img src="${esc(q.image)}" alt="" width="384" height="384">`).join("")}</div>` : preview ? `<div class="gintro-demo"><span class="kicker">Образец</span><div class="gintro-source" lang="es">${esc(preview.source)} <span aria-hidden="true">→</span> ${esc(preview.targetPrefix ?? "la")}</div><div class="gintro-answer" lang="es">${esc(preview.answer)}<span aria-hidden="true">✓</span></div><span class="muted">${esc(preview.translation)}</span></div>` : group.introGroups ? grammarWordGroups(group.introGroups) : "";
+  const choice = group.questions.every(q => q.options);
+  return `<div class="gintro ${visual ? "has-visual" : ""}">${visual}<div class="gintro-copy"><div class="gintro-tags"><span>${group.questions.length} ${plural(group.questions.length,"задание","задания","заданий")}</span><span>${choice ? "Выбор ответа" : group.family ? "Родственные связи" : "Ввод слова"}</span></div><p>${esc(group.instruction)}</p>${preview && !group.instruction.includes("только слово") ? '<p class="muted gintro-tip">Как в образце: впиши только недостающее слово.</p>' : ""}</div>${group.family ? `<div class="gintro-family">${grammarFamily(group.family)}</div>` : ""}${group.example ? `<div class="gworked-example gintro-family"><small>${esc(group.example.label)}</small><b>${esc(group.example.es)}</b><small>${esc(group.example.ru)}</small></div>` : ""}</div>`;
 }
 function gPlayerView() {
   const unit = gUnit();
@@ -153,7 +154,7 @@ function gPlayerView() {
   const step = G.steps[G.at], group = step.group && gGroups(unit).find(g => g.id === step.group), response = gResponse(step);
   let title, content, kicker = "Грамматика";
   if (step.type === "theory") { const section = unit.sections[step.section]; title = section.title; content = gTheory(section); kicker = "Правило"; }
-  if (step.type === "summary") { title = "Что запомнить"; content = unit.summary.schemes ? `<div class="gsummary-cards">${grammarSchemes(unit.summary.schemes)}</div>` : grammarTable(unit.summary); kicker = "Кратко"; }
+  if (step.type === "summary") { title = "Что запомнить"; content = unit.summary.wordGroups ? grammarWordGroups(unit.summary.wordGroups) : unit.summary.schemes ? `<div class="gsummary-cards">${grammarSchemes(unit.summary.schemes)}</div>` : grammarTable(unit.summary); kicker = "Кратко"; }
   if (step.type === "intro") {
     title = group.title; kicker = "Упражнение";
     content = gIntro(group);
@@ -161,13 +162,13 @@ function gPlayerView() {
   if (step.type === "question") {
     const q = group.questions[step.qi], block = (group.questionBlocks || []).filter(b => b.at <= step.qi).at(-1);
     kicker = `${group.title === "Мини-проверка" ? "Мини-проверка" : group.title} · ${step.qi + 1} из ${group.questions.length}`;
-    title = q.context || (q.image ? "Выбери название профессии" : q.prompt);
+    title = q.context || (q.image ? (group.pictureTitle || "Выбери название профессии") : q.prompt);
     const who = block ? `<div class="gwho"><img src="${esc(group.family.portraits[block.person])}" alt="" width="44" height="44"><b>Родственники ${esc(block.person)}</b></div>` : "";
     const options = q.options ? `<div class="opts" role="group" aria-label="Варианты ответа">${q.options.map((o,i) => `<button class="opt ${response.checked && q.answers.includes(o) ? "right" : response.checked && response.value === o && !response.good ? "wrong" : ""}" data-gpick="${i}" aria-pressed="${response.value === o}" ${response.checked ? "disabled" : ""}><span class="k">${i + 1}</span><span lang="es">${esc(o)}</span></button>`).join("")}</div>`
       : `<div><label class="sr-only" for="g-answer">Ответ на испанском</label><input class="ginput" id="g-answer" aria-label="Ответ на испанском" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Слово на испанском" value="${esc(response.value)}" ${response.checked ? "disabled" : ""}>${response.checked ? "" : `<div class="gaccents" aria-label="Испанские буквы">${["á","é","í","ó","ú","ü","ñ"].map(c => `<button class="btn ghost sm" data-gchar="${c}" aria-label="Вставить ${c}">${c}</button>`).join("")}</div>`}</div>`;
-    const question = `${who}${q.context ? `<p class="gquestion-sentence" lang="es">${esc(q.prompt)}</p>` : ""}${options}`;
+    const question = `${who}${q.context ? `<p class="gquestion-sentence" lang="es">${esc(q.prompt)}</p>` : ""}${q.translation ? `<p class="muted gquestion-translation">${esc(q.translation)}</p>` : ""}${options}`;
     content = group.family ? `<div class="gfamily-work"><details class="gplay-family" ${G.treeOpen === false ? "" : "open"}><summary>Семейное дерево</summary>${grammarFamily({...group.family, activeName:block?.person})}</details><div class="ganswer-area">${question}${group.vocabulary ? `<details class="gvocab"><summary>Слова родства</summary>${grammarTable(group.vocabulary)}</details>` : ""}</div></div>`
-      : `<div class="gquestion-work ${q.image ? "has-image" : ""}">${q.image ? `<img class="gquestion-picture" src="${esc(q.image)}" alt="${esc(q.imageAlt)}" width="384" height="384">` : ""}<div class="ganswer-area">${question}</div></div>`;
+      : `<div class="gquestion-work ${q.image ? "has-image" : ""}">${q.image ? `<img class="gquestion-picture" src="${esc(q.image)}" alt="${esc(q.imageAlt)}" width="384" height="384">` : ""}<div class="ganswer-area">${question}${group.vocabulary ? `<details class="gvocab"><summary>Слова для упражнения</summary>${grammarTable(group.vocabulary)}</details>` : ""}</div></div>`;
     if (group.title === "Мини-проверка" && group.instruction) content = `<p class="muted ginstruction">${esc(group.instruction.replace(/ Затем нажми.*$/, ""))}</p>` + content;
   }
   const checked = response?.checked;
