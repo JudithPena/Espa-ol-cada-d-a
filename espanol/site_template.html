@@ -655,19 +655,50 @@ function grade(es, ok) {
 }
 
 /* ================================================================ озвучка (голос браузера) */
-const TTS = { ok: "speechSynthesis" in window, voice: null };
+// Озвучка: готовые записи нейроголосами (папка a/, карта COURSE.audio: текст → файл, реплика диалога — «@N|текст»).
+// Голос телефона — только запасной и только если в телефоне есть испанский голос: иначе он читает
+// испанский русским голосом, и лучше промолчать.
+const AUDIO = COURSE.audio || {};
+const HAS_AUDIO = Object.keys(AUDIO).length > 0;
+const SPEECH = "speechSynthesis" in window;
+const TTS = { ok: HAS_AUDIO || SPEECH, voice: null };
+const clean = t => String(t ?? "").replace(/\s+/g, " ").trim();
 function pickVoice() {
-  if (!TTS.ok) return;
+  if (!SPEECH) return;
   const vs = speechSynthesis.getVoices();
   TTS.voice = vs.find(v => /^es[-_]ES/i.test(v.lang)) || vs.find(v => /^es/i.test(v.lang)) || null;
 }
-if (TTS.ok) { pickVoice(); speechSynthesis.addEventListener?.("voiceschanged", pickVoice); }
-function say(text, { slow = false, queue = false, pitch = 1 } = {}) {
-  if (!TTS.ok || !text) return;
+if (SPEECH) { pickVoice(); speechSynthesis.addEventListener?.("voiceschanged", pickVoice); }
+const audioId = (text, who) => (who != null && AUDIO[`@${who}|${clean(text)}`]) || AUDIO[clean(text)] || null;
+const canSay = text => !!text && (!!audioId(text) || (SPEECH && (TTS.voice || (pickVoice(), TTS.voice))));
+let player = null, audioQueue = [];
+function stopSpeech() {
+  audioQueue = [];
+  if (player) { try { player.pause(); } catch (e) {} }
+  if (SPEECH) { try { speechSynthesis.cancel(); } catch (e) {} }
+}
+function playNext() {
+  const next = audioQueue.shift();
+  if (!next) return;
+  player = player || new Audio();
+  player.onended = playNext;
+  player.src = `a/${next.id}.mp3`;
+  player.playbackRate = next.slow ? 0.7 : 1;
+  player.play()?.catch?.(() => {});
+}
+function say(text, { slow = false, queue = false, pitch = 1, who = null } = {}) {
+  if (!text) return;
+  if (!queue) stopSpeech();
+  const id = audioId(text, who);
+  if (id) {
+    audioQueue.push({ id, slow });
+    if (!queue || !player || player.paused || player.ended) playNext();
+    return;
+  }
+  if (!SPEECH || !TTS.voice && (pickVoice(), !TTS.voice)) return;   // нет записи и нет испанского голоса — молчим
   try {
-    if (!queue) speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = "es-ES"; if (TTS.voice) u.voice = TTS.voice;
+    const u = new SpeechSynthesisUtterance(clean(text));
+    u.lang = "es-ES"; u.voice = TTS.voice;
     u.rate = slow ? 0.6 : 0.9; u.pitch = pitch;
     speechSynthesis.speak(u);
   } catch (e) {}
@@ -691,7 +722,7 @@ function distractors(w, pool, field, n = 3) {
 }
 // mode: rec — «Что значит…?», prod — «Как по-испански…?», listen — на слух
 function wordQuestion(w, pool, mode) {
-  if (mode === "listen" && !TTS.ok) mode = "rec";
+  if (mode === "listen" && !canSay(w.say)) mode = "rec";
   const field = mode === "rec" ? "ru" : "es";
   const wrong = distractors(w, pool, field);
   if (wrong.length < 2) return null;
@@ -731,7 +762,7 @@ function practiceFor(i) {
   const fresh = L.words.filter(w => w.srs);
   fresh.forEach((w, k) => { const q = wordQuestion(w, pool, k % 2 ? "prod" : "rec"); if (q) steps.push(q); });
   shuffle(fresh).slice(0, 2).forEach(w => { const q = wordQuestion(w, pool, "listen"); if (q) steps.push(q); });
-  const phrases = shuffle(L.sentences), heard = TTS.ok && phrases.length ? 1 : 0;
+  const phrases = shuffle(L.sentences), heard = phrases.length && canSay(phrases[0][0]) ? 1 : 0;
   phrases.slice(0, heard).forEach(([es, ru]) => steps.push({ type: "mf", es, ru }));
   phrases.slice(heard, heard + 2).forEach(([es, ru]) => steps.push({ type: "build", es, ru }));
   const vocab = shuffle(steps);
@@ -1157,10 +1188,10 @@ function blockHTML(b) {
       const all = b.lines.map(l => l[3]).join(" | ");
       return `<div class="dlg hide-tr" data-dlg>
         <div class="row"><span class="ttl">${b.title || "Диалог"}</span>
-          <span class="row" style="gap:8px">${TTS.ok ? `<button class="btn ghost sm" data-dialog="${esc(JSON.stringify(b.lines.map(l => [speakers.indexOf(l[0]), l[3]])))}">▶ Слушать</button>` : ""}
+          <span class="row" style="gap:8px">${b.lines.some(l => canSay(l[3])) ? `<button class="btn ghost sm" data-dialog="${esc(JSON.stringify(b.lines.map(l => [speakers.indexOf(l[0]), l[3]])))}">▶ Слушать</button>` : ""}
           <button class="btn ghost sm" data-toggle-tr>${b.hidden ? "Показать текст" : "Перевод"}</button></span></div>
         <div ${b.hidden ? 'hidden data-hidden-text' : ""} class="dlg">${b.lines.map(([who, es, ru, sp]) => `<div class="msg ${speakers.indexOf(who) % 2 ? "r" : ""}">
-          <span class="who">${esc(who)}</span><button class="bubble" data-say="${esc(sp)}"><span>${es}</span><small>${ru}</small></button></div>`).join("")}</div>
+          <span class="who">${esc(who)}</span><button class="bubble" data-say="${esc(sp)}" data-who="${speakers.indexOf(who)}"><span>${es}</span><small>${ru}</small></button></div>`).join("")}</div>
       </div>`;
     }
     case "reading": return `<div class="reading hide-tr" data-dlg><div class="row"><span class="ttl es">${b.title || "Текст"}</span>
@@ -1504,8 +1535,8 @@ document.addEventListener("click", e => {
     return toast(r.lessons ? `Пройдено уроков: ${r.lessons}, слов в повторении: ${r.words}` : "Начнём с первого урока");
   }
   if (d.add) { P.words[d.add] = { s: 0, due: dayNum() + INTERVALS[0] }; save(); closeSheet(); return toast("Слово добавлено: повторим завтра"); }
-  if (d.say != null) { say(d.say, { slow: "slow" in d }); if (!el.classList.contains("bubble")) return; }
-  if (d.dialog) { const lines = JSON.parse(d.dialog); speechSynthesis.cancel(); lines.forEach(([who, text]) => say(text, { queue: true, pitch: who % 2 ? 0.75 : 1.15 })); return; }
+  if (d.say != null) { say(d.say, { slow: "slow" in d, who: d.who != null ? +d.who : null }); if (!el.classList.contains("bubble")) return; }
+  if (d.dialog) { const lines = JSON.parse(d.dialog); stopSpeech(); lines.forEach(([who, text]) => say(text, { queue: true, who, pitch: who % 2 ? 0.75 : 1.15 })); return; }
   if ("toggleTr" in d) {
     const box = el.closest("[data-dlg]"), hidden = box.querySelector("[data-hidden-text]");
     if (hidden && hidden.hidden) { hidden.hidden = false; el.textContent = "Перевод"; return; }
@@ -1525,7 +1556,7 @@ document.addEventListener("click", e => {
     return startReview(d.review === "due" ? dueWords() : d.review === "weak" ? all.filter(w => (P.words[w.es].s || 0) <= 1) : all);
   }
   if ("home" in d) { S = null; view.tab = "course"; view.level = null; render(); const c = $(`#unit-${LESSONS[currentIndex()].unit}`); if (c) c.scrollIntoView({ block: "start" }); return; }
-  if ("quit" in d) { clearTimeout(autoTimer); speechSynthesis?.cancel?.(); S = null; render(); return; }
+  if ("quit" in d) { clearTimeout(autoTimer); stopSpeech(); S = null; render(); return; }
   if (d.goal) { P.goal = +d.goal; save(); render(); return; }
   if ("sync" in d) { push(true).then(() => toast("Сохранено")); return; }
   if ("logout" in d) { logout("Вы вышли, прогресс остался в этом браузере"); render(); return; }

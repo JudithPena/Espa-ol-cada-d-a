@@ -160,7 +160,7 @@ def cmd_site(args, settings) -> int:
     cards = load_cards(settings.content_dir)
     videos = load_videos(settings.content_dir, course)
     path = build_site(course, cards, args.out, units=parse_units(args.units), fragment=args.fragment, videos=videos,
-                      preview=args.preview)
+                      preview=args.preview, audio_cache=args.audio_cache)
     print(f"Сайт сохранён: {path}")
     return 0
 
@@ -351,6 +351,8 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--units", help="только эти темы: 0-5 или 0,2,4 (по умолчанию весь курс)")
     p.add_argument("--fragment", action="store_true", help="без <html>/<head>, только содержимое страницы")
     p.add_argument("--preview", action="store_true", help="тестовая версия: в шапке метка «тест»")
+    p.add_argument("--audio-cache", metavar="DIR",
+                   help="записать озвучку слов и фраз нейроголосами (папка-кэш записей, например .cache/site-audio)")
     p = sub.add_parser("lookup", help="где впервые встречается слово")
     p.add_argument("words", nargs="+")
     sub.add_parser("status", help="прогресс публикации")

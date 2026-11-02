@@ -25,7 +25,7 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 45
     env:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -54,16 +54,27 @@ jobs:
         with:
           node-version: "22"
 
+      # Озвучка сайта (espanol/site_audio.py): записи нейроголосами хранятся в кэше между сборками,
+      # поэтому записываются только новые слова. Первая сборка записывает всё (~3000 фраз, несколько минут).
+      - name: Кэш озвучки
+        if: steps.check.outputs.ready == 'true'
+        uses: actions/cache@v4
+        with:
+          path: .cache/site-audio
+          key: site-audio-${{ github.run_id }}
+          restore-keys: site-audio-
+
       - name: Сборка сайта
         if: steps.check.outputs.ready == 'true'
         run: |
           pip install -r requirements.txt
           if [ "$GITHUB_REF_NAME" = "ccr-f4c9bfd6-txio5n" ]; then
-            python -m espanol site -o _site/index.html
+            python -m espanol site --audio-cache .cache/site-audio -o _site/index.html | tee build.log
           else
             # тестовая версия: то же самое, но с меткой «тест» в шапке
-            python -m espanol site --preview -o _site/index.html
+            python -m espanol site --preview --audio-cache .cache/site-audio -o _site/index.html | tee build.log
           fi
+          grep "Озвучка сайта" build.log >> "$GITHUB_STEP_SUMMARY" || true
 
       - name: Проект на Cloudflare Pages
         if: steps.check.outputs.ready == 'true'
