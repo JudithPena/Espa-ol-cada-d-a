@@ -1503,7 +1503,7 @@ document.addEventListener("click", e => {
   const el = e.target.closest("button, .spoiler, [data-say]");
   if (!el) return;
   const d = el.dataset;
-  if ("gmain" in d) { gCancelAuto(); gSave(); G = null; view.tab = "home"; render(); window.scrollTo(0,0); return; }
+  if ("gmain" in d) { gSave(); G = null; view.tab = "home"; render(); window.scrollTo(0,0); return; }
   if (d.gnextUnit) return gStart(d.gnextUnit,"all");
   if (d.gstart) return gStart(G?.unit || view.grammar, d.gstart);
   if ("gresume" in d) return gStart(view.grammar, "all", true);

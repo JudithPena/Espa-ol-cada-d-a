@@ -1,20 +1,5 @@
 /* Пошаговый урок грамматики. Данные и проверка ответов общие с остальным сайтом. */
 let G = null;
-let gAutoTimer = null;
-function gCancelAuto() { clearTimeout(gAutoTimer); gAutoTimer = null; }
-function gQueueAuto() {
-  gCancelAuto();
-  if (!G || G.ended || G.review) return;
-  const step = G.steps[G.at], response = gResponse(step);
-  if (!response?.checked || !response.good) return;
-  const question = gGroups(gUnit()).find(g => g.id === step.group).questions[step.qi];
-  if (!question.options) return;
-  const session = G, at = G.at;
-  gAutoTimer = setTimeout(() => {
-    gAutoTimer = null;
-    if (G === session && G.at === at && !G.review) gMove(1);
-  }, 1500);
-}
 const G_SESSION_KEY = "espanol-cada-dia.grammar-session.v1";
 const gUnit = () => (COURSE.grammar || []).find(u => u.id === G?.unit);
 const gGroups = u => [...u.sections.map(s => s.check).filter(Boolean), ...u.exercises];
@@ -54,13 +39,12 @@ function gSteps(unit, route = "all") {
 function gStart(unitId, route = "all", resume = false) {
   const unit = COURSE.grammar.find(u => u.id === unitId), saved = resume && gSaved();
   if (!unit || !gRouteOpen(unit, route)) return;
-  gCancelAuto();
   const steps = gSteps(unit, route);
   if (saved?.unit === unit.id && Array.isArray(saved.steps) && saved.steps.length && saved.at >= 0 && saved.at < saved.steps.length && gRouteOpen(unit,gStepRoute(unit,saved.steps[saved.at]))) G = saved;
   else if (steps.length) G = {unit:unit.id, route, steps, at:0, responses:{}, ended:false};
   else return;
   view.grammar = unit.id; view.tab = "grammar"; S = null;
-  G.review = false; gSave(); render(); gQueueAuto();
+  gSave(); render();
 }
 function gResponse(step) {
   if (step.type !== "question") return null;
@@ -76,7 +60,7 @@ function gCheck() {
   if (group.questions.every((_, i) => G.responses[group.id]?.[i]?.checked)) {
     gradeGrammar(unit, group, group.questions.map((_, i) => G.responses[group.id][i].value));
   }
-  G.review = false; gSave(); render(); sfx(response.good); gQueueAuto();
+  gSave(); render(); sfx(response.good);
 }
 function gPick(index) {
   if (!G || G.ended) return;
@@ -88,7 +72,6 @@ function gPick(index) {
   gCheck();
 }
 function gMove(delta) {
-  gCancelAuto();
   const step = G.steps[G.at];
   if (delta > 0 && step.type === "question" && !gResponse(step).checked) return;
   if (delta > 0 && (step.type === "summary" || (step.type === "theory" && !gUnit().sections[step.section].check))) {
@@ -96,18 +79,16 @@ function gMove(delta) {
   }
   const target = G.steps[G.at + delta];
   if (target && !gRouteOpen(gUnit(), gStepRoute(gUnit(),target))) return;
-  G.review = delta < 0;
   if (delta > 0 && G.at === G.steps.length - 1) G.ended = true;
   else G.at = Math.max(0, Math.min(G.steps.length - 1, G.at + delta));
-  gSave(); render(); gQueueAuto();
+  gSave(); render();
 }
-function gExit() { gCancelAuto(); gSave(); G = null; view.tab = "grammar"; render(); }
+function gExit() { gSave(); G = null; view.tab = "grammar"; render(); }
 function gRetry() {
-  gCancelAuto();
   const wrong = G.steps.filter(s => s.type === "question" && !G.responses[s.group]?.[s.qi]?.good);
   if (!wrong.length) return;
   for (const s of wrong) G.responses[s.group][s.qi] = {value:"", checked:false};
-  G.steps = wrong; G.at = 0; G.ended = false; G.retry = true; G.review = false; gSave(); render();
+  G.steps = wrong; G.at = 0; G.ended = false; G.retry = true; gSave(); render();
 }
 function gNextRoute(unit, route) {
   const routes = gRoutes(unit);
@@ -183,9 +164,9 @@ function gPlayerView() {
       : `<div class="gquestion-work ${q.image ? "has-image" : ""}">${q.image ? `<img class="gquestion-picture" src="${esc(q.image)}" alt="${esc(q.imageAlt)}" width="384" height="384">` : ""}<div class="ganswer-area">${question}</div></div>`;
     if (group.title === "Мини-проверка") content = `<p class="muted ginstruction">${esc(group.instruction.replace(/ Затем нажми.*$/, ""))}</p>` + content;
   }
-  const checked = response?.checked, autoAdvance = checked && response.good && !G.review && !!group.questions[step.qi].options;
+  const checked = response?.checked;
   const feedback = checked ? `<div class="fb" role="status"><h3>${response.good ? "✓ Верно" : "Пока неверно"}</h3>${response.good ? "" : `<span class="ans">Верный ответ: ${esc(group.questions[step.qi].answers.join(" / "))}</span>`}<span class="ex">${esc(group.questions[step.qi].explain)}</span></div>` : "";
   return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><div class="bar" role="progressbar" aria-label="Прогресс урока" aria-valuemin="0" aria-valuemax="${G.steps.length}" aria-valuenow="${G.at}"><i style="width:${Math.round(G.at / G.steps.length * 100)}%"></i></div><span class="pcount">${G.at + 1}/${G.steps.length}</span></div></div>
     <div class="pbody"><div class="wrap"><span class="kicker">${esc(kicker)}</span><h2 id="g-title" tabindex="-1">${esc(title)}</h2>${content}</div></div>
-    <div class="pfoot ${checked ? response.good ? "good" : "bad" : ""}"><div class="wrap">${feedback}<div class="gplayer-actions"><button class="btn ghost" data-gback ${G.at ? "" : "disabled"}>← Назад</button>${autoAdvance ? '<span class="muted gpick-hint" role="status">Переходим дальше…</span>' : step.type === "question" && !checked ? group.questions[step.qi].options ? '<span class="muted gpick-hint">Нажми на вариант ответа</span>' : `<button class="btn" data-gcheck ${response.value.trim() ? "" : "disabled"}>Проверить</button>` : `<button class="btn" data-gnext>${G.at === G.steps.length - 1 ? "Завершить" : step.type === "intro" ? "Начать" : "Далее →"}</button>`}</div></div></div></div>`;
+    <div class="pfoot ${checked ? response.good ? "good" : "bad" : ""}"><div class="wrap">${feedback}<div class="gplayer-actions"><button class="btn ghost" data-gback ${G.at ? "" : "disabled"}>← Назад</button>${step.type === "question" && !checked ? group.questions[step.qi].options ? '<span class="muted gpick-hint">Нажми на вариант ответа</span>' : `<button class="btn" data-gcheck ${response.value.trim() ? "" : "disabled"}>Проверить</button>` : `<button class="btn" data-gnext>${G.at === G.steps.length - 1 ? "Завершить" : step.type === "intro" ? "Начать" : "Далее →"}</button>`}</div></div></div></div>`;
 }
