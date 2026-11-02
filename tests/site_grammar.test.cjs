@@ -161,3 +161,14 @@ test('answers advance automatically and stale callbacks cannot move a new sessio
  run('gStart(COURSE.grammar[0].id,"section:0");stale();');
  assert.equal(run('G.at'),0);
 });
+test('typed answers always keep manual next, whether correct or incorrect', () => {
+ const run=context();
+ unlockUntil(run,'exercise:1.2');
+ run('var scheduled=0;setTimeout=()=>++scheduled;gStart(COURSE.grammar[0].id,"exercise:1.2");gMove(1);gResponse(G.steps[G.at]).value="señora";gCheck();');
+ assert.equal(run('scheduled'),0);
+ assert.equal(run('G.at'),1);
+ assert.ok(run('gPlayerView()').includes('data-gnext'));
+ run('gMove(1);gResponse(G.steps[G.at]).value="wrong";gCheck();');
+ assert.equal(run('scheduled'),0);
+ assert.ok(run('gPlayerView()').includes('data-gnext'));
+});

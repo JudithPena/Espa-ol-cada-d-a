@@ -7,6 +7,8 @@ function gQueueAuto() {
   if (!G || G.ended || G.review) return;
   const step = G.steps[G.at], response = gResponse(step);
   if (!response?.checked || !response.good) return;
+  const question = gGroups(gUnit()).find(g => g.id === step.group).questions[step.qi];
+  if (!question.options) return;
   const session = G, at = G.at;
   gAutoTimer = setTimeout(() => {
     gAutoTimer = null;
@@ -158,8 +160,9 @@ function gPlayerView() {
       : `<div class="gquestion-work ${q.image ? "has-image" : ""}">${q.image ? `<img class="gquestion-picture" src="${esc(q.image)}" alt="${esc(q.imageAlt)}" width="384" height="384">` : ""}<div class="ganswer-area">${question}</div></div>`;
     if (group.title === "Мини-проверка") content = `<p class="muted ginstruction">${esc(group.instruction.replace(/ Затем нажми.*$/, ""))}</p>` + content;
   }
-  const checked = response?.checked, feedback = checked ? `<div class="fb" role="status"><h3>${response.good ? "✓ Верно" : "Пока неверно"}</h3>${response.good ? "" : `<span class="ans">Верный ответ: ${esc(group.questions[step.qi].answers.join(" / "))}</span>`}<span class="ex">${esc(group.questions[step.qi].explain)}</span></div>` : "";
+  const checked = response?.checked, autoAdvance = checked && response.good && !G.review && !!group.questions[step.qi].options;
+  const feedback = checked ? `<div class="fb" role="status"><h3>${response.good ? "✓ Верно" : "Пока неверно"}</h3>${response.good ? "" : `<span class="ans">Верный ответ: ${esc(group.questions[step.qi].answers.join(" / "))}</span>`}<span class="ex">${esc(group.questions[step.qi].explain)}</span></div>` : "";
   return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><div class="bar" role="progressbar" aria-label="Прогресс урока" aria-valuemin="0" aria-valuemax="${G.steps.length}" aria-valuenow="${G.at}"><i style="width:${Math.round(G.at / G.steps.length * 100)}%"></i></div><span class="pcount">${G.at + 1}/${G.steps.length}</span></div></div>
     <div class="pbody"><div class="wrap"><span class="kicker">${esc(kicker)}</span><h2 id="g-title" tabindex="-1">${esc(title)}</h2>${content}</div></div>
-    <div class="pfoot ${checked ? response.good ? "good" : "bad" : ""}"><div class="wrap">${feedback}<div class="gplayer-actions"><button class="btn ghost" data-gback ${G.at ? "" : "disabled"}>← Назад</button>${checked && response.good && !G.review ? '<span class="muted gpick-hint" role="status">Переходим дальше…</span>' : step.type === "question" && !checked ? group.questions[step.qi].options ? '<span class="muted gpick-hint">Нажми на вариант ответа</span>' : `<button class="btn" data-gcheck ${response.value.trim() ? "" : "disabled"}>Проверить</button>` : `<button class="btn" data-gnext>${G.at === G.steps.length - 1 ? "Завершить" : step.type === "intro" ? "Начать" : "Далее →"}</button>`}</div></div></div></div>`;
+    <div class="pfoot ${checked ? response.good ? "good" : "bad" : ""}"><div class="wrap">${feedback}<div class="gplayer-actions"><button class="btn ghost" data-gback ${G.at ? "" : "disabled"}>← Назад</button>${autoAdvance ? '<span class="muted gpick-hint" role="status">Переходим дальше…</span>' : step.type === "question" && !checked ? group.questions[step.qi].options ? '<span class="muted gpick-hint">Нажми на вариант ответа</span>' : `<button class="btn" data-gcheck ${response.value.trim() ? "" : "disabled"}>Проверить</button>` : `<button class="btn" data-gnext>${G.at === G.steps.length - 1 ? "Завершить" : step.type === "intro" ? "Начать" : "Далее →"}</button>`}</div></div></div></div>`;
 }
