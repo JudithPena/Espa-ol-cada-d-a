@@ -1,0 +1,77 @@
+name: Грамматика — отправить в личку
+
+on:
+  workflow_dispatch:
+    inputs:
+      unit:
+        description: "Постоянный ID юнита из content/grammar.json"
+        required: true
+        default: "001_el_hijo_la_hija"
+  push:
+    branches: [ccr-f4c9bfd6-txio5n]
+    paths: [".github/workflows/grammar-preview.yml"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: grammar-private-preview
+  cancel-in-progress: false
+
+jobs:
+  send:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[grammar-preview:001_el_hijo_la_hija]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Отправить копию юнита только автору
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_REVIEW_CHAT_ID: ${{ secrets.TELEGRAM_REVIEW_CHAT_ID }}
+          UNIT: ${{ inputs.unit || '001_el_hijo_la_hija' }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import time
+          import urllib.error
+          import urllib.request
+          from pathlib import Path
+
+          token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+          chat = os.environ.get("TELEGRAM_REVIEW_CHAT_ID", "")
+          if not token or not chat.isascii() or not chat.isdecimal() or int(chat) <= 0:
+              raise SystemExit("Требуются токен бота и положительный ID личного чата автора.")
+          posts = json.loads(Path("content/grammar.json").read_text(encoding="utf-8"))
+          matches = [p for p in posts if p["id"] == os.environ["UNIT"]]
+          if len(matches) != 1 or matches[0].get("draft"):
+              raise SystemExit("Готовый юнит с таким ID не найден.")
+          messages = matches[0]["messages"]
+          if not messages or any(not isinstance(m, str) or not m.strip() or len(m.encode("utf-16-le")) // 2 > 4096 for m in messages):
+              raise SystemExit("Неверный текст или превышен лимит Telegram.")
+          # Без автоматических повторов: при сетевой ошибке сообщение уже могло дойти.
+          for i, text in enumerate(messages, 1):
+              payload = json.dumps({
+                  "chat_id": chat, "text": text, "parse_mode": "HTML",
+                  "link_preview_options": {"is_disabled": True},
+              }).encode("utf-8")
+              request = urllib.request.Request(
+                  "https://api.telegram.org/bot" + token + "/sendMessage",
+                  data=payload, headers={"Content-Type": "application/json"}, method="POST",
+              )
+              try:
+                  with urllib.request.urlopen(request, timeout=30) as response:
+                      result = json.load(response)
+              except (urllib.error.URLError, TimeoutError):
+                  raise SystemExit(f"Отправка сообщения {i} не подтверждена. Проверить личку перед повторным запуском.") from None
+              if not result.get("ok"):
+                  raise SystemExit(f"Telegram отклонил сообщение {i}.")
+              print(f"Сообщение {i}/{len(messages)} принято Telegram; message_id={result['result']['message_id']}")
+              if i < len(messages):
+                  time.sleep(1.1)
+          print("Копия юнита отправлена в личку автора. Плановая очередь не изменена.")
+          PY
