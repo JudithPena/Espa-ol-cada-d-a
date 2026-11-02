@@ -148,12 +148,13 @@ def test_site_icons(course, tmp_path):
 
 
 def test_block_art(course):
-    """Картинки к объяснениям встают отдельными экранами перед своей темой."""
+    """Картинки к объяснениям стоят рядом с текстом темы, а не отдельным экраном."""
     from espanol.site import BLOCK_ART
 
     data = site_data(course, load_cards(CONTENT), units={0})
     lessons = {x["id"]: x for x in data["lessons"]}
     for lesson_id, items in BLOCK_ART.items():
-        pics = [b for b in lessons[lesson_id]["blocks"] if b["t"] == "pic"]
-        assert len(pics) == len(items), lesson_id
-        assert all(len(p["imgs"]) == 4 and p["imgs"][0].startswith("data:image/webp") for p in pics)
+        with_pics = [b for b in lessons[lesson_id]["blocks"] if b.get("pics")]
+        assert len(with_pics) == len(items), lesson_id
+        assert all(len(b["pics"]) == 4 and b["pics"][0].startswith("data:image/webp") for b in with_pics)
+        assert not any(b["t"] == "pic" for b in lessons[lesson_id]["blocks"])

@@ -58,7 +58,7 @@ ART_SLUGS = {
 
 
 # Картинки к объяснениям (листы 2×2 из ChatGPT): урок → [(тип блока:начало текста, префикс файлов content/art)].
-# Лист показывается отдельным экраном перед указанным блоком.
+# Картинки встают рядом с указанным блоком на том же экране (над текстом, под заголовком).
 BLOCK_ART = {
     "start/vowels": [("text:Гласных всего пять", "vowels"), ("header:Где ударение", "stress")],
     "start/consonants1": [("table:", "cons")],
@@ -70,7 +70,7 @@ def _pic_block(prefix: str) -> dict:
     for k in range(1, 5):
         data = (ART / f"{prefix}-{k}.webp").read_bytes()
         uris.append("data:image/webp;base64," + base64.b64encode(data).decode())
-    return {"t": "pic", "imgs": uris}
+    return uris
 
 
 def art_uri(es: str) -> str | None:
@@ -281,7 +281,7 @@ def lesson_data(lesson: Lesson, cards: dict[str, WordCard]) -> dict:
         at = next((k for k, b in enumerate(blocks)
                    if b["t"] == kind and plain(b.get("html", "")).startswith(start)), None)
         if at is not None:
-            blocks.insert(at, _pic_block(prefix))
+            blocks[at]["pics"] = _pic_block(prefix)
     return {
         "n": lesson.number, "id": lesson.id, "unit": lesson.unit.number, "level": lesson.level,
         "kind": lesson.kind, "kindLabel": lesson.kind_label, "emoji": lesson.kind_emoji,
