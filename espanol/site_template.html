@@ -398,6 +398,41 @@ main { padding-block: 16px 110px; }
 .gquestion-sentence { margin: 0 0 10px; font-size: 17px; font-weight: 700; }
 .gworked-example { border-left: 3px solid var(--accent); padding: 10px 14px; background: var(--sunken); border-radius: 0 10px 10px 0; }
 .gworked-example small { display: block; color: var(--muted); }
+.gplayer { height: 100dvh; bottom: auto; grid-template-rows: auto minmax(0, 1fr) auto; }
+.gplayer .wrap { width: 100%; max-width: 820px; }
+.gplayer .pbody .wrap { gap: 12px; padding-block: 14px 22px; }
+.gplayer .pbody { min-height: 0; }
+.gplayer h2 { line-height: 1.3; outline: none; }
+.gplayer .theory { line-height: 1.6; }
+.gplayer .gschemes, .gplayer .gnotes, .gplayer .gagreement { margin: 0; }
+.gplayer .gscheme { padding: 12px 14px; }
+.gplayer .ginstruction { margin: 0; }
+.gplayer .ginput { font-size: 19px; }
+.gplayer-actions { display: grid; grid-template-columns: auto 1fr; gap: 12px; }
+.gplayer .fb { max-height: 24dvh; overflow-y: auto; }
+.gquestion-work, .ganswer-area, .gfamily-work { display: grid; gap: 14px; align-content: start; }
+.gquestion-picture { width: min(100%, 260px); max-height: 30dvh; object-fit: contain; height: auto; aspect-ratio: 1; border-radius: 16px; justify-self: center; }
+.gplayer .opt { min-height: 52px; padding: 11px 14px; font-size: 17px; }
+.gwho { display: flex; align-items: center; gap: 10px; color: var(--accent); }
+.gwho img { border-radius: 50%; }
+.gplay-family, .gvocab { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); padding: 10px; }
+.gplay-family > summary, .gvocab > summary { cursor: pointer; font-weight: 700; color: var(--accent); }
+.gplay-family .gfamily { padding: 8px; margin: 8px 0 0; }
+.gplay-family .gperson img { width: 42px; }
+.gplay-family .gfamily-caption { font-size: 10px; margin-top: 4px; }
+.gplay-family .gfamily-stem { height: 12px; }
+.gplay-family .gfamily-branches { padding-top: 12px; }
+.gplay-family .gfamily-branches > div::before { top: -12px; height: 12px; }
+.gperson.is-active img { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.gperson.is-active figcaption { color: var(--accent); }
+.gresult { justify-items: center; text-align: center; padding-top: 8vh !important; }
+.gresult-icon { font-size: 64px; color: var(--good); }
+.gplayer .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+@media (min-width: 680px) {
+  .gquestion-work.has-image { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 28px; }
+  .gquestion-picture { width: 100%; max-height: 350px; }
+  .gfamily-work { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: start; gap: 20px; }
+}
 .gaccents { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 8px; }
 .gaccents button { padding: 4px 10px; }
 </style>
@@ -842,27 +877,6 @@ function lessonRow(i, free = false) {
     <span class="t"><b>${L.n}. ${esc(L.title)}</b><small>${stepTitle(L)}</small></span>${right}</button></li>`;
 }
 
-function grammarView() {
-  const units = COURSE.grammar || [], unit = units.find(u => u.id === view.grammar);
-  if (!unit) return `<button class="btn ghost sm back" data-tab="home">← Главная</button><h2>📐 Грамматика</h2>
-    <div class="menu">${units.map(u => {
-      const complete = u.exercises.every(g => P.grammar?.[`${u.id}/${g.id}`]?.correct === g.questions.length);
-      return `<button class="mcard" data-grammar="${esc(u.id)}"><span class="mi">${complete ? "✓" : "📐"}</span><span><b>${u.number}. ${esc(u.title)}</b><small>${esc(u.subtitle)}</small></span><span aria-hidden="true">›</span></button>`;
-    }).join("")}</div>`;
-  return `<button class="btn ghost sm back" data-grammar-list>← Все уроки грамматики</button>
-    <span class="eyebrow">Грамматика · Unidad ${unit.number} · ${esc(unit.level)}</span><h2>${esc(unit.title)}</h2><p class="muted">${esc(unit.subtitle)}</p>
-    <div class="gactions"><a class="btn" href="#g-exercises">К упражнениям</a><a class="btn ghost" href="#g-theory">Теория</a></div>
-    <div id="g-theory">${unit.sections.map(s => `<section class="grammar-section"><h3>${esc(s.title)}</h3>
-      <div class="theory">${s.paragraphs.map(p => `<p>${esc(p)}</p>`).join("")}
-      ${(s.examples || []).map(([es, ru]) => `<div class="box rule"><span lang="es">${playBtn(es)} ${esc(es)}</span><br><span class="muted">${esc(ru)}</span></div>`).join("")}</div>
-      ${s.schemes ? grammarSchemes(s.schemes) : ""}${s.table ? grammarTable(s.table) : ""}
-      ${s.agreement ? `<div class="gagreement" aria-label="Согласование слов">${s.agreement.map(w => `<div><small>${esc(w.label)}</small><b lang="es">${esc(w.from)}</b><span aria-label="переходит в">↓</span><b lang="es">${esc(w.to)}</b></div>`).join("")}</div>` : ""}
-      ${s.notes?.length ? `<aside class="gnotes">${s.notes.map(n => `<p>${esc(n)}</p>`).join("")}</aside>` : ""}
-      ${s.check ? grammarForm(unit, s.check) : ""}</section>`).join("")}</div>
-    <section class="grammar-section"><h3>Что запомнить</h3>${grammarTable(unit.summary)}</section>
-    <h2 id="g-exercises">Упражнения</h2>${unit.exercises.map(g => `<section class="grammar-section"><h3>${esc(g.title)}</h3><p>${esc(g.instruction)}</p>${g.family ? grammarFamily(g.family) : ""}${g.vocabulary ? grammarTable(g.vocabulary) : ""}${g.example ? `<div class="gworked-example"><small>${esc(g.example.label)}</small><b lang="es">${esc(g.example.es)}</b><small>${esc(g.example.ru)}</small></div>` : ""}${grammarForm(unit, g)}</section>`).join("")}`;
-}
-
 const grammarAttempts = new Map();
 const grammarDrafts = new Map();
 const grammarKey = (u, g) => `${u.id}/${g.id}`;
@@ -879,7 +893,7 @@ function grammarSchemes(schemes) {
 }
 function grammarFamily(f) {
   if (f.portraits) {
-    const person = name => `<figure class="gperson"><img src="${esc(f.portraits[name])}" alt="Портрет ${esc(name)}" width="96" height="96" loading="lazy"><figcaption>${esc(name)}</figcaption></figure>`;
+    const person = name => `<figure class="gperson ${f.activeName === name ? "is-active" : ""}"><img src="${esc(f.portraits[name])}" alt="Портрет ${esc(name)}" width="96" height="96" loading="lazy"><figcaption>${esc(name)}</figcaption></figure>`;
     const pair = names => `<div class="gpair">${person(names[0])}<span class="gcouple-line" aria-label="пара"></span>${person(names[1])}</div>`;
     return `<div class="gfamily gfamily-portraits" aria-label="Семейное дерево">${pair(f.parents)}<div class="gfamily-stem" aria-hidden="true"></div>
       <div class="gfamily-branches">${f.branches.map(b => `<div>${pair([b.child, ...b.couple.filter(n => n !== b.child)])}
@@ -1221,8 +1235,10 @@ function resultView() {
 }
 
 /* ================================================================ отрисовка и события */
+/*__GRAMMAR_PLAYER__*/
 const app = $("#app");
 function render() {
+  if (G) { app.innerHTML = gPlayerView(); $("#g-title")?.focus({preventScroll:true}); return; }
   document.documentElement.classList.toggle("no-tts", !TTS.ok);
   if (S && S.kind === "result") { app.innerHTML = resultView(); window.scrollTo(0, 0); return; }
   if (S) {
@@ -1358,6 +1374,23 @@ document.addEventListener("click", e => {
   const el = e.target.closest("button, .spoiler, [data-say]");
   if (!el) return;
   const d = el.dataset;
+  if (d.gstart) return gStart(G?.unit || view.grammar, d.gstart);
+  if ("gresume" in d) return gStart(view.grammar, "all", true);
+  if ("gexit" in d) return gExit();
+  if ("gback" in d) return gMove(-1);
+  if ("gnext" in d) return gMove(1);
+  if ("gcheck" in d) return gCheck();
+  if ("gretryMistakes" in d) return gRetry();
+  if (d.gpick != null && G) {
+    const step = G.steps[G.at], response = gResponse(step);
+    if (response.checked) return;
+    response.value = gGroups(gUnit()).find(g => g.id === step.group).questions[step.qi].options[+d.gpick];
+    gSave(); return render();
+  }
+  if (d.gchar && G) {
+    const input = $("#g-answer"); input.setRangeText(d.gchar, input.selectionStart, input.selectionEnd, "end");
+    input.dispatchEvent(new Event("input", {bubbles:true})); input.focus(); return;
+  }
   if (d.grammar) { view.grammar = d.grammar; view.tab = "grammar"; render(); window.scrollTo(0, 0); return; }
   if ("grammarList" in d) { view.grammar = null; render(); window.scrollTo(0, 0); return; }
   if (d.gretry) {
@@ -1408,7 +1441,7 @@ document.addEventListener("click", e => {
   if ("openall" in d) { P.openAll = !P.openAll; save(); render(); return; }
   if (d.reset) {
     if (d.reset === "ask") view.confirmReset = true;
-    else { if (d.reset === "yes") { P = fresh(); grammarAttempts.clear(); grammarDrafts.clear(); save(); toast("Прогресс сброшен"); } view.confirmReset = false; }
+    else { if (d.reset === "yes") { P = fresh(); grammarAttempts.clear(); grammarDrafts.clear(); store.set(G_SESSION_KEY, ""); save(); toast("Прогресс сброшен"); } view.confirmReset = false; }
     return render();
   }
   if (!S || S.kind === "result") return;
@@ -1419,6 +1452,11 @@ document.addEventListener("click", e => {
   if ("primary" in d || "next" in d) return primary();
 });
 document.addEventListener("input", e => {
+  if (e.target.id === "g-answer" && G) {
+    const response = gResponse(G.steps[G.at]);
+    if (!response.checked) { response.value = e.target.value; gSave(); const check = $("[data-gcheck]"); if (check) check.disabled = !response.value.trim(); }
+    return;
+  }
   const grammarForm = e.target.closest("[data-grammar-form]");
   if (grammarForm) {
     const key = `${view.grammar}/${grammarForm.dataset.grammarForm}`, values = grammarDrafts.get(key) || [];
@@ -1433,6 +1471,11 @@ document.addEventListener("input", e => {
 });
 document.addEventListener("keydown", e => {
   if (e.key === "Escape") closeSheet();
+  if (G && !G.ended) {
+    if (e.key === "Enter" && !e.shiftKey && !e.target.closest("summary,button")) { e.preventDefault(); const s = G.steps[G.at]; return s.type === "question" && !gResponse(s).checked ? gCheck() : gMove(1); }
+    if (e.target.tagName !== "INPUT" && /^[1-9]$/.test(e.key)) { const option = $(`[data-gpick="${+e.key - 1}"]`); if (option && !option.disabled) option.click(); }
+    return;
+  }
   if (!S || S.kind === "result") return;
   const st = S.steps[S.at], s = S.state;
   if (e.key === "Enter" && !e.shiftKey) {
@@ -1444,5 +1487,8 @@ document.addEventListener("keydown", e => {
   if (st.type === "mc" && !s.result && /^[1-9]$/.test(e.key) && +e.key <= st.options.length) { s.pick = +e.key - 1; answer(s.pick === st.correct, st); }
 });
 
+document.addEventListener("toggle", e => {
+  if (G && e.target.classList?.contains("gplay-family")) { G.treeOpen = e.target.open; gSave(); }
+}, true);
 render();
 </script>

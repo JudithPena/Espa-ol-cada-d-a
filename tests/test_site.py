@@ -46,6 +46,7 @@ def test_build_site(course, tmp_path):
     out = build_site(course, load_cards(CONTENT), tmp_path / "index.html", units={0})
     page = out.read_text(encoding="utf-8")
     assert page.startswith("<!doctype html>") and "/*__DATA__*/" not in page
+    assert "/*__GRAMMAR_PLAYER__*/" not in page and "function gPlayerView()" in page
     assert '"title": "Español cada día"' in page
     fragment = build_site(course, load_cards(CONTENT), tmp_path / "f.html", units={0}, fragment=True)
     assert fragment.read_text(encoding="utf-8").startswith("<title>")

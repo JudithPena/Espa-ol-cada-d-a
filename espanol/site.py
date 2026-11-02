@@ -340,6 +340,7 @@ def build_site(course: Course, cards: dict[str, WordCard], out: str | Path, unit
                fragment: bool = False, videos: list | None = None, preview: bool = False) -> Path:
     data = json.dumps(site_data(course, cards, units, videos, preview), ensure_ascii=False).replace("</", "<\\/")
     page = TEMPLATE.read_text(encoding="utf-8").replace("/*__DATA__*/{}", data)
+    page = page.replace("/*__GRAMMAR_PLAYER__*/", TEMPLATE.with_name("grammar_player.js").read_text(encoding="utf-8"))
     if not fragment:
         # <title>, <meta> и <style> из шаблона браузер сам отнесёт в <head>.
         page = ('<!doctype html>\n<html lang="ru">\n<head>\n<meta charset="utf-8">\n'
