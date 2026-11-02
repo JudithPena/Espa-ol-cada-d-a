@@ -1269,7 +1269,13 @@ function resultView() {
 const app = $("#app");
 function render() {
   document.documentElement.classList.toggle("grammar-playing", !!G);
-  if (G) { app.innerHTML = gPlayerView(); $("#g-title")?.focus({preventScroll:true}); return; }
+  if (G) {
+    app.innerHTML = gPlayerView();
+    const input = $("#g-answer:not(:disabled)");
+    if (input) input.focus();
+    else $("#g-title")?.focus({preventScroll:true});
+    return;
+  }
   document.documentElement.classList.toggle("no-tts", !TTS.ok);
   if (S && S.kind === "result") { app.innerHTML = resultView(); window.scrollTo(0, 0); return; }
   if (S) {
