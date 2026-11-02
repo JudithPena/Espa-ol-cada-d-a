@@ -162,7 +162,7 @@ function gPlayerView() {
     const question = `${who}${q.context ? `<p class="gquestion-sentence" lang="es">${esc(q.prompt)}</p>` : ""}${options}`;
     content = group.family ? `<div class="gfamily-work"><details class="gplay-family" ${G.treeOpen === false ? "" : "open"}><summary>Семейное дерево</summary>${grammarFamily({...group.family, activeName:block?.person})}</details><div class="ganswer-area">${question}${group.vocabulary ? `<details class="gvocab"><summary>Слова родства</summary>${grammarTable(group.vocabulary)}</details>` : ""}</div></div>`
       : `<div class="gquestion-work ${q.image ? "has-image" : ""}">${q.image ? `<img class="gquestion-picture" src="${esc(q.image)}" alt="${esc(q.imageAlt)}" width="384" height="384">` : ""}<div class="ganswer-area">${question}</div></div>`;
-    if (group.title === "Мини-проверка") content = `<p class="muted ginstruction">${esc(group.instruction.replace(/ Затем нажми.*$/, ""))}</p>` + content;
+    if (group.title === "Мини-проверка" && group.instruction) content = `<p class="muted ginstruction">${esc(group.instruction.replace(/ Затем нажми.*$/, ""))}</p>` + content;
   }
   const checked = response?.checked;
   const feedback = checked ? `<div class="fb" role="status"><h3>${response.good ? "✓ Верно" : "Пока неверно"}</h3>${response.good ? "" : `<span class="ans">Верный ответ: ${esc(group.questions[step.qi].answers.join(" / "))}</span>`}<span class="ex">${esc(group.questions[step.qi].explain)}</span></div>` : "";
