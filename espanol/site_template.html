@@ -89,7 +89,7 @@ h2 + .btn.wide, h2 + .muted { margin-top: 10px; display: flex; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
 .top .wrap { display: flex; align-items: center; gap: 12px; padding-block: 10px; }
-.brand { font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: .01em; flex: 1; min-width: 0; line-height: 1.2; }
+.brand { background: none; border: 0; padding: 0; margin: 0; color: inherit; text-align: left; cursor: pointer; font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: .01em; flex: 1; min-width: 0; line-height: 1.2; }
 .brand span { color: var(--accent); }
 .chip { display: inline-flex; align-items: center; gap: 5px; font-weight: 800; font-variant-numeric: tabular-nums; font-size: 14px; padding: 4px 10px; border-radius: 99px; background: var(--surface); border: 1px solid var(--line); }
 .chip.fire { color: var(--sun); }
@@ -858,7 +858,7 @@ function finish() {
 function topBar() {
   const g = Math.min(1, todayXP() / P.goal), c = 2 * Math.PI * 12, st = streakNow();
   return `<header class="top"><div class="wrap">
-    <div class="brand">${esc(COURSE.title).replace("cada día", "<span>cada día</span>")}${COURSE.preview ? ' <span class="tag">тест</span>' : ""}</div>
+    <button class="brand" data-tab="home" aria-label="На главную">${esc(COURSE.title).replace("cada día", "<span>cada día</span>")}${COURSE.preview ? ' <span class="tag">тест</span>' : ""}</button>
     <span class="chip ${st ? "fire" : "off"}" title="Дней подряд">🔥 ${st}</span>
     <span class="chip" title="Опыт">⚡ ${P.xp}</span>
     <svg class="ring" viewBox="0 0 30 30" role="img" aria-label="Цель дня: ${todayXP()} из ${P.goal} опыта"><circle class="bgc" cx="15" cy="15" r="12"/><circle class="fg" cx="15" cy="15" r="12" stroke-dasharray="${g * c} ${c}"/></svg>
