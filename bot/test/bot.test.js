@@ -350,8 +350,8 @@ test("папа: фото при изучении и открытии разбо�
 
 test("личная грамматика: очередь уходит в 09:00 только автору, один юнит в день", async () => {
   GRAMMAR.push(
-    { id: "test-1", title: "Первый", messages: ["Объяснение", "Практика", "<tg-spoiler>Ответ</tg-spoiler>"] },
-    { id: "test-2", title: "Второй", messages: ["Следующий юнит"] },
+    { id: "test-1", title: "Первый", rich_html: "<h2>Объяснение</h2><p>Практика</p><details><summary>Ответ</summary><p>Ответ</p></details>" },
+    { id: "test-2", title: "Второй", rich_html: "<p>Следующий юнит</p>" },
   );
   const run = async (iso) => {
     const waits = [];
@@ -359,15 +359,15 @@ test("личная грамматика: очередь уходит в 09:00 т
     await Promise.all(waits);
   };
   await run("2026-11-03T06:00:00Z");
-  assert.equal(calls.filter((c) => c.method === "sendMessage").length, 0);
+  assert.equal(calls.filter((c) => c.method === "sendRichMessage").length, 0);
   await run("2026-11-03T07:00:00Z");
-  let sent = calls.filter((c) => c.method === "sendMessage");
-  assert.deepEqual(sent.map((c) => c.body.text), GRAMMAR[0].messages);
-  assert.ok(sent.every((c) => c.body.chat_id === env.ADMIN_CHAT_ID && c.body.parse_mode === "HTML"));
+  let sent = calls.filter((c) => c.method === "sendRichMessage");
+  assert.deepEqual(sent.map((c) => c.body.rich_message.html), [GRAMMAR[0].rich_html]);
+  assert.ok(sent.every((c) => c.body.chat_id === env.ADMIN_CHAT_ID && c.body.rich_message.html));
   await run("2026-11-03T07:10:00Z");
-  assert.equal(calls.filter((c) => c.method === "sendMessage").length, 3);
+  assert.equal(calls.filter((c) => c.method === "sendRichMessage").length, 1);
   await run("2026-11-04T07:00:00Z");
-  sent = calls.filter((c) => c.method === "sendMessage");
-  assert.equal(sent.length, 4);
-  assert.equal(sent.at(-1).body.text, "Следующий юнит");
+  sent = calls.filter((c) => c.method === "sendRichMessage");
+  assert.equal(sent.length, 2);
+  assert.equal(sent.at(-1).body.rich_message.html, "<p>Следующий юнит</p>");
 });
