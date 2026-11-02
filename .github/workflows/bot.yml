@@ -145,31 +145,23 @@ jobs:
           curl -fsS "$tg/setWebhook" -H "Content-Type: application/json" -d "{
             \"url\": \"$BOT_URL/telegram\", \"secret_token\": \"$webhook\",
             \"allowed_updates\": [\"message\", \"callback_query\"]}" > /dev/null
-          curl -fsS "$tg/setMyCommands" -H "Content-Type: application/json" -d '{"commands": [
-            {"command": "repaso", "description": "Повторить слова"},
-            {"command": "progreso", "description": "Сколько слов выучено"}]}' > /dev/null
+          curl -fsS "$tg/deleteMyCommands" > /dev/null  # общего меню нет: команды только у тех, у кого есть колода
           if [ -n "$ADMIN_CHAT_ID" ]; then  # у автора в меню ещё «Мои слова»
             curl -fsS "$tg/setMyCommands" -H "Content-Type: application/json" -d "{
               \"scope\": {\"type\": \"chat\", \"chat_id\": $ADMIN_CHAT_ID}, \"commands\": [
-              {\"command\": \"palabras\", \"description\": \"Мои слова: новые и повторение\"},
-              {\"command\": \"repaso\", \"description\": \"Повторить слова курса\"},
-              {\"command\": \"progreso\", \"description\": \"Сколько слов выучено\"}]}" > /dev/null \
+              {\"command\": \"palabras\", \"description\": \"Мои слова: новые и повторение\"}]}" > /dev/null \
               || echo "::warning::Не удалось поставить меню «Мои слова»: проверьте TELEGRAM_REVIEW_CHAT_ID."
           fi
           if [ -n "$GALYA_CHAT_ID" ]; then  # у Гали своя колода
             curl -fsS "$tg/setMyCommands" -H "Content-Type: application/json" -d "{
               \"scope\": {\"type\": \"chat\", \"chat_id\": $GALYA_CHAT_ID}, \"commands\": [
-              {\"command\": \"palabras\", \"description\": \"Мои слова: новые и повторение\"},
-              {\"command\": \"repaso\", \"description\": \"Повторить слова курса\"},
-              {\"command\": \"progreso\", \"description\": \"Сколько слов выучено\"}]}" > /dev/null \
+              {\"command\": \"palabras\", \"description\": \"Мои слова: новые и повторение\"}]}" > /dev/null \
               || echo "::warning::Не удалось поставить меню Гали: проверьте GALYA_CHAT_ID."
           fi
           if [ -n "$PAPA_CHAT_ID" ]; then  # у папы своя колода
             curl -fsS "$tg/setMyCommands" -H "Content-Type: application/json" -d "{
               \"scope\": {\"type\": \"chat\", \"chat_id\": $PAPA_CHAT_ID}, \"commands\": [
-              {\"command\": \"palabras\", \"description\": \"Мои слова: новые и повторение\"},
-              {\"command\": \"repaso\", \"description\": \"Повторить слова курса\"},
-              {\"command\": \"progreso\", \"description\": \"Сколько слов выучено\"}]}" > /dev/null \
+              {\"command\": \"palabras\", \"description\": \"Мои слова: новые и повторение\"}]}" > /dev/null \
               || echo "::warning::Не удалось поставить меню папы: проверьте PAPA_CHAT_ID."
           fi
           echo "Бот работает: $BOT_URL"

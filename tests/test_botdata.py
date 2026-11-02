@@ -64,15 +64,12 @@ def test_audio_has_word_as_title(tmp_path, course, monkeypatch):
     assert record["es"].encode("utf-16-le") in data and "Español cada día".encode("utf-16-le") in data
 
 
-def test_lessons_end_with_repaso_link(course, renderer):
-    """В конце урока — ссылка на бота: слова этого урока, а без новых слов — обычное повторение."""
-    with_words = next(lesson for lesson in course.lessons if any(i.srs for i in lesson.vocab))
-    link = renderer.repaso_link(with_words)
-    assert f"t.me/{course.bot}?start=l-{with_words.id.replace('/', '-')}" in link
-    no_words = next(lesson for lesson in course.lessons if not lesson.vocab)
-    assert "?start=repaso" in renderer.repaso_link(no_words)
-    html = "".join(getattr(m, "html", "") for m in renderer.render(with_words))
-    assert link in html
+def test_lessons_have_no_repaso_link(course, renderer):
+    """В постах канала нет ссылки на повторение в боте: слова учат в личных колодах."""
+    lesson = next(lesson for lesson in course.lessons if any(i.srs for i in lesson.vocab))
+    html = "".join(getattr(m, "html", "") for m in renderer.render(lesson))
+    assert "?start=" not in html and "Повторить слова" not in html
+
 
 
 def test_papa_images_are_exported_with_content_addressed_urls(tmp_path, course):

@@ -53,9 +53,6 @@ export default {
     const hour = localHour(now, env.TIMEZONE);
     if (numbers(env.PUBLISH_HOURS).includes(hour)) ctx.waitUntil(dispatchPublish(env));
     ctx.waitUntil(publishVideos(env, now));
-    if (hour === Number(env.REMIND_HOUR) && numbers(env.REMIND_DAYS).includes(localWeekday(now, env.TIMEZONE))) {
-      ctx.waitUntil(sendReminders(env));
-    }
     ctx.waitUntil(sendDeckDaily(env, now)); // у каждой колоды свои часы и свой часовой пояс
   },
 };
@@ -150,31 +147,15 @@ async function handleUpdate(update, env, origin) {
   if (mine && (cmd === "/palabras" || (cmd === "/start" && param === "palabras"))) {
     return startStudy(mine, env, chat, msg.from.id, origin);
   }
-  // Ссылки из уроков: t.me/бот?start=l-<урок> — слова этого урока, ?start=repaso — обычное повторение.
-  if (cmd === "/start" && param.startsWith("l-")) {
-    return startStudy(BOOKS.c, env, chat, msg.from.id, origin, param.slice(2));
-  }
-  if (cmd === "/repaso" || (cmd === "/start" && param === "repaso")) {
-    return startStudy(BOOKS.c, env, chat, msg.from.id, origin);
-  }
-  if (cmd === "/progreso") return sendProgress(env, chat, msg.from.id);
-  if (cmd === "/recordatorio" && owner) { // проверка для автора: так выглядит напоминание по средам и субботам
-    return sendReminder(env, msg.from.id, await loadUser(env, msg.from.id), await availableWords(env), true);
-  }
   if (cmd === "/id") {
     return tg(env, "sendMessage", { chat_id: chat, parse_mode: "HTML", text: `Номер этого чата: <code>${chat}</code>` });
   }
   return tg(env, "sendMessage", {
     chat_id: chat,
     parse_mode: "HTML",
-    text: "¡Hola! 👋 Я повторяю с вами слова из уроков канала <b>Español cada día</b>.\n\n" +
-      "Новое слово я сначала показываю карточкой: как читается, что значит, примеры. " +
-      "Потом проверяю: вы выбираете перевод из нескольких вариантов. " +
-      "Если ответ верный, слово вернётся через несколько дней, а если нет — повторим его ещё раз.\n\n" +
-      "По средам и субботам вечером я сам напомню, если есть что повторить.\n\n" +
-      "/repaso — повторить слова\n/progreso — сколько слов уже выучено" +
-      (mine ? "\n/palabras — ваши слова: разборы новых и повторение" : ""),
-    reply_markup: START_BUTTON,
+    text: mine
+      ? "¡Hola! 👋 Я Эдуардо. Ваши слова: /palabras — разборы новых и повторение."
+      : "¡Hola! 👋 Я Эдуардо, бот канала <b>Español cada día</b>. Здесь у вас пока нет личной колоды слов.",
   });
 }
 
@@ -195,12 +176,12 @@ async function handleCallback(cq, env, origin) {
       callback_query_id: cq.id,
       show_alert: true,
       text: user.noRemind
-        ? "Хорошо, больше не напоминаю. Повторять можно командой /repaso, включить напоминания — в /progreso."
+        ? "Хорошо, больше не напоминаю. Повторять слова можно командой /palabras."
         : "Напоминания включены: по средам и субботам вечером.",
     });
   }
   // кнопки «Показать перевод» / «Помню» из повторения старого формата
-  return tg(env, "answerCallbackQuery", { callback_query_id: cq.id, text: "Повторение обновилось — начните заново: /repaso" });
+  return tg(env, "answerCallbackQuery", { callback_query_id: cq.id, text: "Повторение обновилось — начните заново: /palabras" });
 }
 
 // ---------------------------------------------------------------- колоды

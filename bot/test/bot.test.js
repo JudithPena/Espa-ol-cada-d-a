@@ -60,48 +60,6 @@ test("чужие запросы без секрета не принимаютс�
 const buttons = (call) => call.body.reply_markup.inline_keyboard.map((row) => row[0]);
 const textOf = (call) => call.body.caption || call.body.text;
 
-test("/repaso: карточка нового слова → «Дальше» → выбор перевода → итог; только слова вышедших уроков", async () => {
-  const available = WORDS.filter((w) => published.includes(w.lesson));
-  const fresh = available.slice(0, 5);
-  await post(message("/repaso"));
-  assert.match(calls.find((c) => /Повторение слов/.test(c.body.text || "")).body.text, /Новых слов: 5/);
-  const card = calls.at(-1);
-  assert.equal(card.method, "sendMessage");
-  assert.match(card.body.text, /🆕 Новое слово 1\/5/);
-  assert.ok(card.body.text.includes(first.card), "карточка слова целиком");
-  assert.equal(buttons(card)[0].callback_data, `cl:${first.id}`);
-
-  for (const w of fresh) await post(press(`cl:${w.id}`, false));
-  const front = calls.at(-1);
-  assert.match(textOf(front), /🔁 Повторение 1\/5/);
-  const options = buttons(front);
-  assert.equal(options.length, 4, "перевод и ещё 3 перевода слов вышедших уроков");
-  assert.ok(options.every((o) => available.some((w) => w.ru === o.text)));
-  for (const w of fresh) {
-    const opts = buttons(calls.filter((c) => /Выберите перевод/.test(textOf(c) || "")).at(-1));
-    await post(press(opts.find((o) => o.text === w.ru).callback_data, !!w.audio));
-  }
-  const end = calls.at(-1);
-  assert.match(end.body.text, /Готово![\s\S]*Новых слов: 5[\s\S]*Верно: 5[\s\S]*Слов в вышедших уроках: 8/);
-  const user = JSON.parse(kv.get("user:9"));
-  assert.equal(user.session, null);
-  assert.equal(user.cards[first.id][0], 1);
-  assert.equal(end.body.reply_markup.inline_keyboard[0][0].callback_data, "cgo", "можно взять ещё новых слов");
-});
-
-test("ссылка из урока: сначала слова урока, потом прошлые слова, которые пора повторить", async () => {
-  const lessonId = WORDS[WORDS.length - 1].lesson; // урок ещё не вышел — по ссылке слова всё равно есть
-  const own = WORDS.filter((w) => w.lesson === lessonId);
-  kv.set("user:9", JSON.stringify({ cards: { [first.id]: [1, 0] }, session: null })); // слово из вышедшего урока, срок подошёл
-  await post(message(`/start l-${lessonId.replace(/[^A-Za-z0-9_-]/g, "-")}`));
-  assert.match(textOf(calls.at(-1)), new RegExp(`🆕 Новое слово 1/${own.length}`));
-  assert.ok(textOf(calls.at(-1)).includes(own[0].card));
-  const queue = JSON.parse(kv.get("user:9")).session.queue;
-  assert.deepEqual(queue, [...own.map((w) => `l:${w.id}`), `r:${first.id}`, ...own.map((w) => `r:${w.id}`)]);
-  await post(message("/start repaso")); // обычная ссылка — продолжаем то же занятие
-  assert.ok(textOf(calls.at(-1)).includes(own[0].card));
-});
-
 test("кнопки старого повторения и чужие кнопки не сбивают занятие", async () => {
   await post(message("/repaso"));
   await post(press("y:нет-такого"));
@@ -110,27 +68,6 @@ test("кнопки старого повторения и чужие кнопк�
   assert.equal(calls.at(-1).body.text, "Эта карточка уже пройдена");
   await post(press("pgo")); // «Мои слова» — только у автора
   assert.equal(kv.has("deck:9"), false);
-});
-
-test("карточка с озвучкой: сначала аудио с названием слова, потом карточка; на повторении — аудио с вариантами", async () => {
-  const saved = first.audio;
-  first.audio = "a.mp3"; // те же объекты, что и в боте
-  try {
-    await post(message("/repaso"));
-    const audio = calls.at(-2);
-    assert.equal(audio.method, "sendAudio");
-    assert.equal(audio.body.audio, "https://bot.example/audio/a.mp3");
-    assert.equal(audio.body.title, first.es);
-    assert.equal(kv.get("audio:a.mp3"), "F"); // дальше Telegram берёт файл из своего кеша
-    const fresh = WORDS.filter((w) => published.includes(w.lesson)).slice(0, 5);
-    for (const w of fresh) await post(press(`cl:${w.id}`, false));
-    const front = calls.at(-1);
-    assert.equal(front.method, "sendAudio");
-    assert.equal(front.body.audio, "F");
-    assert.match(front.body.caption, /Выберите перевод/);
-  } finally {
-    first.audio = saved;
-  }
 });
 
 test("публикация запускается только в часы PUBLISH_HOURS по Киеву", async () => {
@@ -169,39 +106,6 @@ test("разбор видео выходит в канал в час publish_at,
   assert.equal(calls[0].method, "dispatch", "через 2 часа после срока — ещё выпускает");
 });
 
-test("по средам и субботам в 19:00 бот сам предлагает повторить слова", async () => {
-  await post(message("/start")); // бот запомнил ученика
-  kv.set("user:10", JSON.stringify({ cards: {}, session: null, noRemind: true }));
-  kv.set("users", JSON.stringify([9, 10]));
-  calls = [];
-  const run = async (iso) => {
-    const waits = [];
-    await bot.scheduled({ scheduledTime: Date.parse(iso) }, env, { waitUntil: (p) => waits.push(p) });
-    await Promise.all(waits);
-  };
-  await run("2026-10-27T17:00:00Z"); // вторник, 19:00 по Киеву
-  assert.equal(calls.length, 0);
-  await run("2026-10-28T17:00:00Z"); // среда, 19:00 (зимнее время)
-  assert.equal(calls.length, 1, "только тому, кто не отключал напоминания");
-  assert.equal(calls[0].body.chat_id, 9);
-  assert.match(calls[0].body.text, /Время повторить слова/);
-  await post(press("off"));
-  assert.equal(JSON.parse(kv.get("user:9")).noRemind, true);
-  calls = [];
-  await run("2026-10-31T17:00:00Z"); // суббота — уже не напоминаем
-  assert.equal(calls.length, 0);
-});
-
-test("/recordatorio присылает пробное напоминание только автору", async () => {
-  await post({ message: { text: "/recordatorio", chat: { id: 1, type: "private" }, from: { id: 1 } } }); // ADMIN_CHAT_ID = 1
-  assert.match(calls.at(-1).body.text, /Время повторить слова/);
-  assert.equal(calls.at(-1).body.chat_id, 1);
-  await post(message("/recordatorio")); // другой ученик — обычное приветствие
-  assert.doesNotMatch(calls.at(-1).body.text, /Время повторить/);
-});
-
-// ---------------------------------------------------------------- «Мои слова»
-
 const owner = (text) => ({ message: { text, chat: { id: 1, type: "private" }, from: { id: 1 } } });
 const ownerPress = (data, text = true) => ({
   callback_query: {
@@ -223,6 +127,7 @@ const sample = (id, extra = {}) => ({
   id, word: `palabra ${id}`, lang: "es", ru: `слово ${id}`, ipa: "/paˈlaβɾa/",
   ex: ["Una palabra.", "Одно слово."], card: `<b>palabra ${id}</b> — разбор`, audio: "", ...extra,
 });
+
 
 test("«Мои слова» только у автора: другим — обычное приветствие", async () => {
   await withDeck([sample("a")], async () => {
