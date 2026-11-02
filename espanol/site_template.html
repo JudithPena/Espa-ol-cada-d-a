@@ -361,6 +361,7 @@ main { padding-block: 16px 110px; }
 .ginstruction { font-size: 14px; margin: 8px 0 14px; padding-left: 12px; border-left: 3px solid var(--accent); }
 .gquestion { border: 0; border-top: 1px solid var(--line); margin: 18px 0 0; padding: 16px 0 0; min-width: 0; }
 .gquestion legend { font-weight: 700; padding: 8px 0; max-width: 100%; }
+.gillustration { display: block; width: min(100%, 280px); height: auto; aspect-ratio: 1; object-fit: contain; margin: 0 auto 14px; border-radius: 14px; }
 .gchoices { display: grid; gap: 8px; }
 .gchoice { display: flex; gap: 10px; align-items: center; padding: 12px; border: 1px solid var(--line); border-radius: 12px; cursor: pointer; }
 .gchoice:has(input:checked) { background: var(--accent-soft); border-color: var(--accent); }
@@ -866,6 +867,7 @@ function grammarForm(unit, group) {
     ${group.questions.map((q, i) => {
       const value = (attempt?.values || grammarDrafts.get(key) || [])[i] || "", good = attempt && grammarCorrect(q, value);
       return `<fieldset class="gquestion"><legend>${esc(q.prompt)}</legend>
+        ${q.image ? `<img class="gillustration" src="${esc(q.image)}" alt="${esc(q.imageAlt || "")}" width="384" height="384" loading="lazy">` : ""}
         ${q.options ? `<div class="gchoices">${q.options.map(o => `<label class="gchoice"><input type="radio" name="q${i}" value="${esc(o)}" required ${value === o ? "checked" : ""} ${attempt ? "disabled" : ""}><span lang="es">${esc(o)}</span></label>`).join("")}</div>`
           : `<input class="ginput" name="q${i}" aria-label="${esc(q.prompt)}" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" required value="${esc(value)}" ${attempt ? "disabled" : ""}>${attempt ? "" : `<div class="gaccents" aria-label="Испанские буквы">${["á","é","í","ó","ú","ü","ñ"].map(c => `<button type="button" class="btn ghost sm" data-gaccent="${c}" data-ginput="q${i}" aria-label="Вставить ${c}">${c}</button>`).join("")}</div>`}`}
         ${attempt ? `<div class="gfeedback ${good ? "good" : ""}"><b>${good ? "✓ Верно" : `✗ Верный ответ: ${esc(q.answers.join(" / "))}`}</b><p>${esc(q.explain)}</p></div>` : ""}</fieldset>`;

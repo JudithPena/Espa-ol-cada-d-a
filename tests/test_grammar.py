@@ -10,6 +10,9 @@ def test_unit_covers_supplied_page(course):
     unit, = site_data(course, {})["grammar"]
     assert unit["id"] == "001_el_hijo_la_hija"
     assert [len(g["questions"]) for g in unit["exercises"]] == [10, 15, 10]
+    pictures = unit["exercises"][0]["questions"]
+    assert all(q["image"].startswith("data:image/webp;base64,") and q["imageAlt"] for q in pictures)
+    assert [q["prompt"] for q in pictures] == [f"№ {i}" for i in range(1, 11)]
     assert all(s.get("check") for s in unit["sections"])
     feminine = unit["exercises"][1]["questions"]
     assert feminine[1]["answers"] == ["jefa", "jefe"]

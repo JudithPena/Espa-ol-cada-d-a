@@ -1,6 +1,7 @@
 """Independent grammar units for the website; not part of the channel course."""
 
 import json
+import base64
 from pathlib import Path
 
 
@@ -23,5 +24,10 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
                     raise ValueError(f"{path}: answer and explanation required")
                 if q.get("options") and not set(q["answers"]) <= set(q["options"]):
                     raise ValueError(f"{path}: correct answer missing from options")
+                if q.get("image"):
+                    image = (directory / q["image"]).resolve()
+                    if not image.is_relative_to(directory.resolve()) or image.suffix != ".webp":
+                        raise ValueError(f"{path}: invalid grammar image path")
+                    q["image"] = "data:image/webp;base64," + base64.b64encode(image.read_bytes()).decode()
         units.append(unit)
     return units
