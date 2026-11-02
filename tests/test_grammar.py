@@ -20,6 +20,11 @@ def test_unit_covers_supplied_page(course):
     family = unit["exercises"][2]
     assert [b["child"] for b in family["family"]["branches"]] == ["Julio", "Laura"]
     assert family["questions"][2]["answers"] == ["hermana"]
+    assert len(family["family"]["portraits"]) == 10
+    assert all(image.startswith("data:image/webp;base64,") for image in family["family"]["portraits"].values())
+    assert [(b["at"], b["person"]) for b in family["questionBlocks"]] == [(0, "Julio"), (5, "Silvia")]
+    assert family["questions"][0]["context"] == "1. Кем Luis приходится Julio?"
+    assert family["questions"][5]["context"] == "6. Кем Luis приходится Silvia?"
 
 
 def test_reject_answer_missing_from_options(tmp_path):

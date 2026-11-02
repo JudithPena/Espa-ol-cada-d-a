@@ -39,3 +39,15 @@ test('sync preserves grammar results from both devices without lowering scores',
  assert.equal(run('mergeProgress({...fresh(),grammar:{a:{correct:8}}},{...fresh(),grammar:{a:{correct:3},b:{correct:5}}}).grammar.a.correct'),8);
  assert.equal(run('mergeProgress({...fresh(),grammar:{a:{correct:3}}},{...fresh(),grammar:{a:{correct:8},b:{correct:5}}}).grammar.b.correct'),5);
 });
+test('family tree labels ten portraits and questions clearly separate Julio and Silvia', () => {
+ const run=context();
+ const tree = run('grammarFamily(COURSE.grammar[0].exercises[2].family)');
+ assert.equal((tree.match(/class="gperson"/g)||[]).length,10);
+ for(const name of ['Luis','Ana','Julio','Lucía','Gabriel','Laura','Blanca','Pedro','Raúl','Silvia']) {
+   assert.ok(tree.includes(`<figcaption>${name}</figcaption>`));
+ }
+ const form = run('grammarForm(COURSE.grammar[0], COURSE.grammar[0].exercises[2])');
+ assert.ok(form.indexOf('Часть 1 · Родственники Julio') < form.indexOf('1. Кем Luis приходится Julio?'));
+ assert.ok(form.indexOf('Часть 2 · Родственники Silvia') < form.indexOf('6. Кем Luis приходится Silvia?'));
+ assert.equal((form.match(/class="ginput"/g)||[]).length,10);
+});

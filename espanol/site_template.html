@@ -376,6 +376,28 @@ main { padding-block: 16px 110px; }
 .gfamily-branches { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
 .gfamily-branches > div { border-top: 2px solid var(--accent); padding-top: 10px; }
 .gfamily small { display: block; color: var(--muted); margin-top: 6px; }
+.gfamily .gperson { margin: 0; min-width: 0; }
+.gperson img { display: block; width: clamp(42px, 9vw, 70px); aspect-ratio: 1; height: auto; border-radius: 50%; margin: 0 auto 4px; border: 2px solid var(--line); object-fit: cover; }
+.gperson figcaption { font-size: 13px; font-weight: 800; }
+.gfamily .gpair { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 4px; max-width: 190px; margin: auto; }
+.gcouple-line { width: 12px; border-top: 2px solid var(--accent); }
+.gfamily-stem { height: 20px; border-left: 2px solid var(--accent); width: 0; margin: auto; }
+.gfamily-portraits .gfamily-branches { position: relative; margin-top: 0; padding-top: 20px; gap: 10px; }
+.gfamily-portraits .gfamily-branches::before { content: ""; position: absolute; top: 0; left: 25%; right: 25%; border-top: 2px solid var(--accent); }
+.gfamily-portraits .gfamily-branches > div { border-top: 0; padding-top: 0; position: relative; }
+.gfamily-portraits .gfamily-branches > div::before { content: ""; position: absolute; top: -20px; left: 50%; height: 20px; border-left: 2px solid var(--accent); }
+.gfamily-children { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; position: relative; padding-top: 14px; }
+.gfamily-children::before { content: ""; position: absolute; top: 0; left: 25%; right: 25%; border-top: 2px solid var(--accent); }
+.gfamily-children .gperson { position: relative; }
+.gfamily-children .gperson::before { content: ""; position: absolute; height: 14px; top: -14px; left: 50%; border-left: 2px solid var(--accent); }
+.gfamily-caption { font-size: 12px; color: var(--muted); line-height: 1.4; margin-top: 8px; }
+.gquestion-block { margin-top: 26px; padding: 14px; background: var(--accent-soft); border-radius: 12px; display: flex; align-items: center; gap: 12px; }
+.gquestion-block img { width: 54px; height: 54px; border-radius: 50%; flex: none; }
+.gquestion-block h4, .gquestion-block p { margin: 0; }
+.gquestion-block p { font-size: 14px; margin-top: 4px; }
+.gquestion-sentence { margin: 0 0 10px; font-size: 17px; font-weight: 700; }
+.gworked-example { border-left: 3px solid var(--accent); padding: 10px 14px; background: var(--sunken); border-radius: 0 10px 10px 0; }
+.gworked-example small { display: block; color: var(--muted); }
 .gaccents { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 8px; }
 .gaccents button { padding: 4px 10px; }
 </style>
@@ -838,7 +860,7 @@ function grammarView() {
       ${s.notes?.length ? `<aside class="gnotes">${s.notes.map(n => `<p>${esc(n)}</p>`).join("")}</aside>` : ""}
       ${s.check ? grammarForm(unit, s.check) : ""}</section>`).join("")}</div>
     <section class="grammar-section"><h3>Что запомнить</h3>${grammarTable(unit.summary)}</section>
-    <h2 id="g-exercises">Упражнения</h2>${unit.exercises.map(g => `<section class="grammar-section"><h3>${esc(g.title)}</h3><p>${esc(g.instruction)}</p>${g.family ? grammarFamily(g.family) : ""}${g.vocabulary ? grammarTable(g.vocabulary) : ""}${grammarForm(unit, g)}</section>`).join("")}`;
+    <h2 id="g-exercises">Упражнения</h2>${unit.exercises.map(g => `<section class="grammar-section"><h3>${esc(g.title)}</h3><p>${esc(g.instruction)}</p>${g.family ? grammarFamily(g.family) : ""}${g.vocabulary ? grammarTable(g.vocabulary) : ""}${g.example ? `<div class="gworked-example"><small>${esc(g.example.label)}</small><b lang="es">${esc(g.example.es)}</b><small>${esc(g.example.ru)}</small></div>` : ""}${grammarForm(unit, g)}</section>`).join("")}`;
 }
 
 const grammarAttempts = new Map();
@@ -856,6 +878,15 @@ function grammarSchemes(schemes) {
     ${s.note ? `<div class="gscheme-note">${esc(s.note)}</div>` : ""}</div>`).join("")}</div>`;
 }
 function grammarFamily(f) {
+  if (f.portraits) {
+    const person = name => `<figure class="gperson"><img src="${esc(f.portraits[name])}" alt="Портрет ${esc(name)}" width="96" height="96" loading="lazy"><figcaption>${esc(name)}</figcaption></figure>`;
+    const pair = names => `<div class="gpair">${person(names[0])}<span class="gcouple-line" aria-label="пара"></span>${person(names[1])}</div>`;
+    return `<div class="gfamily gfamily-portraits" aria-label="Семейное дерево">${pair(f.parents)}<div class="gfamily-stem" aria-hidden="true"></div>
+      <div class="gfamily-branches">${f.branches.map(b => `<div>${pair([b.child, ...b.couple.filter(n => n !== b.child)])}
+        <div class="gfamily-caption">${esc(b.child)} — ${b.child === "Julio" ? "сын" : "дочь"} Luis и Ana</div>
+        <div class="gfamily-stem" aria-hidden="true"></div><div class="gfamily-children">${b.children.map(person).join("")}</div></div>`).join("")}</div>
+      <div class="gfamily-caption">Линия между портретами — пара. Линия вниз — их дети.</div></div>`;
+  }
   return `<div class="gfamily" aria-label="Семейное дерево"><b>${f.parents.map(esc).join(" + ")}</b><small>Их дети — Julio и Laura</small><div class="gfamily-branches">${f.branches.map(b => `<div><b>${b.couple.map(esc).join(" + ")}</b><small>${esc(b.child)} — ${b.child === "Julio" ? "сын" : "дочь"} Luis и Ana</small><span aria-hidden="true">↓</span><div>${b.children.map(esc).join(" · ")}</div><small>их дети</small></div>`).join("")}</div></div>`;
 }
 function grammarForm(unit, group) {
@@ -866,10 +897,13 @@ function grammarForm(unit, group) {
     ${best ? `<p class="muted">Лучший результат: ${best.correct} из ${best.total}</p>` : ""}
     ${group.questions.map((q, i) => {
       const value = (attempt?.values || grammarDrafts.get(key) || [])[i] || "", good = attempt && grammarCorrect(q, value);
-      return `<fieldset class="gquestion"><legend>${esc(q.prompt)}</legend>
+      const block = (group.questionBlocks || []).find(b => b.at === i);
+      return `${block ? `<div class="gquestion-block">${group.family?.portraits?.[block.person] ? `<img src="${esc(group.family.portraits[block.person])}" alt="${esc(block.person)}" width="54" height="54">` : ""}<div><h4>${esc(block.title)}</h4><p>${esc(block.instruction)}</p></div></div>` : ""}
+        <fieldset class="gquestion"><legend>${esc(q.context || q.prompt)}</legend>
+        ${q.context ? `<p class="gquestion-sentence" lang="es">${esc(q.prompt)}</p>` : ""}
         ${q.image ? `<img class="gillustration" src="${esc(q.image)}" alt="${esc(q.imageAlt || "")}" width="384" height="384" loading="lazy">` : ""}
         ${q.options ? `<div class="gchoices">${q.options.map(o => `<label class="gchoice"><input type="radio" name="q${i}" value="${esc(o)}" required ${value === o ? "checked" : ""} ${attempt ? "disabled" : ""}><span lang="es">${esc(o)}</span></label>`).join("")}</div>`
-          : `<input class="ginput" name="q${i}" aria-label="${esc(q.prompt)}" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" required value="${esc(value)}" ${attempt ? "disabled" : ""}>${attempt ? "" : `<div class="gaccents" aria-label="Испанские буквы">${["á","é","í","ó","ú","ü","ñ"].map(c => `<button type="button" class="btn ghost sm" data-gaccent="${c}" data-ginput="q${i}" aria-label="Вставить ${c}">${c}</button>`).join("")}</div>`}`}
+          : `<input class="ginput" name="q${i}" aria-label="${esc(q.context ? q.context + " " + q.prompt : q.prompt)}" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" required value="${esc(value)}" ${attempt ? "disabled" : ""}>${attempt ? "" : `<div class="gaccents" aria-label="Испанские буквы">${["á","é","í","ó","ú","ü","ñ"].map(c => `<button type="button" class="btn ghost sm" data-gaccent="${c}" data-ginput="q${i}" aria-label="Вставить ${c}">${c}</button>`).join("")}</div>`}`}
         ${attempt ? `<div class="gfeedback ${good ? "good" : ""}"><b>${good ? "✓ Верно" : `✗ Верный ответ: ${esc(q.answers.join(" / "))}`}</b><p>${esc(q.explain)}</p></div>` : ""}</fieldset>`;
     }).join("")}
     <div class="gsummary" role="status" tabindex="-1">${attempt ? `Правильно: ${attempt.correct} из ${group.questions.length}` : ""}</div>
