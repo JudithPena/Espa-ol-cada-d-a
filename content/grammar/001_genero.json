@@ -117,22 +117,61 @@
       },
       "schemes": [
         {
-          "label": "-o → -a",
+          "label": "Заменяем окончание -o на -a",
           "from": "el niño\nel cocinero",
           "to": "la niña\nla cocinera",
-          "note": "мальчик / девочка · повар"
+          "change": {
+            "from": "o",
+            "to": "a"
+          },
+          "translations": [
+            [
+              "мальчик",
+              "девочка"
+            ],
+            [
+              "повар",
+              "повар (женщина)"
+            ]
+          ]
         },
         {
-          "label": "Некоторые слова: -e → -a",
+          "label": "В некоторых словах заменяем -e на -a",
           "from": "el dependiente",
           "to": "la dependienta",
-          "note": "продавец / продавщица"
+          "change": {
+            "from": "e",
+            "to": "a"
+          },
+          "translations": [
+            [
+              "продавец",
+              "продавщица"
+            ]
+          ]
         },
         {
-          "label": "Согласная → добавляем -a",
+          "label": "После согласной добавляем -a",
           "from": "el profesor\nel pintor\nel bailarín",
           "to": "la profesora\nla pintora\nla bailarina",
-          "note": "преподаватель / преподавательница · художник / художница · танцор / танцовщица"
+          "change": {
+            "from": "",
+            "to": "a"
+          },
+          "translations": [
+            [
+              "преподаватель",
+              "преподавательница"
+            ],
+            [
+              "художник",
+              "художница"
+            ],
+            [
+              "танцор",
+              "танцовщица"
+            ]
+          ]
         }
       ],
       "notes": [

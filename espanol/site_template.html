@@ -377,6 +377,15 @@ main { padding-block: 16px 110px; }
 .gscheme-arrow { color: var(--accent); display: block; width: 24px; height: 24px; }
 .gscheme-arrow svg { display: block; width: 100%; height: 100%; overflow: visible; }
 .gscheme-note { font-size: 13px; color: var(--muted); margin-top: 8px; }
+.gchange .gscheme-pair { max-width: 600px; margin-inline: auto; gap: 10px; }
+.gchange-head { margin-bottom: 6px; color: var(--muted); font-size: 12px; }
+.gchange-row + .gchange-row { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
+.gchange .gscheme-pair b { font-size: 17px; line-height: 1.8; }
+.gchange-word { white-space: nowrap; }
+.gchange-ending { color: var(--accent); border-bottom: 2px dashed currentColor; }
+.gchange-ending.is-new { color: var(--ink); background: var(--surface); border-bottom-style: solid; border-color: var(--accent); border-radius: 3px 3px 0 0; padding-inline: 2px; }
+.gchange-translation { display: block; font-size: 12px; color: var(--muted); }
+@media (max-width: 380px) { .gchange .gscheme-pair { gap: 6px; } .gchange .gscheme-pair b { font-size: 15px; } }
 .gnotes { padding: 10px 14px; background: var(--sun-soft); border-radius: 10px; margin: 10px 0; font-size: 14px; }
 .gnotes p { margin: 4px 0; }
 .gagreement { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin: 12px 0; }
@@ -996,9 +1005,18 @@ function grammarTable(t) {
   return `<div class="tbl" tabindex="0" role="region" aria-label="Таблица примеров"><table><thead><tr>${t.heads.map(h => `<th scope="col">${esc(h)}</th>`).join("")}</tr></thead><tbody>${t.rows.map(r => `<tr>${r.map(c => `<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
 }
 function grammarSchemes(schemes) {
-  return `<div class="gschemes">${schemes.map(s => `<div class="gscheme"><div class="gscheme-label">${esc(s.label)}</div>
+  return `<div class="gschemes">${schemes.map(s => s.change ? grammarChangeScheme(s) : `<div class="gscheme"><div class="gscheme-label">${esc(s.label)}</div>
     <div class="gscheme-pair"><div>${s.fromLabel ? `<small>${esc(s.fromLabel)}</small>` : ""}<b lang="es">${esc(s.from)}</b></div><span class="gscheme-arrow" role="img" aria-label="сравни"><svg viewBox="0 0 48 32" aria-hidden="true" focusable="false"><path d="M4 16H43M33 6L43 16L33 26" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div>${s.toLabel ? `<small>${esc(s.toLabel)}</small>` : ""}<b lang="es">${esc(s.to)}</b></div></div>
     ${s.note ? `<div class="gscheme-note">${esc(s.note)}</div>` : ""}</div>`).join("")}</div>`;
+}
+function grammarChangeScheme(s) {
+  const word = (text, ending, fresh) => {
+    const split = text.indexOf(" "), article = text.slice(0,split), noun = text.slice(split+1);
+    const marked = ending && noun.endsWith(ending) ? `${esc(noun.slice(0,-ending.length))}<span class="gchange-ending${fresh ? " is-new" : ""}">${esc(ending)}</span>` : esc(noun);
+    return `<b lang="es">${esc(article)} <span class="gchange-word">${marked}</span></b>`;
+  };
+  const targets = s.to.split("\n");
+  return `<div class="gscheme gchange"><div class="gscheme-label">${esc(s.label)}</div><div class="gscheme-pair gchange-head"><span>Мужской род</span><span></span><span>Женский род</span></div>${s.from.split("\n").map((from,i) => `<div class="gchange-row"><div class="gscheme-pair"><div>${word(from,s.change.from,false)}<span class="gchange-translation">${esc(s.translations[i][0])}</span></div><span class="gscheme-arrow" aria-hidden="true"><svg viewBox="0 0 48 32" focusable="false"><path d="M4 16H43M33 6L43 16L33 26" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div>${word(targets[i],s.change.to,true)}<span class="gchange-translation">${esc(s.translations[i][1])}</span></div></div></div>`).join("")}</div>`;
 }
 function grammarFamily(f) {
   if (f.portraits && f.branches.length === 2) {
