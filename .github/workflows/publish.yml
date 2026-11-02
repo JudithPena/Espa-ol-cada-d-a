@@ -55,7 +55,16 @@ jobs:
           ENABLE_AUDIO: ${{ vars.ENABLE_AUDIO || '1' }}
           FORCE: ${{ inputs.force }}
           DRY_RUN: ${{ inputs.dry_run }}
+          EVENT: ${{ github.event_name }}
         run: |
+          # GitHub опаздывает с запасным запуском до 8–9 часов: 2 ноября он пришёл в 01:01 по Киеву,
+          # когда по календарю уже начался новый день, и выпустил урок ночью. Запасной запуск
+          # публикует только с 15:00 до 21:59 по Киеву, позже — пропускает.
+          hour=$(TZ=Europe/Kyiv date +%-H)
+          if [ "$EVENT" = "schedule" ] && { [ "$hour" -lt 15 ] || [ "$hour" -ge 22 ]; }; then
+            echo "Запасной запуск опоздал (сейчас ${hour}:xx по Киеву) — ночью уроки не публикуем."
+            exit 0
+          fi
           args=()
           [ "$FORCE" = "true" ] && args+=(--force)
           [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
