@@ -20,7 +20,7 @@ from pathlib import Path
 
 from .course import FEATURES, Block, Course, Lesson, QuizItem, VocabItem
 from .lexicon import _FUNCTION_WORDS, generated_forms
-from .markup import plain, to_html
+from .markup import checkable, plain, to_html
 from .tokens import spanish_words
 from .wordcards import WordCard
 from .grammar import load_grammar
@@ -77,22 +77,40 @@ def art_uri(es: str) -> str | None:
     return "data:image/webp;base64," + base64.b64encode(path.read_bytes()).decode()
 
 
-def _word(item: VocabItem, card: WordCard | None) -> dict:
+# «На заметку» на сайте: только фразы без непройденных слов и без отступлений про Латинскую Америку.
+_NOTE_SENTENCE = re.compile(r"(?<=[.!?…»)])\s+(?=[A-ZА-ЯЁÁÉÍÓÚÑ¡¿«*_`])")
+_OFF_TOPIC = re.compile(r"Латинск|Америк|Мексик|Аргентин|🌎|🌍")
+
+
+def site_note(text: str | None, unknown) -> str | None:
+    """Заметка к слову для сайта: фразы с непройденными словами (unknown(text) → список) выкидываем."""
+    if not text:
+        return None
+    keep = [s for s in _NOTE_SENTENCE.split(text.strip())
+            if not _OFF_TOPIC.search(s) and not [w for w in unknown(s) if len(w) > 2]]
+    if keep:  # «И v — как b» без первой фразы: союз в начале убираем
+        keep[0] = re.sub(r"^(?:И|А|Но|Так же|Также)[,]?\s+(\S)", lambda m: m[1].upper() if m[1].isalpha() and not m[1].isascii() else m[1], keep[0])
+    return " ".join(keep) or None
+
+
+def _word(item: VocabItem, card: WordCard | None, unknown=lambda text: []) -> dict:
     data = {
         "es": plain(item.es), "ru": plain(item.ru), "pron": item.pron, "emoji": item.emoji,
         "pos": item.pos, "say": item.speech, "srs": item.srs,
     }
     if img := art_uri(data["es"]):
         data["img"] = img
-    if item.note:
-        data["note"] = _html(item.note)
+    if note := site_note(item.note, unknown):
+        data["note"] = _html(note)
     examples = card.examples if card and card.examples else (
         [(item.example.es, item.example.ru)] if item.example else [])
     if examples:
         data["ex"] = [[plain(es), plain(ru)] for es, ru in examples]
     if card:
-        for key, value in (("meaning", card.meaning), ("pronNote", card.pron), ("trap", card.trap)):
-            if value:
+        if card.meaning:
+            data["meaning"] = _html(card.meaning)
+        for key, value in (("pronNote", card.pron), ("trap", card.trap)):
+            if value := site_note(value, unknown):
                 data[key] = _html(value)
         if card.collocations:
             data["coll"] = [_html(c) for c in card.collocations]
@@ -348,7 +366,8 @@ def _split(block: Block) -> list[dict]:
     return [b] if b else []
 
 
-def lesson_data(lesson: Lesson, cards: dict[str, WordCard]) -> dict:
+def lesson_data(lesson: Lesson, cards: dict[str, WordCard], lexicon=None) -> dict:
+    unknown = (lambda text: lexicon.unknown_words(text, lesson)) if lexicon else (lambda text: [])
     blocks = [b for block in lesson.blocks for b in _split(block)]
     by_cell = ROW_ART.get(lesson.id, {})
     for blk in blocks:
@@ -359,7 +378,7 @@ def lesson_data(lesson: Lesson, cards: dict[str, WordCard]) -> dict:
         "n": lesson.number, "id": lesson.id, "unit": lesson.unit.number, "level": lesson.level,
         "kind": lesson.kind, "kindLabel": lesson.kind_label, "emoji": lesson.kind_emoji,
         "title": plain(lesson.title),
-        "words": [_word(item, cards.get(item.key)) for item in lesson.vocab],
+        "words": [_word(item, cards.get(item.key), unknown) for item in lesson.vocab],
         "blocks": blocks,
         "quiz": [{"q": plain(q.question), "options": [plain(o) for o in q.options], "correct": q.correct,
                   "shuffle": q.shuffle, "explain": _html(q.explain)}
@@ -429,11 +448,14 @@ def video_data(video) -> dict:
 def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None = None,
               videos: list | None = None, preview: bool = False) -> dict:
     """preview — тестовая версия сайта: в шапке метка «тест»."""
+    from .lexicon import Lexicon
+
+    lexicon = Lexicon(course)
     lessons, carried = [], []
     for lesson in course.lessons:
         if units is not None and lesson.unit.number not in units:
             continue
-        data = lesson_data(lesson, cards)
+        data = lesson_data(lesson, cards, lexicon)
         if lesson.kind in SKIP_KINDS:  # слова вводного урока переходят в следующий урок сайта
             carried += data["words"]
             continue
