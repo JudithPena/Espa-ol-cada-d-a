@@ -71,6 +71,7 @@ DEFAULT_SETTINGS: dict[str, Any] = {
     "max_polls": 8,
     "max_new_words": 8,  # маленькие шаги: не больше стольких новых слов за пост
     "rich_posts": [],    # уроки, которые уходят постом-статьёй: список id или all
+    "site_open_units": None,  # темы, открытые на основном сайте; None — все
 }
 
 

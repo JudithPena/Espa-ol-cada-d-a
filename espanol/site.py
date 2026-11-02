@@ -465,6 +465,7 @@ def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None
     return {
         "title": course.title,
         "preview": preview,
+        "openUnits": course.settings.get("site_open_units"),
         "api": SITE_API,
         "bot": course.bot,
         "intervals": course.settings["srs"]["intervals"],

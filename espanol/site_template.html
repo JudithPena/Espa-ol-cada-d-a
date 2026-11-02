@@ -641,7 +641,9 @@ LESSONS.forEach((L, i) => L.words.forEach(w => { if (!WORDS.has(w.es)) WORDS.set
 const FORMS = COURSE.forms || {};   // форма слова → слово курса: «tengo» → «tener»
 
 const isDone = i => !!P.done[LESSONS[i].id];
-const isOpen = i => COURSE.preview || P.openAll || i === 0 || isDone(i - 1) || isDone(i);
+// Темы, которые ещё прорабатываются, на основном сайте закрыты для всех (site_open_units в course.yaml).
+const unitClosed = i => !COURSE.preview && Array.isArray(COURSE.openUnits) && !COURSE.openUnits.includes(LESSONS[i]?.unit);
+const isOpen = i => !unitClosed(i) && (COURSE.preview || P.openAll || i === 0 || isDone(i - 1) || isDone(i));
 const currentIndex = () => { const i = LESSONS.findIndex((_, k) => !isDone(k)); return i < 0 ? LESSONS.length - 1 : i; };
 const knownPool = upto => [...WORDS.values()].filter(w => w.li <= upto);
 const dueWords = () => { const t = dayNum(); return Object.entries(P.words).filter(([es, s]) => s.due <= t && WORDS.has(es)).map(([es]) => WORDS.get(es)); };
@@ -978,17 +980,17 @@ const LEVELS = ["A0", "A1", "A2", "B1", "B2", "C1"];
 const levelOf = i => COURSE.units.find(u => u.number === LESSONS[i].unit)?.level;
 function levelStats(lv) {
   const idx = LESSONS.map((L, i) => levelOf(i) === lv ? i : -1).filter(i => i >= 0);
-  return { n: idx.length, done: idx.filter(isDone).length };
+  return { n: idx.length, done: idx.filter(isDone).length, closed: idx.every(unitClosed) };
 }
 
 function homeView() {
   const ci = currentIndex(), doneN = LESSONS.filter((_, i) => isDone(i)).length, due = dueWords().length;
   let html = "";
-  if (doneN && doneN < LESSONS.length) html += `<div class="notice" style="margin-top:0">▶️ Урок ${LESSONS[ci].n}. ${esc(LESSONS[ci].title)}<button class="btn" data-lesson="${ci}">Продолжить</button></div>`;
+  if (doneN && doneN < LESSONS.length && !unitClosed(ci)) html += `<div class="notice" style="margin-top:0">▶️ Урок ${LESSONS[ci].n}. ${esc(LESSONS[ci].title)}<button class="btn" data-lesson="${ci}">Продолжить</button></div>`;
   if (due) html += `<div class="notice">🔁 Пора повторить ${words(due)}<button class="btn" data-review="due">Повторить</button></div>`;
   html += `<h2 class="sech">Курс по уровням</h2><div class="levels">${LEVELS.map(lv => {
     const st = levelStats(lv);
-    if (!st.n) return `<div class="lvl soon" aria-label="Уровень ${lv}, скоро"><b>${lv}</b><small>скоро</small></div>`;
+    if (!st.n || st.closed) return `<div class="lvl soon" aria-label="Уровень ${lv}, скоро"><b>${lv}</b><small>скоро</small></div>`;
     return `<button class="lvl" data-level="${lv}"><b>${lv}</b><small>${st.done} из ${st.n} уроков</small><div class="bar"><i style="width:${Math.round(st.done / st.n * 100)}%"></i></div></button>`;
   }).join("")}</div>`;
   html += `<h2 class="sech">Ещё</h2><div class="menu">
@@ -1108,7 +1110,8 @@ function courseView() {
     <span class="eyebrow">${doneN === LESSONS.length ? "Курс пройден, можно повторять" : doneN ? "Продолжить" : "Начать с нуля"}</span>
     <h2>Урок ${L.n}. ${esc(L.title)}</h2>
     <div class="meta"><span>${stepTitle(L)}</span><span>Тема ${L.unit}</span></div>
-    <button class="btn wide" data-lesson="${ci}">${doneN ? "Продолжить" : "Начать"}</button>
+    ${unitClosed(ci) ? `<button class="btn wide" disabled>Следующая тема скоро откроется</button>`
+      : `<button class="btn wide" data-lesson="${ci}">${doneN ? "Продолжить" : "Начать"}</button>`}
     <div class="level-bar"><div class="lb"><span>Уровень ${lv}</span><span>${levelStats(lv).done} из ${levelStats(lv).n} уроков</span></div><div class="bar"><i style="width:${Math.round(levelStats(lv).done / levelStats(lv).n * 100)}%"></i></div></div>
   </section>`;
   if (!doneN && !P.joined) html += `<button class="btn ghost wide" style="margin-top:12px" data-join>Я уже учусь в канале</button>`;
@@ -1120,7 +1123,7 @@ function courseView() {
     html += `<section class="unit ${locked ? "locked" : ""}" id="unit-${U.number}">
       <div class="unit-head"><div class="tile" aria-hidden="true"></div>
         <span class="num">Тема ${U.number} · ${esc(U.level)}</span><h3>${esc(U.title)}</h3>
-        <span class="prog">${done} / ${idx.length} ${done === idx.length ? "· пройдена ✓" : ""}</span></div>
+        <span class="prog">${unitClosed(idx[0]) ? "🔒 скоро откроется" : `${done} / ${idx.length} ${done === idx.length ? "· пройдена ✓" : ""}`}</span></div>
       ${U.goals.length && !locked ? `<ul class="goals">${U.goals.map(g => `<li>${esc(g)}</li>`).join("")}</ul>` : ""}
       <ol class="path">${idx.map(i => {
         const L = LESSONS[i], d = P.done[L.id], open = isOpen(i), cur = i === ci && !d;
@@ -1575,6 +1578,7 @@ document.addEventListener("click", e => {
   if (d.tab) { if (d.tab === "course") view.level = null; view.tab = d.tab; view.confirmReset = false; render(); window.scrollTo(0, 0); return; }
   if (d.lesson != null) {
     const i = +d.lesson;
+    if (unitClosed(i)) return toast("Эта тема скоро откроется");
     if (!isOpen(i) && !("free" in d)) return toast(`Сначала пройдите урок ${LESSONS[i - 1].n}`);
     return startLesson(i);
   }
