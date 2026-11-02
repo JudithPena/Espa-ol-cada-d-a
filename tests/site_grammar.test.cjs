@@ -121,3 +121,27 @@ test('summary reading persists and opening an old saved locked stage cannot bypa
  assert.equal(run('G.steps[0].type'), 'theory');
  assert.equal(run('mergeProgress({...fresh(),grammarRead:{a:true}},{...fresh(),grammarRead:{b:true}}).grammarRead.b'),true);
 });
+test('choice click grades immediately, plays the matching sound once and keeps explanation visible', () => {
+ const run=context();
+ run('var played=[];sfx=ok=>played.push(ok);gStart(COURSE.grammar[0].id,"section:0");gMove(1);');
+ assert.ok(!run('gPlayerView()').includes('data-gcheck'));
+ run('gPick(1);gPick(0);');
+ assert.equal(run('gResponse(G.steps[G.at]).good'),true);
+ assert.equal(run('played.join(",")'),'true');
+ assert.ok(run('gPlayerView()').includes('data-gnext'));
+ run('gMove(1);gPick(0);');
+ assert.equal(run('gResponse(G.steps[G.at]).good'),false);
+ assert.equal(run('played.join(",")'),'true,false');
+ assert.ok(run('gPlayerView()').includes('Верный ответ: la estudiante'));
+});
+test('answer sounds differ, resume suspended audio and respect mute', () => {
+ const run=context();
+ run(`var tones=[],resumed=0;window.AudioContext=class {
+  constructor(){this.currentTime=0;this.state="suspended";this.destination={};}
+  resume(){resumed++;this.state="running";return Promise.resolve();}
+  createOscillator(){const o={frequency:{value:0},connect:g=>g,stop:()=>{}};o.start=()=>tones.push(o.frequency.value);return o;}
+  createGain(){return {connect:()=>{},gain:{setValueAtTime:()=>{},exponentialRampToValueAtTime:()=>{}}};}
+ };sfx(true);sfx(false);P.sound=false;sfx(true);`);
+ assert.equal(run('tones.join(",")'),'659,988,196,147');
+ assert.equal(run('resumed'),1);
+});

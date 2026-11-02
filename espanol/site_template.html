@@ -410,6 +410,7 @@ html.grammar-playing, html.grammar-playing body { overflow: hidden; }
 .gplayer .ginstruction { margin: 0; }
 .gplayer .ginput { font-size: 19px; }
 .gplayer-actions { display: grid; grid-template-columns: auto 1fr; gap: 12px; }
+.gpick-hint { align-self: center; justify-self: center; text-align: center; font-size: 14px; }
 .gplayer .fb { max-height: 24dvh; overflow-y: auto; }
 .gquestion-work, .ganswer-area, .gfamily-work { display: grid; gap: 14px; align-content: start; }
 .gquestion-picture { width: min(100%, 260px); max-height: 30dvh; object-fit: contain; height: auto; aspect-ratio: 1; border-radius: 16px; justify-self: center; }
@@ -801,6 +802,7 @@ function sfx(ok) {
   if (!P.sound) return;
   try {
     audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === "suspended") audioCtx.resume().catch(() => {});
     const t0 = audioCtx.currentTime;
     // Верно — два коротких восходящих тона; ошибка — низкий нисходящий «бз».
     const notes = ok ? [[659, 0, .12], [988, .09, .22]] : [[196, 0, .16], [147, .12, .26]];
@@ -1410,12 +1412,7 @@ document.addEventListener("click", e => {
   if ("gnext" in d) return gMove(1);
   if ("gcheck" in d) return gCheck();
   if ("gretryMistakes" in d) return gRetry();
-  if (d.gpick != null && G) {
-    const step = G.steps[G.at], response = gResponse(step);
-    if (response.checked) return;
-    response.value = gGroups(gUnit()).find(g => g.id === step.group).questions[step.qi].options[+d.gpick];
-    gSave(); return render();
-  }
+  if (d.gpick != null && G) return gPick(+d.gpick);
   if (d.gchar && G) {
     const input = $("#g-answer"); input.setRangeText(d.gchar, input.selectionStart, input.selectionEnd, "end");
     input.dispatchEvent(new Event("input", {bubbles:true})); input.focus(); return;
