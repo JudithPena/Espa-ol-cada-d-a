@@ -11,7 +11,7 @@ function context() {
   const storage = new Map();
   const ctx = vm.createContext({console, setTimeout:noop, clearTimeout:noop, addEventListener:noop,
     localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},
-    window:{addEventListener:noop}, document:{addEventListener:noop,querySelector:()=>({focus:noop})},
+    window:{addEventListener:noop}, document:{documentElement:{classList:{toggle:noop}},addEventListener:noop,querySelector:()=>({focus:noop})},
     navigator:{}, speechSynthesis:{getVoices:()=>[],addEventListener:noop},
   });
   const data = {lessons:[],units:[],intervals:[1],grammar:[unit]};
