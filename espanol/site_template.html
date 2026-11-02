@@ -383,6 +383,7 @@ main { padding-block: 16px 110px; }
 .gchange-row + .gchange-row { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
 .gchange .gscheme-pair b { font-size: 17px; line-height: 1.8; }
 .gchange-word { white-space: nowrap; }
+.gchange-word.is-phrase { white-space: normal; }
 .gchange-ending { color: var(--accent); border-bottom: 2px dashed currentColor; }
 .gchange-ending.is-new { color: var(--ink); background: var(--surface); border-bottom-style: solid; border-color: var(--accent); border-radius: 3px 3px 0 0; padding-inline: 2px; }
 .gchange-translation { display: block; font-size: 12px; color: var(--muted); }
@@ -1027,7 +1028,7 @@ function grammarChangeScheme(s) {
   const word = (text, ending, fresh) => {
     const split = text.indexOf(" "), article = text.slice(0,split), noun = text.slice(split+1);
     const marked = ending && noun.endsWith(ending) ? `${esc(noun.slice(0,-ending.length))}<span class="gchange-ending${fresh ? " is-new" : ""}">${esc(ending)}</span>` : esc(noun);
-    return `<b lang="es">${esc(article)} <span class="gchange-word">${marked}</span></b>`;
+    return `<b lang="es">${esc(article)} <span class="gchange-word${noun.includes(" ") ? " is-phrase" : ""}">${marked}</span></b>`;
   };
   const targets = s.to.split("\n");
   const translation = text => esc(s.inlineTranslation ? `(${text})` : text);

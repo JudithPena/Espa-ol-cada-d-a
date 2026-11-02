@@ -453,10 +453,16 @@
       },
       "schemes": [
         {
-          "label": "Мужской → женский",
+          "label": "Артикль и прилагательное тоже меняются",
           "from": "un hombre alto",
           "to": "una mujer alta",
-          "note": "высокий мужчина → высокая женщина"
+          "translations": [
+            [
+              "высокий мужчина",
+              "высокая женщина"
+            ]
+          ],
+          "inlineTranslation": true
         }
       ],
       "agreement": [
