@@ -15,6 +15,7 @@ from __future__ import annotations
 import base64
 import json
 import re
+import shutil
 from pathlib import Path
 
 from .course import FEATURES, Block, Course, Lesson, QuizItem, VocabItem
@@ -336,6 +337,19 @@ def parse_units(spec: str | None) -> set[int] | None:
     return numbers
 
 
+ICON_DIR = Path(__file__).resolve().parent.parent / "content" / "icons"
+ICON_FILES = ["apple-touch-icon.png", "favicon-32.png", "icon-192.png", "icon-512.png", "icon-maskable-512.png"]
+MANIFEST = json.dumps({
+    "name": "Español cada día", "short_name": "Español", "lang": "ru", "start_url": "./", "scope": "./",
+    "display": "standalone", "background_color": "#2346c4", "theme_color": "#2346c4",
+    "icons": [
+        {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+        {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+        {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"},
+    ],
+}, ensure_ascii=False, indent=2)
+
+
 def build_site(course: Course, cards: dict[str, WordCard], out: str | Path, units: set[int] | None = None,
                fragment: bool = False, videos: list | None = None, preview: bool = False) -> Path:
     data = json.dumps(site_data(course, cards, units, videos, preview), ensure_ascii=False).replace("</", "<\\/")
@@ -345,8 +359,19 @@ def build_site(course: Course, cards: dict[str, WordCard], out: str | Path, unit
         # <title>, <meta> и <style> из шаблона браузер сам отнесёт в <head>.
         page = ('<!doctype html>\n<html lang="ru">\n<head>\n<meta charset="utf-8">\n'
                 '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+                '<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">\n'
+                '<link rel="apple-touch-icon" href="apple-touch-icon.png">\n'
+                '<link rel="manifest" href="manifest.webmanifest">\n'
+                '<meta name="theme-color" content="#2346c4">\n'
+                '<meta name="apple-mobile-web-app-capable" content="yes">\n'
+                '<meta name="mobile-web-app-capable" content="yes">\n'
+                '<meta name="apple-mobile-web-app-title" content="Español">\n'
                 f"{page}\n</html>\n")
     out = Path(out)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(page, encoding="utf-8")
+    if not fragment:  # иконки и манифест лежат рядом со страницей
+        for f in ICON_FILES:
+            shutil.copyfile(ICON_DIR / f, out.parent / f)
+        (out.parent / "manifest.webmanifest").write_text(MANIFEST, encoding="utf-8")
     return out
