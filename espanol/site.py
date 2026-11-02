@@ -22,6 +22,7 @@ from .lexicon import _FUNCTION_WORDS, generated_forms
 from .markup import plain, to_html
 from .tokens import spanish_words
 from .wordcards import WordCard
+from .grammar import load_grammar
 
 TEMPLATE = Path(__file__).with_name("site_template.html")
 
@@ -318,6 +319,7 @@ def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None
                   for u in course.units if units is None or u.number in units],
         "lessons": lessons,
         "videos": [video_data(v) for v in videos or []],
+        "grammar": load_grammar(),
         "forms": word_forms(course),
         "phrases": word_phrases(course),
     }

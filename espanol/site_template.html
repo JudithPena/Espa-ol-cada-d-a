@@ -337,6 +337,29 @@ main { padding-block: 16px 110px; }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 @media (min-width: 560px) { .opts.grid2 { grid-template-columns: 1fr 1fr; } }
+/* самостоятельные уроки грамматики */
+.grammar-section { margin: 20px 0; padding: 18px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+.grammar-section h3 { margin: 0 0 12px; }
+.grammar-section .theory { line-height: 1.65; }
+.grammar-section .tbl { margin: 14px 0; }
+.grammar-section th { text-align: left; padding: 9px 12px; background: var(--accent-soft); }
+.gquestion { border: 0; border-top: 1px solid var(--line); margin: 18px 0 0; padding: 16px 0 0; min-width: 0; }
+.gquestion legend { font-weight: 700; padding: 8px 0; max-width: 100%; }
+.gchoices { display: grid; gap: 8px; }
+.gchoice { display: flex; gap: 10px; align-items: center; padding: 12px; border: 1px solid var(--line); border-radius: 12px; cursor: pointer; }
+.gchoice:has(input:checked) { background: var(--accent-soft); border-color: var(--accent); }
+.ginput { width: 100%; min-height: 46px; padding: 10px 12px; background: var(--bg); color: var(--ink); border: 2px solid var(--line); border-radius: 10px; font: inherit; }
+.gfeedback { margin: 10px 0; padding: 12px; border-radius: 10px; background: var(--bad-soft); }
+.gfeedback.good { background: var(--good-soft); }
+.gfeedback p { margin: 4px 0 0; }
+.gsummary { font-weight: 700; padding: 12px 0; }
+.gactions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.gfamily { padding: 14px; border-radius: 12px; background: var(--sunken); margin: 14px 0; text-align: center; }
+.gfamily-branches { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+.gfamily-branches > div { border-top: 2px solid var(--accent); padding-top: 10px; }
+.gfamily small { display: block; color: var(--muted); margin-top: 6px; }
+.gaccents { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 8px; }
+.gaccents button { padding: 4px 10px; }
 </style>
 
 <div id="app"></div>
@@ -357,7 +380,7 @@ const words = n => `${n} ${plural(n, "слово", "слова", "слов")}`;
 
 /* ================================================================ прогресс (в браузере ученика) */
 const KEY = "espanol-cada-dia.v1";
-const fresh = () => ({ done: {}, xp: 0, days: {}, streak: { n: 0, best: 0, last: "" }, words: {}, goal: 30, openAll: false, sound: true });
+const fresh = () => ({ done: {}, grammar: {}, xp: 0, days: {}, streak: { n: 0, best: 0, last: "" }, words: {}, goal: 30, openAll: false, sound: true });
 let P = fresh();
 try { P = Object.assign(fresh(), JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) { /* без хранилища — прогресс только до перезагрузки */ }
 const saveLocal = () => { try { localStorage.setItem(KEY, JSON.stringify(P)); } catch (e) {} };
@@ -387,6 +410,10 @@ function mergeProgress(a, b) {
     if (!o || (s.s || 0) > (o.s || 0) || ((s.s || 0) === (o.s || 0) && (s.due || 0) >= (o.due || 0))) out.words[w] = s;
   }
   out.xp = Math.max(a.xp || 0, b.xp || 0);
+  out.grammar = { ...(b.grammar || {}) };
+  for (const [id, result] of Object.entries(a.grammar || {})) {
+    if (!out.grammar[id] || result.correct >= out.grammar[id].correct) out.grammar[id] = result;
+  }
   out.days = { ...(b.days || {}) };
   for (const [d, v] of Object.entries(a.days || {})) out.days[d] = Math.max(v, out.days[d] || 0);
   const sa = a.streak || {}, sb = b.streak || {}, newer = (sa.last || "") >= (sb.last || "") ? sa : sb;
@@ -761,7 +788,7 @@ function homeView() {
     return `<button class="lvl" data-level="${lv}"><b>${lv}</b><small>${st.done} из ${st.n} уроков</small><div class="bar"><i style="width:${Math.round(st.done / st.n * 100)}%"></i></div></button>`;
   }).join("")}</div>`;
   html += `<h2 class="sech">Ещё</h2><div class="menu">
-    <button class="mcard" data-tab="grammar"><span class="mi">📐</span><span><b>Грамматика <span class="tag">в работе</span></b></span><span aria-hidden="true">›</span></button>
+    <button class="mcard" data-tab="grammar"><span class="mi">📐</span><span><b>Грамматика</b><small>${(COURSE.grammar || []).length} ${plural((COURSE.grammar || []).length, "урок", "урока", "уроков")}</small></span><span aria-hidden="true">›</span></button>
     ${COURSE.videos.length ? `<button class="mcard" data-tab="videos"><span class="mi">🎬</span><span><b>Разбор видео</b><small>${COURSE.videos.length} ${plural(COURSE.videos.length, "разбор", "разбора", "разборов")}: фразы, слова и перевод</small></span><span aria-hidden="true">›</span></button>` : ""}
   </div>`;
   return html;
@@ -776,8 +803,59 @@ function lessonRow(i, free = false) {
 }
 
 function grammarView() {
-  return `<button class="btn ghost sm back" data-tab="home">← Главная</button><h2>📐 Грамматика</h2>
-    <div class="wip"><span class="wi">🚧</span><span><b>В работе</b></span></div>`;
+  const units = COURSE.grammar || [], unit = units.find(u => u.id === view.grammar);
+  if (!unit) return `<button class="btn ghost sm back" data-tab="home">← Главная</button><h2>📐 Грамматика</h2>
+    <div class="menu">${units.map(u => {
+      const complete = u.exercises.every(g => P.grammar?.[`${u.id}/${g.id}`]?.correct === g.questions.length);
+      return `<button class="mcard" data-grammar="${esc(u.id)}"><span class="mi">${complete ? "✓" : "📐"}</span><span><b>${u.number}. ${esc(u.title)}</b><small>${esc(u.subtitle)}</small></span><span aria-hidden="true">›</span></button>`;
+    }).join("")}</div>`;
+  return `<button class="btn ghost sm back" data-grammar-list>← Все уроки грамматики</button>
+    <span class="eyebrow">Грамматика · Unidad ${unit.number} · ${esc(unit.level)}</span><h2>${esc(unit.title)}</h2><p class="muted">${esc(unit.subtitle)}</p>
+    <div class="gactions"><a class="btn" href="#g-exercises">К упражнениям</a><a class="btn ghost" href="#g-theory">Теория</a></div>
+    <div id="g-theory">${unit.sections.map(s => `<section class="grammar-section"><h3>${esc(s.title)}</h3>
+      <div class="theory">${s.paragraphs.map(p => `<p>${esc(p)}</p>`).join("")}
+      ${(s.examples || []).map(([es, ru]) => `<div class="box rule"><span lang="es">${playBtn(es)} ${esc(es)}</span><br><span class="muted">${esc(ru)}</span></div>`).join("")}</div>
+      ${s.table ? grammarTable(s.table) : ""}${s.check ? grammarForm(unit, s.check) : ""}</section>`).join("")}</div>
+    <section class="grammar-section"><h3>Что запомнить</h3>${grammarTable(unit.summary)}</section>
+    <h2 id="g-exercises">Упражнения</h2>${unit.exercises.map(g => `<section class="grammar-section"><h3>${esc(g.title)}</h3><p>${esc(g.instruction)}</p>${g.family ? grammarFamily(g.family) : ""}${g.vocabulary ? grammarTable(g.vocabulary) : ""}${grammarForm(unit, g)}</section>`).join("")}`;
+}
+
+const grammarAttempts = new Map();
+const grammarDrafts = new Map();
+const grammarKey = (u, g) => `${u.id}/${g.id}`;
+// Keep ñ and stress marks significant; forgive casing, outer spaces and Unicode encoding only.
+const grammarNormalize = value => String(value).normalize("NFC").trim().toLocaleLowerCase("es").replace(/\s+/g, " ");
+const grammarCorrect = (q, value) => q.answers.some(a => grammarNormalize(a) === grammarNormalize(value));
+function grammarTable(t) {
+  return `<div class="tbl" tabindex="0" role="region" aria-label="Таблица примеров"><table><thead><tr>${t.heads.map(h => `<th scope="col">${esc(h)}</th>`).join("")}</tr></thead><tbody>${t.rows.map(r => `<tr>${r.map(c => `<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+}
+function grammarFamily(f) {
+  return `<div class="gfamily" aria-label="Семейное дерево"><b>${f.parents.map(esc).join(" + ")}</b><small>Их дети — Julio и Laura</small><div class="gfamily-branches">${f.branches.map(b => `<div><b>${b.couple.map(esc).join(" + ")}</b><small>${esc(b.child)} — ${b.child === "Julio" ? "сын" : "дочь"} Luis и Ana</small><span aria-hidden="true">↓</span><div>${b.children.map(esc).join(" · ")}</div><small>их дети</small></div>`).join("")}</div></div>`;
+}
+function grammarForm(unit, group) {
+  const key = grammarKey(unit, group), attempt = grammarAttempts.get(key), best = P.grammar?.[key];
+  return `<form data-grammar-form="${esc(group.id)}" class="gform">
+    ${group.title === "Мини-проверка" ? "<h4>Мини-проверка</h4>" : ""}
+    ${best ? `<p class="muted">Лучший результат: ${best.correct} из ${best.total}</p>` : ""}
+    ${group.questions.map((q, i) => {
+      const value = (attempt?.values || grammarDrafts.get(key) || [])[i] || "", good = attempt && grammarCorrect(q, value);
+      return `<fieldset class="gquestion"><legend>${esc(q.prompt)}</legend>
+        ${q.options ? `<div class="gchoices">${q.options.map(o => `<label class="gchoice"><input type="radio" name="q${i}" value="${esc(o)}" required ${value === o ? "checked" : ""} ${attempt ? "disabled" : ""}><span lang="es">${esc(o)}</span></label>`).join("")}</div>`
+          : `<input class="ginput" name="q${i}" aria-label="${esc(q.prompt)}" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" required value="${esc(value)}" ${attempt ? "disabled" : ""}>${attempt ? "" : `<div class="gaccents" aria-label="Испанские буквы">${["á","é","í","ó","ú","ü","ñ"].map(c => `<button type="button" class="btn ghost sm" data-gaccent="${c}" data-ginput="q${i}" aria-label="Вставить ${c}">${c}</button>`).join("")}</div>`}`}
+        ${attempt ? `<div class="gfeedback ${good ? "good" : ""}"><b>${good ? "✓ Верно" : `✗ Верный ответ: ${esc(q.answers.join(" / "))}`}</b><p>${esc(q.explain)}</p></div>` : ""}</fieldset>`;
+    }).join("")}
+    <div class="gsummary" role="status" tabindex="-1">${attempt ? `Правильно: ${attempt.correct} из ${group.questions.length}` : ""}</div>
+    ${attempt ? `<button type="button" class="btn ghost" data-gretry="${esc(group.id)}">Пройти ещё раз</button>` : '<button type="submit" class="btn">Проверить ответы</button>'}
+    </form>`;
+}
+function gradeGrammar(unit, group, values) {
+  const key = grammarKey(unit, group), correct = group.questions.filter((q, i) => grammarCorrect(q, values[i] || "")).length;
+  grammarAttempts.set(key, {values, correct});
+  P.grammar ||= {};
+  const previous = P.grammar[key]?.correct || 0;
+  if (!P.grammar[key] || correct > previous) P.grammar[key] = {correct, total: group.questions.length};
+  if (correct > previous) addXP((correct - previous) * 2);
+  save();
 }
 
 function videosView() {
@@ -1196,6 +1274,19 @@ function lookup(es) {
   say(w.say);
 }
 
+document.addEventListener("submit", e => {
+  const form = e.target.closest("[data-grammar-form]");
+  if (!form) return;
+  e.preventDefault();
+  const unit = COURSE.grammar.find(u => u.id === view.grammar);
+  const group = [...unit.sections.map(s => s.check).filter(Boolean), ...unit.exercises].find(g => g.id === form.dataset.grammarForm);
+  if (grammarAttempts.has(grammarKey(unit, group))) return;
+  const data = new FormData(form);
+  gradeGrammar(unit, group, group.questions.map((_, i) => data.get(`q${i}`) || ""));
+  const id = form.dataset.grammarForm;
+  render();
+  document.querySelector(`[data-grammar-form="${id}"] .gsummary`).focus();
+});
 document.addEventListener("click", e => {
   const closed = e.target.closest(".spoiler:not(.open)");
   if (closed) return closed.classList.add("open");
@@ -1205,6 +1296,19 @@ document.addEventListener("click", e => {
   const el = e.target.closest("button, .spoiler, [data-say]");
   if (!el) return;
   const d = el.dataset;
+  if (d.grammar) { view.grammar = d.grammar; view.tab = "grammar"; render(); window.scrollTo(0, 0); return; }
+  if ("grammarList" in d) { view.grammar = null; render(); window.scrollTo(0, 0); return; }
+  if (d.gretry) {
+    grammarAttempts.delete(`${view.grammar}/${d.gretry}`);
+    grammarDrafts.delete(`${view.grammar}/${d.gretry}`);
+    render();
+    document.querySelector(`[data-grammar-form="${d.gretry}"] input`)?.focus();
+    return;
+  }
+  if (d.gaccent) {
+    const input = el.closest("form").elements.namedItem(d.ginput);
+    input.setRangeText(d.gaccent, input.selectionStart, input.selectionEnd, "end"); input.dispatchEvent(new Event("input", {bubbles:true})); input.focus(); return;
+  }
   if (el.classList.contains("spoiler")) return el.classList.remove("open");
   if ("closeSheet" in d) return closeSheet();
   if ("join" in d) return joinSheet();
@@ -1242,7 +1346,7 @@ document.addEventListener("click", e => {
   if ("openall" in d) { P.openAll = !P.openAll; save(); render(); return; }
   if (d.reset) {
     if (d.reset === "ask") view.confirmReset = true;
-    else { if (d.reset === "yes") { P = fresh(); save(); toast("Прогресс сброшен"); } view.confirmReset = false; }
+    else { if (d.reset === "yes") { P = fresh(); grammarAttempts.clear(); grammarDrafts.clear(); save(); toast("Прогресс сброшен"); } view.confirmReset = false; }
     return render();
   }
   if (!S || S.kind === "result") return;
@@ -1253,6 +1357,12 @@ document.addEventListener("click", e => {
   if ("primary" in d || "next" in d) return primary();
 });
 document.addEventListener("input", e => {
+  const grammarForm = e.target.closest("[data-grammar-form]");
+  if (grammarForm) {
+    const key = `${view.grammar}/${grammarForm.dataset.grammarForm}`, values = grammarDrafts.get(key) || [];
+    if (/^q\d+$/.test(e.target.name)) { values[+e.target.name.slice(1)] = e.target.value; grammarDrafts.set(key, values); }
+    return;
+  }
   if (e.target.id === "letter") { const v = e.target.value; e.target.value = ""; return mfLetter(v.slice(-1)); }
   if (e.target.id === "wsearch") {
     view.q = e.target.value; const pos = e.target.selectionStart; render();
