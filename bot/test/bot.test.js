@@ -4,6 +4,7 @@ import DECK from "../data/mywords.json" with { type: "json" };
 import GALYA from "../data/mywords_galya.json" with { type: "json" };
 import PAPA from "../data/mywords_papa.json" with { type: "json" };
 import WORDS from "../data/words.json" with { type: "json" };
+import GRAMMAR from "../../content/grammar.json" with { type: "json" };
 import bot, { publishVideos } from "../src/index.js";
 
 let calls;
@@ -17,6 +18,7 @@ const first = WORDS[0];
 let published; // уроки, которые «вышли в канал»
 
 beforeEach(() => {
+  GRAMMAR.length = 0; // Scheduler tests use their own queue, independent of authored posts.
   published = [first.lesson, "start/vowels"];
   calls = [];
   kv = new Map();
@@ -344,4 +346,28 @@ test("папа: фото при изучении и открытии разбо�
   } finally {
     delete env.PAPA_CHAT_ID;
   }
+});
+
+test("личная грамматика: очередь уходит в 09:00 только автору, один юнит в день", async () => {
+  GRAMMAR.push(
+    { id: "test-1", title: "Первый", messages: ["Объяснение", "Практика", "<tg-spoiler>Ответ</tg-spoiler>"] },
+    { id: "test-2", title: "Второй", messages: ["Следующий юнит"] },
+  );
+  const run = async (iso) => {
+    const waits = [];
+    await bot.scheduled({ scheduledTime: Date.parse(iso) }, env, { waitUntil: (p) => waits.push(p) });
+    await Promise.all(waits);
+  };
+  await run("2026-11-03T06:00:00Z");
+  assert.equal(calls.filter((c) => c.method === "sendMessage").length, 0);
+  await run("2026-11-03T07:00:00Z");
+  let sent = calls.filter((c) => c.method === "sendMessage");
+  assert.deepEqual(sent.map((c) => c.body.text), GRAMMAR[0].messages);
+  assert.ok(sent.every((c) => c.body.chat_id === env.ADMIN_CHAT_ID && c.body.parse_mode === "HTML"));
+  await run("2026-11-03T07:10:00Z");
+  assert.equal(calls.filter((c) => c.method === "sendMessage").length, 3);
+  await run("2026-11-04T07:00:00Z");
+  sent = calls.filter((c) => c.method === "sendMessage");
+  assert.equal(sent.length, 4);
+  assert.equal(sent.at(-1).body.text, "Следующий юнит");
 });
