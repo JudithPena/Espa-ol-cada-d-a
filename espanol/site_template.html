@@ -1276,7 +1276,7 @@ function stepBody(st) {
       const s = S.state;
       return `<div class="prompt"><span class="kicker">Соберите фразу</span><div class="q" style="font-size:19px">${esc(st.ru)}</div></div>
         <div class="answer-line">${st.es.split(" ").slice(0, s.n).map(w => `<span class="tok">${esc(w)}</span>`).join("")}</div>
-        <div class="bank">${s.tiles.map((t, k) => `<button class="tok ${s.used[k] ? "used" : ""} ${s.flash === k ? "bad" : ""} ${s.hint === k ? "hint" : ""}" data-pick="${k}" ${s.result ? "disabled" : ""}>${esc(t)}</button>`).join("")}</div>`;
+        <div class="bank">${s.tiles.map((t, k) => `<button class="tok ${s.used[k] ? "used" : ""} ${s.flash === k ? "bad" : ""} ${s.hint === k ? "hint" : ""}" data-pick="${k}" ${s.result || s.used[k] ? "disabled" : ""}>${esc(t)}</button>`).join("")}</div>`;
     }
     case "mf":
       return `<div class="prompt"><span class="kicker">Мастер фраз</span></div>
@@ -1305,24 +1305,33 @@ function mfLetter(ch) {
   const st = S.steps[S.at], s = S.state, t = tokens(st);
   if (s.result || !ch.trim()) return;
   if (deaccent(ch.toLowerCase()) === firstLetter(t[s.n])) { s.n++; s.here = 0; s.flash = false; s.hint = false; mfSkip(st, s); }
-  else { s.err++; s.here++; s.flash = true; if (s.here >= 2) s.hint = true; }
+  else { s.err++; s.miss++; s.here++; s.flash = true; if (s.here >= 2) s.hint = true; }
   if (s.n >= t.length) return answer(s.err === 0, st, { requeue: false });
   $(".mf").outerHTML = mfSlots(st, s);
 }
 function buildPick(k) {
   const st = S.steps[S.at], s = S.state, want = tokens(st)[s.n];
+  if (s.used[k]) return;   // уже стоит во фразе: второе касание (двойной тап) ошибкой не считаем
   if (s.tiles[k] === want) {
     s.used[k] = true; s.n++; s.here = 0; s.hint = null; s.flash = null; say(want);
     if (s.n >= tokens(st).length) return answer(s.err === 0, st, { requeue: false });
   } else {
-    s.err++; s.here++; s.flash = k;
+    s.err++; s.miss++; s.here++; s.flash = k;
     if (s.here >= 2) s.hint = s.tiles.findIndex((w, j) => w === want && !s.used[j]);
   }
   render();
 }
+// Итог «Соберите фразу» и «Мастера фраз»: что именно пошло не так — не то слово (буква) или подсказка.
+function buildVerdict(st, s) {
+  const parts = [];
+  if (s.miss) parts.push(`${st.type === "build" ? "не то слово" : "не та буква"} — ${s.miss} ${plural(s.miss, "раз", "раза", "раз")}`);
+  if (s.helps) parts.push(`подсказки — ${s.helps}`);
+  const t = parts.join(", ");
+  return `Почти! ${t.charAt(0).toUpperCase()}${t.slice(1)}`;
+}
 function hint() {
   const st = S.steps[S.at], s = S.state;
-  s.err++;
+  s.err++; s.helps++;
   if (st.type === "build") { s.hint = s.tiles.findIndex((w, j) => w === tokens(st)[s.n] && !s.used[j]); return render(); }
   s.n++; s.here = 0; s.flash = false; s.hint = false; mfSkip(st, s);   // мастер фраз: открыть слово
   if (s.n >= tokens(st).length) return answer(false, st, { requeue: false });
@@ -1339,7 +1348,7 @@ function stepFoot(st) {
     if (["build", "mf"].includes(st.type)) right = `<span class="ans">${esc(st.es)}</span><span class="ex">${esc(st.ru)}</span>`;
     const ex = st.explain ? `<span class="ex">${st.explain}</span>` : "";
     const title = good ? ["Отлично!", "Верно!", "¡Muy bien!", "¡Perfecto!"][Math.floor(Math.random() * 4)]
-      : ["build", "mf"].includes(st.type) ? `Готово, но с подсказками: ${s.err}` : st.retry ? "Ошибка" : "Ошибка, это задание вернётся";
+      : ["build", "mf"].includes(st.type) ? buildVerdict(st, s) : st.retry ? "Ошибка" : "Ошибка, это задание вернётся";
     return `<div class="pfoot ${good ? "good" : "bad"}"><div class="wrap">
       <div class="fb"><h3>${title}</h3>${right}${ex}</div>
       <button class="btn wide ${good ? "good" : "bad"}" data-next>Продолжить</button></div></div>`;
@@ -1357,7 +1366,7 @@ function stepFoot(st) {
 function playerView() {
   const st = S.steps[S.at];
   if (!S.state) {
-    S.state = { n: 0, err: 0, here: 0 };
+    S.state = { n: 0, err: 0, miss: 0, helps: 0, here: 0 };
     if (st.type === "build") Object.assign(S.state, { tiles: shuffle(tokens(st)), used: [] });
     if (st.type === "mf") mfSkip(st, S.state);
   }
