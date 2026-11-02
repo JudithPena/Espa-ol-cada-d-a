@@ -426,6 +426,14 @@ html.grammar-playing, html.grammar-playing body { overflow: hidden; }
 .gplay-family .gfamily-branches > div::before { top: -12px; height: 12px; }
 .gperson.is-active img { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
 .gperson.is-active figcaption { color: var(--accent); }
+.gtree { position: relative; width: 100%; max-width: 600px; aspect-ratio: 600 / 440; margin: auto; }
+.gtree-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.gtree-lines path { fill: none; stroke: var(--accent); stroke-width: 2; vector-effect: non-scaling-stroke; }
+.gtree-lines .gtree-couple { stroke: var(--muted); }
+.gtree .gtree-person { position: absolute; width: 11.666667%; transform: translateX(-50%); }
+.gfamily .gtree .gtree-person img { width: 100%; margin-bottom: 3px; }
+.gfamily .gtree .gtree-person figcaption { position: relative; left: 50%; transform: translateX(-50%); width: max-content; white-space: nowrap; font-size: clamp(10px, 2.5vw, 13px); }
+.mcard.glocked { opacity: .58; box-shadow: none; }
 .gresult { justify-items: center; text-align: center; padding-top: 8vh !important; }
 .gresult-icon { font-size: 64px; color: var(--good); }
 .gplayer .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
@@ -465,7 +473,7 @@ const words = n => `${n} ${plural(n, "слово", "слова", "слов")}`;
 
 /* ================================================================ прогресс (в браузере ученика) */
 const KEY = "espanol-cada-dia.v1";
-const fresh = () => ({ done: {}, grammar: {}, xp: 0, days: {}, streak: { n: 0, best: 0, last: "" }, words: {}, goal: 30, openAll: false, sound: true });
+const fresh = () => ({ done: {}, grammar: {}, grammarRead: {}, xp: 0, days: {}, streak: { n: 0, best: 0, last: "" }, words: {}, goal: 30, openAll: false, sound: true });
 let P = fresh();
 try { P = Object.assign(fresh(), JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) { /* без хранилища — прогресс только до перезагрузки */ }
 const saveLocal = () => { try { localStorage.setItem(KEY, JSON.stringify(P)); } catch (e) {} };
@@ -496,6 +504,7 @@ function mergeProgress(a, b) {
   }
   out.xp = Math.max(a.xp || 0, b.xp || 0);
   out.grammar = { ...(b.grammar || {}) };
+  out.grammarRead = { ...(b.grammarRead || {}), ...(a.grammarRead || {}) };
   for (const [id, result] of Object.entries(a.grammar || {})) {
     if (!out.grammar[id] || result.correct >= out.grammar[id].correct) out.grammar[id] = result;
   }
@@ -902,14 +911,23 @@ function grammarSchemes(schemes) {
     ${s.note ? `<div class="gscheme-note">${esc(s.note)}</div>` : ""}</div>`).join("")}</div>`;
 }
 function grammarFamily(f) {
-  if (f.portraits) {
-    const person = name => `<figure class="gperson ${f.activeName === name ? "is-active" : ""}"><img src="${esc(f.portraits[name])}" alt="Портрет ${esc(name)}" width="96" height="96" loading="lazy"><figcaption>${esc(name)}</figcaption></figure>`;
-    const pair = names => `<div class="gpair">${person(names[0])}<span class="gcouple-line" aria-label="пара"></span>${person(names[1])}</div>`;
-    return `<div class="gfamily gfamily-portraits" aria-label="Семейное дерево">${pair(f.parents)}<div class="gfamily-stem" aria-hidden="true"></div>
-      <div class="gfamily-branches">${f.branches.map(b => `<div>${pair([b.child, ...b.couple.filter(n => n !== b.child)])}
-        <div class="gfamily-caption">${esc(b.child)} — ${b.child === "Julio" ? "сын" : "дочь"} Luis и Ana</div>
-        <div class="gfamily-stem" aria-hidden="true"></div><div class="gfamily-children">${b.children.map(person).join("")}</div></div>`).join("")}</div>
-      <div class="gfamily-caption">Линия между портретами — пара. Линия вниз — их дети.</div></div>`;
+  if (f.portraits && f.branches.length === 2) {
+    const positions = [[f.parents[0],225,10],[f.parents[1],375,10]];
+    const links = [], couples = ['M260 45H340'];
+    f.branches.forEach((b,i) => {
+      const x = i ? 390 : 90, spouse = b.couple.find(n => n !== b.child), center = x + 60;
+      positions.push([b.child,x,170],[spouse,x+120,170]);
+      links.push(`<path data-kinship-child="${esc(b.child)}" data-kinship-parents="${esc(f.parents.join(', '))}" d="M300 45V130H${x}V170"/>`);
+      couples.push(`M${x+35} 205H${x+85}`);
+      b.children.forEach((name,k) => {
+        const cx = center + (k ? 95 : -95);
+        positions.push([name,cx,330]);
+        links.push(`<path data-kinship-child="${esc(name)}" data-kinship-parents="${esc(b.couple.join(', '))}" d="M${center} 205V285H${cx}V330"/>`);
+      });
+    });
+    return `<div class="gfamily gfamily-portraits" aria-label="Семейное дерево"><div class="gtree">
+      <svg class="gtree-lines" viewBox="0 0 600 440" aria-hidden="true">${links.join('')}${couples.map(d => `<path class="gtree-couple" d="${d}"/>`).join('')}</svg>
+      ${positions.map(([name,x,y]) => `<figure class="gperson gtree-person ${f.activeName === name ? 'is-active' : ''}" style="left:${x/6}%;top:${y/4.4}%"><img src="${esc(f.portraits[name])}" alt="Портрет ${esc(name)}" width="96" height="96" loading="lazy"><figcaption>${esc(name)}</figcaption></figure>`).join('')}</div></div>`;
   }
   return `<div class="gfamily" aria-label="Семейное дерево"><b>${f.parents.map(esc).join(" + ")}</b><small>Их дети — Julio и Laura</small><div class="gfamily-branches">${f.branches.map(b => `<div><b>${b.couple.map(esc).join(" + ")}</b><small>${esc(b.child)} — ${b.child === "Julio" ? "сын" : "дочь"} Luis и Ana</small><span aria-hidden="true">↓</span><div>${b.children.map(esc).join(" · ")}</div><small>их дети</small></div>`).join("")}</div></div>`;
 }

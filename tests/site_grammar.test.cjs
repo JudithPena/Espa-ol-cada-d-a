@@ -19,6 +19,9 @@ function context() {
   vm.runInContext(script.replace('/*__DATA__*/{}',JSON.stringify(data)).replace(/render\(\);\s*$/, ''),ctx);
   return (code) => vm.runInContext(code,ctx);
 }
+function unlockUntil(run, route) {
+ run(`(() => { const u=COURSE.grammar[0]; for(const r of gRoutes(u).slice(0,gRoutes(u).indexOf(${JSON.stringify(route)}))) { const g=r.startsWith('section:')?u.sections[+r.split(':')[1]].check:u.exercises.find(g=>r==='exercise:'+g.id); if(g)P.grammar[grammarKey(u,g)]={correct:0,total:g.questions.length}; else P.grammarRead[u.id+'/'+r]=true; } })()`);
+}
 test('Spanish answers accept alternatives and NFC but preserve ñ and stress', () => {
  const run = context();
  assert.equal(run('grammarCorrect(COURSE.grammar[0].exercises[1].questions[1], " JEFA ")'),true);
@@ -54,6 +57,7 @@ test('family tree labels ten portraits and questions clearly separate Julio and 
 });
 test('player shows one picture question, requires a check, and resumes the same step', () => {
  const run=context();
+ unlockUntil(run,'exercise:1.1');
  run('gStart(COURSE.grammar[0].id,"exercise:1.1"); gMove(1);');
  assert.equal(run('G.at'),1);
  assert.equal((run('gPlayerView()').match(/class="gquestion-picture"/g)||[]).length,1);
@@ -67,6 +71,7 @@ test('player shows one picture question, requires a check, and resumes the same 
 });
 test('retry only failed questions improves existing group score without duplicate XP', () => {
  const run=context();
+ unlockUntil(run,'exercise:1.1');
  run(`gStart(COURSE.grammar[0].id,"exercise:1.1"); gMove(1);
    while(!G.ended) { const step=G.steps[G.at], group=gGroups(gUnit()).find(g=>g.id===step.group); gResponse(step).value=step.qi===0?"wrong":group.questions[step.qi].answers[0]; gCheck(); gMove(1); }`);
  assert.equal(run('P.grammar["001_el_hijo_la_hija/1.1"].correct'),9);
@@ -79,10 +84,40 @@ test('retry only failed questions improves existing group score without duplicat
 });
 test('family question keeps the tree and one input beside a named speaker', () => {
  const run=context();
+ unlockUntil(run,'exercise:1.3');
  run('gStart(COURSE.grammar[0].id,"exercise:1.3"); gMove(1);');
  const html=run('gPlayerView()');
  assert.equal((html.match(/id="g-answer"/g)||[]).length,1);
  assert.ok(html.includes('Кем Luis приходится Julio?'));
- assert.ok(html.includes('gperson is-active'));
+ assert.ok(html.includes('gtree-person is-active'));
  assert.ok(html.includes('Семейное дерево'));
+});
+test('kinship edges terminate at children and exclude their spouses', () => {
+ const run=context(), tree=run('grammarFamily(COURSE.grammar[0].exercises[2].family)');
+ assert.equal((tree.match(/data-kinship-child=/g)||[]).length,6);
+ for(const name of ['Julio','Laura','Blanca','Pedro','Raúl','Silvia']) assert.ok(tree.includes(`data-kinship-child="${name}"`));
+ for(const name of ['Lucía','Gabriel']) assert.ok(!tree.includes(`data-kinship-child="${name}"`));
+ assert.ok(!tree.includes('сын') && !tree.includes('дочь'));
+ assert.ok(tree.includes('data-kinship-child="Julio" data-kinship-parents="Luis, Ana" d="M300 45V130H90V170"'));
+});
+test('stages unlock in order after completing the previous practice', () => {
+ const run=context();
+ assert.equal(run('gRouteOpen(COURSE.grammar[0],"section:0")'),true);
+ assert.equal(run('gRouteOpen(COURSE.grammar[0],"section:1")'),false);
+ run('gStart(COURSE.grammar[0].id,"exercise:1.3")');
+ assert.equal(run('G'),null);
+ run(`gStart(COURSE.grammar[0].id,"section:0"); gMove(1); while(!G.ended) { gResponse(G.steps[G.at]).value="wrong";gCheck();gMove(1); }`);
+ assert.equal(run('gRouteOpen(COURSE.grammar[0],"section:1")'),true);
+ assert.equal(run('gRouteOpen(COURSE.grammar[0],"section:2")'),false);
+});
+test('summary reading persists and opening an old saved locked stage cannot bypass gates', () => {
+ const run=context();
+ unlockUntil(run,'summary');
+ assert.equal(run('gRouteOpen(COURSE.grammar[0],"exercise:1.1")'),false);
+ run('gStart(COURSE.grammar[0].id,"summary");gMove(1);');
+ assert.equal(run('gRouteOpen(COURSE.grammar[0],"exercise:1.1")'),true);
+ run('gStart(COURSE.grammar[0].id,"exercise:1.1"); G=null; P=fresh(); gStart(COURSE.grammar[0].id,"all",true);');
+ assert.equal(run('G.at'),0);
+ assert.equal(run('G.steps[0].type'), 'theory');
+ assert.equal(run('mergeProgress({...fresh(),grammarRead:{a:true}},{...fresh(),grammarRead:{b:true}}).grammarRead.b'),true);
 });

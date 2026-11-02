@@ -3,6 +3,22 @@ let G = null;
 const G_SESSION_KEY = "espanol-cada-dia.grammar-session.v1";
 const gUnit = () => (COURSE.grammar || []).find(u => u.id === G?.unit);
 const gGroups = u => [...u.sections.map(s => s.check).filter(Boolean), ...u.exercises];
+const gRoutes = u => [...u.sections.map((_, i) => `section:${i}`), "summary", ...u.exercises.map(g => `exercise:${g.id}`)];
+function gRouteDone(unit, route) {
+  const group = route.startsWith("section:") ? unit.sections[+route.split(":")[1]]?.check : unit.exercises.find(g => route === `exercise:${g.id}`);
+  return group ? !!P.grammar?.[grammarKey(unit, group)] : !!P.grammarRead?.[`${unit.id}/${route}`];
+}
+function gRouteOpen(unit, route) {
+  if (route === "all") return true;
+  const routes = gRoutes(unit), index = routes.indexOf(route);
+  return index >= 0 && routes.slice(0,index).every(r => gRouteDone(unit,r));
+}
+function gStepRoute(unit, step) {
+  if (step.type === "theory") return `section:${step.section}`;
+  if (step.type === "summary") return "summary";
+  const index = unit.sections.findIndex(s => s.check?.id === step.group);
+  return index >= 0 ? `section:${index}` : `exercise:${step.group}`;
+}
 function gSaved() { try { return JSON.parse(store.get(G_SESSION_KEY) || "null"); } catch (_) { return null; } }
 function gSave() { if (G) store.set(G_SESSION_KEY, JSON.stringify(G)); }
 function gSteps(unit, route = "all") {
@@ -22,9 +38,9 @@ function gSteps(unit, route = "all") {
 }
 function gStart(unitId, route = "all", resume = false) {
   const unit = COURSE.grammar.find(u => u.id === unitId), saved = resume && gSaved();
-  if (!unit) return;
+  if (!unit || !gRouteOpen(unit, route)) return;
   const steps = gSteps(unit, route);
-  if (saved?.unit === unit.id && Array.isArray(saved.steps) && saved.steps.length && saved.at < saved.steps.length) G = saved;
+  if (saved?.unit === unit.id && Array.isArray(saved.steps) && saved.steps.length && saved.at >= 0 && saved.at < saved.steps.length && gRouteOpen(unit,gStepRoute(unit,saved.steps[saved.at]))) G = saved;
   else if (steps.length) G = {unit:unit.id, route, steps, at:0, responses:{}, ended:false};
   else return;
   view.grammar = unit.id; view.tab = "grammar"; S = null;
@@ -49,6 +65,11 @@ function gCheck() {
 function gMove(delta) {
   const step = G.steps[G.at];
   if (delta > 0 && step.type === "question" && !gResponse(step).checked) return;
+  if (delta > 0 && (step.type === "summary" || (step.type === "theory" && !gUnit().sections[step.section].check))) {
+    P.grammarRead ||= {}; P.grammarRead[`${G.unit}/${gStepRoute(gUnit(),step)}`] = true; save();
+  }
+  const target = G.steps[G.at + delta];
+  if (target && !gRouteOpen(gUnit(), gStepRoute(gUnit(),target))) return;
   if (delta > 0 && G.at === G.steps.length - 1) G.ended = true;
   else G.at = Math.max(0, Math.min(G.steps.length - 1, G.at + delta));
   gSave(); render();
@@ -61,16 +82,17 @@ function gRetry() {
   G.steps = wrong; G.at = 0; G.ended = false; G.retry = true; gSave(); render();
 }
 function gNextRoute(unit, route) {
-  const routes = [...unit.sections.map((_, i) => `section:${i}`), "summary", ...unit.exercises.map(g => `exercise:${g.id}`)];
+  const routes = gRoutes(unit);
   return route === "all" ? null : routes[routes.indexOf(route) + 1];
 }
 function grammarView() {
   const units = COURSE.grammar || [], unit = units.find(u => u.id === view.grammar);
   if (!unit) return `<button class="btn ghost sm back" data-tab="home">← Главная</button><h2>📐 Грамматика</h2><div class="menu">${units.map(u => `<button class="mcard" data-grammar="${esc(u.id)}"><span class="mi">📐</span><span><b>${u.number}. ${esc(u.title)}</b><small>${esc(u.subtitle)}</small></span><span aria-hidden="true">›</span></button>`).join("")}</div>`;
-  const saved = gSaved(), resume = saved?.unit === unit.id && !saved.ended;
+  const saved = gSaved(), resume = saved?.unit === unit.id && !saved.ended && saved.steps?.[saved.at] && gRouteOpen(unit,gStepRoute(unit,saved.steps[saved.at]));
   const row = (route, title, subtitle, group) => {
     const best = group && P.grammar?.[grammarKey(unit, group)];
-    return `<button class="mcard" data-gstart="${esc(route)}"><span class="mi">${group && best?.correct === group.questions.length ? "✓" : group ? "✎" : "📖"}</span><span><b>${esc(title)}</b><small>${best ? `${best.correct} из ${best.total} · ` : ""}${esc(subtitle)}</small></span><span aria-hidden="true">›</span></button>`;
+    const open = gRouteOpen(unit,route), done = gRouteDone(unit,route);
+    return `<button class="mcard ${open ? '' : 'glocked'}" data-gstart="${esc(route)}" ${open ? '' : 'disabled aria-disabled="true"'}><span class="mi">${open ? done ? "✓" : group ? "✎" : "📖" : "🔒"}</span><span><b>${esc(title)}</b><small>${open ? `${best ? `${best.correct} из ${best.total} · ` : ""}${esc(subtitle)}` : 'Сначала пройди предыдущий раздел'}</small></span><span aria-hidden="true">${open ? '›' : '🔒'}</span></button>`;
   };
   return `<button class="btn ghost sm back" data-grammar-list>← Все уроки грамматики</button><span class="eyebrow">Unidad ${unit.number} · ${esc(unit.level)}</span><h2>${esc(unit.title)}</h2><p class="muted">${esc(unit.subtitle)}</p>
     <div class="gactions">${resume ? '<button class="btn" data-gresume>Продолжить урок</button>' : ""}<button class="btn ${resume ? "ghost" : ""}" data-gstart="all">${resume ? "Начать сначала" : "Пройти весь урок"}</button></div>
