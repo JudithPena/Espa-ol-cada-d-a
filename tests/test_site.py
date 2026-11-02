@@ -133,3 +133,14 @@ def test_site_api(course):
     """Сайт знает адрес бота для входа через Telegram."""
     data = site_data(course, load_cards(CONTENT), units={0})
     assert data["api"].startswith("https://") and data["api"].endswith(".workers.dev")
+
+
+def test_site_icons(course, tmp_path):
+    """Рядом со страницей лежат иконки и манифест для установки на главный экран."""
+    from espanol.site import build_site
+
+    out = build_site(course, load_cards(CONTENT), tmp_path / "index.html", units={0})
+    html = out.read_text(encoding="utf-8")
+    assert 'rel="apple-touch-icon"' in html and 'rel="manifest"' in html
+    for name in ("apple-touch-icon.png", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "manifest.webmanifest"):
+        assert (tmp_path / name).is_file(), name
