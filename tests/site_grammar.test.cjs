@@ -154,8 +154,9 @@ test('answers advance automatically and stale callbacks cannot move a new sessio
  run('var nextCallback=callbacks.values().next().value;callbacks.clear();nextCallback.fn();');
  assert.equal(run('G.at'),2);
  run('gPick(0);');
- assert.equal(run('callbacks.values().next().value.ms'),3000);
- run('var stale=callbacks.values().next().value.fn;gExit();');
+ assert.equal(run('callbacks.size'),0);
+ assert.ok(run('gPlayerView()').includes('data-gnext'));
+ run('gMove(1);gPick(0);var stale=callbacks.values().next().value.fn;gExit();');
  assert.equal(run('callbacks.size'),0);
  run('gStart(COURSE.grammar[0].id,"section:0");stale();');
  assert.equal(run('G.at'),0);

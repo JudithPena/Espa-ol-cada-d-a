@@ -6,12 +6,12 @@ function gQueueAuto() {
   gCancelAuto();
   if (!G || G.ended || G.review) return;
   const step = G.steps[G.at], response = gResponse(step);
-  if (!response?.checked) return;
+  if (!response?.checked || !response.good) return;
   const session = G, at = G.at;
   gAutoTimer = setTimeout(() => {
     gAutoTimer = null;
     if (G === session && G.at === at && !G.review) gMove(1);
-  }, response.good ? 1500 : 3000);
+  }, 1500);
 }
 const G_SESSION_KEY = "espanol-cada-dia.grammar-session.v1";
 const gUnit = () => (COURSE.grammar || []).find(u => u.id === G?.unit);
@@ -161,5 +161,5 @@ function gPlayerView() {
   const checked = response?.checked, feedback = checked ? `<div class="fb" role="status"><h3>${response.good ? "✓ Верно" : "Пока неверно"}</h3>${response.good ? "" : `<span class="ans">Верный ответ: ${esc(group.questions[step.qi].answers.join(" / "))}</span>`}<span class="ex">${esc(group.questions[step.qi].explain)}</span></div>` : "";
   return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><div class="bar" role="progressbar" aria-label="Прогресс урока" aria-valuemin="0" aria-valuemax="${G.steps.length}" aria-valuenow="${G.at}"><i style="width:${Math.round(G.at / G.steps.length * 100)}%"></i></div><span class="pcount">${G.at + 1}/${G.steps.length}</span></div></div>
     <div class="pbody"><div class="wrap"><span class="kicker">${esc(kicker)}</span><h2 id="g-title" tabindex="-1">${esc(title)}</h2>${content}</div></div>
-    <div class="pfoot ${checked ? response.good ? "good" : "bad" : ""}"><div class="wrap">${feedback}<div class="gplayer-actions"><button class="btn ghost" data-gback ${G.at ? "" : "disabled"}>← Назад</button>${checked && !G.review ? '<span class="muted gpick-hint" role="status">Переходим дальше…</span>' : step.type === "question" && !checked ? group.questions[step.qi].options ? '<span class="muted gpick-hint">Нажми на вариант ответа</span>' : `<button class="btn" data-gcheck ${response.value.trim() ? "" : "disabled"}>Проверить</button>` : `<button class="btn" data-gnext>${G.at === G.steps.length - 1 ? "Завершить" : step.type === "intro" ? "Начать" : "Далее →"}</button>`}</div></div></div></div>`;
+    <div class="pfoot ${checked ? response.good ? "good" : "bad" : ""}"><div class="wrap">${feedback}<div class="gplayer-actions"><button class="btn ghost" data-gback ${G.at ? "" : "disabled"}>← Назад</button>${checked && response.good && !G.review ? '<span class="muted gpick-hint" role="status">Переходим дальше…</span>' : step.type === "question" && !checked ? group.questions[step.qi].options ? '<span class="muted gpick-hint">Нажми на вариант ответа</span>' : `<button class="btn" data-gcheck ${response.value.trim() ? "" : "disabled"}>Проверить</button>` : `<button class="btn" data-gnext>${G.at === G.steps.length - 1 ? "Завершить" : step.type === "intro" ? "Начать" : "Далее →"}</button>`}</div></div></div></div>`;
 }
