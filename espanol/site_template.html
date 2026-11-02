@@ -385,6 +385,8 @@ main { padding-block: 16px 110px; }
 .gchange-ending { color: var(--accent); border-bottom: 2px dashed currentColor; }
 .gchange-ending.is-new { color: var(--ink); background: var(--surface); border-bottom-style: solid; border-color: var(--accent); border-radius: 3px 3px 0 0; padding-inline: 2px; }
 .gchange-translation { display: block; font-size: 12px; color: var(--muted); }
+.gchange-inline .gscheme-pair b { display: inline; }
+.gchange-inline .gchange-translation { display: inline; margin-left: 5px; font-size: 13px; }
 @media (max-width: 380px) { .gchange .gscheme-pair { gap: 6px; } .gchange .gscheme-pair b { font-size: 15px; } }
 .gnotes { padding: 10px 14px; background: var(--sun-soft); border-radius: 10px; margin: 10px 0; font-size: 14px; }
 .gnotes p { margin: 4px 0; }
@@ -1016,7 +1018,8 @@ function grammarChangeScheme(s) {
     return `<b lang="es">${esc(article)} <span class="gchange-word">${marked}</span></b>`;
   };
   const targets = s.to.split("\n");
-  return `<div class="gscheme gchange"><div class="gscheme-label">${esc(s.label)}</div><div class="gscheme-pair gchange-head"><span>Мужской род</span><span></span><span>Женский род</span></div>${s.from.split("\n").map((from,i) => `<div class="gchange-row"><div class="gscheme-pair"><div>${word(from,s.change?.from,false)}<span class="gchange-translation">${esc(s.translations[i][0])}</span></div><span class="gscheme-arrow" aria-hidden="true"><svg viewBox="0 0 48 32" focusable="false"><path d="M4 16H43M33 6L43 16L33 26" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div>${word(targets[i],s.change?.to,true)}<span class="gchange-translation">${esc(s.translations[i][1])}</span></div></div></div>`).join("")}</div>`;
+  const translation = text => esc(s.inlineTranslation ? `(${text})` : text);
+  return `<div class="gscheme gchange${s.inlineTranslation ? " gchange-inline" : ""}"><div class="gscheme-label">${esc(s.label)}</div><div class="gscheme-pair gchange-head"><span>${esc(s.fromLabel || "Мужской род")}</span><span></span><span>${esc(s.toLabel || "Женский род")}</span></div>${s.from.split("\n").map((from,i) => `<div class="gchange-row"><div class="gscheme-pair"><div>${word(from,s.change?.from,false)}<span class="gchange-translation">${translation(s.translations[i][0])}</span></div><span class="gscheme-arrow" aria-hidden="true"><svg viewBox="0 0 48 32" focusable="false"><path d="M4 16H43M33 6L43 16L33 26" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div>${word(targets[i],s.change?.to,true)}<span class="gchange-translation">${translation(s.translations[i][1])}</span></div></div></div>`).join("")}</div>`;
 }
 function grammarFamily(f) {
   if (f.portraits && f.branches.length === 2) {
