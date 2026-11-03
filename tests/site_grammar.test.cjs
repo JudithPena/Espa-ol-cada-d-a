@@ -8,6 +8,7 @@ const script = template.match(/<script>([\s\S]*?)<\/script>/)[1].replace('/*__GR
 const unit = JSON.parse(fs.readFileSync('content/grammar/001_genero.json','utf8'));
 const unit2 = JSON.parse(fs.readFileSync('content/grammar/002_objetos_animales.json','utf8'));
 const unit3 = JSON.parse(fs.readFileSync('content/grammar/003_singular_plural.json','utf8'));
+const unit17 = JSON.parse(fs.readFileSync('content/grammar/017_superlativo.json','utf8'));
 function context(grammar = [unit]) {
   const noop = () => {};
   const storage = new Map();
@@ -287,4 +288,34 @@ test('theory emphasis escapes HTML and renders only supported inline formatting'
  assert.ok(markup.includes('<strong>единственное число</strong>'));
  assert.ok(markup.includes('<code lang="es">singular</code>'));
  assert.equal(run('gTheoryText("<img src=x> **важно** `-s`")'),'&lt;img src=x&gt; <strong>важно</strong> <code lang="es">-s</code>');
+});
+
+test('unit 17 opens independently of skipped units and completes all four exercises', () => {
+ const run=context([unit,unit2,unit3,unit17]);
+ run(`gStart(COURSE.grammar[3].id); var turns17=0;
+ while(!G.ended && turns17++<150) {
+  const step=G.steps[G.at];
+  if(step.type==='question') {const group=gGroups(gUnit()).find(g=>g.id===step.group);gResponse(step).value=group.questions[step.qi].answers[0];gCheck();}
+  gMove(1);
+ }`);
+ assert.equal(run('G.ended'),true);
+ assert.deepEqual(JSON.parse(run('JSON.stringify(gUnit().exercises.map(g=>P.grammar[grammarKey(gUnit(),g)].correct))')),[8,8,8,6]);
+ assert.ok(run('gPlayerView()').includes('Лучший результат: 30 из 30'));
+ assert.equal(run('Object.keys(P.grammar).some(k=>k.startsWith("003_"))'),false);
+});
+
+test('friend scales show ties, accessible values, escaped names and phrase input instructions', () => {
+ const run=context([unit17]);
+ unlockUntil(run,'exercise:17.2');
+ run('gStart(COURSE.grammar[0].id,"exercise:17.2");gMove(1);gResponse(G.steps[G.at]).value="el más simpático";gCheck();gMove(1);gResponse(G.steps[G.at]).value="la menos simpática";gCheck();gMove(1);');
+ const html=run('gPlayerView()');
+ assert.equal((html.match(/class="gratings-person"/g)||[]).length,3);
+ assert.equal((html.match(/aria-label="Уровень: 3 из 3"/g)||[]).length,2);
+ assert.ok(html.includes('Marina y Leo son ___ de sus amigos.'));
+ assert.ok(html.includes('<textarea class="ginput gphrase-input"') && html.includes('rows="2"'));
+ const intro=run('gIntro(COURSE.grammar[0].exercises[1])');
+ assert.ok(intro.includes('Ввод фразы') && intro.includes('В ответе нужны артикль'));
+ assert.ok(!intro.includes('недостающее слово') && !intro.includes('aria-hidden="true">→'));
+ const unsafe=run('gRatings({label:"<img>",people:[{name:"<script>",level:1}]})');
+ assert.ok(!unsafe.includes('<script>') && unsafe.includes('&lt;img&gt;'));
 });

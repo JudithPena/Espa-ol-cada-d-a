@@ -1,0 +1,1148 @@
+{
+  "id": "017_la_mas_alta",
+  "number": 17,
+  "title": "La más alta, el menos trabajador",
+  "subtitle": "Как сказать «самый», «лучший» и «наименее»",
+  "level": "A2",
+  "sections": [
+    {
+      "title": "A. Как сказать «самый высокий»",
+      "paragraphs": [
+        "Представь: в компании друзей Carla выше всех. Чтобы сказать **«Карла — самая высокая»**, используем `Carla es la más alta`. Мы выделяем её среди остальных — это **превосходная степень**, по-испански `superlativo`.",
+        "Собираем фразу так: **артикль `el`, `la`, `los` или `las` + `más` + слово, которое описывает качество**. Например: `la más alta` — самая высокая, `los más cómodos` — самые удобные.",
+        "Если уже понятно, о ком или о чём говорим, название можно не повторять: `Este televisor es el más caro` — этот телевизор самый дорогой. Из ситуации понятно, что сравниваем его с другими телевизорами."
+      ],
+      "schemes": [
+        {
+          "label": "alta → la más alta",
+          "fromLabel": "О качестве",
+          "toLabel": "Выделяем среди остальных",
+          "from": "Carla es alta",
+          "to": "Carla es la más alta",
+          "translations": [
+            [
+              "Карла высокая",
+              "Карла самая высокая"
+            ]
+          ]
+        },
+        {
+          "label": "cómodos → los más cómodos",
+          "fromLabel": "О качестве",
+          "toLabel": "Выделяем среди остальных",
+          "from": "Estos zapatos son cómodos",
+          "to": "Estos zapatos son los más cómodos",
+          "translations": [
+            [
+              "Эти туфли удобные",
+              "Эти туфли самые удобные"
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-a",
+        "title": "Мини-проверка",
+        "instruction": "Выбери, как сказать «самый» или «самая».",
+        "questions": [
+          {
+            "prompt": "Carla es ___ alta. — Карла самая высокая.",
+            "answers": [
+              "la más"
+            ],
+            "explain": "La más alta — самая высокая. Más ставим перед alta, а перед más нужен артикль la.",
+            "options": [
+              "la más",
+              "más la",
+              "la muy"
+            ]
+          },
+          {
+            "prompt": "Этот телевизор самый дорогой.",
+            "answers": [
+              "Este televisor es el más caro."
+            ],
+            "explain": "El más caro — самый дорогой. Muy caro означало бы «очень дорогой», без сравнения с остальными.",
+            "options": [
+              "Este televisor es muy caro.",
+              "Este televisor es el más caro.",
+              "Este televisor es más el caro."
+            ]
+          },
+          {
+            "prompt": "Как сказать «самые удобные» о туфлях — zapatos?",
+            "answers": [
+              "los más cómodos"
+            ],
+            "explain": "Zapatos — мужской род, множественное число: los más cómodos.",
+            "options": [
+              "los más cómodos",
+              "los muy cómodos",
+              "los cómodos más"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "B. Как сказать «наименее»",
+      "paragraphs": [
+        "А если David работает меньше всех в компании? Тогда говорим **`David es el menos trabajador` — Давид наименее трудолюбивый**. Здесь вместо `más` ставим `menos`.",
+        "**`Más` выбирает того, у кого качества больше всего, а `menos` — меньше всего.** Например, `el más caro` — самый дорогой, а `el menos caro` — наименее дорогой. В обычном разговоре по-русски мы скорее скажем «самый дешёвый»."
+      ],
+      "wordGroups": [
+        {
+          "title": "Больше всего → más",
+          "words": [
+            [
+              "el más trabajador",
+              "самый трудолюбивый"
+            ],
+            [
+              "la más habladora",
+              "самая разговорчивая"
+            ]
+          ]
+        },
+        {
+          "title": "Меньше всего → menos",
+          "words": [
+            [
+              "el menos trabajador",
+              "наименее трудолюбивый"
+            ],
+            [
+              "la menos habladora",
+              "наименее разговорчивая"
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-b",
+        "title": "Мини-проверка",
+        "instruction": "Выбери más или menos по смыслу фразы.",
+        "questions": [
+          {
+            "prompt": "David работает меньше всех: es el ___ trabajador.",
+            "answers": [
+              "menos"
+            ],
+            "explain": "Trabajador — трудолюбивый. Если этого качества меньше всего, говорим el menos trabajador.",
+            "options": [
+              "más",
+              "menos"
+            ]
+          },
+          {
+            "prompt": "Эта сумка дешевле всех остальных: es la ___ cara.",
+            "answers": [
+              "menos"
+            ],
+            "explain": "Cara означает «дорогая». La menos cara — наименее дорогая, то есть самая дешёвая из этих сумок.",
+            "options": [
+              "más",
+              "menos"
+            ]
+          },
+          {
+            "prompt": "Hugo болтает больше всех: es el ___ hablador.",
+            "answers": [
+              "más"
+            ],
+            "explain": "Hablador — разговорчивый. El más hablador — самый разговорчивый.",
+            "options": [
+              "más",
+              "menos"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "C. Кого описываем — такую форму и выбираем",
+      "paragraphs": [
+        "Если говорим об одной девушке, получаем **`la más alta`**. Если о нескольких — **`las más altas`**. Артикль и слово `alta` подстраиваются под того, кого мы описываем.",
+        "**`Más` и `menos` не меняются.** Меняем артикль и, если нужно, окончание прилагательного: `el menos simpático`, `la menos simpática`, `los menos simpáticos`, `las menos simpáticas`.",
+        "Если описываем мужчину и женщину вместе, используем мужской род во множественном числе: **`Lucas y Marina son los más simpáticos`** — Лукас и Марина самые дружелюбные."
+      ],
+      "wordGroups": [
+        {
+          "title": "Один человек",
+          "words": [
+            [
+              "el más alto",
+              "самый высокий"
+            ],
+            [
+              "la más alta",
+              "самая высокая"
+            ]
+          ]
+        },
+        {
+          "title": "Несколько человек",
+          "words": [
+            [
+              "los más altos",
+              "самые высокие: мужчины или смешанная группа"
+            ],
+            [
+              "las más altas",
+              "самые высокие: женщины"
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-c",
+        "title": "Мини-проверка",
+        "instruction": "Выбери форму, которая подходит к человеку или предметам во фразе.",
+        "questions": [
+          {
+            "prompt": "Carola y Elena son ___ del grupo. (simpático)",
+            "answers": [
+              "las más simpáticas"
+            ],
+            "explain": "Описываем двух женщин: las и simpáticas. Слово más остаётся прежним.",
+            "options": [
+              "los más simpáticos",
+              "las más simpáticas",
+              "la más simpática"
+            ]
+          },
+          {
+            "prompt": "Estos zapatos son ___. (cómodo)",
+            "answers": [
+              "los más cómodos"
+            ],
+            "explain": "Zapatos — мужской род и множественное число, поэтому los más cómodos.",
+            "options": [
+              "las más cómodas",
+              "el más cómodo",
+              "los más cómodos"
+            ]
+          },
+          {
+            "prompt": "Lucas y Marina son ___. (atractivo)",
+            "answers": [
+              "los más atractivos"
+            ],
+            "explain": "Lucas и Marina — смешанная группа: los más atractivos.",
+            "options": [
+              "los más atractivos",
+              "las más atractivas",
+              "el más atractivo"
+            ]
+          },
+          {
+            "prompt": "Marina es ___. (trabajador; работает меньше всех)",
+            "answers": [
+              "la menos trabajadora"
+            ],
+            "explain": "Одна девушка: la menos trabajadora. Menos не меняется, а trabajador получает окончание -a.",
+            "options": [
+              "el menos trabajador",
+              "la menos trabajadora",
+              "las menos trabajadoras"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "D. Лучший и худший: mejor и peor",
+      "paragraphs": [
+        "Чтобы сказать **«лучший»**, удобно запомнить отдельное слово — **`mejor`**: `el mejor café` — лучший кофе. А **«худший» — `peor`**: `la peor película` — худший фильм.",
+        "В этих формах уже есть смысл сравнения, поэтому **перед `mejor` и `peor` не добавляем `más`**. Говорим `el mejor`, а не `el más mejor`.",
+        "У мужского и женского рода форма одна: `el mejor` и `la mejor`. Если предметов несколько, добавляем **`-es`**: `los mejores`, `las peores`."
+      ],
+      "wordGroups": [
+        {
+          "title": "Лучший / лучшая",
+          "words": [
+            [
+              "el mejor café",
+              "лучший кофе"
+            ],
+            [
+              "la mejor bebida",
+              "лучший напиток"
+            ],
+            [
+              "las mejores galletas",
+              "лучшее печенье"
+            ]
+          ]
+        },
+        {
+          "title": "Худший / худшая",
+          "words": [
+            [
+              "el peor hotel",
+              "худший отель"
+            ],
+            [
+              "la peor película",
+              "худший фильм"
+            ],
+            [
+              "los peores resultados",
+              "худшие результаты"
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-d",
+        "title": "Мини-проверка",
+        "instruction": "Выбери форму с mejor или peor.",
+        "questions": [
+          {
+            "prompt": "Этот кофе лучший: Este café es ___.",
+            "answers": [
+              "el mejor"
+            ],
+            "explain": "Café — мужской род. Говорим el mejor; más перед mejor не нужно.",
+            "options": [
+              "el más mejor",
+              "el mejor",
+              "la mejor"
+            ]
+          },
+          {
+            "prompt": "Estas galletas son ___. — Это печенье лучшее.",
+            "answers": [
+              "las mejores"
+            ],
+            "explain": "Galletas — женский род, множественное число: las mejores.",
+            "options": [
+              "las mejores",
+              "los mejores",
+              "las mejor"
+            ]
+          },
+          {
+            "prompt": "Esta película es ___. — Этот фильм худший.",
+            "answers": [
+              "la peor"
+            ],
+            "explain": "Película — женский род, поэтому la peor. По-русски «фильм» мужского рода, но выбираем форму по испанскому слову.",
+            "options": [
+              "el peor",
+              "la más peor",
+              "la peor"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "E. Самый старший и самый младший",
+      "paragraphs": [
+        "Если сравниваем возраст братьев, сестёр или друзей, **`el mayor` / `la mayor` — самый старший / самая старшая**. А **`el menor` / `la menor` — самый младший / самая младшая**.",
+        "Например, Eva старше всех своих братьев и сестёр: **`Eva es la mayor de sus hermanos`**. Если младше всех — `Eva es la menor de sus hermanos`.",
+        "Слова `mayor` и `menor` одинаковы для мужчины и женщины. Во множественном числе добавляем `-es`: **`los mayores`, `las menores`**. Для этих фраз достаточно `mayor` или `menor`, добавлять `más` не нужно."
+      ],
+      "wordGroups": [
+        {
+          "title": "Старше всех",
+          "words": [
+            [
+              "el mayor",
+              "самый старший"
+            ],
+            [
+              "la mayor",
+              "самая старшая"
+            ],
+            [
+              "los mayores",
+              "самые старшие"
+            ]
+          ]
+        },
+        {
+          "title": "Младше всех",
+          "words": [
+            [
+              "el menor",
+              "самый младший"
+            ],
+            [
+              "la menor",
+              "самая младшая"
+            ],
+            [
+              "las menores",
+              "самые младшие"
+            ]
+          ]
+        }
+      ],
+      "notes": [
+        "О старой вещи говорим más viejo: el libro más viejo — самая старая книга. Когда называем старшего в семье, обычно выбираем mayor."
+      ],
+      "check": {
+        "id": "check-e",
+        "title": "Мини-проверка",
+        "instruction": "Выбери mayor или menor: сравниваем возраст.",
+        "questions": [
+          {
+            "prompt": "Eva старше всех своих братьев и сестёр: Eva es la ___.",
+            "answers": [
+              "mayor"
+            ],
+            "explain": "La mayor — самая старшая. Эта форма подходит и для женщины: окончание -a не добавляем.",
+            "options": [
+              "mayor",
+              "menor"
+            ]
+          },
+          {
+            "prompt": "Pablo младше всех в семье: Pablo es el ___.",
+            "answers": [
+              "menor"
+            ],
+            "explain": "El menor — самый младший.",
+            "options": [
+              "mayor",
+              "menor"
+            ]
+          },
+          {
+            "prompt": "О двух самых старших сёстрах: Mis hermanas son las ___.",
+            "answers": [
+              "mayores"
+            ],
+            "explain": "Для нескольких сестёр нужен артикль las и форма mayores.",
+            "options": [
+              "mayores",
+              "mayor",
+              "menores"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "F. Среди кого? Добавляем de",
+      "paragraphs": [
+        "Чтобы уточнить, **среди кого или чего выбираем самого-самого**, добавляем **`de` + название группы или места**: `la más alta de la clase` — самая высокая в классе.",
+        "Можно назвать и сам предмет: **`la montaña más alta de España`** — самая высокая гора Испании. Сначала идут артикль и название, потом `más` и качество.",
+        "Если после `de` нужен артикль `el`, соединяем их: **`de + el = del`**. Поэтому «лучший в мире» — `el mejor del mundo`. Но `de la` остаётся двумя словами: `de la clase`."
+      ],
+      "wordGroups": [
+        {
+          "title": "Называем группу",
+          "words": [
+            [
+              "la más alta de la clase",
+              "самая высокая в классе"
+            ],
+            [
+              "el mayor de mis hermanos",
+              "самый старший из моих братьев"
+            ],
+            [
+              "la mejor de todas",
+              "лучшая из всех"
+            ]
+          ]
+        },
+        {
+          "title": "Называем место или время",
+          "words": [
+            [
+              "el mejor café del mundo",
+              "лучший кофе в мире"
+            ],
+            [
+              "el día más feliz de mi vida",
+              "самый счастливый день в моей жизни"
+            ],
+            [
+              "la montaña más alta de España",
+              "самая высокая гора Испании"
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-f",
+        "title": "Мини-проверка",
+        "instruction": "Выбери de, de la или del, чтобы закончить фразу.",
+        "questions": [
+          {
+            "prompt": "Carla es la más alta ___ clase.",
+            "answers": [
+              "de la"
+            ],
+            "explain": "Перед классом стоит la: de la clase — в классе. Эти слова не сливаются.",
+            "options": [
+              "de la",
+              "del",
+              "que"
+            ]
+          },
+          {
+            "prompt": "Este café es el mejor ___ mundo.",
+            "answers": [
+              "del"
+            ],
+            "explain": "Mundo употребляем с el. De + el соединяем в del: del mundo.",
+            "options": [
+              "de",
+              "del",
+              "que"
+            ]
+          },
+          {
+            "prompt": "Eva es la mayor ___ sus hermanos.",
+            "answers": [
+              "de"
+            ],
+            "explain": "Группу sus hermanos присоединяем через de. Дополнительный артикль перед sus не нужен.",
+            "options": [
+              "que",
+              "del",
+              "de"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "G. Самый интересный из тех, что я видел",
+      "paragraphs": [
+        "Иногда хочется сказать не просто «самый интересный», а **«самый интересный из тех, что я видел»**. Тогда после описания ставим **`que` и продолжаем мысль**: `el libro más interesante que he leído` — самая интересная книга, которую я прочитал.",
+        "Сравни два варианта: **`el mejor libro de mi colección`** — лучшая книга в моей коллекции; **`el mejor libro que he leído`** — лучшая книга, которую я прочитал. В первом случае называем группу через `de`, во втором — рассказываем, что сделали, через `que`."
+      ],
+      "wordGroups": [
+        {
+          "title": "de + название группы",
+          "words": [
+            [
+              "el mejor libro de mi colección",
+              "лучшая книга в моей коллекции"
+            ],
+            [
+              "el día más feliz de mi vida",
+              "самый счастливый день в моей жизни"
+            ]
+          ]
+        },
+        {
+          "title": "que + продолжение с действием",
+          "words": [
+            [
+              "el mejor libro que he leído",
+              "лучшая книга, которую я прочитал"
+            ],
+            [
+              "la chica más alegre que conozco",
+              "самая жизнерадостная девушка, которую я знаю"
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-g",
+        "title": "Мини-проверка",
+        "instruction": "Выбери de или que по продолжению фразы.",
+        "questions": [
+          {
+            "prompt": "Es la chica más alegre ___ conozco.",
+            "answers": [
+              "que"
+            ],
+            "explain": "Дальше идёт conozco — «я знаю». Соединяем через que: девушка, которую я знаю.",
+            "options": [
+              "de",
+              "que"
+            ]
+          },
+          {
+            "prompt": "Fue el día más feliz ___ mi vida.",
+            "answers": [
+              "de"
+            ],
+            "explain": "Mi vida — название периода, без действия. Говорим de mi vida.",
+            "options": [
+              "de",
+              "que"
+            ]
+          },
+          {
+            "prompt": "Es el país más interesante ___ he visitado.",
+            "answers": [
+              "que"
+            ],
+            "explain": "He visitado — «я посетил». Перед таким продолжением ставим que.",
+            "options": [
+              "de",
+              "que"
+            ]
+          },
+          {
+            "prompt": "Son las mejores naranjas ___ España.",
+            "answers": [
+              "de"
+            ],
+            "explain": "Называем страну, с которой связано сравнение: de España.",
+            "options": [
+              "de",
+              "que"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "wordGroups": [
+      {
+        "title": "Самый / наименее",
+        "words": [
+          [
+            "la más alta",
+            "самая высокая"
+          ],
+          [
+            "el menos trabajador",
+            "наименее трудолюбивый"
+          ]
+        ]
+      },
+      {
+        "title": "Согласуем с тем, кого описываем",
+        "words": [
+          [
+            "el más alto / la más alta",
+            "один человек"
+          ],
+          [
+            "los más altos / las más altas",
+            "несколько человек"
+          ]
+        ]
+      },
+      {
+        "title": "Особые формы",
+        "words": [
+          [
+            "el mejor / la peor",
+            "лучший / худшая"
+          ],
+          [
+            "la mayor / el menor",
+            "самая старшая / самый младший"
+          ]
+        ]
+      },
+      {
+        "title": "Называем группу → de",
+        "words": [
+          [
+            "la mejor de la clase",
+            "лучшая в классе"
+          ],
+          [
+            "el mejor del mundo",
+            "лучший в мире: de + el = del"
+          ]
+        ]
+      },
+      {
+        "title": "Продолжаем мысль с действием → que",
+        "words": [
+          [
+            "el mejor libro que he leído",
+            "лучшая книга, которую я прочитал"
+          ],
+          [
+            "la más alegre que conozco",
+            "самая жизнерадостная из тех, кого я знаю"
+          ]
+        ]
+      },
+      {
+        "title": "Группа уже понятна",
+        "words": [
+          [
+            "Este es el más caro.",
+            "Этот самый дорогой."
+          ],
+          [
+            "Laura es la más alta.",
+            "Лаура самая высокая."
+          ]
+        ]
+      }
+    ]
+  },
+  "exercises": [
+    {
+      "id": "17.1",
+      "title": "17.1 · Самый или наименее?",
+      "instruction": "Допиши вопрос: используй название предмета и más или menos, как указано в подсказке.",
+      "inputLabel": "Ввод фразы",
+      "answerPlaceholder": "Пропущенная часть фразы",
+      "preview": {
+        "source": "¿Cuál es ___ de la tienda?",
+        "targetPrefix": "",
+        "answer": "el coche más caro",
+        "translation": "Какая машина в магазине самая дорогая?",
+        "tip": "Впиши только пропущенную часть, без остального вопроса."
+      },
+      "questions": [
+        {
+          "prompt": "¿Cuál es ___ de Cuba?",
+          "answers": [
+            "la ciudad más bonita"
+          ],
+          "explain": "Ciudad — женский род: la ciudad más bonita. После ciudad ставим más, а bonito меняем на bonita.",
+          "context": "ciudad · bonito · самая красивая"
+        },
+        {
+          "prompt": "¿Cuál es ___ de América Latina?",
+          "answers": [
+            "el país menos poblado"
+          ],
+          "explain": "País — мужской род. Наименее населённый — menos poblado: el país menos poblado.",
+          "context": "país · poblado · наименее населённый"
+        },
+        {
+          "prompt": "¿Cuál es ___ de España?",
+          "answers": [
+            "la ciudad menos contaminada"
+          ],
+          "explain": "Ciudad — женский род, поэтому la и contaminada. Значение «наименее» передаёт menos.",
+          "context": "ciudad · contaminado · наименее загрязнённая"
+        },
+        {
+          "prompt": "¿Cuál es ___ de México?",
+          "answers": [
+            "el río más largo"
+          ],
+          "explain": "Río — мужской род: el río más largo. Название реки вписывать не нужно.",
+          "context": "río · largo · самый длинный"
+        },
+        {
+          "prompt": "¿Cuál es ___ de América del Sur?",
+          "answers": [
+            "la capital más alta"
+          ],
+          "explain": "Capital в значении «столица» — женского рода: la capital más alta.",
+          "context": "capital · alto · самая высокогорная"
+        },
+        {
+          "prompt": "¿Cuál es ___ de América Latina?",
+          "answers": [
+            "el país más grande",
+            "el mayor país",
+            "el país mayor"
+          ],
+          "explain": "О размере обычно говорим el país más grande. Форма mayor тоже может передавать значение «самый большой».",
+          "context": "país · grande · самый большой"
+        },
+        {
+          "prompt": "¿Cuál es ___ del Caribe?",
+          "answers": [
+            "la isla más pequeña",
+            "la menor isla",
+            "la isla menor"
+          ],
+          "explain": "Isla — женский род: la isla más pequeña. Menor тоже может обозначать меньший размер.",
+          "context": "isla · pequeño · самая маленькая"
+        },
+        {
+          "prompt": "¿Cuál es ___ de México?",
+          "answers": [
+            "la catedral más antigua"
+          ],
+          "explain": "Catedral — женский род: la catedral más antigua. О старом здании говорим antigua, а не mayor.",
+          "context": "catedral · antiguo · самая старая"
+        }
+      ],
+      "phraseInput": true
+    },
+    {
+      "id": "17.2",
+      "title": "17.2 · Сравни друзей",
+      "instruction": "Посмотри на шкалу и допиши фразу о друзьях. Чем больше полосок, тем сильнее выражено качество.",
+      "inputLabel": "Ввод фразы",
+      "answerPlaceholder": "Пропущенная часть фразы",
+      "preview": {
+        "source": "Ana es ___ del grupo.",
+        "targetPrefix": "",
+        "answer": "la más alta",
+        "translation": "Ана самая высокая в группе.",
+        "tip": "В ответе нужны артикль, más или menos и описание качества."
+      },
+      "questions": [
+        {
+          "prompt": "Lucas es ___ de sus amigos.",
+          "answers": [
+            "el más simpático"
+          ],
+          "explain": "У Lucas больше всего полосок. Он самый дружелюбный: el más simpático.",
+          "ratings": {
+            "label": "simpático · дружелюбный",
+            "people": [
+              {
+                "name": "Lucas",
+                "level": 3
+              },
+              {
+                "name": "Marina",
+                "level": 1
+              },
+              {
+                "name": "Leo",
+                "level": 2
+              }
+            ]
+          }
+        },
+        {
+          "prompt": "Marina es ___ de sus amigos.",
+          "answers": [
+            "la menos simpática"
+          ],
+          "explain": "У Marina меньше всего полосок: la menos simpática. Окончание -a, потому что описываем девушку.",
+          "ratings": {
+            "label": "simpático · дружелюбный",
+            "people": [
+              {
+                "name": "Lucas",
+                "level": 3
+              },
+              {
+                "name": "Marina",
+                "level": 1
+              },
+              {
+                "name": "Leo",
+                "level": 2
+              }
+            ]
+          }
+        },
+        {
+          "prompt": "Marina y Leo son ___ de sus amigos.",
+          "answers": [
+            "los más trabajadores"
+          ],
+          "explain": "Marina и Leo делят первое место. Для мужчины и женщины вместе используем los más trabajadores.",
+          "ratings": {
+            "label": "trabajador · трудолюбивый",
+            "people": [
+              {
+                "name": "Lucas",
+                "level": 2
+              },
+              {
+                "name": "Marina",
+                "level": 3
+              },
+              {
+                "name": "Leo",
+                "level": 3
+              }
+            ]
+          }
+        },
+        {
+          "prompt": "Lucas es ___ de sus amigos.",
+          "answers": [
+            "el menos trabajador"
+          ],
+          "explain": "У Lucas меньше полосок, чем у остальных: el menos trabajador.",
+          "ratings": {
+            "label": "trabajador · трудолюбивый",
+            "people": [
+              {
+                "name": "Lucas",
+                "level": 2
+              },
+              {
+                "name": "Marina",
+                "level": 3
+              },
+              {
+                "name": "Leo",
+                "level": 3
+              }
+            ]
+          }
+        },
+        {
+          "prompt": "Marina es ___ de sus amigos.",
+          "answers": [
+            "la más elegante"
+          ],
+          "explain": "Marina выделяется больше всех: la más elegante. Слово elegante одинаково для мужчины и женщины.",
+          "ratings": {
+            "label": "elegante · элегантный",
+            "people": [
+              {
+                "name": "Lucas",
+                "level": 1
+              },
+              {
+                "name": "Marina",
+                "level": 3
+              },
+              {
+                "name": "Leo",
+                "level": 2
+              }
+            ]
+          }
+        },
+        {
+          "prompt": "Lucas es ___ de sus amigos.",
+          "answers": [
+            "el menos elegante"
+          ],
+          "explain": "У Lucas меньше всего полосок: el menos elegante.",
+          "ratings": {
+            "label": "elegante · элегантный",
+            "people": [
+              {
+                "name": "Lucas",
+                "level": 1
+              },
+              {
+                "name": "Marina",
+                "level": 3
+              },
+              {
+                "name": "Leo",
+                "level": 2
+              }
+            ]
+          }
+        },
+        {
+          "prompt": "Lucas y Marina son ___ de sus amigos.",
+          "answers": [
+            "los más atractivos"
+          ],
+          "explain": "Lucas и Marina делят первое место: los más atractivos. Для смешанной группы используем мужской род.",
+          "ratings": {
+            "label": "atractivo · привлекательный",
+            "people": [
+              {
+                "name": "Lucas",
+                "level": 2
+              },
+              {
+                "name": "Marina",
+                "level": 2
+              },
+              {
+                "name": "Leo",
+                "level": 1
+              }
+            ]
+          }
+        },
+        {
+          "prompt": "Leo es ___ de sus amigos.",
+          "answers": [
+            "el menos atractivo"
+          ],
+          "explain": "У Leo меньше полосок, чем у двух остальных: el menos atractivo.",
+          "ratings": {
+            "label": "atractivo · привлекательный",
+            "people": [
+              {
+                "name": "Lucas",
+                "level": 2
+              },
+              {
+                "name": "Marina",
+                "level": 2
+              },
+              {
+                "name": "Leo",
+                "level": 1
+              }
+            ]
+          }
+        }
+      ],
+      "phraseInput": true
+    },
+    {
+      "id": "17.3",
+      "title": "17.3 · Придумай рекламный слоган",
+      "instruction": "Допиши слоган по подсказке. Если указаны два качества, соедини их словом y.",
+      "inputLabel": "Ввод фразы",
+      "answerPlaceholder": "Пропущенная часть слогана",
+      "introGroups": [
+        {
+          "title": "В рекламе тоже встречается «самый»",
+          "words": [
+            [
+              "el más rápido",
+              "самый быстрый"
+            ],
+            [
+              "las más cómodas",
+              "самые удобные"
+            ],
+            [
+              "la mejor",
+              "лучшая"
+            ]
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "Agua de Monteviejo, ___.",
+          "answers": [
+            "la bebida más sana y la más refrescante",
+            "la bebida más sana y más refrescante",
+            "la bebida más sana y refrescante"
+          ],
+          "explain": "Bebida — женский род: la bebida más sana y la más refrescante. Во второй части название bebida можно не повторять.",
+          "context": "bebida · sano + refrescante · самый полезный и освежающий напиток"
+        },
+        {
+          "prompt": "Regina, ___ del mundo.",
+          "answers": [
+            "el reloj más caro"
+          ],
+          "explain": "По-испански один предмет — el reloj, поэтому el reloj más caro. Del mundo уже стоит после пропуска.",
+          "context": "reloj · caro · самые дорогие часы (один предмет)"
+        },
+        {
+          "prompt": "Ordenadores portátiles Misima, ___.",
+          "answers": [
+            "los más pequeños y los más potentes",
+            "los más pequeños y más potentes",
+            "los más pequeños y potentes"
+          ],
+          "explain": "Ordenadores — мужской род, множественное число: los más pequeños y los más potentes.",
+          "context": "pequeño + potente · самые маленькие и мощные"
+        },
+        {
+          "prompt": "Ropa deportiva Libre, ___.",
+          "answers": [
+            "la más cómoda y la más elegante",
+            "la más cómoda y más elegante",
+            "la más cómoda y elegante"
+          ],
+          "explain": "Ropa — женский род и единственное число: la más cómoda y la más elegante.",
+          "context": "cómodo + elegante · самая удобная и элегантная"
+        },
+        {
+          "prompt": "Galletas Artaneda, ___ para el desayuno.",
+          "answers": [
+            "las mejores",
+            "las más buenas"
+          ],
+          "explain": "О качестве обычно говорим las mejores. Galletas — женский род, множественное число. Las más buenas тоже возможно, например когда хвалим вкус.",
+          "context": "bueno · лучшее печенье"
+        },
+        {
+          "prompt": "Supermercados García, ___.",
+          "answers": [
+            "los más económicos"
+          ],
+          "explain": "Supermercados — мужской род, множественное число: los más económicos.",
+          "context": "económico · самые недорогие"
+        },
+        {
+          "prompt": "Zumos Frutasol, ___.",
+          "answers": [
+            "los más sanos"
+          ],
+          "explain": "Zumos — мужской род, множественное число: los más sanos.",
+          "context": "sano · самые полезные"
+        },
+        {
+          "prompt": "Leche fresca Norte, ___ para su familia.",
+          "answers": [
+            "la mejor",
+            "la más buena"
+          ],
+          "explain": "Leche — женский род, единственное число: la mejor. Если говорим о вкусе, la más buena тоже возможно.",
+          "context": "bueno · лучшее молоко"
+        }
+      ],
+      "phraseInput": true
+    },
+    {
+      "id": "17.4",
+      "title": "17.4 · Соедини фразу: de или que",
+      "instruction": "Впиши описание вместе с de или que. Посмотри, что идёт после пропуска: название группы или продолжение с действием.",
+      "inputLabel": "Ввод фразы",
+      "answerPlaceholder": "Описание + de или que",
+      "preview": {
+        "source": "Es el libro ___ he leído.",
+        "targetPrefix": "",
+        "answer": "más interesante que",
+        "translation": "Это самая интересная книга, которую я прочитал.",
+        "tip": "Включи de или que в ответ, как в образце."
+      },
+      "questions": [
+        {
+          "prompt": "Julia es ___ conozco.",
+          "answers": [
+            "la chica más alegre que"
+          ],
+          "explain": "После пропуска идёт conozco — «я знаю». Поэтому la chica más alegre que conozco.",
+          "context": "chica · alegre · самая жизнерадостная девушка"
+        },
+        {
+          "prompt": "Para mí, el café de Colombia es ___.",
+          "answers": [
+            "el mejor del mundo",
+            "el más bueno del mundo"
+          ],
+          "explain": "De + el соединяем в del: el mejor del mundo. О качестве кофе обычно говорим mejor; если хвалим вкус, más bueno тоже возможно.",
+          "context": "bueno · лучший в мире"
+        },
+        {
+          "prompt": "Las ruinas de Machu Picchu son ___ he visto.",
+          "answers": [
+            "las más impresionantes que"
+          ],
+          "explain": "Ruinas — женский род, множественное число. He visto — «я видел», поэтому las más impresionantes que he visto.",
+          "context": "impresionante · самые впечатляющие"
+        },
+        {
+          "prompt": "El día de mi boda fue ___ mi vida.",
+          "answers": [
+            "el más feliz de"
+          ],
+          "explain": "Mi vida — название периода. Нужна фраза el más feliz de mi vida. Día — мужской род.",
+          "context": "feliz · самый счастливый"
+        },
+        {
+          "prompt": "¿Cuál es ___ has visitado?",
+          "answers": [
+            "el país más interesante que"
+          ],
+          "explain": "País — мужской род: el país más interesante. Дальше has visitado — «ты посетил», соединяем через que.",
+          "context": "país · interesante · самая интересная страна"
+        },
+        {
+          "prompt": "Esther es ___ mis hermanas.",
+          "answers": [
+            "la mayor de",
+            "la más vieja de"
+          ],
+          "explain": "О старшей сестре обычно говорим la mayor de mis hermanas. La más vieja de тоже передаёт сравнение по возрасту, но звучит прямолинейнее.",
+          "context": "viejo · самая старшая по возрасту"
+        }
+      ],
+      "phraseInput": true
+    }
+  ]
+}

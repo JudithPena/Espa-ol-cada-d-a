@@ -82,3 +82,11 @@ def test_third_unit_covers_plural_rules_and_all_supplied_tasks():
     rewriting = unit['exercises'][2]['questions']
     assert all(len(q['sourceParts']) == 3 and q['sourceParts'][1] for q in rewriting)
     assert [q['answers'][0] for q in rewriting] == ['hijos', 'abuelos', 'amigos', 'hermanos', 'padres', 'reyes', 'alumnos', 'profesores', 'tíos', 'bailarines']
+
+
+def test_rejects_invalid_rating_levels(tmp_path):
+    unit = load_grammar()[-1]
+    unit['exercises'][1]['questions'][0]['ratings']['people'][0]['level'] = 4
+    (tmp_path / '017.json').write_text(json.dumps(unit), encoding='utf-8')
+    with pytest.raises(ValueError, match='ratings require'):
+        load_grammar(tmp_path)

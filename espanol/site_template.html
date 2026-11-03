@@ -421,6 +421,15 @@ main { padding-block: 16px 110px; }
 .gagreement b, .gagreement span { display: block; }
 .gagreement span { color: var(--accent); }
 .ginstruction { font-size: 14px; margin: 8px 0 14px; padding-left: 12px; border-left: 3px solid var(--accent); }
+.gratings { padding: 16px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); margin-bottom: 18px; }
+.gratings h3 { margin: 0 0 14px; font-size: 17px; }
+.gratings-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.gratings-person { display: grid; justify-items: center; gap: 10px; padding: 16px 8px; border-radius: 12px; background: var(--accent-soft); }
+.gratings-avatar { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; color: var(--accent); background: var(--surface); font-weight: 800; font-size: 20px; }
+.gratings-scale { display: flex; gap: 4px; width: 100%; max-width: 120px; }
+.gratings-scale i { flex: 1; height: 9px; border: 1px solid var(--accent); border-radius: 4px; }
+.gratings-scale .is-filled { background: var(--accent); }
+.gratings > small { display: block; margin-top: 12px; color: var(--muted); font-size: 13px; }
 .gquestion { border: 0; border-top: 1px solid var(--line); margin: 18px 0 0; padding: 16px 0 0; min-width: 0; }
 .gquestion legend { font-weight: 700; padding: 8px 0; max-width: 100%; }
 .gillustration { display: block; width: min(100%, 280px); height: auto; aspect-ratio: 1; object-fit: contain; margin: 0 auto 14px; border-radius: 14px; }
@@ -428,6 +437,7 @@ main { padding-block: 16px 110px; }
 .gchoice { display: flex; gap: 10px; align-items: center; padding: 12px; border: 1px solid var(--line); border-radius: 12px; cursor: pointer; }
 .gchoice:has(input:checked) { background: var(--accent-soft); border-color: var(--accent); }
 .ginput { width: 100%; min-height: 46px; padding: 10px 12px; background: var(--bg); color: var(--ink); border: 2px solid var(--line); border-radius: 10px; font: inherit; }
+.gphrase-input { display: block; resize: vertical; line-height: 1.5; }
 .gfeedback { margin: 10px 0; padding: 12px; border-radius: 10px; background: var(--bad-soft); }
 .gfeedback.good { background: var(--good-soft); }
 .gfeedback p { margin: 4px 0 0; }
@@ -1688,7 +1698,7 @@ document.addEventListener("keydown", e => {
   if (e.key === "Escape") closeSheet();
   if (G && !G.ended) {
     if (e.key === "Enter" && !e.shiftKey && !e.target.closest("summary,button")) { e.preventDefault(); const s = G.steps[G.at]; return s.type === "question" && !gResponse(s).checked ? gCheck() : gMove(1); }
-    if (e.target.tagName !== "INPUT" && /^[1-9]$/.test(e.key)) { const option = $(`[data-gpick="${+e.key - 1}"]`); if (option && !option.disabled) option.click(); }
+    if (!["INPUT","TEXTAREA"].includes(e.target.tagName) && /^[1-9]$/.test(e.key)) { const option = $(`[data-gpick="${+e.key - 1}"]`); if (option && !option.disabled) option.click(); }
     return;
   }
   if (!S || S.kind === "result") return;

@@ -35,6 +35,13 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
                     q["image"] = _image_uri(directory, q["image"])
                 if "pictureCount" in q and (type(q["pictureCount"]) is not int or not 1 <= q["pictureCount"] <= 12 or not q.get("image")):
                     raise ValueError(f"{path}: pictureCount requires an image and an integer from 1 to 12")
+                if "ratings" in q:
+                    ratings = q["ratings"]
+                    if not ratings.get("label") or not ratings.get("people") or any(
+                        not p.get("name") or type(p.get("level")) is not int or not 1 <= p["level"] <= 3
+                        for p in ratings["people"]
+                    ):
+                        raise ValueError(f"{path}: ratings require named people with levels from 1 to 3")
             family = group.get("family")
             if family and family.get("portraits"):
                 family["portraits"] = {name: _image_uri(directory, image) for name, image in family["portraits"].items()}
