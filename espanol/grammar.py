@@ -21,6 +21,10 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
         unit = json.loads(path.read_text(encoding="utf-8"))
         if any(u["id"] == unit["id"] for u in units):
             raise ValueError(f"{path}: duplicate grammar unit id")
+        if "learningOrder" in unit:
+            routes = {f"section:{i}" for i in range(len(unit['sections']))} | {'summary'} | {f"exercise:{g['id']}" for g in unit['exercises']}
+            if set(unit['learningOrder']) != routes or len(unit['learningOrder']) != len(routes):
+                raise ValueError(f"{path}: learningOrder must contain every stage exactly once")
         ids = set()
         for group in [s["check"] for s in unit["sections"] if s.get("check")] + unit["exercises"]:
             if group["id"] in ids:

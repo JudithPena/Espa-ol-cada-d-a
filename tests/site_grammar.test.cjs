@@ -383,3 +383,28 @@ test('unit 17 only asks for the article and degree in two sentence gaps', () => 
  run('gResponse(G.steps[G.at]).value="la más";gCheck();');
  assert.equal(run('gResponse(G.steps[G.at]).good'),true);
 });
+
+test('unit 17 interleaves practice with relevant theory and locks the next block until practice is done', () => {
+ const run=context([unit17]);
+ unlockUntil(run,'exercise:17.1');
+ assert.equal(run('gRouteOpen(COURSE.grammar[0],"exercise:17.1")'),true);
+ assert.equal(run('gRouteOpen(COURSE.grammar[0],"section:5")'),false);
+ run('gStart(COURSE.grammar[0].id);');
+ const order=JSON.parse(run('JSON.stringify(G.steps.filter(s=>["theory","intro","summary"].includes(s.type)).map(s=>s.type==="theory"?"section:"+s.section:s.type==="intro"?"exercise:"+s.group:"summary"))'));
+ assert.deepEqual(order,unit17.learningOrder);
+ run('G=null;view.grammar=COURSE.grammar[0].id;');
+ const menu=run('grammarView()');
+ assert.ok(menu.indexOf('data-gstart="exercise:17.1"') < menu.indexOf('data-gstart="section:5"'));
+});
+
+test('resuming an older all-unit route rebases its current question onto the new order', () => {
+ const run=context([unit17]);
+ unlockUntil(run,'exercise:17.2');
+ run(`gStart(COURSE.grammar[0].id);var u=COURSE.grammar[0];
+ var oldOrder=u.learningOrder;delete u.learningOrder;var oldSteps=gSteps(u);u.learningOrder=oldOrder;
+ G.steps=oldSteps;G.at=oldSteps.findIndex(s=>s.group==='17.1'&&s.qi===2);gSave();G=null;
+ gStart(u.id,'all',true);`);
+ assert.equal(run('G.steps[G.at].group'),'17.1');
+ assert.equal(run('G.steps[G.at].qi'),2);
+ assert.deepEqual(JSON.parse(run('JSON.stringify(G.steps)')),JSON.parse(run('JSON.stringify(gSteps(gUnit()))')));
+});

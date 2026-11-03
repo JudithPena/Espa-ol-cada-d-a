@@ -3,7 +3,7 @@ let G = null;
 const G_SESSION_KEY = "espanol-cada-dia.grammar-session.v1";
 const gUnit = () => (COURSE.grammar || []).find(u => u.id === G?.unit);
 const gGroups = u => [...u.sections.map(s => s.check).filter(Boolean), ...u.exercises];
-const gRoutes = u => [...u.sections.map((_, i) => `section:${i}`), "summary", ...u.exercises.map(g => `exercise:${g.id}`)];
+const gRoutes = u => u.learningOrder || [...u.sections.map((_, i) => `section:${i}`), "summary", ...u.exercises.map(g => `exercise:${g.id}`)];
 function gRouteDone(unit, route) {
   const group = route.startsWith("section:") ? unit.sections[+route.split(":")[1]]?.check : unit.exercises.find(g => route === `exercise:${g.id}`);
   return group ? !!P.grammar?.[grammarKey(unit, group)] : !!P.grammarRead?.[`${unit.id}/${route}`];
@@ -23,16 +23,18 @@ function gSaved() { try { return JSON.parse(store.get(G_SESSION_KEY) || "null");
 function gSave() { if (G) store.set(G_SESSION_KEY, JSON.stringify(G)); }
 function gSteps(unit, route = "all") {
   const steps = [];
-  unit.sections.forEach((s, i) => {
-    if (route !== "all" && route !== `section:${i}`) return;
-    steps.push({type:"theory", section:i});
-    s.check?.questions.forEach((_, qi) => steps.push({type:"question", group:s.check.id, qi}));
-  });
-  if (["all", "summary"].includes(route)) steps.push({type:"summary"});
-  unit.exercises.forEach(g => {
-    if (route !== "all" && route !== `exercise:${g.id}`) return;
-    steps.push({type:"intro", group:g.id});
-    g.questions.forEach((_, qi) => steps.push({type:"question", group:g.id, qi}));
+  gRoutes(unit).forEach(r => {
+    if (route !== "all" && route !== r) return;
+    if(r === "summary") { steps.push({type:"summary"}); return; }
+    if(r.startsWith("section:")) {
+      const i=+r.split(":")[1], s=unit.sections[i];
+      steps.push({type:"theory",section:i});
+      s.check?.questions.forEach((_,qi)=>steps.push({type:"question",group:s.check.id,qi}));
+    } else {
+      const g=unit.exercises.find(g=>r===`exercise:${g.id}`);
+      steps.push({type:"intro",group:g.id});
+      g.questions.forEach((_,qi)=>steps.push({type:"question",group:g.id,qi}));
+    }
   });
   return steps;
 }
@@ -40,7 +42,11 @@ function gStart(unitId, route = "all", resume = false) {
   const unit = COURSE.grammar.find(u => u.id === unitId), saved = resume && gSaved();
   if (!unit || !gRouteOpen(unit, route)) return;
   const steps = gSteps(unit, route);
-  if (saved?.unit === unit.id && Array.isArray(saved.steps) && saved.steps.length && saved.at >= 0 && saved.at < saved.steps.length && gRouteOpen(unit,gStepRoute(unit,saved.steps[saved.at]))) G = saved;
+  if (saved?.unit === unit.id && Array.isArray(saved.steps) && saved.steps.length && saved.at >= 0 && saved.at < saved.steps.length && gRouteOpen(unit,gStepRoute(unit,saved.steps[saved.at]))) {
+    const reordered=saved.retry ? saved.steps : gSteps(unit,saved.route);
+    const old=saved.steps[saved.at], at=reordered.findIndex(s=>s.type===old.type && s.section===old.section && s.group===old.group && s.qi===old.qi);
+    G={...saved,steps:reordered,at:Math.max(0,at)};
+  }
   else if (steps.length) G = {unit:unit.id, route, steps, at:0, responses:{}, ended:false};
   else return;
   view.grammar = unit.id; view.tab = "grammar"; S = null;
@@ -106,8 +112,12 @@ function grammarView() {
   };
   return `<button class="btn ghost sm back" data-grammar-list>← Все уроки грамматики</button><span class="eyebrow">Unidad ${unit.number} · ${esc(unit.level)}</span><h2>${esc(unit.title)}</h2><p class="muted">${esc(unit.subtitle)}</p>
     <div class="gactions">${resume ? '<button class="btn" data-gresume>Продолжить урок</button>' : ""}<button class="btn ${resume ? "ghost" : ""}" data-gstart="all">${resume ? "Начать сначала" : "Пройти весь урок"}</button></div>
-    <h3 class="sech">Теория и мини-проверки</h3><div class="menu">${unit.sections.map((s, i) => row(`section:${i}`, s.title, "Правило → мини-проверка", s.check)).join("")}${row("summary", "Что запомнить", "Правила с примерами")}</div>
-    <h3 class="sech">Упражнения</h3><div class="menu">${unit.exercises.map(g => row(`exercise:${g.id}`, g.title, `${g.questions.length} ${plural(g.questions.length,"задание","задания","заданий")} · по одному на экран`, g)).join("")}</div>`;
+    ${unit.learningOrder ? `<h3 class="sech">Теория и практика по порядку</h3><div class="menu">${gRoutes(unit).map(r=>{
+      if(r==="summary") return row(r,"Что запомнить","Правила с примерами");
+      if(r.startsWith("section:")){const s=unit.sections[+r.split(":")[1]];return row(r,s.title,"Правило → мини-проверка",s.check);}
+      const g=unit.exercises.find(g=>r===`exercise:${g.id}`);return row(r,g.title,`${g.questions.length} заданий · практика`,g);
+    }).join("")}</div>` : `<h3 class="sech">Теория и мини-проверки</h3><div class="menu">${unit.sections.map((s, i) => row(`section:${i}`, s.title, "Правило → мини-проверка", s.check)).join("")}${row("summary", "Что запомнить", "Правила с примерами")}</div>
+    <h3 class="sech">Упражнения</h3><div class="menu">${unit.exercises.map(g => row(`exercise:${g.id}`, g.title, `${g.questions.length} ${plural(g.questions.length,"задание","задания","заданий")} · по одному на экран`, g)).join("")}</div>`}`;
 }
 function gTheoryText(text) {
   return esc(text).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/`([^`]+)`/g, (_, token) => `<code lang="es"${token.includes(" ") ? ' class="is-phrase"' : ""}>${token}</code>`);
