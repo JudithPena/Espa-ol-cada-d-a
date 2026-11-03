@@ -6,10 +6,10 @@
   "level": "A1",
   "sections": [
     {
-      "title": "A. Который час? Во сколько?",
+      "title": "Который час и во сколько",
       "paragraphs": [
-        "Когда называем время, перед **одним часом ставим `la`, перед остальными часами — `las`**: `Es la una` — час, `Son las dos` — два часа. В `la una y media` остаётся `la`, потому что называем час, а не половину.",
-        "Чтобы сказать **«в котором часу»**, добавляем `a`: `a la una` — в час, `a las cinco` — в пять. Например: `La película empieza a las cinco` — фильм начинается в пять."
+        "Перед **`una` ставим `la`, перед другими числами часов — `las`**: `Es la una`, `Son las dos`. В `la una y media` остаётся `la`.",
+        "Чтобы сказать **«в котором часу», добавляем `a`**: `a la una` — в час, `a las cinco` — в пять. `La película empieza a las cinco` — фильм начинается в пять."
       ],
       "wordGroups": [
         {
@@ -79,14 +79,15 @@
             "Который час?"
           ]
         ]
-      }
+      },
+      "presentation": "examples"
     },
     {
-      "title": "B. Дни недели, даты и части дня",
+      "title": "Дни недели, даты и части дня",
       "paragraphs": [
-        "Если говорим **о событии в определённый день**, перед днём недели ставим `el`: `El lunes tengo un examen` — в понедельник у меня экзамен. **Регулярно по понедельникам — `los lunes`**. А в ответе «сегодня понедельник» артикля нет: `Hoy es lunes`.",
-        "Дату строим так: `el 6 de enero` — шестого января. Но после `Hoy es` обычно без артикля: `Hoy es 6 de enero`. В `el martes, 13 de julio` перед числом второй артикль не добавляем. Названия дней и месяцев пишем **с маленькой буквы**.",
-        "Части дня: **`por la mañana` — утром, `por la tarde` — днём или вечером, `por la noche` — вечером или ночью**. Название месяца после `en` — без артикля: `en agosto` — в августе."
+        "**`El lunes` — в определённый понедельник; `los lunes` — по понедельникам.** Но после `Hoy es` артикль не нужен: `Hoy es lunes`.",
+        "Дата: **`el 6 de enero`**, но обычно `Hoy es 6 de enero`. В `el martes, 13 de julio` второй артикль не добавляем. Дни недели и месяцы пишем с маленькой буквы.",
+        "Запомни выражения: `por la mañana` — утром, `por la tarde` — днём или вечером, `por la noche` — вечером или ночью. Месяц после `en` — без артикля: `en agosto`."
       ],
       "wordGroups": [
         {
@@ -167,13 +168,14 @@
             "Мой день рождения — 6 января."
           ]
         ]
-      }
+      },
+      "presentation": "examples"
     },
     {
-      "title": "C. Как часто?",
+      "title": "Частота: al día, a la semana",
       "paragraphs": [
-        "Чтобы сказать **«раз в день», «дважды в месяц»**, используем `al` или `a la`: `una vez al día`, `dos veces al mes`, `una vez a la semana`. Это тот же артикль: `a + el` соединяем в `al`, а `a la` пишем отдельно.",
-        "Так же говорим о продолжительности за день или неделю: `Duermo ocho horas al día` — сплю восемь часов в день; `Voy al gimnasio dos días a la semana` — хожу в спортзал два дня в неделю."
+        "Частоту выражаем через **`al` или `a la`**: `una vez al día` — раз в день, `dos veces al mes` — дважды в месяц, `una vez a la semana` — раз в неделю.",
+        "Так же указываем время, отведённое на занятие: `Duermo ocho horas al día` — сплю восемь часов в день. **`A + el = al`; `a la` остаётся двумя словами.**"
       ],
       "wordGroups": [
         {
@@ -251,13 +253,18 @@
             "Хожу в спортзал два дня в неделю."
           ]
         ]
-      }
+      },
+      "presentation": "examples",
+      "formulas": [
+        "una vez al día",
+        "dos veces a la semana"
+      ]
     },
     {
-      "title": "D. Цена за килограмм или литр",
+      "title": "Цена за единицу товара",
       "paragraphs": [
-        "Когда называем цену **за единицу товара**, перед этой единицей ставим определённый артикль: `dos euros el kilo` — два евро за килограмм, `cuatro pesos el litro` — четыре песо за литр.",
-        "Артикль подбираем к единице: **`el kilo`, `el litro`, `la docena`, `los cien gramos`**. Например: `Los huevos cuestan dos euros la docena` — яйца стоят два евро за дюжину."
+        "Перед единицей товара при указании цены ставим **определённый артикль**: `dos euros el kilo` — два евро за килограмм.",
+        "Артикль зависит от единицы: **`el kilo`, `el litro`, `la docena`, `los cien gramos`**. `Los huevos cuestan dos euros la docena` — яйца стоят два евро за дюжину."
       ],
       "wordGroups": [
         {
@@ -324,7 +331,8 @@
             "Два евро за килограмм."
           ]
         ]
-      }
+      },
+      "presentation": "examples"
     }
   ],
   "exercises": [
@@ -348,7 +356,8 @@
             "hour": 3,
             "minute": 20
           },
-          "context": "Выбери la или las."
+          "context": "Выбери la или las.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Es ___ una y veinticinco.",
@@ -365,7 +374,8 @@
             "hour": 1,
             "minute": 25
           },
-          "context": "Выбери la или las."
+          "context": "Выбери la или las.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Son ___ cuatro menos diez.",
@@ -382,7 +392,8 @@
             "hour": 3,
             "minute": 50
           },
-          "context": "Выбери la или las."
+          "context": "Выбери la или las.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Son ___ dos.",
@@ -399,7 +410,8 @@
             "hour": 2,
             "minute": 0
           },
-          "context": "Выбери la или las."
+          "context": "Выбери la или las.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Son ___ ocho y media.",
@@ -416,7 +428,8 @@
             "hour": 8,
             "minute": 30
           },
-          "context": "Выбери la или las."
+          "context": "Выбери la или las.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Son ___ doce y cinco.",
@@ -433,7 +446,8 @@
             "hour": 12,
             "minute": 5
           },
-          "context": "Выбери la или las."
+          "context": "Выбери la или las.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Es ___ una menos cuarto.",
@@ -450,7 +464,8 @@
             "hour": 12,
             "minute": 45
           },
-          "context": "Выбери la или las."
+          "context": "Выбери la или las.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Son ___ once y cuarto.",
@@ -467,7 +482,8 @@
             "hour": 11,
             "minute": 15
           },
-          "context": "Выбери la или las."
+          "context": "Выбери la или las.",
+          "interaction": "gap-choice"
         }
       ],
       "preview": {
@@ -480,7 +496,8 @@
         "translation": "Сейчас 1:30.",
         "targetPrefix": "",
         "tip": ""
-      }
+      },
+      "inputLabel": "Выбор ответа"
     },
     {
       "id": "9.2",
@@ -492,7 +509,7 @@
           "answers": [
             "el"
           ],
-          "explain": "Событие датировано: el 12 de febrero.",
+          "explain": "Перед датой события ставим el: el 12 de febrero.",
           "options": [
             "la",
             "los",
@@ -501,7 +518,8 @@
             "el"
           ],
           "sourceRef": "9.2.1",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Voy al gimnasio ___ martes.",
@@ -518,7 +536,8 @@
           ],
           "translation": "Это происходит каждый вторник.",
           "sourceRef": "9.2.2",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Trabajo por ___ noche.",
@@ -534,7 +553,8 @@
             "la"
           ],
           "sourceRef": "9.2.3",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Se casa ___ martes, 13 de julio.",
@@ -550,7 +570,8 @@
             "el"
           ],
           "sourceRef": "9.2.4",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Se casa el martes, ___ 13 de julio.",
@@ -566,7 +587,8 @@
             "Без артикля"
           ],
           "sourceRef": "9.2.4",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "La fiesta es ___ domingo a las siete.",
@@ -582,7 +604,8 @@
             "el"
           ],
           "sourceRef": "9.2.5",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "La fiesta es el domingo a ___ siete.",
@@ -598,7 +621,8 @@
             "las"
           ],
           "sourceRef": "9.2.5",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Hoy es ___ jueves, 4 de octubre.",
@@ -614,7 +638,8 @@
             "Без артикля"
           ],
           "sourceRef": "9.2.6",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Hoy es jueves, ___ 4 de octubre.",
@@ -630,7 +655,8 @@
             "Без артикля"
           ],
           "sourceRef": "9.2.6",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Hoy es jueves, 4 de ___ octubre.",
@@ -646,7 +672,8 @@
             "Без артикля"
           ],
           "sourceRef": "9.2.6",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "El partido empieza a ___ diez.",
@@ -662,7 +689,8 @@
             "las"
           ],
           "sourceRef": "9.2.7",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Yo trabajo por ___ tarde.",
@@ -678,7 +706,8 @@
             "la"
           ],
           "sourceRef": "9.2.8",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Mi hermano trabaja por ___ mañana.",
@@ -694,7 +723,8 @@
             "la"
           ],
           "sourceRef": "9.2.8",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Nací ___ 2 de diciembre.",
@@ -710,7 +740,8 @@
             "el"
           ],
           "sourceRef": "9.2.9",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Nací el 2 de ___ diciembre.",
@@ -726,7 +757,8 @@
             "Без артикля"
           ],
           "sourceRef": "9.2.9",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Sale siempre ___ sábados.",
@@ -742,7 +774,8 @@
             "los"
           ],
           "sourceRef": "9.2.10",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Vamos de vacaciones en ___ agosto.",
@@ -758,7 +791,8 @@
             "Без артикля"
           ],
           "sourceRef": "9.2.11",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Tengo un examen ___ lunes.",
@@ -774,7 +808,8 @@
             "el"
           ],
           "sourceRef": "9.2.12",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         }
       ],
       "preview": {
@@ -787,7 +822,8 @@
         "translation": "Матч начинается в десять.",
         "targetPrefix": "",
         "tip": ""
-      }
+      },
+      "inputLabel": "Выбор ответа"
     },
     {
       "id": "9.3",
@@ -806,7 +842,8 @@
           ],
           "translation": "Сплю восемь часов в день.",
           "sourceRef": "9.3.1",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Voy al gimnasio dos días ___ semana.",
@@ -820,7 +857,8 @@
           ],
           "translation": "Хожу в спортзал два дня в неделю.",
           "sourceRef": "9.3.2",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Voy de vacaciones una vez ___ año.",
@@ -834,7 +872,8 @@
           ],
           "translation": "Езжу в отпуск раз в год.",
           "sourceRef": "9.3.3",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Voy al cine dos veces ___ mes.",
@@ -848,7 +887,8 @@
           ],
           "translation": "Хожу в кино дважды в месяц.",
           "sourceRef": "9.3.4",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Salimos una noche ___ semana.",
@@ -862,7 +902,8 @@
           ],
           "translation": "Куда-нибудь выходим один вечер в неделю.",
           "sourceRef": "9.3.5",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Corro una hora ___ día.",
@@ -876,7 +917,8 @@
           ],
           "translation": "Бегаю по часу в день.",
           "sourceRef": "9.3.6",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         }
       ],
       "preview": {
@@ -889,7 +931,8 @@
         "translation": "Два раза в месяц.",
         "targetPrefix": "",
         "tip": ""
-      }
+      },
+      "inputLabel": "Выбор ответа"
     },
     {
       "id": "9.4",
@@ -910,7 +953,8 @@
           ],
           "translation": "Киви: 2 € за кг.",
           "sourceRef": "9.4.1",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "La leche cuesta cuatro pesos ___ litro.",
@@ -926,7 +970,8 @@
           ],
           "translation": "Молоко: 4 песо за л.",
           "sourceRef": "9.4.2",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Los huevos cuestan dos euros ___ docena.",
@@ -942,7 +987,8 @@
           ],
           "translation": "Яйца: 2 € за 12 штук.",
           "sourceRef": "9.4.3",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "El queso cuesta un peso ___ cien gramos.",
@@ -958,7 +1004,8 @@
           ],
           "translation": "Сыр: 1 песо за 100 г.",
           "sourceRef": "9.4.4",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         }
       ],
       "preview": {
@@ -971,7 +1018,8 @@
         "translation": "Два евро за килограмм.",
         "targetPrefix": "",
         "tip": ""
-      }
+      },
+      "inputLabel": "Выбор ответа"
     }
   ],
   "learningOrder": [

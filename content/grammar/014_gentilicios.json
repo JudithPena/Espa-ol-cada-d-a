@@ -6,11 +6,11 @@
   "level": "A1",
   "sections": [
     {
-      "title": "A. Чилиец, чилийка и чилийские друзья",
+      "title": "Слова о происхождении: род и число",
       "paragraphs": [
-        "Чтобы сказать, откуда человек или вещь, используем **слово о происхождении — по-испански `gentilicio`**. Например: `chileno` — чилийский, `chilena` — чилийская. Эти слова пишем **с маленькой буквы**, даже если название страны пишется с большой: `Chile` → `chileno`.",
-        "У форм на `-o` меняем окончание по роду и числу: **`brasileño`, `brasileña`, `brasileños`, `brasileñas`**. А у `costarricense`, `nicaragüense`, `vietnamita`, `iraní` мужская и женская формы совпадают. Во множественном числе: `costarricenses`, `vietnamitas`, `iraníes` или `iranís`.",
-        "Если мужская форма заканчивается на согласную, женская часто получает `-a`: `japonés` → `japonesa`, `portugués` → `portuguesa`, `alemán` → `alemana`. Для нескольких: `japoneses`, `japonesas`."
+        "Национальность или происхождение передаём прилагательным — **`gentilicio`**: `chileno`, `chilena` — чилийский, чилийская. Эти слова пишем **с маленькой буквы**, в отличие от названия страны: `Chile → chileno`.",
+        "Формы на `-o` меняются по роду и числу: **`brasileño`, `brasileña`, `brasileños`, `brasileñas`**. После согласной женская форма часто получает `-a`: `japonés → japonesa`, `alemán → alemana`.",
+        "У `costarricense`, `nicaragüense`, `vietnamita`, `iraní` мужская и женская формы совпадают. Множественное число: `costarricenses`, `vietnamitas`, **`iraníes / iranís`**."
       ],
       "wordGroups": [
         {
@@ -103,13 +103,14 @@
             "Она бразильянка."
           ]
         ]
-      }
+      },
+      "presentation": "examples"
     },
     {
-      "title": "B. Рассказываем о себе и друзьях",
+      "title": "Национальность после ser",
       "paragraphs": [
-        "После `ser` просто называем национальность: **`Soy peruana` — я перуанка**, `Somos italianas` — мы итальянки. Артикль перед ней в таких фразах обычно не нужен.",
-        "Если все в группе — женщины, используем женский род: `Somos chinas`. **Если группа смешанная, обычно мужской род множественного числа**: мужчина и женщина могут сказать `Somos mexicanos`."
+        "После **`ser` национальность обычно называем без артикля**: `Soy peruana` — я перуанка; `Somos italianas` — мы итальянки.",
+        "Для группы женщин выбираем женский род: **`Somos chinas`**. Для мужчин или смешанной группы обычно мужской: **`Somos mexicanos`**."
       ],
       "wordGroups": [
         {
@@ -181,13 +182,14 @@
             "Мы итальянки. Говорят две женщины."
           ]
         ]
-      }
+      },
+      "presentation": "examples"
     },
     {
-      "title": "C. Происхождение города, книги или валюты",
+      "title": "Происхождение людей и вещей",
       "paragraphs": [
-        "Эти же прилагательные описывают **не только людей**: `una ciudad francesa` — французский город, `un escritor colombiano` — колумбийский писатель. Обычно ставим их **после существительного**.",
-        "Форму подбираем к существительному: `moneda japonesa` — японская валюта, `ciudades canadienses` — канадские города. Перевод может иметь другой род: испанское **`ciudad` — женского рода**, хотя по-русски «город» — мужского."
+        "Прилагательные происхождения описывают **и людей, и предметы**, обычно после существительного: `un escritor colombiano` — колумбийский писатель; `una ciudad francesa` — французский город.",
+        "Согласуем с испанским словом: **`moneda japonesa`, `ciudades canadienses`**. `Ciudad` — женского рода, хотя русский «город» — мужского."
       ],
       "wordGroups": [
         {
@@ -259,14 +261,15 @@
             "Лиссабон — португальский город."
           ]
         ]
-      }
+      },
+      "presentation": "examples"
     }
   ],
   "exercises": [
     {
       "id": "14.1",
       "title": "14.1 · Измени форму",
-      "instruction": "Впиши форму для одного человека или группы. Подсказка показывает, о ком говорим.",
+      "instruction": "Дополни предложение подходящей формой слова из подсказки.",
       "questions": [
         {
           "prompt": "Ella es ___.",
@@ -298,7 +301,13 @@
               "brasileño",
               "бразильский"
             ]
-          ]
+          ],
+          "options": [
+            "brasileña",
+            "brasileñas",
+            "brasileños"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Ellas son ___.",
@@ -346,7 +355,12 @@
               "costarricense",
               "коста-риканский"
             ]
-          ]
+          ],
+          "options": [
+            "costarricenses",
+            "costarricense"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Ellas son ___.",
@@ -394,7 +408,13 @@
               "escocés",
               "шотландский"
             ]
-          ]
+          ],
+          "options": [
+            "escocesa",
+            "escocesas",
+            "escoceses"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Ellas son ___.",
@@ -443,7 +463,13 @@
               "iraní",
               "иранский"
             ]
-          ]
+          ],
+          "options": [
+            "iranís",
+            "iraní",
+            "iraníes"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Ellas son ___.",
@@ -492,7 +518,13 @@
               "japonés",
               "японский"
             ]
-          ]
+          ],
+          "options": [
+            "japonesa",
+            "japonesas",
+            "japoneses"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Ellas son ___.",
@@ -540,7 +572,12 @@
               "nicaragüense",
               "никарагуанский"
             ]
-          ]
+          ],
+          "options": [
+            "nicaragüenses",
+            "nicaragüense"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Ellas son ___.",
@@ -588,7 +625,13 @@
               "venezolano",
               "венесуэльский"
             ]
-          ]
+          ],
+          "options": [
+            "venezolana",
+            "venezolanas",
+            "venezolanos"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Ellas son ___.",
@@ -636,7 +679,12 @@
               "vietnamita",
               "вьетнамский"
             ]
-          ]
+          ],
+          "options": [
+            "vietnamitas",
+            "vietnamita"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Ellas son ___.",
@@ -663,15 +711,15 @@
         ],
         "answer": "brasileña",
         "translation": "Она бразильянка.",
-        "targetPrefix": "",
-        "tip": ""
+        "targetPrefix": ""
       },
-      "inlineAnswer": true
+      "inlineAnswer": true,
+      "inputLabel": "Короткий ввод · Выбор ответа"
     },
     {
       "id": "14.2",
       "title": "14.2 · Откуда вы?",
-      "instruction": "Измени слово из подсказки для говорящего или группы.",
+      "instruction": "Дополни предложение подходящей формой слова из подсказки.",
       "questions": [
         {
           "prompt": "Soy ___.",
@@ -703,7 +751,13 @@
               "chino",
               "китайский"
             ]
-          ]
+          ],
+          "options": [
+            "chino",
+            "china",
+            "chinas"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Somos ___.",
@@ -751,7 +805,14 @@
               "italiano",
               "итальянский"
             ]
-          ]
+          ],
+          "options": [
+            "italiana",
+            "italianos",
+            "italianas",
+            "italiano"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Somos ___.",
@@ -799,7 +860,13 @@
               "ruso",
               "русский"
             ]
-          ]
+          ],
+          "options": [
+            "ruso",
+            "rusa",
+            "rusos"
+          ],
+          "interaction": "gap-choice"
         }
       ],
       "preview": {
@@ -810,15 +877,15 @@
         ],
         "answer": "italianas",
         "translation": "Мы итальянки. Говорят две женщины.",
-        "targetPrefix": "",
-        "tip": ""
+        "targetPrefix": ""
       },
-      "inlineAnswer": true
+      "inlineAnswer": true,
+      "inputLabel": "Короткий ввод · Выбор ответа"
     },
     {
       "id": "14.3",
       "title": "14.3 · Люди, города и вещи",
-      "instruction": "Подбери форму к уже написанному существительному.",
+      "instruction": "Дополни предложение подходящей формой слова из подсказки.",
       "questions": [
         {
           "prompt": "El yen es una moneda ___.",
@@ -850,7 +917,12 @@
               "marroquí",
               "марокканский"
             ]
-          ]
+          ],
+          "options": [
+            "marroquí",
+            "marroquís"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Gabriel García Márquez fue un escritor ___.",
@@ -898,7 +970,12 @@
               "estadounidense",
               "американский, из США"
             ]
-          ]
+          ],
+          "options": [
+            "estadounidense",
+            "estadounidenses"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Hanói es la capital ___.",
@@ -946,7 +1023,13 @@
               "portugués",
               "португальский"
             ]
-          ]
+          ],
+          "options": [
+            "portugués",
+            "portugueses",
+            "portuguesa"
+          ],
+          "interaction": "gap-choice"
         }
       ],
       "preview": {
@@ -957,10 +1040,10 @@
         ],
         "answer": "francesa",
         "translation": "Французский город.",
-        "targetPrefix": "",
-        "tip": ""
+        "targetPrefix": ""
       },
-      "inlineAnswer": true
+      "inlineAnswer": true,
+      "inputLabel": "Короткий ввод · Выбор ответа"
     }
   ],
   "learningOrder": [

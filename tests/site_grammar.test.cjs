@@ -65,7 +65,7 @@ test('family tree labels ten portraits and questions clearly separate Julio and 
  const form = run('grammarForm(COURSE.grammar[0], COURSE.grammar[0].exercises[2])');
  assert.ok(form.indexOf('Часть 1 · Родственники Julio') < form.indexOf('1. Кем Luis приходится Julio?'));
  assert.ok(form.indexOf('Часть 2 · Родственники Silvia') < form.indexOf('6. Кем Luis приходится Silvia?'));
- assert.equal((form.match(/class="ginput"/g)||[]).length,10);
+ assert.equal((form.match(/class="ginput"/g)||[]).length,unit.exercises[2].questions.filter(q=>!q.options).length);
 });
 test('player shows one picture question, requires a check, and resumes the same step', () => {
  const run=context();
@@ -124,9 +124,10 @@ test('stages unlock in order after completing the previous practice', () => {
 });
 test('summary reading persists and opening an old saved locked stage cannot bypass gates', () => {
  const run=context();
+ assert.equal(run('gRouteOpen(COURSE.grammar[0],"summary")'),false);
  unlockUntil(run,'summary');
- assert.equal(run('gRouteOpen(COURSE.grammar[0],"exercise:1.1")'),false);
  run('gStart(COURSE.grammar[0].id,"summary");gMove(1);');
+ assert.equal(run('P.grammarRead[COURSE.grammar[0].id+"/summary"]'),true);
  assert.equal(run('gRouteOpen(COURSE.grammar[0],"exercise:1.1")'),true);
  run('gStart(COURSE.grammar[0].id,"exercise:1.1"); G=null; P=fresh(); gStart(COURSE.grammar[0].id,"all",true);');
  assert.equal(run('G.at'),0);
@@ -231,7 +232,7 @@ test('new unit renders noun groups and typed pictures with matching instructions
  assert.ok(picture.includes('id="g-answer"') && picture.includes('Слова для упражнения'));
  assert.ok(!picture.includes('профессии'));
  const intro=run('gIntro(COURSE.grammar[0].exercises[2])');
- assert.ok(intro.includes('Ввод слова') && !intro.includes('Выбор ответа'));
+ assert.ok(intro.includes('Выбор ответа') && intro.includes('Короткий ввод'));
 });
 
 test('third unit completes all stages and keeps previous units intact', () => {
@@ -286,8 +287,8 @@ test('back exits the first screen to the unit menu and preserves a resumable att
 test('theory emphasis escapes HTML and renders only supported inline formatting', () => {
  const run=context([unit3]);
  const markup=run('gTheory(COURSE.grammar[0].sections[0])');
- assert.ok(markup.includes('class="gexplanation"'));
- assert.ok(markup.includes('<strong>единственное число</strong>'));
+ assert.ok(markup.includes('class="gtheory-paragraph is-lead"'));
+ assert.ok(markup.includes('единственное число'));
  assert.ok(markup.includes('<code lang="es">singular</code>'));
  assert.equal(run('gTheoryText("<img src=x> **важно** `-s`")'),'&lt;img src=x&gt; <strong>важно</strong> <code lang="es">-s</code>');
 });
@@ -314,11 +315,11 @@ test('friend scales show ties, accessible values, escaped names and phrase input
  assert.equal((html.match(/class="gratings-person"/g)||[]).length,3);
  assert.equal((html.match(/aria-label="Уровень: 3 из 3"/g)||[]).length,2);
  assert.ok(html.includes('Marina y Leo son ') && html.includes('de sus amigos.'));
- assert.ok(html.includes('class="gfill-sentence"'));
- assert.equal((html.match(/id="g-answer"/g)||[]).length,1);
- assert.ok(html.includes('<textarea class="ginput gphrase-input"') && html.includes('rows="2"'));
+ assert.ok(html.includes('class="gbuild"'));
+ assert.equal((html.match(/id="g-answer"/g)||[]).length,0);
+ assert.ok(html.includes('data-gadd=') && html.includes('Слова для сборки'));
  const intro=run('gIntro(COURSE.grammar[0].exercises[1])');
- assert.ok(intro.includes('Ввод фразы') && intro.includes('В ответе нужны артикль'));
+ assert.ok(intro.includes('Сборка') && intro.includes('Сравни друзей по шкале'));
  assert.ok(!intro.includes('недостающее слово') && !intro.includes('aria-hidden="true">→'));
  const unsafe=run('gRatings({label:"<img>",people:[{name:"<script>",level:1}]})');
  assert.ok(!unsafe.includes('<script>') && unsafe.includes('&lt;img&gt;'));
@@ -471,4 +472,68 @@ test('unit 10 also celebrates when its last practice route differs from the exer
  run('for(const g of gGroups(gUnit()))gradeGrammar(gUnit(),g,g.questions.map(q=>q.answers[0]));G.route="exercise:10.3";G.ended=true;');
  assert.equal(run('gUnitFinished(gUnit())'),true);
  assert.ok(run('gPlayerView()').includes('Поздравляю!'));
+});
+
+test('word banks support repeated words, undo, explicit checking, retries and stored attempts',()=>{
+ const run=context([unit17]);
+ unlockUntil(run,'exercise:17.2');
+ run('gStart(COURSE.grammar[0].id,"exercise:17.2");gMove(1);document.querySelector=()=>null;');
+ run(`var q=gUnit().exercises[1].questions[0];var r=gResponse(G.steps[G.at]);
+ for(const word of q.answers[0].split(' ')){const i=q.tiles.findIndex((t,i)=>t===word&&!r.chosen?.includes(i));gBuild('add',i);}
+ var current=G.at;var count=r.chosen.length;gBuild('add',r.chosen[0]);`);
+ assert.equal(run('r.chosen.length'),run('count'));
+ assert.equal(run('r.checked'),false);
+ assert.equal(run('G.at'),run('current'));
+ run('gBuild("remove",1);');
+ assert.notEqual(run('r.value'),run('q.answers[0]'));
+ run('gBuild("remove",0);gBuild("remove",0);');
+ assert.equal(run('r.value'),'');
+ run(`for(const word of q.answers[0].split(' ')){const i=q.tiles.findIndex((t,i)=>t===word&&!r.chosen.includes(i));gBuild('add',i);}gCheck();`);
+ assert.equal(run('r.good'),true);
+ assert.equal(run('G.at'),run('current'));
+ run('G=null;gStart(COURSE.grammar[0].id,"all",true);');
+ assert.equal(run('gResponse(G.steps[G.at]).value'),'el más simpático');
+ assert.equal(run('gResponse(G.steps[G.at]).checked'),true);
+ const duplicate=run(`gBuilder({tiles:['la','más','sana','y','la','más','fresca']},{value:'',chosen:[0,1]})`);
+ assert.ok(duplicate.includes('data-gadd="4" lang="es" >la'));
+});
+
+test('old typed answers remain editable and reordered locked attempts retain responses',()=>{
+ const run=context([unit17]);
+ assert.equal(run(`gQuestionMode({tiles:['el','más','alto']},{value:'el más',checked:false})`),'input');
+ assert.equal(run(`gQuestionMode({tiles:['el','más','alto']},{value:'el más',chosen:[0,1],checked:false})`),'build');
+ unlockUntil(run,'section:5');
+ run(`gStart(COURSE.grammar[0].id,'section:5');G.responses={'17.1':{0:{value:'la más',checked:true,good:true}}};gSave();G=null;P=fresh();gStart(COURSE.grammar[0].id,'all',true);`);
+ assert.equal(run('G.steps[G.at].type'),'theory');
+ assert.equal(run('G.steps[G.at].section'),0);
+ assert.equal(run('G.responses["17.1"][0].value'),'la más');
+ assert.equal(run('G.responses["17.1"][0].good'),true);
+});
+
+test('all 17 units complete through their actual interaction and keep canonical answer indices',()=>{
+ const all=fs.readdirSync('content/grammar').filter(f=>/^\d{3}_.*\.json$/.test(f)).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
+ for(const u of all){
+  assert.ok(u.learningOrder.includes('summary'));
+  const run=context([u]);run('gStart(COURSE.grammar[0].id);document.querySelector=()=>null;');
+  run(`var turns=0;
+  while(!G.ended&&turns++<400){const s=G.steps[G.at];
+   if(s.type==='question'){const q=gGroups(gUnit()).find(g=>g.id===s.group).questions[s.qi];
+    if(q.tiles){const r=gResponse(s);for(const word of q.answers[0].split(' ')){gBuild('add',q.tiles.findIndex((w,i)=>w===word&&!r.chosen?.includes(i)));}gCheck();}
+    else if(q.options)gPick(q.options.indexOf(q.answers[0]));
+    else{gResponse(s).value=q.answers[0];gCheck();}
+   }gMove(1);
+  }`);
+  assert.equal(run('G.ended'),true,u.id);
+  assert.ok(run('gUnit().exercises.every(g=>P.grammar[grammarKey(gUnit(),g)].correct===g.questions.length)'),u.id);
+  assert.equal(run('P.xp'),u.sections.reduce((n,s)=>n+(s.check?.questions.length||0),0)*2+u.exercises.reduce((n,g)=>n+g.questions.length,0)*2,u.id);
+ }
+});
+
+test('form paradigms have a desktop table and readable mobile definitions with escaped text',()=>{
+ const run=context([unit17]);
+ const html=run('gTheoryTable(COURSE.grammar[0].sections[3].table)');
+ assert.ok(html.includes('class="gforms-wide"') && html.includes('class="gforms-mobile"'));
+ assert.ok(html.includes('<dt>Женский род</dt><dd lang="es">la mejor</dd>'));
+ const unsafe=run(`gTheoryTable({compactForms:true,heads:['<script>','<img>'],rows:[['<b>','<svg>']]})`);
+ assert.ok(!unsafe.includes('<script>')&&!unsafe.includes('<svg>')&&unsafe.includes('&lt;svg&gt;'));
 });

@@ -6,10 +6,10 @@
   "level": "A1",
   "sections": [
     {
-      "title": "A. Как сказать «дороже» или «выше»",
+      "title": "Сравнение с más: дороже, выше",
       "paragraphs": [
-        "Представь: одни часы стоят 120 €, а другие — 130 €. Вторые **дороже**. По-испански это **`más caro`**: к слову `caro` — дорогой — добавляем `más`.",
-        "Если называем то, с чем сравниваем, ставим **`que` — «чем»**: `Este reloj es más caro que ese` — эти часы дороже тех. Так можно сравнивать людей, животных и предметы."
+        "Чтобы сравнить качество, используем **`más` + прилагательное + `que`**: `Este reloj es más caro que ese` — эти часы дороже тех.",
+        "`Más` означает большую степень качества, **`que` — «чем»**. Так сравнивают людей, животных и предметы."
       ],
       "wordGroups": [
         {
@@ -33,7 +33,7 @@
       "check": {
         "id": "check-a",
         "title": "Мини-проверка",
-        "instruction": "Выбери вариант, который передаёт сравнение.",
+        "instruction": "",
         "questions": [
           {
             "prompt": "Этот рюкзак дороже: Esta mochila es ___ cara.",
@@ -71,13 +71,17 @@
             ]
           }
         ]
-      }
+      },
+      "presentation": "examples",
+      "formulas": [
+        "más + прилагательное + que"
+      ]
     },
     {
-      "title": "B. Как сказать «менее»",
+      "title": "Сравнение с menos: менее",
       "paragraphs": [
-        "Если Marta работает меньше Laura, можно сказать **`Marta es menos trabajadora que Laura`** — Марта менее трудолюбивая, чем Лаура. Вместо `más` используем **`menos`**.",
-        "Сравни: **`más caro` — дороже**, а **`menos caro` — менее дорогой**. Во втором случае по-русски обычно говорим «дешевле». Само слово `caro` по-прежнему означает «дорогой»."
+        "**`Menos` + прилагательное + `que`** обозначает меньшую степень качества: `Marta es menos trabajadora que Laura` — Марта менее трудолюбива, чем Лаура.",
+        "Сравни: **`más caro` — дороже; `menos caro` — менее дорогой, дешевле**. Значение самого прилагательного `caro` не меняется."
       ],
       "wordGroups": [
         {
@@ -110,7 +114,7 @@
       "check": {
         "id": "check-b",
         "title": "Мини-проверка",
-        "instruction": "Выбери más или menos по смыслу фразы.",
+        "instruction": "",
         "questions": [
           {
             "prompt": "Эта дорога менее опасная: Esta carretera es ___ peligrosa.",
@@ -146,47 +150,22 @@
             ]
           }
         ]
-      }
+      },
+      "presentation": "examples",
+      "formulas": [
+        "menos + прилагательное + que"
+      ]
     },
     {
-      "title": "C. Лучше и хуже: mejor и peor",
+      "title": "Лучше и хуже: mejor, peor",
       "paragraphs": [
-        "Когда сравниваем качество, часто нужны отдельные слова: **`mejor` — лучше**, **`peor` — хуже**. Например: `Este coche es mejor que ese` — эта машина лучше той.",
-        "**Перед `mejor` и `peor` не добавляем `más`.** Смысл сравнения уже есть в самом слове: `mejor que`, `peor que`.",
-        "Но сочетания `más bueno` и `más malo` тоже встречаются: например, когда говорим о доброте человека или вкусе еды. Здесь запомним обычные формы для сравнения качества — **`mejor` и `peor`**."
-      ],
-      "wordGroups": [
-        {
-          "title": "bueno → mejor",
-          "words": [
-            [
-              "un coche mejor",
-              "машина получше"
-            ],
-            [
-              "Este hotel es mejor que ese.",
-              "Этот отель лучше того."
-            ]
-          ]
-        },
-        {
-          "title": "malo → peor",
-          "words": [
-            [
-              "un resultado peor",
-              "результат похуже"
-            ],
-            [
-              "Este hotel es peor que ese.",
-              "Этот отель хуже того."
-            ]
-          ]
-        }
+        "Для сравнения качества используем **`mejor` — лучше, `peor` — хуже**: `Este coche es mejor que ese` — эта машина лучше той.",
+        "**`Más` перед `mejor` и `peor` не ставим.** Формы одинаковы для обоих родов; во множественном числе — `mejores`, `peores`. Сочетания `más bueno / más malo` тоже возможны, в частности при оценке доброты или вкуса."
       ],
       "check": {
         "id": "check-c",
         "title": "Мини-проверка",
-        "instruction": "Выбери форму с mejor или peor.",
+        "instruction": "",
         "questions": [
           {
             "prompt": "Выбери фразу со словом mejor.",
@@ -224,14 +203,43 @@
             ]
           }
         ]
-      }
+      },
+      "presentation": "paradigm",
+      "table": {
+        "heads": [
+          "Значение",
+          "Мужской род",
+          "Женский род",
+          "Множественное число"
+        ],
+        "rows": [
+          [
+            "лучше",
+            "mejor",
+            "mejor",
+            "mejores"
+          ],
+          [
+            "хуже",
+            "peor",
+            "peor",
+            "peores"
+          ]
+        ],
+        "compactForms": true
+      },
+      "examples": [
+        [
+          "Este coche es mejor que ese.",
+          "Эта машина лучше той."
+        ]
+      ]
     },
     {
-      "title": "D. Старше и младше: mayor и menor",
+      "title": "Старше и младше: mayor, menor",
       "paragraphs": [
-        "Eva 24 года, а Javi 20. Чтобы сказать, что **Ева старше Хави**, используем **`Eva es mayor que Javi`**. А в обратную сторону: `Javi es menor que Eva` — Хави младше Евы.",
-        "**`Mayor` — старше, `menor` — младше.** В этих фразах дополнительное `más` не нужно. У мужчины и женщины форма одинаковая: `Eva es mayor`, `Javi es mayor`.",
-        "Если сравниваем старые вещи, обычно говорим **`más viejo`**: `Mi coche es más viejo que el tuyo` — моя машина старше твоей. Для возраста людей удобнее запомнить `mayor` и `menor`."
+        "При сравнении возраста **`mayor` — старше, `menor` — младше**: `Eva es mayor que Javi`, `Javi es menor que Eva`. В таких сравнениях с `que` дополнительное `más` не нужно.",
+        "Для обоих родов формы одинаковы. О старой вещи обычно говорим **`más viejo`**: `Mi coche es más viejo que el tuyo` — моя машина старше твоей."
       ],
       "wordGroups": [
         {
@@ -259,7 +267,7 @@
       "check": {
         "id": "check-d",
         "title": "Мини-проверка",
-        "instruction": "Выбери подходящее сравнение.",
+        "instruction": "",
         "questions": [
           {
             "prompt": "Eva 24 года, Javi 20: Eva es ___ que Javi.",
@@ -296,14 +304,14 @@
             ]
           }
         ]
-      }
+      },
+      "presentation": "examples"
     },
     {
-      "title": "E. Окончание зависит от того, кого описываем",
+      "title": "Согласование в сравнении",
       "paragraphs": [
-        "Если сравниваем Ana с Luis, говорим **`Ana es más alta que Luis`**. Описываем Ану, поэтому выбираем `alta`. Если начинаем с Луиса — `Luis es más alto que Ana`.",
-        "С несколькими предметами меняем и число: **`Estas camisas son más caras`** — эти рубашки дороже. Сами слова **`más` и `menos` не меняются**.",
-        "У `mejor`, `peor`, `mayor` и `menor` нет отдельных окончаний для женщины. Но для нескольких людей или вещей добавляем **`-es`**: `mejores`, `peores`, `mayores`, `menores`."
+        "Прилагательное согласуется с тем, **кого описываем**: `Ana es más alta que Luis`; `Estas camisas son más caras` — эти рубашки дороже. **`Más` и `menos` не меняются.**",
+        "У `mejor`, `peor`, `mayor`, `menor` нет отдельных женских форм. Во множественном числе: **`mejores`, `peores`, `mayores`, `menores`**."
       ],
       "wordGroups": [
         {
@@ -344,7 +352,7 @@
       "check": {
         "id": "check-e",
         "title": "Мини-проверка",
-        "instruction": "Выбери форму, которая подходит к тому, кого или что описываем.",
+        "instruction": "",
         "questions": [
           {
             "prompt": "Marta es menos ___ que Raúl. (trabajador)",
@@ -383,14 +391,14 @@
             ]
           }
         ]
-      }
+      },
+      "presentation": "examples"
     },
     {
-      "title": "F. Выше меня — más alto que yo",
+      "title": "Чем я, чем ты: que yo, que tú",
       "paragraphs": [
-        "По-русски говорим «выше **меня**», а по-испански после `que` в таком сравнении используем **`yo`**: `Eres más alto que yo` — ты выше меня.",
-        "С другими людьми так же: **`que tú`, `que él`, `que ella`, `que nosotros`, `que vosotros`, `que ellos`**. Например: `Soy más fuerte que tú` — я сильнее тебя.",
-        "Если говорим от имени нескольких женщин, используем **`nosotras`**, а если обращаемся к нескольким женщинам — **`vosotras`**: `Sois más altas que nosotras` — вы выше нас. Для мужчин или смешанной группы — `nosotros` и `vosotros`."
+        "После **`que` в сравнении нужны `yo`, `tú`, `él`, `ella`, `nosotros`, `vosotros`, `ellos`**: `Eres más alto que yo` — ты выше меня, а не `que mí`.",
+        "Для группы женщин: `nosotras`, `vosotras`, `ellas`. **`Sois más altas que nosotras`** — вы выше нас."
       ],
       "wordGroups": [
         {
@@ -418,7 +426,7 @@
       "check": {
         "id": "check-f",
         "title": "Мини-проверка",
-        "instruction": "Выбери местоимение для сравнения.",
+        "instruction": "",
         "questions": [
           {
             "prompt": "Ты сильнее меня: Eres más fuerte que ___.",
@@ -457,13 +465,14 @@
             ]
           }
         ]
-      }
+      },
+      "presentation": "examples"
     },
     {
-      "title": "G. Когда понятно, с чем сравниваем",
+      "title": "Сравнение без повторения предмета",
       "paragraphs": [
-        "Не всегда нужно повторять вторую часть с `que`. Например: **`Este piso es pequeño. Quiero uno más grande`** — эта квартира маленькая. Я хочу побольше. Уже понятно, что сравниваем с этой квартирой.",
-        "Если хочешь меньше того же качества, выбирай **`menos`**: `Este postre está muy dulce. Prefiero uno menos dulce` — этот десерт слишком сладкий. Я предпочитаю менее сладкий."
+        "Если понятно, с чем сравниваем, **часть с `que` можно опустить**: `Este piso es pequeño. Quiero uno más grande` — эта квартира маленькая. Я хочу побольше.",
+        "Для меньшей степени качества используем `menos`: **`Prefiero uno menos dulce`** — предпочитаю менее сладкий."
       ],
       "wordGroups": [
         {
@@ -491,7 +500,7 @@
       "check": {
         "id": "check-g",
         "title": "Мини-проверка",
-        "instruction": "Выбери вариант, который подходит к ситуации.",
+        "instruction": "",
         "questions": [
           {
             "prompt": "Дом слишком дорогой. Хочу подешевле: Quiero una casa ___.",
@@ -528,7 +537,8 @@
             ]
           }
         ]
-      }
+      },
+      "presentation": "examples"
     }
   ],
   "summary": {
@@ -604,16 +614,15 @@
     {
       "id": "15.1",
       "title": "15.1 · Допиши сравнение",
-      "instruction": "Допиши вопрос по подсказке. Если нужно, измени окончание слова.",
-      "inputLabel": "Ввод фразы",
+      "instruction": "Дополни сравнение по подсказке.",
+      "inputLabel": "Короткий ввод",
       "phraseInput": true,
       "answerPlaceholder": "Пропущенная часть фразы",
       "preview": {
         "source": "¿Qué casa es ___?",
         "targetPrefix": "",
         "answer": "más grande",
-        "translation": "Какой дом больше?",
-        "tip": "Впиши только пропущенную часть фразы."
+        "translation": "Какой дом больше?"
       },
       "questions": [
         {
@@ -686,16 +695,15 @@
     {
       "id": "15.2",
       "title": "15.2 · Сравни по данным",
-      "instruction": "Посмотри на пару карточек и допиши сравнение вместе с que и второй стороной.",
-      "inputLabel": "Ввод фразы",
+      "instruction": "Сравни объекты по указанным данным.",
+      "inputLabel": "Сборка фразы",
       "phraseInput": true,
       "answerPlaceholder": "Пропущенная часть фразы",
       "preview": {
         "source": "Luis es ___ .",
         "targetPrefix": "",
         "answer": "más alto que su hermano",
-        "translation": "Луис выше своего брата.",
-        "tip": "Впиши только пропущенную часть фразы."
+        "translation": "Луис выше своего брата."
       },
       "questions": [
         {
@@ -717,7 +725,17 @@
                 "1,82 m"
               ]
             ]
-          }
+          },
+          "interaction": "build",
+          "tiles": [
+            "como",
+            "hermano",
+            "que",
+            "más",
+            "alto",
+            "su",
+            "menos"
+          ]
         },
         {
           "prompt": "Uruguay es ___.",
@@ -739,7 +757,18 @@
                 "2 766 890 km²"
               ]
             ]
-          }
+          },
+          "interaction": "build",
+          "tiles": [
+            "pequeña",
+            "menos",
+            "que",
+            "más",
+            "pequeño",
+            "Argentina",
+            "como",
+            "pequeños"
+          ]
         },
         {
           "prompt": "Puerto Azul está ___.",
@@ -760,7 +789,19 @@
                 "13 millones"
               ]
             ]
-          }
+          },
+          "interaction": "build",
+          "tiles": [
+            "poblados",
+            "como",
+            "Claro",
+            "que",
+            "menos",
+            "poblado",
+            "Río",
+            "más",
+            "poblada"
+          ]
         },
         {
           "prompt": "Luisa es ___.",
@@ -783,7 +824,16 @@
                 "25 años"
               ]
             ]
-          }
+          },
+          "interaction": "build",
+          "tiles": [
+            "más",
+            "Clara",
+            "menor",
+            "que",
+            "como",
+            "menos"
+          ]
         },
         {
           "prompt": "Las fresas son ___.",
@@ -804,7 +854,19 @@
                 "1,75 €"
               ]
             ]
-          }
+          },
+          "interaction": "build",
+          "tiles": [
+            "el",
+            "como",
+            "plátanos",
+            "que",
+            "más",
+            "caras",
+            "los",
+            "menos",
+            "las"
+          ]
         },
         {
           "prompt": "El río Verde es ___.",
@@ -825,7 +887,20 @@
                 "378 km"
               ]
             ]
-          }
+          },
+          "interaction": "build",
+          "tiles": [
+            "la",
+            "menos",
+            "río",
+            "que",
+            "más",
+            "largo",
+            "el",
+            "Azul",
+            "como",
+            "los"
+          ]
         },
         {
           "prompt": "Esta televisión es ___.",
@@ -846,7 +921,19 @@
                 "60 €"
               ]
             ]
-          }
+          },
+          "interaction": "build",
+          "tiles": [
+            "las",
+            "como",
+            "radio",
+            "que",
+            "más",
+            "cara",
+            "la",
+            "menos",
+            "el"
+          ]
         },
         {
           "prompt": "La capacidad de los discos Suiko es ___.",
@@ -870,7 +957,21 @@
                 "80 GB"
               ]
             ]
-          }
+          },
+          "interaction": "build",
+          "tiles": [
+            "más",
+            "el",
+            "Misima",
+            "los",
+            "la",
+            "menor",
+            "que",
+            "de",
+            "discos",
+            "como",
+            "las"
+          ]
         },
         {
           "prompt": "El canguro es ___.",
@@ -891,23 +992,34 @@
                 "50 km/h"
               ]
             ]
-          }
+          },
+          "interaction": "build",
+          "tiles": [
+            "los",
+            "como",
+            "león",
+            "que",
+            "menos",
+            "rápido",
+            "el",
+            "más",
+            "la"
+          ]
         }
       ]
     },
     {
       "id": "15.3",
       "title": "15.3 · Кто с кем сравнивается?",
-      "instruction": "Прочитай, кто говорит и кому. Допиши сравнение с que и подходящим местоимением.",
-      "inputLabel": "Ввод фразы",
+      "instruction": "Сравни говорящего и собеседника.",
+      "inputLabel": "Сборка фразы · Выбор ответа",
       "phraseInput": true,
       "answerPlaceholder": "Пропущенная часть фразы",
       "preview": {
         "source": "Soy ___.",
         "targetPrefix": "",
         "answer": "más alto que tú",
-        "translation": "Soy más alto que tú — я выше тебя.",
-        "tip": "Впиши только пропущенную часть фразы."
+        "translation": "Soy más alto que tú — я выше тебя."
       },
       "questions": [
         {
@@ -929,7 +1041,17 @@
                 "слабее"
               ]
             ]
-          }
+          },
+          "interaction": "build",
+          "tiles": [
+            "ti",
+            "menos",
+            "que",
+            "más",
+            "fuerte",
+            "tú",
+            "como"
+          ]
         },
         {
           "prompt": "Soy ___.",
@@ -950,7 +1072,13 @@
                 "ниже"
               ]
             ]
-          }
+          },
+          "options": [
+            "menos alto que vosotras",
+            "más alto como vosotras",
+            "más alto que vosotras"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Sois ___.",
@@ -973,7 +1101,16 @@
                 "старше"
               ]
             ]
-          }
+          },
+          "interaction": "build",
+          "tiles": [
+            "más",
+            "nosotras",
+            "menores",
+            "que",
+            "como",
+            "menos"
+          ]
         },
         {
           "prompt": "Eres ___.",
@@ -994,23 +1131,33 @@
                 "медленнее"
               ]
             ]
-          }
+          },
+          "interaction": "build",
+          "tiles": [
+            "mí",
+            "menos",
+            "que",
+            "más",
+            "rápido",
+            "yo",
+            "como",
+            "rápida"
+          ]
         }
       ]
     },
     {
       "id": "15.4",
       "title": "15.4 · Хочу другой вариант",
-      "instruction": "Допиши пожелание по смыслу ситуации. Слово для сравнения указано в подсказке.",
-      "inputLabel": "Ввод фразы",
+      "instruction": "Дополни пожелание подходящей формой.",
+      "inputLabel": "Короткий ввод · Выбор ответа",
       "phraseInput": true,
       "answerPlaceholder": "Пропущенная часть фразы",
       "preview": {
         "source": "Esta bolsa es muy pesada. Quiero una ___.",
         "targetPrefix": "",
         "answer": "menos pesada",
-        "translation": "Эта сумка очень тяжёлая. Хочу менее тяжёлую.",
-        "tip": "Впиши только пропущенную часть фразы."
+        "translation": "Эта сумка очень тяжёлая. Хочу менее тяжёлую."
       },
       "questions": [
         {
@@ -1027,7 +1174,12 @@
             "más barata"
           ],
           "explain": "Barata — дешёвая. Más barata — дешевле. Casa — женского рода.",
-          "context": "barato · дом слишком дорогой"
+          "context": "barato · дом слишком дорогой",
+          "options": [
+            "más barata",
+            "menos barata"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Estos pantalones son muy grandes. Necesito unos ___.",
@@ -1052,7 +1204,12 @@
             "mejor"
           ],
           "explain": "Хочется работу получше: un trabajo mejor.",
-          "context": "bueno · работа плохая"
+          "context": "bueno · работа плохая",
+          "options": [
+            "mejor",
+            "peor"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Este postre está muy dulce. Prefiero los postres ___.",
@@ -1076,9 +1233,28 @@
             "más larga"
           ],
           "explain": "Нужна юбка подлиннее: más larga. Falda — женского рода.",
-          "context": "largo · юбка слишком короткая"
+          "context": "largo · юбка слишком короткая",
+          "options": [
+            "más larga",
+            "menos larga"
+          ],
+          "interaction": "gap-choice"
         }
       ]
     }
+  ],
+  "learningOrder": [
+    "section:0",
+    "section:1",
+    "section:2",
+    "section:3",
+    "section:4",
+    "exercise:15.1",
+    "exercise:15.2",
+    "section:5",
+    "exercise:15.3",
+    "section:6",
+    "exercise:15.4",
+    "summary"
   ]
 }

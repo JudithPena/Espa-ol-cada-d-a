@@ -6,10 +6,10 @@
   "level": "A1",
   "sections": [
     {
-      "title": "A. Сначала un, потом el",
+      "title": "Первое и повторное упоминание",
       "paragraphs": [
-        "Представь, что рассказываешь о питомцах: **`Tengo un perro y un gato` — у меня есть собака и кот**. Собеседник слышит о них впервые, поэтому используем `un`.",
-        "Теперь можно продолжить: **`El perro duerme en el jardín` — собака спит в саду**. Уже понятно, какая собака: та, о которой только что рассказали. Поэтому `un perro` сменилось на `el perro`."
+        "Впервые называя предмет, часто используем **`un / una`**: `Tengo un perro y un gato` — у меня есть собака и кот.",
+        "При повторном упоминании — **`el / la`**: `El perro duerme en el jardín` — собака спит в саду. Собеседник уже знает, о какой собаке речь."
       ],
       "wordGroups": [
         {
@@ -83,13 +83,14 @@
             "Эта собака спит в саду. Мы уже знаем, какая."
           ]
         ]
-      }
+      },
+      "presentation": "examples"
     },
     {
-      "title": "B. Конкретная вещь может быть понятна без первого упоминания",
+      "title": "Предмет понятен из ситуации",
       "paragraphs": [
-        "Не обязательно сначала говорить `un`, а потом `el`. Если из ситуации и так понятно, что имеется в виду, **сразу используем определённый артикль**: `Estoy en la cocina` — я на кухне нашего дома.",
-        "Сравни: `Trabajo en un hotel` — работаю в одном отеле, пока не говорю в каком. `El hotel de Ana está en el centro` — отель Аны в центре. Во второй фразе **уточнение `de Ana` показывает, какой это отель**."
+        "Если предмет понятен из ситуации, **определённый артикль возможен сразу**: `Estoy en la cocina` — я на кухне нашего дома.",
+        "Сравни: **`Trabajo en un hotel`** — работаю в одном отеле; **`El hotel de Ana está en el centro`** — отель Аны в центре. Уточнение `de Ana` показывает, какой отель имеется в виду."
       ],
       "wordGroups": [
         {
@@ -159,13 +160,14 @@
             "Луис на кухне."
           ]
         ]
-      }
+      },
+      "presentation": "examples"
     },
     {
-      "title": "C. Несколько предметов или весь вид?",
+      "title": "Отдельные предметы и обобщение",
       "paragraphs": [
-        "**`Me han regalado unos bombones` — мне подарили несколько конфет.** Здесь речь об отдельных конфетах, а не обо всех конфетах на свете.",
-        "А если рассказываешь, что любишь вообще, обычно нужен **`el`, `la`, `los` или `las`**: `Me gusta el chocolate` — люблю шоколад, `Me gustan las peras` — люблю груши. `Unos` и `unas` означали бы отдельные предметы."
+        "**`Unos / unas` обозначают отдельные предметы:** `Me han regalado unos bombones` — мне подарили несколько конфет.",
+        "Для обобщения обычно нужны **`el`, `la`, `los`, `las`**: `Me gusta el chocolate` — люблю шоколад; `Me gustan las peras` — люблю груши вообще."
       ],
       "wordGroups": [
         {
@@ -240,7 +242,8 @@
             "Мне нравится шоколад вообще."
           ]
         ]
-      }
+      },
+      "presentation": "examples"
     }
   ],
   "exercises": [
@@ -261,7 +264,8 @@
             "una"
           ],
           "sourceRef": "7.1.1",
-          "context": "История «Фильм»: дополни фразу."
+          "context": "История «Фильм»: дополни фразу.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Es ___ comedia.",
@@ -280,7 +284,9 @@
             "",
             "He visto una película preciosa.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "___ actores son fabulosos.",
@@ -299,7 +305,9 @@
             "",
             "He visto una película preciosa. Es una comedia.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "___ película es sobre un médico.",
@@ -316,9 +324,11 @@
           "context": "История «Фильм»: дополни фразу.",
           "sourceParts": [
             "",
-            "He visto una película preciosa. Es una comedia. los actores son fabulosos.",
+            "Es una comedia. Los actores son fabulosos.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "La película es sobre ___ médico.",
@@ -335,9 +345,11 @@
           "context": "История «Фильм»: дополни фразу.",
           "sourceParts": [
             "",
-            "He visto una película preciosa. Es una comedia. los actores son fabulosos. la película es sobre un médico.",
+            "Es una comedia. Los actores son fabulosos.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "El médico se enamora de ___ paciente.",
@@ -354,9 +366,11 @@
           "context": "История «Фильм»: дополни фразу.",
           "sourceParts": [
             "",
-            "Es una comedia. los actores son fabulosos. la película es sobre un médico. La película es sobre un médico.",
+            "Los actores son fabulosos. La película es sobre un médico.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "___ médico no sabe cómo decírselo a la paciente.",
@@ -373,9 +387,11 @@
           "context": "История «Фильм»: дополни фразу.",
           "sourceParts": [
             "",
-            "los actores son fabulosos. la película es sobre un médico. La película es sobre un médico. El médico se enamora de una paciente.",
+            "La película es sobre un médico. El médico se enamora de una paciente.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "El médico no sabe cómo decírselo a ___ paciente.",
@@ -392,9 +408,11 @@
           "context": "История «Фильм»: дополни фразу.",
           "sourceParts": [
             "",
-            "la película es sobre un médico. La película es sobre un médico. El médico se enamora de una paciente. el médico no sabe cómo decírselo a la paciente.",
+            "La película es sobre un médico. El médico se enamora de una paciente.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "La paciente tiene ___ hijo.",
@@ -411,9 +429,11 @@
           "context": "История «Фильм»: дополни фразу.",
           "sourceParts": [
             "",
-            "La película es sobre un médico. El médico se enamora de una paciente. el médico no sabe cómo decírselo a la paciente. El médico no sabe cómo decírselo a la paciente.",
+            "El médico se enamora de una paciente. El médico no sabe cómo decírselo a la paciente.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "La paciente tiene un hijo y ___ médico tiene una hija.",
@@ -430,9 +450,11 @@
           "context": "История «Фильм»: дополни фразу.",
           "sourceParts": [
             "",
-            "El médico se enamora de una paciente. el médico no sabe cómo decírselo a la paciente. El médico no sabe cómo decírselo a la paciente. La paciente tiene un hijo.",
+            "El médico no sabe cómo decírselo a la paciente. La paciente tiene un hijo.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "El médico tiene ___ hija.",
@@ -449,9 +471,11 @@
           "context": "История «Фильм»: дополни фразу.",
           "sourceParts": [
             "",
-            "el médico no sabe cómo decírselo a la paciente. El médico no sabe cómo decírselo a la paciente. La paciente tiene un hijo. La paciente tiene un hijo y el médico tiene una hija.",
+            "El médico no sabe cómo decírselo a la paciente. La paciente tiene un hijo.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "___ hijo de la paciente y la hija del médico se conocen.",
@@ -468,9 +492,11 @@
           "context": "История «Фильм»: дополни фразу.",
           "sourceParts": [
             "",
-            "El médico no sabe cómo decírselo a la paciente. La paciente tiene un hijo. La paciente tiene un hijo y el médico tiene una hija. El médico tiene una hija.",
+            "La paciente tiene un hijo y el médico tiene una hija. El médico tiene una hija.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "El hijo de ___ paciente y la hija del médico se conocen.",
@@ -487,9 +513,11 @@
           "context": "История «Фильм»: дополни фразу.",
           "sourceParts": [
             "",
-            "La paciente tiene un hijo. La paciente tiene un hijo y el médico tiene una hija. El médico tiene una hija. el hijo de la paciente y la hija del médico se conocen.",
+            "La paciente tiene un hijo y el médico tiene una hija. El médico tiene una hija.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "El hijo de la paciente y ___ hija del médico se conocen.",
@@ -506,9 +534,11 @@
           "context": "История «Фильм»: дополни фразу.",
           "sourceParts": [
             "",
-            "La paciente tiene un hijo y el médico tiene una hija. El médico tiene una hija. el hijo de la paciente y la hija del médico se conocen",
+            "La paciente tiene un hijo y el médico tiene una hija. El médico tiene una hija.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "El hijo de la paciente y la hija ___ médico se conocen.",
@@ -528,9 +558,11 @@
           "context": "История «Фильм»: дополни фразу.",
           "sourceParts": [
             "",
-            "La paciente tiene un hijo y el médico tiene una hija. El médico tiene una hija. el hijo de la paciente y la hija del médico se conocen",
+            "La paciente tiene un hijo y el médico tiene una hija. El médico tiene una hija.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "___ día dan una fiesta.",
@@ -547,9 +579,11 @@
           "context": "История «Фильм»: дополни фразу.",
           "sourceParts": [
             "",
-            "La paciente tiene un hijo y el médico tiene una hija. El médico tiene una hija. el hijo de la paciente y la hija del médico se conocen. El hijo de la paciente y la hija del médico se conocen.",
+            "El médico tiene una hija. El hijo de la paciente y la hija del médico se conocen.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "Un día dan ___ fiesta.",
@@ -566,9 +600,11 @@
           "context": "История «Фильм»: дополни фразу.",
           "sourceParts": [
             "",
-            "El médico tiene una hija. el hijo de la paciente y la hija del médico se conocen. El hijo de la paciente y la hija del médico se conocen. un día dan una fiesta.",
+            "El médico tiene una hija. El hijo de la paciente y la hija del médico se conocen.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "Invitan a sus padres a ___ fiesta.",
@@ -585,9 +621,11 @@
           "context": "История «Фильм»: дополни фразу.",
           "sourceParts": [
             "",
-            "el hijo de la paciente y la hija del médico se conocen. El hijo de la paciente y la hija del médico se conocen. un día dan una fiesta. Un día dan una fiesta.",
+            "El hijo de la paciente y la hija del médico se conocen. Un día dan una fiesta.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "___ película acaba con una boda.",
@@ -604,9 +642,11 @@
           "context": "История «Фильм»: дополни фразу.",
           "sourceParts": [
             "",
-            "El hijo de la paciente y la hija del médico se conocen. un día dan una fiesta. Un día dan una fiesta. Invitan a sus padres a la fiesta.",
+            "Un día dan una fiesta. Invitan a sus padres a la fiesta.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "La película acaba con ___ boda de los padres.",
@@ -623,9 +663,11 @@
           "context": "История «Фильм»: дополни фразу.",
           "sourceParts": [
             "",
-            "un día dan una fiesta. Un día dan una fiesta. Invitan a sus padres a la fiesta. la película acaba con una boda.",
+            "Invitan a sus padres a la fiesta. La película acaba con una boda.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "La película acaba con la boda de ___ padres.",
@@ -642,9 +684,11 @@
           "context": "История «Фильм»: дополни фразу.",
           "sourceParts": [
             "",
-            "Un día dan una fiesta. Invitan a sus padres a la fiesta. la película acaba con una boda",
+            "Invitan a sus padres a la fiesta. La película acaba con una boda.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "Es ___ cuadro precioso.",
@@ -658,7 +702,8 @@
             "un"
           ],
           "sourceRef": "7.1.22",
-          "context": "История «Картина»: дополни фразу."
+          "context": "История «Картина»: дополни фразу.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Se ve a ___ hombre y a una mujer en un jardín.",
@@ -677,7 +722,9 @@
             "",
             "Es un cuadro precioso.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "Se ve a un hombre y a ___ mujer en un jardín.",
@@ -694,9 +741,11 @@
           "context": "История «Картина»: дополни фразу.",
           "sourceParts": [
             "",
-            "Es un cuadro precioso",
+            "Es un cuadro precioso.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "Se ve a un hombre y a una mujer en ___ jardín.",
@@ -713,9 +762,11 @@
           "context": "История «Картина»: дополни фразу.",
           "sourceParts": [
             "",
-            "Es un cuadro precioso",
+            "Es un cuadro precioso.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "___ hombre está leyendo un libro.",
@@ -734,7 +785,9 @@
             "",
             "Es un cuadro precioso. Se ve a un hombre y a una mujer en un jardín.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "El hombre está leyendo ___ libro.",
@@ -751,9 +804,11 @@
           "context": "История «Картина»: дополни фразу.",
           "sourceParts": [
             "",
-            "Es un cuadro precioso. Se ve a un hombre y a una mujer en un jardín. el hombre está leyendo un libro.",
+            "Es un cuadro precioso. Se ve a un hombre y a una mujer en un jardín.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "___ mujer está tumbada debajo de un árbol.",
@@ -770,9 +825,11 @@
           "context": "История «Картина»: дополни фразу.",
           "sourceParts": [
             "",
-            "Es un cuadro precioso. Se ve a un hombre y a una mujer en un jardín. el hombre está leyendo un libro. El hombre está leyendo un libro.",
+            "Se ve a un hombre y a una mujer en un jardín. El hombre está leyendo un libro.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "La mujer está tumbada debajo de ___ árbol.",
@@ -789,9 +846,11 @@
           "context": "История «Картина»: дополни фразу.",
           "sourceParts": [
             "",
-            "Se ve a un hombre y a una mujer en un jardín. el hombre está leyendo un libro. El hombre está leyendo un libro. la mujer está tumbada debajo de un árbol.",
+            "Se ve a un hombre y a una mujer en un jardín. El hombre está leyendo un libro.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "En ___ ramas del árbol hay unos pájaros.",
@@ -808,9 +867,11 @@
           "context": "История «Картина»: дополни фразу.",
           "sourceParts": [
             "",
-            "el hombre está leyendo un libro. El hombre está leyendo un libro. la mujer está tumbada debajo de un árbol. La mujer está tumbada debajo de un árbol.",
+            "El hombre está leyendo un libro. La mujer está tumbada debajo de un árbol.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "En las ramas ___ árbol hay unos pájaros.",
@@ -830,9 +891,11 @@
           "context": "История «Картина»: дополни фразу.",
           "sourceParts": [
             "",
-            "El hombre está leyendo un libro. la mujer está tumbada debajo de un árbol. La mujer está tumbada debajo de un árbol",
+            "El hombre está leyendo un libro. La mujer está tumbada debajo de un árbol.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "En las ramas del árbol hay ___ pájaros de muchos colores.",
@@ -849,9 +912,11 @@
           "context": "История «Картина»: дополни фразу.",
           "sourceParts": [
             "",
-            "El hombre está leyendo un libro. la mujer está tumbada debajo de un árbol. La mujer está tumbada debajo de un árbol. En las ramas del árbol hay unos pájaros.",
+            "La mujer está tumbada debajo de un árbol. En las ramas del árbol hay unos pájaros.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "___ pájaros tienen las alas extendidas.",
@@ -868,9 +933,11 @@
           "context": "История «Картина»: дополни фразу.",
           "sourceParts": [
             "",
-            "la mujer está tumbada debajo de un árbol. La mujer está tumbada debajo de un árbol. En las ramas del árbol hay unos pájaros. En las ramas del árbol hay unos pájaros de muchos colores.",
+            "En las ramas del árbol hay unos pájaros. En las ramas del árbol hay unos pájaros de muchos colores.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "Los pájaros tienen ___ alas extendidas.",
@@ -887,9 +954,11 @@
           "context": "История «Картина»: дополни фразу.",
           "sourceParts": [
             "",
-            "La mujer está tumbada debajo de un árbol. En las ramas del árbol hay unos pájaros. En las ramas del árbol hay unos pájaros de muchos colores. los pájaros tienen las alas extendidas.",
+            "En las ramas del árbol hay unos pájaros. En las ramas del árbol hay unos pájaros de muchos colores.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "Mis hijos tienen ___ perro y un gato.",
@@ -903,7 +972,8 @@
             "un"
           ],
           "sourceRef": "7.1.35",
-          "context": "История «Питомцы»: дополни фразу."
+          "context": "История «Питомцы»: дополни фразу.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Mis hijos tienen un perro y ___ gato.",
@@ -918,11 +988,7 @@
           ],
           "sourceRef": "7.1.36",
           "context": "История «Питомцы»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "Продолжаем ту же историю.",
-            ""
-          ]
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ perro duerme en el jardín.",
@@ -941,7 +1007,9 @@
             "",
             "Mis hijos tienen un perro y un gato.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "El perro duerme en ___ jardín.",
@@ -958,9 +1026,11 @@
           "context": "История «Питомцы»: дополни фразу.",
           "sourceParts": [
             "",
-            "Mis hijos tienen un perro y un gato. el perro duerme en el jardín.",
+            "Mis hijos tienen un perro y un gato.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         },
         {
           "prompt": "___ gato duerme dentro de casa.",
@@ -977,9 +1047,11 @@
           "context": "История «Питомцы»: дополни фразу.",
           "sourceParts": [
             "",
-            "Mis hijos tienen un perro y un gato. el perro duerme en el jardín. El perro duerme en el jardín.",
+            "Mis hijos tienen un perro y un gato. El perro duerme en el jardín.",
             ""
-          ]
+          ],
+          "interaction": "gap-choice",
+          "sourceLabel": "Предыдущие реплики"
         }
       ],
       "preview": {
@@ -992,7 +1064,8 @@
         "translation": "У меня есть собака. Эта собака чёрная.",
         "targetPrefix": "",
         "tip": ""
-      }
+      },
+      "inputLabel": "Выбор ответа"
     },
     {
       "id": "7.2",
@@ -1011,7 +1084,8 @@
             "una"
           ],
           "sourceRef": "7.2.1",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "He visto ___ película de acción.",
@@ -1025,7 +1099,8 @@
             "una"
           ],
           "sourceRef": "7.2.2",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "He visto una película de acción. ___ personaje principal era un detective.",
@@ -1039,7 +1114,8 @@
             "el"
           ],
           "sourceRef": "7.2.2",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "El personaje principal era ___ detective.",
@@ -1053,7 +1129,8 @@
             "un"
           ],
           "sourceRef": "7.2.2",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "¿Has visto ___ nueva película de este director?",
@@ -1067,7 +1144,8 @@
             "la"
           ],
           "sourceRef": "7.2.3",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Soy enfermero y trabajo en ___ hospital.",
@@ -1081,7 +1159,8 @@
             "un"
           ],
           "sourceRef": "7.2.4",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Estoy leyendo ___ libro sobre un rey.",
@@ -1095,7 +1174,8 @@
             "un"
           ],
           "sourceRef": "7.2.5",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "El libro cuenta la vida de ___ rey de un país imaginario.",
@@ -1109,7 +1189,8 @@
             "el"
           ],
           "sourceRef": "7.2.5",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "¿Qué es eso? ¿Es ___ televisión portátil?",
@@ -1123,7 +1204,8 @@
             "una"
           ],
           "sourceRef": "7.2.6",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "¿Quién es ___ primer ministro de ese país?",
@@ -1137,7 +1219,8 @@
             "el"
           ],
           "sourceRef": "7.2.7",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Carmen trabaja en ___ hotel. Todavía no te he dicho en cuál.",
@@ -1151,7 +1234,8 @@
             "un"
           ],
           "sourceRef": "7.2.8",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ novia de Arturo se llama Ana.",
@@ -1165,7 +1249,8 @@
             "la"
           ],
           "sourceRef": "7.2.9",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ Sol es una estrella.",
@@ -1179,7 +1264,8 @@
             "el"
           ],
           "sourceRef": "7.2.10",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "El Sol es ___ estrella.",
@@ -1193,7 +1279,8 @@
             "una"
           ],
           "sourceRef": "7.2.10",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Paco es ___ nombre español.",
@@ -1207,7 +1294,8 @@
             "un"
           ],
           "sourceRef": "7.2.11",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "¿Dónde está Carlos? Está en ___ cocina de nuestra casa.",
@@ -1221,7 +1309,8 @@
             "la"
           ],
           "sourceRef": "7.2.12",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Vivo en ___ centro de Lima.",
@@ -1235,7 +1324,8 @@
             "el"
           ],
           "sourceRef": "7.2.13",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ moto de Pedro es azul.",
@@ -1249,7 +1339,8 @@
             "la"
           ],
           "sourceRef": "7.2.14",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ Luna gira alrededor de la Tierra.",
@@ -1263,7 +1354,8 @@
             "la"
           ],
           "sourceRef": "7.2.15",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "La Luna gira alrededor de ___ Tierra.",
@@ -1277,7 +1369,8 @@
             "la"
           ],
           "sourceRef": "7.2.15",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         }
       ],
       "preview": {
@@ -1290,7 +1383,8 @@
         "translation": "Мотоцикл Педро здесь. Он синий.",
         "targetPrefix": "",
         "tip": ""
-      }
+      },
+      "inputLabel": "Выбор ответа"
     },
     {
       "id": "7.3",
@@ -1310,7 +1404,8 @@
           ],
           "translation": "Мне подарили несколько конфет.",
           "sourceRef": "7.3.1",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "No me gusta ___ chocolate.",
@@ -1325,7 +1420,8 @@
           ],
           "translation": "Мне не нравится шоколад вообще.",
           "sourceRef": "7.3.2",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ piña, por favor.",
@@ -1340,7 +1436,8 @@
           ],
           "translation": "Один ананас, пожалуйста.",
           "sourceRef": "7.3.3",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ piña es mi fruta preferida.",
@@ -1355,7 +1452,8 @@
           ],
           "translation": "Ананас — мой любимый фрукт.",
           "sourceRef": "7.3.4",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Me encantan ___ cuadros de Dalí.",
@@ -1370,7 +1468,8 @@
           ],
           "translation": "Мне очень нравятся картины Дали.",
           "sourceRef": "7.3.5",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "¿Te gustan ___ peras?",
@@ -1385,7 +1484,8 @@
           ],
           "translation": "Тебе нравятся груши?",
           "sourceRef": "7.3.6",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Me he comprado ___ vaqueros.",
@@ -1400,7 +1500,8 @@
           ],
           "translation": "Я купил себе джинсы.",
           "sourceRef": "7.3.7",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Te he comprado ___ margaritas.",
@@ -1415,7 +1516,8 @@
           ],
           "translation": "Я купил тебе несколько ромашек.",
           "sourceRef": "7.3.8",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Quiero comprarme ___ pantalones cortos.",
@@ -1430,7 +1532,8 @@
           ],
           "translation": "Хочу купить себе шорты.",
           "sourceRef": "7.3.9",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Me encanta ___ agua.",
@@ -1445,7 +1548,8 @@
           ],
           "translation": "Я очень люблю воду.",
           "sourceRef": "7.3.10",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         }
       ],
       "preview": {
@@ -1458,7 +1562,8 @@
         "translation": "Мне нравится шоколад вообще.",
         "targetPrefix": "",
         "tip": ""
-      }
+      },
+      "inputLabel": "Выбор ответа"
     }
   ],
   "learningOrder": [

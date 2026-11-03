@@ -3,6 +3,7 @@
 import json
 import base64
 import hashlib
+from collections import Counter
 from pathlib import Path
 
 
@@ -60,6 +61,12 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
                     raise ValueError(f"{path}: answer and explanation required")
                 if q.get("options") and not set(q["answers"]) <= set(q["options"]):
                     raise ValueError(f"{path}: correct answer missing from options")
+                if "tiles" in q:
+                    tiles = q["tiles"]
+                    if (q.get("interaction") != "build" or q.get("options") or not isinstance(tiles, list)
+                            or not all(isinstance(t, str) and t.strip() for t in tiles)
+                            or Counter(q["answers"][0].split()) - Counter(tiles)):
+                        raise ValueError(f"{path}: tiles must allow building the complete answer")
                 if "clock" in q:
                     clock = q["clock"]
                     if not isinstance(clock, dict) or any(type(clock.get(k)) is not int or not 0 <= clock[k] <= limit for k, limit in [("hour", 23), ("minute", 59)]):

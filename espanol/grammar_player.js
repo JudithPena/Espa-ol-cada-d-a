@@ -2,6 +2,11 @@
 let G = null;
 const G_SESSION_KEY = "espanol-cada-dia.grammar-session.v1";
 const gUnit = () => (COURSE.grammar || []).find(u => u.id === G?.unit);
+function gSyncViewport() {
+  const player=document.querySelector('.gplayer');
+  if(player?.style && window.visualViewport)player.style.height=`${window.visualViewport.height}px`;
+}
+window.visualViewport?.addEventListener('resize',gSyncViewport);
 const gGroups = u => [...u.sections.map(s => s.check).filter(Boolean), ...u.exercises];
 const gRoutes = u => u.learningOrder || [...u.sections.map((_, i) => `section:${i}`), "summary", ...u.exercises.map(g => `exercise:${g.id}`)];
 function gRouteDone(unit, route) {
@@ -42,10 +47,13 @@ function gStart(unitId, route = "all", resume = false) {
   const unit = COURSE.grammar.find(u => u.id === unitId), saved = resume && gSaved();
   if (!unit || !gRouteOpen(unit, route)) return;
   const steps = gSteps(unit, route);
-  if (saved?.unit === unit.id && Array.isArray(saved.steps) && saved.steps.length && saved.at >= 0 && saved.at < saved.steps.length && gRouteOpen(unit,gStepRoute(unit,saved.steps[saved.at]))) {
-    const reordered=saved.retry ? saved.steps : gSteps(unit,saved.route);
-    const old=saved.steps[saved.at], at=reordered.findIndex(s=>s.type===old.type && s.section===old.section && s.group===old.group && s.qi===old.qi);
-    G={...saved,steps:reordered,at:Math.max(0,at)};
+  if (saved?.unit === unit.id && Array.isArray(saved.steps) && saved.steps.length && saved.at >= 0 && saved.at < saved.steps.length) {
+    const restoredRoute=gRouteOpen(unit,saved.route)?saved.route:'all';
+    const reordered=saved.retry && restoredRoute===saved.route ? saved.steps : gSteps(unit,restoredRoute);
+    const old=saved.steps[saved.at];
+    let at=reordered.findIndex(s=>s.type===old.type && s.section===old.section && s.group===old.group && s.qi===old.qi);
+    if(at<0 || !gRouteOpen(unit,gStepRoute(unit,reordered[at]))) at=reordered.findIndex(s=>gRouteOpen(unit,gStepRoute(unit,s)) && !gRouteDone(unit,gStepRoute(unit,s)));
+    G={...saved,route:restoredRoute,steps:reordered,at:Math.max(0,at),responses:saved.responses || {}};
   }
   else if (steps.length) G = {unit:unit.id, route, steps, at:0, responses:{}, ended:false};
   else return;
@@ -55,7 +63,10 @@ function gStart(unitId, route = "all", resume = false) {
 function gResponse(step) {
   if (step.type !== "question") return null;
   G.responses[step.group] ||= {};
-  return G.responses[step.group][step.qi] ||= {value:"", checked:false};
+  const response=G.responses[step.group][step.qi] ||= {value:"", checked:false};
+  const q=gGroups(gUnit()).find(g=>g.id===step.group)?.questions[step.qi];
+  if(Array.isArray(response.chosen) && q?.tiles && response.chosen.map(i=>q.tiles[i]).join(' ')!==response.value) delete response.chosen;
+  return response;
 }
 function gCheck() {
   const step = G.steps[G.at], response = gResponse(step);
@@ -77,6 +88,32 @@ function gPick(index) {
   response.value = options[index];
   gCheck();
 }
+function gQuestionMode(q, response) {
+  // An unfinished answer from the old typing interface remains editable after the update.
+  if (q.tiles && !(response.value && !response.checked && !Array.isArray(response.chosen))) return 'build';
+  return q.options ? 'choice' : 'input';
+}
+function gBuild(action, index) {
+  if (!G || G.ended) return;
+  const step=G.steps[G.at], response=gResponse(step), q=gGroups(gUnit()).find(g=>g.id===step.group)?.questions[step.qi];
+  if (!q?.tiles || !response || response.checked || !Number.isInteger(index)) return;
+  response.chosen ||= [];
+  if (action==='add' && index>=0 && index<q.tiles.length && !response.chosen.includes(index)) response.chosen.push(index);
+  else if (action==='remove' && index>=0 && index<response.chosen.length) response.chosen.splice(index,1);
+  else return;
+  response.value=response.chosen.map(i=>q.tiles[i]).join(' '); gSave();
+  const area=document.querySelector('.gbuild');
+  if(area) {
+    area.innerHTML=gBuilderContents(q,response);
+    area.querySelector(action==='add' ? `[data-gremove="${response.chosen.length-1}"]` : `[data-gremove="${Math.min(index,response.chosen.length-1)}"],[data-gadd]:not(:disabled)`)?.focus({preventScroll:true});
+  }
+  const check=document.querySelector('[data-gcheck]'); if(check)check.disabled=!response.value.trim();
+}
+function gBuilderContents(q,response) {
+  const chosen=response.chosen || [];
+  return `<div class="gbuild-answer" role="group" aria-label="Собранный ответ">${response.checked ? `<b lang="es">${esc(response.value)}</b>` : chosen.length ? chosen.map((index,i)=>`<button class="gtile is-chosen" data-gremove="${i}" aria-label="Убрать ${esc(q.tiles[index])}">${esc(q.tiles[index])}<span aria-hidden="true"> ×</span></button>`).join('') : '<span class="muted">Нажимай на слова в нужном порядке</span>'}</div>${response.checked?'':`<div class="gbuild-bank" role="group" aria-label="Слова для сборки">${q.tiles.map((word,i)=>`<button class="gtile" data-gadd="${i}" lang="es" ${chosen.includes(i)?'disabled':''}>${esc(word)}</button>`).join('')}</div>`}`;
+}
+function gBuilder(q,response) { return `<div class="gbuild">${gBuilderContents(q,response)}</div>`; }
 function gMove(delta) {
   if (delta < 0 && G.at === 0) return gExit();
   const step = G.steps[G.at];
@@ -104,7 +141,7 @@ function gNextRoute(unit, route) {
 function grammarView() {
   const units = COURSE.grammar || [], unit = units.find(u => u.id === view.grammar);
   if (!unit) return `<button class="btn ghost sm back" data-tab="home">← Главная</button><h2>📐 Грамматика</h2><div class="menu">${units.map(u => `<button class="mcard" data-grammar="${esc(u.id)}"><span class="mi">📐</span><span><b>${u.number}. ${esc(u.title)}</b><small>${esc(u.subtitle)}</small></span><span aria-hidden="true">›</span></button>`).join("")}</div>`;
-  const saved = gSaved(), resume = saved?.unit === unit.id && !saved.ended && saved.steps?.[saved.at] && gRouteOpen(unit,gStepRoute(unit,saved.steps[saved.at]));
+  const saved = gSaved(), resume = saved?.unit === unit.id && !saved.ended && saved.steps?.[saved.at];
   const row = (route, title, subtitle, group) => {
     const best = group && P.grammar?.[grammarKey(unit, group)];
     const open = gRouteOpen(unit,route), done = gRouteDone(unit,route);
@@ -140,10 +177,16 @@ function gOpenArt() {
   document.body.appendChild(dialog); dialog.showModal();
 }
 function gTheory(section) {
-  return `${gArtFigure(section.illustration)}<div class="theory">${section.paragraphs.map(p => `<p${/\*\*|`/.test(p) ? ' class="gexplanation"' : ""}>${gTheoryText(p)}</p>`).join("")}${(section.examples || []).map(([es,ru]) => `<div class="box rule">${playBtn(es)} <b lang="es">${esc(es)}</b><br>${esc(ru)}</div>`).join("")}</div>
-    ${section.wordGroups ? grammarWordGroups(section.wordGroups) : ""}${section.schemes ? `<div${section.schemeGrid ? ' class="gsummary-cards"' : ""}>${grammarSchemes(section.schemes)}</div>` : ""}${section.table ? grammarTable(section.table) : ""}
+  const copy=section.paragraphs.map((p,i)=>`<p class="gtheory-paragraph${i?'':' is-lead'}">${gTheoryText(p)}</p>`);
+  return `<article class="gtheory gtheory-${esc(section.presentation || 'examples')}"><div class="gtheory-copy">${copy[0] || ''}${section.formulas ? `<div class="gformulas" aria-label="Модель правила">${section.formulas.map(f=>`<div>${gTheoryText(f)}</div>`).join('')}</div>`:''}</div>${gArtFigure(section.illustration)}
+    ${section.wordGroups ? grammarWordGroups(section.wordGroups) : ""}${section.schemes ? `<div${section.schemeGrid ? ' class="gsummary-cards"' : ""}>${grammarSchemes(section.schemes)}</div>` : ""}${section.table ? gTheoryTable(section.table) : ""}
     ${section.agreement ? `<div class="gagreement">${section.agreement.map(w => `<div><small>${esc(w.label)}</small><b>${esc(w.from)}</b><span>↓</span><b>${esc(w.to)}</b></div>`).join("")}</div>` : ""}
-    ${section.notes?.length ? `<aside class="gnotes">${section.notes.map(n => `<p>${esc(n)}</p>`).join("")}</aside>` : ""}`;
+    <div class="gtheory-copy">${copy.slice(1).join('')}</div><div class="gtheory-examples">${(section.examples || []).map(([es,ru]) => `<div class="gexample">${playBtn(es)} <b lang="es">${esc(es)}</b><small>${esc(ru)}</small></div>`).join("")}</div>
+    ${section.notes?.length ? `<aside class="gnotes"><b>Обрати внимание</b>${section.notes.map(n => `<p>${esc(n)}</p>`).join("")}</aside>` : ""}</article>`;
+}
+function gTheoryTable(table) {
+  if(!table.compactForms)return grammarTable(table);
+  return `<div class="gforms-wide">${grammarTable(table)}</div><div class="gforms-mobile">${table.rows.map(row=>`<section><h3>${esc(row[0])}</h3><dl>${row.slice(1).map((value,i)=>`<div><dt>${esc(table.heads[i+1])}</dt><dd lang="es">${esc(value)}</dd></div>`).join('')}</dl></section>`).join('')}</div>`;
 }
 function gUnitFinished(unit) {
   const lastExercise = gRoutes(unit).filter(r=>r.startsWith('exercise:')).at(-1);
@@ -183,9 +226,9 @@ function gIntro(group) {
   const pictures = group.questions.filter(q => q.image).slice(0,3);
   const preview = group.preview;
   const visual = pictures.length ? `<div class="gintro-art" aria-hidden="true">${pictures.map(q => `<img src="${esc(q.image)}" alt="" width="384" height="384">`).join("")}</div>` : preview ? `<div class="gintro-demo"><span class="kicker">Образец</span><div class="gintro-source" lang="es">${gWorkedPreview(preview)}${preview.targetPrefix === "" ? "" : ` <span aria-hidden="true">→</span> ${esc(preview.targetPrefix ?? "la")}`}</div><div class="gintro-answer" lang="es">${esc(preview.answer)}<span aria-hidden="true">✓</span></div><span class="muted">${esc(preview.translation)}</span></div>` : group.introGroups ? grammarWordGroups(group.introGroups) : "";
-  const choice = group.questions.every(q => q.options);
-  const tip = preview?.tip ?? (preview && !choice && !group.instruction.includes("только слово") ? "Как в образце: впиши только недостающее слово." : "");
-  return `<div class="gintro ${visual ? "has-visual" : ""}">${visual}<div class="gintro-copy"><div class="gintro-tags"><span>${group.questions.length} ${plural(group.questions.length,"задание","задания","заданий")}</span><span>${choice ? "Выбор ответа" : group.family ? "Родственные связи" : esc(group.inputLabel || "Ввод слова")}</span></div><p>${esc(group.instruction)}</p>${tip ? `<p class="muted gintro-tip">${esc(tip)}</p>` : ""}</div>${group.family ? `<div class="gintro-family">${grammarFamily(group.family)}</div>` : ""}${group.example ? `<div class="gworked-example gintro-family"><small>${esc(group.example.label)}</small><b>${esc(group.example.es)}</b><small>${esc(group.example.ru)}</small></div>` : ""}</div>`;
+  const choice = group.questions.every(q => q.options), modes=new Set(group.questions.map(q=>q.tiles?'Сборка фразы':q.options?'Выбор ответа':'Короткий ввод')), mixed=modes.size>1;
+  const tip = preview?.tip || '';
+  return `<div class="gintro ${visual ? "has-visual" : ""}">${visual}<div class="gintro-copy"><div class="gintro-tags"><span>${group.questions.length} ${plural(group.questions.length,"задание","задания","заданий")}</span><span>${esc([...modes].join(' · '))}</span></div><p>${esc(group.instruction)}</p>${modes.has('Сборка фразы') ? '<p class="muted gintro-tip">Нажимай на слова по порядку. Выбранное слово можно убрать нажатием.</p>' : mixed ? '<p class="muted gintro-tip">Часть ответов выбирай из вариантов, остальные вписывай самостоятельно.</p>' : tip ? `<p class="muted gintro-tip">${esc(tip)}</p>` : ""}</div>${group.family ? `<div class="gintro-family">${grammarFamily(group.family)}</div>` : ""}${group.example ? `<div class="gworked-example gintro-family"><small>${esc(group.example.label)}</small><b>${esc(group.example.es)}</b><small>${esc(group.example.ru)}</small></div>` : ""}</div>`;
 }
 function gRatings(ratings) {
   if (!ratings) return "";
@@ -230,11 +273,12 @@ function gPlayerView() {
     kicker = `${group.title === "Мини-проверка" ? "Мини-проверка" : group.title} · ${step.qi + 1} из ${group.questions.length}`;
     title = q.context || (group.inlineAnswer ? "Дополни фразу" : q.image ? (group.pictureTitle || "Выбери название профессии") : q.prompt);
     const who = block ? `<div class="gwho"><img src="${esc(group.family.portraits[block.person])}" alt="" width="44" height="44"><b>Родственники ${esc(block.person)}</b></div>` : "";
-    const options = q.options ? `<div class="opts" role="group" aria-label="Варианты ответа">${q.options.map((o,i) => `<button class="opt ${response.checked && q.answers.includes(o) ? "right" : response.checked && response.value === o && !response.good ? "wrong" : ""}" data-gpick="${i}" aria-pressed="${response.value === o}" ${response.checked ? "disabled" : ""}><span class="k">${i + 1}</span><span lang="es">${esc(o)}</span></button>`).join("")}</div>`
-      : `<div><label class="sr-only" for="g-answer">Ответ на испанском</label>${group.phraseInput ? `<textarea class="ginput gphrase-input" id="g-answer" aria-label="Ответ на испанском" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" rows="2" placeholder="${esc(group.answerPlaceholder || "Фраза на испанском")}" ${response.checked ? "disabled" : ""}>${esc(response.value)}</textarea>` : `<input class="ginput" id="g-answer" aria-label="Ответ на испанском" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="${esc(group.answerPlaceholder || "Слово на испанском")}" value="${esc(response.value)}" ${response.checked ? "disabled" : ""}>`}${response.checked ? "" : `<div class="gaccents" aria-label="Испанские буквы">${["á","é","í","ó","ú","ü","ñ"].map(c => `<button class="btn ghost sm" data-gchar="${c}" aria-label="Вставить ${c}">${c}</button>`).join("")}</div>`}</div>`;
-    const source = q.sourceParts ? `<div class="gsource" lang="es"><span class="kicker">Исходная фраза</span><p>${esc(q.sourceParts[0])}<strong>${esc(q.sourceParts[1])}</strong>${esc(q.sourceParts[2])}</p></div>` : "";
+    const mode=gQuestionMode(q,response);
+    const options = mode==='build' ? gBuilder(q,response) : q.options ? `<div class="${q.interaction==='gap-choice'?'gchoices':'opts'}" role="group" aria-label="Варианты ответа">${q.options.map((o,i) => `<button class="opt ${response.checked && grammarCorrect(q,o) ? "right" : response.checked && response.value === o && !response.good ? "wrong" : ""}" data-gpick="${i}" aria-pressed="${response.value === o}" ${response.checked ? "disabled" : ""}><span class="k">${i + 1}</span><span lang="es">${esc(o)}</span></button>`).join("")}</div>`
+      : `<div><label class="sr-only" for="g-answer">Ответ на испанском</label>${group.phraseInput && q.answers[0].split(' ').length>2 ? `<textarea class="ginput gphrase-input" id="g-answer" aria-label="Ответ на испанском" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" rows="2" placeholder="${esc(group.answerPlaceholder || "Фраза на испанском")}" ${response.checked ? "disabled" : ""}>${esc(response.value)}</textarea>` : `<input class="ginput" id="g-answer" aria-label="Ответ на испанском" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Ответ" value="${esc(response.value)}" ${response.checked ? "disabled" : ""}>`}${response.checked ? "" : `<div class="gaccents" aria-label="Испанские буквы">${["á","é","í","ó","ú","ü","ñ"].map(c => `<button class="btn ghost sm" data-gchar="${c}" aria-label="Вставить ${c}">${c}</button>`).join("")}</div>`}</div>`;
+    const source = q.sourceParts ? `<div class="gsource" lang="es"><span class="kicker">${esc(q.sourceLabel || 'Исходная фраза')}</span><p>${esc(q.sourceParts[0])}<strong>${esc(q.sourceParts[1])}</strong>${esc(q.sourceParts[2])}</p></div>` : "";
     const clues = q.clues ? `<div class="gclues" aria-label="Слова для ответа">${q.clues.map(([es,ru])=>`<span><b lang="es">${esc(es)}</b><small>${esc(ru)}</small></span>`).join("")}</div>` : "";
-    const inline = group.inlineAnswer && !q.options && q.prompt.includes("___");
+    const inline = group.inlineAnswer && mode==='input' && !q.options && q.prompt.includes("___");
     const sentence = q.gapParts ? gGapSentence(q,response) : inline ? `<div class="gfill-sentence"><p lang="es">${esc(q.prompt.split("___")[0])}</p><label class="gfill-label" for="g-answer">Впиши пропущенную часть</label>${options}<p lang="es">${esc(q.prompt.split("___").slice(1).join("___"))}</p></div>` : `${q.context ? `<p class="gquestion-sentence" lang="es">${gBlank(q.prompt)}</p>` : ""}${options}`;
     const question = `${who}${source}${clues}${gRatings(q.ratings)}${gFacts(q.facts)}${gClock(q.clock)}${gDistance(q.distance)}${q.translation ? `<p class="muted gquestion-translation">${esc(q.translation)}</p>` : ""}${sentence}`;
     content = group.family ? `<div class="gfamily-work"><details class="gplay-family" ${G.treeOpen === false ? "" : "open"}><summary>Семейное дерево</summary>${grammarFamily({...group.family, activeName:block?.person})}</details><div class="ganswer-area">${question}${group.vocabulary ? `<details class="gvocab"><summary>Слова родства</summary>${grammarTable(group.vocabulary)}</details>` : ""}</div></div>`

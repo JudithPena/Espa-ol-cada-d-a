@@ -6,11 +6,11 @@
   "level": "A1",
   "sections": [
     {
-      "title": "A. Маленький дом и маленькая комната",
+      "title": "Прилагательное: род и число",
       "paragraphs": [
-        "Прилагательное помогает сказать, **какой человек или предмет**: маленький, зелёный, весёлый. По-испански его форма зависит от существительного: `un coche pequeño` — маленькая машина, `una casa pequeña` — маленький дом.",
-        "Если прилагательное заканчивается на **`-o`, для женского рода обычно меняем его на `-a`**: `pequeño` → `pequeña`. Когда предметов несколько, добавляем `-s`: `coches pequeños`, `casas pequeñas`. Смотрим на род испанского слова, а не на русский перевод.",
-        "С описанием человека так же: `Eduardo es alto`, `Rosa es alta`. Но в `Don Santiago es una persona encantadora` окончание женское, потому что описываем **слово `persona`**."
+        "Прилагательное описывает человека или предмет и **согласуется с испанским существительным**: `un coche pequeño` — маленькая машина; `una casa pequeña` — маленький дом.",
+        "У форм на `-o` женское окончание обычно **`-a`**; для нескольких предметов добавляем **`-s`**: `pequeño`, `pequeña`, `pequeños`, `pequeñas`.",
+        "Род определяет существительное, а не пол человека или русский перевод: `Don Santiago es una persona encantadora` — форма `encantadora` согласуется со словом `persona`."
       ],
       "wordGroups": [
         {
@@ -86,14 +86,15 @@
             "маленький дом: casa — женский род"
           ]
         ]
-      }
+      },
+      "presentation": "examples"
     },
     {
-      "title": "B. Не у каждого прилагательного есть форма на -a",
+      "title": "Когда мужская и женская формы совпадают",
       "paragraphs": [
-        "Если прилагательное заканчивается на **`-e`**, мужская и женская формы часто совпадают: `un chico alegre`, `una chica alegre`. Для нескольких — `alegres`. Многие слова на согласную тоже одинаковы для обоих родов: `joven`, `feliz`, `azul`, `gris`.",
-        "Но есть и формы с добавлением `-a`: `trabajador` → `trabajadora`, `charlatán` → `charlatana`. **Это не правило для любой согласной**: например, `marrón` остаётся `marrón` и в `una falda marrón`.",
-        "Во множественном числе: `joven` → `jóvenes`, `feliz` → `felices`, `gris` → `grises`. А если описываем смешанную группу мужчин и женщин, обычно используем **мужской род множественного числа**: `Concha y Rodrigo son simpáticos`."
+        "У многих прилагательных на **`-e` или согласную род не меняет форму**: `un chico alegre / una chica alegre`, `joven`, `feliz`, `azul`, `gris`, `marrón`.",
+        "Есть и другие модели: **`trabajador → trabajadora`, `charlatán → charlatana`**. Поэтому нельзя добавлять `-a` ко всем словам на согласную.",
+        "Число меняется: `joven → jóvenes`, `feliz → felices`, `gris → grises`. Для смешанной группы обычно нужен мужской род: `Concha y Rodrigo son simpáticos`."
       ],
       "wordGroups": [
         {
@@ -173,13 +174,14 @@
             "коричневая юбка: форма marrón не меняется по роду"
           ]
         ]
-      }
+      },
+      "presentation": "examples"
     },
     {
-      "title": "C. Где поставить прилагательное",
+      "title": "Место прилагательного: buen и mal",
       "paragraphs": [
-        "Обычно описание стоит **после существительного**: `ojos azules` — голубые глаза, `ropa nueva` — новая одежда, `una ciudad antigua` — старинный город. После `ser` и `estar` форма тоже согласуется: `Las chicas están cansadas` — девушки устали.",
-        "Некоторые прилагательные часто стоят перед существительным. Перед **мужским родом в единственном числе `bueno` превращается в `buen`, а `malo` — в `mal`**: `un buen profesor`, `un mal día`. В женском роде остаётся `buena` и `mala`: `una buena profesora`."
+        "Прилагательное обычно стоит **после существительного**: `ojos azules`, `ropa nueva`. После `ser` и `estar` согласование сохраняется: `Las chicas están cansadas` — девушки устали.",
+        "Перед существительным **мужского рода единственного числа** `bueno` сокращается до `buen`, `malo` — до `mal`: `un buen profesor`, `un mal día`. В женском роде: `una buena profesora`, `una mala idea`."
       ],
       "wordGroups": [
         {
@@ -255,14 +257,15 @@
             "Он хороший преподаватель."
           ]
         ]
-      }
+      },
+      "presentation": "examples"
     }
   ],
   "exercises": [
     {
       "id": "13.1",
       "title": "13.1 · Подбери окончание",
-      "instruction": "Существительное уже написано. Измени только прилагательное из подсказки.",
+      "instruction": "Дополни предложение подходящей формой слова из подсказки.",
       "questions": [
         {
           "prompt": "Vivo en un piso ___.",
@@ -292,7 +295,13 @@
               "rubio",
               "светловолосый"
             ]
-          ]
+          ],
+          "options": [
+            "rubias",
+            "rubio",
+            "rubia"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Tiene el pelo ___.",
@@ -337,7 +346,14 @@
               "simpático",
               "приятный, дружелюбный"
             ]
-          ]
+          ],
+          "options": [
+            "simpático",
+            "simpáticas",
+            "simpática",
+            "simpáticos"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Las rosas son ___.",
@@ -382,7 +398,13 @@
               "rojo",
               "красный"
             ]
-          ]
+          ],
+          "options": [
+            "rojo",
+            "rojos",
+            "roja"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Eduardo es ___.",
@@ -427,7 +449,14 @@
               "negro",
               "чёрный"
             ]
-          ]
+          ],
+          "options": [
+            "negra",
+            "negras",
+            "negros",
+            "negro"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Eduardo es ___.",
@@ -472,7 +501,13 @@
               "amarillo",
               "жёлтый"
             ]
-          ]
+          ],
+          "options": [
+            "amarillo",
+            "amarillos",
+            "amarilla"
+          ],
+          "interaction": "gap-choice"
         }
       ],
       "preview": {
@@ -483,15 +518,15 @@
         ],
         "answer": "pequeña",
         "translation": "Живу в маленьком доме.",
-        "targetPrefix": "",
-        "tip": ""
+        "targetPrefix": ""
       },
-      "inlineAnswer": true
+      "inlineAnswer": true,
+      "inputLabel": "Короткий ввод · Выбор ответа"
     },
     {
       "id": "13.2",
       "title": "13.2 · Кто говорит и о ком?",
-      "instruction": "Поставь слово из подсказки в нужную форму.",
+      "instruction": "Дополни предложение подходящей формой слова из подсказки.",
       "questions": [
         {
           "prompt": "Rosa tiene los ojos ___.",
@@ -521,7 +556,12 @@
               "alegre",
               "весёлый"
             ]
-          ]
+          ],
+          "options": [
+            "alegre",
+            "alegres"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Rosa también es muy ___.",
@@ -566,7 +606,13 @@
               "encantador",
               "очаровательный"
             ]
-          ]
+          ],
+          "options": [
+            "encantadoras",
+            "encantador",
+            "encantadora"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Chus y Lolo no son ___.",
@@ -611,7 +657,12 @@
               "fuerte",
               "сильный"
             ]
-          ]
+          ],
+          "options": [
+            "fuerte",
+            "fuertes"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Begoña lleva una falda ___.",
@@ -656,7 +707,14 @@
               "trabajador",
               "трудолюбивый"
             ]
-          ]
+          ],
+          "options": [
+            "trabajadoras",
+            "trabajador",
+            "trabajadora",
+            "trabajadores"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Concha y Rodrigo también son muy ___.",
@@ -702,7 +760,13 @@
               "rubio",
               "светловолосый"
             ]
-          ]
+          ],
+          "options": [
+            "rubia",
+            "rubio",
+            "rubias"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Estoy muy ___.",
@@ -750,7 +814,14 @@
               "enfermo",
               "больной"
             ]
-          ]
+          ],
+          "options": [
+            "enferma",
+            "enfermas",
+            "enfermos",
+            "enfermo"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Marga está ___.",
@@ -798,7 +869,12 @@
               "fuerte",
               "сильный"
             ]
-          ]
+          ],
+          "options": [
+            "fuerte",
+            "fuertes"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Nosotros somos ___.",
@@ -825,15 +901,15 @@
         ],
         "answer": "cansadas",
         "translation": "Мы устали. Говорят две женщины.",
-        "targetPrefix": "",
-        "tip": ""
+        "targetPrefix": ""
       },
-      "inlineAnswer": true
+      "inlineAnswer": true,
+      "inputLabel": "Короткий ввод · Выбор ответа"
     },
     {
       "id": "13.3",
       "title": "13.3 · Описание рядом с предметом",
-      "instruction": "Впиши только подходящую форму прилагательного.",
+      "instruction": "Дополни предложение подходящей формой слова из подсказки.",
       "questions": [
         {
           "prompt": "Tiene los ojos ___.",
@@ -863,7 +939,13 @@
               "rojo",
               "красный"
             ]
-          ]
+          ],
+          "options": [
+            "rojo",
+            "rojos",
+            "roja"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "El español es un idioma ___.",
@@ -908,7 +990,14 @@
               "preferido",
               "любимый"
             ]
-          ]
+          ],
+          "options": [
+            "preferidos",
+            "preferidas",
+            "preferida",
+            "preferido"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "En Toledo hay edificios ___.",
@@ -953,7 +1042,13 @@
               "preferido",
               "любимый"
             ]
-          ]
+          ],
+          "options": [
+            "preferida",
+            "preferidos",
+            "preferido"
+          ],
+          "interaction": "gap-choice"
         }
       ],
       "preview": {
@@ -964,10 +1059,10 @@
         ],
         "answer": "buen",
         "translation": "Хороший преподаватель.",
-        "targetPrefix": "",
-        "tip": ""
+        "targetPrefix": ""
       },
-      "inlineAnswer": true
+      "inlineAnswer": true,
+      "inputLabel": "Короткий ввод · Выбор ответа"
     }
   ],
   "learningOrder": [

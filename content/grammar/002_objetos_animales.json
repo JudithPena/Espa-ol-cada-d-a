@@ -6,10 +6,10 @@
   "level": "A1",
   "sections": [
     {
-      "title": "A. У названий предметов тоже есть род",
+      "title": "Род существительных",
       "paragraphs": [
-        "У названий предметов тоже есть **мужской или женский род**. Например, книга — `el libro`, а стол — `la mesa`. У самой книги или стола пола нет: род есть у испанского слова.",
-        "Посмотри на слово `libro`: по-русски «книга» женского рода, а по-испански — **мужского**. Поэтому русский перевод нам не подскажет, какой артикль выбрать. Лучше сразу запоминать **`el libro`**, а не просто `libro`."
+        "В испанском языке названия предметов имеют **грамматический род**: `el libro` — книга, `la mesa` — стол. Он не зависит от пола и может не совпадать с родом русского перевода.",
+        "Запоминай существительное вместе с артиклем: **`el libro`, а не только `libro`**. У названий предметов обычно нет пар мужского и женского рода."
       ],
       "wordGroups": [
         {
@@ -57,7 +57,7 @@
       "check": {
         "id": "check-a",
         "title": "Мини-проверка",
-        "instruction": "Выбери подходящий артикль.",
+        "instruction": "",
         "questions": [
           {
             "prompt": "___ libro",
@@ -96,13 +96,14 @@
             ]
           }
         ]
-      }
+      },
+      "presentation": "examples"
     },
     {
-      "title": "B. Слова, оканчивающиеся на -o",
+      "title": "Мужской род: окончание -o",
       "paragraphs": [
-        "Если слово оканчивается на `-o`, оно **чаще всего мужского рода**. Например, книга — `el libro`, стакан — `el vaso`. Последняя буква помогает нам выбрать `el`.",
-        "Но посмотри на слово «кисть руки» — `la mano`. Оно тоже оканчивается на `-o`, а артикль нужен **`la`**. Такие исключения запоминаем отдельно — они собраны ниже."
+        "Существительные, оканчивающиеся на **`-o`, обычно мужского рода**: `el libro`, `el vaso`.",
+        "Есть исключения женского рода: `la mano`, `la foto`, `la moto`. Их запоминаем с артиклем `la`."
       ],
       "wordGroups": [
         {
@@ -167,7 +168,7 @@
       "check": {
         "id": "check-b",
         "title": "Мини-проверка",
-        "instruction": "Выбери подходящий артикль.",
+        "instruction": "",
         "questions": [
           {
             "prompt": "___ vaso",
@@ -218,13 +219,14 @@
             ]
           }
         ]
-      }
+      },
+      "presentation": "examples"
     },
     {
-      "title": "C. Слова, оканчивающиеся на -a",
+      "title": "Женский род: окончание -a",
       "paragraphs": [
-        "Если слово оканчивается на `-a`, оно **чаще всего женского рода**. Например, дом — `la casa`, стол — `la mesa`. Здесь нам нужен артикль `la`.",
-        "А теперь сравни: день — `el día`, карта — `el mapa`. У них тоже последняя буква `-a`, но род **мужской**. Поэтому эти слова запоминаем сразу с `el`."
+        "Существительные, оканчивающиеся на **`-a`, обычно женского рода**: `la casa`, `la mesa`.",
+        "Слова `el día`, `el mapa`, `el problema` — мужского рода. Последняя буква помогает определить род, но не заменяет знание исключений."
       ],
       "wordGroups": [
         {
@@ -297,7 +299,7 @@
       "check": {
         "id": "check-c",
         "title": "Мини-проверка",
-        "instruction": "Выбери подходящий артикль.",
+        "instruction": "",
         "questions": [
           {
             "prompt": "___ ventana",
@@ -348,13 +350,14 @@
             ]
           }
         ]
-      }
+      },
+      "presentation": "examples"
     },
     {
-      "title": "D. Слова, оканчивающиеся на -e или согласную",
+      "title": "Род слов на -e и согласную",
       "paragraphs": [
-        "Если слово оканчивается на `-e` или согласную, **последняя буква часто не поможет выбрать род**. Сравни: машина — `el coche`, молоко — `la leche`. Оба слова оканчиваются на `-e`, а артикли разные. Запоминаем каждое вместе с артиклем.",
-        "Некоторые группы всё же помогают. Например, **все дни недели мужского рода**: `el lunes` — понедельник, `el viernes` — пятница. Зонт — `el paraguas` и день рождения — `el cumpleaños` тоже запоминаем с `el`."
+        "По окончаниям **`-e` и согласной род часто определить нельзя**: `el coche` — машина, `la leche` — молоко. Такие слова учим с артиклем.",
+        "**Дни недели — мужского рода**: `el lunes`, `el viernes`. Слова `el paraguas` — зонт и `el cumpleaños` — день рождения тоже мужского рода."
       ],
       "wordGroups": [
         {
@@ -461,7 +464,7 @@
       "check": {
         "id": "check-d",
         "title": "Мини-проверка",
-        "instruction": "Выбери подходящий артикль.",
+        "instruction": "",
         "questions": [
           {
             "prompt": "___ leche",
@@ -513,13 +516,14 @@
           }
         ]
       },
-      "notes": []
+      "notes": [],
+      "presentation": "examples"
     },
     {
-      "title": "E. Окончания, которые подсказывают женский род",
+      "title": "Частые окончания женского рода",
       "paragraphs": [
-        "Если слово оканчивается на `-ción`, `-sión`, `-dad` или `-tad`, **обычно выбираем `la`**. Например, песня — `la canción`, город — `la ciudad`.",
-        "Давай посмотрим на последние буквы: в `canción` это `-ción`, а в `ciudad` — `-dad`. Эти окончания помогают нам вспомнить, что слово **женского рода**. Ниже — ещё примеры."
+        "Существительные с окончаниями **`-ción`, `-sión`, `-dad`, `-tad` обычно женского рода**: `la canción` — песня, `la ciudad` — город.",
+        "Важно всё окончание: `avión` оканчивается на `-ón`, а не на `-ción`. Это слово мужского рода: `el avión`."
       ],
       "wordGroups": [
         {
@@ -579,7 +583,7 @@
       "check": {
         "id": "check-e",
         "title": "Мини-проверка",
-        "instruction": "Выбери подходящий артикль.",
+        "instruction": "",
         "questions": [
           {
             "prompt": "___ habitación",
@@ -630,13 +634,14 @@
             ]
           }
         ]
-      }
+      },
+      "presentation": "examples"
     },
     {
-      "title": "F. Когда род животного не зависит от пола",
+      "title": "Род названия и пол животного",
       "paragraphs": [
-        "У некоторых животных название **не меняется в зависимости от пола**. Например, жираф — `la jirafa`: так можно назвать и самца, и самку. Артикль в обоих случаях — `la`.",
-        "Если хотим уточнить, кто перед нами, добавляем ещё слово: **`macho` — самец, `hembra` — самка**. Получаем `la jirafa macho` или `la jirafa hembra`. Посмотри: меняется уточнение, а `la jirafa` остаётся."
+        "Некоторые названия животных имеют **один грамматический род независимо от пола**. `La jirafa` может обозначать и самца, и самку жирафа.",
+        "Чтобы уточнить пол, добавляем **`macho` — самец или `hembra` — самка**: `la jirafa macho`, `la jirafa hembra`. Артикль `la` сохраняется."
       ],
       "wordGroups": [
         {
@@ -686,7 +691,7 @@
       "check": {
         "id": "check-f",
         "title": "Мини-проверка",
-        "instruction": "Выбери название животного.",
+        "instruction": "",
         "questions": [
           {
             "prompt": "Самец жирафа — это…",
@@ -723,13 +728,14 @@
             ]
           }
         ]
-      }
+      },
+      "presentation": "examples"
     },
     {
-      "title": "G. Разные названия самца и самки",
+      "title": "Названия самца и самки",
       "paragraphs": [
-        "А у других животных **для самца и самки есть разные названия**. Например, кот — `el gato`, кошка — `la gata`. Здесь мы меняем `-o` на `-a` и выбираем артикль `la`.",
-        "Но с лошадьми так не получится: конь — `el caballo`, кобыла — `la yegua`. Это два разных слова. Давай сравним остальные пары: где-то меняется окончание, а где-то нужно запомнить новое слово."
+        "У некоторых животных есть отдельные мужская и женская формы: **`el gato → la gata`** — кот → кошка.",
+        "Формы могут отличаться окончанием или быть разными словами: `el caballo → la yegua` — конь → кобыла. Сравни пары в схеме."
       ],
       "schemes": [
         {
@@ -785,7 +791,7 @@
       "check": {
         "id": "check-g",
         "title": "Мини-проверка",
-        "instruction": "Выбери парное название животного.",
+        "instruction": "",
         "questions": [
           {
             "prompt": "El león → ___",
@@ -824,7 +830,8 @@
             ]
           }
         ]
-      }
+      },
+      "presentation": "comparison"
     }
   ],
   "summary": {
@@ -977,7 +984,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ cama",
@@ -989,7 +997,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ casa",
@@ -1001,7 +1010,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ cine",
@@ -1013,7 +1023,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ ciudad",
@@ -1025,7 +1036,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ cuaderno",
@@ -1037,7 +1049,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ cumpleaños",
@@ -1049,7 +1062,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ día",
@@ -1061,7 +1075,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ expresión",
@@ -1073,7 +1088,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ foto",
@@ -1085,7 +1101,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ habitación",
@@ -1097,7 +1114,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ hotel",
@@ -1109,7 +1127,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ idioma",
@@ -1121,7 +1140,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ lámpara",
@@ -1133,7 +1153,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ lápiz",
@@ -1145,7 +1166,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ leche",
@@ -1157,7 +1179,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ libro",
@@ -1169,7 +1192,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ luz",
@@ -1181,7 +1205,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ mano",
@@ -1193,7 +1218,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ minuto",
@@ -1205,7 +1231,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ museo",
@@ -1217,7 +1244,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ noche",
@@ -1229,7 +1257,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ página",
@@ -1241,7 +1270,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ planeta",
@@ -1253,7 +1283,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ problema",
@@ -1265,7 +1296,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ radio",
@@ -1277,7 +1309,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ teatro",
@@ -1289,7 +1322,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ teléfono",
@@ -1301,7 +1335,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ universidad",
@@ -1313,7 +1348,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ vaso",
@@ -1325,7 +1361,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ ventana",
@@ -1337,7 +1374,8 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ viernes",
@@ -1349,14 +1387,16 @@
           "options": [
             "el",
             "la"
-          ]
+          ],
+          "interaction": "gap-choice"
         }
-      ]
+      ],
+      "inputLabel": "Выбор ответа"
     },
     {
       "id": "2.2",
       "title": "2.2 · Животные: самец и самка",
-      "instruction": "Допиши название самца или самки. Артикль уже указан — впиши только слово.",
+      "instruction": "Подбери название самца или самки.",
       "preview": {
         "source": "el conejo",
         "targetPrefix": "la",
@@ -1378,7 +1418,12 @@
             "caballo"
           ],
           "explain": "У этой пары разные слова: el caballo — la yegua.",
-          "translation": "кобыла → конь"
+          "translation": "кобыла → конь",
+          "options": [
+            "yegua",
+            "caballo"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "el gallo → la ___",
@@ -1402,7 +1447,12 @@
             "leona"
           ],
           "explain": "К león добавляем -a: leona. В готовой женской форме знак ударения не нужен.",
-          "translation": "лев → львица"
+          "translation": "лев → львица",
+          "options": [
+            "leona",
+            "león"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "la vaca → el ___",
@@ -1412,12 +1462,13 @@
           "explain": "У этой пары разные слова: el toro — la vaca.",
           "translation": "корова → бык"
         }
-      ]
+      ],
+      "inputLabel": "Короткий ввод · Выбор ответа"
     },
     {
       "id": "2.3",
       "title": "2.3 · Что на картинке?",
-      "instruction": "Напиши название с артиклем el или la. Если нужно, открой «Слова для упражнения».",
+      "instruction": "Назови изображённый предмет или животное с артиклем.",
       "pictureTitle": "Напиши название с артиклем",
       "vocabulary": {
         "heads": [
@@ -1484,7 +1535,11 @@
           ],
           "explain": "el tren — поезд. Tren — слово мужского рода.",
           "image": "art/002/02-tren.webp",
-          "imageAlt": "Иллюстрация: поезд"
+          "imageAlt": "Иллюстрация: поезд",
+          "options": [
+            "el tren",
+            "la tren"
+          ]
         },
         {
           "prompt": "№ 3",
@@ -1538,7 +1593,11 @@
           ],
           "explain": "el tenedor — вилка. Tenedor — слово мужского рода.",
           "image": "art/002/08-tenedor.webp",
-          "imageAlt": "Иллюстрация: вилка"
+          "imageAlt": "Иллюстрация: вилка",
+          "options": [
+            "el tenedor",
+            "la tenedor"
+          ]
         },
         {
           "prompt": "№ 9",
@@ -1558,7 +1617,21 @@
           "image": "art/002/10-nariz.webp",
           "imageAlt": "Иллюстрация: нос"
         }
-      ]
+      ],
+      "inputLabel": "Короткий ввод · Выбор ответа"
     }
+  ],
+  "learningOrder": [
+    "section:0",
+    "section:1",
+    "section:2",
+    "section:3",
+    "section:4",
+    "exercise:2.1",
+    "section:5",
+    "section:6",
+    "exercise:2.2",
+    "exercise:2.3",
+    "summary"
   ]
 }

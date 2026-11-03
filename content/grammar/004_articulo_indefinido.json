@@ -6,10 +6,10 @@
   "level": "A1",
   "sections": [
     {
-      "title": "A. Un, una, unos и unas",
+      "title": "Un, una, unos, unas",
       "paragraphs": [
-        "Если говорим **об одном человеке или предмете**, перед словом обычно ставим `un` или `una`: `un libro` — книга, `una mesa` — стол. Выбор зависит от рода испанского слова: **`un` — мужской род, `una` — женский**.",
-        "Если предметов несколько, используем **`unos` или `unas`**: `unos libros` — несколько книг, `unas mesas` — несколько столов. Точное количество здесь не называем."
+        "Неопределённый артикль согласуется с существительным **по роду и числу**: `un libro`, `una mesa`, `unos libros`, `unas mesas`.",
+        "**`Un / una` — один предмет; `unos / unas` — несколько**, без указания точного количества. Употребление артикля зависит и от смысла фразы — дальше разберём основные случаи."
       ],
       "wordGroups": [
         {
@@ -89,13 +89,18 @@
             "несколько книг"
           ]
         ]
-      }
+      },
+      "presentation": "examples",
+      "formulas": [
+        "un / una + единственное число",
+        "unos / unas + множественное число"
+      ]
     },
     {
-      "title": "B. Называем, кто это или что это",
+      "title": "Называем человека или предмет",
       "paragraphs": [
-        "Представь: ты показываешь незнакомый предмет. На вопрос **`¿Qué es?` — «Что это?»** можно ответить `Es una radio` — это радио. А на вопрос **`¿Quién es?` — «Кто это?»**: `Es un escritor` — это писатель.",
-        "Так мы относим человека или предмет к какой-то группе: `un país` — страна, `una ciudad` — город. **Род артикля зависит от следующего существительного**, а не от того, как называется город или страна."
+        "В ответе на **`¿Qué es?` — «Что это?»** можно сказать `Es una radio` — это радио. На **`¿Quién es?` — «Кто это?»** — `Es un escritor` — это писатель.",
+        "Артикль относит человека или предмет к группе. Его род определяется существительным: `un país` — страна, `una ciudad` — город."
       ],
       "wordGroups": [
         {
@@ -173,13 +178,14 @@
             "Это часы."
           ]
         ]
-      }
+      },
+      "presentation": "examples"
     },
     {
-      "title": "C. Un águila: слово остаётся женского рода",
+      "title": "Un águila: род остаётся женским",
       "paragraphs": [
-        "У некоторых слов женского рода первый звук — **ударный «а»**. Непосредственно перед таким словом обычно ставим **`un`**: `un águila` — орёл, `un aula` — аудитория, `un hacha` — топор. Буква `h` не произносится.",
-        "**Род слова остаётся женским.** Во множественном числе используем `unas`: `unas águilas`, `unas aulas`. Если между артиклем и существительным стоит другое слово, возвращается `una`: `una pequeña águila` — маленький орёл."
+        "Непосредственно перед существительным женского рода, начинающимся **с ударного звука «а»**, обычно ставим **`un`**: `un águila`, `un aula`, `un hacha`. Буква `h` не произносится.",
+        "**Женский род сохраняется.** Во множественном числе — `unas águilas`; если между артиклем и существительным есть другое слово — `una pequeña águila`."
       ],
       "wordGroups": [
         {
@@ -256,13 +262,14 @@
             "орёл"
           ]
         ]
-      }
+      },
+      "presentation": "examples"
     },
     {
-      "title": "D. Просим или сообщаем о чём-то",
+      "title": "Просьба об одном или нескольких предметах",
       "paragraphs": [
-        "Чтобы попросить **один предмет**, удобно сказать `Quiero un melón` — хочу дыню, `Necesito una silla` — мне нужен стул. Когда нужно несколько предметов: `Necesito unas sillas` — мне нужны несколько стульев.",
-        "Слова `gafas`, `tijeras` и `vaqueros` часто используют во множественном числе **даже для одной пары очков, одних ножниц или одних джинсов**: `unas gafas`, `unas tijeras`, `unos vaqueros`."
+        "В просьбе об одном предмете используем `un / una`, о нескольких — `unos / unas`: **`Necesito una silla` — мне нужен стул; `Necesito unas sillas` — мне нужно несколько стульев.**",
+        "Для одной пары очков, одних ножниц или джинсов часто нужна форма множественного числа: `unas gafas`, `unas tijeras`, `unos vaqueros`."
       ],
       "wordGroups": [
         {
@@ -340,7 +347,8 @@
             "Один билет, пожалуйста."
           ]
         ]
-      }
+      },
+      "presentation": "examples"
     }
   ],
   "exercises": [
@@ -363,7 +371,8 @@
           ],
           "translation": "цветок",
           "sourceRef": "4.1.1",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ sillas",
@@ -379,7 +388,8 @@
           ],
           "translation": "несколько стульев",
           "sourceRef": "4.1.2",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ relojes",
@@ -395,7 +405,8 @@
           ],
           "translation": "несколько часов",
           "sourceRef": "4.1.3",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ paraguas",
@@ -411,7 +422,8 @@
           ],
           "translation": "один зонт",
           "sourceRef": "4.1.4",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ alumnos",
@@ -427,7 +439,8 @@
           ],
           "translation": "несколько учеников",
           "sourceRef": "4.1.5",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ cine",
@@ -443,7 +456,8 @@
           ],
           "translation": "один кинотеатр",
           "sourceRef": "4.1.6",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ habitación",
@@ -459,7 +473,8 @@
           ],
           "translation": "комната",
           "sourceRef": "4.1.7",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ lápices",
@@ -475,7 +490,8 @@
           ],
           "translation": "несколько карандашей",
           "sourceRef": "4.1.8",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ chica",
@@ -491,7 +507,8 @@
           ],
           "translation": "девушка",
           "sourceRef": "4.1.9",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ aulas",
@@ -507,7 +524,8 @@
           ],
           "translation": "несколько аудиторий",
           "sourceRef": "4.1.10",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ ciudad",
@@ -523,7 +541,8 @@
           ],
           "translation": "город",
           "sourceRef": "4.1.11",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ aula",
@@ -540,7 +559,8 @@
           ],
           "translation": "одна аудитория",
           "sourceRef": "4.1.12",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ profesora",
@@ -556,7 +576,8 @@
           ],
           "translation": "преподавательница",
           "sourceRef": "4.1.13",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ pantalones",
@@ -572,7 +593,8 @@
           ],
           "translation": "брюки",
           "sourceRef": "4.1.14",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ camarero",
@@ -588,7 +610,8 @@
           ],
           "translation": "официант",
           "sourceRef": "4.1.15",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         }
       ],
       "preview": {
@@ -601,7 +624,8 @@
         "translation": "одна книга",
         "targetPrefix": "",
         "tip": ""
-      }
+      },
+      "inputLabel": "Выбор ответа"
     },
     {
       "id": "4.2",
@@ -622,7 +646,8 @@
           ],
           "translation": "Гандбол — вид спорта.",
           "sourceRef": "4.2.1",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Sevilla es ___ ciudad.",
@@ -638,7 +663,8 @@
           ],
           "translation": "Севилья — город.",
           "sourceRef": "4.2.2",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Colombia es ___ país.",
@@ -654,7 +680,8 @@
           ],
           "translation": "Колумбия — страна.",
           "sourceRef": "4.2.3",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Una rosa es ___ flor.",
@@ -670,7 +697,8 @@
           ],
           "translation": "Роза — цветок.",
           "sourceRef": "4.2.4",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Un mango es ___ fruta.",
@@ -686,7 +714,8 @@
           ],
           "translation": "Манго — фрукт.",
           "sourceRef": "4.2.5",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Ronaldo es ___ futbolista.",
@@ -702,7 +731,8 @@
           ],
           "translation": "Роналдо — футболист.",
           "sourceRef": "4.2.6",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Isabel Allende es ___ escritora.",
@@ -718,7 +748,8 @@
           ],
           "translation": "Исабель Альенде — писательница.",
           "sourceRef": "4.2.7",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Frida Kahlo es ___ pintora.",
@@ -734,7 +765,8 @@
           ],
           "translation": "Фрида Кало — художница.",
           "sourceRef": "4.2.8",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Amenábar es ___ director de cine.",
@@ -750,7 +782,8 @@
           ],
           "translation": "Аменабар — кинорежиссёр.",
           "sourceRef": "4.2.9",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Stephen Hawking fue ___ científico.",
@@ -766,7 +799,8 @@
           ],
           "translation": "Стивен Хокинг был учёным.",
           "sourceRef": "4.2.10",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         }
       ],
       "preview": {
@@ -779,7 +813,8 @@
         "translation": "Это город.",
         "targetPrefix": "",
         "tip": ""
-      }
+      },
+      "inputLabel": "Выбор ответа"
     },
     {
       "id": "4.3",
@@ -800,7 +835,8 @@
           ],
           "translation": "одна машина",
           "sourceRef": "4.3.1",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ niños",
@@ -816,7 +852,8 @@
           ],
           "translation": "несколько мальчиков",
           "sourceRef": "4.3.2",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ hacha",
@@ -833,7 +870,8 @@
           ],
           "translation": "один топор",
           "sourceRef": "4.3.3",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ libros",
@@ -852,7 +890,8 @@
           "context": "Выбери артикль.",
           "image": "art/003/06-libro.webp",
           "imageAlt": "несколько книг",
-          "pictureCount": 3
+          "pictureCount": 3,
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ casa",
@@ -868,7 +907,8 @@
           ],
           "translation": "один дом",
           "sourceRef": "4.3.5",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ gato",
@@ -884,7 +924,8 @@
           ],
           "translation": "один кот",
           "sourceRef": "4.3.6",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ vacas",
@@ -900,7 +941,8 @@
           ],
           "translation": "несколько коров",
           "sourceRef": "4.3.7",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ chicas",
@@ -916,7 +958,8 @@
           ],
           "translation": "несколько девушек",
           "sourceRef": "4.3.8",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ televisión",
@@ -932,7 +975,8 @@
           ],
           "translation": "один телевизор",
           "sourceRef": "4.3.9",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ árboles",
@@ -951,7 +995,8 @@
           "context": "Выбери артикль.",
           "image": "art/002/01-arbol.webp",
           "imageAlt": "несколько деревьев",
-          "pictureCount": 3
+          "pictureCount": 3,
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ gafas",
@@ -970,7 +1015,8 @@
           "context": "Выбери артикль.",
           "image": "art/003/03-gafas.webp",
           "imageAlt": "одни очки",
-          "pictureCount": 1
+          "pictureCount": 1,
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ caballo",
@@ -986,7 +1032,8 @@
           ],
           "translation": "одна лошадь",
           "sourceRef": "4.3.12",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         }
       ],
       "preview": {
@@ -1000,7 +1047,8 @@
         "targetPrefix": "",
         "tip": ""
       },
-      "pictureTitle": "Выбери артикль."
+      "pictureTitle": "Выбери артикль.",
+      "inputLabel": "Выбор ответа"
     },
     {
       "id": "4.4",
@@ -1021,7 +1069,8 @@
           ],
           "translation": "Одну дыню, пожалуйста.",
           "sourceRef": "4.4.1",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "El Orinoco es ___ río.",
@@ -1037,7 +1086,8 @@
           ],
           "translation": "Ориноко — река.",
           "sourceRef": "4.4.2",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "¡Cuidado, ___ serpiente!",
@@ -1053,7 +1103,8 @@
           ],
           "translation": "Осторожно, змея!",
           "sourceRef": "4.4.3",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "¡Mira! ___ águila.",
@@ -1070,7 +1121,8 @@
           ],
           "translation": "Смотри, орёл!",
           "sourceRef": "4.4.4",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Quiero ___ vaqueros.",
@@ -1086,7 +1138,8 @@
           ],
           "translation": "Хочу джинсы.",
           "sourceRef": "4.4.5",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "¿Qué es eso? Es ___ radio.",
@@ -1102,7 +1155,8 @@
           ],
           "translation": "Что это? Это радиоприёмник. Говорим, как в Испании.",
           "sourceRef": "4.4.6",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "¿Tienes ___ mapa de Ecuador?",
@@ -1118,7 +1172,8 @@
           ],
           "translation": "У тебя есть карта Эквадора?",
           "sourceRef": "4.4.7",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Rosa tiene ___ hija.",
@@ -1134,7 +1189,8 @@
           ],
           "translation": "У Росы есть дочь.",
           "sourceRef": "4.4.8",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Necesitamos ___ tijeras.",
@@ -1150,7 +1206,8 @@
           ],
           "translation": "Нам нужны ножницы.",
           "sourceRef": "4.4.9",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Tengo ___ zapatos muy cómodos.",
@@ -1166,7 +1223,8 @@
           ],
           "translation": "У меня есть очень удобные туфли.",
           "sourceRef": "4.4.10",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         }
       ],
       "preview": {
@@ -1179,7 +1237,8 @@
         "translation": "Хочу дыню.",
         "targetPrefix": "",
         "tip": ""
-      }
+      },
+      "inputLabel": "Выбор ответа"
     }
   ],
   "learningOrder": [

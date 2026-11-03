@@ -6,10 +6,10 @@
   "level": "A1",
   "sections": [
     {
-      "title": "A. El, la, los и las",
+      "title": "El, la, los, las",
       "paragraphs": [
-        "Если понятно, **о каком человеке или предмете идёт речь**, используем `el`, `la`, `los` или `las`: `Cierra la puerta` — закрой дверь. Мы оба понимаем, какую дверь нужно закрыть.",
-        "**`El` и `la` — для одного, `los` и `las` — для нескольких.** Мужской род: `el coche`, `los coches`. Женский: `la casa`, `las casas`."
+        "Определённый артикль употребляем, когда **понятно, о ком или о чём говорим**: `Cierra la puerta` — закрой дверь. Оба собеседника понимают, какую.",
+        "Артикль согласуется с существительным: **`el / los` — мужской род, `la / las` — женский; `el / la` — единственное число, `los / las` — множественное.**"
       ],
       "wordGroups": [
         {
@@ -83,13 +83,14 @@
             "Закрой дверь, пожалуйста."
           ]
         ]
-      }
+      },
+      "presentation": "examples"
     },
     {
-      "title": "B. Говорим о родственниках",
+      "title": "Родственники: la madre de Marta",
       "paragraphs": [
-        "Когда называем конкретного родственника, тоже ставим артикль: **`la madre de Marta` — мама Марты**, `los hermanos de Marta` — братья Марты. По фразе `de Marta` понятно, о чьей семье идёт речь.",
-        "Сравни: `el hermano` — один брат, `los hermanos` — братья; `la hija` — одна дочь, `las hijas` — дочери. Артикль подбираем **к слову, которое стоит сразу после него**."
+        "В сочетаниях с указанием, **чей это родственник**, ставим определённый артикль: `la madre de Marta` — мама Марты, `los hermanos de Marta` — братья Марты.",
+        "Его форма зависит от названия родственника: **`el hermano`, `la hermana`, `los hermanos`, `las hermanas`**."
       ],
       "wordGroups": [
         {
@@ -167,13 +168,14 @@
             "Отец Марты."
           ]
         ]
-      }
+      },
+      "presentation": "examples"
     },
     {
-      "title": "C. El agua, но las aguas",
+      "title": "El agua, но las aguas",
       "paragraphs": [
-        "Перед существительным женского рода, которое начинается **с ударного звука «а»**, вместо `la` обычно ставим **`el`**: `el agua`, `el aula`, `el águila`, `el hacha`. Слова от этого не становятся мужского рода: `el agua fría` — холодная вода.",
-        "Это происходит, только когда артикль стоит **прямо перед существительным**. Если между ними есть другое слово, говорим `la otra aula` — другая аудитория. Во множественном числе: `las aulas`, `las águilas`."
+        "Непосредственно перед существительным женского рода, начинающимся **с ударного звука «а»**, ставим **`el` вместо `la`**: `el agua`, `el aula`, `el águila`, `el hacha`.",
+        "**Слово остаётся женского рода:** `el agua fría`. Во множественном числе — `las aulas`; если между артиклем и существительным есть другое слово — `la otra aula`."
       ],
       "wordGroups": [
         {
@@ -251,14 +253,15 @@
             "холодная вода: слово остаётся женского рода"
           ]
         ]
-      }
+      },
+      "presentation": "examples"
     },
     {
-      "title": "D. A + el = al, de + el = del",
+      "title": "Слияния al и del",
       "paragraphs": [
-        "Если перед **`el`** стоят `a` или `de`, два слова соединяются: **`a + el = al`**, **`de + el = del`**. Поэтому говорим `Voy al centro` — иду в центр, `La puerta del jardín` — дверь сада.",
-        "С другими артиклями ничего не сливается: `a la clase`, `de los alumnos`. Правило работает и перед `el aula`: `Vamos al aula` — идём в аудиторию.",
-        "Определённый артикль нужен и в обобщениях: `Me gustan las naranjas` — мне нравятся апельсины вообще. А `Montevideo es la capital de Uruguay` выделяет единственную столицу этой страны."
+        "Предлоги `a` и `de` соединяются с артиклем `el`: **`a + el = al`, `de + el = del`**. `Voy al centro` — иду в центр; `la puerta del jardín` — дверь сада.",
+        "Перед другими артиклями слияния нет: `a la clase`, `de los alumnos`. Правило работает и с `el aula`: `Vamos al aula`.",
+        "Определённый артикль также употребляется в обобщениях (`Me gustan las naranjas` — люблю апельсины) и при выделении единственного объекта (`la capital de Uruguay` — столица Уругвая)."
       ],
       "wordGroups": [
         {
@@ -334,7 +337,12 @@
             "Дверь сада."
           ]
         ]
-      }
+      },
+      "presentation": "examples",
+      "formulas": [
+        "a + el = al",
+        "de + el = del"
+      ]
     }
   ],
   "exercises": [
@@ -357,7 +365,8 @@
           ],
           "translation": "дом",
           "sourceRef": "6.1.1",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ médico",
@@ -373,7 +382,8 @@
           ],
           "translation": "врач",
           "sourceRef": "6.1.2",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ naranjas",
@@ -389,7 +399,8 @@
           ],
           "translation": "апельсины",
           "sourceRef": "6.1.3",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ coche",
@@ -405,7 +416,8 @@
           ],
           "translation": "машина",
           "sourceRef": "6.1.4",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ habitación",
@@ -421,7 +433,8 @@
           ],
           "translation": "комната",
           "sourceRef": "6.1.5",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ águila",
@@ -437,7 +450,8 @@
           ],
           "translation": "орёл",
           "sourceRef": "6.1.6",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ pantalones",
@@ -453,7 +467,8 @@
           ],
           "translation": "брюки",
           "sourceRef": "6.1.7",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ aula",
@@ -469,7 +484,8 @@
           ],
           "translation": "аудитория",
           "sourceRef": "6.1.8",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ sillas",
@@ -485,7 +501,8 @@
           ],
           "translation": "стулья",
           "sourceRef": "6.1.9",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ lápices",
@@ -501,7 +518,8 @@
           ],
           "translation": "карандаши",
           "sourceRef": "6.1.10",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ tijeras",
@@ -517,7 +535,8 @@
           ],
           "translation": "ножницы",
           "sourceRef": "6.1.11",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ profesor",
@@ -533,7 +552,8 @@
           ],
           "translation": "преподаватель",
           "sourceRef": "6.1.12",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ perro",
@@ -549,7 +569,8 @@
           ],
           "translation": "собака",
           "sourceRef": "6.1.13",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ hermana",
@@ -565,7 +586,8 @@
           ],
           "translation": "сестра",
           "sourceRef": "6.1.14",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ alumnos",
@@ -581,7 +603,8 @@
           ],
           "translation": "ученики",
           "sourceRef": "6.1.15",
-          "context": "Выбери артикль."
+          "context": "Выбери артикль.",
+          "interaction": "gap-choice"
         }
       ],
       "preview": {
@@ -594,7 +617,8 @@
         "translation": "дом",
         "targetPrefix": "",
         "tip": ""
-      }
+      },
+      "inputLabel": "Выбор ответа"
     },
     {
       "id": "6.2",
@@ -615,7 +639,8 @@
           ],
           "translation": "Отца Марты зовут Фелипе.",
           "sourceRef": "6.2.1",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ madre de Marta se llama Claudia.",
@@ -631,7 +656,8 @@
           ],
           "translation": "Маму Марты зовут Клаудия.",
           "sourceRef": "6.2.2",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ tío de Marta se llama Javier.",
@@ -647,7 +673,8 @@
           ],
           "translation": "Дядю Марты зовут Хавьер.",
           "sourceRef": "6.2.3",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ tía de Marta se llama Lucía.",
@@ -663,7 +690,8 @@
           ],
           "translation": "Тётю Марты зовут Лусия.",
           "sourceRef": "6.2.4",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ hermanos de Marta se llaman Enrique y Fernando.",
@@ -679,7 +707,8 @@
           ],
           "translation": "Братьев Марты зовут Энрике и Фернандо.",
           "sourceRef": "6.2.5",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ hermana de Marta se llama Isabel.",
@@ -695,7 +724,8 @@
           ],
           "translation": "Сестру Марты зовут Исабель.",
           "sourceRef": "6.2.6",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ marido de Marta se llama Juan.",
@@ -711,7 +741,8 @@
           ],
           "translation": "Мужа Марты зовут Хуан.",
           "sourceRef": "6.2.7",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ hijas de Marta se llaman Irene y Juana.",
@@ -727,7 +758,8 @@
           ],
           "translation": "Дочерей Марты зовут Ирене и Хуана.",
           "sourceRef": "6.2.8",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         }
       ],
       "preview": {
@@ -740,7 +772,8 @@
         "translation": "Маму Марты зовут Клаудия.",
         "targetPrefix": "",
         "tip": ""
-      }
+      },
+      "inputLabel": "Выбор ответа"
     },
     {
       "id": "6.3",
@@ -761,7 +794,8 @@
           ],
           "translation": "Сусана в саду этого дома.",
           "sourceRef": "6.3.1",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Cierra ___ ventana.",
@@ -777,7 +811,8 @@
           ],
           "translation": "Закрой это окно.",
           "sourceRef": "6.3.2",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Pásame ___ agua.",
@@ -793,7 +828,8 @@
           ],
           "translation": "Передай воду, которая стоит на столе.",
           "sourceRef": "6.3.3",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Déjame ___ diccionario.",
@@ -811,7 +847,8 @@
           "sourceRef": "6.3.4",
           "context": "Дополни предложение.",
           "image": "art/002/03-diccionario.webp",
-          "imageAlt": "Дай мне словарь, который у тебя в руках."
+          "imageAlt": "Дай мне словарь, который у тебя в руках.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Enciende ___ luz.",
@@ -827,7 +864,8 @@
           ],
           "translation": "Включи свет в комнате.",
           "sourceRef": "6.3.5",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Pásame ___ tijeras.",
@@ -845,7 +883,8 @@
           "sourceRef": "6.3.6",
           "context": "Дополни предложение.",
           "image": "art/003/09-tijeras.webp",
-          "imageAlt": "Передай эти ножницы."
+          "imageAlt": "Передай эти ножницы.",
+          "interaction": "gap-choice"
         }
       ],
       "preview": {
@@ -859,7 +898,8 @@
         "targetPrefix": "",
         "tip": ""
       },
-      "pictureTitle": "Выбери артикль."
+      "pictureTitle": "Выбери артикль.",
+      "inputLabel": "Выбор ответа"
     },
     {
       "id": "6.4",
@@ -882,7 +922,8 @@
           ],
           "translation": "Орлы — птицы.",
           "sourceRef": "6.4.1",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Montevideo es ___ capital de Uruguay.",
@@ -900,7 +941,8 @@
           ],
           "translation": "Монтевидео — столица Уругвая.",
           "sourceRef": "6.4.2",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Queremos ver ___ jefe de estudios.",
@@ -918,7 +960,8 @@
           ],
           "translation": "Хотим увидеть заведующего учебной частью.",
           "sourceRef": "6.4.3",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Cierra ___ puerta del jardín.",
@@ -936,7 +979,8 @@
           ],
           "translation": "Закрой дверь сада.",
           "sourceRef": "6.4.4",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Cierra la puerta ___ jardín.",
@@ -951,7 +995,8 @@
           ],
           "translation": "Закрой дверь сада.",
           "sourceRef": "6.4.4",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Tenéis que ir ___ aula 15.",
@@ -969,7 +1014,8 @@
           ],
           "translation": "Вам нужно пойти в аудиторию 15.",
           "sourceRef": "6.4.5",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ agua es necesaria para vivir.",
@@ -987,7 +1033,8 @@
           ],
           "translation": "Вода необходима для жизни.",
           "sourceRef": "6.4.6",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ padres de Sofía viven aquí.",
@@ -1005,7 +1052,8 @@
           ],
           "translation": "Родители Софии живут здесь.",
           "sourceRef": "6.4.7",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Me gustan ___ naranjas.",
@@ -1023,7 +1071,8 @@
           ],
           "translation": "Мне нравятся апельсины.",
           "sourceRef": "6.4.8",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Vivimos cerca ___ centro.",
@@ -1041,7 +1090,8 @@
           ],
           "translation": "Мы живём рядом с центром.",
           "sourceRef": "6.4.9",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Ese coche es ___ padre de Mónica.",
@@ -1059,7 +1109,8 @@
           ],
           "translation": "Эта машина принадлежит отцу Моники.",
           "sourceRef": "6.4.10",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "gap-choice"
         }
       ],
       "preview": {
@@ -1072,7 +1123,8 @@
         "translation": "Идём в аудиторию.",
         "targetPrefix": "",
         "tip": ""
-      }
+      },
+      "inputLabel": "Выбор ответа"
     }
   ],
   "learningOrder": [
