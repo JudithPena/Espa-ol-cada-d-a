@@ -23,7 +23,7 @@ from .lexicon import _FUNCTION_WORDS, generated_forms
 from .markup import checkable, plain, to_html
 from .tokens import spanish_words
 from .wordcards import WordCard
-from .grammar import load_grammar
+from .grammar import load_grammar, write_theory_illustrations
 
 TEMPLATE = Path(__file__).with_name("site_template.html")
 
@@ -510,6 +510,8 @@ def build_site(course: Course, cards: dict[str, WordCard], out: str | Path, unit
     копируется в a/ рядом со страницей. Без неё сайт собирается без записей (так в тестах)."""
     site = site_data(course, cards, units, videos, preview)
     out = Path(out)
+    if not fragment:
+        write_theory_illustrations(site["grammar"], out.parent)
     if audio_cache and not fragment:
         from .site_audio import record
         site["audio"] = record(site, out.parent, audio_cache)

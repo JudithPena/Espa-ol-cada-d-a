@@ -59,6 +59,8 @@ def test_valid_variants_are_not_rejected_as_wrong():
 def test_reject_invalid_clock_data(tmp_path, clock):
     import json
     u = next(u for u in load_grammar() if u['number'] == 9)
+    for section in u['sections']:
+        section.pop('illustration', None)
     u['exercises'][0]['questions'][0]['clock'] = clock
     (tmp_path/'009.json').write_text(json.dumps(u), encoding='utf-8')
     with pytest.raises(ValueError, match='valid hour and minute'):

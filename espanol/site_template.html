@@ -448,6 +448,20 @@ main { padding-block: 16px 110px; }
 .gdistance-person { font-weight: 700; }
 .gdistance-dot { font-size: 25px; line-height: 1; }
 .gdistance-zone small { font-size: 12px; }
+.gscene { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); align-items: center; gap: 22px; margin: 16px 0 22px; padding: 14px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); }
+.gscene-image { position: relative; display: block; width: 100%; padding: 0; border: 0; border-radius: 12px; background: #fff4df; cursor: zoom-in; overflow: hidden; }
+.gscene-image img { display: block; width: 100%; height: auto; aspect-ratio: 3/2; object-fit: contain; }
+.gscene-image > span { position: absolute; right: 8px; bottom: 8px; width: 30px; height: 30px; border-radius: 50%; background: var(--surface); color: var(--ink); font-size: 22px; line-height: 30px; }
+.gscene-examples { display: grid; gap: 12px; }
+.gscene-line { display: grid; gap: 6px; padding: 12px 14px; border-left: 3px solid var(--accent); border-radius: 4px 12px 12px 4px; background: var(--accent-soft); }
+.gscene-line b { font-size: clamp(17px,2vw,21px); line-height: 1.45; overflow-wrap: anywhere; }
+.gscene-line strong { color: var(--accent); }
+.gscene-line > span { color: var(--muted); font-size: 14px; line-height: 1.5; }
+.gart-modal { width: min(1000px,calc(100vw - 24px)); max-height: calc(100dvh - 24px); box-sizing: border-box; overflow: auto; padding: 16px; border: 1px solid var(--line); border-radius: 18px; color: var(--ink); background: var(--surface); }
+.gart-modal::backdrop { background: rgb(10 14 30 / .72); }
+.gart-toolbar { display: flex; justify-content: flex-end; position: sticky; top: -16px; padding: 8px 0; background: var(--surface); z-index: 1; }
+.gart-modal > img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0 0 16px; }
+@media(max-width:600px) { .gscene { grid-template-columns: minmax(0,1fr); gap: 12px; padding: 12px; } .gscene-image img { max-height: 240px; } .gscene-examples { gap: 8px; } .gscene-line { padding: 10px 12px; } }
 .gquestion { border: 0; border-top: 1px solid var(--line); margin: 18px 0 0; padding: 16px 0 0; min-width: 0; }
 .gquestion legend { font-weight: 700; padding: 8px 0; max-width: 100%; }
 .gillustration { display: block; width: min(100%, 280px); height: auto; aspect-ratio: 1; object-fit: contain; margin: 0 auto 14px; border-radius: 14px; }
@@ -1635,6 +1649,8 @@ document.addEventListener("click", e => {
   if (d.gstart) return gStart(G?.unit || view.grammar, d.gstart);
   if ("gresume" in d) return gStart(view.grammar, "all", true);
   if ("gexit" in d) return gExit();
+  if ("gart" in d) return gOpenArt();
+  if ("gartClose" in d) return document.querySelector('#g-art-modal')?.close();
   if ("gback" in d) return gMove(-1);
   if ("gnext" in d) return gMove(1);
   if ("gcheck" in d) return gCheck();
@@ -1735,6 +1751,7 @@ document.addEventListener("input", e => {
 });
 document.addEventListener("focusin", e => { if(G && e.target.dataset?.ggap != null) G.gapIndex = +e.target.dataset.ggap; });
 document.addEventListener("keydown", e => {
+  if (document.querySelector('#g-art-modal[open]')) return;
   if (e.key === "Escape") closeSheet();
   if (G && !G.ended) {
     if(e.key === 'Enter' && e.target.dataset?.ggap === '0' && !e.shiftKey) { e.preventDefault(); $('[data-ggap="1"]')?.focus(); return; }

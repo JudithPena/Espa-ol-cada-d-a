@@ -410,6 +410,17 @@ test('resuming an older all-unit route rebases its current question onto the new
 });
 
 const newUnits=fs.readdirSync('content/grammar').filter(f=>/^0(0[4-9]|1[0-4])_.*\.json$/.test(f)).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
+test('theory scenes keep examples as text, escape untrusted markup and expose an enlargement button',()=>{
+ const run=context();
+ const art={image:'data:image/webp;base64,sample',alt:'<img onerror=bad>',examples:[['Es **un reloj**.','Это часы.'],['<script>bad</script>','Проверка экранирования']]};
+ const html=run(`gArtFigure(${JSON.stringify(art)})`);
+ assert.ok(html.includes('aria-label="Увеличить иллюстрацию"'));
+ assert.ok(html.includes('Es <strong>un reloj</strong>.'));
+ assert.ok(html.includes('Это часы.'));
+ assert.ok(!html.includes('<script>'));
+ assert.ok(!html.includes('alt="<img'));
+ assert.equal(run('gArtFigure(null)'),'');
+});
 test('units 4–14 complete their interleaved routes, keep manual feedback and lead to the next actual unit', () => {
  assert.equal(newUnits.length,11);
  for(const u of newUnits){

@@ -2,6 +2,7 @@
 
 import json
 import base64
+import hashlib
 from pathlib import Path
 
 
@@ -15,6 +16,21 @@ def _image_uri(directory: Path, relative: str) -> str:
     return "data:image/webp;base64," + base64.b64encode(image.read_bytes()).decode()
 
 
+def write_theory_illustrations(units: list[dict], output: Path) -> None:
+    """Keep theory art out of the initial HTML; only the opened scene is downloaded."""
+    for unit in units:
+        for section in unit["sections"]:
+            art = section.get("illustration")
+            if not art:
+                continue
+            data = base64.b64decode(art["image"].split(",", 1)[1], validate=True)
+            relative = f"g/{hashlib.sha256(data).hexdigest()[:20]}.webp"
+            path = output / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(data)
+            art["image"] = relative
+
+
 def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
     units = []
     for path in sorted(directory.glob("*.json")):
@@ -25,6 +41,15 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
             routes = {f"section:{i}" for i in range(len(unit['sections']))} | {'summary'} | {f"exercise:{g['id']}" for g in unit['exercises']}
             if set(unit['learningOrder']) != routes or len(unit['learningOrder']) != len(routes):
                 raise ValueError(f"{path}: learningOrder must contain every stage exactly once")
+        for section in unit["sections"]:
+            art = section.get("illustration")
+            if art is not None:
+                if not isinstance(art, dict) or not art.get("image") or not art.get("alt") or not art.get("examples") or any(
+                    not isinstance(pair, list) or len(pair) != 2 or not all(isinstance(text, str) and text.strip() for text in pair)
+                    for pair in art.get("examples", [])
+                ):
+                    raise ValueError(f"{path}: theory illustration requires image, alt and bilingual examples")
+                art["image"] = _image_uri(directory, art["image"])
         ids = set()
         for group in [s["check"] for s in unit["sections"] if s.get("check")] + unit["exercises"]:
             if group["id"] in ids:

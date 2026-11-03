@@ -122,8 +122,25 @@ function grammarView() {
 function gTheoryText(text) {
   return esc(text).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/`([^`]+)`/g, (_, token) => `<code lang="es"${token.includes(" ") ? ' class="is-phrase"' : ""}>${token}</code>`);
 }
+function gArtExamples(art) {
+  return `<div class="gscene-examples">${art.examples.map(([es,ru])=>`<div class="gscene-line"><b lang="es">${gTheoryText(es)}</b><span>${esc(ru)}</span></div>`).join('')}</div>`;
+}
+function gArtFigure(art) {
+  if (!art) return '';
+  return `<figure class="gscene"><button class="gscene-image" data-gart aria-label="Увеличить иллюстрацию"><img src="${esc(art.image)}" alt="${esc(art.alt)}" width="1200" height="800" decoding="async"><span aria-hidden="true">⤢</span></button><figcaption>${gArtExamples(art)}</figcaption></figure>`;
+}
+function gOpenArt() {
+  const step=G?.steps[G.at], art=step?.type==='theory' && gUnit()?.sections[step.section].illustration;
+  if (!art || document.querySelector('#g-art-modal')) return;
+  const opener=document.activeElement, dialog=document.createElement('dialog');
+  dialog.id='g-art-modal'; dialog.className='gart-modal'; dialog.setAttribute('aria-label','Иллюстрация к правилу');
+  dialog.innerHTML=`<div class="gart-toolbar"><button class="btn ghost sm" data-gart-close>Закрыть ×</button></div><img src="${esc(art.image)}" alt="${esc(art.alt)}" width="1200" height="800" decoding="async">${gArtExamples(art)}`;
+  dialog.addEventListener('close',()=>{dialog.remove(); if(opener?.isConnected)opener.focus();});
+  dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
+  document.body.appendChild(dialog); dialog.showModal();
+}
 function gTheory(section) {
-  return `<div class="theory">${section.paragraphs.map(p => `<p${/\*\*|`/.test(p) ? ' class="gexplanation"' : ""}>${gTheoryText(p)}</p>`).join("")}${(section.examples || []).map(([es,ru]) => `<div class="box rule">${playBtn(es)} <b lang="es">${esc(es)}</b><br>${esc(ru)}</div>`).join("")}</div>
+  return `${gArtFigure(section.illustration)}<div class="theory">${section.paragraphs.map(p => `<p${/\*\*|`/.test(p) ? ' class="gexplanation"' : ""}>${gTheoryText(p)}</p>`).join("")}${(section.examples || []).map(([es,ru]) => `<div class="box rule">${playBtn(es)} <b lang="es">${esc(es)}</b><br>${esc(ru)}</div>`).join("")}</div>
     ${section.wordGroups ? grammarWordGroups(section.wordGroups) : ""}${section.schemes ? `<div${section.schemeGrid ? ' class="gsummary-cards"' : ""}>${grammarSchemes(section.schemes)}</div>` : ""}${section.table ? grammarTable(section.table) : ""}
     ${section.agreement ? `<div class="gagreement">${section.agreement.map(w => `<div><small>${esc(w.label)}</small><b>${esc(w.from)}</b><span>↓</span><b>${esc(w.to)}</b></div>`).join("")}</div>` : ""}
     ${section.notes?.length ? `<aside class="gnotes">${section.notes.map(n => `<p>${esc(n)}</p>`).join("")}</aside>` : ""}`;
