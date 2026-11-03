@@ -118,3 +118,10 @@ def test_scene_shows_text_first_and_translation_in_one_spoiler():
     assert story.startswith("📖 <b>Мини-рассказ</b>") and "— " not in story
     monologue = _scene([("Ana: Hola.", "Привет."), ("Ana: Adiós.", "Пока.")])
     assert monologue[0] == "🎙 <b>Монолог</b>"
+
+
+def test_colon_inside_story_sentence_is_not_a_speaker():
+    from espanol.mywords import _scene
+    story = _scene([("Estaba aturdido: oía un murmullo.", "Он был оглушён: слышал гул."),
+                    ("Hace sol.", "Светит солнце.")])
+    assert story[0] == "📖 <b>Мини-рассказ</b>" and "<b>Estaba" not in "\n".join(story)
