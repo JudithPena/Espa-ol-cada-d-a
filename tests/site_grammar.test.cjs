@@ -7,6 +7,7 @@ const template = fs.readFileSync('espanol/site_template.html', 'utf8');
 const script = template.match(/<script>([\s\S]*?)<\/script>/)[1].replace('/*__GRAMMAR_PLAYER__*/', fs.readFileSync('espanol/grammar_player.js','utf8'));
 const unit = JSON.parse(fs.readFileSync('content/grammar/001_genero.json','utf8'));
 const unit2 = JSON.parse(fs.readFileSync('content/grammar/002_objetos_animales.json','utf8'));
+const unit3 = JSON.parse(fs.readFileSync('content/grammar/003_singular_plural.json','utf8'));
 function context(grammar = [unit]) {
   const noop = () => {};
   const storage = new Map();
@@ -228,4 +229,38 @@ test('new unit renders noun groups and typed pictures with matching instructions
  assert.ok(!picture.includes('профессии'));
  const intro=run('gIntro(COURSE.grammar[0].exercises[2])');
  assert.ok(intro.includes('Ввод слова') && !intro.includes('Выбор ответа'));
+});
+
+test('third unit completes all stages and keeps previous units intact', () => {
+ const run=context([unit,unit2,unit3]);
+ run(`gradeGrammar(COURSE.grammar[1],COURSE.grammar[1].exercises[0],COURSE.grammar[1].exercises[0].questions.map(q=>q.answers[0]));
+ gStart(COURSE.grammar[2].id); var turns=0;
+ while(!G.ended && turns++<200) {
+  const step=G.steps[G.at];
+  if(step.type==='question') {const group=gGroups(gUnit()).find(g=>g.id===step.group);gResponse(step).value=group.questions[step.qi].answers[0];gCheck();}
+  gMove(1);
+ }`);
+ assert.equal(run('G.ended'),true);
+ assert.deepEqual(JSON.parse(run('JSON.stringify(gUnit().exercises.map(g=>P.grammar[grammarKey(gUnit(),g)].correct))')),[18,10,10]);
+ assert.equal(run('P.grammar["002_el_libro_la_mesa/2.1"].correct'),32);
+ assert.ok(run('gPlayerView()').includes('Лучший результат: 38 из 38'));
+});
+
+test('counting renders the exact visible objects and rewriting highlights the source', () => {
+ const run=context([unit3]);
+ for (const question of unit3.exercises[1].questions) {
+  const markup=run(`gPicture(${JSON.stringify(question)})`);
+  assert.equal((markup.match(/<img /g)||[]).length,question.pictureCount);
+  assert.ok(markup.includes(`aria-label="${question.imageAlt}"`));
+ }
+ unlockUntil(run,'exercise:3.3');
+ run('gStart(COURSE.grammar[0].id,"exercise:3.3");gMove(1);');
+ const markup=run('gPlayerView()');
+ assert.ok(markup.includes('<strong>un hijo y dos hijas</strong>'));
+ assert.ok(markup.includes('Amalia tiene tres ___.'));
+ const alternative=unit3.sections[2].check.questions[0];
+ assert.equal(run(`grammarCorrect(${JSON.stringify(alternative)},"rubís")`),true);
+ assert.equal(run(`grammarCorrect(${JSON.stringify(alternative)},"rubíes")`),true);
+ const accent=unit3.exercises[0].questions[13];
+ assert.equal(run(`grammarCorrect(${JSON.stringify(accent)},"dias")`),false);
 });

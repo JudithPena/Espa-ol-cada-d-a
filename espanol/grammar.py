@@ -33,6 +33,8 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
                     raise ValueError(f"{path}: correct answer missing from options")
                 if q.get("image"):
                     q["image"] = _image_uri(directory, q["image"])
+                if "pictureCount" in q and (type(q["pictureCount"]) is not int or not 1 <= q["pictureCount"] <= 12 or not q.get("image")):
+                    raise ValueError(f"{path}: pictureCount requires an image and an integer from 1 to 12")
             family = group.get("family")
             if family and family.get("portraits"):
                 family["portraits"] = {name: _image_uri(directory, image) for name, image in family["portraits"].items()}

@@ -1,0 +1,1420 @@
+{
+  "id": "003_libro_libros",
+  "number": 3,
+  "title": "Libro, libros",
+  "subtitle": "Единственное и множественное число",
+  "level": "A1",
+  "sections": [
+    {
+      "title": "A. Один предмет или несколько",
+      "paragraphs": [
+        "В испанском языке единственное число — singular — обозначает одного человека, животное или предмет. Множественное число — plural — обозначает больше одного.",
+        "Вместе с существительным меняется артикль: el становится los, а la — las. Род слова при этом сохраняется."
+      ],
+      "schemes": [
+        {
+          "label": "el → los · мужской род",
+          "fromLabel": "Единственное число",
+          "toLabel": "Множественное число",
+          "from": "el libro\nel gato",
+          "to": "los libros\nlos gatos",
+          "translations": [
+            [
+              "книга",
+              "книги"
+            ],
+            [
+              "кот",
+              "коты"
+            ]
+          ],
+          "change": {
+            "from": "",
+            "to": "s"
+          }
+        },
+        {
+          "label": "la → las · женский род",
+          "fromLabel": "Единственное число",
+          "toLabel": "Множественное число",
+          "from": "la mesa\nla niña",
+          "to": "las mesas\nlas niñas",
+          "translations": [
+            [
+              "стол",
+              "столы"
+            ],
+            [
+              "девочка",
+              "девочки"
+            ]
+          ],
+          "change": {
+            "from": "",
+            "to": "s"
+          }
+        }
+      ],
+      "notes": [
+        "Русское и испанское число не всегда совпадают: un reloj — одни часы, dos relojes — двое часов. В испанском один предмет — reloj, несколько — relojes."
+      ],
+      "check": {
+        "id": "check-a",
+        "title": "Мини-проверка",
+        "instruction": "Выбери форму множественного числа.",
+        "questions": [
+          {
+            "prompt": "el libro → ___",
+            "answers": [
+              "los libros"
+            ],
+            "explain": "Множественное число: los libros. Артикль el меняется на los, к libro добавляем -s.",
+            "options": [
+              "los libros",
+              "las libros",
+              "el libros"
+            ]
+          },
+          {
+            "prompt": "la mesa → ___",
+            "answers": [
+              "las mesas"
+            ],
+            "explain": "Слово mesa остаётся женского рода: la mesa → las mesas.",
+            "options": [
+              "los mesas",
+              "las mesas",
+              "la mesas"
+            ]
+          },
+          {
+            "prompt": "el gato → ___",
+            "answers": [
+              "los gatos"
+            ],
+            "explain": "Один кот — el gato, несколько — los gatos.",
+            "options": [
+              "el gatos",
+              "las gatos",
+              "los gatos"
+            ]
+          }
+        ]
+      },
+      "schemeGrid": true
+    },
+    {
+      "title": "B. После гласной добавляем -s",
+      "paragraphs": [
+        "Если существительное оканчивается на безударную гласную -a, -e, -i, -o или -u, множественное число обычно образуется добавлением -s.",
+        "После ударных -á, -é и -ó в знакомых словах также добавляем -s. Знак ударения сохраняется: mamá → mamás."
+      ],
+      "schemes": [
+        {
+          "label": "Добавляем -s, основу слова сохраняем",
+          "fromLabel": "Единственное число",
+          "toLabel": "Множественное число",
+          "from": "la casa\nla clase\nel libro",
+          "to": "las casas\nlas clases\nlos libros",
+          "translations": [
+            [
+              "дом",
+              "дома"
+            ],
+            [
+              "занятие",
+              "занятия"
+            ],
+            [
+              "книга",
+              "книги"
+            ]
+          ],
+          "change": {
+            "from": "",
+            "to": "s"
+          }
+        },
+        {
+          "label": "После ударной гласной тоже -s",
+          "fromLabel": "Единственное число",
+          "toLabel": "Множественное число",
+          "from": "la mamá\nel café\nel sofá",
+          "to": "las mamás\nlos cafés\nlos sofás",
+          "translations": [
+            [
+              "мама",
+              "мамы"
+            ],
+            [
+              "кофе, порция кофе",
+              "порции кофе"
+            ],
+            [
+              "диван",
+              "диваны"
+            ]
+          ],
+          "change": {
+            "from": "",
+            "to": "s"
+          }
+        }
+      ],
+      "notes": [],
+      "check": {
+        "id": "check-b",
+        "title": "Мини-проверка",
+        "instruction": "Выбери форму множественного числа.",
+        "questions": [
+          {
+            "prompt": "casa → ___",
+            "answers": [
+              "casas"
+            ],
+            "explain": "Casa оканчивается на безударную -a: добавляем -s → casas.",
+            "options": [
+              "casas",
+              "casaes",
+              "casa"
+            ]
+          },
+          {
+            "prompt": "clase → ___",
+            "answers": [
+              "clases"
+            ],
+            "explain": "После конечной безударной -e добавляем -s: clase → clases.",
+            "options": [
+              "clase",
+              "clases",
+              "clasees"
+            ]
+          },
+          {
+            "prompt": "mamá → ___",
+            "answers": [
+              "mamás"
+            ],
+            "explain": "После ударной -á добавляем -s. Знак ударения остаётся: mamá → mamás.",
+            "options": [
+              "mamaes",
+              "mamá",
+              "mamás"
+            ]
+          }
+        ]
+      },
+      "schemeGrid": true
+    },
+    {
+      "title": "C. После ударных -í и -ú возможны варианты",
+      "paragraphs": [
+        "У многих существительных, оканчивающихся на ударную -í или -ú, допустимы два варианта множественного числа: с -es и с -s. Оба варианта правильные.",
+        "Но так образуется множественное число не у каждого слова. Например, обычные формы для menú и champú — menús и champús."
+      ],
+      "schemes": [
+        {
+          "label": "Два допустимых варианта",
+          "fromLabel": "Единственное число",
+          "toLabel": "Множественное число",
+          "from": "el rubí\nel bambú",
+          "to": "los rubíes / rubís\nlos bambúes / bambús",
+          "translations": [
+            [
+              "рубин",
+              "рубины"
+            ],
+            [
+              "бамбук",
+              "бамбуки"
+            ]
+          ]
+        },
+        {
+          "label": "Частые формы на -s",
+          "fromLabel": "Единственное число",
+          "toLabel": "Множественное число",
+          "from": "el menú\nel champú",
+          "to": "los menús\nlos champús",
+          "translations": [
+            [
+              "меню",
+              "меню"
+            ],
+            [
+              "шампунь",
+              "шампуни"
+            ]
+          ],
+          "change": {
+            "from": "",
+            "to": "s"
+          }
+        }
+      ],
+      "notes": [
+        "В некоторых регионах Америки встречаются и допустимые формы menúes, champúes. Не переносим одну модель на все слова с -í и -ú."
+      ],
+      "check": {
+        "id": "check-c",
+        "title": "Мини-проверка",
+        "instruction": "Выбери одну из допустимых форм множественного числа.",
+        "questions": [
+          {
+            "prompt": "rubí → ___",
+            "answers": [
+              "rubíes",
+              "rubís"
+            ],
+            "explain": "Допустимы обе формы: rubíes и rubís. У многих слов на ударную -í можно добавить -es или -s.",
+            "options": [
+              "rubíes",
+              "rubís",
+              "rubí"
+            ]
+          },
+          {
+            "prompt": "bambú → ___",
+            "answers": [
+              "bambúes",
+              "bambús"
+            ],
+            "explain": "Оба варианта нормативны: bambúes и bambús.",
+            "options": [
+              "bambús",
+              "bambú",
+              "bambúes"
+            ]
+          },
+          {
+            "prompt": "Выбери обычную форму множественного числа: menú → ___",
+            "answers": [
+              "menús"
+            ],
+            "explain": "Обычная форма — menús. Региональный вариант menúes тоже встречается и допускается, но в этом вопросе его нет среди вариантов.",
+            "options": [
+              "menú",
+              "menús",
+              "menuses"
+            ]
+          }
+        ]
+      },
+      "schemeGrid": true
+    },
+    {
+      "title": "D. После многих согласных добавляем -es",
+      "paragraphs": [
+        "У знакомых слов, оканчивающихся на -l, -r, -n, -d или -j, множественное число обычно образуется добавлением -es.",
+        "Слова rey и ley, оканчивающиеся на гласную + y, тоже получают -es: reyes, leyes. Это не общее правило для всех заимствованных слов на -y."
+      ],
+      "schemes": [
+        {
+          "label": "Добавляем -es",
+          "fromLabel": "Единственное число",
+          "toLabel": "Множественное число",
+          "from": "el hotel\nla mujer\nla universidad\nel reloj",
+          "to": "los hoteles\nlas mujeres\nlas universidades\nlos relojes",
+          "translations": [
+            [
+              "отель",
+              "отели"
+            ],
+            [
+              "женщина",
+              "женщины"
+            ],
+            [
+              "университет",
+              "университеты"
+            ],
+            [
+              "часы, один предмет",
+              "часы, несколько предметов"
+            ]
+          ],
+          "change": {
+            "from": "",
+            "to": "es"
+          }
+        },
+        {
+          "label": "В словах rey и ley добавляем -es",
+          "fromLabel": "Единственное число",
+          "toLabel": "Множественное число",
+          "from": "el rey\nla ley",
+          "to": "los reyes\nlas leyes",
+          "translations": [
+            [
+              "король",
+              "короли"
+            ],
+            [
+              "закон",
+              "законы"
+            ]
+          ],
+          "change": {
+            "from": "",
+            "to": "es"
+          }
+        }
+      ],
+      "notes": [
+        "Не у всех слов на согласную окончание -es: например, cómic → cómics. Здесь отрабатываем частые модели из учебника."
+      ],
+      "check": {
+        "id": "check-d",
+        "title": "Мини-проверка",
+        "instruction": "Выбери форму множественного числа.",
+        "questions": [
+          {
+            "prompt": "hotel → ___",
+            "answers": [
+              "hoteles"
+            ],
+            "explain": "Hotel оканчивается на -l: hotel + es → hoteles.",
+            "options": [
+              "hotels",
+              "hoteles",
+              "hotel"
+            ]
+          },
+          {
+            "prompt": "reloj → ___",
+            "answers": [
+              "relojes"
+            ],
+            "explain": "К слову reloj добавляем -es: relojes.",
+            "options": [
+              "relojs",
+              "reloj",
+              "relojes"
+            ]
+          },
+          {
+            "prompt": "rey → ___",
+            "answers": [
+              "reyes"
+            ],
+            "explain": "Форма множественного числа слова rey — reyes. Конечная y сохраняется перед -es.",
+            "options": [
+              "reis",
+              "reyes",
+              "reys"
+            ]
+          }
+        ]
+      },
+      "schemeGrid": true
+    },
+    {
+      "title": "E. Конечная -z меняется на -ces",
+      "paragraphs": [
+        "Если слово оканчивается на -z, во множественном числе заменяем z на c и добавляем -es. Получается окончание -ces."
+      ],
+      "schemes": [
+        {
+          "label": "Заменяем -z на -ces",
+          "fromLabel": "Единственное число",
+          "toLabel": "Множественное число",
+          "from": "el pez\nla actriz\nel lápiz",
+          "to": "los peces\nlas actrices\nlos lápices",
+          "translations": [
+            [
+              "рыба",
+              "рыбы"
+            ],
+            [
+              "актриса",
+              "актрисы"
+            ],
+            [
+              "карандаш",
+              "карандаши"
+            ]
+          ],
+          "change": {
+            "from": "z",
+            "to": "ces"
+          }
+        }
+      ],
+      "notes": [],
+      "check": {
+        "id": "check-e",
+        "title": "Мини-проверка",
+        "instruction": "Выбери форму множественного числа.",
+        "questions": [
+          {
+            "prompt": "pez → ___",
+            "answers": [
+              "peces"
+            ],
+            "explain": "Конечная z заменяется на c перед -es: pez → peces.",
+            "options": [
+              "pezes",
+              "peces",
+              "pezs"
+            ]
+          },
+          {
+            "prompt": "actriz → ___",
+            "answers": [
+              "actrices"
+            ],
+            "explain": "Actriz → actrices: вместо -z пишем -ces.",
+            "options": [
+              "actrices",
+              "actrizs",
+              "actrizes"
+            ]
+          },
+          {
+            "prompt": "lápiz → ___",
+            "answers": [
+              "lápices"
+            ],
+            "explain": "Lápiz → lápices. Меняем -z на -ces; знак ударения сохраняется.",
+            "options": [
+              "lápizs",
+              "lápizes",
+              "lápices"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "F. Когда слово на -s не меняется",
+      "paragraphs": [
+        "Если слово оканчивается на -s или -x, состоит из двух или более слогов и ударение не падает на последний слог, его форма обычно не меняется. Число показывают артикль и другие слова рядом.",
+        "Если ударение падает на последний слог, добавляем -es: autobús → autobuses. Односложное mes также получает -es: meses."
+      ],
+      "schemes": [
+        {
+          "label": "Слово сохраняется, артикль меняется",
+          "fromLabel": "Единственное число",
+          "toLabel": "Множественное число",
+          "from": "el lunes\nel jueves\nel paraguas\nel cumpleaños",
+          "to": "los lunes\nlos jueves\nlos paraguas\nlos cumpleaños",
+          "translations": [
+            [
+              "понедельник",
+              "понедельники"
+            ],
+            [
+              "четверг",
+              "четверги"
+            ],
+            [
+              "зонт",
+              "зонты"
+            ],
+            [
+              "день рождения",
+              "дни рождения"
+            ]
+          ]
+        },
+        {
+          "label": "Но после ударного конечного слога добавляем -es",
+          "fromLabel": "Единственное число",
+          "toLabel": "Множественное число",
+          "from": "el autobús\nel mes",
+          "to": "los autobuses\nlos meses",
+          "translations": [
+            [
+              "автобус",
+              "автобусы"
+            ],
+            [
+              "месяц",
+              "месяцы"
+            ]
+          ],
+          "change": {
+            "from": "",
+            "to": "es"
+          }
+        }
+      ],
+      "notes": [],
+      "check": {
+        "id": "check-f",
+        "title": "Мини-проверка",
+        "instruction": "Выбери форму множественного числа.",
+        "questions": [
+          {
+            "prompt": "el jueves → ___",
+            "answers": [
+              "los jueves"
+            ],
+            "explain": "Слово jueves не меняется: ударение не на последнем слоге. Меняется артикль el → los.",
+            "options": [
+              "los jueveses",
+              "los jueves",
+              "el jueves"
+            ]
+          },
+          {
+            "prompt": "el paraguas → ___",
+            "answers": [
+              "los paraguas"
+            ],
+            "explain": "Paraguas оканчивается на -s, ударение не на последнем слоге. Форма остаётся прежней.",
+            "options": [
+              "los paraguas",
+              "los paraguases",
+              "el paraguas"
+            ]
+          },
+          {
+            "prompt": "autobús → ___",
+            "answers": [
+              "autobuses"
+            ],
+            "explain": "В autobús ударение на последнем слоге: добавляем -es → autobuses.",
+            "options": [
+              "autobús",
+              "autobúses",
+              "autobuses"
+            ]
+          },
+          {
+            "prompt": "mes → ___",
+            "answers": [
+              "meses"
+            ],
+            "explain": "Mes — односложное слово на -s. Во множественном числе добавляем -es: meses.",
+            "options": [
+              "mes",
+              "meses",
+              "mess"
+            ]
+          }
+        ]
+      },
+      "schemeGrid": true
+    },
+    {
+      "title": "G. Проверяем знак ударения",
+      "paragraphs": [
+        "При образовании множественного числа в этих словах ударный гласный остаётся тем же, но знак ударения на письме иногда исчезает или появляется: меняются условия его написания.",
+        "Если ударение падает на предпоследний слог, у слов на гласную, -n или -s знак обычно не нужен. Если ударение на третьем слоге с конца, знак нужен всегда."
+      ],
+      "schemes": [
+        {
+          "label": "В этих формах знак ударения исчезает",
+          "fromLabel": "Единственное число",
+          "toLabel": "Множественное число",
+          "from": "el autobús\nla habitación\nel león",
+          "to": "los autobuses\nlas habitaciones\nlos leones",
+          "translations": [
+            [
+              "автобус",
+              "автобусы"
+            ],
+            [
+              "комната",
+              "комнаты"
+            ],
+            [
+              "лев",
+              "львы"
+            ]
+          ]
+        },
+        {
+          "label": "В этой форме знак появляется",
+          "fromLabel": "Единственное число",
+          "toLabel": "Множественное число",
+          "from": "el joven",
+          "to": "los jóvenes",
+          "translations": [
+            [
+              "молодой человек",
+              "молодые люди"
+            ]
+          ]
+        }
+      ],
+      "notes": [
+        "Здесь мы специально проверяем написание ударения. В упражнениях на ввод используй кнопки á, é, í, ó, ú под полем ответа."
+      ],
+      "check": {
+        "id": "check-g",
+        "title": "Мини-проверка",
+        "instruction": "Выбери правильное написание множественного числа.",
+        "questions": [
+          {
+            "prompt": "televisión → ___",
+            "answers": [
+              "televisiones"
+            ],
+            "explain": "В televisiones ударение на предпоследнем слоге, слово оканчивается на -s: знак ударения не нужен.",
+            "options": [
+              "televisiónes",
+              "televisiones",
+              "televisión"
+            ]
+          },
+          {
+            "prompt": "león → ___",
+            "answers": [
+              "leones"
+            ],
+            "explain": "León → leones. Ударный гласный остаётся o, но во множественном числе знак ударения не нужен.",
+            "options": [
+              "leónes",
+              "leones",
+              "léones"
+            ]
+          },
+          {
+            "prompt": "joven → ___",
+            "answers": [
+              "jóvenes"
+            ],
+            "explain": "В jóvenes ударение падает на третий слог с конца, поэтому нужен знак ударения.",
+            "options": [
+              "jovenes",
+              "jóvenes",
+              "jovéns"
+            ]
+          }
+        ]
+      },
+      "schemeGrid": true
+    },
+    {
+      "title": "H. Множественное число может обозначать один предмет",
+      "paragraphs": [
+        "Названия некоторых парных предметов часто употребляются во множественном числе, даже если предмет один: unas gafas — одни очки, unas tijeras — одни ножницы.",
+        "Так же могут употребляться pantalones и vaqueros: одни брюки или одни джинсы. Чтобы ясно назвать количество пар, можно сказать un par de gafas, dos pares de pantalones."
+      ],
+      "schemes": [
+        {
+          "label": "Форма множественного числа — один предмет или несколько",
+          "fromLabel": "Один предмет",
+          "toLabel": "Несколько предметов",
+          "from": "unas gafas\nunas tijeras\nunos pantalones",
+          "to": "dos pares de gafas\ntres tijeras\ndos pares de pantalones",
+          "translations": [
+            [
+              "одни очки",
+              "две пары очков"
+            ],
+            [
+              "одни ножницы",
+              "трое ножниц"
+            ],
+            [
+              "одни брюки",
+              "две пары брюк"
+            ]
+          ]
+        }
+      ],
+      "notes": [
+        "Формы единственного числа pantalón, vaquero, tijera и gafa тоже существуют. Не называем их ошибкой: здесь учимся узнавать привычное употребление во множественном числе."
+      ],
+      "check": {
+        "id": "check-h",
+        "title": "Мини-проверка",
+        "instruction": "Выбери подходящий ответ о количестве предметов.",
+        "questions": [
+          {
+            "prompt": "Как назвать одни очки?",
+            "answers": [
+              "unas gafas"
+            ],
+            "explain": "Unas gafas может обозначать одни очки. Число предметов уточняется по контексту или выражением un par de gafas.",
+            "options": [
+              "unas gafas",
+              "unos gafas",
+              "una gafas"
+            ]
+          },
+          {
+            "prompt": "Что может обозначать unos pantalones?",
+            "answers": [
+              "одни брюки"
+            ],
+            "explain": "Грамматическая форма множественного числа pantalones может обозначать один предмет одежды.",
+            "options": [
+              "только несколько пар брюк",
+              "одни брюки",
+              "только несколько мужчин"
+            ]
+          },
+          {
+            "prompt": "Как однозначно сказать «две пары очков»?",
+            "answers": [
+              "dos pares de gafas"
+            ],
+            "explain": "Dos pares de gafas прямо указывает количество: две пары очков.",
+            "options": [
+              "dos par de gafas",
+              "dos pares de gafas",
+              "dos pares de gafa"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "I. Как назвать смешанную группу",
+      "paragraphs": [
+        "Для группы мужчин и женщин в испанском часто используется форма мужского рода множественного числа: un alumno + una alumna → dos alumnos.",
+        "Форма мужского рода может обозначать и только мужчин, и смешанную группу. Форма женского рода обозначает группу женщин. Например, tres alumnas — три ученицы."
+      ],
+      "schemes": [
+        {
+          "label": "Объединяем названия одним словом",
+          "fromLabel": "Кто входит в группу",
+          "toLabel": "Как назвать вместе",
+          "from": "el padre + la madre\nun hijo + dos hijas\nun amigo + una amiga",
+          "to": "los padres\ntres hijos\ndos amigos",
+          "translations": [
+            [
+              "отец и мать",
+              "родители"
+            ],
+            [
+              "один сын и две дочери",
+              "трое детей"
+            ],
+            [
+              "друг и подруга",
+              "двое друзей"
+            ]
+          ]
+        }
+      ],
+      "notes": [
+        "Это правило относится к подходящим названиям людей, а не к любым двум словам. Например, toro и vaca нельзя автоматически объединить словом toros."
+      ],
+      "check": {
+        "id": "check-i",
+        "title": "Мини-проверка",
+        "instruction": "Выбери слово для всей группы.",
+        "questions": [
+          {
+            "prompt": "un hermano + una hermana → dos ___",
+            "answers": [
+              "hermanos"
+            ],
+            "explain": "Брат и сестра вместе — dos hermanos. Для смешанной группы используем мужской род множественного числа.",
+            "options": [
+              "hermanas",
+              "hermanos",
+              "hermano"
+            ]
+          },
+          {
+            "prompt": "el padre + la madre → los ___",
+            "answers": [
+              "padres"
+            ],
+            "explain": "Los padres может означать «родители»: отец и мать.",
+            "options": [
+              "padres",
+              "madres",
+              "padre"
+            ]
+          },
+          {
+            "prompt": "Три девочки-ученицы: tres ___",
+            "answers": [
+              "alumnas"
+            ],
+            "explain": "Группа состоит только из девочек: tres alumnas, женский род множественного числа.",
+            "options": [
+              "alumnos",
+              "alumna",
+              "alumnas"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "schemes": [
+      {
+        "label": "1. После гласной добавляем -s",
+        "fromLabel": "Единственное число",
+        "toLabel": "Множественное число",
+        "from": "el libro",
+        "to": "los libros",
+        "translations": [
+          [
+            "книга",
+            "книги"
+          ]
+        ],
+        "change": {
+          "from": "",
+          "to": "s"
+        }
+      },
+      {
+        "label": "2. После многих согласных добавляем -es",
+        "fromLabel": "Единственное число",
+        "toLabel": "Множественное число",
+        "from": "el hotel",
+        "to": "los hoteles",
+        "translations": [
+          [
+            "отель",
+            "отели"
+          ]
+        ],
+        "change": {
+          "from": "",
+          "to": "es"
+        }
+      },
+      {
+        "label": "3. Заменяем -z на -ces",
+        "fromLabel": "Единственное число",
+        "toLabel": "Множественное число",
+        "from": "el pez",
+        "to": "los peces",
+        "translations": [
+          [
+            "рыба",
+            "рыбы"
+          ]
+        ],
+        "change": {
+          "from": "z",
+          "to": "ces"
+        }
+      },
+      {
+        "label": "4. На -s без конечного ударения: форма та же",
+        "fromLabel": "Единственное число",
+        "toLabel": "Множественное число",
+        "from": "el jueves",
+        "to": "los jueves",
+        "translations": [
+          [
+            "четверг",
+            "четверги"
+          ]
+        ]
+      },
+      {
+        "label": "5. Проверяем написание ударения",
+        "fromLabel": "Единственное число",
+        "toLabel": "Множественное число",
+        "from": "el león",
+        "to": "los leones",
+        "translations": [
+          [
+            "лев",
+            "львы"
+          ]
+        ]
+      },
+      {
+        "label": "6. Смешанная группа: мужской род",
+        "fromLabel": "Кто входит в группу",
+        "toLabel": "Как назвать вместе",
+        "from": "el padre + la madre",
+        "to": "los padres",
+        "translations": [
+          [
+            "отец и мать",
+            "родители"
+          ]
+        ]
+      },
+      {
+        "label": "7. На ударные -í и -ú часто два варианта",
+        "fromLabel": "Единственное число",
+        "toLabel": "Множественное число",
+        "from": "el rubí",
+        "to": "los rubíes / rubís",
+        "translations": [
+          [
+            "рубин",
+            "рубины"
+          ]
+        ]
+      },
+      {
+        "label": "8. Форма множественного числа для одного предмета",
+        "fromLabel": "Один предмет",
+        "toLabel": "Несколько предметов",
+        "from": "unas gafas",
+        "to": "dos pares de gafas",
+        "translations": [
+          [
+            "одни очки",
+            "две пары очков"
+          ]
+        ]
+      }
+    ]
+  },
+  "exercises": [
+    {
+      "id": "3.1",
+      "title": "3.1 · Образуй множественное число",
+      "instruction": "Впиши только слово во множественном числе, без артикля.",
+      "preview": {
+        "source": "el reloj",
+        "targetPrefix": "los",
+        "answer": "relojes",
+        "translation": "часы: один предмет → несколько"
+      },
+      "questions": [
+        {
+          "prompt": "mujer",
+          "answers": [
+            "mujeres"
+          ],
+          "explain": "mujer → mujeres. После -r добавляем -es.",
+          "translation": "женщина"
+        },
+        {
+          "prompt": "pez",
+          "answers": [
+            "peces"
+          ],
+          "explain": "pez → peces. Конечную -z заменяем на -ces.",
+          "translation": "рыба"
+        },
+        {
+          "prompt": "autobús",
+          "answers": [
+            "autobuses"
+          ],
+          "explain": "autobús → autobuses. Ударение в autobús на последнем слоге: добавляем -es. Знак ударения во множественном числе не нужен.",
+          "translation": "автобус"
+        },
+        {
+          "prompt": "actriz",
+          "answers": [
+            "actrices"
+          ],
+          "explain": "actriz → actrices. Заменяем -z на -ces.",
+          "translation": "актриса"
+        },
+        {
+          "prompt": "habitación",
+          "answers": [
+            "habitaciones"
+          ],
+          "explain": "habitación → habitaciones. Добавляем -es; знак ударения во множественном числе не нужен.",
+          "translation": "комната"
+        },
+        {
+          "prompt": "mamá",
+          "answers": [
+            "mamás"
+          ],
+          "explain": "mamá → mamás. После ударной -á добавляем -s. Знак ударения сохраняется.",
+          "translation": "мама"
+        },
+        {
+          "prompt": "pantalones",
+          "answers": [
+            "pantalones"
+          ],
+          "explain": "pantalones → pantalones. Это уже форма множественного числа, которая может обозначать одни брюки. Не добавляем ещё одно окончание.",
+          "translation": "брюки"
+        },
+        {
+          "prompt": "hotel",
+          "answers": [
+            "hoteles"
+          ],
+          "explain": "hotel → hoteles. После -l добавляем -es.",
+          "translation": "отель"
+        },
+        {
+          "prompt": "universidad",
+          "answers": [
+            "universidades"
+          ],
+          "explain": "universidad → universidades. После -d добавляем -es.",
+          "translation": "университет"
+        },
+        {
+          "prompt": "televisión",
+          "answers": [
+            "televisiones"
+          ],
+          "explain": "televisión → televisiones. Добавляем -es. Ударение остаётся на o, но знак ударения не нужен.",
+          "translation": "телевизор, телевидение"
+        },
+        {
+          "prompt": "niño",
+          "answers": [
+            "niños"
+          ],
+          "explain": "niño → niños. После безударной -o добавляем -s.",
+          "translation": "мальчик, ребёнок"
+        },
+        {
+          "prompt": "hermana",
+          "answers": [
+            "hermanas"
+          ],
+          "explain": "hermana → hermanas. После безударной -a добавляем -s.",
+          "translation": "сестра"
+        },
+        {
+          "prompt": "león",
+          "answers": [
+            "leones"
+          ],
+          "explain": "león → leones. Добавляем -es. Во множественном числе знак ударения не нужен.",
+          "translation": "лев"
+        },
+        {
+          "prompt": "día",
+          "answers": [
+            "días"
+          ],
+          "explain": "día → días. Добавляем -s. Знак ударения над í сохраняется.",
+          "translation": "день"
+        },
+        {
+          "prompt": "clase",
+          "answers": [
+            "clases"
+          ],
+          "explain": "clase → clases. После безударной -e добавляем -s.",
+          "translation": "занятие"
+        },
+        {
+          "prompt": "foto",
+          "answers": [
+            "fotos"
+          ],
+          "explain": "foto → fotos. После безударной -o добавляем -s. Женский род сохраняется: las fotos.",
+          "translation": "фотография"
+        },
+        {
+          "prompt": "banana",
+          "answers": [
+            "bananas"
+          ],
+          "explain": "banana → bananas. После безударной -a добавляем -s.",
+          "translation": "банан"
+        },
+        {
+          "prompt": "jueves",
+          "answers": [
+            "jueves"
+          ],
+          "explain": "jueves → jueves. Слово на -s с ударением не на последнем слоге остаётся без изменения: el jueves → los jueves.",
+          "translation": "четверг"
+        }
+      ]
+    },
+    {
+      "id": "3.2",
+      "title": "3.2 · Посчитай предметы",
+      "instruction": "Посчитай предметы и впиши количество вместе со словом: 1 mesa, 2 botellas. Для одних очков напиши unas gafas. Числа можно писать цифрами или словами.",
+      "answerPlaceholder": "Количество и слово",
+      "pictureTitle": "Посчитай и назови предметы",
+      "questions": [
+        {
+          "prompt": "mesa",
+          "answers": [
+            "1 mesa",
+            "una mesa"
+          ],
+          "explain": "Один стол. una mesa. При одном предмете оставляем единственное число.",
+          "context": "Посчитай и назови предметы",
+          "translation": "стол",
+          "image": "art/003/01-mesa.webp",
+          "imageAlt": "Один стол.",
+          "pictureCount": 1
+        },
+        {
+          "prompt": "botella",
+          "answers": [
+            "2 botellas",
+            "dos botellas"
+          ],
+          "explain": "Две бутылки. dos botellas. При нескольких предметах нужно множественное число.",
+          "context": "Посчитай и назови предметы",
+          "translation": "бутылка",
+          "image": "art/003/02-botella.webp",
+          "imageAlt": "Две бутылки.",
+          "pictureCount": 2
+        },
+        {
+          "prompt": "gafas",
+          "answers": [
+            "unas gafas",
+            "un par de gafas",
+            "1 par de gafas",
+            "una gafa",
+            "1 gafa"
+          ],
+          "explain": "Одни очки. unas gafas. Одни очки обычно называют unas gafas. Можно уточнить: un par de gafas.",
+          "context": "Посчитай и назови предметы",
+          "translation": "очки",
+          "image": "art/003/03-gafas.webp",
+          "imageAlt": "Одни очки.",
+          "pictureCount": 1
+        },
+        {
+          "prompt": "lámpara",
+          "answers": [
+            "1 lámpara",
+            "una lámpara"
+          ],
+          "explain": "Одна лампа. una lámpara. При одном предмете оставляем единственное число.",
+          "context": "Посчитай и назови предметы",
+          "translation": "лампа",
+          "image": "art/003/04-lampara.webp",
+          "imageAlt": "Одна лампа.",
+          "pictureCount": 1
+        },
+        {
+          "prompt": "lápiz",
+          "answers": [
+            "3 lápices",
+            "tres lápices"
+          ],
+          "explain": "Три карандаша. tres lápices. Lápiz → lápices: заменяем -z на -ces и сохраняем знак ударения.",
+          "context": "Посчитай и назови предметы",
+          "translation": "карандаш",
+          "image": "art/003/05-lapiz.webp",
+          "imageAlt": "Три карандаша.",
+          "pictureCount": 3
+        },
+        {
+          "prompt": "libro",
+          "answers": [
+            "4 libros",
+            "cuatro libros"
+          ],
+          "explain": "Четыре книги. cuatro libros. При нескольких предметах нужно множественное число.",
+          "context": "Посчитай и назови предметы",
+          "translation": "книга",
+          "image": "art/003/06-libro.webp",
+          "imageAlt": "Четыре книги.",
+          "pictureCount": 4
+        },
+        {
+          "prompt": "postal",
+          "answers": [
+            "2 postales",
+            "dos postales"
+          ],
+          "explain": "Две открытки. dos postales. При нескольких предметах нужно множественное число.",
+          "context": "Посчитай и назови предметы",
+          "translation": "открытка",
+          "image": "art/003/07-postal.webp",
+          "imageAlt": "Две открытки.",
+          "pictureCount": 2
+        },
+        {
+          "prompt": "silla",
+          "answers": [
+            "5 sillas",
+            "cinco sillas"
+          ],
+          "explain": "Пять стульев. cinco sillas. При нескольких предметах нужно множественное число.",
+          "context": "Посчитай и назови предметы",
+          "translation": "стул",
+          "image": "art/003/08-silla.webp",
+          "imageAlt": "Пять стульев.",
+          "pictureCount": 5
+        },
+        {
+          "prompt": "tijeras",
+          "answers": [
+            "3 tijeras",
+            "tres tijeras",
+            "3 pares de tijeras",
+            "tres pares de tijeras"
+          ],
+          "explain": "Трое ножниц. tres tijeras. Tijeras уже имеет форму множественного числа. Можно сказать tres tijeras или tres pares de tijeras.",
+          "context": "Посчитай и назови предметы",
+          "translation": "ножницы",
+          "image": "art/003/09-tijeras.webp",
+          "imageAlt": "Трое ножниц.",
+          "pictureCount": 3
+        },
+        {
+          "prompt": "vaso",
+          "answers": [
+            "2 vasos",
+            "dos vasos"
+          ],
+          "explain": "Два стакана. dos vasos. При нескольких предметах нужно множественное число.",
+          "context": "Посчитай и назови предметы",
+          "translation": "стакан",
+          "image": "art/003/10-vaso.webp",
+          "imageAlt": "Два стакана.",
+          "pictureCount": 2
+        }
+      ]
+    },
+    {
+      "id": "3.3",
+      "title": "3.3 · Назови группу одним словом",
+      "instruction": "Замени выделенные названия одним словом во множественном числе. Впиши только слово в пропуск.",
+      "preview": {
+        "source": "un niño + dos niñas",
+        "targetPrefix": "tres",
+        "answer": "niños",
+        "translation": "мальчик и две девочки → трое детей"
+      },
+      "questions": [
+        {
+          "prompt": "Amalia tiene tres ___.",
+          "answers": [
+            "hijos"
+          ],
+          "explain": "Сын и дочери вместе — hijos.",
+          "context": "Объедини выделенные названия",
+          "sourceParts": [
+            "Amalia tiene ",
+            "un hijo y dos hijas",
+            "."
+          ],
+          "translation": "У Amalia трое детей."
+        },
+        {
+          "prompt": "Los ___ de Marta viven en Caracas.",
+          "answers": [
+            "abuelos"
+          ],
+          "explain": "Дедушка и бабушка вместе — abuelos.",
+          "context": "Объедини выделенные названия",
+          "sourceParts": [
+            "",
+            "El abuelo y la abuela",
+            " de Marta viven en Caracas."
+          ],
+          "translation": "Бабушка и дедушка Marta живут в Каракасе."
+        },
+        {
+          "prompt": "Dos ___ míos están en Chile.",
+          "answers": [
+            "amigos"
+          ],
+          "explain": "Друг и подруга вместе — amigos.",
+          "context": "Объедини выделенные названия",
+          "sourceParts": [
+            "",
+            "Un amigo y una amiga",
+            " míos están en Chile."
+          ],
+          "translation": "Двое моих друзей находятся в Чили."
+        },
+        {
+          "prompt": "Mis ___ son médicos.",
+          "answers": [
+            "hermanos"
+          ],
+          "explain": "Брат и сестра вместе — hermanos.",
+          "context": "Объедини выделенные названия",
+          "sourceParts": [
+            "",
+            "Mi hermano y mi hermana",
+            " son médicos."
+          ],
+          "translation": "Мои брат и сестра — врачи."
+        },
+        {
+          "prompt": "Mis ___ son muy altos.",
+          "answers": [
+            "padres"
+          ],
+          "explain": "Отец и мать вместе — padres.",
+          "context": "Объедини выделенные названия",
+          "sourceParts": [
+            "",
+            "Mi padre y mi madre",
+            " son muy altos."
+          ],
+          "translation": "Мои родители очень высокие."
+        },
+        {
+          "prompt": "Los ___ viven en un palacio.",
+          "answers": [
+            "reyes"
+          ],
+          "explain": "Короля и королеву можно назвать los reyes. Во множественном числе rey → reyes.",
+          "context": "Объедини выделенные названия",
+          "sourceParts": [
+            "",
+            "El rey y la reina",
+            " viven en un palacio."
+          ],
+          "translation": "Король и королева живут во дворце."
+        },
+        {
+          "prompt": "En mi clase hay ocho ___.",
+          "answers": [
+            "alumnos"
+          ],
+          "explain": "Три ученика и пять учениц — смешанная группа: ocho alumnos.",
+          "context": "Объедини выделенные названия",
+          "sourceParts": [
+            "En mi clase hay ",
+            "tres alumnos y cinco alumnas",
+            "."
+          ],
+          "translation": "В моём классе восемь учеников."
+        },
+        {
+          "prompt": "En mi escuela hay tres ___.",
+          "answers": [
+            "profesores"
+          ],
+          "explain": "Преподаватель и две преподавательницы вместе — tres profesores.",
+          "context": "Объедини выделенные названия",
+          "sourceParts": [
+            "En mi escuela hay ",
+            "un profesor y dos profesoras",
+            "."
+          ],
+          "translation": "В моей школе три преподавателя."
+        },
+        {
+          "prompt": "He mandado un correo electrónico a mis ___.",
+          "answers": [
+            "tíos"
+          ],
+          "explain": "Дядя и тётя вместе — tíos. Знак ударения над í сохраняется.",
+          "context": "Объедини выделенные названия",
+          "sourceParts": [
+            "He mandado un correo electrónico a ",
+            "mi tío y a mi tía",
+            "."
+          ],
+          "translation": "Я отправил электронное письмо дяде и тёте."
+        },
+        {
+          "prompt": "Es una compañía de ballet con tres ___.",
+          "answers": [
+            "bailarines"
+          ],
+          "explain": "Танцовщик и две танцовщицы — смешанная группа: bailarines. В форме множественного числа знак ударения не нужен.",
+          "context": "Объедини выделенные названия",
+          "sourceParts": [
+            "Es una compañía de ballet con ",
+            "un bailarín y dos bailarinas",
+            "."
+          ],
+          "translation": "Это балетная труппа с тремя танцовщиками."
+        }
+      ]
+    }
+  ]
+}

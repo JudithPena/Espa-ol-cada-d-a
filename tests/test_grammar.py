@@ -38,7 +38,7 @@ def test_reject_answer_missing_from_options(tmp_path):
 
 
 def test_second_unit_covers_pages_and_current_norm():
-    first, unit = load_grammar()
+    first, unit = load_grammar()[:2]
     assert unit['id'] == '002_el_libro_la_mesa'
     assert [len(g['questions']) for g in unit['exercises']] == [32, 6, 10]
     assert len(unit['sections']) == 7
@@ -58,3 +58,27 @@ def test_second_unit_covers_pages_and_current_norm():
     assert pictures[-1]['answers'] == ['la nariz']
     assert unit['exercises'][1]['questions'][1]['answers'] == ['caballo']
     assert first['id'] != unit['id']
+
+
+def test_third_unit_covers_plural_rules_and_all_supplied_tasks():
+    unit = load_grammar()[2]
+    assert unit['id'] == '003_libro_libros'
+    assert [len(g['questions']) for g in unit['exercises']] == [18, 10, 10]
+    assert len(unit['sections']) == 9
+    variants = unit['sections'][2]['check']['questions']
+    assert variants[0]['answers'] == ['rubíes', 'rubís']
+    assert variants[1]['answers'] == ['bambúes', 'bambús']
+    plural = {q['prompt']: q['answers'] for q in unit['exercises'][0]['questions']}
+    assert plural['pantalones'] == ['pantalones']
+    assert plural['jueves'] == ['jueves']
+    assert plural['autobús'] == ['autobuses']
+    assert plural['día'] == ['días']
+    counting = unit['exercises'][1]['questions']
+    assert [q['pictureCount'] for q in counting] == [1, 2, 1, 1, 3, 4, 2, 5, 3, 2]
+    assert all(q['image'].startswith('data:image/webp;base64,') for q in counting)
+    assert 'unas gafas' in counting[2]['answers'] and '1 gafas' not in counting[2]['answers']
+    assert '2 botellas' in counting[1]['answers'] and 'dos botellas' in counting[1]['answers']
+    assert '3 lápices' in counting[4]['answers']
+    rewriting = unit['exercises'][2]['questions']
+    assert all(len(q['sourceParts']) == 3 and q['sourceParts'][1] for q in rewriting)
+    assert [q['answers'][0] for q in rewriting] == ['hijos', 'abuelos', 'amigos', 'hermanos', 'padres', 'reyes', 'alumnos', 'profesores', 'tíos', 'bailarines']
