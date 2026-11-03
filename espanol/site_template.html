@@ -467,6 +467,10 @@ html.grammar-playing, html.grammar-playing body { overflow: hidden; }
 .gplayer .pbody { min-height: 0; }
 .gplayer h2 { line-height: 1.3; outline: none; }
 .gplayer .theory { line-height: 1.6; }
+.gplayer .theory .gexplanation { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 12px; padding: 12px 16px; }
+.gexplanation strong { color: var(--accent); }
+.gplayer .gexplanation code { font-family: var(--body); font-size: .95em; white-space: nowrap; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.gplayer .gexplanation code.is-phrase { white-space: normal; }
 .gplayer .gschemes, .gplayer .gnotes, .gplayer .gagreement { margin: 0; }
 .gplayer .gscheme { padding: 12px 14px; }
 .gplayer .ginstruction { margin: 0; }

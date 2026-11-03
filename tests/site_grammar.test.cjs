@@ -264,3 +264,27 @@ test('counting renders the exact visible objects and rewriting highlights the so
  const accent=unit3.exercises[0].questions[13];
  assert.equal(run(`grammarCorrect(${JSON.stringify(accent)},"dias")`),false);
 });
+
+test('back exits the first screen to the unit menu and preserves a resumable attempt', () => {
+ const run=context([unit3]);
+ unlockUntil(run,'section:2');
+ run('gStart(COURSE.grammar[0].id,"section:2");');
+ assert.ok(run('gPlayerView()').includes('data-gback aria-label="Назад к разделам урока"'));
+ run('gMove(-1);');
+ assert.equal(run('G'),null);
+ assert.equal(run('view.grammar'),unit3.id);
+ assert.equal(run('gSaved().route'),'section:2');
+ run('gStart(view.grammar,"all",true);gMove(1);gPick(0);gMove(-1);');
+ assert.equal(run('G.at'),0);
+ run('gMove(1);');
+ assert.equal(run('gResponse(G.steps[G.at]).checked'),true);
+});
+
+test('theory emphasis escapes HTML and renders only supported inline formatting', () => {
+ const run=context([unit3]);
+ const markup=run('gTheory(COURSE.grammar[0].sections[0])');
+ assert.ok(markup.includes('class="gexplanation"'));
+ assert.ok(markup.includes('<strong>единственное число</strong>'));
+ assert.ok(markup.includes('<code lang="es">singular</code>'));
+ assert.equal(run('gTheoryText("<img src=x> **важно** `-s`")'),'&lt;img src=x&gt; <strong>важно</strong> <code lang="es">-s</code>');
+});
