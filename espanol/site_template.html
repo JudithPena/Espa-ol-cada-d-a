@@ -443,6 +443,14 @@ main { padding-block: 16px 110px; }
 .ginput { width: 100%; min-height: 46px; padding: 10px 12px; background: var(--bg); color: var(--ink); border: 2px solid var(--line); border-radius: 10px; font: inherit; }
 .gphrase-input { display: block; resize: vertical; line-height: 1.5; }
 .gblank { display: inline-block; min-width: 8ch; padding: 0 12px; margin: 0 4px; border: 2px dashed var(--accent); border-radius: 7px; background: var(--accent-soft); color: var(--accent); text-align: center; vertical-align: baseline; }
+.gpreview-insert { color: var(--accent); background: var(--surface); border-bottom: 3px solid var(--accent); border-radius: 4px; padding: 1px 4px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.gclues { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+.gclues > span { display: grid; gap: 3px; padding: 10px 16px; border-radius: 12px; background: var(--accent-soft); }
+.gclues small { color: var(--muted); }
+.gfill-sentence { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 20px; }
+.gfill-sentence > p { font-size: 21px; font-weight: 700; line-height: 1.5; margin: 0; }
+.gfill-label { display: block; margin: 12px 0 6px; color: var(--muted); font-size: 13px; }
+.gfill-sentence .gaccents { margin-bottom: 12px; }
 .gfeedback { margin: 10px 0; padding: 12px; border-radius: 10px; background: var(--bad-soft); }
 .gfeedback.good { background: var(--good-soft); }
 .gfeedback p { margin: 4px 0 0; }

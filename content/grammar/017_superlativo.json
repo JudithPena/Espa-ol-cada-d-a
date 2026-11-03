@@ -685,15 +685,19 @@
     {
       "id": "17.1",
       "title": "17.1 · Самый или наименее?",
-      "instruction": "Впиши целую группу слов: артикль + название предмета + más или menos + прилагательное. Например, «самая красивая улица» — la calle más bonita. Название города или страны отвечать не нужно.",
+      "instruction": "Напиши выражение по-испански и вставь его в вопрос. Слова на карточках помогут составить ответ.",
       "inputLabel": "Ввод фразы",
-      "answerPlaceholder": "Артикль + название + más/menos + прилагательное",
+      "answerPlaceholder": "Твой ответ на испанском",
       "preview": {
-        "source": "¿Cuál es la calle más bonita de la ciudad?",
+        "source": "¿Cuál es ___ de la ciudad?",
         "targetPrefix": "",
         "answer": "la calle más bonita",
         "translation": "Какая улица в городе самая красивая?",
-        "tip": "В образце вставили la calle más bonita. В заданиях собери такую же фразу из своей подсказки."
+        "tip": "Выделенная часть — то, что нужно вписать. Остальной вопрос уже готов.",
+        "sentenceParts": [
+          "¿Cuál es ",
+          " de la ciudad?"
+        ]
       },
       "questions": [
         {
@@ -702,7 +706,17 @@
             "la ciudad más bonita"
           ],
           "explain": "Ciudad — женский род: la ciudad más bonita. После ciudad ставим más, а bonito меняем на bonita.",
-          "context": "ciudad / bonito · самая красивая"
+          "context": "Напиши: «самый красивый город»",
+          "clues": [
+            [
+              "ciudad",
+              "город"
+            ],
+            [
+              "bonito",
+              "красивый"
+            ]
+          ]
         },
         {
           "prompt": "¿Cuál es ___ de América Latina?",
@@ -710,7 +724,17 @@
             "el país menos poblado"
           ],
           "explain": "País — мужской род. Наименее населённый — menos poblado: el país menos poblado.",
-          "context": "país / poblado · наименее населённый"
+          "context": "Напиши: «наименее населённая страна»",
+          "clues": [
+            [
+              "país",
+              "страна"
+            ],
+            [
+              "poblado",
+              "населённый"
+            ]
+          ]
         },
         {
           "prompt": "¿Cuál es ___ de España?",
@@ -718,7 +742,17 @@
             "la ciudad menos contaminada"
           ],
           "explain": "Ciudad — женский род, поэтому la и contaminada. Значение «наименее» передаёт menos.",
-          "context": "ciudad / contaminado · наименее загрязнённая"
+          "context": "Напиши: «наименее загрязнённый город»",
+          "clues": [
+            [
+              "ciudad",
+              "город"
+            ],
+            [
+              "contaminado",
+              "загрязнённый"
+            ]
+          ]
         },
         {
           "prompt": "¿Cuál es ___ de México?",
@@ -726,7 +760,17 @@
             "el río más largo"
           ],
           "explain": "Río — мужской род: el río más largo. Название реки вписывать не нужно.",
-          "context": "río / largo · самый длинный"
+          "context": "Напиши: «самая длинная река»",
+          "clues": [
+            [
+              "río",
+              "река"
+            ],
+            [
+              "largo",
+              "длинный"
+            ]
+          ]
         },
         {
           "prompt": "¿Cuál es ___ de América del Sur?",
@@ -734,7 +778,17 @@
             "la capital más alta"
           ],
           "explain": "Capital в значении «столица» — женского рода: la capital más alta.",
-          "context": "capital / alto · самая высокогорная"
+          "context": "Напиши: «самая высокогорная столица»",
+          "clues": [
+            [
+              "capital",
+              "столица"
+            ],
+            [
+              "alto",
+              "высокий"
+            ]
+          ]
         },
         {
           "prompt": "¿Cuál es ___ de América Latina?",
@@ -744,7 +798,17 @@
             "el país mayor"
           ],
           "explain": "О размере обычно говорим el país más grande. Форма mayor тоже может передавать значение «самый большой».",
-          "context": "país / grande · самый большой"
+          "context": "Напиши: «самая большая страна»",
+          "clues": [
+            [
+              "país",
+              "страна"
+            ],
+            [
+              "grande",
+              "большой"
+            ]
+          ]
         },
         {
           "prompt": "¿Cuál es ___ del Caribe?",
@@ -754,7 +818,17 @@
             "la isla menor"
           ],
           "explain": "Isla — женский род: la isla más pequeña. Menor тоже может обозначать меньший размер.",
-          "context": "isla / pequeño · самая маленькая"
+          "context": "Напиши: «самый маленький остров»",
+          "clues": [
+            [
+              "isla",
+              "остров"
+            ],
+            [
+              "pequeño",
+              "маленький"
+            ]
+          ]
         },
         {
           "prompt": "¿Cuál es ___ de México?",
@@ -762,17 +836,28 @@
             "la catedral más antigua"
           ],
           "explain": "Catedral — женский род: la catedral más antigua. О старом здании говорим antigua, а не mayor.",
-          "context": "catedral / antiguo · самая старая"
+          "context": "Напиши: «самый старый собор»",
+          "clues": [
+            [
+              "catedral",
+              "собор"
+            ],
+            [
+              "antiguo",
+              "старый"
+            ]
+          ]
         }
       ],
-      "phraseInput": true
+      "phraseInput": true,
+      "inlineAnswer": true
     },
     {
       "id": "17.2",
       "title": "17.2 · Сравни друзей",
-      "instruction": "Посмотри на шкалу и допиши фразу о друзьях. Чем больше полосок, тем сильнее выражено качество.",
+      "instruction": "Сравни друзей по шкале и впиши, кто самый или наименее. Больше полосок — сильнее выражено качество.",
       "inputLabel": "Ввод фразы",
-      "answerPlaceholder": "Пропущенная часть фразы",
+      "answerPlaceholder": "Твой ответ на испанском",
       "preview": {
         "source": "Ana es ___ del grupo.",
         "targetPrefix": "",
@@ -803,7 +888,8 @@
                 "level": 2
               }
             ]
-          }
+          },
+          "context": "Дополни фразу: Lucas"
         },
         {
           "prompt": "Marina es ___ de sus amigos.",
@@ -827,7 +913,8 @@
                 "level": 2
               }
             ]
-          }
+          },
+          "context": "Дополни фразу: Marina"
         },
         {
           "prompt": "Marina y Leo son ___ de sus amigos.",
@@ -851,7 +938,8 @@
                 "level": 3
               }
             ]
-          }
+          },
+          "context": "Дополни фразу: Marina y Leo"
         },
         {
           "prompt": "Lucas es ___ de sus amigos.",
@@ -875,7 +963,8 @@
                 "level": 3
               }
             ]
-          }
+          },
+          "context": "Дополни фразу: Lucas"
         },
         {
           "prompt": "Marina es ___ de sus amigos.",
@@ -899,7 +988,8 @@
                 "level": 2
               }
             ]
-          }
+          },
+          "context": "Дополни фразу: Marina"
         },
         {
           "prompt": "Lucas es ___ de sus amigos.",
@@ -923,7 +1013,8 @@
                 "level": 2
               }
             ]
-          }
+          },
+          "context": "Дополни фразу: Lucas"
         },
         {
           "prompt": "Lucas y Marina son ___ de sus amigos.",
@@ -947,7 +1038,8 @@
                 "level": 1
               }
             ]
-          }
+          },
+          "context": "Дополни фразу: Lucas y Marina"
         },
         {
           "prompt": "Leo es ___ de sus amigos.",
@@ -971,17 +1063,19 @@
                 "level": 1
               }
             ]
-          }
+          },
+          "context": "Дополни фразу: Leo"
         }
       ],
-      "phraseInput": true
+      "phraseInput": true,
+      "inlineAnswer": true
     },
     {
       "id": "17.3",
       "title": "17.3 · Придумай рекламный слоган",
       "instruction": "Допиши слоган по подсказке. Если указаны два качества, соедини их словом y.",
       "inputLabel": "Ввод фразы",
-      "answerPlaceholder": "Пропущенная часть слогана",
+      "answerPlaceholder": "Твой ответ на испанском",
       "introGroups": [
         {
           "title": "В рекламе тоже встречается «самый»",
@@ -1010,7 +1104,17 @@
             "la bebida más sana y refrescante"
           ],
           "explain": "Bebida — женский род: la bebida más sana y la más refrescante. Во второй части название bebida можно не повторять.",
-          "context": "bebida · sano + refrescante · самый полезный и освежающий напиток"
+          "context": "Напиши: «самый полезный и освежающий напиток»",
+          "clues": [
+            [
+              "bebida",
+              ""
+            ],
+            [
+              "sano + refrescante",
+              ""
+            ]
+          ]
         },
         {
           "prompt": "Regina, ___ del mundo.",
@@ -1018,7 +1122,17 @@
             "el reloj más caro"
           ],
           "explain": "По-испански один предмет — el reloj, поэтому el reloj más caro. Del mundo уже стоит после пропуска.",
-          "context": "reloj · caro · самые дорогие часы (один предмет)"
+          "context": "Напиши: «самые дорогие часы (один предмет)»",
+          "clues": [
+            [
+              "reloj",
+              ""
+            ],
+            [
+              "caro",
+              ""
+            ]
+          ]
         },
         {
           "prompt": "Ordenadores portátiles Misima, ___.",
@@ -1028,7 +1142,13 @@
             "los más pequeños y potentes"
           ],
           "explain": "Ordenadores — мужской род, множественное число: los más pequeños y los más potentes.",
-          "context": "pequeño + potente · самые маленькие и мощные"
+          "context": "Напиши: «самые маленькие и мощные»",
+          "clues": [
+            [
+              "pequeño + potente",
+              ""
+            ]
+          ]
         },
         {
           "prompt": "Ropa deportiva Libre, ___.",
@@ -1038,7 +1158,13 @@
             "la más cómoda y elegante"
           ],
           "explain": "Ropa — женский род и единственное число: la más cómoda y la más elegante.",
-          "context": "cómodo + elegante · самая удобная и элегантная"
+          "context": "Напиши: «самая удобная и элегантная»",
+          "clues": [
+            [
+              "cómodo + elegante",
+              ""
+            ]
+          ]
         },
         {
           "prompt": "Galletas Artaneda, ___ para el desayuno.",
@@ -1047,7 +1173,13 @@
             "las más buenas"
           ],
           "explain": "О качестве обычно говорим las mejores. Galletas — женский род, множественное число. Las más buenas тоже возможно, например когда хвалим вкус.",
-          "context": "bueno · лучшее печенье"
+          "context": "Напиши: «лучшее печенье»",
+          "clues": [
+            [
+              "bueno",
+              ""
+            ]
+          ]
         },
         {
           "prompt": "Supermercados García, ___.",
@@ -1055,7 +1187,13 @@
             "los más económicos"
           ],
           "explain": "Supermercados — мужской род, множественное число: los más económicos.",
-          "context": "económico · самые недорогие"
+          "context": "Напиши: «самые недорогие»",
+          "clues": [
+            [
+              "económico",
+              ""
+            ]
+          ]
         },
         {
           "prompt": "Zumos Frutasol, ___.",
@@ -1063,7 +1201,13 @@
             "los más sanos"
           ],
           "explain": "Zumos — мужской род, множественное число: los más sanos.",
-          "context": "sano · самые полезные"
+          "context": "Напиши: «самые полезные»",
+          "clues": [
+            [
+              "sano",
+              ""
+            ]
+          ]
         },
         {
           "prompt": "Leche fresca Norte, ___ para su familia.",
@@ -1072,17 +1216,24 @@
             "la más buena"
           ],
           "explain": "Leche — женский род, единственное число: la mejor. Если говорим о вкусе, la más buena тоже возможно.",
-          "context": "bueno · лучшее молоко"
+          "context": "Напиши: «лучшее молоко»",
+          "clues": [
+            [
+              "bueno",
+              ""
+            ]
+          ]
         }
       ],
-      "phraseInput": true
+      "phraseInput": true,
+      "inlineAnswer": true
     },
     {
       "id": "17.4",
       "title": "17.4 · Соедини фразу: de или que",
       "instruction": "Впиши описание вместе с de или que. Посмотри, что идёт после пропуска: название группы или продолжение с действием.",
       "inputLabel": "Ввод фразы",
-      "answerPlaceholder": "Описание + de или que",
+      "answerPlaceholder": "Твой ответ на испанском",
       "preview": {
         "source": "Es el libro ___ he leído.",
         "targetPrefix": "",
@@ -1097,7 +1248,13 @@
             "la chica más alegre que"
           ],
           "explain": "После пропуска идёт conozco — «я знаю». Поэтому la chica más alegre que conozco.",
-          "context": "chica · alegre · самая жизнерадостная девушка"
+          "context": "Дополни фразу: «самая жизнерадостная девушка»",
+          "clues": [
+            [
+              "chica",
+              "слово для сравнения"
+            ]
+          ]
         },
         {
           "prompt": "Para mí, el café de Colombia es ___.",
@@ -1106,7 +1263,13 @@
             "el más bueno del mundo"
           ],
           "explain": "De + el соединяем в del: el mejor del mundo. О качестве кофе обычно говорим mejor; если хвалим вкус, más bueno тоже возможно.",
-          "context": "bueno · лучший в мире"
+          "context": "Дополни фразу: «лучший в мире»",
+          "clues": [
+            [
+              "bueno",
+              "слово для сравнения"
+            ]
+          ]
         },
         {
           "prompt": "Las ruinas de Machu Picchu son ___ he visto.",
@@ -1114,7 +1277,13 @@
             "las más impresionantes que"
           ],
           "explain": "Ruinas — женский род, множественное число. He visto — «я видел», поэтому las más impresionantes que he visto.",
-          "context": "impresionante · самые впечатляющие"
+          "context": "Дополни фразу: «самые впечатляющие»",
+          "clues": [
+            [
+              "impresionante",
+              "слово для сравнения"
+            ]
+          ]
         },
         {
           "prompt": "El día de mi boda fue ___ mi vida.",
@@ -1122,7 +1291,13 @@
             "el más feliz de"
           ],
           "explain": "Mi vida — название периода. Нужна фраза el más feliz de mi vida. Día — мужской род.",
-          "context": "feliz · самый счастливый"
+          "context": "Дополни фразу: «самый счастливый»",
+          "clues": [
+            [
+              "feliz",
+              "слово для сравнения"
+            ]
+          ]
         },
         {
           "prompt": "¿Cuál es ___ has visitado?",
@@ -1130,7 +1305,13 @@
             "el país más interesante que"
           ],
           "explain": "País — мужской род: el país más interesante. Дальше has visitado — «ты посетил», соединяем через que.",
-          "context": "país · interesante · самая интересная страна"
+          "context": "Дополни фразу: «самая интересная страна»",
+          "clues": [
+            [
+              "país",
+              "слово для сравнения"
+            ]
+          ]
         },
         {
           "prompt": "Esther es ___ mis hermanas.",
@@ -1139,10 +1320,17 @@
             "la más vieja de"
           ],
           "explain": "О старшей сестре обычно говорим la mayor de mis hermanas. La más vieja de тоже передаёт сравнение по возрасту, но звучит прямолинейнее.",
-          "context": "viejo · самая старшая по возрасту"
+          "context": "Дополни фразу: «самая старшая по возрасту»",
+          "clues": [
+            [
+              "viejo",
+              "слово для сравнения"
+            ]
+          ]
         }
       ],
-      "phraseInput": true
+      "phraseInput": true,
+      "inlineAnswer": true
     }
   ]
 }

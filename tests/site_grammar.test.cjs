@@ -313,7 +313,9 @@ test('friend scales show ties, accessible values, escaped names and phrase input
  const html=run('gPlayerView()');
  assert.equal((html.match(/class="gratings-person"/g)||[]).length,3);
  assert.equal((html.match(/aria-label="Уровень: 3 из 3"/g)||[]).length,2);
- assert.ok(html.includes('Marina y Leo son ___ de sus amigos.'));
+ assert.ok(html.includes('Marina y Leo son ') && html.includes('de sus amigos.'));
+ assert.ok(html.includes('class="gfill-sentence"'));
+ assert.equal((html.match(/id="g-answer"/g)||[]).length,1);
  assert.ok(html.includes('<textarea class="ginput gphrase-input"') && html.includes('rows="2"'));
  const intro=run('gIntro(COURSE.grammar[0].exercises[1])');
  assert.ok(intro.includes('Ввод фразы') && intro.includes('В ответе нужны артикль'));
@@ -360,4 +362,22 @@ test('unit 16 accepts both equality patterns and finishes before unit 17', () =>
  assert.equal(run(`grammarCorrect(${JSON.stringify(q)},'igual de fácil como')`),false);
  assert.equal(run(`grammarCorrect(${JSON.stringify(unit16.exercises[2].questions[4])},'no soy tan fuerte como ti')`),false);
  assert.equal(run('Object.keys(P.grammar).some(k=>k.startsWith("017_"))'),false);
+});
+
+test('unit 17 shows a direct task, translated clues, and one answer field inside the sentence', () => {
+ const run=context([unit17]);
+ unlockUntil(run,'exercise:17.1');
+ run('gStart(COURSE.grammar[0].id,"exercise:17.1");');
+ const intro=run('gPlayerView()');
+ assert.ok(intro.includes('<mark class="gpreview-insert">la calle más bonita</mark>'));
+ run('gMove(1)');
+ const html=run('gPlayerView()');
+ assert.ok(html.includes('Напиши: «самый красивый город»'));
+ assert.ok(html.includes('<b lang="es">ciudad</b><small>город</small>'));
+ assert.ok(html.indexOf('¿Cuál es ') < html.indexOf('id="g-answer"'));
+ assert.ok(html.indexOf('id="g-answer"') < html.indexOf('de Cuba?'));
+ assert.equal((html.match(/id="g-answer"/g)||[]).length,1);
+ assert.ok(!html.includes('class="gblank"'));
+ run('gResponse(G.steps[G.at]).value="la ciudad más bonita";gCheck();');
+ assert.equal(run('gResponse(G.steps[G.at]).good'),true);
 });
