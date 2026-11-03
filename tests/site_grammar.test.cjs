@@ -260,7 +260,7 @@ test('counting renders the exact visible objects and rewriting highlights the so
  run('gStart(COURSE.grammar[0].id,"exercise:3.3");gMove(1);');
  const markup=run('gPlayerView()');
  assert.ok(markup.includes('<strong>un hijo y dos hijas</strong>'));
- assert.ok(markup.includes('Amalia tiene tres ___.'));
+ assert.ok(markup.includes('Amalia tiene tres <span class="gblank"'));
  const alternative=unit3.sections[2].check.questions[0];
  assert.equal(run(`grammarCorrect(${JSON.stringify(alternative)},"rubís")`),true);
  assert.equal(run(`grammarCorrect(${JSON.stringify(alternative)},"rubíes")`),true);

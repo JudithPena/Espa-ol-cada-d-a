@@ -685,15 +685,15 @@
     {
       "id": "17.1",
       "title": "17.1 · Самый или наименее?",
-      "instruction": "Допиши вопрос: используй название предмета и más или menos, как указано в подсказке.",
+      "instruction": "Впиши целую группу слов: артикль + название предмета + más или menos + прилагательное. Например, «самая красивая улица» — la calle más bonita. Название города или страны отвечать не нужно.",
       "inputLabel": "Ввод фразы",
-      "answerPlaceholder": "Пропущенная часть фразы",
+      "answerPlaceholder": "Артикль + название + más/menos + прилагательное",
       "preview": {
-        "source": "¿Cuál es ___ de la tienda?",
+        "source": "¿Cuál es la calle más bonita de la ciudad?",
         "targetPrefix": "",
-        "answer": "el coche más caro",
-        "translation": "Какая машина в магазине самая дорогая?",
-        "tip": "Впиши только пропущенную часть, без остального вопроса."
+        "answer": "la calle más bonita",
+        "translation": "Какая улица в городе самая красивая?",
+        "tip": "В образце вставили la calle más bonita. В заданиях собери такую же фразу из своей подсказки."
       },
       "questions": [
         {
@@ -702,7 +702,7 @@
             "la ciudad más bonita"
           ],
           "explain": "Ciudad — женский род: la ciudad más bonita. После ciudad ставим más, а bonito меняем на bonita.",
-          "context": "ciudad · bonito · самая красивая"
+          "context": "ciudad / bonito · самая красивая"
         },
         {
           "prompt": "¿Cuál es ___ de América Latina?",
@@ -710,7 +710,7 @@
             "el país menos poblado"
           ],
           "explain": "País — мужской род. Наименее населённый — menos poblado: el país menos poblado.",
-          "context": "país · poblado · наименее населённый"
+          "context": "país / poblado · наименее населённый"
         },
         {
           "prompt": "¿Cuál es ___ de España?",
@@ -718,7 +718,7 @@
             "la ciudad menos contaminada"
           ],
           "explain": "Ciudad — женский род, поэтому la и contaminada. Значение «наименее» передаёт menos.",
-          "context": "ciudad · contaminado · наименее загрязнённая"
+          "context": "ciudad / contaminado · наименее загрязнённая"
         },
         {
           "prompt": "¿Cuál es ___ de México?",
@@ -726,7 +726,7 @@
             "el río más largo"
           ],
           "explain": "Río — мужской род: el río más largo. Название реки вписывать не нужно.",
-          "context": "río · largo · самый длинный"
+          "context": "río / largo · самый длинный"
         },
         {
           "prompt": "¿Cuál es ___ de América del Sur?",
@@ -734,7 +734,7 @@
             "la capital más alta"
           ],
           "explain": "Capital в значении «столица» — женского рода: la capital más alta.",
-          "context": "capital · alto · самая высокогорная"
+          "context": "capital / alto · самая высокогорная"
         },
         {
           "prompt": "¿Cuál es ___ de América Latina?",
@@ -744,7 +744,7 @@
             "el país mayor"
           ],
           "explain": "О размере обычно говорим el país más grande. Форма mayor тоже может передавать значение «самый большой».",
-          "context": "país · grande · самый большой"
+          "context": "país / grande · самый большой"
         },
         {
           "prompt": "¿Cuál es ___ del Caribe?",
@@ -754,7 +754,7 @@
             "la isla menor"
           ],
           "explain": "Isla — женский род: la isla más pequeña. Menor тоже может обозначать меньший размер.",
-          "context": "isla · pequeño · самая маленькая"
+          "context": "isla / pequeño · самая маленькая"
         },
         {
           "prompt": "¿Cuál es ___ de México?",
@@ -762,7 +762,7 @@
             "la catedral más antigua"
           ],
           "explain": "Catedral — женский род: la catedral más antigua. О старом здании говорим antigua, а не mayor.",
-          "context": "catedral · antiguo · самая старая"
+          "context": "catedral / antiguo · самая старая"
         }
       ],
       "phraseInput": true
