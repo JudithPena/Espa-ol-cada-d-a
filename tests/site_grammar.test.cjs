@@ -9,6 +9,7 @@ const unit = JSON.parse(fs.readFileSync('content/grammar/001_genero.json','utf8'
 const unit2 = JSON.parse(fs.readFileSync('content/grammar/002_objetos_animales.json','utf8'));
 const unit3 = JSON.parse(fs.readFileSync('content/grammar/003_singular_plural.json','utf8'));
 const unit17 = JSON.parse(fs.readFileSync('content/grammar/017_superlativo.json','utf8'));
+const unit15 = JSON.parse(fs.readFileSync('content/grammar/015_comparativos.json','utf8'));
 function context(grammar = [unit]) {
   const noop = () => {};
   const storage = new Map();
@@ -318,4 +319,24 @@ test('friend scales show ties, accessible values, escaped names and phrase input
  assert.ok(!intro.includes('недостающее слово') && !intro.includes('aria-hidden="true">→'));
  const unsafe=run('gRatings({label:"<img>",people:[{name:"<script>",level:1}]})');
  assert.ok(!unsafe.includes('<script>') && unsafe.includes('&lt;img&gt;'));
+});
+
+test('unit 15 completes independently, shows paired data, and leads to unit 17', () => {
+ const run=context([unit,unit2,unit3,unit15,unit17]);
+ run(`gStart(COURSE.grammar[3].id);var turns15=0;
+ while(!G.ended && turns15++<150) {
+  const step=G.steps[G.at];
+  if(step.type==='question'){const group=gGroups(gUnit()).find(g=>g.id===step.group);gResponse(step).value=group.questions[step.qi].answers[0];gCheck();}
+  gMove(1);
+ }`);
+ assert.equal(run('G.ended'),true);
+ assert.deepEqual(JSON.parse(run('JSON.stringify(gUnit().exercises.map(g=>P.grammar[grammarKey(gUnit(),g)].correct))')),[8,9,4,8]);
+ assert.ok(run('gPlayerView()').includes('Лучший результат: 29 из 29'));
+ assert.ok(run('gPlayerView()').includes('data-gnext-unit="017_la_mas_alta"'));
+ const html=run(`gFacts(${JSON.stringify(unit15.exercises[1].questions[0].facts)})`);
+ assert.equal((html.match(/class="gfacts-item"/g)||[]).length,2);
+ assert.ok(html.includes('1,90 m') && html.includes('1,82 m'));
+ const unsafe=run('gFacts({label:"<script>",items:[["<img>","<b>"]]})');
+ assert.ok(!unsafe.includes('<script>') && unsafe.includes('&lt;img&gt;'));
+ assert.equal(run('Object.keys(P.grammar).some(k=>k.startsWith("017_"))'),false);
 });
