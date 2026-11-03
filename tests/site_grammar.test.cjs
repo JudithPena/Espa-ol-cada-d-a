@@ -408,3 +408,56 @@ test('resuming an older all-unit route rebases its current question onto the new
  assert.equal(run('G.steps[G.at].qi'),2);
  assert.deepEqual(JSON.parse(run('JSON.stringify(G.steps)')),JSON.parse(run('JSON.stringify(gSteps(gUnit()))')));
 });
+
+const newUnits=fs.readdirSync('content/grammar').filter(f=>/^0(0[4-9]|1[0-4])_.*\.json$/.test(f)).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
+test('units 4–14 complete their interleaved routes, keep manual feedback and lead to the next actual unit', () => {
+ assert.equal(newUnits.length,11);
+ for(const u of newUnits){
+  const next=newUnits.find(n=>n.number===u.number+1)||unit15;
+  const run=context([u,next]);
+  run('render=()=>{};sfx=()=>{};gStart(COURSE.grammar[0].id)');
+  assert.equal(run('gRouteOpen(gUnit(),gRoutes(gUnit())[1])'),false);
+  const order=JSON.parse(run('JSON.stringify(G.steps.filter(s=>s.type!=="question").map(s=>gStepRoute(gUnit(),s)))'));
+  assert.deepEqual(order,u.learningOrder);
+  run(`for(let guard=0;G&&!G.ended&&guard<800;guard++){
+    const step=G.steps[G.at];
+    if(step.type==='question'){
+      const group=gGroups(gUnit()).find(g=>g.id===step.group),q=group.questions[step.qi],at=G.at;
+      gResponse(step).value=q.answers.at(-1);gCheck();
+      if(G.at!==at)throw Error('Automatic advance');
+      if(!gPlayerView().includes('data-gnext'))throw Error('Missing manual next');
+    }
+    gMove(1);
+  }`);
+  assert.equal(run('G.ended'),true, u.number);
+  assert.equal(run('gUnitFinished(gUnit())'),true,u.number);
+  assert.ok(run('gPlayerView()').includes(`data-gnext-unit="${next.id}"`));
+  assert.equal(run('gGroups(gUnit()).every(g=>P.grammar[grammarKey(gUnit(),g)].correct===g.questions.length)'),true);
+ }
+});
+
+test('new article questions leave nouns written and the clock/distance aids render accessibly', () => {
+ const run=context(newUnits);
+ const unit9=newUnits.find(u=>u.number===9),unit12=newUnits.find(u=>u.number===12),unit13=newUnits.find(u=>u.number===13);
+ const clock=run(`gClock(${JSON.stringify(unit9.exercises[0].questions[2].clock)})`);
+ assert.ok(clock.includes('Часы: 03:50'));
+ assert.ok(clock.includes('rotate(115 80 80)'));
+ assert.ok(clock.includes('rotate(300 80 80)'));
+ const distance=run('gDistance("far")');
+ assert.equal((distance.match(/gdistance-zone is-active/g)||[]).length,1);
+ assert.ok(distance.includes('Далеко от обоих')&&distance.includes('Здесь находится предмет'));
+ assert.equal(unit12.exercises[2].questions.some(q=>q.distance),false);
+ run(`gStart(${JSON.stringify(unit13.id)});G.at=G.steps.findIndex(s=>s.group==='13.1'&&s.type==='question');`);
+ const html=run('gPlayerView()');
+ assert.ok(html.includes('Vivo en un piso '));
+ assert.equal((html.match(/id="g-answer"/g)||[]).length,1);
+ assert.ok(html.includes('clues')&&html.includes('pequeño'));
+});
+
+test('unit 10 also celebrates when its last practice route differs from the exercise array order', () => {
+ const u=newUnits.find(u=>u.number===10),run=context([u]);
+ run('render=()=>{};sfx=()=>{};gStart(COURSE.grammar[0].id);');
+ run('for(const g of gGroups(gUnit()))gradeGrammar(gUnit(),g,g.questions.map(q=>q.answers[0]));G.route="exercise:10.3";G.ended=true;');
+ assert.equal(run('gUnitFinished(gUnit())'),true);
+ assert.ok(run('gPlayerView()').includes('Поздравляю!'));
+});

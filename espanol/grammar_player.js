@@ -129,8 +129,8 @@ function gTheory(section) {
     ${section.notes?.length ? `<aside class="gnotes">${section.notes.map(n => `<p>${esc(n)}</p>`).join("")}</aside>` : ""}`;
 }
 function gUnitFinished(unit) {
-  const last = unit.exercises.at(-1);
-  return !!last && (G.route === "all" || G.route === `exercise:${last.id}`) && unit.exercises.every(g => !!P.grammar?.[grammarKey(unit,g)]);
+  const lastExercise = gRoutes(unit).filter(r=>r.startsWith('exercise:')).at(-1);
+  return !!lastExercise && ["all", "summary", lastExercise].includes(G.route) && unit.exercises.every(g => !!P.grammar?.[grammarKey(unit,g)]);
 }
 function gFireworks() {
   const colors = ["#7357dd","#f0aa36","#46a890","#ed7183"];
@@ -156,7 +156,7 @@ function gBlank(text) {
 function gWorkedPreview(preview) {
   if (preview.gapParts) return preview.gapParts.map((part,i)=>`${esc(part)}${i < preview.gapAnswers.length ? `<mark class="gpreview-insert">${esc(preview.gapAnswers[i])}</mark>` : ""}`).join("");
   if (!preview.sentenceParts) return gBlank(preview.source);
-  return `${esc(preview.sentenceParts[0])}<mark class="gpreview-insert">${esc(preview.answer)}</mark>${esc(preview.sentenceParts[1])}`;
+  return `${esc(preview.sentenceParts[0])}<mark class="gpreview-insert">${esc(preview.displayAnswer ?? preview.answer)}</mark>${esc(preview.sentenceParts[1])}`;
 }
 function gGapSentence(q, response) {
   const values = response.gapValues || (response.value ? response.value.split(" ") : []);
@@ -167,7 +167,7 @@ function gIntro(group) {
   const preview = group.preview;
   const visual = pictures.length ? `<div class="gintro-art" aria-hidden="true">${pictures.map(q => `<img src="${esc(q.image)}" alt="" width="384" height="384">`).join("")}</div>` : preview ? `<div class="gintro-demo"><span class="kicker">Образец</span><div class="gintro-source" lang="es">${gWorkedPreview(preview)}${preview.targetPrefix === "" ? "" : ` <span aria-hidden="true">→</span> ${esc(preview.targetPrefix ?? "la")}`}</div><div class="gintro-answer" lang="es">${esc(preview.answer)}<span aria-hidden="true">✓</span></div><span class="muted">${esc(preview.translation)}</span></div>` : group.introGroups ? grammarWordGroups(group.introGroups) : "";
   const choice = group.questions.every(q => q.options);
-  const tip = preview?.tip || (preview && !group.instruction.includes("только слово") ? "Как в образце: впиши только недостающее слово." : "");
+  const tip = preview?.tip ?? (preview && !choice && !group.instruction.includes("только слово") ? "Как в образце: впиши только недостающее слово." : "");
   return `<div class="gintro ${visual ? "has-visual" : ""}">${visual}<div class="gintro-copy"><div class="gintro-tags"><span>${group.questions.length} ${plural(group.questions.length,"задание","задания","заданий")}</span><span>${choice ? "Выбор ответа" : group.family ? "Родственные связи" : esc(group.inputLabel || "Ввод слова")}</span></div><p>${esc(group.instruction)}</p>${tip ? `<p class="muted gintro-tip">${esc(tip)}</p>` : ""}</div>${group.family ? `<div class="gintro-family">${grammarFamily(group.family)}</div>` : ""}${group.example ? `<div class="gworked-example gintro-family"><small>${esc(group.example.label)}</small><b>${esc(group.example.es)}</b><small>${esc(group.example.ru)}</small></div>` : ""}</div>`;
 }
 function gRatings(ratings) {
@@ -176,7 +176,16 @@ function gRatings(ratings) {
 }
 function gFacts(facts) {
   if (!facts) return "";
-  return `<section class="gratings gfacts" aria-label="Данные для сравнения"><h3>${esc(facts.label)}</h3><div class="gfacts-grid">${facts.items.map(([name,value]) => `<div class="gfacts-item"><span lang="es">${esc(name)}</span><b>${esc(value)}</b></div>`).join("")}</div></section>`;
+  return `<section class="gratings gfacts" aria-label="Подсказка к заданию"><h3>${esc(facts.label)}</h3><div class="gfacts-grid">${facts.items.map(([name,value]) => `<div class="gfacts-item"><span lang="es">${esc(name)}</span><b>${esc(value)}</b></div>`).join("")}</div></section>`;
+}
+function gClock(clock) {
+  if (!clock) return "";
+  const time = `${String(clock.hour).padStart(2,'0')}:${String(clock.minute).padStart(2,'0')}`;
+  return `<div class="gclock" role="img" aria-label="Часы: ${time}"><svg viewBox="0 0 160 160" aria-hidden="true"><circle class="gclock-face" cx="80" cy="80" r="74"/>${Array.from({length:12},(_,i)=>{const angle=(i+1)*Math.PI/6; return `<text x="${80+59*Math.sin(angle)}" y="${80-59*Math.cos(angle)}">${i+1}</text>`;}).join('')}<path class="gclock-hour" d="M80 80V43" transform="rotate(${clock.hour%12*30+clock.minute/2} 80 80)"/><path class="gclock-minute" d="M80 80V28" transform="rotate(${clock.minute*6} 80 80)"/><circle cx="80" cy="80" r="4" fill="currentColor"/></svg><span>${time}</span></div>`;
+}
+function gDistance(distance) {
+  if (!distance) return "";
+  return `<div class="gdistance" aria-label="Расположение предмета">${[['near','Я','У меня'],['listener','Ты','У собеседника'],['far','Там','Далеко от обоих']].map(([key,person,label])=>`<div class="gdistance-zone ${key===distance?'is-active':''}"><span class="gdistance-person">${person}</span><span class="gdistance-dot" aria-hidden="true">${key===distance?'●':'·'}</span><small>${label}</small>${key===distance?'<span class="sr-only">Здесь находится предмет</span>':''}</div>`).join('')}</div>`;
 }
 function gPicture(q) {
   if (!q.image) return "";
@@ -210,7 +219,7 @@ function gPlayerView() {
     const clues = q.clues ? `<div class="gclues" aria-label="Слова для ответа">${q.clues.map(([es,ru])=>`<span><b lang="es">${esc(es)}</b><small>${esc(ru)}</small></span>`).join("")}</div>` : "";
     const inline = group.inlineAnswer && !q.options && q.prompt.includes("___");
     const sentence = q.gapParts ? gGapSentence(q,response) : inline ? `<div class="gfill-sentence"><p lang="es">${esc(q.prompt.split("___")[0])}</p><label class="gfill-label" for="g-answer">Впиши пропущенную часть</label>${options}<p lang="es">${esc(q.prompt.split("___").slice(1).join("___"))}</p></div>` : `${q.context ? `<p class="gquestion-sentence" lang="es">${gBlank(q.prompt)}</p>` : ""}${options}`;
-    const question = `${who}${source}${clues}${gRatings(q.ratings)}${gFacts(q.facts)}${q.translation ? `<p class="muted gquestion-translation">${esc(q.translation)}</p>` : ""}${sentence}`;
+    const question = `${who}${source}${clues}${gRatings(q.ratings)}${gFacts(q.facts)}${gClock(q.clock)}${gDistance(q.distance)}${q.translation ? `<p class="muted gquestion-translation">${esc(q.translation)}</p>` : ""}${sentence}`;
     content = group.family ? `<div class="gfamily-work"><details class="gplay-family" ${G.treeOpen === false ? "" : "open"}><summary>Семейное дерево</summary>${grammarFamily({...group.family, activeName:block?.person})}</details><div class="ganswer-area">${question}${group.vocabulary ? `<details class="gvocab"><summary>Слова родства</summary>${grammarTable(group.vocabulary)}</details>` : ""}</div></div>`
       : `<div class="gquestion-work ${q.image ? "has-image" : ""}">${gPicture(q)}<div class="ganswer-area">${question}${group.vocabulary ? `<details class="gvocab"><summary>Слова для упражнения</summary>${grammarTable(group.vocabulary)}</details>` : ""}</div></div>`;
     if (group.title === "Мини-проверка" && group.instruction) content = `<p class="muted ginstruction">${esc(group.instruction.replace(/ Затем нажми.*$/, ""))}</p>` + content;

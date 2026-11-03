@@ -1,0 +1,955 @@
+{
+  "id": "012_demostrativos",
+  "number": 12,
+  "title": "Este, ese, aquel",
+  "subtitle": "Этот, тот и вон тот",
+  "level": "A1",
+  "sections": [
+    {
+      "title": "A. Этот, тот и вон тот",
+      "paragraphs": [
+        "Если вещь **рядом с тобой**, используем `este`, `esta`, `estos` или `estas`: `este libro` — эта книга у меня. Если она **ближе к собеседнику**, обычно `ese`, `esa`, `esos`, `esas`: `ese libro` — та книга у тебя.",
+        "Чтобы явно показать **«вон там, далеко от нас обоих»**, удобно `aquel`, `aquella`, `aquellos`, `aquellas`: `aquel árbol` — вон то дерево. В разговоре для далёкого предмета также могут использовать `ese`; это не ошибка.",
+        "Окончание подбираем по роду и числу существительного: `este bolso`, `esta maleta`, `estos árboles`, `estas llaves`. Род сохраняется даже у `agua`: **`esta agua`, а не `este agua`**."
+      ],
+      "wordGroups": [
+        {
+          "title": "Рядом со мной",
+          "words": [
+            [
+              "este libro",
+              "эта книга"
+            ],
+            [
+              "esta llave",
+              "этот ключ"
+            ],
+            [
+              "estas gafas",
+              "эти очки"
+            ]
+          ]
+        },
+        {
+          "title": "Рядом с тобой",
+          "words": [
+            [
+              "ese libro",
+              "та книга у тебя"
+            ],
+            [
+              "esas llaves",
+              "те ключи у тебя"
+            ]
+          ]
+        },
+        {
+          "title": "Далеко от нас",
+          "words": [
+            [
+              "aquel árbol",
+              "вон то дерево"
+            ],
+            [
+              "aquella casa",
+              "вон тот дом"
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-a",
+        "title": "Мини-проверка",
+        "instruction": "",
+        "questions": [
+          {
+            "prompt": "___ libro que tengo en la mano.",
+            "answers": [
+              "este"
+            ],
+            "explain": "Книга у говорящего: este libro.",
+            "options": [
+              "ese",
+              "aquel",
+              "este"
+            ],
+            "translation": "Книга у тебя в руке.",
+            "sourceRef": "mini",
+            "context": "Выбери слово по подсказке.",
+            "distance": "near"
+          },
+          {
+            "prompt": "Dame ___ llaves que tienes en la mano.",
+            "answers": [
+              "esas"
+            ],
+            "explain": "Ключи у собеседника: esas llaves.",
+            "options": [
+              "estas",
+              "aquellas",
+              "esas"
+            ],
+            "translation": "Ты просишь ключи, которые держит собеседник.",
+            "sourceRef": "mini",
+            "context": "Выбери слово по подсказке.",
+            "distance": "listener"
+          }
+        ]
+      }
+    },
+    {
+      "title": "B. Можно не повторять существительное",
+      "paragraphs": [
+        "Если уже понятно, о чём говорим, **название можно убрать**: `Este es mi bolso` — это моя сумка; `Aquella es la casa de Ramón` — вон тот дом Рамона. Форма всё равно зависит от пропущенного слова: `bolso` → `este`, `casa` → `aquella`.",
+        "Людей тоже можно представить или показать: `Esta es Julia` — это Хулия рядом со мной; `Ese chico es mi hermano` — тот парень мой брат. Формы `este`, `ese`, `aquel` обычно пишем **без знака ударения**."
+      ],
+      "wordGroups": [
+        {
+          "title": "С названием",
+          "words": [
+            [
+              "este bolso",
+              "эта сумка"
+            ],
+            [
+              "aquella casa",
+              "вон тот дом"
+            ]
+          ]
+        },
+        {
+          "title": "Без повторения названия",
+          "words": [
+            [
+              "Este es mi bolso",
+              "Это моя сумка"
+            ],
+            [
+              "Aquella es la casa de Ramón",
+              "Вон тот дом Рамона"
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-b",
+        "title": "Мини-проверка",
+        "instruction": "",
+        "questions": [
+          {
+            "prompt": "___ es Julia.",
+            "answers": [
+              "esta"
+            ],
+            "explain": "Представляем Хулию, которая рядом с нами: esta.",
+            "options": [
+              "esa",
+              "aquella",
+              "esta"
+            ],
+            "translation": "Хулия стоит рядом с тобой.",
+            "sourceRef": "mini",
+            "context": "Выбери слово по подсказке.",
+            "distance": "near"
+          },
+          {
+            "prompt": "¿De quién es ___ bolso?",
+            "answers": [
+              "ese"
+            ],
+            "explain": "Сумка ближе к собеседнику: ese bolso.",
+            "options": [
+              "este",
+              "aquel",
+              "ese"
+            ],
+            "translation": "Ты спрашиваешь о сумке у собеседника.",
+            "sourceRef": "mini",
+            "context": "Выбери слово по подсказке.",
+            "distance": "listener"
+          }
+        ]
+      }
+    },
+    {
+      "title": "C. Этот месяц, тот год",
+      "paragraphs": [
+        "Слова `este`, `ese` и `aquel` помогают ориентироваться и **во времени**. Текущий период — `este mes` — в этом месяце, `esta semana` — на этой неделе, `esta noche` — сегодня вечером или ночью.",
+        "Когда возвращаемся **к только что названному времени**, удобно `ese`: `Nací en 1983. Ese mismo año…` — я родился в 1983-м. В том же году… А далёкое время часто вспоминаем с `aquel`: `en aquella época` — в ту пору. В таких воспоминаниях нередко возможны оба варианта — `ese` и `aquel`."
+      ],
+      "wordGroups": [
+        {
+          "title": "Сейчас",
+          "words": [
+            [
+              "este mes",
+              "в этом месяце"
+            ],
+            [
+              "esta semana",
+              "на этой неделе"
+            ],
+            [
+              "esta tarde",
+              "сегодня днём / вечером"
+            ]
+          ]
+        },
+        {
+          "title": "Возвращаемся к прошлому",
+          "words": [
+            [
+              "ese mismo año",
+              "в том же году"
+            ],
+            [
+              "en aquella época",
+              "в ту пору"
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-c",
+        "title": "Мини-проверка",
+        "instruction": "",
+        "questions": [
+          {
+            "prompt": "Trabajo mucho ___ semana.",
+            "answers": [
+              "esta"
+            ],
+            "explain": "Говорим о текущей неделе: esta semana.",
+            "options": [
+              "esa",
+              "aquella",
+              "esta"
+            ],
+            "translation": "Я много работаю на этой неделе.",
+            "sourceRef": "mini",
+            "context": "Выбери слово по подсказке."
+          },
+          {
+            "prompt": "Nací en 1983. ___ mismo año nació Ana.",
+            "answers": [
+              "ese",
+              "aquel"
+            ],
+            "explain": "Возвращаемся к 1983 году: ese mismo año. Aquel тоже допустимо при взгляде издалека.",
+            "options": [
+              "este",
+              "ese",
+              "aquel"
+            ],
+            "translation": "Ана родилась в том же году.",
+            "sourceRef": "mini",
+            "context": "Выбери слово по подсказке."
+          }
+        ]
+      }
+    },
+    {
+      "title": "D. Esto, eso, aquello: что это?",
+      "paragraphs": [
+        "Если **не называем предмет** и спрашиваем, что это за вещь вообще, пригодятся `esto`, `eso`, `aquello`: `¿Qué es esto?` — что это у меня? `¿Qué es eso?` — что это у тебя или там? `¿Qué es aquello?` — что это вон там далеко?",
+        "Эти формы **не меняются по роду и числу**, не ставятся прямо перед существительным и всегда пишутся без знака ударения. Поэтому `este libro`, но `¿Qué es esto?`. Можно говорить и о ситуации: `Eso no me gusta` — мне это не нравится."
+      ],
+      "wordGroups": [
+        {
+          "title": "Вещь пока не названа",
+          "words": [
+            [
+              "¿Qué es esto?",
+              "Что это здесь?"
+            ],
+            [
+              "¿Qué es eso?",
+              "Что это там / у тебя?"
+            ],
+            [
+              "¿Qué es aquello?",
+              "Что это вон там?"
+            ]
+          ]
+        },
+        {
+          "title": "Название уже есть",
+          "words": [
+            [
+              "este libro",
+              "эта книга"
+            ],
+            [
+              "esa caja",
+              "та коробка"
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-d",
+        "title": "Мини-проверка",
+        "instruction": "",
+        "questions": [
+          {
+            "prompt": "¿Qué es ___?",
+            "answers": [
+              "esto"
+            ],
+            "explain": "Не называем предмет в руке говорящего: esto.",
+            "options": [
+              "este",
+              "esta",
+              "esto"
+            ],
+            "translation": "Ты держишь незнакомый предмет и спрашиваешь, что это.",
+            "context": "Дополни предложение."
+          },
+          {
+            "prompt": "___ libro es mío.",
+            "answers": [
+              "este"
+            ],
+            "explain": "Перед существительным libro нужно este, а не esto.",
+            "options": [
+              "esto",
+              "esta",
+              "este"
+            ],
+            "context": "Дополни предложение."
+          }
+        ]
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "12.1",
+      "title": "12.1 · Где находится предмет?",
+      "instruction": "Смотри на подсказку о расстоянии. Название предмета уже написано.",
+      "questions": [
+        {
+          "prompt": "___ llaves son mías.",
+          "answers": [
+            "estas"
+          ],
+          "explain": "Llaves — женский род, множественное число. Ключи рядом с говорящим.",
+          "options": [
+            "esas",
+            "aquellas",
+            "estas"
+          ],
+          "translation": "Ключи у тебя в руке.",
+          "sourceRef": "12.1.1",
+          "context": "Выбери слово по подсказке.",
+          "distance": "near",
+          "image": "art/002/06-llave.webp",
+          "imageAlt": "Ключи у тебя в руке."
+        },
+        {
+          "prompt": "Dame ___ revista.",
+          "answers": [
+            "esa"
+          ],
+          "explain": "Revista — женский род, журнал у собеседника.",
+          "options": [
+            "esta",
+            "aquella",
+            "esa"
+          ],
+          "translation": "Журнал в руках собеседника.",
+          "sourceRef": "12.1.2",
+          "context": "Выбери слово по подсказке.",
+          "distance": "listener"
+        },
+        {
+          "prompt": "___ maleta es mía.",
+          "answers": [
+            "aquella",
+            "esa"
+          ],
+          "explain": "Maleta — женский род. Aquella подчёркивает дальность; esa тоже возможно.",
+          "options": [
+            "esta",
+            "aquella",
+            "esa"
+          ],
+          "translation": "Чемодан далеко от вас обоих.",
+          "sourceRef": "12.1.3",
+          "context": "Выбери слово по подсказке.",
+          "distance": "far"
+        },
+        {
+          "prompt": "Me gusta ___ bolso.",
+          "answers": [
+            "ese"
+          ],
+          "explain": "Bolso — мужской род, сумка рядом с собеседником.",
+          "options": [
+            "este",
+            "aquel",
+            "ese"
+          ],
+          "translation": "Сумка у собеседника.",
+          "sourceRef": "12.1.4",
+          "context": "Выбери слово по подсказке.",
+          "distance": "listener"
+        },
+        {
+          "prompt": "___ gafas son nuevas.",
+          "answers": [
+            "estas"
+          ],
+          "explain": "Gafas — женский род, множественное число, рядом с говорящим.",
+          "options": [
+            "esas",
+            "aquellas",
+            "estas"
+          ],
+          "translation": "Очки у тебя в руках.",
+          "sourceRef": "12.1.5",
+          "context": "Выбери слово по подсказке.",
+          "distance": "near",
+          "image": "art/003/03-gafas.webp",
+          "imageAlt": "Очки у тебя в руках."
+        },
+        {
+          "prompt": "___ paraguas es mío.",
+          "answers": [
+            "este"
+          ],
+          "explain": "Один зонт у говорящего: este paraguas.",
+          "options": [
+            "ese",
+            "aquel",
+            "este"
+          ],
+          "translation": "Зонт у тебя в руке.",
+          "sourceRef": "12.1.6",
+          "context": "Выбери слово по подсказке.",
+          "distance": "near"
+        },
+        {
+          "prompt": "___ árboles son muy altos.",
+          "answers": [
+            "aquellos",
+            "esos"
+          ],
+          "explain": "Árboles — мужской род, множественное число. Aquellos подчёркивает дальность.",
+          "options": [
+            "estos",
+            "aquellos",
+            "esos"
+          ],
+          "translation": "Деревья далеко от вас обоих.",
+          "sourceRef": "12.1.7",
+          "context": "Выбери слово по подсказке.",
+          "distance": "far",
+          "image": "art/002/01-arbol.webp",
+          "imageAlt": "Деревья далеко от вас обоих."
+        },
+        {
+          "prompt": "¿Son tuyas ___ llaves?",
+          "answers": [
+            "esas"
+          ],
+          "explain": "Llaves — женский род, множественное число, ближе к собеседнику.",
+          "options": [
+            "estas",
+            "aquellas",
+            "esas"
+          ],
+          "translation": "Ключи лежат перед собеседником.",
+          "sourceRef": "12.1.8",
+          "context": "Выбери слово по подсказке.",
+          "distance": "listener",
+          "image": "art/002/06-llave.webp",
+          "imageAlt": "Ключи лежат перед собеседником."
+        }
+      ],
+      "preview": {
+        "source": "___ libro que tengo en la mano.",
+        "sentenceParts": [
+          "",
+          " libro que tengo en la mano."
+        ],
+        "answer": "este",
+        "translation": "Эта книга у меня в руке.",
+        "targetPrefix": "",
+        "tip": ""
+      },
+      "pictureTitle": "Выбери слово по подсказке."
+    },
+    {
+      "id": "12.2",
+      "title": "12.2 · Покажи и назови",
+      "instruction": "Выбери este, ese, aquel или подходящую форму женского рода и множественного числа.",
+      "questions": [
+        {
+          "prompt": "Me gusta ___ restaurante.",
+          "answers": [
+            "este"
+          ],
+          "explain": "Находимся в этом ресторане: este restaurante.",
+          "options": [
+            "ese",
+            "aquel",
+            "este"
+          ],
+          "translation": "Ты говоришь о ресторане, в котором сейчас сидишь.",
+          "sourceRef": "12.2.1",
+          "context": "Выбери слово по подсказке.",
+          "distance": "near"
+        },
+        {
+          "prompt": "___ chico es mi hermano.",
+          "answers": [
+            "ese"
+          ],
+          "explain": "Показываем на парня ближе к собеседнику: ese chico.",
+          "options": [
+            "este",
+            "aquel",
+            "ese"
+          ],
+          "translation": "Парень стоит возле собеседника.",
+          "sourceRef": "12.2.2",
+          "context": "Выбери слово по подсказке.",
+          "distance": "listener"
+        },
+        {
+          "prompt": "___ es Julia.",
+          "answers": [
+            "esta"
+          ],
+          "explain": "Представляем девушку рядом с собой: esta.",
+          "options": [
+            "esa",
+            "aquella",
+            "esta"
+          ],
+          "translation": "Хулия стоит рядом с тобой.",
+          "sourceRef": "12.2.3",
+          "context": "Выбери слово по подсказке.",
+          "distance": "near"
+        },
+        {
+          "prompt": "___ es el padre de Charo.",
+          "answers": [
+            "aquel",
+            "ese"
+          ],
+          "explain": "Показываем на мужчину далеко от обоих: aquel или ese.",
+          "options": [
+            "este",
+            "aquel",
+            "ese"
+          ],
+          "translation": "Отец Чаро далеко от вас обоих.",
+          "sourceRef": "12.2.4",
+          "context": "Выбери слово по подсказке.",
+          "distance": "far"
+        },
+        {
+          "prompt": "___ vaso está sucio.",
+          "answers": [
+            "este"
+          ],
+          "explain": "Стакан у говорящего: este vaso.",
+          "options": [
+            "ese",
+            "aquel",
+            "este"
+          ],
+          "translation": "Стакан у тебя в руке.",
+          "sourceRef": "12.2.5",
+          "context": "Выбери слово по подсказке.",
+          "distance": "near"
+        },
+        {
+          "prompt": "¿Cuánto cuestan ___ gafas?",
+          "answers": [
+            "esas"
+          ],
+          "explain": "Очки в руках продавца-собеседника: esas gafas.",
+          "options": [
+            "estas",
+            "aquellas",
+            "esas"
+          ],
+          "translation": "Очки держит продавец, с которым ты разговариваешь.",
+          "sourceRef": "12.2.6",
+          "context": "Выбери слово по подсказке.",
+          "distance": "listener"
+        },
+        {
+          "prompt": "___ es la casa de Ramón.",
+          "answers": [
+            "aquella",
+            "esa"
+          ],
+          "explain": "Дом далеко: aquella или esa. Форма женского рода, как casa.",
+          "options": [
+            "esta",
+            "aquella",
+            "esa"
+          ],
+          "translation": "Дом Рамона далеко от вас обоих.",
+          "sourceRef": "12.2.7",
+          "context": "Выбери слово по подсказке.",
+          "distance": "far"
+        },
+        {
+          "prompt": "Voy a coger ___ autobús.",
+          "answers": [
+            "ese"
+          ],
+          "explain": "Автобус ближе к собеседнику: ese autobús.",
+          "options": [
+            "este",
+            "aquel",
+            "ese"
+          ],
+          "translation": "Автобус остановился рядом с собеседником.",
+          "sourceRef": "12.2.8",
+          "context": "Выбери слово по подсказке.",
+          "distance": "listener"
+        }
+      ],
+      "preview": {
+        "source": "___ es Julia.",
+        "sentenceParts": [
+          "",
+          " es Julia."
+        ],
+        "answer": "esta",
+        "translation": "Это Хулия рядом со мной.",
+        "targetPrefix": "",
+        "tip": ""
+      }
+    },
+    {
+      "id": "12.3",
+      "title": "12.3 · Этот месяц и тот год",
+      "instruction": "Дополни фразу о времени.",
+      "questions": [
+        {
+          "prompt": "___ verano voy a estudiar español.",
+          "answers": [
+            "este"
+          ],
+          "explain": "Текущее или ближайшее лето: este verano.",
+          "options": [
+            "ese",
+            "aquel",
+            "este"
+          ],
+          "translation": "Этим летом буду учить испанский.",
+          "sourceRef": "12.3.1",
+          "context": "Выбери слово по подсказке."
+        },
+        {
+          "prompt": "Nací en 1983. ___ mismo año nació mi hermana.",
+          "answers": [
+            "ese",
+            "aquel"
+          ],
+          "explain": "Возвращаемся к уже названному 1983 году.",
+          "options": [
+            "este",
+            "ese",
+            "aquel"
+          ],
+          "translation": "Я родился в 1983 году. В том же году родилась сестра.",
+          "sourceRef": "12.3.2",
+          "context": "Выбери слово по подсказке."
+        },
+        {
+          "prompt": "¿Qué haces ___ noche?",
+          "answers": [
+            "esta"
+          ],
+          "explain": "Сегодня вечером: esta noche.",
+          "options": [
+            "esa",
+            "aquella",
+            "esta"
+          ],
+          "translation": "Что делаешь сегодня вечером?",
+          "sourceRef": "12.3.3",
+          "context": "Выбери слово по подсказке."
+        },
+        {
+          "prompt": "___ semana tengo mucho trabajo.",
+          "answers": [
+            "esta"
+          ],
+          "explain": "Текущая неделя: esta semana.",
+          "options": [
+            "esa",
+            "aquella",
+            "esta"
+          ],
+          "translation": "На этой неделе у меня много работы.",
+          "sourceRef": "12.3.3",
+          "context": "Выбери слово по подсказке."
+        },
+        {
+          "prompt": "En 2001 fui a Chile. ___ verano conocí a Maite.",
+          "answers": [
+            "ese",
+            "aquel"
+          ],
+          "explain": "Речь о лете уже названного года; ese и aquel здесь возможны.",
+          "options": [
+            "este",
+            "ese",
+            "aquel"
+          ],
+          "translation": "В 2001-м я ездил в Чили. Тем летом познакомился с Майте.",
+          "sourceRef": "12.3.4",
+          "context": "Выбери слово по подсказке."
+        },
+        {
+          "prompt": "Viví allí de 1950 a 1965. ___ fueron los mejores años de mi vida.",
+          "answers": [
+            "aquellos",
+            "esos"
+          ],
+          "explain": "Вспоминаем далёкие годы: aquellos или esos, мужской род и множественное число.",
+          "options": [
+            "estos",
+            "aquellos",
+            "esos"
+          ],
+          "translation": "Я жил там с 1950 по 1965 год. То были лучшие годы моей жизни.",
+          "sourceRef": "12.3.5",
+          "context": "Выбери слово по подсказке."
+        },
+        {
+          "prompt": "___ mes ha llovido mucho.",
+          "answers": [
+            "este"
+          ],
+          "explain": "Текущий месяц: este mes.",
+          "options": [
+            "ese",
+            "aquel",
+            "este"
+          ],
+          "translation": "В этом месяце было много дождей.",
+          "sourceRef": "12.3.6",
+          "context": "Выбери слово по подсказке."
+        },
+        {
+          "prompt": "Me casé en 1970. En ___ época vivíamos en Lima.",
+          "answers": [
+            "aquella",
+            "esa"
+          ],
+          "explain": "Вспоминаем уже названное далёкое время: aquella época или esa época.",
+          "options": [
+            "esta",
+            "aquella",
+            "esa"
+          ],
+          "translation": "Я женился в 1970-м. В ту пору мы жили в Лиме.",
+          "sourceRef": "12.3.7",
+          "context": "Выбери слово по подсказке."
+        },
+        {
+          "prompt": "___ tarde tengo un examen.",
+          "answers": [
+            "esta"
+          ],
+          "explain": "Сегодня днём или вечером: esta tarde.",
+          "options": [
+            "esa",
+            "aquella",
+            "esta"
+          ],
+          "translation": "Сегодня во второй половине дня у меня экзамен.",
+          "sourceRef": "12.3.8",
+          "context": "Выбери слово по подсказке."
+        }
+      ],
+      "preview": {
+        "source": "Trabajo mucho ___ semana.",
+        "sentenceParts": [
+          "Trabajo mucho ",
+          " semana."
+        ],
+        "answer": "esta",
+        "translation": "Я много работаю на этой неделе.",
+        "targetPrefix": "",
+        "tip": ""
+      }
+    },
+    {
+      "id": "12.4",
+      "title": "12.4 · Что это?",
+      "instruction": "Предмет пока не назван. Выбери esto, eso или aquello.",
+      "questions": [
+        {
+          "prompt": "¿De quién es ___?",
+          "answers": [
+            "esto"
+          ],
+          "explain": "Предмет у говорящего и пока не назван: esto.",
+          "options": [
+            "eso",
+            "aquello",
+            "esto"
+          ],
+          "translation": "Ты держишь незнакомую вещь. Спрашиваешь, чья она.",
+          "sourceRef": "12.4.1",
+          "context": "Дополни предложение.",
+          "distance": "near"
+        },
+        {
+          "prompt": "¿Qué es ___?",
+          "answers": [
+            "eso"
+          ],
+          "explain": "Незнакомый предмет у собеседника: eso.",
+          "options": [
+            "esto",
+            "aquello",
+            "eso"
+          ],
+          "translation": "Собеседник держит неизвестную тебе вещь.",
+          "sourceRef": "12.4.2",
+          "context": "Дополни предложение.",
+          "distance": "listener"
+        },
+        {
+          "prompt": "¿Qué es ___?",
+          "answers": [
+            "aquello",
+            "eso"
+          ],
+          "explain": "Предмет далеко от обоих: aquello подчёркивает дальность, eso тоже возможно.",
+          "options": [
+            "esto",
+            "aquello",
+            "eso"
+          ],
+          "translation": "Ты показываешь на незнакомое здание далеко от вас обоих.",
+          "sourceRef": "12.4.3",
+          "context": "Дополни предложение.",
+          "distance": "far"
+        },
+        {
+          "prompt": "¿De quién es ___?",
+          "answers": [
+            "eso"
+          ],
+          "explain": "Не называем вещь рядом с собеседником: eso.",
+          "options": [
+            "esto",
+            "aquello",
+            "eso"
+          ],
+          "translation": "Неизвестная сумка лежит у собеседника. Спрашиваешь, чья она.",
+          "sourceRef": "12.4.4",
+          "context": "Дополни предложение.",
+          "distance": "listener"
+        }
+      ],
+      "preview": {
+        "source": "¿Qué es ___?",
+        "sentenceParts": [
+          "¿Qué es ",
+          "?"
+        ],
+        "answer": "esto",
+        "translation": "Что это у меня в руке?",
+        "targetPrefix": "",
+        "tip": ""
+      }
+    }
+  ],
+  "learningOrder": [
+    "section:0",
+    "exercise:12.1",
+    "section:1",
+    "exercise:12.2",
+    "section:2",
+    "exercise:12.3",
+    "section:3",
+    "exercise:12.4",
+    "summary"
+  ],
+  "summary": {
+    "wordGroups": [
+      {
+        "title": "Этот, тот и вон тот",
+        "words": [
+          [
+            "este libro",
+            "эта книга"
+          ],
+          [
+            "esta llave",
+            "этот ключ"
+          ],
+          [
+            "estas gafas",
+            "эти очки"
+          ]
+        ]
+      },
+      {
+        "title": "Можно не повторять существительное",
+        "words": [
+          [
+            "este bolso",
+            "эта сумка"
+          ],
+          [
+            "aquella casa",
+            "вон тот дом"
+          ],
+          [
+            "Este es mi bolso",
+            "Это моя сумка"
+          ]
+        ]
+      },
+      {
+        "title": "Этот месяц, тот год",
+        "words": [
+          [
+            "este mes",
+            "в этом месяце"
+          ],
+          [
+            "esta semana",
+            "на этой неделе"
+          ],
+          [
+            "esta tarde",
+            "сегодня днём / вечером"
+          ]
+        ]
+      },
+      {
+        "title": "Esto, eso, aquello: что это?",
+        "words": [
+          [
+            "¿Qué es esto?",
+            "Что это здесь?"
+          ],
+          [
+            "¿Qué es eso?",
+            "Что это там / у тебя?"
+          ],
+          [
+            "¿Qué es aquello?",
+            "Что это вон там?"
+          ]
+        ]
+      }
+    ]
+  }
+}

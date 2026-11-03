@@ -35,6 +35,12 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
                     raise ValueError(f"{path}: answer and explanation required")
                 if q.get("options") and not set(q["answers"]) <= set(q["options"]):
                     raise ValueError(f"{path}: correct answer missing from options")
+                if "clock" in q:
+                    clock = q["clock"]
+                    if not isinstance(clock, dict) or any(type(clock.get(k)) is not int or not 0 <= clock[k] <= limit for k, limit in [("hour", 23), ("minute", 59)]):
+                        raise ValueError(f"{path}: clock requires a valid hour and minute")
+                if "distance" in q and q["distance"] not in {"near", "listener", "far"}:
+                    raise ValueError(f"{path}: invalid demonstrative distance")
                 if q.get("image"):
                     q["image"] = _image_uri(directory, q["image"])
                 if "pictureCount" in q and (type(q["pictureCount"]) is not int or not 1 <= q["pictureCount"] <= 12 or not q.get("image")):

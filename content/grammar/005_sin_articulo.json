@@ -1,0 +1,960 @@
+{
+  "id": "005_sin_articulo",
+  "number": 5,
+  "title": "Un coche / coche",
+  "subtitle": "Когда артикль не нужен",
+  "level": "A1",
+  "sections": [
+    {
+      "title": "A. Называем профессию",
+      "paragraphs": [
+        "Если просто рассказываешь, **кем человек работает**, после `ser` обычно не нужен артикль: `Soy médico` — я врач, `Eva es abogada` — Ева адвокат. Мы называем занятие, а не считаем людей.",
+        "То же самое с будущей профессией: `Quiero ser bailarina` — хочу стать танцовщицей. В заданиях вариант **«Без артикля»** означает, что перед написанным словом ничего добавлять не нужно."
+      ],
+      "wordGroups": [
+        {
+          "title": "Профессия без описания",
+          "words": [
+            [
+              "Es médico",
+              "Он врач"
+            ],
+            [
+              "Es profesora",
+              "Она преподавательница"
+            ],
+            [
+              "Soy estudiante",
+              "Я студент / студентка"
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-a",
+        "title": "Мини-проверка",
+        "instruction": "",
+        "questions": [
+          {
+            "prompt": "Eva es ___ abogada.",
+            "answers": [
+              "Без артикля"
+            ],
+            "explain": "Просто называем профессию после es: Eva es abogada.",
+            "options": [
+              "una",
+              "la",
+              "Без артикля"
+            ],
+            "context": "Дополни предложение."
+          },
+          {
+            "prompt": "Quiero ser ___ bailarina.",
+            "answers": [
+              "Без артикля"
+            ],
+            "explain": "После quiero ser называем профессию без артикля.",
+            "options": [
+              "una",
+              "la",
+              "Без артикля"
+            ],
+            "context": "Дополни предложение."
+          }
+        ]
+      }
+    },
+    {
+      "title": "B. Просто профессия или описание человека?",
+      "paragraphs": [
+        "Сравни: `Es médico` — он врач. А если добавим, **какой он врач**, обычно появится артикль: `Es un médico buenísimo` — он отличный врач. Слова `famoso`, `caro`, `de éxito` тоже добавляют описание.",
+        "Когда представляем незнакомого человека и отвечаем **`¿Quién es?` — «Кто это?»**, можно сказать `Es un cantante` — это певец. А национальность, религию и взгляды после `ser` обычно называем без артикля: `Es mexicano`, `Son protestantes`."
+      ],
+      "wordGroups": [
+        {
+          "title": "Только профессия",
+          "words": [
+            [
+              "Es abogado",
+              "Он адвокат"
+            ],
+            [
+              "Es peruano",
+              "Он перуанец"
+            ]
+          ]
+        },
+        {
+          "title": "С описанием",
+          "words": [
+            [
+              "Es un abogado muy caro",
+              "Он очень дорогой адвокат"
+            ],
+            [
+              "Es una actriz famosa",
+              "Она известная актриса"
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-b",
+        "title": "Мини-проверка",
+        "instruction": "",
+        "questions": [
+          {
+            "prompt": "Es ___ actor famoso.",
+            "answers": [
+              "un"
+            ],
+            "explain": "Famoso добавляет описание: un actor famoso.",
+            "options": [
+              "Без артикля",
+              "el",
+              "un"
+            ],
+            "context": "Дополни предложение."
+          },
+          {
+            "prompt": "Ella es ___ argentina.",
+            "answers": [
+              "Без артикля"
+            ],
+            "explain": "Здесь называем национальность после es: es argentina. Не выделяем её среди других людей.",
+            "options": [
+              "una",
+              "la",
+              "Без артикля"
+            ],
+            "context": "Дополни предложение."
+          }
+        ]
+      }
+    },
+    {
+      "title": "C. Говорим о занятии, еде или наличии чего-то",
+      "paragraphs": [
+        "Артикль часто не нужен, когда важен **сам вид вещи или занятия**, а не один отдельный предмет: `Colecciono monedas` — собираю монеты, `Canto ópera` — пою оперу, `¿Tienes coche?` — у тебя есть машина?",
+        "С едой и напитками так же: `Como carne` — я ем мясо, `Tomo café` — пью кофе. Но **одна порция или предмет с описанием** уже могут потребовать артикль: `una taza de café` — чашка кофе, `un queso muy fuerte` — сыр с очень насыщенным вкусом."
+      ],
+      "wordGroups": [
+        {
+          "title": "Без подсчёта",
+          "words": [
+            [
+              "Colecciono monedas",
+              "Собираю монеты"
+            ],
+            [
+              "No tomo azúcar",
+              "Не употребляю сахар"
+            ],
+            [
+              "¿Tienes hermanos?",
+              "У тебя есть братья или сёстры?"
+            ]
+          ]
+        },
+        {
+          "title": "Отдельный предмет или порция",
+          "words": [
+            [
+              "una taza de café",
+              "чашка кофе"
+            ],
+            [
+              "unas monedas chinas",
+              "несколько китайских монет"
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-c",
+        "title": "Мини-проверка",
+        "instruction": "",
+        "questions": [
+          {
+            "prompt": "No tomo ___ azúcar.",
+            "answers": [
+              "Без артикля"
+            ],
+            "explain": "Говорим о сахаре вообще, без количества: no tomo azúcar.",
+            "options": [
+              "un",
+              "una",
+              "Без артикля"
+            ],
+            "context": "Дополни предложение."
+          },
+          {
+            "prompt": "Tomo ___ taza de café al día.",
+            "answers": [
+              "una"
+            ],
+            "explain": "Считаем чашки: одна чашка — una taza.",
+            "options": [
+              "Без артикля",
+              "un",
+              "una"
+            ],
+            "context": "Дополни предложение."
+          }
+        ]
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "5.1",
+      "title": "5.1 · Кем работает человек?",
+      "instruction": "Просто назови профессию. Реши, нужен ли артикль.",
+      "questions": [
+        {
+          "prompt": "Eva es ___ abogada.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Профессия после es без дополнительного описания: es abogada.",
+          "options": [
+            "un",
+            "una",
+            "Без артикля"
+          ],
+          "translation": "Ева работает адвокатом.",
+          "sourceRef": "5.1.1",
+          "context": "Дополни предложение."
+        },
+        {
+          "prompt": "José Luis es ___ estudiante.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Просто сообщаем, что он студент: es estudiante.",
+          "options": [
+            "un",
+            "una",
+            "Без артикля"
+          ],
+          "translation": "Хосе Луис — студент.",
+          "sourceRef": "5.1.2",
+          "context": "Дополни предложение."
+        },
+        {
+          "prompt": "Mar es ___ actriz.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Называем профессию: es actriz.",
+          "options": [
+            "un",
+            "una",
+            "Без артикля"
+          ],
+          "translation": "Мар работает актрисой.",
+          "sourceRef": "5.1.3",
+          "context": "Дополни предложение."
+        },
+        {
+          "prompt": "Félix es ___ fotógrafo.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Называем профессию: es fotógrafo.",
+          "options": [
+            "un",
+            "una",
+            "Без артикля"
+          ],
+          "translation": "Феликс работает фотографом.",
+          "sourceRef": "5.1.4",
+          "context": "Дополни предложение."
+        },
+        {
+          "prompt": "Roberto es ___ médico.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Называем профессию: es médico.",
+          "options": [
+            "un",
+            "una",
+            "Без артикля"
+          ],
+          "translation": "Роберто работает врачом.",
+          "sourceRef": "5.1.5",
+          "context": "Дополни предложение."
+        },
+        {
+          "prompt": "Adrián es ___ cocinero.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Называем профессию: es cocinero.",
+          "options": [
+            "un",
+            "una",
+            "Без артикля"
+          ],
+          "translation": "Адриан работает поваром.",
+          "sourceRef": "5.1.6",
+          "context": "Дополни предложение."
+        },
+        {
+          "prompt": "Eloísa es ___ camarera.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Называем профессию: es camarera.",
+          "options": [
+            "un",
+            "una",
+            "Без артикля"
+          ],
+          "translation": "Элоиса работает официанткой.",
+          "sourceRef": "5.1.7",
+          "context": "Дополни предложение."
+        },
+        {
+          "prompt": "Leonor es ___ profesora.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Называем профессию: es profesora.",
+          "options": [
+            "un",
+            "una",
+            "Без артикля"
+          ],
+          "translation": "Леонор работает преподавательницей.",
+          "sourceRef": "5.1.8",
+          "context": "Дополни предложение."
+        }
+      ],
+      "preview": {
+        "source": "Eva es ___ abogada.",
+        "sentenceParts": [
+          "Eva es ",
+          " abogada."
+        ],
+        "answer": "Без артикля",
+        "translation": "Ева — адвокат. Перед abogada ничего не добавляем.",
+        "targetPrefix": "",
+        "tip": "∅ — перед словом ничего не добавляем.",
+        "displayAnswer": "∅"
+      }
+    },
+    {
+      "id": "5.2",
+      "title": "5.2 · Профессия и описание",
+      "instruction": "Выбери артикль или «Без артикля».",
+      "questions": [
+        {
+          "prompt": "¿Quién es Luis Miguel? Es ___ cantante.",
+          "answers": [
+            "un"
+          ],
+          "explain": "Представляем человека: это певец.",
+          "options": [
+            "el",
+            "Без артикля",
+            "un"
+          ],
+          "sourceRef": "5.2.1",
+          "context": "Нужен ли здесь артикль?"
+        },
+        {
+          "prompt": "Luis Miguel es ___ mexicano.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Национальность после es называем без артикля.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.2.1",
+          "context": "Нужен ли здесь артикль?"
+        },
+        {
+          "prompt": "La doctora Ramírez es ___ médica buenísima.",
+          "answers": [
+            "una"
+          ],
+          "explain": "Есть описание buenísima: una médica buenísima.",
+          "options": [
+            "la",
+            "Без артикля",
+            "una"
+          ],
+          "sourceRef": "5.2.2",
+          "context": "Нужен ли здесь артикль?"
+        },
+        {
+          "prompt": "La doctora Ramírez es ___ argentina.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Национальность после es — без артикля.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.2.2",
+          "context": "Нужен ли здесь артикль?"
+        },
+        {
+          "prompt": "El marido de Luisa es ___ abogado.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Просто называем профессию.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.2.3",
+          "context": "Нужен ли здесь артикль?"
+        },
+        {
+          "prompt": "Es ___ abogado muy caro.",
+          "answers": [
+            "un"
+          ],
+          "explain": "Muy caro описывает адвоката: un abogado muy caro.",
+          "options": [
+            "el",
+            "Без артикля",
+            "un"
+          ],
+          "sourceRef": "5.2.3",
+          "context": "Нужен ли здесь артикль?"
+        },
+        {
+          "prompt": "Tomás se ha hecho ___ musulmán.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Здесь говорится о принятии религии: se ha hecho musulmán.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.2.4",
+          "context": "Нужен ли здесь артикль?"
+        },
+        {
+          "prompt": "Los tíos de Andrea son ___ protestantes.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Религию после son называем без артикля.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.2.5",
+          "context": "Нужен ли здесь артикль?"
+        },
+        {
+          "prompt": "El hermano de Patricio es ___ actor famoso.",
+          "answers": [
+            "un"
+          ],
+          "explain": "Famoso добавляет описание: un actor famoso.",
+          "options": [
+            "el",
+            "Без артикля",
+            "un"
+          ],
+          "sourceRef": "5.2.6",
+          "context": "Нужен ли здесь артикль?"
+        },
+        {
+          "prompt": "¿Quién es Vargas Llosa? Es ___ escritor.",
+          "answers": [
+            "un"
+          ],
+          "explain": "Представляем человека: это писатель.",
+          "options": [
+            "el",
+            "Без артикля",
+            "un"
+          ],
+          "sourceRef": "5.2.7",
+          "context": "Нужен ли здесь артикль?"
+        },
+        {
+          "prompt": "Vargas Llosa era ___ peruano.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Национальность после era — без артикля.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.2.7",
+          "context": "Нужен ли здесь артикль?"
+        },
+        {
+          "prompt": "Alberto y Lola son ___ estudiantes.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Просто называем их занятие.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.2.8",
+          "context": "Нужен ли здесь артикль?"
+        },
+        {
+          "prompt": "Alberto y Lola son ___ socialistas.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Говорим о взглядах после son без артикля.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.2.8",
+          "context": "Нужен ли здесь артикль?"
+        },
+        {
+          "prompt": "Sarita quiere ser ___ bailarina.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "После quiere ser называем профессию без артикля.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.2.9",
+          "context": "Нужен ли здесь артикль?"
+        },
+        {
+          "prompt": "García Márquez fue ___ escritor de éxito.",
+          "answers": [
+            "un"
+          ],
+          "explain": "De éxito — описание: успешный писатель.",
+          "options": [
+            "el",
+            "Без артикля",
+            "un"
+          ],
+          "sourceRef": "5.2.10",
+          "context": "Нужен ли здесь артикль?"
+        }
+      ],
+      "preview": {
+        "source": "Es ___ actor famoso.",
+        "sentenceParts": [
+          "Es ",
+          " actor famoso."
+        ],
+        "answer": "un",
+        "translation": "Он известный актёр.",
+        "targetPrefix": "",
+        "tip": ""
+      }
+    },
+    {
+      "id": "5.3",
+      "title": "5.3 · Еда, занятия и вещи",
+      "instruction": "Дополни фразу. Если ничего добавлять не нужно, выбери «Без артикля».",
+      "questions": [
+        {
+          "prompt": "¿Comes ___ carne?",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Говорим о мясе как о продукте, без количества.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.3.1",
+          "context": "Дополни фразу: артикль или без артикля?"
+        },
+        {
+          "prompt": "No, soy ___ vegetariano.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "После soy называем особенности питания без артикля.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.3.1",
+          "context": "Дополни фразу: артикль или без артикля?"
+        },
+        {
+          "prompt": "Colecciono ___ monedas.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Называем вид коллекции: colecciono monedas.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.3.2",
+          "context": "Дополни фразу: артикль или без артикля?"
+        },
+        {
+          "prompt": "Ayer me compré ___ monedas chinas.",
+          "answers": [
+            "unas"
+          ],
+          "explain": "Речь о нескольких купленных монетах: unas monedas chinas.",
+          "options": [
+            "las",
+            "Без артикля",
+            "unas"
+          ],
+          "sourceRef": "5.3.2",
+          "context": "Дополни фразу: артикль или без артикля?"
+        },
+        {
+          "prompt": "Alberto tiene ___ apartamento en Benidorm.",
+          "answers": [
+            "un"
+          ],
+          "explain": "У Альберто есть одна квартира: un apartamento.",
+          "options": [
+            "el",
+            "Без артикля",
+            "un"
+          ],
+          "sourceRef": "5.3.3",
+          "context": "Дополни фразу: артикль или без артикля?"
+        },
+        {
+          "prompt": "¿Tomas ___ café?",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Спрашиваем, пьёт ли человек кофе вообще.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.3.4",
+          "context": "Дополни фразу: артикль или без артикля?",
+          "translation": "Спрашиваешь, пьёт ли человек кофе вообще, без указания порции."
+        },
+        {
+          "prompt": "Solo tomo ___ taza al día.",
+          "answers": [
+            "una"
+          ],
+          "explain": "Указываем количество: одна чашка в день.",
+          "options": [
+            "la",
+            "Без артикля",
+            "una"
+          ],
+          "sourceRef": "5.3.4",
+          "context": "Дополни фразу: артикль или без артикля?"
+        },
+        {
+          "prompt": "No tomo ___ azúcar.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Сахар как продукт, без количества: no tomo azúcar.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.3.5",
+          "context": "Дополни фразу: артикль или без артикля?"
+        },
+        {
+          "prompt": "¿Tenéis ___ hijos?",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Спрашиваем, есть ли дети, не уточняя их количество.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.3.6",
+          "context": "Дополни фразу: артикль или без артикля?"
+        },
+        {
+          "prompt": "Chelo canta ___ ópera.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Называем жанр: canta ópera.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.3.7",
+          "context": "Дополни фразу: артикль или без артикля?"
+        },
+        {
+          "prompt": "Ernesto es ___ músico.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Просто называем профессию.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.3.8",
+          "context": "Дополни фразу: артикль или без артикля?"
+        },
+        {
+          "prompt": "Escribe ___ canciones.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Говорим о занятии вообще: пишет песни.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.3.8",
+          "context": "Дополни фразу: артикль или без артикля?"
+        },
+        {
+          "prompt": "¿Necesitas ___ dinero?",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Спрашиваем о деньгах без указания суммы.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.3.9",
+          "context": "Дополни фразу: артикль или без артикля?"
+        },
+        {
+          "prompt": "¿Quieres ___ queso?",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Предлагаем сыр как продукт, без отдельной порции.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.3.10",
+          "context": "Дополни фразу: артикль или без артикля?",
+          "translation": "Предлагаешь сыр как продукт, без уточнения порции или отдельной головки."
+        },
+        {
+          "prompt": "Es ___ queso muy fuerte.",
+          "answers": [
+            "un"
+          ],
+          "explain": "Добавлено описание сорта: un queso muy fuerte.",
+          "options": [
+            "el",
+            "Без артикля",
+            "un"
+          ],
+          "sourceRef": "5.3.10",
+          "context": "Дополни фразу: артикль или без артикля?"
+        },
+        {
+          "prompt": "Carolina es ___ vendedora.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Называем профессию.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.3.11",
+          "context": "Дополни фразу: артикль или без артикля?"
+        },
+        {
+          "prompt": "Vende ___ enciclopedias.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Называем вид товара, а не конкретные экземпляры.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.3.11",
+          "context": "Дополни фразу: артикль или без артикля?"
+        },
+        {
+          "prompt": "¿Tienes ___ hermanos?",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "Спрашиваем о наличии братьев или сестёр без подсчёта.",
+          "options": [
+            "un",
+            "una",
+            "el",
+            "la",
+            "Без артикля"
+          ],
+          "sourceRef": "5.3.12",
+          "context": "Дополни фразу: артикль или без артикля?"
+        }
+      ],
+      "preview": {
+        "source": "Colecciono ___ monedas.",
+        "sentenceParts": [
+          "Colecciono ",
+          " monedas."
+        ],
+        "answer": "Без артикля",
+        "translation": "Я собираю монеты. Перед monedas ничего не добавляем.",
+        "targetPrefix": "",
+        "tip": "∅ — перед словом ничего не добавляем.",
+        "displayAnswer": "∅"
+      }
+    }
+  ],
+  "learningOrder": [
+    "section:0",
+    "exercise:5.1",
+    "section:1",
+    "exercise:5.2",
+    "section:2",
+    "exercise:5.3",
+    "summary"
+  ],
+  "summary": {
+    "wordGroups": [
+      {
+        "title": "Называем профессию",
+        "words": [
+          [
+            "Es médico",
+            "Он врач"
+          ],
+          [
+            "Es profesora",
+            "Она преподавательница"
+          ],
+          [
+            "Soy estudiante",
+            "Я студент / студентка"
+          ]
+        ]
+      },
+      {
+        "title": "Просто профессия или описание человека?",
+        "words": [
+          [
+            "Es abogado",
+            "Он адвокат"
+          ],
+          [
+            "Es peruano",
+            "Он перуанец"
+          ],
+          [
+            "Es un abogado muy caro",
+            "Он очень дорогой адвокат"
+          ]
+        ]
+      },
+      {
+        "title": "Говорим о занятии, еде или наличии чего-то",
+        "words": [
+          [
+            "Colecciono monedas",
+            "Собираю монеты"
+          ],
+          [
+            "No tomo azúcar",
+            "Не употребляю сахар"
+          ],
+          [
+            "¿Tienes hermanos?",
+            "У тебя есть братья или сёстры?"
+          ]
+        ]
+      }
+    ]
+  }
+}
