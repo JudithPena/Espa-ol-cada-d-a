@@ -364,20 +364,22 @@ test('unit 16 accepts both equality patterns and finishes before unit 17', () =>
  assert.equal(run('Object.keys(P.grammar).some(k=>k.startsWith("017_"))'),false);
 });
 
-test('unit 17 shows a direct task, translated clues, and one answer field inside the sentence', () => {
+test('unit 17 only asks for the article and degree in two sentence gaps', () => {
  const run=context([unit17]);
  unlockUntil(run,'exercise:17.1');
  run('gStart(COURSE.grammar[0].id,"exercise:17.1");');
  const intro=run('gPlayerView()');
- assert.ok(intro.includes('<mark class="gpreview-insert">la calle más bonita</mark>'));
+ assert.ok(intro.includes('<mark class="gpreview-insert">la</mark>'));
+ assert.ok(intro.includes('<mark class="gpreview-insert">más</mark>'));
  run('gMove(1)');
  const html=run('gPlayerView()');
- assert.ok(html.includes('Напиши: «самый красивый город»'));
- assert.ok(html.includes('<b lang="es">ciudad</b><small>город</small>'));
+ assert.ok(html.includes('«самый красивый город»'));
+ assert.ok(html.includes(' ciudad ') && html.includes(' bonita de Cuba?'));
  assert.ok(html.indexOf('¿Cuál es ') < html.indexOf('id="g-answer"'));
  assert.ok(html.indexOf('id="g-answer"') < html.indexOf('de Cuba?'));
  assert.equal((html.match(/id="g-answer"/g)||[]).length,1);
+ assert.equal((html.match(/data-ggap=/g)||[]).length,2);
  assert.ok(!html.includes('class="gblank"'));
- run('gResponse(G.steps[G.at]).value="la ciudad más bonita";gCheck();');
+ run('gResponse(G.steps[G.at]).value="la más";gCheck();');
  assert.equal(run('gResponse(G.steps[G.at]).good'),true);
 });

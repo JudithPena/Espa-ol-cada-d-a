@@ -685,167 +685,128 @@
     {
       "id": "17.1",
       "title": "17.1 · Самый или наименее?",
-      "instruction": "Напиши выражение по-испански и вставь его в вопрос. Слова на карточках помогут составить ответ.",
-      "inputLabel": "Ввод фразы",
+      "instruction": "Вставь только артикль (el или la) и más или menos. Остальные слова уже написаны.",
+      "inputLabel": "Два пропуска",
       "answerPlaceholder": "Твой ответ на испанском",
       "preview": {
-        "source": "¿Cuál es ___ de la ciudad?",
+        "source": "¿Cuál es ___ calle ___ bonita de la ciudad?",
         "targetPrefix": "",
-        "answer": "la calle más bonita",
+        "answer": "la · más",
         "translation": "Какая улица в городе самая красивая?",
-        "tip": "Выделенная часть — то, что нужно вписать. Остальной вопрос уже готов.",
-        "sentenceParts": [
+        "tip": "В первый пропуск впиши артикль, во второй — más или menos.",
+        "gapParts": [
           "¿Cuál es ",
-          " de la ciudad?"
+          " calle ",
+          " bonita de la ciudad?"
+        ],
+        "gapAnswers": [
+          "la",
+          "más"
         ]
       },
       "questions": [
         {
-          "prompt": "¿Cuál es ___ de Cuba?",
+          "prompt": "¿Cuál es ___ ciudad ___ bonita de Cuba?",
           "answers": [
-            "la ciudad más bonita"
+            "la más"
           ],
-          "explain": "Ciudad — женский род: la ciudad más bonita. После ciudad ставим más, а bonito меняем на bonita.",
-          "context": "Напиши: «самый красивый город»",
-          "clues": [
-            [
-              "ciudad",
-              "город"
-            ],
-            [
-              "bonito",
-              "красивый"
-            ]
+          "explain": "la ciudad más bonita. В первый пропуск — la, во второй — más.",
+          "context": "«самый красивый город»",
+          "gapParts": [
+            "¿Cuál es ",
+            " ciudad ",
+            " bonita de Cuba?"
           ]
         },
         {
-          "prompt": "¿Cuál es ___ de América Latina?",
+          "prompt": "¿Cuál es ___ país ___ poblado de América Latina?",
           "answers": [
-            "el país menos poblado"
+            "el menos"
           ],
-          "explain": "País — мужской род. Наименее населённый — menos poblado: el país menos poblado.",
-          "context": "Напиши: «наименее населённая страна»",
-          "clues": [
-            [
-              "país",
-              "страна"
-            ],
-            [
-              "poblado",
-              "населённый"
-            ]
+          "explain": "el país menos poblado. В первый пропуск — el, во второй — menos.",
+          "context": "«наименее населённая страна»",
+          "gapParts": [
+            "¿Cuál es ",
+            " país ",
+            " poblado de América Latina?"
           ]
         },
         {
-          "prompt": "¿Cuál es ___ de España?",
+          "prompt": "¿Cuál es ___ ciudad ___ contaminada de España?",
           "answers": [
-            "la ciudad menos contaminada"
+            "la menos"
           ],
-          "explain": "Ciudad — женский род, поэтому la и contaminada. Значение «наименее» передаёт menos.",
-          "context": "Напиши: «наименее загрязнённый город»",
-          "clues": [
-            [
-              "ciudad",
-              "город"
-            ],
-            [
-              "contaminado",
-              "загрязнённый"
-            ]
+          "explain": "la ciudad menos contaminada. В первый пропуск — la, во второй — menos.",
+          "context": "«наименее загрязнённый город»",
+          "gapParts": [
+            "¿Cuál es ",
+            " ciudad ",
+            " contaminada de España?"
           ]
         },
         {
-          "prompt": "¿Cuál es ___ de México?",
+          "prompt": "¿Cuál es ___ río ___ largo de México?",
           "answers": [
-            "el río más largo"
+            "el más"
           ],
-          "explain": "Río — мужской род: el río más largo. Название реки вписывать не нужно.",
-          "context": "Напиши: «самая длинная река»",
-          "clues": [
-            [
-              "río",
-              "река"
-            ],
-            [
-              "largo",
-              "длинный"
-            ]
+          "explain": "el río más largo. В первый пропуск — el, во второй — más.",
+          "context": "«самая длинная река»",
+          "gapParts": [
+            "¿Cuál es ",
+            " río ",
+            " largo de México?"
           ]
         },
         {
-          "prompt": "¿Cuál es ___ de América del Sur?",
+          "prompt": "¿Cuál es ___ capital ___ alta de América del Sur?",
           "answers": [
-            "la capital más alta"
+            "la más"
           ],
-          "explain": "Capital в значении «столица» — женского рода: la capital más alta.",
-          "context": "Напиши: «самая высокогорная столица»",
-          "clues": [
-            [
-              "capital",
-              "столица"
-            ],
-            [
-              "alto",
-              "высокий"
-            ]
+          "explain": "la capital más alta. В первый пропуск — la, во второй — más.",
+          "context": "«самая высокогорная столица»",
+          "gapParts": [
+            "¿Cuál es ",
+            " capital ",
+            " alta de América del Sur?"
           ]
         },
         {
-          "prompt": "¿Cuál es ___ de América Latina?",
+          "prompt": "¿Cuál es ___ país ___ grande de América Latina?",
           "answers": [
-            "el país más grande",
-            "el mayor país",
-            "el país mayor"
+            "el más"
           ],
-          "explain": "О размере обычно говорим el país más grande. Форма mayor тоже может передавать значение «самый большой».",
-          "context": "Напиши: «самая большая страна»",
-          "clues": [
-            [
-              "país",
-              "страна"
-            ],
-            [
-              "grande",
-              "большой"
-            ]
+          "explain": "el país más grande. В первый пропуск — el, во второй — más.",
+          "context": "«самая большая страна»",
+          "gapParts": [
+            "¿Cuál es ",
+            " país ",
+            " grande de América Latina?"
           ]
         },
         {
-          "prompt": "¿Cuál es ___ del Caribe?",
+          "prompt": "¿Cuál es ___ isla ___ pequeña del Caribe?",
           "answers": [
-            "la isla más pequeña",
-            "la menor isla",
-            "la isla menor"
+            "la más"
           ],
-          "explain": "Isla — женский род: la isla más pequeña. Menor тоже может обозначать меньший размер.",
-          "context": "Напиши: «самый маленький остров»",
-          "clues": [
-            [
-              "isla",
-              "остров"
-            ],
-            [
-              "pequeño",
-              "маленький"
-            ]
+          "explain": "la isla más pequeña. В первый пропуск — la, во второй — más.",
+          "context": "«самый маленький остров»",
+          "gapParts": [
+            "¿Cuál es ",
+            " isla ",
+            " pequeña del Caribe?"
           ]
         },
         {
-          "prompt": "¿Cuál es ___ de México?",
+          "prompt": "¿Cuál es ___ catedral ___ antigua de México?",
           "answers": [
-            "la catedral más antigua"
+            "la más"
           ],
-          "explain": "Catedral — женский род: la catedral más antigua. О старом здании говорим antigua, а не mayor.",
-          "context": "Напиши: «самый старый собор»",
-          "clues": [
-            [
-              "catedral",
-              "собор"
-            ],
-            [
-              "antiguo",
-              "старый"
-            ]
+          "explain": "la catedral más antigua. В первый пропуск — la, во второй — más.",
+          "context": "«самый старый собор»",
+          "gapParts": [
+            "¿Cuál es ",
+            " catedral ",
+            " antigua de México?"
           ]
         }
       ],

@@ -451,6 +451,9 @@ main { padding-block: 16px 110px; }
 .gfill-sentence > p { font-size: 21px; font-weight: 700; line-height: 1.5; margin: 0; }
 .gfill-label { display: block; margin: 12px 0 6px; color: var(--muted); font-size: 13px; }
 .gfill-sentence .gaccents { margin-bottom: 12px; }
+.ggap-line { line-height: 2.8 !important; }
+.ggap-input { display: inline-block; width: 5ch; min-height: 42px; line-height: 1.4; padding: 4px 6px; margin: 0 4px; text-align: center; vertical-align: baseline; border-style: dashed; }
+.ggap-input[data-ggap="1"] { width: 7ch; }
 .gfeedback { margin: 10px 0; padding: 12px; border-radius: 10px; background: var(--bad-soft); }
 .gfeedback.good { background: var(--good-soft); }
 .gfeedback p { margin: 4px 0 0; }
@@ -1624,7 +1627,7 @@ document.addEventListener("click", e => {
   if ("gretryMistakes" in d) return gRetry();
   if (d.gpick != null && G) return gPick(+d.gpick);
   if (d.gchar && G) {
-    const input = $("#g-answer"); input.setRangeText(d.gchar, input.selectionStart, input.selectionEnd, "end");
+    const input = $(`[data-ggap="${G.gapIndex || 0}"]`) || $("#g-answer"); input.setRangeText(d.gchar, input.selectionStart, input.selectionEnd, "end");
     input.dispatchEvent(new Event("input", {bubbles:true})); input.focus(); return;
   }
   if (d.grammar) { view.grammar = d.grammar; view.tab = "grammar"; render(); window.scrollTo(0, 0); return; }
@@ -1690,6 +1693,15 @@ document.addEventListener("click", e => {
   if ("primary" in d || "next" in d) return primary();
 });
 document.addEventListener("input", e => {
+  if (e.target.dataset.ggap != null && G) {
+    const response = gResponse(G.steps[G.at]);
+    if (!response.checked) {
+      response.gapValues = [...document.querySelectorAll('[data-ggap]')].map(input=>input.value.trim());
+      response.value = response.gapValues.every(Boolean) ? response.gapValues.join(' ') : '';
+      gSave(); const check = $('[data-gcheck]'); if(check) check.disabled = !response.value;
+    }
+    return;
+  }
   if (e.target.id === "g-answer" && G) {
     const response = gResponse(G.steps[G.at]);
     if (!response.checked) { response.value = e.target.value; gSave(); const check = $("[data-gcheck]"); if (check) check.disabled = !response.value.trim(); }
@@ -1707,9 +1719,11 @@ document.addEventListener("input", e => {
     const f = $("#wsearch"); f.focus(); f.setSelectionRange(pos, pos);
   }
 });
+document.addEventListener("focusin", e => { if(G && e.target.dataset?.ggap != null) G.gapIndex = +e.target.dataset.ggap; });
 document.addEventListener("keydown", e => {
   if (e.key === "Escape") closeSheet();
   if (G && !G.ended) {
+    if(e.key === 'Enter' && e.target.dataset?.ggap === '0' && !e.shiftKey) { e.preventDefault(); $('[data-ggap="1"]')?.focus(); return; }
     if (e.key === "Enter" && !e.shiftKey && !e.target.closest("summary,button")) { e.preventDefault(); const s = G.steps[G.at]; return s.type === "question" && !gResponse(s).checked ? gCheck() : gMove(1); }
     if (!["INPUT","TEXTAREA"].includes(e.target.tagName) && /^[1-9]$/.test(e.key)) { const option = $(`[data-gpick="${+e.key - 1}"]`); if (option && !option.disabled) option.click(); }
     return;

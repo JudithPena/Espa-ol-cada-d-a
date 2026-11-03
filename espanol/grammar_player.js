@@ -144,8 +144,13 @@ function gBlank(text) {
   return esc(text).replace(/_{3,}/g, '<span class="gblank" role="img" aria-label="Место для ответа">…</span>');
 }
 function gWorkedPreview(preview) {
+  if (preview.gapParts) return preview.gapParts.map((part,i)=>`${esc(part)}${i < preview.gapAnswers.length ? `<mark class="gpreview-insert">${esc(preview.gapAnswers[i])}</mark>` : ""}`).join("");
   if (!preview.sentenceParts) return gBlank(preview.source);
   return `${esc(preview.sentenceParts[0])}<mark class="gpreview-insert">${esc(preview.answer)}</mark>${esc(preview.sentenceParts[1])}`;
+}
+function gGapSentence(q, response) {
+  const values = response.gapValues || (response.value ? response.value.split(" ") : []);
+  return `<div class="gfill-sentence"><p class="ggap-line" lang="es">${q.gapParts.map((part,i)=>`${esc(part)}${i < q.gapParts.length-1 ? `<input class="ginput ggap-input" id="${i ? 'g-answer-'+i : 'g-answer'}" data-ggap="${i}" aria-label="${i ? 'Пропуск 2: más или menos' : 'Пропуск 1: артикль'}" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="…" value="${esc(values[i] || '')}" ${response.checked ? 'disabled' : ''}>` : ""}`).join("")}</p>${response.checked ? "" : `<div class="gaccents"><button class="btn ghost sm" data-gchar="á" aria-label="Вставить á">á</button></div>`}</div>`;
 }
 function gIntro(group) {
   const pictures = group.questions.filter(q => q.image).slice(0,3);
@@ -194,7 +199,7 @@ function gPlayerView() {
     const source = q.sourceParts ? `<div class="gsource" lang="es"><span class="kicker">Исходная фраза</span><p>${esc(q.sourceParts[0])}<strong>${esc(q.sourceParts[1])}</strong>${esc(q.sourceParts[2])}</p></div>` : "";
     const clues = q.clues ? `<div class="gclues" aria-label="Слова для ответа">${q.clues.map(([es,ru])=>`<span><b lang="es">${esc(es)}</b><small>${esc(ru)}</small></span>`).join("")}</div>` : "";
     const inline = group.inlineAnswer && !q.options && q.prompt.includes("___");
-    const sentence = inline ? `<div class="gfill-sentence"><p lang="es">${esc(q.prompt.split("___")[0])}</p><label class="gfill-label" for="g-answer">Впиши пропущенную часть</label>${options}<p lang="es">${esc(q.prompt.split("___").slice(1).join("___"))}</p></div>` : `${q.context ? `<p class="gquestion-sentence" lang="es">${gBlank(q.prompt)}</p>` : ""}${options}`;
+    const sentence = q.gapParts ? gGapSentence(q,response) : inline ? `<div class="gfill-sentence"><p lang="es">${esc(q.prompt.split("___")[0])}</p><label class="gfill-label" for="g-answer">Впиши пропущенную часть</label>${options}<p lang="es">${esc(q.prompt.split("___").slice(1).join("___"))}</p></div>` : `${q.context ? `<p class="gquestion-sentence" lang="es">${gBlank(q.prompt)}</p>` : ""}${options}`;
     const question = `${who}${source}${clues}${gRatings(q.ratings)}${gFacts(q.facts)}${q.translation ? `<p class="muted gquestion-translation">${esc(q.translation)}</p>` : ""}${sentence}`;
     content = group.family ? `<div class="gfamily-work"><details class="gplay-family" ${G.treeOpen === false ? "" : "open"}><summary>Семейное дерево</summary>${grammarFamily({...group.family, activeName:block?.person})}</details><div class="ganswer-area">${question}${group.vocabulary ? `<details class="gvocab"><summary>Слова родства</summary>${grammarTable(group.vocabulary)}</details>` : ""}</div></div>`
       : `<div class="gquestion-work ${q.image ? "has-image" : ""}">${gPicture(q)}<div class="ganswer-area">${question}${group.vocabulary ? `<details class="gvocab"><summary>Слова для упражнения</summary>${grammarTable(group.vocabulary)}</details>` : ""}</div></div>`;
