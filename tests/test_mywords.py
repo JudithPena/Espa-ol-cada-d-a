@@ -105,3 +105,16 @@ def test_galya_deck_is_separate(tmp_path):
     (tmp_path / GALYA_FOLDER / "01_x.yaml").write_text("words:\n  - word: hola\n", encoding="utf-8")
     assert load_deck(tmp_path) == []  # папка Гали в колоду автора не попадает
     assert [w.word for w in load_deck(tmp_path, GALYA_FOLDER)] == ["hola"]
+
+
+def test_scene_shows_text_first_and_translation_in_one_spoiler():
+    from espanol.mywords import _scene
+    dialogue = _scene([("Ana: ¿Qué tal?", "Как дела?"), ("Pablo: Bien.", "Хорошо.")])
+    text = "\n".join(dialogue)
+    assert dialogue[0] == "💬 <b>Мини-диалог</b>"
+    assert text.count("<tg-spoiler>") == 1 and text.index("¿Qué tal?") < text.index("<tg-spoiler>")
+    assert "Как дела?" in text.split("<tg-spoiler>")[1] and "Хорошо." in text.split("<tg-spoiler>")[1]
+    story = "\n".join(_scene([("Hace sol.", "Светит солнце."), ("Voy a la playa.", "Иду на пляж.")]))
+    assert story.startswith("📖 <b>Мини-рассказ</b>") and "— " not in story
+    monologue = _scene([("Ana: Hola.", "Привет."), ("Ana: Adiós.", "Пока.")])
+    assert monologue[0] == "🎙 <b>Монолог</b>"

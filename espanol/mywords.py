@@ -164,6 +164,29 @@ def _quote(lines: list[str]) -> str:
     return "<blockquote expandable>" + "\n".join(lines).strip() + "</blockquote>"
 
 
+def _scene(lines: list[tuple[str, str]]) -> list[str]:
+    """Рубрика с мини-сценой: диалог («Ana: …»), монолог (один говорящий) или короткий рассказ (без имён).
+    Испанский текст виден сразу, перевод всех строк — одним блоком под спойлером после него."""
+    if not lines:
+        return []
+    names = [m.group(1) if (m := SPEAKER.match(line)) else "" for line, _ in lines]
+    if not any(names):
+        title, dash = "📖 <b>Мини-рассказ</b>", ""
+    elif len(set(names)) == 1 and all(names):
+        title, dash = "🎙 <b>Монолог</b>", ""
+    else:
+        title, dash = "💬 <b>Мини-диалог</b>", "— "
+    text, ru = [], []
+    for (line, translation), name in zip(lines, names):
+        if name:  # «Ana: …» — имя жирным
+            body = SPEAKER.match(line).group(2)
+            text.append(f"{dash}<b>{escape(name)}:</b> {to_html(body)}")
+        else:
+            text.append(f"{dash}{to_html(line)}")
+        ru.append(f"{dash}{to_html(translation)}")
+    return [title] + text + ["", "<i>Перевод:</i> <tg-spoiler>" + "\n".join(ru) + "</tg-spoiler>"]
+
+
 def render_card(w: Word) -> str:
     """Полная карточка-разбор (HTML Telegram). Главное — сразу, подробности — в раскрывающихся блоках."""
     head = [f"<b>{escape(w.word)}</b> — {to_html(w.ru)}",
@@ -189,13 +212,7 @@ def render_card(w: Word) -> str:
         flag, title = LANGS.get(w.lang, LANGS["es"])
         more += [f"{flag} <b>{title}</b>"] + [f"• {to_html(a)}" for a in w.analogs]
 
-    dialogue = []
-    if w.dialogue:
-        dialogue = ["💬 <b>Мини-диалог</b>"]
-        for line, ru in w.dialogue:
-            m = SPEAKER.match(line)  # «Ana: …» — имя жирным
-            line = f"<b>{escape(m.group(1))}:</b> {to_html(m.group(2))}" if m else to_html(line)
-            dialogue += [f"— {line}", f"   <i>{to_html(ru)}</i>"]
+    dialogue = _scene(w.dialogue)
 
     usage = []
     if w.cefr:
@@ -239,8 +256,8 @@ def deck_problems(words: list[Word]) -> list[str]:
             problems.append(f"{where}: синонимов больше двух")
         if len(w.forms) > 8:
             problems.append(f"{where}: «как изменяется» — не больше 8 строк")
-        if w.dialogue and not 2 <= len(w.dialogue) <= 4:
-            problems.append(f"{where}: в мини-диалоге 2–4 реплики")
+        if w.dialogue and not 2 <= len(w.dialogue) <= 14:
+            problems.append(f"{where}: в мини-сцене {len(w.dialogue)} строк, нужно 2–14")
         if w.collocations and not 3 <= len(w.collocations) <= 5:
             problems.append(f"{where}: сочетаний {len(w.collocations)}, нужно 3–5")
         if w.cefr and not CEFR.match(w.cefr):
