@@ -111,8 +111,9 @@ function gBuild(action, index) {
 }
 function gBuilderContents(q,response) {
   const chosen=response.chosen || [];
-  return `<div class="gbuild-answer" role="group" aria-label="Собранный ответ">${response.checked ? `<b lang="es">${esc(response.value)}</b>` : chosen.length ? chosen.map((index,i)=>`<button class="gtile is-chosen" data-gremove="${i}" aria-label="Убрать ${esc(q.tiles[index])}">${esc(q.tiles[index])}<span aria-hidden="true"> ×</span></button>`).join('') : '<span class="muted">Нажимай на слова в нужном порядке</span>'}</div>${response.checked?'':`<div class="gbuild-bank" role="group" aria-label="Слова для сборки">${q.tiles.map((word,i)=>`<button class="gtile" data-gadd="${i}" lang="es" ${chosen.includes(i)?'disabled':''}>${esc(word)}</button>`).join('')}</div>`}`;
+  return `${gAnswerHint(q)}<div class="gbuild-answer" role="group" aria-label="Собранный ответ">${response.checked ? `<b lang="es">${esc(response.value)}</b>` : chosen.length ? chosen.map((index,i)=>`<button class="gtile is-chosen" data-gremove="${i}" aria-label="Убрать ${esc(q.tiles[index])}">${esc(q.tiles[index])}<span aria-hidden="true"> ×</span></button>`).join('') : `<span class="muted">${q.answerHint ? 'Собери ответ из слов ниже' : 'Нажимай на слова в нужном порядке'}</span>`}</div>${response.checked?'':`<div class="gbuild-bank" role="group" aria-label="Слова для сборки">${q.tiles.map((word,i)=>`<button class="gtile" data-gadd="${i}" lang="es" ${chosen.includes(i)?'disabled':''}>${esc(word)}</button>`).join('')}</div>`}`;
 }
+function gAnswerHint(q) { return q.answerHint ? `<p class="ganswer-hint">Нужно сказать: <strong>«${esc(q.answerHint)}»</strong></p>` : ''; }
 function gBuilder(q,response) { return `<div class="gbuild">${gBuilderContents(q,response)}</div>`; }
 function gMove(delta) {
   if (delta < 0 && G.at === 0) return gExit();
@@ -280,7 +281,7 @@ function gPlayerView() {
     const clues = q.clues ? `<div class="gclues" aria-label="Слова для ответа">${q.clues.map(([es,ru])=>`<span><b lang="es">${esc(es)}</b><small>${esc(ru)}</small></span>`).join("")}</div>` : "";
     const inline = group.inlineAnswer && mode==='input' && !q.options && q.prompt.includes("___");
     const sentence = q.gapParts ? gGapSentence(q,response) : inline ? `<div class="gfill-sentence"><p lang="es">${esc(q.prompt.split("___")[0])}</p><label class="gfill-label" for="g-answer">Впиши пропущенную часть</label>${options}<p lang="es">${esc(q.prompt.split("___").slice(1).join("___"))}</p></div>` : `${q.context ? `<p class="gquestion-sentence" lang="es">${gBlank(q.prompt)}</p>` : ""}${options}`;
-    const question = `${who}${source}${clues}${gRatings(q.ratings)}${gFacts(q.facts)}${gClock(q.clock)}${gDistance(q.distance)}${q.translation ? `<p class="muted gquestion-translation">${esc(q.translation)}</p>` : ""}${sentence}`;
+    const question = `${who}${source}${clues}${gRatings(q.ratings)}${gFacts(q.facts)}${gClock(q.clock)}${gDistance(q.distance)}${q.translation ? `<p class="muted gquestion-translation">${esc(q.translation)}</p>` : ""}${mode==='build'?'':gAnswerHint(q)}${sentence}`;
     content = group.family ? `<div class="gfamily-work"><details class="gplay-family" ${G.treeOpen === false ? "" : "open"}><summary>Семейное дерево</summary>${grammarFamily({...group.family, activeName:block?.person})}</details><div class="ganswer-area">${question}${group.vocabulary ? `<details class="gvocab"><summary>Слова родства</summary>${grammarTable(group.vocabulary)}</details>` : ""}</div></div>`
       : `<div class="gquestion-work ${q.image ? "has-image" : ""}">${gPicture(q)}<div class="ganswer-area">${question}${group.vocabulary ? `<details class="gvocab"><summary>Слова для упражнения</summary>${grammarTable(group.vocabulary)}</details>` : ""}</div></div>`;
     if (group.title === "Мини-проверка" && group.instruction) content = `<p class="muted ginstruction">${esc(group.instruction.replace(/ Затем нажми.*$/, ""))}</p>` + content;

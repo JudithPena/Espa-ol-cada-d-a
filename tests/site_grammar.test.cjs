@@ -537,3 +537,16 @@ test('form paradigms have a desktop table and readable mobile definitions with e
  const unsafe=run(`gTheoryTable({compactForms:true,heads:['<script>','<img>'],rows:[['<b>','<svg>']]})`);
  assert.ok(!unsafe.includes('<script>')&&!unsafe.includes('<svg>')&&unsafe.includes('&lt;svg&gt;'));
 });
+
+test('17.2 keeps the Russian answer cue visible before, during and after assembly',()=>{
+ const run=context([unit17]);
+ const q=unit17.exercises[1].questions[3];
+ assert.equal(q.answerHint,'наименее трудолюбивый');
+ for(const response of [{value:'',chosen:[]},{value:'el',chosen:[q.tiles.indexOf('el')]},{value:q.answers[0],checked:true}]){
+  const html=run(`gBuilder(${JSON.stringify(q)},${JSON.stringify(response)})`);
+  assert.ok(html.includes('Нужно сказать:')&&html.includes('наименее трудолюбивый'));
+  assert.ok(html.indexOf('наименее трудолюбивый')<html.indexOf('class="gbuild-answer"'));
+ }
+ assert.ok(unit17.exercises[1].questions.every(q=>q.answerHint));
+ assert.ok(!run('gAnswerHint({answerHint:"<img>"})').includes('<img>'));
+});
