@@ -10,6 +10,7 @@ const unit2 = JSON.parse(fs.readFileSync('content/grammar/002_objetos_animales.j
 const unit3 = JSON.parse(fs.readFileSync('content/grammar/003_singular_plural.json','utf8'));
 const unit17 = JSON.parse(fs.readFileSync('content/grammar/017_superlativo.json','utf8'));
 const unit15 = JSON.parse(fs.readFileSync('content/grammar/015_comparativos.json','utf8'));
+const unit16 = JSON.parse(fs.readFileSync('content/grammar/016_igualdad.json','utf8'));
 function context(grammar = [unit]) {
   const noop = () => {};
   const storage = new Map();
@@ -321,8 +322,8 @@ test('friend scales show ties, accessible values, escaped names and phrase input
  assert.ok(!unsafe.includes('<script>') && unsafe.includes('&lt;img&gt;'));
 });
 
-test('unit 15 completes independently, shows paired data, and leads to unit 17', () => {
- const run=context([unit,unit2,unit3,unit15,unit17]);
+test('unit 15 completes independently, shows paired data, and leads to unit 16', () => {
+ const run=context([unit,unit2,unit3,unit15,unit16,unit17]);
  run(`gStart(COURSE.grammar[3].id);var turns15=0;
  while(!G.ended && turns15++<150) {
   const step=G.steps[G.at];
@@ -332,11 +333,31 @@ test('unit 15 completes independently, shows paired data, and leads to unit 17',
  assert.equal(run('G.ended'),true);
  assert.deepEqual(JSON.parse(run('JSON.stringify(gUnit().exercises.map(g=>P.grammar[grammarKey(gUnit(),g)].correct))')),[8,9,4,8]);
  assert.ok(run('gPlayerView()').includes('Лучший результат: 29 из 29'));
- assert.ok(run('gPlayerView()').includes('data-gnext-unit="017_la_mas_alta"'));
+ assert.ok(run('gPlayerView()').includes('data-gnext-unit="016_tan_alto"'));
  const html=run(`gFacts(${JSON.stringify(unit15.exercises[1].questions[0].facts)})`);
  assert.equal((html.match(/class="gfacts-item"/g)||[]).length,2);
  assert.ok(html.includes('1,90 m') && html.includes('1,82 m'));
  const unsafe=run('gFacts({label:"<script>",items:[["<img>","<b>"]]})');
  assert.ok(!unsafe.includes('<script>') && unsafe.includes('&lt;img&gt;'));
+ assert.equal(run('Object.keys(P.grammar).some(k=>k.startsWith("017_"))'),false);
+});
+
+test('unit 16 accepts both equality patterns and finishes before unit 17', () => {
+ const run=context([unit16,unit17]);
+ run(`gStart(COURSE.grammar[0].id);var turns16=0;
+ while(!G.ended && turns16++<150) {
+  const step=G.steps[G.at];
+  if(step.type==='question'){const group=gGroups(gUnit()).find(g=>g.id===step.group);gResponse(step).value=group.questions[step.qi].answers.at(-1);gCheck();}
+  gMove(1);
+ }`);
+ assert.equal(run('G.ended'),true);
+ assert.deepEqual(JSON.parse(run('JSON.stringify(gUnit().exercises.map(g=>P.grammar[grammarKey(gUnit(),g)].correct))')),[7,8,6,8]);
+ assert.ok(run('gPlayerView()').includes('Лучший результат: 29 из 29'));
+ assert.ok(run('gPlayerView()').includes('data-gnext-unit="017_la_mas_alta"'));
+ const q=unit16.exercises[1].questions[0];
+ assert.equal(run(`grammarCorrect(${JSON.stringify(q)},'tan fácil como')`),true);
+ assert.equal(run(`grammarCorrect(${JSON.stringify(q)},'igual de fácil que')`),true);
+ assert.equal(run(`grammarCorrect(${JSON.stringify(q)},'igual de fácil como')`),false);
+ assert.equal(run(`grammarCorrect(${JSON.stringify(unit16.exercises[2].questions[4])},'no soy tan fuerte como ti')`),false);
  assert.equal(run('Object.keys(P.grammar).some(k=>k.startsWith("017_"))'),false);
 });
