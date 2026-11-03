@@ -166,7 +166,7 @@ test("колода Гали: свои слова и свой прогресс, �
   }
 });
 
-test("колода папы: в 8:00 по Испании шлёт занятие, кнопки «d», слов автора и Гали не видит", async () => {
+test("колода папы: в 7:00 по Испании шлёт занятие, кнопки «d», слов автора и Гали не видит", async () => {
   const savedPapa = PAPA.splice(0);
   PAPA.push(...["a", "b", "c", "d", "e", "f", "g"].map((x) => sample(x)));
   env.PAPA_CHAT_ID = "7";
@@ -176,10 +176,10 @@ test("колода папы: в 8:00 по Испании шлёт занятие
       await bot.scheduled({ scheduledTime: Date.parse(iso) }, { ...env, WORDS_HOURS: "8,19" }, { waitUntil: (p) => waits.push(p) });
       await Promise.all(waits);
     };
-    await run("2026-10-27T06:00:00Z"); // 8:00 по Киеву = 7:00 в Испании: папе ещё рано
+    await run("2026-10-27T05:00:00Z"); // 6:00 в Испании: папе ещё рано
     assert.equal(calls.filter((c) => c.body.chat_id === "7").length, 0);
     calls = [];
-    await run("2026-10-27T07:00:00Z"); // 8:00 в Испании
+    await run("2026-10-27T06:00:00Z"); // 7:00 в Испании
     const mine = calls.filter((c) => c.body.chat_id === "7");
     assert.equal(mine.length, 1);
     assert.equal(mine[0].body.reply_markup.inline_keyboard[0][0].callback_data, "dgo");

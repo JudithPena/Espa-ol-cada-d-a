@@ -194,9 +194,9 @@ function galyaEnv(env) {
   return { ...env, WORDS_HOURS: env.GALYA_HOURS || "16", TIMEZONE: env.GALYA_TIMEZONE || "Europe/Madrid", WORDS_PER_DAY: env.GALYA_PER_DAY || "5" };
 }
 
-// Колода папы (A0–A1): одно занятие в день, в PAPA_HOURS по времени PAPA_TIMEZONE (по умолчанию 8:00 в Испании), по PAPA_PER_DAY новых слов.
+// Колода папы (A0–A1): одно занятие в день, в PAPA_HOURS по времени PAPA_TIMEZONE (по умолчанию 7:00 в Испании), по PAPA_PER_DAY новых слов.
 function papaEnv(env) {
-  return { ...env, WORDS_HOURS: env.PAPA_HOURS || "8", TIMEZONE: env.PAPA_TIMEZONE || "Europe/Madrid", WORDS_PER_DAY: env.PAPA_PER_DAY || "5" };
+  return { ...env, WORDS_HOURS: env.PAPA_HOURS || "7", TIMEZONE: env.PAPA_TIMEZONE || "Europe/Madrid", WORDS_PER_DAY: env.PAPA_PER_DAY || "5" };
 }
 
 // Две колоды с одним и тем же занятием (deck.js). В кнопках — буква колоды и действие:
