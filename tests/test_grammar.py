@@ -85,7 +85,7 @@ def test_third_unit_covers_plural_rules_and_all_supplied_tasks():
 
 
 def test_rejects_invalid_rating_levels(tmp_path):
-    unit = load_grammar()[-1]
+    unit = next(u for u in load_grammar() if u['number'] == 17)
     unit['exercises'][1]['questions'][0]['ratings']['people'][0]['level'] = 4
     (tmp_path / '017.json').write_text(json.dumps(unit), encoding='utf-8')
     with pytest.raises(ValueError, match='ratings require'):
