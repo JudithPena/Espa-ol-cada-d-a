@@ -263,6 +263,16 @@ main { padding-block: 16px 110px; }
 .theory ol.steps li { counter-increment: st; background: var(--surface); border-radius: 12px; padding: 9px 12px 9px 44px; position: relative; display: grid; gap: 6px; }
 .theory ol.steps li::before { content: counter(st); position: absolute; left: 12px; top: 10px; width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-weight: 800; font-size: 13px; display: grid; place-items: center; }
 .exs { display: flex; flex-wrap: wrap; gap: 8px; }
+.exw.wide { justify-items: start; text-align: left; }
+.theory .lead { font-size: 19px; font-weight: 700; line-height: 1.35; margin: 2px 2px 2px; }
+.pair .pw.long { font-size: 20px; text-align: center; }
+.pair .pn { font-size: 12.5px; text-align: center; }
+.tline { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; position: relative; }
+.tline li { display: grid; grid-template-columns: 44px 1fr; gap: 10px; position: relative; padding-bottom: 14px; }
+.tline li:not(:last-child)::before { content: ""; position: absolute; left: 21px; top: 44px; bottom: 0; width: 2px; background: var(--line); }
+.tline .ti { width: 44px; height: 44px; border-radius: 50%; background: var(--accent-soft); display: grid; place-items: center; font-size: 22px; }
+.tline li.noicon .ti { width: 12px; height: 12px; margin: 8px 16px; background: var(--accent); }
+.tline .tb { display: grid; gap: 8px; padding: 9px 12px; background: var(--surface); border-radius: 12px; box-shadow: var(--shadow); }
 .exw { font-family: var(--display); font-weight: 600; font-size: 17px; padding: 3px 10px; border-radius: 9px; background: var(--sunken); color: var(--ink); border: 0; cursor: pointer; }
 .exw b { color: var(--accent); background: var(--accent-soft); border-radius: 5px; padding: 0 3px; }
 .rowpic { display: block; width: 64px; height: 64px; object-fit: contain; border-radius: 12px; margin-bottom: 6px; background: #fff; }
@@ -1005,7 +1015,7 @@ const deaccent = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "");
 const firstLetter = tok => deaccent(tok.toLowerCase()).replace(/^[^a-z0-9]+/, "").charAt(0);
 
 /* ================================================================ шаги урока */
-const visLen = b => JSON.stringify({ ...b, rowpics: undefined }).replace(/<[^>]*>/g, "").length;
+const visLen = b => JSON.stringify({ ...b, rowpics: undefined, steps: undefined }).replace(/<[^>]*>/g, "").length;
 // Экраны объяснения: одна мысль на экран. Заголовок идёт вместе с тем, что под ним; правило, заметка, таблица —
 // каждые на своём экране; упражнение стоит сразу после своей темы (экран-маркер {ex: блок}).
 function theoryScreens(L) {
@@ -1406,21 +1416,26 @@ function statsView() {
 
 /* ================================================================ отрисовка: занятие */
 // Примеры крупными плитками: по нажатию слово звучит, под ним транскрипция.
-const exChips = ex => ex.length ? `<span class="exs">${ex.map(([h, say, pron]) => `<button class="exw" data-say="${esc(say)}"><span>${h}</span>${pron ? `<small>[${esc(pron)}]</small>` : ""}</button>`).join("")}</span>` : "";
-const pairsHTML = ps => ps?.length ? `<div class="pairs">${ps.map(([w, say, mid, ru]) => `<button class="pair" data-say="${esc(say)}"><span class="pw">${w}</span>${mid ? `<small>${mid}</small>` : ""}<span class="pr">«${esc(ru)}»</span></button>`).join("")}</div>` : "";
-const cardsHTML = cs => `<div class="cards">${cs.map(c => `<div class="sent${c.key ? " key" : ""}">${c.html ? `<span>${c.html}</span>` : ""}${exChips(c.ex)}${pairsHTML(c.pairs)}</div>`).join("")}</div>`;
+// Плитка примера: фраза (с озвучкой), под ней транскрипция или перевод. Длинные фразы — во всю ширину.
+const exChips = ex => ex?.length ? `<span class="exs">${ex.map(([h, say, pron, ru]) => `<button class="exw${say.length > 16 ? " wide" : ""}" data-say="${esc(say)}"><span>${h}</span>${pron ? `<small>[${esc(pron)}]</small>` : ""}${ru ? `<small>${esc(ru)}</small>` : ""}</button>`).join("")}</span>` : "";
+const pairsHTML = ps => ps?.length ? `<div class="pairs">${ps.map(([w, say, mid, ru, note]) => `<button class="pair" data-say="${esc(say)}"><span class="pw${say.length > 9 ? " long" : ""}">${w}</span>${mid ? `<small>${mid}</small>` : ""}<span class="pr">«${esc(ru)}»</span>${note ? `<small class="pn">${note}</small>` : ""}</button>`).join("")}</div>` : "";
+const cardsHTML = cs => `<div class="cards">${cs.map(c => c.lead ? `<p class="lead">${c.html}</p>`
+  : `<div class="sent${c.key ? " key" : ""}">${c.html ? `<span>${c.html}</span>` : ""}${pairsHTML(c.pairs)}${exChips(c.ex)}</div>`).join("")}</div>`;
+const stepsOl = items => `<ol class="steps">${items.map(it => `<li><span class="cond">${it.html}</span>${pairsHTML(it.pairs)}${exChips(it.ex)}</li>`).join("")}</ol>`;
+// Пункты с эмодзи — шкала: значок на линии, мысль и плитки примеров рядом.
+const stepsHTML = st => `<ol class="tline">${st.map(c => `<li${c.icon ? "" : ' class="noicon"'}><span class="ti" aria-hidden="true">${c.icon ? esc(c.icon) : ""}</span><div class="tb">${c.html ? `<span>${c.html}</span>` : ""}${pairsHTML(c.pairs)}${exChips(c.ex)}</div></li>`).join("")}</ol>`;
 function blockHTML(b) {
   const box = (cls, lbl, html) => `<div class="box ${cls}"><span class="lbl">${lbl}</span>${html}</div>`;
   switch (b.t) {
-    case "text": return b.cards ? cardsHTML(b.cards) : `<p>${b.html}</p>`;
+    case "text": return b.items ? stepsOl(b.items) : b.cards ? cardsHTML(b.cards) : `<p>${b.html}</p>`;
     case "header": return `<h3>${b.html}</h3>`;
-    case "rule": return b.items ? box("rule", "Правило", `<ol class="steps">${b.items.map(it => `<li><span class="cond">${it.html}</span>${exChips(it.ex)}</li>`).join("")}</ol>`) : box("rule", "Правило", b.html);
-    case "tip": return b.cards ? `<div class="cardsbox tip"><span class="lbl">💡 Подсказка</span>${cardsHTML(b.cards)}</div>` : box("tip", "Подсказка", b.html);
-    case "note": return b.cards ? `<div class="cardsbox"><span class="lbl">👀 Обратите внимание</span>${cardsHTML(b.cards)}</div>` : box("note", "Обратите внимание", b.html);
+    case "rule": return b.items ? box("rule", "Правило", stepsOl(b.items)) : box("rule", "Правило", b.html);
+    case "tip": return b.items ? `<div class="cardsbox tip"><span class="lbl">💡 Подсказка</span>${stepsOl(b.items)}</div>` : b.cards ? `<div class="cardsbox tip"><span class="lbl">💡 Подсказка</span>${cardsHTML(b.cards)}</div>` : box("tip", "Подсказка", b.html);
+    case "note": return b.items ? `<div class="cardsbox"><span class="lbl">👀 Обратите внимание</span>${stepsOl(b.items)}</div>` : b.cards ? `<div class="cardsbox"><span class="lbl">👀 Обратите внимание</span>${cardsHTML(b.cards)}</div>` : box("note", "Обратите внимание", b.html);
     case "latam": return box("latam", "🌎 В Латинской Америке", b.html);
     case "culture": return box("culture", "Культура", b.html);
     case "task": return box("task", "Задание", b.html);
-    case "list": return `<ul>${b.items.map(x => `<li>${x}</li>`).join("")}</ul>`;
+    case "list": return b.steps ? stepsHTML(b.steps) : `<ul>${b.items.map(x => `<li>${x}</li>`).join("")}</ul>`;
     case "cando": return box("cando-box", "Теперь вы умеете", `<ul class="cando">${b.items.map(x => `<li>${x}</li>`).join("")}</ul>`);
     case "examples": return `<div class="box">${b.title ? `<span class="lbl">${b.title}</span>` : ""}<ul class="exl">${b.items.map(([es, ru, sp]) => `<li>${playBtn(sp)}<span><span class="es">${es}</span><small>${ru}</small></span></li>`).join("")}</ul></div>`;
     case "table": return `<div class="tbl"><table>${b.title ? `<caption>${b.title}</caption>` : ""}${b.rows.map((r, ri) => `<tr>${r.map((c, ci) => `<td>${ci === 0 && b.rowpics?.[ri] ? `<img class="rowpic" src="${b.rowpics[ri]}" alt="">` : ""}${c}</td>`).join("")}</tr>`).join("")}</table></div>`;
