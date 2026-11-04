@@ -100,9 +100,17 @@ def validate(course, lexicon, renderer, content_dir=None) -> list[str]:
     return problems
 
 
+def site_course(settings):
+    """Уроки сайта (content/site): самостоятельная копия уроков канала. Нет папки — берём уроки канала."""
+    site_dir = Path(settings.site_dir)
+    return load_course(site_dir) if (site_dir / "course.yaml").exists() else load_course(settings.content_dir)
+
+
 def cmd_validate(args, settings) -> int:
     course, lexicon, renderer = build(settings)
     problems = validate(course, lexicon, renderer, settings.content_dir)
+    # Сайт: то же правило «только пройденные слова», но по своим урокам.
+    problems += [f"Сайт: {issue}" for issue in Lexicon(site_course(settings)).check()]
     for p in problems:
         print("❌", p)
     words = len(course.items)
@@ -156,9 +164,10 @@ def cmd_site(args, settings) -> int:
     from .videos import load_videos
     from .wordcards import load_cards
 
-    course, _, _ = build(settings)
+    channel, _, _ = build(settings)
+    course = site_course(settings)   # уроки сайта — своя копия (content/site), канал не трогаем
     cards = load_cards(settings.content_dir)
-    videos = load_videos(settings.content_dir, course)
+    videos = load_videos(settings.content_dir, channel)   # разборы видео привязаны к урокам канала
     path = build_site(course, cards, args.out, units=parse_units(args.units), fragment=args.fragment, videos=videos,
                       preview=args.preview, audio_cache=args.audio_cache)
     print(f"Сайт сохранён: {path}")
