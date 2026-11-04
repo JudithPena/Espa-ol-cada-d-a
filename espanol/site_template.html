@@ -325,17 +325,42 @@ main { padding-block: 16px 110px; }
 .tbl th { text-align: left; padding: 9px 12px; vertical-align: top; background: var(--accent-soft); }
 .tbl tr:last-child td { border-bottom: 0; }
 .tbl caption { text-align: left; font-weight: 800; padding-bottom: 6px; }
-.dlg { display: grid; gap: 10px; }
-.dlg .ttl { font-weight: 800; }
-.msg { display: grid; gap: 2px; max-width: 86%; justify-self: start; }
-.msg.r { justify-self: end; }
-.dlg .row { flex-wrap: nowrap; }
+/* диалог: аватары, реплики с переводом, «Прослушать весь диалог», скорость, подсветка текущей реплики */
+.dlg { display: grid; gap: 12px; }
+.dlg-top { display: flex; align-items: center; gap: 8px; }
+.dlg .ttl { font-weight: 800; flex: 1 1 auto; min-width: 0; }
+.dlg-top .btn { flex: none; }
+.dlg-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.dlg-bar .dlg-all { flex: 1 1 auto; min-width: 0; }
+.dlg-bar .dlg-all.on { background: var(--surface); color: var(--accent); border: 2px solid var(--accent); box-shadow: none; padding: 4px 10px; }
+.dlg-bar .play { width: 34px; height: 34px; font-size: 13px; }
+.dlg [hidden] { display: none; }   /* иначе display: grid у .dlg-lines показывает скрытый текст задания на слух */
+.dlg-now { font-size: 13px; font-weight: 800; color: var(--muted); font-variant-numeric: tabular-nums; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--surface); flex: none; }
+.seg button { border: 0; background: none; color: var(--muted); font: 800 13px var(--body); padding: 7px 10px; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
+.dlg-lines { display: grid; gap: 10px; }
+.msg { display: flex; align-items: flex-end; gap: 8px; max-width: 92%; justify-self: start; }
+.msg.r { justify-self: end; flex-direction: row-reverse; }
+.ava { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font: 800 15px var(--body); color: var(--ink); background: var(--accent-soft); }
+.mbody { display: grid; gap: 2px; min-width: 0; }
 .msg .who { font-size: 12px; font-weight: 800; color: var(--muted); }
 .msg.r .who { text-align: right; }
-.bubble { background: var(--surface); border: 1px solid var(--line); border-radius: 16px 16px 16px 4px; padding: 9px 13px; text-align: left; display: grid; gap: 2px; }
-.msg.r .bubble { background: var(--accent-soft); border-color: transparent; border-radius: 16px 16px 4px 16px; }
+.bubble { background: var(--surface); border: 2px solid transparent; border-radius: 16px 16px 16px 4px; padding: 8px 12px; text-align: left; display: grid; gap: 2px; box-shadow: var(--shadow); cursor: pointer; transition: border-color .15s, background .15s; }
+.msg.r .bubble { border-radius: 16px 16px 4px 16px; }
+.msg .bubble .es { font-size: 17px; }
+.msg > .play { width: 32px; height: 32px; font-size: 12px; margin-bottom: 4px; }
+.msg.t0 .ava { background: var(--accent-soft); } .msg.t1 .ava { background: var(--sun-soft); }
+.msg.t2 .ava { background: var(--good-soft); } .msg.t3 .ava { background: var(--bad-soft); }
+.msg.t1 .bubble { background: var(--sun-soft); box-shadow: none; }
+.msg.t2 .bubble { background: var(--good-soft); box-shadow: none; }
+.msg.t3 .bubble { background: var(--bad-soft); box-shadow: none; }
+.msg.on .bubble { border-color: var(--accent); }
+.msg.on .ava { box-shadow: 0 0 0 3px var(--accent); }
+.msg.on > .play { background: var(--accent); color: var(--on-accent); }
 .bubble small { color: var(--muted); font-size: 14px; }
 .hide-tr .bubble small, .hide-tr .reading .tr { display: none; }
+@media (prefers-reduced-motion: reduce) { .bubble { transition: none; } }
 .spoiler { background: var(--ink); color: transparent; border-radius: 4px; cursor: pointer; transition: all .2s; }
 .spoiler.open { background: none; color: inherit; }
 .reading { display: grid; gap: 10px; }
@@ -912,27 +937,62 @@ function pickVoice() {
   TTS.voice = vs.find(v => /^es[-_]ES/i.test(v.lang)) || vs.find(v => /^es/i.test(v.lang)) || null;
 }
 if (SPEECH) { pickVoice(); speechSynthesis.addEventListener?.("voiceschanged", pickVoice); }
-const audioId = (text, who) => (who != null && AUDIO[`@${who}|${clean(text)}`]) || AUDIO[clean(text)] || null;
+const audioId = (text, voice) => (voice && AUDIO[`@${voice}|${clean(text)}`]) || AUDIO[clean(text)] || null;
 const canSay = text => !!text && (!!audioId(text) || (SPEECH && (TTS.voice || (pickVoice(), TTS.voice))));
-let player = null, audioQueue = [];
+// Один плеер на всю страницу: новая запись всегда останавливает прежнюю, две дорожки сразу не звучат.
+// clipGen — номер текущей записи: обработчики остановленной записи (onended, onerror) уже ничего не делают.
+let player = null, audioQueue = [], clipGen = 0;
+function hush() {
+  clipGen++;
+  if (player) { player.onended = player.onerror = null; try { player.pause(); } catch (e) {} }
+  if (SPEECH) { try { speechSynthesis.cancel(); } catch (e) {} }
+}
 function stopSpeech() {
   audioQueue = [];
-  if (player) { try { player.pause(); } catch (e) {} }
-  if (SPEECH) { try { speechSynthesis.cancel(); } catch (e) {} }
+  dlgReset();
+  hush();
+}
+function setRate(rate) {
+  player.defaultPlaybackRate = player.playbackRate = rate;   // после src: загрузка сбрасывает скорость
+  player.preservesPitch = player.webkitPreservesPitch = true;   // замедление без «низкого» голоса
 }
 function playNext() {
   const next = audioQueue.shift();
   if (!next) return;
   player = player || new Audio();
-  player.onended = playNext;
+  player.onended = playNext; player.onerror = null;
   player.src = `a/${next.id}.mp3`;
-  player.playbackRate = next.slow ? 0.7 : 1;
+  setRate(next.slow ? 0.7 : 1);
   player.play()?.catch?.(() => {});
 }
-function say(text, { slow = false, queue = false, pitch = 1, who = null } = {}) {
+// Одна запись с концом и ошибкой: так играют реплики диалога. Нет записи или она не загрузилась —
+// испанский голос телефона, если он есть; иначе onfail.
+function playClip(text, { voice = null, gender = "f", rate = 1, onend = () => {}, onfail = () => {} } = {}) {
+  hush(); audioQueue = [];
+  const gen = clipGen, live = f => (...a) => { if (gen === clipGen) f(...a); };
+  const viaSpeech = () => {
+    if (!SPEECH || !TTS.voice && (pickVoice(), !TTS.voice)) return false;
+    try {
+      const u = new SpeechSynthesisUtterance(clean(text));
+      u.lang = "es-ES"; u.voice = TTS.voice; u.rate = 0.9 * rate; u.pitch = gender === "m" ? 0.8 : 1.1;
+      u.onend = live(onend); u.onerror = live(onfail);
+      speechSynthesis.speak(u); DLG.via = "speech"; return true;
+    } catch (e) { return false; }
+  };
+  const id = audioId(text, voice);
+  if (!id) { if (!viaSpeech()) onfail(); return; }
+  player = player || new Audio();
+  DLG.via = "audio";
+  player.onended = live(onend);
+  player.onerror = live(() => { if (player) player.onerror = null; if (!viaSpeech()) onfail(); });
+  player.src = `a/${id}.mp3`;
+  setRate(rate);
+  player.play()?.catch?.(live(err => { if (err?.name === "NotAllowedError") onfail(); }));
+}
+function say(text, { slow = false, queue = false, pitch = 1 } = {}) {
   if (!text) return;
   if (!queue) stopSpeech();
-  const id = audioId(text, who);
+  const id = audioId(text);
   if (id) {
     audioQueue.push({ id, slow });
     if (!queue || !player || player.paused || player.ended) playNext();
@@ -948,6 +1008,102 @@ function say(text, { slow = false, queue = false, pitch = 1, who = null } = {}) 
 }
 const playBtn = (text, cls = "") => `<button class="play ${cls}" data-say="${esc(text)}" aria-label="Послушать">▶</button>`;
 const slowBtn = text => `<button class="play slow" data-slow data-say="${esc(text)}" aria-label="Послушать медленно">🐢</button>`;
+
+/* ================================================================ диалог (общий компонент для всех уровней) */
+// Блок урока {t: "dialogue", title, hidden, cast: {имя: {v: голос, g: пол, a: аватар}}, lines: [[имя, es, ru, озвучка]]}.
+// «Прослушать весь диалог» играет реплики по очереди с паузой, у каждого персонажа свой голос (site_audio.CAST),
+// текущая реплика подсвечена; повторное нажатие — пауза. Любую реплику можно послушать отдельно.
+// Скорость 1× / 0,75× общая для всех диалогов и запоминается. Ушли с экрана — диалог замолкает (render).
+const DLG = { box: null, i: -1, mode: "idle", solo: false, gap: false, timer: 0, via: "audio" };
+const DLG_PAUSE = 650;   // мс между репликами
+const dlgRate = () => P.dlgRate === 0.75 ? 0.75 : 1;
+function dialogueHTML(b) {
+  const names = [...new Set(b.lines.map(l => l[0]))];
+  const label = names.length > 1 ? "Прослушать весь диалог" : "Прослушать целиком";
+  const audible = b.lines.some(l => canSay(l[3]));
+  const rates = [[1, "1×"], [0.75, "0,75×"]];
+  return `<div class="dlg hide-tr" data-dlg>
+    <div class="dlg-top"><span class="ttl">${b.title || "Диалог"}</span>
+      ${audible ? `<span class="seg" role="group" aria-label="Скорость">${rates.map(([r, t]) =>
+        `<button data-dlg-rate="${r}" aria-pressed="${dlgRate() === r}">${t}</button>`).join("")}</span>` : ""}
+      <button class="btn ghost sm" data-toggle-tr>${b.hidden ? "Показать текст" : "Перевод"}</button></div>
+    ${audible ? `<div class="dlg-bar">
+      <button class="btn sm dlg-all" data-dlg-all data-label="${label}">▶ ${label}</button>
+      <span class="dlg-now" aria-live="polite"></span>
+      <button class="play" data-dlg-stop hidden aria-label="Остановить">■</button>
+    </div>` : ""}
+    <div ${b.hidden ? "hidden data-hidden-text " : ""}class="dlg-lines">${b.lines.map(([who, es, ru, sp], k) => {
+      const c = b.cast?.[who] || { v: "", g: "f", a: "" }, n = names.indexOf(who);
+      return `<div class="msg t${n % 4}${n % 2 ? " r" : ""}" data-say-line="${esc(sp)}" data-voice="${esc(c.v)}" data-g="${c.g}">
+        <span class="ava" aria-hidden="true">${c.a || esc([...who][0])}</span>
+        <div class="mbody"><span class="who">${esc(who)}</span>
+          <div class="bubble" data-line="${k}"><span class="es">${es}</span><small>${ru}</small></div></div>
+        ${canSay(sp) ? `<button class="play" data-line="${k}" aria-label="Послушать реплику">▶</button>` : ""}
+      </div>`;
+    }).join("")}</div>
+  </div>`;
+}
+const dlgMsgs = box => box ? [...box.querySelectorAll(".msg")] : [];
+function dlgPaint() {
+  const box = DLG.box;
+  if (!box) return;
+  const msgs = dlgMsgs(box);
+  msgs.forEach((m, k) => m.classList.toggle("on", k === DLG.i));
+  const all = box.querySelector("[data-dlg-all]"), stop = box.querySelector("[data-dlg-stop]"), now = box.querySelector(".dlg-now");
+  const whole = !DLG.solo && DLG.mode !== "idle";
+  if (all) {
+    all.textContent = !whole ? `▶ ${all.dataset.label}` : DLG.mode === "play" ? "❚❚ Пауза" : "▶ Продолжить";
+    all.classList.toggle("on", whole);
+  }
+  if (stop) stop.hidden = !whole;
+  if (now) now.textContent = whole && DLG.i >= 0 ? `${DLG.i + 1} / ${msgs.length}` : "";
+}
+function dlgReset() {
+  clearTimeout(DLG.timer);
+  if (DLG.box) { DLG.i = -1; DLG.mode = "idle"; DLG.solo = false; dlgPaint(); }
+  Object.assign(DLG, { box: null, i: -1, mode: "idle", solo: false, gap: false });
+}
+function dlgLine(i) {
+  const m = dlgMsgs(DLG.box)[i];
+  if (!m) return stopSpeech();   // реплики кончились
+  DLG.i = i; DLG.gap = false; dlgPaint();
+  if (!DLG.solo && !DLG.box.querySelector("[data-hidden-text][hidden]")) m.scrollIntoView?.({ block: "nearest", behavior: "smooth" });
+  playClip(m.dataset.sayLine, { voice: m.dataset.voice, gender: m.dataset.g, rate: dlgRate(),
+    onend: () => {
+      if (DLG.solo) return stopSpeech();
+      DLG.gap = true;
+      DLG.timer = setTimeout(() => { if (DLG.mode === "play") dlgLine(i + 1); }, DLG_PAUSE);
+    },
+    onfail: () => { stopSpeech(); toast("Озвучка не загрузилась. Проверьте интернет и попробуйте ещё раз"); } });
+}
+function dlgToggle(box) {
+  if (DLG.box === box && !DLG.solo && DLG.mode === "play") {   // пауза
+    DLG.mode = "pause"; clearTimeout(DLG.timer);
+    if (DLG.via === "speech") hush(); else player?.pause();
+    return dlgPaint();
+  }
+  if (DLG.box === box && !DLG.solo && DLG.mode === "pause") {   // продолжить с того же места
+    DLG.mode = "play";
+    if (DLG.gap) return dlgLine(DLG.i + 1);
+    if (DLG.via === "speech" || !player) return dlgLine(DLG.i);
+    player.play()?.catch?.(() => dlgLine(DLG.i));
+    return dlgPaint();
+  }
+  stopSpeech();
+  Object.assign(DLG, { box, mode: "play", solo: false });
+  dlgLine(0);
+}
+function dlgSolo(box, i) {
+  stopSpeech();
+  Object.assign(DLG, { box, mode: "idle", solo: true });
+  dlgLine(i);
+}
+function dlgSetRate(rate) {
+  P.dlgRate = rate; save();
+  document.querySelectorAll("[data-dlg-rate]").forEach(b => b.setAttribute("aria-pressed", +b.dataset.dlgRate === rate));
+  if (DLG.box && DLG.via === "audio" && player) setRate(rate);
+}
+document.addEventListener("visibilitychange", () => { if (document.hidden && DLG.box && !DLG.solo && DLG.mode === "play") dlgToggle(DLG.box); });
 
 /* ================================================================ упражнения */
 function meanings(ru) {
@@ -1474,17 +1630,7 @@ function blockHTML(b) {
       const who = ["yo", "tú", "él / ella / usted", "nosotros", "vosotros", "ellos / ustedes"];
       return `<div class="tbl"><table><caption>${b.title || `${esc(b.verb)}${b.ru ? " — " + b.ru : ""}`}</caption>${b.forms.map((f, k) => `<tr><td class="muted">${who[k]}</td><td class="es">${esc(f)}</td><td style="width:44px">${playBtn(f)}</td></tr>`).join("")}</table></div>`;
     }
-    case "dialogue": {
-      const speakers = [...new Set(b.lines.map(l => l[0]))];
-      const all = b.lines.map(l => l[3]).join(" | ");
-      return `<div class="dlg hide-tr" data-dlg>
-        <div class="row"><span class="ttl">${b.title || "Диалог"}</span>
-          <span class="row" style="gap:8px">${b.lines.some(l => canSay(l[3])) ? `<button class="btn ghost sm" data-dialog="${esc(JSON.stringify(b.lines.map(l => [speakers.indexOf(l[0]), l[3]])))}">▶ Слушать</button>` : ""}
-          <button class="btn ghost sm" data-toggle-tr>${b.hidden ? "Показать текст" : "Перевод"}</button></span></div>
-        <div ${b.hidden ? 'hidden data-hidden-text' : ""} class="dlg">${b.lines.map(([who, es, ru, sp]) => `<div class="msg ${speakers.indexOf(who) % 2 ? "r" : ""}">
-          <span class="who">${esc(who)}</span><button class="bubble" data-say="${esc(sp)}" data-who="${speakers.indexOf(who)}"><span>${es}</span><small>${ru}</small></button></div>`).join("")}</div>
-      </div>`;
-    }
+    case "dialogue": return dialogueHTML(b);
     case "reading": return `<div class="reading hide-tr" data-dlg><div class="row"><span class="ttl es">${b.title || "Текст"}</span>
         <span class="row" style="gap:8px">${playBtn(b.say)}<button class="btn ghost sm" data-toggle-tr>Перевод</button></span></div>
         <div class="text">${b.html}</div>${b.tr ? `<div class="tr">${b.tr}</div>` : ""}</div>`;
@@ -1650,7 +1796,12 @@ function resultView() {
 /* ================================================================ отрисовка и события */
 /*__GRAMMAR_PLAYER__*/
 const app = $("#app");
+// Перерисовка убрала диалог с экрана (следующий слайд, другая вкладка) — его озвучка останавливается.
 function render() {
+  renderView();
+  if (DLG.box && !DLG.box.isConnected) stopSpeech();
+}
+function renderView() {
   document.documentElement.classList.toggle("grammar-playing", !!G);
   if (G) {
     app.innerHTML = gPlayerView();
@@ -1717,7 +1868,7 @@ function lookupParts(text) {
 function wrapWords(root) {
   if (!root) return;
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
-    acceptNode: n => n.parentElement.closest("code, .lw, .play, .btn, .kicker, .lbl, h3, .word") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
+    acceptNode: n => n.parentElement.closest("code, .lw, .play, .btn, .kicker, .lbl, h3, .word, .who, .ava, .seg") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
   const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
   for (const node of nodes) {
     const parts = lookupParts(node.nodeValue);
@@ -1789,7 +1940,7 @@ document.addEventListener("click", e => {
   const lw = e.target.closest(".lw");
   if (lw) return lookup(lw.dataset.w);
   if (e.target.classList.contains("sheet-wrap")) return closeSheet();
-  const el = e.target.closest("button, .spoiler, [data-say]");
+  const el = e.target.closest("button, .spoiler, [data-say], [data-line]");
   if (!el) return;
   const d = el.dataset;
   if ("gmain" in d) { gSave(); G = null; view.tab = "home"; render(); window.scrollTo(0,0); return; }
@@ -1837,8 +1988,11 @@ document.addEventListener("click", e => {
     return toast(r.lessons ? `Пройдено уроков: ${r.lessons}, слов в повторении: ${r.words}` : "Начнём с первого урока");
   }
   if (d.add) { P.words[d.add] = { s: 0, due: dayNum() + INTERVALS[0] }; save(); closeSheet(); return toast("Слово добавлено: повторим завтра"); }
-  if (d.say != null) { say(d.say, { slow: "slow" in d, who: d.who != null ? +d.who : null }); if (!el.classList.contains("bubble")) return; }
-  if (d.dialog) { const lines = JSON.parse(d.dialog); stopSpeech(); lines.forEach(([who, text]) => say(text, { queue: true, who, pitch: who % 2 ? 0.75 : 1.15 })); return; }
+  if (d.say != null) return say(d.say, { slow: "slow" in d });
+  if ("dlgAll" in d) return dlgToggle(el.closest("[data-dlg]"));
+  if ("dlgStop" in d) return stopSpeech();
+  if (d.dlgRate) return dlgSetRate(+d.dlgRate);
+  if (d.line != null) return dlgSolo(el.closest("[data-dlg]"), +d.line);
   if ("toggleTr" in d) {
     const box = el.closest("[data-dlg]"), hidden = box.querySelector("[data-hidden-text]");
     if (hidden && hidden.hidden) { hidden.hidden = false; el.textContent = "Перевод"; return; }

@@ -21,6 +21,7 @@ from pathlib import Path
 from .course import FEATURES, Block, Course, Lesson, QuizItem, VocabItem
 from .lexicon import _FUNCTION_WORDS, generated_forms
 from .markup import checkable, plain, to_html
+from .site_audio import cast
 from .tokens import spanish_words
 from .wordcards import WordCard
 from .grammar import load_grammar, write_theory_illustrations
@@ -387,6 +388,7 @@ def _block(block: Block) -> dict | None:
                 "ru": _html(d["ru"])}
     if t == "dialogue":
         return {"t": t, "title": _html(d["title"]), "hidden": d["hidden"],
+                "cast": cast(list(dict.fromkeys(speaker for speaker, _, _ in d["lines"]))),
                 "lines": [[speaker, _html(es), _html(ru), plain(es)] for speaker, es, ru in d["lines"]]}
     if t == "compare":
         return {"t": t, "style": d["style"], "join": d["join"], "title": _html(d["title"]), "lead": _html(d["lead"]), "note": _html(d["note"]),
