@@ -39,6 +39,7 @@ class Settings:
     voices: dict[str, str] = field(default_factory=dict)
     delay: float = 1.5
     content_dir: Path = ROOT / "content"
+    site_dir: Path = ROOT / "content" / "site"   # уроки сайта: своя копия, на канал не влияет
     state_file: Path = ROOT / "state" / "state.json"
 
 
@@ -60,5 +61,6 @@ def load_settings() -> Settings:
         voices=voices,
         delay=float(env.get("SEND_DELAY") or 1.5),
         content_dir=Path(env.get("CONTENT_DIR") or ROOT / "content"),
+        site_dir=Path(env.get("SITE_DIR") or ROOT / "content" / "site"),
         state_file=Path(env.get("STATE_FILE") or ROOT / "state" / "state.json"),
     )

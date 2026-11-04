@@ -1,0 +1,243 @@
+id: rutina
+number: 16
+level: A1
+title: Мой день
+goals:
+  - рассказать о своём распорядке дня
+  - использовать возвратные глаголы: «я встаю», «я одеваюсь»
+  - спрягать глаголы с чередованием в корне
+
+lessons:
+  - id: manana
+    kind: vocab
+    title: Утро
+    vocab:
+      - "⏰ despertarse [дэспэрта́рсэ] — просыпаться {forms: despierto} :: Me despierto a las siete. — Я просыпаюсь в семь."
+      - "🛏 levantarse [лэбанта́рсэ] — вставать :: Me levanto a las siete y cuarto. — Я встаю в четверть восьмого."
+      - "🚿 ducharse [дуча́рсэ] — принимать душ"
+      - "🧼 lavarse [лаба́рсэ] — мыться, умываться"
+      - "🦷 el diente [дьэ́нтэ] — зуб :: Me lavo los dientes. — Я чищу зубы."
+      - "👔 vestirse [бэсти́рсэ] — одеваться {forms: visto}"
+      - "🚪 salir [сали́р] — выходить, уходить :: Salgo de casa a las ocho. — Я выхожу из дома в восемь."
+    blocks:
+      - "Что вы делаете утром? Обратите внимание на маленькое слово **me** перед глаголами."
+      - examples:
+          items:
+            - "Me despierto a las siete. — Я просыпаюсь в семь."
+            - "Me levanto y me ducho. — Я встаю и принимаю душ."
+            - "Me lavo los dientes. — Я чищу зубы."
+            - "Me visto y desayuno. — Я одеваюсь и завтракаю."
+            - "Salgo de casa a las ocho. — Я выхожу из дома в восемь."
+      - tip: "Слово **me** здесь значит «себя»: _me levanto_ дословно значит «поднимаю себя», а _me lavo_ значит «мою себя». Один такой глагол вы давно знаете: **me llamo** дословно значит «называю себя». Подробно мы разберём эти глаголы в следующем уроке."
+      - exercise:
+          title: "¿Y tú? (А вы?)"
+          items:
+            - "¿A qué hora te levantas? => Me levanto a las..."
+            - "¿Te duchas por la mañana o por la noche? => Me ducho por la..."
+            - "¿A qué hora sales de casa? => Salgo de casa a las..."
+
+  - id: reflexivos
+    kind: grammar
+    title: "Me levanto, te levantas: возвратные глаголы"
+    unlocks: [reflexive]
+    vocab:
+      - "💇 peinarse [пэйна́рсэ] — причёсываться"
+      - "🪒 afeitarse [афэйта́рсэ] — бриться"
+    blocks:
+      - "Посмотрите на один глагол в разных лицах. Что меняется вместе с окончанием?"
+      - conjugation:
+          verb: levantarse
+          ru: вставать
+      - rule: |
+          1. Глаголы, которые в словаре заканчиваются на `-se`, называются возвратными: они обозначают действие, которое человек делает над собой. Например, _levantarse_ значит «вставать», _ducharse_ значит «принимать душ», а _peinarse_ значит «причёсываться».
+          2. Местоимение меняется по лицам: **me, te, se, nos, os, se**. В обычной форме глагола оно стоит **перед** ним: _me levanto_, _te duchas_, _se peina_, _nos levantamos_.
+          3. В инфинитиве местоимение присоединяется к глаголу в конце: _levantarse_, _ducharse_. Если инфинитив стоит после другого глагола, то местоимение тоже меняется по лицам: _Quiero levantarme_ значит «я хочу встать», _¿Quieres ducharte?_ значит «ты хочешь принять душ?», а _Mi padre quiere afeitarse_ значит «мой отец хочет побриться».
+      - examples:
+          items:
+            - "¿A qué hora te levantas? — Во сколько ты встаёшь?"
+            - "Mi padre se afeita por la mañana. — Мой отец бреется утром."
+            - "Nos duchamos y desayunamos. — Мы принимаем душ и завтракаем."
+            - "Mis hermanas se peinan. — Мои сёстры причёсываются."
+      - note: "Сравните две фразы: _Me llamo Ana_ значит «меня зовут Ана», а _Llamo a Ana_ значит «я звоню Ане». Если **me** нет, то действие направлено не на себя, а на кого-то другого. Так же _me lavo_ значит «я умываюсь», а _lavo el coche_ значит «я мою машину»."
+      - exercise:
+          title: Responde
+          items:
+            - "(yo) ___ ducho por la noche. => me"
+            - "¿A qué hora ___ levantas? => te"
+            - "Él ___ afeita todos los días. => se"
+            - "Nosotros ___ levantamos a las seis. => nos"
+            - "¿Vosotros ___ ducháis por la mañana? => os"
+            - "Ellos ___ lavan los dientes. => se"
+
+  - id: irregulares
+    kind: grammar
+    title: "Quiero, puedo, pido: чередование в корне"
+    unlocks: [present_stem]
+    vocab:
+      - "💪 poder [подэ́р] — мочь :: ¿Puedes hablar más despacio? — Ты можешь говорить медленнее?"
+      - "🔙 volver [больбэ́р] — возвращаться :: Vuelvo a casa a las seis. — Я возвращаюсь домой в шесть."
+      - "😴 dormir [дорми́р] — спать"
+      - "🛌 acostarse [акоста́рсэ] — ложиться спать"
+      - "🙋 pedir [пэди́р] — просить; заказывать"
+      - "⭐ preferir [прэфэри́р] — предпочитать"
+    blocks:
+      - "Посмотрите на три глагола. Что происходит с гласной в корне и в каких лицах она **не** меняется?"
+      - conjugation:
+          verb: querer
+          ru: "хотеть (`e → ie`)"
+      - conjugation:
+          verb: poder
+          ru: "мочь (`o → ue`)"
+      - conjugation:
+          verb: pedir
+          ru: "просить (`e → i`)"
+      - rule: |
+          У некоторых глаголов гласная корня меняется, когда на неё падает ударение. Таких изменений бывает три.
+          1. Гласная `e` превращается в `ie`: _quiero_, _prefieres_, _empieza_.
+          2. Гласная `o` превращается в `ue`: _puedo_, _vuelves_, _duerme_.
+          3. Гласная `e` превращается в `i`: _pido_, _pides_, _me visto_.
+          В формах **nosotros** и **vosotros** ударение падает на окончание, поэтому корень не меняется: quer**e**mos, p**o**demos, p**e**dimos, d**o**rmimos.
+          Если выделить в таблице изменённые формы, то получится фигура, похожая на сапожок 👢.
+      - note: |
+          Такие глаголы вы уже встречали: из **tener** получается _tienes_, из **empezar** получается _empieza_, из **cerrar** получается _cierra_, а из **despertarse** и **vestirse** получаются _me despierto_ и _me visto_. Глагол **jugar** единственный, у которого `u` превращается в `ue`: _juego_, _juegas_, _juega_.
+      - examples:
+          items:
+            - "No puedo dormir. — Я не могу уснуть."
+            - "¿A qué hora vuelves a casa? — Во сколько ты возвращаешься домой?"
+            - "Prefiero el té. — Я предпочитаю чай."
+            - "Pedimos una paella. — Мы заказываем паэлью."
+            - "Mis abuelos se acuestan a las diez. — Мои бабушка и дедушка ложатся в десять."
+      - exercise:
+          title: Responde
+          items:
+            - "yo / poder => puedo"
+            - "tú / volver => vuelves"
+            - "nosotros / dormir => dormimos"
+            - "ella / preferir => prefiere"
+            - "ellos / pedir => piden"
+            - "vosotros / querer => queréis"
+            - "yo / acostarse => me acuesto"
+
+  - id: orden
+    kind: vocab
+    title: Сначала, потом, иногда
+    vocab:
+      - "🌄 temprano [тэмпра́но] — рано"
+      - "➡️ después [дэспуэ́с] — потом, после"
+      - "➡️ luego [луэ́го] — потом, затем"
+      - "⏩ más tarde [мас та́рдэ] — позже"
+      - "⏮ antes de [а́нтэс дэ] — перед, до :: antes de dormir — перед сном"
+      - "⏭ después de [дэспуэ́с дэ] — после :: después de comer — после обеда"
+      - "🎲 a veces [а бэ́θэс] — иногда"
+      - "🚫 nunca [ну́нка] — никогда"
+    blocks:
+      - "Чтобы рассказ о дне звучал связно, нужны слова «сначала», «потом» и «иногда». Слово **primero**, которое значит «сначала», вы уже знаете."
+      - examples:
+          items:
+            - "Primero me ducho y luego desayuno. — Сначала я принимаю душ, потом завтракаю."
+            - "Después de comer, duermo un poco. — После обеда я немного сплю."
+            - "Antes de dormir, leo. — Перед сном я читаю."
+            - "A veces ceno en un restaurante. — Иногда я ужинаю в ресторане."
+            - "Nunca bebo café por la noche. — Я никогда не пью кофе вечером."
+      - rule: |
+          1. После **antes de** и **después de** глагол стоит в инфинитиве, то есть в начальной форме: _antes de dormir_ («перед сном»), _antes de comer_ («перед едой»), _después de trabajar_ («после работы»), _después de cenar_ («после ужина»).
+          2. Слова, которые говорят, как часто что-то происходит, можно выстроить от «всегда» до «никогда»: **siempre** значит «всегда», **normalmente** значит «обычно», **a veces** значит «иногда», а **nunca** значит «никогда». Например: _Siempre desayuno en casa_, _Normalmente como a las dos_, _A veces voy al cine_, _Nunca como carne_.
+          3. Если **nunca** стоит перед глаголом, то **no** не нужно, хотя по-русски мы говорим «никогда **не**»: _Nunca ceno tarde_, _Mi padre nunca se levanta tarde_, _Nunca veo la tele por la mañana_.
+      - exercise:
+          title: Traduce
+          items:
+            - "Я встаю рано. => Me levanto temprano."
+            - "После работы я иду в парк. => Después de trabajar, voy al parque."
+            - "Иногда мы ужинаем поздно. => A veces cenamos tarde."
+            - "Он никогда не завтракает. => Nunca desayuna."
+
+  - id: lectura
+    kind: reading
+    title: Обычный день
+    blocks:
+      - "Прочитайте, как проходит день Карлоса. Найдите в тексте все возвратные глаголы."
+      - reading:
+          title: Un día de Carlos
+          text: |
+            Me llamo Carlos y soy enfermero. Trabajo en un hospital en Valencia.
+
+            De lunes a viernes me despierto muy temprano, a las seis. Primero me ducho y me visto. Luego desayuno: un café con leche y una tostada. Salgo de casa a las siete y voy al hospital en bici.
+
+            Trabajo de ocho a tres. Después de trabajar, vuelvo a casa y como con mi mujer. Por la tarde duermo un poco o juego al fútbol con mis amigos. A veces vamos al cine.
+
+            Cenamos a las nueve y media. Antes de dormir, leo un poco. Me acuesto a las once.
+
+            ¡Y los sábados nunca me levanto temprano!
+          translation: |
+            Меня зовут Карлос, я медбрат. Работаю в больнице в Валенсии.
+
+            С понедельника по пятницу я просыпаюсь очень рано, в шесть. Сначала принимаю душ и одеваюсь. Потом завтракаю: кофе с молоком и тост. Выхожу из дома в семь и еду в больницу на велосипеде.
+
+            Работаю с восьми до трёх. После работы возвращаюсь домой и обедаю с женой. Днём немного сплю или играю в футбол с друзьями. Иногда мы ходим в кино.
+
+            Ужинаем в половине десятого. Перед сном я немного читаю. Ложусь в одиннадцать.
+
+            А по субботам я никогда не встаю рано!
+      - exercise:
+          title: Responde
+          items:
+            - "¿A qué hora se despierta Carlos? => A las seis."
+            - "¿Cómo va al hospital? => En bici."
+            - "¿Qué hace después de trabajar? => Vuelve a casa y come con su mujer."
+            - "¿A qué hora se acuesta? => A las once."
+            - "¿Se levanta temprano los sábados? => No, nunca."
+    quiz:
+      - q: ¿Qué desayuna Carlos?
+        options: "un café con leche y una tostada | un té y fruta | nada"
+      - q: ¿De qué hora a qué hora trabaja?
+        options: "de ocho a tres | de siete a dos | de nueve a cinco"
+
+  - id: practica
+    kind: practice
+    title: Расскажите о своём дне
+    blocks:
+      - "Это финальная тренировка темы. В конце вас ждёт главное задание: рассказ о вашем дне."
+      - exercise:
+          title: Responde
+          items:
+            - "Nosotros ___ (acostarse) a las doce. => nos acostamos"
+            - "¿Tú ___ (poder) ir mañana? => puedes"
+            - "Mi hermano ___ (dormir) mucho. => duerme"
+            - "Ellas ___ (vestirse) muy bien. => se visten"
+            - "Yo ___ (volver) a casa en metro. => vuelvo"
+      - exercise:
+          title: Traduce
+          items:
+            - "Во сколько ты ложишься спать? => ¿A qué hora te acuestas?"
+            - "Я не могу, у меня занятие. => No puedo, tengo clase."
+            - "Сначала я чищу зубы, потом одеваюсь. => Primero me lavo los dientes y luego me visto."
+            - "Мы всегда заказываем паэлью. => Siempre pedimos paella."
+      - task: "Опишите в комментариях свой обычный день в четырёх-пяти предложениях. Можно начать так: **Me levanto a las... Primero... Luego... Después de... Me acuesto a las...**"
+
+  - id: quiz
+    kind: quiz
+    title: Мой день
+    blocks:
+      - "Тест по теме «Мой день»."
+      - cando:
+          - "рассказать о распорядке дня"
+          - "спрягать возвратные глаголы: me levanto, te levantas, se levanta..."
+          - "спрягать глаголы с чередованием: quiero, puedo, pido, vuelvo"
+    quiz:
+      - q: "Nosotros ___ levantamos a las siete."
+        options: "nos | se | os"
+      - q: "¿A qué hora ___ (tú, volver) a casa?"
+        options: "vuelves | volves | vuelvas"
+      - q: "Nosotros ___ (poder) ir mañana."
+        options: "podemos | puedemos | pueden"
+        explain: "В формах nosotros и vosotros ударение падает на окончание, поэтому корень не меняется: podemos, queremos, dormimos."
+      - q: Как сказать «перед сном»?
+        options: "antes de dormir | después de dormir | antes dormir"
+      - q: "Mi padre ___ por la mañana."
+        options: "se afeita | afeita | se afeitan"
+
+  - id: repaso
+    kind: review
+    title: Повторение
+    blocks:
+      - "Сегодня мы отдыхаем от новых слов, поэтому в посте будет только повторение. Сначала отвечайте вслух, а потом проверяйте себя."

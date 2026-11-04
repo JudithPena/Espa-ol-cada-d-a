@@ -1,0 +1,269 @@
+id: comida
+number: 13
+level: A1
+title: Еда и напитки
+goals:
+  - назвать основные продукты и напитки
+  - спрягать глаголы на -er и -ir
+  - заказать еду в кафе и попросить счёт
+
+lessons:
+  - id: bebidas
+    kind: vocab
+    title: Напитки
+    vocab:
+      - "💧 el agua [а́гуа] — вода"
+      - "🍵 el té [тэ] — чай"
+      - "🥛 la leche [лэ́чэ] — молоко"
+      - "🧃 el zumo [θу́мо] — сок :: un zumo de naranja — апельсиновый сок {forms: naranja}"
+      - "🥤 el refresco [рэфрэ́ско] — газировка, прохладительный напиток"
+      - "☕ el café con leche [кафэ́ кон лэ́чэ] — кофе с молоком"
+    blocks:
+      - "Начинаем самую вкусную тему! Сначала поговорим о том, что пить. Слова **el vino**, **la cerveza** и **el café** вы уже знаете."
+      - rule: |
+          Слово **agua** женского рода, но в единственном числе перед ним ставится артикль **el**, а не `la`. Так говорят потому, что слово начинается с ударного звука «а», и два звука «а» подряд было бы неудобно произносить: _El agua está en la mesa._ _¿Dónde está el agua?_
+          Во множественном числе ставится обычный женский артикль **las**, потому что там звуки «а» уже не стоят рядом: _las aguas_. Например, в кафе можно сказать: _Dos aguas, por favor._
+      - examples:
+          items:
+            - "Un café con leche, por favor. — Кофе с молоком, пожалуйста."
+            - "¿Agua o refresco? — Воду или газировку?"
+            - "El té está en la mesa. — Чай на столе."
+            - "No hay leche en la nevera. — В холодильнике нет молока."
+      - latam: "сок называют **el jugo**: _Un jugo de naranja, por favor._ _¿Hay jugo en la nevera?_"
+      - exercise:
+          title: Traduce
+          items:
+            - "чай с молоком => té con leche"
+            - "Воду, пожалуйста. => Agua, por favor."
+            - "апельсиновый сок => un zumo de naranja"
+            - "В холодильнике есть газировка? => ¿Hay refrescos en la nevera?"
+    forms: [jugo]
+
+  - id: comida1
+    kind: vocab
+    title: Еда, фрукты и овощи
+    vocab:
+      - "🍞 el pan [пан] — хлеб"
+      - "🥩 la carne [ка́рнэ] — мясо"
+      - "🐟 el pescado [пэска́до] — рыба (как еда)"
+      - "🍗 el pollo [по́йо] — курица"
+      - "🍚 el arroz [арро́θ] — рис"
+      - "🥗 la ensalada [энсала́да] — салат"
+      - "🍓 la fruta [фру́та] — фрукты"
+      - "🥚 el huevo [уэ́бо] — яйцо"
+      - "🍎 la manzana [манθа́на] — яблоко"
+      - "🍊 la naranja [нара́нха] — апельсин"
+      - "🍌 el plátano [пла́тано] — банан"
+      - "🍅 el tomate [тома́тэ] — помидор"
+      - "🥔 la patata [пата́та] — картофель"
+      - "🥦 la verdura [бэрду́ра] — овощи (обычно мн. ч.: las verduras)"
+      - "🍲 la sopa [со́па] — суп"
+    blocks:
+      - "Сегодня мы выучим, как называются основные продукты, фрукты и овощи. Многие из этих слов похожи на русские, попробуйте их найти! А цвета, которые вы уже знаете, помогут запомнить фрукты и овощи."
+      - examples:
+          items:
+            - "Pollo con arroz. — Курица с рисом."
+            - "¿Carne o pescado? — Мясо или рыба?"
+            - "En la mesa hay pan, queso y fruta. — На столе хлеб, сыр и фрукты."
+            - "La tortilla es de huevos. — Тортилья делается из яиц."
+            - "La manzana es roja o verde. — Яблоко красное или зелёное."
+            - "El plátano es amarillo. — Банан жёлтый."
+            - "Sopa de tomate. — Томатный суп."
+            - "Tortilla de patatas. — Тортилья с картофелем."
+      - tip: "Слово **el pescado** означает рыбу как еду, то есть ту, что лежит на тарелке: _¿Carne o pescado?_ _Hoy hay pescado con arroz._ А живую рыбу, которая плавает в воде, называют другим словом: `el pez`."
+      - exercise:
+          title: Traduce
+          items:
+            - "рыба с рисом => pescado con arroz"
+            - "курица и салат => pollo y ensalada"
+            - "Хлеба нет. => No hay pan."
+            - "Мясо или рыба? => ¿Carne o pescado?"
+      - latam: "банан называют **la banana**, а картофель называют **la papa**: _La banana es amarilla._ _Sopa de papa._"
+      - exercise:
+          title: "¿De qué color es?"
+          items:
+            - "🍊 la naranja => Es naranja."
+            - "🍅 el tomate => Es rojo."
+            - "🍌 el plátano => Es amarillo."
+            - "🥦 las verduras => Son verdes."
+    forms: [banana, papa]
+
+  - id: er_ir
+    kind: grammar
+    title: "Глаголы на -er и -ir"
+    unlocks: [present_er_ir]
+    vocab:
+      - "🍽 comer [комэ́р] — есть; обедать"
+      - "🥤 beber [бэбэ́р] — пить"
+      - "📖 leer [лээ́р] — читать"
+      - "🎓 aprender [апрэндэ́р] — учить, учиться (чему-то)"
+      - "🔓 abrir [абри́р] — открывать"
+      - "✍️ escribir [эскриби́р] — писать"
+    blocks:
+      - "Вы уже знаете, как спрягаются глаголы на -ar. Теперь сравните их с глаголами на **-er** и **-ir** и подумайте, что в окончаниях совпадает, а что нет."
+      - examples:
+          items:
+            - "Como pan. — Я ем хлеб."
+            - "¿Bebes café? — Ты пьёшь кофе?"
+            - "Mi hermano lee mucho. — Мой брат много читает."
+            - "Aprendemos español. — Мы учим испанский."
+            - "¿Dónde vivís? — Где вы живёте?"
+            - "Ellos escriben en ucraniano. — Они пишут по-украински."
+      - conjugation:
+          verb: comer
+          ru: есть
+      - conjugation:
+          verb: vivir
+          ru: жить
+      - rule: |
+          Чтобы получить нужную форму, отбросьте у глагола окончание **-er** или **-ir** и добавьте окончание лица.
+          1. У глаголов на **-er** окончания такие: **-o, -es, -e, -emos, -éis, -en**. Это почти те же окончания, что у глаголов на -ar, только вместо **a** в них стоит **e**: говорят habl**as**, но com**es**; habl**an**, но com**en**. Например: com**o** — «я ем», beb**es** — «ты пьёшь», le**e** — «он читает», aprend**emos** — «мы учим».
+          2. У глаголов на **-ir** окончания почти такие же, как у глаголов на -er: **-o, -es, -e, -imos, -ís, -en**. Например: viv**o** — «я живу», escrib**es** — «ты пишешь», abr**e** — «он открывает», viv**en** — «они живут».
+          3. Различаются только формы «мы» и «вы». У глаголов на -er говорят com**emos** и com**éis**, beb**emos** и beb**éis**. А у глаголов на -ir говорят viv**imos** и viv**ís**, escrib**imos** и escrib**ís**.
+      - exercise:
+          title: Responde
+          items:
+            - "(yo) ___ (comer) fruta. => como"
+            - "¿Tú ___ (beber) agua? => bebes"
+            - "Nosotros ___ (vivir) en Sevilla. => vivimos"
+            - "Ellas ___ (leer) mucho. => leen"
+            - "¿Vosotros ___ (aprender) inglés? => aprendéis"
+            - "Él ___ (abrir) la ventana. => abre"
+            - "Nosotros ___ (escribir) en español. => escribimos"
+
+  - id: comidas
+    kind: vocab
+    title: Завтрак, обед и ужин
+    vocab:
+      - "🥐 el desayuno [дэсаю́но] — завтрак"
+      - "🍝 la comida [коми́да] — обед; еда"
+      - "🌙 la cena [θэ́на] — ужин"
+      - "☕ desayunar [дэсаюна́р] — завтракать"
+      - "🌙 cenar [θэна́р] — ужинать"
+      - "🔄 normalmente [нормальмэ́нтэ] — обычно"
+      - "👍 bueno/a [буэ́но, буэ́на] — хороший"
+    blocks:
+      - "Сегодня вы узнаете, как называются три главные трапезы дня. Обратите внимание, что глагол **comer** значит и «есть», и «обедать»: _Como fruta_ значит «я ем фрукты», а _Como en casa_ значит «я обедаю дома»."
+      - examples:
+          items:
+            - "Normalmente desayuno café con leche y pan. — Обычно я завтракаю кофе с молоком и хлебом."
+            - "¿Comes en casa o en el trabajo? — Ты обедаешь дома или на работе?"
+            - "Cenamos pescado con verduras. — Мы ужинаем рыбой с овощами."
+            - "La comida es muy buena aquí. — Еда здесь очень хорошая."
+      - note: "Не путайте два похожих слова. **Bueno** значит «хороший». Это прилагательное, поэтому оно согласуется с существительным: _El pan es bueno._ _La comida es muy buena._ А **bien** значит «хорошо», и это слово никогда не меняется: _Estoy bien._ _Ana habla español muy bien._"
+      - exercise:
+          title: Responde
+          items:
+            - "¿Qué desayunas normalmente? => Normalmente desayuno..."
+            - "¿Dónde comes? => Como en casa / en el trabajo."
+            - "¿Qué cenas hoy? => Hoy ceno..."
+      - task: "Что вы обычно едите на завтрак? Напишите об этом в комментариях и начните фразу так: **Normalmente desayuno...**"
+
+  - id: bar
+    kind: dialogue
+    title: En el bar
+    vocab:
+      - "🙏 querer [кэрэ́р] — хотеть {forms: quiero quieres quiere quieren} :: Quiero un café. — Я хочу кофе."
+      - "☕ tomar [тома́р] — брать; пить, есть (в кафе) :: ¿Qué quieres tomar? — Что будешь пить (есть)?"
+      - "🙋 para mí [па́ра ми] — мне (букв. «для меня») :: Para mí, un té. — Мне чай."
+      - "❔ algo [а́льго] — что-нибудь, что-то :: ¿Algo más? — Что-нибудь ещё?"
+      - "🥖 el bocadillo [бокади́йо] — бутерброд из багета"
+      - "🧾 la cuenta [куэ́нта] — счёт"
+      - "💶 ¿Cuánto es? [куа́нто эс] — сколько с меня?"
+      - "💶 el euro [э́уро] — евро"
+    blocks:
+      - "Ана и Пабло завтракают в баре. Этот диалог можно использовать как готовый сценарий: с ним вы сможете заказать что угодно в любом испанском кафе."
+      - dialogue:
+          lines:
+            - "Camarero: ¡Buenos días! ¿Qué quieren tomar? | Доброе утро! Что будете?"
+            - "Ana: Para mí, un café con leche, por favor. | Мне кофе с молоком, пожалуйста."
+            - "Pablo: Yo quiero un zumo de naranja. | А я хочу апельсиновый сок."
+            - "Camarero: ¿Algo más? ¿Quieren comer algo? | Что-нибудь ещё? Хотите что-нибудь поесть?"
+            - "Ana: Sí, tortilla, por favor. | Да, тортилью, пожалуйста."
+            - "Pablo: Y para mí, un bocadillo de jamón. | А мне бутерброд с хамоном."
+            - "Camarero: Muy bien. | Хорошо."
+            - "Ana: Perdone, la cuenta, por favor. ¿Cuánto es? | Извините, счёт, пожалуйста. Сколько с нас?"
+            - "Camarero: Son nueve euros. | Девять евро."
+            - "Ana: Aquí tiene. | Вот, пожалуйста."
+            - "Camarero: Gracias. ¡Hasta luego! | Спасибо. До свидания!"
+      - note: "Фраза **Aquí tiene** значит «вот, пожалуйста». Её говорят, когда что-то протягивают собеседнику, например деньги или документы: _Aquí tiene: nueve euros._ _Aquí tiene su café._ Если вы с человеком на «ты», то говорите **Aquí tienes**: _Aquí tienes tu libro._"
+      - exercise:
+          title: Responde
+          items:
+            - "¿Qué toma Ana? => Un café con leche y tortilla."
+            - "¿Qué toma Pablo? => Un zumo de naranja y un bocadillo de jamón."
+            - "¿Cuánto es? => Nueve euros."
+      - exercise:
+          title: Traduce
+          items:
+            - "Мне чай, пожалуйста. => Para mí, un té, por favor."
+            - "Я хочу воды. => Quiero agua."
+            - "Счёт, пожалуйста. => La cuenta, por favor."
+            - "Сколько с меня? => ¿Cuánto es?"
+
+  - id: lectura
+    kind: reading
+    title: Как едят в Испании
+    vocab:
+      - "🍞 la tostada [тоста́да] — тост, поджаренный хлеб"
+      - "🕙 tarde [та́рдэ] — поздно"
+      - "🫒 la tapa [та́па] — тапа (небольшая закуска)"
+    blocks:
+      - "Это текст о том, как едят испанцы. Прочитайте его и сравните со своими привычками."
+      - reading:
+          title: La comida en España
+          text: |
+            En España, el desayuno es pequeño: normalmente un café con leche y una tostada con tomate. Mucha gente desayuna en un bar, cerca del trabajo.
+
+            La comida es muy tarde y es grande: primero, sopa o ensalada; segundo, carne o pescado; y fruta.
+
+            La cena también es muy tarde, pero es pequeña.
+
+            En los bares la gente come tapas: tortilla, jamón, queso... ¡Y bebe vino o cerveza!
+          translation: |
+            В Испании завтрак маленький: обычно кофе с молоком и тост с помидором. Многие завтракают в баре, недалеко от работы.
+
+            Обед очень поздно, и он большой: на первое суп или салат, на второе мясо или рыба, и фрукты.
+
+            Ужин тоже очень поздно, но он маленький.
+
+            В барах едят тапас: тортилью, хамон, сыр... И пьют вино или пиво!
+      - culture: "Испанцы обедают около 14–15 часов, а ужинают в 21–22 часа. Поэтому приветствие **buenas tardes** («добрый день») говорят до самого вечера."
+      - exercise:
+          title: Responde
+          items:
+            - "¿Cómo es el desayuno en España? => Es pequeño."
+            - "¿Dónde desayuna mucha gente? => En un bar."
+            - "¿Qué hay de primero? => Sopa o ensalada."
+            - "¿Cómo es la cena? => Es tarde y pequeña."
+    quiz:
+      - q: ¿Qué es grande en España?
+        options: "la comida | el desayuno | la cena"
+      - q: ¿Qué come la gente en los bares?
+        options: "tapas | sopa | arroz"
+
+  - id: quiz
+    kind: quiz
+    title: Еда и напитки
+    blocks:
+      - "Это тест по теме «Еда и напитки»."
+      - cando:
+          - "назвать основные продукты и напитки"
+          - "спрягать глаголы на -er и -ir: como, comemos; vivo, vivimos"
+          - "заказать еду в кафе и попросить счёт: Para mí..., Quiero..., La cuenta, por favor."
+    quiz:
+      - q: "Nosotros ___ en un restaurante."
+        options: "comemos | comimos | comen"
+        explain: "У глаголов на -er форма «мы» заканчивается на -emos, поэтому с nosotros нужна форма comemos."
+      - q: "¿Dónde ___ (vosotros)?"
+        options: "vivís | vivéis | viven"
+        explain: "У глаголов на -ir форма «вы» заканчивается на -ís: vivís, escribís. А окончание -éis бывает у глаголов на -er: coméis, bebéis."
+      - q: Как попросить счёт?
+        options: "La cuenta, por favor. | ¿Qué quieres tomar? | Aquí tiene."
+        explain: "Счёт по-испански называется la cuenta, поэтому официанту говорят: La cuenta, por favor."
+      - q: Какой артикль у слова «agua»?
+        options: "el | la"
+        answer: 0
+        explain: "Слово agua женского рода, но в единственном числе с ним ставится артикль el: el agua. Во множественном числе говорят las aguas."
+      - q: Что значит «el pescado»?
+        options: "рыба | мясо | курица"
