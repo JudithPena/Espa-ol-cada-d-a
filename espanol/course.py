@@ -438,7 +438,8 @@ def parse_block(raw: Any, where: str) -> Block:
                 raise ContentError(f"{w}: у карточки нужен head")
             ex = [tuple(p.strip() for p in str(e).partition(" — ")[::2]) for e in _items(c.get("ex"))]
             cards.append({"head": str(c["head"]).strip(), "label": str(c.get("label") or "").strip(),
-                          "text": str(c.get("text") or "").strip(), "ex": ex, "tone": str(c.get("tone") or "")})
+                          "text": str(c.get("text") or "").strip(), "ex": ex, "tone": str(c.get("tone") or ""),
+                          "say": c.get("say", True) is not False})   # say: false — шапку не озвучивать («+ -s»)
         return Block(btype, {"title": value.get("title"), "lead": value.get("lead"), "note": value.get("note"),
                              "style": value.get("style") or "big", "cards": cards,
                              "join": bool(value.get("join"))})   # join: на том же экране, что и блок перед ним

@@ -52,11 +52,41 @@ lessons:
             - ["el libro, el cuaderno, el bolígrafo", "эти слова заканчиваются на `-o`, и перед ними стоит **el**"]
             - ["la mochila, la mesa, la silla", "эти слова заканчиваются на `-a`, и перед ними стоит **la**"]
             - ["el café, el hotel, la llave", "у этих слов другие окончания, поэтому артикль нужно запомнить"]
-      - rule: |
-          1. Если слово заканчивается на **-o**, то обычно оно мужского рода, и перед ним ставится **el**: _el libro, el cuaderno, el queso, el vino_.
-          2. Если слово заканчивается на **-a**, то обычно оно женского рода, и перед ним ставится **la**: _la mesa, la silla, la casa, la plaza_.
-          3. Если слово заканчивается на другую букву, то по окончанию род не угадать, и его нужно запомнить: _el café, el hotel, el jamón_, но _la llave, la traducción_. Например, chocolate и llave оба заканчиваются на `-e`, но говорят _el chocolate_ и _la llave_. Поэтому учите слова сразу **с артиклем**.
-          4. Есть исключения. Слова **día** и **mapa** заканчиваются на `-a`, но они мужского рода: _el día, un día, el mapa, un mapa de España_. А слово **foto** заканчивается на `-o`, но оно женского рода, потому что это сокращение от `la fotografía`: _la foto, una foto, la foto de Pablo_.
+      - compare:
+          cards:
+            - head: el … -o
+              say: false
+              label: мужской род
+              tone: blue
+              text: Если слово заканчивается на **-o**, то перед ним обычно ставится **el**.
+              ex: [el libro, el cuaderno, el queso, el vino]
+            - head: la … -a
+              say: false
+              label: женский род
+              tone: rose
+              text: Если слово заканчивается на **-a**, то перед ним обычно ставится **la**.
+              ex: [la mesa, la silla, la casa, la plaza]
+      - compare:
+          cards:
+            - head: el или la?
+              say: false
+              label: другие окончания
+              tone: gray
+              text: Если слово заканчивается на другую букву, то по окончанию род не угадать, и его нужно запомнить. Например, chocolate и llave оба заканчиваются на `-e`, но говорят el chocolate и la llave. Поэтому учите слова сразу **с артиклем**.
+              ex: [el café, el hotel, el jamón, el chocolate, la llave, la traducción]
+      - compare:
+          title: Исключения
+          cards:
+            - head: el día, el mapa
+              label: на -a, но мужского рода
+              tone: blue
+              text: Слова día и mapa заканчиваются на `-a`, но они мужского рода.
+              ex: [el día, un día, el mapa, un mapa de España]
+            - head: la foto
+              label: на -o, но женского рода
+              tone: rose
+              text: Слово foto заканчивается на `-o`, но оно женского рода, потому что это сокращение от `la fotografía`.
+              ex: [la foto, una foto, la foto de Pablo]
       - table:
           title: Артикли
           rows:
@@ -127,11 +157,49 @@ lessons:
             - ["el libro → los libro**s**", "la mesa → las mesa**s**"]
             - ["el reloj → los reloj**es**", "el móvil → los móvil**es**"]
             - ["el lápiz → los lápi**ces**", "буква `z` меняется на `c`, и добавляется `-es`"]
-      - rule: |
-          1. Если слово заканчивается на гласную, то во множественном числе к нему добавляется `-s`: libro**s**, mesa**s**, café**s**, llave**s**.
-          2. Если слово заканчивается на согласную, то к нему добавляется `-es`: reloj**es**, hotel**es**, móvil**es**, señor**es**.
-          3. Если слово заканчивается на `z`, то `z` меняется на `c`, и добавляется `-es`: из lápiz получается lápi**ces**. _Un lápiz, dos lápices, tres lápices._
-          4. Артикли тоже меняются. Вместо **el** во множественном числе говорят **los**, вместо **la** говорят **las**, вместо **un** говорят **unos**, а вместо **una** говорят **unas**: _los libros, las mesas, unos cuadernos, unas llaves_.
+      - compare:
+          cards:
+            - head: + -s
+              say: false
+              label: после гласной
+              tone: blue
+              text: Если слово заканчивается на гласную, то во множественном числе к нему добавляется `-s`.
+              ex: [libros, mesas, cafés, llaves]
+            - head: + -es
+              say: false
+              label: после согласной
+              tone: sun
+              text: Если слово заканчивается на согласную, то к нему добавляется `-es`.
+              ex: [relojes, hoteles, móviles, señores]
+      - compare:
+          join: true
+          cards:
+            - head: "`z` → `c` + `-es`"
+              say: false
+              label: "слова на `z`"
+              tone: gray
+              text: Если слово заканчивается на `z`, то `z` меняется на `c`, и добавляется `-es`. Из lápiz получается lápices.
+              ex: [un lápiz, dos lápices, tres lápices]
+      - compare:
+          style: small
+          title: Артикли тоже меняются
+          cards:
+            - head: los
+              label: вместо el
+            - head: las
+              label: вместо la
+            - head: unos
+              label: вместо un
+            - head: unas
+              label: вместо una
+      - compare:
+          join: true
+          cards:
+            - head: los libros
+              label: меняются и слово, и артикль
+              tone: mint
+              text: Во множественном числе меняется не только слово, но и артикль перед ним.
+              ex: [las mesas, unos cuadernos, unas llaves]
       - header: "Hay — «есть, имеется»"
       - |
         1. Слово **hay** никогда не меняется: и об одном предмете, и о многих говорят **hay**. _Hay un libro._ _Hay dos libros._ _Hay unas llaves._
