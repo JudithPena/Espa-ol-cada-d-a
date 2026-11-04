@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+from espanol.course import load_course
 from espanol.site import BUILD_MAX, BUILD_MIN, build_site, parse_units, site_data
 from espanol.wordcards import load_cards
 
@@ -181,24 +182,46 @@ def test_row_art(course):
 
 def test_audio_texts(course):
     """Озвучка сайта: слова, примеры, реплики диалогов своим голосом, слова «Соберите фразу», разборы видео."""
-    from espanol.site_audio import DIALOGUE_VOICES, VOICES, audio_texts, file_id
+    from espanol.site_audio import M, VOICES, audio_texts, file_id
     from espanol.videos import load_videos
 
     data = site_data(course, load_cards(CONTENT), videos=load_videos(CONTENT, course))
     texts = audio_texts(data)
     assert texts["la casa"][0] == "la casa" and texts["la casa"][1] in VOICES
-    assert {v for _, v in texts.values()} == set(VOICES)  # и женские, и мужской голос
+    assert {v.partition("@")[0] for _, v in texts.values()} == set(VOICES)  # и женские, и мужской голос
     dialogue = [k for k in texts if k.startswith("@")]
-    assert dialogue and all(texts[k][1] in DIALOGUE_VOICES for k in dialogue)
-    assert any(k.startswith("@0|") for k in dialogue) and any(k.startswith("@1|") for k in dialogue)
-    first = next(k for k in dialogue if k.startswith("@1|"))
-    assert texts[first][1] == DIALOGUE_VOICES[1]
+    assert dialogue and all(k.startswith(f"@{texts[k][1]}|") for k in dialogue)   # ключ «@голос|текст»
+    pablo = next(b for x in data["lessons"] for b in x["blocks"] if b["t"] == "dialogue" and "Pablo" in b["cast"])
+    line = next(ln for ln in pablo["lines"] if ln[0] == "Pablo")
+    assert texts[f"@{M}|{line[3]}"] == (line[3], M)
     sentence = next(x["sentences"][0][0] for x in data["lessons"] if x["sentences"])
     assert all(tok in texts for tok in sentence.split(" ") if any(ch.isalpha() for ch in tok))
     seg = data["videos"][0]["segments"][0]
     assert seg["es"] in texts
     assert all(not k.startswith(" ") and "  " not in k for k in texts)  # ключи — как clean() на странице
     assert file_id("la casa", VOICES[0]) != file_id("la casa", VOICES[1])
+    assert file_id("la casa", M) != file_id("la casa", M + "@-14Hz")
+
+
+def test_dialogue_cast():
+    """У персонажа один голос во всех диалогах сайта, собеседники одного диалога звучат по-разному, мужчины — мужским голосом."""
+    from espanol.site_audio import CAST, M, cast
+
+    site = load_course(CONTENT / "site")
+    seen: dict[str, str] = {}
+    for lesson in site.lessons:
+        for block in lesson.blocks:
+            if block.type != "dialogue":
+                continue
+            names = list(dict.fromkeys(s for s, _, _ in block.data["lines"]))
+            voices = cast(names)
+            assert len({c["v"] for c in voices.values()}) == len(names), (lesson.id, names)
+            for name, c in voices.items():
+                assert name in CAST, f"{lesson.id}: у персонажа {name} нет голоса в site_audio.CAST"
+                assert seen.setdefault(name, c["v"]) == c["v"]
+                assert (c["g"] == "m") == c["v"].startswith(M)
+    assert cast(["Marta", "Jorge", "Rosa"])["Jorge"]["v"].startswith(M)
+    assert len({c["v"] for c in cast(["Marta", "Rosa"]).values()}) == 2
 
 
 def test_site_note_drops_unknown_and_offtopic():

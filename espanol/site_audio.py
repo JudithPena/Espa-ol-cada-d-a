@@ -5,7 +5,9 @@
 а встроенный голос остаётся запасным — для того, чего нет в записи.
 
 Голоса — только Испания (курс учит испанский Испании): две женщины и мужчина. Слово всегда звучит одним
-и тем же голосом (выбор по хешу текста), в диалогах у каждого собеседника свой голос.
+и тем же голосом (выбор по хешу текста). В диалогах у каждого персонажа свой постоянный голос (`CAST`):
+голосов Испании у edge-tts всего три, поэтому персонажей одного пола различаем ещё и высотой тона —
+голос записывается как «es-ES-AlvaroNeural@-14Hz».
 """
 
 from __future__ import annotations
@@ -19,8 +21,54 @@ from pathlib import Path
 log = logging.getLogger(__name__)
 
 VOICES = ["es-ES-ElviraNeural", "es-ES-AlvaroNeural", "es-ES-XimenaNeural"]
-# Собеседники диалога по порядку появления: женщина, мужчина, другая женщина, снова мужчина.
-DIALOGUE_VOICES = ["es-ES-ElviraNeural", "es-ES-AlvaroNeural", "es-ES-XimenaNeural", "es-ES-AlvaroNeural"]
+F1, F2, M = "es-ES-ElviraNeural", "es-ES-XimenaNeural", "es-ES-AlvaroNeural"
+# Персонаж → (пол, голос@тон, аватар). Один и тот же персонаж во всех диалогах звучит одинаково,
+# а собеседники одного диалога — всегда по-разному (проверяет tests/test_site.py). Аватар — эмодзи
+# для ролей («Profesora»), у имён — первая буква. Новый персонаж без строки здесь получит голос по полу.
+CAST: dict[str, tuple[str, str, str]] = {
+    "Lucía": ("f", F1, ""),
+    "Ana": ("f", F2, ""),
+    "Elena": ("f", F2 + "@-6Hz", ""),
+    "Clara": ("f", F1 + "@+6Hz", ""),
+    "Irina": ("f", F1 + "@+6Hz", ""),
+    "Olga": ("f", F2 + "@+6Hz", ""),
+    "Karina": ("f", F2 + "@+10Hz", ""),
+    "Profesora": ("f", F1 + "@-8Hz", "👩‍🏫"),
+    "Recepcionista": ("f", F1 + "@-4Hz", "🛎️"),
+    "Dependienta": ("f", F2, "🛍️"),
+    "Médica": ("f", F2 + "@-8Hz", "👩‍⚕️"),
+    "Madre": ("f", F1 + "@-12Hz", "👩"),
+    "Señora": ("f", F1 + "@-14Hz", "👵"),
+    "Pablo": ("m", M, ""),
+    "Diego": ("m", M + "@+8Hz", ""),
+    "Iván": ("m", M + "@+6Hz", ""),
+    "Carlos": ("m", M + "@+4Hz", ""),
+    "Tom": ("m", M + "@+10Hz", ""),
+    "Hugo": ("m", M + "@+6Hz", ""),
+    "Sergio": ("m", M + "@-4Hz", ""),
+    "Camarero": ("m", M + "@-14Hz", "🤵"),
+    "Señor García": ("m", M + "@-16Hz", "👨‍💼"),
+}
+_SPARE = {"f": [F1, F2, F1 + "@-8Hz", F2 + "@+6Hz", F1 + "@+6Hz", F2 + "@-8Hz"],
+          "m": [M, M + "@-14Hz", M + "@+8Hz", M + "@-6Hz", M + "@+14Hz"]}
+
+
+def _gender(name: str) -> str:
+    """Пол незнакомого персонажа по имени: «-a» — женский (Marta, Profesora), иначе мужской."""
+    word = name.split()[-1].lower()
+    return "f" if word.endswith(("a", "á")) or name.lower().startswith(("señora", "doña")) else "m"
+
+
+def cast(speakers: list[str]) -> dict[str, dict]:
+    """Голоса собеседников одного диалога: {имя: {v: голос, g: пол, a: аватар}}; одинаковых голосов нет."""
+    out: dict[str, dict] = {}
+    for name in speakers:
+        g, v, a = CAST.get(name) or (_gender(name), "", "")
+        used = {c["v"] for c in out.values()}
+        if not v or v in used:
+            v = next((x for x in _SPARE[g] if x not in used), _SPARE[g][0])
+        out[name] = {"v": v, "g": g, "a": a}
+    return out
 RATE = "-5%"
 AUDIO_DIR = "a"
 
@@ -38,7 +86,7 @@ def file_id(text: str, voice: str) -> str:
 
 
 def audio_texts(data: dict) -> dict[str, tuple[str, str]]:
-    """Ключ для страницы → (текст, голос). Ключ — сам текст; реплика диалога — «@N|текст» (N — собеседник)."""
+    """Ключ для страницы → (текст, голос). Ключ — сам текст; реплика диалога — «@голос|текст»."""
     out: dict[str, tuple[str, str]] = {}
 
     def add(text, voice=None, key=None):
@@ -64,11 +112,9 @@ def audio_texts(data: dict) -> dict[str, tuple[str, str]]:
                 for item in b["items"]:
                     add(item[2])
             elif t == "dialogue":
-                speakers = list(dict.fromkeys(line[0] for line in b["lines"]))
                 for line in b["lines"]:
-                    who = speakers.index(line[0])
-                    voice = DIALOGUE_VOICES[who % len(DIALOGUE_VOICES)]
-                    add(line[3], voice, key=f"@{who}|{_clean(line[3])}")
+                    voice = b["cast"][line[0]]["v"]
+                    add(line[3], voice, key=f"@{voice}|{_clean(line[3])}")
                     add(line[3])
             elif t == "reading":
                 add(b.get("say"))
@@ -100,7 +146,8 @@ async def _synth(text: str, voice: str, path: Path, sem: asyncio.Semaphore) -> b
         for attempt in range(4):
             try:
                 tmp = path.with_suffix(".part")
-                await edge_tts.Communicate(text, voice, rate=RATE).save(str(tmp))
+                name, _, pitch = voice.partition("@")
+                await edge_tts.Communicate(text, name, rate=RATE, pitch=pitch or "+0Hz").save(str(tmp))
                 if tmp.stat().st_size < 500:
                     raise RuntimeError("пустая запись")
                 tmp.replace(path)
