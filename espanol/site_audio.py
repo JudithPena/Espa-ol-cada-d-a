@@ -76,7 +76,8 @@ def audio_texts(data: dict) -> dict[str, tuple[str, str]]:
                 for f in b.get("forms", []):
                     add(f)
             cards(b.get("cards"))
-            cards(b.get("items") if t == "rule" else None)
+            cards([x for x in b.get("items") or [] if isinstance(x, dict)])
+            cards(b.get("steps") if t == "list" else None)
         for es, _ in lesson.get("sentences", []):
             add(es)
             for tok in es.split(" "):  # «Соберите фразу» озвучивает каждое угаданное слово

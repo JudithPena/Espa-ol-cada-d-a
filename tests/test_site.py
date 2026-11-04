@@ -208,3 +208,24 @@ def test_site_note_drops_unknown_and_offtopic():
     assert site_note("c перед a читается как «к». Не путайте с caza (с z) — «охота».", unknown) == "c перед a читается как «к»."
     assert site_note("x между гласными — «кс». В Латинской Америке «взять такси» — tomar un taxi 🌎.", unknown) == "x между гласными — «кс»."
     assert site_note("Не путайте с caza.", unknown) is None
+
+
+def test_theory_italic_chips_pairs_and_steps():
+    from espanol.course import Block
+    from espanol.site import _block, _card, _italic_examples
+
+    ex = _italic_examples("_¡Hola, buenos días!_, _¡Hola, buenas tardes!_")
+    assert [e[1] for e in ex] == ["¡Hola, buenos días!", "¡Hola, buenas tardes!"]   # запятая внутри фразы не делит
+    assert [e[1] for e in _italic_examples("_el libro, el cuaderno_")] == ["el libro", "el cuaderno"]
+    assert _italic_examples("_Escucha, Pablo_ («Послушай, Пабло»)")[0][3] == "Послушай, Пабло"
+
+    card, = _card("Поэтому _hasta luego_ дословно означает «до потом», то есть «до встречи», "
+                  "а _hasta mañana_ означает «до завтра»: _¡Hasta luego, Pablo!_, _¡Hasta mañana, Carmen!_")
+    assert [(p[1], p[3]) for p in card["pairs"]] == [("hasta luego", "до потом"), ("hasta mañana", "до завтра")]
+    assert "до встречи" in card["pairs"][0][4] and len(card["ex"]) == 2 and card["html"] == ""
+
+    lst = _block(Block("list", ["☀️ Утром говорят **buenos días**: _¡Buenos días!_, _¡Buenos días, María!_"]))
+    assert lst["steps"][0]["icon"] == "☀️" and len(lst["steps"][0]["ex"]) == 2
+
+    num = _block(Block("text", "1. Слово **hay** не меняется. _Hay un libro._ _Hay dos libros._\n2. Перед **hay** нет артикля."))
+    assert len(num["items"]) == 2 and len(num["items"][0]["ex"]) == 2

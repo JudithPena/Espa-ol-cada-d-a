@@ -212,8 +212,37 @@ _EXAMPLE = re.compile(r"^(?P<es>[^\[\]]+?)(?:\s*\[(?P<pron>[^\]]+)\])?$")
 _SENTENCE_END = re.compile(r"(?<=[.!?…»)])\s+(?=[A-ZА-ЯЁ¡¿«(*`])")
 
 
+# Перечень курсивных фраз: «_¡Hola, buenos días!_, _¡Buenos días, María!_» или «_Lee, por favor_ («Прочитай»)».
+# Запятые внутри _…_ — часть фразы, плитку делим только по границам курсива.
+_ITALIC_ITEM = re.compile(r"_(?P<es>[^_]+?)_(?:\s*\(«(?P<ru>[^»]+)»\)|\s+—\s+«(?P<ru2>[^»]+)»)?")
+_ITALIC_SEP = re.compile(r"^(?:[\s,;]|\b(?:и|а|но|или)\b)*$")
+
+
+def _italic_examples(tail: str) -> list[list[str]] | None:
+    """Хвост только из курсивных фраз (с переводом в скобках или без) → [[html, озвучка, транскрипция, перевод]]."""
+    tail = tail.strip().rstrip(".;")
+    out, pos = [], 0
+    for m in _ITALIC_ITEM.finditer(tail):
+        if not _ITALIC_SEP.match(tail[pos:m.start()]):
+            return None
+        es, ru = m["es"].strip(), m["ru"] or m["ru2"] or ""
+        if _CYR.search(es) or len(es.split()) > 8 or "**" in es or "..." in es or "…" in es:
+            return None
+        parts = [x.strip() for x in es.split(",")]
+        if not ru and len(parts) > 1 and not re.search(r"[¡!¿?.—]", es) and all(1 <= len(x.split()) <= 3 for x in parts):
+            out += [[_html(x), plain(x), "", ""] for x in parts]   # «_el libro, el cuaderno_» — перечень, а не фраза
+        else:
+            out.append([_html(es), plain(es), "", ru])
+        pos = m.end()
+    if not out or len(out) > 10 or not _ITALIC_SEP.match(tail[pos:]):
+        return None
+    return out
+
+
 def _examples(tail: str) -> list[list[str]] | None:
     """«casa, taxi» или «café [кафэ́], hotel [отэ́ль]» → [[html, озвучка, транскрипция]]; иначе None."""
+    if tail.lstrip().startswith("_") and (ex := _italic_examples(tail)):
+        return ex
     items = [w.strip(" .") for w in tail.rstrip(" .").split(",")]
     if not 1 <= len(items) <= 6:
         return None
@@ -235,7 +264,7 @@ def esc_html(text: str) -> str:
 
 
 _KEY = re.compile(r"\*\*(.+?)\*\*")
-_MEANS = re.compile(r"(?P<w>\*\*[^*]+\*\*|`[^`]+`)(?P<mid>[^«»:*`]*?)означает «(?P<ru>[^»]+)»")
+_MEANS = re.compile(r"(?P<w>\*\*[^*]+\*\*|`[^`]+`|(?<!\w)_[^_]+_(?!\w))(?P<mid>[^«»:*`_]*?)(?:означает|значит) «(?P<ru>[^»]+)»")
 _PARENS = re.compile(r"\s*\(([^()]+)\)")
 
 
@@ -244,6 +273,9 @@ def _one(text: str, **extra) -> dict:
     text = text.strip()
     key = any(_CYR.search(m) for m in _KEY.findall(text))
     return {"html": _html(text), "ex": [], "key": key, **extra}
+
+
+_TRAILING_ITALIC = re.compile(r"^(?P<head>.*?[.!?»)])\s+(?P<tail>(?:_[^_]+_[\s.,;]*)+)$", re.S)
 
 
 def _card(text: str) -> list[dict]:
@@ -256,8 +288,27 @@ def _card(text: str) -> list[dict]:
     means = list(_MEANS.finditer(text))
     if len(means) >= 2:
         head = text[:means[0].start()].rstrip(" :")
-        pairs = [[esc_html(plain(m["w"])), plain(m["w"]), _html(m["mid"].strip(" ,")), m["ru"]] for m in means]
-        return [_one(head, pairs=pairs)]
+        pairs = []
+        for k, m in enumerate(means):
+            nxt = means[k + 1].start() if k + 1 < len(means) else m.end()
+            # «…означает «до потом», то есть «до встречи», а …» — уточнение остаётся под своей парой
+            note = re.sub(r"^[\s,:;]+|[\s,:;]*(?:\b(?:а|и|но)\b)?[\s,:;]*$", "", text[m.end():nxt])
+            if note and not re.match(r"(?:то есть|а дословно|дословно|или)\b", note):
+                if "_" in note or "." in note or len(note.split()) > 3:
+                    break   # между парами целая мысль или примеры — оставляем предложение текстом
+                note = ""   # связка вроде «а если сказать»: пары и так её показывают
+            pairs.append([esc_html(plain(m["w"])), plain(m["w"]), _html(m["mid"].strip(" ,")), m["ru"],
+                          _html(note) if note else ""])
+    if len(means) >= 2 and len(pairs) == len(means):
+        if len(head.split()) <= 2 and "**" not in head:
+            head = ""   # «Слово», «Поэтому», «Например,» без пар ничего не значат
+        card = _one(head, pairs=pairs)
+        tail = text[means[-1].end():].strip()
+        if tail.startswith(":") and (ex := _examples(tail[1:])):
+            card["ex"] = ex
+        elif tail.strip(" .,:;"):
+            return [card, _one(tail.lstrip(" ,:;"))]
+        return [card]
     groups = [m for m in _PARENS.finditer(text) if (ex := _examples(m[1])) and len(ex) >= 2]
     if groups:
         cards, start = [], 0
@@ -272,15 +323,21 @@ def _card(text: str) -> list[dict]:
         return cards
     head, sep, tail = text.rpartition(": ")
     ex = _examples(tail) if sep and head.strip() else None
+    if not ex and (m := _TRAILING_ITALIC.match(text)) and (ex := _italic_examples(m["tail"])):
+        head = m["head"]   # «…говорят **hay**. _Hay un libro._ _Hay dos libros._» — примеры после точки
     card = _one(head if ex else text)
     card["ex"] = ex or []
     return [card]
 
 
+def _lead(card: dict) -> bool:
+    return not card["ex"] and not card.get("pairs") and not card["key"] and len(re.sub("<[^>]+>", "", card["html"])) <= 90
+
+
 def _text_cards(text: str) -> list[dict]:
     """Абзац → карточки, по одной мысли (предложению) на карточку."""
     parts = [p.strip() for p in _SENTENCE_END.split(text.strip()) if p.strip()]
-    if any(p.count("**") % 2 or p.count("`") % 2 for p in parts):
+    if any(p.count("**") % 2 or p.count("`") % 2 or p.replace("**", "").count("_") % 2 for p in parts):
         parts = [text.strip()]
     return [c for p in parts for c in _card(p)]
 
@@ -295,13 +352,29 @@ def _block(block: Block) -> dict | None:
         text = without_telegram(d)
         if not text:
             return None
-        cards = _text_cards(text) if t in ("text", "note", "tip") and "\n" not in text.strip() else None
+        lines = [ln for ln in text.strip().split("\n") if ln.strip()]
+        if t in ("text", "note", "tip") and (items := _rule_items(text)):
+            return {"t": t, "html": _html(text), "items": items}   # «1. … 2. … 3. …» — шаги, как у правила
+        plain_lines = not any(re.match(r"\s*(?:[-•|]|\d+[.)])", ln) for ln in lines)
+        cards = ([c for ln in lines for c in _text_cards(ln)]
+                 if t in ("text", "note", "tip") and plain_lines else None)
+        if cards and t == "text" and len(cards) > 1 and _lead(cards[0]):
+            cards[0]["lead"] = True   # короткая первая мысль — крупной строкой, не карточкой
         return {"t": t, "html": _html(text), **({"cards": cards} if cards else {})}
     if t == "rule" and (items := _rule_items(d)):
         return {"t": t, "html": "", "items": items}
     if t in ("rule", "latam", "culture", "header"):
         return {"t": t, "html": _html(d)}
-    if t in ("list", "cando"):
+    if t == "list":
+        # Пункт с эмодзи в начале — шаг шкалы (☀️ утро → 🌇 день → 🌙 вечер): значок, мысль, плитки примеров.
+        steps = []
+        for x in d:
+            m = re.match(r"^\s*([^\w\s*_`«(\[¡¿]+)\s+(.*)$", x)
+            icon, body = (m[1], m[2]) if m else ("", x)
+            cards = _card(body.rstrip(";"))
+            steps.append({"icon": icon, **(cards[0] if len(cards) == 1 else _one(body))})
+        return {"t": t, "items": [_html(x) for x in d], "steps": steps}
+    if t == "cando":
         return {"t": t, "items": [_html(x) for x in d]}
     if t == "examples":
         return {"t": t, "title": _html(d["title"]),
