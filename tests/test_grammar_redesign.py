@@ -52,3 +52,17 @@ def test_invalid_word_bank_cannot_make_a_question_impossible(tmp_path, tiles):
     (tmp_path/'001.json').write_text(json.dumps(unit), encoding='utf-8')
     with pytest.raises(ValueError, match='complete answer'):
         load_grammar(tmp_path)
+
+
+@pytest.mark.parametrize('frame', [
+    {'parts':['',' sana'], 'choices':[['el','los']]},
+    {'parts':['',' sana'], 'choices':[['la']]},
+    {'parts':[''], 'choices':[['el','la']]},
+])
+def test_guided_gaps_require_a_reachable_accepted_answer(tmp_path, frame):
+    unit = {'id':'fixture', 'sections':[], 'exercises':[{'id':'a','questions':[{
+        'prompt':'Completa ___', 'answers':['la sana'], 'explain':'Проверка',
+        'guidedGaps':frame}]}]}
+    (tmp_path/'001.json').write_text(json.dumps(unit), encoding='utf-8')
+    with pytest.raises(ValueError, match='guided gaps'):
+        load_grammar(tmp_path)

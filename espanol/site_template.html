@@ -479,6 +479,16 @@ main { padding-block: 16px 110px; }
 .gfill-sentence > p { font-size: 21px; font-weight: 700; line-height: 1.5; margin: 0; }
 .gfill-label { display: block; margin: 12px 0 6px; color: var(--muted); font-size: 13px; }
 .gfill-sentence .gaccents { margin-bottom: 12px; }
+.gguided { display: grid; gap: 18px; }
+.gguided-sentence { margin: 0; padding: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; font-size: 21px; font-weight: 650; line-height: 2.7; }
+.gguided-slot { display: inline-block; position: relative; min-width: 70px; padding: 0 14px; margin: 0 3px; border: 2px dashed var(--accent); border-radius: 9px; background: var(--accent-soft); color: var(--ink); font: inherit; line-height: 1.85; cursor: pointer; vertical-align: baseline; }
+.gguided-slot.is-active { border-style: solid; box-shadow: 0 0 0 3px var(--accent-soft); }
+.gguided-slot small { position: absolute; right: 3px; top: -6px; font: 10px var(--body); color: var(--accent); background: var(--surface); padding: 0 2px; }
+.gguided-slot:disabled { opacity: 1; cursor: default; }
+.gguided-options { padding: 16px; border-radius: 16px; background: var(--accent-soft); }
+.gguided-options p { margin: 0 0 10px; font-size: 14px; }
+.gguided-options [aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+@media(max-width:600px) { .gguided-sentence { padding: 14px; font-size: 19px; } .gguided-slot { min-width: 60px; padding: 0 10px; } }
 .ggap-line { line-height: 2.8 !important; }
 .ggap-input { display: inline-block; width: 5ch; min-height: 42px; line-height: 1.4; padding: 4px 6px; margin: 0 4px; text-align: center; vertical-align: baseline; border-style: dashed; }
 .ggap-input[data-ggap="1"] { width: 7ch; }
@@ -1724,6 +1734,8 @@ document.addEventListener("click", e => {
   if (d.gstart) return gStart(G?.unit || view.grammar, d.gstart);
   if ("gresume" in d) return gStart(view.grammar, "all", true);
   if ("gexit" in d) return gExit();
+  if (d.gslot != null) return gSelectGap(+d.gslot);
+  if (d.gslotChoice != null) return gSelectGap(+d.slot,+d.gslotChoice);
   if (d.gadd != null) return gBuild('add',+d.gadd);
   if (d.gremove != null) return gBuild('remove',+d.gremove);
   if ("gart" in d) return gOpenArt();

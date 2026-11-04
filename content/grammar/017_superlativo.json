@@ -1141,8 +1141,8 @@
     {
       "id": "17.3",
       "title": "17.3 · Рекламные слоганы",
-      "instruction": "Дополни слоган формой «самый» или «лучший».",
-      "inputLabel": "Сборка фразы · Выбор ответа",
+      "instruction": "Слова уже стоят на своих местах. Нажми на пропуск и выбери подходящее слово.",
+      "inputLabel": "Выбор слов в пропусках",
       "answerPlaceholder": "Твой ответ на испанском",
       "introGroups": [
         {
@@ -1171,18 +1171,8 @@
             "la bebida más sana y más refrescante",
             "la bebida más sana y refrescante"
           ],
-          "explain": "Bebida — женский род: la bebida más sana y la más refrescante. Во второй части название bebida можно не повторять.",
-          "context": "Напиши: «самый полезный и освежающий напиток»",
-          "clues": [
-            [
-              "bebida",
-              ""
-            ],
-            [
-              "sano + refrescante",
-              ""
-            ]
-          ],
+          "explain": "Bebida — женский род: la bebida. «Самый полезный» — más sana, «самый освежающий» — la más refrescante.",
+          "context": "Дополни слоган",
           "interaction": "build",
           "tiles": [
             "las",
@@ -1197,7 +1187,39 @@
             "refrescante",
             "el",
             "que"
-          ]
+          ],
+          "guidedGaps": {
+            "parts": [
+              "",
+              " bebida ",
+              " sana y ",
+              " ",
+              " refrescante"
+            ],
+            "choices": [
+              [
+                "el",
+                "la",
+                "los",
+                "las"
+              ],
+              [
+                "más",
+                "menos"
+              ],
+              [
+                "el",
+                "la",
+                "los",
+                "las"
+              ],
+              [
+                "más",
+                "menos"
+              ]
+            ]
+          },
+          "answerHint": "самый полезный и освежающий напиток"
         },
         {
           "prompt": "Regina, ___ del mundo.",
@@ -1205,22 +1227,32 @@
             "el reloj más caro"
           ],
           "explain": "По-испански один предмет — el reloj, поэтому el reloj más caro. Del mundo уже стоит после пропуска.",
-          "context": "Напиши: «самые дорогие часы (один предмет)»",
-          "clues": [
-            [
-              "reloj",
-              ""
-            ],
-            [
-              "caro",
-              ""
-            ]
-          ],
+          "context": "Дополни слоган",
           "options": [
             "el reloj más caro",
             "el reloj menos caro"
           ],
-          "interaction": "gap-choice"
+          "interaction": "gap-choice",
+          "guidedGaps": {
+            "parts": [
+              "",
+              " reloj ",
+              " caro"
+            ],
+            "choices": [
+              [
+                "el",
+                "la",
+                "los",
+                "las"
+              ],
+              [
+                "más",
+                "menos"
+              ]
+            ]
+          },
+          "answerHint": "самые дорогие часы (один предмет)"
         },
         {
           "prompt": "Ordenadores portátiles Misima, ___.",
@@ -1230,13 +1262,7 @@
             "los más pequeños y potentes"
           ],
           "explain": "Ordenadores — мужской род, множественное число: los más pequeños y los más potentes.",
-          "context": "Напиши: «самые маленькие и мощные»",
-          "clues": [
-            [
-              "pequeño + potente",
-              ""
-            ]
-          ],
+          "context": "Дополни слоган",
           "interaction": "build",
           "tiles": [
             "que",
@@ -1250,7 +1276,39 @@
             "más",
             "menos",
             "el"
-          ]
+          ],
+          "guidedGaps": {
+            "parts": [
+              "",
+              " ",
+              " pequeños y ",
+              " ",
+              " potentes"
+            ],
+            "choices": [
+              [
+                "el",
+                "la",
+                "los",
+                "las"
+              ],
+              [
+                "más",
+                "menos"
+              ],
+              [
+                "el",
+                "la",
+                "los",
+                "las"
+              ],
+              [
+                "más",
+                "menos"
+              ]
+            ]
+          },
+          "answerHint": "самые маленькие и мощные"
         },
         {
           "prompt": "Ropa deportiva Libre, ___.",
@@ -1260,13 +1318,7 @@
             "la más cómoda y elegante"
           ],
           "explain": "Ropa — женский род и единственное число: la más cómoda y la más elegante.",
-          "context": "Напиши: «самая удобная и элегантная»",
-          "clues": [
-            [
-              "cómodo + elegante",
-              ""
-            ]
-          ],
+          "context": "Дополни слоган",
           "interaction": "build",
           "tiles": [
             "que",
@@ -1280,7 +1332,39 @@
             "más",
             "menos",
             "las"
-          ]
+          ],
+          "guidedGaps": {
+            "parts": [
+              "",
+              " ",
+              " cómoda y ",
+              " ",
+              " elegante"
+            ],
+            "choices": [
+              [
+                "el",
+                "la",
+                "los",
+                "las"
+              ],
+              [
+                "más",
+                "menos"
+              ],
+              [
+                "el",
+                "la",
+                "los",
+                "las"
+              ],
+              [
+                "más",
+                "menos"
+              ]
+            ]
+          },
+          "answerHint": "самая удобная и элегантная"
         },
         {
           "prompt": "Galletas Artaneda, ___ para el desayuno.",
@@ -1289,20 +1373,29 @@
             "las más buenas"
           ],
           "explain": "О качестве обычно говорим las mejores. Galletas — женский род, множественное число. Las más buenas тоже возможно, например когда хвалим вкус.",
-          "context": "Напиши: «лучшее печенье»",
-          "clues": [
-            [
-              "bueno",
-              ""
-            ]
-          ],
+          "context": "Дополни слоган",
           "options": [
             "los mejores",
             "las mejores",
             "las más buenas",
             "las peores"
           ],
-          "interaction": "gap-choice"
+          "interaction": "gap-choice",
+          "guidedGaps": {
+            "parts": [
+              "",
+              " mejores"
+            ],
+            "choices": [
+              [
+                "el",
+                "la",
+                "los",
+                "las"
+              ]
+            ]
+          },
+          "answerHint": "лучшее печенье"
         },
         {
           "prompt": "Supermercados García, ___.",
@@ -1310,13 +1403,7 @@
             "los más económicos"
           ],
           "explain": "Supermercados — мужской род, множественное число: los más económicos.",
-          "context": "Напиши: «самые недорогие»",
-          "clues": [
-            [
-              "económico",
-              ""
-            ]
-          ],
+          "context": "Дополни слоган",
           "interaction": "build",
           "tiles": [
             "que",
@@ -1326,7 +1413,27 @@
             "más",
             "menos",
             "el"
-          ]
+          ],
+          "guidedGaps": {
+            "parts": [
+              "",
+              " ",
+              " económicos"
+            ],
+            "choices": [
+              [
+                "el",
+                "la",
+                "los",
+                "las"
+              ],
+              [
+                "más",
+                "menos"
+              ]
+            ]
+          },
+          "answerHint": "самые недорогие"
         },
         {
           "prompt": "Zumos Frutasol, ___.",
@@ -1334,13 +1441,7 @@
             "los más sanos"
           ],
           "explain": "Zumos — мужской род, множественное число: los más sanos.",
-          "context": "Напиши: «самые полезные»",
-          "clues": [
-            [
-              "sano",
-              ""
-            ]
-          ],
+          "context": "Дополни слоган",
           "interaction": "build",
           "tiles": [
             "que",
@@ -1350,7 +1451,27 @@
             "más",
             "menos",
             "el"
-          ]
+          ],
+          "guidedGaps": {
+            "parts": [
+              "",
+              " ",
+              " sanos"
+            ],
+            "choices": [
+              [
+                "el",
+                "la",
+                "los",
+                "las"
+              ],
+              [
+                "más",
+                "menos"
+              ]
+            ]
+          },
+          "answerHint": "самые полезные"
         },
         {
           "prompt": "Leche fresca Norte, ___ para su familia.",
@@ -1359,24 +1480,49 @@
             "la más buena"
           ],
           "explain": "Leche — женский род, единственное число: la mejor. Если говорим о вкусе, la más buena тоже возможно.",
-          "context": "Напиши: «лучшее молоко»",
-          "clues": [
-            [
-              "bueno",
-              ""
-            ]
-          ],
+          "context": "Дополни слоган",
           "options": [
             "la más buena",
             "la peor",
             "el mejor",
             "la mejor"
           ],
-          "interaction": "gap-choice"
+          "interaction": "gap-choice",
+          "guidedGaps": {
+            "parts": [
+              "",
+              " mejor"
+            ],
+            "choices": [
+              [
+                "el",
+                "la",
+                "los",
+                "las"
+              ]
+            ]
+          },
+          "answerHint": "лучшее молоко"
         }
       ],
       "phraseInput": true,
-      "inlineAnswer": true
+      "inlineAnswer": true,
+      "preview": {
+        "source": "Agua de Monteviejo, ___ bebida ___ sana.",
+        "gapParts": [
+          "Agua de Monteviejo, ",
+          " bebida ",
+          " sana."
+        ],
+        "gapAnswers": [
+          "la",
+          "más"
+        ],
+        "answer": "la bebida más sana",
+        "targetPrefix": "",
+        "translation": "Самый полезный напиток.",
+        "tip": "Нужно выбрать только слова в пропусках: остальная фраза уже написана."
+      }
     },
     {
       "id": "17.4",

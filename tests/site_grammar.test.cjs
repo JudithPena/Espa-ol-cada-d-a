@@ -518,7 +518,13 @@ test('all 17 units complete through their actual interaction and keep canonical 
   run(`var turns=0;
   while(!G.ended&&turns++<400){const s=G.steps[G.at];
    if(s.type==='question'){const q=gGroups(gUnit()).find(g=>g.id===s.group).questions[s.qi];
-    if(q.tiles){const r=gResponse(s);for(const word of q.answers[0].split(' ')){gBuild('add',q.tiles.findIndex((w,i)=>w===word&&!r.chosen?.includes(i)));}gCheck();}
+    if(q.guidedGaps){
+      const f=q.guidedGaps;let found;
+      const search=(values=[])=>{if(values.length===f.choices.length){if(gComposeGaps(f.parts,values)===q.answers[0])found=values;return;}
+        for(const word of f.choices[values.length])search([...values,word]);};search();
+      found.forEach((word,i)=>gSelectGap(i,f.choices[i].indexOf(word)));gCheck();
+    }
+    else if(q.tiles){const r=gResponse(s);for(const word of q.answers[0].split(' ')){gBuild('add',q.tiles.findIndex((w,i)=>w===word&&!r.chosen?.includes(i)));}gCheck();}
     else if(q.options)gPick(q.options.indexOf(q.answers[0]));
     else{gResponse(s).value=q.answers[0];gCheck();}
    }gMove(1);
@@ -549,4 +555,34 @@ test('17.2 keeps the Russian answer cue visible before, during and after assembl
  }
  assert.ok(unit17.exercises[1].questions.every(q=>q.answerHint));
  assert.ok(!run('gAnswerHint({answerHint:"<img>"})').includes('<img>'));
+});
+
+test('17.3 fills words in a fixed sentence, keeps partial choices on resume and checks manually',()=>{
+ const run=context([unit17]);
+ unlockUntil(run,'exercise:17.3');
+ run('gStart(COURSE.grammar[0].id,"exercise:17.3");gMove(1);document.querySelector=()=>null;');
+ let html=run('gPlayerView()');
+ assert.equal((html.match(/data-gslot=/g)||[]).length,4);
+ assert.ok(html.includes(' bebida ') && html.includes(' sana y ') && html.includes(' refrescante'));
+ assert.ok(html.includes('самый полезный и освежающий напиток'));
+ assert.ok(!html.includes('data-gadd=') && !html.includes('data-gpick='));
+ assert.ok(html.includes('data-gcheck disabled'));
+ run('gSelectGap(0,1);gCheck();');
+ assert.equal(run('gResponse(G.steps[G.at]).checked'),false);
+ assert.equal(run('gResponse(G.steps[G.at]).activeGap'),1);
+ run('G=null;gStart(COURSE.grammar[0].id,"all",true);');
+ assert.equal(run('gResponse(G.steps[G.at]).slotValues[0]'),'la');
+ run('gSelectGap(1,1);gSelectGap(2,1);gSelectGap(3,0);gCheck();');
+ assert.equal(run('gResponse(G.steps[G.at]).good'),false);
+ html=run('gPlayerView()');
+ assert.ok(html.includes('data-gnext'));
+ assert.ok(!html.includes(' / la bebida'));
+ run('gRetry();gSelectGap(0,1);gSelectGap(1,0);gSelectGap(2,1);gSelectGap(3,0);gCheck();');
+ assert.equal(run('gResponse(G.steps[G.at]).good'),true);
+ assert.equal(run('G.ended'),false);
+ run('var checkedAt=G.at;gMove(1);');
+ assert.equal(run('G.at'),run('checkedAt+1'));
+ assert.equal(run('gQuestionMode(gUnit().exercises[2].questions[0],{value:"la más",chosen:[5,2]})'),'build');
+ assert.equal(run('gQuestionMode(gUnit().exercises[2].questions[0],{value:"la bebida",checked:false})'),'input');
+ assert.ok(!run('gGuided({...gUnit().exercises[2].questions[0],answerHint:"<img>"},{})').includes('<img>'));
 });

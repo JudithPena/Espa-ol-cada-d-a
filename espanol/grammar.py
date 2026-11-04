@@ -4,6 +4,7 @@ import json
 import base64
 import hashlib
 from collections import Counter
+from itertools import product
 from pathlib import Path
 
 
@@ -61,6 +62,16 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
                     raise ValueError(f"{path}: answer and explanation required")
                 if q.get("options") and not set(q["answers"]) <= set(q["options"]):
                     raise ValueError(f"{path}: correct answer missing from options")
+                if "guidedGaps" in q:
+                    frame = q["guidedGaps"]
+                    parts, choices = frame.get("parts", []), frame.get("choices", [])
+                    if (not 1 <= len(choices) <= 6 or len(parts) != len(choices)+1
+                            or not all(isinstance(p, str) for p in parts)
+                            or any(not isinstance(c, list) or not 2 <= len(c) <= 6
+                                   or not all(isinstance(w, str) and w.strip() for w in c) for c in choices)
+                            or not any(''.join(p+(values[i] if i<len(values) else '') for i,p in enumerate(parts)).strip()
+                                       in q['answers'] for values in product(*choices))):
+                        raise ValueError(f"{path}: guided gaps must allow a complete accepted answer")
                 if "tiles" in q:
                     tiles = q["tiles"]
                     if (q.get("interaction") != "build" or q.get("options") or not isinstance(tiles, list)
