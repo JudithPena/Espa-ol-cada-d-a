@@ -57,6 +57,12 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
             if group["id"] in ids:
                 raise ValueError(f"{path}: duplicate exercise id")
             ids.add(group["id"])
+            if 'theorySections' in group:
+                sections = group['theorySections']
+                if (not isinstance(sections, list) or not sections
+                        or any(type(i) is not int or not 0 <= i < len(unit['sections']) for i in sections)
+                        or len(set(sections)) != len(sections)):
+                    raise ValueError(f"{path}: theorySections must identify distinct existing theory sections")
             for format in [group.get('inputFormat')] + [q.get('inputFormat') for q in group['questions']]:
                 if format is not None and (not isinstance(format, dict) or any(
                     not isinstance(format.get(key), str) or not format[key].strip()

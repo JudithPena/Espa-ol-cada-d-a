@@ -480,6 +480,11 @@ main { padding-block: 16px 110px; }
 .gfill-label { display: block; margin: 12px 0 6px; color: var(--muted); font-size: 13px; }
 .ginput-format { margin: 12px 0 8px; font-size: 14px; line-height: 1.5; }
 .ginput-format p { margin: 4px 0; }
+.ghearts { display: inline-flex; flex: none; gap: 3px; color: #cf4259; font-size: 24px; line-height: 1; }
+.ghearts .is-empty { color: var(--line); }
+.greview-label { flex: 1; min-width: 0; font-size: 14px; }
+.glast-chance { font-weight: 700; }
+.gfailed { max-width: 650px; margin-inline: auto; }
 .gfill-sentence .gaccents { margin-bottom: 12px; }
 .gguided { display: grid; gap: 18px; }
 .gguided-sentence { margin: 0; padding: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; font-size: 21px; font-weight: 650; line-height: 2.7; }
@@ -1279,6 +1284,8 @@ function grammarForm(unit, group) {
 function gradeGrammar(unit, group, values) {
   const key = grammarKey(unit, group), correct = group.questions.filter((q, i) => grammarCorrect(q, values[i] || "")).length;
   grammarAttempts.set(key, {values, correct});
+  const attempt=gAttempt(unit,group);
+  if(group.questions.length-correct>=G_ERROR_LIMIT || (attempt && attempt.status!=='passed')) return;
   P.grammar ||= {};
   const previous = P.grammar[key]?.correct || 0;
   if (!P.grammar[key] || correct > previous) P.grammar[key] = {correct, total: group.questions.length};
@@ -1728,10 +1735,7 @@ document.addEventListener("submit", e => {
   const group = [...unit.sections.map(s => s.check).filter(Boolean), ...unit.exercises].find(g => g.id === form.dataset.grammarForm);
   if (grammarAttempts.has(grammarKey(unit, group))) return;
   const data = new FormData(form);
-  gradeGrammar(unit, group, group.questions.map((_, i) => data.get(`q${i}`) || ""));
-  const id = form.dataset.grammarForm;
-  render();
-  document.querySelector(`[data-grammar-form="${id}"] .gsummary`).focus();
+  gSubmitGrammarForm(unit,group,group.questions.map((_,i)=>data.get(`q${i}`) || ''));
 });
 document.addEventListener("click", e => {
   const closed = e.target.closest(".spoiler:not(.open)");
@@ -1747,6 +1751,10 @@ document.addEventListener("click", e => {
   if (d.gstart) return gStart(G?.unit || view.grammar, d.gstart);
   if ("gresume" in d) return gStart(view.grammar, "all", true);
   if ("gexit" in d) return gExit();
+  if ("greviewTheory" in d) return gReviewTheory();
+  if ("greviewBack" in d) return gReviewMove(-1);
+  if ("greviewNext" in d) return gReviewMove(1);
+  if ("grepeatExercise" in d) return gRepeatExercise();
   if (d.gslot != null) return gSelectGap(+d.gslot);
   if (d.gslotChoice != null) return gSelectGap(+d.slot,+d.gslotChoice);
   if (d.gadd != null) return gBuild('add',+d.gadd);
@@ -1813,7 +1821,7 @@ document.addEventListener("click", e => {
   if ("openall" in d) { P.openAll = !P.openAll; save(); render(); return; }
   if (d.reset) {
     if (d.reset === "ask") view.confirmReset = true;
-    else { if (d.reset === "yes") { P = fresh(); grammarAttempts.clear(); grammarDrafts.clear(); store.set(G_SESSION_KEY, ""); save(); toast("Прогресс сброшен"); } view.confirmReset = false; }
+    else { if (d.reset === "yes") { P = fresh(); grammarAttempts.clear(); grammarDrafts.clear(); store.set(G_SESSION_KEY, ""); store.set(G_ATTEMPTS_KEY, ""); save(); toast("Прогресс сброшен"); } view.confirmReset = false; }
     return render();
   }
   if (!S || S.kind === "result") return;

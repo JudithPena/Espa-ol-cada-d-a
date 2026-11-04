@@ -1,6 +1,90 @@
 /* Пошаговый урок грамматики. Данные и проверка ответов общие с остальным сайтом. */
 let G = null;
 const G_SESSION_KEY = "espanol-cada-dia.grammar-session.v1";
+const G_ATTEMPTS_KEY = "espanol-cada-dia.grammar-attempts.v1";
+const G_ERROR_LIMIT = 3;
+function gAttempts() {
+  try { const records=JSON.parse(store.get(G_ATTEMPTS_KEY) || '{}'); return records && typeof records==='object' && !Array.isArray(records) ? records : {}; }
+  catch (_) { return {}; }
+}
+const gAttempt = (unit, group) => gAttempts()[grammarKey(unit,group)];
+function gStoreAttempt(unit, group, attempt) {
+  const records=gAttempts(); records[grammarKey(unit,group)]=attempt;
+  store.set(G_ATTEMPTS_KEY,JSON.stringify(records));
+}
+function gNewAttempt(responses={}) {
+  const errors=Object.values(responses).filter(r=>r.checked && !r.good).length;
+  return {id:Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),errors,status:errors>=G_ERROR_LIMIT?'failed':'active',responses};
+}
+function gEnsureAttempt(unit, group) {
+  G.attemptIds ||= {};
+  let attempt=gAttempt(unit,group);
+  if(G.attemptIds[group.id] !== attempt?.id || !attempt) {
+    const old=G.responses[group.id] || {};
+    if(!attempt || (attempt.status==='passed' && !G.resumed && !G.attemptIds[group.id])) {
+      attempt=gNewAttempt(G.resumed ? old : {});
+      // Completed attempts from before the limit keep their earned progress.
+      if(G.resumed && group.questions.every((_,i)=>old[i]?.checked) && P.grammar?.[grammarKey(unit,group)]) attempt.status='passed';
+      gStoreAttempt(unit,group,attempt);
+    }
+    G.responses[group.id]=attempt.responses;
+    G.attemptIds[group.id]=attempt.id;
+  }
+  if(['failed','review'].includes(attempt.status)) G.recovery=group.id;
+  return attempt;
+}
+function gFlushAttempt() {
+  const groupId=G.recovery || G.steps[G.at]?.group;
+  const group=gGroups(gUnit()).find(g=>g.id===groupId);
+  if(!group || !G.responses[groupId]) return;
+  const attempt=gEnsureAttempt(gUnit(),group);
+  // A second tab or an older screen cannot overwrite a submitted answer.
+  for(const [i,response] of Object.entries(G.responses[groupId])) {
+    if(!attempt.responses[i]?.checked) attempt.responses[i]=response;
+  }
+  G.responses[groupId]=attempt.responses;
+  gStoreAttempt(gUnit(),group,attempt);
+}
+function gTheorySections(unit, group) {
+  const own=unit.sections.findIndex(s=>s.check?.id===group.id);
+  return own>=0 ? [own] : group.theorySections || [0];
+}
+function gReviewTheory() {
+  const unit=gUnit(), group=gGroups(unit).find(g=>g.id===G.recovery);
+  if(!group) return;
+  const attempt=gAttempt(unit,group);
+  if(attempt?.status!=='failed') return;
+  attempt.status='review'; attempt.reviewAt=0;
+  gStoreAttempt(unit,group,attempt); gSave(); render();
+}
+function gReviewMove(delta) {
+  const unit=gUnit(), group=gGroups(unit).find(g=>g.id===G.recovery), attempt=group && gAttempt(unit,group);
+  if(attempt?.status!=='review') return;
+  attempt.reviewAt=Math.max(0,Math.min(gTheorySections(unit,group).length-1,(attempt.reviewAt||0)+delta));
+  gStoreAttempt(unit,group,attempt); gSave(); render();
+}
+function gRepeatExercise() {
+  const unit=gUnit(), group=gGroups(unit).find(g=>g.id===G.recovery), attempt=group && gAttempt(unit,group);
+  if(attempt?.status!=='review' || attempt.reviewAt!==gTheorySections(unit,group).length-1) return;
+  const freshAttempt=gNewAttempt(); gStoreAttempt(unit,group,freshAttempt);
+  G.responses[group.id]={}; G.attemptIds[group.id]=freshAttempt.id;
+  G.recovery=null; G.retry=false; G.ended=false;
+  G.steps=gSteps(unit,G.route);
+  G.at=G.steps.findIndex(s=>s.group===group.id);
+  gSave(); render();
+}
+function gHearts(attempt) {
+  const left=Math.max(0,G_ERROR_LIMIT-(attempt?.errors||0));
+  return `<span class="ghearts" role="img" aria-label="Осталось попыток: ${left} из 3">${[0,1,2].map(i=>`<span aria-hidden="true"${i>=left?' class="is-empty"':''}>♥</span>`).join('')}</span>`;
+}
+function gRecoveryView(unit) {
+  const group=gGroups(unit).find(g=>g.id===G.recovery), attempt=gAttempt(unit,group);
+  if(attempt.status==='review') {
+    const sections=gTheorySections(unit,group), at=attempt.reviewAt||0, section=unit.sections[sections[at]], last=at===sections.length-1;
+    return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><span class="greview-label">Повторение правила</span><span class="pcount">${at+1}/${sections.length}</span></div></div><div class="pbody"><div class="wrap"><span class="kicker">${esc(group.title)} · Повторение</span><h2 id="g-title" tabindex="-1">${esc(section.title)}</h2>${gTheory(section)}</div></div><div class="pfoot"><div class="wrap gplayer-actions"><button class="btn ghost" ${at?'data-greview-back':'data-gexit'}>← Назад</button><button class="btn" ${last?'data-grepeat-exercise':'data-greview-next'}>${last?'Попробовать ещё раз':'Далее →'}</button></div></div></div>`;
+  }
+  return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="К разделам урока">×</button><span class="greview-label">${esc(group.title)}</span>${gHearts(attempt)}</div></div><div class="pbody"><div class="wrap gresult gfailed"><span class="gresult-icon" aria-hidden="true">📖</span><h2 id="g-title" tabindex="-1">Пока не получилось. Давай повторим правило!</h2><p>Ты допустил 3 ошибки. Повтори теорию, а затем попробуй пройти упражнение ещё раз.</p><p class="muted">Начнём с правила «${esc(unit.sections[gTheorySections(unit,group)[0]].title)}».</p></div></div><div class="pfoot"><div class="wrap"><button class="btn wide" data-greview-theory>Повторить теорию</button></div></div></div>`;
+}
 const gUnit = () => (COURSE.grammar || []).find(u => u.id === G?.unit);
 function gSyncViewport() {
   const player=document.querySelector('.gplayer');
@@ -25,7 +109,7 @@ function gStepRoute(unit, step) {
   return index >= 0 ? `section:${index}` : `exercise:${step.group}`;
 }
 function gSaved() { try { return JSON.parse(store.get(G_SESSION_KEY) || "null"); } catch (_) { return null; } }
-function gSave() { if (G) store.set(G_SESSION_KEY, JSON.stringify(G)); }
+function gSave() { if (G) { gFlushAttempt(); store.set(G_SESSION_KEY, JSON.stringify(G)); } }
 function gSteps(unit, route = "all") {
   const steps = [];
   gRoutes(unit).forEach(r => {
@@ -53,7 +137,7 @@ function gStart(unitId, route = "all", resume = false) {
     const old=saved.steps[saved.at];
     let at=reordered.findIndex(s=>s.type===old.type && s.section===old.section && s.group===old.group && s.qi===old.qi);
     if(at<0 || !gRouteOpen(unit,gStepRoute(unit,reordered[at]))) at=reordered.findIndex(s=>gRouteOpen(unit,gStepRoute(unit,s)) && !gRouteDone(unit,gStepRoute(unit,s)));
-    G={...saved,route:restoredRoute,steps:reordered,at:Math.max(0,at),responses:saved.responses || {}};
+    G={...saved,route:restoredRoute,steps:reordered,at:Math.max(0,at),responses:saved.responses || {},attemptIds:{},resumed:true};
   }
   else if (steps.length) G = {unit:unit.id, route, steps, at:0, responses:{}, ended:false};
   else return;
@@ -62,6 +146,8 @@ function gStart(unitId, route = "all", resume = false) {
 }
 function gResponse(step) {
   if (step.type !== "question") return null;
+  const group=gGroups(gUnit()).find(g=>g.id===step.group);
+  gEnsureAttempt(gUnit(),group);
   G.responses[step.group] ||= {};
   const response=G.responses[step.group][step.qi] ||= {value:"", checked:false};
   const q=gGroups(gUnit()).find(g=>g.id===step.group)?.questions[step.qi];
@@ -69,18 +155,30 @@ function gResponse(step) {
   return response;
 }
 function gCheck() {
+  if(!G || G.ended || G.recovery) return;
   const step = G.steps[G.at], response = gResponse(step);
   if (!response || response.checked || !response.value.trim()) return;
   const unit = gUnit(), group = gGroups(unit).find(g => g.id === step.group);
+  const attempt=gAttempt(unit,group);
+  if(attempt.status!=='active') { gSave(); render(); return; }
+  if(attempt.responses[step.qi]?.checked) {
+    G.responses[group.id]=attempt.responses; gSave(); render(); return;
+  }
   response.checked = true;
   response.good = grammarCorrect(group.questions[step.qi], response.value);
-  if (group.questions.every((_, i) => G.responses[group.id]?.[i]?.checked)) {
+  attempt.responses[step.qi]=response;
+  if(!response.good) attempt.errors++;
+  if(attempt.errors>=G_ERROR_LIMIT) { attempt.status='failed'; G.recovery=group.id; }
+  else if(group.questions.every((_,i)=>attempt.responses[i]?.checked)) attempt.status='passed';
+  G.responses[group.id]=attempt.responses;
+  gStoreAttempt(unit,group,attempt);
+  if (attempt.status==='passed') {
     gradeGrammar(unit, group, group.questions.map((_, i) => G.responses[group.id][i].value));
   }
   gSave(); render(); sfx(response.good);
 }
 function gPick(index) {
-  if (!G || G.ended) return;
+  if (!G || G.ended || G.recovery) return;
   const step = G.steps[G.at], response = gResponse(step);
   if (!response || response.checked) return;
   const options = gGroups(gUnit()).find(g => g.id === step.group).questions[step.qi].options;
@@ -95,7 +193,7 @@ function gQuestionMode(q, response) {
   return q.options ? 'choice' : 'input';
 }
 function gBuild(action, index) {
-  if (!G || G.ended) return;
+  if (!G || G.ended || G.recovery) return;
   const step=G.steps[G.at], response=gResponse(step), q=gGroups(gUnit()).find(g=>g.id===step.group)?.questions[step.qi];
   if (!q?.tiles || !response || response.checked || !Number.isInteger(index)) return;
   response.chosen ||= [];
@@ -120,7 +218,7 @@ function gComposeGaps(parts, values) {
   return parts.map((part,i)=>part+(values[i] || '')).join('').trim();
 }
 function gSelectGap(slot, option) {
-  if (!G || G.ended) return;
+  if (!G || G.ended || G.recovery) return;
   const response=gResponse(G.steps[G.at]);
   const q=gGroups(gUnit()).find(g=>g.id===G.steps[G.at].group)?.questions[G.steps[G.at].qi];
   if (!response || response.checked || !q?.guidedGaps || !Number.isInteger(slot) || !q.guidedGaps.choices[slot]) return;
@@ -149,6 +247,8 @@ function gGuidedContents(q,response) {
 }
 function gGuided(q,response) { return `<div class="gguided">${gGuidedContents(q,response)}</div>`; }
 function gMove(delta) {
+  if(!G) return;
+  if(G.recovery) return gReviewMove(delta);
   if (delta < 0 && G.at === 0) return gExit();
   const step = G.steps[G.at];
   if (delta > 0 && step.type === "question" && !gResponse(step).checked) return;
@@ -163,14 +263,35 @@ function gMove(delta) {
 }
 function gExit() { gSave(); G = null; view.tab = "grammar"; render(); }
 function gRetry() {
+  if(G.recovery) return;
   const wrong = G.steps.filter(s => s.type === "question" && !G.responses[s.group]?.[s.qi]?.good);
   if (!wrong.length) return;
-  for (const s of wrong) G.responses[s.group][s.qi] = {value:"", checked:false};
+  for (const id of new Set(wrong.map(s=>s.group))) {
+    const group=gGroups(gUnit()).find(g=>g.id===id), attempt=gEnsureAttempt(gUnit(),group);
+    if(attempt.errors>=G_ERROR_LIMIT) { attempt.status='failed'; gStoreAttempt(gUnit(),group,attempt); G.recovery=id; gSave(); render(); return; }
+    attempt.status='active';
+    for(const s of wrong.filter(s=>s.group===id)) attempt.responses[s.qi]={value:'',checked:false};
+    G.responses[id]=attempt.responses; gStoreAttempt(gUnit(),group,attempt);
+  }
   G.steps = wrong; G.at = 0; G.ended = false; G.retry = true; gSave(); render();
 }
 function gNextRoute(unit, route) {
   const routes = gRoutes(unit);
   return route === "all" ? null : routes[routes.indexOf(route) + 1];
+}
+function gSubmitGrammarForm(unit, group, values) {
+  const section=unit.sections.findIndex(s=>s.check?.id===group.id);
+  const route=section>=0 ? `section:${section}` : `exercise:${group.id}`;
+  gStart(unit.id,route);
+  if(!G || G.unit!==unit.id || G.route!==route || G.recovery) return;
+  for(let qi=0;qi<group.questions.length;qi++) {
+    G.at=G.steps.findIndex(s=>s.group===group.id && s.qi===qi);
+    const response=gResponse(G.steps[G.at]);
+    if(!response.checked) { response.value=values[qi] || ''; gCheck(); }
+    if(G.recovery || !response.checked) break;
+  }
+  if(!G.recovery && gAttempt(unit,group)?.status==='passed') G.ended=true;
+  gSave(); render();
 }
 function grammarView() {
   const units = COURSE.grammar || [], unit = units.find(u => u.id === view.grammar);
@@ -201,7 +322,9 @@ function gArtFigure(art) {
   return `<figure class="gscene"><button class="gscene-image" data-gart aria-label="Увеличить иллюстрацию"><img src="${esc(art.image)}" alt="${esc(art.alt)}" width="1200" height="800" decoding="async"><span aria-hidden="true">⤢</span></button><figcaption>${gArtExamples(art)}</figcaption></figure>`;
 }
 function gOpenArt() {
-  const step=G?.steps[G.at], art=step?.type==='theory' && gUnit()?.sections[step.section].illustration;
+  const step=G?.steps[G.at], unit=gUnit(), group=G?.recovery && gGroups(unit).find(g=>g.id===G.recovery);
+  const recovery=group && gAttempt(unit,group);
+  const art=recovery?.status==='review' ? unit.sections[gTheorySections(unit,group)[recovery.reviewAt||0]].illustration : step?.type==='theory' && unit?.sections[step.section].illustration;
   if (!art || document.querySelector('#g-art-modal')) return;
   const opener=document.activeElement, dialog=document.createElement('dialog');
   dialog.id='g-art-modal'; dialog.className='gart-modal'; dialog.setAttribute('aria-label','Иллюстрация к правилу');
@@ -262,7 +385,7 @@ function gIntro(group) {
   const visual = pictures.length ? `<div class="gintro-art" aria-hidden="true">${pictures.map(q => `<img src="${esc(q.image)}" alt="" width="384" height="384">`).join("")}</div>` : preview ? `<div class="gintro-demo"><span class="kicker">Образец</span><div class="gintro-source" lang="es">${gWorkedPreview(preview)}${preview.targetPrefix === "" ? "" : ` <span aria-hidden="true">→</span> ${esc(preview.targetPrefix ?? "la")}`}</div><div class="gintro-answer" lang="es">${esc(preview.answer)}<span aria-hidden="true">✓</span></div><span class="muted">${esc(preview.translation)}</span></div>` : group.introGroups ? grammarWordGroups(group.introGroups) : "";
   const choice = group.questions.every(q => q.options), modes=new Set(group.questions.map(q=>q.guidedGaps?'Выбор слов в пропусках':q.tiles?'Сборка фразы':q.options?'Выбор ответа':'Короткий ввод')), mixed=modes.size>1;
   const tip = preview?.tip || '';
-  return `<div class="gintro ${visual ? "has-visual" : ""}">${visual}<div class="gintro-copy"><div class="gintro-tags"><span>${group.questions.length} ${plural(group.questions.length,"задание","задания","заданий")}</span><span>${esc([...modes].join(' · '))}</span></div><p>${esc(group.instruction)}</p>${modes.has('Сборка фразы') ? '<p class="muted gintro-tip">Нажимай на слова по порядку. Выбранное слово можно убрать нажатием.</p>' : mixed ? '<p class="muted gintro-tip">Часть ответов выбирай из вариантов, остальные вписывай самостоятельно.</p>' : tip ? `<p class="muted gintro-tip">${esc(tip)}</p>` : ""}</div>${group.family ? `<div class="gintro-family">${grammarFamily(group.family)}</div>` : ""}${group.example ? `<div class="gworked-example gintro-family"><small>${esc(group.example.label)}</small><b>${esc(group.example.es)}</b><small>${esc(group.example.ru)}</small></div>` : ""}</div>`;
+  return `<div class="gintro ${visual ? "has-visual" : ""}">${visual}<div class="gintro-copy"><div class="gintro-tags"><span>${group.questions.length} ${plural(group.questions.length,"задание","задания","заданий")}</span><span>${esc([...modes].join(' · '))}</span></div><p>${esc(group.instruction)}</p><p class="muted gintro-tip">После трёх ошибок повторим правило и начнём упражнение заново.</p>${modes.has('Сборка фразы') ? '<p class="muted gintro-tip">Нажимай на слова по порядку. Выбранное слово можно убрать нажатием.</p>' : mixed ? '<p class="muted gintro-tip">Часть ответов выбирай из вариантов, остальные вписывай самостоятельно.</p>' : tip ? `<p class="muted gintro-tip">${esc(tip)}</p>` : ""}</div>${group.family ? `<div class="gintro-family">${grammarFamily(group.family)}</div>` : ""}${group.example ? `<div class="gworked-example gintro-family"><small>${esc(group.example.label)}</small><b>${esc(group.example.es)}</b><small>${esc(group.example.ru)}</small></div>` : ""}</div>`;
 }
 function gRatings(ratings) {
   if (!ratings) return "";
@@ -288,6 +411,9 @@ function gPicture(q) {
 }
 function gPlayerView() {
   const unit = gUnit();
+  const current=G.steps[G.at], currentGroup=current?.group && gGroups(unit).find(g=>g.id===current.group);
+  const attempt=currentGroup && !G.ended ? gEnsureAttempt(unit,currentGroup) : null;
+  if(G.recovery) return gRecoveryView(unit);
   if (G.ended) {
     const tested = G.steps.filter(s => s.type === "question"), good = tested.filter(s => G.responses[s.group]?.[s.qi]?.good).length;
     if (gUnitFinished(unit)) return gFinalView(unit, tested, good);
@@ -320,8 +446,8 @@ function gPlayerView() {
     if (group.title === "Мини-проверка" && group.instruction) content = `<p class="muted ginstruction">${esc(group.instruction.replace(/ Затем нажми.*$/, ""))}</p>` + content;
   }
   const checked = response?.checked;
-  const feedback = checked ? `<div class="fb" role="status"><h3>${response.good ? "✓ Верно" : "Пока неверно"}</h3>${response.good ? "" : `<span class="ans">Верный ответ: ${esc(response.slotValues ? group.questions[step.qi].answers[0] : group.questions[step.qi].answers.map(a=>gOptionLabel(group.questions[step.qi],a)).join(" / "))}</span>`}<span class="ex">${esc(group.questions[step.qi].explain)}</span></div>` : "";
-  return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><div class="bar" role="progressbar" aria-label="Прогресс урока" aria-valuemin="0" aria-valuemax="${G.steps.length}" aria-valuenow="${G.at}"><i style="width:${Math.round(G.at / G.steps.length * 100)}%"></i></div><span class="pcount">${G.at + 1}/${G.steps.length}</span></div></div>
+  const feedback = checked ? `<div class="fb" role="status"><h3>${response.good ? "✓ Верно" : "Пока неверно"}</h3>${!response.good && attempt?.errors===2 ? '<p class="glast-chance">Осталась последняя попытка. Ещё одна ошибка — и вернёмся к правилу.</p>' : ''}${response.good ? "" : `<span class="ans">Верный ответ: ${esc(response.slotValues ? group.questions[step.qi].answers[0] : group.questions[step.qi].answers.map(a=>gOptionLabel(group.questions[step.qi],a)).join(" / "))}</span>`}<span class="ex">${esc(group.questions[step.qi].explain)}</span></div>` : "";
+  return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><div class="bar" role="progressbar" aria-label="Прогресс урока" aria-valuemin="0" aria-valuemax="${G.steps.length}" aria-valuenow="${G.at}"><i style="width:${Math.round(G.at / G.steps.length * 100)}%"></i></div>${attempt ? gHearts(attempt) : ''}<span class="pcount">${G.at + 1}/${G.steps.length}</span></div></div>
     <div class="pbody"><div class="wrap"><span class="kicker">${esc(kicker)}</span><h2 id="g-title" tabindex="-1">${esc(title)}</h2>${content}</div></div>
     <div class="pfoot ${checked ? response.good ? "good" : "bad" : ""}"><div class="wrap">${feedback}<div class="gplayer-actions"><button class="btn ghost" data-gback${G.at ? "" : ' aria-label="Назад к разделам урока"'}>← Назад</button>${step.type === "question" && !checked ? gQuestionMode(group.questions[step.qi],response)==='choice' ? '<span class="muted gpick-hint">Нажми на вариант ответа</span>' : `<button class="btn" data-gcheck ${response.value.trim() ? "" : "disabled"}>Проверить</button>` : `<button class="btn" data-gnext>${G.at === G.steps.length - 1 ? "Завершить" : step.type === "intro" ? "Начать" : "Далее →"}</button>`}</div></div></div></div>`;
 }

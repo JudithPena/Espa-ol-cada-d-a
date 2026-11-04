@@ -11,9 +11,8 @@ const unit3 = JSON.parse(fs.readFileSync('content/grammar/003_singular_plural.js
 const unit17 = JSON.parse(fs.readFileSync('content/grammar/017_superlativo.json','utf8'));
 const unit15 = JSON.parse(fs.readFileSync('content/grammar/015_comparativos.json','utf8'));
 const unit16 = JSON.parse(fs.readFileSync('content/grammar/016_igualdad.json','utf8'));
-function context(grammar = [unit]) {
+function context(grammar = [unit], storage = new Map()) {
   const noop = () => {};
-  const storage = new Map();
   const ctx = vm.createContext({console, setTimeout:noop, clearTimeout:noop, addEventListener:noop,
     localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},
     window:{addEventListener:noop}, document:{documentElement:{classList:{toggle:noop}},addEventListener:noop,getElementById:()=>null,querySelector:()=>({focus:noop})},
@@ -118,7 +117,7 @@ test('stages unlock in order after completing the previous practice', () => {
  assert.equal(run('gRouteOpen(COURSE.grammar[0],"section:1")'),false);
  run('gStart(COURSE.grammar[0].id,"exercise:1.3")');
  assert.equal(run('G'),null);
- run(`gStart(COURSE.grammar[0].id,"section:0"); gMove(1); while(!G.ended) { gResponse(G.steps[G.at]).value="wrong";gCheck();gMove(1); }`);
+ run(`gStart(COURSE.grammar[0].id,"section:0"); gMove(1); while(!G.ended) { const step=G.steps[G.at]; gResponse(step).value=step.qi<2?"wrong":COURSE.grammar[0].sections[0].check.questions[step.qi].answers[0];gCheck();gMove(1); }`);
  assert.equal(run('gRouteOpen(COURSE.grammar[0],"section:1")'),true);
  assert.equal(run('gRouteOpen(COURSE.grammar[0],"section:2")'),false);
 });
@@ -699,4 +698,166 @@ test('format overrides work in textareas, and article-free answers stay article-
  assert.equal(gender('grammarCorrect(COURSE.grammar[0].exercises[1].questions[0],"señora")'),true);
  assert.equal(gender('grammarCorrect(COURSE.grammar[0].exercises[1].questions[0],"la señora")'),false);
  assert.ok(gender('grammarForm(COURSE.grammar[0],COURSE.grammar[0].exercises[1])').includes('без артикля: la уже написано'));
+});
+
+test('three mistakes stop every exercise in all 17 units, without credit or a Next button', () => {
+ const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
+ let count=0;
+ for(const u of units) for(const group of u.exercises) {
+  const run=context([u]);unlockUntil(run,'exercise:'+group.id);
+  run(`gStart(COURSE.grammar[0].id,${JSON.stringify('exercise:'+group.id)});gMove(1);`);
+  assert.ok(run('gPlayerView()').includes('Осталось попыток: 3 из 3'));
+  for(let error=1;error<=3;error++) {
+   run(`var s=G.steps[G.at],q=gGroups(gUnit()).find(g=>g.id===s.group).questions[s.qi];
+     if(q.options)gPick(q.options.findIndex(o=>!grammarCorrect(q,o)));
+     else{gResponse(s).value='wrong';gCheck();}`);
+   assert.equal(run(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id===${JSON.stringify(group.id)})).errors`),error,u.number+'/'+group.id);
+   if(error<3) {
+    assert.ok(run('gPlayerView()').includes('Осталось попыток: '+(3-error)+' из 3'));
+    if(error===2)assert.ok(run('gPlayerView()').includes('Осталась последняя попытка'));
+    run('gMove(1)');
+   }
+  }
+  assert.equal(run(`G.recovery`),group.id);
+  assert.equal(run(`!!P.grammar[${JSON.stringify(u.id+'/'+group.id)}]`),false);
+  assert.ok(run('gPlayerView()').includes('Пока не получилось. Давай повторим правило!'));
+  assert.ok(!run('gPlayerView()').includes('data-gnext'));
+  const before=run('G.at');run('gMove(1);gMove(-1);gCheck();gRepeatExercise();');
+  assert.equal(run('G.at'),before);
+  assert.equal(run(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id===${JSON.stringify(group.id)})).errors`),3);
+  count++;
+ }
+ assert.equal(count,60);
+});
+
+test('exit, route restart, whole-unit restart and reload preserve the failed or active attempt', () => {
+ const run=context([unit3]);unlockUntil(run,'exercise:3.2');
+ run('gStart(COURSE.grammar[0].id,"exercise:3.2");gMove(1);gResponse(G.steps[G.at]).value="wrong";gCheck();gMove(1);gResponse(G.steps[G.at]).value="wrong";gCheck();');
+ const id=run('gAttempt(gUnit(),gUnit().exercises[1]).id');
+ run('gExit();gStart(COURSE.grammar[0].id,"exercise:3.1");gExit();gStart(COURSE.grammar[0].id,"exercise:3.2");gMove(1);');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).errors'),2);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).id'),id);
+ assert.equal(run('gResponse(G.steps[G.at]).checked'),true);
+ run('gMove(1);gMove(1);gResponse(G.steps[G.at]).value="wrong";gCheck();gExit();G=null;gStart(COURSE.grammar[0].id,"all",true);');
+ assert.equal(run('G.recovery'),'3.2');
+ assert.ok(run('gPlayerView()').includes('Повторить теорию'));
+ run('gExit();gStart(COURSE.grammar[0].id,"all");G.at=G.steps.findIndex(s=>s.group==="3.2");gPlayerView();');
+ assert.equal(run('G.recovery'),'3.2');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).errors'),3);
+});
+
+test('failed 3.2 reviews its own rule, preserves review position and resets only after reading it', () => {
+ const run=context([unit3]);unlockUntil(run,'exercise:3.2');
+ run('gStart(COURSE.grammar[0].id,"exercise:3.2");gMove(1);for(let i=0;i<3;i++){gResponse(G.steps[G.at]).value="wrong";gCheck();if(i<2)gMove(1);}');
+ const oldId=run('gAttempt(gUnit(),gUnit().exercises[1]).id');
+ run('gReviewTheory();');
+ assert.ok(run('gPlayerView()').includes('Один предмет, но слово во множественном числе'));
+ assert.ok(run('gPlayerView()').includes('Попробовать ещё раз'));
+ run('gExit();gStart(COURSE.grammar[0].id,"all",true);');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).status'),'review');
+ run('gRepeatExercise();');
+ assert.equal(run('G.steps[G.at].type'),'intro');
+ assert.equal(run('G.recovery'),null);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).errors'),0);
+ assert.notEqual(run('gAttempt(gUnit(),gUnit().exercises[1]).id'),oldId);
+ assert.equal(run('Object.keys(G.responses["3.2"]).length'),0);
+ run('gMove(1);while(!G.ended){const s=G.steps[G.at];gResponse(s).value=gUnit().exercises[1].questions[s.qi].answers[0];gCheck();gMove(1);}');
+ assert.equal(run('P.grammar[gUnit().id+"/3.2"].correct'),10);
+});
+
+test('multi-part theory starts at the right block and cannot reset hearts before its last screen', () => {
+ const run=context([unit17]);unlockUntil(run,'exercise:17.3');
+ run('gStart(COURSE.grammar[0].id,"exercise:17.3");gMove(1);for(let i=0;i<3;i++){gResponse(G.steps[G.at]).value="wrong";gCheck();if(i<2)gMove(1);}gReviewTheory();');
+ assert.ok(run('gPlayerView()').includes(unit17.sections[3].title));
+ assert.ok(!run('gPlayerView()').includes('data-grepeat-exercise'));
+ run('gRepeatExercise();');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[2]).errors'),3);
+ run('gReviewMove(1);gExit();gStart(COURSE.grammar[0].id,"all",true);');
+ assert.ok(run('gPlayerView()').includes(unit17.sections[4].title));
+ run('gRepeatExercise();');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[2]).errors'),0);
+});
+
+test('third mistake on the last question fails, and previous successful results remain intact', () => {
+ const run=context([unit]);unlockUntil(run,'exercise:1.1');
+ run('gStart(COURSE.grammar[0].id,"exercise:1.1");gMove(1);while(!G.ended){const s=G.steps[G.at];gResponse(s).value=gUnit().exercises[0].questions[s.qi].answers[0];gCheck();gMove(1);}');
+ const xp=run('P.xp'),best=run('P.grammar[gUnit().id+"/1.1"].correct');
+ run('gStart(COURSE.grammar[0].id,"exercise:1.1");gMove(1);for(let i=0;i<10;i++){const s=G.steps[G.at];gResponse(s).value=i>=7?"wrong":gUnit().exercises[0].questions[i].answers[0];gCheck();if(i<9)gMove(1);}');
+ assert.equal(run('G.recovery'),'1.1');
+ assert.equal(run('P.xp'),xp);assert.equal(run('P.grammar[gUnit().id+"/1.1"].correct'),best);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).status'),'failed');
+});
+
+test('duplicate submission and back navigation never refund or double-charge hearts', () => {
+ const run=context([unit]);unlockUntil(run,'exercise:1.2');
+ run('gStart(COURSE.grammar[0].id,"exercise:1.2");gMove(1);gResponse(G.steps[G.at]).value="wrong";gCheck();gCheck();gMove(-1);gMove(1);gCheck();');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).errors'),1);
+ run('gMove(1);gResponse(G.steps[G.at]).value="jefa";gCheck();');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).errors'),1);
+ assert.ok(run('gPlayerView()').includes('Осталось попыток: 2 из 3'));
+});
+
+test('the third error during a mistake retry requires theory and cannot bypass the saved limit', () => {
+ const run=context([unit]);unlockUntil(run,'exercise:1.1');
+ run('gStart(COURSE.grammar[0].id,"exercise:1.1");gMove(1);while(!G.ended){const s=G.steps[G.at];gResponse(s).value=s.qi<2?"wrong":gUnit().exercises[0].questions[s.qi].answers[0];gCheck();gMove(1);}gRetry();gResponse(G.steps[G.at]).value="wrong";gCheck();');
+ assert.equal(run('G.recovery'),'1.1');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),3);
+ assert.equal(run('P.grammar[gUnit().id+"/1.1"].correct'),8);
+});
+
+test('mini checks use their own theory, and partial legacy attempts retain existing errors', () => {
+ const run=context([unit]);run('gStart(COURSE.grammar[0].id,"section:0");gMove(1);');
+ run('for(let i=0;i<3;i++){gResponse(G.steps[G.at]).value="wrong";gCheck();if(i<2)gMove(1);}gReviewTheory();');
+ assert.deepEqual(JSON.parse(run('JSON.stringify(gTheorySections(gUnit(),gUnit().sections[0].check))')),[0]);
+ assert.equal(run('!!P.grammar[gUnit().id+"/check-a"]'),false);
+ const legacy=context([unit3]);unlockUntil(legacy,'exercise:3.1');
+ legacy('gStart(COURSE.grammar[0].id,"exercise:3.1");G.at=3;G.responses["3.1"]={0:{value:"wrong",checked:true,good:false},1:{value:"wrong",checked:true,good:false}};store.set(G_SESSION_KEY,JSON.stringify(G));store.set(G_ATTEMPTS_KEY,"");G=null;gStart(COURSE.grammar[0].id,"all",true);');
+ assert.equal(legacy('gAttempt(gUnit(),gUnit().exercises[0]).errors'),2);
+});
+
+test('a fresh JavaScript context and another tab cannot reset errors or overwrite checked answers', () => {
+ const storage=new Map(),run=context([unit3],storage);unlockUntil(run,'exercise:3.2');run('save();gStart(COURSE.grammar[0].id,"exercise:3.2");gMove(1);gResponse(G.steps[G.at]).value="wrong";gCheck();gMove(1);');
+ const reload=context([unit3],storage);reload('gStart(COURSE.grammar[0].id,"all",true);');
+ assert.equal(reload('gAttempt(gUnit(),gUnit().exercises[1]).errors'),1);
+ reload('gResponse(G.steps[G.at]).value="wrong";gCheck();');
+ assert.equal(reload('gAttempt(gUnit(),gUnit().exercises[1]).errors'),2);
+ run('gResponse(G.steps[G.at]).value="dos botellas";gCheck();');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).errors'),2);
+ assert.equal(run('gResponse(G.steps[G.at]).value'),'wrong');
+ run('gMove(1);gResponse(G.steps[G.at]).value="wrong";gCheck();');
+ assert.equal(run('G.recovery'),'3.2');
+ reload('gMove(1);gPlayerView();');
+ assert.equal(reload('G.recovery'),'3.2');
+});
+
+test('actual bank and guided-gap submissions use the same error counter; incomplete answers cost nothing', () => {
+ const bank=context([unit17]);unlockUntil(bank,'exercise:17.2');
+ bank('gStart(COURSE.grammar[0].id,"exercise:17.2");gMove(1);document.querySelector=()=>null;gCheck();gBuild("add",0);gCheck();');
+ assert.equal(bank('gAttempt(gUnit(),gUnit().exercises[1]).errors'),1);
+ const gaps=context([unit17]);unlockUntil(gaps,'exercise:17.3');
+ gaps('gStart(COURSE.grammar[0].id,"exercise:17.3");gMove(1);document.querySelector=()=>null;gSelectGap(0,0);gCheck();');
+ assert.equal(gaps('gAttempt(gUnit(),gUnit().exercises[2]).errors'),0);
+ gaps(`var q=gUnit().exercises[2].questions[0];for(let i=1;i<q.guidedGaps.choices.length;i++)gSelectGap(i,0);
+ if(grammarCorrect(q,gResponse(G.steps[G.at]).value))gSelectGap(0,1);gCheck();`);
+ assert.equal(gaps('gAttempt(gUnit(),gUnit().exercises[2]).errors'),1);
+});
+
+test('the older form path also stops on its third wrong answer without granting progress', () => {
+ const run=context([unit3]);unlockUntil(run,'exercise:3.1');
+ run('gSubmitGrammarForm(COURSE.grammar[0],COURSE.grammar[0].exercises[0],COURSE.grammar[0].exercises[0].questions.map(()=>"wrong"));');
+ assert.equal(run('G.recovery'),'3.1');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),3);
+ assert.equal(run('!!P.grammar[gUnit().id+"/3.1"]'),false);
+});
+
+test('review and retry in a full-unit run return to the exercise and then its next theory block', () => {
+ const run=context([unit3]);unlockUntil(run,'exercise:3.2');
+ run('gStart(COURSE.grammar[0].id,"all");G.at=G.steps.findIndex(s=>s.type==="intro"&&s.group==="3.2");gMove(1);for(let i=0;i<3;i++){gResponse(G.steps[G.at]).value="wrong";gCheck();if(i<2)gMove(1);}gReviewTheory();gRepeatExercise();');
+ assert.equal(run('G.route'),'all');
+ assert.equal(run('G.steps[G.at].group'),'3.2');
+ assert.equal(run('G.steps[G.at].type'),'intro');
+ run('gMove(1);for(let i=0;i<10;i++){const s=G.steps[G.at];gResponse(s).value=gUnit().exercises[1].questions[s.qi].answers[0];gCheck();gMove(1);}');
+ assert.equal(run('G.steps[G.at].type'),'theory');
+ assert.equal(run('G.steps[G.at].section'),8);
+ assert.equal(run('G.ended'),false);
 });
