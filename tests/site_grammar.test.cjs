@@ -558,6 +558,54 @@ test('an old hotel choice resumes as editable input without losing checked answe
  assert.equal(run('G.at'),0);
 });
 
+test('all group-name answers use a single noun input and keep manual checking and progress',()=>{
+ const run=context([unit3]);unlockUntil(run,'exercise:3.3');
+ run(`gStart(COURSE.grammar[0].id,'exercise:3.3');gMove(1);`);
+ for(const q of unit3.exercises[2].questions){
+  const html=run('gPlayerView()');
+  assert.ok(html.includes('id="g-answer"') && html.includes('Одно слово без артикля'));
+  assert.ok(html.includes('Впиши одно существительное во множественном числе'));
+  assert.ok(html.includes('<strong>') && !html.includes('data-gpick') && !html.includes('data-gadd'));
+  const at=run('G.at');
+  run(`gResponse(G.steps[G.at]).value=${JSON.stringify(q.answers[0])};gMove(1);`);
+  assert.equal(run('G.at'),at,'typing alone cannot submit or advance');
+  run('gCheck();');
+  assert.equal(run('gResponse(G.steps[G.at]).good'),true,q.prompt);
+  assert.equal(run('G.at'),at,'feedback stays visible until Next');
+  run('gMove(1);');
+ }
+ assert.equal(run('G.ended'),true);
+ assert.equal(run('P.grammar[grammarKey(gUnit(),gUnit().exercises[2])].correct'),10);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[2]).errors'),0);
+ assert.equal(run(`grammarCorrect(gUnit().exercises[2].questions[1],'los abuelos')`),false);
+ assert.equal(run(`grammarCorrect(gUnit().exercises[2].questions[1],' ABUELOS ')`),true);
+});
+
+test('the related group-name mini-check uses typing, persists errors and returns to its own rule',()=>{
+ const storage=new Map();let run=context([unit3],storage);unlockUntil(run,'section:8');
+ run(`gStart(COURSE.grammar[0].id,'section:8');gMove(1);
+  gResponse(G.steps[G.at]).value='hermanas';gCheck();gMove(1);gExit();`);
+ run=context([unit3],storage);
+ // Unlocking is a fixture setup; the attempt itself is restored from the real journal.
+ unlockUntil(run,'section:8');
+ run(`gStart(COURSE.grammar[0].id,'all',true);`);
+ assert.equal(run('gAttempt(gUnit(),gUnit().sections[8].check).errors'),1);
+ for(const wrong of ['madres','alumnos']){
+  const html=run('gPlayerView()');
+  assert.ok(html.includes('id="g-answer"') && !html.includes('data-gpick'));
+  assert.ok(html.includes('без артикля и количества'));
+  run(`gResponse(G.steps[G.at]).value=${JSON.stringify(wrong)};gCheck();gMove(1);`);
+ }
+ assert.equal(run('G.recovery'),'check-i');
+ assert.equal(run('gAttempt(gUnit(),gUnit().sections[8].check).errors'),3);
+ assert.equal(run('!!P.grammar[grammarKey(gUnit(),gUnit().sections[8].check)]'),false);
+ run('gReviewTheory();');
+ assert.ok(run('gPlayerView()').includes('Как назвать смешанную группу'));
+ run('gRepeatExercise();');
+ assert.equal(run('gAttempt(gUnit(),gUnit().sections[8].check).errors'),0);
+ assert.equal(run('G.steps[G.at].qi'),0);
+});
+
 test('time options display whole sentence openings while old stored article values still grade',()=>{
  const all=JSON.parse(fs.readFileSync('content/grammar/009_tiempo_fecha.json','utf8'));
  const run=context([all]);unlockUntil(run,'exercise:9.1');
@@ -668,7 +716,7 @@ test('all typing screens show a persistent format and example without changing g
   })())`));
   typed+=result.typed;legacy+=result.legacy;
  }
- assert.equal(typed,191);assert.equal(legacy,49);
+ assert.equal(typed,194);assert.equal(legacy,49);
 });
 
 test('quantity answers accept digits or words while the field explains the quantity format', () => {
