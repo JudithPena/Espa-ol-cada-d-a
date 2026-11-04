@@ -390,7 +390,7 @@ def _block(block: Block) -> dict | None:
                 "lines": [[speaker, _html(es), _html(ru), plain(es)] for speaker, es, ru in d["lines"]]}
     if t == "compare":
         return {"t": t, "style": d["style"], "join": d["join"], "title": _html(d["title"]), "lead": _html(d["lead"]), "note": _html(d["note"]),
-                "cards": [{"head": _html(c["head"]), "say": plain(c["head"]) if _LATIN_WORD.search(c["head"]) else "",
+                "cards": [{"head": _html(c["head"]), "say": plain(c["head"]) if c["say"] and _LATIN_WORD.search(c["head"]) else "",
                            "label": _html(c["label"]), "html": _html(c["text"]), "tone": c["tone"], "key": False,
                            "ex": [[_html(es), plain(es), "", ru] for es, ru in c["ex"]]} for c in d["cards"]]}
     if t == "reading":
