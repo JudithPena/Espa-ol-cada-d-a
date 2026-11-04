@@ -267,10 +267,14 @@
             "explain": "Возвращаемся к 1983 году: ese mismo año. Aquel тоже допустимо при взгляде издалека.",
             "translation": "Ана родилась в том же году.",
             "sourceRef": "mini",
-            "context": "Впиши слово по подсказке.",
-            "answerPlaceholder": "Ответ"
+            "context": "Впиши слово по подсказке."
           }
-        ]
+        ],
+        "inputFormat": {
+          "instruction": "Впиши одно указательное слово в нужной форме. Остальную часть предложения не переписывай.",
+          "example": "estas",
+          "placeholder": "Одно указательное слово"
+        }
       },
       "illustration": {
         "image": "art/theory-004-014/012c.webp",
@@ -429,8 +433,7 @@
           "translation": "Чемодан далеко от вас обоих.",
           "sourceRef": "12.1.3",
           "context": "Впиши слово по подсказке.",
-          "distance": "far",
-          "answerPlaceholder": "Ответ"
+          "distance": "far"
         },
         {
           "prompt": "Me gusta ___ bolso.",
@@ -497,8 +500,7 @@
           "context": "Впиши слово по подсказке.",
           "distance": "far",
           "image": "art/002/01-arbol.webp",
-          "imageAlt": "Деревья далеко от вас обоих.",
-          "answerPlaceholder": "Ответ"
+          "imageAlt": "Деревья далеко от вас обоих."
         },
         {
           "prompt": "¿Son tuyas ___ llaves?",
@@ -532,7 +534,12 @@
         "tip": ""
       },
       "pictureTitle": "Выбери слово по подсказке.",
-      "inputLabel": "Выбор ответа · Короткий ввод"
+      "inputLabel": "Выбор ответа · Короткий ввод",
+      "inputFormat": {
+        "instruction": "Впиши одно указательное слово в нужной форме. Остальную часть предложения не переписывай.",
+        "example": "estas",
+        "placeholder": "Одно указательное слово"
+      }
     },
     {
       "id": "12.2",
@@ -600,8 +607,7 @@
           "translation": "Отец Чаро далеко от вас обоих.",
           "sourceRef": "12.2.4",
           "context": "Впиши слово по подсказке.",
-          "distance": "far",
-          "answerPlaceholder": "Ответ"
+          "distance": "far"
         },
         {
           "prompt": "___ vaso está sucio.",
@@ -647,8 +653,7 @@
           "translation": "Дом Рамона далеко от вас обоих.",
           "sourceRef": "12.2.7",
           "context": "Впиши слово по подсказке.",
-          "distance": "far",
-          "answerPlaceholder": "Ответ"
+          "distance": "far"
         },
         {
           "prompt": "Voy a coger ___ autobús.",
@@ -679,7 +684,12 @@
         "targetPrefix": "",
         "tip": ""
       },
-      "inputLabel": "Выбор ответа · Короткий ввод"
+      "inputLabel": "Выбор ответа · Короткий ввод",
+      "inputFormat": {
+        "instruction": "Впиши одно указательное слово в нужной форме. Остальную часть предложения не переписывай.",
+        "example": "estas",
+        "placeholder": "Одно указательное слово"
+      }
     },
     {
       "id": "12.3",
@@ -711,8 +721,7 @@
           "explain": "Возвращаемся к уже названному 1983 году.",
           "translation": "Я родился в 1983 году. В том же году родилась сестра.",
           "sourceRef": "12.3.2",
-          "context": "Впиши слово по подсказке.",
-          "answerPlaceholder": "Ответ"
+          "context": "Впиши слово по подсказке."
         },
         {
           "prompt": "¿Qué haces ___ noche?",
@@ -755,8 +764,7 @@
           "explain": "Речь о лете уже названного года; ese и aquel здесь возможны.",
           "translation": "В 2001-м я ездил в Чили. Тем летом познакомился с Майте.",
           "sourceRef": "12.3.4",
-          "context": "Впиши слово по подсказке.",
-          "answerPlaceholder": "Ответ"
+          "context": "Впиши слово по подсказке."
         },
         {
           "prompt": "Viví allí de 1950 a 1965. ___ fueron los mejores años de mi vida.",
@@ -767,8 +775,7 @@
           "explain": "Вспоминаем далёкие годы: aquellos или esos, мужской род и множественное число.",
           "translation": "Я жил там с 1950 по 1965 год. То были лучшие годы моей жизни.",
           "sourceRef": "12.3.5",
-          "context": "Впиши слово по подсказке.",
-          "answerPlaceholder": "Ответ"
+          "context": "Впиши слово по подсказке."
         },
         {
           "prompt": "___ mes ha llovido mucho.",
@@ -795,8 +802,7 @@
           "explain": "Вспоминаем уже названное далёкое время: aquella época или esa época.",
           "translation": "Я женился в 1970-м. В ту пору мы жили в Лиме.",
           "sourceRef": "12.3.7",
-          "context": "Впиши слово по подсказке.",
-          "answerPlaceholder": "Ответ"
+          "context": "Впиши слово по подсказке."
         },
         {
           "prompt": "___ tarde tengo un examen.",
@@ -826,7 +832,12 @@
         "targetPrefix": "",
         "tip": ""
       },
-      "inputLabel": "Выбор ответа · Короткий ввод"
+      "inputLabel": "Выбор ответа · Короткий ввод",
+      "inputFormat": {
+        "instruction": "Впиши одно указательное слово в нужной форме. Остальную часть предложения не переписывай.",
+        "example": "estas",
+        "placeholder": "Одно указательное слово"
+      }
     },
     {
       "id": "12.4",
@@ -877,8 +888,7 @@
           "translation": "Ты показываешь на незнакомое здание далеко от вас обоих.",
           "sourceRef": "12.4.3",
           "context": "Дополни предложение.",
-          "distance": "far",
-          "answerPlaceholder": "Ответ"
+          "distance": "far"
         },
         {
           "prompt": "¿De quién es ___?",
@@ -909,7 +919,12 @@
         "targetPrefix": "",
         "tip": ""
       },
-      "inputLabel": "Выбор ответа · Короткий ввод"
+      "inputLabel": "Выбор ответа · Короткий ввод",
+      "inputFormat": {
+        "instruction": "Впиши только esto, eso или aquello. Название предмета добавлять не нужно.",
+        "example": "esto",
+        "placeholder": "Одно указательное слово"
+      }
     }
   ],
   "learningOrder": [

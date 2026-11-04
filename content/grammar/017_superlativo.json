@@ -804,7 +804,12 @@
         }
       ],
       "phraseInput": true,
-      "inlineAnswer": true
+      "inlineAnswer": true,
+      "inputFormat": {
+        "instruction": "В первый пропуск впиши артикль, во второй — más или menos. Название и прилагательное уже написаны.",
+        "example": "el coche más caro → el | más",
+        "placeholder": "Артикль и más или menos"
+      }
     },
     {
       "id": "17.2",
@@ -1129,7 +1134,12 @@
         }
       ],
       "phraseInput": true,
-      "inlineAnswer": true
+      "inlineAnswer": true,
+      "inputFormat": {
+        "instruction": "Впиши только пропущенную часть: артикль, más/menos и прилагательное. Начало и de sus amigos не повторяй.",
+        "example": "el más tranquilo",
+        "placeholder": "Артикль и сравнение"
+      }
     },
     {
       "id": "17.3",
@@ -1515,6 +1525,11 @@
         "targetPrefix": "",
         "translation": "Самый полезный напиток.",
         "tip": "Нужно выбрать только слова в пропусках: остальная фраза уже написана."
+      },
+      "inputFormat": {
+        "instruction": "Впиши всю пропущенную часть слогана с артиклем. Если качеств два, соедини их словом y. Уже написанные слова не повторяй.",
+        "example": "la fruta más dulce y la más fresca",
+        "placeholder": "Пропущенная часть слогана"
       }
     },
     {
@@ -1689,7 +1704,12 @@
         }
       ],
       "phraseInput": true,
-      "inlineAnswer": true
+      "inlineAnswer": true,
+      "inputFormat": {
+        "instruction": "Впиши всю пропущенную часть, включая de или que. Слова до и после пропуска не повторяй.",
+        "example": "el más tranquilo de",
+        "placeholder": "Пропущенная часть с de или que"
+      }
     }
   ],
   "learningOrder": [

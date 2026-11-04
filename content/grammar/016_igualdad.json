@@ -852,7 +852,12 @@
             "Álvara"
           ]
         }
-      ]
+      ],
+      "inputFormat": {
+        "instruction": "Впиши всю пропущенную часть, начиная с глагола. Имя или местоимение перед пропуском не повторяй.",
+        "example": "no es tan tranquilo como Ana",
+        "placeholder": "Пропущенная часть с глаголом"
+      }
     },
     {
       "id": "16.2",
@@ -931,7 +936,12 @@
             "de",
             "tan",
             "más"
-          ]
+          ],
+          "inputFormat": {
+            "instruction": "Впиши igual de и прилагательное во множественном числе. Son уже написано; que добавлять не нужно.",
+            "example": "igual de tranquilos",
+            "placeholder": "Igual de и прилагательное"
+          }
         },
         {
           "prompt": "El café de Brasil es ___ el de México.",
@@ -994,7 +1004,12 @@
           ],
           "interaction": "gap-choice"
         }
-      ]
+      ],
+      "inputFormat": {
+        "instruction": "Впиши только пропущенную часть: tan + прилагательное + como или igual de + прилагательное + que. Слова за пределами пропуска не повторяй.",
+        "example": "tan tranquilo como / igual de tranquilo que",
+        "placeholder": "Пропущенная часть сравнения"
+      }
     },
     {
       "id": "16.3",
@@ -1162,7 +1177,12 @@
             "buena"
           ]
         }
-      ]
+      ],
+      "inputFormat": {
+        "instruction": "Впиши всю пропущенную часть, начиная с глагола. Имя или местоимение перед пропуском не повторяй.",
+        "example": "no es tan tranquilo como Ana",
+        "placeholder": "Пропущенная часть с глаголом"
+      }
     },
     {
       "id": "16.4",
@@ -1338,10 +1358,14 @@
             "",
             "Elvira es muy guapa.",
             ""
-          ],
-          "answerPlaceholder": "Ответ"
+          ]
         }
-      ]
+      ],
+      "inputFormat": {
+        "instruction": "Впиши только продолжение реплики: igual de и прилагательное или сравнение с tan… como. В отрицательной реплике можно написать tan и прилагательное без продолжения. Начало не повторяй.",
+        "example": "igual de tranquilo / tan tranquilo como él",
+        "placeholder": "Продолжение реплики"
+      }
     }
   ],
   "learningOrder": [

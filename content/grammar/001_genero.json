@@ -709,8 +709,7 @@
           ],
           "explain": "Оба варианта верны: la piloto и la pilota. La piloto более распространено; RAE также допускает la pilota.",
           "imageAlt": "Женщина управляет самолётом.",
-          "image": "art/001/07-piloto.webp",
-          "answerPlaceholder": "Ответ"
+          "image": "art/001/07-piloto.webp"
         },
         {
           "prompt": "№ 8",
@@ -755,12 +754,17 @@
           "image": "art/001/10-paciente.webp"
         }
       ],
-      "inputLabel": "Выбор ответа · Короткий ввод"
+      "inputLabel": "Выбор ответа · Короткий ввод",
+      "inputFormat": {
+        "instruction": "Напиши название профессии с определённым артиклем el или la.",
+        "example": "el profesor",
+        "placeholder": "Артикль и профессия"
+      }
     },
     {
       "id": "1.2",
       "title": "1.2 · Образуй женский род",
-      "instruction": "Образуй женскую форму слова.",
+      "instruction": "Образуй женскую форму слова и впиши её без артикля.",
       "questions": [
         {
           "prompt": "el señor → la ___",
@@ -775,8 +779,7 @@
             "jefa",
             "jefe"
           ],
-          "explain": "Начальница — чаще la jefa. Можно сказать и la jefe: оба варианта правильные.",
-          "answerPlaceholder": "Ответ"
+          "explain": "Начальница — чаще la jefa. Можно сказать и la jefe: оба варианта правильные."
         },
         {
           "prompt": "el marido → la ___",
@@ -797,8 +800,7 @@
           "answers": [
             "actriz"
           ],
-          "explain": "У actor особая женская форма — actriz.",
-          "answerPlaceholder": "Ответ"
+          "explain": "У actor особая женская форма — actriz."
         },
         {
           "prompt": "el turista → la ___",
@@ -819,8 +821,7 @@
           "answers": [
             "bailarina"
           ],
-          "explain": "К bailarín добавляем -a: bailarina — танцовщица. В женской форме значок ударения не нужен.",
-          "answerPlaceholder": "Ответ"
+          "explain": "К bailarín добавляем -a: bailarina — танцовщица. В женской форме значок ударения не нужен."
         },
         {
           "prompt": "el rey → la ___",
@@ -841,8 +842,7 @@
           "answers": [
             "mujer"
           ],
-          "explain": "Hombre — мужчина, mujer — женщина. Это разные слова.",
-          "answerPlaceholder": "Ответ"
+          "explain": "Hombre — мужчина, mujer — женщина. Это разные слова."
         },
         {
           "prompt": "el niño → la ___",
@@ -864,8 +864,7 @@
           "answers": [
             "amiga"
           ],
-          "explain": "В amigo заменяем -o на -a: amiga — подруга.",
-          "answerPlaceholder": "Ответ"
+          "explain": "В amigo заменяем -o на -a: amiga — подруга."
         },
         {
           "prompt": "el médico → la ___",
@@ -880,7 +879,12 @@
         "answer": "amiga",
         "translation": "друг → подруга"
       },
-      "inputLabel": "Короткий ввод"
+      "inputLabel": "Короткий ввод",
+      "inputFormat": {
+        "instruction": "Впиши только женскую форму слова без артикля: la уже написано.",
+        "example": "camarera",
+        "placeholder": "Слово без артикля"
+      }
     },
     {
       "id": "1.3",
@@ -1075,7 +1079,12 @@
           "instruction": "Теперь ответь, кем каждый человек приходится Silvia."
         }
       ],
-      "inputLabel": "Короткий ввод · Выбор ответа"
+      "inputLabel": "Короткий ввод · Выбор ответа",
+      "inputFormat": {
+        "instruction": "Впиши одно слово — название родственника. Mi уже написано, артикль не нужен.",
+        "example": "prima",
+        "placeholder": "Название родственника"
+      }
     }
   ],
   "learningOrder": [

@@ -173,26 +173,28 @@
             "answers": [
               "casas"
             ],
-            "explain": "Casa оканчивается на безударную -a: добавляем -s → casas.",
-            "answerPlaceholder": "Ответ"
+            "explain": "Casa оканчивается на безударную -a: добавляем -s → casas."
           },
           {
             "prompt": "clase → ___",
             "answers": [
               "clases"
             ],
-            "explain": "После конечной безударной -e добавляем -s: clase → clases.",
-            "answerPlaceholder": "Ответ"
+            "explain": "После конечной безударной -e добавляем -s: clase → clases."
           },
           {
             "prompt": "mamá → ___",
             "answers": [
               "mamás"
             ],
-            "explain": "После ударной -á добавляем -s. Знак ударения остаётся: mamá → mamás.",
-            "answerPlaceholder": "Ответ"
+            "explain": "После ударной -á добавляем -s. Знак ударения остаётся: mamá → mamás."
           }
-        ]
+        ],
+        "inputFormat": {
+          "instruction": "Напиши слово во множественном числе без артикля и без числа.",
+          "example": "coches",
+          "placeholder": "Слово во множественном числе"
+        }
       },
       "schemeGrid": true,
       "presentation": "comparison",
@@ -257,8 +259,7 @@
               "rubíes",
               "rubís"
             ],
-            "explain": "Оба варианта правильные: rubíes и rubís. У многих слов на ударную -í можно добавить -es или -s.",
-            "answerPlaceholder": "Ответ"
+            "explain": "Оба варианта правильные: rubíes и rubís. У многих слов на ударную -í можно добавить -es или -s."
           },
           {
             "prompt": "bambú → ___",
@@ -266,8 +267,7 @@
               "bambúes",
               "bambús"
             ],
-            "explain": "Оба варианта правильные: bambúes и bambús.",
-            "answerPlaceholder": "Ответ"
+            "explain": "Оба варианта правильные: bambúes и bambús."
           },
           {
             "prompt": "Образуй множественное число: menú → ___",
@@ -275,10 +275,14 @@
               "menús",
               "menúes"
             ],
-            "explain": "Обычная форма — menús. В некоторых странах Америки употребляют и нормативный вариант menúes.",
-            "answerPlaceholder": "Ответ"
+            "explain": "Обычная форма — menús. В некоторых странах Америки употребляют и нормативный вариант menúes."
           }
-        ]
+        ],
+        "inputFormat": {
+          "instruction": "Напиши слово во множественном числе без артикля и без числа.",
+          "example": "coches",
+          "placeholder": "Слово во множественном числе"
+        }
       },
       "schemeGrid": true,
       "presentation": "comparison"
@@ -942,10 +946,10 @@
     {
       "id": "3.1",
       "title": "3.1 · Образуй множественное число",
-      "instruction": "Образуй множественное число.",
+      "instruction": "Напиши каждое слово во множественном числе без артикля и без числа.",
       "preview": {
-        "source": "el reloj",
-        "targetPrefix": "los",
+        "source": "reloj",
+        "targetPrefix": "",
         "answer": "relojes",
         "translation": "часы: один предмет → несколько"
       },
@@ -964,8 +968,7 @@
             "peces"
           ],
           "explain": "pez → peces. Последнюю букву z заменяем на -ces.",
-          "translation": "рыба",
-          "answerPlaceholder": "Ответ"
+          "translation": "рыба"
         },
         {
           "prompt": "autobús",
@@ -989,8 +992,7 @@
             "habitaciones"
           ],
           "explain": "habitación → habitaciones. Добавляем -es; знак ударения во множественном числе не нужен.",
-          "translation": "комната",
-          "answerPlaceholder": "Ответ"
+          "translation": "комната"
         },
         {
           "prompt": "mamá",
@@ -1014,8 +1016,7 @@
             "hoteles"
           ],
           "explain": "hotel → hoteles. После -l добавляем -es.",
-          "translation": "отель",
-          "answerPlaceholder": "Ответ"
+          "translation": "отель"
         },
         {
           "prompt": "universidad",
@@ -1039,8 +1040,7 @@
             "niños"
           ],
           "explain": "niño → niños. После безударной -o добавляем -s.",
-          "translation": "мальчик, ребёнок",
-          "answerPlaceholder": "Ответ"
+          "translation": "мальчик, ребёнок"
         },
         {
           "prompt": "hermana",
@@ -1064,8 +1064,7 @@
             "días"
           ],
           "explain": "día → días. Добавляем -s. Знак ударения над í сохраняется.",
-          "translation": "день",
-          "answerPlaceholder": "Ответ"
+          "translation": "день"
         },
         {
           "prompt": "clase",
@@ -1089,8 +1088,7 @@
             "bananas"
           ],
           "explain": "banana → bananas. После безударной -a добавляем -s.",
-          "translation": "банан",
-          "answerPlaceholder": "Ответ"
+          "translation": "банан"
         },
         {
           "prompt": "jueves",
@@ -1101,14 +1099,19 @@
           "translation": "четверг"
         }
       ],
-      "inputLabel": "Короткий ввод"
+      "inputLabel": "Короткий ввод",
+      "inputFormat": {
+        "instruction": "Напиши слово во множественном числе без артикля и без числа.",
+        "example": "coches",
+        "placeholder": "Слово во множественном числе"
+      }
     },
     {
       "id": "3.2",
       "title": "3.2 · Посчитай предметы",
-      "instruction": "Укажи количество и название предметов.",
+      "instruction": "Посчитай предметы на картинке и напиши количество и название. Можно использовать слова или цифры: dos coches / 2 coches.",
       "answerPlaceholder": "Количество и слово",
-      "pictureTitle": "Посчитай и назови предметы",
+      "pictureTitle": "Напиши количество и название предметов",
       "questions": [
         {
           "prompt": "mesa",
@@ -1117,11 +1120,16 @@
             "una mesa"
           ],
           "explain": "Один стол. una mesa. При одном предмете оставляем единственное число.",
-          "context": "Посчитай и назови предметы",
+          "context": "Напиши количество и название предметов",
           "translation": "стол",
           "image": "art/003/01-mesa.webp",
           "imageAlt": "Один стол.",
-          "pictureCount": 1
+          "pictureCount": 1,
+          "inputFormat": {
+            "instruction": "Напиши количество и название: для одного предмета используй un или una. Вместо un/una можно написать 1.",
+            "example": "un coche / 1 coche",
+            "placeholder": "Количество и название"
+          }
         },
         {
           "prompt": "botella",
@@ -1130,12 +1138,11 @@
             "dos botellas"
           ],
           "explain": "Две бутылки. dos botellas. При нескольких предметах нужно множественное число.",
-          "context": "Посчитай и назови предметы",
+          "context": "Напиши количество и название предметов",
           "translation": "бутылка",
           "image": "art/003/02-botella.webp",
           "imageAlt": "Две бутылки.",
-          "pictureCount": 2,
-          "answerPlaceholder": "Ответ"
+          "pictureCount": 2
         },
         {
           "prompt": "gafas",
@@ -1147,11 +1154,16 @@
             "1 gafa"
           ],
           "explain": "Одни очки. unas gafas. Одни очки обычно называют unas gafas. Можно уточнить: un par de gafas.",
-          "context": "Посчитай и назови предметы",
+          "context": "Напиши количество и название предметов",
           "translation": "очки",
           "image": "art/003/03-gafas.webp",
           "imageAlt": "Одни очки.",
-          "pictureCount": 1
+          "pictureCount": 1,
+          "inputFormat": {
+            "instruction": "Напиши, сколько пар очков на картинке. Для одной пары используй unas или un par de.",
+            "example": "dos pares de gafas / 2 pares de gafas",
+            "placeholder": "Количество и название"
+          }
         },
         {
           "prompt": "lámpara",
@@ -1160,11 +1172,16 @@
             "una lámpara"
           ],
           "explain": "Одна лампа. una lámpara. При одном предмете оставляем единственное число.",
-          "context": "Посчитай и назови предметы",
+          "context": "Напиши количество и название предметов",
           "translation": "лампа",
           "image": "art/003/04-lampara.webp",
           "imageAlt": "Одна лампа.",
-          "pictureCount": 1
+          "pictureCount": 1,
+          "inputFormat": {
+            "instruction": "Напиши количество и название: для одного предмета используй un или una. Вместо un/una можно написать 1.",
+            "example": "un coche / 1 coche",
+            "placeholder": "Количество и название"
+          }
         },
         {
           "prompt": "lápiz",
@@ -1173,12 +1190,11 @@
             "tres lápices"
           ],
           "explain": "Три карандаша. tres lápices. Lápiz → lápices: заменяем -z на -ces и сохраняем знак ударения.",
-          "context": "Посчитай и назови предметы",
+          "context": "Напиши количество и название предметов",
           "translation": "карандаш",
           "image": "art/003/05-lapiz.webp",
           "imageAlt": "Три карандаша.",
-          "pictureCount": 3,
-          "answerPlaceholder": "Ответ"
+          "pictureCount": 3
         },
         {
           "prompt": "libro",
@@ -1187,7 +1203,7 @@
             "cuatro libros"
           ],
           "explain": "Четыре книги. cuatro libros. При нескольких предметах нужно множественное число.",
-          "context": "Посчитай и назови предметы",
+          "context": "Напиши количество и название предметов",
           "translation": "книга",
           "image": "art/003/06-libro.webp",
           "imageAlt": "Четыре книги.",
@@ -1200,7 +1216,7 @@
             "dos postales"
           ],
           "explain": "Две открытки. dos postales. При нескольких предметах нужно множественное число.",
-          "context": "Посчитай и назови предметы",
+          "context": "Напиши количество и название предметов",
           "translation": "открытка",
           "image": "art/003/07-postal.webp",
           "imageAlt": "Две открытки.",
@@ -1213,12 +1229,11 @@
             "cinco sillas"
           ],
           "explain": "Пять стульев. cinco sillas. При нескольких предметах нужно множественное число.",
-          "context": "Посчитай и назови предметы",
+          "context": "Напиши количество и название предметов",
           "translation": "стул",
           "image": "art/003/08-silla.webp",
           "imageAlt": "Пять стульев.",
-          "pictureCount": 5,
-          "answerPlaceholder": "Ответ"
+          "pictureCount": 5
         },
         {
           "prompt": "tijeras",
@@ -1229,11 +1244,16 @@
             "tres pares de tijeras"
           ],
           "explain": "Трое ножниц. tres tijeras. Tijeras уже имеет форму множественного числа. Можно сказать tres tijeras или tres pares de tijeras.",
-          "context": "Посчитай и назови предметы",
+          "context": "Напиши количество и название предметов",
           "translation": "ножницы",
           "image": "art/003/09-tijeras.webp",
           "imageAlt": "Трое ножниц.",
-          "pictureCount": 3
+          "pictureCount": 3,
+          "inputFormat": {
+            "instruction": "Напиши количество и название. Можно считать ножницы или пары ножниц, словами или цифрой.",
+            "example": "dos tijeras / 2 pares de tijeras",
+            "placeholder": "Количество и название"
+          }
         },
         {
           "prompt": "vaso",
@@ -1242,14 +1262,19 @@
             "dos vasos"
           ],
           "explain": "Два стакана. dos vasos. При нескольких предметах нужно множественное число.",
-          "context": "Посчитай и назови предметы",
+          "context": "Напиши количество и название предметов",
           "translation": "стакан",
           "image": "art/003/10-vaso.webp",
           "imageAlt": "Два стакана.",
           "pictureCount": 2
         }
       ],
-      "inputLabel": "Короткий ввод"
+      "inputLabel": "Короткий ввод",
+      "inputFormat": {
+        "instruction": "Посчитай предметы и напиши количество и название. Количество можно написать словом или цифрой.",
+        "example": "dos coches / 2 coches",
+        "placeholder": "Количество и название"
+      }
     },
     {
       "id": "3.3",
@@ -1288,8 +1313,7 @@
             "El abuelo y la abuela",
             " de Marta viven en Caracas."
           ],
-          "translation": "Бабушка и дедушка Marta живут в Каракасе.",
-          "answerPlaceholder": "Ответ"
+          "translation": "Бабушка и дедушка Marta живут в Каракасе."
         },
         {
           "prompt": "Dos ___ míos están en Chile.",
@@ -1331,8 +1355,7 @@
             "Mi padre y mi madre",
             " son muy altos."
           ],
-          "translation": "Мои родители очень высокие.",
-          "answerPlaceholder": "Ответ"
+          "translation": "Мои родители очень высокие."
         },
         {
           "prompt": "Los ___ viven en un palacio.",
@@ -1374,8 +1397,7 @@
             "un profesor y dos profesoras",
             "."
           ],
-          "translation": "В моей школе три преподавателя.",
-          "answerPlaceholder": "Ответ"
+          "translation": "В моей школе три преподавателя."
         },
         {
           "prompt": "He mandado un correo electrónico a mis ___.",
@@ -1406,7 +1428,12 @@
           "translation": "Это балетная труппа с тремя танцовщиками."
         }
       ],
-      "inputLabel": "Короткий ввод"
+      "inputLabel": "Короткий ввод",
+      "inputFormat": {
+        "instruction": "Впиши одно название группы во множественном числе. Артикль и количество не добавляй: они уже есть в предложении.",
+        "example": "niños",
+        "placeholder": "Название группы без артикля"
+      }
     }
   ],
   "learningOrder": [

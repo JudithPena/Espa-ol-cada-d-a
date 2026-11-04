@@ -521,7 +521,12 @@
         "targetPrefix": ""
       },
       "inlineAnswer": true,
-      "inputLabel": "Короткий ввод · Выбор ответа"
+      "inputLabel": "Короткий ввод · Выбор ответа",
+      "inputFormat": {
+        "instruction": "Впиши только слово из подсказки в нужной форме. Артикль и остальное предложение не добавляй.",
+        "example": "bonitas",
+        "placeholder": "Слово в нужной форме"
+      }
     },
     {
       "id": "13.2",
@@ -556,8 +561,7 @@
               "alegre",
               "весёлый"
             ]
-          ],
-          "answerPlaceholder": "Ответ"
+          ]
         },
         {
           "prompt": "Rosa también es muy ___.",
@@ -653,8 +657,7 @@
               "fuerte",
               "сильный"
             ]
-          ],
-          "answerPlaceholder": "Ответ"
+          ]
         },
         {
           "prompt": "Begoña lleva una falda ___.",
@@ -861,8 +864,7 @@
               "fuerte",
               "сильный"
             ]
-          ],
-          "answerPlaceholder": "Ответ"
+          ]
         },
         {
           "prompt": "Nosotros somos ___.",
@@ -892,7 +894,12 @@
         "targetPrefix": ""
       },
       "inlineAnswer": true,
-      "inputLabel": "Короткий ввод · Выбор ответа"
+      "inputLabel": "Короткий ввод · Выбор ответа",
+      "inputFormat": {
+        "instruction": "Впиши только слово из подсказки в нужной форме. Артикль и остальное предложение не добавляй.",
+        "example": "bonitas",
+        "placeholder": "Слово в нужной форме"
+      }
     },
     {
       "id": "13.3",
@@ -1050,7 +1057,12 @@
         "targetPrefix": ""
       },
       "inlineAnswer": true,
-      "inputLabel": "Короткий ввод · Выбор ответа"
+      "inputLabel": "Короткий ввод · Выбор ответа",
+      "inputFormat": {
+        "instruction": "Впиши только слово из подсказки в нужной форме. Артикль и остальное предложение не добавляй.",
+        "example": "bonitas",
+        "placeholder": "Слово в нужной форме"
+      }
     }
   ],
   "learningOrder": [

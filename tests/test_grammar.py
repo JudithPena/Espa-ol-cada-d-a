@@ -54,7 +54,7 @@ def test_second_unit_covers_pages_and_current_norm():
     assert 'la coneja' in unit['sections'][-1]['schemes'][0]['to']
     pictures = unit['exercises'][2]['questions']
     assert all(q['image'].startswith('data:image/webp;base64,') and q['imageAlt'] for q in pictures)
-    assert pictures[4]['answers'] == ['el gorila']
+    assert pictures[4]['answers'] == ['el gorila', 'la gorila']
     assert pictures[-1]['answers'] == ['la nariz']
     assert unit['exercises'][1]['questions'][1]['answers'] == ['caballo']
     assert first['id'] != unit['id']

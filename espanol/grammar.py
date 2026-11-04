@@ -57,6 +57,12 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
             if group["id"] in ids:
                 raise ValueError(f"{path}: duplicate exercise id")
             ids.add(group["id"])
+            for format in [group.get('inputFormat')] + [q.get('inputFormat') for q in group['questions']]:
+                if format is not None and (not isinstance(format, dict) or any(
+                    not isinstance(format.get(key), str) or not format[key].strip()
+                    for key in ('instruction', 'example', 'placeholder')
+                )):
+                    raise ValueError(f"{path}: input format requires instruction, example and placeholder")
             for q in group["questions"]:
                 if not q.get("explain") or not q.get("answers"):
                     raise ValueError(f"{path}: answer and explanation required")

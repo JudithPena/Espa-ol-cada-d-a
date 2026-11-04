@@ -553,8 +553,7 @@
           "explain": "Перед aula обычно ставим un: первый звук — ударный а. Una aula тоже допустимо.",
           "translation": "одна аудитория",
           "sourceRef": "4.1.12",
-          "context": "Выбери артикль.",
-          "answerPlaceholder": "Ответ"
+          "context": "Впиши артикль."
         },
         {
           "prompt": "___ profesora",
@@ -619,7 +618,12 @@
         "targetPrefix": "",
         "tip": ""
       },
-      "inputLabel": "Выбор ответа · Короткий ввод"
+      "inputLabel": "Выбор ответа · Короткий ввод",
+      "inputFormat": {
+        "instruction": "Впиши только неопределённый артикль: un, una, unos или unas. Название уже написано.",
+        "example": "unos (как в unos libros)",
+        "placeholder": "Только артикль"
+      }
     },
     {
       "id": "4.2",
@@ -858,8 +862,7 @@
           "explain": "Обычно un hacha: первый звук — ударный а. Una hacha тоже допустимо.",
           "translation": "один топор",
           "sourceRef": "4.3.3",
-          "context": "Выбери артикль.",
-          "answerPlaceholder": "Ответ"
+          "context": "Впиши артикль."
         },
         {
           "prompt": "___ libros",
@@ -1036,7 +1039,12 @@
         "tip": ""
       },
       "pictureTitle": "Выбери артикль.",
-      "inputLabel": "Выбор ответа · Короткий ввод"
+      "inputLabel": "Выбор ответа · Короткий ввод",
+      "inputFormat": {
+        "instruction": "Впиши только неопределённый артикль: un, una, unos или unas. Название уже написано.",
+        "example": "unos (как в unos libros)",
+        "placeholder": "Только артикль"
+      }
     },
     {
       "id": "4.4",
@@ -1103,8 +1111,7 @@
           "explain": "Обычно un águila. Вариант una águila тоже допустим.",
           "translation": "Смотри, орёл!",
           "sourceRef": "4.4.4",
-          "context": "Дополни предложение.",
-          "answerPlaceholder": "Ответ"
+          "context": "Дополни предложение."
         },
         {
           "prompt": "Quiero ___ vaqueros.",
@@ -1220,7 +1227,12 @@
         "targetPrefix": "",
         "tip": ""
       },
-      "inputLabel": "Выбор ответа · Короткий ввод"
+      "inputLabel": "Выбор ответа · Короткий ввод",
+      "inputFormat": {
+        "instruction": "Впиши только неопределённый артикль: un, una, unos или unas. Название уже написано.",
+        "example": "unos (как в unos libros)",
+        "placeholder": "Только артикль"
+      }
     }
   ],
   "learningOrder": [

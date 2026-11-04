@@ -706,8 +706,7 @@
               "el gorila hembra",
               "la gorila"
             ],
-            "explain": "Можно сказать la gorila или el gorila hembra. В современном словаре gorila допускает мужской и женский род; hembra тоже позволяет уточнить пол.",
-            "answerPlaceholder": "Ответ"
+            "explain": "Можно сказать la gorila или el gorila hembra. В современном словаре gorila допускает мужской и женский род; hembra тоже позволяет уточнить пол."
           },
           {
             "prompt": "___ pez",
@@ -721,7 +720,12 @@
               "la"
             ]
           }
-        ]
+        ],
+        "inputFormat": {
+          "instruction": "Назови самку с артиклем la. Можно также использовать el и добавить hembra после названия животного.",
+          "example": "la coneja / el conejo hembra",
+          "placeholder": "Название с артиклем"
+        }
       },
       "presentation": "examples"
     },
@@ -1390,7 +1394,7 @@
     {
       "id": "2.2",
       "title": "2.2 · Животные: самец и самка",
-      "instruction": "Подбери название самца или самки.",
+      "instruction": "Впиши название самца или самки без артикля: el или la уже написано.",
       "preview": {
         "source": "el conejo",
         "targetPrefix": "la",
@@ -1412,8 +1416,7 @@
             "caballo"
           ],
           "explain": "У этой пары разные слова: el caballo — la yegua.",
-          "translation": "кобыла → конь",
-          "answerPlaceholder": "Ответ"
+          "translation": "кобыла → конь"
         },
         {
           "prompt": "el gallo → la ___",
@@ -1437,8 +1440,7 @@
             "leona"
           ],
           "explain": "К león добавляем -a: leona. В готовой женской форме знак ударения не нужен.",
-          "translation": "лев → львица",
-          "answerPlaceholder": "Ответ"
+          "translation": "лев → львица"
         },
         {
           "prompt": "la vaca → el ___",
@@ -1449,12 +1451,17 @@
           "translation": "корова → бык"
         }
       ],
-      "inputLabel": "Короткий ввод"
+      "inputLabel": "Короткий ввод",
+      "inputFormat": {
+        "instruction": "Впиши только название животного без артикля: el или la уже написано.",
+        "example": "coneja",
+        "placeholder": "Слово без артикля"
+      }
     },
     {
       "id": "2.3",
       "title": "2.3 · Что на картинке?",
-      "instruction": "Назови изображённый предмет или животное с артиклем.",
+      "instruction": "Назови изображённый предмет или животное с определённым артиклем el или la.",
       "pictureTitle": "Напиши название с артиклем",
       "vocabulary": {
         "heads": [
@@ -1548,9 +1555,10 @@
         {
           "prompt": "№ 5",
           "answers": [
-            "el gorila"
+            "el gorila",
+            "la gorila"
           ],
-          "explain": "el gorila — горилла. У названия животного gorila постоянный мужской род, несмотря на окончание -a.",
+          "explain": "El gorila — название вида или самца; la gorila — самка. Оба варианта допустимы, поскольку пол животного на картинке не указан.",
           "image": "art/002/05-gorila.webp",
           "imageAlt": "Иллюстрация: горилла"
         },
@@ -1604,7 +1612,12 @@
           "imageAlt": "Иллюстрация: нос"
         }
       ],
-      "inputLabel": "Короткий ввод · Выбор ответа"
+      "inputLabel": "Короткий ввод · Выбор ответа",
+      "inputFormat": {
+        "instruction": "Напиши название предмета или животного с определённым артиклем el или la. Количество указывать не нужно.",
+        "example": "el coche",
+        "placeholder": "Артикль и название"
+      }
     }
   ],
   "learningOrder": [

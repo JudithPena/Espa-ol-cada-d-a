@@ -639,3 +639,64 @@ test('17.3 fills words in a fixed sentence, keeps partial choices on resume and 
  assert.equal(run('gQuestionMode(gUnit().exercises[2].questions[0],{value:"la bebida",checked:false})'),'input');
  assert.ok(!run('gGuided({...gUnit().exercises[2].questions[0],answerHint:"<img>"},{})').includes('<img>'));
 });
+
+test('all typing screens show a persistent format and example without changing grading', () => {
+ const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
+ let typed=0,legacy=0;
+ for(const unit of units) {
+  const run=context([unit]);
+  run('gStart(COURSE.grammar[0].id,"all");');
+  const result=JSON.parse(run(`JSON.stringify((() => {
+   let typed=0,legacy=0;
+   for(let i=0;i<G.steps.length;i++) {
+    const step=G.steps[i]; if(step.type!=='question') continue;
+    const group=gGroups(gUnit()).find(g=>g.id===step.group),q=group.questions[step.qi];
+    if(q.options) continue;
+    G.at=i;
+    const r=gResponse(step);
+    // A saved typed answer in a bank/guided task must retain an editable typing screen.
+    if(q.tiles||q.guidedGaps) {r.value='saved answer';legacy++;} else typed++;
+    let html=gPlayerView(),format=grammarInputFormat(q,group);
+    if(!html.includes(esc(format.instruction))||!html.includes(esc(format.example))||!html.includes('aria-describedby="g-answer-format"')) throw Error(group.id+': missing guidance');
+    if(!q.gapParts&&!html.includes('placeholder="'+esc(format.placeholder)+'"')) throw Error(group.id+': missing placeholder');
+    r.value=q.answers[0];
+    if(!grammarCorrect(q,r.value))throw Error(group.id+': changed answer');
+    r.checked=true;r.good=true;
+    html=gPlayerView();
+    if((gQuestionMode(q,r)==='input'&&!html.includes(esc(format.example)))||!html.includes('data-gnext'))throw Error(group.id+': guidance or manual Next disappeared');
+   }
+   return {typed,legacy};
+  })())`));
+  typed+=result.typed;legacy+=result.legacy;
+ }
+ assert.equal(typed,191);assert.equal(legacy,49);
+});
+
+test('quantity answers accept digits or words while the field explains the quantity format', () => {
+ const run=context([unit3]);
+ unlockUntil(run,'exercise:3.2');
+ run('gStart(COURSE.grammar[0].id,"exercise:3.2");gMove(1);');
+ const html=run('gPlayerView()');
+ assert.ok(html.includes('Напиши количество и название предметов'));
+ assert.ok(html.includes('Вместо un/una можно написать 1'));
+ assert.ok(html.includes('placeholder="Количество и название"'));
+ for(const answer of ['una mesa','1 mesa'])assert.equal(run(`grammarCorrect(COURSE.grammar[0].exercises[1].questions[0],${JSON.stringify(answer)})`),true);
+ for(const answer of ['mesa','la mesa','dos mesas'])assert.equal(run(`grammarCorrect(COURSE.grammar[0].exercises[1].questions[0],${JSON.stringify(answer)})`),false);
+ run('gResponse(G.steps[G.at]).value="1 mesa";gCheck();');
+ assert.equal(run('G.at'),1);
+ assert.ok(run('gPlayerView()').includes('Пример формата:'));
+ run('gMove(1);');
+ assert.equal(run('G.at'),2);
+ assert.ok(run('gPlayerView()').includes('dos coches / 2 coches'));
+});
+
+test('format overrides work in textareas, and article-free answers stay article-free', () => {
+ const run=context([unit17]);unlockUntil(run,'exercise:17.2');
+ run('gStart(COURSE.grammar[0].id,"exercise:17.2");gMove(1);gResponse(G.steps[G.at]).value="saved answer";');
+ assert.ok(run('gPlayerView()').includes('<textarea'));
+ assert.ok(run('gPlayerView()').includes('placeholder="Артикль и сравнение"'));
+ const gender=context([unit]);
+ assert.equal(gender('grammarCorrect(COURSE.grammar[0].exercises[1].questions[0],"señora")'),true);
+ assert.equal(gender('grammarCorrect(COURSE.grammar[0].exercises[1].questions[0],"la señora")'),false);
+ assert.ok(gender('grammarForm(COURSE.grammar[0],COURSE.grammar[0].exercises[1])').includes('без артикля: la уже написано'));
+});

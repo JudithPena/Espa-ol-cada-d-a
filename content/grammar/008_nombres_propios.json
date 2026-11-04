@@ -838,8 +838,7 @@
           ],
           "explain": "Допустимы la India и India.",
           "sourceRef": "8.3.2",
-          "context": "Дополни предложение.",
-          "answerPlaceholder": "Артикль или ∅"
+          "context": "Дополни предложение."
         },
         {
           "prompt": "India está en ___ Asia.",
@@ -849,8 +848,7 @@
           ],
           "explain": "Название Asia обычно используют без артикля, но el Asia тоже допустимо.",
           "sourceRef": "8.3.2",
-          "context": "Дополни предложение.",
-          "answerPlaceholder": "Артикль или ∅"
+          "context": "Дополни предложение."
         },
         {
           "prompt": "___ islas Galápagos están en Ecuador.",
@@ -877,8 +875,7 @@
           ],
           "explain": "Допустимы Ecuador и el Ecuador.",
           "sourceRef": "8.3.3",
-          "context": "Дополни предложение.",
-          "answerPlaceholder": "Артикль или ∅"
+          "context": "Дополни предложение."
         },
         {
           "prompt": "___ Salvador está entre Guatemala y Honduras.",
@@ -988,8 +985,7 @@
           ],
           "explain": "Допустимы Perú и el Perú.",
           "sourceRef": "8.3.6",
-          "context": "Дополни предложение.",
-          "answerPlaceholder": "Артикль или ∅"
+          "context": "Дополни предложение."
         },
         {
           "prompt": "El lago Titicaca está entre Perú y ___ Bolivia.",
@@ -1168,8 +1164,7 @@
           ],
           "explain": "Употребляются Argentina и la Argentina; оба варианта допустимы.",
           "sourceRef": "8.3.11",
-          "context": "Дополни предложение.",
-          "answerPlaceholder": "Артикль или ∅"
+          "context": "Дополни предложение."
         },
         {
           "prompt": "___ Pirineos están entre España y Francia.",
@@ -1234,7 +1229,12 @@
         "targetPrefix": "",
         "tip": ""
       },
-      "inputLabel": "Выбор ответа · Короткий ввод"
+      "inputLabel": "Выбор ответа · Короткий ввод",
+      "inputFormat": {
+        "instruction": "Впиши только определённый артикль, если он нужен. Если артикля нет, введи ∅ или дефис (-). Название не повторяй.",
+        "example": "el (как в el río) / ∅",
+        "placeholder": "Артикль или ∅"
+      }
     },
     {
       "id": "8.4",

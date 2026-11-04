@@ -478,6 +478,8 @@ main { padding-block: 16px 110px; }
 .gfill-sentence { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 20px; }
 .gfill-sentence > p { font-size: 21px; font-weight: 700; line-height: 1.5; margin: 0; }
 .gfill-label { display: block; margin: 12px 0 6px; color: var(--muted); font-size: 13px; }
+.ginput-format { margin: 12px 0 8px; font-size: 14px; line-height: 1.5; }
+.ginput-format p { margin: 4px 0; }
 .gfill-sentence .gaccents { margin-bottom: 12px; }
 .gguided { display: grid; gap: 18px; }
 .gguided-sentence { margin: 0; padding: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; font-size: 21px; font-weight: 650; line-height: 2.7; }
@@ -1203,6 +1205,12 @@ const grammarNormalize = value => {
   return ['∅','—','–','-'].includes(normalized) ? 'без артикля' : normalized;
 };
 const grammarCorrect = (q, value) => q.answers.some(a => grammarNormalize(a) === grammarNormalize(value));
+const grammarInputFormat = (q, group) => q.inputFormat || group.inputFormat;
+function grammarInputHelp(q, group, id) {
+  const format = grammarInputFormat(q, group);
+  return format ? `<div class="ginput-format" id="${esc(id)}"><p>${esc(format.instruction)}</p><p class="muted">Пример формата: <b lang="es">${esc(format.example)}</b></p></div>` : '';
+}
+const grammarInputPlaceholder = (q, group) => grammarInputFormat(q, group)?.placeholder || q.answerPlaceholder || group.answerPlaceholder || 'Ответ';
 const gOptionLabel = (q, value) => q.optionLabels?.[value] || (value === 'Без артикля' ? '∅' : value);
 const gInputChars = q => [...['á','é','í','ó','ú','ü','ñ'], ...(q.answers.includes('Без артикля') ? ['∅'] : [])];
 function grammarTable(t) {
@@ -1261,7 +1269,7 @@ function grammarForm(unit, group) {
         ${q.context ? `<p class="gquestion-sentence" lang="es">${esc(q.prompt)}</p>` : ""}
         ${q.image ? `<img class="gillustration" src="${esc(q.image)}" alt="${esc(q.imageAlt || "")}" width="384" height="384" loading="lazy">` : ""}
         ${q.options ? `<div class="gchoices">${q.options.map(o => `<label class="gchoice"><input type="radio" name="q${i}" value="${esc(o)}" aria-label="${esc(o === 'Без артикля' ? 'Ничего не вставлять' : gOptionLabel(q,o))}" required ${value === o ? "checked" : ""} ${attempt ? "disabled" : ""}><span lang="es">${esc(gOptionLabel(q,o))}</span></label>`).join("")}</div>`
-          : `<input class="ginput" name="q${i}" aria-label="${esc(q.context ? q.context + " " + q.prompt : q.prompt)}" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" required value="${esc(value)}" ${attempt ? "disabled" : ""}>${attempt ? "" : `<div class="gaccents" aria-label="Испанские буквы">${["á","é","í","ó","ú","ü","ñ"].map(c => `<button type="button" class="btn ghost sm" data-gaccent="${c}" data-ginput="q${i}" aria-label="Вставить ${c}">${c}</button>`).join("")}</div>`}`}
+          : `${grammarInputHelp(q,group,`g-format-${group.id}-${i}`)}<input class="ginput" name="q${i}" aria-describedby="g-format-${esc(group.id)}-${i}" placeholder="${esc(grammarInputPlaceholder(q,group))}" aria-label="${esc(q.context ? q.context + " " + q.prompt : q.prompt)}" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" required value="${esc(value)}" ${attempt ? "disabled" : ""}>${attempt ? "" : `<div class="gaccents" aria-label="Испанские буквы">${gInputChars(q).map(c => `<button type="button" class="btn ghost sm" data-gaccent="${c}" data-ginput="q${i}" aria-label="Вставить ${c}">${c}</button>`).join("")}</div>`}`}
         ${attempt ? `<div class="gfeedback ${good ? "good" : ""}"><b>${good ? "✓ Верно" : `✗ Верный ответ: ${esc(q.answers.join(" / "))}`}</b><p>${esc(q.explain)}</p></div>` : ""}</fieldset>`;
     }).join("")}
     <div class="gsummary" role="status" tabindex="-1">${attempt ? `Правильно: ${attempt.correct} из ${group.questions.length}` : ""}</div>
