@@ -51,9 +51,9 @@
             ],
             "explain": "Любой подходящий блокнот: uno pequeño. Существительное cuaderno не повторяем.",
             "options": [
+              "uno",
               "un",
-              "una",
-              "uno"
+              "una"
             ],
             "context": "Дополни предложение."
           },
@@ -65,8 +65,8 @@
             "explain": "Выбираем конкретную красную юбку из двух: la roja.",
             "options": [
               "una",
-              "el",
-              "la"
+              "la",
+              "el"
             ],
             "context": "Дополни предложение."
           }
@@ -134,10 +134,10 @@
             ],
             "explain": "Gafas — женский род, множественное число: las de la derecha.",
             "options": [
-              "el",
-              "la",
+              "las",
               "los",
-              "las"
+              "la",
+              "el"
             ],
             "context": "Дополни предложение."
           },
@@ -148,10 +148,10 @@
             ],
             "explain": "Имеется в виду el chico: el del pelo corto.",
             "options": [
-              "la",
               "los",
-              "las",
-              "el"
+              "el",
+              "la",
+              "las"
             ],
             "context": "Дополни предложение."
           }
@@ -223,9 +223,9 @@
             ],
             "explain": "Говорим о том, что важно вообще: lo importante.",
             "options": [
-              "el",
+              "lo",
               "la",
-              "lo"
+              "el"
             ],
             "context": "Дополни предложение."
           },
@@ -237,8 +237,8 @@
             "explain": "Выбираем один конкретный coche: el pequeño.",
             "options": [
               "la",
-              "lo",
-              "el"
+              "el",
+              "lo"
             ],
             "context": "Дополни предложение."
           }
@@ -274,11 +274,11 @@
           "explain": "Zapatos — мужской род, множественное число.",
           "options": [
             "el",
-            "la",
+            "los",
             "las",
             "uno",
             "una",
-            "los"
+            "la"
           ],
           "sourceRef": "11.1.1",
           "context": "Дополни предложение.",
@@ -291,12 +291,12 @@
           ],
           "explain": "Слово zapatos не повторяем: los blancos.",
           "options": [
+            "una",
+            "uno",
+            "los",
             "el",
             "la",
-            "las",
-            "uno",
-            "una",
-            "los"
+            "las"
           ],
           "sourceRef": "11.1.1",
           "context": "Дополни предложение.",
@@ -310,14 +310,11 @@
           "explain": "Нужен любой маленький блокнот: uno pequeño.",
           "options": [
             "el",
-            "la",
-            "los",
-            "las",
-            "una",
-            "uno"
+            "uno",
+            "un"
           ],
           "sourceRef": "11.1.2",
-          "context": "Дополни предложение.",
+          "context": "Нужен любой маленький блокнот; конкретный ещё не выбран.",
           "interaction": "gap-choice"
         },
         {
@@ -327,11 +324,8 @@
           ],
           "explain": "Выбираем конкретный sombrero: el negro.",
           "options": [
-            "la",
-            "los",
-            "las",
+            "un",
             "uno",
-            "una",
             "el"
           ],
           "sourceRef": "11.1.3",
@@ -345,12 +339,9 @@
           ],
           "explain": "Продолжаем о шляпах: el sombrero marrón → el marrón.",
           "options": [
-            "la",
-            "los",
-            "las",
-            "uno",
-            "una",
-            "el"
+            "el",
+            "un",
+            "uno"
           ],
           "sourceRef": "11.1.3",
           "context": "Дополни предложение.",
@@ -363,12 +354,12 @@
           ],
           "explain": "Имеется в виду los pantalones rojos.",
           "options": [
-            "el",
-            "la",
-            "las",
             "uno",
-            "una",
-            "los"
+            "la",
+            "el",
+            "las",
+            "los",
+            "una"
           ],
           "sourceRef": "11.1.4",
           "context": "Дополни предложение.",
@@ -383,13 +374,13 @@
           "options": [
             "el",
             "la",
-            "las",
             "uno",
-            "una",
-            "los"
+            "los",
+            "las",
+            "una"
           ],
           "sourceRef": "11.1.4",
-          "context": "Дополни предложение.",
+          "context": "Продолжи о брюках: белые тоже дорогие.",
           "interaction": "gap-choice"
         },
         {
@@ -399,11 +390,11 @@
           ],
           "explain": "Из двух девушек выделяем высокую: la chica alta.",
           "options": [
-            "el",
-            "los",
-            "las",
-            "uno",
             "una",
+            "uno",
+            "los",
+            "el",
+            "las",
             "la"
           ],
           "sourceRef": "11.1.5",
@@ -418,14 +409,11 @@
           "explain": "Нужна любая увлекательная книга: uno entretenido.",
           "options": [
             "el",
-            "la",
-            "los",
-            "las",
-            "una",
-            "uno"
+            "uno",
+            "un"
           ],
           "sourceRef": "11.1.6",
-          "context": "Дополни предложение.",
+          "context": "Попроси посоветовать любую увлекательную книгу; конкретную ещё не выбрали.",
           "interaction": "gap-choice"
         },
         {
@@ -435,12 +423,12 @@
           ],
           "explain": "Manzanas — женский род, множественное число.",
           "options": [
-            "el",
-            "la",
-            "los",
+            "las",
             "uno",
-            "una",
-            "las"
+            "la",
+            "el",
+            "los",
+            "una"
           ],
           "sourceRef": "11.1.7",
           "context": "Дополни предложение.",
@@ -453,12 +441,12 @@
           ],
           "explain": "Пропущено manzanas: las rojas.",
           "options": [
-            "el",
-            "la",
+            "las",
             "los",
-            "uno",
             "una",
-            "las"
+            "la",
+            "uno",
+            "el"
           ],
           "sourceRef": "11.1.7",
           "context": "Дополни предложение.",
@@ -471,15 +459,12 @@
           ],
           "explain": "Просим любую чистую чашку взамен: una limpia.",
           "options": [
-            "el",
+            "lo",
             "la",
-            "los",
-            "las",
-            "uno",
             "una"
           ],
           "sourceRef": "11.1.8",
-          "context": "Дополни предложение.",
+          "context": "Попроси любую чистую чашку взамен грязной.",
           "interaction": "gap-choice"
         },
         {
@@ -489,15 +474,12 @@
           ],
           "explain": "Нужна хорошая камера, ещё не выбрана конкретная: una buena.",
           "options": [
-            "el",
-            "la",
-            "los",
-            "las",
-            "uno",
-            "una"
+            "una",
+            "lo",
+            "la"
           ],
           "sourceRef": "11.1.9",
-          "context": "Дополни предложение.",
+          "context": "Нужна любая хорошая камера; конкретную ещё не выбрали.",
           "interaction": "gap-choice"
         },
         {
@@ -507,15 +489,12 @@
           ],
           "explain": "Один переносной компьютер: uno portátil, без повторения ordenador.",
           "options": [
-            "el",
-            "la",
-            "los",
-            "las",
-            "una",
-            "uno"
+            "uno",
+            "un",
+            "el"
           ],
           "sourceRef": "11.1.10",
-          "context": "Дополни предложение.",
+          "context": "Просто сообщи, что у тебя есть переносной компьютер, без указания конкретного.",
           "interaction": "gap-choice"
         }
       ],
@@ -544,10 +523,10 @@
           ],
           "explain": "Подразумевается las gafas: las de la derecha.",
           "options": [
-            "el",
-            "la",
+            "las",
             "los",
-            "las"
+            "la",
+            "el"
           ],
           "translation": "Выбираешь очки справа.",
           "sourceRef": "11.2.1",
@@ -561,9 +540,9 @@
           ],
           "explain": "Подразумевается el chico: el del pelo corto.",
           "options": [
-            "la",
             "los",
             "las",
+            "la",
             "el"
           ],
           "translation": "Альберто — парень с короткими волосами.",
@@ -578,10 +557,10 @@
           ],
           "explain": "Подразумевается la escultura: la de la izquierda.",
           "options": [
-            "el",
-            "los",
             "las",
-            "la"
+            "los",
+            "la",
+            "el"
           ],
           "translation": "Выбираешь скульптуру слева.",
           "sourceRef": "11.2.3",
@@ -595,10 +574,10 @@
           ],
           "explain": "Подразумевается las galletas: las de chocolate.",
           "options": [
-            "el",
-            "la",
             "los",
-            "las"
+            "las",
+            "la",
+            "el"
           ],
           "translation": "Хочешь шоколадное печенье.",
           "sourceRef": "11.2.4",
@@ -612,10 +591,10 @@
           ],
           "explain": "Подразумевается la chica: la de la falda larga.",
           "options": [
-            "el",
-            "los",
             "las",
-            "la"
+            "la",
+            "los",
+            "el"
           ],
           "translation": "Роси — девушка в длинной юбке.",
           "sourceRef": "11.2.5",
@@ -629,10 +608,10 @@
           ],
           "explain": "Подразумевается los zapatos: los de arriba.",
           "options": [
-            "el",
-            "la",
             "las",
-            "los"
+            "el",
+            "los",
+            "la"
           ],
           "translation": "Выбираешь туфли на верхней полке.",
           "sourceRef": "11.2.6",
@@ -646,10 +625,10 @@
           ],
           "explain": "Подразумевается la novela: la de Sandra Arenas.",
           "options": [
-            "el",
+            "la",
             "los",
-            "las",
-            "la"
+            "el",
+            "las"
           ],
           "translation": "Читаешь роман Сандры Аренас.",
           "sourceRef": "11.2.7",
@@ -663,8 +642,8 @@
           ],
           "explain": "Подразумевается el hombre: el del bigote.",
           "options": [
-            "la",
             "los",
+            "la",
             "las",
             "el"
           ],
@@ -699,10 +678,8 @@
           ],
           "explain": "Говорим о лучшем вообще: lo mejor.",
           "options": [
-            "el",
             "la",
-            "los",
-            "las",
+            "el",
             "lo"
           ],
           "sourceRef": "11.3.1",
@@ -716,10 +693,10 @@
           ],
           "explain": "Конкретные апельсины: las naranjas caras.",
           "options": [
-            "el",
             "la",
-            "los",
             "lo",
+            "el",
+            "los",
             "las"
           ],
           "sourceRef": "11.3.2",
@@ -734,13 +711,13 @@
           "explain": "Подразумевается las naranjas baratas.",
           "options": [
             "el",
-            "la",
             "los",
+            "las",
             "lo",
-            "las"
+            "la"
           ],
           "sourceRef": "11.3.2",
-          "context": "Дополни предложение.",
+          "context": "Продолжи выбор апельсинов: дорогие или дешёвые?",
           "interaction": "gap-choice"
         },
         {
@@ -750,11 +727,9 @@
           ],
           "explain": "Горькое на вкус вообще: lo amargo.",
           "options": [
-            "el",
             "la",
-            "los",
-            "las",
-            "lo"
+            "lo",
+            "el"
           ],
           "sourceRef": "11.3.3",
           "context": "Дополни предложение.",
@@ -767,11 +742,9 @@
           ],
           "explain": "Речь о дешёвом вообще, не об одном предмете.",
           "options": [
+            "lo",
             "el",
-            "la",
-            "los",
-            "las",
-            "lo"
+            "la"
           ],
           "sourceRef": "11.3.4",
           "context": "Дополни предложение.",
@@ -784,11 +757,11 @@
           ],
           "explain": "Конкретные девушки: las hermanas morenas.",
           "options": [
-            "el",
+            "las",
             "la",
             "los",
-            "lo",
-            "las"
+            "el",
+            "lo"
           ],
           "sourceRef": "11.3.5",
           "context": "Дополни предложение.",
@@ -801,10 +774,8 @@
           ],
           "explain": "Важное вообще: lo importante.",
           "options": [
-            "el",
             "la",
-            "los",
-            "las",
+            "el",
             "lo"
           ],
           "sourceRef": "11.3.6",
@@ -819,10 +790,8 @@
           "explain": "Плохая сторона зимы: lo malo del invierno.",
           "options": [
             "el",
-            "la",
-            "los",
-            "las",
-            "lo"
+            "lo",
+            "la"
           ],
           "sourceRef": "11.3.7",
           "context": "Дополни предложение.",
@@ -835,11 +804,11 @@
           ],
           "explain": "Конкретные серьги: los pendientes largos.",
           "options": [
-            "el",
-            "la",
-            "las",
             "lo",
-            "los"
+            "las",
+            "la",
+            "los",
+            "el"
           ],
           "sourceRef": "11.3.8",
           "context": "Дополни предложение.",
@@ -852,14 +821,14 @@
           ],
           "explain": "Подразумевается los pendientes cortos.",
           "options": [
-            "el",
+            "lo",
+            "los",
             "la",
             "las",
-            "lo",
-            "los"
+            "el"
           ],
           "sourceRef": "11.3.8",
-          "context": "Дополни предложение.",
+          "context": "Продолжи выбор серёг: длинные или короткие?",
           "interaction": "gap-choice"
         },
         {
@@ -869,11 +838,11 @@
           ],
           "explain": "Конкретная машина: el coche pequeño.",
           "options": [
-            "la",
+            "el",
             "los",
-            "las",
+            "la",
             "lo",
-            "el"
+            "las"
           ],
           "sourceRef": "11.3.9",
           "context": "Дополни предложение.",
@@ -886,11 +855,9 @@
           ],
           "explain": "Маленькое вообще: lo pequeño.",
           "options": [
+            "lo",
             "el",
-            "la",
-            "los",
-            "las",
-            "lo"
+            "la"
           ],
           "sourceRef": "11.3.10",
           "context": "Дополни предложение.",

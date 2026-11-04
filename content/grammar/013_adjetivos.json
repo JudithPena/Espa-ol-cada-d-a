@@ -52,9 +52,9 @@
             ],
             "explain": "Casa — женский род: pequeña.",
             "options": [
-              "pequeño",
+              "pequeña",
               "pequeños",
-              "pequeña"
+              "pequeño"
             ],
             "context": "Дополни предложение."
           },
@@ -65,9 +65,9 @@
             ],
             "explain": "Coches — мужской род, множественное число: pequeños.",
             "options": [
-              "pequeño",
               "pequeña",
-              "pequeños"
+              "pequeños",
+              "pequeño"
             ],
             "context": "Дополни предложение."
           }
@@ -140,9 +140,9 @@
             ],
             "explain": "Alegre одинаково для мужского и женского рода.",
             "options": [
-              "alegra",
               "alegres",
-              "alegre"
+              "alegre",
+              "alegra"
             ],
             "context": "Дополни предложение."
           },
@@ -153,9 +153,9 @@
             ],
             "explain": "Для смешанной группы обычно мужской род, множественное число.",
             "options": [
-              "simpático",
+              "simpáticos",
               "simpáticas",
-              "simpáticos"
+              "simpático"
             ],
             "context": "Дополни предложение."
           }
@@ -228,8 +228,8 @@
             "explain": "Перед profesor в единственном числе bueno сокращается до buen.",
             "options": [
               "bueno",
-              "buena",
-              "buen"
+              "buen",
+              "buena"
             ],
             "context": "Дополни предложение."
           },
@@ -240,9 +240,9 @@
             ],
             "explain": "После существительного женского рода нужна форма buena.",
             "options": [
+              "buena",
               "bueno",
-              "buen",
-              "buena"
+              "buen"
             ],
             "context": "Дополни предложение."
           }
@@ -557,11 +557,7 @@
               "весёлый"
             ]
           ],
-          "options": [
-            "alegre",
-            "alegres"
-          ],
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "Rosa también es muy ___.",
@@ -658,11 +654,7 @@
               "сильный"
             ]
           ],
-          "options": [
-            "fuerte",
-            "fuertes"
-          ],
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "Begoña lleva una falda ___.",
@@ -870,11 +862,7 @@
               "сильный"
             ]
           ],
-          "options": [
-            "fuerte",
-            "fuertes"
-          ],
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "Nosotros somos ___.",

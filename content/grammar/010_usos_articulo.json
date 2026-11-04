@@ -42,7 +42,7 @@
       "check": {
         "id": "check-a",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "∅ — ничего не вставляем.",
         "questions": [
           {
             "prompt": "Toca ___ piano.",
@@ -51,9 +51,9 @@
             ],
             "explain": "С tocar называем инструмент с артиклем: el piano.",
             "options": [
+              "el",
               "la",
-              "Без артикля",
-              "el"
+              "Без артикля"
             ],
             "context": "Дополни предложение."
           },
@@ -64,10 +64,10 @@
             ],
             "explain": "В конструкции jugar a las cartas нужен las.",
             "options": [
+              "las",
               "el",
-              "la",
               "Без артикля",
-              "las"
+              "la"
             ],
             "context": "Дополни предложение."
           }
@@ -130,7 +130,7 @@
       "check": {
         "id": "check-b",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "∅ — ничего не вставляем.",
         "questions": [
           {
             "prompt": "Hablo ___ español.",
@@ -139,9 +139,9 @@
             ],
             "explain": "Просто называем язык после hablo: hablo español.",
             "options": [
-              "el",
               "la",
-              "Без артикля"
+              "Без артикля",
+              "el"
             ],
             "context": "Дополни предложение."
           },
@@ -152,9 +152,9 @@
             ],
             "explain": "Язык — тема предложения: el griego.",
             "options": [
+              "el",
               "la",
-              "Без артикля",
-              "el"
+              "Без артикля"
             ],
             "context": "Дополни предложение."
           }
@@ -230,9 +230,9 @@
             ],
             "explain": "Называем службу: a la policía.",
             "options": [
-              "el",
+              "la",
               "los",
-              "la"
+              "el"
             ],
             "context": "Дополни предложение."
           },
@@ -243,11 +243,11 @@
             ],
             "explain": "Впервые сообщаем о купленном приборе: una televisión.",
             "options": [
-              "la",
-              "una"
+              "una",
+              "la"
             ],
             "translation": "Я купил телевизор. Рассказываю о покупке впервые.",
-            "context": "Дополни предложение."
+            "context": "Впервые сообщи, что купил телевизор; какой именно — пока не уточняем."
           }
         ]
       },
@@ -313,7 +313,7 @@
       "check": {
         "id": "check-d",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "∅ — ничего не вставляем.",
         "questions": [
           {
             "prompt": "Estoy en ___ casa.",
@@ -322,9 +322,9 @@
             ],
             "explain": "В значении «я дома» говорим en casa.",
             "options": [
-              "el",
+              "Без артикля",
               "la",
-              "Без артикля"
+              "el"
             ],
             "context": "Дополни предложение."
           },
@@ -335,9 +335,9 @@
             ],
             "explain": "Ir a + el cine превращается в ir al cine.",
             "options": [
-              "a la",
               "a el",
-              "al"
+              "al",
+              "a la"
             ],
             "context": "Дополни предложение."
           }
@@ -360,7 +360,7 @@
     {
       "id": "10.1",
       "title": "10.1 · Музыка и игры",
-      "instruction": "Добавь артикль; для jugar a + el выбирай al.",
+      "instruction": "Добавь артикль; для jugar a + el выбирай al. ∅ — ничего не вставляем.",
       "questions": [
         {
           "prompt": "Santi toca ___ guitarra.",
@@ -370,9 +370,8 @@
           "explain": "Играть на гитаре: tocar la guitarra.",
           "options": [
             "el",
-            "las",
-            "al",
-            "la"
+            "la",
+            "Без артикля"
           ],
           "translation": "Санти играет на гитаре.",
           "sourceRef": "10.1.1",
@@ -386,10 +385,9 @@
           ],
           "explain": "Играть на скрипке: tocar el violín.",
           "options": [
-            "la",
-            "las",
-            "al",
-            "el"
+            "el",
+            "Без артикля",
+            "la"
           ],
           "translation": "Эльса играет на скрипке.",
           "sourceRef": "10.1.2",
@@ -403,9 +401,8 @@
           ],
           "explain": "Jugar a + el ajedrez = jugar al ajedrez.",
           "options": [
-            "el",
-            "la",
-            "las",
+            "a la",
+            "a el",
             "al"
           ],
           "translation": "Роса играет в шахматы.",
@@ -420,10 +417,9 @@
           ],
           "explain": "Играть на пианино: tocar el piano.",
           "options": [
-            "la",
-            "las",
-            "al",
-            "el"
+            "Без артикля",
+            "el",
+            "la"
           ],
           "translation": "Элена играет на пианино.",
           "sourceRef": "10.1.4",
@@ -437,10 +433,9 @@
           ],
           "explain": "В этой конструкции jugar a + el fútbol = jugar al fútbol.",
           "options": [
-            "el",
-            "la",
-            "las",
-            "al"
+            "a el",
+            "al",
+            "a la"
           ],
           "translation": "Инес играет в футбол. Используй конструкцию с a.",
           "sourceRef": "10.1.5",
@@ -454,10 +449,9 @@
           ],
           "explain": "Jugar a + el tenis = jugar al tenis.",
           "options": [
-            "el",
-            "la",
-            "las",
-            "al"
+            "al",
+            "a el",
+            "a la"
           ],
           "translation": "Пепе играет в теннис. Используй конструкцию с a.",
           "sourceRef": "10.1.6",
@@ -472,8 +466,7 @@
           "explain": "Играть на трубе: tocar la trompeta.",
           "options": [
             "el",
-            "las",
-            "al",
+            "Без артикля",
             "la"
           ],
           "translation": "Хуан играет на трубе.",
@@ -488,10 +481,9 @@
           ],
           "explain": "Играть в карты: jugar a las cartas.",
           "options": [
-            "el",
+            "las",
             "la",
-            "al",
-            "las"
+            "Без артикля"
           ],
           "translation": "Мигель играет в карты.",
           "sourceRef": "10.1.8",
@@ -515,7 +507,7 @@
     {
       "id": "10.2",
       "title": "10.2 · В обычном разговоре",
-      "instruction": "Выбери артикль или «Без артикля».",
+      "instruction": "Выбери артикль или «∅».",
       "questions": [
         {
           "prompt": "Llama a ___ bomberos.",
@@ -524,13 +516,13 @@
           ],
           "explain": "Называем службу: los bomberos.",
           "options": [
-            "unos",
+            "los",
             "Без артикля",
-            "los"
+            "unos"
           ],
           "translation": "Позвони пожарным.",
           "sourceRef": "10.2.1",
-          "context": "Дополни предложение.",
+          "context": "Попроси вызвать пожарную службу, а не отдельных знакомых пожарных.",
           "interaction": "gap-choice"
         },
         {
@@ -540,11 +532,11 @@
           ],
           "explain": "Просто называем язык после hablar — без артикля.",
           "options": [
-            "un",
-            "una",
             "el",
             "la",
-            "Без артикля"
+            "Без артикля",
+            "un",
+            "una"
           ],
           "translation": "Ты говоришь по-испански?",
           "sourceRef": "10.2.2",
@@ -559,8 +551,8 @@
           "explain": "Язык стал темой предложения: el griego.",
           "options": [
             "un",
-            "Без артикля",
-            "el"
+            "el",
+            "Без артикля"
           ],
           "translation": "Греческий не трудный.",
           "sourceRef": "10.2.3",
@@ -580,7 +572,7 @@
           ],
           "translation": "Идём на пляж.",
           "sourceRef": "10.2.4",
-          "context": "Дополни предложение.",
+          "context": "Дополни привычное выражение «идём на пляж», не выбирая новый пляж.",
           "interaction": "gap-choice"
         },
         {
@@ -590,13 +582,13 @@
           ],
           "explain": "Обычное выражение escuchar las noticias.",
           "options": [
+            "las",
             "unas",
-            "Без артикля",
-            "las"
+            "Без артикля"
           ],
           "translation": "Ты слушал новости?",
           "sourceRef": "10.2.5",
-          "context": "Дополни предложение.",
+          "context": "Спроси о выпуске новостей, а не о нескольких отдельных сообщениях.",
           "interaction": "gap-choice"
         },
         {
@@ -606,11 +598,11 @@
           ],
           "explain": "Просто называем специальность после estudiar.",
           "options": [
-            "un",
             "una",
+            "Без артикля",
+            "un",
             "el",
-            "la",
-            "Без артикля"
+            "la"
           ],
           "translation": "Сусана изучает архитектуру.",
           "sourceRef": "10.2.6",
@@ -624,11 +616,11 @@
           ],
           "explain": "Называем занятие: hacer gimnasia.",
           "options": [
-            "un",
-            "una",
+            "Без артикля",
             "el",
             "la",
-            "Без артикля"
+            "una",
+            "un"
           ],
           "translation": "Каждый день занимается гимнастикой.",
           "sourceRef": "10.2.7",
@@ -642,9 +634,9 @@
           ],
           "explain": "De + el ejército = del ejército.",
           "options": [
+            "de los",
             "del",
-            "de la",
-            "de los"
+            "de la"
           ],
           "translation": "Он генерал армии.",
           "sourceRef": "10.2.8",
@@ -658,13 +650,13 @@
           ],
           "explain": "Речь об истории как области знания: la historia.",
           "options": [
+            "la",
             "una",
-            "Без артикля",
-            "la"
+            "Без артикля"
           ],
           "translation": "История интересна.",
           "sourceRef": "10.2.9",
-          "context": "Дополни предложение.",
+          "context": "Речь об истории как области знаний, а не об одном рассказе.",
           "interaction": "gap-choice"
         },
         {
@@ -674,8 +666,8 @@
           ],
           "explain": "Обычное выражение en el campo.",
           "options": [
-            "un",
             "Без артикля",
+            "un",
             "el"
           ],
           "translation": "У него есть дом за городом.",
@@ -691,12 +683,12 @@
           "explain": "Отдельный инструмент с описанием: una guitarra eléctrica.",
           "options": [
             "la",
-            "Без артикля",
-            "una"
+            "una",
+            "Без артикля"
           ],
           "translation": "У неё есть электрогитара. Рассказываем об этом впервые.",
           "sourceRef": "10.2.11",
-          "context": "Дополни предложение.",
+          "context": "Впервые сообщи, что у неё есть электрогитара; какая именно — пока не уточняем.",
           "interaction": "gap-choice"
         },
         {
@@ -712,7 +704,7 @@
           ],
           "translation": "Я купил телевизор. Это новая информация.",
           "sourceRef": "10.2.12",
-          "context": "Дополни предложение.",
+          "context": "Впервые сообщи о купленном телевизоре; какой именно — пока не уточняем.",
           "interaction": "gap-choice"
         },
         {
@@ -722,9 +714,9 @@
           ],
           "explain": "Средство передачи: escuchar la radio.",
           "options": [
+            "la",
             "una",
-            "Без артикля",
-            "la"
+            "Без артикля"
           ],
           "translation": "Слушаю радио.",
           "sourceRef": "10.2.13",
@@ -744,7 +736,7 @@
           ],
           "translation": "Позвони в полицию.",
           "sourceRef": "10.2.14",
-          "context": "Дополни предложение.",
+          "context": "Попроси вызвать полицию как службу.",
           "interaction": "gap-choice"
         },
         {
@@ -755,12 +747,12 @@
           "explain": "Обычное выражение leer el periódico.",
           "options": [
             "un",
-            "Без артикля",
-            "el"
+            "el",
+            "Без артикля"
           ],
           "translation": "Читаю газету каждое утро.",
           "sourceRef": "10.2.15",
-          "context": "Дополни предложение.",
+          "context": "Дополни привычное выражение «читаю газету», без выбора отдельного экземпляра.",
           "interaction": "gap-choice"
         }
       ],
@@ -780,7 +772,7 @@
     {
       "id": "10.3",
       "title": "10.3 · Куда и откуда?",
-      "instruction": "Дополни выражение. Место уже написано.",
+      "instruction": "Дополни выражение. Место уже написано. ∅ — ничего не вставляем.",
       "questions": [
         {
           "prompt": "Ana va a ___ universidad.",
@@ -790,9 +782,9 @@
           "explain": "Университет: ir a la universidad.",
           "options": [
             "el",
-            "al",
+            "la",
             "Без артикля",
-            "la"
+            "al"
           ],
           "translation": "Ана идёт в университет.",
           "sourceRef": "10.3.1",
@@ -807,9 +799,9 @@
           "explain": "Тюрьма: ir a la cárcel.",
           "options": [
             "el",
+            "la",
             "al",
-            "Без артикля",
-            "la"
+            "Без артикля"
           ],
           "translation": "Его отправляют в тюрьму.",
           "sourceRef": "10.3.2",
@@ -823,10 +815,10 @@
           ],
           "explain": "A + el hospital соединяем: al hospital.",
           "options": [
-            "el",
-            "la",
+            "al",
             "Без артикля",
-            "al"
+            "el",
+            "la"
           ],
           "translation": "Хуана везут в больницу.",
           "sourceRef": "10.3.3",
@@ -840,9 +832,9 @@
           ],
           "explain": "В значении «дома» — en casa.",
           "options": [
-            "el",
             "la",
             "al",
+            "el",
             "Без артикля"
           ],
           "translation": "Моя мама дома.",
@@ -857,10 +849,10 @@
           ],
           "explain": "A + el colegio соединяем: al colegio.",
           "options": [
-            "el",
             "la",
             "Без артикля",
-            "al"
+            "al",
+            "el"
           ],
           "translation": "Дети идут в школу.",
           "sourceRef": "10.3.5",
@@ -891,10 +883,10 @@
           ],
           "explain": "A + el cine соединяем: al cine.",
           "options": [
-            "el",
+            "al",
             "la",
             "Без артикля",
-            "al"
+            "el"
           ],
           "translation": "Сегодня вечером они идут в кино.",
           "sourceRef": "10.3.7",
@@ -908,10 +900,10 @@
           ],
           "explain": "Обычное выражение estar en el médico — быть у врача.",
           "options": [
-            "la",
             "al",
-            "Без артикля",
-            "el"
+            "la",
+            "el",
+            "Без артикля"
           ],
           "translation": "Сейчас они у врача.",
           "sourceRef": "10.3.8",
@@ -935,7 +927,7 @@
     {
       "id": "10.4",
       "title": "10.4 · Языки и занятия",
-      "instruction": "Закрепи выражения с языками и занятиями.",
+      "instruction": "Закрепи выражения с языками и занятиями. ∅ — ничего не вставляем.",
       "questions": [
         {
           "prompt": "Aprendo ___ francés.",
@@ -944,9 +936,9 @@
           ],
           "explain": "Просто называем изучаемый язык: aprendo francés.",
           "options": [
+            "Без артикля",
             "el",
-            "la",
-            "Без артикля"
+            "la"
           ],
           "sourceRef": "extra",
           "context": "Дополни предложение.",
@@ -960,8 +952,8 @@
           "explain": "Испанский — тема предложения: el español.",
           "options": [
             "la",
-            "Без артикля",
-            "el"
+            "el",
+            "Без артикля"
           ],
           "sourceRef": "extra",
           "context": "Дополни предложение.",
@@ -974,8 +966,8 @@
           ],
           "explain": "Название занятия после hacer — без артикля.",
           "options": [
-            "el",
             "la",
+            "el",
             "Без артикля"
           ],
           "sourceRef": "extra",

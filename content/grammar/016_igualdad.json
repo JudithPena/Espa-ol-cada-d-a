@@ -685,7 +685,8 @@
           },
           "options": [
             "son igual de altas",
-            "son tan altas"
+            "son igual de altos",
+            "son iguales de altas"
           ],
           "interaction": "gap-choice"
         },
@@ -778,7 +779,8 @@
           },
           "options": [
             "son igual de rápidos",
-            "son tan rápidos"
+            "son igual de rápidas",
+            "son iguales de rápidos"
           ],
           "interaction": "gap-choice"
         },
@@ -987,7 +989,8 @@
           "context": "malo · реплика персонажа: оба одинаково вредны",
           "options": [
             "igual de malos",
-            "tan malos"
+            "igual de malas",
+            "iguales de malos"
           ],
           "interaction": "gap-choice"
         }
@@ -1165,7 +1168,7 @@
       "id": "16.4",
       "title": "16.4 · Продолжи разговор",
       "instruction": "Продолжи ответ собеседника.",
-      "inputLabel": "Сборка фразы · Короткий ввод · Выбор ответа",
+      "inputLabel": "Сборка фразы · Короткий ввод",
       "phraseInput": true,
       "answerPlaceholder": "Пропущенная часть фразы",
       "preview": {
@@ -1336,13 +1339,7 @@
             "Elvira es muy guapa.",
             ""
           ],
-          "options": [
-            "igual de guapas que ella",
-            "tan guapas",
-            "igual de guapas",
-            "tan guapas como ella"
-          ],
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         }
       ]
     }

@@ -52,7 +52,7 @@
             "explain": "La más alta — самая высокая. Más ставим перед alta, а перед más нужен артикль la.",
             "options": [
               "la más",
-              "más la",
+              "más",
               "la muy"
             ]
           },
@@ -65,7 +65,7 @@
             "options": [
               "Este televisor es muy caro.",
               "Este televisor es el más caro.",
-              "Este televisor es más el caro."
+              "Este televisor es más caro."
             ]
           },
           {
@@ -76,8 +76,8 @@
             "explain": "Zapatos — мужской род, множественное число: los más cómodos.",
             "options": [
               "los más cómodos",
-              "los muy cómodos",
-              "los cómodos más"
+              "más cómodos",
+              "los muy cómodos"
             ]
           }
         ]
@@ -1521,7 +1521,7 @@
       "id": "17.4",
       "title": "17.4 · Соедини фразу: de или que",
       "instruction": "Дополни фразу и выбери de или que по смыслу.",
-      "inputLabel": "Сборка фразы · Выбор ответа",
+      "inputLabel": "Сборка фразы · Выбор слов в пропусках · Выбор ответа",
       "answerPlaceholder": "Твой ответ на испанском",
       "preview": {
         "source": "Es el libro ___ he leído.",
@@ -1570,12 +1570,27 @@
               "слово для сравнения"
             ]
           ],
-          "options": [
-            "el peor del mundo",
-            "el mejor del mundo",
-            "el más bueno del mundo"
-          ],
-          "interaction": "gap-choice"
+          "guidedGaps": {
+            "parts": [
+              "",
+              " mejor ",
+              " mundo"
+            ],
+            "choices": [
+              [
+                "el",
+                "la",
+                "los",
+                "las"
+              ],
+              [
+                "de",
+                "del",
+                "que"
+              ]
+            ]
+          },
+          "answerHint": "лучший в мире"
         },
         {
           "prompt": "Las ruinas de Machu Picchu son ___ he visto.",

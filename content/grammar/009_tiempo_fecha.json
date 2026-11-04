@@ -51,8 +51,8 @@
             ],
             "explain": "Время с una: la una y media.",
             "options": [
-              "las",
-              "la"
+              "la",
+              "las"
             ],
             "context": "Дополни предложение."
           },
@@ -128,7 +128,7 @@
       "check": {
         "id": "check-b",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "∅ — ничего не вставляем.",
         "questions": [
           {
             "prompt": "Voy al gimnasio ___ martes.",
@@ -137,12 +137,12 @@
             ],
             "explain": "Каждый вторник — los martes.",
             "options": [
-              "el",
+              "los",
               "Без артикля",
-              "los"
+              "el"
             ],
             "translation": "Я хожу в спортзал каждый вторник.",
-            "context": "Дополни предложение."
+            "context": "Скажи, что ходишь в зал каждый вторник."
           },
           {
             "prompt": "Hoy es ___ jueves.",
@@ -152,8 +152,8 @@
             "explain": "После Hoy es день недели обычно без артикля.",
             "options": [
               "el",
-              "los",
-              "Без артикля"
+              "Без артикля",
+              "los"
             ],
             "context": "Дополни предложение."
           }
@@ -233,8 +233,8 @@
             ],
             "explain": "Semana — женский род: a la semana.",
             "options": [
-              "al",
-              "a la"
+              "a la",
+              "al"
             ],
             "context": "Дополни предложение."
           }
@@ -301,9 +301,9 @@
             ],
             "explain": "Kilo — мужской род, единственное число.",
             "options": [
-              "la",
+              "el",
               "los",
-              "el"
+              "la"
             ],
             "context": "Дополни предложение."
           },
@@ -314,9 +314,9 @@
             ],
             "explain": "Docena — женский род: la docena.",
             "options": [
-              "el",
               "los",
-              "la"
+              "la",
+              "el"
             ],
             "context": "Дополни предложение."
           }
@@ -339,32 +339,36 @@
     {
       "id": "9.1",
       "title": "9.1 · Который час?",
-      "instruction": "Время уже написано словами. Выбери la или las.",
+      "instruction": "Выбери начало фразы по времени на часах: Es la или Son las.",
       "questions": [
         {
-          "prompt": "Son ___ tres y veinte.",
+          "prompt": "___ tres y veinte.",
           "answers": [
             "las"
           ],
-          "explain": "Перед числом часов, отличным от una, ставим las.",
+          "explain": "Для одного часа говорим Es la una, для остальных — Son las: Son las tres y veinte.",
           "options": [
-            "la",
-            "las"
+            "las",
+            "la"
           ],
           "sourceRef": "9.1.1",
           "clock": {
             "hour": 3,
             "minute": 20
           },
-          "context": "Выбери la или las.",
-          "interaction": "gap-choice"
+          "context": "Выбери начало фразы.",
+          "interaction": "gap-choice",
+          "optionLabels": {
+            "la": "Es la",
+            "las": "Son las"
+          }
         },
         {
-          "prompt": "Es ___ una y veinticinco.",
+          "prompt": "___ una y veinticinco.",
           "answers": [
             "la"
           ],
-          "explain": "Перед una ставим la.",
+          "explain": "Для одного часа говорим Es la una, для остальных — Son las: Es la una y veinticinco.",
           "options": [
             "las",
             "la"
@@ -374,51 +378,63 @@
             "hour": 1,
             "minute": 25
           },
-          "context": "Выбери la или las.",
-          "interaction": "gap-choice"
+          "context": "Выбери начало фразы.",
+          "interaction": "gap-choice",
+          "optionLabels": {
+            "la": "Es la",
+            "las": "Son las"
+          }
         },
         {
-          "prompt": "Son ___ cuatro menos diez.",
+          "prompt": "___ cuatro menos diez.",
           "answers": [
             "las"
           ],
-          "explain": "Перед числом часов, отличным от una, ставим las.",
+          "explain": "Для одного часа говорим Es la una, для остальных — Son las: Son las cuatro menos diez.",
           "options": [
-            "la",
-            "las"
+            "las",
+            "la"
           ],
           "sourceRef": "9.1.3",
           "clock": {
             "hour": 3,
             "minute": 50
           },
-          "context": "Выбери la или las.",
-          "interaction": "gap-choice"
+          "context": "Выбери начало фразы.",
+          "interaction": "gap-choice",
+          "optionLabels": {
+            "la": "Es la",
+            "las": "Son las"
+          }
         },
         {
-          "prompt": "Son ___ dos.",
+          "prompt": "___ dos.",
           "answers": [
             "las"
           ],
-          "explain": "Перед числом часов, отличным от una, ставим las.",
+          "explain": "Для одного часа говорим Es la una, для остальных — Son las: Son las dos.",
           "options": [
-            "la",
-            "las"
+            "las",
+            "la"
           ],
           "sourceRef": "9.1.4",
           "clock": {
             "hour": 2,
             "minute": 0
           },
-          "context": "Выбери la или las.",
-          "interaction": "gap-choice"
+          "context": "Выбери начало фразы.",
+          "interaction": "gap-choice",
+          "optionLabels": {
+            "la": "Es la",
+            "las": "Son las"
+          }
         },
         {
-          "prompt": "Son ___ ocho y media.",
+          "prompt": "___ ocho y media.",
           "answers": [
             "las"
           ],
-          "explain": "Перед числом часов, отличным от una, ставим las.",
+          "explain": "Для одного часа говорим Es la una, для остальных — Son las: Son las ocho y media.",
           "options": [
             "la",
             "las"
@@ -428,15 +444,19 @@
             "hour": 8,
             "minute": 30
           },
-          "context": "Выбери la или las.",
-          "interaction": "gap-choice"
+          "context": "Выбери начало фразы.",
+          "interaction": "gap-choice",
+          "optionLabels": {
+            "la": "Es la",
+            "las": "Son las"
+          }
         },
         {
-          "prompt": "Son ___ doce y cinco.",
+          "prompt": "___ doce y cinco.",
           "answers": [
             "las"
           ],
-          "explain": "Перед числом часов, отличным от una, ставим las.",
+          "explain": "Для одного часа говорим Es la una, для остальных — Son las: Son las doce y cinco.",
           "options": [
             "la",
             "las"
@@ -446,15 +466,19 @@
             "hour": 12,
             "minute": 5
           },
-          "context": "Выбери la или las.",
-          "interaction": "gap-choice"
+          "context": "Выбери начало фразы.",
+          "interaction": "gap-choice",
+          "optionLabels": {
+            "la": "Es la",
+            "las": "Son las"
+          }
         },
         {
-          "prompt": "Es ___ una menos cuarto.",
+          "prompt": "___ una menos cuarto.",
           "answers": [
             "la"
           ],
-          "explain": "Перед una ставим la.",
+          "explain": "Для одного часа говорим Es la una, для остальных — Son las: Es la una menos cuarto.",
           "options": [
             "las",
             "la"
@@ -464,35 +488,43 @@
             "hour": 12,
             "minute": 45
           },
-          "context": "Выбери la или las.",
-          "interaction": "gap-choice"
+          "context": "Выбери начало фразы.",
+          "interaction": "gap-choice",
+          "optionLabels": {
+            "la": "Es la",
+            "las": "Son las"
+          }
         },
         {
-          "prompt": "Son ___ once y cuarto.",
+          "prompt": "___ once y cuarto.",
           "answers": [
             "las"
           ],
-          "explain": "Перед числом часов, отличным от una, ставим las.",
+          "explain": "Для одного часа говорим Es la una, для остальных — Son las: Son las once y cuarto.",
           "options": [
-            "la",
-            "las"
+            "las",
+            "la"
           ],
           "sourceRef": "9.1.8",
           "clock": {
             "hour": 11,
             "minute": 15
           },
-          "context": "Выбери la или las.",
-          "interaction": "gap-choice"
+          "context": "Выбери начало фразы.",
+          "interaction": "gap-choice",
+          "optionLabels": {
+            "la": "Es la",
+            "las": "Son las"
+          }
         }
       ],
       "preview": {
-        "source": "Es ___ una y media.",
+        "source": "___ una y media.",
         "sentenceParts": [
-          "Es ",
+          "",
           " una y media."
         ],
-        "answer": "la",
+        "answer": "Es la",
         "translation": "Сейчас 1:30.",
         "targetPrefix": "",
         "tip": ""
@@ -502,7 +534,7 @@
     {
       "id": "9.2",
       "title": "9.2 · Когда это происходит?",
-      "instruction": "Дополни дату, день недели или часть дня.",
+      "instruction": "Дополни дату, день недели или часть дня. ∅ — ничего не вставляем.",
       "questions": [
         {
           "prompt": "Mi cumpleaños es ___ 12 de febrero.",
@@ -512,8 +544,8 @@
           "explain": "Перед датой события ставим el: el 12 de febrero.",
           "options": [
             "la",
-            "los",
             "las",
+            "los",
             "Без артикля",
             "el"
           ],
@@ -529,14 +561,14 @@
           "explain": "Каждый вторник: los martes.",
           "options": [
             "el",
-            "la",
-            "las",
             "Без артикля",
-            "los"
+            "las",
+            "los",
+            "la"
           ],
           "translation": "Это происходит каждый вторник.",
           "sourceRef": "9.2.2",
-          "context": "Дополни предложение.",
+          "context": "Скажи, что ходишь в зал каждый вторник.",
           "interaction": "gap-choice"
         },
         {
@@ -546,11 +578,11 @@
           ],
           "explain": "Устойчивое выражение por la noche.",
           "options": [
-            "el",
             "los",
+            "la",
             "las",
             "Без артикля",
-            "la"
+            "el"
           ],
           "sourceRef": "9.2.3",
           "context": "Дополни предложение.",
@@ -563,10 +595,10 @@
           ],
           "explain": "Перед днём события ставим el.",
           "options": [
+            "Без артикля",
+            "las",
             "la",
             "los",
-            "las",
-            "Без артикля",
             "el"
           ],
           "sourceRef": "9.2.4",
@@ -580,11 +612,11 @@
           ],
           "explain": "Перед числом после дня недели второй артикль не нужен.",
           "options": [
-            "el",
             "la",
-            "los",
+            "el",
+            "Без артикля",
             "las",
-            "Без артикля"
+            "los"
           ],
           "sourceRef": "9.2.4",
           "context": "Дополни предложение.",
@@ -597,14 +629,14 @@
           ],
           "explain": "Событие в определённое воскресенье: el domingo.",
           "options": [
-            "la",
-            "los",
             "las",
+            "el",
             "Без артикля",
-            "el"
+            "los",
+            "la"
           ],
           "sourceRef": "9.2.5",
-          "context": "Дополни предложение.",
+          "context": "Речь об одной вечеринке в ближайшее воскресенье.",
           "interaction": "gap-choice"
         },
         {
@@ -615,10 +647,10 @@
           "explain": "Время: a las siete.",
           "options": [
             "el",
-            "la",
-            "los",
             "Без артикля",
-            "las"
+            "las",
+            "los",
+            "la"
           ],
           "sourceRef": "9.2.5",
           "context": "Дополни предложение.",
@@ -631,11 +663,11 @@
           ],
           "explain": "После Hoy es день недели без артикля.",
           "options": [
-            "el",
-            "la",
+            "Без артикля",
             "los",
+            "la",
             "las",
-            "Без артикля"
+            "el"
           ],
           "sourceRef": "9.2.6",
           "context": "Дополни предложение.",
@@ -648,11 +680,11 @@
           ],
           "explain": "Число после дня недели без второго артикля.",
           "options": [
-            "el",
-            "la",
+            "Без артикля",
             "los",
-            "las",
-            "Без артикля"
+            "la",
+            "el",
+            "las"
           ],
           "sourceRef": "9.2.6",
           "context": "Дополни предложение.",
@@ -665,11 +697,11 @@
           ],
           "explain": "Перед названием месяца артикль здесь не нужен.",
           "options": [
+            "las",
+            "Без артикля",
             "el",
             "la",
-            "los",
-            "las",
-            "Без артикля"
+            "los"
           ],
           "sourceRef": "9.2.6",
           "context": "Дополни предложение.",
@@ -682,11 +714,11 @@
           ],
           "explain": "Время: a las diez.",
           "options": [
+            "las",
             "el",
             "la",
-            "los",
             "Без артикля",
-            "las"
+            "los"
           ],
           "sourceRef": "9.2.7",
           "context": "Дополни предложение.",
@@ -699,11 +731,11 @@
           ],
           "explain": "Часть дня: por la tarde.",
           "options": [
-            "el",
             "los",
             "las",
+            "la",
             "Без артикля",
-            "la"
+            "el"
           ],
           "sourceRef": "9.2.8",
           "context": "Дополни предложение.",
@@ -716,11 +748,11 @@
           ],
           "explain": "Часть дня: por la mañana.",
           "options": [
-            "el",
             "los",
             "las",
-            "Без артикля",
-            "la"
+            "el",
+            "la",
+            "Без артикля"
           ],
           "sourceRef": "9.2.8",
           "context": "Дополни предложение.",
@@ -733,11 +765,11 @@
           ],
           "explain": "Перед датой события нужен el.",
           "options": [
-            "la",
-            "los",
-            "las",
             "Без артикля",
-            "el"
+            "la",
+            "las",
+            "el",
+            "los"
           ],
           "sourceRef": "9.2.9",
           "context": "Дополни предложение.",
@@ -750,11 +782,11 @@
           ],
           "explain": "Перед месяцем после de артикля нет.",
           "options": [
-            "el",
             "la",
+            "Без артикля",
             "los",
-            "las",
-            "Без артикля"
+            "el",
+            "las"
           ],
           "sourceRef": "9.2.9",
           "context": "Дополни предложение.",
@@ -767,11 +799,11 @@
           ],
           "explain": "Регулярно по субботам: los sábados.",
           "options": [
-            "el",
+            "los",
             "la",
             "las",
             "Без артикля",
-            "los"
+            "el"
           ],
           "sourceRef": "9.2.10",
           "context": "Дополни предложение.",
@@ -784,10 +816,10 @@
           ],
           "explain": "После en название месяца без артикля.",
           "options": [
-            "el",
-            "la",
             "los",
+            "la",
             "las",
+            "el",
             "Без артикля"
           ],
           "sourceRef": "9.2.11",
@@ -802,13 +834,13 @@
           "explain": "Экзамен в определённый понедельник: el lunes.",
           "options": [
             "la",
-            "los",
-            "las",
             "Без артикля",
-            "el"
+            "el",
+            "los",
+            "las"
           ],
           "sourceRef": "9.2.12",
-          "context": "Дополни предложение.",
+          "context": "Речь об одном экзамене в ближайший понедельник.",
           "interaction": "gap-choice"
         }
       ],
@@ -837,8 +869,8 @@
           ],
           "explain": "Día — мужской род: al día.",
           "options": [
-            "a la",
-            "al"
+            "al",
+            "a la"
           ],
           "translation": "Сплю восемь часов в день.",
           "sourceRef": "9.3.1",
@@ -852,8 +884,8 @@
           ],
           "explain": "Semana — женский род: a la semana.",
           "options": [
-            "al",
-            "a la"
+            "a la",
+            "al"
           ],
           "translation": "Хожу в спортзал два дня в неделю.",
           "sourceRef": "9.3.2",
@@ -897,8 +929,8 @@
           ],
           "explain": "Semana — женский род: a la semana.",
           "options": [
-            "al",
-            "a la"
+            "a la",
+            "al"
           ],
           "translation": "Куда-нибудь выходим один вечер в неделю.",
           "sourceRef": "9.3.5",
@@ -947,9 +979,9 @@
           "explain": "Цена за килограмм: el kilo.",
           "options": [
             "la",
-            "los",
             "las",
-            "el"
+            "el",
+            "los"
           ],
           "translation": "Киви: 2 € за кг.",
           "sourceRef": "9.4.1",
@@ -963,10 +995,10 @@
           ],
           "explain": "Цена за литр: el litro.",
           "options": [
+            "el",
             "la",
-            "los",
             "las",
-            "el"
+            "los"
           ],
           "translation": "Молоко: 4 песо за л.",
           "sourceRef": "9.4.2",
@@ -981,9 +1013,9 @@
           "explain": "Цена за дюжину: la docena.",
           "options": [
             "el",
-            "los",
+            "la",
             "las",
-            "la"
+            "los"
           ],
           "translation": "Яйца: 2 € за 12 штук.",
           "sourceRef": "9.4.3",
@@ -997,8 +1029,8 @@
           ],
           "explain": "Cien gramos — множественное число мужского рода: los cien gramos.",
           "options": [
-            "el",
             "la",
+            "el",
             "las",
             "los"
           ],

@@ -278,7 +278,7 @@ test('back exits the first screen to the unit menu and preserves a resumable att
  assert.equal(run('G'),null);
  assert.equal(run('view.grammar'),unit3.id);
  assert.equal(run('gSaved().route'),'section:2');
- run('gStart(view.grammar,"all",true);gMove(1);gPick(0);gMove(-1);');
+ run('gStart(view.grammar,"all",true);gMove(1);gResponse(G.steps[G.at]).value="rubíes";gCheck();gMove(-1);');
  assert.equal(run('G.at'),0);
  run('gMove(1);');
  assert.equal(run('gResponse(G.steps[G.at]).checked'),true);
@@ -533,6 +533,59 @@ test('all 17 units complete through their actual interaction and keep canonical 
   assert.ok(run('gUnit().exercises.every(g=>P.grammar[grammarKey(gUnit(),g)].correct===g.questions.length)'),u.id);
   assert.equal(run('P.xp'),u.sections.reduce((n,s)=>n+(s.check?.questions.length||0),0)*2+u.exercises.reduce((n,g)=>n+g.questions.length,0)*2,u.id);
  }
+});
+
+test('an old hotel choice resumes as editable input without losing checked answers or best progress',()=>{
+ const run=context([unit3]);
+ unlockUntil(run,'exercise:3.1');
+ run(`gStart(COURSE.grammar[0].id,'exercise:3.1');
+   G.at=8; G.responses['3.1']={7:{value:'hotel',checked:false},1:{value:'peces',checked:true,good:true}};
+   P.grammar[grammarKey(gUnit(),gUnit().exercises[0])]={correct:16,total:18};
+   gSave(); G=null; gStart(COURSE.grammar[0].id,'all',true);`);
+ assert.equal(run('G.at'),8);
+ assert.equal(run('gResponse(G.steps[G.at]).value'),'hotel');
+ assert.ok(run('gPlayerView()').includes('id="g-answer"'));
+ assert.ok(!run('gPlayerView()').includes('data-gpick'));
+ run(`gResponse(G.steps[G.at]).value='hotels';gCheck();`);
+ assert.equal(run('gResponse(G.steps[G.at]).good'),false);
+ assert.equal(run('G.at'),8);
+ assert.ok(run('gPlayerView()').includes('После -l добавляем -es'));
+ run('gSave();G=null;gStart(COURSE.grammar[0].id,"all",true);');
+ assert.equal(run('gResponse(G.steps[G.at]).checked'),true);
+ assert.equal(run('G.responses["3.1"][1].good'),true);
+ assert.equal(run('P.grammar[grammarKey(gUnit(),gUnit().exercises[0])].correct'),16);
+ run('G.steps=[G.steps[G.at]];gRetry();gResponse(G.steps[0]).value="hoteles";gCheck();');
+ assert.equal(run('gResponse(G.steps[0]).good'),true);
+ assert.equal(run('G.at'),0);
+});
+
+test('time options display whole sentence openings while old stored article values still grade',()=>{
+ const all=JSON.parse(fs.readFileSync('content/grammar/009_tiempo_fecha.json','utf8'));
+ const run=context([all]);unlockUntil(run,'exercise:9.1');
+ run(`gStart(COURSE.grammar[0].id,'exercise:9.1');gMove(1);`);
+ let html=run('gPlayerView()');
+ assert.ok(html.includes('Es la') && html.includes('Son las'));
+ assert.ok(!html.includes('Son ___'));
+ run(`gPick(gUnit().exercises[0].questions[0].options.indexOf('las'));`);
+ assert.equal(run('gResponse(G.steps[G.at]).value'),'las');
+ assert.equal(run('gResponse(G.steps[G.at]).good'),true);
+ assert.equal(run('G.at'),1);
+ assert.equal(run(`gOptionLabel({optionLabels:{la:'<img>'}},'la')`),'<img>');
+ run(`gUnit().exercises[0].questions[0].optionLabels.las='<img src=x>';`);
+ assert.ok(run('gPlayerView()').includes('&lt;img src=x&gt;'));
+});
+
+test('article omission is compact, accessible and works in converted input with a mobile symbol key',()=>{
+ const all=JSON.parse(fs.readFileSync('content/grammar/008_nombres_propios.json','utf8'));
+ const run=context([all]);unlockUntil(run,'exercise:8.3');
+ run(`gStart(COURSE.grammar[0].id,'exercise:8.3');G.at=3;`);
+ assert.ok(run('gPlayerView()').includes('placeholder="Артикль или ∅"'));
+ assert.ok(run('gPlayerView()').includes('data-gchar="∅"'));
+ for(const spelling of ['∅','—','-','Без артикля']) assert.equal(run(`grammarCorrect(gUnit().exercises[2].questions[2],${JSON.stringify(spelling)})`),true);
+ assert.equal(run(`grammarCorrect({answers:['las']},'∅')`),false);
+ run(`gResponse(G.steps[G.at]).value='∅';gCheck();`);
+ assert.equal(run('gResponse(G.steps[G.at]).good'),true);
+ assert.equal(run('G.at'),3);
 });
 
 test('form paradigms have a desktop table and readable mobile definitions with escaped text',()=>{

@@ -389,7 +389,8 @@
               "la actora",
               "la actriz",
               "la actriza"
-            ]
+            ],
+            "context": "Назови актрису театра или кино."
           },
           {
             "prompt": "El padre (отец) → ___ (мать)",
@@ -614,7 +615,7 @@
     {
       "id": "1.1",
       "title": "1.1 · Профессии: el или la",
-      "instruction": "Посмотри на картинку и выбери название профессии с артиклем.",
+      "instruction": "Назови профессию с артиклем: выбери ответ или впиши его.",
       "questions": [
         {
           "prompt": "№ 1",
@@ -707,13 +708,9 @@
             "la pilota"
           ],
           "explain": "Оба варианта верны: la piloto и la pilota. La piloto более распространено; RAE также допускает la pilota.",
-          "options": [
-            "el piloto",
-            "la piloto",
-            "la pilota"
-          ],
           "imageAlt": "Женщина управляет самолётом.",
-          "image": "art/001/07-piloto.webp"
+          "image": "art/001/07-piloto.webp",
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "№ 8",
@@ -758,7 +755,7 @@
           "image": "art/001/10-paciente.webp"
         }
       ],
-      "inputLabel": "Выбор ответа"
+      "inputLabel": "Выбор ответа · Короткий ввод"
     },
     {
       "id": "1.2",
@@ -779,11 +776,7 @@
             "jefe"
           ],
           "explain": "Начальница — чаще la jefa. Можно сказать и la jefe: оба варианта правильные.",
-          "options": [
-            "jefe",
-            "jefa"
-          ],
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "el marido → la ___",
@@ -805,11 +798,7 @@
             "actriz"
           ],
           "explain": "У actor особая женская форма — actriz.",
-          "options": [
-            "actriz",
-            "actor"
-          ],
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "el turista → la ___",
@@ -831,11 +820,7 @@
             "bailarina"
           ],
           "explain": "К bailarín добавляем -a: bailarina — танцовщица. В женской форме значок ударения не нужен.",
-          "options": [
-            "bailarín",
-            "bailarina"
-          ],
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "el rey → la ___",
@@ -857,11 +842,7 @@
             "mujer"
           ],
           "explain": "Hombre — мужчина, mujer — женщина. Это разные слова.",
-          "options": [
-            "mujer",
-            "hombre"
-          ],
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "el niño → la ___",
@@ -884,11 +865,7 @@
             "amiga"
           ],
           "explain": "В amigo заменяем -o на -a: amiga — подруга.",
-          "options": [
-            "amigo",
-            "amiga"
-          ],
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "el médico → la ___",
@@ -903,7 +880,7 @@
         "answer": "amiga",
         "translation": "друг → подруга"
       },
-      "inputLabel": "Короткий ввод · Выбор ответа"
+      "inputLabel": "Короткий ввод"
     },
     {
       "id": "1.3",
@@ -968,9 +945,9 @@
           "explain": "Ana — мать Julio: madre.",
           "context": "2. Кем Ana приходится Julio?",
           "options": [
-            "padre",
-            "hermana",
-            "madre"
+            "abuela",
+            "madre",
+            "hermana"
           ],
           "interaction": "gap-choice"
         },
@@ -998,9 +975,9 @@
           "explain": "Pedro — сын Julio и Lucía: hijo.",
           "context": "5. Кем Pedro приходится Julio?",
           "options": [
-            "padre",
-            "madre",
-            "hijo"
+            "hijo",
+            "hermano",
+            "nieto"
           ],
           "interaction": "gap-choice"
         },
@@ -1028,8 +1005,8 @@
           "explain": "Lucía — жена Julio, дяди Silvia. Для Silvia она tía.",
           "context": "8. Кем Lucía приходится Silvia?",
           "options": [
-            "padre",
-            "madre",
+            "hermana",
+            "abuela",
             "tía"
           ],
           "interaction": "gap-choice"

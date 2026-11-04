@@ -166,7 +166,7 @@
       "check": {
         "id": "check-b",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "Образуй множественное число.",
         "questions": [
           {
             "prompt": "casa → ___",
@@ -174,11 +174,7 @@
               "casas"
             ],
             "explain": "Casa оканчивается на безударную -a: добавляем -s → casas.",
-            "options": [
-              "casas",
-              "casaes",
-              "casa"
-            ]
+            "answerPlaceholder": "Ответ"
           },
           {
             "prompt": "clase → ___",
@@ -186,11 +182,7 @@
               "clases"
             ],
             "explain": "После конечной безударной -e добавляем -s: clase → clases.",
-            "options": [
-              "clase",
-              "clases",
-              "clasees"
-            ]
+            "answerPlaceholder": "Ответ"
           },
           {
             "prompt": "mamá → ___",
@@ -198,11 +190,7 @@
               "mamás"
             ],
             "explain": "После ударной -á добавляем -s. Знак ударения остаётся: mamá → mamás.",
-            "options": [
-              "mamaes",
-              "mamá",
-              "mamás"
-            ]
+            "answerPlaceholder": "Ответ"
           }
         ]
       },
@@ -261,7 +249,7 @@
       "check": {
         "id": "check-c",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "Напиши одну из допустимых форм множественного числа.",
         "questions": [
           {
             "prompt": "rubí → ___",
@@ -270,11 +258,7 @@
               "rubís"
             ],
             "explain": "Оба варианта правильные: rubíes и rubís. У многих слов на ударную -í можно добавить -es или -s.",
-            "options": [
-              "rubíes",
-              "rubís",
-              "rubí"
-            ]
+            "answerPlaceholder": "Ответ"
           },
           {
             "prompt": "bambú → ___",
@@ -283,23 +267,16 @@
               "bambús"
             ],
             "explain": "Оба варианта правильные: bambúes и bambús.",
-            "options": [
-              "bambús",
-              "bambú",
-              "bambúes"
-            ]
+            "answerPlaceholder": "Ответ"
           },
           {
-            "prompt": "Выбери обычную форму множественного числа: menú → ___",
+            "prompt": "Образуй множественное число: menú → ___",
             "answers": [
-              "menús"
-            ],
-            "explain": "Обычная форма — menús. Региональный вариант menúes тоже встречается и допускается, но в этом вопросе его нет среди вариантов.",
-            "options": [
-              "menú",
               "menús",
-              "menuses"
-            ]
+              "menúes"
+            ],
+            "explain": "Обычная форма — menús. В некоторых странах Америки употребляют и нормативный вариант menúes.",
+            "answerPlaceholder": "Ответ"
           }
         ]
       },
@@ -377,8 +354,7 @@
             "explain": "Hotel оканчивается на -l: hotel + es → hoteles.",
             "options": [
               "hotels",
-              "hoteles",
-              "hotel"
+              "hoteles"
             ]
           },
           {
@@ -388,9 +364,8 @@
             ],
             "explain": "К слову reloj добавляем -es: relojes.",
             "options": [
-              "relojs",
-              "reloj",
-              "relojes"
+              "relojes",
+              "relojs"
             ]
           },
           {
@@ -560,8 +535,7 @@
             "explain": "Слово jueves не меняется: ударение не на последнем слоге. Меняется артикль el → los.",
             "options": [
               "los jueveses",
-              "los jueves",
-              "el jueves"
+              "los jueves"
             ]
           },
           {
@@ -572,8 +546,7 @@
             "explain": "Paraguas оканчивается на -s, ударение не на последнем слоге. Форма остаётся прежней.",
             "options": [
               "los paraguas",
-              "los paraguases",
-              "el paraguas"
+              "los paraguases"
             ]
           },
           {
@@ -583,7 +556,6 @@
             ],
             "explain": "В autobús ударение на последнем слоге: добавляем -es → autobuses.",
             "options": [
-              "autobús",
               "autobúses",
               "autobuses"
             ]
@@ -595,7 +567,6 @@
             ],
             "explain": "Mes — односложное слово на -s. Во множественном числе добавляем -es: meses.",
             "options": [
-              "mes",
               "meses",
               "mess"
             ]
@@ -661,8 +632,7 @@
             "explain": "В televisiones ударение на предпоследнем слоге, слово оканчивается на -s: знак ударения не нужен.",
             "options": [
               "televisiónes",
-              "televisiones",
-              "televisión"
+              "televisiones"
             ]
           },
           {
@@ -750,9 +720,8 @@
             ],
             "explain": "Unos pantalones может означать одни брюки. Хотя в слове уже есть окончание множественного числа, сам предмет может быть один.",
             "options": [
-              "только несколько пар брюк",
               "одни брюки",
-              "только несколько мужчин"
+              "обязательно несколько пар брюк"
             ]
           },
           {
@@ -996,11 +965,7 @@
           ],
           "explain": "pez → peces. Последнюю букву z заменяем на -ces.",
           "translation": "рыба",
-          "options": [
-            "pezes",
-            "pez",
-            "peces"
-          ]
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "autobús",
@@ -1025,10 +990,7 @@
           ],
           "explain": "habitación → habitaciones. Добавляем -es; знак ударения во множественном числе не нужен.",
           "translation": "комната",
-          "options": [
-            "habitaciones",
-            "habitación"
-          ]
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "mamá",
@@ -1053,10 +1015,7 @@
           ],
           "explain": "hotel → hoteles. После -l добавляем -es.",
           "translation": "отель",
-          "options": [
-            "hotel",
-            "hoteles"
-          ]
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "universidad",
@@ -1081,11 +1040,7 @@
           ],
           "explain": "niño → niños. После безударной -o добавляем -s.",
           "translation": "мальчик, ребёнок",
-          "options": [
-            "niñas",
-            "niño",
-            "niños"
-          ]
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "hermana",
@@ -1110,10 +1065,7 @@
           ],
           "explain": "día → días. Добавляем -s. Знак ударения над í сохраняется.",
           "translation": "день",
-          "options": [
-            "día",
-            "días"
-          ]
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "clase",
@@ -1138,10 +1090,7 @@
           ],
           "explain": "banana → bananas. После безударной -a добавляем -s.",
           "translation": "банан",
-          "options": [
-            "bananas",
-            "banana"
-          ]
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "jueves",
@@ -1152,7 +1101,7 @@
           "translation": "четверг"
         }
       ],
-      "inputLabel": "Короткий ввод · Выбор ответа"
+      "inputLabel": "Короткий ввод"
     },
     {
       "id": "3.2",
@@ -1186,12 +1135,7 @@
           "image": "art/003/02-botella.webp",
           "imageAlt": "Две бутылки.",
           "pictureCount": 2,
-          "options": [
-            "dos botellas",
-            "2 botella",
-            "3 botellas",
-            "2 botellas"
-          ]
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "gafas",
@@ -1234,12 +1178,7 @@
           "image": "art/003/05-lapiz.webp",
           "imageAlt": "Три карандаша.",
           "pictureCount": 3,
-          "options": [
-            "3 lápices",
-            "tres lápices",
-            "3 lápiz",
-            "4 lápices"
-          ]
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "libro",
@@ -1279,12 +1218,7 @@
           "image": "art/003/08-silla.webp",
           "imageAlt": "Пять стульев.",
           "pictureCount": 5,
-          "options": [
-            "6 sillas",
-            "5 sillas",
-            "cinco sillas",
-            "5 silla"
-          ]
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "tijeras",
@@ -1315,7 +1249,7 @@
           "pictureCount": 2
         }
       ],
-      "inputLabel": "Короткий ввод · Выбор ответа"
+      "inputLabel": "Короткий ввод"
     },
     {
       "id": "3.3",
@@ -1355,12 +1289,7 @@
             " de Marta viven en Caracas."
           ],
           "translation": "Бабушка и дедушка Marta живут в Каракасе.",
-          "options": [
-            "hijos",
-            "amigos",
-            "abuelos"
-          ],
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "Dos ___ míos están en Chile.",
@@ -1403,12 +1332,7 @@
             " son muy altos."
           ],
           "translation": "Мои родители очень высокие.",
-          "options": [
-            "hijos",
-            "abuelos",
-            "padres"
-          ],
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "Los ___ viven en un palacio.",
@@ -1451,12 +1375,7 @@
             "."
           ],
           "translation": "В моей школе три преподавателя.",
-          "options": [
-            "hijos",
-            "abuelos",
-            "profesores"
-          ],
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "He mandado un correo electrónico a mis ___.",
@@ -1487,7 +1406,7 @@
           "translation": "Это балетная труппа с тремя танцовщиками."
         }
       ],
-      "inputLabel": "Короткий ввод · Выбор ответа"
+      "inputLabel": "Короткий ввод"
     }
   ],
   "learningOrder": [

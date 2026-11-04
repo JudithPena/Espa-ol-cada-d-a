@@ -69,9 +69,9 @@
             ],
             "explain": "Ана — женщина: brasileña.",
             "options": [
+              "brasileña",
               "brasileño",
-              "brasileñas",
-              "brasileña"
+              "brasileñas"
             ],
             "context": "Дополни предложение."
           },
@@ -82,9 +82,9 @@
             ],
             "explain": "Costarricense не меняется по роду; для нескольких добавляем -s.",
             "options": [
-              "costarricense",
               "costarricensas",
-              "costarricenses"
+              "costarricenses",
+              "costarricense"
             ],
             "context": "Дополни предложение."
           }
@@ -152,9 +152,9 @@
             ],
             "explain": "Две женщины: chinas.",
             "options": [
+              "chinas",
               "chino",
-              "chinos",
-              "chinas"
+              "chinos"
             ],
             "context": "Дополни предложение."
           },
@@ -165,9 +165,9 @@
             ],
             "explain": "Смешанная группа: mexicanos.",
             "options": [
-              "mexicano",
               "mexicanas",
-              "mexicanos"
+              "mexicanos",
+              "mexicano"
             ],
             "context": "Дополни предложение."
           }
@@ -231,9 +231,9 @@
             ],
             "explain": "Ciudad — женский род: portuguesa.",
             "options": [
-              "portugués",
               "portuguesas",
-              "portuguesa"
+              "portuguesa",
+              "portugués"
             ],
             "context": "Дополни предложение."
           },
@@ -244,9 +244,9 @@
             ],
             "explain": "Ciudades — множественное число: canadienses; род форму не меняет.",
             "options": [
-              "canadiense",
+              "canadienses",
               "canadiensas",
-              "canadienses"
+              "canadiense"
             ],
             "context": "Дополни предложение."
           }
@@ -305,7 +305,8 @@
           "options": [
             "brasileña",
             "brasileñas",
-            "brasileños"
+            "brasileños",
+            "brasileño"
           ],
           "interaction": "gap-choice"
         },
@@ -356,11 +357,7 @@
               "коста-риканский"
             ]
           ],
-          "options": [
-            "costarricenses",
-            "costarricense"
-          ],
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "Ellas son ___.",
@@ -412,7 +409,8 @@
           "options": [
             "escocesa",
             "escocesas",
-            "escoceses"
+            "escoceses",
+            "escocés"
           ],
           "interaction": "gap-choice"
         },
@@ -464,12 +462,7 @@
               "иранский"
             ]
           ],
-          "options": [
-            "iranís",
-            "iraní",
-            "iraníes"
-          ],
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "Ellas son ___.",
@@ -522,7 +515,8 @@
           "options": [
             "japonesa",
             "japonesas",
-            "japoneses"
+            "japoneses",
+            "japonés"
           ],
           "interaction": "gap-choice"
         },
@@ -573,11 +567,7 @@
               "никарагуанский"
             ]
           ],
-          "options": [
-            "nicaragüenses",
-            "nicaragüense"
-          ],
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "Ellas son ___.",
@@ -629,7 +619,8 @@
           "options": [
             "venezolana",
             "venezolanas",
-            "venezolanos"
+            "venezolanos",
+            "venezolano"
           ],
           "interaction": "gap-choice"
         },
@@ -680,11 +671,7 @@
               "вьетнамский"
             ]
           ],
-          "options": [
-            "vietnamitas",
-            "vietnamita"
-          ],
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "Ellas son ___.",
@@ -918,11 +905,7 @@
               "марокканский"
             ]
           ],
-          "options": [
-            "marroquí",
-            "marroquís"
-          ],
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "Gabriel García Márquez fue un escritor ___.",
@@ -971,11 +954,7 @@
               "американский, из США"
             ]
           ],
-          "options": [
-            "estadounidense",
-            "estadounidenses"
-          ],
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "Hanói es la capital ___.",

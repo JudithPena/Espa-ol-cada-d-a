@@ -602,8 +602,8 @@
             "explain": "la expresión — выражение. Суффикс -sión подсказывает женский род.",
             "translation": "выражение",
             "options": [
-              "el",
-              "la"
+              "la",
+              "el"
             ]
           },
           {
@@ -614,8 +614,8 @@
             "explain": "la universidad — университет. Окончание -dad подсказывает женский род.",
             "translation": "университет",
             "options": [
-              "el",
-              "la"
+              "la",
+              "el"
             ]
           },
           {
@@ -649,10 +649,6 @@
               "рыба"
             ],
             [
-              "el gorila",
-              "горилла"
-            ],
-            [
               "el tiburón",
               "акула"
             ]
@@ -684,7 +680,9 @@
           "exception": false
         }
       ],
-      "notes": [],
+      "notes": [
+        "Gorila — другой случай: можно сказать el gorila о самце и la gorila о самке. Вариант el gorila hembra тоже возможен."
+      ],
       "check": {
         "id": "check-f",
         "title": "Мини-проверка",
@@ -697,20 +695,19 @@
             ],
             "explain": "У слова jirafa постоянный женский род. Пол уточняем словом macho.",
             "options": [
-              "el jirafa",
+              "la jirafa hembra",
+              "el jirafa macho",
               "la jirafa macho"
             ]
           },
           {
             "prompt": "Самка гориллы — это…",
             "answers": [
-              "el gorila hembra"
-            ],
-            "explain": "У названия животного gorila постоянный мужской род. Пол уточняем словом hembra.",
-            "options": [
               "el gorila hembra",
               "la gorila"
-            ]
+            ],
+            "explain": "Можно сказать la gorila или el gorila hembra. В современном словаре gorila допускает мужской и женский род; hembra тоже позволяет уточнить пол.",
+            "answerPlaceholder": "Ответ"
           },
           {
             "prompt": "___ pez",
@@ -1416,11 +1413,7 @@
           ],
           "explain": "У этой пары разные слова: el caballo — la yegua.",
           "translation": "кобыла → конь",
-          "options": [
-            "yegua",
-            "caballo"
-          ],
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "el gallo → la ___",
@@ -1445,11 +1438,7 @@
           ],
           "explain": "К león добавляем -a: leona. В готовой женской форме знак ударения не нужен.",
           "translation": "лев → львица",
-          "options": [
-            "leona",
-            "león"
-          ],
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "la vaca → el ___",
@@ -1460,7 +1449,7 @@
           "translation": "корова → бык"
         }
       ],
-      "inputLabel": "Короткий ввод · Выбор ответа"
+      "inputLabel": "Короткий ввод"
     },
     {
       "id": "2.3",

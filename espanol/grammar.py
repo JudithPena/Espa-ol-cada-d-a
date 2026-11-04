@@ -62,6 +62,13 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
                     raise ValueError(f"{path}: answer and explanation required")
                 if q.get("options") and not set(q["answers"]) <= set(q["options"]):
                     raise ValueError(f"{path}: correct answer missing from options")
+                if "optionLabels" in q:
+                    labels = q["optionLabels"]
+                    if (not isinstance(labels, dict) or not q.get("options")
+                            or not set(labels) <= set(q["options"])
+                            or not all(isinstance(label, str) and label.strip() for label in labels.values())
+                            or len({labels.get(value, value) for value in q["options"]}) != len(q["options"])):
+                        raise ValueError(f"{path}: option labels must identify distinct existing options")
                 if "guidedGaps" in q:
                     frame = q["guidedGaps"]
                     parts, choices = frame.get("parts", []), frame.get("choices", [])

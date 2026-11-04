@@ -555,7 +555,7 @@ html.grammar-playing, html.grammar-playing body { overflow: hidden; }
 .gexample { padding: 14px 16px; border-radius: 12px; background: var(--sunken); line-height: 1.6; }
 .gexample small { display: block; color: var(--muted); }
 .gchoices { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
-.gchoices .opt { flex: 1 1 100px; width: auto; min-height: 50px; justify-content: center; padding: 10px 16px; }
+.gchoices .opt { display: flex; flex: 1 1 100px; width: auto; min-height: 50px; justify-content: center; text-align: center; padding: 10px 16px; }
 .gchoices .k { display: none; }
 .gbuild { display: grid; gap: 16px; }
 .ganswer-hint { margin: 0; font-size: 16px; line-height: 1.5; color: var(--muted); }
@@ -1197,9 +1197,14 @@ function lessonRow(i, free = false) {
 const grammarAttempts = new Map();
 const grammarDrafts = new Map();
 const grammarKey = (u, g) => `${u.id}/${g.id}`;
-// Keep ñ and stress marks significant; forgive casing, outer spaces and Unicode encoding only.
-const grammarNormalize = value => String(value).normalize("NFC").trim().toLocaleLowerCase("es").replace(/\s+/g, " ");
+// Keep ñ and stress significant; ∅ and dashes represent an omitted article only.
+const grammarNormalize = value => {
+  const normalized=String(value).normalize("NFC").trim().toLocaleLowerCase("es").replace(/\s+/g, " ");
+  return ['∅','—','–','-'].includes(normalized) ? 'без артикля' : normalized;
+};
 const grammarCorrect = (q, value) => q.answers.some(a => grammarNormalize(a) === grammarNormalize(value));
+const gOptionLabel = (q, value) => q.optionLabels?.[value] || (value === 'Без артикля' ? '∅' : value);
+const gInputChars = q => [...['á','é','í','ó','ú','ü','ñ'], ...(q.answers.includes('Без артикля') ? ['∅'] : [])];
 function grammarTable(t) {
   return `<div class="tbl" tabindex="0" role="region" aria-label="Таблица примеров"><table><thead><tr>${t.heads.map(h => `<th scope="col">${esc(h)}</th>`).join("")}</tr></thead><tbody>${t.rows.map(r => `<tr>${r.map(c => `<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
 }
@@ -1255,7 +1260,7 @@ function grammarForm(unit, group) {
         <fieldset class="gquestion"><legend>${esc(q.context || q.prompt)}</legend>
         ${q.context ? `<p class="gquestion-sentence" lang="es">${esc(q.prompt)}</p>` : ""}
         ${q.image ? `<img class="gillustration" src="${esc(q.image)}" alt="${esc(q.imageAlt || "")}" width="384" height="384" loading="lazy">` : ""}
-        ${q.options ? `<div class="gchoices">${q.options.map(o => `<label class="gchoice"><input type="radio" name="q${i}" value="${esc(o)}" required ${value === o ? "checked" : ""} ${attempt ? "disabled" : ""}><span lang="es">${esc(o)}</span></label>`).join("")}</div>`
+        ${q.options ? `<div class="gchoices">${q.options.map(o => `<label class="gchoice"><input type="radio" name="q${i}" value="${esc(o)}" aria-label="${esc(o === 'Без артикля' ? 'Ничего не вставлять' : gOptionLabel(q,o))}" required ${value === o ? "checked" : ""} ${attempt ? "disabled" : ""}><span lang="es">${esc(gOptionLabel(q,o))}</span></label>`).join("")}</div>`
           : `<input class="ginput" name="q${i}" aria-label="${esc(q.context ? q.context + " " + q.prompt : q.prompt)}" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" required value="${esc(value)}" ${attempt ? "disabled" : ""}>${attempt ? "" : `<div class="gaccents" aria-label="Испанские буквы">${["á","é","í","ó","ú","ü","ñ"].map(c => `<button type="button" class="btn ghost sm" data-gaccent="${c}" data-ginput="q${i}" aria-label="Вставить ${c}">${c}</button>`).join("")}</div>`}`}
         ${attempt ? `<div class="gfeedback ${good ? "good" : ""}"><b>${good ? "✓ Верно" : `✗ Верный ответ: ${esc(q.answers.join(" / "))}`}</b><p>${esc(q.explain)}</p></div>` : ""}</fieldset>`;
     }).join("")}

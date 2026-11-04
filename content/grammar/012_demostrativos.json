@@ -69,8 +69,8 @@
             "explain": "Книга у говорящего: este libro.",
             "options": [
               "ese",
-              "aquel",
-              "este"
+              "este",
+              "aquel"
             ],
             "translation": "Книга у тебя в руке.",
             "sourceRef": "mini",
@@ -84,9 +84,9 @@
             ],
             "explain": "Ключи у собеседника: esas llaves.",
             "options": [
-              "estas",
+              "esas",
               "aquellas",
-              "esas"
+              "estas"
             ],
             "translation": "Ты просишь ключи, которые держит собеседник.",
             "sourceRef": "mini",
@@ -161,9 +161,9 @@
             ],
             "explain": "Представляем Хулию, которая рядом с нами: esta.",
             "options": [
+              "esta",
               "esa",
-              "aquella",
-              "esta"
+              "aquella"
             ],
             "translation": "Хулия стоит рядом с тобой.",
             "sourceRef": "mini",
@@ -178,8 +178,8 @@
             "explain": "Сумка ближе к собеседнику: ese bolso.",
             "options": [
               "este",
-              "aquel",
-              "ese"
+              "ese",
+              "aquel"
             ],
             "translation": "Ты спрашиваешь о сумке у собеседника.",
             "sourceRef": "mini",
@@ -265,14 +265,10 @@
               "aquel"
             ],
             "explain": "Возвращаемся к 1983 году: ese mismo año. Aquel тоже допустимо при взгляде издалека.",
-            "options": [
-              "este",
-              "ese",
-              "aquel"
-            ],
             "translation": "Ана родилась в том же году.",
             "sourceRef": "mini",
-            "context": "Выбери слово по подсказке."
+            "context": "Впиши слово по подсказке.",
+            "answerPlaceholder": "Ответ"
           }
         ]
       },
@@ -342,9 +338,9 @@
             ],
             "explain": "Не называем предмет в руке говорящего: esto.",
             "options": [
+              "esto",
               "este",
-              "esta",
-              "esto"
+              "esta"
             ],
             "translation": "Ты держишь незнакомый предмет и спрашиваешь, что это.",
             "context": "Дополни предложение."
@@ -356,9 +352,9 @@
             ],
             "explain": "Перед существительным libro нужно este, а не esto.",
             "options": [
-              "esto",
               "esta",
-              "este"
+              "este",
+              "esto"
             ],
             "context": "Дополни предложение."
           }
@@ -394,9 +390,9 @@
           ],
           "explain": "Llaves — женский род, множественное число. Ключи рядом с говорящим.",
           "options": [
-            "esas",
+            "estas",
             "aquellas",
-            "estas"
+            "esas"
           ],
           "translation": "Ключи у тебя в руке.",
           "sourceRef": "12.1.1",
@@ -430,16 +426,11 @@
             "esa"
           ],
           "explain": "Maleta — женский род. Aquella подчёркивает дальность; esa тоже возможно.",
-          "options": [
-            "esta",
-            "aquella",
-            "esa"
-          ],
           "translation": "Чемодан далеко от вас обоих.",
           "sourceRef": "12.1.3",
-          "context": "Выбери слово по подсказке.",
+          "context": "Впиши слово по подсказке.",
           "distance": "far",
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "Me gusta ___ bolso.",
@@ -448,9 +439,9 @@
           ],
           "explain": "Bolso — мужской род, сумка рядом с собеседником.",
           "options": [
-            "este",
             "aquel",
-            "ese"
+            "ese",
+            "este"
           ],
           "translation": "Сумка у собеседника.",
           "sourceRef": "12.1.4",
@@ -465,9 +456,9 @@
           ],
           "explain": "Gafas — женский род, множественное число, рядом с говорящим.",
           "options": [
+            "estas",
             "esas",
-            "aquellas",
-            "estas"
+            "aquellas"
           ],
           "translation": "Очки у тебя в руках.",
           "sourceRef": "12.1.5",
@@ -501,18 +492,13 @@
             "esos"
           ],
           "explain": "Árboles — мужской род, множественное число. Aquellos подчёркивает дальность.",
-          "options": [
-            "estos",
-            "aquellos",
-            "esos"
-          ],
           "translation": "Деревья далеко от вас обоих.",
           "sourceRef": "12.1.7",
-          "context": "Выбери слово по подсказке.",
+          "context": "Впиши слово по подсказке.",
           "distance": "far",
           "image": "art/002/01-arbol.webp",
           "imageAlt": "Деревья далеко от вас обоих.",
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "¿Son tuyas ___ llaves?",
@@ -521,9 +507,9 @@
           ],
           "explain": "Llaves — женский род, множественное число, ближе к собеседнику.",
           "options": [
-            "estas",
             "aquellas",
-            "esas"
+            "esas",
+            "estas"
           ],
           "translation": "Ключи лежат перед собеседником.",
           "sourceRef": "12.1.8",
@@ -546,7 +532,7 @@
         "tip": ""
       },
       "pictureTitle": "Выбери слово по подсказке.",
-      "inputLabel": "Выбор ответа"
+      "inputLabel": "Выбор ответа · Короткий ввод"
     },
     {
       "id": "12.2",
@@ -560,9 +546,9 @@
           ],
           "explain": "Находимся в этом ресторане: este restaurante.",
           "options": [
+            "este",
             "ese",
-            "aquel",
-            "este"
+            "aquel"
           ],
           "translation": "Ты говоришь о ресторане, в котором сейчас сидишь.",
           "sourceRef": "12.2.1",
@@ -594,9 +580,9 @@
           ],
           "explain": "Представляем девушку рядом с собой: esta.",
           "options": [
-            "esa",
+            "esta",
             "aquella",
-            "esta"
+            "esa"
           ],
           "translation": "Хулия стоит рядом с тобой.",
           "sourceRef": "12.2.3",
@@ -611,16 +597,11 @@
             "ese"
           ],
           "explain": "Показываем на мужчину далеко от обоих: aquel или ese.",
-          "options": [
-            "este",
-            "aquel",
-            "ese"
-          ],
           "translation": "Отец Чаро далеко от вас обоих.",
           "sourceRef": "12.2.4",
-          "context": "Выбери слово по подсказке.",
+          "context": "Впиши слово по подсказке.",
           "distance": "far",
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "___ vaso está sucio.",
@@ -646,9 +627,9 @@
           ],
           "explain": "Очки в руках продавца-собеседника: esas gafas.",
           "options": [
-            "estas",
             "aquellas",
-            "esas"
+            "esas",
+            "estas"
           ],
           "translation": "Очки держит продавец, с которым ты разговариваешь.",
           "sourceRef": "12.2.6",
@@ -663,16 +644,11 @@
             "esa"
           ],
           "explain": "Дом далеко: aquella или esa. Форма женского рода, как casa.",
-          "options": [
-            "esta",
-            "aquella",
-            "esa"
-          ],
           "translation": "Дом Рамона далеко от вас обоих.",
           "sourceRef": "12.2.7",
-          "context": "Выбери слово по подсказке.",
+          "context": "Впиши слово по подсказке.",
           "distance": "far",
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "Voy a coger ___ autobús.",
@@ -682,8 +658,8 @@
           "explain": "Автобус ближе к собеседнику: ese autobús.",
           "options": [
             "este",
-            "aquel",
-            "ese"
+            "ese",
+            "aquel"
           ],
           "translation": "Автобус остановился рядом с собеседником.",
           "sourceRef": "12.2.8",
@@ -703,7 +679,7 @@
         "targetPrefix": "",
         "tip": ""
       },
-      "inputLabel": "Выбор ответа"
+      "inputLabel": "Выбор ответа · Короткий ввод"
     },
     {
       "id": "12.3",
@@ -733,15 +709,10 @@
             "aquel"
           ],
           "explain": "Возвращаемся к уже названному 1983 году.",
-          "options": [
-            "este",
-            "ese",
-            "aquel"
-          ],
           "translation": "Я родился в 1983 году. В том же году родилась сестра.",
           "sourceRef": "12.3.2",
-          "context": "Выбери слово по подсказке.",
-          "interaction": "gap-choice"
+          "context": "Впиши слово по подсказке.",
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "¿Qué haces ___ noche?",
@@ -751,8 +722,8 @@
           "explain": "Сегодня вечером: esta noche.",
           "options": [
             "esa",
-            "aquella",
-            "esta"
+            "esta",
+            "aquella"
           ],
           "translation": "Что делаешь сегодня вечером?",
           "sourceRef": "12.3.3",
@@ -767,8 +738,8 @@
           "explain": "Текущая неделя: esta semana.",
           "options": [
             "esa",
-            "aquella",
-            "esta"
+            "esta",
+            "aquella"
           ],
           "translation": "На этой неделе у меня много работы.",
           "sourceRef": "12.3.3",
@@ -782,15 +753,10 @@
             "aquel"
           ],
           "explain": "Речь о лете уже названного года; ese и aquel здесь возможны.",
-          "options": [
-            "este",
-            "ese",
-            "aquel"
-          ],
           "translation": "В 2001-м я ездил в Чили. Тем летом познакомился с Майте.",
           "sourceRef": "12.3.4",
-          "context": "Выбери слово по подсказке.",
-          "interaction": "gap-choice"
+          "context": "Впиши слово по подсказке.",
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "Viví allí de 1950 a 1965. ___ fueron los mejores años de mi vida.",
@@ -799,15 +765,10 @@
             "esos"
           ],
           "explain": "Вспоминаем далёкие годы: aquellos или esos, мужской род и множественное число.",
-          "options": [
-            "estos",
-            "aquellos",
-            "esos"
-          ],
           "translation": "Я жил там с 1950 по 1965 год. То были лучшие годы моей жизни.",
           "sourceRef": "12.3.5",
-          "context": "Выбери слово по подсказке.",
-          "interaction": "gap-choice"
+          "context": "Впиши слово по подсказке.",
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "___ mes ha llovido mucho.",
@@ -816,9 +777,9 @@
           ],
           "explain": "Текущий месяц: este mes.",
           "options": [
+            "este",
             "ese",
-            "aquel",
-            "este"
+            "aquel"
           ],
           "translation": "В этом месяце было много дождей.",
           "sourceRef": "12.3.6",
@@ -832,15 +793,10 @@
             "esa"
           ],
           "explain": "Вспоминаем уже названное далёкое время: aquella época или esa época.",
-          "options": [
-            "esta",
-            "aquella",
-            "esa"
-          ],
           "translation": "Я женился в 1970-м. В ту пору мы жили в Лиме.",
           "sourceRef": "12.3.7",
-          "context": "Выбери слово по подсказке.",
-          "interaction": "gap-choice"
+          "context": "Впиши слово по подсказке.",
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "___ tarde tengo un examen.",
@@ -849,9 +805,9 @@
           ],
           "explain": "Сегодня днём или вечером: esta tarde.",
           "options": [
+            "esta",
             "esa",
-            "aquella",
-            "esta"
+            "aquella"
           ],
           "translation": "Сегодня во второй половине дня у меня экзамен.",
           "sourceRef": "12.3.8",
@@ -870,7 +826,7 @@
         "targetPrefix": "",
         "tip": ""
       },
-      "inputLabel": "Выбор ответа"
+      "inputLabel": "Выбор ответа · Короткий ввод"
     },
     {
       "id": "12.4",
@@ -885,8 +841,8 @@
           "explain": "Предмет у говорящего и пока не назван: esto.",
           "options": [
             "eso",
-            "aquello",
-            "esto"
+            "esto",
+            "aquello"
           ],
           "translation": "Ты держишь незнакомую вещь. Спрашиваешь, чья она.",
           "sourceRef": "12.4.1",
@@ -901,9 +857,9 @@
           ],
           "explain": "Незнакомый предмет у собеседника: eso.",
           "options": [
-            "esto",
+            "eso",
             "aquello",
-            "eso"
+            "esto"
           ],
           "translation": "Собеседник держит неизвестную тебе вещь.",
           "sourceRef": "12.4.2",
@@ -918,16 +874,11 @@
             "eso"
           ],
           "explain": "Предмет далеко от обоих: aquello подчёркивает дальность, eso тоже возможно.",
-          "options": [
-            "esto",
-            "aquello",
-            "eso"
-          ],
           "translation": "Ты показываешь на незнакомое здание далеко от вас обоих.",
           "sourceRef": "12.4.3",
           "context": "Дополни предложение.",
           "distance": "far",
-          "interaction": "gap-choice"
+          "answerPlaceholder": "Ответ"
         },
         {
           "prompt": "¿De quién es ___?",
@@ -936,8 +887,8 @@
           ],
           "explain": "Не называем вещь рядом с собеседником: eso.",
           "options": [
-            "esto",
             "aquello",
+            "esto",
             "eso"
           ],
           "translation": "Неизвестная сумка лежит у собеседника. Спрашиваешь, чья она.",
@@ -958,7 +909,7 @@
         "targetPrefix": "",
         "tip": ""
       },
-      "inputLabel": "Выбор ответа"
+      "inputLabel": "Выбор ответа · Короткий ввод"
     }
   ],
   "learningOrder": [

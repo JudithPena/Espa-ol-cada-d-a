@@ -1,0 +1,7574 @@
+{
+  "date": "2026-11-04",
+  "units": [
+    {
+      "unit": 1,
+      "reviewed": 49,
+      "choiceQuestions": 32,
+      "reworked": 10,
+      "orderOnly": 0
+    },
+    {
+      "unit": 2,
+      "reviewed": 73,
+      "choiceQuestions": 61,
+      "reworked": 4,
+      "orderOnly": 2
+    },
+    {
+      "unit": 3,
+      "reviewed": 66,
+      "choiceQuestions": 40,
+      "reworked": 26,
+      "orderOnly": 0
+    },
+    {
+      "unit": 4,
+      "reviewed": 55,
+      "choiceQuestions": 55,
+      "reworked": 3,
+      "orderOnly": 52
+    },
+    {
+      "unit": 5,
+      "reviewed": 47,
+      "choiceQuestions": 47,
+      "reworked": 38,
+      "orderOnly": 9
+    },
+    {
+      "unit": 6,
+      "reviewed": 48,
+      "choiceQuestions": 48,
+      "reworked": 1,
+      "orderOnly": 45
+    },
+    {
+      "unit": 7,
+      "reviewed": 75,
+      "choiceQuestions": 75,
+      "reworked": 15,
+      "orderOnly": 49
+    },
+    {
+      "unit": 8,
+      "reviewed": 68,
+      "choiceQuestions": 68,
+      "reworked": 17,
+      "orderOnly": 41
+    },
+    {
+      "unit": 9,
+      "reviewed": 44,
+      "choiceQuestions": 44,
+      "reworked": 12,
+      "orderOnly": 27
+    },
+    {
+      "unit": 10,
+      "reviewed": 42,
+      "choiceQuestions": 42,
+      "reworked": 17,
+      "orderOnly": 24
+    },
+    {
+      "unit": 11,
+      "reviewed": 40,
+      "choiceQuestions": 40,
+      "reworked": 16,
+      "orderOnly": 24
+    },
+    {
+      "unit": 12,
+      "reviewed": 37,
+      "choiceQuestions": 37,
+      "reworked": 10,
+      "orderOnly": 21
+    },
+    {
+      "unit": 13,
+      "reviewed": 49,
+      "choiceQuestions": 21,
+      "reworked": 3,
+      "orderOnly": 6
+    },
+    {
+      "unit": 14,
+      "reviewed": 46,
+      "choiceQuestions": 20,
+      "reworked": 10,
+      "orderOnly": 6
+    },
+    {
+      "unit": 15,
+      "reviewed": 50,
+      "choiceQuestions": 37,
+      "reworked": 1,
+      "orderOnly": 0
+    },
+    {
+      "unit": 16,
+      "reviewed": 50,
+      "choiceQuestions": 44,
+      "reworked": 4,
+      "orderOnly": 0
+    },
+    {
+      "unit": 17,
+      "reviewed": 53,
+      "choiceQuestions": 45,
+      "reworked": 4,
+      "orderOnly": 0
+    }
+  ],
+  "changes": [
+    {
+      "unit": 1,
+      "group": "1.1",
+      "question": 7,
+      "changes": [
+        "format"
+      ],
+      "reason": "Оба женских варианта нормативны; вместо двух верных кнопок — ввод с принятием обоих.",
+      "before": {
+        "prompt": "№ 7",
+        "answers": [
+          "la piloto",
+          "la pilota"
+        ],
+        "options": [
+          "el piloto",
+          "la piloto",
+          "la pilota"
+        ]
+      },
+      "after": {
+        "prompt": "№ 7",
+        "answers": [
+          "la piloto",
+          "la pilota"
+        ]
+      }
+    },
+    {
+      "unit": 1,
+      "group": "1.2",
+      "question": 2,
+      "changes": [
+        "format"
+      ],
+      "reason": "Вместо узнавания готовой женской формы — короткий ввод; сохраняются нормативные варианты.",
+      "before": {
+        "prompt": "el jefe → la ___",
+        "answers": [
+          "jefa",
+          "jefe"
+        ],
+        "options": [
+          "jefe",
+          "jefa"
+        ]
+      },
+      "after": {
+        "prompt": "el jefe → la ___",
+        "answers": [
+          "jefa",
+          "jefe"
+        ]
+      }
+    },
+    {
+      "unit": 1,
+      "group": "1.2",
+      "question": 5,
+      "changes": [
+        "format"
+      ],
+      "reason": "Вместо узнавания готовой женской формы — короткий ввод; сохраняются нормативные варианты.",
+      "before": {
+        "prompt": "el actor → la ___",
+        "answers": [
+          "actriz"
+        ],
+        "options": [
+          "actriz",
+          "actor"
+        ]
+      },
+      "after": {
+        "prompt": "el actor → la ___",
+        "answers": [
+          "actriz"
+        ]
+      }
+    },
+    {
+      "unit": 1,
+      "group": "1.2",
+      "question": 8,
+      "changes": [
+        "format"
+      ],
+      "reason": "Вместо узнавания готовой женской формы — короткий ввод; сохраняются нормативные варианты.",
+      "before": {
+        "prompt": "el bailarín → la ___",
+        "answers": [
+          "bailarina"
+        ],
+        "options": [
+          "bailarín",
+          "bailarina"
+        ]
+      },
+      "after": {
+        "prompt": "el bailarín → la ___",
+        "answers": [
+          "bailarina"
+        ]
+      }
+    },
+    {
+      "unit": 1,
+      "group": "1.2",
+      "question": 11,
+      "changes": [
+        "format"
+      ],
+      "reason": "Вместо узнавания готовой женской формы — короткий ввод; сохраняются нормативные варианты.",
+      "before": {
+        "prompt": "el hombre → la ___",
+        "answers": [
+          "mujer"
+        ],
+        "options": [
+          "mujer",
+          "hombre"
+        ]
+      },
+      "after": {
+        "prompt": "el hombre → la ___",
+        "answers": [
+          "mujer"
+        ]
+      }
+    },
+    {
+      "unit": 1,
+      "group": "1.2",
+      "question": 14,
+      "changes": [
+        "format"
+      ],
+      "reason": "Вместо узнавания готовой женской формы — короткий ввод; сохраняются нормативные варианты.",
+      "before": {
+        "prompt": "el amigo → la ___",
+        "answers": [
+          "amiga"
+        ],
+        "options": [
+          "amigo",
+          "amiga"
+        ]
+      },
+      "after": {
+        "prompt": "el amigo → la ___",
+        "answers": [
+          "amiga"
+        ]
+      }
+    },
+    {
+      "unit": 1,
+      "group": "1.3",
+      "question": 2,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Все варианты одного рода; нужно прочитать связи на семейном дереве.",
+      "before": {
+        "prompt": "Ana es mi ___.",
+        "answers": [
+          "madre"
+        ],
+        "options": [
+          "padre",
+          "hermana",
+          "madre"
+        ]
+      },
+      "after": {
+        "prompt": "Ana es mi ___.",
+        "answers": [
+          "madre"
+        ],
+        "options": [
+          "abuela",
+          "madre",
+          "hermana"
+        ]
+      }
+    },
+    {
+      "unit": 1,
+      "group": "1.3",
+      "question": 5,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Все варианты одного рода; нужно определить поколение и родство.",
+      "before": {
+        "prompt": "Pedro es mi ___.",
+        "answers": [
+          "hijo"
+        ],
+        "options": [
+          "padre",
+          "madre",
+          "hijo"
+        ]
+      },
+      "after": {
+        "prompt": "Pedro es mi ___.",
+        "answers": [
+          "hijo"
+        ],
+        "options": [
+          "hijo",
+          "hermano",
+          "nieto"
+        ]
+      }
+    },
+    {
+      "unit": 1,
+      "group": "1.3",
+      "question": 8,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Все варианты одного рода; нужно определить родство, а не пол по имени.",
+      "before": {
+        "prompt": "Lucía es mi ___.",
+        "answers": [
+          "tía"
+        ],
+        "options": [
+          "padre",
+          "madre",
+          "tía"
+        ]
+      },
+      "after": {
+        "prompt": "Lucía es mi ___.",
+        "answers": [
+          "tía"
+        ],
+        "options": [
+          "hermana",
+          "abuela",
+          "tía"
+        ]
+      }
+    },
+    {
+      "unit": 1,
+      "group": "check-d",
+      "question": 1,
+      "changes": [
+        "context"
+      ],
+      "reason": "Actora допустимо в других значениях; здесь явно задана профессия актрисы.",
+      "before": {
+        "prompt": "El actor → ___",
+        "answers": [
+          "la actriz"
+        ],
+        "options": [
+          "la actora",
+          "la actriz",
+          "la actriza"
+        ]
+      },
+      "after": {
+        "prompt": "El actor → ___",
+        "answers": [
+          "la actriz"
+        ],
+        "options": [
+          "la actora",
+          "la actriz",
+          "la actriza"
+        ]
+      }
+    },
+    {
+      "unit": 2,
+      "group": "2.2",
+      "question": 2,
+      "changes": [
+        "format"
+      ],
+      "reason": "Вместо выбора между названием самца и готовым названием самки — самостоятельная форма.",
+      "before": {
+        "prompt": "la yegua → el ___",
+        "answers": [
+          "caballo"
+        ],
+        "options": [
+          "yegua",
+          "caballo"
+        ]
+      },
+      "after": {
+        "prompt": "la yegua → el ___",
+        "answers": [
+          "caballo"
+        ]
+      }
+    },
+    {
+      "unit": 2,
+      "group": "2.2",
+      "question": 5,
+      "changes": [
+        "format"
+      ],
+      "reason": "Вместо выбора между названием самца и готовым названием самки — самостоятельная форма.",
+      "before": {
+        "prompt": "el león → la ___",
+        "answers": [
+          "leona"
+        ],
+        "options": [
+          "leona",
+          "león"
+        ]
+      },
+      "after": {
+        "prompt": "el león → la ___",
+        "answers": [
+          "leona"
+        ]
+      }
+    },
+    {
+      "unit": 2,
+      "group": "check-f",
+      "question": 1,
+      "changes": [
+        "options"
+      ],
+      "reason": "Сопоставимые по длине варианты проверяют и постоянный род, и слово macho.",
+      "before": {
+        "prompt": "Самец жирафа — это…",
+        "answers": [
+          "la jirafa macho"
+        ],
+        "options": [
+          "el jirafa",
+          "la jirafa macho"
+        ]
+      },
+      "after": {
+        "prompt": "Самец жирафа — это…",
+        "answers": [
+          "la jirafa macho"
+        ],
+        "options": [
+          "la jirafa hembra",
+          "el jirafa macho",
+          "la jirafa macho"
+        ]
+      }
+    },
+    {
+      "unit": 2,
+      "group": "check-f",
+      "question": 2,
+      "changes": [
+        "format"
+      ],
+      "reason": "La gorila нормативно: убран ложный дистрактор, принимаются оба способа назвать самку.",
+      "before": {
+        "prompt": "Самка гориллы — это…",
+        "answers": [
+          "el gorila hembra"
+        ],
+        "options": [
+          "el gorila hembra",
+          "la gorila"
+        ]
+      },
+      "after": {
+        "prompt": "Самка гориллы — это…",
+        "answers": [
+          "el gorila hembra",
+          "la gorila"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "3.1",
+      "question": 2,
+      "changes": [
+        "format"
+      ],
+      "reason": "Вместо узнавания слова с окончанием множественного числа — самостоятельное образование формы.",
+      "before": {
+        "prompt": "pez",
+        "answers": [
+          "peces"
+        ],
+        "options": [
+          "pezes",
+          "pez",
+          "peces"
+        ]
+      },
+      "after": {
+        "prompt": "pez",
+        "answers": [
+          "peces"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "3.1",
+      "question": 5,
+      "changes": [
+        "format"
+      ],
+      "reason": "Вместо узнавания слова с окончанием множественного числа — самостоятельное образование формы.",
+      "before": {
+        "prompt": "habitación",
+        "answers": [
+          "habitaciones"
+        ],
+        "options": [
+          "habitaciones",
+          "habitación"
+        ]
+      },
+      "after": {
+        "prompt": "habitación",
+        "answers": [
+          "habitaciones"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "3.1",
+      "question": 8,
+      "changes": [
+        "format"
+      ],
+      "reason": "Вместо узнавания слова с окончанием множественного числа — самостоятельное образование формы.",
+      "before": {
+        "prompt": "hotel",
+        "answers": [
+          "hoteles"
+        ],
+        "options": [
+          "hotel",
+          "hoteles"
+        ]
+      },
+      "after": {
+        "prompt": "hotel",
+        "answers": [
+          "hoteles"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "3.1",
+      "question": 11,
+      "changes": [
+        "format"
+      ],
+      "reason": "Вместо узнавания слова с окончанием множественного числа — самостоятельное образование формы.",
+      "before": {
+        "prompt": "niño",
+        "answers": [
+          "niños"
+        ],
+        "options": [
+          "niñas",
+          "niño",
+          "niños"
+        ]
+      },
+      "after": {
+        "prompt": "niño",
+        "answers": [
+          "niños"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "3.1",
+      "question": 14,
+      "changes": [
+        "format"
+      ],
+      "reason": "Вместо узнавания слова с окончанием множественного числа — самостоятельное образование формы.",
+      "before": {
+        "prompt": "día",
+        "answers": [
+          "días"
+        ],
+        "options": [
+          "día",
+          "días"
+        ]
+      },
+      "after": {
+        "prompt": "día",
+        "answers": [
+          "días"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "3.1",
+      "question": 17,
+      "changes": [
+        "format"
+      ],
+      "reason": "Вместо узнавания слова с окончанием множественного числа — самостоятельное образование формы.",
+      "before": {
+        "prompt": "banana",
+        "answers": [
+          "bananas"
+        ],
+        "options": [
+          "bananas",
+          "banana"
+        ]
+      },
+      "after": {
+        "prompt": "banana",
+        "answers": [
+          "bananas"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "3.2",
+      "question": 2,
+      "changes": [
+        "format"
+      ],
+      "reason": "Одинаковые верные ответы цифрами и словами и неверное количество заменены вводом; оба способа записи принимаются.",
+      "before": {
+        "prompt": "botella",
+        "answers": [
+          "2 botellas",
+          "dos botellas"
+        ],
+        "options": [
+          "dos botellas",
+          "2 botella",
+          "3 botellas",
+          "2 botellas"
+        ]
+      },
+      "after": {
+        "prompt": "botella",
+        "answers": [
+          "2 botellas",
+          "dos botellas"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "3.2",
+      "question": 5,
+      "changes": [
+        "format"
+      ],
+      "reason": "Одинаковые верные ответы цифрами и словами и неверное количество заменены вводом; оба способа записи принимаются.",
+      "before": {
+        "prompt": "lápiz",
+        "answers": [
+          "3 lápices",
+          "tres lápices"
+        ],
+        "options": [
+          "3 lápices",
+          "tres lápices",
+          "3 lápiz",
+          "4 lápices"
+        ]
+      },
+      "after": {
+        "prompt": "lápiz",
+        "answers": [
+          "3 lápices",
+          "tres lápices"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "3.2",
+      "question": 8,
+      "changes": [
+        "format"
+      ],
+      "reason": "Одинаковые верные ответы цифрами и словами и неверное количество заменены вводом; оба способа записи принимаются.",
+      "before": {
+        "prompt": "silla",
+        "answers": [
+          "5 sillas",
+          "cinco sillas"
+        ],
+        "options": [
+          "6 sillas",
+          "5 sillas",
+          "cinco sillas",
+          "5 silla"
+        ]
+      },
+      "after": {
+        "prompt": "silla",
+        "answers": [
+          "5 sillas",
+          "cinco sillas"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "3.3",
+      "question": 2,
+      "changes": [
+        "format"
+      ],
+      "reason": "Случайные названия родственников заменены самостоятельным названием смешанной группы.",
+      "before": {
+        "prompt": "Los ___ de Marta viven en Caracas.",
+        "answers": [
+          "abuelos"
+        ],
+        "options": [
+          "hijos",
+          "amigos",
+          "abuelos"
+        ]
+      },
+      "after": {
+        "prompt": "Los ___ de Marta viven en Caracas.",
+        "answers": [
+          "abuelos"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "3.3",
+      "question": 5,
+      "changes": [
+        "format"
+      ],
+      "reason": "Случайные названия родственников заменены самостоятельным названием смешанной группы.",
+      "before": {
+        "prompt": "Mis ___ son muy altos.",
+        "answers": [
+          "padres"
+        ],
+        "options": [
+          "hijos",
+          "abuelos",
+          "padres"
+        ]
+      },
+      "after": {
+        "prompt": "Mis ___ son muy altos.",
+        "answers": [
+          "padres"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "3.3",
+      "question": 8,
+      "changes": [
+        "format"
+      ],
+      "reason": "Случайные названия родственников заменены самостоятельным названием смешанной группы.",
+      "before": {
+        "prompt": "En mi escuela hay tres ___.",
+        "answers": [
+          "profesores"
+        ],
+        "options": [
+          "hijos",
+          "abuelos",
+          "profesores"
+        ]
+      },
+      "after": {
+        "prompt": "En mi escuela hay tres ___.",
+        "answers": [
+          "profesores"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "check-b",
+      "question": 1,
+      "changes": [
+        "format"
+      ],
+      "reason": "Без исходного слова среди подсказок нужно самостоятельно добавить подходящее окончание.",
+      "before": {
+        "prompt": "casa → ___",
+        "answers": [
+          "casas"
+        ],
+        "options": [
+          "casas",
+          "casaes",
+          "casa"
+        ]
+      },
+      "after": {
+        "prompt": "casa → ___",
+        "answers": [
+          "casas"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "check-b",
+      "question": 2,
+      "changes": [
+        "format"
+      ],
+      "reason": "Без исходного слова среди подсказок нужно самостоятельно добавить подходящее окончание.",
+      "before": {
+        "prompt": "clase → ___",
+        "answers": [
+          "clases"
+        ],
+        "options": [
+          "clase",
+          "clases",
+          "clasees"
+        ]
+      },
+      "after": {
+        "prompt": "clase → ___",
+        "answers": [
+          "clases"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "check-b",
+      "question": 3,
+      "changes": [
+        "format"
+      ],
+      "reason": "Без исходного слова среди подсказок нужно самостоятельно добавить подходящее окончание.",
+      "before": {
+        "prompt": "mamá → ___",
+        "answers": [
+          "mamás"
+        ],
+        "options": [
+          "mamaes",
+          "mamá",
+          "mamás"
+        ]
+      },
+      "after": {
+        "prompt": "mamá → ___",
+        "answers": [
+          "mamás"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "check-c",
+      "question": 1,
+      "changes": [
+        "format"
+      ],
+      "reason": "Не выбираем из двух верных форм и исходного слова; ученик сам образует множественное число, варианты принимаются.",
+      "before": {
+        "prompt": "rubí → ___",
+        "answers": [
+          "rubíes",
+          "rubís"
+        ],
+        "options": [
+          "rubíes",
+          "rubís",
+          "rubí"
+        ]
+      },
+      "after": {
+        "prompt": "rubí → ___",
+        "answers": [
+          "rubíes",
+          "rubís"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "check-c",
+      "question": 2,
+      "changes": [
+        "format"
+      ],
+      "reason": "Не выбираем из двух верных форм и исходного слова; ученик сам образует множественное число, варианты принимаются.",
+      "before": {
+        "prompt": "bambú → ___",
+        "answers": [
+          "bambúes",
+          "bambús"
+        ],
+        "options": [
+          "bambús",
+          "bambú",
+          "bambúes"
+        ]
+      },
+      "after": {
+        "prompt": "bambú → ___",
+        "answers": [
+          "bambúes",
+          "bambús"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "check-c",
+      "question": 3,
+      "changes": [
+        "format"
+      ],
+      "reason": "Не выбираем из двух верных форм и исходного слова; ученик сам образует множественное число, варианты принимаются.",
+      "before": {
+        "prompt": "Выбери обычную форму множественного числа: menú → ___",
+        "answers": [
+          "menús"
+        ],
+        "options": [
+          "menú",
+          "menús",
+          "menuses"
+        ]
+      },
+      "after": {
+        "prompt": "Образуй множественное число: menú → ___",
+        "answers": [
+          "menús",
+          "menúes"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "check-d",
+      "question": 1,
+      "changes": [
+        "options"
+      ],
+      "reason": "Убрано исходное единственное число; остаётся выбор между типичными ошибками +s и +es.",
+      "before": {
+        "prompt": "hotel → ___",
+        "answers": [
+          "hoteles"
+        ],
+        "options": [
+          "hotels",
+          "hoteles",
+          "hotel"
+        ]
+      },
+      "after": {
+        "prompt": "hotel → ___",
+        "answers": [
+          "hoteles"
+        ],
+        "options": [
+          "hotels",
+          "hoteles"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "check-d",
+      "question": 2,
+      "changes": [
+        "options"
+      ],
+      "reason": "Убрано исходное слово: проверяется выбор окончания -es, а не наличие множественного числа.",
+      "before": {
+        "prompt": "reloj → ___",
+        "answers": [
+          "relojes"
+        ],
+        "options": [
+          "relojs",
+          "reloj",
+          "relojes"
+        ]
+      },
+      "after": {
+        "prompt": "reloj → ___",
+        "answers": [
+          "relojes"
+        ],
+        "options": [
+          "relojes",
+          "relojs"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "check-f",
+      "question": 1,
+      "changes": [
+        "options"
+      ],
+      "reason": "Оба варианта имеют артикль множественного числа: проверяется неизменяемость существительного.",
+      "before": {
+        "prompt": "el jueves → ___",
+        "answers": [
+          "los jueves"
+        ],
+        "options": [
+          "los jueveses",
+          "los jueves",
+          "el jueves"
+        ]
+      },
+      "after": {
+        "prompt": "el jueves → ___",
+        "answers": [
+          "los jueves"
+        ],
+        "options": [
+          "los jueveses",
+          "los jueves"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "check-f",
+      "question": 2,
+      "changes": [
+        "options"
+      ],
+      "reason": "Оба варианта имеют артикль множественного числа: проверяется неизменяемость существительного.",
+      "before": {
+        "prompt": "el paraguas → ___",
+        "answers": [
+          "los paraguas"
+        ],
+        "options": [
+          "los paraguas",
+          "los paraguases",
+          "el paraguas"
+        ]
+      },
+      "after": {
+        "prompt": "el paraguas → ___",
+        "answers": [
+          "los paraguas"
+        ],
+        "options": [
+          "los paraguas",
+          "los paraguases"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "check-f",
+      "question": 3,
+      "changes": [
+        "options"
+      ],
+      "reason": "Убрана неизменённая форма; остаётся проверка написания множественного числа.",
+      "before": {
+        "prompt": "autobús → ___",
+        "answers": [
+          "autobuses"
+        ],
+        "options": [
+          "autobús",
+          "autobúses",
+          "autobuses"
+        ]
+      },
+      "after": {
+        "prompt": "autobús → ___",
+        "answers": [
+          "autobuses"
+        ],
+        "options": [
+          "autobúses",
+          "autobuses"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "check-f",
+      "question": 4,
+      "changes": [
+        "options"
+      ],
+      "reason": "Оба варианта пробуют образовать множественное число; проверяется -es.",
+      "before": {
+        "prompt": "mes → ___",
+        "answers": [
+          "meses"
+        ],
+        "options": [
+          "mes",
+          "meses",
+          "mess"
+        ]
+      },
+      "after": {
+        "prompt": "mes → ___",
+        "answers": [
+          "meses"
+        ],
+        "options": [
+          "meses",
+          "mess"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "check-g",
+      "question": 1,
+      "changes": [
+        "options"
+      ],
+      "reason": "Оба варианта множественного числа: проверяется только изучаемое написание ударения.",
+      "before": {
+        "prompt": "televisión → ___",
+        "answers": [
+          "televisiones"
+        ],
+        "options": [
+          "televisiónes",
+          "televisiones",
+          "televisión"
+        ]
+      },
+      "after": {
+        "prompt": "televisión → ___",
+        "answers": [
+          "televisiones"
+        ],
+        "options": [
+          "televisiónes",
+          "televisiones"
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "group": "check-h",
+      "question": 2,
+      "changes": [
+        "options"
+      ],
+      "reason": "Удалён случайный ответ о мужчинах; варианты различаются пониманием числа парного предмета.",
+      "before": {
+        "prompt": "Что может обозначать unos pantalones?",
+        "answers": [
+          "одни брюки"
+        ],
+        "options": [
+          "только несколько пар брюк",
+          "одни брюки",
+          "только несколько мужчин"
+        ]
+      },
+      "after": {
+        "prompt": "Что может обозначать unos pantalones?",
+        "answers": [
+          "одни брюки"
+        ],
+        "options": [
+          "одни брюки",
+          "обязательно несколько пар брюк"
+        ]
+      }
+    },
+    {
+      "unit": 4,
+      "group": "4.1",
+      "question": 12,
+      "changes": [
+        "format"
+      ],
+      "reason": "Un и una перед ударным a допустимы; ввод принимает оба, вместо двух верных кнопок.",
+      "before": {
+        "prompt": "___ aula",
+        "answers": [
+          "un",
+          "una"
+        ],
+        "options": [
+          "unos",
+          "unas",
+          "un",
+          "una"
+        ]
+      },
+      "after": {
+        "prompt": "___ aula",
+        "answers": [
+          "un",
+          "una"
+        ]
+      }
+    },
+    {
+      "unit": 4,
+      "group": "4.3",
+      "question": 3,
+      "changes": [
+        "format"
+      ],
+      "reason": "Un и una перед ударным a допустимы; ввод принимает оба, вместо двух верных кнопок.",
+      "before": {
+        "prompt": "___ hacha",
+        "answers": [
+          "un",
+          "una"
+        ],
+        "options": [
+          "unos",
+          "unas",
+          "un",
+          "una"
+        ]
+      },
+      "after": {
+        "prompt": "___ hacha",
+        "answers": [
+          "un",
+          "una"
+        ]
+      }
+    },
+    {
+      "unit": 4,
+      "group": "4.4",
+      "question": 4,
+      "changes": [
+        "format"
+      ],
+      "reason": "Un и una перед ударным a допустимы; ввод принимает оба, вместо двух верных кнопок.",
+      "before": {
+        "prompt": "¡Mira! ___ águila.",
+        "answers": [
+          "un",
+          "una"
+        ],
+        "options": [
+          "unos",
+          "unas",
+          "un",
+          "una"
+        ]
+      },
+      "after": {
+        "prompt": "¡Mira! ___ águila.",
+        "answers": [
+          "un",
+          "una"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.1",
+      "question": 1,
+      "changes": [
+        "context",
+        "options"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Eva es ___ abogada.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Eva es ___ abogada.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "una",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.1",
+      "question": 2,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "José Luis es ___ estudiante.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "José Luis es ___ estudiante.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "un"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.1",
+      "question": 3,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Mar es ___ actriz.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Mar es ___ actriz.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "un"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.1",
+      "question": 4,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Félix es ___ fotógrafo.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Félix es ___ fotógrafo.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "un"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.1",
+      "question": 5,
+      "changes": [
+        "context",
+        "options"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Roberto es ___ médico.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Roberto es ___ médico.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.1",
+      "question": 6,
+      "changes": [
+        "context",
+        "options"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Adrián es ___ cocinero.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Adrián es ___ cocinero.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.1",
+      "question": 7,
+      "changes": [
+        "context",
+        "options"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Eloísa es ___ camarera.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Eloísa es ___ camarera.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "una",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.1",
+      "question": 8,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Leonor es ___ profesora.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Leonor es ___ profesora.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "una"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.2",
+      "question": 1,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "¿Quién es Luis Miguel? Es ___ cantante.",
+        "answers": [
+          "un"
+        ],
+        "options": [
+          "el",
+          "Без артикля",
+          "un"
+        ]
+      },
+      "after": {
+        "prompt": "¿Quién es Luis Miguel? Es ___ cantante.",
+        "answers": [
+          "un"
+        ],
+        "options": [
+          "el",
+          "un",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.2",
+      "question": 2,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Luis Miguel es ___ mexicano.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Luis Miguel es ___ mexicano.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "un"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.2",
+      "question": 4,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "La doctora Ramírez es ___ argentina.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "La doctora Ramírez es ___ argentina.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "una"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.2",
+      "question": 5,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "El marido de Luisa es ___ abogado.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "El marido de Luisa es ___ abogado.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "un"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.2",
+      "question": 7,
+      "changes": [
+        "context",
+        "options"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Tomás se ha hecho ___ musulmán.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Tomás se ha hecho ___ musulmán.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.2",
+      "question": 8,
+      "changes": [
+        "context",
+        "options"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Los tíos de Andrea son ___ protestantes.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Los tíos de Andrea son ___ protestantes.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "unos",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.2",
+      "question": 10,
+      "changes": [
+        "context"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "¿Quién es Vargas Llosa? Es ___ escritor.",
+        "answers": [
+          "un"
+        ],
+        "options": [
+          "el",
+          "Без артикля",
+          "un"
+        ]
+      },
+      "after": {
+        "prompt": "¿Quién es Vargas Llosa? Es ___ escritor.",
+        "answers": [
+          "un"
+        ],
+        "options": [
+          "el",
+          "Без артикля",
+          "un"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.2",
+      "question": 11,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Vargas Llosa era ___ peruano.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Vargas Llosa era ___ peruano.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "un"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.2",
+      "question": 12,
+      "changes": [
+        "context",
+        "options"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Alberto y Lola son ___ estudiantes.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Alberto y Lola son ___ estudiantes.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "unos",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.2",
+      "question": 13,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Alberto y Lola son ___ socialistas.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Alberto y Lola son ___ socialistas.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "unos"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.2",
+      "question": 14,
+      "changes": [
+        "context",
+        "options"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Sarita quiere ser ___ bailarina.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Sarita quiere ser ___ bailarina.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "una",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.3",
+      "question": 1,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "¿Comes ___ carne?",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "¿Comes ___ carne?",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "una"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.3",
+      "question": 2,
+      "changes": [
+        "options"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля.",
+      "before": {
+        "prompt": "No, soy ___ vegetariano.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "No, soy ___ vegetariano.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.3",
+      "question": 3,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Colecciono ___ monedas.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Colecciono ___ monedas.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "unas"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.3",
+      "question": 4,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой. Нулевой артикль тоже грамматичен; задан выбор между неопределённым и определённым артиклем.",
+      "before": {
+        "prompt": "Ayer me compré ___ monedas chinas.",
+        "answers": [
+          "unas"
+        ],
+        "options": [
+          "las",
+          "Без артикля",
+          "unas"
+        ]
+      },
+      "after": {
+        "prompt": "Ayer me compré ___ monedas chinas.",
+        "answers": [
+          "unas"
+        ],
+        "options": [
+          "las",
+          "unas"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.3",
+      "question": 6,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "¿Tomas ___ café?",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "¿Tomas ___ café?",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "un"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.3",
+      "question": 8,
+      "changes": [
+        "context",
+        "options"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "No tomo ___ azúcar.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "No tomo ___ azúcar.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.3",
+      "question": 9,
+      "changes": [
+        "context",
+        "options"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "¿Tenéis ___ hijos?",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "¿Tenéis ___ hijos?",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "unos",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.3",
+      "question": 10,
+      "changes": [
+        "context",
+        "options"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Chelo canta ___ ópera.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Chelo canta ___ ópera.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "una",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.3",
+      "question": 11,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Ernesto es ___ músico.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Ernesto es ___ músico.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "un"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.3",
+      "question": 12,
+      "changes": [
+        "context",
+        "options"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Escribe ___ canciones.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Escribe ___ canciones.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "unas",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.3",
+      "question": 13,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "¿Necesitas ___ dinero?",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "¿Necesitas ___ dinero?",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "un"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.3",
+      "question": 14,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "¿Quieres ___ queso?",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "¿Quieres ___ queso?",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "un"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.3",
+      "question": 16,
+      "changes": [
+        "context",
+        "options"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Carolina es ___ vendedora.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Carolina es ___ vendedora.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "una",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.3",
+      "question": 17,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Vende ___ enciclopedias.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Vende ___ enciclopedias.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "unas"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "5.3",
+      "question": 18,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "¿Tienes ___ hermanos?",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "¿Tienes ___ hermanos?",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "unos"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "check-a",
+      "question": 1,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Eva es ___ abogada.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "una",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Eva es ___ abogada.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "una"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "check-a",
+      "question": 2,
+      "changes": [
+        "context",
+        "options"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Quiero ser ___ bailarina.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "una",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Quiero ser ___ bailarina.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "una",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "check-b",
+      "question": 2,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Ella es ___ argentina.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "una",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Ella es ___ argentina.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "una"
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "group": "check-c",
+      "question": 1,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Убраны артикли заведомо другого рода/числа; проверяется необходимость артикля. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "No tomo ___ azúcar.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "un",
+          "una",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "No tomo ___ azúcar.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "un"
+        ]
+      }
+    },
+    {
+      "unit": 6,
+      "group": "6.4",
+      "question": 5,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Добавлен типичный ошибочный раздельный вариант de el.",
+      "before": {
+        "prompt": "Cierra la puerta ___ jardín.",
+        "answers": [
+          "del"
+        ],
+        "options": [
+          "de la",
+          "de los",
+          "del"
+        ]
+      },
+      "after": {
+        "prompt": "Cierra la puerta ___ jardín.",
+        "answers": [
+          "del"
+        ],
+        "options": [
+          "del",
+          "de el",
+          "de la"
+        ]
+      }
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 32,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Нулевой артикль с такими существительными допустим; сравниваем определённый и неопределённый артикли.",
+      "before": {
+        "prompt": "En las ramas del árbol hay ___ pájaros de muchos colores.",
+        "answers": [
+          "unos"
+        ],
+        "options": [
+          "los",
+          "Без артикля",
+          "unos"
+        ]
+      },
+      "after": {
+        "prompt": "En las ramas del árbol hay ___ pájaros de muchos colores.",
+        "answers": [
+          "unos"
+        ],
+        "options": [
+          "unos",
+          "los"
+        ]
+      }
+    },
+    {
+      "unit": 7,
+      "group": "7.2",
+      "question": 2,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "He visto ___ película de acción.",
+        "answers": [
+          "una"
+        ],
+        "options": [
+          "la",
+          "Без артикля",
+          "una"
+        ]
+      },
+      "after": {
+        "prompt": "He visto ___ película de acción.",
+        "answers": [
+          "una"
+        ],
+        "options": [
+          "Без артикля",
+          "la",
+          "una"
+        ]
+      }
+    },
+    {
+      "unit": 7,
+      "group": "7.2",
+      "question": 4,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "El personaje principal era ___ detective.",
+        "answers": [
+          "un"
+        ],
+        "options": [
+          "el",
+          "Без артикля",
+          "un"
+        ]
+      },
+      "after": {
+        "prompt": "El personaje principal era ___ detective.",
+        "answers": [
+          "un"
+        ],
+        "options": [
+          "Без артикля",
+          "el",
+          "un"
+        ]
+      }
+    },
+    {
+      "unit": 7,
+      "group": "7.2",
+      "question": 5,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "¿Has visto ___ nueva película de este director?",
+        "answers": [
+          "la"
+        ],
+        "options": [
+          "una",
+          "Без артикля",
+          "la"
+        ]
+      },
+      "after": {
+        "prompt": "¿Has visto ___ nueva película de este director?",
+        "answers": [
+          "la"
+        ],
+        "options": [
+          "la",
+          "una",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 7,
+      "group": "7.2",
+      "question": 6,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Soy enfermero y trabajo en ___ hospital.",
+        "answers": [
+          "un"
+        ],
+        "options": [
+          "el",
+          "Без артикля",
+          "un"
+        ]
+      },
+      "after": {
+        "prompt": "Soy enfermero y trabajo en ___ hospital.",
+        "answers": [
+          "un"
+        ],
+        "options": [
+          "Без артикля",
+          "el",
+          "un"
+        ]
+      }
+    },
+    {
+      "unit": 7,
+      "group": "7.2",
+      "question": 7,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Estoy leyendo ___ libro sobre un rey.",
+        "answers": [
+          "un"
+        ],
+        "options": [
+          "el",
+          "Без артикля",
+          "un"
+        ]
+      },
+      "after": {
+        "prompt": "Estoy leyendo ___ libro sobre un rey.",
+        "answers": [
+          "un"
+        ],
+        "options": [
+          "el",
+          "un",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 7,
+      "group": "7.2",
+      "question": 8,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "El libro cuenta la vida de ___ rey de un país imaginario.",
+        "answers": [
+          "el"
+        ],
+        "options": [
+          "un",
+          "Без артикля",
+          "el"
+        ]
+      },
+      "after": {
+        "prompt": "El libro cuenta la vida de ___ rey de un país imaginario.",
+        "answers": [
+          "el"
+        ],
+        "options": [
+          "Без артикля",
+          "un",
+          "el"
+        ]
+      }
+    },
+    {
+      "unit": 7,
+      "group": "7.3",
+      "question": 1,
+      "changes": [
+        "context",
+        "options"
+      ],
+      "reason": "Нулевой артикль с такими существительными допустим; сравниваем определённый и неопределённый артикли. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Me han regalado ___ bombones.",
+        "answers": [
+          "unos"
+        ],
+        "options": [
+          "los",
+          "Без артикля",
+          "unos"
+        ]
+      },
+      "after": {
+        "prompt": "Me han regalado ___ bombones.",
+        "answers": [
+          "unos"
+        ],
+        "options": [
+          "los",
+          "unos"
+        ]
+      }
+    },
+    {
+      "unit": 7,
+      "group": "7.3",
+      "question": 3,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "___ piña, por favor.",
+        "answers": [
+          "una"
+        ],
+        "options": [
+          "la",
+          "Без артикля",
+          "una"
+        ]
+      },
+      "after": {
+        "prompt": "___ piña, por favor.",
+        "answers": [
+          "una"
+        ],
+        "options": [
+          "una",
+          "la",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 7,
+      "group": "7.3",
+      "question": 5,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Me encantan ___ cuadros de Dalí.",
+        "answers": [
+          "los"
+        ],
+        "options": [
+          "unos",
+          "Без артикля",
+          "los"
+        ]
+      },
+      "after": {
+        "prompt": "Me encantan ___ cuadros de Dalí.",
+        "answers": [
+          "los"
+        ],
+        "options": [
+          "unos",
+          "los",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 7,
+      "group": "7.3",
+      "question": 6,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "¿Te gustan ___ peras?",
+        "answers": [
+          "las"
+        ],
+        "options": [
+          "unas",
+          "Без артикля",
+          "las"
+        ]
+      },
+      "after": {
+        "prompt": "¿Te gustan ___ peras?",
+        "answers": [
+          "las"
+        ],
+        "options": [
+          "Без артикля",
+          "las",
+          "unas"
+        ]
+      }
+    },
+    {
+      "unit": 7,
+      "group": "7.3",
+      "question": 7,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Нулевой артикль с такими существительными допустим; сравниваем определённый и неопределённый артикли. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Me he comprado ___ vaqueros.",
+        "answers": [
+          "unos"
+        ],
+        "options": [
+          "los",
+          "Без артикля",
+          "unos"
+        ]
+      },
+      "after": {
+        "prompt": "Me he comprado ___ vaqueros.",
+        "answers": [
+          "unos"
+        ],
+        "options": [
+          "unos",
+          "los"
+        ]
+      }
+    },
+    {
+      "unit": 7,
+      "group": "7.3",
+      "question": 8,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Нулевой артикль с такими существительными допустим; сравниваем определённый и неопределённый артикли. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Te he comprado ___ margaritas.",
+        "answers": [
+          "unas"
+        ],
+        "options": [
+          "las",
+          "Без артикля",
+          "unas"
+        ]
+      },
+      "after": {
+        "prompt": "Te he comprado ___ margaritas.",
+        "answers": [
+          "unas"
+        ],
+        "options": [
+          "unas",
+          "las"
+        ]
+      }
+    },
+    {
+      "unit": 7,
+      "group": "7.3",
+      "question": 9,
+      "changes": [
+        "context",
+        "options"
+      ],
+      "reason": "Нулевой артикль с такими существительными допустим; сравниваем определённый и неопределённый артикли. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Quiero comprarme ___ pantalones cortos.",
+        "answers": [
+          "unos"
+        ],
+        "options": [
+          "los",
+          "Без артикля",
+          "unos"
+        ]
+      },
+      "after": {
+        "prompt": "Quiero comprarme ___ pantalones cortos.",
+        "answers": [
+          "unos"
+        ],
+        "options": [
+          "los",
+          "unos"
+        ]
+      }
+    },
+    {
+      "unit": 7,
+      "group": "check-c",
+      "question": 2,
+      "changes": [
+        "context"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "He comprado ___ margaritas para ti.",
+        "answers": [
+          "unas"
+        ],
+        "options": [
+          "las",
+          "unas"
+        ]
+      },
+      "after": {
+        "prompt": "He comprado ___ margaritas para ti.",
+        "answers": [
+          "unas"
+        ],
+        "options": [
+          "las",
+          "unas"
+        ]
+      }
+    },
+    {
+      "unit": 8,
+      "group": "8.1",
+      "question": 1,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "¿Dónde vive ___ don José?",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "¿Dónde vive ___ don José?",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "la",
+          "Без артикля",
+          "el"
+        ]
+      }
+    },
+    {
+      "unit": 8,
+      "group": "8.1",
+      "question": 2,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Buenas tardes, ___ señor Alfonsín.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Buenas tardes, ___ señor Alfonsín.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "el",
+          "la"
+        ]
+      }
+    },
+    {
+      "unit": 8,
+      "group": "8.1",
+      "question": 3,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Buenas tardes, ___ Elena.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Buenas tardes, ___ Elena.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "la",
+          "el"
+        ]
+      }
+    },
+    {
+      "unit": 8,
+      "group": "8.1",
+      "question": 6,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Aquí trabaja ___ Josefa.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Aquí trabaja ___ Josefa.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "la",
+          "el",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 8,
+      "group": "8.1",
+      "question": 7,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Buenos días, ___ doctor Rojo.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Buenos días, ___ doctor Rojo.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "la",
+          "Без артикля",
+          "el"
+        ]
+      }
+    },
+    {
+      "unit": 8,
+      "group": "8.1",
+      "question": 8,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Buenos días, ___ María.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Buenos días, ___ María.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "la",
+          "Без артикля",
+          "el"
+        ]
+      }
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 3,
+      "changes": [
+        "format"
+      ],
+      "reason": "Название допускает артикль и его отсутствие; ввод принимает оба варианта, ∅ означает отсутствие.",
+      "before": {
+        "prompt": "___ India está en Asia.",
+        "answers": [
+          "la",
+          "Без артикля"
+        ],
+        "options": [
+          "el",
+          "los",
+          "las",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "___ India está en Asia.",
+        "answers": [
+          "la",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 4,
+      "changes": [
+        "format"
+      ],
+      "reason": "Название допускает артикль и его отсутствие; ввод принимает оба варианта, ∅ означает отсутствие.",
+      "before": {
+        "prompt": "India está en ___ Asia.",
+        "answers": [
+          "Без артикля",
+          "el"
+        ],
+        "options": [
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "India está en ___ Asia.",
+        "answers": [
+          "Без артикля",
+          "el"
+        ]
+      }
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 6,
+      "changes": [
+        "format"
+      ],
+      "reason": "Название допускает артикль и его отсутствие; ввод принимает оба варианта, ∅ означает отсутствие.",
+      "before": {
+        "prompt": "Las islas Galápagos están en ___ Ecuador.",
+        "answers": [
+          "Без артикля",
+          "el"
+        ],
+        "options": [
+          "La",
+          "Los",
+          "Без артикля",
+          "el"
+        ]
+      },
+      "after": {
+        "prompt": "Las islas Galápagos están en ___ Ecuador.",
+        "answers": [
+          "Без артикля",
+          "el"
+        ]
+      }
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 13,
+      "changes": [
+        "format"
+      ],
+      "reason": "Название допускает артикль и его отсутствие; ввод принимает оба варианта, ∅ означает отсутствие.",
+      "before": {
+        "prompt": "El lago Titicaca está entre ___ Perú y Bolivia.",
+        "answers": [
+          "Без артикля",
+          "el"
+        ],
+        "options": [
+          "La",
+          "Los",
+          "Без артикля",
+          "el"
+        ]
+      },
+      "after": {
+        "prompt": "El lago Titicaca está entre ___ Perú y Bolivia.",
+        "answers": [
+          "Без артикля",
+          "el"
+        ]
+      }
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 24,
+      "changes": [
+        "format"
+      ],
+      "reason": "Название допускает артикль и его отсутствие; ввод принимает оба варианта, ∅ означает отсутствие.",
+      "before": {
+        "prompt": "La Pampa es una provincia de ___ Argentina.",
+        "answers": [
+          "Без артикля",
+          "la"
+        ],
+        "options": [
+          "El",
+          "Los",
+          "Без артикля",
+          "la"
+        ]
+      },
+      "after": {
+        "prompt": "La Pampa es una provincia de ___ Argentina.",
+        "answers": [
+          "Без артикля",
+          "la"
+        ]
+      }
+    },
+    {
+      "unit": 8,
+      "group": "8.4",
+      "question": 2,
+      "changes": [
+        "context"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "___ Felipe estudia en la Universidad de Alcalá.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "___ Felipe estudia en la Universidad de Alcalá.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 8,
+      "group": "8.4",
+      "question": 6,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Все варианты оформлены одинаково: заглавная буква больше не выдаёт ответ.",
+      "before": {
+        "prompt": "Jorge vive en ___ Paz.",
+        "answers": [
+          "La"
+        ],
+        "options": [
+          "el",
+          "Без артикля",
+          "La"
+        ]
+      },
+      "after": {
+        "prompt": "Jorge vive en ___ Paz.",
+        "answers": [
+          "La"
+        ],
+        "options": [
+          "La",
+          "El",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 8,
+      "group": "8.4",
+      "question": 7,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Все названия начинаются с заглавной: ответ не выделяется оформлением.",
+      "before": {
+        "prompt": "___ Cairo está en Egipto.",
+        "answers": [
+          "El"
+        ],
+        "options": [
+          "la",
+          "Без артикля",
+          "El"
+        ]
+      },
+      "after": {
+        "prompt": "___ Cairo está en Egipto.",
+        "answers": [
+          "El"
+        ],
+        "options": [
+          "Без артикля",
+          "La",
+          "El"
+        ]
+      }
+    },
+    {
+      "unit": 8,
+      "group": "8.4",
+      "question": 8,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "El Cairo está en ___ Egipto.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "El Cairo está en ___ Egipto.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "la",
+          "Без артикля",
+          "el"
+        ]
+      }
+    },
+    {
+      "unit": 8,
+      "group": "8.4",
+      "question": 9,
+      "changes": [
+        "context"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "___ Pancho vive en Monterrey.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "___ Pancho vive en Monterrey.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 8,
+      "group": "8.4",
+      "question": 10,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Pancho vive en ___ Monterrey.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      },
+      "after": {
+        "prompt": "Pancho vive en ___ Monterrey.",
+        "answers": [
+          "Без артикля"
+        ],
+        "options": [
+          "Без артикля",
+          "el",
+          "la"
+        ]
+      }
+    },
+    {
+      "unit": 9,
+      "group": "9.1",
+      "question": 1,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Теперь выбирается целое начало фразы; уже написанное Es/Son не подсказывает артикль. Значения ответов сохранены для прогресса.",
+      "before": {
+        "prompt": "Son ___ tres y veinte.",
+        "answers": [
+          "las"
+        ],
+        "options": [
+          "la",
+          "las"
+        ]
+      },
+      "after": {
+        "prompt": "___ tres y veinte.",
+        "answers": [
+          "las"
+        ],
+        "options": [
+          "las",
+          "la"
+        ],
+        "optionLabels": {
+          "la": "Es la",
+          "las": "Son las"
+        }
+      }
+    },
+    {
+      "unit": 9,
+      "group": "9.1",
+      "question": 2,
+      "changes": [
+        "options"
+      ],
+      "reason": "Теперь выбирается целое начало фразы; уже написанное Es/Son не подсказывает артикль. Значения ответов сохранены для прогресса.",
+      "before": {
+        "prompt": "Es ___ una y veinticinco.",
+        "answers": [
+          "la"
+        ],
+        "options": [
+          "las",
+          "la"
+        ]
+      },
+      "after": {
+        "prompt": "___ una y veinticinco.",
+        "answers": [
+          "la"
+        ],
+        "options": [
+          "las",
+          "la"
+        ],
+        "optionLabels": {
+          "la": "Es la",
+          "las": "Son las"
+        }
+      }
+    },
+    {
+      "unit": 9,
+      "group": "9.1",
+      "question": 3,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Теперь выбирается целое начало фразы; уже написанное Es/Son не подсказывает артикль. Значения ответов сохранены для прогресса.",
+      "before": {
+        "prompt": "Son ___ cuatro menos diez.",
+        "answers": [
+          "las"
+        ],
+        "options": [
+          "la",
+          "las"
+        ]
+      },
+      "after": {
+        "prompt": "___ cuatro menos diez.",
+        "answers": [
+          "las"
+        ],
+        "options": [
+          "las",
+          "la"
+        ],
+        "optionLabels": {
+          "la": "Es la",
+          "las": "Son las"
+        }
+      }
+    },
+    {
+      "unit": 9,
+      "group": "9.1",
+      "question": 4,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Теперь выбирается целое начало фразы; уже написанное Es/Son не подсказывает артикль. Значения ответов сохранены для прогресса.",
+      "before": {
+        "prompt": "Son ___ dos.",
+        "answers": [
+          "las"
+        ],
+        "options": [
+          "la",
+          "las"
+        ]
+      },
+      "after": {
+        "prompt": "___ dos.",
+        "answers": [
+          "las"
+        ],
+        "options": [
+          "las",
+          "la"
+        ],
+        "optionLabels": {
+          "la": "Es la",
+          "las": "Son las"
+        }
+      }
+    },
+    {
+      "unit": 9,
+      "group": "9.1",
+      "question": 5,
+      "changes": [
+        "options"
+      ],
+      "reason": "Теперь выбирается целое начало фразы; уже написанное Es/Son не подсказывает артикль. Значения ответов сохранены для прогресса.",
+      "before": {
+        "prompt": "Son ___ ocho y media.",
+        "answers": [
+          "las"
+        ],
+        "options": [
+          "la",
+          "las"
+        ]
+      },
+      "after": {
+        "prompt": "___ ocho y media.",
+        "answers": [
+          "las"
+        ],
+        "options": [
+          "la",
+          "las"
+        ],
+        "optionLabels": {
+          "la": "Es la",
+          "las": "Son las"
+        }
+      }
+    },
+    {
+      "unit": 9,
+      "group": "9.1",
+      "question": 6,
+      "changes": [
+        "options"
+      ],
+      "reason": "Теперь выбирается целое начало фразы; уже написанное Es/Son не подсказывает артикль. Значения ответов сохранены для прогресса.",
+      "before": {
+        "prompt": "Son ___ doce y cinco.",
+        "answers": [
+          "las"
+        ],
+        "options": [
+          "la",
+          "las"
+        ]
+      },
+      "after": {
+        "prompt": "___ doce y cinco.",
+        "answers": [
+          "las"
+        ],
+        "options": [
+          "la",
+          "las"
+        ],
+        "optionLabels": {
+          "la": "Es la",
+          "las": "Son las"
+        }
+      }
+    },
+    {
+      "unit": 9,
+      "group": "9.1",
+      "question": 7,
+      "changes": [
+        "options"
+      ],
+      "reason": "Теперь выбирается целое начало фразы; уже написанное Es/Son не подсказывает артикль. Значения ответов сохранены для прогресса.",
+      "before": {
+        "prompt": "Es ___ una menos cuarto.",
+        "answers": [
+          "la"
+        ],
+        "options": [
+          "las",
+          "la"
+        ]
+      },
+      "after": {
+        "prompt": "___ una menos cuarto.",
+        "answers": [
+          "la"
+        ],
+        "options": [
+          "las",
+          "la"
+        ],
+        "optionLabels": {
+          "la": "Es la",
+          "las": "Son las"
+        }
+      }
+    },
+    {
+      "unit": 9,
+      "group": "9.1",
+      "question": 8,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Теперь выбирается целое начало фразы; уже написанное Es/Son не подсказывает артикль. Значения ответов сохранены для прогресса.",
+      "before": {
+        "prompt": "Son ___ once y cuarto.",
+        "answers": [
+          "las"
+        ],
+        "options": [
+          "la",
+          "las"
+        ]
+      },
+      "after": {
+        "prompt": "___ once y cuarto.",
+        "answers": [
+          "las"
+        ],
+        "options": [
+          "las",
+          "la"
+        ],
+        "optionLabels": {
+          "la": "Es la",
+          "las": "Son las"
+        }
+      }
+    },
+    {
+      "unit": 9,
+      "group": "9.2",
+      "question": 2,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Voy al gimnasio ___ martes.",
+        "answers": [
+          "los"
+        ],
+        "options": [
+          "el",
+          "la",
+          "las",
+          "Без артикля",
+          "los"
+        ]
+      },
+      "after": {
+        "prompt": "Voy al gimnasio ___ martes.",
+        "answers": [
+          "los"
+        ],
+        "options": [
+          "el",
+          "Без артикля",
+          "las",
+          "los",
+          "la"
+        ]
+      }
+    },
+    {
+      "unit": 9,
+      "group": "9.2",
+      "question": 6,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "La fiesta es ___ domingo a las siete.",
+        "answers": [
+          "el"
+        ],
+        "options": [
+          "la",
+          "los",
+          "las",
+          "Без артикля",
+          "el"
+        ]
+      },
+      "after": {
+        "prompt": "La fiesta es ___ domingo a las siete.",
+        "answers": [
+          "el"
+        ],
+        "options": [
+          "las",
+          "el",
+          "Без артикля",
+          "los",
+          "la"
+        ]
+      }
+    },
+    {
+      "unit": 9,
+      "group": "9.2",
+      "question": 18,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Tengo un examen ___ lunes.",
+        "answers": [
+          "el"
+        ],
+        "options": [
+          "la",
+          "los",
+          "las",
+          "Без артикля",
+          "el"
+        ]
+      },
+      "after": {
+        "prompt": "Tengo un examen ___ lunes.",
+        "answers": [
+          "el"
+        ],
+        "options": [
+          "la",
+          "Без артикля",
+          "el",
+          "los",
+          "las"
+        ]
+      }
+    },
+    {
+      "unit": 9,
+      "group": "check-b",
+      "question": 1,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Voy al gimnasio ___ martes.",
+        "answers": [
+          "los"
+        ],
+        "options": [
+          "el",
+          "Без артикля",
+          "los"
+        ]
+      },
+      "after": {
+        "prompt": "Voy al gimnasio ___ martes.",
+        "answers": [
+          "los"
+        ],
+        "options": [
+          "los",
+          "Без артикля",
+          "el"
+        ]
+      }
+    },
+    {
+      "unit": 10,
+      "group": "10.1",
+      "question": 1,
+      "changes": [
+        "options"
+      ],
+      "reason": "Вместо заведомо посторонних las/al сравниваем род артикля и его отсутствие при tocar.",
+      "before": {
+        "prompt": "Santi toca ___ guitarra.",
+        "answers": [
+          "la"
+        ],
+        "options": [
+          "el",
+          "las",
+          "al",
+          "la"
+        ]
+      },
+      "after": {
+        "prompt": "Santi toca ___ guitarra.",
+        "answers": [
+          "la"
+        ],
+        "options": [
+          "el",
+          "la",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 10,
+      "group": "10.1",
+      "question": 2,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Вместо заведомо посторонних las/al сравниваем род артикля и его отсутствие при tocar.",
+      "before": {
+        "prompt": "Elsa toca ___ violín.",
+        "answers": [
+          "el"
+        ],
+        "options": [
+          "la",
+          "las",
+          "al",
+          "el"
+        ]
+      },
+      "after": {
+        "prompt": "Elsa toca ___ violín.",
+        "answers": [
+          "el"
+        ],
+        "options": [
+          "el",
+          "Без артикля",
+          "la"
+        ]
+      }
+    },
+    {
+      "unit": 10,
+      "group": "10.1",
+      "question": 3,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Проверяется изучаемое jugar a и слияние a + el, а не случайный артикль.",
+      "before": {
+        "prompt": "Rosa juega ___ ajedrez.",
+        "answers": [
+          "al"
+        ],
+        "options": [
+          "el",
+          "la",
+          "las",
+          "al"
+        ]
+      },
+      "after": {
+        "prompt": "Rosa juega ___ ajedrez.",
+        "answers": [
+          "al"
+        ],
+        "options": [
+          "a la",
+          "a el",
+          "al"
+        ]
+      }
+    },
+    {
+      "unit": 10,
+      "group": "10.1",
+      "question": 4,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Вместо заведомо посторонних las/al сравниваем род артикля и его отсутствие при tocar.",
+      "before": {
+        "prompt": "Elena toca ___ piano.",
+        "answers": [
+          "el"
+        ],
+        "options": [
+          "la",
+          "las",
+          "al",
+          "el"
+        ]
+      },
+      "after": {
+        "prompt": "Elena toca ___ piano.",
+        "answers": [
+          "el"
+        ],
+        "options": [
+          "Без артикля",
+          "el",
+          "la"
+        ]
+      }
+    },
+    {
+      "unit": 10,
+      "group": "10.1",
+      "question": 5,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Проверяется изучаемое jugar a и слияние a + el, а не случайный артикль.",
+      "before": {
+        "prompt": "Inés juega ___ fútbol.",
+        "answers": [
+          "al"
+        ],
+        "options": [
+          "el",
+          "la",
+          "las",
+          "al"
+        ]
+      },
+      "after": {
+        "prompt": "Inés juega ___ fútbol.",
+        "answers": [
+          "al"
+        ],
+        "options": [
+          "a el",
+          "al",
+          "a la"
+        ]
+      }
+    },
+    {
+      "unit": 10,
+      "group": "10.1",
+      "question": 6,
+      "changes": [
+        "options"
+      ],
+      "reason": "Проверяется изучаемое jugar a и слияние a + el, а не случайный артикль.",
+      "before": {
+        "prompt": "Pepe juega ___ tenis.",
+        "answers": [
+          "al"
+        ],
+        "options": [
+          "el",
+          "la",
+          "las",
+          "al"
+        ]
+      },
+      "after": {
+        "prompt": "Pepe juega ___ tenis.",
+        "answers": [
+          "al"
+        ],
+        "options": [
+          "al",
+          "a el",
+          "a la"
+        ]
+      }
+    },
+    {
+      "unit": 10,
+      "group": "10.1",
+      "question": 7,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Вместо заведомо посторонних las/al сравниваем род артикля и его отсутствие при tocar.",
+      "before": {
+        "prompt": "Juan toca ___ trompeta.",
+        "answers": [
+          "la"
+        ],
+        "options": [
+          "el",
+          "las",
+          "al",
+          "la"
+        ]
+      },
+      "after": {
+        "prompt": "Juan toca ___ trompeta.",
+        "answers": [
+          "la"
+        ],
+        "options": [
+          "el",
+          "Без артикля",
+          "la"
+        ]
+      }
+    },
+    {
+      "unit": 10,
+      "group": "10.1",
+      "question": 8,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Проверяется артикль в jugar a las cartas; al после уже написанного a убран.",
+      "before": {
+        "prompt": "Miguel juega a ___ cartas.",
+        "answers": [
+          "las"
+        ],
+        "options": [
+          "el",
+          "la",
+          "al",
+          "las"
+        ]
+      },
+      "after": {
+        "prompt": "Miguel juega a ___ cartas.",
+        "answers": [
+          "las"
+        ],
+        "options": [
+          "las",
+          "la",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 10,
+      "group": "10.2",
+      "question": 1,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Llama a ___ bomberos.",
+        "answers": [
+          "los"
+        ],
+        "options": [
+          "unos",
+          "Без артикля",
+          "los"
+        ]
+      },
+      "after": {
+        "prompt": "Llama a ___ bomberos.",
+        "answers": [
+          "los"
+        ],
+        "options": [
+          "los",
+          "Без артикля",
+          "unos"
+        ]
+      }
+    },
+    {
+      "unit": 10,
+      "group": "10.2",
+      "question": 4,
+      "changes": [
+        "context"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Vamos a ___ playa.",
+        "answers": [
+          "la"
+        ],
+        "options": [
+          "una",
+          "Без артикля",
+          "la"
+        ]
+      },
+      "after": {
+        "prompt": "Vamos a ___ playa.",
+        "answers": [
+          "la"
+        ],
+        "options": [
+          "una",
+          "Без артикля",
+          "la"
+        ]
+      }
+    },
+    {
+      "unit": 10,
+      "group": "10.2",
+      "question": 5,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "¿Has escuchado ___ noticias?",
+        "answers": [
+          "las"
+        ],
+        "options": [
+          "unas",
+          "Без артикля",
+          "las"
+        ]
+      },
+      "after": {
+        "prompt": "¿Has escuchado ___ noticias?",
+        "answers": [
+          "las"
+        ],
+        "options": [
+          "las",
+          "unas",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 10,
+      "group": "10.2",
+      "question": 9,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "___ historia es interesante.",
+        "answers": [
+          "la"
+        ],
+        "options": [
+          "una",
+          "Без артикля",
+          "la"
+        ]
+      },
+      "after": {
+        "prompt": "___ historia es interesante.",
+        "answers": [
+          "la"
+        ],
+        "options": [
+          "la",
+          "una",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 10,
+      "group": "10.2",
+      "question": 11,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Tiene ___ guitarra eléctrica.",
+        "answers": [
+          "una"
+        ],
+        "options": [
+          "la",
+          "Без артикля",
+          "una"
+        ]
+      },
+      "after": {
+        "prompt": "Tiene ___ guitarra eléctrica.",
+        "answers": [
+          "una"
+        ],
+        "options": [
+          "la",
+          "una",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 10,
+      "group": "10.2",
+      "question": 12,
+      "changes": [
+        "context"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "He comprado ___ televisión.",
+        "answers": [
+          "una"
+        ],
+        "options": [
+          "la",
+          "Без артикля",
+          "una"
+        ]
+      },
+      "after": {
+        "prompt": "He comprado ___ televisión.",
+        "answers": [
+          "una"
+        ],
+        "options": [
+          "la",
+          "Без артикля",
+          "una"
+        ]
+      }
+    },
+    {
+      "unit": 10,
+      "group": "10.2",
+      "question": 14,
+      "changes": [
+        "context"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Llama a ___ policía.",
+        "answers": [
+          "la"
+        ],
+        "options": [
+          "una",
+          "Без артикля",
+          "la"
+        ]
+      },
+      "after": {
+        "prompt": "Llama a ___ policía.",
+        "answers": [
+          "la"
+        ],
+        "options": [
+          "una",
+          "Без артикля",
+          "la"
+        ]
+      }
+    },
+    {
+      "unit": 10,
+      "group": "10.2",
+      "question": 15,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Leo ___ periódico todas las mañanas.",
+        "answers": [
+          "el"
+        ],
+        "options": [
+          "un",
+          "Без артикля",
+          "el"
+        ]
+      },
+      "after": {
+        "prompt": "Leo ___ periódico todas las mañanas.",
+        "answers": [
+          "el"
+        ],
+        "options": [
+          "un",
+          "el",
+          "Без артикля"
+        ]
+      }
+    },
+    {
+      "unit": 10,
+      "group": "check-c",
+      "question": 2,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "He comprado ___ televisión.",
+        "answers": [
+          "una"
+        ],
+        "options": [
+          "la",
+          "una"
+        ]
+      },
+      "after": {
+        "prompt": "He comprado ___ televisión.",
+        "answers": [
+          "una"
+        ],
+        "options": [
+          "una",
+          "la"
+        ]
+      }
+    },
+    {
+      "unit": 11,
+      "group": "11.1",
+      "question": 3,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Вместо шести разнородных форм — конкурирующие способы заменить существительное. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Necesito un cuaderno. Quiero ___ pequeño.",
+        "answers": [
+          "uno"
+        ],
+        "options": [
+          "el",
+          "la",
+          "los",
+          "las",
+          "una",
+          "uno"
+        ]
+      },
+      "after": {
+        "prompt": "Necesito un cuaderno. Quiero ___ pequeño.",
+        "answers": [
+          "uno"
+        ],
+        "options": [
+          "el",
+          "uno",
+          "un"
+        ]
+      }
+    },
+    {
+      "unit": 11,
+      "group": "11.1",
+      "question": 4,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Вместо шести разнородных форм — конкурирующие способы заменить существительное.",
+      "before": {
+        "prompt": "De estos sombreros, me gusta ___ negro.",
+        "answers": [
+          "el"
+        ],
+        "options": [
+          "la",
+          "los",
+          "las",
+          "uno",
+          "una",
+          "el"
+        ]
+      },
+      "after": {
+        "prompt": "De estos sombreros, me gusta ___ negro.",
+        "answers": [
+          "el"
+        ],
+        "options": [
+          "un",
+          "uno",
+          "el"
+        ]
+      }
+    },
+    {
+      "unit": 11,
+      "group": "11.1",
+      "question": 5,
+      "changes": [
+        "options"
+      ],
+      "reason": "Вместо шести разнородных форм — конкурирующие способы заменить существительное.",
+      "before": {
+        "prompt": "De estos sombreros, no me gusta ___ marrón.",
+        "answers": [
+          "el"
+        ],
+        "options": [
+          "la",
+          "los",
+          "las",
+          "uno",
+          "una",
+          "el"
+        ]
+      },
+      "after": {
+        "prompt": "De estos sombreros, no me gusta ___ marrón.",
+        "answers": [
+          "el"
+        ],
+        "options": [
+          "el",
+          "un",
+          "uno"
+        ]
+      }
+    },
+    {
+      "unit": 11,
+      "group": "11.1",
+      "question": 7,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "___ blancos también son caros.",
+        "answers": [
+          "los"
+        ],
+        "options": [
+          "el",
+          "la",
+          "las",
+          "uno",
+          "una",
+          "los"
+        ]
+      },
+      "after": {
+        "prompt": "___ blancos también son caros.",
+        "answers": [
+          "los"
+        ],
+        "options": [
+          "el",
+          "la",
+          "uno",
+          "los",
+          "las",
+          "una"
+        ]
+      }
+    },
+    {
+      "unit": 11,
+      "group": "11.1",
+      "question": 9,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Вместо шести разнородных форм — конкурирующие способы заменить существительное. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Quiero un libro. Recomiéndame ___ entretenido.",
+        "answers": [
+          "uno"
+        ],
+        "options": [
+          "el",
+          "la",
+          "los",
+          "las",
+          "una",
+          "uno"
+        ]
+      },
+      "after": {
+        "prompt": "Quiero un libro. Recomiéndame ___ entretenido.",
+        "answers": [
+          "uno"
+        ],
+        "options": [
+          "el",
+          "uno",
+          "un"
+        ]
+      }
+    },
+    {
+      "unit": 11,
+      "group": "11.1",
+      "question": 12,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Вместо шести разнородных форм — конкурирующие способы заменить существительное. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Esta taza está sucia. Dame ___ limpia.",
+        "answers": [
+          "una"
+        ],
+        "options": [
+          "el",
+          "la",
+          "los",
+          "las",
+          "uno",
+          "una"
+        ]
+      },
+      "after": {
+        "prompt": "Esta taza está sucia. Dame ___ limpia.",
+        "answers": [
+          "una"
+        ],
+        "options": [
+          "lo",
+          "la",
+          "una"
+        ]
+      }
+    },
+    {
+      "unit": 11,
+      "group": "11.1",
+      "question": 13,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Вместо шести разнородных форм — конкурирующие способы заменить существительное. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "Quiero comprar una cámara. Necesito ___ buena.",
+        "answers": [
+          "una"
+        ],
+        "options": [
+          "el",
+          "la",
+          "los",
+          "las",
+          "uno",
+          "una"
+        ]
+      },
+      "after": {
+        "prompt": "Quiero comprar una cámara. Necesito ___ buena.",
+        "answers": [
+          "una"
+        ],
+        "options": [
+          "una",
+          "lo",
+          "la"
+        ]
+      }
+    },
+    {
+      "unit": 11,
+      "group": "11.1",
+      "question": 14,
+      "changes": [
+        "context",
+        "options",
+        "order"
+      ],
+      "reason": "Вместо шести разнородных форм — конкурирующие способы заменить существительное. Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "¿Tienes ordenador? Sí, tengo ___ portátil.",
+        "answers": [
+          "uno"
+        ],
+        "options": [
+          "el",
+          "la",
+          "los",
+          "las",
+          "una",
+          "uno"
+        ]
+      },
+      "after": {
+        "prompt": "¿Tienes ordenador? Sí, tengo ___ portátil.",
+        "answers": [
+          "uno"
+        ],
+        "options": [
+          "uno",
+          "un",
+          "el"
+        ]
+      }
+    },
+    {
+      "unit": 11,
+      "group": "11.3",
+      "question": 1,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Для отвлечённого качества конкурируют lo и обычные артикли; лишнее число не усложняет задачу.",
+      "before": {
+        "prompt": "___ mejor de Cuba es su gente.",
+        "answers": [
+          "lo"
+        ],
+        "options": [
+          "el",
+          "la",
+          "los",
+          "las",
+          "lo"
+        ]
+      },
+      "after": {
+        "prompt": "___ mejor de Cuba es su gente.",
+        "answers": [
+          "lo"
+        ],
+        "options": [
+          "la",
+          "el",
+          "lo"
+        ]
+      }
+    },
+    {
+      "unit": 11,
+      "group": "11.3",
+      "question": 3,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "¿Las caras o ___ baratas?",
+        "answers": [
+          "las"
+        ],
+        "options": [
+          "el",
+          "la",
+          "los",
+          "lo",
+          "las"
+        ]
+      },
+      "after": {
+        "prompt": "¿Las caras o ___ baratas?",
+        "answers": [
+          "las"
+        ],
+        "options": [
+          "el",
+          "los",
+          "las",
+          "lo",
+          "la"
+        ]
+      }
+    },
+    {
+      "unit": 11,
+      "group": "11.3",
+      "question": 4,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Для отвлечённого качества конкурируют lo и обычные артикли; лишнее число не усложняет задачу.",
+      "before": {
+        "prompt": "No me gusta ___ amargo.",
+        "answers": [
+          "lo"
+        ],
+        "options": [
+          "el",
+          "la",
+          "los",
+          "las",
+          "lo"
+        ]
+      },
+      "after": {
+        "prompt": "No me gusta ___ amargo.",
+        "answers": [
+          "lo"
+        ],
+        "options": [
+          "la",
+          "lo",
+          "el"
+        ]
+      }
+    },
+    {
+      "unit": 11,
+      "group": "11.3",
+      "question": 5,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Для отвлечённого качества конкурируют lo и обычные артикли; лишнее число не усложняет задачу.",
+      "before": {
+        "prompt": "A veces ___ barato sale caro.",
+        "answers": [
+          "lo"
+        ],
+        "options": [
+          "el",
+          "la",
+          "los",
+          "las",
+          "lo"
+        ]
+      },
+      "after": {
+        "prompt": "A veces ___ barato sale caro.",
+        "answers": [
+          "lo"
+        ],
+        "options": [
+          "lo",
+          "el",
+          "la"
+        ]
+      }
+    },
+    {
+      "unit": 11,
+      "group": "11.3",
+      "question": 7,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Для отвлечённого качества конкурируют lo и обычные артикли; лишнее число не усложняет задачу.",
+      "before": {
+        "prompt": "___ importante es ser feliz.",
+        "answers": [
+          "lo"
+        ],
+        "options": [
+          "el",
+          "la",
+          "los",
+          "las",
+          "lo"
+        ]
+      },
+      "after": {
+        "prompt": "___ importante es ser feliz.",
+        "answers": [
+          "lo"
+        ],
+        "options": [
+          "la",
+          "el",
+          "lo"
+        ]
+      }
+    },
+    {
+      "unit": 11,
+      "group": "11.3",
+      "question": 8,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Для отвлечённого качества конкурируют lo и обычные артикли; лишнее число не усложняет задачу.",
+      "before": {
+        "prompt": "___ malo del invierno es el frío.",
+        "answers": [
+          "lo"
+        ],
+        "options": [
+          "el",
+          "la",
+          "los",
+          "las",
+          "lo"
+        ]
+      },
+      "after": {
+        "prompt": "___ malo del invierno es el frío.",
+        "answers": [
+          "lo"
+        ],
+        "options": [
+          "el",
+          "lo",
+          "la"
+        ]
+      }
+    },
+    {
+      "unit": 11,
+      "group": "11.3",
+      "question": 10,
+      "changes": [
+        "context",
+        "order"
+      ],
+      "reason": "Уточнён смысл ситуации: допустимый в другом контексте ответ не объявляется ошибкой.",
+      "before": {
+        "prompt": "¿Los largos o ___ cortos?",
+        "answers": [
+          "los"
+        ],
+        "options": [
+          "el",
+          "la",
+          "las",
+          "lo",
+          "los"
+        ]
+      },
+      "after": {
+        "prompt": "¿Los largos o ___ cortos?",
+        "answers": [
+          "los"
+        ],
+        "options": [
+          "lo",
+          "los",
+          "la",
+          "las",
+          "el"
+        ]
+      }
+    },
+    {
+      "unit": 11,
+      "group": "11.3",
+      "question": 12,
+      "changes": [
+        "options",
+        "order"
+      ],
+      "reason": "Для отвлечённого качества конкурируют lo и обычные артикли; лишнее число не усложняет задачу.",
+      "before": {
+        "prompt": "___ pequeño es hermoso.",
+        "answers": [
+          "lo"
+        ],
+        "options": [
+          "el",
+          "la",
+          "los",
+          "las",
+          "lo"
+        ]
+      },
+      "after": {
+        "prompt": "___ pequeño es hermoso.",
+        "answers": [
+          "lo"
+        ],
+        "options": [
+          "lo",
+          "el",
+          "la"
+        ]
+      }
+    },
+    {
+      "unit": 12,
+      "group": "12.1",
+      "question": 3,
+      "changes": [
+        "format"
+      ],
+      "reason": "Для далёкого или ранее названного предмета возможны ese и aquel; самостоятельный ввод принимает обе формы.",
+      "before": {
+        "prompt": "___ maleta es mía.",
+        "answers": [
+          "aquella",
+          "esa"
+        ],
+        "options": [
+          "esta",
+          "aquella",
+          "esa"
+        ]
+      },
+      "after": {
+        "prompt": "___ maleta es mía.",
+        "answers": [
+          "aquella",
+          "esa"
+        ]
+      }
+    },
+    {
+      "unit": 12,
+      "group": "12.1",
+      "question": 7,
+      "changes": [
+        "format"
+      ],
+      "reason": "Для далёкого или ранее названного предмета возможны ese и aquel; самостоятельный ввод принимает обе формы.",
+      "before": {
+        "prompt": "___ árboles son muy altos.",
+        "answers": [
+          "aquellos",
+          "esos"
+        ],
+        "options": [
+          "estos",
+          "aquellos",
+          "esos"
+        ]
+      },
+      "after": {
+        "prompt": "___ árboles son muy altos.",
+        "answers": [
+          "aquellos",
+          "esos"
+        ]
+      }
+    },
+    {
+      "unit": 12,
+      "group": "12.2",
+      "question": 4,
+      "changes": [
+        "format"
+      ],
+      "reason": "Для далёкого или ранее названного предмета возможны ese и aquel; самостоятельный ввод принимает обе формы.",
+      "before": {
+        "prompt": "___ es el padre de Charo.",
+        "answers": [
+          "aquel",
+          "ese"
+        ],
+        "options": [
+          "este",
+          "aquel",
+          "ese"
+        ]
+      },
+      "after": {
+        "prompt": "___ es el padre de Charo.",
+        "answers": [
+          "aquel",
+          "ese"
+        ]
+      }
+    },
+    {
+      "unit": 12,
+      "group": "12.2",
+      "question": 7,
+      "changes": [
+        "format"
+      ],
+      "reason": "Для далёкого или ранее названного предмета возможны ese и aquel; самостоятельный ввод принимает обе формы.",
+      "before": {
+        "prompt": "___ es la casa de Ramón.",
+        "answers": [
+          "aquella",
+          "esa"
+        ],
+        "options": [
+          "esta",
+          "aquella",
+          "esa"
+        ]
+      },
+      "after": {
+        "prompt": "___ es la casa de Ramón.",
+        "answers": [
+          "aquella",
+          "esa"
+        ]
+      }
+    },
+    {
+      "unit": 12,
+      "group": "12.3",
+      "question": 2,
+      "changes": [
+        "format"
+      ],
+      "reason": "Для далёкого или ранее названного предмета возможны ese и aquel; самостоятельный ввод принимает обе формы.",
+      "before": {
+        "prompt": "Nací en 1983. ___ mismo año nació mi hermana.",
+        "answers": [
+          "ese",
+          "aquel"
+        ],
+        "options": [
+          "este",
+          "ese",
+          "aquel"
+        ]
+      },
+      "after": {
+        "prompt": "Nací en 1983. ___ mismo año nació mi hermana.",
+        "answers": [
+          "ese",
+          "aquel"
+        ]
+      }
+    },
+    {
+      "unit": 12,
+      "group": "12.3",
+      "question": 5,
+      "changes": [
+        "format"
+      ],
+      "reason": "Для далёкого или ранее названного предмета возможны ese и aquel; самостоятельный ввод принимает обе формы.",
+      "before": {
+        "prompt": "En 2001 fui a Chile. ___ verano conocí a Maite.",
+        "answers": [
+          "ese",
+          "aquel"
+        ],
+        "options": [
+          "este",
+          "ese",
+          "aquel"
+        ]
+      },
+      "after": {
+        "prompt": "En 2001 fui a Chile. ___ verano conocí a Maite.",
+        "answers": [
+          "ese",
+          "aquel"
+        ]
+      }
+    },
+    {
+      "unit": 12,
+      "group": "12.3",
+      "question": 6,
+      "changes": [
+        "format"
+      ],
+      "reason": "Для далёкого или ранее названного предмета возможны ese и aquel; самостоятельный ввод принимает обе формы.",
+      "before": {
+        "prompt": "Viví allí de 1950 a 1965. ___ fueron los mejores años de mi vida.",
+        "answers": [
+          "aquellos",
+          "esos"
+        ],
+        "options": [
+          "estos",
+          "aquellos",
+          "esos"
+        ]
+      },
+      "after": {
+        "prompt": "Viví allí de 1950 a 1965. ___ fueron los mejores años de mi vida.",
+        "answers": [
+          "aquellos",
+          "esos"
+        ]
+      }
+    },
+    {
+      "unit": 12,
+      "group": "12.3",
+      "question": 8,
+      "changes": [
+        "format"
+      ],
+      "reason": "Для далёкого или ранее названного предмета возможны ese и aquel; самостоятельный ввод принимает обе формы.",
+      "before": {
+        "prompt": "Me casé en 1970. En ___ época vivíamos en Lima.",
+        "answers": [
+          "aquella",
+          "esa"
+        ],
+        "options": [
+          "esta",
+          "aquella",
+          "esa"
+        ]
+      },
+      "after": {
+        "prompt": "Me casé en 1970. En ___ época vivíamos en Lima.",
+        "answers": [
+          "aquella",
+          "esa"
+        ]
+      }
+    },
+    {
+      "unit": 12,
+      "group": "12.4",
+      "question": 3,
+      "changes": [
+        "format"
+      ],
+      "reason": "Для далёкого или ранее названного предмета возможны ese и aquel; самостоятельный ввод принимает обе формы.",
+      "before": {
+        "prompt": "¿Qué es ___?",
+        "answers": [
+          "aquello",
+          "eso"
+        ],
+        "options": [
+          "esto",
+          "aquello",
+          "eso"
+        ]
+      },
+      "after": {
+        "prompt": "¿Qué es ___?",
+        "answers": [
+          "aquello",
+          "eso"
+        ]
+      }
+    },
+    {
+      "unit": 12,
+      "group": "check-c",
+      "question": 2,
+      "changes": [
+        "format"
+      ],
+      "reason": "Для далёкого или ранее названного предмета возможны ese и aquel; самостоятельный ввод принимает обе формы.",
+      "before": {
+        "prompt": "Nací en 1983. ___ mismo año nació Ana.",
+        "answers": [
+          "ese",
+          "aquel"
+        ],
+        "options": [
+          "este",
+          "ese",
+          "aquel"
+        ]
+      },
+      "after": {
+        "prompt": "Nací en 1983. ___ mismo año nació Ana.",
+        "answers": [
+          "ese",
+          "aquel"
+        ]
+      }
+    },
+    {
+      "unit": 13,
+      "group": "13.2",
+      "question": 2,
+      "changes": [
+        "format"
+      ],
+      "reason": "В паре единственное/множественное число пол не проверяется; ученик сам пишет неизменяемую по роду форму.",
+      "before": {
+        "prompt": "Rosa es simpática y ___.",
+        "answers": [
+          "alegre"
+        ],
+        "options": [
+          "alegre",
+          "alegres"
+        ]
+      },
+      "after": {
+        "prompt": "Rosa es simpática y ___.",
+        "answers": [
+          "alegre"
+        ]
+      }
+    },
+    {
+      "unit": 13,
+      "group": "13.2",
+      "question": 8,
+      "changes": [
+        "format"
+      ],
+      "reason": "В паре единственное/множественное число пол не проверяется; ученик сам пишет неизменяемую по роду форму.",
+      "before": {
+        "prompt": "Eduardo es alto y ___.",
+        "answers": [
+          "fuerte"
+        ],
+        "options": [
+          "fuerte",
+          "fuertes"
+        ]
+      },
+      "after": {
+        "prompt": "Eduardo es alto y ___.",
+        "answers": [
+          "fuerte"
+        ]
+      }
+    },
+    {
+      "unit": 13,
+      "group": "13.2",
+      "question": 20,
+      "changes": [
+        "format"
+      ],
+      "reason": "В паре единственное/множественное число пол не проверяется; ученик сам пишет неизменяемую по роду форму.",
+      "before": {
+        "prompt": "Julia es muy ___.",
+        "answers": [
+          "fuerte"
+        ],
+        "options": [
+          "fuerte",
+          "fuertes"
+        ]
+      },
+      "after": {
+        "prompt": "Julia es muy ___.",
+        "answers": [
+          "fuerte"
+        ]
+      }
+    },
+    {
+      "unit": 14,
+      "group": "14.1",
+      "question": 2,
+      "changes": [
+        "options"
+      ],
+      "reason": "Добавлена форма мужского рода единственного числа: нужно учесть и род, и число, а не заметить единственное -os/-es.",
+      "before": {
+        "prompt": "Ellos son ___.",
+        "answers": [
+          "brasileños"
+        ],
+        "options": [
+          "brasileña",
+          "brasileñas",
+          "brasileños"
+        ]
+      },
+      "after": {
+        "prompt": "Ellos son ___.",
+        "answers": [
+          "brasileños"
+        ],
+        "options": [
+          "brasileña",
+          "brasileñas",
+          "brasileños",
+          "brasileño"
+        ]
+      }
+    },
+    {
+      "unit": 14,
+      "group": "14.1",
+      "question": 5,
+      "changes": [
+        "format"
+      ],
+      "reason": "Убрана пара исходное слово/множественное число и кнопки с двумя верными формами; нормативные варианты принимаются.",
+      "before": {
+        "prompt": "Ellos son ___.",
+        "answers": [
+          "costarricenses"
+        ],
+        "options": [
+          "costarricenses",
+          "costarricense"
+        ]
+      },
+      "after": {
+        "prompt": "Ellos son ___.",
+        "answers": [
+          "costarricenses"
+        ]
+      }
+    },
+    {
+      "unit": 14,
+      "group": "14.1",
+      "question": 8,
+      "changes": [
+        "options"
+      ],
+      "reason": "Добавлена форма мужского рода единственного числа: нужно учесть и род, и число, а не заметить единственное -os/-es.",
+      "before": {
+        "prompt": "Ellos son ___.",
+        "answers": [
+          "escoceses"
+        ],
+        "options": [
+          "escocesa",
+          "escocesas",
+          "escoceses"
+        ]
+      },
+      "after": {
+        "prompt": "Ellos son ___.",
+        "answers": [
+          "escoceses"
+        ],
+        "options": [
+          "escocesa",
+          "escocesas",
+          "escoceses",
+          "escocés"
+        ]
+      }
+    },
+    {
+      "unit": 14,
+      "group": "14.1",
+      "question": 11,
+      "changes": [
+        "format"
+      ],
+      "reason": "Убрана пара исходное слово/множественное число и кнопки с двумя верными формами; нормативные варианты принимаются.",
+      "before": {
+        "prompt": "Ellos son ___.",
+        "answers": [
+          "iraníes",
+          "iranís"
+        ],
+        "options": [
+          "iranís",
+          "iraní",
+          "iraníes"
+        ]
+      },
+      "after": {
+        "prompt": "Ellos son ___.",
+        "answers": [
+          "iraníes",
+          "iranís"
+        ]
+      }
+    },
+    {
+      "unit": 14,
+      "group": "14.1",
+      "question": 14,
+      "changes": [
+        "options"
+      ],
+      "reason": "Добавлена форма мужского рода единственного числа: нужно учесть и род, и число, а не заметить единственное -os/-es.",
+      "before": {
+        "prompt": "Ellos son ___.",
+        "answers": [
+          "japoneses"
+        ],
+        "options": [
+          "japonesa",
+          "japonesas",
+          "japoneses"
+        ]
+      },
+      "after": {
+        "prompt": "Ellos son ___.",
+        "answers": [
+          "japoneses"
+        ],
+        "options": [
+          "japonesa",
+          "japonesas",
+          "japoneses",
+          "japonés"
+        ]
+      }
+    },
+    {
+      "unit": 14,
+      "group": "14.1",
+      "question": 17,
+      "changes": [
+        "format"
+      ],
+      "reason": "Убрана пара исходное слово/множественное число и кнопки с двумя верными формами; нормативные варианты принимаются.",
+      "before": {
+        "prompt": "Ellos son ___.",
+        "answers": [
+          "nicaragüenses"
+        ],
+        "options": [
+          "nicaragüenses",
+          "nicaragüense"
+        ]
+      },
+      "after": {
+        "prompt": "Ellos son ___.",
+        "answers": [
+          "nicaragüenses"
+        ]
+      }
+    },
+    {
+      "unit": 14,
+      "group": "14.1",
+      "question": 20,
+      "changes": [
+        "options"
+      ],
+      "reason": "Добавлена форма мужского рода единственного числа: нужно учесть и род, и число, а не заметить единственное -os/-es.",
+      "before": {
+        "prompt": "Ellos son ___.",
+        "answers": [
+          "venezolanos"
+        ],
+        "options": [
+          "venezolana",
+          "venezolanas",
+          "venezolanos"
+        ]
+      },
+      "after": {
+        "prompt": "Ellos son ___.",
+        "answers": [
+          "venezolanos"
+        ],
+        "options": [
+          "venezolana",
+          "venezolanas",
+          "venezolanos",
+          "venezolano"
+        ]
+      }
+    },
+    {
+      "unit": 14,
+      "group": "14.1",
+      "question": 23,
+      "changes": [
+        "format"
+      ],
+      "reason": "Убрана пара исходное слово/множественное число и кнопки с двумя верными формами; нормативные варианты принимаются.",
+      "before": {
+        "prompt": "Ellos son ___.",
+        "answers": [
+          "vietnamitas"
+        ],
+        "options": [
+          "vietnamitas",
+          "vietnamita"
+        ]
+      },
+      "after": {
+        "prompt": "Ellos son ___.",
+        "answers": [
+          "vietnamitas"
+        ]
+      }
+    },
+    {
+      "unit": 14,
+      "group": "14.3",
+      "question": 2,
+      "changes": [
+        "format"
+      ],
+      "reason": "Убрана очевидная пара единственное/множественное число; проверяется самостоятельное согласование.",
+      "before": {
+        "prompt": "El dírham es una moneda ___.",
+        "answers": [
+          "marroquí"
+        ],
+        "options": [
+          "marroquí",
+          "marroquís"
+        ]
+      },
+      "after": {
+        "prompt": "El dírham es una moneda ___.",
+        "answers": [
+          "marroquí"
+        ]
+      }
+    },
+    {
+      "unit": 14,
+      "group": "14.3",
+      "question": 5,
+      "changes": [
+        "format"
+      ],
+      "reason": "Убрана очевидная пара единственное/множественное число; проверяется самостоятельное согласование.",
+      "before": {
+        "prompt": "Julia Roberts es una actriz ___.",
+        "answers": [
+          "estadounidense"
+        ],
+        "options": [
+          "estadounidense",
+          "estadounidenses"
+        ]
+      },
+      "after": {
+        "prompt": "Julia Roberts es una actriz ___.",
+        "answers": [
+          "estadounidense"
+        ]
+      }
+    },
+    {
+      "unit": 15,
+      "group": "check-d",
+      "question": 3,
+      "changes": [
+        "options"
+      ],
+      "reason": "Вместо случайного mayora — ошибки направления сравнения и согласования.",
+      "before": {
+        "prompt": "Этот дом старее: Esta casa es ___.",
+        "answers": [
+          "más vieja"
+        ],
+        "options": [
+          "más vieja",
+          "más viejo",
+          "mayora"
+        ]
+      },
+      "after": {
+        "prompt": "Этот дом старее: Esta casa es ___.",
+        "answers": [
+          "más vieja"
+        ],
+        "options": [
+          "más vieja",
+          "menos vieja",
+          "más viejo"
+        ]
+      }
+    },
+    {
+      "unit": 16,
+      "group": "16.1",
+      "question": 2,
+      "changes": [
+        "options"
+      ],
+      "reason": "Убрано допустимое усилительное tan; неверные варианты отражают согласование и ошибочное изменение igual.",
+      "before": {
+        "prompt": "Ana y María ___.",
+        "answers": [
+          "son igual de altas"
+        ],
+        "options": [
+          "son igual de altas",
+          "son tan altas"
+        ]
+      },
+      "after": {
+        "prompt": "Ana y María ___.",
+        "answers": [
+          "son igual de altas"
+        ],
+        "options": [
+          "son igual de altas",
+          "son igual de altos",
+          "son iguales de altas"
+        ]
+      }
+    },
+    {
+      "unit": 16,
+      "group": "16.1",
+      "question": 5,
+      "changes": [
+        "options"
+      ],
+      "reason": "Убрано допустимое усилительное tan; неверные варианты отражают согласование и ошибочное изменение igual.",
+      "before": {
+        "prompt": "Antonio y Paco ___.",
+        "answers": [
+          "son igual de rápidos"
+        ],
+        "options": [
+          "son igual de rápidos",
+          "son tan rápidos"
+        ]
+      },
+      "after": {
+        "prompt": "Antonio y Paco ___.",
+        "answers": [
+          "son igual de rápidos"
+        ],
+        "options": [
+          "son igual de rápidos",
+          "son igual de rápidas",
+          "son iguales de rápidos"
+        ]
+      }
+    },
+    {
+      "unit": 16,
+      "group": "16.2",
+      "question": 8,
+      "changes": [
+        "options"
+      ],
+      "reason": "Убрано допустимое усилительное tan; неверные варианты отражают согласование и ошибочное изменение igual.",
+      "before": {
+        "prompt": "El tabaco y el alcohol son ___.",
+        "answers": [
+          "igual de malos"
+        ],
+        "options": [
+          "igual de malos",
+          "tan malos"
+        ]
+      },
+      "after": {
+        "prompt": "El tabaco y el alcohol son ___.",
+        "answers": [
+          "igual de malos"
+        ],
+        "options": [
+          "igual de malos",
+          "igual de malas",
+          "iguales de malos"
+        ]
+      }
+    },
+    {
+      "unit": 16,
+      "group": "16.4",
+      "question": 8,
+      "changes": [
+        "format"
+      ],
+      "reason": "Три из четырёх кнопок были верными: ввод принимает все предусмотренные сравнения.",
+      "before": {
+        "prompt": "Pues sus hermanas son ___.",
+        "answers": [
+          "igual de guapas",
+          "tan guapas como ella",
+          "igual de guapas que ella"
+        ],
+        "options": [
+          "igual de guapas que ella",
+          "tan guapas",
+          "igual de guapas",
+          "tan guapas como ella"
+        ]
+      },
+      "after": {
+        "prompt": "Pues sus hermanas son ___.",
+        "answers": [
+          "igual de guapas",
+          "tan guapas como ella",
+          "igual de guapas que ella"
+        ]
+      }
+    },
+    {
+      "unit": 17,
+      "group": "17.4",
+      "question": 2,
+      "changes": [
+        "format"
+      ],
+      "reason": "Вместо двух верных готовых фраз выбираем артикль и связку de/del/que; альтернативы для прежнего ввода сохраняются.",
+      "before": {
+        "prompt": "Para mí, el café de Colombia es ___.",
+        "answers": [
+          "el mejor del mundo",
+          "el más bueno del mundo"
+        ],
+        "options": [
+          "el peor del mundo",
+          "el mejor del mundo",
+          "el más bueno del mundo"
+        ]
+      },
+      "after": {
+        "prompt": "Para mí, el café de Colombia es ___.",
+        "answers": [
+          "el mejor del mundo",
+          "el más bueno del mundo"
+        ],
+        "guidedGaps": {
+          "parts": [
+            "",
+            " mejor ",
+            " mundo"
+          ],
+          "choices": [
+            [
+              "el",
+              "la",
+              "los",
+              "las"
+            ],
+            [
+              "de",
+              "del",
+              "que"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "unit": 17,
+      "group": "check-a",
+      "question": 1,
+      "changes": [
+        "options"
+      ],
+      "reason": "Типичные ошибки: пропущен артикль или «очень» вместо «самая».",
+      "before": {
+        "prompt": "Carla es ___ alta. — Карла самая высокая.",
+        "answers": [
+          "la más"
+        ],
+        "options": [
+          "la más",
+          "más la",
+          "la muy"
+        ]
+      },
+      "after": {
+        "prompt": "Carla es ___ alta. — Карла самая высокая.",
+        "answers": [
+          "la más"
+        ],
+        "options": [
+          "la más",
+          "más",
+          "la muy"
+        ]
+      }
+    },
+    {
+      "unit": 17,
+      "group": "check-a",
+      "question": 2,
+      "changes": [
+        "options"
+      ],
+      "reason": "Все фразы осмысленные: различаем «очень дорогой», «дороже» и «самый дорогой».",
+      "before": {
+        "prompt": "Этот телевизор самый дорогой.",
+        "answers": [
+          "Este televisor es el más caro."
+        ],
+        "options": [
+          "Este televisor es muy caro.",
+          "Este televisor es el más caro.",
+          "Este televisor es más el caro."
+        ]
+      },
+      "after": {
+        "prompt": "Этот телевизор самый дорогой.",
+        "answers": [
+          "Este televisor es el más caro."
+        ],
+        "options": [
+          "Este televisor es muy caro.",
+          "Este televisor es el más caro.",
+          "Este televisor es más caro."
+        ]
+      }
+    },
+    {
+      "unit": 17,
+      "group": "check-a",
+      "question": 3,
+      "changes": [
+        "options"
+      ],
+      "reason": "Вместо случайного обратного порядка — отсутствие артикля и усилительное muy.",
+      "before": {
+        "prompt": "Как сказать «самые удобные» о туфлях — zapatos?",
+        "answers": [
+          "los más cómodos"
+        ],
+        "options": [
+          "los más cómodos",
+          "los muy cómodos",
+          "los cómodos más"
+        ]
+      },
+      "after": {
+        "prompt": "Как сказать «самые удобные» о туфлях — zapatos?",
+        "answers": [
+          "los más cómodos"
+        ],
+        "options": [
+          "los más cómodos",
+          "más cómodos",
+          "los muy cómodos"
+        ]
+      }
+    }
+  ],
+  "orderOnly": [
+    {
+      "unit": 2,
+      "group": "check-e",
+      "question": 2
+    },
+    {
+      "unit": 2,
+      "group": "check-e",
+      "question": 3
+    },
+    {
+      "unit": 4,
+      "group": "check-a",
+      "question": 1
+    },
+    {
+      "unit": 4,
+      "group": "check-a",
+      "question": 2
+    },
+    {
+      "unit": 4,
+      "group": "check-b",
+      "question": 1
+    },
+    {
+      "unit": 4,
+      "group": "check-b",
+      "question": 2
+    },
+    {
+      "unit": 4,
+      "group": "check-c",
+      "question": 1
+    },
+    {
+      "unit": 4,
+      "group": "check-c",
+      "question": 2
+    },
+    {
+      "unit": 4,
+      "group": "check-d",
+      "question": 1
+    },
+    {
+      "unit": 4,
+      "group": "check-d",
+      "question": 2
+    },
+    {
+      "unit": 4,
+      "group": "4.1",
+      "question": 1
+    },
+    {
+      "unit": 4,
+      "group": "4.1",
+      "question": 2
+    },
+    {
+      "unit": 4,
+      "group": "4.1",
+      "question": 3
+    },
+    {
+      "unit": 4,
+      "group": "4.1",
+      "question": 4
+    },
+    {
+      "unit": 4,
+      "group": "4.1",
+      "question": 5
+    },
+    {
+      "unit": 4,
+      "group": "4.1",
+      "question": 6
+    },
+    {
+      "unit": 4,
+      "group": "4.1",
+      "question": 7
+    },
+    {
+      "unit": 4,
+      "group": "4.1",
+      "question": 8
+    },
+    {
+      "unit": 4,
+      "group": "4.1",
+      "question": 9
+    },
+    {
+      "unit": 4,
+      "group": "4.1",
+      "question": 10
+    },
+    {
+      "unit": 4,
+      "group": "4.1",
+      "question": 11
+    },
+    {
+      "unit": 4,
+      "group": "4.1",
+      "question": 13
+    },
+    {
+      "unit": 4,
+      "group": "4.1",
+      "question": 14
+    },
+    {
+      "unit": 4,
+      "group": "4.1",
+      "question": 15
+    },
+    {
+      "unit": 4,
+      "group": "4.2",
+      "question": 1
+    },
+    {
+      "unit": 4,
+      "group": "4.2",
+      "question": 2
+    },
+    {
+      "unit": 4,
+      "group": "4.2",
+      "question": 3
+    },
+    {
+      "unit": 4,
+      "group": "4.2",
+      "question": 4
+    },
+    {
+      "unit": 4,
+      "group": "4.2",
+      "question": 5
+    },
+    {
+      "unit": 4,
+      "group": "4.2",
+      "question": 6
+    },
+    {
+      "unit": 4,
+      "group": "4.2",
+      "question": 7
+    },
+    {
+      "unit": 4,
+      "group": "4.2",
+      "question": 8
+    },
+    {
+      "unit": 4,
+      "group": "4.2",
+      "question": 9
+    },
+    {
+      "unit": 4,
+      "group": "4.2",
+      "question": 10
+    },
+    {
+      "unit": 4,
+      "group": "4.3",
+      "question": 1
+    },
+    {
+      "unit": 4,
+      "group": "4.3",
+      "question": 2
+    },
+    {
+      "unit": 4,
+      "group": "4.3",
+      "question": 4
+    },
+    {
+      "unit": 4,
+      "group": "4.3",
+      "question": 5
+    },
+    {
+      "unit": 4,
+      "group": "4.3",
+      "question": 6
+    },
+    {
+      "unit": 4,
+      "group": "4.3",
+      "question": 7
+    },
+    {
+      "unit": 4,
+      "group": "4.3",
+      "question": 8
+    },
+    {
+      "unit": 4,
+      "group": "4.3",
+      "question": 9
+    },
+    {
+      "unit": 4,
+      "group": "4.3",
+      "question": 10
+    },
+    {
+      "unit": 4,
+      "group": "4.3",
+      "question": 11
+    },
+    {
+      "unit": 4,
+      "group": "4.3",
+      "question": 12
+    },
+    {
+      "unit": 4,
+      "group": "4.4",
+      "question": 1
+    },
+    {
+      "unit": 4,
+      "group": "4.4",
+      "question": 2
+    },
+    {
+      "unit": 4,
+      "group": "4.4",
+      "question": 3
+    },
+    {
+      "unit": 4,
+      "group": "4.4",
+      "question": 5
+    },
+    {
+      "unit": 4,
+      "group": "4.4",
+      "question": 6
+    },
+    {
+      "unit": 4,
+      "group": "4.4",
+      "question": 7
+    },
+    {
+      "unit": 4,
+      "group": "4.4",
+      "question": 8
+    },
+    {
+      "unit": 4,
+      "group": "4.4",
+      "question": 9
+    },
+    {
+      "unit": 4,
+      "group": "4.4",
+      "question": 10
+    },
+    {
+      "unit": 5,
+      "group": "check-b",
+      "question": 1
+    },
+    {
+      "unit": 5,
+      "group": "check-c",
+      "question": 2
+    },
+    {
+      "unit": 5,
+      "group": "5.2",
+      "question": 3
+    },
+    {
+      "unit": 5,
+      "group": "5.2",
+      "question": 6
+    },
+    {
+      "unit": 5,
+      "group": "5.2",
+      "question": 9
+    },
+    {
+      "unit": 5,
+      "group": "5.2",
+      "question": 15
+    },
+    {
+      "unit": 5,
+      "group": "5.3",
+      "question": 5
+    },
+    {
+      "unit": 5,
+      "group": "5.3",
+      "question": 7
+    },
+    {
+      "unit": 5,
+      "group": "5.3",
+      "question": 15
+    },
+    {
+      "unit": 6,
+      "group": "check-a",
+      "question": 1
+    },
+    {
+      "unit": 6,
+      "group": "check-a",
+      "question": 2
+    },
+    {
+      "unit": 6,
+      "group": "check-b",
+      "question": 1
+    },
+    {
+      "unit": 6,
+      "group": "check-b",
+      "question": 2
+    },
+    {
+      "unit": 6,
+      "group": "check-c",
+      "question": 1
+    },
+    {
+      "unit": 6,
+      "group": "check-c",
+      "question": 2
+    },
+    {
+      "unit": 6,
+      "group": "check-d",
+      "question": 1
+    },
+    {
+      "unit": 6,
+      "group": "check-d",
+      "question": 2
+    },
+    {
+      "unit": 6,
+      "group": "6.1",
+      "question": 1
+    },
+    {
+      "unit": 6,
+      "group": "6.1",
+      "question": 2
+    },
+    {
+      "unit": 6,
+      "group": "6.1",
+      "question": 3
+    },
+    {
+      "unit": 6,
+      "group": "6.1",
+      "question": 4
+    },
+    {
+      "unit": 6,
+      "group": "6.1",
+      "question": 5
+    },
+    {
+      "unit": 6,
+      "group": "6.1",
+      "question": 6
+    },
+    {
+      "unit": 6,
+      "group": "6.1",
+      "question": 7
+    },
+    {
+      "unit": 6,
+      "group": "6.1",
+      "question": 8
+    },
+    {
+      "unit": 6,
+      "group": "6.1",
+      "question": 9
+    },
+    {
+      "unit": 6,
+      "group": "6.1",
+      "question": 10
+    },
+    {
+      "unit": 6,
+      "group": "6.1",
+      "question": 11
+    },
+    {
+      "unit": 6,
+      "group": "6.1",
+      "question": 12
+    },
+    {
+      "unit": 6,
+      "group": "6.1",
+      "question": 13
+    },
+    {
+      "unit": 6,
+      "group": "6.1",
+      "question": 15
+    },
+    {
+      "unit": 6,
+      "group": "6.2",
+      "question": 1
+    },
+    {
+      "unit": 6,
+      "group": "6.2",
+      "question": 2
+    },
+    {
+      "unit": 6,
+      "group": "6.2",
+      "question": 3
+    },
+    {
+      "unit": 6,
+      "group": "6.2",
+      "question": 5
+    },
+    {
+      "unit": 6,
+      "group": "6.2",
+      "question": 6
+    },
+    {
+      "unit": 6,
+      "group": "6.2",
+      "question": 7
+    },
+    {
+      "unit": 6,
+      "group": "6.2",
+      "question": 8
+    },
+    {
+      "unit": 6,
+      "group": "6.3",
+      "question": 1
+    },
+    {
+      "unit": 6,
+      "group": "6.3",
+      "question": 2
+    },
+    {
+      "unit": 6,
+      "group": "6.3",
+      "question": 3
+    },
+    {
+      "unit": 6,
+      "group": "6.3",
+      "question": 4
+    },
+    {
+      "unit": 6,
+      "group": "6.3",
+      "question": 5
+    },
+    {
+      "unit": 6,
+      "group": "6.3",
+      "question": 6
+    },
+    {
+      "unit": 6,
+      "group": "6.4",
+      "question": 1
+    },
+    {
+      "unit": 6,
+      "group": "6.4",
+      "question": 2
+    },
+    {
+      "unit": 6,
+      "group": "6.4",
+      "question": 3
+    },
+    {
+      "unit": 6,
+      "group": "6.4",
+      "question": 4
+    },
+    {
+      "unit": 6,
+      "group": "6.4",
+      "question": 6
+    },
+    {
+      "unit": 6,
+      "group": "6.4",
+      "question": 7
+    },
+    {
+      "unit": 6,
+      "group": "6.4",
+      "question": 8
+    },
+    {
+      "unit": 6,
+      "group": "6.4",
+      "question": 9
+    },
+    {
+      "unit": 6,
+      "group": "6.4",
+      "question": 10
+    },
+    {
+      "unit": 6,
+      "group": "6.4",
+      "question": 11
+    },
+    {
+      "unit": 7,
+      "group": "check-a",
+      "question": 1
+    },
+    {
+      "unit": 7,
+      "group": "check-b",
+      "question": 2
+    },
+    {
+      "unit": 7,
+      "group": "check-c",
+      "question": 1
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 1
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 2
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 3
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 4
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 5
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 6
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 7
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 8
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 10
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 11
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 12
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 13
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 14
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 16
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 17
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 19
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 21
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 22
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 23
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 24
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 25
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 26
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 29
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 30
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 33
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 34
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 35
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 36
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 37
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 38
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 15
+    },
+    {
+      "unit": 7,
+      "group": "7.1",
+      "question": 31
+    },
+    {
+      "unit": 7,
+      "group": "7.2",
+      "question": 1
+    },
+    {
+      "unit": 7,
+      "group": "7.2",
+      "question": 3
+    },
+    {
+      "unit": 7,
+      "group": "7.2",
+      "question": 9
+    },
+    {
+      "unit": 7,
+      "group": "7.2",
+      "question": 10
+    },
+    {
+      "unit": 7,
+      "group": "7.2",
+      "question": 11
+    },
+    {
+      "unit": 7,
+      "group": "7.2",
+      "question": 12
+    },
+    {
+      "unit": 7,
+      "group": "7.2",
+      "question": 14
+    },
+    {
+      "unit": 7,
+      "group": "7.2",
+      "question": 15
+    },
+    {
+      "unit": 7,
+      "group": "7.2",
+      "question": 16
+    },
+    {
+      "unit": 7,
+      "group": "7.2",
+      "question": 17
+    },
+    {
+      "unit": 7,
+      "group": "7.2",
+      "question": 18
+    },
+    {
+      "unit": 7,
+      "group": "7.2",
+      "question": 19
+    },
+    {
+      "unit": 7,
+      "group": "7.3",
+      "question": 2
+    },
+    {
+      "unit": 7,
+      "group": "7.3",
+      "question": 10
+    },
+    {
+      "unit": 8,
+      "group": "check-a",
+      "question": 2
+    },
+    {
+      "unit": 8,
+      "group": "check-b",
+      "question": 1
+    },
+    {
+      "unit": 8,
+      "group": "check-b",
+      "question": 2
+    },
+    {
+      "unit": 8,
+      "group": "check-c",
+      "question": 1
+    },
+    {
+      "unit": 8,
+      "group": "check-c",
+      "question": 2
+    },
+    {
+      "unit": 8,
+      "group": "check-d",
+      "question": 1
+    },
+    {
+      "unit": 8,
+      "group": "check-d",
+      "question": 2
+    },
+    {
+      "unit": 8,
+      "group": "8.1",
+      "question": 5
+    },
+    {
+      "unit": 8,
+      "group": "8.2",
+      "question": 2
+    },
+    {
+      "unit": 8,
+      "group": "8.2",
+      "question": 5
+    },
+    {
+      "unit": 8,
+      "group": "8.2",
+      "question": 7
+    },
+    {
+      "unit": 8,
+      "group": "8.2",
+      "question": 9
+    },
+    {
+      "unit": 8,
+      "group": "8.2",
+      "question": 10
+    },
+    {
+      "unit": 8,
+      "group": "8.2",
+      "question": 12
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 7
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 10
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 23
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 2
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 5
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 9
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 11
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 12
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 14
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 15
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 16
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 17
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 18
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 19
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 20
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 21
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 22
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 25
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 26
+    },
+    {
+      "unit": 8,
+      "group": "8.3",
+      "question": 27
+    },
+    {
+      "unit": 8,
+      "group": "8.4",
+      "question": 1
+    },
+    {
+      "unit": 8,
+      "group": "8.4",
+      "question": 3
+    },
+    {
+      "unit": 8,
+      "group": "8.4",
+      "question": 4
+    },
+    {
+      "unit": 8,
+      "group": "8.4",
+      "question": 5
+    },
+    {
+      "unit": 8,
+      "group": "8.4",
+      "question": 11
+    },
+    {
+      "unit": 8,
+      "group": "8.4",
+      "question": 12
+    },
+    {
+      "unit": 8,
+      "group": "8.4",
+      "question": 13
+    },
+    {
+      "unit": 9,
+      "group": "check-a",
+      "question": 1
+    },
+    {
+      "unit": 9,
+      "group": "check-b",
+      "question": 2
+    },
+    {
+      "unit": 9,
+      "group": "check-c",
+      "question": 2
+    },
+    {
+      "unit": 9,
+      "group": "check-d",
+      "question": 1
+    },
+    {
+      "unit": 9,
+      "group": "check-d",
+      "question": 2
+    },
+    {
+      "unit": 9,
+      "group": "9.2",
+      "question": 1
+    },
+    {
+      "unit": 9,
+      "group": "9.2",
+      "question": 3
+    },
+    {
+      "unit": 9,
+      "group": "9.2",
+      "question": 4
+    },
+    {
+      "unit": 9,
+      "group": "9.2",
+      "question": 5
+    },
+    {
+      "unit": 9,
+      "group": "9.2",
+      "question": 7
+    },
+    {
+      "unit": 9,
+      "group": "9.2",
+      "question": 8
+    },
+    {
+      "unit": 9,
+      "group": "9.2",
+      "question": 9
+    },
+    {
+      "unit": 9,
+      "group": "9.2",
+      "question": 10
+    },
+    {
+      "unit": 9,
+      "group": "9.2",
+      "question": 11
+    },
+    {
+      "unit": 9,
+      "group": "9.2",
+      "question": 12
+    },
+    {
+      "unit": 9,
+      "group": "9.2",
+      "question": 13
+    },
+    {
+      "unit": 9,
+      "group": "9.2",
+      "question": 14
+    },
+    {
+      "unit": 9,
+      "group": "9.2",
+      "question": 15
+    },
+    {
+      "unit": 9,
+      "group": "9.2",
+      "question": 16
+    },
+    {
+      "unit": 9,
+      "group": "9.2",
+      "question": 17
+    },
+    {
+      "unit": 9,
+      "group": "9.3",
+      "question": 1
+    },
+    {
+      "unit": 9,
+      "group": "9.3",
+      "question": 2
+    },
+    {
+      "unit": 9,
+      "group": "9.3",
+      "question": 5
+    },
+    {
+      "unit": 9,
+      "group": "9.4",
+      "question": 1
+    },
+    {
+      "unit": 9,
+      "group": "9.4",
+      "question": 2
+    },
+    {
+      "unit": 9,
+      "group": "9.4",
+      "question": 3
+    },
+    {
+      "unit": 9,
+      "group": "9.4",
+      "question": 4
+    },
+    {
+      "unit": 10,
+      "group": "check-a",
+      "question": 1
+    },
+    {
+      "unit": 10,
+      "group": "check-a",
+      "question": 2
+    },
+    {
+      "unit": 10,
+      "group": "check-b",
+      "question": 1
+    },
+    {
+      "unit": 10,
+      "group": "check-b",
+      "question": 2
+    },
+    {
+      "unit": 10,
+      "group": "check-c",
+      "question": 1
+    },
+    {
+      "unit": 10,
+      "group": "check-d",
+      "question": 1
+    },
+    {
+      "unit": 10,
+      "group": "check-d",
+      "question": 2
+    },
+    {
+      "unit": 10,
+      "group": "10.2",
+      "question": 3
+    },
+    {
+      "unit": 10,
+      "group": "10.2",
+      "question": 8
+    },
+    {
+      "unit": 10,
+      "group": "10.2",
+      "question": 10
+    },
+    {
+      "unit": 10,
+      "group": "10.2",
+      "question": 13
+    },
+    {
+      "unit": 10,
+      "group": "10.2",
+      "question": 2
+    },
+    {
+      "unit": 10,
+      "group": "10.2",
+      "question": 6
+    },
+    {
+      "unit": 10,
+      "group": "10.2",
+      "question": 7
+    },
+    {
+      "unit": 10,
+      "group": "10.3",
+      "question": 1
+    },
+    {
+      "unit": 10,
+      "group": "10.3",
+      "question": 2
+    },
+    {
+      "unit": 10,
+      "group": "10.3",
+      "question": 3
+    },
+    {
+      "unit": 10,
+      "group": "10.3",
+      "question": 4
+    },
+    {
+      "unit": 10,
+      "group": "10.3",
+      "question": 5
+    },
+    {
+      "unit": 10,
+      "group": "10.3",
+      "question": 7
+    },
+    {
+      "unit": 10,
+      "group": "10.3",
+      "question": 8
+    },
+    {
+      "unit": 10,
+      "group": "10.4",
+      "question": 1
+    },
+    {
+      "unit": 10,
+      "group": "10.4",
+      "question": 2
+    },
+    {
+      "unit": 10,
+      "group": "10.4",
+      "question": 3
+    },
+    {
+      "unit": 11,
+      "group": "check-a",
+      "question": 1
+    },
+    {
+      "unit": 11,
+      "group": "check-a",
+      "question": 2
+    },
+    {
+      "unit": 11,
+      "group": "check-b",
+      "question": 1
+    },
+    {
+      "unit": 11,
+      "group": "check-b",
+      "question": 2
+    },
+    {
+      "unit": 11,
+      "group": "check-c",
+      "question": 1
+    },
+    {
+      "unit": 11,
+      "group": "check-c",
+      "question": 2
+    },
+    {
+      "unit": 11,
+      "group": "11.1",
+      "question": 1
+    },
+    {
+      "unit": 11,
+      "group": "11.1",
+      "question": 2
+    },
+    {
+      "unit": 11,
+      "group": "11.1",
+      "question": 6
+    },
+    {
+      "unit": 11,
+      "group": "11.1",
+      "question": 8
+    },
+    {
+      "unit": 11,
+      "group": "11.1",
+      "question": 10
+    },
+    {
+      "unit": 11,
+      "group": "11.1",
+      "question": 11
+    },
+    {
+      "unit": 11,
+      "group": "11.2",
+      "question": 1
+    },
+    {
+      "unit": 11,
+      "group": "11.2",
+      "question": 2
+    },
+    {
+      "unit": 11,
+      "group": "11.2",
+      "question": 3
+    },
+    {
+      "unit": 11,
+      "group": "11.2",
+      "question": 4
+    },
+    {
+      "unit": 11,
+      "group": "11.2",
+      "question": 5
+    },
+    {
+      "unit": 11,
+      "group": "11.2",
+      "question": 6
+    },
+    {
+      "unit": 11,
+      "group": "11.2",
+      "question": 7
+    },
+    {
+      "unit": 11,
+      "group": "11.2",
+      "question": 8
+    },
+    {
+      "unit": 11,
+      "group": "11.3",
+      "question": 2
+    },
+    {
+      "unit": 11,
+      "group": "11.3",
+      "question": 6
+    },
+    {
+      "unit": 11,
+      "group": "11.3",
+      "question": 9
+    },
+    {
+      "unit": 11,
+      "group": "11.3",
+      "question": 11
+    },
+    {
+      "unit": 12,
+      "group": "check-a",
+      "question": 1
+    },
+    {
+      "unit": 12,
+      "group": "check-a",
+      "question": 2
+    },
+    {
+      "unit": 12,
+      "group": "check-b",
+      "question": 1
+    },
+    {
+      "unit": 12,
+      "group": "check-b",
+      "question": 2
+    },
+    {
+      "unit": 12,
+      "group": "check-d",
+      "question": 1
+    },
+    {
+      "unit": 12,
+      "group": "check-d",
+      "question": 2
+    },
+    {
+      "unit": 12,
+      "group": "12.1",
+      "question": 1
+    },
+    {
+      "unit": 12,
+      "group": "12.1",
+      "question": 4
+    },
+    {
+      "unit": 12,
+      "group": "12.1",
+      "question": 5
+    },
+    {
+      "unit": 12,
+      "group": "12.1",
+      "question": 8
+    },
+    {
+      "unit": 12,
+      "group": "12.2",
+      "question": 1
+    },
+    {
+      "unit": 12,
+      "group": "12.2",
+      "question": 3
+    },
+    {
+      "unit": 12,
+      "group": "12.2",
+      "question": 6
+    },
+    {
+      "unit": 12,
+      "group": "12.2",
+      "question": 8
+    },
+    {
+      "unit": 12,
+      "group": "12.3",
+      "question": 3
+    },
+    {
+      "unit": 12,
+      "group": "12.3",
+      "question": 4
+    },
+    {
+      "unit": 12,
+      "group": "12.3",
+      "question": 7
+    },
+    {
+      "unit": 12,
+      "group": "12.3",
+      "question": 9
+    },
+    {
+      "unit": 12,
+      "group": "12.4",
+      "question": 1
+    },
+    {
+      "unit": 12,
+      "group": "12.4",
+      "question": 2
+    },
+    {
+      "unit": 12,
+      "group": "12.4",
+      "question": 4
+    },
+    {
+      "unit": 13,
+      "group": "check-a",
+      "question": 1
+    },
+    {
+      "unit": 13,
+      "group": "check-a",
+      "question": 2
+    },
+    {
+      "unit": 13,
+      "group": "check-b",
+      "question": 1
+    },
+    {
+      "unit": 13,
+      "group": "check-b",
+      "question": 2
+    },
+    {
+      "unit": 13,
+      "group": "check-c",
+      "question": 1
+    },
+    {
+      "unit": 13,
+      "group": "check-c",
+      "question": 2
+    },
+    {
+      "unit": 14,
+      "group": "check-a",
+      "question": 1
+    },
+    {
+      "unit": 14,
+      "group": "check-a",
+      "question": 2
+    },
+    {
+      "unit": 14,
+      "group": "check-b",
+      "question": 1
+    },
+    {
+      "unit": 14,
+      "group": "check-b",
+      "question": 2
+    },
+    {
+      "unit": 14,
+      "group": "check-c",
+      "question": 1
+    },
+    {
+      "unit": 14,
+      "group": "check-c",
+      "question": 2
+    }
+  ]
+}
