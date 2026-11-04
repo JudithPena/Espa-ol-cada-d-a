@@ -121,6 +121,11 @@ def lesson_texts(lesson: Lesson, include_unit_title: bool = False) -> list[tuple
                 out += [(where, speaker), (where, es), (where, ru)]
         elif block.type == "reading":
             out += [(where, d.get("title") or ""), (where, d["text"]), (where, d["translation"])]
+        elif block.type == "compare":
+            out += [(where, d.get(k) or "") for k in ("title", "lead", "note")]
+            for c in d["cards"]:
+                out += [(where, c["head"]), (where, c["label"]), (where, c["text"])]
+                out += [(where, s) for pair in c["ex"] for s in pair]
     for n, q in enumerate(lesson.quiz, 1):
         where = f"тест, вопрос {n}"
         out += [(where, q.question), (where, q.options[q.correct]), (where, q.explain)]
