@@ -120,6 +120,7 @@ def _word(item: VocabItem, card: WordCard | None, unknown=lambda text: []) -> di
 # Выбор транскрипции («Как читается queso? кэ́со | куэ́со») на сайте не задаём: произношение
 # проверяем на слух. В канале эти задания остаются.
 _TRANSCRIPTION = re.compile(r"\s*\[[^\]]+\]\s*(?:—\s*)?")
+_LATIN_WORD = re.compile(r"[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]{2,}")
 _LATIN = re.compile(r"[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]")
 
 
@@ -387,6 +388,11 @@ def _block(block: Block) -> dict | None:
     if t == "dialogue":
         return {"t": t, "title": _html(d["title"]), "hidden": d["hidden"],
                 "lines": [[speaker, _html(es), _html(ru), plain(es)] for speaker, es, ru in d["lines"]]}
+    if t == "compare":
+        return {"t": t, "style": d["style"], "join": d["join"], "title": _html(d["title"]), "lead": _html(d["lead"]), "note": _html(d["note"]),
+                "cards": [{"head": _html(c["head"]), "say": plain(c["head"]) if _LATIN_WORD.search(c["head"]) else "",
+                           "label": _html(c["label"]), "html": _html(c["text"]), "tone": c["tone"], "key": False,
+                           "ex": [[_html(es), plain(es), "", ru] for es, ru in c["ex"]]} for c in d["cards"]]}
     if t == "reading":
         return {"t": t, "title": _html(d["title"]), "html": _html(d["text"]),
                 "tr": _html(d["translation"]), "say": plain(d["text"])}

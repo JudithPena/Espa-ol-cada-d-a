@@ -76,6 +76,9 @@ def audio_texts(data: dict) -> dict[str, tuple[str, str]]:
                 for f in b.get("forms", []):
                     add(f)
             cards(b.get("cards"))
+            if t == "compare":
+                for c in b["cards"]:
+                    add(c.get("say"))
             cards([x for x in b.get("items") or [] if isinstance(x, dict)])
             cards(b.get("steps") if t == "list" else None)
         for es, _ in lesson.get("sentences", []):

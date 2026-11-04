@@ -229,3 +229,15 @@ def test_theory_italic_chips_pairs_and_steps():
 
     num = _block(Block("text", "1. Слово **hay** не меняется. _Hay un libro._ _Hay dos libros._\n2. Перед **hay** нет артикля."))
     assert len(num["items"]) == 2 and len(num["items"][0]["ex"]) == 2
+
+
+def test_compare_block():
+    from espanol.course import parse_block
+    from espanol.site import _block
+
+    b = parse_block({"compare": {"style": "small", "join": True, "cards": [
+        {"head": "tú", "label": "«ты»", "ex": ["¿Y tú? — А ты?"]}, {"head": "¿ … ?", "label": "Вопрос"}]}}, "тест")
+    d = _block(b)
+    assert d["join"] and d["style"] == "small"
+    assert d["cards"][0]["say"] == "tú" and d["cards"][1]["say"] == ""   # знаки без букв не озвучиваем
+    assert d["cards"][0]["ex"][0][1:] == ["¿Y tú?", "", "А ты?"]

@@ -267,6 +267,30 @@ main { padding-block: 16px 110px; }
 .theory .lead { font-size: 19px; font-weight: 700; line-height: 1.35; margin: 2px 2px 2px; }
 .pair .pw.long { font-size: 20px; text-align: center; }
 .pair .pn { font-size: 12.5px; text-align: center; }
+.cmp { display: grid; gap: 10px; }
+.cmp h4 { margin: 4px 0 0; font-size: 17px; }
+.cmp-lead, .cmp-note { margin: 0; color: var(--muted); font-size: 15px; }
+.cmp-row { display: grid; gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cmp-row.n1 { grid-template-columns: 1fr; }
+.cmp.small .cmp-row.n3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cmp-card { display: grid; gap: 6px; align-content: start; padding: 12px; border-radius: 14px; background: var(--surface); box-shadow: var(--shadow); }
+.cmp-card.blue { background: var(--accent-soft); box-shadow: none; }
+.cmp-card.sun { background: var(--sun-soft); box-shadow: none; }
+.cmp-card.mint { background: var(--good-soft); box-shadow: none; }
+.cmp-card.rose { background: var(--bad-soft); box-shadow: none; }
+.cmp-card.gray { background: var(--sunken); box-shadow: none; }
+.cmp-head { font-family: var(--display); font-weight: 700; font-size: 26px; line-height: 1.15; color: var(--ink); background: none; border: 0; padding: 0; text-align: left; cursor: pointer; }
+.cmp-label { font-size: 15px; }
+.cmp-text { font-size: 14.5px; line-height: 1.4; }
+.cmp.big .cmp-row.n1 .cmp-head { font-size: 28px; }
+.cmp .exs { gap: 6px; }
+.cmp .exw { font-size: 15px; padding: 3px 8px; }
+.cmp.small .cmp-card { justify-items: center; text-align: center; padding: 10px 6px; gap: 2px; background: var(--sunken); box-shadow: none; }
+.cmp.small .cmp-head { font-size: 24px; text-align: center; }
+.cmp.small .cmp-head.long { font-size: 18px; }
+/* Карточки с примерами на телефоне — друг под другом во всю ширину, иначе фразы ломаются по слову в строке. */
+@media (max-width: 560px) { .cmp.big .cmp-row.hasex { grid-template-columns: 1fr; } }
+.cmp.small .cmp-label { font-weight: 500; color: var(--muted); }
 .tline { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; position: relative; }
 .tline li { display: grid; grid-template-columns: 44px 1fr; gap: 10px; position: relative; padding-bottom: 14px; }
 .tline li:not(:last-child)::before { content: ""; position: absolute; left: 21px; top: 44px; bottom: 0; width: 2px; background: var(--line); }
@@ -1025,9 +1049,10 @@ function theoryScreens(L) {
   for (const b of L.blocks) {
     if (b.t === "exercise") { flush(); screens.push({ ex: b }); continue; }
     const w = visLen(b);
+    if (b.join && cur.length) { cur.push(b); weight += w; continue; }   // «join: true» в уроке сайта — тот же экран
     // Короткое вступление («Прочитайте диалог вслух…») остаётся на одном экране с диалогом.
     const lead = ["dialogue", "reading"].includes(b.t) && weight < 400;
-    const own = ["header", "rule", "note", "table", "conjugation", "dialogue", "reading", "examples"].includes(b.t);
+    const own = ["header", "rule", "note", "table", "conjugation", "dialogue", "reading", "examples", "compare"].includes(b.t);
     if (!onlyHeader() && ((own && !lead) || weight + w > (b.t === "text" && w < 250 ? 1200 : 450))) flush();
     cur.push(b); weight += w;
     if (["dialogue", "reading"].includes(b.t)) flush();
@@ -1421,6 +1446,12 @@ const pairsHTML = ps => ps?.length ? `<div class="pairs">${ps.map(([w, say, mid,
 const cardsHTML = cs => `<div class="cards">${cs.map(c => c.lead ? `<p class="lead">${c.html}</p>`
   : `<div class="sent${c.key ? " key" : ""}">${c.html ? `<span>${c.html}</span>` : ""}${pairsHTML(c.pairs)}${exChips(c.ex)}</div>`).join("")}</div>`;
 const stepsOl = items => `<ol class="steps">${items.map(it => `<li><span class="cond">${it.html}</span>${pairsHTML(it.pairs)}${exChips(it.ex)}</li>`).join("")}</ol>`;
+// Сравнение карточками рядом (уроки сайта): big — крупные цветные карточки (одна — во всю ширину), small — компактные плитки.
+const compareHTML = b => `<div class="cmp ${b.style === "small" ? "small" : "big"}">${b.title ? `<h4>${b.title}</h4>` : ""}${b.lead ? `<p class="cmp-lead">${b.lead}</p>` : ""}
+  <div class="cmp-row n${b.cards.length}${b.cards.some(c => c.ex.some(e => e[1].length > 16)) ? " hasex" : ""}">${b.cards.map(c => `<div class="cmp-card ${esc(c.tone || "")}">
+    ${c.say ? `<button class="cmp-head${c.say.length > 9 ? " long" : ""}" data-say="${esc(c.say)}">${c.head}</button>` : `<span class="cmp-head">${c.head}</span>`}
+    ${c.label ? `<b class="cmp-label">${c.label}</b>` : ""}${c.html ? `<span class="cmp-text">${c.html}</span>` : ""}${exChips(c.ex)}</div>`).join("")}</div>
+  ${b.note ? `<p class="cmp-note">${b.note}</p>` : ""}</div>`;
 // Пункты с эмодзи — шкала: значок на линии, мысль и плитки примеров рядом.
 const stepsHTML = st => `<ol class="tline">${st.map(c => `<li${c.icon ? "" : ' class="noicon"'}><span class="ti" aria-hidden="true">${c.icon ? esc(c.icon) : ""}</span><div class="tb">${c.html ? `<span>${c.html}</span>` : ""}${pairsHTML(c.pairs)}${exChips(c.ex)}</div></li>`).join("")}</ol>`;
 function blockHTML(b) {
@@ -1434,6 +1465,7 @@ function blockHTML(b) {
     case "latam": return box("latam", "🌎 В Латинской Америке", b.html);
     case "culture": return box("culture", "Культура", b.html);
     case "task": return box("task", "Задание", b.html);
+    case "compare": return compareHTML(b);
     case "list": return b.steps ? stepsHTML(b.steps) : `<ul>${b.items.map(x => `<li>${x}</li>`).join("")}</ul>`;
     case "cando": return box("cando-box", "Теперь вы умеете", `<ul class="cando">${b.items.map(x => `<li>${x}</li>`).join("")}</ul>`);
     case "examples": return `<div class="box">${b.title ? `<span class="lbl">${b.title}</span>` : ""}<ul class="exl">${b.items.map(([es, ru, sp]) => `<li>${playBtn(sp)}<span><span class="es">${es}</span><small>${ru}</small></span></li>`).join("")}</ul></div>`;

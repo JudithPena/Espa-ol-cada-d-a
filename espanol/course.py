@@ -57,6 +57,7 @@ FEATURES = {
 BLOCK_TYPES = {
     "text", "words", "rule", "tip", "note", "latam", "culture", "task", "header",
     "examples", "table", "conjugation", "exercise", "dialogue", "reading", "cando", "list",
+    "compare",   # только уроки сайта (content/site): карточки рядом — tú / usted, ¿…? / ¡…!
 }
 
 DEFAULT_SETTINGS: dict[str, Any] = {
@@ -427,6 +428,20 @@ def parse_block(raw: Any, where: str) -> Block:
             "title": spec.get("title"), "lines": lines, "voices": spec.get("voices") or {},
             "hidden": bool(spec.get("hidden")),  # аудирование: текст под спойлером
         })
+    if btype == "compare":
+        # cards: [{head, label, text, ex: ["es — ru"], tone}], style: big | small, title, lead, note
+        if not isinstance(value, dict) or not _items(value.get("cards")):
+            raise ContentError(f"{w}: нужен список cards")
+        cards = []
+        for c in _items(value["cards"]):
+            if not isinstance(c, dict) or "head" not in c:
+                raise ContentError(f"{w}: у карточки нужен head")
+            ex = [tuple(p.strip() for p in str(e).partition(" — ")[::2]) for e in _items(c.get("ex"))]
+            cards.append({"head": str(c["head"]).strip(), "label": str(c.get("label") or "").strip(),
+                          "text": str(c.get("text") or "").strip(), "ex": ex, "tone": str(c.get("tone") or "")})
+        return Block(btype, {"title": value.get("title"), "lead": value.get("lead"), "note": value.get("note"),
+                             "style": value.get("style") or "big", "cards": cards,
+                             "join": bool(value.get("join"))})   # join: на том же экране, что и блок перед ним
     if btype == "reading":
         if not isinstance(value, dict) or "text" not in value:
             raise ContentError(f"{w}: нужен ключ text")
