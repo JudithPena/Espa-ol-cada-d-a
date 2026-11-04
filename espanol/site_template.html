@@ -947,7 +947,7 @@ function wordQuestion(w, pool, mode) {
   if (wrong.length < 2) return null;
   const options = shuffle([w, ...wrong]);
   return { type: "mc", mode, word: w, options: options.map(o => o[field]), correct: options.indexOf(w), say: w.say,
-           explain: w.ex ? `<i>${esc(w.ex[0][0])}</i> — ${esc(w.ex[0][1])}` : "" };
+           explain: [w.ex ? `<i>${esc(w.ex[0][0])}</i> — ${esc(w.ex[0][1])}` : "", w.trap || w.pronNote || w.note || ""].filter(Boolean).join("<br>") };
 }
 // Упражнение урока «вопрос => ответ» становится викториной: неверные варианты — ответы
 // на соседние вопросы того же упражнения, потом других упражнений урока, потом слова курса.
@@ -1091,8 +1091,7 @@ function answer(ok, st, { requeue = true } = {}) {
   if (ok) say(["build", "mf"].includes(st.type) ? st.es : st.mode === "prod" || st.mode === "listen" ? st.word?.say : "");
   render();
   sfx(ok);
-  // Как в Duolingo: верный ответ на мгновение подсвечивается и сам ведёт дальше; ошибку оставляем на экране.
-  if (ok) autoTimer = setTimeout(() => { if (S?.state?.result === "good") next(); }, st.explain ? 2200 : 1100);
+  // Автор просил без автоперехода: и после верного ответа — «Продолжить» и пояснение (пример, «На заметку»).
 }
 let autoTimer = null;
 /* ================================================================ звуки (Web Audio, без файлов) */
