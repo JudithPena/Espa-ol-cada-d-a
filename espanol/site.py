@@ -105,6 +105,33 @@ def site_note(text: str | None, unknown) -> str | None:
     return " ".join(keep) or None
 
 
+# Заметки на карточке слова (ТЗ автора 5 ноября: жёлтый блок был почти на каждой карточке и перестал замечаться).
+# Видно сразу («На заметку») — только то, на чём реально ошибаются: путаница, «а не…», ложные друзья.
+# Остальное (произношение, второстепенные нюансы) — свёрнуто в «Подробнее». Повтор того, что и так видно
+# на карточке (род при артикле, «знак ударения: X»), не показываем.
+_IMPORTANT = re.compile(r"не путайте|не путать|спутать|путают|,? а не\b|не «|≠|ложн|не значит|не переводится|"
+                        r"в отличие|различа|не нужен|без артикля|похож|— одно слово|не говорят|нельзя|никогда|только с\b|только в\b|всегда с\b", re.I)
+_OBVIOUS = re.compile(r"^(?:(?:el|la|los|las|un|una)\s+\S+\s+—\s+)?(?:мужского|женского) рода(?::\s*(?:el|la|los|las|un|una)\s+[^.,;]+)?\.?$"
+                      r"|^Знак ударения:\s*[^.,;]+\.?$", re.I)
+
+
+def note_levels(es: str, trap: str | None, pron: str | None, note: str | None) -> tuple[str | None, list[list[str]]]:
+    """(видимая заметка, свёрнутые [заголовок, текст]) для карточки слова; тексты — уже отфильтрованные site_note."""
+    article = re.match(r"(?:el|la|los|las|un|una)\s", es, re.I)
+    if trap:
+        kept = [x for x in _NOTE_SENTENCE.split(trap.strip()) if not (_OBVIOUS.match(x.strip()) and (article or x.startswith("Знак")))]
+        trap = " ".join(kept).strip() or None
+    main = trap if trap and _IMPORTANT.search(trap) else None
+    more = []
+    if trap and not main:
+        more.append(["Нюанс", trap])
+    if pron:
+        more.append(["Произношение", pron])
+    if note and note not in (trap, pron):
+        more.append(["Ещё", note])
+    return main, more
+
+
 def _word(item: VocabItem, card: WordCard | None, unknown=lambda text: []) -> dict:
     data = {
         "es": plain(item.es), "ru": plain(item.ru), "pron": item.pron, "emoji": item.emoji,
@@ -126,6 +153,12 @@ def _word(item: VocabItem, card: WordCard | None, unknown=lambda text: []) -> di
                 data[key] = _html(value)
         if card.collocations:
             data["coll"] = [_html(c) for c in card.collocations]
+    main, more = note_levels(data["es"], site_note(card.trap, unknown) if card else None,
+                             site_note(card.pron, unknown) if card else None, site_note(item.note, unknown))
+    if main:
+        data["noteMain"] = _html(main)
+    if more:
+        data["noteMore"] = [[t, _html(x)] for t, x in more]
     return data
 
 

@@ -267,3 +267,14 @@ def test_compare_block():
     assert d["join"] and d["style"] == "small"
     assert d["cards"][0]["say"] == "tú" and d["cards"][1]["say"] == ""   # знаки без букв не озвучиваем
     assert d["cards"][0]["ex"][0][1:] == ["¿Y tú?", "", "А ты?"]
+
+
+def test_word_note_levels():
+    """Карточка слова: важное — «На заметку», остальное — «Подробнее», очевидное (род при артикле) — не показываем."""
+    from espanol.site import note_levels
+
+    assert note_levels("la mesa", "Женского рода: la mesa.", None, None) == (None, [])
+    main, more = note_levels("la cerveza", "v читается как b: «сэрбэса», а не «сэрвэса».", "θ", None)
+    assert main and more == [["Произношение", "θ"]]
+    main, more = note_levels("trabajar", "Кем работаете — de: Trabajo de camarero.", None, None)
+    assert main is None and more[0][0] == "Нюанс"
