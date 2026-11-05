@@ -1344,3 +1344,27 @@ test('almost-correct sound is unique, soft, and respects mute',()=>{
  assert.ok(run('Math.max(...volumes)')<=.10);
  run(`P.sound=false;sfx('almost');`);assert.equal(run('tones.join()'),almost);
 });
+
+test('all 17 units derive persistent theory and practice context from their actual structure',()=>{
+ const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
+ for(const u of units){
+  const run=context([u]);
+  for(const [i,s] of u.sections.entries()){
+   const step={type:'theory',section:i},info=run(`gBlockInfo(COURSE.grammar[0],${JSON.stringify(step)})`);
+   assert.equal(info.title,s.title);
+   assert.equal(info.meta,`Юнит ${u.number} · Теория ${u.number}.${i+1}`);
+   assert.equal(info.progress,`1 из ${1+(s.check?.questions.length||0)}`);
+   unlockUntil(run,'section:'+i);run(`gStart(COURSE.grammar[0].id,'section:${i}');`);
+   const html=run('gPlayerView()');assert.ok(html.includes('gcontext-title'));assert.ok(html.indexOf('gcontext')<html.indexOf('class="pbody"'));
+   if(s.check){
+    const checkInfo=run(`gBlockInfo(COURSE.grammar[0],{type:'question',group:${JSON.stringify(s.check.id)},qi:0})`);
+    assert.equal(checkInfo.title,s.title);assert.equal(checkInfo.progress,`2 из ${s.check.questions.length+1}`);
+   }
+  }
+  for(const g of u.exercises){
+   const info=run(`gBlockInfo(COURSE.grammar[0],{type:'question',group:${JSON.stringify(g.id)},qi:1})`);
+   assert.equal(info.meta,`Юнит ${u.number} · Упражнение ${g.id}`);
+   assert.ok(g.title.includes(info.title));assert.equal(info.progress,`2 из ${g.questions.length}`);
+  }
+ }
+});

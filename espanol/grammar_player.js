@@ -90,13 +90,36 @@ function gHearts(attempt, group) {
   const limit=gErrorLimit(group), left=Math.max(0,limit-(attempt?.errors||0));
   return `<span class="ghearts" role="img" aria-label="Осталось попыток: ${left} из ${limit}">${Array.from({length:limit},(_,i)=>`<span aria-hidden="true"${i>=left?' class="is-empty"':''}>♥</span>`).join('')}</span>`;
 }
+function gBlockInfo(unit, step) {
+  const group=step.group && gGroups(unit).find(g=>g.id===step.group);
+  const sectionIndex=step.type==='theory'?step.section:step.group?unit.sections.findIndex(s=>s.check?.id===step.group):-1;
+  if(sectionIndex>=0) {
+    const section=unit.sections[sectionIndex], total=1+(section.check?.questions.length || 0);
+    return {meta:`Юнит ${unit.number} · Теория ${unit.number}.${sectionIndex+1}`,title:section.title,progress:`${step.type==='question'?step.qi+2:1} из ${total}`};
+  }
+  if(group) {
+    const title=group.title.startsWith(group.id+' · ')?group.title.slice(group.id.length+3):group.title;
+    let progress=`${step.type==='intro'?0:step.qi+1} из ${group.questions.length}`;
+    if(step.correction) {
+      const queue=G.steps.filter(s=>s.correction&&s.group===group.id);
+      progress=`Повторение · ${queue.findIndex(s=>s.qi===step.qi)+1} из ${queue.length}`;
+    }
+    return {meta:`Юнит ${unit.number} · Упражнение ${group.id}`,title,progress};
+  }
+  return {meta:`Юнит ${unit.number} · Памятка`,title:'Что запомнить',progress:'1 из 1'};
+}
+function gContext(unit, step, heading=false, reviewProgress='') {
+  const info=gBlockInfo(unit,step);
+  if(step.correction) { const queue=G.steps.filter(s=>s.correction&&s.group===step.group);info.progress=`Повторение · ${queue.findIndex(s=>s.qi===step.qi)+1} из ${queue.length}`; }
+  return `<div class="wrap gcontext" aria-label="Текущий раздел"><div class="gcontext-copy"><span class="gcontext-meta">${esc(info.meta)}</span><${heading?'h2 id="g-title" tabindex="-1"':'span'} class="gcontext-title" title="${esc(info.title)}">${esc(info.title)}</${heading?'h2':'span'}></div><span class="gcontext-progress">${esc(reviewProgress || info.progress)}</span></div>`;
+}
 function gRecoveryView(unit) {
   const group=gGroups(unit).find(g=>g.id===G.recovery), attempt=gAttempt(unit,group);
   if(attempt.status==='review') {
     const sections=gTheorySections(unit,group), at=attempt.reviewAt||0, section=unit.sections[sections[at]], last=at===sections.length-1;
-    return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><span class="greview-label">Повторение правила</span><span class="pcount">${at+1}/${sections.length}</span></div></div><div class="pbody"><div class="wrap"><span class="kicker">${esc(group.title)} · Повторение</span><h2 id="g-title" tabindex="-1">${esc(section.title)}</h2>${gTheory(section)}</div></div><div class="pfoot"><div class="wrap gplayer-actions"><button class="btn ghost" ${at?'data-greview-back':'data-gexit'}>← Назад</button><button class="btn" ${last?'data-grepeat-exercise':'data-greview-next'}>${last?'Попробовать ещё раз':'Далее →'}</button></div></div></div>`;
+    return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><span class="greview-label">Повторение правила</span><span class="pcount">${at+1}/${sections.length}</span></div>${gContext(unit,{type:"theory",section:sections[at]},true,`Повторение · ${at+1} из ${sections.length}`)}</div><div class="pbody"><div class="wrap">${gTheory(section)}</div></div><div class="pfoot"><div class="wrap gplayer-actions"><button class="btn ghost" ${at?'data-greview-back':'data-gexit'}>← Назад</button><button class="btn" ${last?'data-grepeat-exercise':'data-greview-next'}>${last?'Попробовать ещё раз':'Далее →'}</button></div></div></div>`;
   }
-  return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="К разделам урока">×</button><span class="greview-label">${esc(group.title)}</span>${gHearts(attempt, group)}</div></div><div class="pbody"><div class="wrap gresult gfailed"><span class="gresult-icon" aria-hidden="true">📖</span><h2 id="g-title" tabindex="-1">Пока не получилось. Давай повторим правило!</h2><p>Лимит ошибок исчерпан (${gErrorLimit(group)}). Повтори теорию, а затем попробуй пройти упражнение ещё раз.</p><p class="muted">Начнём с правила «${esc(unit.sections[gTheorySections(unit,group)[0]].title)}».</p></div></div><div class="pfoot"><div class="wrap"><button class="btn wide" data-greview-theory>Повторить теорию</button></div></div></div>`;
+  return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="К разделам урока">×</button><span class="greview-label">Повторение упражнения</span>${gHearts(attempt, group)}</div>${gContext(unit,{type:"intro",group:group.id})}</div><div class="pbody"><div class="wrap gresult gfailed"><span class="gresult-icon" aria-hidden="true">📖</span><h2 id="g-title" tabindex="-1">Пока не получилось. Давай повторим правило!</h2><p>Лимит ошибок исчерпан (${gErrorLimit(group)}). Повтори теорию, а затем попробуй пройти упражнение ещё раз.</p><p class="muted">Начнём с правила «${esc(unit.sections[gTheorySections(unit,group)[0]].title)}».</p></div></div><div class="pfoot"><div class="wrap"><button class="btn wide" data-greview-theory>Повторить теорию</button></div></div></div>`;
 }
 const gUnit = () => (COURSE.grammar || []).find(u => u.id === G?.unit);
 function gSyncViewport() {
@@ -528,7 +551,7 @@ function gPlayerView() {
   }
   if (step.type === "question") {
     const q = group.questions[step.qi], block = (group.questionBlocks || []).filter(b => b.at <= step.qi).at(-1);
-    kicker = `${group.title === "Мини-проверка" ? "Мини-проверка" : group.title} · ${step.qi + 1} из ${group.questions.length}`;
+    kicker = `${group.title === "Мини-проверка" ? "Мини-проверка" : "Вопрос"} · ${step.qi + 1} из ${group.questions.length}`;
     if(step.correction) kicker="Работа над ошибками";
     title = q.context || (group.inlineAnswer ? "Дополни фразу" : q.image ? (group.pictureTitle || "Выбери название профессии") : q.prompt);
     const who = block ? `<div class="gwho"><img src="${esc(group.family.portraits[block.person])}" alt="" width="44" height="44"><b>Родственники ${esc(block.person)}</b></div>` : "";
@@ -546,7 +569,7 @@ function gPlayerView() {
   }
   const checked = response?.checked;
   const feedback = checked ? `<div class="fb"><div class="gfeedback-head"><h3 role="status">${response.status==='almost'?"Почти правильно!":response.good ? "✓ Верно" : "Пока неверно"}</h3><button class="btn ghost sm" data-gfeedback-toggle aria-expanded="${!response.feedbackHidden}" aria-controls="g-feedback-details" aria-label="${response.feedbackHidden?'Показать разбор ответа':'Свернуть разбор ответа'}">${response.feedbackHidden?'Показать':'Свернуть ×'}</button></div><div id="g-feedback-details" ${response.feedbackHidden?'hidden':''}>${!step.correction && gHasLives(group) && !response.good && attempt?.errors===gErrorLimit(group)-1 ? '<p class="glast-chance">Осталась последняя попытка. Ещё одна ошибка — и вернёмся к правилу.</p>' : ''}${response.good ? "" : `<span class="ans">Верный ответ: ${esc(response.slotValues ? group.questions[step.qi].answers[0] : group.questions[step.qi].answers.map(a=>gOptionLabel(group.questions[step.qi],a)).join(" / "))}</span>`}${grammarAccentHint(response)}<span class="ex">${esc(group.questions[step.qi].explain)}</span></div></div>` : "";
-  return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><div class="bar" role="progressbar" aria-label="Прогресс урока" aria-valuemin="0" aria-valuemax="${G.steps.length}" aria-valuenow="${G.at}"><i style="width:${Math.round(G.at / G.steps.length * 100)}%"></i></div>${step.correction ? '<span class="muted">Жизни не тратятся</span>' : attempt ? gHearts(attempt, group) : ''}<span class="pcount">${G.at + 1}/${G.steps.length}</span></div></div>
-    <div class="pbody"><div class="wrap"><span class="kicker">${esc(kicker)}</span><h2 id="g-title" tabindex="-1">${esc(title)}</h2>${content}</div></div>
+  return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><div class="bar" role="progressbar" aria-label="Прогресс урока" aria-valuemin="0" aria-valuemax="${G.steps.length}" aria-valuenow="${G.at}"><i style="width:${Math.round(G.at / G.steps.length * 100)}%"></i></div>${step.correction ? '<span class="muted">Жизни не тратятся</span>' : attempt ? gHearts(attempt, group) : ''}</div>${gContext(unit,step,step.type!=="question")}</div>
+    <div class="pbody"><div class="wrap">${step.type==="question"?`<span class="kicker">${esc(kicker)}</span><h2 id="g-title" tabindex="-1">${esc(title)}</h2>`:""}${content}</div></div>
     <div class="pfoot ${checked ? response.status==='almost'?'almost':response.good ? "good" : "bad" : ""}"><div class="wrap">${feedback}<div class="gplayer-actions">${step.type==='question' && !checked ? '<button class="btn ghost ghide-keyboard" data-ghide-keyboard>Скрыть клавиатуру ↓</button>' : ''}<button class="btn ghost" data-gback${G.at ? "" : ' aria-label="Назад к разделам урока"'}>← Назад</button>${step.type === "question" && !checked ? gQuestionMode(group.questions[step.qi],response)==='choice' ? '<span class="muted gpick-hint">Нажми на вариант ответа</span>' : `<button class="btn" data-gcheck ${response.value.trim() ? "" : "disabled"}>Проверить</button>` : `<button class="btn" data-gnext>${step.correction && checked && !response.good ? "Попробовать ещё раз" : !step.correction && attempt?.status==='correcting' ? "К ошибкам →" : G.at===G.steps.length-1 && step.type==='question' && gNextRoute(unit,G.route)==='summary' ? "Что запомнить →" : G.at === G.steps.length - 1 ? "Завершить" : step.type === "intro" ? "Начать" : "Далее →"}</button>`}</div></div></div></div>`;
 }
