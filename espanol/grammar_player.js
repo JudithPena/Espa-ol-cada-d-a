@@ -2,7 +2,9 @@
 let G = null;
 const G_SESSION_KEY = "espanol-cada-dia.grammar-session.v1";
 const G_ATTEMPTS_KEY = "espanol-cada-dia.grammar-attempts.v1";
-const gErrorLimit = group => Math.max(3, Math.ceil(group.questions.length / 5));
+const gHasLives = group => group.title !== 'Мини-проверка';
+const gErrorLimit = group => gHasLives(group) ? Math.max(3, Math.ceil(group.questions.length / 5)) : null;
+const gOutOfLives = (group, errors) => gHasLives(group) && errors >= gErrorLimit(group);
 function gAttempts() {
   try { const records=JSON.parse(store.get(G_ATTEMPTS_KEY) || '{}'); return records && typeof records==='object' && !Array.isArray(records) ? records : {}; }
   catch (_) { return {}; }
@@ -14,15 +16,15 @@ function gStoreAttempt(unit, group, attempt) {
 }
 function gNewAttempt(group, responses={}) {
   const errors=Object.values(responses).filter(r=>r.checked && !r.good).length;
-  return {id:Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),errors,limit:gErrorLimit(group),status:errors>=gErrorLimit(group)?'failed':'active',responses};
+  return {id:Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),errors,limit:gErrorLimit(group),status:gOutOfLives(group,errors)?'failed':'active',responses};
 }
 function gEnsureAttempt(unit, group) {
   G.attemptIds ||= {};
   let attempt=gAttempt(unit,group);
   if(attempt && attempt.limit!==gErrorLimit(group)) {
     // Keep answered questions and mistakes when an older attempt gains lives.
-    if(gErrorLimit(group)>(attempt.limit ?? 3) && attempt.errors<gErrorLimit(group) && ['failed','review'].includes(attempt.status)) {
-      attempt.status='active'; delete attempt.reviewAt;
+    if((!gHasLives(group) || (gErrorLimit(group)>(attempt.limit ?? 3) && !gOutOfLives(group,attempt.errors))) && ['failed','review'].includes(attempt.status)) {
+      attempt.status=group.questions.every((_,i)=>attempt.responses[i]?.checked) ? (attempt.errors?'correcting':'passed') : 'active'; delete attempt.reviewAt;
       if(G.recovery===group.id) G.recovery=null;
     }
     attempt.limit=gErrorLimit(group);
@@ -84,6 +86,7 @@ function gRepeatExercise() {
   gSave(); render();
 }
 function gHearts(attempt, group) {
+  if(!gHasLives(group)) return '';
   const limit=gErrorLimit(group), left=Math.max(0,limit-(attempt?.errors||0));
   return `<span class="ghearts" role="img" aria-label="Осталось попыток: ${left} из ${limit}">${Array.from({length:limit},(_,i)=>`<span aria-hidden="true"${i>=left?' class="is-empty"':''}>♥</span>`).join('')}</span>`;
 }
@@ -217,7 +220,7 @@ function gCheck() {
   response.good = grammarCorrect(group.questions[step.qi], response.value);
   attempt.responses[step.qi]=response;
   if(!response.good) attempt.errors++;
-  if(attempt.errors>=gErrorLimit(group)) { attempt.status='failed'; G.recovery=group.id; }
+  if(gOutOfLives(group,attempt.errors)) { attempt.status='failed'; G.recovery=group.id; }
   else if(group.questions.every((_,i)=>attempt.responses[i]?.checked)) attempt.status=attempt.errors?'correcting':'passed';
   G.responses[group.id]=attempt.responses;
   gStoreAttempt(unit,group,attempt);
@@ -329,7 +332,7 @@ function gRetry() {
   if(!wrong.length) return;
   for(const id of new Set(wrong.map(s=>s.group))) {
     const group=gGroups(gUnit()).find(g=>g.id===id), attempt=gEnsureAttempt(gUnit(),group);
-    if(attempt.errors>=gErrorLimit(group)) return;
+    if(gOutOfLives(group,attempt.errors)) return;
     for(const s of wrong.filter(s=>s.group===id)) delete attempt.responses[s.qi].correction;
     attempt.status='correcting'; G.responses[id]=attempt.responses; gStoreAttempt(gUnit(),group,attempt);
   }
@@ -508,7 +511,7 @@ function gPlayerView() {
     if (group.title === "Мини-проверка" && group.instruction) content = `<p class="muted ginstruction">${esc(group.instruction.replace(/ Затем нажми.*$/, ""))}</p>` + content;
   }
   const checked = response?.checked;
-  const feedback = checked ? `<div class="fb"><div class="gfeedback-head"><h3 role="status">${response.good ? "✓ Верно" : "Пока неверно"}</h3><button class="btn ghost sm" data-gfeedback-toggle aria-expanded="${!response.feedbackHidden}" aria-controls="g-feedback-details" aria-label="${response.feedbackHidden?'Показать разбор ответа':'Свернуть разбор ответа'}">${response.feedbackHidden?'Показать':'Свернуть ×'}</button></div><div id="g-feedback-details" ${response.feedbackHidden?'hidden':''}>${!step.correction && !response.good && attempt?.errors===gErrorLimit(group)-1 ? '<p class="glast-chance">Осталась последняя попытка. Ещё одна ошибка — и вернёмся к правилу.</p>' : ''}${response.good ? "" : `<span class="ans">Верный ответ: ${esc(response.slotValues ? group.questions[step.qi].answers[0] : group.questions[step.qi].answers.map(a=>gOptionLabel(group.questions[step.qi],a)).join(" / "))}</span>`}<span class="ex">${esc(group.questions[step.qi].explain)}</span></div></div>` : "";
+  const feedback = checked ? `<div class="fb"><div class="gfeedback-head"><h3 role="status">${response.good ? "✓ Верно" : "Пока неверно"}</h3><button class="btn ghost sm" data-gfeedback-toggle aria-expanded="${!response.feedbackHidden}" aria-controls="g-feedback-details" aria-label="${response.feedbackHidden?'Показать разбор ответа':'Свернуть разбор ответа'}">${response.feedbackHidden?'Показать':'Свернуть ×'}</button></div><div id="g-feedback-details" ${response.feedbackHidden?'hidden':''}>${!step.correction && gHasLives(group) && !response.good && attempt?.errors===gErrorLimit(group)-1 ? '<p class="glast-chance">Осталась последняя попытка. Ещё одна ошибка — и вернёмся к правилу.</p>' : ''}${response.good ? "" : `<span class="ans">Верный ответ: ${esc(response.slotValues ? group.questions[step.qi].answers[0] : group.questions[step.qi].answers.map(a=>gOptionLabel(group.questions[step.qi],a)).join(" / "))}</span>`}<span class="ex">${esc(group.questions[step.qi].explain)}</span></div></div>` : "";
   return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><div class="bar" role="progressbar" aria-label="Прогресс урока" aria-valuemin="0" aria-valuemax="${G.steps.length}" aria-valuenow="${G.at}"><i style="width:${Math.round(G.at / G.steps.length * 100)}%"></i></div>${step.correction ? '<span class="muted">Жизни не тратятся</span>' : attempt ? gHearts(attempt, group) : ''}<span class="pcount">${G.at + 1}/${G.steps.length}</span></div></div>
     <div class="pbody"><div class="wrap"><span class="kicker">${esc(kicker)}</span><h2 id="g-title" tabindex="-1">${esc(title)}</h2>${content}</div></div>
     <div class="pfoot ${checked ? response.good ? "good" : "bad" : ""}"><div class="wrap">${feedback}<div class="gplayer-actions">${step.type==='question' && !checked ? '<button class="btn ghost ghide-keyboard" data-ghide-keyboard>Скрыть клавиатуру ↓</button>' : ''}<button class="btn ghost" data-gback${G.at ? "" : ' aria-label="Назад к разделам урока"'}>← Назад</button>${step.type === "question" && !checked ? gQuestionMode(group.questions[step.qi],response)==='choice' ? '<span class="muted gpick-hint">Нажми на вариант ответа</span>' : `<button class="btn" data-gcheck ${response.value.trim() ? "" : "disabled"}>Проверить</button>` : `<button class="btn" data-gnext>${step.correction && checked && !response.good ? "Попробовать ещё раз" : !step.correction && attempt?.status==='correcting' ? "К ошибкам →" : G.at === G.steps.length - 1 ? "Завершить" : step.type === "intro" ? "Начать" : "Далее →"}</button>`}</div></div></div></div>`;

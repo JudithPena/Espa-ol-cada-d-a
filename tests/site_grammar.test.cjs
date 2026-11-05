@@ -582,7 +582,7 @@ test('all group-name answers use a single noun input and keep manual checking an
  assert.equal(run(`grammarCorrect(gUnit().exercises[2].questions[1],' ABUELOS ')`),true);
 });
 
-test('the related group-name mini-check uses choices, persists errors and returns to its own rule',()=>{
+test('the group-name mini-check keeps errors and repeats them without losing lives',()=>{
  const storage=new Map();let run=context([unit3],storage);unlockUntil(run,'section:8');
  run(`gStart(COURSE.grammar[0].id,'section:8');gMove(1);
   gPick(0);gMove(1);gExit();`);
@@ -597,14 +597,13 @@ test('the related group-name mini-check uses choices, persists errors and return
   assert.ok(html.includes('Выбери правильный ответ.'));
   run(`gPick(gUnit().sections[8].check.questions[G.steps[G.at].qi].options.indexOf(${JSON.stringify(wrong)}));gMove(1);`);
  }
- assert.equal(run('G.recovery'),'check-i');
+ assert.ok(!run('G.recovery'));
+ assert.equal(run('G.steps[G.at].correction'),true);
  assert.equal(run('gAttempt(gUnit(),gUnit().sections[8].check).errors'),3);
  assert.equal(run('!!P.grammar[grammarKey(gUnit(),gUnit().sections[8].check)]'),false);
- run('gReviewTheory();');
- assert.ok(run('gPlayerView()').includes('Как назвать смешанную группу'));
- run('gRepeatExercise();');
- assert.equal(run('gAttempt(gUnit(),gUnit().sections[8].check).errors'),0);
- assert.equal(run('G.steps[G.at].qi'),0);
+ run(`while(!G.ended){const s=G.steps[G.at];gResponse(s).value=gUnit().sections[8].check.questions[s.qi].answers[0];gCheck();gMove(1);}`);
+ assert.equal(run('gAttempt(gUnit(),gUnit().sections[8].check).errors'),3);
+ assert.equal(run('P.grammar[grammarKey(gUnit(),gUnit().sections[8].check)].correct'),0);
 });
 
 test('every mini-check in all 17 units renders choices and completes by clicking',()=>{
@@ -1089,4 +1088,41 @@ test('grammar viewport follows the visible keyboard area and the keyboard can be
  run('window.visualViewport={height:800,offsetTop:0};gSyncViewport();');
  assert.equal(run('viewportPlayer.style.height'),'800px');
  assert.equal(run('viewportPlayer.style.top'),'0px');
+});
+
+test('all mini-checks allow every first answer to be wrong, then require corrections without hearts',()=>{
+ const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
+ for(const u of units)for(const [i,section] of u.sections.entries()){
+  if(!section.check)continue;
+  const run=context([u]);unlockUntil(run,'section:'+i);
+  run(`gStart(COURSE.grammar[0].id,'section:${i}');gMove(1);`);
+  for(let j=0;j<section.check.questions.length;j++){
+   assert.ok(!run('gPlayerView()').includes('class="ghearts"'));
+   run(`gResponse(G.steps[G.at]).value='wrong';gCheck();`);
+   assert.ok(!run('G.recovery'));
+   assert.ok(!run('gPlayerView()').includes('Осталась последняя попытка'));
+   run('gMove(1);');
+  }
+  assert.equal(run('G.ended'),false);
+  assert.equal(run('G.steps[G.at].correction'),true);
+  run(`gResponse(G.steps[G.at]).value='wrong';gCheck();gMove(1);`);
+  assert.equal(run('G.steps[G.at].qi'),0);
+  run(`while(!G.ended){const s=G.steps[G.at];gResponse(s).value=gUnit().sections[${i}].check.questions[s.qi].answers[0];gCheck();gMove(1);}`);
+  assert.equal(run(`gAttempt(gUnit(),gUnit().sections[${i}].check).errors`),section.check.questions.length);
+  assert.equal(run(`P.grammar[grammarKey(gUnit(),gUnit().sections[${i}].check)].correct`),0);
+ }
+});
+
+test('an old failed mini-check resumes straight into correction with all mistakes preserved',()=>{
+ const storage=new Map();let run=context([unit3],storage);unlockUntil(run,'section:8');
+ run(`gStart(COURSE.grammar[0].id,'section:8');gMove(1);
+ for(let i=0;i<3;i++){gResponse(G.steps[G.at]).value='wrong';gCheck();if(i<2)gMove(1);}
+ var old=gAttempt(gUnit(),gUnit().sections[8].check);old.limit=3;old.status='failed';
+ gStoreAttempt(gUnit(),gUnit().sections[8].check,old);G.recovery='check-i';store.set(G_SESSION_KEY,JSON.stringify(G));`);
+ run=context([unit3],storage);unlockUntil(run,'section:8');
+ run(`gStart(COURSE.grammar[0].id,'all',true);gMove(1);`);
+ assert.ok(!run('G.recovery'));
+ assert.equal(run('G.steps[G.at].correction'),true);
+ assert.equal(run('gAttempt(gUnit(),gUnit().sections[8].check).errors'),3);
+ assert.ok(!run('gPlayerView()').includes('class="ghearts"'));
 });
