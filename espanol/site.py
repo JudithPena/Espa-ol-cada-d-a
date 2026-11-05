@@ -58,6 +58,14 @@ ART_SLUGS = {
     # лист 5 ноября: «ты», «вы» и вежливые фразы с персонажами диалогов (docs/word_art_guide.md)
     "tú": "tu", "usted": "usted", "yo": "yo", "él": "el_pron", "ella": "ella", "muchas gracias": "muchas_gracias",
     "de nada": "de_nada", "hasta luego": "hasta_luego", "hasta mañana": "hasta_manana",
+    # листы 2–4 (5 ноября): знакомство и команды на уроке, вещи, профессии
+    "me llamo...": "me_llamo", "¿Cómo te llamas?": "como_te_llamas", "encantado/a": "encantado", "mucho gusto": "mucho_gusto",
+    "escucha": "escucha", "repite": "repite", "lee": "lee", "escribe": "escribe", "responde": "responde",
+    "el libro": "libro", "el cuaderno": "cuaderno", "el bolígrafo": "boligrafo", "la mochila": "mochila", "la llave": "llave",
+    "la mesa": "mesa", "la silla": "silla", "el ordenador": "ordenador", "el móvil": "movil",
+    "el profesor / la profesora": "profesor", "el médico / la médica": "medico", "el/la estudiante": "estudiante",
+    "el camarero / la camarera": "camarero", "el ingeniero / la ingeniera": "ingeniero",
+    "el programador / la programadora": "programador", "el hospital": "hospital", "la escuela": "escuela", "la oficina": "oficina",
 }
 
 
