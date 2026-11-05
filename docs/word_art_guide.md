@@ -103,3 +103,14 @@ Camarero — man about 40, short black hair, white shirt, black waistcoat and bo
 Ключи: trabajar, estudiar, la universidad, el/la periodista, el abogado / la abogada, el enfermero / la enfermera, el cocinero / la cocinera, escuchar, cocinar.
 
 Полные тексты промптов листов 5–7 — в истории чата с автором от 5 ноября (тот же общий стиль, что у листов 1–4).
+
+## Листы 8–13 (промпты отправлены автору 5 ноября)
+
+| Лист | Порядок (slug) | Ключи в `ART_SLUGS` |
+|---|---|---|
+| 8 — внешность | `chico alto bajo joven rubio moreno guapo delgado mayor` | el chico / la chica, alto/a, bajo/a, joven, rubio/a, moreno/a, guapo/a, delgado/a, mayor |
+| 9 — характер и настроение | `simpatico antipatico inteligente divertido serio timido trabajador cansado contento` | simpático/a, antipático/a, inteligente, divertido/a, serio/a, tímido/a, trabajador/a, cansado/a, contento/a |
+| 10 — цвета, глаза, волосы | `rojo azul verde amarillo blanco negro marron ojo pelo` | rojo/a, azul, verde, amarillo/a, blanco/a, negro/a, marrón, el ojo, el pelo |
+| 11 — дом | `piso habitacion dormitorio salon cocina bano balcon cama sofa` | el piso, la habitación, el dormitorio, el salón, la cocina, el baño, el balcón, la cama, el sofá |
+| 12 — мебель и «где?» | `armario estanteria nevera tele ducha encima debajo al_lado delante` | el armario, la estantería, la nevera, la tele, la ducha, encima de, debajo de, al lado de, delante de |
+| 13 — «где?» и состояние | `detras entre cerca lejos triste nervioso enfermo ocupado aburrido` | detrás de, entre, cerca de, lejos de, triste, nervioso/a, enfermo/a, ocupado/a, aburrido/a |
