@@ -358,14 +358,40 @@ function gSubmitGrammarForm(unit, group, values) {
   else if(!G.recovery && gAttempt(unit,group)?.status==='correcting') gMove(1);
   gSave(); render();
 }
+const G_UNIT_ICONS = {
+  '001_el_hijo_la_hija': '👥',
+  '002_el_libro_la_mesa': '🐾',
+  '003_libro_libros': '📚',
+  '004_articulo_indefinido': '🎲',
+  '005_sin_articulo': '🚗',
+  '006_articulo_definido': '🔎',
+  '007_un_perro_el_perro': '🐕',
+  '008_nombres_propios': '📍',
+  '009_tiempo_fecha': '📅',
+  '010_usos_articulo': '🎸',
+  '011_el_rojo_uno_rojo': '🎨',
+  '012_demostrativos': '👈',
+  '013_adjetivos': '✨',
+  '014_gentilicios': '🌎',
+  '015_mas_caro': '⚖️',
+  '016_tan_alto': '🟰',
+  '017_la_mas_alta': '🏆',
+};
+function gUnitComplete(unit) {
+  const routes=gRoutes(unit);
+  return routes.length>0 && routes.every(route=>gRouteDone(unit,route));
+}
 function grammarView() {
   const units = COURSE.grammar || [], unit = units.find(u => u.id === view.grammar);
-  if (!unit) return `<button class="btn ghost sm back" data-tab="home">← Главная</button><h2>📐 Грамматика</h2><div class="menu">${units.map(u => `<button class="mcard" data-grammar="${esc(u.id)}"><span class="mi">📐</span><span><b>${u.number}. ${esc(u.title)}</b><small>${esc(u.subtitle)}</small></span><span aria-hidden="true">›</span></button>`).join("")}</div>`;
+  if (!unit) return `<button class="btn ghost sm back" data-tab="home">← Главная</button><h2>📐 Грамматика</h2><p class="muted">Пройдено тем: ${units.filter(gUnitComplete).length} из ${units.length}</p><div class="menu">${units.map(u => {
+    const done=gUnitComplete(u);
+    return `<button class="mcard ${done?'gcomplete':''}" data-grammar="${esc(u.id)}"><span class="mi" aria-hidden="true">${G_UNIT_ICONS[u.id] || '📖'}</span><span><b>${u.number}. ${esc(u.title)}</b><small>${esc(u.subtitle)}</small>${done?'<span class="gcompleted-badge"><span aria-hidden="true">✓</span> Пройдено</span>':''}</span><span aria-hidden="true">›</span></button>`;
+  }).join("")}</div>`;
   const saved = gSaved(), resume = saved?.unit === unit.id && !saved.ended && saved.steps?.[saved.at];
   const row = (route, title, subtitle, group) => {
     const best = group && P.grammar?.[grammarKey(unit, group)];
     const open = gRouteOpen(unit,route), done = gRouteDone(unit,route);
-    return `<button class="mcard ${open ? '' : 'glocked'}" data-gstart="${esc(route)}" ${open ? '' : 'disabled aria-disabled="true"'}><span class="mi">${open ? done ? "✓" : group ? "✎" : "📖" : "🔒"}</span><span><b>${esc(title)}</b><small>${open ? `${best ? `${best.correct} из ${best.total} · ` : ""}${esc(subtitle)}` : 'Сначала пройди предыдущий раздел'}</small></span><span aria-hidden="true">${open ? '›' : '🔒'}</span></button>`;
+    return `<button class="mcard ${done?'gcomplete':''} ${open ? '' : 'glocked'}" data-gstart="${esc(route)}" ${open ? '' : 'disabled aria-disabled="true"'}><span class="mi">${open ? done ? "✓" : group ? "✎" : "📖" : "🔒"}</span><span><b>${esc(title)}</b><small>${open ? `${best ? `${best.correct} из ${best.total} · ` : ""}${esc(subtitle)}` : 'Сначала пройди предыдущий раздел'}</small></span><span aria-hidden="true">${open ? '›' : '🔒'}</span></button>`;
   };
   return `<button class="btn ghost sm back" data-grammar-list>← Все уроки грамматики</button><span class="eyebrow">Unidad ${unit.number} · ${esc(unit.level)}</span><h2>${esc(unit.title)}</h2><p class="muted">${esc(unit.subtitle)}</p>
     <div class="gactions">${resume ? '<button class="btn" data-gresume>Продолжить урок</button>' : ""}<button class="btn ${resume ? "ghost" : ""}" data-gstart="all">${resume ? "Начать сначала" : "Пройти весь урок"}</button></div>

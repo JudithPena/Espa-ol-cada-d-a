@@ -1149,3 +1149,34 @@ test('every accepted alternative in mini-checks is offered and any one correct c
  }
  assert.equal(checked,10);
 });
+
+test('grammar list gives each theme a distinct icon and marks only fully completed themes',()=>{
+ const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
+ const run=context(units);
+ run('view.grammar=null;');
+ const icons=run('COURSE.grammar.map(u=>G_UNIT_ICONS[u.id])');
+ assert.ok(icons.every(Boolean));assert.equal(new Set(icons).size,17);
+ assert.ok(!run('grammarView()').includes('gcompleted-badge'));
+ // Completing the exercises alone leaves mini-checks and theory unfinished.
+ run(`const doneUnit=COURSE.grammar[0];for(const g of doneUnit.exercises)P.grammar[grammarKey(doneUnit,g)]={correct:0,total:g.questions.length};`);
+ assert.equal(run('gUnitComplete(COURSE.grammar[0])'),false);
+ run(`for(const s of COURSE.grammar[0].sections)if(s.check)P.grammar[grammarKey(COURSE.grammar[0],s.check)]={correct:0,total:s.check.questions.length};`);
+ assert.equal(run('gUnitComplete(COURSE.grammar[0])'),false,'summary still unread');
+ run(`P.grammarRead[COURSE.grammar[0].id+'/summary']=true;`);
+ assert.equal(run('gUnitComplete(COURSE.grammar[0])'),true);
+ const html=run('grammarView()');
+ assert.equal((html.match(/gcompleted-badge/g)||[]).length,1);
+ assert.ok(html.includes('Пройдено тем: 1 из 17'));
+ assert.match(html,/class="mcard gcomplete" data-grammar="001_el_hijo_la_hija"/);
+ assert.match(html,/class="mcard " data-grammar="002_el_libro_la_mesa"/);
+ run('delete P.grammarRead[COURSE.grammar[0].id+"/summary"];');
+ assert.ok(!run('grammarView()').includes('gcompleted-badge'));
+});
+
+test('completed theme markers survive reload through the existing progress store',()=>{
+ const storage=new Map();let run=context([unit],storage);
+ run(`for(const g of gGroups(COURSE.grammar[0]))P.grammar[grammarKey(COURSE.grammar[0],g)]={correct:1,total:g.questions.length};P.grammarRead[COURSE.grammar[0].id+'/summary']=true;save();`);
+ run=context([unit],storage);run('view.grammar=null;');
+ assert.equal(run('gUnitComplete(COURSE.grammar[0])'),true);
+ assert.ok(run('grammarView()').includes('gcompleted-badge'));
+});
