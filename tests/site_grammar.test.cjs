@@ -1368,3 +1368,17 @@ test('all 17 units derive persistent theory and practice context from their actu
   }
  }
 });
+
+test('article theory presents one four-form table without repeated caption or word cards',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/004_articulo_indefinido.json','utf8'));
+ const run=context([u]),s=u.sections[0];
+ const html=run(`gTheory(${JSON.stringify(s)})`);
+ assert.equal((html.match(/<table>/g)||[]).length,1);
+ assert.ok(html.indexOf('<table>')<html.indexOf('<figure'));
+ for(const text of ['un libro','una mesa','unos libros','unas mesas'])assert.equal(html.split(text).length-1,1,text);
+ assert.ok(!html.includes('gword-group') && !html.includes('gformulas'));
+ assert.ok(html.includes('gscene-image-only') && html.includes('Увеличить иллюстрацию'));
+ assert.ok(!html.includes('<figcaption>'));
+ const expanded=run(`gArtExamples(${JSON.stringify(s.illustration)})`);
+ assert.ok(expanded.includes('un</strong> libro'));
+});

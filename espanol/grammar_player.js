@@ -441,7 +441,7 @@ function gArtExamples(art) {
 }
 function gArtFigure(art) {
   if (!art) return '';
-  return `<figure class="gscene"><button class="gscene-image" data-gart aria-label="Увеличить иллюстрацию"><img src="${esc(art.image)}" alt="${esc(art.alt)}" width="1200" height="800" decoding="async"><span aria-hidden="true">⤢</span></button><figcaption>${gArtExamples(art)}</figcaption></figure>`;
+  return `<figure class="gscene${art.captionExamples===false?' gscene-image-only':''}"><button class="gscene-image" data-gart aria-label="Увеличить иллюстрацию"><img src="${esc(art.image)}" alt="${esc(art.alt)}" width="1200" height="800" decoding="async"><span aria-hidden="true">⤢</span></button>${art.captionExamples===false?'':`<figcaption>${gArtExamples(art)}</figcaption>`}</figure>`;
 }
 function gOpenArt() {
   const step=G?.steps[G.at], unit=gUnit(), group=G?.recovery && gGroups(unit).find(g=>g.id===G.recovery);
@@ -456,9 +456,10 @@ function gOpenArt() {
   document.body.appendChild(dialog); dialog.showModal();
 }
 function gTheory(section) {
+  const art=gArtFigure(section.illustration), formsFirst=section.presentation==='paradigm' && section.table;
   const copy=section.paragraphs.map((p,i)=>`<p class="gtheory-paragraph${i?'':' is-lead'}">${gTheoryText(p)}</p>`);
-  return `<article class="gtheory gtheory-${esc(section.presentation || 'examples')}"><div class="gtheory-copy">${copy[0] || ''}${section.formulas ? `<div class="gformulas" aria-label="Модель правила">${section.formulas.map(f=>`<div>${gTheoryText(f)}</div>`).join('')}</div>`:''}</div>${gArtFigure(section.illustration)}
-    ${section.wordGroups ? grammarWordGroups(section.wordGroups) : ""}${section.schemes ? `<div${section.schemeGrid ? ' class="gsummary-cards"' : ""}>${grammarSchemes(section.schemes)}</div>` : ""}${section.table ? gTheoryTable(section.table) : ""}
+  return `<article class="gtheory gtheory-${esc(section.presentation || 'examples')}"><div class="gtheory-copy">${copy[0] || ''}${section.formulas ? `<div class="gformulas" aria-label="Модель правила">${section.formulas.map(f=>`<div>${gTheoryText(f)}</div>`).join('')}</div>`:''}</div>${formsFirst?'':art}
+    ${section.wordGroups ? grammarWordGroups(section.wordGroups) : ""}${section.schemes ? `<div${section.schemeGrid ? ' class="gsummary-cards"' : ""}>${grammarSchemes(section.schemes)}</div>` : ""}${section.table ? gTheoryTable(section.table) : ""}${formsFirst?art:''}
     ${section.agreement ? `<div class="gagreement">${section.agreement.map(w => `<div><small>${esc(w.label)}</small><b>${esc(w.from)}</b><span>↓</span><b>${esc(w.to)}</b></div>`).join("")}</div>` : ""}
     <div class="gtheory-copy">${copy.slice(1).join('')}</div><div class="gtheory-examples">${(section.examples || []).map(([es,ru]) => `<div class="gexample">${playBtn(es)} <b lang="es">${esc(es)}</b><small>${esc(ru)}</small></div>`).join("")}</div>
     ${section.notes?.length ? `<aside class="gnotes"><b>Обрати внимание</b>${section.notes.map(n => `<p>${esc(n)}</p>`).join("")}</aside>` : ""}</article>`;

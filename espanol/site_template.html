@@ -537,6 +537,8 @@ main { padding-block: 16px 110px; }
 .gdistance-dot { font-size: 25px; line-height: 1; }
 .gdistance-zone small { font-size: 12px; }
 .gscene { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); align-items: center; gap: 22px; margin: 16px 0 22px; padding: 14px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); }
+.gscene-image-only { grid-template-columns: minmax(0,1fr); width: 100%; max-width: 640px; padding: 8px; justify-self: center; }
+.gscene-image-only .gscene-image img { height: min(30dvh,240px); aspect-ratio: auto; object-fit: contain; }
 .gscene-image { position: relative; display: block; width: 100%; padding: 0; border: 0; border-radius: 12px; background: #fff4df; cursor: zoom-in; overflow: hidden; }
 .gscene-image img { display: block; width: 100%; height: auto; aspect-ratio: 3/2; object-fit: contain; }
 .gscene-image > span { position: absolute; right: 8px; bottom: 8px; width: 30px; height: 30px; border-radius: 50%; background: var(--surface); color: var(--ink); font-size: 22px; line-height: 30px; }

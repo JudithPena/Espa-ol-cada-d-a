@@ -46,6 +46,8 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
         for section in unit["sections"]:
             art = section.get("illustration")
             if art is not None:
+                if isinstance(art, dict) and 'captionExamples' in art and type(art['captionExamples']) is not bool:
+                    raise ValueError(f"{path}: captionExamples must be boolean")
                 if not isinstance(art, dict) or not art.get("image") or not art.get("alt") or not art.get("examples") or any(
                     not isinstance(pair, list) or len(pair) != 2 or not all(isinstance(text, str) and text.strip() for text in pair)
                     for pair in art.get("examples", [])
