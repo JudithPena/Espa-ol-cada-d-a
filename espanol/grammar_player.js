@@ -192,7 +192,7 @@ function gSteps(unit, route = "all") {
 }
 function gStart(unitId, route = "all", resume = false) {
   const unit = COURSE.grammar.find(u => u.id === unitId), saved = resume && gSaved();
-  if (!unit || !gRouteOpen(unit, route)) return;
+  if (!unit || !(route==='all' ? gCanStartUnit(unit) : gRouteOpen(unit, route))) return;
   const steps = gSteps(unit, route);
   if (saved?.unit === unit.id && Array.isArray(saved.steps) && saved.steps.length && saved.at >= 0 && saved.at < saved.steps.length) {
     const restoredRoute=gRouteOpen(unit,saved.route)?saved.route:'all';
@@ -482,6 +482,17 @@ function gUnitFinished(unit) {
   const lastExercise = gRoutes(unit).filter(r=>r.startsWith('exercise:')).at(-1);
   return !!lastExercise && ["all", "summary", lastExercise].includes(G.route) && gUnitComplete(unit);
 }
+function gNextUnit(unit) {
+  const units=COURSE.grammar || [], index=units.findIndex(u=>u.id===unit?.id);
+  return index>=0 ? units[index+1] : undefined;
+}
+function gCanStartUnit(unit) {
+  return !!unit && (gUnitComplete(unit) || gRouteOpen(unit,'all')) && gSteps(unit,'all').length>0;
+}
+function gStartNextUnit(id) {
+  const next=gNextUnit(gUnit());
+  if(next?.id===id && gCanStartUnit(next)) gStart(next.id,'all');
+}
 function gFireworks() {
   const colors = ["#7357dd","#f0aa36","#46a890","#ed7183"];
   return `<div class="gfireworks" aria-hidden="true">${[20,50,80].map((x,k) => `<div class="gburst" style="left:${x}%;top:${20+k%2*15}%">${Array.from({length:16},(_,i) => {
@@ -490,14 +501,15 @@ function gFireworks() {
   }).join("")}</div>`).join("")}</div>`;
 }
 function gFinalView(unit, tested, good) {
-  const nextUnit = COURSE.grammar[COURSE.grammar.findIndex(u => u.id === unit.id)+1];
+  const nextUnit=gNextUnit(unit), nextOpen=gCanStartUnit(nextUnit);
   const total = unit.exercises.reduce((n,g) => n+g.questions.length,0);
   const correct = unit.exercises.reduce((n,g) => n+(P.grammar[grammarKey(unit,g)]?.correct||0),0);
   return `<div class="player gplayer gfinal"><div class="ptop"><div class="wrap"><button class="x" data-gmain aria-label="На главную">×</button><div class="bar"><i style="width:100%"></i></div><span class="pcount">✓</span></div></div>
     <div class="pbody">${gFireworks()}<div class="wrap gresult"><span class="gresult-icon" aria-hidden="true">🏆</span><span class="kicker" lang="es">¡Enhorabuena!</span><h2 id="g-title" tabindex="-1">Поздравляю! Урок пройден!</h2><p>${esc(unit.title)} · ${esc(unit.subtitle)}</p>
     <div class="gfinal-score"><b>${unit.exercises.length} упражнения завершены</b><span>Лучший результат: ${correct} из ${total}</span></div>
-    ${nextUnit ? `<button class="btn wide" data-gnext-unit="${esc(nextUnit.id)}">Следующий урок →</button><button class="btn ghost wide" data-gmain>На главную</button>` : '<button class="btn wide" data-gmain>На главную</button>'}
-    <button class="btn ghost wide" data-gexit>К разделам урока</button></div></div><div></div></div>`;
+    ${nextUnit ? `<section class="gnext-lesson" aria-label="Следующий урок"><span class="kicker">Далее · Урок ${esc(nextUnit.number)}</span><h3>${esc(nextUnit.title)}</h3>${nextUnit.subtitle?`<p>${esc(nextUnit.subtitle)}</p>`:''}${!nextOpen?'<p class="gnext-status">🔒 Следующий урок пока недоступен</p>':gUnitComplete(nextUnit)?'<p class="gnext-status">✓ Уже пройден · можно повторить</p>':''}</section>` : '<p class="gcourse-complete" role="status">Все уроки раздела пройдены!</p>'}
+    ${nextUnit && nextOpen ? `<button class="btn wide" data-gnext-unit="${esc(nextUnit.id)}">Начать следующий урок</button>` : '<button class="btn wide" data-grammar-list>К списку уроков</button>'}
+    <button class="btn ghost wide" data-gmain>На главную</button><button class="btn ghost wide" data-gexit>К разделам урока</button>${nextUnit && nextOpen?'<button class="btn ghost wide" data-grammar-list>К списку уроков</button>':''}</div></div><div></div></div>`;
 }
 function gBlank(text) {
   return esc(text).replace(/_{3,}/g, '<span class="gblank" role="img" aria-label="Место для ответа">…</span>');

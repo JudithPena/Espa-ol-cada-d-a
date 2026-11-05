@@ -1535,3 +1535,60 @@ test('yellow mini-check choices still have no lives and complete normally',()=>{
  run('gMove(1);');assert.equal(run('G.ended'),true);
  assert.equal(run('G.steps.some(s=>s.correction)'),false);
 });
+
+test('all 17 completion screens derive the next lesson from course order and preserve results',()=>{
+ const units=fs.readdirSync('content/grammar').filter(f=>f.endsWith('.json')).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
+ for(const [i,u] of units.entries()) {
+  const handlers={},run=context(units,new Map(),handlers);
+  run(`render=()=>{};window.scrollTo=()=>{};var u=COURSE.grammar[${i}];
+    for(const r of gRoutes(u)){const g=r.startsWith('section:')?u.sections[+r.split(':')[1]].check:u.exercises.find(g=>r==='exercise:'+g.id);if(g)P.grammar[grammarKey(u,g)]={correct:Math.max(0,g.questions.length-1),total:g.questions.length};else P.grammarRead[u.id+'/'+r]=true;}
+    P.xp=78;gStart(u.id,'summary');G.ended=true;`);
+  const before=run('JSON.stringify(P)'),html=run('gPlayerView()'),next=units[i+1];
+  const correct=u.exercises.reduce((n,g)=>n+Math.max(0,g.questions.length-1),0),total=u.exercises.reduce((n,g)=>n+g.questions.length,0);
+  assert.ok(html.includes(`Лучший результат: ${correct} из ${total}`));
+  assert.ok(html.includes('data-gmain')&&html.includes('data-gexit')&&html.includes('data-grammar-list'));
+  if(next){
+   assert.ok(html.includes(`Далее · Урок ${next.number}`));
+   assert.ok(html.includes(`<h3>${next.title.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')}</h3>`));
+   assert.ok(html.includes(run(`esc(COURSE.grammar[${i+1}].subtitle)`)));
+   assert.ok(html.indexOf('class="gnext-lesson"')<html.indexOf('data-gnext-unit'));
+   assert.ok(html.includes('>Начать следующий урок</button>'));
+   handlers.click({target:{closest:s=>s==='button, .spoiler, [data-say], [data-line]'?{dataset:{gnextUnit:next.id}}:null,classList:{contains:()=>false}}});
+   assert.equal(run('G.unit'),next.id);assert.equal(run('G.at'),0);assert.equal(run('G.ended'),false);
+  }else{
+   assert.ok(html.includes('Все уроки раздела пройдены!'));assert.ok(!html.includes('data-gnext-unit'));
+   handlers.click({target:{closest:s=>s==='button, .spoiler, [data-say], [data-line]'?{dataset:{grammarList:''}}:null,classList:{contains:()=>false}}});
+   assert.equal(run('G'),null);assert.equal(run('view.grammar'),null);assert.equal(run('view.tab'),'grammar');
+   assert.equal((run('grammarView()').match(/data-grammar="/g)||[]).length,17);
+  }
+  assert.equal(run('JSON.stringify(P)'),before);
+ }
+});
+
+test('completed next lessons remain repeatable and inaccessible lessons have a title without a dead button',()=>{
+ const run=context([unit,unit2]);
+ run(`render=()=>{};gStart(COURSE.grammar[0].id,'all');
+   var complete=u=>{for(const r of gRoutes(u)){const g=r.startsWith('section:')?u.sections[+r.split(':')[1]].check:u.exercises.find(g=>r==='exercise:'+g.id);if(g)P.grammar[grammarKey(u,g)]={correct:g.questions.length,total:g.questions.length};else P.grammarRead[u.id+'/'+r]=true;}};
+   complete(COURSE.grammar[0]);G.ended=true;var openRoute=gRouteOpen;gRouteOpen=(u,r)=>u.id!==COURSE.grammar[1].id&&openRoute(u,r);`);
+ let html=run('gPlayerView()');
+ assert.ok(html.includes('Далее · Урок 2')&&html.includes('El libro, la mesa')&&html.includes('Следующий урок пока недоступен'));
+ assert.ok(!html.includes('data-gnext-unit'));
+ const before=run('JSON.stringify(G)');run(`gStartNextUnit(COURSE.grammar[1].id);gStart(COURSE.grammar[1].id,'all');`);
+ assert.equal(run('JSON.stringify(G)'),before);
+ run('complete(COURSE.grammar[1]);');const progress=run('JSON.stringify(P)');
+ html=run('gPlayerView()');
+ assert.ok(html.includes('Уже пройден · можно повторить')&&html.includes('data-gnext-unit'));
+ run(`gStartNextUnit(COURSE.grammar[1].id)`);
+ assert.equal(run('G.unit'),unit2.id);assert.equal(run('G.at'),0);
+ assert.equal(run('JSON.stringify(P)'),progress);
+});
+
+test('next lesson uses actual metadata and order, escapes titles, and ignores stale destinations',()=>{
+ const next={...structuredClone(unit2),id:'next-custom',number:42,title:'Полная тема <A> & B',subtitle:'Описание «длинной темы»'};
+ const run=context([unit,next,unit3]);run(`render=()=>{};gStart(COURSE.grammar[0].id,'all');`);
+ const html=run('gFinalView(gUnit(),[],0)');
+ assert.ok(html.includes('Далее · Урок 42')&&html.includes('Полная тема &lt;A&gt; &amp; B'));
+ assert.ok(html.includes('Описание «длинной темы»'));
+ assert.equal(run('gNextUnit({id:"missing"})'),undefined);
+ run(`gStartNextUnit(COURSE.grammar[2].id);`);assert.equal(run('G.unit'),unit.id);
+});

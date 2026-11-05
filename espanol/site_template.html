@@ -778,6 +778,11 @@ html.grammar-playing, html.grammar-playing body { overflow: hidden; }
 .gfinal .gresult { position: relative; z-index: 1; max-width: 560px; padding-top: 5vh !important; padding-bottom: 32px; }
 .gfinal-score { display: grid; gap: 6px; padding: 16px 22px; border-radius: 16px; background: var(--accent-soft); width: 100%; }
 .gfinal-score span { font-size: 14px; color: var(--muted); }
+.gnext-lesson { width: 100%; min-width: 0; padding: 18px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); text-align: left; overflow-wrap: anywhere; }
+.gnext-lesson h3 { margin: 6px 0; font-size: 20px; line-height: 1.4; }
+.gnext-lesson p { margin: 0; color: var(--muted); line-height: 1.5; }
+.gnext-lesson .gnext-status { margin-top: 10px; font-size: 14px; }
+.gcourse-complete { font-weight: 800; }
 .gfireworks { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
 .gburst { position: absolute; }
 .gburst i { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: var(--spark); opacity: 0; animation: grammar-firework 1.6s var(--delay) ease-out both; }
@@ -2214,7 +2219,7 @@ document.addEventListener("click", e => {
   if (!el) return;
   const d = el.dataset;
   if ("gmain" in d) { gSave(); G = null; view.tab = "home"; render(); window.scrollTo(0,0); return; }
-  if (d.gnextUnit) return gStart(d.gnextUnit,"all");
+  if (d.gnextUnit) return gStartNextUnit(d.gnextUnit);
   if (d.gstart) return gStart(G?.unit || view.grammar, d.gstart);
   if ("gresume" in d) return gStart(view.grammar, "all", true);
   if ("gexit" in d) return gExit();
@@ -2237,7 +2242,7 @@ document.addEventListener("click", e => {
   if (d.gpick != null && G) return gPick(+d.gpick);
   if (d.gchar && G) return gInsertChar(el);
   if (d.grammar) { view.grammar = d.grammar; view.tab = "grammar"; render(); window.scrollTo(0, 0); return; }
-  if ("grammarList" in d) { view.grammar = null; render(); window.scrollTo(0, 0); return; }
+  if ("grammarList" in d) { gSave(); G = null; view.grammar = null; view.tab = "grammar"; render(); window.scrollTo(0, 0); return; }
   if (d.gretry) {
     grammarAttempts.delete(`${view.grammar}/${d.gretry}`);
     grammarDrafts.delete(`${view.grammar}/${d.gretry}`);
