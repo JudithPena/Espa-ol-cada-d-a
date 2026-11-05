@@ -427,6 +427,7 @@ def parse_block(raw: Any, where: str) -> Block:
         return Block(btype, {
             "title": spec.get("title"), "lines": lines, "voices": spec.get("voices") or {},
             "hidden": bool(spec.get("hidden")),  # аудирование: текст под спойлером
+            "join": bool(spec.get("join")),      # сайт: на том же экране, что и блок перед ним
         })
     if btype == "compare":
         # cards: [{head, label, text, ex: ["es — ru"], tone}], style: big | small, title, lead, note

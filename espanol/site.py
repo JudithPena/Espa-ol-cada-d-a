@@ -387,7 +387,7 @@ def _block(block: Block) -> dict | None:
         return {"t": t, "verb": d["verb"], "forms": d["forms"], "title": _html(d["title"]),
                 "ru": _html(d["ru"])}
     if t == "dialogue":
-        return {"t": t, "title": _html(d["title"]), "hidden": d["hidden"],
+        return {"t": t, "title": _html(d["title"]), "hidden": d["hidden"], "join": d.get("join", False),
                 "cast": cast(list(dict.fromkeys(speaker for speaker, _, _ in d["lines"]))),
                 "lines": [[speaker, _html(es), _html(ru), plain(es)] for speaker, es, ru in d["lines"]]}
     if t == "compare":
