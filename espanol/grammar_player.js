@@ -319,6 +319,11 @@ function gMove(delta) {
       G.steps.splice(G.at+1,0,...wrong); G.retry=true;
     }
   }
+  // A separately opened final exercise must lead into the recap as well.
+  if(delta>0 && G.at===G.steps.length-1 && step.type==='question'
+      && gNextRoute(gUnit(),G.route)==='summary' && gRouteOpen(gUnit(),'summary')) {
+    G.steps.push({type:'summary'}); G.retry=true;
+  }
   const target = G.steps[G.at + delta];
   if (target && !gRouteOpen(gUnit(), gStepRoute(gUnit(),target))) return;
   if (delta > 0 && G.at === G.steps.length - 1) G.ended = true;
@@ -354,8 +359,7 @@ function gSubmitGrammarForm(unit, group, values) {
     if(!response.checked) { response.value=values[qi] || ''; gCheck(); }
     if(G.recovery || !response.checked) break;
   }
-  if(!G.recovery && gAttempt(unit,group)?.status==='passed') G.ended=true;
-  else if(!G.recovery && gAttempt(unit,group)?.status==='correcting') gMove(1);
+  if(!G.recovery && ['passed','correcting'].includes(gAttempt(unit,group)?.status)) gMove(1);
   gSave(); render();
 }
 const G_UNIT_ICONS = {
@@ -438,7 +442,7 @@ function gTheoryTable(table) {
 }
 function gUnitFinished(unit) {
   const lastExercise = gRoutes(unit).filter(r=>r.startsWith('exercise:')).at(-1);
-  return !!lastExercise && ["all", "summary", lastExercise].includes(G.route) && unit.exercises.every(g => !!P.grammar?.[grammarKey(unit,g)]);
+  return !!lastExercise && ["all", "summary", lastExercise].includes(G.route) && gUnitComplete(unit);
 }
 function gFireworks() {
   const colors = ["#7357dd","#f0aa36","#46a890","#ed7183"];
@@ -540,5 +544,5 @@ function gPlayerView() {
   const feedback = checked ? `<div class="fb"><div class="gfeedback-head"><h3 role="status">${response.good ? "✓ Верно" : "Пока неверно"}</h3><button class="btn ghost sm" data-gfeedback-toggle aria-expanded="${!response.feedbackHidden}" aria-controls="g-feedback-details" aria-label="${response.feedbackHidden?'Показать разбор ответа':'Свернуть разбор ответа'}">${response.feedbackHidden?'Показать':'Свернуть ×'}</button></div><div id="g-feedback-details" ${response.feedbackHidden?'hidden':''}>${!step.correction && gHasLives(group) && !response.good && attempt?.errors===gErrorLimit(group)-1 ? '<p class="glast-chance">Осталась последняя попытка. Ещё одна ошибка — и вернёмся к правилу.</p>' : ''}${response.good ? "" : `<span class="ans">Верный ответ: ${esc(response.slotValues ? group.questions[step.qi].answers[0] : group.questions[step.qi].answers.map(a=>gOptionLabel(group.questions[step.qi],a)).join(" / "))}</span>`}<span class="ex">${esc(group.questions[step.qi].explain)}</span></div></div>` : "";
   return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><div class="bar" role="progressbar" aria-label="Прогресс урока" aria-valuemin="0" aria-valuemax="${G.steps.length}" aria-valuenow="${G.at}"><i style="width:${Math.round(G.at / G.steps.length * 100)}%"></i></div>${step.correction ? '<span class="muted">Жизни не тратятся</span>' : attempt ? gHearts(attempt, group) : ''}<span class="pcount">${G.at + 1}/${G.steps.length}</span></div></div>
     <div class="pbody"><div class="wrap"><span class="kicker">${esc(kicker)}</span><h2 id="g-title" tabindex="-1">${esc(title)}</h2>${content}</div></div>
-    <div class="pfoot ${checked ? response.good ? "good" : "bad" : ""}"><div class="wrap">${feedback}<div class="gplayer-actions">${step.type==='question' && !checked ? '<button class="btn ghost ghide-keyboard" data-ghide-keyboard>Скрыть клавиатуру ↓</button>' : ''}<button class="btn ghost" data-gback${G.at ? "" : ' aria-label="Назад к разделам урока"'}>← Назад</button>${step.type === "question" && !checked ? gQuestionMode(group.questions[step.qi],response)==='choice' ? '<span class="muted gpick-hint">Нажми на вариант ответа</span>' : `<button class="btn" data-gcheck ${response.value.trim() ? "" : "disabled"}>Проверить</button>` : `<button class="btn" data-gnext>${step.correction && checked && !response.good ? "Попробовать ещё раз" : !step.correction && attempt?.status==='correcting' ? "К ошибкам →" : G.at === G.steps.length - 1 ? "Завершить" : step.type === "intro" ? "Начать" : "Далее →"}</button>`}</div></div></div></div>`;
+    <div class="pfoot ${checked ? response.good ? "good" : "bad" : ""}"><div class="wrap">${feedback}<div class="gplayer-actions">${step.type==='question' && !checked ? '<button class="btn ghost ghide-keyboard" data-ghide-keyboard>Скрыть клавиатуру ↓</button>' : ''}<button class="btn ghost" data-gback${G.at ? "" : ' aria-label="Назад к разделам урока"'}>← Назад</button>${step.type === "question" && !checked ? gQuestionMode(group.questions[step.qi],response)==='choice' ? '<span class="muted gpick-hint">Нажми на вариант ответа</span>' : `<button class="btn" data-gcheck ${response.value.trim() ? "" : "disabled"}>Проверить</button>` : `<button class="btn" data-gnext>${step.correction && checked && !response.good ? "Попробовать ещё раз" : !step.correction && attempt?.status==='correcting' ? "К ошибкам →" : G.at===G.steps.length-1 && step.type==='question' && gNextRoute(unit,G.route)==='summary' ? "Что запомнить →" : G.at === G.steps.length - 1 ? "Завершить" : step.type === "intro" ? "Начать" : "Далее →"}</button>`}</div></div></div></div>`;
 }

@@ -192,7 +192,7 @@ test('typed answers always keep manual next, whether correct or incorrect', () =
 test('completion celebrates the whole unit and offers a next lesson only when available', () => {
  const run=context();
  unlockUntil(run,'exercise:1.3');
- run('gStart(COURSE.grammar[0].id,"exercise:1.3");gMove(1);while(!G.ended){const step=G.steps[G.at],group=gGroups(gUnit()).find(g=>g.id===step.group);gResponse(step).value=group.questions[step.qi].answers[0];gCheck();gMove(1);}');
+ run('gStart(COURSE.grammar[0].id,"exercise:1.3");gMove(1);while(!G.ended){const step=G.steps[G.at],group=gGroups(gUnit()).find(g=>g.id===step.group);if(step.type==="question"){gResponse(step).value=group.questions[step.qi].answers[0];gCheck();}gMove(1);}');
  let html=run('gPlayerView()');
  assert.ok(html.includes('Поздравляю! Урок пройден!'));
  assert.ok(html.includes('gfireworks') && html.includes('data-gmain'));
@@ -466,10 +466,12 @@ test('new article questions leave nouns written and the clock/distance aids rend
  assert.ok(html.includes('clues')&&html.includes('pequeño'));
 });
 
-test('unit 10 also celebrates when its last practice route differs from the exercise array order', () => {
+test('unit 10 cannot celebrate until its recap is read, regardless of exercise array order', () => {
  const u=newUnits.find(u=>u.number===10),run=context([u]);
- run('render=()=>{};sfx=()=>{};gStart(COURSE.grammar[0].id);');
- run('for(const g of gGroups(gUnit()))gradeGrammar(gUnit(),g,g.questions.map(q=>q.answers[0]));G.route="exercise:10.3";G.ended=true;');
+ run('render=()=>{};sfx=()=>{};for(const g of gGroups(COURSE.grammar[0]))P.grammar[grammarKey(COURSE.grammar[0],g)]={correct:g.questions.length,total:g.questions.length};gStart(COURSE.grammar[0].id,gRoutes(COURSE.grammar[0]).filter(r=>r.startsWith("exercise:")).at(-1));G.ended=true;');
+ assert.equal(run('gUnitFinished(gUnit())'),false);
+ assert.ok(!run('gPlayerView()').includes('Поздравляю!'));
+ run('gStart(COURSE.grammar[0].id,"summary");gMove(1);');
  assert.equal(run('gUnitFinished(gUnit())'),true);
  assert.ok(run('gPlayerView()').includes('Поздравляю!'));
 });
@@ -575,6 +577,8 @@ test('all group-name answers use a single noun input and keep manual checking an
   assert.equal(run('G.at'),at,'feedback stays visible until Next');
   run('gMove(1);');
  }
+ assert.equal(run('G.steps[G.at].type'),'summary');
+ run('gMove(1);');
  assert.equal(run('G.ended'),true);
  assert.equal(run('P.grammar[grammarKey(gUnit(),gUnit().exercises[2])].correct'),10);
  assert.equal(run('gAttempt(gUnit(),gUnit().exercises[2]).errors'),0);
@@ -1014,6 +1018,7 @@ test('every exercise automatically repeats mistakes, without lives, credit or sc
    assert.equal(run('gResponse(G.steps[G.at]).checked'),false);
   }
   run(`gResponse(G.steps[G.at]).value=${JSON.stringify(group.questions[0].answers[0])};gCheck();gMove(1);`);
+  if(run('G.steps[G.at].type')==='summary')run('gMove(1);');
   assert.equal(run('G.ended'),true);
   assert.equal(run(`P.grammar[${JSON.stringify(u.id+'/'+group.id)}].correct`),group.questions.length-1);
   assert.equal(run(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id===${JSON.stringify(group.id)})).errors`),1);
@@ -1179,4 +1184,35 @@ test('completed theme markers survive reload through the existing progress store
  run=context([unit],storage);run('view.grammar=null;');
  assert.equal(run('gUnitComplete(COURSE.grammar[0])'),true);
  assert.ok(run('grammarView()').includes('gcompleted-badge'));
+});
+
+test('all 17 final exercises open the recap automatically, including after corrections and reload',()=>{
+ const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
+ for(const u of units)for(const makeError of [false,true]){
+  const storage=new Map();let run=context([u],storage);
+  const route=u.learningOrder.filter(r=>r.startsWith('exercise:')).at(-1);
+  const group=u.exercises.find(g=>route==='exercise:'+g.id);
+  unlockUntil(run,route);
+  run(`save();gStart(COURSE.grammar[0].id,${JSON.stringify(route)});gMove(1);`);
+  for(let qi=0;qi<group.questions.length;qi++){
+   run(`gResponse(G.steps[G.at]).value=${JSON.stringify(makeError&&qi===0?'wrong':group.questions[qi].answers[0])};gCheck();gMove(1);`);
+  }
+  if(makeError){
+   assert.equal(run('G.steps[G.at].correction'),true);
+   run(`gResponse(G.steps[G.at]).value=${JSON.stringify(group.questions[0].answers[0])};gCheck();gMove(1);`);
+  }
+  assert.equal(run('G.steps[G.at].type'),'summary',u.id);
+  assert.equal(run('G.ended'),false);
+  assert.equal(run('gUnitComplete(gUnit())'),false);
+  assert.ok(run('gPlayerView()').includes('Что запомнить'));
+  assert.ok(!run('gPlayerView()').includes('Поздравляю!'));
+  assert.equal(run('G.steps.filter(s=>s.type==="summary").length'),1);
+  run('gExit();');run=context([u],storage);
+  run(`gStart(COURSE.grammar[0].id,'all',true);`);
+  assert.equal(run('G.steps[G.at].type'),'summary');
+  run('gMove(1);');
+  assert.equal(run('G.ended'),true);
+  assert.equal(run('gUnitComplete(gUnit())'),true);
+  assert.ok(run('gPlayerView()').includes('Поздравляю! Урок пройден!'));
+ }
 });
