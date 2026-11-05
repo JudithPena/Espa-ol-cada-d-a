@@ -979,7 +979,7 @@ function playNext() {
 }
 // Одна запись с концом и ошибкой: так играют реплики диалога. Нет записи или она не загрузилась —
 // испанский голос телефона, если он есть; иначе onfail.
-function playClip(text, { voice = null, gender = "f", rate = 1, onend = () => {}, onfail = () => {} } = {}) {
+function playClip(text, { voice = null, gender = "f", rate = 1, onend = () => {}, onfail = () => {}, onblock = onfail } = {}) {
   hush(); audioQueue = [];
   const gen = clipGen, live = f => (...a) => { if (gen === clipGen) f(...a); };
   const viaSpeech = () => {
@@ -999,7 +999,7 @@ function playClip(text, { voice = null, gender = "f", rate = 1, onend = () => {}
   player.onerror = live(() => { if (player) player.onerror = null; if (!viaSpeech()) onfail(); });
   player.src = `a/${id}.mp3`;
   setRate(rate);
-  player.play()?.catch?.(live(err => { if (err?.name === "NotAllowedError") onfail(); }));
+  player.play()?.catch?.(live(err => { if (err?.name === "NotAllowedError") onblock(); }));
 }
 function say(text, { slow = false, queue = false, pitch = 1 } = {}) {
   if (!text) return;
@@ -1024,7 +1024,7 @@ const slowBtn = text => `<button class="play slow" data-slow data-say="${esc(tex
 /* ================================================================ диалог (общий компонент для всех уровней) */
 // Блок урока {t: "dialogue", title, hidden, cast: {имя: {v: голос, g: пол}}, lines: [[имя, es, ru, озвучка]]}.
 // Реплики — сообщения без аватаров: имя цветом собеседника, ▶ внутри реплики (и вся реплика нажимается).
-// Над диалогами экрана — одна общая панель (dlgPanelHTML): «Слушать» / «Пауза» / «Дальше», скорость 1× / 0,75×
+// Над диалогами экрана — одна общая панель (dlgPanelHTML): «Слушать» / «Пауза» / «Продолжить» / «Повторить», скорость 1× / 0,75×
 // (запоминается) и «Перевод» для всех диалогов экрана (у задания на слух сначала «Показать текст»).
 // Панель играет выбранный диалог: если на экране их два, выбранный обведён, выбрать — нажать заголовок или реплику.
 // У каждого персонажа свой голос (site_audio.CAST), текущая реплика подсвечена. Ушли с экрана — тишина (render).
@@ -1065,7 +1065,13 @@ function theoryHTML(blocks) {
     b.t === "dialogue" && first ? (first = false, dlgPanelHTML(dl) + dialogueHTML(b, true)) : blockHTML(b)).join("")}</div>`;
 }
 const dlgMsgs = box => box ? [...box.querySelectorAll(".msg")] : [];
-const dlgSel = () => document.querySelector(".dlg.sel") || document.querySelector(".dlg[data-dlg]");
+const dlgBoxes = () => [...document.querySelectorAll(".dlg[data-dlg]")];
+const dlgSel = () => document.querySelector(".dlg.sel") || dlgBoxes()[0];
+const dlgPanel = () => document.querySelector("[data-dlg-panel]");
+const REDUCED_MOTION = matchMedia?.("(prefers-reduced-motion: reduce)");
+const DLG_BETWEEN = 1200;   // мс между диалогами одного экрана
+const DLG_AUTO_DELAY = 700; // мс до автозапуска после открытия слайда
+// Кнопка панели: «Слушать» → «Пауза» → «Продолжить»; после конца всех диалогов экрана — «Повторить».
 function dlgPaint() {
   const box = DLG.box, whole = !!box && !DLG.solo && DLG.mode !== "idle";
   if (box) {
@@ -1076,58 +1082,83 @@ function dlgPaint() {
   }
   const btn = document.querySelector("[data-dlg-all]");
   if (btn) {
-    btn.textContent = !whole ? "▶ Слушать" : DLG.mode === "play" ? "❚❚ Пауза" : "▶ Дальше";
+    btn.textContent = whole ? (DLG.mode === "play" ? "❚❚ Пауза" : "▶ Продолжить") : dlgPanel()?.dataset.done ? "↻ Повторить" : "▶ Слушать";
     btn.classList.toggle("on", whole && DLG.mode === "play");
   }
 }
 function dlgReset() {
   clearTimeout(DLG.timer);
   if (DLG.box) { DLG.i = -1; DLG.mode = "idle"; DLG.solo = false; dlgPaint(); }
-  Object.assign(DLG, { box: null, i: -1, mode: "idle", solo: false, gap: false });
+  Object.assign(DLG, { box: null, i: -1, mode: "idle", solo: false, gap: false, auto: false });
   dlgPaint();
 }
-function dlgPick(box) {
-  if (!box || box.classList.contains("sel")) return;
-  stopSpeech();
-  document.querySelectorAll(".dlg[data-dlg]").forEach(d => {
+function dlgMark(box) {   // выбранный (и играющий) диалог обведён
+  dlgBoxes().forEach(d => {
     d.classList.toggle("sel", d === box);
     d.querySelector("[data-dlg-pick]")?.setAttribute("aria-pressed", d === box);
   });
 }
+function dlgPick(box) {
+  if (!box || box.classList.contains("sel")) return;
+  stopSpeech();
+  delete dlgPanel()?.dataset.done;
+  dlgMark(box); dlgPaint();
+}
+function dlgScroll(el) {
+  el.scrollIntoView?.({ block: "nearest", behavior: REDUCED_MOTION?.matches ? "auto" : "smooth" });
+}
 function dlgLine(i) {
   const m = dlgMsgs(DLG.box)[i];
-  if (!m) return stopSpeech();   // реплики кончились
+  if (!m) return stopSpeech();
   DLG.i = i; DLG.gap = false; dlgPaint();
-  if (!DLG.solo && !DLG.box.querySelector("[data-hidden-text][hidden]")) m.scrollIntoView?.({ block: "nearest", behavior: "smooth" });
+  if (!DLG.solo && !DLG.box.querySelector("[data-hidden-text][hidden]")) dlgScroll(m);
+  const last = i + 1 >= dlgMsgs(DLG.box).length;
   playClip(m.dataset.sayLine, { voice: m.dataset.voice, gender: m.dataset.g, rate: dlgRate(),
     onend: () => {
       if (DLG.solo) return stopSpeech();
       DLG.gap = true;
-      DLG.timer = setTimeout(() => { if (DLG.mode === "play") dlgLine(i + 1); }, DLG_PAUSE);
+      DLG.timer = setTimeout(() => { if (DLG.mode === "play") dlgNext(); }, last ? DLG_BETWEEN : DLG_PAUSE);
     },
-    onfail: () => { stopSpeech(); toast("Озвучка не загрузилась. Проверьте интернет и попробуйте ещё раз"); } });
+    onfail: () => { stopSpeech(); toast("Озвучка не загрузилась. Проверьте интернет и попробуйте ещё раз"); },
+    // Браузер не разрешил звук без нажатия: молча остаёмся на «Слушать», ограничение не обходим.
+    onblock: () => { const auto = DLG.auto; stopSpeech(); if (!auto) toast("Браузер не дал включить звук. Нажмите ещё раз"); } });
 }
-function dlgToggle(box) {
-  if (!box) return;
-  if (DLG.box === box && !DLG.solo && DLG.mode === "play") {   // пауза
+// Следующая реплика; после последней — следующий диалог экрана; после последнего диалога — «Повторить».
+function dlgNext() {
+  if (DLG.i + 1 < dlgMsgs(DLG.box).length) return dlgLine(DLG.i + 1);
+  const boxes = dlgBoxes(), nextBox = boxes[boxes.indexOf(DLG.box) + 1];
+  if (!nextBox) { const panel = dlgPanel(); if (panel) panel.dataset.done = "1"; return stopSpeech(); }
+  DLG.i = -1; dlgPaint();   // снять подсветку с прошлого диалога
+  DLG.box = nextBox; dlgMark(nextBox);
+  if (!nextBox.querySelector("[data-hidden-text][hidden]")) dlgScroll(nextBox.querySelector(".dlg-head") || nextBox);
+  dlgLine(0);
+}
+function dlgStart(box, auto = false) {
+  stopSpeech();
+  delete dlgPanel()?.dataset.done;
+  dlgMark(box);
+  Object.assign(DLG, { box, mode: "play", solo: false, auto });
+  dlgLine(0);
+}
+// Кнопка панели.
+function dlgMain() {
+  if (DLG.box && !DLG.solo && DLG.mode === "play") {   // пауза
     DLG.mode = "pause"; clearTimeout(DLG.timer);
     if (DLG.via === "speech") hush(); else player?.pause();
     return dlgPaint();
   }
-  if (DLG.box === box && !DLG.solo && DLG.mode === "pause") {   // дальше с того же места
-    DLG.mode = "play";
-    if (DLG.gap) return dlgLine(DLG.i + 1);
+  if (DLG.box && !DLG.solo && DLG.mode === "pause") {   // продолжить с того же места
+    DLG.mode = "play"; DLG.auto = false;
+    if (DLG.gap) return dlgNext();
     if (DLG.via === "speech" || !player) return dlgLine(DLG.i);
     player.play()?.catch?.(() => dlgLine(DLG.i));
     return dlgPaint();
   }
-  stopSpeech();
-  Object.assign(DLG, { box, mode: "play", solo: false });
-  dlgLine(0);
+  dlgStart(dlgPanel()?.dataset.done ? dlgBoxes()[0] : dlgSel());   // «Повторить» — с первого диалога
 }
-function dlgSolo(box, i) {
-  dlgPick(box);
+function dlgSolo(box, i) {   // одна реплика: общий диалог останавливается
   stopSpeech();
+  dlgMark(box);
   Object.assign(DLG, { box, mode: "idle", solo: true });
   dlgLine(i);
 }
@@ -1138,14 +1169,30 @@ function dlgSetRate(rate) {
 }
 // «Перевод» — для всех диалогов экрана; у задания на слух первое нажатие показывает текст.
 function dlgTranslate(btn) {
-  const boxes = [...document.querySelectorAll(".dlg[data-dlg]")];
+  const boxes = dlgBoxes();
   const hidden = boxes.map(b => b.querySelector("[data-hidden-text]")).filter(h => h && h.hidden);
   if (hidden.length) { hidden.forEach(h => { h.hidden = false; }); btn.textContent = "Перевод"; return; }
   const show = btn.getAttribute("aria-pressed") !== "true";
   btn.setAttribute("aria-pressed", show);
   boxes.forEach(b => b.classList.toggle("hide-tr", !show));
 }
-document.addEventListener("visibilitychange", () => { if (document.hidden && DLG.box && !DLG.solo && DLG.mode === "play") dlgToggle(DLG.box); });
+// Автозапуск: при первом открытии слайда с диалогами в этом прохождении урока (S.dlgAuto), если не выключен
+// в «Прогрессе» (P.autoDlg). Назад на тот же слайд — тишина. Следующий слайд сам не открывается.
+let dlgAutoTimer = 0;
+function dlgAutoplay() {
+  clearTimeout(dlgAutoTimer);
+  const st = S?.steps?.[S.at];
+  if (!st || st.type !== "theory" || P.autoDlg === false || !dlgBoxes().length) return;
+  S.dlgAuto = S.dlgAuto || new Set();
+  if (S.dlgAuto.has(S.at)) return;
+  S.dlgAuto.add(S.at);
+  const at = S.at, first = dlgBoxes()[0];
+  dlgAutoTimer = setTimeout(() => {
+    if (S?.at === at && first.isConnected && !DLG.box) dlgStart(first, true);
+  }, DLG_AUTO_DELAY);
+}
+document.addEventListener("visibilitychange", () => { if (document.hidden && DLG.box && !DLG.solo && DLG.mode === "play") dlgMain(); });
+addEventListener("pagehide", () => stopSpeech());
 
 /* ================================================================ упражнения */
 function meanings(ru) {
@@ -1632,6 +1679,7 @@ function statsView() {
   ${accountPanel()}
   <section class="panel settings"><h2>Настройки</h2>
     <div class="row"><span>Звуки ответов</span><button class="switch" data-sound aria-pressed="${P.sound !== false}" aria-label="Звуки ответов"></button></div>
+    <div class="row"><span>Автовоспроизведение диалогов</span><button class="switch" data-auto-dlg aria-pressed="${P.autoDlg !== false}" aria-label="Автовоспроизведение диалогов"></button></div>
     <div class="row"><span>Цель на день</span><span class="seg">${[20, 30, 50].map(g => `<button data-goal="${g}" aria-pressed="${P.goal === g}">${g}</button>`).join("")}</span></div>
     <div class="row"><span>Я учусь в канале</span><button class="btn ghost sm" data-join>Начать с урока…</button></div>
     <div class="row"><span>Открыть все уроки<br><small class="muted">чтобы посмотреть любой урок без очереди</small></span><button class="switch" data-openall aria-pressed="${!!P.openAll}" aria-label="Открыть все уроки"></button></div>
@@ -1845,6 +1893,7 @@ const app = $("#app");
 function render() {
   renderView();
   if (DLG.box && !DLG.box.isConnected) stopSpeech();
+  dlgAutoplay();
 }
 function renderView() {
   document.documentElement.classList.toggle("grammar-playing", !!G);
@@ -2034,7 +2083,7 @@ document.addEventListener("click", e => {
   }
   if (d.add) { P.words[d.add] = { s: 0, due: dayNum() + INTERVALS[0] }; save(); closeSheet(); return toast("Слово добавлено: повторим завтра"); }
   if (d.say != null) return say(d.say, { slow: "slow" in d });
-  if ("dlgAll" in d) return dlgToggle(dlgSel());
+  if ("dlgAll" in d) return dlgMain();
   if ("dlgPick" in d) return dlgPick(el.closest("[data-dlg]"));
   if ("dlgTr" in d) return dlgTranslate(el);
   if (d.dlgRate) return dlgSetRate(+d.dlgRate);
@@ -2063,6 +2112,7 @@ document.addEventListener("click", e => {
   if (d.goal) { P.goal = +d.goal; save(); render(); return; }
   if ("sync" in d) { push(true).then(() => toast("Сохранено")); return; }
   if ("logout" in d) { logout("Вы вышли, прогресс остался в этом браузере"); render(); return; }
+  if ("autoDlg" in d) { P.autoDlg = P.autoDlg === false; save(); render(); return; }
   if ("sound" in d) { P.sound = P.sound === false; save(); render(); if (P.sound) sfx(true); return; }
   if ("openall" in d) { P.openAll = !P.openAll; save(); render(); return; }
   if (d.reset) {
