@@ -3,8 +3,8 @@
     python tools/art/slice_avatars.py лист.png 4x3 lucia pablo ana ...
 
 Лист — сетка одинаковых квадратных ячеек (столбцы x строки), персонажи слева направо, сверху вниз.
-Каждая ячейка обрезается до квадрата по центру (с небольшим полем, чтобы не задеть соседей),
-уменьшается до 128×128 (аватар на сайте 34 px, хватает и для экранов ×3) и сохраняется в WebP.
+Из каждой ячейки берётся квадрат вокруг лица (ZOOM от стороны ячейки, центр чуть выше середины —
+голова в кружке 34 px крупнее, плечи обрезаются), уменьшается до 128×128 (аватар на сайте 34 px, хватает и для экранов ×3) и сохраняется в WebP.
 """
 
 from __future__ import annotations
@@ -16,7 +16,8 @@ from PIL import Image
 
 OUT = Path(__file__).resolve().parents[2] / "content" / "art" / "avatars"
 SIZE = 128
-INSET = 0.04   # доля ячейки, срезаемая с каждого края
+ZOOM = 0.78   # сторона квадрата — доля стороны ячейки
+CY = 0.45     # центр квадрата по высоте ячейки (лицо в портретах выше середины)
 
 
 def main(argv: list[str]) -> None:
@@ -31,8 +32,8 @@ def main(argv: list[str]) -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     for k, slug in enumerate(slugs):
         r, c = divmod(k, cols)
-        side = min(cw, ch) * (1 - 2 * INSET)
-        cx, cy = (c + 0.5) * cw, (r + 0.5) * ch
+        side = min(cw, ch) * ZOOM
+        cx, cy = (c + 0.5) * cw, (r + CY) * ch
         box = (round(cx - side / 2), round(cy - side / 2), round(cx + side / 2), round(cy + side / 2))
         img.crop(box).resize((SIZE, SIZE), Image.LANCZOS).save(OUT / f"{slug}.webp", "WEBP", quality=82, method=6)
         print(f"{slug}.webp")
