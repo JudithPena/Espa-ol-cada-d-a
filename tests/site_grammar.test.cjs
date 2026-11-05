@@ -1382,3 +1382,17 @@ test('article theory presents one four-form table without repeated caption or wo
  const expanded=run(`gArtExamples(${JSON.stringify(s.illustration)})`);
  assert.ok(expanded.includes('un</strong> libro'));
 });
+
+test('theory dialogues keep consecutive speakers and translations together with safe markup',()=>{
+ const run=context();
+ const html=run(`gTheoryDialogues([{title:'Вопрос <img>',lines:[['¿Colombia es una ciudad?','Колумбия — город?'],['No, es un país.','Нет, это страна.']]}])`);
+ assert.equal((html.match(/class="gdialogue-turn"/g)||[]).length,2);
+ assert.ok(html.indexOf('¿Colombia')<html.indexOf('No, es un país.'));
+ assert.ok(html.includes('Говорящий 1')&&html.includes('Говорящий 2'));
+ assert.ok(html.includes('Колумбия — город?')&&html.includes('Нет, это страна.'));
+ assert.ok(!html.includes('<img>'));
+ const art={captionDialogue:true,examples:[['¿Qué gafas quieres?','Какие очки хочешь?'],['Las de la derecha.','Те, что справа.']]};
+ const caption=run(`gArtExamples(${JSON.stringify(art)})`);
+ assert.equal((caption.match(/class="gdialogue-turn"/g)||[]).length,2);
+ assert.ok(!caption.includes('gscene-line'));
+});

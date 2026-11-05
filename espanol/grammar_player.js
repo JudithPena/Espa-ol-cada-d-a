@@ -437,7 +437,11 @@ function gTheoryText(text) {
   return esc(text).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/`([^`]+)`/g, (_, token) => `<code lang="es"${token.includes(" ") ? ' class="is-phrase"' : ""}>${token}</code>`);
 }
 function gArtExamples(art) {
+  if(art.captionDialogue) return gTheoryDialogues([{lines:art.examples}]);
   return `<div class="gscene-examples">${art.examples.map(([es,ru])=>`<div class="gscene-line"><b lang="es">${gTheoryText(es)}</b><span>${esc(ru)}</span></div>`).join('')}</div>`;
+}
+function gTheoryDialogues(dialogues) {
+  return `<div class="gtheory-dialogues">${dialogues.map(d=>`<section class="gtheory-dialogue" aria-label="${esc(d.title || 'Разговор')}">${d.title?`<h3>${esc(d.title)}</h3>`:''}${d.lines.map(([es,ru],i)=>`<div class="gdialogue-turn"><span class="gdialogue-speaker" aria-label="Говорящий ${i%2+1}">${i%2?'Б':'А'}</span><div class="gdialogue-text"><p class="gdialogue-es" lang="es">${playBtn(es.replace(/\*\*/g,''))}${gTheoryText(es)}</p><p class="gdialogue-ru">${esc(ru)}</p></div></div>`).join('')}</section>`).join('')}</div>`;
 }
 function gArtFigure(art) {
   if (!art) return '';
@@ -459,6 +463,7 @@ function gTheory(section) {
   const art=gArtFigure(section.illustration), formsFirst=section.presentation==='paradigm' && section.table;
   const copy=section.paragraphs.map((p,i)=>`<p class="gtheory-paragraph${i?'':' is-lead'}">${gTheoryText(p)}</p>`);
   return `<article class="gtheory gtheory-${esc(section.presentation || 'examples')}"><div class="gtheory-copy">${copy[0] || ''}${section.formulas ? `<div class="gformulas" aria-label="Модель правила">${section.formulas.map(f=>`<div>${gTheoryText(f)}</div>`).join('')}</div>`:''}</div>${formsFirst?'':art}
+    ${section.dialogues ? gTheoryDialogues(section.dialogues) : ''}
     ${section.wordGroups ? grammarWordGroups(section.wordGroups) : ""}${section.schemes ? `<div${section.schemeGrid ? ' class="gsummary-cards"' : ""}>${grammarSchemes(section.schemes)}</div>` : ""}${section.table ? gTheoryTable(section.table) : ""}${formsFirst?art:''}
     ${section.agreement ? `<div class="gagreement">${section.agreement.map(w => `<div><small>${esc(w.label)}</small><b>${esc(w.from)}</b><span>↓</span><b>${esc(w.to)}</b></div>`).join("")}</div>` : ""}
     <div class="gtheory-copy">${copy.slice(1).join('')}</div><div class="gtheory-examples">${(section.examples || []).map(([es,ru]) => `<div class="gexample">${playBtn(es)} <b lang="es">${esc(es)}</b><small>${esc(ru)}</small></div>`).join("")}</div>

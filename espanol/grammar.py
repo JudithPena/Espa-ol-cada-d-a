@@ -44,8 +44,20 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
             if set(unit['learningOrder']) != routes or len(unit['learningOrder']) != len(routes):
                 raise ValueError(f"{path}: learningOrder must contain every stage exactly once")
         for section in unit["sections"]:
+            dialogues = section.get('dialogues', [])
+            if not isinstance(dialogues, list):
+                raise ValueError(f"{path}: dialogues must be a list")
+            for dialogue in dialogues:
+                if (not isinstance(dialogue, dict) or not isinstance(dialogue.get('title'), str) or not dialogue['title'].strip()
+                        or not isinstance(dialogue.get('lines'), list) or len(dialogue['lines']) < 2
+                        or any(not isinstance(pair, list) or len(pair) != 2
+                               or not all(isinstance(t, str) and t.strip() for t in pair)
+                               for pair in dialogue['lines'])):
+                    raise ValueError(f"{path}: dialogue requires title and bilingual turns")
             art = section.get("illustration")
             if art is not None:
+                if isinstance(art, dict) and 'captionDialogue' in art and type(art['captionDialogue']) is not bool:
+                    raise ValueError(f"{path}: captionDialogue must be boolean")
                 if isinstance(art, dict) and 'captionExamples' in art and type(art['captionExamples']) is not bool:
                     raise ValueError(f"{path}: captionExamples must be boolean")
                 if not isinstance(art, dict) or not art.get("image") or not art.get("alt") or not art.get("examples") or any(
@@ -53,6 +65,8 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
                     for pair in art.get("examples", [])
                 ):
                     raise ValueError(f"{path}: theory illustration requires image, alt and bilingual examples")
+                if art.get('captionDialogue') and len(art['examples']) < 2:
+                    raise ValueError(f"{path}: dialogue requires at least two bilingual turns")
                 art["image"] = _image_uri(directory, art["image"])
         ids = set()
         for group in [s["check"] for s in unit["sections"] if s.get("check")] + unit["exercises"]:

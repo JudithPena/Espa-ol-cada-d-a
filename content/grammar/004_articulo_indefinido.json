@@ -99,34 +99,6 @@
         "В ответе на **`¿Qué es?` — «Что это?»** можно сказать `Es una radio` — это радио. На **`¿Quién es?` — «Кто это?»** — `Es un escritor` — это писатель.",
         "Артикль относит человека или предмет к группе. Его род определяется существительным: `un país` — страна, `una ciudad` — город."
       ],
-      "wordGroups": [
-        {
-          "title": "Что это?",
-          "words": [
-            [
-              "Colombia es un país",
-              "Колумбия — страна"
-            ],
-            [
-              "Sevilla es una ciudad",
-              "Севилья — город"
-            ]
-          ]
-        },
-        {
-          "title": "Кто это?",
-          "words": [
-            [
-              "Es una pintora",
-              "Это художница"
-            ],
-            [
-              "Es un científico",
-              "Это учёный"
-            ]
-          ]
-        }
-      ],
       "check": {
         "id": "check-b",
         "title": "Мини-проверка",
@@ -174,9 +146,59 @@
             "Es **un reloj**.",
             "Это часы."
           ]
-        ]
+        ],
+        "captionDialogue": true
       },
-      "presentation": "examples"
+      "presentation": "examples",
+      "dialogues": [
+        {
+          "title": "Страна или город",
+          "lines": [
+            [
+              "¿Colombia es una ciudad?",
+              "Колумбия — это город?"
+            ],
+            [
+              "No, es un país.",
+              "Нет, это страна."
+            ]
+          ]
+        },
+        {
+          "title": "Говорим о Севилье",
+          "lines": [
+            [
+              "¿Sevilla es una ciudad?",
+              "Севилья — это город?"
+            ],
+            [
+              "Sí, es una ciudad de España.",
+              "Да, это город в Испании."
+            ]
+          ]
+        },
+        {
+          "title": "Узнаём, кто эти люди",
+          "lines": [
+            [
+              "¿Quién es esa mujer?",
+              "Кто эта женщина?"
+            ],
+            [
+              "Es una pintora.",
+              "Это художница."
+            ],
+            [
+              "¿Y ese hombre?",
+              "А тот мужчина?"
+            ],
+            [
+              "Es un científico.",
+              "Это учёный."
+            ]
+          ]
+        }
+      ]
     },
     {
       "title": "Un águila: род остаётся женским",
@@ -266,7 +288,7 @@
     {
       "title": "Как попросить один или несколько предметов",
       "paragraphs": [
-        "В просьбе об одном предмете используем `un / una`, о нескольких — `unos / unas`: **`Necesito una silla` — мне нужен стул; `Necesito unas sillas` — мне нужно несколько стульев.**",
+        "В просьбе об одном предмете используем **`un / una`**, о нескольких — **`unos / unas`**.",
         "Для одной пары очков, одних ножниц или джинсов часто нужна форма множественного числа: `unas gafas`, `unas tijeras`, `unos vaqueros`."
       ],
       "wordGroups": [
@@ -274,12 +296,12 @@
           "title": "Один предмет",
           "words": [
             [
-              "un mapa",
-              "карта"
+              "Necesito un mapa.",
+              "Мне нужна карта."
             ],
             [
-              "una hija",
-              "дочь"
+              "Una silla, por favor.",
+              "Один стул, пожалуйста."
             ]
           ]
         },
@@ -287,16 +309,16 @@
           "title": "Одни очки, ножницы или джинсы",
           "words": [
             [
-              "unas gafas",
-              "очки"
+              "Necesito unas gafas.",
+              "Мне нужны очки."
             ],
             [
-              "unas tijeras",
-              "ножницы"
+              "Unas tijeras, por favor.",
+              "Ножницы, пожалуйста."
             ],
             [
-              "unos vaqueros",
-              "джинсы"
+              "Necesito unos vaqueros.",
+              "Мне нужны джинсы."
             ]
           ]
         }

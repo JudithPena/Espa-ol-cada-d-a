@@ -11,34 +11,6 @@
         "Перед **`una` ставим `la`, перед другими числами часов — `las`**. В `la una y media` остаётся `la`.",
         "Чтобы сказать **«в котором часу», добавляем `a`**. `La película empieza a las cinco` — фильм начинается в пять."
       ],
-      "wordGroups": [
-        {
-          "title": "Который час?",
-          "words": [
-            [
-              "Es la una y veinte",
-              "Сейчас 1:20"
-            ],
-            [
-              "Son las tres y media",
-              "Сейчас 3:30"
-            ]
-          ]
-        },
-        {
-          "title": "Во сколько?",
-          "words": [
-            [
-              "a la una",
-              "в час"
-            ],
-            [
-              "a las ocho",
-              "в восемь"
-            ]
-          ]
-        }
-      ],
       "check": {
         "id": "check-a",
         "title": "Мини-проверка",
@@ -77,10 +49,65 @@
           [
             "¿Qué hora es?",
             "Который час?"
+          ],
+          [
+            "Son las dos y diez.",
+            "Сейчас два часа десять минут."
           ]
-        ]
+        ],
+        "captionExamples": false,
+        "captionDialogue": true
       },
-      "presentation": "examples"
+      "presentation": "examples",
+      "dialogues": [
+        {
+          "title": "На улице",
+          "lines": [
+            [
+              "¿Qué hora es?",
+              "Который час?"
+            ],
+            [
+              "Es la una y veinte.",
+              "Сейчас час двадцать."
+            ]
+          ]
+        },
+        {
+          "title": "После занятий",
+          "lines": [
+            [
+              "¿Qué hora es?",
+              "Который час?"
+            ],
+            [
+              "Son las tres y media.",
+              "Сейчас половина четвёртого."
+            ]
+          ]
+        },
+        {
+          "title": "Планируем день",
+          "lines": [
+            [
+              "¿A qué hora empieza la película?",
+              "Во сколько начинается фильм?"
+            ],
+            [
+              "A la una.",
+              "В час."
+            ],
+            [
+              "¿Y la clase de español?",
+              "А занятие по испанскому?"
+            ],
+            [
+              "A las ocho.",
+              "В восемь."
+            ]
+          ]
+        }
+      ]
     },
     {
       "title": "Дни недели, даты и части дня",
@@ -329,9 +356,25 @@
             "Dos euros **el kilo**.",
             "Два евро за килограмм."
           ]
-        ]
+        ],
+        "captionExamples": false
       },
-      "presentation": "examples"
+      "presentation": "examples",
+      "dialogues": [
+        {
+          "title": "У прилавка",
+          "lines": [
+            [
+              "¿Cuánto cuestan las manzanas?",
+              "Сколько стоят яблоки?"
+            ],
+            [
+              "Dos euros el kilo.",
+              "Два евро за килограмм."
+            ]
+          ]
+        }
+      ]
     }
   ],
   "exercises": [

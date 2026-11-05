@@ -648,6 +648,15 @@ html.grammar-playing, html.grammar-playing body { overflow: hidden; }
 .gtheory-comparison .gscheme { background: var(--accent-soft); }
 .gtheory-paradigm .tbl td:first-child { font-weight: 700; }
 .gtheory-examples { display: grid; gap: 10px; }
+.gtheory-dialogues { display: grid; gap: 16px; }
+.gtheory-dialogue { padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+.gtheory-dialogue h3 { margin: 0 0 14px; font: 800 17px/1.4 var(--body); }
+.gdialogue-turn { display: grid; grid-template-columns: 28px minmax(0,1fr); align-items: start; gap: 10px; }
+.gdialogue-turn + .gdialogue-turn { margin-top: 14px; }
+.gdialogue-speaker { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-size: 13px; font-weight: 800; }
+.gdialogue-text { min-width: 0; overflow-wrap: anywhere; }
+.gdialogue-es { margin: 0; font-weight: 700; line-height: 1.6; }
+.gdialogue-ru { margin: 4px 0 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
 .gforms-mobile { display: none; }
 .gexample { padding: 14px 16px; border-radius: 12px; background: var(--sunken); line-height: 1.6; }
 .gexample small { display: block; color: var(--muted); }
