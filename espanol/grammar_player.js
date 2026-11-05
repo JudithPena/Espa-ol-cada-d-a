@@ -200,24 +200,25 @@ function gCheck() {
   if (!response || response.checked || !response.value.trim()) return;
   const unit = gUnit(), group = gGroups(unit).find(g => g.id === step.group);
   const attempt=gAttempt(unit,group);
+  const assessment=grammarResult(group.questions[step.qi],response.value,group,gQuestionMode(group.questions[step.qi],response)==='input');
   if(step.correction) {
     if(!['correcting','passed'].includes(attempt.status)) return;
     if(attempt.responses[step.qi]?.correction?.checked) { G.responses[group.id]=attempt.responses; return; }
-    response.checked=true; response.good=grammarCorrect(group.questions[step.qi],response.value);
+    response.checked=true; Object.assign(response,assessment);
     attempt.responses[step.qi].correction=response;
     if(group.questions.every((_,i)=>attempt.responses[i]?.good || attempt.responses[i]?.correction?.good)) {
       attempt.status='passed'; gStoreAttempt(unit,group,attempt);
       gradeGrammar(unit,group,group.questions.map((_,i)=>attempt.responses[i].value));
     }
     G.responses[group.id]=attempt.responses; gStoreAttempt(unit,group,attempt);
-    gSave(); render(); sfx(response.good); return;
+    gSave(); render(); sfx(response.status==='almost'?'almost':response.good); return;
   }
   if(attempt.status!=='active') { gSave(); render(); return; }
   if(attempt.responses[step.qi]?.checked) {
     G.responses[group.id]=attempt.responses; gSave(); render(); return;
   }
   response.checked = true;
-  response.good = grammarCorrect(group.questions[step.qi], response.value);
+  Object.assign(response,assessment);
   attempt.responses[step.qi]=response;
   if(!response.good) attempt.errors++;
   if(gOutOfLives(group,attempt.errors)) { attempt.status='failed'; G.recovery=group.id; }
@@ -227,7 +228,7 @@ function gCheck() {
   if (attempt.status==='passed') {
     gradeGrammar(unit, group, group.questions.map((_, i) => G.responses[group.id][i].value));
   }
-  gSave(); render(); sfx(response.good);
+  gSave(); render(); sfx(response.status==='almost'?'almost':response.good);
 }
 function gPick(index) {
   if (!G || G.ended || G.recovery) return;
@@ -472,9 +473,9 @@ function gWorkedPreview(preview) {
   if (!preview.sentenceParts) return gBlank(preview.source);
   return `${esc(preview.sentenceParts[0])}<mark class="gpreview-insert">${esc(preview.displayAnswer ?? preview.answer)}</mark>${esc(preview.sentenceParts[1])}`;
 }
-function gGapSentence(q, response) {
-  const values = response.gapValues || (response.value ? response.value.split(" ") : []);
-  return `<div class="gfill-sentence"><p class="ggap-line" lang="es">${q.gapParts.map((part,i)=>`${esc(part)}${i < q.gapParts.length-1 ? `<input class="ginput ggap-input" id="${i ? 'g-answer-'+i : 'g-answer'}" data-ggap="${i}" aria-describedby="g-answer-format" aria-label="${i ? 'Пропуск 2: más или menos' : 'Пропуск 1: артикль'}" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="…" value="${esc(values[i] || '')}" ${response.checked ? 'disabled' : ''}>` : ""}`).join("")}</p>${response.checked ? "" : `<div class="gaccents"><button class="btn ghost sm" data-gchar="á" aria-label="Вставить á">á</button></div>`}</div>`;
+function gGapSentence(q,response) {
+  const values=response.gapValues || (response.value ? response.value.split(" ") : []);
+  return `<div class="gfill-sentence"><p class="ggap-line" lang="es">${q.gapParts.map((part,i)=>`${esc(part)}${i<q.gapParts.length-1?`<span class="ggap-control"><input class="ginput ggap-input" id="${i?'g-answer-'+i:'g-answer'}" data-ggap="${i}" aria-describedby="g-answer-format" aria-label="Пропуск ${i+1}" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="…" value="${esc(values[i] || '')}" ${response.checked?'disabled':''}>${response.checked?'':gCharsPanel(q,i?'g-answer-'+i:'g-answer')}</span>`:''}`).join('')}</p></div>`;
 }
 function gIntro(group) {
   const pictures = group.questions.filter(q => q.image).slice(0,3);
@@ -533,7 +534,7 @@ function gPlayerView() {
     const who = block ? `<div class="gwho"><img src="${esc(group.family.portraits[block.person])}" alt="" width="44" height="44"><b>Родственники ${esc(block.person)}</b></div>` : "";
     const mode=gQuestionMode(q,response);
     const options = mode==='gaps' ? gGuided(q,response) : mode==='build' ? gBuilder(q,response) : q.options ? `<div class="${q.interaction==='gap-choice'?'gchoices':'opts'}" role="group" aria-label="Варианты ответа">${q.options.map((o,i) => `<button class="opt ${response.checked && grammarCorrect(q,o) ? "right" : response.checked && response.value === o && !response.good ? "wrong" : ""}" data-gpick="${i}" aria-label="${esc(o === 'Без артикля' ? 'Ничего не вставлять' : gOptionLabel(q,o))}" aria-pressed="${response.value === o}" ${response.checked ? "disabled" : ""}><span class="k">${i + 1}</span><span lang="es">${esc(gOptionLabel(q,o))}</span></button>`).join("")}</div>`
-      : `<div>${grammarInputHelp(q,group,"g-answer-format")}<label class="sr-only" for="g-answer">Ответ на испанском</label>${group.phraseInput && q.answers[0].split(' ').length>2 ? `<textarea class="ginput gphrase-input" id="g-answer" aria-label="Ответ на испанском" aria-describedby="g-answer-format" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" rows="2" placeholder="${esc(grammarInputPlaceholder(q,group))}" ${response.checked ? "disabled" : ""}>${esc(response.value)}</textarea>` : `<input class="ginput" id="g-answer" aria-label="Ответ на испанском" aria-describedby="g-answer-format" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="${esc(grammarInputPlaceholder(q,group))}" value="${esc(response.value)}" ${response.checked ? "disabled" : ""}>`}${response.checked ? "" : `<div class="gaccents" aria-label="Испанские буквы">${gInputChars(q).map(c => `<button class="btn ghost sm" data-gchar="${c}" aria-label="Вставить ${c}">${c}</button>`).join("")}</div>`}</div>`;
+      : `<div>${grammarInputHelp(q,group,"g-answer-format")}<label class="sr-only" for="g-answer">Ответ на испанском</label>${group.phraseInput && q.answers[0].split(' ').length>2 ? `<textarea class="ginput gphrase-input" id="g-answer" aria-label="Ответ на испанском" aria-describedby="g-answer-format" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" rows="2" placeholder="${esc(grammarInputPlaceholder(q,group))}" ${response.checked ? "disabled" : ""}>${esc(response.value)}</textarea>` : `<input class="ginput" id="g-answer" aria-label="Ответ на испанском" aria-describedby="g-answer-format" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="${esc(grammarInputPlaceholder(q,group))}" value="${esc(response.value)}" ${response.checked ? "disabled" : ""}>`}${response.checked ? "" : gCharsPanel(q)}</div>`;
     const source = q.sourceParts ? `<div class="gsource" lang="es"><span class="kicker">${esc(q.sourceLabel || 'Исходная фраза')}</span><p>${esc(q.sourceParts[0])}<strong>${esc(q.sourceParts[1])}</strong>${esc(q.sourceParts[2])}</p></div>` : "";
     const clues = q.clues ? `<div class="gclues" aria-label="Слова для ответа">${q.clues.map(([es,ru])=>`<span><b lang="es">${esc(es)}</b><small>${esc(ru)}</small></span>`).join("")}</div>` : "";
     const inline = group.inlineAnswer && mode==='input' && !q.options && q.prompt.includes("___");
@@ -544,8 +545,8 @@ function gPlayerView() {
     if (group.title === "Мини-проверка" && group.instruction) content = `<p class="muted ginstruction">${esc(group.instruction.replace(/ Затем нажми.*$/, ""))}</p>` + content;
   }
   const checked = response?.checked;
-  const feedback = checked ? `<div class="fb"><div class="gfeedback-head"><h3 role="status">${response.good ? "✓ Верно" : "Пока неверно"}</h3><button class="btn ghost sm" data-gfeedback-toggle aria-expanded="${!response.feedbackHidden}" aria-controls="g-feedback-details" aria-label="${response.feedbackHidden?'Показать разбор ответа':'Свернуть разбор ответа'}">${response.feedbackHidden?'Показать':'Свернуть ×'}</button></div><div id="g-feedback-details" ${response.feedbackHidden?'hidden':''}>${!step.correction && gHasLives(group) && !response.good && attempt?.errors===gErrorLimit(group)-1 ? '<p class="glast-chance">Осталась последняя попытка. Ещё одна ошибка — и вернёмся к правилу.</p>' : ''}${response.good ? "" : `<span class="ans">Верный ответ: ${esc(response.slotValues ? group.questions[step.qi].answers[0] : group.questions[step.qi].answers.map(a=>gOptionLabel(group.questions[step.qi],a)).join(" / "))}</span>`}<span class="ex">${esc(group.questions[step.qi].explain)}</span></div></div>` : "";
+  const feedback = checked ? `<div class="fb"><div class="gfeedback-head"><h3 role="status">${response.status==='almost'?"Почти правильно!":response.good ? "✓ Верно" : "Пока неверно"}</h3><button class="btn ghost sm" data-gfeedback-toggle aria-expanded="${!response.feedbackHidden}" aria-controls="g-feedback-details" aria-label="${response.feedbackHidden?'Показать разбор ответа':'Свернуть разбор ответа'}">${response.feedbackHidden?'Показать':'Свернуть ×'}</button></div><div id="g-feedback-details" ${response.feedbackHidden?'hidden':''}>${!step.correction && gHasLives(group) && !response.good && attempt?.errors===gErrorLimit(group)-1 ? '<p class="glast-chance">Осталась последняя попытка. Ещё одна ошибка — и вернёмся к правилу.</p>' : ''}${response.good ? "" : `<span class="ans">Верный ответ: ${esc(response.slotValues ? group.questions[step.qi].answers[0] : group.questions[step.qi].answers.map(a=>gOptionLabel(group.questions[step.qi],a)).join(" / "))}</span>`}${grammarAccentHint(response)}<span class="ex">${esc(group.questions[step.qi].explain)}</span></div></div>` : "";
   return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><div class="bar" role="progressbar" aria-label="Прогресс урока" aria-valuemin="0" aria-valuemax="${G.steps.length}" aria-valuenow="${G.at}"><i style="width:${Math.round(G.at / G.steps.length * 100)}%"></i></div>${step.correction ? '<span class="muted">Жизни не тратятся</span>' : attempt ? gHearts(attempt, group) : ''}<span class="pcount">${G.at + 1}/${G.steps.length}</span></div></div>
     <div class="pbody"><div class="wrap"><span class="kicker">${esc(kicker)}</span><h2 id="g-title" tabindex="-1">${esc(title)}</h2>${content}</div></div>
-    <div class="pfoot ${checked ? response.good ? "good" : "bad" : ""}"><div class="wrap">${feedback}<div class="gplayer-actions">${step.type==='question' && !checked ? '<button class="btn ghost ghide-keyboard" data-ghide-keyboard>Скрыть клавиатуру ↓</button>' : ''}<button class="btn ghost" data-gback${G.at ? "" : ' aria-label="Назад к разделам урока"'}>← Назад</button>${step.type === "question" && !checked ? gQuestionMode(group.questions[step.qi],response)==='choice' ? '<span class="muted gpick-hint">Нажми на вариант ответа</span>' : `<button class="btn" data-gcheck ${response.value.trim() ? "" : "disabled"}>Проверить</button>` : `<button class="btn" data-gnext>${step.correction && checked && !response.good ? "Попробовать ещё раз" : !step.correction && attempt?.status==='correcting' ? "К ошибкам →" : G.at===G.steps.length-1 && step.type==='question' && gNextRoute(unit,G.route)==='summary' ? "Что запомнить →" : G.at === G.steps.length - 1 ? "Завершить" : step.type === "intro" ? "Начать" : "Далее →"}</button>`}</div></div></div></div>`;
+    <div class="pfoot ${checked ? response.status==='almost'?'almost':response.good ? "good" : "bad" : ""}"><div class="wrap">${feedback}<div class="gplayer-actions">${step.type==='question' && !checked ? '<button class="btn ghost ghide-keyboard" data-ghide-keyboard>Скрыть клавиатуру ↓</button>' : ''}<button class="btn ghost" data-gback${G.at ? "" : ' aria-label="Назад к разделам урока"'}>← Назад</button>${step.type === "question" && !checked ? gQuestionMode(group.questions[step.qi],response)==='choice' ? '<span class="muted gpick-hint">Нажми на вариант ответа</span>' : `<button class="btn" data-gcheck ${response.value.trim() ? "" : "disabled"}>Проверить</button>` : `<button class="btn" data-gnext>${step.correction && checked && !response.good ? "Попробовать ещё раз" : !step.correction && attempt?.status==='correcting' ? "К ошибкам →" : G.at===G.steps.length-1 && step.type==='question' && gNextRoute(unit,G.route)==='summary' ? "Что запомнить →" : G.at === G.steps.length - 1 ? "Завершить" : step.type === "intro" ? "Начать" : "Далее →"}</button>`}</div></div></div></div>`;
 }

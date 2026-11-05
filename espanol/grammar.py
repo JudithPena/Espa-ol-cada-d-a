@@ -69,6 +69,9 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
                     for key in ('instruction', 'example', 'placeholder')
                 )):
                     raise ValueError(f"{path}: input format requires instruction, example and placeholder")
+            for item in [group] + group['questions']:
+                if 'accentSensitive' in item and type(item['accentSensitive']) is not bool:
+                    raise ValueError(f"{path}: accentSensitive must be boolean")
             for q in group["questions"]:
                 if not q.get("explain") or not q.get("answers"):
                     raise ValueError(f"{path}: answer and explanation required")

@@ -836,6 +836,13 @@ html.grammar-playing, html.grammar-playing body { overflow: hidden; }
 .gplayer.is-short .ginput-format { margin: 0; font-size: 17px; }
 .gplayer.is-short .gaccents { gap: 4px; }
 .gplayer.is-short .pfoot .fb { max-height: 90px; }
+.pfoot.almost, .gfeedback.almost { background: var(--sun-soft); border-color: var(--sun); }
+.pfoot.almost .fb h3 { color: var(--ink); }
+.gaccent-hint { margin: 6px 0; line-height: 1.6; }
+.gmissing-accent { background: var(--sun); color: #18203d; padding: 1px 3px; border-radius: 3px; text-decoration: underline; text-underline-offset: 4px; }
+.ggap-control { display: inline-flex; flex-direction: column; vertical-align: middle; max-width: 100%; width: 280px; }
+.ggap-control .gaccents { line-height: 1.4; }
+.gaccents button { touch-action: manipulation; min-width: 40px; min-height: 40px; }
 </style>
 
 <div id="app"></div>
@@ -1445,14 +1452,14 @@ function sfx(ok) {
     audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
     if (audioCtx.state === "suspended") audioCtx.resume().catch(() => {});
     const t0 = audioCtx.currentTime;
-    // Верно — два коротких восходящих тона; ошибка — низкий нисходящий «бз».
-    const notes = ok ? [[659, 0, .12], [988, .09, .22]] : [[196, 0, .16], [147, .12, .26]];
+    // Success rises brightly, almost-correct uses two soft sine tones, errors fall low.
+    const notes = ok==='almost' ? [[523,0,.13],[587,.11,.25]] : ok ? [[659, 0, .12], [988, .09, .22]] : [[196, 0, .16], [147, .12, .26]];
     for (const [freq, start, end] of notes) {
       const o = audioCtx.createOscillator(), g = audioCtx.createGain();
-      o.type = ok ? "triangle" : "sawtooth";
+      o.type = ok==='almost' ? "sine" : ok ? "triangle" : "sawtooth";
       o.frequency.value = freq;
       g.gain.setValueAtTime(0.0001, t0 + start);
-      g.gain.exponentialRampToValueAtTime(ok ? 0.25 : 0.09, t0 + start + 0.015);
+      g.gain.exponentialRampToValueAtTime(ok==='almost' ? 0.10 : ok ? 0.25 : 0.09, t0 + start + 0.015);
       g.gain.exponentialRampToValueAtTime(0.0001, t0 + end);
       o.connect(g).connect(audioCtx.destination);
       o.start(t0 + start); o.stop(t0 + end + 0.02);
@@ -1562,6 +1569,49 @@ const grammarNormalize = value => {
   return ['∅','—','–','-'].includes(normalized) ? 'без артикля' : normalized;
 };
 const grammarCorrect = (q, value) => q.answers.some(a => grammarNormalize(a) === grammarNormalize(value));
+// Only omitted acute accents can be forgiven; ñ, ü and extra/moved accents stay significant.
+const G_ACCENT_PAIRS = {'á':'a','é':'e','í':'i','ó':'o','ú':'u'};
+const G_ACCENT_MEANING = new Set(['sí','tú','él','mí','té','dé','sé','más','aún','qué','quién','quiénes','cuál','cuáles','cómo','cuándo','cuánto','cuánta','cuántos','cuántas','dónde','adónde','está','estás','esté','estés','estén']);
+function grammarResult(q, value, group={}, manual=!q.options && !q.tiles && !q.guidedGaps) {
+  if(grammarCorrect(q,value)) return {status:'correct',good:true};
+  const wrong={status:'wrong',good:false};
+  if(!manual || q.accentSensitive || group.accentSensitive || /ударени|тильд|acento|tilde/i.test([q.prompt,group.title,group.instruction].join(' '))) return wrong;
+  const entered=grammarNormalize(value);
+  for(const answer of q.answers) {
+    const expected=grammarNormalize(answer);
+    if(expected.length!==entered.length) continue;
+    const missing=[];let valid=true;
+    for(let i=0;i<expected.length;i++) {
+      if(expected[i]===entered[i])continue;
+      if(G_ACCENT_PAIRS[expected[i]]!==entered[i]) {valid=false;break;}
+      missing.push({index:i,char:expected[i]});
+    }
+    if(!valid || !missing.length)continue;
+    const tokens=[...expected.matchAll(/[\p{L}\p{M}]+/gu)];
+    if(tokens.some(t=>G_ACCENT_MEANING.has(t[0]) && missing.some(m=>m.index>=t.index && m.index<t.index+t[0].length)))continue;
+    return {status:'almost',good:true,corrected:answer,missing};
+  }
+  return wrong;
+}
+function grammarAccentHint(result) {
+  if(result.status!=='almost')return '';
+  const positions=new Set(result.missing.map(m=>m.index));
+  const canonical=String(result.corrected).normalize('NFC').trim().replace(/\s+/g,' ');
+  const marked=[...canonical].map((c,i)=>positions.has(i)?`<mark class="gmissing-accent">${esc(c)}</mark>`:esc(c)).join('');
+  const letters=[...new Set(result.missing.map(m=>m.char))];
+  return `<p class="gaccent-hint">Верный ответ — <b lang="es">${marked}</b>. ${letters.length===1?'Не забудь поставить ударение над':'Не забудь поставить ударения над'} <b lang="es">${letters.map(esc).join(', ')}</b>.</p>`;
+}
+function gCharsPanel(q, field='g-answer') {
+  return `<span class="gaccents" role="group" aria-label="Испанские буквы">${gInputChars(q).map(c=>`<button type="button" class="btn ghost sm" data-gchar="${c}" data-gfield="${field}" aria-label="Вставить ${c}">${c}</button>`).join('')}</span>`;
+}
+function gInsertChar(button) {
+  const d=button.dataset;
+  const input=d.gaccent ? button.closest('form')?.elements.namedItem(d.ginput) : document.getElementById(d.gfield || 'g-answer');
+  if(!input || input.disabled || !['INPUT','TEXTAREA'].includes(input.tagName))return;
+  input.focus({preventScroll:true});
+  input.setRangeText(d.gchar || d.gaccent,input.selectionStart,input.selectionEnd,'end');
+  input.dispatchEvent(new Event('input',{bubbles:true}));
+}
 const grammarInputFormat = (q, group) => q.inputFormat || group.inputFormat;
 function grammarInputHelp(q, group, id) {
   const format = grammarInputFormat(q, group);
@@ -1569,7 +1619,7 @@ function grammarInputHelp(q, group, id) {
 }
 const grammarInputPlaceholder = (q, group) => grammarInputFormat(q, group)?.placeholder || q.answerPlaceholder || group.answerPlaceholder || 'Ответ';
 const gOptionLabel = (q, value) => q.optionLabels?.[value] || (value === 'Без артикля' ? '∅' : value);
-const gInputChars = q => [...['á','é','í','ó','ú','ü','ñ'], ...(q.answers.includes('Без артикля') ? ['∅'] : [])];
+const gInputChars = q => [...['á','é','í','ó','ú','ñ'], ...(/[üÜ]/.test([q.prompt,...q.answers].join(' '))?['ü']:[]), ...(q.answers.includes('Без артикля') ? ['∅'] : [])];
 function grammarTable(t) {
   return `<div class="tbl" tabindex="0" role="region" aria-label="Таблица примеров"><table><thead><tr>${t.heads.map(h => `<th scope="col">${esc(h)}</th>`).join("")}</tr></thead><tbody>${t.rows.map(r => `<tr>${r.map(c => `<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
 }
@@ -1619,7 +1669,7 @@ function grammarForm(unit, group) {
     ${group.title === "Мини-проверка" && group.instruction ? `<p class="ginstruction">${esc(group.instruction)}</p>` : ""}
     ${best ? `<p class="muted">Лучший результат: ${best.correct} из ${best.total}</p>` : ""}
     ${group.questions.map((q, i) => {
-      const value = (attempt?.values || grammarDrafts.get(key) || [])[i] || "", good = attempt && grammarCorrect(q, value);
+      const value = (attempt?.values || grammarDrafts.get(key) || [])[i] || "", result=attempt && grammarResult(q,value,group,!q.options), good=result?.good;
       const block = (group.questionBlocks || []).find(b => b.at === i);
       return `${block ? `<div class="gquestion-block">${group.family?.portraits?.[block.person] ? `<img src="${esc(group.family.portraits[block.person])}" alt="${esc(block.person)}" width="54" height="54">` : ""}<div><h4>${esc(block.title)}</h4><p>${esc(block.instruction)}</p></div></div>` : ""}
         <fieldset class="gquestion"><legend>${esc(q.context || q.prompt)}</legend>
@@ -1627,16 +1677,16 @@ function grammarForm(unit, group) {
         ${q.image ? `<img class="gillustration" src="${esc(q.image)}" alt="${esc(q.imageAlt || "")}" width="384" height="384" loading="lazy">` : ""}
         ${q.options ? `<div class="gchoices">${q.options.map(o => `<label class="gchoice"><input type="radio" name="q${i}" value="${esc(o)}" aria-label="${esc(o === 'Без артикля' ? 'Ничего не вставлять' : gOptionLabel(q,o))}" required ${value === o ? "checked" : ""} ${attempt ? "disabled" : ""}><span lang="es">${esc(gOptionLabel(q,o))}</span></label>`).join("")}</div>`
           : `${grammarInputHelp(q,group,`g-format-${group.id}-${i}`)}<input class="ginput" name="q${i}" aria-describedby="g-format-${esc(group.id)}-${i}" placeholder="${esc(grammarInputPlaceholder(q,group))}" aria-label="${esc(q.context ? q.context + " " + q.prompt : q.prompt)}" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" required value="${esc(value)}" ${attempt ? "disabled" : ""}>${attempt ? "" : `<div class="gaccents" aria-label="Испанские буквы">${gInputChars(q).map(c => `<button type="button" class="btn ghost sm" data-gaccent="${c}" data-ginput="q${i}" aria-label="Вставить ${c}">${c}</button>`).join("")}</div>`}`}
-        ${attempt ? `<div class="gfeedback ${good ? "good" : ""}"><b>${good ? "✓ Верно" : `✗ Верный ответ: ${esc(q.answers.join(" / "))}`}</b><p>${esc(q.explain)}</p></div>` : ""}</fieldset>`;
+        ${attempt ? `<div class="gfeedback ${result.status==='almost'?'almost':good ? "good" : ""}"><b>${result.status==='almost'?'Почти правильно!':good ? "✓ Верно" : `✗ Верный ответ: ${esc(q.answers.join(" / "))}`}</b>${grammarAccentHint(result)}<p>${esc(q.explain)}</p></div>` : ""}</fieldset>`;
     }).join("")}
     <div class="gsummary" role="status" tabindex="-1">${attempt ? `Правильно: ${attempt.correct} из ${group.questions.length}` : ""}</div>
     ${attempt ? `<button type="button" class="btn ghost" data-gretry="${esc(group.id)}">Пройти ещё раз</button>` : '<button type="submit" class="btn">Проверить ответы</button>'}
     </form>`;
 }
 function gradeGrammar(unit, group, values) {
-  const key = grammarKey(unit, group), correct = group.questions.filter((q, i) => grammarCorrect(q, values[i] || "")).length;
+  const key=grammarKey(unit,group), attempt=gAttempt(unit,group);
+  const correct=group.questions.filter((q,i)=>grammarResult(q,values[i] || "",group,gQuestionMode(q,{...attempt?.responses[i],value:values[i] || "",checked:false})==='input').good).length;
   grammarAttempts.set(key, {values, correct});
-  const attempt=gAttempt(unit,group);
   if(gOutOfLives(group,group.questions.length-correct) || (attempt && attempt.status!=='passed')) return;
   P.grammar ||= {};
   const previous = P.grammar[key]?.correct || 0;
@@ -2106,6 +2156,9 @@ document.addEventListener("submit", e => {
   const data = new FormData(form);
   gSubmitGrammarForm(unit,group,group.questions.map((_,i)=>data.get(`q${i}`) || ''));
 });
+document.addEventListener('pointerdown', e => {
+  if(e.target.closest('[data-gchar], [data-gaccent]') && document.activeElement?.matches?.('input, textarea')) e.preventDefault();
+});
 document.addEventListener("click", e => {
   const closed = e.target.closest(".spoiler:not(.open)");
   if (closed) return closed.classList.add("open");
@@ -2137,10 +2190,7 @@ document.addEventListener("click", e => {
   if ("ghideKeyboard" in d) return gHideKeyboard();
   if ("gretryMistakes" in d) return gRetry();
   if (d.gpick != null && G) return gPick(+d.gpick);
-  if (d.gchar && G) {
-    const input = $(`[data-ggap="${G.gapIndex || 0}"]`) || $("#g-answer"); input.setRangeText(d.gchar, input.selectionStart, input.selectionEnd, "end");
-    input.dispatchEvent(new Event("input", {bubbles:true})); input.focus(); return;
-  }
+  if (d.gchar && G) return gInsertChar(el);
   if (d.grammar) { view.grammar = d.grammar; view.tab = "grammar"; render(); window.scrollTo(0, 0); return; }
   if ("grammarList" in d) { view.grammar = null; render(); window.scrollTo(0, 0); return; }
   if (d.gretry) {
@@ -2150,10 +2200,7 @@ document.addEventListener("click", e => {
     document.querySelector(`[data-grammar-form="${d.gretry}"] input`)?.focus();
     return;
   }
-  if (d.gaccent) {
-    const input = el.closest("form").elements.namedItem(d.ginput);
-    input.setRangeText(d.gaccent, input.selectionStart, input.selectionEnd, "end"); input.dispatchEvent(new Event("input", {bubbles:true})); input.focus(); return;
-  }
+  if (d.gaccent) return gInsertChar(el);
   if (el.classList.contains("spoiler")) return el.classList.remove("open");
   if ("closeSheet" in d) return closeSheet();
   if ("join" in d) return joinSheet();

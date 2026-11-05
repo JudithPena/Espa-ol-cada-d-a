@@ -1257,3 +1257,90 @@ test('theory, exercises and recap remain identifiable even before unlocking',()=
   assert.ok(first.includes('gcomplete')&&first.includes('📖')&&first.includes('✓ Пройдено'));
  }
 });
+
+test('accent assessment forgives only missing acute accents and keeps meaning, ñ and ü strict',()=>{
+ const run=context();
+ for(const [answer,entered,status] of [
+  ['tíos','tios','almost'],['tíos','ti\u0301os','correct'],['Tíos','TIOS','almost'],
+  ['médica simpática','medica simpatica','almost'],['tíos','tíos','correct'],['tíos','tias','wrong'],
+  ['tío','tió','wrong'],['tío','tíó','wrong'],['niña','nina','wrong'],['año','ano','wrong'],
+  ['pingüino','pinguino','wrong'],['pingüino','pingu\u0308ino','correct'],['niña','nin\u0303a','correct'],['pingüino simpático','pingüino simpatico','almost'],
+  ['sí','si','wrong'],['tú','tu','wrong'],['él','el','wrong'],['té','te','wrong'],['mí','mi','wrong'],
+  ['sé','se','wrong'],['dé','de','wrong'],['más','mas','wrong'],['aún','aun','wrong'],
+  ['¿Qué?','¿Que?','wrong'],['está','esta','wrong'],['tú tienes tíos','tú tienes tios','almost'],
+  ['tú tienes tíos','tu tienes tios','wrong'],['el tío','él tio','wrong'],['tu tío','tu tio','almost'],
+ ])assert.equal(run(`grammarResult({answers:[${JSON.stringify(answer)}]},${JSON.stringify(entered)}).status`),status,answer+'/'+entered);
+ assert.equal(run(`grammarResult({answers:['tíos'],accentSensitive:true},'tios').status`),'wrong');
+ assert.equal(run(`grammarResult({answers:['tíos']},'tios',{accentSensitive:true}).status`),'wrong');
+ assert.equal(run(`grammarResult({prompt:'Поставь ударение',answers:['tíos']},'tios').status`),'wrong');
+ assert.equal(run(`grammarResult({answers:['tíos'],options:['tíos','tios']},'tios').status`),'wrong');
+ assert.equal(run(`grammarResult({answers:['sí','si']},'si').status`),'correct');
+ const hint=run(`grammarAccentHint(grammarResult({answers:['Médica simpática']},'medica simpatica'))`);
+ assert.equal((hint.match(/class="gmissing-accent"/g)||[]).length,2);
+ assert.ok(hint.includes('M') && hint.includes('é, á'));
+ assert.equal(unit3.sections[6].check.accentSensitive,true);
+});
+
+test('yellow answers survive reload, cost no lives and do not enter the correction queue',()=>{
+ const u=structuredClone(unit3),storage=new Map();
+ u.exercises[0].questions=[{prompt:'1',answers:['casas'],explain:'casas'}, {prompt:'2',answers:['libros'],explain:'libros'}, {prompt:'Дядя и тётя',answers:['tíos'],explain:'Дядя и тётя — tíos.'}];
+ let run=context([u],storage);unlockUntil(run,'exercise:3.1');
+ run(`save();var sounds=[];sfx=s=>sounds.push(s);gStart(COURSE.grammar[0].id,'exercise:3.1');gMove(1);
+ for(let i=0;i<2;i++){gResponse(G.steps[G.at]).value='wrong';gCheck();gMove(1);}
+ gResponse(G.steps[G.at]).value='tios';gCheck();`);
+ assert.equal(run('gResponse(G.steps[G.at]).status'),'almost');
+ assert.equal(run('gResponse(G.steps[G.at]).good'),true);
+ assert.equal(run('sounds.at(-1)'),'almost');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),2);
+ assert.ok(!run('G.recovery'));
+ let html=run('gPlayerView()');assert.ok(html.includes('pfoot almost')&&html.includes('Почти правильно!')&&html.includes('gmissing-accent'));
+ assert.ok(!html.includes('Осталась последняя попытка'));
+ run('gExit();');run=context([u],storage);unlockUntil(run,'exercise:3.1');run(`gStart(COURSE.grammar[0].id,'all',true);gCheck();`);
+ assert.equal(run('gResponse(G.steps[G.at]).status'),'almost');
+ assert.equal(run('gResponse(G.steps[G.at]).value'),'tios');
+ assert.equal(run('gUnit().exercises[0].questions[2].answers[0]'),'tíos');
+ run(`gMove(1);`);
+ assert.deepEqual(JSON.parse(run('JSON.stringify(G.steps.filter(s=>s.correction).map(s=>s.qi))')),[0,1]);
+ run(`while(!G.ended){const s=G.steps[G.at];gResponse(s).value=gUnit().exercises[0].questions[s.qi].answers[0];gCheck();gMove(1);}`);
+ assert.equal(run('P.grammar[gUnit().id+"/3.1"].correct'),1);
+ assert.equal(run('P.xp'),2);
+});
+
+test('yellow feedback also completes a correction without changing first-answer score',()=>{
+ const u=structuredClone(unit3);u.exercises[0].questions=[{prompt:'Родственники',answers:['tíos'],explain:'tíos'}];
+ const run=context([u]);unlockUntil(run,'exercise:3.1');
+ run(`gStart(COURSE.grammar[0].id,'exercise:3.1');gMove(1);gResponse(G.steps[G.at]).value='wrong';gCheck();gMove(1);gResponse(G.steps[G.at]).value='tios';gCheck();gMove(1);`);
+ assert.equal(run('G.ended'),true);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),1);
+ assert.equal(run('P.grammar[gUnit().id+"/3.1"].correct'),0);
+});
+
+test('all manual screens include the six Spanish keys, with ü when needed',()=>{
+ const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
+ let fields=0;
+ for(const u of units){
+  const run=context([u]);
+  for(const group of u.exercises){
+   unlockUntil(run,'exercise:'+group.id);run(`gStart(COURSE.grammar[0].id,${JSON.stringify('exercise:'+group.id)});`);
+   for(const [qi,q] of group.questions.entries()){
+    if(q.options)continue;
+    run(`G.at=G.steps.findIndex(s=>s.type==='question'&&s.qi===${qi});gResponse(G.steps[G.at]).value='draft';`);
+    const html=run('gPlayerView()'),count=q.gapParts?q.gapParts.length-1:1;
+    for(const c of ['á','é','í','ó','ú','ñ'])assert.equal((html.match(new RegExp('data-gchar="'+c+'"','g'))||[]).length,count,u.id+'/'+group.id+'/'+qi);
+    assert.ok(html.includes('type="button"'));fields+=count;
+   }
+  }
+ }
+ assert.ok(fields>200);
+ assert.ok(runChars({answers:['pingüino']}).includes('ü'));
+ function runChars(q){return context()(`gInputChars(${JSON.stringify(q)})`);}
+ assert.equal(runChars({answers:['tíos']}).join(''),'áéíóúñ');
+});
+
+test('almost-correct sound is unique, soft, and respects mute',()=>{
+ const run=context();
+ run(`var tones=[],volumes=[];window.AudioContext=class {constructor(){this.currentTime=0;this.state='running';this.destination={};}createOscillator(){return {type:'',frequency:{set value(v){tones.push(v)}},connect:g=>g,start(){},stop(){}};}createGain(){return {gain:{setValueAtTime(){},exponentialRampToValueAtTime(v){volumes.push(v)}},connect:()=>{}};}};P.sound=true;sfx(true);var correct=tones.splice(0);sfx(false);var wrong=tones.splice(0);volumes=[];sfx('almost');`);
+ const almost=run('tones.join()');assert.notEqual(almost,run('correct.join()'));assert.notEqual(almost,run('wrong.join()'));
+ assert.ok(run('Math.max(...volumes)')<=.10);
+ run(`P.sound=false;sfx('almost');`);assert.equal(run('tones.join()'),almost);
+});
