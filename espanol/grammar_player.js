@@ -395,7 +395,10 @@ function grammarView() {
   const row = (route, title, subtitle, group) => {
     const best = group && P.grammar?.[grammarKey(unit, group)];
     const open = gRouteOpen(unit,route), done = gRouteDone(unit,route);
-    return `<button class="mcard ${done?'gcomplete':''} ${open ? '' : 'glocked'}" data-gstart="${esc(route)}" ${open ? '' : 'disabled aria-disabled="true"'}><span class="mi">${open ? done ? "✓" : group ? "✎" : "📖" : "🔒"}</span><span><b>${esc(title)}</b><small>${open ? `${best ? `${best.correct} из ${best.total} · ` : ""}${esc(subtitle)}` : 'Сначала пройди предыдущий раздел'}</small></span><span aria-hidden="true">${open ? '›' : '🔒'}</span></button>`;
+    const kind=route.startsWith('section:')?'theory':route.startsWith('exercise:')?'practice':'recap';
+    const icon={theory:'📖',practice:'✍️',recap:'📌'}[kind];
+    const label=kind==='theory' ? (group?'Теория + мини-проверка':'Теория') : kind==='practice'?'Упражнение':'Памятка';
+    return `<button class="mcard gstage-card ${done?'gcomplete':''} ${open ? '' : 'glocked'}" data-gkind="${kind}" data-gstart="${esc(route)}" ${open ? '' : 'disabled aria-disabled="true"'}><span class="mi" aria-hidden="true">${icon}</span><span><span class="gstage-label">${label}</span><b>${esc(title)}</b><small>${done?'✓ Пройдено · ':''}${best ? `${best.correct} из ${best.total} · ` : ""}${esc(subtitle)}</small>${open?'':'<span class="gstage-lock">Сначала пройди предыдущий раздел</span>'}</span><span aria-hidden="true">${open ? '›' : '🔒'}</span></button>`;
   };
   return `<button class="btn ghost sm back" data-grammar-list>← Все уроки грамматики</button><span class="eyebrow">Unidad ${unit.number} · ${esc(unit.level)}</span><h2>${esc(unit.title)}</h2><p class="muted">${esc(unit.subtitle)}</p>
     <div class="gactions">${resume ? '<button class="btn" data-gresume>Продолжить урок</button>' : ""}<button class="btn ${resume ? "ghost" : ""}" data-gstart="all">${resume ? "Начать сначала" : "Пройти весь урок"}</button></div>

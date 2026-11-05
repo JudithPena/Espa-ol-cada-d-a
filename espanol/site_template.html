@@ -755,6 +755,12 @@ html.grammar-playing, html.grammar-playing body { overflow: hidden; }
 .mcard.gcomplete { background: var(--good-soft); border-color: var(--good); }
 .gcompleted-badge { display: flex; align-items: center; gap: 5px; width: fit-content; margin-top: 8px; color: var(--good); font-size: 14px; font-weight: 800; }
 .mcard.glocked { opacity: .58; box-shadow: none; }
+.gstage-label { display: inline-flex; margin-bottom: 6px; padding: 3px 9px; border-radius: 7px; background: var(--accent-soft); color: var(--ink); font-size: 14px; font-weight: 800; }
+[data-gkind="practice"] .gstage-label { background: var(--sun-soft); }
+[data-gkind="recap"] .gstage-label { background: var(--surface); border: 1px solid var(--line); }
+.gstage-card small, .gstage-lock { display: block; }
+.gstage-lock { margin-top: 6px; color: var(--muted); font-size: 13px; }
+.mcard.gstage-card.glocked { opacity: 1; background: var(--sunken); box-shadow: none; }
 .gresult { justify-items: center; text-align: center; padding-top: 8vh !important; }
 .gresult-icon { font-size: 64px; color: var(--good); }
 .gfinal .pbody { position: relative; }

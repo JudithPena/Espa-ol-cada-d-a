@@ -1236,3 +1236,24 @@ test('opening grammar from home always shows the list while preserving the saved
   click({tab:'home'});
  }
 });
+
+test('theory, exercises and recap remain identifiable even before unlocking',()=>{
+ const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
+ for(const u of units){
+  const run=context([u]);run(`view.grammar=${JSON.stringify(u.id)};`);
+  const html=run('grammarView()');
+  const cards=html.match(/<button class="mcard gstage-card[\s\S]*?<\/button>/g);
+  assert.equal(cards.length,u.learningOrder.length);
+  for(const [i,route] of u.learningOrder.entries()){
+   const card=cards[i],theory=route.startsWith('section:'),practice=route.startsWith('exercise:');
+   assert.ok(card.includes(`data-gstart="${route}"`));
+   assert.ok(card.includes(`data-gkind="${theory?'theory':practice?'practice':'recap'}"`));
+   assert.ok(card.includes(theory?'Теория':practice?'Упражнение':'Памятка'));
+   assert.ok(card.includes(theory?'📖':practice?'✍️':'📌'));
+   if(i>0){assert.ok(card.includes('disabled aria-disabled="true"'));assert.ok(card.includes('Сначала пройди предыдущий раздел'));}
+  }
+  run(`P.grammar[grammarKey(COURSE.grammar[0],COURSE.grammar[0].sections[0].check)]={correct:1,total:3};`);
+  const first=run('grammarView()').match(/<button class="mcard gstage-card[\s\S]*?<\/button>/)[0];
+  assert.ok(first.includes('gcomplete')&&first.includes('📖')&&first.includes('✓ Пройдено'));
+ }
+});
