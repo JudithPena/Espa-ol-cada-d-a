@@ -2170,7 +2170,7 @@ document.addEventListener("click", e => {
   }
   if (d.level) { view.level = d.level; view.tab = "course"; render(); window.scrollTo(0, 0); return; }
   if (d.video) { view.video = d.video; view.tab = "video"; render(); window.scrollTo(0, 0); return; }
-  if (d.tab) { if (d.tab === "course") view.level = null; view.tab = d.tab; view.confirmReset = false; render(); window.scrollTo(0, 0); return; }
+  if (d.tab) { if (d.tab === "course") view.level = null; if (d.tab === "grammar") view.grammar = null; view.tab = d.tab; view.confirmReset = false; render(); window.scrollTo(0, 0); return; }
   if (d.lesson != null) {
     const i = +d.lesson;
     if (unitClosed(i)) return toast("Эта тема скоро откроется");

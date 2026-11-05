@@ -11,11 +11,11 @@ const unit3 = JSON.parse(fs.readFileSync('content/grammar/003_singular_plural.js
 const unit17 = JSON.parse(fs.readFileSync('content/grammar/017_superlativo.json','utf8'));
 const unit15 = JSON.parse(fs.readFileSync('content/grammar/015_comparativos.json','utf8'));
 const unit16 = JSON.parse(fs.readFileSync('content/grammar/016_igualdad.json','utf8'));
-function context(grammar = [unit], storage = new Map()) {
+function context(grammar = [unit], storage = new Map(), handlers = {}) {
   const noop = () => {};
   const ctx = vm.createContext({console, setTimeout:noop, clearTimeout:noop, addEventListener:noop,
     localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},
-    window:{addEventListener:noop}, document:{documentElement:{classList:{toggle:noop}},addEventListener:noop,getElementById:()=>null,querySelector:()=>({focus:noop})},
+    window:{addEventListener:noop}, document:{documentElement:{classList:{toggle:noop}},addEventListener:(type,callback)=>{handlers[type]=callback;},getElementById:()=>null,querySelector:()=>({focus:noop})},
     matchMedia:()=>({matches:false,addEventListener:noop}),
     navigator:{}, speechSynthesis:{getVoices:()=>[],addEventListener:noop},
   });
@@ -1214,5 +1214,25 @@ test('all 17 final exercises open the recap automatically, including after corre
   assert.equal(run('G.ended'),true);
   assert.equal(run('gUnitComplete(gUnit())'),true);
   assert.ok(run('gPlayerView()').includes('Поздравляю! Урок пройден!'));
+ }
+});
+
+test('opening grammar from home always shows the list while preserving the saved lesson',()=>{
+ const handlers={},storage=new Map(),run=context([unit],storage,handlers);
+ run(`gStart(COURSE.grammar[0].id,'section:0');gMove(1);gPick(0);gExit();view.tab='home';render=()=>{};window.scrollTo=()=>{};`);
+ const saved=storage.get('espanol-cada-dia.grammar-session.v1');
+ assert.equal(run('view.grammar'),unit.id);
+ const click=dataset=>handlers.click({target:{closest:s=>s==='button, .spoiler, [data-say], [data-line]'?{dataset,classList:{contains:()=>false}}:null,classList:{contains:()=>false}}});
+ for(let i=0;i<3;i++){
+  click({tab:'grammar'});
+  assert.equal(run('view.grammar'),null);
+  assert.equal(run('view.tab'),'grammar');
+  assert.ok(run('grammarView()').includes(`data-grammar="${unit.id}"`));
+  assert.ok(!run('grammarView()').includes('Все уроки грамматики'));
+  assert.equal(storage.get('espanol-cada-dia.grammar-session.v1'),saved);
+  click({grammar:unit.id});
+  assert.equal(run('view.grammar'),unit.id);
+  assert.ok(run('grammarView()').includes('Продолжить урок'));
+  click({tab:'home'});
  }
 });
