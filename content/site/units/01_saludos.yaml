@@ -61,12 +61,12 @@ lessons:
           Слово **y** значит «и» или «а».
           В значении «а» оно помогает вежливо вернуть вопрос собеседнику: _¿Y tú?_ — «А ты?», _Bien, ¿y tú?_ — «Хорошо, а ты?», _Muy bien, gracias. ¿Y tú?_ — «Очень хорошо, спасибо. А ты?»
           В значении «и» оно соединяет слова: _Carmen y Carlos_ — «Кармен и Карлос», _el queso y el vino_ — «сыр и вино», _el café y el chocolate_ — «кофе и шоколад».
-      - examples:
+      - dialogue:
           title: Короткий разговор
-          items:
-            - "¡Hola! ¿Qué tal? — Привет! Как дела?"
-            - "Muy bien, gracias. ¿Y tú? — Очень хорошо, спасибо. А ты?"
-            - "Bien. — Хорошо."
+          lines:
+            - "Lucía: ¡Hola! ¿Qué tal? | Привет! Как дела?"
+            - "Pablo: Muy bien, gracias. ¿Y tú? | Очень хорошо, спасибо. А ты?"
+            - "Lucía: Bien. | Хорошо."
       - exercise:
           title: Ответьте
           items:
@@ -87,16 +87,17 @@ lessons:
       - "👩 la señora [сэньо́ра] — госпожа, сеньора :: Buenas tardes, señora López. — Добрый день, сеньора Лопес."
     blocks:
       - "Посмотрите на два разговора. Чем они отличаются?"
-      - examples:
+      - dialogue:
           title: С другом
-          items:
-            - "¡Hola, Pablo! ¿Cómo estás? — Привет, Пабло! Как ты?"
-            - "Bien, gracias. ¿Y tú? — Хорошо, спасибо. А ты?"
-      - examples:
+          lines:
+            - "Lucía: ¡Hola, Pablo! ¿Cómo estás? | Привет, Пабло! Как ты?"
+            - "Pablo: Bien, gracias. ¿Y tú? | Хорошо, спасибо. А ты?"
+      - dialogue:
           title: С пожилым соседом
-          items:
-            - "Buenos días, señor García. ¿Cómo está usted? — Доброе утро, сеньор Гарсия. Как вы поживаете?"
-            - "Muy bien, gracias. ¿Y usted? — Очень хорошо, спасибо. А вы?"
+          join: true
+          lines:
+            - "Lucía: Buenos días, señor García. ¿Cómo está usted? | Доброе утро, сеньор Гарсия. Как вы поживаете?"
+            - "Señor García: Muy bien, gracias. ¿Y usted? | Очень хорошо, спасибо. А вы?"
       - header: Ты или вы?
       - compare:
           cards:

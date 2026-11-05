@@ -1202,17 +1202,20 @@ function theoryScreens(L) {
   const screens = []; let cur = [], weight = 0;
   const flush = () => { if (cur.length) screens.push(cur); cur = []; weight = 0; };
   const onlyHeader = () => cur.length && cur.every(b => b.t === "header");
-  for (const b of L.blocks) {
-    if (b.t === "exercise") { flush(); screens.push({ ex: b }); continue; }
+  L.blocks.forEach((b, k) => {
+    if (b.t === "exercise") { flush(); screens.push({ ex: b }); return; }
     const w = visLen(b);
-    if (b.join && cur.length) { cur.push(b); weight += w; continue; }   // «join: true» в уроке сайта — тот же экран
+    if (b.join && cur.length) { cur.push(b); weight += w; return; }   // «join: true» в уроке сайта — тот же экран
     // Короткое вступление («Прочитайте диалог вслух…») остаётся на одном экране с диалогом.
     const lead = ["dialogue", "reading"].includes(b.t) && weight < 400;
+    // Вопрос в одну строку («Посмотрите на два разговора. Чем они отличаются?») не отрывается от диалога даже длинного.
+    const tiny = lead && cur.length === 1 && cur[0].t === "text" && String(cur[0].html || "").replace(/<[^>]+>/g, "").length < 120;
     const own = ["header", "rule", "note", "table", "conjugation", "dialogue", "reading", "examples", "compare"].includes(b.t);
-    if (!onlyHeader() && ((own && !lead) || weight + w > (b.t === "text" && w < 250 ? 1200 : 450))) flush();
+    if (!onlyHeader() && !tiny && ((own && !lead) || weight + w > (b.t === "text" && w < 250 ? 1200 : 450))) flush();
     cur.push(b); weight += w;
-    if (["dialogue", "reading"].includes(b.t)) flush();
-  }
+    // После диалога — новый экран, если следующий блок не просится на этот же (два коротких разговора рядом).
+    if (["dialogue", "reading"].includes(b.t) && !L.blocks[k + 1]?.join) flush();
+  });
   flush();
   return screens;
 }
