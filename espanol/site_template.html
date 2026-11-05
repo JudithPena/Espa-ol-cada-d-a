@@ -345,8 +345,20 @@ main { padding-block: 16px 110px; }
 .dlg-now { font-size: 13px; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; }
 .dlg [hidden] { display: none; }   /* иначе display: grid у .dlg-lines показывает скрытый текст задания на слух */
 .dlg-lines { display: grid; gap: 4px; }
-.msg { display: grid; gap: 1px; max-width: 88%; justify-self: start; }
-.msg.r { justify-self: end; }
+.msg { display: grid; grid-template-columns: 34px minmax(0, 1fr); column-gap: 6px; row-gap: 1px; max-width: 92%; justify-self: start; }
+.msg.r { justify-self: end; grid-template-columns: minmax(0, 1fr) 34px; }
+.msg > .who, .msg > .bubble { grid-column: 2; }
+.msg.r > .who, .msg.r > .bubble { grid-column: 1; }
+/* аватар персонажа (content/art/avatars) или нейтральная иконка; у правого собеседника — справа */
+.ava { grid-column: 1; grid-row: 1 / span 2; align-self: end; width: 34px; height: 34px; border-radius: 50%; overflow: hidden;
+  display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
+.msg.r > .ava { grid-column: 2; }
+.ava img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ava svg { width: 22px; height: 22px; margin-top: 6px; opacity: .75; }
+.msg.t1 .ava { background: var(--sun-soft); color: color-mix(in srgb, var(--sun) 70%, var(--ink)); }
+.msg.t2 .ava { background: var(--good-soft); color: var(--good); }
+.msg.t3 .ava { background: var(--bad-soft); color: var(--bad); }
+.msg.on .ava { box-shadow: 0 0 0 2px var(--accent); }
 .msg .who { font-size: 12px; font-weight: 800; color: var(--accent); padding-inline: 4px; }
 .msg.r .who { text-align: right; }
 .msg.t1 .who { color: color-mix(in srgb, var(--sun) 70%, var(--ink)); } .msg.t2 .who { color: var(--good); } .msg.t3 .who { color: var(--bad); }
@@ -1019,14 +1031,18 @@ const slowBtn = text => `<button class="play slow" data-slow data-say="${esc(tex
 const DLG = { box: null, i: -1, mode: "idle", solo: false, gap: false, timer: 0, via: "audio" };
 const DLG_PAUSE = 650;   // мс между репликами
 const dlgRate = () => P.dlgRate === 0.75 ? 0.75 : 1;
+// Аватар: иллюстрация персонажа (COURSE.avatars[slug]) или нейтральная иконка человека, пока иллюстрации нет.
+const AVATARS = COURSE.avatars || {};
+const AVA_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4.5" fill="currentColor"/><path d="M3 23c0-5.2 4-8.5 9-8.5s9 3.3 9 8.5z" fill="currentColor"/></svg>`;
+const avaHTML = slug => `<span class="ava" aria-hidden="true">${AVATARS[slug] ? `<img src="${AVATARS[slug]}" alt="">` : AVA_ICON}</span>`;
 function dialogueHTML(b, sel = false) {
   const names = [...new Set(b.lines.map(l => l[0]))];
   return `<section class="dlg hide-tr${sel ? " sel" : ""}" data-dlg>
     <button class="dlg-head" data-dlg-pick aria-pressed="${sel}"><span class="ttl">${b.title || "Диалог"}</span><span class="dlg-now" aria-live="polite"></span></button>
     <div ${b.hidden ? "hidden data-hidden-text " : ""}class="dlg-lines">${b.lines.map(([who, es, ru, sp], k) => {
-      const c = b.cast?.[who] || { v: "", g: "f" }, n = names.indexOf(who);
+      const c = b.cast?.[who] || { v: "", g: "f", a: "" }, n = names.indexOf(who);
       return `<div class="msg t${n % 4}${n % 2 ? " r" : ""}" data-say-line="${esc(sp)}" data-voice="${esc(c.v)}" data-g="${c.g}">
-        <span class="who">${esc(who)}</span>
+        ${avaHTML(c.a)}<span class="who">${esc(who)}</span>
         <div class="bubble" data-line="${k}"><span class="es">${es}</span>${canSay(sp) ? `<button class="lplay" data-line="${k}" aria-label="Послушать реплику">▶</button>` : ""}<small>${ru}</small></div>
       </div>`;
     }).join("")}</div>

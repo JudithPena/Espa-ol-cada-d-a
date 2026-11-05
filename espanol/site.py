@@ -65,6 +65,17 @@ ROW_ART = {
 }
 
 
+AVATARS = ART / "avatars"
+
+
+def avatars() -> dict[str, str]:
+    """Аватары персонажей диалогов (content/art/avatars/<slug>.webp) — один раз на страницу, диалоги ссылаются по slug."""
+    if not AVATARS.is_dir():
+        return {}
+    return {f.stem: "data:image/webp;base64," + base64.b64encode(f.read_bytes()).decode()
+            for f in sorted(AVATARS.glob("*.webp"))}
+
+
 def _art_file(slug: str) -> str:
     return "data:image/webp;base64," + base64.b64encode((ART / f"{slug}.webp").read_bytes()).decode()
 
@@ -557,6 +568,7 @@ def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None
         "grammar": load_grammar(),
         "forms": word_forms(course),
         "phrases": word_phrases(course),
+        "avatars": avatars(),
     }
 
 
