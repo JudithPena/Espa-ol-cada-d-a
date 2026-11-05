@@ -166,35 +166,45 @@
       "check": {
         "id": "check-b",
         "title": "Мини-проверка",
-        "instruction": "Образуй множественное число.",
+        "instruction": "Выбери правильный ответ.",
         "questions": [
           {
             "prompt": "casa → ___",
             "answers": [
               "casas"
             ],
-            "explain": "Casa оканчивается на безударную -a: добавляем -s → casas."
+            "explain": "Casa оканчивается на безударную -a: добавляем -s → casas.",
+            "options": [
+              "casas",
+              "casaes",
+              "casa"
+            ]
           },
           {
             "prompt": "clase → ___",
             "answers": [
               "clases"
             ],
-            "explain": "После конечной безударной -e добавляем -s: clase → clases."
+            "explain": "После конечной безударной -e добавляем -s: clase → clases.",
+            "options": [
+              "clase",
+              "clasees",
+              "clases"
+            ]
           },
           {
             "prompt": "mamá → ___",
             "answers": [
               "mamás"
             ],
-            "explain": "После ударной -á добавляем -s. Знак ударения остаётся: mamá → mamás."
+            "explain": "После ударной -á добавляем -s. Знак ударения остаётся: mamá → mamás.",
+            "options": [
+              "mamáes",
+              "mamás",
+              "mamas"
+            ]
           }
-        ],
-        "inputFormat": {
-          "instruction": "Напиши слово во множественном числе без артикля и без числа.",
-          "example": "coches",
-          "placeholder": "Слово во множественном числе"
-        }
+        ]
       },
       "schemeGrid": true,
       "presentation": "comparison",
@@ -251,7 +261,7 @@
       "check": {
         "id": "check-c",
         "title": "Мини-проверка",
-        "instruction": "Напиши одну из допустимых форм множественного числа.",
+        "instruction": "Выбери правильный ответ.",
         "questions": [
           {
             "prompt": "rubí → ___",
@@ -259,7 +269,12 @@
               "rubíes",
               "rubís"
             ],
-            "explain": "Оба варианта правильные: rubíes и rubís. У многих слов на ударную -í можно добавить -es или -s."
+            "explain": "Оба варианта правильные: rubíes и rubís. У многих слов на ударную -í можно добавить -es или -s.",
+            "options": [
+              "rubí",
+              "rubíes",
+              "rubies"
+            ]
           },
           {
             "prompt": "bambú → ___",
@@ -267,7 +282,12 @@
               "bambúes",
               "bambús"
             ],
-            "explain": "Оба варианта правильные: bambúes и bambús."
+            "explain": "Оба варианта правильные: bambúes и bambús.",
+            "options": [
+              "bambúes",
+              "bambú",
+              "bambues"
+            ]
           },
           {
             "prompt": "Образуй множественное число: menú → ___",
@@ -275,14 +295,14 @@
               "menús",
               "menúes"
             ],
-            "explain": "Обычная форма — menús. В некоторых странах Америки употребляют и нормативный вариант menúes."
+            "explain": "Обычная форма — menús. В некоторых странах Америки употребляют и нормативный вариант menúes.",
+            "options": [
+              "menú",
+              "menus",
+              "menús"
+            ]
           }
-        ],
-        "inputFormat": {
-          "instruction": "Напиши слово во множественном числе без артикля и без числа.",
-          "example": "coches",
-          "placeholder": "Слово во множественном числе"
-        }
+        ]
       },
       "schemeGrid": true,
       "presentation": "comparison"
@@ -779,33 +799,43 @@
       "check": {
         "id": "check-i",
         "title": "Мини-проверка",
-        "instruction": "Назови группу одним словом.",
-        "inputFormat": {
-          "instruction": "Впиши одно существительное во множественном числе, без артикля и количества.",
-          "example": "amigos",
-          "placeholder": "Одно слово без артикля"
-        },
+        "instruction": "Выбери правильный ответ.",
         "questions": [
           {
             "prompt": "un hermano + una hermana → dos ___",
             "answers": [
               "hermanos"
             ],
-            "explain": "Брат и сестра вместе — dos hermanos. Для смешанной группы используем мужской род множественного числа. В пропуске нужно только hermanos: dos уже написано."
+            "explain": "Брат и сестра вместе — dos hermanos. Для смешанной группы используем мужской род множественного числа. В пропуске нужно только hermanos: dos уже написано.",
+            "options": [
+              "hermanas",
+              "hermanos",
+              "hermano"
+            ]
           },
           {
             "prompt": "el padre + la madre → los ___",
             "answers": [
               "padres"
             ],
-            "explain": "Отец и мать вместе — los padres, родители. В пропуске нужно только padres: артикль los уже написан."
+            "explain": "Отец и мать вместе — los padres, родители. В пропуске нужно только padres: артикль los уже написан.",
+            "options": [
+              "padres",
+              "madres",
+              "padre"
+            ]
           },
           {
             "prompt": "Три девочки-ученицы: tres ___",
             "answers": [
               "alumnas"
             ],
-            "explain": "Группа состоит только из девочек: tres alumnas, женский род множественного числа. В пропуске нужно только alumnas: tres уже написано."
+            "explain": "Группа состоит только из девочек: tres alumnas, женский род множественного числа. В пропуске нужно только alumnas: tres уже написано.",
+            "options": [
+              "alumnos",
+              "alumna",
+              "alumnas"
+            ]
           }
         ]
       },

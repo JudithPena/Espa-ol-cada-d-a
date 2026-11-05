@@ -241,7 +241,7 @@
       "check": {
         "id": "check-c",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "Выбери правильный ответ.",
         "questions": [
           {
             "prompt": "Trabajo mucho ___ semana.",
@@ -267,14 +267,14 @@
             "explain": "Возвращаемся к 1983 году: ese mismo año. Aquel тоже допустимо при взгляде издалека.",
             "translation": "Ана родилась в том же году.",
             "sourceRef": "mini",
-            "context": "Впиши слово по подсказке."
+            "context": "Выбери слово по подсказке.",
+            "options": [
+              "esa",
+              "ese",
+              "esos"
+            ]
           }
-        ],
-        "inputFormat": {
-          "instruction": "Впиши одно указательное слово в нужной форме. Остальную часть предложения не переписывай.",
-          "example": "estas",
-          "placeholder": "Одно указательное слово"
-        }
+        ]
       },
       "illustration": {
         "image": "art/theory-004-014/012c.webp",

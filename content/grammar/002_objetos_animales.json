@@ -686,7 +686,7 @@
       "check": {
         "id": "check-f",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "Выбери правильный ответ.",
         "questions": [
           {
             "prompt": "Самец жирафа — это…",
@@ -706,7 +706,12 @@
               "el gorila hembra",
               "la gorila"
             ],
-            "explain": "Можно сказать la gorila или el gorila hembra. В современном словаре gorila допускает мужской и женский род; hembra тоже позволяет уточнить пол."
+            "explain": "Можно сказать la gorila или el gorila hembra. В современном словаре gorila допускает мужской и женский род; hembra тоже позволяет уточнить пол.",
+            "options": [
+              "el gorila macho",
+              "el gorila hembra",
+              "la jirafa hembra"
+            ]
           },
           {
             "prompt": "___ pez",
@@ -720,12 +725,7 @@
               "la"
             ]
           }
-        ],
-        "inputFormat": {
-          "instruction": "Назови самку с артиклем la. Можно также использовать el и добавить hembra после названия животного.",
-          "example": "la coneja / el conejo hembra",
-          "placeholder": "Название с артиклем"
-        }
+        ]
       },
       "presentation": "examples"
     },

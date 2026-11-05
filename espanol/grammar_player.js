@@ -2,7 +2,7 @@
 let G = null;
 const G_SESSION_KEY = "espanol-cada-dia.grammar-session.v1";
 const G_ATTEMPTS_KEY = "espanol-cada-dia.grammar-attempts.v1";
-const G_ERROR_LIMIT = 3;
+const gErrorLimit = group => Math.max(3, Math.ceil(group.questions.length / 5));
 function gAttempts() {
   try { const records=JSON.parse(store.get(G_ATTEMPTS_KEY) || '{}'); return records && typeof records==='object' && !Array.isArray(records) ? records : {}; }
   catch (_) { return {}; }
@@ -12,17 +12,26 @@ function gStoreAttempt(unit, group, attempt) {
   const records=gAttempts(); records[grammarKey(unit,group)]=attempt;
   store.set(G_ATTEMPTS_KEY,JSON.stringify(records));
 }
-function gNewAttempt(responses={}) {
+function gNewAttempt(group, responses={}) {
   const errors=Object.values(responses).filter(r=>r.checked && !r.good).length;
-  return {id:Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),errors,status:errors>=G_ERROR_LIMIT?'failed':'active',responses};
+  return {id:Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),errors,limit:gErrorLimit(group),status:errors>=gErrorLimit(group)?'failed':'active',responses};
 }
 function gEnsureAttempt(unit, group) {
   G.attemptIds ||= {};
   let attempt=gAttempt(unit,group);
+  if(attempt && attempt.limit!==gErrorLimit(group)) {
+    // Keep answered questions and mistakes when an older attempt gains lives.
+    if(gErrorLimit(group)>(attempt.limit ?? 3) && attempt.errors<gErrorLimit(group) && ['failed','review'].includes(attempt.status)) {
+      attempt.status='active'; delete attempt.reviewAt;
+      if(G.recovery===group.id) G.recovery=null;
+    }
+    attempt.limit=gErrorLimit(group);
+    gStoreAttempt(unit,group,attempt);
+  }
   if(G.attemptIds[group.id] !== attempt?.id || !attempt) {
     const old=G.responses[group.id] || {};
     if(!attempt || (attempt.status==='passed' && !G.resumed && !G.attemptIds[group.id])) {
-      attempt=gNewAttempt(G.resumed ? old : {});
+      attempt=gNewAttempt(group, G.resumed ? old : {});
       // Completed attempts from before the limit keep their earned progress.
       if(G.resumed && group.questions.every((_,i)=>old[i]?.checked) && P.grammar?.[grammarKey(unit,group)]) attempt.status='passed';
       gStoreAttempt(unit,group,attempt);
@@ -41,6 +50,7 @@ function gFlushAttempt() {
   // A second tab or an older screen cannot overwrite a submitted answer.
   for(const [i,response] of Object.entries(G.responses[groupId])) {
     if(!attempt.responses[i]?.checked) attempt.responses[i]=response;
+    else if(response.correction && !attempt.responses[i].correction?.checked) attempt.responses[i].correction=response.correction;
   }
   G.responses[groupId]=attempt.responses;
   gStoreAttempt(gUnit(),group,attempt);
@@ -66,16 +76,16 @@ function gReviewMove(delta) {
 function gRepeatExercise() {
   const unit=gUnit(), group=gGroups(unit).find(g=>g.id===G.recovery), attempt=group && gAttempt(unit,group);
   if(attempt?.status!=='review' || attempt.reviewAt!==gTheorySections(unit,group).length-1) return;
-  const freshAttempt=gNewAttempt(); gStoreAttempt(unit,group,freshAttempt);
+  const freshAttempt=gNewAttempt(group); gStoreAttempt(unit,group,freshAttempt);
   G.responses[group.id]={}; G.attemptIds[group.id]=freshAttempt.id;
   G.recovery=null; G.retry=false; G.ended=false;
   G.steps=gSteps(unit,G.route);
   G.at=G.steps.findIndex(s=>s.group===group.id);
   gSave(); render();
 }
-function gHearts(attempt) {
-  const left=Math.max(0,G_ERROR_LIMIT-(attempt?.errors||0));
-  return `<span class="ghearts" role="img" aria-label="Осталось попыток: ${left} из 3">${[0,1,2].map(i=>`<span aria-hidden="true"${i>=left?' class="is-empty"':''}>♥</span>`).join('')}</span>`;
+function gHearts(attempt, group) {
+  const limit=gErrorLimit(group), left=Math.max(0,limit-(attempt?.errors||0));
+  return `<span class="ghearts" role="img" aria-label="Осталось попыток: ${left} из ${limit}">${Array.from({length:limit},(_,i)=>`<span aria-hidden="true"${i>=left?' class="is-empty"':''}>♥</span>`).join('')}</span>`;
 }
 function gRecoveryView(unit) {
   const group=gGroups(unit).find(g=>g.id===G.recovery), attempt=gAttempt(unit,group);
@@ -83,7 +93,7 @@ function gRecoveryView(unit) {
     const sections=gTheorySections(unit,group), at=attempt.reviewAt||0, section=unit.sections[sections[at]], last=at===sections.length-1;
     return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><span class="greview-label">Повторение правила</span><span class="pcount">${at+1}/${sections.length}</span></div></div><div class="pbody"><div class="wrap"><span class="kicker">${esc(group.title)} · Повторение</span><h2 id="g-title" tabindex="-1">${esc(section.title)}</h2>${gTheory(section)}</div></div><div class="pfoot"><div class="wrap gplayer-actions"><button class="btn ghost" ${at?'data-greview-back':'data-gexit'}>← Назад</button><button class="btn" ${last?'data-grepeat-exercise':'data-greview-next'}>${last?'Попробовать ещё раз':'Далее →'}</button></div></div></div>`;
   }
-  return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="К разделам урока">×</button><span class="greview-label">${esc(group.title)}</span>${gHearts(attempt)}</div></div><div class="pbody"><div class="wrap gresult gfailed"><span class="gresult-icon" aria-hidden="true">📖</span><h2 id="g-title" tabindex="-1">Пока не получилось. Давай повторим правило!</h2><p>Ты допустил 3 ошибки. Повтори теорию, а затем попробуй пройти упражнение ещё раз.</p><p class="muted">Начнём с правила «${esc(unit.sections[gTheorySections(unit,group)[0]].title)}».</p></div></div><div class="pfoot"><div class="wrap"><button class="btn wide" data-greview-theory>Повторить теорию</button></div></div></div>`;
+  return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="К разделам урока">×</button><span class="greview-label">${esc(group.title)}</span>${gHearts(attempt, group)}</div></div><div class="pbody"><div class="wrap gresult gfailed"><span class="gresult-icon" aria-hidden="true">📖</span><h2 id="g-title" tabindex="-1">Пока не получилось. Давай повторим правило!</h2><p>Лимит ошибок исчерпан (${gErrorLimit(group)}). Повтори теорию, а затем попробуй пройти упражнение ещё раз.</p><p class="muted">Начнём с правила «${esc(unit.sections[gTheorySections(unit,group)[0]].title)}».</p></div></div><div class="pfoot"><div class="wrap"><button class="btn wide" data-greview-theory>Повторить теорию</button></div></div></div>`;
 }
 const gUnit = () => (COURSE.grammar || []).find(u => u.id === G?.unit);
 function gSyncViewport() {
@@ -135,7 +145,7 @@ function gStart(unitId, route = "all", resume = false) {
     const restoredRoute=gRouteOpen(unit,saved.route)?saved.route:'all';
     const reordered=saved.retry && restoredRoute===saved.route ? saved.steps : gSteps(unit,restoredRoute);
     const old=saved.steps[saved.at];
-    let at=reordered.findIndex(s=>s.type===old.type && s.section===old.section && s.group===old.group && s.qi===old.qi);
+    let at=reordered.findIndex(s=>s.type===old.type && s.section===old.section && s.group===old.group && s.qi===old.qi && !!s.correction===!!old.correction);
     if(at<0 || !gRouteOpen(unit,gStepRoute(unit,reordered[at]))) at=reordered.findIndex(s=>gRouteOpen(unit,gStepRoute(unit,s)) && !gRouteDone(unit,gStepRoute(unit,s)));
     G={...saved,route:restoredRoute,steps:reordered,at:Math.max(0,at),responses:saved.responses || {},attemptIds:{},resumed:true};
   }
@@ -152,7 +162,7 @@ function gResponse(step) {
   const response=G.responses[step.group][step.qi] ||= {value:"", checked:false};
   const q=gGroups(gUnit()).find(g=>g.id===step.group)?.questions[step.qi];
   if(Array.isArray(response.chosen) && q?.tiles && response.chosen.map(i=>q.tiles[i]).join(' ')!==response.value) delete response.chosen;
-  return response;
+  return step.correction ? (response.correction ||= {value:'',checked:false}) : response;
 }
 function gCheck() {
   if(!G || G.ended || G.recovery) return;
@@ -160,6 +170,18 @@ function gCheck() {
   if (!response || response.checked || !response.value.trim()) return;
   const unit = gUnit(), group = gGroups(unit).find(g => g.id === step.group);
   const attempt=gAttempt(unit,group);
+  if(step.correction) {
+    if(!['correcting','passed'].includes(attempt.status)) return;
+    if(attempt.responses[step.qi]?.correction?.checked) { G.responses[group.id]=attempt.responses; return; }
+    response.checked=true; response.good=grammarCorrect(group.questions[step.qi],response.value);
+    attempt.responses[step.qi].correction=response;
+    if(group.questions.every((_,i)=>attempt.responses[i]?.good || attempt.responses[i]?.correction?.good)) {
+      attempt.status='passed'; gStoreAttempt(unit,group,attempt);
+      gradeGrammar(unit,group,group.questions.map((_,i)=>attempt.responses[i].value));
+    }
+    G.responses[group.id]=attempt.responses; gStoreAttempt(unit,group,attempt);
+    gSave(); render(); sfx(response.good); return;
+  }
   if(attempt.status!=='active') { gSave(); render(); return; }
   if(attempt.responses[step.qi]?.checked) {
     G.responses[group.id]=attempt.responses; gSave(); render(); return;
@@ -168,8 +190,8 @@ function gCheck() {
   response.good = grammarCorrect(group.questions[step.qi], response.value);
   attempt.responses[step.qi]=response;
   if(!response.good) attempt.errors++;
-  if(attempt.errors>=G_ERROR_LIMIT) { attempt.status='failed'; G.recovery=group.id; }
-  else if(group.questions.every((_,i)=>attempt.responses[i]?.checked)) attempt.status='passed';
+  if(attempt.errors>=gErrorLimit(group)) { attempt.status='failed'; G.recovery=group.id; }
+  else if(group.questions.every((_,i)=>attempt.responses[i]?.checked)) attempt.status=attempt.errors?'correcting':'passed';
   G.responses[group.id]=attempt.responses;
   gStoreAttempt(unit,group,attempt);
   if (attempt.status==='passed') {
@@ -255,6 +277,18 @@ function gMove(delta) {
   if (delta > 0 && (step.type === "summary" || (step.type === "theory" && !gUnit().sections[step.section].check))) {
     P.grammarRead ||= {}; P.grammarRead[`${G.unit}/${gStepRoute(gUnit(),step)}`] = true; save();
   }
+  if(delta>0 && step.type==='question') {
+    const group=gGroups(gUnit()).find(g=>g.id===step.group), attempt=gAttempt(gUnit(),group);
+    if(step.correction && !gResponse(step).good) {
+      delete attempt.responses[step.qi].correction;
+      G.responses[group.id]=attempt.responses; gStoreAttempt(gUnit(),group,attempt);
+      gSave(); render(); return;
+    }
+    if(!step.correction && attempt.status==='correcting' && !G.steps.some(s=>s.group===group.id && s.correction)) {
+      const wrong=group.questions.flatMap((_,qi)=>attempt.responses[qi].good?[]:[{type:'question',group:group.id,qi,correction:true}]);
+      G.steps.splice(G.at+1,0,...wrong); G.retry=true;
+    }
+  }
   const target = G.steps[G.at + delta];
   if (target && !gRouteOpen(gUnit(), gStepRoute(gUnit(),target))) return;
   if (delta > 0 && G.at === G.steps.length - 1) G.ended = true;
@@ -263,17 +297,17 @@ function gMove(delta) {
 }
 function gExit() { gSave(); G = null; view.tab = "grammar"; render(); }
 function gRetry() {
-  if(G.recovery) return;
-  const wrong = G.steps.filter(s => s.type === "question" && !G.responses[s.group]?.[s.qi]?.good);
-  if (!wrong.length) return;
-  for (const id of new Set(wrong.map(s=>s.group))) {
+  if(!G || !G.ended || G.recovery) return;
+  const wrong=G.steps.filter(s=>s.type==='question' && !s.correction && !G.responses[s.group]?.[s.qi]?.good);
+  if(!wrong.length) return;
+  for(const id of new Set(wrong.map(s=>s.group))) {
     const group=gGroups(gUnit()).find(g=>g.id===id), attempt=gEnsureAttempt(gUnit(),group);
-    if(attempt.errors>=G_ERROR_LIMIT) { attempt.status='failed'; gStoreAttempt(gUnit(),group,attempt); G.recovery=id; gSave(); render(); return; }
-    attempt.status='active';
-    for(const s of wrong.filter(s=>s.group===id)) attempt.responses[s.qi]={value:'',checked:false};
-    G.responses[id]=attempt.responses; gStoreAttempt(gUnit(),group,attempt);
+    if(attempt.errors>=gErrorLimit(group)) return;
+    for(const s of wrong.filter(s=>s.group===id)) delete attempt.responses[s.qi].correction;
+    attempt.status='correcting'; G.responses[id]=attempt.responses; gStoreAttempt(gUnit(),group,attempt);
   }
-  G.steps = wrong; G.at = 0; G.ended = false; G.retry = true; gSave(); render();
+  G.steps=wrong.map(s=>({...s,correction:true})); G.at=0; G.ended=false; G.retry=true;
+  gSave(); render();
 }
 function gNextRoute(unit, route) {
   const routes = gRoutes(unit);
@@ -291,6 +325,7 @@ function gSubmitGrammarForm(unit, group, values) {
     if(G.recovery || !response.checked) break;
   }
   if(!G.recovery && gAttempt(unit,group)?.status==='passed') G.ended=true;
+  else if(!G.recovery && gAttempt(unit,group)?.status==='correcting') gMove(1);
   gSave(); render();
 }
 function grammarView() {
@@ -363,7 +398,6 @@ function gFinalView(unit, tested, good) {
   return `<div class="player gplayer gfinal"><div class="ptop"><div class="wrap"><button class="x" data-gmain aria-label="На главную">×</button><div class="bar"><i style="width:100%"></i></div><span class="pcount">✓</span></div></div>
     <div class="pbody">${gFireworks()}<div class="wrap gresult"><span class="gresult-icon" aria-hidden="true">🏆</span><span class="kicker" lang="es">¡Enhorabuena!</span><h2 id="g-title" tabindex="-1">Поздравляю! Урок пройден!</h2><p>${esc(unit.title)} · ${esc(unit.subtitle)}</p>
     <div class="gfinal-score"><b>${unit.exercises.length} упражнения завершены</b><span>Лучший результат: ${correct} из ${total}</span></div>
-    ${tested.length && good<tested.length ? '<button class="btn ghost wide" data-gretry-mistakes>Повторить ошибки</button>' : ""}
     ${nextUnit ? `<button class="btn wide" data-gnext-unit="${esc(nextUnit.id)}">Следующий урок →</button><button class="btn ghost wide" data-gmain>На главную</button>` : '<button class="btn wide" data-gmain>На главную</button>'}
     <button class="btn ghost wide" data-gexit>К разделам урока</button></div></div><div></div></div>`;
 }
@@ -415,10 +449,10 @@ function gPlayerView() {
   const attempt=currentGroup && !G.ended ? gEnsureAttempt(unit,currentGroup) : null;
   if(G.recovery) return gRecoveryView(unit);
   if (G.ended) {
-    const tested = G.steps.filter(s => s.type === "question"), good = tested.filter(s => G.responses[s.group]?.[s.qi]?.good).length;
+    const tested = G.steps.filter(s => s.type === "question" && !s.correction), good = tested.filter(s => G.responses[s.group]?.[s.qi]?.good).length;
     if (gUnitFinished(unit)) return gFinalView(unit, tested, good);
     const next = gNextRoute(unit, G.route);
-    return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="К разделам урока">×</button><div class="bar"><i style="width:100%"></i></div></div></div><div class="pbody"><div class="wrap gresult"><span class="gresult-icon">${tested.length && good < tested.length ? "🌱" : "✓"}</span><h2 id="g-title" tabindex="-1">${tested.length ? "Практика завершена" : "Раздел прочитан"}</h2>${tested.length ? `<p>Верно: <b>${good} из ${tested.length}</b></p>` : ""}<p class="muted">Лучшие результаты сохранены.</p>${good < tested.length ? '<button class="btn" data-gretry-mistakes>Повторить ошибки</button>' : ""}${next ? `<button class="btn ${good < tested.length ? "ghost" : ""}" data-gstart="${esc(next)}">Следующий раздел →</button>` : ""}<button class="btn ghost" data-gexit>К разделам урока</button></div></div><div></div></div>`;
+    return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="К разделам урока">×</button><div class="bar"><i style="width:100%"></i></div></div></div><div class="pbody"><div class="wrap gresult"><span class="gresult-icon">${tested.length && good < tested.length ? "🌱" : "✓"}</span><h2 id="g-title" tabindex="-1">${tested.length ? "Практика завершена" : "Раздел прочитан"}</h2>${tested.length ? `<p>С первого раза: <b>${good} из ${tested.length}</b></p>` : ""}<p class="muted">Лучшие результаты сохранены.</p>${next ? `<button class="btn ${good < tested.length ? "ghost" : ""}" data-gstart="${esc(next)}">Следующий раздел →</button>` : ""}<button class="btn ghost" data-gexit>К разделам урока</button></div></div><div></div></div>`;
   }
   const step = G.steps[G.at], group = step.group && gGroups(unit).find(g => g.id === step.group), response = gResponse(step);
   let title, content, kicker = "Грамматика";
@@ -431,6 +465,7 @@ function gPlayerView() {
   if (step.type === "question") {
     const q = group.questions[step.qi], block = (group.questionBlocks || []).filter(b => b.at <= step.qi).at(-1);
     kicker = `${group.title === "Мини-проверка" ? "Мини-проверка" : group.title} · ${step.qi + 1} из ${group.questions.length}`;
+    if(step.correction) kicker="Работа над ошибками";
     title = q.context || (group.inlineAnswer ? "Дополни фразу" : q.image ? (group.pictureTitle || "Выбери название профессии") : q.prompt);
     const who = block ? `<div class="gwho"><img src="${esc(group.family.portraits[block.person])}" alt="" width="44" height="44"><b>Родственники ${esc(block.person)}</b></div>` : "";
     const mode=gQuestionMode(q,response);
@@ -446,8 +481,8 @@ function gPlayerView() {
     if (group.title === "Мини-проверка" && group.instruction) content = `<p class="muted ginstruction">${esc(group.instruction.replace(/ Затем нажми.*$/, ""))}</p>` + content;
   }
   const checked = response?.checked;
-  const feedback = checked ? `<div class="fb" role="status"><h3>${response.good ? "✓ Верно" : "Пока неверно"}</h3>${!response.good && attempt?.errors===2 ? '<p class="glast-chance">Осталась последняя попытка. Ещё одна ошибка — и вернёмся к правилу.</p>' : ''}${response.good ? "" : `<span class="ans">Верный ответ: ${esc(response.slotValues ? group.questions[step.qi].answers[0] : group.questions[step.qi].answers.map(a=>gOptionLabel(group.questions[step.qi],a)).join(" / "))}</span>`}<span class="ex">${esc(group.questions[step.qi].explain)}</span></div>` : "";
-  return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><div class="bar" role="progressbar" aria-label="Прогресс урока" aria-valuemin="0" aria-valuemax="${G.steps.length}" aria-valuenow="${G.at}"><i style="width:${Math.round(G.at / G.steps.length * 100)}%"></i></div>${attempt ? gHearts(attempt) : ''}<span class="pcount">${G.at + 1}/${G.steps.length}</span></div></div>
+  const feedback = checked ? `<div class="fb" role="status"><h3>${response.good ? "✓ Верно" : "Пока неверно"}</h3>${!step.correction && !response.good && attempt?.errors===gErrorLimit(group)-1 ? '<p class="glast-chance">Осталась последняя попытка. Ещё одна ошибка — и вернёмся к правилу.</p>' : ''}${response.good ? "" : `<span class="ans">Верный ответ: ${esc(response.slotValues ? group.questions[step.qi].answers[0] : group.questions[step.qi].answers.map(a=>gOptionLabel(group.questions[step.qi],a)).join(" / "))}</span>`}<span class="ex">${esc(group.questions[step.qi].explain)}</span></div>` : "";
+  return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><div class="bar" role="progressbar" aria-label="Прогресс урока" aria-valuemin="0" aria-valuemax="${G.steps.length}" aria-valuenow="${G.at}"><i style="width:${Math.round(G.at / G.steps.length * 100)}%"></i></div>${step.correction ? '<span class="muted">Жизни не тратятся</span>' : attempt ? gHearts(attempt, group) : ''}<span class="pcount">${G.at + 1}/${G.steps.length}</span></div></div>
     <div class="pbody"><div class="wrap"><span class="kicker">${esc(kicker)}</span><h2 id="g-title" tabindex="-1">${esc(title)}</h2>${content}</div></div>
-    <div class="pfoot ${checked ? response.good ? "good" : "bad" : ""}"><div class="wrap">${feedback}<div class="gplayer-actions"><button class="btn ghost" data-gback${G.at ? "" : ' aria-label="Назад к разделам урока"'}>← Назад</button>${step.type === "question" && !checked ? gQuestionMode(group.questions[step.qi],response)==='choice' ? '<span class="muted gpick-hint">Нажми на вариант ответа</span>' : `<button class="btn" data-gcheck ${response.value.trim() ? "" : "disabled"}>Проверить</button>` : `<button class="btn" data-gnext>${G.at === G.steps.length - 1 ? "Завершить" : step.type === "intro" ? "Начать" : "Далее →"}</button>`}</div></div></div></div>`;
+    <div class="pfoot ${checked ? response.good ? "good" : "bad" : ""}"><div class="wrap">${feedback}<div class="gplayer-actions"><button class="btn ghost" data-gback${G.at ? "" : ' aria-label="Назад к разделам урока"'}>← Назад</button>${step.type === "question" && !checked ? gQuestionMode(group.questions[step.qi],response)==='choice' ? '<span class="muted gpick-hint">Нажми на вариант ответа</span>' : `<button class="btn" data-gcheck ${response.value.trim() ? "" : "disabled"}>Проверить</button>` : `<button class="btn" data-gnext>${step.correction && checked && !response.good ? "Попробовать ещё раз" : !step.correction && attempt?.status==='correcting' ? "К ошибкам →" : G.at === G.steps.length - 1 ? "Завершить" : step.type === "intro" ? "Начать" : "Далее →"}</button>`}</div></div></div></div>`;
 }
