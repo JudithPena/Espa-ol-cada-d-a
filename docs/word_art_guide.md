@@ -83,3 +83,23 @@ Camarero — man about 40, short black hair, white shirt, black waistcoat and bo
 7. el hospital — a small white hospital building with a red cross.
 8. la escuela — a small school building with a clock above the door.
 9. la oficina — an office desk with a computer monitor, a plant and a mug.
+
+## Лист 5 — ещё вещи (темы 5–6)
+
+Порядок: `puerta ventana reloj lampara lapiz botella gafas dinero restaurante`
+
+Ключи в `ART_SLUGS`: la puerta, la ventana, el reloj, la lámpara, el lápiz, la botella, las gafas, el dinero, el restaurante.
+
+## Лист 6 — семья (тема 7)
+
+Порядок: `familia padre madre hermano hijo abuelo marido novio gato`
+
+Ключи: la familia, el padre, la madre, el hermano / la hermana, el hijo / la hija, el abuelo / la abuela, el marido, el novio / la novia, el gato.
+
+## Лист 7 — работа и учёба (тема 6)
+
+Порядок: `trabajar estudiar universidad periodista abogado enfermero cocinero escuchar cocinar`
+
+Ключи: trabajar, estudiar, la universidad, el/la periodista, el abogado / la abogada, el enfermero / la enfermera, el cocinero / la cocinera, escuchar, cocinar.
+
+Полные тексты промптов листов 5–7 — в истории чата с автором от 5 ноября (тот же общий стиль, что у листов 1–4).

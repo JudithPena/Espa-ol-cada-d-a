@@ -1751,7 +1751,7 @@ function blockHTML(b) {
 // Карточка слова: картинка (рядом или над словом — по типу слова) или значок, слово, транскрипция, «Слушать» и
 // «Медленно», перевод. «На заметку» — только важное (noteMain), остальное свёрнуто в «Подробнее» (noteMore).
 function wordCard(w) {
-  const compact = w.img && ["noun", "adj", "word", "num"].includes(w.pos) && w.es.length <= 20;
+  const compact = w.img && !w.imgBig && ["noun", "adj", "word", "num"].includes(w.pos) && w.es.length <= 20;
   const kind = !w.img ? "emo" : compact ? "compact" : "big";
   const more = w.noteMore || [];
   return `<div class="wcard ${kind}">
