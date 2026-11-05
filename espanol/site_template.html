@@ -848,6 +848,12 @@ html.grammar-playing, html.grammar-playing body { overflow: hidden; }
 .gplayer.is-short .gaccents { gap: 4px; }
 .gplayer.is-short .pfoot .fb { max-height: 90px; }
 .pfoot.almost, .gfeedback.almost { background: var(--sun-soft); border-color: var(--sun); }
+.opt.almost, .gchoice.almost, .gchoice.almost:has(input:checked) { background: var(--sun-soft); border-color: var(--sun); }
+.gchoice.right, .gchoice.right:has(input:checked) { background: var(--good-soft); border-color: var(--good); }
+.gchoice.wrong, .gchoice.wrong:has(input:checked) { background: var(--bad-soft); border-color: var(--bad); }
+.goption-label { min-width: 0; overflow-wrap: anywhere; }
+.goption-status { display: block; margin-top: 2px; font-size: 12px; line-height: 1.4; }
+.gchoices.has-warnings .opt { flex-basis: 130px; }
 .pfoot.almost .fb h3 { color: var(--ink); }
 .gaccent-hint { margin: 6px 0; line-height: 1.6; }
 .gmissing-accent { background: var(--sun); color: #18203d; padding: 1px 3px; border-radius: 3px; text-decoration: underline; text-underline-offset: 4px; }
@@ -1588,11 +1594,31 @@ const grammarNormalize = value => {
   return ['∅','—','–','-'].includes(normalized) ? 'без артикля' : normalized;
 };
 const grammarCorrect = (q, value) => q.answers.some(a => grammarNormalize(a) === grammarNormalize(value));
+function grammarAcceptedResult(q, answer) {
+  const warning=q.answerWarnings?.[answer];
+  return warning ? {status:'almost',good:true,reason:'variant',warning} : {status:'correct',good:true};
+}
+function grammarFeedbackTitle(result) {
+  return result.status==='almost' ? (result.warning?.message || 'Почти правильно!') : result.good ? '✓ Верно' : 'Пока неверно';
+}
+function grammarFeedbackExplanation(q, result) {
+  return result.warning?.explanation || q.explain;
+}
+function grammarChoiceClass(q, value, selected, checked, group={}) {
+  if(!checked) return '';
+  const result=grammarResult(q,value,group,false);
+  return result.good ? result.status==='almost'?'almost':'right' : grammarNormalize(value)===grammarNormalize(selected)?'wrong':'';
+}
+function grammarChoiceNote(q, value, checked) {
+  if(!checked || !q.answerWarnings || !grammarCorrect(q,value))return '';
+  return `<small class="goption-status">${grammarResult(q,value,{},false).status==='almost'?'Допустимо':'Рекомендуется'}</small>`;
+}
 // Only omitted acute accents can be forgiven; ñ, ü and extra/moved accents stay significant.
 const G_ACCENT_PAIRS = {'á':'a','é':'e','í':'i','ó':'o','ú':'u'};
 const G_ACCENT_MEANING = new Set(['sí','tú','él','mí','té','dé','sé','más','aún','qué','quién','quiénes','cuál','cuáles','cómo','cuándo','cuánto','cuánta','cuántos','cuántas','dónde','adónde','está','estás','esté','estés','estén']);
 function grammarResult(q, value, group={}, manual=!q.options && !q.tiles && !q.guidedGaps) {
-  if(grammarCorrect(q,value)) return {status:'correct',good:true};
+  const accepted=q.answers.find(a=>grammarNormalize(a)===grammarNormalize(value));
+  if(accepted!==undefined) return grammarAcceptedResult(q,accepted);
   const wrong={status:'wrong',good:false};
   if(!manual || q.accentSensitive || group.accentSensitive || /ударени|тильд|acento|tilde/i.test([q.prompt,group.title,group.instruction].join(' '))) return wrong;
   const entered=grammarNormalize(value);
@@ -1608,12 +1634,12 @@ function grammarResult(q, value, group={}, manual=!q.options && !q.tiles && !q.g
     if(!valid || !missing.length)continue;
     const tokens=[...expected.matchAll(/[\p{L}\p{M}]+/gu)];
     if(tokens.some(t=>G_ACCENT_MEANING.has(t[0]) && missing.some(m=>m.index>=t.index && m.index<t.index+t[0].length)))continue;
-    return {status:'almost',good:true,corrected:answer,missing};
+    return {...grammarAcceptedResult(q,answer),status:'almost',good:true,reason:'accent',corrected:answer,missing};
   }
   return wrong;
 }
 function grammarAccentHint(result) {
-  if(result.status!=='almost')return '';
+  if(result.status!=='almost' || !result.missing?.length)return '';
   const positions=new Set(result.missing.map(m=>m.index));
   const canonical=String(result.corrected).normalize('NFC').trim().replace(/\s+/g,' ');
   const marked=[...canonical].map((c,i)=>positions.has(i)?`<mark class="gmissing-accent">${esc(c)}</mark>`:esc(c)).join('');
@@ -1694,9 +1720,9 @@ function grammarForm(unit, group) {
         <fieldset class="gquestion"><legend>${esc(q.context || q.prompt)}</legend>
         ${q.context ? `<p class="gquestion-sentence" lang="es">${esc(q.prompt)}</p>` : ""}
         ${q.image ? `<img class="gillustration" src="${esc(q.image)}" alt="${esc(q.imageAlt || "")}" width="384" height="384" loading="lazy">` : ""}
-        ${q.options ? `<div class="gchoices">${q.options.map(o => `<label class="gchoice"><input type="radio" name="q${i}" value="${esc(o)}" aria-label="${esc(o === 'Без артикля' ? 'Ничего не вставлять' : gOptionLabel(q,o))}" required ${value === o ? "checked" : ""} ${attempt ? "disabled" : ""}><span lang="es">${esc(gOptionLabel(q,o))}</span></label>`).join("")}</div>`
+        ${q.options ? `<div class="gchoices">${q.options.map(o => `<label class="gchoice ${grammarChoiceClass(q,o,value,!!attempt,group)}"><input type="radio" name="q${i}" value="${esc(o)}" aria-label="${esc(o === 'Без артикля' ? 'Ничего не вставлять' : gOptionLabel(q,o))}" required ${value === o ? "checked" : ""} ${attempt ? "disabled" : ""}><span class="goption-label"><span lang="es">${esc(gOptionLabel(q,o))}</span>${grammarChoiceNote(q,o,!!attempt)}</span></label>`).join("")}</div>`
           : `${grammarInputHelp(q,group,`g-format-${group.id}-${i}`)}<input class="ginput" name="q${i}" aria-describedby="g-format-${esc(group.id)}-${i}" placeholder="${esc(grammarInputPlaceholder(q,group))}" aria-label="${esc(q.context ? q.context + " " + q.prompt : q.prompt)}" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" required value="${esc(value)}" ${attempt ? "disabled" : ""}>${attempt ? "" : `<div class="gaccents" aria-label="Испанские буквы">${gInputChars(q).map(c => `<button type="button" class="btn ghost sm" data-gaccent="${c}" data-ginput="q${i}" aria-label="Вставить ${c}">${c}</button>`).join("")}</div>`}`}
-        ${attempt ? `<div class="gfeedback ${result.status==='almost'?'almost':good ? "good" : ""}"><b>${result.status==='almost'?'Почти правильно!':good ? "✓ Верно" : `✗ Верный ответ: ${esc(q.answers.join(" / "))}`}</b>${grammarAccentHint(result)}<p>${esc(q.explain)}</p></div>` : ""}</fieldset>`;
+        ${attempt ? `<div class="gfeedback ${result.status==='almost'?'almost':good ? "good" : ""}"><b>${result.status==='almost'?esc(grammarFeedbackTitle(result)):good ? "✓ Верно" : `✗ Верный ответ: ${esc(q.answers.join(" / "))}`}</b>${grammarAccentHint(result)}<p>${esc(grammarFeedbackExplanation(q,result))}</p></div>` : ""}</fieldset>`;
     }).join("")}
     <div class="gsummary" role="status" tabindex="-1">${attempt ? `Правильно: ${attempt.correct} из ${group.questions.length}` : ""}</div>
     ${attempt ? `<button type="button" class="btn ghost" data-gretry="${esc(group.id)}">Пройти ещё раз</button>` : '<button type="submit" class="btn">Проверить ответы</button>'}

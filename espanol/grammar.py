@@ -93,6 +93,18 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
                     raise ValueError(f"{path}: answer and explanation required")
                 if q.get("options") and not set(q["answers"]) <= set(q["options"]):
                     raise ValueError(f"{path}: correct answer missing from options")
+                if 'answerWarnings' in q:
+                    warnings = q['answerWarnings']
+                    if (not isinstance(warnings, dict) or not warnings
+                            or not set(warnings) <= set(q['answers'])
+                            or any(not isinstance(warning, dict)
+                                   or warning.get('preferred') not in q['answers']
+                                   or warning.get('preferred') in warnings
+                                   or any(not isinstance(warning.get(key), str) or not warning[key].strip()
+                                          for key in ('message', 'explanation', 'source'))
+                                   or not warning['source'].startswith('https://')
+                                   for warning in warnings.values())):
+                        raise ValueError(f"{path}: answer warnings require an accepted variant, a preferred green answer, feedback and source")
                 if "optionLabels" in q:
                     labels = q["optionLabels"]
                     if (not isinstance(labels, dict) or not q.get("options")

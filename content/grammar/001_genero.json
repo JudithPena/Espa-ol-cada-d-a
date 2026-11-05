@@ -704,7 +704,15 @@
           ],
           "explain": "Оба варианта верны: la piloto и la pilota. La piloto более распространено; RAE также допускает la pilota.",
           "imageAlt": "Женщина управляет самолётом.",
-          "image": "art/001/07-piloto.webp"
+          "image": "art/001/07-piloto.webp",
+          "answerWarnings": {
+            "la pilota": {
+              "preferred": "la piloto",
+              "message": "Допустимо, но чаще говорят la piloto.",
+              "explanation": "La pilota — допустимая женская форма. Чаще используют la piloto: слово piloto остаётся прежним, меняется только артикль.",
+              "source": "https://www.rae.es/espanol-al-dia/el-femenino-de-piloto-es-la-piloto-o-la-pilota"
+            }
+          }
         },
         {
           "prompt": "№ 8",
@@ -780,7 +788,15 @@
             "jefa",
             "jefe"
           ],
-          "explain": "Начальница — чаще la jefa. Можно сказать и la jefe: оба варианта правильные."
+          "explain": "Начальница — чаще la jefa. Можно сказать и la jefe: оба варианта правильные.",
+          "answerWarnings": {
+            "jefe": {
+              "preferred": "jefa",
+              "message": "Допустимо, но чаще говорят la jefa.",
+              "explanation": "La jefe — грамматически допустимый вариант для женщины. Более распространённая женская форма — la jefa.",
+              "source": "https://www.rae.es/dpd/jefe"
+            }
+          }
         },
         {
           "prompt": "el marido → la ___",

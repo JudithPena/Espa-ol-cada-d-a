@@ -763,7 +763,7 @@ test('all typing screens show a persistent format and example without changing g
   })())`));
   typed+=result.typed;legacy+=result.legacy;
  }
- assert.equal(typed,183);assert.equal(legacy,49);
+ assert.equal(typed,180);assert.equal(legacy,49);
 });
 
 test('quantity answers accept digits or words while the field explains the quantity format', () => {
@@ -1395,4 +1395,143 @@ test('theory dialogues keep consecutive speakers and translations together with 
  const caption=run(`gArtExamples(${JSON.stringify(art)})`);
  assert.equal((caption.match(/class="gdialogue-turn"/g)||[]).length,2);
  assert.ok(!caption.includes('gscene-line'));
+});
+
+test('documented rare answers are yellow for both typed input and choice, with green recommendations',()=>{
+ const u4=JSON.parse(fs.readFileSync('content/grammar/004_articulo_indefinido.json','utf8'));
+ const run=context([u4]);
+ for(const [gid,qi,word] of [['4.1',11,'aula'],['4.3',2,'hacha'],['4.4',3,'águila']]) {
+  run(`var q=COURSE.grammar[0].exercises.find(g=>g.id===${JSON.stringify(gid)}).questions[${qi}];`);
+  for(const manual of [true,false]) {
+   assert.equal(run(`grammarResult(q,' UN ',{},${manual}).status`),'correct');
+   assert.equal(run(`grammarResult(q,' UNA ',{},${manual}).status`),'almost');
+   assert.equal(run(`grammarResult(q,'una',{},${manual}).good`),true);
+   for(const wrong of ['unos','unas'])assert.equal(run(`grammarResult(q,${JSON.stringify(wrong)},{},${manual}).status`),'wrong');
+  }
+  assert.equal(run(`grammarFeedbackTitle(grammarResult(q,'una'))`),`Допустимо, но лучше сказать un ${word}.`);
+  assert.ok(run(`grammarFeedbackExplanation(q,grammarResult(q,'una'))`).includes('женского рода'));
+  assert.equal(run(`grammarAccentHint(grammarResult(q,'una'))`),'');
+ }
+ assert.equal(run(`grammarResult(COURSE.grammar[0].sections[2].check.questions[1],'una').status`),'correct');
+ const r1=context();
+ assert.equal(r1(`grammarResult(COURSE.grammar[0].exercises[0].questions[6],'la pilota').status`),'almost');
+ assert.equal(r1(`grammarResult(COURSE.grammar[0].exercises[0].questions[6],'la piloto').status`),'correct');
+ assert.equal(r1(`grammarResult(COURSE.grammar[0].exercises[1].questions[1],'jefe').status`),'almost');
+ assert.equal(r1(`grammarResult(COURSE.grammar[0].exercises[1].questions[1],'jefa').status`),'correct');
+ assert.equal(r1(`grammarResult(COURSE.grammar[0].exercises[1].questions[12],'dependiente').status`),'correct');
+});
+
+test('warning feedback stays distinct from omitted accents and safely combines the two reasons',()=>{
+ const run=context();
+ run(`var q={answers:['un águila','una águila'],answerWarnings:{'una águila':{preferred:'un águila',message:'Допустимо: <un águila>',explanation:'Пояснение'}}};`);
+ assert.equal(run(`grammarResult(q,'una aguila').good`),true);
+ assert.equal(run(`grammarResult(q,'una aguila').warning.preferred`),'un águila');
+ assert.ok(run(`grammarAccentHint(grammarResult(q,'una aguila'))`).includes('gmissing-accent'));
+ assert.equal(run(`grammarResult(q,'un aguila').warning`),undefined);
+ assert.equal(run(`grammarFeedbackTitle(grammarResult(q,'un aguila'))`),'Почти правильно!');
+ assert.equal(run(`grammarResult(q,'una aguila',{accentSensitive:true}).status`),'wrong');
+ assert.equal(run(`grammarResult(q,'una águila',{accentSensitive:true}).status`),'almost');
+ assert.equal(run(`grammarResult(q,'una águila').reason`),'variant');
+ assert.equal(run(`grammarAccentHint(grammarResult(q,'una águila'))`),'');
+});
+
+test('choice feedback distinguishes green and yellow buttons and gives a reason-specific explanation',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/004_articulo_indefinido.json','utf8'));
+ const q=u.exercises.find(g=>g.id==='4.3').questions[2];
+ u.exercises.find(g=>g.id==='4.3').questions=[q];
+ const run=context([u]);unlockUntil(run,'exercise:4.3');
+ run(`var sounds=[];sfx=s=>sounds.push(s);gStart(COURSE.grammar[0].id,'exercise:4.3');gMove(1);`);
+ assert.ok(!run('gPlayerView()').includes('goption-status'));
+ run('gPick(1);gPick(0);');
+ assert.equal(run('sounds.join()'),'almost');
+ assert.equal(run('gResponse(G.steps[G.at]).good'),true);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises.find(g=>g.id==="4.3")).errors'),0);
+ assert.equal(run('P.grammar[grammarKey(gUnit(),gUnit().exercises.find(g=>g.id==="4.3"))].correct'),1);
+ assert.equal(run('P.xp'),2);
+ const html=run('gPlayerView()');
+ assert.equal((html.match(/class="opt right"/g)||[]).length,1);
+ assert.equal((html.match(/class="opt almost"/g)||[]).length,1);
+ assert.ok(html.includes('pfoot almost')&&html.includes('Допустимо, но лучше сказать un hacha.'));
+ assert.ok(html.includes('Рекомендуется')&&html.includes('Допустимо'));
+ assert.ok(!html.includes('Почти правильно!')&&!html.includes('gmissing-accent'));
+ assert.ok(html.includes('data-gnext'));
+ const form=run(`grammarForm(gUnit(),gUnit().exercises.find(g=>g.id==='4.3'))`);
+ assert.ok(form.includes('gchoice almost')&&form.includes('gchoice right')&&form.includes('gfeedback almost'));
+ run('gMove(1);');assert.equal(run('G.steps.some(s=>s.correction)'),false);
+});
+
+test('rare variants retain the last life, survive reload, and never enter the error queue',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/004_articulo_indefinido.json','utf8'));
+ const g=u.exercises.find(g=>g.id==='4.3');
+ g.questions=[{prompt:'1',answers:['libros'],explain:'libros'},{prompt:'2',answers:['casas'],explain:'casas'},g.questions[2]];
+ const storage=new Map();let run=context([u],storage);unlockUntil(run,'exercise:4.3');
+ run(`save();gStart(COURSE.grammar[0].id,'exercise:4.3');gMove(1);
+ for(let i=0;i<2;i++){gResponse(G.steps[G.at]).value='wrong';gCheck();gMove(1);}gPick(1);gExit();`);
+ run=context([u],storage);unlockUntil(run,'exercise:4.3');run(`gStart(COURSE.grammar[0].id,'all',true);`);
+ assert.equal(run('gResponse(G.steps[G.at]).status'),'almost');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises.find(g=>g.id==="4.3")).errors'),2);
+ assert.ok(!run('G.recovery'));
+ run('gMove(1);');
+ assert.equal(run('G.steps.filter(s=>s.correction).length'),2);
+ assert.ok(run('G.steps.filter(s=>s.correction).every(s=>s.qi!==2)'));
+});
+
+test('yellow correction is accepted without another retry or error and keeps the original score',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/004_articulo_indefinido.json','utf8'));
+ const g=u.exercises.find(g=>g.id==='4.3');g.questions=[g.questions[2]];
+ const run=context([u]);unlockUntil(run,'exercise:4.3');
+ run(`gStart(COURSE.grammar[0].id,'exercise:4.3');gMove(1);gPick(2);`);
+ const wrong=run('gPlayerView()');assert.ok(wrong.includes('pfoot bad'));
+ assert.equal((wrong.match(/class="opt wrong"/g)||[]).length,1);
+ assert.equal((wrong.match(/class="opt right"/g)||[]).length,1);
+ assert.equal((wrong.match(/class="opt almost"/g)||[]).length,1);
+ run('gMove(1);gPick(1);');
+ assert.equal(run('gResponse(G.steps[G.at]).status'),'almost');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises.find(g=>g.id==="4.3")).status'),'passed');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises.find(g=>g.id==="4.3")).errors'),1);
+ assert.equal(run('P.grammar[grammarKey(gUnit(),gUnit().exercises.find(g=>g.id==="4.3"))].correct'),0);
+ assert.equal(run('P.xp'),0);
+ run('gMove(1);');assert.equal(run('G.ended'),true);
+});
+
+test('previously green accepted responses adopt current guidance without changing progress',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/004_articulo_indefinido.json','utf8'));
+ const g=u.exercises.find(g=>g.id==='4.3');g.questions=[g.questions[2]];
+ const storage=new Map();let run=context([u],storage);unlockUntil(run,'exercise:4.3');
+ run(`save();gStart(COURSE.grammar[0].id,'exercise:4.3');gMove(1);gPick(1);
+ var records=gAttempts();records[grammarKey(gUnit(),gUnit().exercises.find(g=>g.id==='4.3'))].responses[0]={value:'una',checked:true,good:true,status:'correct'};store.set(G_ATTEMPTS_KEY,JSON.stringify(records));gExit();`);
+ run=context([u],storage);unlockUntil(run,'exercise:4.3');run(`gStart(COURSE.grammar[0].id,'all',true);`);
+ assert.equal(run('gResponse(G.steps[G.at]).status'),'almost');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises.find(g=>g.id==="4.3")).errors'),0);
+ assert.equal(run('P.xp'),2);
+ assert.ok(run('gPlayerView()').includes('Допустимо, но лучше сказать un hacha.'));
+});
+
+test('multi-answer audit keeps regional, contextual and equally valid choices green unless explicitly annotated',()=>{
+ const units=fs.readdirSync('content/grammar').filter(f=>f.endsWith('.json')).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
+ const run=context(units);let questions=0,alternatives=0,warnings=0;
+ for(const [ui,u] of units.entries()) {
+  const groups=[...u.sections.filter(s=>s.check).map(s=>s.check),...u.exercises];
+  for(const [gi,g] of groups.entries())for(const [qi,q] of g.questions.entries()){
+   questions++;if(q.answers.length>1)alternatives++;
+   run(`var q=gGroups(COURSE.grammar[${ui}])[${gi}].questions[${qi}];`);
+   for(const a of q.answers){
+    const status=q.answerWarnings?.[a]?'almost':'correct';if(status==='almost')warnings++;
+    assert.equal(run(`grammarResult(q,${JSON.stringify(a)}).status`),status,`${u.number}/${g.id}/${qi}/${a}`);
+   }
+  }
+ }
+ assert.equal(questions,892);assert.equal(alternatives,65);assert.equal(warnings,5);
+});
+
+test('yellow mini-check choices still have no lives and complete normally',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/004_articulo_indefinido.json','utf8'));
+ u.sections[0].check.questions=[u.exercises.find(g=>g.id==='4.3').questions[2]];
+ const run=context([u]);run(`gStart(COURSE.grammar[0].id,'section:0');gMove(1);gPick(1);`);
+ const html=run('gPlayerView()');assert.ok(html.includes('pfoot almost'));
+ assert.ok(!html.includes('class="ghearts"'));
+ assert.equal(run('gAttempt(gUnit(),gUnit().sections[0].check).errors'),0);
+ assert.equal(run('P.grammar[grammarKey(gUnit(),gUnit().sections[0].check)].correct'),1);
+ run('gMove(1);');assert.equal(run('G.ended'),true);
+ assert.equal(run('G.steps.some(s=>s.correction)'),false);
 });

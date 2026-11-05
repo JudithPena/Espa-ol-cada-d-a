@@ -1,0 +1,979 @@
+[
+  {
+    "unit": 1,
+    "group": "1.1",
+    "question": 7,
+    "prompt": "№ 7",
+    "answers": [
+      "la piloto",
+      "la pilota"
+    ],
+    "decision": "yellow_variant",
+    "reason": "Предпочтительная форма и пояснение назначены явно по сохранённой нормативной сверке.",
+    "warnings": {
+      "la pilota": {
+        "preferred": "la piloto",
+        "message": "Допустимо, но чаще говорят la piloto.",
+        "explanation": "La pilota — допустимая женская форма. Чаще используют la piloto: слово piloto остаётся прежним, меняется только артикль.",
+        "source": "https://www.rae.es/espanol-al-dia/el-femenino-de-piloto-es-la-piloto-o-la-pilota"
+      }
+    },
+    "reference": "https://www.rae.es/espanol-al-dia/el-femenino-de-piloto-es-la-piloto-o-la-pilota"
+  },
+  {
+    "unit": 1,
+    "group": "1.2",
+    "question": 2,
+    "prompt": "el jefe → la ___",
+    "answers": [
+      "jefa",
+      "jefe"
+    ],
+    "decision": "yellow_variant",
+    "reason": "Предпочтительная форма и пояснение назначены явно по сохранённой нормативной сверке.",
+    "warnings": {
+      "jefe": {
+        "preferred": "jefa",
+        "message": "Допустимо, но чаще говорят la jefa.",
+        "explanation": "La jefe — грамматически допустимый вариант для женщины. Более распространённая женская форма — la jefa.",
+        "source": "https://www.rae.es/dpd/jefe"
+      }
+    },
+    "reference": "https://www.rae.es/dpd/jefe"
+  },
+  {
+    "unit": 1,
+    "group": "1.2",
+    "question": 13,
+    "prompt": "el dependiente → la ___",
+    "answers": [
+      "dependienta",
+      "dependiente"
+    ],
+    "decision": "green_variants",
+    "reason": "Для dependienta / dependiente сохранены оба зелёных ответа: в сохранённой сверке нет достаточного основания считать один нежелательным в данном контексте.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/dependiente"
+  },
+  {
+    "unit": 2,
+    "group": "check-f",
+    "question": 2,
+    "prompt": "Самка гориллы — это…",
+    "answers": [
+      "el gorila hembra",
+      "la gorila"
+    ],
+    "decision": "green_variants",
+    "reason": "Формы уточняют пол животного или называют вид. Изображение не задаёт пол; это различие смысла, а не нормативная иерархия частотности.",
+    "warnings": {},
+    "reference": "https://dle.rae.es/gorila"
+  },
+  {
+    "unit": 2,
+    "group": "2.3",
+    "question": 5,
+    "prompt": "№ 5",
+    "answers": [
+      "el gorila",
+      "la gorila"
+    ],
+    "decision": "green_variants",
+    "reason": "Формы уточняют пол животного или называют вид. Изображение не задаёт пол; это различие смысла, а не нормативная иерархия частотности.",
+    "warnings": {},
+    "reference": "https://dle.rae.es/gorila"
+  },
+  {
+    "unit": 3,
+    "group": "check-c",
+    "question": 1,
+    "prompt": "rubí → ___",
+    "answers": [
+      "rubíes",
+      "rubís"
+    ],
+    "decision": "green_variants",
+    "reason": "Формы множественного числа, региональные варианты или запись количества цифрой/словом. Предпочтение -es в формальном регистре не переносится автоматически на повседневную речь. Для парных предметов учитываются единственное/множественное и разные способы подсчёта.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/plural"
+  },
+  {
+    "unit": 3,
+    "group": "check-c",
+    "question": 2,
+    "prompt": "bambú → ___",
+    "answers": [
+      "bambúes",
+      "bambús"
+    ],
+    "decision": "green_variants",
+    "reason": "Формы множественного числа, региональные варианты или запись количества цифрой/словом. Предпочтение -es в формальном регистре не переносится автоматически на повседневную речь. Для парных предметов учитываются единственное/множественное и разные способы подсчёта.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/plural"
+  },
+  {
+    "unit": 3,
+    "group": "check-c",
+    "question": 3,
+    "prompt": "Образуй множественное число: menú → ___",
+    "answers": [
+      "menús",
+      "menúes"
+    ],
+    "decision": "green_variants",
+    "reason": "Формы множественного числа, региональные варианты или запись количества цифрой/словом. Предпочтение -es в формальном регистре не переносится автоматически на повседневную речь. Для парных предметов учитываются единственное/множественное и разные способы подсчёта.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/plural"
+  },
+  {
+    "unit": 3,
+    "group": "3.2",
+    "question": 1,
+    "prompt": "mesa",
+    "answers": [
+      "1 mesa",
+      "una mesa"
+    ],
+    "decision": "green_variants",
+    "reason": "Формы множественного числа, региональные варианты или запись количества цифрой/словом. Предпочтение -es в формальном регистре не переносится автоматически на повседневную речь. Для парных предметов учитываются единственное/множественное и разные способы подсчёта.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/plural"
+  },
+  {
+    "unit": 3,
+    "group": "3.2",
+    "question": 2,
+    "prompt": "botella",
+    "answers": [
+      "2 botellas",
+      "dos botellas"
+    ],
+    "decision": "green_variants",
+    "reason": "Формы множественного числа, региональные варианты или запись количества цифрой/словом. Предпочтение -es в формальном регистре не переносится автоматически на повседневную речь. Для парных предметов учитываются единственное/множественное и разные способы подсчёта.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/plural"
+  },
+  {
+    "unit": 3,
+    "group": "3.2",
+    "question": 3,
+    "prompt": "gafas",
+    "answers": [
+      "unas gafas",
+      "un par de gafas",
+      "1 par de gafas",
+      "una gafa",
+      "1 gafa"
+    ],
+    "decision": "green_variants",
+    "reason": "Формы множественного числа, региональные варианты или запись количества цифрой/словом. Предпочтение -es в формальном регистре не переносится автоматически на повседневную речь. Для парных предметов учитываются единственное/множественное и разные способы подсчёта.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/plural"
+  },
+  {
+    "unit": 3,
+    "group": "3.2",
+    "question": 4,
+    "prompt": "lámpara",
+    "answers": [
+      "1 lámpara",
+      "una lámpara"
+    ],
+    "decision": "green_variants",
+    "reason": "Формы множественного числа, региональные варианты или запись количества цифрой/словом. Предпочтение -es в формальном регистре не переносится автоматически на повседневную речь. Для парных предметов учитываются единственное/множественное и разные способы подсчёта.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/plural"
+  },
+  {
+    "unit": 3,
+    "group": "3.2",
+    "question": 5,
+    "prompt": "lápiz",
+    "answers": [
+      "3 lápices",
+      "tres lápices"
+    ],
+    "decision": "green_variants",
+    "reason": "Формы множественного числа, региональные варианты или запись количества цифрой/словом. Предпочтение -es в формальном регистре не переносится автоматически на повседневную речь. Для парных предметов учитываются единственное/множественное и разные способы подсчёта.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/plural"
+  },
+  {
+    "unit": 3,
+    "group": "3.2",
+    "question": 6,
+    "prompt": "libro",
+    "answers": [
+      "4 libros",
+      "cuatro libros"
+    ],
+    "decision": "green_variants",
+    "reason": "Формы множественного числа, региональные варианты или запись количества цифрой/словом. Предпочтение -es в формальном регистре не переносится автоматически на повседневную речь. Для парных предметов учитываются единственное/множественное и разные способы подсчёта.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/plural"
+  },
+  {
+    "unit": 3,
+    "group": "3.2",
+    "question": 7,
+    "prompt": "postal",
+    "answers": [
+      "2 postales",
+      "dos postales"
+    ],
+    "decision": "green_variants",
+    "reason": "Формы множественного числа, региональные варианты или запись количества цифрой/словом. Предпочтение -es в формальном регистре не переносится автоматически на повседневную речь. Для парных предметов учитываются единственное/множественное и разные способы подсчёта.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/plural"
+  },
+  {
+    "unit": 3,
+    "group": "3.2",
+    "question": 8,
+    "prompt": "silla",
+    "answers": [
+      "5 sillas",
+      "cinco sillas"
+    ],
+    "decision": "green_variants",
+    "reason": "Формы множественного числа, региональные варианты или запись количества цифрой/словом. Предпочтение -es в формальном регистре не переносится автоматически на повседневную речь. Для парных предметов учитываются единственное/множественное и разные способы подсчёта.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/plural"
+  },
+  {
+    "unit": 3,
+    "group": "3.2",
+    "question": 9,
+    "prompt": "tijeras",
+    "answers": [
+      "3 tijeras",
+      "tres tijeras",
+      "3 pares de tijeras",
+      "tres pares de tijeras"
+    ],
+    "decision": "green_variants",
+    "reason": "Формы множественного числа, региональные варианты или запись количества цифрой/словом. Предпочтение -es в формальном регистре не переносится автоматически на повседневную речь. Для парных предметов учитываются единственное/множественное и разные способы подсчёта.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/plural"
+  },
+  {
+    "unit": 3,
+    "group": "3.2",
+    "question": 10,
+    "prompt": "vaso",
+    "answers": [
+      "2 vasos",
+      "dos vasos"
+    ],
+    "decision": "green_variants",
+    "reason": "Формы множественного числа, региональные варианты или запись количества цифрой/словом. Предпочтение -es в формальном регистре не переносится автоматически на повседневную речь. Для парных предметов учитываются единственное/множественное и разные способы подсчёта.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/plural"
+  },
+  {
+    "unit": 4,
+    "group": "4.1",
+    "question": 12,
+    "prompt": "___ aula",
+    "answers": [
+      "un",
+      "una"
+    ],
+    "decision": "yellow_variant",
+    "reason": "Предпочтительная форма и пояснение назначены явно по сохранённой нормативной сверке.",
+    "warnings": {
+      "una": {
+        "preferred": "un",
+        "message": "Допустимо, но лучше сказать un aula.",
+        "explanation": "Существительное aula женского рода, но перед существительными, начинающимися с ударного a или ha, обычно используется форма un. Вариант una aula грамматически допустим, но встречается редко. Это правило действует, когда артикль стоит непосредственно перед существительным.",
+        "source": "https://www.rae.es/dpd/uno"
+      }
+    },
+    "reference": "https://www.rae.es/dpd/uno"
+  },
+  {
+    "unit": 4,
+    "group": "4.3",
+    "question": 3,
+    "prompt": "___ hacha",
+    "answers": [
+      "un",
+      "una"
+    ],
+    "decision": "yellow_variant",
+    "reason": "Предпочтительная форма и пояснение назначены явно по сохранённой нормативной сверке.",
+    "warnings": {
+      "una": {
+        "preferred": "un",
+        "message": "Допустимо, но лучше сказать un hacha.",
+        "explanation": "Существительное hacha женского рода, но перед существительными, начинающимися с ударного a или ha, обычно используется форма un. Вариант una hacha грамматически допустим, но встречается редко. Это правило действует, когда артикль стоит непосредственно перед существительным.",
+        "source": "https://www.rae.es/dpd/uno"
+      }
+    },
+    "reference": "https://www.rae.es/dpd/uno"
+  },
+  {
+    "unit": 4,
+    "group": "4.4",
+    "question": 4,
+    "prompt": "¡Mira! ___ águila.",
+    "answers": [
+      "un",
+      "una"
+    ],
+    "decision": "yellow_variant",
+    "reason": "Предпочтительная форма и пояснение назначены явно по сохранённой нормативной сверке.",
+    "warnings": {
+      "una": {
+        "preferred": "un",
+        "message": "Допустимо, но лучше сказать un águila.",
+        "explanation": "Существительное águila женского рода, но перед существительными, начинающимися с ударного a или ha, обычно используется форма un. Вариант una águila грамматически допустим, но встречается редко. Это правило действует, когда артикль стоит непосредственно перед существительным.",
+        "source": "https://www.rae.es/dpd/uno"
+      }
+    },
+    "reference": "https://www.rae.es/dpd/uno"
+  },
+  {
+    "unit": 8,
+    "group": "8.3",
+    "question": 3,
+    "prompt": "___ India está en Asia.",
+    "answers": [
+      "la",
+      "Без артикля"
+    ],
+    "decision": "green_variants",
+    "reason": "Факультативные артикли у географических названий зависят от региона и употребления. Общая модель без артикля сама по себе не устанавливает частотный рейтинг каждой допустимой формы в данном предложении.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/el"
+  },
+  {
+    "unit": 8,
+    "group": "8.3",
+    "question": 4,
+    "prompt": "India está en ___ Asia.",
+    "answers": [
+      "Без артикля",
+      "el"
+    ],
+    "decision": "green_variants",
+    "reason": "Факультативные артикли у географических названий зависят от региона и употребления. Общая модель без артикля сама по себе не устанавливает частотный рейтинг каждой допустимой формы в данном предложении.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/el"
+  },
+  {
+    "unit": 8,
+    "group": "8.3",
+    "question": 6,
+    "prompt": "Las islas Galápagos están en ___ Ecuador.",
+    "answers": [
+      "Без артикля",
+      "el"
+    ],
+    "decision": "green_variants",
+    "reason": "Факультативные артикли у географических названий зависят от региона и употребления. Общая модель без артикля сама по себе не устанавливает частотный рейтинг каждой допустимой формы в данном предложении.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/el"
+  },
+  {
+    "unit": 8,
+    "group": "8.3",
+    "question": 13,
+    "prompt": "El lago Titicaca está entre ___ Perú y Bolivia.",
+    "answers": [
+      "Без артикля",
+      "el"
+    ],
+    "decision": "green_variants",
+    "reason": "Факультативные артикли у географических названий зависят от региона и употребления. Общая модель без артикля сама по себе не устанавливает частотный рейтинг каждой допустимой формы в данном предложении.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/el"
+  },
+  {
+    "unit": 8,
+    "group": "8.3",
+    "question": 24,
+    "prompt": "La Pampa es una provincia de ___ Argentina.",
+    "answers": [
+      "Без артикля",
+      "la"
+    ],
+    "decision": "green_variants",
+    "reason": "Факультативные артикли у географических названий зависят от региона и употребления. Общая модель без артикля сама по себе не устанавливает частотный рейтинг каждой допустимой формы в данном предложении.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/el"
+  },
+  {
+    "unit": 12,
+    "group": "check-c",
+    "question": 2,
+    "prompt": "Nací en 1983. ___ mismo año nació Ana.",
+    "answers": [
+      "ese",
+      "aquel"
+    ],
+    "decision": "green_variants",
+    "reason": "Ese / aquel различают точку зрения и дистанцию; в этих контекстах оба допустимы. Это не доказательство редкости одного из вариантов.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/este"
+  },
+  {
+    "unit": 12,
+    "group": "12.1",
+    "question": 3,
+    "prompt": "___ maleta es mía.",
+    "answers": [
+      "aquella",
+      "esa"
+    ],
+    "decision": "green_variants",
+    "reason": "Ese / aquel различают точку зрения и дистанцию; в этих контекстах оба допустимы. Это не доказательство редкости одного из вариантов.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/este"
+  },
+  {
+    "unit": 12,
+    "group": "12.1",
+    "question": 7,
+    "prompt": "___ árboles son muy altos.",
+    "answers": [
+      "aquellos",
+      "esos"
+    ],
+    "decision": "green_variants",
+    "reason": "Ese / aquel различают точку зрения и дистанцию; в этих контекстах оба допустимы. Это не доказательство редкости одного из вариантов.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/este"
+  },
+  {
+    "unit": 12,
+    "group": "12.2",
+    "question": 4,
+    "prompt": "___ es el padre de Charo.",
+    "answers": [
+      "aquel",
+      "ese"
+    ],
+    "decision": "green_variants",
+    "reason": "Ese / aquel различают точку зрения и дистанцию; в этих контекстах оба допустимы. Это не доказательство редкости одного из вариантов.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/este"
+  },
+  {
+    "unit": 12,
+    "group": "12.2",
+    "question": 7,
+    "prompt": "___ es la casa de Ramón.",
+    "answers": [
+      "aquella",
+      "esa"
+    ],
+    "decision": "green_variants",
+    "reason": "Ese / aquel различают точку зрения и дистанцию; в этих контекстах оба допустимы. Это не доказательство редкости одного из вариантов.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/este"
+  },
+  {
+    "unit": 12,
+    "group": "12.3",
+    "question": 2,
+    "prompt": "Nací en 1983. ___ mismo año nació mi hermana.",
+    "answers": [
+      "ese",
+      "aquel"
+    ],
+    "decision": "green_variants",
+    "reason": "Ese / aquel различают точку зрения и дистанцию; в этих контекстах оба допустимы. Это не доказательство редкости одного из вариантов.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/este"
+  },
+  {
+    "unit": 12,
+    "group": "12.3",
+    "question": 5,
+    "prompt": "En 2001 fui a Chile. ___ verano conocí a Maite.",
+    "answers": [
+      "ese",
+      "aquel"
+    ],
+    "decision": "green_variants",
+    "reason": "Ese / aquel различают точку зрения и дистанцию; в этих контекстах оба допустимы. Это не доказательство редкости одного из вариантов.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/este"
+  },
+  {
+    "unit": 12,
+    "group": "12.3",
+    "question": 6,
+    "prompt": "Viví allí de 1950 a 1965. ___ fueron los mejores años de mi vida.",
+    "answers": [
+      "aquellos",
+      "esos"
+    ],
+    "decision": "green_variants",
+    "reason": "Ese / aquel различают точку зрения и дистанцию; в этих контекстах оба допустимы. Это не доказательство редкости одного из вариантов.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/este"
+  },
+  {
+    "unit": 12,
+    "group": "12.3",
+    "question": 8,
+    "prompt": "Me casé en 1970. En ___ época vivíamos en Lima.",
+    "answers": [
+      "aquella",
+      "esa"
+    ],
+    "decision": "green_variants",
+    "reason": "Ese / aquel различают точку зрения и дистанцию; в этих контекстах оба допустимы. Это не доказательство редкости одного из вариантов.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/este"
+  },
+  {
+    "unit": 12,
+    "group": "12.4",
+    "question": 3,
+    "prompt": "¿Qué es ___?",
+    "answers": [
+      "aquello",
+      "eso"
+    ],
+    "decision": "green_variants",
+    "reason": "Ese / aquel различают точку зрения и дистанцию; в этих контекстах оба допустимы. Это не доказательство редкости одного из вариантов.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/este"
+  },
+  {
+    "unit": 14,
+    "group": "14.1",
+    "question": 11,
+    "prompt": "Ellos son ___.",
+    "answers": [
+      "iraníes",
+      "iranís"
+    ],
+    "decision": "green_variants",
+    "reason": "Iraníes / iranís — нормативные варианты. Формальное предпочтение окончания не означает нежелательность другой формы в обычной речи.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/plural"
+  },
+  {
+    "unit": 14,
+    "group": "14.1",
+    "question": 12,
+    "prompt": "Ellas son ___.",
+    "answers": [
+      "iraníes",
+      "iranís"
+    ],
+    "decision": "green_variants",
+    "reason": "Iraníes / iranís — нормативные варианты. Формальное предпочтение окончания не означает нежелательность другой формы в обычной речи.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/plural"
+  },
+  {
+    "unit": 15,
+    "group": "15.1",
+    "question": 8,
+    "prompt": "¿Quién es ___, Sofía o su esposo?",
+    "answers": [
+      "mayor",
+      "más viejo"
+    ],
+    "decision": "green_variants",
+    "reason": "У сравнения возраста, размера и ёмкости есть лексические и стилистические варианты. В заданном контексте не приравниваем прямолинейность или полноту формулировки к редкости.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/mayor"
+  },
+  {
+    "unit": 15,
+    "group": "15.2",
+    "question": 2,
+    "prompt": "Uruguay es ___.",
+    "answers": [
+      "más pequeño que Argentina",
+      "menor que Argentina"
+    ],
+    "decision": "green_variants",
+    "reason": "У сравнения возраста, размера и ёмкости есть лексические и стилистические варианты. В заданном контексте не приравниваем прямолинейность или полноту формулировки к редкости.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/mayor"
+  },
+  {
+    "unit": 15,
+    "group": "15.2",
+    "question": 4,
+    "prompt": "Luisa es ___.",
+    "answers": [
+      "menor que Clara",
+      "más joven que Clara",
+      "menos vieja que Clara"
+    ],
+    "decision": "green_variants",
+    "reason": "У сравнения возраста, размера и ёмкости есть лексические и стилистические варианты. В заданном контексте не приравниваем прямолинейность или полноту формулировки к редкости.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/mayor"
+  },
+  {
+    "unit": 15,
+    "group": "15.2",
+    "question": 8,
+    "prompt": "La capacidad de los discos Suiko es ___.",
+    "answers": [
+      "menor que la de los discos Misima",
+      "menor que la de los Misima",
+      "más pequeña que la de los discos Misima",
+      "más pequeña que la de los Misima"
+    ],
+    "decision": "green_variants",
+    "reason": "У сравнения возраста, размера и ёмкости есть лексические и стилистические варианты. В заданном контексте не приравниваем прямолинейность или полноту формулировки к редкости.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/mayor"
+  },
+  {
+    "unit": 15,
+    "group": "15.3",
+    "question": 3,
+    "prompt": "Sois ___.",
+    "answers": [
+      "menores que nosotras",
+      "más jóvenes que nosotras",
+      "menos viejos que nosotras"
+    ],
+    "decision": "green_variants",
+    "reason": "У сравнения возраста, размера и ёмкости есть лексические и стилистические варианты. В заданном контексте не приравниваем прямолинейность или полноту формулировки к редкости.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/mayor"
+  },
+  {
+    "unit": 15,
+    "group": "15.4",
+    "question": 3,
+    "prompt": "Estos pantalones son muy grandes. Necesito unos ___.",
+    "answers": [
+      "más pequeños",
+      "menores"
+    ],
+    "decision": "green_variants",
+    "reason": "У сравнения возраста, размера и ёмкости есть лексические и стилистические варианты. В заданном контексте не приравниваем прямолинейность или полноту формулировки к редкости.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/mayor"
+  },
+  {
+    "unit": 16,
+    "group": "16.2",
+    "question": 1,
+    "prompt": "El italiano es ___ el español.",
+    "answers": [
+      "tan fácil como",
+      "igual de fácil que"
+    ],
+    "decision": "green_variants",
+    "reason": "Два способа сравнения, полные/краткие реплики, разные обозначения собеседника. Различие смысла отрицания уже поясняется; оно не даёт основания назначать частотный жёлтый статус.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/igual"
+  },
+  {
+    "unit": 16,
+    "group": "16.2",
+    "question": 2,
+    "prompt": "Un coche no es ___ un avión.",
+    "answers": [
+      "tan rápido como",
+      "igual de rápido que"
+    ],
+    "decision": "green_variants",
+    "reason": "Два способа сравнения, полные/краткие реплики, разные обозначения собеседника. Различие смысла отрицания уже поясняется; оно не даёт основания назначать частотный жёлтый статус.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/igual"
+  },
+  {
+    "unit": 16,
+    "group": "16.2",
+    "question": 3,
+    "prompt": "Un gorila no es ___ una jirafa.",
+    "answers": [
+      "tan alto como",
+      "igual de alto que"
+    ],
+    "decision": "green_variants",
+    "reason": "Два способа сравнения, полные/краткие реплики, разные обозначения собеседника. Различие смысла отрицания уже поясняется; оно не даёт основания назначать частотный жёлтый статус.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/igual"
+  },
+  {
+    "unit": 16,
+    "group": "16.2",
+    "question": 5,
+    "prompt": "El café de Brasil es ___ el de México.",
+    "answers": [
+      "tan bueno como",
+      "igual de bueno que"
+    ],
+    "decision": "green_variants",
+    "reason": "Два способа сравнения, полные/краткие реплики, разные обозначения собеседника. Различие смысла отрицания уже поясняется; оно не даёт основания назначать частотный жёлтый статус.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/igual"
+  },
+  {
+    "unit": 16,
+    "group": "16.2",
+    "question": 6,
+    "prompt": "El teatro es ___ el cine.",
+    "answers": [
+      "tan entretenido como",
+      "igual de entretenido que"
+    ],
+    "decision": "green_variants",
+    "reason": "Два способа сравнения, полные/краткие реплики, разные обозначения собеседника. Различие смысла отрицания уже поясняется; оно не даёт основания назначать частотный жёлтый статус.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/igual"
+  },
+  {
+    "unit": 16,
+    "group": "16.2",
+    "question": 7,
+    "prompt": "El esquí no es ___ el alpinismo.",
+    "answers": [
+      "tan peligroso como",
+      "igual de peligroso que"
+    ],
+    "decision": "green_variants",
+    "reason": "Два способа сравнения, полные/краткие реплики, разные обозначения собеседника. Различие смысла отрицания уже поясняется; оно не даёт основания назначать частотный жёлтый статус.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/igual"
+  },
+  {
+    "unit": 16,
+    "group": "16.4",
+    "question": 1,
+    "prompt": "Pues su hermano es ___.",
+    "answers": [
+      "igual de listo",
+      "tan listo como él",
+      "igual de listo que él"
+    ],
+    "decision": "green_variants",
+    "reason": "Два способа сравнения, полные/краткие реплики, разные обозначения собеседника. Различие смысла отрицания уже поясняется; оно не даёт основания назначать частотный жёлтый статус.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/igual"
+  },
+  {
+    "unit": 16,
+    "group": "16.4",
+    "question": 2,
+    "prompt": "Pues sus hijas no son ___.",
+    "answers": [
+      "tan elegantes",
+      "igual de elegantes",
+      "tan elegantes como ella",
+      "igual de elegantes que ella"
+    ],
+    "decision": "green_variants",
+    "reason": "Два способа сравнения, полные/краткие реплики, разные обозначения собеседника. Различие смысла отрицания уже поясняется; оно не даёт основания назначать частотный жёлтый статус.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/igual"
+  },
+  {
+    "unit": 16,
+    "group": "16.4",
+    "question": 3,
+    "prompt": "Pues su hermana no es ___.",
+    "answers": [
+      "tan simpática",
+      "igual de simpática",
+      "tan simpática como él",
+      "igual de simpática que él"
+    ],
+    "decision": "green_variants",
+    "reason": "Два способа сравнения, полные/краткие реплики, разные обозначения собеседника. Различие смысла отрицания уже поясняется; оно не даёт основания назначать частотный жёлтый статус.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/igual"
+  },
+  {
+    "unit": 16,
+    "group": "16.4",
+    "question": 4,
+    "prompt": "Pues los amigos de Luis son ___.",
+    "answers": [
+      "igual de amables",
+      "tan amables como ellos",
+      "igual de amables que ellos"
+    ],
+    "decision": "green_variants",
+    "reason": "Два способа сравнения, полные/краткие реплики, разные обозначения собеседника. Различие смысла отрицания уже поясняется; оно не даёт основания назначать частотный жёлтый статус.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/igual"
+  },
+  {
+    "unit": 16,
+    "group": "16.4",
+    "question": 5,
+    "prompt": "Pues la mía no es ___.",
+    "answers": [
+      "tan cómoda",
+      "igual de cómoda",
+      "tan cómoda como esa",
+      "igual de cómoda que esa",
+      "tan cómoda como esta cama",
+      "igual de cómoda que esta cama",
+      "tan cómoda como la tuya",
+      "igual de cómoda que la tuya"
+    ],
+    "decision": "green_variants",
+    "reason": "Два способа сравнения, полные/краткие реплики, разные обозначения собеседника. Различие смысла отрицания уже поясняется; оно не даёт основания назначать частотный жёлтый статус.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/igual"
+  },
+  {
+    "unit": 16,
+    "group": "16.4",
+    "question": 6,
+    "prompt": "Pues sus hijos no son ___.",
+    "answers": [
+      "tan amables",
+      "igual de amables",
+      "tan amables como él",
+      "igual de amables que él"
+    ],
+    "decision": "green_variants",
+    "reason": "Два способа сравнения, полные/краткие реплики, разные обозначения собеседника. Различие смысла отрицания уже поясняется; оно не даёт основания назначать частотный жёлтый статус.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/igual"
+  },
+  {
+    "unit": 16,
+    "group": "16.4",
+    "question": 7,
+    "prompt": "Pues el mío es ___.",
+    "answers": [
+      "igual de viejo",
+      "tan viejo como ese",
+      "igual de viejo que ese",
+      "tan viejo como este piso",
+      "igual de viejo que este piso",
+      "tan viejo como el tuyo",
+      "igual de viejo que el tuyo"
+    ],
+    "decision": "green_variants",
+    "reason": "Два способа сравнения, полные/краткие реплики, разные обозначения собеседника. Различие смысла отрицания уже поясняется; оно не даёт основания назначать частотный жёлтый статус.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/igual"
+  },
+  {
+    "unit": 16,
+    "group": "16.4",
+    "question": 8,
+    "prompt": "Pues sus hermanas son ___.",
+    "answers": [
+      "igual de guapas",
+      "tan guapas como ella",
+      "igual de guapas que ella"
+    ],
+    "decision": "green_variants",
+    "reason": "Два способа сравнения, полные/краткие реплики, разные обозначения собеседника. Различие смысла отрицания уже поясняется; оно не даёт основания назначать частотный жёлтый статус.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/igual"
+  },
+  {
+    "unit": 17,
+    "group": "17.3",
+    "question": 1,
+    "prompt": "Agua de Monteviejo, ___.",
+    "answers": [
+      "la bebida más sana y la más refrescante",
+      "la bebida más sana y más refrescante",
+      "la bebida más sana y refrescante"
+    ],
+    "decision": "green_variants",
+    "reason": "Повтор/опущение артикля, оценка вкуса либо сравнение возраста. Возможность нужного значения учтена; без подтверждённой частотной рекомендации вариант не помечается редким.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/bueno"
+  },
+  {
+    "unit": 17,
+    "group": "17.3",
+    "question": 3,
+    "prompt": "Ordenadores portátiles Misima, ___.",
+    "answers": [
+      "los más pequeños y los más potentes",
+      "los más pequeños y más potentes",
+      "los más pequeños y potentes"
+    ],
+    "decision": "green_variants",
+    "reason": "Повтор/опущение артикля, оценка вкуса либо сравнение возраста. Возможность нужного значения учтена; без подтверждённой частотной рекомендации вариант не помечается редким.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/bueno"
+  },
+  {
+    "unit": 17,
+    "group": "17.3",
+    "question": 4,
+    "prompt": "Ropa deportiva Libre, ___.",
+    "answers": [
+      "la más cómoda y la más elegante",
+      "la más cómoda y más elegante",
+      "la más cómoda y elegante"
+    ],
+    "decision": "green_variants",
+    "reason": "Повтор/опущение артикля, оценка вкуса либо сравнение возраста. Возможность нужного значения учтена; без подтверждённой частотной рекомендации вариант не помечается редким.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/bueno"
+  },
+  {
+    "unit": 17,
+    "group": "17.3",
+    "question": 5,
+    "prompt": "Galletas Artaneda, ___ para el desayuno.",
+    "answers": [
+      "las mejores",
+      "las más buenas"
+    ],
+    "decision": "green_variants",
+    "reason": "Повтор/опущение артикля, оценка вкуса либо сравнение возраста. Возможность нужного значения учтена; без подтверждённой частотной рекомендации вариант не помечается редким.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/bueno"
+  },
+  {
+    "unit": 17,
+    "group": "17.3",
+    "question": 8,
+    "prompt": "Leche fresca Norte, ___ para su familia.",
+    "answers": [
+      "la mejor",
+      "la más buena"
+    ],
+    "decision": "green_variants",
+    "reason": "Повтор/опущение артикля, оценка вкуса либо сравнение возраста. Возможность нужного значения учтена; без подтверждённой частотной рекомендации вариант не помечается редким.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/bueno"
+  },
+  {
+    "unit": 17,
+    "group": "17.4",
+    "question": 2,
+    "prompt": "Para mí, el café de Colombia es ___.",
+    "answers": [
+      "el mejor del mundo",
+      "el más bueno del mundo"
+    ],
+    "decision": "green_variants",
+    "reason": "Повтор/опущение артикля, оценка вкуса либо сравнение возраста. Возможность нужного значения учтена; без подтверждённой частотной рекомендации вариант не помечается редким.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/bueno"
+  },
+  {
+    "unit": 17,
+    "group": "17.4",
+    "question": 6,
+    "prompt": "Esther es ___ mis hermanas.",
+    "answers": [
+      "la mayor de",
+      "la más vieja de"
+    ],
+    "decision": "green_variants",
+    "reason": "Повтор/опущение артикля, оценка вкуса либо сравнение возраста. Возможность нужного значения учтена; без подтверждённой частотной рекомендации вариант не помечается редким.",
+    "warnings": {},
+    "reference": "https://www.rae.es/dpd/bueno"
+  }
+]

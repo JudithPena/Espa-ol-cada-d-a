@@ -573,7 +573,22 @@
           "explain": "Перед aula обычно ставим un: первый звук — ударный а. Una aula тоже допустимо.",
           "translation": "одна аудитория",
           "sourceRef": "4.1.12",
-          "context": "Впиши артикль."
+          "context": "Выбери артикль.",
+          "answerWarnings": {
+            "una": {
+              "preferred": "un",
+              "message": "Допустимо, но лучше сказать un aula.",
+              "explanation": "Существительное aula женского рода, но перед существительными, начинающимися с ударного a или ha, обычно используется форма un. Вариант una aula грамматически допустим, но встречается редко. Это правило действует, когда артикль стоит непосредственно перед существительным.",
+              "source": "https://www.rae.es/dpd/uno"
+            }
+          },
+          "options": [
+            "una",
+            "unos",
+            "un",
+            "unas"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ profesora",
@@ -888,7 +903,22 @@
           "explain": "Обычно un hacha: первый звук — ударный а. Una hacha тоже допустимо.",
           "translation": "один топор",
           "sourceRef": "4.3.3",
-          "context": "Впиши артикль."
+          "context": "Выбери артикль.",
+          "answerWarnings": {
+            "una": {
+              "preferred": "un",
+              "message": "Допустимо, но лучше сказать un hacha.",
+              "explanation": "Существительное hacha женского рода, но перед существительными, начинающимися с ударного a или ha, обычно используется форма un. Вариант una hacha грамматически допустим, но встречается редко. Это правило действует, когда артикль стоит непосредственно перед существительным.",
+              "source": "https://www.rae.es/dpd/uno"
+            }
+          },
+          "options": [
+            "un",
+            "una",
+            "unos",
+            "unas"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ libros",
@@ -1140,7 +1170,22 @@
           "explain": "Обычно un águila. Вариант una águila тоже допустим.",
           "translation": "Смотри, орёл!",
           "sourceRef": "4.4.4",
-          "context": "Дополни предложение."
+          "context": "Выбери артикль.",
+          "answerWarnings": {
+            "una": {
+              "preferred": "un",
+              "message": "Допустимо, но лучше сказать un águila.",
+              "explanation": "Существительное águila женского рода, но перед существительными, начинающимися с ударного a или ha, обычно используется форма un. Вариант una águila грамматически допустим, но встречается редко. Это правило действует, когда артикль стоит непосредственно перед существительным.",
+              "source": "https://www.rae.es/dpd/uno"
+            }
+          },
+          "options": [
+            "unos",
+            "unas",
+            "una",
+            "un"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Quiero ___ vaqueros.",
