@@ -1053,3 +1053,40 @@ test('a whole-unit run corrects mistakes before moving to the next exercise',()=
  assert.equal(run('P.grammar[gUnit().id+"/1.1"].correct'),9);
  assert.equal(run('G.ended'),false);
 });
+
+test('answer feedback can collapse and reopen without changing answers, hearts or progress',()=>{
+ const storage=new Map();let run=context([unit],storage);
+ run(`gStart(COURSE.grammar[0].id,'section:0');gMove(1);gPick(0);`);
+ const errors=run('gAttempt(gUnit(),gUnit().sections[0].check).errors');
+ const good=run('gResponse(G.steps[G.at]).good');
+ run('gToggleFeedback();');
+ assert.ok(run('gPlayerView()').includes('id="g-feedback-details" hidden'));
+ assert.ok(run('gPlayerView()').includes('aria-expanded="false"'));
+ assert.ok(run('gPlayerView()').includes('data-gnext'));
+ run('gExit();');run=context([unit],storage);
+ run(`gStart(COURSE.grammar[0].id,'all',true);`);
+ assert.ok(run('gPlayerView()').includes('id="g-feedback-details" hidden'));
+ run('gToggleFeedback();');
+ assert.ok(run('gPlayerView()').includes('aria-expanded="true"'));
+ assert.equal(run('gResponse(G.steps[G.at]).good'),good);
+ assert.equal(run('gAttempt(gUnit(),gUnit().sections[0].check).errors'),errors);
+ run('gMove(1);');
+ assert.ok(!run('gPlayerView()').includes('g-feedback-details'));
+});
+
+test('grammar viewport follows the visible keyboard area and the keyboard can be dismissed',()=>{
+ const run=context();
+ run(`var classes={},viewportPlayer={style:{},classList:{toggle:(k,v)=>classes[k]=v}};
+ document.querySelector=()=>viewportPlayer;
+ window.visualViewport={height:340,offsetTop:25};
+ document.activeElement={matches:()=>true,blur(){this.matches=()=>false;}};
+ gSyncViewport();`);
+ assert.equal(run('viewportPlayer.style.height'),'340px');
+ assert.equal(run('viewportPlayer.style.top'),'25px');
+ assert.equal(run('classes["is-short"]'),true);
+ run('gHideKeyboard();');
+ assert.equal(run('classes["is-typing"]'),false);
+ run('window.visualViewport={height:800,offsetTop:0};gSyncViewport();');
+ assert.equal(run('viewportPlayer.style.height'),'800px');
+ assert.equal(run('viewportPlayer.style.top'),'0px');
+});

@@ -98,9 +98,36 @@ function gRecoveryView(unit) {
 const gUnit = () => (COURSE.grammar || []).find(u => u.id === G?.unit);
 function gSyncViewport() {
   const player=document.querySelector('.gplayer');
-  if(player?.style && window.visualViewport)player.style.height=`${window.visualViewport.height}px`;
+  if(!player?.style) return;
+  const viewport=window.visualViewport, active=document.activeElement;
+  if(viewport) {
+    player.style.height=`${viewport.height}px`;
+    player.style.top=`${viewport.offsetTop || 0}px`;
+  }
+  const typing=!!active?.matches?.('.gplayer input:not(:disabled), .gplayer textarea:not(:disabled)');
+  player.classList.toggle('is-typing',typing);
+  player.classList.toggle('is-short',typing && (viewport?.height || window.innerHeight)<600);
+  const body=player.querySelector?.('.pbody');
+  if(typing && body && body.scrollHeight<=body.clientHeight+2) body.scrollTop=0;
+}
+function gHideKeyboard() {
+  document.activeElement?.blur?.();
+  gSyncViewport();
+}
+function gToggleFeedback() {
+  if(!G || G.ended || G.recovery) return;
+  const response=gResponse(G.steps[G.at]);
+  if(!response?.checked) return;
+  response.feedbackHidden=!response.feedbackHidden;
+  const group=gGroups(gUnit()).find(g=>g.id===G.steps[G.at].group), attempt=gAttempt(gUnit(),group);
+  if(G.steps[G.at].correction) attempt.responses[G.steps[G.at].qi].correction=response;
+  else attempt.responses[G.steps[G.at].qi]=response;
+  gStoreAttempt(gUnit(),group,attempt); G.responses[group.id]=attempt.responses;
+  gSave(); render();
+  document.querySelector('[data-gfeedback-toggle]')?.focus({preventScroll:true});
 }
 window.visualViewport?.addEventListener('resize',gSyncViewport);
+window.visualViewport?.addEventListener('scroll',gSyncViewport);
 const gGroups = u => [...u.sections.map(s => s.check).filter(Boolean), ...u.exercises];
 const gRoutes = u => u.learningOrder || [...u.sections.map((_, i) => `section:${i}`), "summary", ...u.exercises.map(g => `exercise:${g.id}`)];
 function gRouteDone(unit, route) {
@@ -481,8 +508,8 @@ function gPlayerView() {
     if (group.title === "Мини-проверка" && group.instruction) content = `<p class="muted ginstruction">${esc(group.instruction.replace(/ Затем нажми.*$/, ""))}</p>` + content;
   }
   const checked = response?.checked;
-  const feedback = checked ? `<div class="fb" role="status"><h3>${response.good ? "✓ Верно" : "Пока неверно"}</h3>${!step.correction && !response.good && attempt?.errors===gErrorLimit(group)-1 ? '<p class="glast-chance">Осталась последняя попытка. Ещё одна ошибка — и вернёмся к правилу.</p>' : ''}${response.good ? "" : `<span class="ans">Верный ответ: ${esc(response.slotValues ? group.questions[step.qi].answers[0] : group.questions[step.qi].answers.map(a=>gOptionLabel(group.questions[step.qi],a)).join(" / "))}</span>`}<span class="ex">${esc(group.questions[step.qi].explain)}</span></div>` : "";
+  const feedback = checked ? `<div class="fb"><div class="gfeedback-head"><h3 role="status">${response.good ? "✓ Верно" : "Пока неверно"}</h3><button class="btn ghost sm" data-gfeedback-toggle aria-expanded="${!response.feedbackHidden}" aria-controls="g-feedback-details" aria-label="${response.feedbackHidden?'Показать разбор ответа':'Свернуть разбор ответа'}">${response.feedbackHidden?'Показать':'Свернуть ×'}</button></div><div id="g-feedback-details" ${response.feedbackHidden?'hidden':''}>${!step.correction && !response.good && attempt?.errors===gErrorLimit(group)-1 ? '<p class="glast-chance">Осталась последняя попытка. Ещё одна ошибка — и вернёмся к правилу.</p>' : ''}${response.good ? "" : `<span class="ans">Верный ответ: ${esc(response.slotValues ? group.questions[step.qi].answers[0] : group.questions[step.qi].answers.map(a=>gOptionLabel(group.questions[step.qi],a)).join(" / "))}</span>`}<span class="ex">${esc(group.questions[step.qi].explain)}</span></div></div>` : "";
   return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><div class="bar" role="progressbar" aria-label="Прогресс урока" aria-valuemin="0" aria-valuemax="${G.steps.length}" aria-valuenow="${G.at}"><i style="width:${Math.round(G.at / G.steps.length * 100)}%"></i></div>${step.correction ? '<span class="muted">Жизни не тратятся</span>' : attempt ? gHearts(attempt, group) : ''}<span class="pcount">${G.at + 1}/${G.steps.length}</span></div></div>
     <div class="pbody"><div class="wrap"><span class="kicker">${esc(kicker)}</span><h2 id="g-title" tabindex="-1">${esc(title)}</h2>${content}</div></div>
-    <div class="pfoot ${checked ? response.good ? "good" : "bad" : ""}"><div class="wrap">${feedback}<div class="gplayer-actions"><button class="btn ghost" data-gback${G.at ? "" : ' aria-label="Назад к разделам урока"'}>← Назад</button>${step.type === "question" && !checked ? gQuestionMode(group.questions[step.qi],response)==='choice' ? '<span class="muted gpick-hint">Нажми на вариант ответа</span>' : `<button class="btn" data-gcheck ${response.value.trim() ? "" : "disabled"}>Проверить</button>` : `<button class="btn" data-gnext>${step.correction && checked && !response.good ? "Попробовать ещё раз" : !step.correction && attempt?.status==='correcting' ? "К ошибкам →" : G.at === G.steps.length - 1 ? "Завершить" : step.type === "intro" ? "Начать" : "Далее →"}</button>`}</div></div></div></div>`;
+    <div class="pfoot ${checked ? response.good ? "good" : "bad" : ""}"><div class="wrap">${feedback}<div class="gplayer-actions">${step.type==='question' && !checked ? '<button class="btn ghost ghide-keyboard" data-ghide-keyboard>Скрыть клавиатуру ↓</button>' : ''}<button class="btn ghost" data-gback${G.at ? "" : ' aria-label="Назад к разделам урока"'}>← Назад</button>${step.type === "question" && !checked ? gQuestionMode(group.questions[step.qi],response)==='choice' ? '<span class="muted gpick-hint">Нажми на вариант ответа</span>' : `<button class="btn" data-gcheck ${response.value.trim() ? "" : "disabled"}>Проверить</button>` : `<button class="btn" data-gnext>${step.correction && checked && !response.good ? "Попробовать ещё раз" : !step.correction && attempt?.status==='correcting' ? "К ошибкам →" : G.at === G.steps.length - 1 ? "Завершить" : step.type === "intro" ? "Начать" : "Далее →"}</button>`}</div></div></div></div>`;
 }

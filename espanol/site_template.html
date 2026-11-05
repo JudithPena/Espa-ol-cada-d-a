@@ -783,6 +783,51 @@ html.grammar-playing, html.grammar-playing body { overflow: hidden; }
 }
 .gaccents { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 8px; }
 .gaccents button { padding: 4px 10px; }
+/* Larger controls for touch tablets; keep the question usable above the keyboard. */
+.gplayer .fb .ans, .gplayer .fb .ex { display: block; }
+.gplayer .fb .ex { margin-top: 4px; }
+.gfeedback-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.gfeedback-head h3 { margin: 0; }
+.gfeedback-head button { flex: none; min-height: 44px; }
+.ghide-keyboard { display: none; }
+.gplayer.is-typing .ghide-keyboard { display: block; }
+.ghide-keyboard { grid-column: 1 / -1; }
+@media(min-width:600px) {
+  .gplayer.is-typing .gplayer-actions { grid-template-columns: auto auto minmax(0,1fr); }
+  .gplayer .ghide-keyboard { grid-column: auto; }
+}
+.gplayer .pbody { scroll-padding-block: 12px; }
+@media (pointer: coarse) {
+  .gplayer { font-size: 18px; }
+  .gplayer .btn, .gplayer .opt { min-height: 48px; }
+  .gplayer .gaccents button { min-width: 44px; min-height: 44px; font-size: 20px; }
+  .gplayer .ginput { font-size: 22px; min-height: 56px; }
+  .gplayer .ginstruction, .gplayer .ginput-format, .gplayer .ganswer-hint, .gplayer .pfoot .fb { font-size: 18px; }
+  .gplayer .gquestion-sentence { font-size: 22px; }
+  .gplayer .kicker { font-size: 14px; }
+  .gplayer .fb .ex, .gplayer .fb h3 { font-size: 18px; }
+}
+@media (pointer: coarse) and (min-width: 600px) {
+  .gplayer { font-size: 20px; }
+  .gplayer .wrap { max-width: 1040px; padding-inline: 24px; }
+  .gplayer h2 { font-size: 28px; }
+  .gplayer .btn, .gplayer .opt { font-size: 20px; min-height: 52px; }
+  .gplayer .ginput-format { font-size: 20px; }
+}
+.gplayer.is-short .pbody .kicker { display: none; }
+.gplayer.is-short .pbody h2, .gplayer.is-short .ganswer-area > p { margin: 0; }
+.gplayer.is-short .ganswer-area { gap: 8px; }
+.gplayer.is-short .ginput-format p { margin: 0; }
+.gplayer.is-short .ginput-format p + p { display: none; }
+.gplayer.is-short .ptop .wrap { padding-block: 4px; }
+.gplayer.is-short .pbody .wrap { padding-block: 8px; gap: 8px; }
+.gplayer.is-short .pfoot .wrap { padding-block: 6px; gap: 6px; }
+.gplayer.is-short h2 { font-size: 22px; }
+.gplayer.is-short .gquestion-work.has-image { grid-template-columns: minmax(72px,110px) minmax(0,1fr); align-items: start; gap: 12px; }
+.gplayer.is-short .gquestion-picture { max-height: 110px; width: 100%; object-fit: contain; }
+.gplayer.is-short .ginput-format { margin: 0; font-size: 17px; }
+.gplayer.is-short .gaccents { gap: 4px; }
+.gplayer.is-short .pfoot .fb { max-height: 90px; }
 </style>
 
 <div id="app"></div>
@@ -1926,7 +1971,7 @@ function renderView() {
     app.innerHTML = gPlayerView();
     gSyncViewport();
     const input = $("#g-answer:not(:disabled)");
-    if (input) input.focus();
+    if (input && !matchMedia("(pointer: coarse)").matches) input.focus({preventScroll:true});
     else $("#g-title")?.focus({preventScroll:true});
     return;
   }
@@ -2080,6 +2125,8 @@ document.addEventListener("click", e => {
   if ("gback" in d) return gMove(-1);
   if ("gnext" in d) return gMove(1);
   if ("gcheck" in d) return gCheck();
+  if ("gfeedbackToggle" in d) return gToggleFeedback();
+  if ("ghideKeyboard" in d) return gHideKeyboard();
   if ("gretryMistakes" in d) return gRetry();
   if (d.gpick != null && G) return gPick(+d.gpick);
   if (d.gchar && G) {
@@ -2180,7 +2227,8 @@ document.addEventListener("input", e => {
     const f = $("#wsearch"); f.focus(); f.setSelectionRange(pos, pos);
   }
 });
-document.addEventListener("focusin", e => { if(G && e.target.dataset?.ggap != null) G.gapIndex = +e.target.dataset.ggap; });
+document.addEventListener("focusout", () => { if(G) setTimeout(gSyncViewport,0); });
+document.addEventListener("focusin", e => { if(G) { gSyncViewport(); setTimeout(gSyncViewport,0); } if(G && e.target.dataset?.ggap != null) G.gapIndex = +e.target.dataset.ggap; });
 document.addEventListener("keydown", e => {
   if (document.querySelector('#g-art-modal[open]')) return;
   if (e.key === "Escape") closeSheet();
