@@ -66,7 +66,19 @@ ART_SLUGS = {
     "el profesor / la profesora": "profesor", "el médico / la médica": "medico", "el/la estudiante": "estudiante",
     "el camarero / la camarera": "camarero", "el ingeniero / la ingeniera": "ingeniero",
     "el programador / la programadora": "programador", "el hospital": "hospital", "la escuela": "escuela", "la oficina": "oficina",
+    # листы 5–7: ещё вещи, семья, работа и учёба
+    "la puerta": "puerta", "la ventana": "ventana", "el reloj": "reloj", "la lámpara": "lampara", "el lápiz": "lapiz",
+    "la botella": "botella", "las gafas": "gafas", "el dinero": "dinero", "el restaurante": "restaurante",
+    "la familia": "familia", "el padre": "padre", "la madre": "madre", "el hermano / la hermana": "hermano",
+    "el hijo / la hija": "hijo", "el abuelo / la abuela": "abuelo", "el marido": "marido", "el novio / la novia": "novio",
+    "el gato": "gato", "trabajar": "trabajar", "estudiar": "estudiar", "la universidad": "universidad",
+    "el/la periodista": "periodista", "el abogado / la abogada": "abogado", "el enfermero / la enfermera": "enfermero",
+    "el cocinero / la cocinera": "cocinero", "escuchar": "escuchar", "cocinar": "cocinar",
 }
+
+
+# Сложные сцены (много людей) — крупно над словом, даже если слово короткое: в 96 px их не разглядеть.
+ART_BIG = {"familia"}
 
 
 # Картинки к объяснениям (листы 2×2 из ChatGPT): урок → {первая ячейка строки таблицы: файл в content/art}.
@@ -150,6 +162,8 @@ def _word(item: VocabItem, card: WordCard | None, unknown=lambda text: []) -> di
     }
     if img := art_uri(data["es"]):
         data["img"] = img
+        if ART_SLUGS.get(data["es"]) in ART_BIG:
+            data["imgBig"] = True
     if note := site_note(item.note, unknown):
         data["note"] = _html(note)
     examples = card.examples if card and card.examples else (
