@@ -74,6 +74,18 @@ ART_SLUGS = {
     "el gato": "gato", "trabajar": "trabajar", "estudiar": "estudiar", "la universidad": "universidad",
     "el/la periodista": "periodista", "el abogado / la abogada": "abogado", "el enfermero / la enfermera": "enfermero",
     "el cocinero / la cocinera": "cocinero", "escuchar": "escuchar", "cocinar": "cocinar",
+    # листы 8–13: внешность, характер, цвета, дом, мебель и «где?», состояние
+    "el chico / la chica": "chico", "alto/a": "alto", "bajo/a": "bajo", "joven": "joven", "rubio/a": "rubio",
+    "moreno/a": "moreno", "guapo/a": "guapo", "delgado/a": "delgado", "mayor": "mayor", "simpático/a": "simpatico",
+    "antipático/a": "antipatico", "inteligente": "inteligente", "divertido/a": "divertido", "serio/a": "serio", "tímido/a": "timido",
+    "trabajador/a": "trabajador", "cansado/a": "cansado", "contento/a": "contento", "rojo/a": "rojo", "azul": "azul",
+    "verde": "verde", "amarillo/a": "amarillo", "blanco/a": "blanco", "negro/a": "negro", "marrón": "marron",
+    "el ojo": "ojo", "el pelo": "pelo", "el piso": "piso", "la habitación": "habitacion", "el dormitorio": "dormitorio",
+    "el salón": "salon", "la cocina": "cocina", "el baño": "bano", "el balcón": "balcon", "la cama": "cama",
+    "el sofá": "sofa", "el armario": "armario", "la estantería": "estanteria", "la nevera": "nevera", "la tele": "tele",
+    "la ducha": "ducha", "encima de": "encima", "debajo de": "debajo", "al lado de": "al_lado", "delante de": "delante",
+    "detrás de": "detras", "entre": "entre", "cerca de": "cerca", "lejos de": "lejos", "triste": "triste",
+    "nervioso/a": "nervioso", "enfermo/a": "enfermo", "ocupado/a": "ocupado", "aburrido/a": "aburrido",
 }
 
 
