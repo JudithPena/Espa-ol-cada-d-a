@@ -55,6 +55,9 @@ ART_SLUGS = {
     "por favor": "por_favor", "perdón": "perdon", "bien": "bien", "muy bien": "muy_bien", "regular": "regular",
     "mal": "mal", "buenos días": "buenos_dias", "buenas tardes": "buenas_tardes", "buenas noches": "buenas_noches",
     "adiós": "adios",
+    # лист 5 ноября: «ты», «вы» и вежливые фразы с персонажами диалогов (docs/word_art_guide.md)
+    "tú": "tu", "usted": "usted", "yo": "yo", "él": "el_pron", "ella": "ella", "muchas gracias": "muchas_gracias",
+    "de nada": "de_nada", "hasta luego": "hasta_luego", "hasta mañana": "hasta_manana",
 }
 
 
