@@ -1126,3 +1126,26 @@ test('an old failed mini-check resumes straight into correction with all mistake
  assert.equal(run('gAttempt(gUnit(),gUnit().sections[8].check).errors'),3);
  assert.ok(!run('gPlayerView()').includes('class="ghearts"'));
 });
+
+test('every accepted alternative in mini-checks is offered and any one correct choice suffices',()=>{
+ const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
+ let checked=0;
+ for(const u of units)for(const [si,section] of u.sections.entries()){
+  if(!section.check)continue;
+  for(const [qi,q] of section.check.questions.entries()){
+   if(q.answers.length<2)continue;
+   for(const answer of q.answers){
+    const run=context([u]);unlockUntil(run,'section:'+si);
+    run(`gStart(COURSE.grammar[0].id,'section:${si}');gMove(1);G.at=G.steps.findIndex(s=>s.group===${JSON.stringify(section.check.id)}&&s.qi===${qi});`);
+    const index=q.options.indexOf(answer);assert.ok(index>=0,answer);
+    assert.ok(run('gPlayerView()').includes(answer));
+    run(`gPick(${index});`);
+    assert.equal(run('gResponse(G.steps[G.at]).good'),true,answer);
+    assert.equal(run(`gAttempt(gUnit(),gUnit().sections[${si}].check).errors`),0);
+    assert.ok(run('gPlayerView()').includes('✓ Верно'));
+    checked++;
+   }
+  }
+ }
+ assert.equal(checked,10);
+});

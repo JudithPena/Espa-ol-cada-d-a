@@ -72,9 +72,7 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
             for q in group["questions"]:
                 if not q.get("explain") or not q.get("answers"):
                     raise ValueError(f"{path}: answer and explanation required")
-                # Accepted alternatives may be retained for saved typed answers
-                # without presenting multiple correct buttons in a choice task.
-                if q.get("options") and not set(q["answers"]) & set(q["options"]):
+                if q.get("options") and not set(q["answers"]) <= set(q["options"]):
                     raise ValueError(f"{path}: correct answer missing from options")
                 if "optionLabels" in q:
                     labels = q["optionLabels"]

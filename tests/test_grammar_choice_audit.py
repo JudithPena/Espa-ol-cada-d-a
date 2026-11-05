@@ -11,7 +11,7 @@ def groups(unit):
     return [s['check'] for s in unit['sections'] if s.get('check')] + unit['exercises']
 
 
-def test_audit_covers_all_units_and_does_not_offer_multiple_correct_buttons():
+def test_audit_covers_all_units_and_offers_every_accepted_choice():
     units = load_grammar()
     audit = json.loads((Path(__file__).parent/'data/grammar_choice_audit.json').read_text(encoding='utf-8'))
     assert [u['unit'] for u in audit['units']] == list(range(1, 18))
@@ -19,7 +19,7 @@ def test_audit_covers_all_units_and_does_not_offer_multiple_correct_buttons():
         assert sum(len(g['questions']) for g in groups(unit)) == record['reviewed']
         for group in groups(unit):
             choices = [q for q in group['questions'] if q.get('options') and not q.get('guidedGaps')]
-            assert all(sum(option in q['answers'] for option in q['options']) == 1 for q in choices)
+            assert all(set(q['answers']) <= set(q['options']) for q in choices)
             # A systematic last-button shortcut must not return in longer practice groups.
             if len(choices) >= 4:
                 assert sum(q['options'][-1] in q['answers'] for q in choices) / len(choices) <= .8
@@ -59,16 +59,18 @@ def test_all_mini_checks_offer_choices_without_typing():
             for q in check['questions']:
                 assert len(q.get('options', [])) >= 2, (unit['id'], check['id'], q['prompt'])
                 assert not any(q.get(key) for key in ('tiles', 'guidedGaps', 'gapParts'))
-                assert len(set(q['options']) & set(q['answers'])) == 1
+                assert set(q['answers']) <= set(q['options'])
+                assert set(q['options']) - set(q['answers'])
 
 
-def test_choices_can_omit_accepted_alternatives_for_saved_typed_answers(tmp_path):
+def test_choices_must_offer_all_accepted_alternatives(tmp_path):
     fixture = {'id': 'fixture', 'sections': [], 'exercises': [{'id': 'a', 'questions': [{
         'prompt': 'rubí → ___', 'answers': ['rubíes', 'rubís'],
         'options': ['rubí', 'rubíes', 'rubies'], 'explain': 'Оба варианта правильные: rubíes и rubís.'
     }]}]}
     (tmp_path / '001.json').write_text(json.dumps(fixture), encoding='utf-8')
-    assert load_grammar(tmp_path)[0]['exercises'][0]['questions'][0]['answers'] == ['rubíes', 'rubís']
+    with pytest.raises(ValueError, match='correct answer missing'):
+        load_grammar(tmp_path)
 
 
 @pytest.mark.parametrize('labels', [
