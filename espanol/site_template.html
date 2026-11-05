@@ -231,13 +231,29 @@ main { padding-block: 16px 110px; }
 .two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
 /* карточка слова */
-.wcard { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 22px 20px; display: grid; gap: 14px; box-shadow: var(--shadow); }
-.wcard .head { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; }
-.wcard .emo { font-size: 46px; line-height: 1; }
-.head.noemo { grid-template-columns: 1fr auto !important; }
+/* Композиция по типу слова (ТЗ автора 5 ноября): предмет или человек с картинкой — картинка 96 px рядом со словом;
+   действие и выражение с картинкой — картинка крупнее, над словом; без картинки — значок слева. */
+.wcard { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 18px; display: grid; gap: 12px; box-shadow: var(--shadow); }
+.whead { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; align-items: center; }
+.wcard.big .whead { grid-template-columns: minmax(0, 1fr); }
+.wcard .emo { font-size: 42px; line-height: 1; width: 56px; text-align: center; }
+.wcard .wpic { width: 96px; height: 96px; border-radius: 16px; background: #f9f4ea; object-fit: cover; display: block; }
+.wcard.big .pic { max-width: 180px; }
+.wbody { display: grid; gap: 2px; min-width: 0; }
+.wcard .word.long { font-size: 21px; }
+.aud { display: flex; gap: 6px; flex-wrap: wrap; margin-top: -2px; }
+.aud button { height: 32px; padding: 0 12px; border: 0; border-radius: 16px; background: var(--accent-soft); color: var(--accent); font: 800 13px var(--body); }
+.no-tts .aud { display: none; }
+.wcard .more { font-size: 15px; color: var(--muted); }
+.wcard .more summary { cursor: pointer; font-weight: 800; font-size: 13px; list-style: none; display: inline-flex; gap: 6px; align-items: center; padding: 4px 0; }
+.wcard .more summary::-webkit-details-marker { display: none; }
+.wcard .more summary::before { content: "ⓘ"; font-size: 15px; }
+.wcard .more[open] summary { color: var(--ink); }
+.wcard .more p { margin: 6px 0 0; color: var(--ink); }
+.wcard .more p b { color: var(--muted); font-weight: 800; }
 .pic { display: block; width: 100%; max-width: 220px; aspect-ratio: 1; margin: 0 auto; border-radius: 18px; background: #f9f4ea; }
 .sheet .pic { max-width: 150px; }
-.wcard .word { font-family: var(--display); font-size: 26px; font-weight: 600; line-height: 1.15; overflow-wrap: anywhere; }
+.wcard .word { font-family: var(--display); font-size: 26px; font-weight: 600; line-height: 1.15; overflow-wrap: break-word; text-wrap: balance; }
 .wcard .pron { color: var(--muted); font-size: 15px; font-weight: 600; }
 .wcard .tr { font-size: 19px; font-weight: 700; padding-top: 12px; border-top: 1px dashed var(--line); }
 .wcard .sec { font-size: 15px; display: grid; gap: 4px; }
@@ -411,6 +427,7 @@ main { padding-block: 16px 110px; }
 .sheet { width: 100%; background: var(--surface); border-radius: 20px 20px 0 0; padding-bottom: env(safe-area-inset-bottom, 0px); box-shadow: 0 -6px 30px rgb(0 0 0 / .2); }
 .sheet .wrap { padding-block: 20px; display: grid; gap: 14px; }
 .sheet .head { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; }
+.head.noemo { grid-template-columns: 1fr auto !important; }
 .sheet .emo { font-size: 38px; line-height: 1; }
 .sheet .word { font-family: var(--display); font-size: 22px; font-weight: 600; }
 .sheet .pron { color: var(--muted); font-weight: 600; }
@@ -1216,7 +1233,7 @@ function wordQuestion(w, pool, mode) {
   if (wrong.length < 2) return null;
   const options = shuffle([w, ...wrong]);
   return { type: "mc", mode, word: w, options: options.map(o => o[field]), correct: options.indexOf(w), say: w.say,
-           explain: [w.ex ? `<i>${esc(w.ex[0][0])}</i> — ${esc(w.ex[0][1])}` : "", w.trap || w.pronNote || w.note || ""].filter(Boolean).join("<br>") };
+           explain: [w.ex ? `<i>${esc(w.ex[0][0])}</i> — ${esc(w.ex[0][1])}` : "", w.noteMain || ""].filter(Boolean).join("<br>") };
 }
 // Упражнение урока «вопрос => ответ» становится викториной: неверные варианты — ответы
 // на соседние вопросы того же упражнения, потом других упражнений урока, потом слова курса.
@@ -1731,13 +1748,21 @@ function blockHTML(b) {
   return "";
 }
 
+// Карточка слова: картинка (рядом или над словом — по типу слова) или значок, слово, транскрипция, «Слушать» и
+// «Медленно», перевод. «На заметку» — только важное (noteMain), остальное свёрнуто в «Подробнее» (noteMore).
 function wordCard(w) {
-  return `<div class="wcard">
-    ${w.img ? `<img class="pic" src="${w.img}" alt="">` : ""}
-    <div class="head${w.img ? " noemo" : ""}">${w.img ? "" : `<span class="emo">${esc(w.emoji)}</span>`}<span><span class="word">${esc(w.es)}</span>${w.pron ? `<br><span class="pron">[${esc(w.pron)}]</span>` : ""}</span>
-      <span class="row" style="gap:6px">${playBtn(w.say)}${slowBtn(w.say)}</span></div>
+  const compact = w.img && ["noun", "adj", "word", "num"].includes(w.pos) && w.es.length <= 20;
+  const kind = !w.img ? "emo" : compact ? "compact" : "big";
+  const more = w.noteMore || [];
+  return `<div class="wcard ${kind}">
+    ${kind === "big" ? `<img class="pic" src="${w.img}" alt="">` : ""}
+    <div class="whead">${kind === "compact" ? `<img class="wpic" src="${w.img}" alt="">` : kind === "emo" ? `<span class="emo" aria-hidden="true">${esc(w.emoji)}</span>` : ""}
+      <div class="wbody"><span class="word${w.es.length > 18 ? " long" : ""}">${esc(w.es)}</span>${w.pron ? `<span class="pron">[${esc(w.pron)}]</span>` : ""}
+      </div></div>
+    ${canSay(w.say) ? `<div class="aud"><button data-say="${esc(w.say)}" aria-label="Послушать">▶ Слушать</button><button data-slow data-say="${esc(w.say)}" aria-label="Послушать медленно">🐢 Медленно</button></div>` : ""}
     <div class="tr">${esc(w.ru)}</div>
-    ${(n => n ? `<div class="sec trap"><b>На заметку</b><div>${n}</div></div>` : "")(w.trap || w.pronNote || w.note)}
+    ${w.noteMain ? `<div class="sec trap"><b>На заметку</b><div>${w.noteMain}</div></div>` : ""}
+    ${more.length ? `<details class="more"><summary>Подробнее</summary>${more.map(([t, x]) => `<p><b>${t}.</b> ${x}</p>`).join("")}</details>` : ""}
   </div>`;
 }
 
