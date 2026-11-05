@@ -221,6 +221,9 @@ def test_dialogue_cast():
                 assert seen.setdefault(name, c["v"]) == c["v"]
                 assert (c["g"] == "m") == c["v"].startswith(M)
     assert cast(["Marta", "Jorge", "Rosa"])["Jorge"]["v"].startswith(M)
+    slugs = [a for _, _, a in CAST.values()]
+    assert len(set(slugs)) == len(slugs) and all(slugs)          # у каждого персонажа свой аватар
+    assert cast(["Lucía"])["Lucía"]["a"] == "lucia" and cast(["Marta"])["Marta"]["a"] == ""
     assert len({c["v"] for c in cast(["Marta", "Rosa"]).values()}) == 2
 
 

@@ -22,32 +22,33 @@ log = logging.getLogger(__name__)
 
 VOICES = ["es-ES-ElviraNeural", "es-ES-AlvaroNeural", "es-ES-XimenaNeural"]
 F1, F2, M = "es-ES-ElviraNeural", "es-ES-XimenaNeural", "es-ES-AlvaroNeural"
-# Персонаж → (пол, голос@тон, аватар). Один и тот же персонаж во всех диалогах звучит одинаково,
-# а собеседники одного диалога — всегда по-разному (проверяет tests/test_site.py). Аватар — эмодзи
-# для ролей («Profesora»), у имён — первая буква. Новый персонаж без строки здесь получит голос по полу.
+# Персонаж → (пол, голос@тон, аватар). Один и тот же персонаж во всех диалогах звучит и выглядит одинаково,
+# а собеседники одного диалога — всегда по-разному (проверяет tests/test_site.py). Аватар — файл
+# content/art/avatars/<аватар>.webp (иллюстрация из нейросети, см. docs/avatars_guide.md); пока файла нет,
+# на сайте нейтральная иконка. Новый персонаж без строки здесь получит голос по полу и нейтральную иконку.
 CAST: dict[str, tuple[str, str, str]] = {
-    "Lucía": ("f", F1, ""),
-    "Ana": ("f", F2, ""),
-    "Elena": ("f", F2 + "@-6Hz", ""),
-    "Clara": ("f", F1 + "@+6Hz", ""),
-    "Irina": ("f", F1 + "@+6Hz", ""),
-    "Olga": ("f", F2 + "@+6Hz", ""),
-    "Karina": ("f", F2 + "@+10Hz", ""),
-    "Profesora": ("f", F1 + "@-8Hz", "👩‍🏫"),
-    "Recepcionista": ("f", F1 + "@-4Hz", "🛎️"),
-    "Dependienta": ("f", F2, "🛍️"),
-    "Médica": ("f", F2 + "@-8Hz", "👩‍⚕️"),
-    "Madre": ("f", F1 + "@-12Hz", "👩"),
-    "Señora": ("f", F1 + "@-14Hz", "👵"),
-    "Pablo": ("m", M, ""),
-    "Diego": ("m", M + "@+8Hz", ""),
-    "Iván": ("m", M + "@+6Hz", ""),
-    "Carlos": ("m", M + "@+4Hz", ""),
-    "Tom": ("m", M + "@+10Hz", ""),
-    "Hugo": ("m", M + "@+6Hz", ""),
-    "Sergio": ("m", M + "@-4Hz", ""),
-    "Camarero": ("m", M + "@-14Hz", "🤵"),
-    "Señor García": ("m", M + "@-16Hz", "👨‍💼"),
+    "Lucía": ("f", F1, "lucia"),
+    "Ana": ("f", F2, "ana"),
+    "Elena": ("f", F2 + "@-6Hz", "elena"),
+    "Clara": ("f", F1 + "@+6Hz", "clara"),
+    "Irina": ("f", F1 + "@+6Hz", "irina"),
+    "Olga": ("f", F2 + "@+6Hz", "olga"),
+    "Karina": ("f", F2 + "@+10Hz", "karina"),
+    "Profesora": ("f", F1 + "@-8Hz", "profesora"),
+    "Recepcionista": ("f", F1 + "@-4Hz", "recepcionista"),
+    "Dependienta": ("f", F2, "dependienta"),
+    "Médica": ("f", F2 + "@-8Hz", "medica"),
+    "Madre": ("f", F1 + "@-12Hz", "madre"),
+    "Señora": ("f", F1 + "@-14Hz", "senora"),
+    "Pablo": ("m", M, "pablo"),
+    "Diego": ("m", M + "@+8Hz", "diego"),
+    "Iván": ("m", M + "@+6Hz", "ivan"),
+    "Carlos": ("m", M + "@+4Hz", "carlos"),
+    "Tom": ("m", M + "@+10Hz", "tom"),
+    "Hugo": ("m", M + "@+6Hz", "hugo"),
+    "Sergio": ("m", M + "@-4Hz", "sergio"),
+    "Camarero": ("m", M + "@-14Hz", "camarero"),
+    "Señor García": ("m", M + "@-16Hz", "senor_garcia"),
 }
 _SPARE = {"f": [F1, F2, F1 + "@-8Hz", F2 + "@+6Hz", F1 + "@+6Hz", F2 + "@-8Hz"],
           "m": [M, M + "@-14Hz", M + "@+8Hz", M + "@-6Hz", M + "@+14Hz"]}
