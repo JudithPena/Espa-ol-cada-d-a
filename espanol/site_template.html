@@ -325,41 +325,41 @@ main { padding-block: 16px 110px; }
 .tbl th { text-align: left; padding: 9px 12px; vertical-align: top; background: var(--accent-soft); }
 .tbl tr:last-child td { border-bottom: 0; }
 .tbl caption { text-align: left; font-weight: 800; padding-bottom: 6px; }
-/* диалог: аватары, реплики с переводом, «Прослушать весь диалог», скорость, подсветка текущей реплики */
-.dlg { display: grid; gap: 12px; }
-.dlg-top { display: flex; align-items: center; gap: 8px; }
-.dlg .ttl { font-weight: 800; flex: 1 1 auto; min-width: 0; }
-.dlg-top .btn { flex: none; }
-.dlg-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.dlg-bar .dlg-all { flex: 1 1 auto; min-width: 0; }
-.dlg-bar .dlg-all.on { background: var(--surface); color: var(--accent); border: 2px solid var(--accent); box-shadow: none; padding: 4px 10px; }
-.dlg-bar .play { width: 34px; height: 34px; font-size: 13px; }
+/* диалог: реплики-сообщения без аватаров, ▶ внутри реплики; над диалогами экрана — одна общая панель */
+.dlg-panel { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: 8px; padding: 2px 0; background: var(--bg); }
+.dlg-panel button { height: 36px; border-radius: 18px; font: 800 14px var(--body); }
+.dlg-play { border: 0; padding: 0 14px; background: var(--accent-soft); color: var(--accent); }
+.dlg-play.on { background: var(--accent); color: var(--on-accent); }
+.dlg-speed { display: inline-flex; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--surface); }
+.dlg-speed button { border: 0; border-radius: 0; background: none; color: var(--muted); padding: 0 10px; font-size: 13px; }
+.dlg-speed button[aria-pressed="true"] { background: var(--sunken); color: var(--ink); }
+.dlg-tr { margin-left: auto; border: 1px solid var(--line); padding: 0 12px; background: var(--surface); color: var(--ink); }
+.dlg-tr[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+.dlg { display: grid; gap: 4px; border-radius: 14px; }
+.theory.multi .dlg { padding: 4px 8px 8px; border: 2px solid transparent; }
+.theory.multi .dlg.sel { border-color: var(--accent); background: var(--surface); }
+.dlg-head { display: flex; align-items: baseline; gap: 8px; border: 0; background: none; padding: 0; color: var(--ink); text-align: left; }
+.dlg-head .ttl { font-weight: 800; font-size: 15px; }
+.theory.multi .dlg:not(.sel) .dlg-head .ttl { color: var(--muted); }
+.theory.multi .dlg:not(.sel) .dlg-head .ttl::after { content: " · выбрать"; font-weight: 600; font-size: 13px; }
+.dlg-now { font-size: 13px; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; }
 .dlg [hidden] { display: none; }   /* иначе display: grid у .dlg-lines показывает скрытый текст задания на слух */
-.dlg-now { font-size: 13px; font-weight: 800; color: var(--muted); font-variant-numeric: tabular-nums; }
-.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--surface); flex: none; }
-.seg button { border: 0; background: none; color: var(--muted); font: 800 13px var(--body); padding: 7px 10px; }
-.seg button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
-.dlg-lines { display: grid; gap: 10px; }
-.msg { display: flex; align-items: flex-end; gap: 8px; max-width: 92%; justify-self: start; }
-.msg.r { justify-self: end; flex-direction: row-reverse; }
-.ava { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font: 800 15px var(--body); color: var(--ink); background: var(--accent-soft); }
-.mbody { display: grid; gap: 2px; min-width: 0; }
-.msg .who { font-size: 12px; font-weight: 800; color: var(--muted); }
+.dlg-lines { display: grid; gap: 4px; }
+.msg { display: grid; gap: 1px; max-width: 88%; justify-self: start; }
+.msg.r { justify-self: end; }
+.msg .who { font-size: 12px; font-weight: 800; color: var(--accent); padding-inline: 4px; }
 .msg.r .who { text-align: right; }
-.bubble { background: var(--surface); border: 2px solid transparent; border-radius: 16px 16px 16px 4px; padding: 8px 12px; text-align: left; display: grid; gap: 2px; box-shadow: var(--shadow); cursor: pointer; transition: border-color .15s, background .15s; }
-.msg.r .bubble { border-radius: 16px 16px 4px 16px; }
-.msg .bubble .es { font-size: 17px; }
-.msg > .play { width: 32px; height: 32px; font-size: 12px; margin-bottom: 4px; }
-.msg.t0 .ava { background: var(--accent-soft); } .msg.t1 .ava { background: var(--sun-soft); }
-.msg.t2 .ava { background: var(--good-soft); } .msg.t3 .ava { background: var(--bad-soft); }
-.msg.t1 .bubble { background: var(--sun-soft); box-shadow: none; }
-.msg.t2 .bubble { background: var(--good-soft); box-shadow: none; }
-.msg.t3 .bubble { background: var(--bad-soft); box-shadow: none; }
+.msg.t1 .who { color: color-mix(in srgb, var(--sun) 70%, var(--ink)); } .msg.t2 .who { color: var(--good); } .msg.t3 .who { color: var(--bad); }
+.bubble { display: grid; grid-template-columns: 1fr auto; column-gap: 6px; align-items: start; padding: 6px 6px 6px 11px; background: var(--surface);
+  border: 1.5px solid var(--line); border-radius: 14px 14px 14px 4px; text-align: left; cursor: pointer; transition: border-color .15s; }
+.msg.r .bubble { border-radius: 14px 14px 4px 14px; background: var(--sunken); border-color: transparent; }
+.bubble .es { font-size: 16px; line-height: 1.4; padding-top: 2px; }
+.bubble small { grid-column: 1; color: var(--muted); font-size: 14px; line-height: 1.35; }
+.lplay { grid-column: 2; grid-row: 1; width: 30px; height: 30px; margin: -2px -2px -4px 0; border: 0; border-radius: 50%; background: none; color: var(--accent); font-size: 11px; display: grid; place-items: center; }
 .msg.on .bubble { border-color: var(--accent); }
-.msg.on .ava { box-shadow: 0 0 0 3px var(--accent); }
-.msg.on > .play { background: var(--accent); color: var(--on-accent); }
-.bubble small { color: var(--muted); font-size: 14px; }
+.msg.on .lplay { background: var(--accent); color: var(--on-accent); }
 .hide-tr .bubble small, .hide-tr .reading .tr { display: none; }
+.no-tts .lplay, .no-tts .dlg-play, .no-tts .dlg-speed { display: none; }
 @media (prefers-reduced-motion: reduce) { .bubble { transition: none; } }
 .spoiler { background: var(--ink); color: transparent; border-radius: 4px; cursor: pointer; transition: all .2s; }
 .spoiler.open { background: none; color: inherit; }
@@ -1010,58 +1010,73 @@ const playBtn = (text, cls = "") => `<button class="play ${cls}" data-say="${esc
 const slowBtn = text => `<button class="play slow" data-slow data-say="${esc(text)}" aria-label="Послушать медленно">🐢</button>`;
 
 /* ================================================================ диалог (общий компонент для всех уровней) */
-// Блок урока {t: "dialogue", title, hidden, cast: {имя: {v: голос, g: пол, a: аватар}}, lines: [[имя, es, ru, озвучка]]}.
-// «Прослушать весь диалог» играет реплики по очереди с паузой, у каждого персонажа свой голос (site_audio.CAST),
-// текущая реплика подсвечена; повторное нажатие — пауза. Любую реплику можно послушать отдельно.
-// Скорость 1× / 0,75× общая для всех диалогов и запоминается. Ушли с экрана — диалог замолкает (render).
+// Блок урока {t: "dialogue", title, hidden, cast: {имя: {v: голос, g: пол}}, lines: [[имя, es, ru, озвучка]]}.
+// Реплики — сообщения без аватаров: имя цветом собеседника, ▶ внутри реплики (и вся реплика нажимается).
+// Над диалогами экрана — одна общая панель (dlgPanelHTML): «Слушать» / «Пауза» / «Дальше», скорость 1× / 0,75×
+// (запоминается) и «Перевод» для всех диалогов экрана (у задания на слух сначала «Показать текст»).
+// Панель играет выбранный диалог: если на экране их два, выбранный обведён, выбрать — нажать заголовок или реплику.
+// У каждого персонажа свой голос (site_audio.CAST), текущая реплика подсвечена. Ушли с экрана — тишина (render).
 const DLG = { box: null, i: -1, mode: "idle", solo: false, gap: false, timer: 0, via: "audio" };
 const DLG_PAUSE = 650;   // мс между репликами
 const dlgRate = () => P.dlgRate === 0.75 ? 0.75 : 1;
-function dialogueHTML(b) {
+function dialogueHTML(b, sel = false) {
   const names = [...new Set(b.lines.map(l => l[0]))];
-  const label = names.length > 1 ? "Прослушать весь диалог" : "Прослушать целиком";
-  const audible = b.lines.some(l => canSay(l[3]));
-  const rates = [[1, "1×"], [0.75, "0,75×"]];
-  return `<div class="dlg hide-tr" data-dlg>
-    <div class="dlg-top"><span class="ttl">${b.title || "Диалог"}</span>
-      ${audible ? `<span class="seg" role="group" aria-label="Скорость">${rates.map(([r, t]) =>
-        `<button data-dlg-rate="${r}" aria-pressed="${dlgRate() === r}">${t}</button>`).join("")}</span>` : ""}
-      <button class="btn ghost sm" data-toggle-tr>${b.hidden ? "Показать текст" : "Перевод"}</button></div>
-    ${audible ? `<div class="dlg-bar">
-      <button class="btn sm dlg-all" data-dlg-all data-label="${label}">▶ ${label}</button>
-      <span class="dlg-now" aria-live="polite"></span>
-      <button class="play" data-dlg-stop hidden aria-label="Остановить">■</button>
-    </div>` : ""}
+  return `<section class="dlg hide-tr${sel ? " sel" : ""}" data-dlg>
+    <button class="dlg-head" data-dlg-pick aria-pressed="${sel}"><span class="ttl">${b.title || "Диалог"}</span><span class="dlg-now" aria-live="polite"></span></button>
     <div ${b.hidden ? "hidden data-hidden-text " : ""}class="dlg-lines">${b.lines.map(([who, es, ru, sp], k) => {
-      const c = b.cast?.[who] || { v: "", g: "f", a: "" }, n = names.indexOf(who);
+      const c = b.cast?.[who] || { v: "", g: "f" }, n = names.indexOf(who);
       return `<div class="msg t${n % 4}${n % 2 ? " r" : ""}" data-say-line="${esc(sp)}" data-voice="${esc(c.v)}" data-g="${c.g}">
-        <span class="ava" aria-hidden="true">${c.a || esc([...who][0])}</span>
-        <div class="mbody"><span class="who">${esc(who)}</span>
-          <div class="bubble" data-line="${k}"><span class="es">${es}</span><small>${ru}</small></div></div>
-        ${canSay(sp) ? `<button class="play" data-line="${k}" aria-label="Послушать реплику">▶</button>` : ""}
+        <span class="who">${esc(who)}</span>
+        <div class="bubble" data-line="${k}"><span class="es">${es}</span>${canSay(sp) ? `<button class="lplay" data-line="${k}" aria-label="Послушать реплику">▶</button>` : ""}<small>${ru}</small></div>
       </div>`;
     }).join("")}</div>
+  </section>`;
+}
+function dlgPanelHTML(blocks) {
+  const audible = blocks.some(b => b.lines.some(l => canSay(l[3])));
+  return `<div class="dlg-panel" data-dlg-panel>
+    ${audible ? `<button class="dlg-play" data-dlg-all>▶ Слушать</button>
+    <span class="dlg-speed" role="group" aria-label="Скорость">${[[1, "1×"], [0.75, "0,75×"]].map(([r, t]) =>
+      `<button data-dlg-rate="${r}" aria-pressed="${dlgRate() === r}">${t}</button>`).join("")}</span>` : ""}
+    <button class="dlg-tr" data-dlg-tr aria-pressed="false">${blocks.some(b => b.hidden) ? "Показать текст" : "Перевод"}</button>
   </div>`;
 }
+// Экран объяснения: общая панель — перед первым диалогом, он же выбран.
+function theoryHTML(blocks) {
+  const dl = blocks.filter(b => b.t === "dialogue");
+  let first = true;
+  return `<div class="theory${dl.length > 1 ? " multi" : ""}">${blocks.map(b =>
+    b.t === "dialogue" && first ? (first = false, dlgPanelHTML(dl) + dialogueHTML(b, true)) : blockHTML(b)).join("")}</div>`;
+}
 const dlgMsgs = box => box ? [...box.querySelectorAll(".msg")] : [];
+const dlgSel = () => document.querySelector(".dlg.sel") || document.querySelector(".dlg[data-dlg]");
 function dlgPaint() {
-  const box = DLG.box;
-  if (!box) return;
-  const msgs = dlgMsgs(box);
-  msgs.forEach((m, k) => m.classList.toggle("on", k === DLG.i));
-  const all = box.querySelector("[data-dlg-all]"), stop = box.querySelector("[data-dlg-stop]"), now = box.querySelector(".dlg-now");
-  const whole = !DLG.solo && DLG.mode !== "idle";
-  if (all) {
-    all.textContent = !whole ? `▶ ${all.dataset.label}` : DLG.mode === "play" ? "❚❚ Пауза" : "▶ Продолжить";
-    all.classList.toggle("on", whole);
+  const box = DLG.box, whole = !!box && !DLG.solo && DLG.mode !== "idle";
+  if (box) {
+    const msgs = dlgMsgs(box);
+    msgs.forEach((m, k) => m.classList.toggle("on", k === DLG.i));
+    const now = box.querySelector(".dlg-now");
+    if (now) now.textContent = whole && DLG.i >= 0 ? `${DLG.i + 1} / ${msgs.length}` : "";
   }
-  if (stop) stop.hidden = !whole;
-  if (now) now.textContent = whole && DLG.i >= 0 ? `${DLG.i + 1} / ${msgs.length}` : "";
+  const btn = document.querySelector("[data-dlg-all]");
+  if (btn) {
+    btn.textContent = !whole ? "▶ Слушать" : DLG.mode === "play" ? "❚❚ Пауза" : "▶ Дальше";
+    btn.classList.toggle("on", whole && DLG.mode === "play");
+  }
 }
 function dlgReset() {
   clearTimeout(DLG.timer);
   if (DLG.box) { DLG.i = -1; DLG.mode = "idle"; DLG.solo = false; dlgPaint(); }
   Object.assign(DLG, { box: null, i: -1, mode: "idle", solo: false, gap: false });
+  dlgPaint();
+}
+function dlgPick(box) {
+  if (!box || box.classList.contains("sel")) return;
+  stopSpeech();
+  document.querySelectorAll(".dlg[data-dlg]").forEach(d => {
+    d.classList.toggle("sel", d === box);
+    d.querySelector("[data-dlg-pick]")?.setAttribute("aria-pressed", d === box);
+  });
 }
 function dlgLine(i) {
   const m = dlgMsgs(DLG.box)[i];
@@ -1077,12 +1092,13 @@ function dlgLine(i) {
     onfail: () => { stopSpeech(); toast("Озвучка не загрузилась. Проверьте интернет и попробуйте ещё раз"); } });
 }
 function dlgToggle(box) {
+  if (!box) return;
   if (DLG.box === box && !DLG.solo && DLG.mode === "play") {   // пауза
     DLG.mode = "pause"; clearTimeout(DLG.timer);
     if (DLG.via === "speech") hush(); else player?.pause();
     return dlgPaint();
   }
-  if (DLG.box === box && !DLG.solo && DLG.mode === "pause") {   // продолжить с того же места
+  if (DLG.box === box && !DLG.solo && DLG.mode === "pause") {   // дальше с того же места
     DLG.mode = "play";
     if (DLG.gap) return dlgLine(DLG.i + 1);
     if (DLG.via === "speech" || !player) return dlgLine(DLG.i);
@@ -1094,6 +1110,7 @@ function dlgToggle(box) {
   dlgLine(0);
 }
 function dlgSolo(box, i) {
+  dlgPick(box);
   stopSpeech();
   Object.assign(DLG, { box, mode: "idle", solo: true });
   dlgLine(i);
@@ -1102,6 +1119,15 @@ function dlgSetRate(rate) {
   P.dlgRate = rate; save();
   document.querySelectorAll("[data-dlg-rate]").forEach(b => b.setAttribute("aria-pressed", +b.dataset.dlgRate === rate));
   if (DLG.box && DLG.via === "audio" && player) setRate(rate);
+}
+// «Перевод» — для всех диалогов экрана; у задания на слух первое нажатие показывает текст.
+function dlgTranslate(btn) {
+  const boxes = [...document.querySelectorAll(".dlg[data-dlg]")];
+  const hidden = boxes.map(b => b.querySelector("[data-hidden-text]")).filter(h => h && h.hidden);
+  if (hidden.length) { hidden.forEach(h => { h.hidden = false; }); btn.textContent = "Перевод"; return; }
+  const show = btn.getAttribute("aria-pressed") !== "true";
+  btn.setAttribute("aria-pressed", show);
+  boxes.forEach(b => b.classList.toggle("hide-tr", !show));
 }
 document.addEventListener("visibilitychange", () => { if (document.hidden && DLG.box && !DLG.solo && DLG.mode === "play") dlgToggle(DLG.box); });
 
@@ -1659,7 +1685,7 @@ function stepBody(st) {
         <div class="theory leadin">${st.lead.map(blockHTML).join("")}</div>`;
     }
     case "word": return `<span class="kicker">Новое слово</span>${wordCard(st.word)}`;
-    case "theory": return `<div class="theory">${st.blocks.map(blockHTML).join("")}</div>`;
+    case "theory": return theoryHTML(st.blocks);
     case "mc": {
       const s = S.state, locked = s.result ? "locked" : "";
       let prompt;
@@ -1871,7 +1897,7 @@ function lookupParts(text) {
 function wrapWords(root) {
   if (!root) return;
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
-    acceptNode: n => n.parentElement.closest("code, .lw, .play, .btn, .kicker, .lbl, h3, .word, .who, .ava, .seg") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
+    acceptNode: n => n.parentElement.closest("code, .lw, .play, .btn, .kicker, .lbl, h3, .word, .who, .dlg-head, .dlg-panel, .lplay") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
   const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
   for (const node of nodes) {
     const parts = lookupParts(node.nodeValue);
@@ -1992,8 +2018,9 @@ document.addEventListener("click", e => {
   }
   if (d.add) { P.words[d.add] = { s: 0, due: dayNum() + INTERVALS[0] }; save(); closeSheet(); return toast("Слово добавлено: повторим завтра"); }
   if (d.say != null) return say(d.say, { slow: "slow" in d });
-  if ("dlgAll" in d) return dlgToggle(el.closest("[data-dlg]"));
-  if ("dlgStop" in d) return stopSpeech();
+  if ("dlgAll" in d) return dlgToggle(dlgSel());
+  if ("dlgPick" in d) return dlgPick(el.closest("[data-dlg]"));
+  if ("dlgTr" in d) return dlgTranslate(el);
   if (d.dlgRate) return dlgSetRate(+d.dlgRate);
   if (d.line != null) return dlgSolo(el.closest("[data-dlg]"), +d.line);
   if ("toggleTr" in d) {
