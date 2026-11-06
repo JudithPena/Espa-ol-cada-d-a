@@ -150,6 +150,9 @@ async function handleUpdate(update, env, origin) {
   if (mine && (cmd === "/palabras" || (cmd === "/start" && param === "palabras"))) {
     return startStudy(mine, env, chat, msg.from.id, origin);
   }
+  if (owner && cmd === "/progreso") { // сводка по трём колодам — только автору
+    return tg(env, "sendMessage", { chat_id: chat, parse_mode: "HTML", text: await progressReport(env) });
+  }
   if (cmd === "/id") {
     return tg(env, "sendMessage", { chat_id: chat, parse_mode: "HTML", text: `Номер этого чата: <code>${chat}</code>` });
   }
@@ -542,6 +545,35 @@ function deckBook(env, userId) {
   if (isOwner(env, userId)) return BOOKS.p;
   if (env.GALYA_CHAT_ID && String(userId) === String(env.GALYA_CHAT_ID)) return BOOKS.w;
   return env.PAPA_CHAT_ID && String(userId) === String(env.PAPA_CHAT_ID) ? BOOKS.d : null;
+}
+
+// Сводка автору: где сейчас автор, Галя и папа. Новые слова берутся по порядку списка, поэтому «следующее» — первое непросмотренное.
+async function progressReport(env) {
+  const people = [
+    { name: "Вы", book: BOOKS.p, id: env.ADMIN_CHAT_ID },
+    { name: "Галя", book: BOOKS.w, id: env.GALYA_CHAT_ID },
+    { name: "Папа", book: BOOKS.d, id: env.PAPA_CHAT_ID },
+  ];
+  const blocks = [];
+  for (const { name, book, id } of people) {
+    if (!id) { blocks.push(`<b>${name}</b>: чат не задан`); continue; }
+    const own = book.own(env);
+    const words = await book.words(env);
+    const deck = await book.load(env, id);
+    const today = dayNumber(new Date(), own.TIMEZONE);
+    const p = deckProgress(deck, words, today, book.intervals);
+    const next = words.find((w) => !deck.cards[w.id]);
+    const taken = deck.day === today ? deck.fresh : 0;
+    const left = p.fresh ? Math.ceil(p.fresh / perDay(own)) : 0;
+    blocks.push(
+      `<b>${name}</b> — слов в колоде ${p.total}\n` +
+      `• начато: ${p.seen}, ещё не начато: ${p.fresh}${p.fresh ? ` (хватит примерно на ${left} дн.)` : ""}\n` +
+      `• выучено полностью: ${p.learned}, пора повторить: ${p.due}\n` +
+      `• сегодня взято новых: ${taken} из ${perDay(own)}` +
+      (next ? `\n• следующее новое слово: <b>${esc(next.word)}</b>` : "")
+    );
+  }
+  return `📊 <b>Прогресс</b>\n\n${blocks.join("\n\n")}`;
 }
 
 const perDay = (env) => Number(env.WORDS_PER_DAY) || NEW_PER_DAY;

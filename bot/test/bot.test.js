@@ -371,3 +371,27 @@ test("личная грамматика: очередь уходит в 09:00 т
   assert.equal(sent.length, 2);
   assert.equal(sent.at(-1).body.rich_message.html, "<p>Следующий юнит</p>");
 });
+
+test("/progreso: сводка по трём колодам только автору", async () => {
+  const savedPapa = PAPA.splice(0);
+  PAPA.push(...["a", "b", "c"].map((x) => sample(x)));
+  env.PAPA_CHAT_ID = "7";
+  env.GALYA_CHAT_ID = "5";
+  try {
+    calls = [];
+    await post({ message: { text: "/progreso", chat: { id: 7, type: "private" }, from: { id: 7 } } });
+    assert.doesNotMatch(textOf(calls.at(-1)), /Прогресс/, "папе сводку не показываем");
+    calls = [];
+    await post({ message: { text: "/progreso", chat: { id: 1, type: "private" }, from: { id: 1 } } });
+    const text = textOf(calls.at(-1));
+    assert.match(text, /Прогресс/);
+    assert.match(text, /Галя/);
+    assert.match(text, /Папа.*слов в колоде 3/);
+    assert.match(text, /следующее новое слово/);
+  } finally {
+    delete env.PAPA_CHAT_ID;
+    delete env.GALYA_CHAT_ID;
+    PAPA.length = 0;
+    PAPA.push(...savedPapa);
+  }
+});
