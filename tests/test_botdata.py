@@ -79,8 +79,12 @@ def test_papa_images_are_exported_with_content_addressed_urls(tmp_path, course):
     papa = load_deck(Path(__file__).resolve().parents[1] / 'content', PAPA_FOLDER)
     export(course, tmp_path, audio=False, papa=papa)
     records = json.loads((tmp_path / 'data/mywords_papa.json').read_text())
-    assert len(records) == 31
+    assert len(records) == len(papa)
+    assert sum(1 for r in records if r.get('image')) >= 31
     for word, record in zip(papa, records):
+        if not word.image:
+            assert 'image' not in record
+            continue
         image = tmp_path / 'public' / record['image']
         assert image.read_bytes() == Path(word.image).read_bytes()
         assert 'Регистр' not in record['card'] and 'Ловушка' not in record['card']
