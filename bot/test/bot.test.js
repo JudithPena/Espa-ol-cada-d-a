@@ -183,6 +183,7 @@ test("колода папы: в 7:00 по Испании шлёт занятие
     const mine = calls.filter((c) => c.body.chat_id === "7");
     assert.equal(mine.length, 1);
     assert.equal(mine[0].body.reply_markup.inline_keyboard[0][0].callback_data, "dgo");
+    assert.match(mine[0].body.text, /💌/, "у папы к словам идёт мотивирующая фраза");
     await post({ message: { text: "/palabras", chat: { id: 7, type: "private" }, from: { id: 7 } } });
     assert.match(calls.at(-2).body.text, /Новых слов: 5/);
     assert.equal(calls.at(-1).body.reply_markup.inline_keyboard[0][0].callback_data.startsWith("dl:"), true);
@@ -322,6 +323,7 @@ test("колода Гали: смены приходят и ей, со свои�
     assert.match(calls[0].body.text, /занятие на сегодня/);
     assert.equal(calls[0].body.chat_id, "5");
     assert.equal(calls[0].body.reply_markup.inline_keyboard[0][0].callback_data, "wgo");
+    assert.match(calls[0].body.text, /💌/, "у Гали к словам идёт мотивирующая фраза");
   } finally {
     GALYA.length = 0;
     GALYA.push(...saved.splice(0));

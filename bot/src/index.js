@@ -19,6 +19,7 @@ import GRAMMAR from "../../content/grammar.json" with { type: "json" };
 import { sendGrammarDaily } from "./grammar.js";
 import WORDS from "../data/words.json" with { type: "json" };
 import { handleSite } from "./site.js";
+import { motivation } from "./motivation.js";
 import {
   choices, currentItem, deckProgress, freshLeft, learn, newDeck, NEW_PER_DAY, recall, startDeckSession, startSession,
   stretchChain, studyQueue,
@@ -633,7 +634,8 @@ async function sendDeckDailyTo(env, now, chat, book) {
     parse_mode: "HTML",
     text: `${shift.icon} <b>Мои слова: ${shift.name}</b>\n\n` +
       [fresh && `🆕 Новых слов: ${fresh}`, p.due && `🔁 Повторить: ${p.due}`].filter(Boolean).join("\n") +
-      `\n\nЭто примерно ${minutes} мин.${last}`,
+      `\n\nЭто примерно ${minutes} мин.${last}` +
+      (book.id === "d" || book.id === "w" ? `\n\n💌 <i>${motivation(today)}</i>` : ""), // у папы и Гали к словам идёт тёплая фраза дня
     reply_markup: keyboard([[{ text: "▶️ Начать", callback_data: `${book.id}go` }]]),
   });
 }
