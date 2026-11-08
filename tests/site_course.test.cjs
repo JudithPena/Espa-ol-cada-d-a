@@ -534,6 +534,29 @@ test('приёмка 8 на реальных уроках: numeros/dictado бе�
   }
 });
 
+test('приёмка 10 на реальных итогах: familia/repaso (и final/examen после темы 23) — контроль с порогом и слабыми темами', () => {
+  for (const id of ['familia/repaso', 'final/examen']) {
+    const run = context(site);
+    const i = idx(run, id);
+    if (run(`LESSONS[${i}].check`) !== 'control') { assert.ok(id === 'final/examen', `${id}: нет check: control`); continue; }
+    run(`P.openAll = false; LESSONS.slice(0, ${i}).forEach(L => { P.done[L.id] = {stars: 3}; }); startLesson(${i})`);
+    const graded = J(run, 'S.steps.filter(isGraded)');
+    assert.ok(graded.length >= 8, `${id}: оцениваемых заданий ${graded.length}`);
+    assert.ok(graded.every(s => s.skill.length), `${id}: у каждого задания итога есть навык`);
+    // Половина ответов — с ошибкой: не сдан, следующий урок закрыт, слабые темы со ссылками на уроки.
+    run('S.outcomes = S.steps.filter(isGraded).map((s, k) => ({outcome: k % 2 ? "bad" : "first", skill: s.skill})); S.firstTry = Math.ceil(S.outcomes.length / 2); finish()');
+    assert.equal(run(`!!P.done[${JSON.stringify(id)}]`), false);
+    assert.equal(run(`isOpen(${i + 1})`), false, 'следующий урок закрыт до сдачи итога');
+    const res = run('resultView()');
+    assert.match(res, /Нужно повторить/);
+    assert.match(res, /data-lesson="\d+" data-free>Урок \d+/);
+    // Почти всё с первой попытки, одна ошибка исправлена самим — сдан.
+    run(`startLesson(${i}); S.outcomes = S.steps.filter(isGraded).map((s, k) => ({outcome: k === 0 ? "fixed" : "first", skill: s.skill})); finish()`);
+    assert.equal(run(`!!P.done[${JSON.stringify(id)}]`), true);
+    assert.equal(run(`isOpen(${i + 1})`), true);
+  }
+});
+
 // Приёмка 13: у каждого перестроенного урока есть карта слайдов (docs/site_slide_maps), и её сигнатура совпадает
 // с шагами, которые строит движок (node tools/site_steps.cjs <урок> --done).
 test('приёмка 13: slide maps match what the engine builds', () => {
