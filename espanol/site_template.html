@@ -1716,6 +1716,8 @@ function grammarFamily(f) {
 }
 function grammarForm(unit, group) {
   const key = grammarKey(unit, group), attempt = grammarAttempts.get(key), best = P.grammar?.[key];
+  const optionAttempt=gAttempt(unit,group) || gNewAttempt(group);
+  if(gEnsureChoiceOrders(group,optionAttempt) || !gAttempt(unit,group))gStoreAttempt(unit,group,optionAttempt);
   return `<form data-grammar-form="${esc(group.id)}" class="gform">
     ${group.title === "Мини-проверка" ? "<h4>Мини-проверка</h4>" : ""}
     ${group.title === "Мини-проверка" && group.instruction ? `<p class="ginstruction">${esc(group.instruction)}</p>` : ""}
@@ -1727,7 +1729,7 @@ function grammarForm(unit, group) {
         <fieldset class="gquestion"><legend>${esc(q.context || q.prompt)}</legend>
         ${q.context ? `<p class="gquestion-sentence" lang="es">${esc(q.prompt)}</p>` : ""}
         ${q.image ? `<img class="gillustration" src="${esc(q.image)}" alt="${esc(q.imageAlt || "")}" width="384" height="384" loading="lazy">` : ""}
-        ${q.options ? `<div class="gchoices">${gOrderedChoices(group,i,null,gAttempt(unit,group)).map(o => `<label class="gchoice ${grammarChoiceClass(q,o,value,!!attempt,group)}"><input type="radio" name="q${i}" value="${esc(o)}" aria-label="${esc(o === 'Без артикля' ? 'Ничего не вставлять' : gOptionLabel(q,o))}" required ${value === o ? "checked" : ""} ${attempt ? "disabled" : ""}><span class="goption-label"><span lang="es">${esc(gOptionLabel(q,o))}</span>${grammarChoiceNote(q,o,!!attempt)}</span></label>`).join("")}</div>`
+        ${q.options ? `<div class="gchoices">${gOrderedChoices(group,i,null,optionAttempt).map(o => `<label class="gchoice ${grammarChoiceClass(q,o,value,!!attempt,group)}"><input type="radio" name="q${i}" value="${esc(o)}" aria-label="${esc(o === 'Без артикля' ? 'Ничего не вставлять' : gOptionLabel(q,o))}" required ${value === o ? "checked" : ""} ${attempt ? "disabled" : ""}><span class="goption-label"><span lang="es">${esc(gOptionLabel(q,o))}</span>${grammarChoiceNote(q,o,!!attempt)}</span></label>`).join("")}</div>`
           : `${grammarInputHelp(q,group,`g-format-${group.id}-${i}`)}<input class="ginput" name="q${i}" aria-describedby="g-format-${esc(group.id)}-${i}" placeholder="${esc(grammarInputPlaceholder(q,group))}" aria-label="${esc(q.context ? q.context + " " + q.prompt : q.prompt)}" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" required value="${esc(value)}" ${attempt ? "disabled" : ""}>${attempt ? "" : `<div class="gaccents" aria-label="Испанские буквы">${gInputChars(q).map(c => `<button type="button" class="btn ghost sm" data-gaccent="${c}" data-ginput="q${i}" aria-label="Вставить ${c}">${c}</button>`).join("")}</div>`}`}
         ${attempt ? `<div class="gfeedback ${result.status==='almost'?'almost':good ? "good" : ""}"><b>${result.status==='almost'?esc(grammarFeedbackTitle(result)):good ? "✓ Верно" : `✗ Верный ответ: ${esc(q.answers.join(" / "))}`}</b>${grammarAccentHint(result)}<p>${esc(grammarFeedbackExplanation(q,result))}</p></div>` : ""}</fieldset>`;
     }).join("")}

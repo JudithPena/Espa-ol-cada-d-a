@@ -2,6 +2,7 @@
 let G = null;
 const G_SESSION_KEY = "espanol-cada-dia.grammar-session.v1";
 const G_ATTEMPTS_KEY = "espanol-cada-dia.grammar-attempts.v1";
+const G_CHOICE_ORDER_VERSION = 2;
 const gHasLives = group => group.title !== 'Мини-проверка';
 const gErrorLimit = group => gHasLives(group) ? Math.max(3, Math.ceil(group.questions.length / 5)) : null;
 const gOutOfLives = (group, errors) => gHasLives(group) && errors >= gErrorLimit(group);
@@ -51,7 +52,7 @@ function gChoiceBucketIssues(specs, orders) {
   positions.forEach(p=>{if(p>=0)counts[p]++;});
   if(specs.some(s=>!gChoicePermutation(orders[s.key],s.values)) || positions.some(p=>!(p>=0)))return ['invalid'];
   // Small samples must not promise the learner a remaining position by an exact quota.
-  if(specs.length>=8) {
+  if(specs.length>=Math.max(5,size)) {
     const expected=specs.length/size, tolerance=Math.max(1.5,Math.ceil(expected/4));
     if(counts.some(n=>Math.abs(n-expected)>tolerance))issues.push('imbalance');
     const accepted=Array(size).fill(0);
@@ -104,7 +105,7 @@ function gPlanChoiceOrders(group, random=Math.random, round=0) {
     let best=null, bestScore=Infinity;
     for(let trial=0;trial<256;trial++) {
       let slots;
-      if(specs.length<8)slots=specs.map(()=>Math.floor(random()*size));
+      if(specs.length<Math.max(5,size))slots=specs.map(()=>Math.floor(random()*size));
       else {
         const expected=specs.length/size, tolerance=Math.max(1.5,Math.ceil(expected/4));
         const counts=Array(size).fill(Math.floor(expected));
@@ -129,13 +130,28 @@ function gPlanChoiceOrders(group, random=Math.random, round=0) {
   return orders;
 }
 function gEnsureChoiceOrders(group, attempt) {
-  let changed=false;
-  if(!attempt.optionOrders || typeof attempt.optionOrders!=='object' || Array.isArray(attempt.optionOrders)){attempt.optionOrders={};changed=true;}
-  for(const spec of gChoiceSpecs(group))if(!gChoicePermutation(attempt.optionOrders[spec.key],spec.values)) {
-    // Preserve the source order for pre-shuffle attempts; never reset their responses or lives.
-    attempt.optionOrders[spec.key]=spec.values.slice();changed=true;
+  const specs=gChoiceSpecs(group), previous=attempt.optionOrders;
+  const valid=previous && typeof previous==='object' && !Array.isArray(previous) ? previous : {};
+  const migrating=attempt.choiceOrderVersion!==G_CHOICE_ORDER_VERSION;
+  if(!migrating && specs.every(s=>gChoicePermutation(valid[s.key],s.values)))return false;
+  const seen=new Set(Object.keys(attempt.responses || {}));
+  const current=G?.steps[G.at];
+  if(current?.type==='question' && current.group===group.id && gGroups(gUnit()).includes(group))seen.add(String(current.qi));
+  const lockedQuestions=new Set(), locked={};
+  for(const spec of specs) {
+    const qi=spec.key.split(':')[0], saved=gChoicePermutation(valid[spec.key],spec.values);
+    // Old attempts keep every visited question; current plans keep every valid order.
+    // Missing plans for unseen questions must never fall back to the biased source array.
+    if(spec.fixed || seen.has(qi) || (!migrating && saved)) {
+      locked[spec.key]=saved?valid[spec.key]:spec.values.slice();
+      // A fixed legacy full-answer list must not freeze unseen guided slots.
+      if(!spec.fixed)lockedQuestions.add(+qi);
+    }
   }
-  return changed;
+  const remaining={...group,questions:group.questions.map((q,i)=>lockedQuestions.has(i)?{...q,shuffleOptions:false}:q)};
+  attempt.optionOrders={...valid,...gPlanChoiceOrders(remaining),...locked};
+  attempt.choiceOrderVersion=G_CHOICE_ORDER_VERSION;
+  return true;
 }
 function gOrderedChoices(group, qi, slot=null, attempt=null) {
   const q=group.questions[qi], source=slot===null?q.options:q.guidedGaps.choices[slot];
@@ -146,7 +162,7 @@ function gNewAttempt(group, responses={}) {
   const errors=Object.values(responses).filter(r=>r.checked && !r.good).length;
   const attempt={id:Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),revision:group.revision || 1,errors,limit:gErrorLimit(group),status:gOutOfLives(group,errors)?'failed':'active',responses};
   if(Object.keys(responses).length)gEnsureChoiceOrders(group,attempt);
-  else attempt.optionOrders=gPlanChoiceOrders(group);
+  else {attempt.optionOrders=gPlanChoiceOrders(group);attempt.choiceOrderVersion=G_CHOICE_ORDER_VERSION;}
   return attempt;
 }
 function gRefreshAttemptVersions(unit) {

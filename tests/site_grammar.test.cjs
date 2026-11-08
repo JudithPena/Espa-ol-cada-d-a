@@ -1862,3 +1862,101 @@ test('family article recall stops on the third mistake and requires theory befor
  assert.equal(run('P.xp'),0);
  assert.ok(run('gPlayerView()').includes('data-greview-theory'));
 });
+
+test('six-choice short exercises balance positions instead of leaving seven questions unbalanced',()=>{
+ const run=context();
+ run(`var six={questions:Array.from({length:7},()=>({answers:['f'],options:['a','b','c','d','e','f']}))};
+ function seeded18(seed){let n=seed>>>0;return ()=>((n=(1664525*n+1013904223)>>>0)/4294967296);}`);
+ for(let seed=1;seed<=300;seed++){
+  const counts=JSON.parse(run(`JSON.stringify((()=>{const o=gPlanChoiceOrders(six,seeded18(${seed}));const counts=Array(6).fill(0);for(const s of gChoiceSpecs(six))counts[o[s.key].indexOf(s.answer)]++;if(gChoiceOrderIssues(six,o).length)throw Error('invalid plan');return counts;})())`));
+  assert.ok(Math.max(...counts)<=2,`seed ${seed}: ${counts}`);
+ }
+});
+
+test('2 through 10 choices distribute across attempts and within thirty-question exercises without source-index bias',()=>{
+ const run=context();
+ const results=JSON.parse(run(`JSON.stringify((()=>{
+  function seeded18(seed){let n=seed>>>0;return ()=>((n=(1664525*n+1013904223)>>>0)/4294967296);}
+  const results=[];for(const size of [2,3,4,5,6,7,8,10]){
+   const values=Array.from({length:size},(_,i)=>'value-'+i),answer=values.at(-1),group={questions:Array.from({length:30},()=>({options:values,answers:[answer]}))};
+   const counts=Array(size).fill(0),perQuestion=Array.from({length:30},()=>Array(size).fill(0));
+   for(let seed=1;seed<=300;seed++){
+    const orders=gPlanChoiceOrders(group,seeded18(seed*7919));if(gChoiceOrderIssues(group,orders).length)throw Error(size+': invalid distribution');
+    for(const s of gChoiceSpecs(group)){const position=orders[s.key].indexOf(answer);counts[position]++;perQuestion[+s.key][position]++;}
+   }
+   results.push({size,counts,perQuestion});
+  }return results;
+ })())`));
+ for(const {size,counts,perQuestion} of results){
+  const expected=9000/size;
+  assert.ok(counts.every(n=>Math.abs(n-expected)<expected*.12),`${size} choices: ${counts}`);
+  assert.ok(perQuestion.every(c=>c.every(n=>n>0)),`${size}: a question never reached some position`);
+ }
+});
+
+test('all actual six-option questions reach all six positions across seeded attempts',()=>{
+ const units=fs.readdirSync('content/grammar').filter(f=>f.endsWith('.json')).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
+ const run=context(units);
+ const result=JSON.parse(run(`JSON.stringify((()=>{
+  function seeded18(seed){let n=seed>>>0;return ()=>((n=(1664525*n+1013904223)>>>0)/4294967296);}
+  const counts=Array(6).fill(0),questions={};
+  for(const u of COURSE.grammar)for(const group of gGroups(u)){
+   const six=gChoiceSpecs(group).filter(s=>s.values.length===6&&!s.fixed);if(!six.length)continue;
+   for(const s of six)questions[u.number+'/'+group.id+'/'+s.key]=Array(6).fill(0);
+   for(let seed=1;seed<=600;seed++){
+    const orders=gPlanChoiceOrders(group,seeded18(seed*3571));if(gChoiceOrderIssues(group,orders).length)throw Error(group.id+': invalid plan');
+    for(const s of six){const p=orders[s.key].indexOf(s.answer);counts[p]++;questions[u.number+'/'+group.id+'/'+s.key][p]++;}
+   }
+  }return {counts,questions};
+ })())`));
+ assert.equal(Object.keys(result.questions).length,9);
+ assert.ok(result.counts.every(n=>Math.abs(n-900)<108),JSON.stringify(result.counts));
+ for(const [key,counts] of Object.entries(result.questions))assert.ok(counts.every(n=>n>0),`${key}: ${counts}`);
+});
+
+test('legacy source-order attempts shuffle unseen six-option questions once while retaining visited layouts and errors',()=>{
+ const run=context();
+ run(`var group={questions:Array.from({length:30},()=>({answers:['f'],options:['a','b','c','d','e','f']}))};
+ var old={id:'old',errors:1,status:'active',responses:{0:{value:'a',checked:true,good:false},2:{value:'draft',checked:false}},optionOrders:Object.fromEntries(group.questions.map((q,i)=>[i,q.options.slice()]))};
+ var originalResponses=JSON.stringify(old.responses);gEnsureChoiceOrders(group,old);`);
+ assert.equal(run('old.choiceOrderVersion'),2);
+ assert.equal(run('old.optionOrders[0].join()'),'a,b,c,d,e,f');
+ assert.equal(run('old.optionOrders[2].join()'),'a,b,c,d,e,f');
+ assert.equal(run('JSON.stringify(old.responses)'),run('originalResponses'));
+ assert.equal(run('old.errors'),1);
+ assert.equal(run('gChoiceOrderIssues({...group,questions:group.questions.map((q,i)=>i===0||i===2?{...q,shuffleOptions:false}:q)},old.optionOrders).length'),0);
+ assert.ok(run("Object.entries(old.optionOrders).some(([qi,o])=>qi!=='0'&&qi!=='2'&&o.indexOf('f')!==5)"));
+ run('var plan=JSON.stringify(old.optionOrders);');
+ assert.equal(run('gEnsureChoiceOrders(group,old)'),false);
+ assert.equal(run('JSON.stringify(old.optionOrders)'),run('plan'));
+});
+
+test('a currently visible unanswered six-option question keeps its layout during migration and reload',()=>{
+ const u=JSON.parse(JSON.stringify(unit));u.sections[0].check.questions=Array.from({length:12},()=>({prompt:'___',answers:['f'],options:['a','b','c','d','e','f'],explain:'f'}));
+ const storage=new Map();let run=context([u],storage);
+ run(`save();gStart(COURSE.grammar[0].id,'section:0');gMove(1);var group=gUnit().sections[0].check,record=gAttempt(gUnit(),group);delete record.choiceOrderVersion;record.responses={};record.optionOrders=Object.fromEntries(group.questions.map((q,i)=>[i,q.options.slice()]));gStoreAttempt(gUnit(),group,record);gEnsureAttempt(gUnit(),group);`);
+ assert.equal(run("gAttempt(gUnit(),group).optionOrders[0].join()"),'a,b,c,d,e,f');
+ assert.ok(run("Object.values(gAttempt(gUnit(),group).optionOrders).some(o=>o.indexOf('f')!==5)"));
+ const orders=run('JSON.stringify(gAttempt(gUnit(),group).optionOrders)');
+ run('gSave();gExit();');run=context([u],storage);run(`gStart(COURSE.grammar[0].id,'all',true);`);
+ assert.equal(run('JSON.stringify(gAttempt(gUnit(),gUnit().sections[0].check).optionOrders)'),orders);
+ run("gPickValue('f');");assert.equal(run('gResponse(G.steps[G.at]).status'),'correct');
+});
+
+test('the form renderer creates a persistent randomized plan instead of rendering unsaved source order',()=>{
+ const u=JSON.parse(JSON.stringify(unit));u.exercises[0].questions=Array.from({length:30},()=>({prompt:'___',answers:['f'],options:['a','b','c','d','e','f'],explain:'f'}));
+ const run=context([u]);
+ run('var group=COURSE.grammar[0].exercises[0];var firstForm=grammarForm(COURSE.grammar[0],group);var firstPlan=JSON.stringify(gAttempt(COURSE.grammar[0],group).optionOrders);');
+ assert.equal(run('gChoiceOrderIssues(group,gAttempt(COURSE.grammar[0],group).optionOrders).length'),0);
+ assert.equal(run('grammarForm(COURSE.grammar[0],group)'),run('firstForm'));
+ assert.equal(run('JSON.stringify(gAttempt(COURSE.grammar[0],group).optionOrders)'),run('firstPlan'));
+});
+
+test('fixed legacy full-answer lists do not freeze unseen guided choices during migration',()=>{
+ const run=context([unit17]);
+ run(`var group=COURSE.grammar[0].exercises[2],old={id:'old-guided',errors:0,status:'active',responses:{}};gEnsureChoiceOrders(group,old);var sourceLists=gChoiceSpecs(group).filter(s=>s.fixed),slots=gChoiceSpecs(group).filter(s=>!s.fixed);`);
+ assert.ok(run('sourceLists.length>0'));
+ assert.equal(run('sourceLists.every(s=>old.optionOrders[s.key].join()===s.values.join())'),true);
+ assert.ok(run('slots.some(s=>old.optionOrders[s.key].join()!==s.values.join())'));
+ assert.equal(run('gChoiceOrderIssues(group,old.optionOrders).length'),0);
+});
