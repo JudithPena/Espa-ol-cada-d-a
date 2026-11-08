@@ -421,6 +421,47 @@ main { padding-block: 16px 110px; }
 .slot.cur { outline: 2px solid var(--accent); }
 .slot.bad { outline-color: var(--bad); background: var(--bad-soft); animation: shake .3s; }
 .letter { text-align: center; }
+
+/* Сценарий урока (уроки сайта с блоками learn, choose, write, match, sort, build, mission, more). */
+.pctx { font-size: 12px; font-weight: 700; color: var(--muted); padding-bottom: 6px; margin-top: -6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.prompt .q.qtext { font-family: var(--body); font-weight: 700; font-size: 20px; }
+.qpic { width: 140px; height: 140px; border-radius: 18px; background: #f9f4ea; justify-self: center; object-fit: cover; }
+.mini-dlg { display: grid; gap: 6px; }
+.mini-dlg .msg .bubble { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.mini-dlg .msg.gap .bubble { color: var(--muted); border-style: dashed; }
+.wbox { display: grid; gap: 10px; }
+.wfield { font-size: 20px; min-height: 54px; }
+.wfield.right { border-color: var(--good); background: var(--good-soft); }
+.wfield.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.wfmt { font-size: 13px; font-weight: 700; color: var(--muted); }
+.chars { display: flex; flex-wrap: wrap; gap: 6px; }
+.chars button { min-width: 44px; height: 44px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); font-size: 19px; font-weight: 700; }
+.wwhy { background: var(--sun-soft); border-radius: 12px; padding: 10px 12px; font-weight: 700; font-size: 15px; }
+.match { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
+.mcol { display: grid; gap: 10px; align-content: start; }
+.mt { min-height: 50px; padding: 10px 8px; border-radius: 12px; border: 2px solid var(--line); background: var(--surface); font-weight: 700; font-size: 16px; line-height: 1.25; box-shadow: 0 2px 0 var(--line); overflow-wrap: anywhere; }
+.mt[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
+.mt.ok { border-color: var(--good); background: var(--good-soft); color: var(--good); box-shadow: none; cursor: default; }
+.mt.bad { border-color: var(--bad); background: var(--bad-soft); animation: shake .3s; }
+.scard { justify-self: center; display: flex; gap: 10px; align-items: center; padding: 14px 20px; border-radius: 16px; background: var(--surface); box-shadow: var(--shadow); font-family: var(--display); font-size: 24px; font-weight: 600; text-align: center; }
+.sgroups { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+.sg { display: grid; gap: 6px; align-content: start; min-height: 92px; padding: 12px; border-radius: 14px; border: 2px dashed var(--line); background: var(--surface); text-align: left; }
+.sg > b { font-size: 17px; }
+.sg.bad { border-color: var(--bad); background: var(--bad-soft); animation: shake .3s; }
+.sg.hint { border-color: var(--good); border-style: solid; }
+.sg-items { display: flex; flex-wrap: wrap; gap: 4px; }
+.sg-items i { font-style: normal; font-size: 13px; padding: 2px 8px; border-radius: 8px; background: var(--good-soft); color: var(--good); font-weight: 700; }
+.scount { text-align: center; font-size: 13px; color: var(--muted); font-weight: 700; }
+.mission { border-radius: 18px; padding: 16px; background: var(--sun-soft); display: grid; gap: 6px; }
+.mission > .lbl { font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: color-mix(in srgb, var(--sun) 65%, var(--ink)); }
+.mission p { margin: 0; }
+.more-box { border-radius: 12px; background: var(--surface); border: 1px solid var(--line); padding: 8px 12px; }
+.more-box summary, .why summary { cursor: pointer; font-weight: 800; font-size: 14px; color: var(--accent); min-height: 36px; display: flex; align-items: center; }
+.more-box > div { padding: 4px 0 6px; }
+.why .theory { max-height: 38vh; overflow-y: auto; margin-top: 6px; font-size: 15px; }
+.panel.goal { text-align: left; width: 100%; background: var(--good-soft); border-color: transparent; }
+.skills { display: grid; gap: 10px; }
+.skills ul { margin: 4px 0 0; padding: 0; list-style: none; display: grid; gap: 2px; font-size: 15px; }
 .lw { border-bottom: 1.5px dotted var(--muted); cursor: pointer; }
 .lw:hover { color: var(--accent); border-bottom-color: var(--accent); }
 .sheet-wrap { position: fixed; inset: 0; z-index: 30; background: rgb(10 14 30 / .45); display: flex; align-items: flex-end; }
@@ -1402,14 +1443,14 @@ function theoryScreens(L) {
   const flush = () => { if (cur.length) screens.push(cur); cur = []; weight = 0; };
   const onlyHeader = () => cur.length && cur.every(b => b.t === "header");
   L.blocks.forEach((b, k) => {
-    if (b.t === "exercise") { flush(); screens.push({ ex: b }); return; }
+    if (b.t === "exercise" || STEP_BLOCKS.has(b.t)) { flush(); screens.push({ ex: b }); return; }
     const w = visLen(b);
     if (b.join && cur.length) { cur.push(b); weight += w; return; }   // «join: true» в уроке сайта — тот же экран
     // Короткое вступление («Прочитайте диалог вслух…») остаётся на одном экране с диалогом.
     const lead = ["dialogue", "reading"].includes(b.t) && weight < 400;
     // Вопрос в одну строку («Посмотрите на два разговора. Чем они отличаются?») не отрывается от диалога даже длинного.
     const tiny = lead && cur.length === 1 && cur[0].t === "text" && String(cur[0].html || "").replace(/<[^>]+>/g, "").length < 120;
-    const own = ["header", "rule", "note", "table", "conjugation", "dialogue", "reading", "examples", "compare"].includes(b.t);
+    const own = ["header", "rule", "note", "table", "conjugation", "dialogue", "reading", "examples", "compare", "mission"].includes(b.t);
     if (!onlyHeader() && !tiny && ((own && !lead) || weight + w > (b.t === "text" && w < 250 ? 1200 : 450))) flush();
     cur.push(b); weight += w;
     // После диалога — новый экран, если следующий блок не просится на этот же (два коротких разговора рядом).
@@ -1419,11 +1460,245 @@ function theoryScreens(L) {
   return screens;
 }
 
+/* ================================================================ сценарий урока (уроки сайта с блоками learn…) */
+// Урок со сценарием показывает блоки в том порядке, в каком их поставил автор: порция слов → пример →
+// задания → ещё слова → диалог → миссия. Урок без learn идёт прежним путём (startLesson ниже).
+const STEP_BLOCKS = new Set(["learn", "choose", "write", "match", "sort", "build"]);
+const RULE_BLOCKS = new Set(["rule", "compare", "table", "tip", "note", "list", "text", "examples", "conjugation", "more"]);
+const ARTS = new Set(["el", "la", "los", "las", "un", "una", "unos", "unas"]);
+// Слова, где знак ударения меняет смысл: без него ответ неверен, а не «почти» (tú «ты» — tu «твой»).
+const ACCENT_MEANING = new Set(["sí", "tú", "él", "mí", "té", "sé", "dé", "más", "aún", "qué", "quién", "quiénes", "cuál", "cuáles",
+  "cómo", "cuándo", "cuánto", "cuánta", "cuántos", "cuántas", "dónde", "adónde", "está", "estás", "están", "esté", "papá", "mamá"]);
+const ACUTE = { á: "a", é: "e", í: "i", ó: "o", ú: "u" };
+// Ввод: без регистра, лишних пробелов и знаков препинания; ñ, ü и ударения сохраняются.
+const wNorm = s => String(s ?? "").normalize("NFC").toLowerCase().replace(/[¿¡?!.,;:«»"“”'…()\[\]—–-]/g, " ").replace(/\s+/g, " ").trim();
+const wFlat = s => s.replace(/[áéíóú]/g, c => ACUTE[c]);   // только ударения: ñ и ü остаются собой
+const wordCore = es => norm(es.replace(/^(?:el\/la|el|la|los|las|un|una)\s+/i, "").replace(/\s*\/.*$/, ""));
+
+function chooseStep(b, it) {
+  const order = shuffle(it.o.map((_, k) => k));
+  return { type: "mc", mode: "choose", title: b.title, q: it.q, html: true, say: it.say, lines: it.lines, cast: it.cast, img: it.img,
+           options: order.map(k => it.o[k][0]), plain: order.map(k => it.o[k][1]), correct: order.indexOf(0), explain: it.explain };
+}
+function blockSteps(b) {
+  if (b.t === "choose") return b.items.map(it => chooseStep(b, it));
+  if (b.t === "write") return b.items.map(it => ({ type: "write", title: b.title, accents: b.accents, ...it }));
+  if (b.t === "match") return [{ type: "match", title: b.title, pairs: b.pairs }];
+  if (b.t === "sort") return [{ type: "sort", title: b.title, groups: b.groups }];
+  if (b.t === "build") return b.items.map(it => ({ type: "build", title: b.title, es: it.es, ru: it.ru, alt: it.alt, extra: it.extra }));
+  return [];
+}
+// Тексты заданий, которые урок уже спросил: слово, которое в них есть, второй раз в конце урока не задаём.
+function askedTexts(steps) {
+  const out = new Set(), add = t => { const k = norm(String(t ?? "").replace(/<[^>]*>/g, " ")); if (k) out.add(k); };
+  for (const st of steps) {
+    if (st.type === "mc" && st.plain) { add(st.plain[st.correct]); add(st.q); }
+    if (st.type === "write") { (st.a || []).forEach(add); add(st.q); }
+    if (st.type === "match") st.pairs.forEach(p => { add(p[0]); add(p[1]); });
+    if (st.type === "sort") st.groups.forEach(g => g[1].forEach(x => add(x[0])));
+    if (st.type === "build") add(st.es);
+  }
+  return out;
+}
+// Задания из уже пройденных уроков со сценарием: «🔁 Вспомним» в начале урока и «Повторить фразы».
+function recallPool(upto) {
+  const out = [];
+  for (let k = upto - 1; k >= 0; k--) {
+    const L = LESSONS[k];
+    if (!L.scripted || !P.done[L.id]) continue;
+    L.blocks.forEach(b => {
+      if (b.t === "choose") b.items.forEach(it => out.push({ li: k, make: () => chooseStep(b, it) }));
+      if (b.t === "write") b.items.forEach(it => out.push({ li: k, make: () => ({ type: "write", title: b.title, accents: b.accents, ...it }) }));
+    });
+  }
+  return out;
+}
+function recallSteps(i, n = 2) {
+  const pool = recallPool(i);
+  if (!pool.length) return [];
+  // Одно задание из недавних уроков, одно — из давних: так повторение растянуто во времени.
+  const lis = [...new Set(pool.map(x => x.li))], recent = new Set(lis.slice(0, 3));
+  const pick = [...shuffle(pool.filter(x => recent.has(x.li))).slice(0, 1), ...shuffle(pool.filter(x => !recent.has(x.li))).slice(0, n - 1)];
+  if (pick.length < n) pick.push(...shuffle(pool.filter(x => !pick.includes(x))).slice(0, n - pick.length));
+  return pick.map(x => ({ ...x.make(), recall: true }));
+}
+function startPhraseReview() {
+  const steps = shuffle(recallPool(LESSONS.length)).slice(0, 10).map(x => ({ ...x.make(), recall: true }));
+  if (!steps.length) return toast("Пока нечего повторять");
+  balance(steps);
+  S = { kind: "review", pool: knownPool(LESSONS.length), steps, at: 0, firstTry: 0, graded: 0, seen: new Set(), state: null };
+  render();
+}
+// Верный вариант не стоит на одной и той же позиции три вопроса подряд.
+function balance(steps) {
+  let last = -1, run = 0;
+  for (const st of steps) {
+    if (st.type !== "mc") continue;
+    if (st.correct === last && run >= 2 && st.options.length > 1) {
+      const n = st.options.length, rot = a => a && a.map((_, k) => a[(k + 1) % n]);
+      st.options = rot(st.options); st.plain = rot(st.plain); st.correct = (st.correct - 1 + n) % n;
+    }
+    run = st.correct === last ? run + 1 : 1; last = st.correct;
+  }
+  return steps;
+}
+// В конце урока: по вопросу на слова, которых не касались задания, «Мастер фраз» на слух и тест урока.
+function scriptPractice(i, steps) {
+  const L = LESSONS[i], pool = knownPool(i), asked = askedTexts(steps), out = [];
+  const covered = w => { const core = wordCore(w.es); return !!core && [...asked].some(t => ` ${t} `.includes(` ${core} `)); };
+  L.words.filter(w => w.srs && !covered(w)).forEach((w, k) => { const q = wordQuestion(w, pool, k % 2 ? "prod" : "rec"); if (q) out.push(q); });
+  const phrase = shuffle(L.sentences.filter(([es]) => !asked.has(norm(es))))[0];
+  if (phrase && canSay(phrase[0])) out.push({ type: "mf", es: phrase[0], ru: phrase[1] });
+  const quiz = L.quiz.map(q => {
+    const order = q.shuffle ? shuffle(q.options.map((_, k) => k)) : q.options.map((_, k) => k);
+    return { type: "mc", mode: "quiz", q: q.q, options: order.map(k => q.options[k]), correct: order.indexOf(q.correct), explain: q.explain };
+  });
+  return shuffle(out).concat(quiz);
+}
+// Длина текста экрана без разметки: короткая вводная (ситуация в одну-две фразы) стоит на первом экране урока.
+const textLen = blocks => blocks.map(b => String(b.html || "").replace(/<[^>]*>/g, "")).join("").length;
+function startScript(i) {
+  const L = LESSONS[i], pool = knownPool(i), screens = theoryScreens(L);
+  const lead = screens.length && Array.isArray(screens[0]) && screens[0].every(b => b.t === "text") && textLen(screens[0]) < 320 ? screens.shift() : [];
+  const steps = [{ type: "intro", lead }];
+  // Слова без порции (из вводного урока сайта) — в начале, как раньше.
+  const placed = new Set(L.blocks.filter(b => b.t === "learn").flatMap(b => b.words));
+  L.words.filter(w => !placed.has(w.es)).forEach(w => steps.push({ type: "word", word: w }));
+  steps.push(...recallSteps(i));
+  let ref = -1, mission = "";
+  for (const sc of screens) {
+    if (Array.isArray(sc)) {
+      steps.push({ type: "theory", blocks: sc });
+      if (sc.some(b => RULE_BLOCKS.has(b.t))) ref = steps.length - 1;
+      const m = sc.find(b => b.t === "mission");
+      if (m) mission = m.title || "Миссия";
+      continue;
+    }
+    const b = sc.ex;
+    if (b.t === "learn") { b.words.forEach(es => { const w = L.words.find(x => x.es === es); if (w) steps.push({ type: "word", word: w }); }); continue; }
+    const made = b.t === "exercise" ? exerciseSteps(L, pool, b).slice(0, 6) : blockSteps(b);
+    made.forEach(st => { st.ref = ref; if (mission) st.mission = mission; });
+    steps.push(...made);
+  }
+  steps.push(...scriptPractice(i, steps));
+  S = { kind: "lesson", li: i, pool, steps: balance(steps), at: 0, firstTry: 0, graded: 0, seen: new Set(), state: null };
+  render();
+}
+
+// Ввод ответа: точное совпадение — верно; без значка ударения — «почти» (засчитывается), кроме слов,
+// где ударение меняет смысл, и заданий на само ударение (accents: strict). ñ ≠ n всегда.
+function accentChangesMeaning(answer, typed) {
+  const a = wNorm(answer).split(" "), t = wNorm(typed).split(" ");
+  return a.some((w, k) => w !== t[k] && wFlat(w) === wFlat(t[k] || "") && (ACCENT_MEANING.has(w) || ACCENT_MEANING.has(t[k])));
+}
+function writeWhy(st, typed) {
+  const got = wNorm(typed), a = wNorm(st.a[0]), aw = a.split(" "), gw = got.split(" ");
+  if (st.a.some(x => accentChangesMeaning(x, typed) && wFlat(wNorm(x)) === wFlat(got))) return "Здесь знак ударения меняет смысл слова.";
+  if (st.a.some(x => wFlat(wNorm(x)).replace(/ñ/g, "n") === wFlat(got).replace(/ñ/g, "n"))) return "Посмотрите на букву ñ: n и ñ — разные буквы.";
+  if (ARTS.has(aw[0]) && ARTS.has(gw[0]) && aw.slice(1).join(" ") === gw.slice(1).join(" ")) return "Слово верное, а артикль другой.";
+  if (ARTS.has(aw[0]) && aw.slice(1).join(" ") === got) return "Нужен артикль: напишите слово вместе с артиклем.";
+  if (ARTS.has(gw[0]) && !ARTS.has(aw[0]) && gw.slice(1).join(" ") === a) return "Здесь артикль не нужен.";
+  if (gw.length < aw.length) return "Не хватает слова.";
+  if (gw.length > aw.length) return "Есть лишнее слово.";
+  return "Пока не так.";
+}
+function writeResult(st, typed) {
+  const got = wNorm(typed);
+  const exact = st.a.find(x => wNorm(x) === got);
+  if (exact) return { ok: true, match: exact };
+  if (st.accents !== "strict") {
+    const near = st.a.find(x => wFlat(wNorm(x)) === wFlat(got) && !accentChangesMeaning(x, typed));
+    if (near) return { ok: true, almost: true, match: near };
+  }
+  return { ok: false, why: writeWhy(st, typed) };
+}
+function writeCheck() {
+  const st = S.steps[S.at], s = S.state;
+  if (s.result || !wNorm(s.value)) return;
+  const r = writeResult(st, s.value);
+  s.tries = (s.tries || 0) + 1;
+  if (r.ok) { s.almost = !!r.almost; s.match = r.match; return answer(s.tries === 1, st, { solved: true, requeue: false }); }
+  if (s.tries < 2) { s.why = r.why; s.flash = true; render(); sfx(false); focusWrite(); return; }
+  s.why = r.why;
+  answer(false, st);
+}
+function writeGive() {
+  const st = S.steps[S.at], s = S.state;
+  if (s.result) return;
+  s.gave = true;
+  answer(false, st);
+}
+function focusWrite() { const f = $("#wans"); if (f && !matchMedia("(pointer: coarse)").matches) f.focus({ preventScroll: true }); }
+function wInsert(ch) {
+  const f = $("#wans");
+  if (!f || f.disabled) return;
+  const a = f.selectionStart ?? f.value.length, b = f.selectionEnd ?? a;
+  f.value = f.value.slice(0, a) + ch + f.value.slice(b);
+  f.setSelectionRange(a + ch.length, a + ch.length); f.focus();
+  S.state.value = f.value; wSync();
+}
+function wSync() { const btn = $("[data-primary]"); if (btn && S.steps[S.at]?.type === "write") btn.disabled = !wNorm(S.state.value); }
+
+// Пары: нажали слева, потом справа (или наоборот). Неверная пара мигает, ошибки считаются.
+function matchPick(side, k) {
+  const st = S.steps[S.at], s = S.state;
+  if (s.result || s.done.includes(k)) return;
+  s.bad = null;
+  const text = st.pairs[k][side === "l" ? 2 : 3];
+  if (!s.sel || s.sel.side === side) { s.sel = { side, k }; if (text) say(text); return render(); }
+  const other = s.sel; s.sel = null;
+  if (other.k === k) {
+    s.done.push(k); if (text) say(text);
+    if (s.done.length === st.pairs.length) return answer(s.err === 0, st, { requeue: false });
+    return render();
+  }
+  s.err++; s.bad = side === "l" ? { l: k, r: other.k } : { l: other.k, r: k };
+  render(); sfx(false);
+}
+// Группы: одна карточка за раз; нажатие на группу кладёт её туда. После двух ошибок подсвечивается верная группа.
+function sortPick(g) {
+  const st = S.steps[S.at], s = S.state;
+  if (s.result) return;
+  const [item, want] = s.order[s.k];
+  if (g === want) {
+    s.placed[g].push(item[0]); s.k++; s.here = 0; s.flash = null; s.hint = null;
+    if (item[1]) say(item[1]);
+    if (s.k >= s.order.length) return answer(s.err === 0, st, { requeue: false });
+    return render();
+  }
+  s.err++; s.here++; s.flash = g; if (s.here >= 2) s.hint = want;
+  render(); sfx(false);
+}
+// Правая колонка пар не совпадает с левой ни в одной строке, иначе пары видны без чтения
+// (случайная перестановка без неподвижных точек — алгоритм Саттоло).
+function matchOrder(n) {
+  const r = [...Array(n).keys()];
+  for (let i = n - 1; i > 0; i--) { const j = Math.floor(Math.random() * i); [r[i], r[j]] = [r[j], r[i]]; }
+  return r;
+}
+const ruleOf = st => S.kind === "lesson" && st.ref >= 0 ? S.steps[st.ref] : null;
+const ruleHTML = st => {
+  const ref = ruleOf(st);
+  if (!ref) return "";
+  const blocks = ref.blocks.filter(b => b.t !== "dialogue" && b.t !== "reading" && b.t !== "mission");
+  return blocks.length ? `<details class="why"><summary>📖 Повторить правило</summary><div class="theory">${blocks.map(blockHTML).join("")}</div></details>` : "";
+};
+function chatHTML(st) {
+  const names = [...new Set(st.lines.map(l => l[0]))];
+  return `<div class="mini-dlg">${st.lines.map(([who, es, ru, sp]) => {
+    const c = st.cast?.[who] || { a: "" }, n = names.indexOf(who);
+    return `<div class="msg t${n % 4}${n % 2 ? " r" : ""}">${avaHTML(c.a)}<span class="who">${esc(who)}</span><div class="bubble"><span class="es">${es}</span>${canSay(sp) ? playBtn(sp, "lplay") : ""}</div></div>`;
+  }).join("")}<div class="msg gap${names.length % 2 ? " r" : ""}"><span class="ava" aria-hidden="true">${AVA_ICON}</span><span class="who">Вы</span><div class="bubble">…</div></div></div>`;
+}
+const kickerOf = (st, fallback) => `<span class="kicker">${st.recall ? "🔁 Вспомним · " : st.mission ? `🎯 ${st.mission} · ` : ""}${st.title || fallback}</span>`;
+const wordPic = es => { const w = WORDS.get(es); return w?.img ? `<img class="qpic" src="${w.img}" alt="">` : ""; };
+
 let S = null;   // текущее занятие
 let view = { tab: "home", level: null };
 
 function startLesson(i) {
   const L = LESSONS[i];
+  if (L.scripted) return startScript(i);
   const screens = theoryScreens(L);
   // Короткое вступление («Давайте проверим, как вы освоили чтение») — на первом экране, а не отдельным слайдом.
   const lead = screens.length && Array.isArray(screens[0]) && screens[0].every(b => b.t === "text") && visLen(screens[0]) < 400 ? screens.shift() : [];
@@ -1447,7 +1722,7 @@ function startReview(list) {
   render();
 }
 
-const isGraded = st => ["mc", "build", "mf"].includes(st.type);
+const isGraded = st => ["mc", "build", "mf", "write", "match", "sort"].includes(st.type);
 const NEXT_MODE = { rec: "prod", prod: "listen", listen: "rec" };
 
 // Ошибка возвращается в конце урока в другом виде, как в Busuu: «Что значит» → «Как по-испански»
@@ -1464,17 +1739,26 @@ function retryOf(st) {
   }
   return { ...st, retry: true };
 }
-function answer(ok, st, { requeue = true } = {}) {
-  S.state.result = ok ? "good" : "bad";
+function answer(ok, st, { requeue = true, solved = ok } = {}) {
+  S.state.result = solved ? "good" : "bad";
   if (!st.retry && !S.seen.has(st)) {
     S.seen.add(st); S.graded++; if (ok) S.firstTry++;
     if (st.word) grade(st.word.es, ok);           // расписание повторения меняем сразу
   }
   if (!ok && requeue && !st.retry) S.steps.push(retryOf(st));   // ошибка возвращается один раз, не по кругу
-  if (ok) say(["build", "mf"].includes(st.type) ? st.es : st.mode === "prod" || st.mode === "listen" ? st.word?.say : "");
+  if (solved) say(solvedSay(st));
   render();
-  sfx(ok);
+  sfx(ok ? (S.state.almost ? "almost" : true) : solved ? "almost" : false);
   // Автор просил без автоперехода: и после верного ответа — «Продолжить» и пояснение (пример, «На заметку»).
+}
+// Что прозвучит после верного ответа: собранная фраза, слово, введённый ответ или испанский вариант.
+function solvedSay(st) {
+  const s = S.state;
+  if (st.type === "build") return (s.cands?.[0] || tokens(st)).join(" ");
+  if (st.type === "mf") return st.es;
+  if (st.type === "write") return /[А-Яа-яЁё]/.test(s.match || "") ? "" : s.match || "";
+  if (st.type === "mc" && st.mode === "choose") { const o = st.plain[st.correct]; return /[А-Яа-яЁё]/.test(o) ? "" : o; }
+  return st.mode === "prod" || st.mode === "listen" ? st.word?.say : "";
 }
 let autoTimer = null;
 /* ================================================================ звуки (Web Audio, без файлов) */
@@ -1520,7 +1804,8 @@ function next() {
   render();
   const st = S.steps[S.at];
   if (st.type === "word") say(st.word.say);
-  if (st.type === "mc" && (st.mode === "listen" || st.mode === "rec")) say(st.say);
+  if (st.type === "mc" && (st.mode === "listen" || st.mode === "rec" || st.mode === "choose")) say(st.say);
+  if (st.type === "write" && st.say) say(st.say);
   if (st.type === "mf") say(st.es);
 }
 function finish() {
@@ -1560,6 +1845,7 @@ function tabsBar() {
   </div></nav>`;
 }
 function stepTitle(L) { return `${L.emoji} ${L.kindLabel}${L.words.length ? " · " + words(L.words.length) : ""}`; }
+const rowNote = L => L.goal ? esc(L.goal) : stepTitle(L);
 
 const LEVELS = ["A0", "A1", "A2", "B1", "B2", "C1"];
 const levelOf = i => COURSE.units.find(u => u.number === LESSONS[i].unit)?.level;
@@ -1590,7 +1876,7 @@ function lessonRow(i, free = false) {
   const cls = d ? "done" : cur ? "current" : open ? "open" : "locked";
   const right = d ? `<span class="stars" aria-label="${d.stars} из 3">${"★".repeat(d.stars)}${"☆".repeat(3 - d.stars)}</span>` : cur ? `<span class="go">Начать</span>` : open ? "" : "🔒";
   return `<li><button class="step ${cls}" data-lesson="${i}"${free ? " data-free" : ""}><span class="node">${d ? "✓" : L.emoji}</span>
-    <span class="t"><b>${L.n}. ${esc(L.title)}</b><small>${stepTitle(L)}</small></span>${right}</button></li>`;
+    <span class="t"><b>${L.n}. ${esc(L.title)}</b><small>${rowNote(L)}</small></span>${right}</button></li>`;
 }
 
 const grammarAttempts = new Map();
@@ -1796,7 +2082,7 @@ function courseView() {
         const cls = d ? "done" : cur ? "current" : open ? "open" : "locked";
         const right = d ? `<span class="stars" aria-label="${d.stars} из 3">${"★".repeat(d.stars)}${"☆".repeat(3 - d.stars)}</span>` : cur ? `<span class="go">Начать</span>` : open ? "" : "🔒";
         return `<li><button class="step ${cls}" data-lesson="${i}"><span class="node">${d ? "✓" : L.emoji}</span>
-          <span class="t"><b>${L.n}. ${esc(L.title)}</b><small>${stepTitle(L)}</small></span>${right}</button></li>`;
+          <span class="t"><b>${L.n}. ${esc(L.title)}</b><small>${rowNote(L)}</small></span>${right}</button></li>`;
       }).join("")}</ol></section>`;
   }
   return html;
@@ -1817,6 +2103,9 @@ function reviewView() {
       ${weak.length >= 3 ? `<button class="btn ghost wide" data-review="weak">Потренировать трудные</button>` : ""}
       <button class="btn ghost wide" data-review="all">Случайные 15 из всех выученных</button>
     </section>
+    ${recallPool(LESSONS.length).length >= 4 ? `<section class="panel"><h2>Фразы и конструкции</h2>
+      <span class="muted">Задания из пройденных уроков: артикли, формы, ответы в разговоре.</span>
+      <button class="btn ghost wide" data-review="phrases">Повторить 10 заданий</button></section>` : ""}
     ${COURSE.bot ? `<section class="panel"><h2>В Telegram</h2><span>Те же слова можно повторять с ботом <a href="https://t.me/${esc(COURSE.bot)}" target="_blank" rel="noopener">@${esc(COURSE.bot)}</a>: он сам напомнит в среду и субботу.</span></section>` : ""}`;
 }
 
@@ -1834,6 +2123,12 @@ function wordsView() {
     }).join("") || `<li><span></span><span class="muted">Ничего не нашлось</span></li>`}</ul></section>`;
 }
 
+function skillsPanel() {
+  const units = COURSE.units.map(U => [U, LESSONS.filter(L => L.unit === U.number && L.goal && P.done[L.id])]).filter(([, ls]) => ls.length);
+  if (!units.length) return "";
+  return `<section class="panel"><h2>Что вы уже умеете</h2><div class="skills">${units.map(([U, ls]) =>
+    `<div><b>Тема ${U.number}. ${esc(U.title)}</b><ul>${ls.map(L => `<li>✓ ${esc(L.goal)}</li>`).join("")}</ul></div>`).join("")}</div></section>`;
+}
 function statsView() {
   const doneN = LESSONS.filter((_, i) => isDone(i)).length, learned = Object.keys(P.words).length;
   const strong = Object.values(P.words).filter(s => s.s >= 3).length;
@@ -1851,6 +2146,7 @@ function statsView() {
     <div class="week">${days.map(d => { const v = P.days[d] || 0; return `<div class="col ${v ? "" : "zero"}"><span>${v || ""}</span><i style="height:${Math.max(3, v / max * 90)}px"></i><span>${wd(d)}</span></div>`; }).join("")}</div>
     <div class="level-bar"><div class="lb"><span>Сегодня</span><span>${todayXP()} из ${P.goal} опыта</span></div><div class="bar sun"><i style="width:${Math.min(100, todayXP() / P.goal * 100)}%"></i></div></div>
   </section>
+  ${skillsPanel()}
   ${accountPanel()}
   <section class="panel settings"><h2>Настройки</h2>
     <div class="row"><span>Звуки ответов</span><button class="switch" data-sound aria-pressed="${P.sound !== false}" aria-label="Звуки ответов"></button></div>
@@ -1890,6 +2186,8 @@ function blockHTML(b) {
     case "culture": return box("culture", "Культура", b.html);
     case "task": return box("task", "Задание", b.html);
     case "compare": return compareHTML(b);
+    case "mission": return `<div class="mission"><span class="lbl">🎯 Миссия</span>${b.title ? `<h3>${b.title}</h3>` : ""}<p>${b.html}</p></div>`;
+    case "more": return `<details class="more-box"><summary>${b.title || "Подробнее"}</summary><div>${b.html}</div></details>`;
     case "list": return b.steps ? stepsHTML(b.steps) : `<ul>${b.items.map(x => `<li>${x}</li>`).join("")}</ul>`;
     case "cando": return box("cando-box", "Теперь вы умеете", `<ul class="cando">${b.items.map(x => `<li>${x}</li>`).join("")}</ul>`);
     case "examples": return `<div class="box">${b.title ? `<span class="lbl">${b.title}</span>` : ""}<ul class="exl">${b.items.map(([es, ru, sp]) => `<li>${playBtn(sp)}<span><span class="es">${es}</span><small>${ru}</small></span></li>`).join("")}</ul></div>`;
@@ -1940,19 +2238,24 @@ function stepBody(st) {
       else if (st.mode === "ex") prompt = `<span class="kicker">${st.title || "Упражнение"}</span><div class="q" style="font-family:var(--body);font-weight:700;font-size:20px">${st.q}</div>`;
       else if (st.mode === "rec") prompt = `<span class="kicker">Что значит</span><div class="q"><span>${esc(st.word.emoji)} ${esc(st.word.es)}</span>${playBtn(st.say)}</div>`;
       else if (st.mode === "prod") prompt = `<span class="kicker">Как по-испански</span><div class="q">${esc(st.word.ru)}</div>`;
+      else if (st.mode === "choose") prompt = `${kickerOf(st, st.say ? "Послушайте и выберите" : st.lines?.length ? "Что ответить?" : "Выберите ответ")}
+        ${st.img ? wordPic(st.img) : ""}${st.q && st.lines?.length ? `<div class="q qtext">${st.q}</div>` : ""}${st.lines?.length ? chatHTML(st) : ""}
+        ${st.say ? `<div class="listen"><div class="row2">${playBtn(st.say, "big")}${slowBtn(st.say)}</div></div>` : ""}
+        ${st.q && !st.lines?.length ? `<div class="q qtext">${st.q}</div>` : ""}`;
       else prompt = `<span class="kicker">Послушайте и выберите</span><div class="listen"><div class="row2">${playBtn(st.say, "big")}${slowBtn(st.say)}</div></div>`;
       const long = (st.plain || st.options).some(o => o.length > 24);
       return `<div class="prompt">${prompt}</div>
         <div class="opts ${long ? "" : "grid2"} ${locked}" role="group">${st.options.map((o, k) => {
           let cls = "";
           if (s.result) cls = k === st.correct ? "right" : k === s.pick ? "wrong" : "";
-          return `<button class="opt ${cls}" data-opt="${k}" aria-pressed="${s.pick === k}" ${s.result ? "disabled" : ""}><span class="k">${k + 1}</span><span>${st.html ? o : esc(o)}</span></button>`;
+          const mark = s.result && k === st.correct ? "✓" : s.result && k === s.pick ? "✗" : k + 1;
+          return `<button class="opt ${cls}" data-opt="${k}" aria-pressed="${s.pick === k}" ${s.result ? "disabled" : ""}><span class="k">${mark}</span><span>${st.html ? o : esc(o)}</span></button>`;
         }).join("")}</div>`;
     }
     case "build": {
       const s = S.state;
-      return `<div class="prompt"><span class="kicker">Соберите фразу</span><div class="q" style="font-size:19px">${esc(st.ru)}</div></div>
-        <div class="answer-line">${st.es.split(" ").slice(0, s.n).map(w => `<span class="tok">${esc(w)}</span>`).join("")}</div>
+      return `<div class="prompt">${kickerOf(st, "Соберите фразу")}<div class="q" style="font-size:19px">${esc(st.ru)}</div></div>
+        <div class="answer-line">${(s.cands?.[0] || tokens(st)).slice(0, s.n).map(w => `<span class="tok">${esc(w)}</span>`).join("")}</div>
         <div class="bank">${s.tiles.map((t, k) => `<button class="tok ${s.used[k] ? "used" : ""} ${s.flash === k ? "bad" : ""} ${s.hint === k ? "hint" : ""}" data-pick="${k}" ${s.result || s.used[k] ? "disabled" : ""}>${esc(t)}</button>`).join("")}</div>`;
     }
     case "mf":
@@ -1960,6 +2263,33 @@ function stepBody(st) {
         <div class="listen"><div class="row2">${playBtn(st.es, "big")}${slowBtn(st.es)}</div></div>
         ${mfSlots(st, S.state)}
         ${S.state.result ? "" : `<input class="field letter" id="letter" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Первая буква слова" aria-label="Первая буква следующего слова">`}`;
+    case "write": {
+      const s = S.state, done = !!s.result, cls = done ? (s.result === "good" ? "right" : "wrong") : s.flash ? "wrong" : "";
+      const chars = ["á", "é", "í", "ó", "ú", "ü", "ñ"];
+      return `<div class="prompt">${kickerOf(st, st.say ? "Послушайте и напишите" : "Напишите")}${st.img ? wordPic(st.img) : ""}
+          ${st.say ? `<div class="listen"><div class="row2">${playBtn(st.say, "big")}${slowBtn(st.say)}</div></div>` : ""}
+          ${st.q ? `<div class="q qtext">${st.q}</div>` : ""}</div>
+        <div class="wbox"><input class="field wfield ${cls}" id="wans" type="text" value="${esc(s.value || "")}" ${done ? "disabled" : ""}
+            autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" lang="es" enterkeyhint="done"
+            placeholder="${esc(st.format || "Ответ")}" aria-label="${esc(st.format || "Ответ")}">
+          ${done ? "" : `<div class="chars" role="group" aria-label="Испанские буквы">${chars.map(c => `<button type="button" data-wchar="${c}" aria-label="Вставить ${c}">${c}</button>`).join("")}</div>`}
+          ${s.why && !done ? `<div class="wwhy" role="status">${esc(s.why)} Попробуйте ещё раз.</div>` : ""}</div>`;
+    }
+    case "match": {
+      const s = S.state, cell = (side, k) => {
+        const p = st.pairs[k], ok = s.done.includes(k), sel = s.sel?.side === side && s.sel.k === k, bad = s.bad && s.bad[side] === k;
+        return `<button class="mt${ok ? " ok" : ""}${bad ? " bad" : ""}" data-m="${side}:${k}" aria-pressed="${sel}" ${ok || s.result ? "disabled" : ""}>${ok ? "✓ " : bad ? "✗ " : ""}${esc(p[side === "l" ? 0 : 1])}</button>`;
+      };
+      return `<div class="prompt">${kickerOf(st, "Соедините пары")}</div>
+        <div class="match"><div class="mcol">${s.left.map(k => cell("l", k)).join("")}</div><div class="mcol">${s.right.map(k => cell("r", k)).join("")}</div></div>`;
+    }
+    case "sort": {
+      const s = S.state, cur = s.order[s.k];
+      return `<div class="prompt">${kickerOf(st, "Распределите по группам")}</div>
+        ${cur && !s.result ? `<div class="scard"><span>${esc(cur[0][0])}</span>${cur[0][1] && canSay(cur[0][1]) ? playBtn(cur[0][1]) : ""}</div><div class="scount">${s.k + 1} из ${s.order.length}</div>` : ""}
+        <div class="sgroups">${st.groups.map(([name], g) => `<button class="sg${s.flash === g ? " bad" : ""}${s.hint === g ? " hint" : ""}" data-sg="${g}" ${s.result ? "disabled" : ""}>
+          <b>${name}</b><span class="sg-items">${s.placed[g].map(x => `<i>${esc(x)}</i>`).join("")}</span></button>`).join("")}</div>`;
+    }
     case "task":
       return `<div class="prompt"><span class="kicker">${st.title ? st.title : "Упражнение"}</span><div class="q" style="font-family:var(--body);font-weight:700;font-size:20px">${st.q}</div></div>
         ${st.a ? `<div class="box"><span class="lbl">Ответ</span><span class="spoiler" tabindex="0">${st.a}</span></div>` : ""}`;
@@ -1987,11 +2317,12 @@ function mfLetter(ch) {
   $(".mf").outerHTML = mfSlots(st, s);
 }
 function buildPick(k) {
-  const st = S.steps[S.at], s = S.state, want = tokens(st)[s.n];
+  const st = S.steps[S.at], s = S.state, cands = s.cands || [tokens(st)], want = cands[0][s.n];
   if (s.used[k]) return;   // уже стоит во фразе: второе касание (двойной тап) ошибкой не считаем
-  if (s.tiles[k] === want) {
-    s.used[k] = true; s.n++; s.here = 0; s.hint = null; s.flash = null; say(want);
-    if (s.n >= tokens(st).length) return answer(s.err === 0, st, { requeue: false });
+  const fit = cands.filter(c => c[s.n] === s.tiles[k]);
+  if (fit.length) {
+    s.cands = fit; s.used[k] = true; s.n++; s.here = 0; s.hint = null; s.flash = null; say(s.tiles[k]);
+    if (s.n >= fit[0].length) return answer(s.err === 0, st, { requeue: false });
   } else {
     s.err++; s.miss++; s.here++; s.flash = k;
     if (s.here >= 2) s.hint = s.tiles.findIndex((w, j) => w === want && !s.used[j]);
@@ -2009,7 +2340,7 @@ function buildVerdict(st, s) {
 function hint() {
   const st = S.steps[S.at], s = S.state;
   s.err++; s.helps++;
-  if (st.type === "build") { s.hint = s.tiles.findIndex((w, j) => w === tokens(st)[s.n] && !s.used[j]); return render(); }
+  if (st.type === "build") { s.hint = s.tiles.findIndex((w, j) => w === (s.cands || [tokens(st)])[0][s.n] && !s.used[j]); return render(); }
   s.n++; s.here = 0; s.flash = false; s.hint = false; mfSkip(st, s);   // мастер фраз: открыть слово
   if (s.n >= tokens(st).length) return answer(false, st, { requeue: false });
   $(".mf").outerHTML = mfSlots(st, s); $("#letter")?.focus();
@@ -2022,17 +2353,25 @@ function stepFoot(st) {
     let right = "";
     if (st.type === "mc" && !good && !st.html) right = `<span class="ans">Верно: ${esc(st.options[st.correct])}</span>`;
     if (st.type === "mc" && !good && st.html) right = `<span class="ans">Верно: ${st.options[st.correct]}</span>`;
-    if (["build", "mf"].includes(st.type)) right = `<span class="ans">${esc(st.es)}</span><span class="ex">${esc(st.ru)}</span>`;
+    if (["build", "mf"].includes(st.type)) right = `<span class="ans">${esc(st.type === "build" ? (s.cands?.[0] || tokens(st)).join(" ") : st.es)}</span><span class="ex">${esc(st.ru)}</span>`;
+    if (st.type === "write" && (!good || s.almost)) right = `<span class="ans">${good ? "Правильно" : "Верно"}: ${good ? esc(s.match) : st.show}</span>${!good && s.why && !s.gave ? `<span class="ex">${esc(s.why)}</span>` : ""}`;
     const ex = st.explain ? `<span class="ex">${st.explain}</span>` : "";
-    const title = good ? ["Отлично!", "Верно!", "¡Muy bien!", "¡Perfecto!"][Math.floor(Math.random() * 4)]
-      : ["build", "mf"].includes(st.type) ? buildVerdict(st, s) : st.retry ? "Ошибка" : "Ошибка, это задание вернётся";
+    const praise = ["Отлично!", "Верно!", "¡Muy bien!", "¡Perfecto!"][Math.floor(Math.random() * 4)];
+    const title = good ? (s.almost ? "Почти! Не хватает знака ударения" : st.type === "write" && s.tries > 1 ? "Верно со второй попытки" : praise)
+      : ["build", "mf"].includes(st.type) ? buildVerdict(st, s)
+      : ["match", "sort"].includes(st.type) ? `Готово! Ошибок — ${s.err}`
+      : st.retry ? "Ошибка" : "Ошибка, это задание вернётся";
+    const rule = !good || (st.type === "write" && s.tries > 1) ? ruleHTML(st) : "";
     return `<div class="pfoot ${good ? "good" : "bad"}"><div class="wrap">
-      <div class="fb"><h3>${title}</h3>${right}${ex}</div>
+      <div class="fb"><h3>${title}</h3>${right}${ex}${rule}</div>
       <button class="btn wide ${good ? "good" : "bad"}" data-next>Продолжить</button></div></div>`;
   }
   if (st.type === "build" || st.type === "mf") {
     return `<div class="pfoot"><div class="wrap"><button class="btn ghost wide" data-hint>${st.type === "mf" ? "Не знаю — открыть слово" : "Подсказка"}</button></div></div>`;
   }
+  if (st.type === "write") return `<div class="pfoot"><div class="wrap"><div class="two">
+      <button class="btn ghost" data-wgive>Показать ответ</button><button class="btn" data-primary ${wNorm(s.value) ? "" : "disabled"}>Проверить</button></div></div></div>`;
+  if (st.type === "match" || st.type === "sort") return "";
   let label = "Дальше", dis = "";
   if (st.type === "intro") label = "Начать";
   if (st.type === "mc") return "";   // ответ — нажатием на вариант
@@ -2044,12 +2383,19 @@ function playerView() {
   const st = S.steps[S.at];
   if (!S.state) {
     S.state = { n: 0, err: 0, miss: 0, helps: 0, here: 0 };
-    if (st.type === "build") Object.assign(S.state, { tiles: shuffle(tokens(st)), used: [] });
+    if (st.type === "build") Object.assign(S.state, { tiles: shuffle(tokens(st).concat(st.extra || [])), used: [], cands: [st.es, ...(st.alt || [])].map(x => x.split(" ")) });
     if (st.type === "mf") mfSkip(st, S.state);
+    if (st.type === "write") Object.assign(S.state, { value: "", tries: 0 });
+    if (st.type === "match") Object.assign(S.state, { left: shuffle(st.pairs.map((_, k) => k)), done: [], sel: null, bad: null });
+    if (st.type === "match") S.state.right = matchOrder(st.pairs.length).map(k => S.state.left[k]);
+    if (st.type === "sort") Object.assign(S.state, { order: shuffle(st.groups.flatMap(([, items], g) => items.map(it => [it, g]))), k: 0, placed: st.groups.map(() => []) });
   }
+  const L = S.kind === "lesson" ? LESSONS[S.li] : null;
+  const ctx = L ? `${esc(levelOf(S.li) || "")} · Тема ${L.unit} · ${esc(L.title)}` : "Повторение";
   const total = S.steps.length, pct = Math.round(S.at / total * 100);
   return `<div class="player">
-    <div class="ptop"><div class="wrap"><button class="x" data-quit aria-label="Выйти из урока">×</button>${prevIndex() >= 0 ? '<button class="x prev" data-prev aria-label="Назад">←</button>' : ""}<div class="bar"><i style="width:${pct}%"></i></div><span class="pcount">${S.at + 1}/${total}</span></div></div>
+    <div class="ptop"><div class="wrap"><button class="x" data-quit aria-label="Выйти из урока">×</button>${prevIndex() >= 0 ? '<button class="x prev" data-prev aria-label="Назад">←</button>' : ""}<div class="bar"><i style="width:${pct}%"></i></div><span class="pcount">${S.at + 1}/${total}</span></div>
+      <div class="wrap pctx">${ctx}</div></div>
     <div class="pbody"><div class="wrap">${stepBody(st)}</div></div>
     ${stepFoot(st)}
   </div>`;
@@ -2063,6 +2409,7 @@ function resultView() {
     <h2>${r.from === "lesson" ? `Урок ${L.n} пройден!` : "Повторение закончено!"}</h2>
     <span class="stars-big" aria-label="${r.stars} из 3">${"★".repeat(r.stars)}${"☆".repeat(3 - r.stars)}</span>
     <div class="cells"><div class="cell"><b>+${r.xp}</b><span>опыта</span></div><div class="cell"><b>${Math.round(r.acc * 100)}%</b><span>с первой попытки</span></div><div class="cell"><b>${streakNow()} 🔥</b><span>дней подряд</span></div></div>
+    ${L?.goal && r.from === "lesson" ? `<div class="panel goal"><b>✅ Теперь вы можете</b><span>${esc(L.goal)}</span>${L.blocks.filter(b => b.t === "mission").map(b => `<span>🎯 Миссия «${b.title}» выполнена</span>`).join("")}</div>` : ""}
     ${r.learned.length ? `<div class="panel learned"><b>Новые слова в повторении</b><span class="muted">${r.learned.map(w => esc(w.es)).join(", ")}</span></div>` : ""}
     ${nextI != null ? `<button class="btn wide" data-lesson="${nextI}">Следующий урок: ${esc(LESSONS[nextI].title)}</button>` : ""}
     <button class="btn ghost wide" data-home>На карту курса</button>
@@ -2092,6 +2439,7 @@ function renderView() {
   if (S && S.kind === "result") { app.innerHTML = resultView(); window.scrollTo(0, 0); return; }
   if (S) {
     app.innerHTML = playerView(); $(".pbody")?.scrollTo(0, 0); $("#letter")?.focus();
+    if (S.steps[S.at]?.type === "write" && !S.state.result) focusWrite();
     // Перевод по нажатию — в карточках и объяснениях, а в заданиях только после ответа, чтобы не подсказывать.
     const st = S.steps[S.at];
     if (["intro", "word", "theory", "task"].includes(st.type)) wrapWords($(".pbody .theory") || $(".pbody"));
@@ -2112,7 +2460,8 @@ function primary() {
   const st = S.steps[S.at], s = S.state;
   if (s.result) return next();
   if (st.type === "mc") { if (s.pick != null) answer(s.pick === st.correct, st); return; }
-  if (st.type === "build" || st.type === "mf") return;
+  if (st.type === "write") return writeCheck();
+  if (["build", "mf", "match", "sort"].includes(st.type)) return;
   next();
 }
 
@@ -2212,7 +2561,7 @@ document.addEventListener("submit", e => {
   gSubmitGrammarForm(unit,group,group.questions.map((_,i)=>data.get(`q${i}`) || ''));
 });
 document.addEventListener('pointerdown', e => {
-  if(e.target.closest('[data-gchar], [data-gaccent], [data-gno-article]') && document.activeElement?.matches?.('input, textarea')) e.preventDefault();
+  if(e.target.closest('[data-gchar], [data-gaccent], [data-gno-article], [data-wchar]') && document.activeElement?.matches?.('input, textarea')) e.preventDefault();
 });
 document.addEventListener("click", e => {
   const closed = e.target.closest(".spoiler:not(.open)");
@@ -2288,6 +2637,7 @@ document.addEventListener("click", e => {
     if (!isOpen(i) && !("free" in d)) return toast(`Сначала пройдите урок ${LESSONS[i - 1].n}`);
     return startLesson(i);
   }
+  if (d.review === "phrases") return startPhraseReview();
   if (d.review) {
     const all = Object.keys(P.words).filter(es => WORDS.has(es)).map(es => WORDS.get(es));
     return startReview(d.review === "due" ? dueWords() : d.review === "weak" ? all.filter(w => (P.words[w.es].s || 0) <= 1) : all);
@@ -2310,6 +2660,10 @@ document.addEventListener("click", e => {
   const st = S.steps[S.at], s = S.state;
   if (d.opt != null && !s.result) { s.pick = +d.opt; return answer(s.pick === st.correct, st); }
   if (d.pick != null && !s.result) return buildPick(+d.pick);
+  if (d.m && !s.result) { const [side, k] = d.m.split(":"); return matchPick(side, +k); }
+  if (d.sg != null && !s.result) return sortPick(+d.sg);
+  if (d.wchar && !s.result) return wInsert(d.wchar);
+  if ("wgive" in d) return writeGive();
   if ("hint" in d && !s.result) return hint();
   if ("primary" in d || "next" in d) return primary();
 });
@@ -2335,6 +2689,7 @@ document.addEventListener("input", e => {
     return;
   }
   if (e.target.id === "letter") { const v = e.target.value; e.target.value = ""; return mfLetter(v.slice(-1)); }
+  if (e.target.id === "wans" && S?.state && !S.state.result) { S.state.value = e.target.value; S.state.flash = false; return wSync(); }
   if (e.target.id === "wsearch") {
     view.q = e.target.value; const pos = e.target.selectionStart; render();
     const f = $("#wsearch"); f.focus(); f.setSelectionRange(pos, pos);

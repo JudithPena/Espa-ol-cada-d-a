@@ -58,7 +58,24 @@ BLOCK_TYPES = {
     "text", "words", "rule", "tip", "note", "latam", "culture", "task", "header",
     "examples", "table", "conjugation", "exercise", "dialogue", "reading", "cando", "list",
     "compare",   # только уроки сайта (content/site): карточки рядом — tú / usted, ¿…? / ¡…!
+    # Только уроки сайта: сценарий урока (docs/site_lessons_guide.md). Блоки ставятся в любом порядке,
+    # движок страницы показывает их по очереди: порция слов → пример → задания → ещё слова → миссия.
+    "learn",     # порция новых слов урока: карточки этих слов в этом месте урока
+    "choose",    # выбор ответа (первый вариант верный), на слух (say) или продолжение диалога (lines)
+    "write",     # короткий ввод: слово, артикль, форма, фраза; допустимые ответы — через « | »
+    "match",     # соедините пары «es — ru»
+    "sort",      # распределите по группам
+    "build",     # соберите фразу из плиток; alt — другие допустимые порядки, extra — лишние плитки
+    "mission",   # итоговая ситуация: экран-сцена, за ним задания миссии
+    "more",      # «Почему? / Подробнее»: свёрнутое пояснение на экране предыдущего блока
 }
+
+# Блоки, которых в уроках канала быть не может (validate проверяет content/units).
+SITE_ONLY_BLOCKS = {"compare", "learn", "choose", "write", "match", "sort", "build", "mission", "more"}
+# Задания сценария, которые проверяет страница (у каждого — правильный ответ).
+GRADED_BLOCKS = {"choose", "write", "match", "sort", "build"}
+# Блоки, с которыми урок идёт по сценарию (Lesson.scripted).
+SCRIPT_BLOCKS = GRADED_BLOCKS | {"learn", "mission"}
 
 DEFAULT_SETTINGS: dict[str, Any] = {
     "srs": {
@@ -171,6 +188,13 @@ class Lesson:
     level: str
     unit: "Unit" = field(repr=False)
     index: int = 0
+    goal: str = ""   # сайт: микроцель урока — наблюдаемое действие («здоровается утром, днём и вечером»)
+
+    @property
+    def scripted(self) -> bool:
+        """Урок сайта со сценарием: слова идут порциями (learn), задания — там, где их поставил автор.
+        Урок без этих блоков страница собирает прежним путём: все слова, объяснение, практика."""
+        return any(b.type in SCRIPT_BLOCKS for b in self.blocks)
 
     @property
     def number(self) -> int:
@@ -444,6 +468,8 @@ def parse_block(raw: Any, where: str) -> Block:
         return Block(btype, {"title": value.get("title"), "lead": value.get("lead"), "note": value.get("note"),
                              "style": value.get("style") or "big", "cards": cards,
                              "join": bool(value.get("join"))})   # join: на том же экране, что и блок перед ним
+    if btype in SITE_ONLY_BLOCKS - {"compare"}:
+        return _scenario_block(btype, value, w)
     if btype == "reading":
         if not isinstance(value, dict) or "text" not in value:
             raise ContentError(f"{w}: нужен ключ text")
@@ -452,6 +478,99 @@ def parse_block(raw: Any, where: str) -> Block:
             "text": str(value["text"]).strip(),
             "translation": str(value.get("translation") or "").strip(),
         })
+    raise ContentError(f"{w}: не обработан")  # pragma: no cover
+
+
+def _options(raw: Any) -> list[str]:
+    """«верный | неверный | неверный» или список → варианты; первый — верный."""
+    if isinstance(raw, str):
+        raw = raw.split(" | ")
+    return [str(o).strip() for o in _items(raw) if str(o).strip()]
+
+
+def _alts(raw: Any) -> list[str]:
+    """Допустимые ответы: «el libro | un libro» или список."""
+    return _options(raw)
+
+
+def _line(raw: Any, where: str) -> tuple[str, str, str]:
+    """Реплика «Имя: испанский | перевод» (перевод можно не писать)."""
+    speaker, found, rest = str(raw).partition(": ")
+    if not found:
+        raise ContentError(f"{where}: реплика должна начинаться с «Имя: »: {raw!r}")
+    es, _, ru = rest.partition(" | ")
+    return speaker.strip(), es.strip(), ru.strip()
+
+
+def _scenario_block(btype: str, value: Any, w: str) -> Block:
+    """Блоки сценария урока сайта (learn, choose, write, match, sort, build, mission, more)."""
+    spec = value if isinstance(value, dict) else None
+    if btype == "learn":
+        words = [str(v).strip() for v in _items(value)]
+        if not words:
+            raise ContentError(f"{w}: нужен список слов урока")
+        return Block(btype, words)
+    if btype in ("mission", "more"):
+        if spec is None:
+            spec = {"text": value}
+        if not str(spec.get("text") or "").strip():
+            raise ContentError(f"{w}: нужен text")
+        title = spec.get("title") or ("Подробнее" if btype == "more" else "")
+        return Block(btype, {"title": str(title).strip(), "text": str(spec["text"]).strip()})
+    if btype == "sort" and spec is not None and "groups" not in spec:   # sort: {el: [...], la: [...]}
+        spec = {"title": spec.get("title"), "groups": {k: v for k, v in spec.items() if k != "title"}}
+    if spec is None:
+        spec = {"pairs": value} if btype == "match" else {"groups": value} if btype == "sort" else {"items": value}
+    head = {"title": str(spec.get("title") or "").strip()}
+    if btype == "choose":
+        items = []
+        for it in _items(spec.get("items")):
+            if not isinstance(it, dict) or "options" not in it:
+                raise ContentError(f"{w}: у вопроса нужны options (первый вариант — верный): {it!r}")
+            items.append({
+                "q": str(it.get("q") or "").strip(), "options": _options(it["options"]),
+                "explain": str(it.get("explain") or "").strip(), "say": str(it.get("say") or "").strip(),
+                "lines": [_line(x, w) for x in _items(it.get("lines"))], "img": str(it.get("img") or "").strip(),
+            })
+        return Block(btype, {**head, "items": items})
+    if btype == "write":
+        items = []
+        for it in _items(spec.get("items")):
+            if isinstance(it, dict):
+                q, answers = str(it.get("q") or "").strip(), _alts(it.get("a"))
+                extra = {k: str(it.get(k) or "").strip() for k in ("explain", "say", "format", "img")}
+            else:
+                q, found, a = str(it).partition(" => ")
+                if not found:
+                    raise ContentError(f"{w}: строка ввода — «вопрос => ответ | другой ответ»: {it!r}")
+                q, answers, extra = q.strip(), _alts(a), {"explain": "", "say": "", "format": "", "img": ""}
+            items.append({"q": q, "answers": answers, **extra})
+        accents = str(spec.get("accents") or "soft")
+        if accents not in ("soft", "strict"):
+            raise ContentError(f"{w}: accents — soft или strict")
+        return Block(btype, {**head, "format": str(spec.get("format") or "").strip(), "accents": accents, "items": items})
+    if btype == "match":
+        pairs = []
+        for p in _items(spec.get("pairs")):
+            left, right = (str(p[0]).strip(), str(p[1]).strip()) if isinstance(p, (list, tuple)) else split_pair(p, w)
+            pairs.append((left, right))
+        return Block(btype, {**head, "pairs": pairs})
+    if btype == "sort":
+        raw = spec.get("groups") or {}
+        groups = ([(str(k).strip(), [str(x).strip() for x in _items(v)]) for k, v in raw.items()]
+                  if isinstance(raw, dict) else
+                  [(str(g["name"]).strip(), [str(x).strip() for x in _items(g.get("items"))]) for g in _items(raw)])
+        return Block(btype, {**head, "groups": groups})
+    if btype == "build":
+        items = []
+        for it in _items(spec.get("items")):
+            if isinstance(it, dict):
+                es, ru = str(it["es"]).strip(), str(it.get("ru") or "").strip()
+                alt, extra = _alts(it.get("alt")), [str(x).strip() for x in _items(it.get("extra"))]
+            else:
+                (es, ru), alt, extra = split_pair(it, w), [], []
+            items.append({"es": es, "ru": ru, "alt": alt, "extra": extra})
+        return Block(btype, {**head, "items": items})
     raise ContentError(f"{w}: не обработан")  # pragma: no cover
 
 
@@ -504,6 +623,7 @@ def parse_lesson(raw: dict, unit: Unit, where: str) -> Lesson:
         recall=raw.get("recall"),
         level=str(raw.get("level") or unit.level),
         unit=unit,
+        goal=str(raw.get("goal") or "").strip(),
     )
     for item in lesson.vocab:
         item.lesson = lesson

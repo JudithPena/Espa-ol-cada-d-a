@@ -82,6 +82,11 @@ def _voice(text: str) -> str:
     return VOICES[int(hashlib.sha1(text.encode()).hexdigest(), 16) % len(VOICES)]
 
 
+def _spanish(text: str) -> bool:
+    """Испанский вариант ответа (озвучиваем): есть латиница и нет кириллицы."""
+    return any("a" <= ch.lower() <= "z" or ch in "áéíóúüñÁÉÍÓÚÜÑ" for ch in text) and not any("а" <= ch.lower() <= "я" or ch in "ёЁ" for ch in text)
+
+
 def file_id(text: str, voice: str) -> str:
     return hashlib.sha1(f"{voice}|{RATE}|{text}".encode()).hexdigest()[:16]
 
@@ -126,7 +131,36 @@ def audio_texts(data: dict) -> dict[str, tuple[str, str]]:
             if t == "compare":
                 for c in b["cards"]:
                     add(c.get("say"))
-            cards([x for x in b.get("items") or [] if isinstance(x, dict)])
+            elif t == "choose":   # вопрос на слух, реплики-контекст, испанские варианты (звучат после ответа)
+                for it in b["items"]:
+                    add(it.get("say"))
+                    for line in it.get("lines") or []:
+                        voice = it["cast"][line[0]]["v"]
+                        add(line[3], voice, key=f"@{voice}|{_clean(line[3])}")
+                    for _, o in it["o"]:
+                        if _spanish(o):
+                            add(o)
+            elif t == "write":
+                for it in b["items"]:
+                    add(it.get("say"))
+                    if it["a"] and _spanish(it["a"][0]):
+                        add(it["a"][0])
+            elif t == "match":
+                for left, right, say_l, say_r in b["pairs"]:
+                    add(say_l)
+                    add(say_r)
+            elif t == "sort":
+                for _, items in b["groups"]:
+                    for _, say in items:
+                        add(say)
+            elif t == "build":
+                for it in b["items"]:
+                    for es in [it["es"], *it.get("alt", [])]:
+                        add(es)
+                    for tok in it["es"].split(" ") + it.get("extra", []):
+                        add(tok)
+            if t not in ("choose", "write"):
+                cards([x for x in b.get("items") or [] if isinstance(x, dict)])
             cards(b.get("steps") if t == "list" else None)
         for es, _ in lesson.get("sentences", []):
             add(es)
