@@ -15,8 +15,8 @@
 
 | Этап | Статус | Коммит |
 |---|---|---|
-| A. Аудит, план, инструмент шагов `tools/site_steps.cjs` | готово | (этот коммит) |
-| B1. Модель данных: id, source/free, rule, skill, version, check, recap, review, mistakes, noaudio, skills.yaml, validate | не начато | |
+| A. Аудит, план, инструмент шагов `tools/site_steps.cjs` | готово | c35d00e |
+| B1. Модель данных: id, source/free, rule, skill, version, check, recap, review, mistakes, noaudio, skills.yaml, validate | готово (движок ещё не читает новые поля) | «модель данных» |
 | B2. Движок: поток урока (№9, 11) | не начато | |
 | B3. Источник в задании и повтор рядом (№1, 8) | не начато | |
 | B4. Итог задания (№10), ввод и подсказки (№7), правило (№5) | не начато | |
@@ -57,6 +57,7 @@
 ## Последние проверки
 
 - 8 ноября, база: validate ✅ (151 урок, 615 слов), pytest — все зелёные, `site_course.test.cjs` 10/10.
+- После B1: validate ✅, pytest 277 passed (новый `tests/test_site_refs.py`), `site_course.test.cjs` 10/10.
 
 ## Открытые проблемы
 
@@ -64,4 +65,5 @@
 
 ## Следующий шаг
 
-Этап B1: модель данных в `espanol/course.py`, `espanol/site.py`, `espanol/scenario.py`, реестр `content/site/skills.yaml`.
+Этап B2: поток урока в `espanol/site_template.html` — `startScript` без intro и «Вспомним», экраны по `slide: new`
+для уроков `version ≥ 2`, блоки `recap`/`review`, шапка с целью, `enterStep()`.

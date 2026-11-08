@@ -56,7 +56,7 @@ def test_parse_scenario_blocks():
     b = parse_block({"sort": {"el": ["libro"], "la": ["mesa", "casa"]}}, "t")
     assert b.data["groups"] == [("el", ["libro"]), ("la", ["mesa", "casa"])]
     b = parse_block({"build": ["Sí, gracias. — Да, спасибо.", {"es": "a b c", "ru": "x", "alt": "c b a", "extra": ["d"]}]}, "t")
-    assert b.data["items"][0] == {"es": "Sí, gracias.", "ru": "Да, спасибо.", "alt": [], "extra": []}
+    assert b.data["items"][0] == {"es": "Sí, gracias.", "ru": "Да, спасибо.", "alt": [], "extra": [], "meta": {}}
     assert b.data["items"][1]["alt"] == ["c b a"] and b.data["items"][1]["extra"] == ["d"]
     assert parse_block({"mission": {"title": "M", "text": "t"}}, "t").data == {"title": "M", "text": "t"}
     assert parse_block({"more": "текст"}, "t").data["title"] == "Подробнее"

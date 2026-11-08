@@ -18,7 +18,7 @@ import re
 import shutil
 from pathlib import Path
 
-from .course import FEATURES, Block, Course, Lesson, QuizItem, VocabItem
+from .course import FEATURES, GRADED_BLOCKS, RULE_TARGETS, SOURCE_BLOCKS, Block, Course, Lesson, QuizItem, VocabItem
 from .lexicon import _FUNCTION_WORDS, generated_forms
 from .markup import checkable, plain, to_html
 from .site_audio import cast
@@ -524,13 +524,23 @@ def _lines(lines) -> tuple[dict, list]:
     return voices, [[sp, _html(es), _html(ru), plain(es)] for sp, es, ru in lines]
 
 
+def _task_meta(meta: dict) -> dict:
+    """source / free / rule / skill задания как их написал автор; ссылки разрешает lesson_data."""
+    return {k: meta[k] for k in ("source", "free", "rule", "skill") if meta.get(k)}
+
+
 def _choose(d) -> dict:
     items = []
     for it in d["items"]:
         voices, lines = _lines(it["lines"])
+        na = it.get("noaudio")
         items.append({"q": _html(it["q"]), "o": [[_html(o), plain(o)] for o in it["options"]],
                       "explain": _html(it["explain"]), "say": plain(it["say"]), "lines": lines, "cast": voices,
-                      "img": _img(it["img"])})
+                      "img": _img(it["img"]), **_task_meta(it.get("meta") or {}),
+                      # пояснение к неверному варианту: ключ — вариант как текст
+                      "mistakes": {plain(k): _html(v) for k, v in (it.get("meta") or {}).get("mistakes", {}).items()},
+                      **({"noaudio": {"q": _html(na["q"]), "o": [[_html(o), plain(o)] for o in na["options"]],
+                                      "explain": _html(na["explain"])}} if na else {})})
     return {"t": "choose", "title": _html(d["title"]), "items": items}
 
 
@@ -541,10 +551,16 @@ def _write(d) -> dict:
     # Кнопки á é í ó ú ü ñ — в блоке, где такие буквы есть хотя бы в одном ответе (во всех его заданиях,
     # чтобы кнопки не выдавали, в каком ответе они нужны). Для артиклей кнопки не нужны.
     chars = any(_SPECIAL.search(a) for it in d["items"] for a in it["answers"])
+    def noaudio(na, fmt):
+        return {"q": _html(na["q"]), "a": [plain(a) for a in na["answers"]], "show": _html(na["answers"][0]),
+                "format": na["format"] or fmt, "explain": _html(na["explain"])}
     return {"t": "write", "title": _html(d["title"]), "accents": d["accents"], "chars": chars, "items": [{
         "q": _html(it["q"]), "a": [plain(a) for a in it["answers"]], "show": _html(it["answers"][0]),
         "explain": _html(it["explain"]), "say": plain(it["say"]), "format": it["format"] or d["format"],
-        "img": _img(it["img"]),
+        "img": _img(it["img"]), **_task_meta(it.get("meta") or {}),
+        # пояснение к ожидаемой ошибке ввода: ключ — ответ ученика (страница сравнивает без регистра и ударений)
+        "mistakes": {plain(k): _html(v) for k, v in (it.get("meta") or {}).get("mistakes", {}).items()},
+        **({"noaudio": noaudio(it["noaudio"], it["format"] or d["format"])} if it.get("noaudio") else {}),
     } for it in d["items"]]}
 
 
@@ -558,9 +574,12 @@ SCENARIO = {
                        "groups": [[_html(name), [[plain(x), _say(x)] for x in xs]] for name, xs in d["groups"]]},
     "build": lambda d: {"t": "build", "title": _html(d["title"]),
                         "items": [{"es": plain(it["es"]), "ru": plain(it["ru"]), "alt": [plain(a) for a in it["alt"]],
-                                   "extra": [plain(x) for x in it["extra"]]} for it in d["items"]]},
+                                   "extra": [plain(x) for x in it["extra"]], **_task_meta(it.get("meta") or {})}
+                                  for it in d["items"]]},
     "mission": lambda d: {"t": "mission", "title": _html(d["title"]), "html": _html(d["text"])},
     "more": lambda d: {"t": "more", "title": _html(d["title"]), "html": _html(d["text"]), "join": True},
+    "recap": lambda d: {"t": "recap", "title": _html(d["title"]), "words": d["words"], "phrase": plain(d["phrase"])},
+    "review": lambda d: {"t": "review", "title": _html(d["title"]), "skills": d["skills"], "n": d["n"]},
 }
 
 
@@ -615,10 +634,90 @@ def mark_context(blocks: list[dict]) -> None:
             b["ctx"] = True
 
 
+# Виток урока для «📖 Повторить правило»: объяснение ищем назад до этих блоков (новая порция слов, источник,
+# повторение) или до заголовка. Задания внутри витка пропускаем: правило может стоять двумя заданиями выше.
+_CYCLE_STOP = {"learn", "dialogue", "reading", "mission", "review", "recap", "header"}
+
+
+def rule_run(blocks: list[Block], k: int) -> list[int]:
+    """Номера блоков ближайшего объяснения того же витка перед заданием k (без явного rule)."""
+    run: list[int] = []
+    for j in range(k - 1, -1, -1):
+        t = blocks[j].type
+        if t in GRADED_BLOCKS or t == "exercise":
+            if run:
+                break
+            continue
+        if t in _CYCLE_STOP:
+            break
+        if t in RULE_TARGETS:
+            run.insert(0, j)
+    return run
+
+
+def resolve_refs(lesson: Lesson, blocks: list[dict], pieces: list[list[int]]) -> None:
+    """Ссылки заданий на источник (src) и правило (rule) — номера блоков страницы; skill — теги навыков.
+
+    pieces[k] — номера блоков страницы, на которые разошёлся блок урока k (длинный текст делится на абзацы).
+    Источник у перестроенных уроков только явный: source: id или free: true (проверяет espanol/scenario.py).
+    """
+    ids = {b.meta["id"]: k for k, b in enumerate(lesson.blocks) if b.meta.get("id")}
+    first = lambda k: pieces[k][0] if pieces[k] else None
+    def rule_of(spec: str | None, k: int) -> list[int]:
+        if spec == "none":
+            return []
+        if spec:
+            j = ids.get(spec)
+            if j is None:
+                return []
+            more = []
+            for m in range(j + 1, len(lesson.blocks)):   # «Подробнее» под объяснением — вместе с ним
+                if lesson.blocks[m].type != "more":
+                    break
+                more.append(m)
+            return [x for m in [j, *more] for x in pieces[m]]
+        return [x for m in rule_run(lesson.blocks, k) for x in pieces[m]]
+    def apply(target: dict, own: dict, block: Block, k: int) -> None:
+        source = own.get("source") or (None if own.get("free") else block.meta.get("source"))
+        free = bool(own.get("free") or (not own.get("source") and block.meta.get("free")))
+        for key in ("source", "free"):
+            target.pop(key, None)
+        if source and source in ids and lesson.blocks[ids[source]].type in SOURCE_BLOCKS:
+            target["src"] = first(ids[source])
+        if free:
+            target["free"] = True
+        target["rule"] = rule_of(own.get("rule") or block.meta.get("rule"), k)
+        skill = own.get("skill") or block.meta.get("skill")
+        if skill:
+            target["skill"] = list(skill)
+    for k, block in enumerate(lesson.blocks):
+        if block.type not in GRADED_BLOCKS or not pieces[k]:
+            continue
+        b = blocks[pieces[k][0]]
+        if block.type in ("match", "sort"):
+            apply(b, {}, block, k)
+        else:
+            for it, raw in zip(b["items"], block.data["items"]):
+                apply(it, raw.get("meta") or {}, block, k)
+
+
 def lesson_data(lesson: Lesson, cards: dict[str, WordCard], lexicon=None) -> dict:
     unknown = (lambda text: lexicon.unknown_words(text, lesson)) if lexicon else (lambda text: [])
-    blocks = [b for block in lesson.blocks for b in _split(block)]
-    mark_context(blocks)
+    blocks, pieces = [], []
+    for block in lesson.blocks:
+        out = _split(block)
+        if out:
+            if block.meta.get("id"):
+                out[0]["id"] = block.meta["id"]
+            if block.meta.get("slide"):
+                out[0]["slide"] = block.meta["slide"]
+            if block.meta.get("join"):
+                out[0]["join"] = True
+        pieces.append(list(range(len(blocks), len(blocks) + len(out))))
+        blocks += out
+    resolve_refs(lesson, blocks, pieces)
+    if lesson.version < 2:
+        mark_context(blocks)   # ещё не перестроенный урок: прежняя метка «вопрос к диалогу»
     by_cell = ROW_ART.get(lesson.id, {})
     for blk in blocks:
         if by_cell and blk["t"] == "table":
@@ -628,13 +727,31 @@ def lesson_data(lesson: Lesson, cards: dict[str, WordCard], lexicon=None) -> dic
         "n": lesson.number, "id": lesson.id, "unit": lesson.unit.number, "level": lesson.level,
         "kind": lesson.kind, "kindLabel": lesson.kind_label, "emoji": lesson.kind_emoji,
         "title": plain(lesson.title), "goal": plain(lesson.goal), "scripted": lesson.scripted,
+        "version": lesson.version, "check": lesson.check,
         "words": [_word(item, cards.get(item.key), unknown) for item in lesson.vocab],
         "blocks": blocks,
         "quiz": [{"q": plain(q.question), "options": [plain(o) for o in q.options], "correct": q.correct,
-                  "shuffle": q.shuffle, "explain": _html(q.explain)}
+                  "shuffle": q.shuffle, "explain": _html(q.explain), **_quiz_refs(lesson, pieces, q)}
                  for q in lesson.quiz if not is_transcription_quiz(q) and not is_visible_stress_quiz(q)],
         "sentences": _sentences(lesson),
     }
+
+
+def _quiz_refs(lesson: Lesson, pieces: list[list[int]], q: QuizItem) -> dict:
+    """Вопрос теста к диалогу или тексту урока (source: id) и его навык."""
+    ids = {b.meta["id"]: k for k, b in enumerate(lesson.blocks) if b.meta.get("id")}
+    out: dict = {}
+    k = ids.get(q.meta.get("source") or "")
+    if k is not None and lesson.blocks[k].type in SOURCE_BLOCKS and pieces[k]:
+        out["src"] = pieces[k][0]
+    if q.meta.get("free"):
+        out["free"] = True
+    if q.meta.get("skill"):
+        out["skill"] = list(q.meta["skill"])
+    rule = q.meta.get("rule")
+    if rule and rule != "none" and rule in ids:
+        out["rule"] = pieces[ids[rule]]
+    return out
 
 
 def word_forms(course: Course) -> dict[str, str]:
@@ -727,6 +844,8 @@ def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None
         "forms": word_forms(course),
         "phrases": word_phrases(course),
         "avatars": avatars(),
+        # Навыки-конструкции (content/site/skills.yaml): повторение по интервалам и сильные/слабые темы итогов.
+        "skills": {tag: {"title": plain(sk["title"]), "lesson": sk["lesson"]} for tag, sk in course.skills.items()},
     }
 
 

@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import re
 
-from .course import GRADED_BLOCKS, SITE_ONLY_BLOCKS, Course, Lesson
+from .course import GRADED_BLOCKS, RULE_TARGETS, SITE_ONLY_BLOCKS, SOURCE_BLOCKS, Course, Lesson
 from .lexicon import SCENARIO_TEXTS, Issue, Lexicon, generated_forms, lesson_texts
 from .markup import checkable, plain
 from .tokens import spanish_words
@@ -104,8 +104,204 @@ def _img_issues(block) -> list[str]:
     return [f"{block.type}: у слова «{x}» нет картинки (ART_SLUGS в espanol/site.py)" for x in bad]
 
 
-def check_lesson(lesson: Lesson, lexicon: Lexicon) -> list[Issue]:
+def _tasks(lesson: Lesson):
+    """Задания урока для проверки ссылок: (номер блока, блок, поля вопроса или None для пар и групп, где)."""
+    for k, block in enumerate(lesson.blocks):
+        if block.type in ("choose", "write", "build"):
+            for n, it in enumerate(block.data["items"], 1):
+                yield k, block, it.get("meta") or {}, f"{block.type}, вопрос {n}"
+        elif block.type in ("match", "sort"):
+            yield k, block, {}, block.type
+
+
+def _ref_issues(lesson: Lesson, skills: dict, index: dict[str, int]) -> list[str]:
+    """Ссылки сценария: id блоков, источник (source), правило (rule), навыки (skill) и запланированное повторение."""
+    out: list[str] = []
+    ids: dict[str, int] = {}
+    for k, block in enumerate(lesson.blocks):
+        bid = block.meta.get("id")
+        if bid:
+            if bid in ids:
+                out.append(f"id «{bid}» стоит у двух блоков")
+            ids[bid] = k
+            if block.type not in SOURCE_BLOCKS | RULE_TARGETS:
+                out.append(f"id «{bid}» у блока {block.type}: id ставят источникам и объяснениям")
+    def skill_issues(tags, where, k=None):
+        for tag in tags or []:
+            sk = skills.get(tag)
+            if not sk:
+                out.append(f"{where}: навыка «{tag}» нет в content/site/skills.yaml")
+            elif sk["lesson"] not in index:
+                out.append(f"skills.yaml: у навыка «{tag}» нет урока {sk['lesson']}")
+            elif index[sk["lesson"]] > lesson.index:
+                out.append(f"{where}: навык «{tag}» вводится позже, в уроке {sk['lesson']}")
+    def ref_issues(meta, where, k):
+        src, rule = meta.get("source"), meta.get("rule")
+        if src:
+            j = ids.get(src)
+            if j is None:
+                out.append(f"{where}: source «{src}» — в уроке нет блока с таким id")
+            elif lesson.blocks[j].type not in SOURCE_BLOCKS:
+                out.append(f"{where}: source «{src}» — это {lesson.blocks[j].type}, а источник — диалог, текст или миссия")
+            elif k is not None and j > k:
+                out.append(f"{where}: source «{src}» стоит после задания")
+        if rule and rule != "none":
+            j = ids.get(rule)
+            if j is None:
+                out.append(f"{where}: rule «{rule}» — в уроке нет блока с таким id")
+            elif lesson.blocks[j].type not in RULE_TARGETS:
+                out.append(f"{where}: rule «{rule}» — это {lesson.blocks[j].type}, а правило — объяснение")
+            elif k is not None and j > k:
+                out.append(f"{where}: rule «{rule}» стоит после задания")
+        skill_issues(meta.get("skill"), where)
+    for k, block, meta, where in _tasks(lesson):
+        ref_issues(block.meta, f"{block.type}", k)
+        ref_issues(meta, where, k)
+        if block.type in ("choose", "write"):
+            for n, it in enumerate(block.data["items"], 1):
+                if it.get("noaudio") and not it["say"]:
+                    out.append(f"{block.type}, вопрос {n}: noaudio бывает только у задания на слух (say)")
+                if block.type == "choose":
+                    wrong = {_exact(o) for o in it["options"][1:]}
+                    for key in (it.get("meta") or {}).get("mistakes", {}):
+                        if _exact(key) not in wrong:
+                            out.append(f"choose, вопрос {n}: mistakes «{key}» — нет такого неверного варианта")
+    for n, q in enumerate(lesson.quiz, 1):
+        ref_issues(q.meta, f"тест, вопрос {n}", None)
+    for k, block in enumerate(lesson.blocks):
+        if block.type == "review":
+            for tag in block.data["skills"]:
+                sk = skills.get(tag)
+                if not sk:
+                    out.append(f"review: навыка «{tag}» нет в content/site/skills.yaml")
+                elif index.get(sk["lesson"], 10**6) >= lesson.index:
+                    out.append(f"review: навык «{tag}» вводится не раньше этого урока — повторять пока нечего")
+    return out
+
+
+def _strict_issues(lesson: Lesson) -> list[str]:
+    """Перестроенный урок (version ≥ 2): у каждого задания после источника явная привязка — source или free;
+    каждое слово урока проверяется заданием или стоит в recap."""
+    out: list[str] = []
+    seen_source = False
+    for k, block in enumerate(lesson.blocks):
+        if block.type in SOURCE_BLOCKS:
+            seen_source = True
+            continue
+        if not seen_source or block.type not in GRADED_BLOCKS:
+            continue
+        bound = block.meta.get("source") or block.meta.get("free")
+        if block.type in ("match", "sort"):
+            if not bound:
+                out.append(f"{block.type} «{block.data['title']}» после источника: укажите source: id или free: true")
+            continue
+        for n, it in enumerate(block.data["items"], 1):
+            meta = it.get("meta") or {}
+            if not (bound or meta.get("source") or meta.get("free")):
+                text = it.get("q") or it.get("say") or it.get("es") or ""
+                out.append(f"{block.type}, вопрос {n} «{plain(text)[:40]}» после источника: укажите source: id или free: true")
+    if seen_source:
+        for n, q in enumerate(lesson.quiz, 1):
+            if not (q.meta.get("source") or q.meta.get("free")):
+                out.append(f"тест, вопрос {n} «{plain(q.question)[:40]}»: в уроке есть источник — укажите source: id или free: true")
+    if lesson.scripted and not any(b.type == "recap" for b in lesson.blocks):
+        asked = _asked_texts(lesson)
+        for item in lesson.vocab:
+            if item.srs and not _covered(item.es, asked):
+                out.append(f"слово «{item.es}» не проверяется ни одним заданием: добавьте задание или блок recap")
+    return out
+
+
+def _asked_texts(lesson: Lesson) -> list[str]:
+    """Тексты, которые урок спрашивает: верные варианты и вопросы, ответы ввода, пары, группы, фразы."""
+    out = []
+    for block in lesson.blocks:
+        d = block.data
+        if block.type == "choose":
+            out += [t for it in d["items"] for t in (it["q"], it["options"][0], it["say"])]
+        elif block.type == "write":
+            out += [t for it in d["items"] for t in (it["q"], *it["answers"], it["say"])]
+        elif block.type == "match":
+            out += [t for pair in d["pairs"] for t in pair]
+        elif block.type == "sort":
+            out += [x for _, xs in d["groups"] for x in xs]
+        elif block.type == "build":
+            out += [it["es"] for it in d["items"]]
+    out += [t for q in lesson.quiz for t in (q.question, q.options[q.correct])]
+    return [f" {_key(t)} " for t in out if t]
+
+
+def _covered(es: str, asked: list[str]) -> bool:
+    core = _key(re.sub(r"^(?:el/la|el|la|los|las|un|una)\s+", "", es, flags=re.I).split("/")[0])
+    return bool(core) and any(f" {core} " in t for t in asked)
+
+
+def _screens(lesson: Lesson) -> list[list]:
+    """Экраны объяснения перестроенного урока: блоки подряд между заданиями; slide: new — новый экран."""
+    screens, cur = [], []
+    for block in lesson.blocks:
+        if block.type in GRADED_BLOCKS | {"learn", "recap", "review", "exercise"}:
+            if cur:
+                screens.append(cur)
+            cur = []
+            continue
+        if block.meta.get("slide") == "new" and cur:
+            screens.append(cur)
+            cur = []
+        cur.append(block)
+    if cur:
+        screens.append(cur)
+    return screens
+
+
+def _visible(block) -> str:
+    d = block.data
+    if isinstance(d, str):
+        return plain(d)
+    if isinstance(d, list):
+        return " ".join(plain(x) for x in d)
+    if block.type == "dialogue":
+        return " ".join(plain(es) for _, es, _ in d["lines"])
+    if block.type == "examples":
+        return " ".join(plain(ex.es) + " " + plain(ex.ru) for ex in d["items"])
+    if block.type == "table":
+        return " ".join(plain(c) for row in d["rows"] for c in row)
+    if block.type == "compare":
+        return " ".join(plain(x) for c in d["cards"] for x in (c["head"], c["label"], c["text"], *[e for p in c["ex"] for e in p])) + plain(d.get("lead") or "") + plain(d.get("note") or "")
+    if block.type in ("mission", "more"):
+        return plain(d["title"]) + " " + plain(d["text"])
+    if block.type == "reading":
+        return plain(d["text"])
+    if block.type == "conjugation":
+        return " ".join(d["forms"])
+    return ""
+
+
+SCREEN_MAX, SCREEN_MIN = 900, 25
+
+
+def screen_warnings(course: Course) -> list[Issue]:
+    """Предупреждения о длине экранов перестроенных уроков (не ошибки: автор решает по карте слайдов)."""
+    out = []
+    for lesson in course.lessons:
+        if lesson.version < 2 or not lesson.scripted:
+            continue
+        for n, sc in enumerate(_screens(lesson), 1):
+            # «Подробнее» свёрнуто и в длину экрана не входит.
+            text = " ".join(_visible(b) for b in sc if b.type != "more")
+            first = plain(str(sc[0].data))[:30] if isinstance(sc[0].data, str) else sc[0].type
+            if len(text) > SCREEN_MAX:
+                out.append(Issue(lesson, f"экран {n} ({first}…) — {len(text)} знаков: разделите (slide: new) или сократите"))
+            if all(b.type == "header" for b in sc) or len(text) < SCREEN_MIN:
+                out.append(Issue(lesson, f"экран {n} ({first}) почти пустой: объедините с соседним"))
+    return out
+
+
+def check_lesson(lesson: Lesson, lexicon: Lexicon, skills: dict | None = None, index: dict | None = None) -> list[Issue]:
     issues = [Issue(lesson, msg) for block in lesson.blocks for msg in _block_issues(lesson, block) + _img_issues(block)]
+    issues += [Issue(lesson, msg) for msg in _ref_issues(lesson, skills or {}, index or {})]
+    if lesson.version >= 2:
+        issues += [Issue(lesson, msg) for msg in _strict_issues(lesson)]
     blocks = lesson.blocks
     for k, block in enumerate(blocks):
         if block.type == "mission" and not any(b.type in GRADED_BLOCKS for b in blocks[k + 1:]):
@@ -148,10 +344,27 @@ def check_lesson(lesson: Lesson, lexicon: Lexicon) -> list[Issue]:
     return issues
 
 
+def _skill_material(course: Course) -> list[str]:
+    """У каждого навыка, который ставят заданиям, есть хотя бы одно самостоятельное задание: его и повторяем."""
+    used: dict[str, bool] = {}
+    for lesson in course.lessons:
+        for k, block, meta, _ in _tasks(lesson):
+            tags = meta.get("skill") or block.meta.get("skill") or []
+            free = not (meta.get("source") or (block.meta.get("source") and not meta.get("free")))
+            for tag in tags:
+                used[tag] = used.get(tag, False) or free
+    return [f"skills.yaml: у навыка «{tag}» нет ни одного самостоятельного задания (без source) — повторять нечего"
+            for tag, ok in sorted(used.items()) if not ok]
+
+
 def check(course: Course, lexicon: Lexicon | None = None) -> list[Issue]:
     """Проверки сценариев всех уроков сайта."""
     lexicon = lexicon or Lexicon(course)
-    return [issue for lesson in course.lessons for issue in check_lesson(lesson, lexicon)]
+    index = {lesson.id: lesson.index for lesson in course.lessons}
+    issues = [issue for lesson in course.lessons for issue in check_lesson(lesson, lexicon, course.skills, index)]
+    if course.lessons:
+        issues += [Issue(course.lessons[0], msg) for msg in _skill_material(course)]
+    return issues
 
 
 def channel_issues(course: Course) -> list[Issue]:
@@ -160,4 +373,4 @@ def channel_issues(course: Course) -> list[Issue]:
             for lesson in course.lessons for block in lesson.blocks if block.type in SITE_ONLY_BLOCKS]
 
 
-__all__ = ["check", "check_lesson", "channel_issues", "lesson_texts"]
+__all__ = ["check", "check_lesson", "channel_issues", "lesson_texts", "screen_warnings"]
