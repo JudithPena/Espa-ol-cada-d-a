@@ -11,6 +11,7 @@ lessons:
   - id: vocab
     kind: vocab
     title: Как тебя зовут?
+    goal: представиться, спросить имя и ответить «очень приятно»
     vocab:
       - "🏷 me llamo... [мэ лья́мо] — меня зовут... :: Hola, me llamo Ana. — Привет, меня зовут Ана."
       - "❓ ¿Cómo te llamas? [ко́мо тэ лья́мас] — как тебя зовут? :: Hola, ¿cómo te llamas? — Привет, как тебя зовут?"
@@ -19,28 +20,81 @@ lessons:
       - "🤝 mucho gusto [му́чо гу́сто] — очень приятно :: Mucho gusto, señora. — Очень приятно, сеньора."
       - "🔁 igualmente [игуальмэ́нтэ] — взаимно; мне тоже"
     blocks:
-      - |
-        Сегодня мы учимся знакомиться. Обратите внимание на слова **encantado** и **encantada**: окончание зависит от того, **кто говорит**.
-        Если говорит мужчина, то он скажет _encantado_: Пабло скажет _Encantado, Ana_, а Карлос скажет _Encantado, señora_.
-        Если говорит женщина, то она скажет _encantada_: Ана скажет _Encantada, Pablo_, а Лусия скажет _Encantada, señor García_.
-        А фраза **mucho gusto** подходит всем, и мужчинам, и женщинам: _Mucho gusto, Ana_ или _Mucho gusto, señora López_. Ответить на знакомство можно словом **igualmente**, то есть «взаимно»: _Igualmente, Pablo_.
+      - "Пабло и Ана знакомятся на вечеринке."
       - dialogue:
           title: Как это звучит в жизни
           lines:
             - "Pablo: Hola, me llamo Pablo. ¿Y tú? | Привет, меня зовут Пабло. А тебя?"
             - "Ana: Me llamo Ana. Encantada. | Меня зовут Ана. Очень приятно."
             - "Pablo: Mucho gusto, Ana. | Очень приятно, Ана."
-      - exercise:
-          title: Ваша очередь
+      - learn: [me llamo..., "¿Cómo te llamas?", "¿Cómo se llama usted?"]
+      - compare:
+          title: Как спросить имя
+          cards:
+            - head: ¿Cómo te llamas?
+              label: на «ты»
+              tone: blue
+              text: Ровеснику, другу, коллеге.
+              ex: ["Hola, ¿cómo te llamas? — Привет, как тебя зовут?"]
+            - head: ¿Cómo se llama usted?
+              label: на «вы»
+              tone: sun
+              text: Пожилому человеку, незнакомому в официальной обстановке.
+              ex: ["Perdón, ¿cómo se llama usted? — Извините, как вас зовут?"]
+      - choose:
+          title: Как спросить?
           items:
-            - "Представьтесь => Me llamo..."
-            - "Спросите имя у друга => ¿Cómo te llamas?"
-            - "Спросите имя у пожилой сеньоры => ¿Cómo se llama usted?"
-            - "Вам сказали «Encantado». Ответьте => Igualmente. / Encantado (Encantada)."
+            - q: "Вы знакомитесь с пожилой сеньорой."
+              options: "¿Cómo se llama usted? | ¿Cómo te llamas? | ¿Cómo está usted?"
+              explain: "С сеньорой говорят на «вы»: ¿Cómo se llama usted? А ¿Cómo está usted? — это «как вы поживаете?»."
+            - lines: ["Ana: Hola, ¿cómo te llamas?"]
+              q: "Вас зовут Пабло."
+              options: "Me llamo Pablo. | Te llamas Pablo. | ¿Cómo te llamas?"
+              explain: "О себе говорят me llamo — «меня зовут». Te llamas — «тебя зовут»."
+      - write:
+          title: Представьтесь
+          format: фраза по-испански
+          items:
+            - q: "Вас зовут Лусия. Представьтесь."
+              a: "Me llamo Lucía | Hola, me llamo Lucía"
+      - learn: [encantado/a, mucho gusto, igualmente]
+      - compare:
+          title: «Очень приятно»
+          lead: Окончание слова encantado зависит от того, **кто говорит**.
+          cards:
+            - head: encantado
+              label: говорит мужчина
+              tone: blue
+              ex: ["Encantado, Ana. — Очень приятно, Ана."]
+            - head: encantada
+              label: говорит женщина
+              tone: rose
+              ex: ["Encantada, Pablo. — Очень приятно, Пабло."]
+            - head: mucho gusto
+              label: подходит всем
+              tone: mint
+              ex: ["Mucho gusto, señora. — Очень приятно, сеньора."]
+          note: "Ответить на знакомство можно словом **igualmente** — «взаимно»: _Igualmente, Pablo._"
+      - choose:
+          title: Что ответить?
+          items:
+            - lines: ["Pablo: Hola, me llamo Pablo."]
+              q: "Вы — Ана."
+              options: "Encantada, Pablo. | Encantado, Pablo. | De nada, Pablo."
+              explain: "Ана — женщина и говорит о себе, поэтому encantada."
+            - lines: ["Ana: Encantada."]
+              q: "Вы — Пабло."
+              options: "Igualmente. | Encantada. | Por favor."
+              explain: "На «очень приятно» отвечают igualmente — «взаимно». Пабло мог бы сказать и encantado, но не encantada."
+      - build:
+          title: Соберите фразу
+          items:
+            - "Hola, me llamo Ana. ¿Y tú? — Привет, меня зовут Ана. А тебя?"
 
   - id: grammar
     kind: grammar
     title: "Я, ты, он, она: глагол ser"
+    goal: сказать, кто есть кто, — soy, eres, es
     vocab:
       - "🙋 yo [йо] — я"
       - "👨 él [эль] — он"
@@ -49,7 +103,7 @@ lessons:
       - "🏷 llamarse [льяма́рсэ] — называться, зваться {forms: llamo llamas llama}"
       - "🤔 ¿Quién es? [кьен эс] — кто это? :: ¿Quién es? ¿Es Pablo? — Кто это? Это Пабло?"
     blocks:
-      - "Посмотрите на примеры и подумайте: что в испанском есть такого, чего нет в русском?"
+      - "Посмотрите на примеры. Что в испанском есть такого, чего нет в русском?"
       - examples:
           items:
             - "Yo soy Ana. — Я Ана."
@@ -57,45 +111,80 @@ lessons:
             - "Él es Carlos. — Он Карлос."
             - "Ella es Lucía. — Она Лусия."
             - "Usted es el señor García. — Вы сеньор Гарсия."
+      - learn: [yo, él, ella, ser]
       - rule: |
-          В русском языке глагол «быть» в настоящем времени мы пропускаем и говорим просто «я Ана». А в испанском глагол **ser** («быть») нужен всегда: _Soy Ana_ значит «Я Ана», _Eres Pablo_ значит «Ты Пабло», а _Es Lucía_ значит «Это Лусия».
-          Кроме того, у каждого лица своя форма глагола. Когда речь идёт о «я», используется форма **soy**: _Yo soy Ana_, _Soy Carlos_. Когда речь идёт о «ты», используется форма **eres**: _Tú eres Pablo_, _¿Eres Lucía?_ А когда речь идёт о «он», «она» или «вы», используется форма **es**: _Él es Carlos_, _Ella es María_, _Usted es el señor García_.
+          В русском глагол «быть» в настоящем времени пропускают: «я Ана». А в испанском глагол **ser** нужен всегда: _Soy Ana_ — «Я Ана», _Es Lucía_ — «Это Лусия».
+          У каждого лица своя форма: «я» — **soy**, «ты» — **eres**, «он», «она» и вежливое «вы» — **es**.
       - table:
           title: "ser — быть"
           rows:
             - ["yo", "**soy**"]
             - ["tú", "**eres**"]
             - ["él / ella / usted", "**es**"]
+      - write:
+          title: Вставьте форму ser
+          format: форма глагола
+          items:
+            - "Yo ___ Pablo. => soy"
+            - "¿Tú ___ Ana? => eres"
+            - "Ella ___ María. => es"
+            - q: "Usted ___ el señor López, ¿no?"
+              a: es
+              explain: "С usted глагол стоит в той же форме, что с él и ella: es."
+      - compare:
+          style: small
+          title: Значок меняет смысл
+          cards:
+            - head: él
+              label: он
+            - head: el
+              label: артикль
+              say: false
+          note: "_Él es Carlos_ — «Он Карлос», а _el café_, _el señor García_ — артикль. Так же **sí** — «да», а `si` — «если»."
+      - choose:
+          title: él или el?
+          items:
+            - q: "___ es Carlos. — Он Карлос."
+              options: "Él | El"
+            - q: "Es ___ señor García."
+              options: "el | él"
+      - learn: [llamarse, "¿Quién es?"]
       - table:
           title: "llamarse — зваться (букв. «называть себя»)"
           rows:
             - ["yo", "**me llamo**"]
             - ["tú", "**te llamas**"]
             - ["él / ella / usted", "**se llama**"]
-      - note: |
-          Со словом **usted** («вы») глагол стоит в той же форме, что и с **él** и **ella**. Поэтому _Usted es la señora López_ строится так же, как _Ella es Lucía_, а _¿Cómo se llama usted?_ строится так же, как _¿Cómo se llama él?_
-          Местоимения обычно опускают, потому что форма глагола и так показывает, кто говорит. Поэтому _Soy Ana_ звучит естественнее, чем _Yo soy Ana_. Точно так же обычно говорят _Me llamo Pablo_, _¿Eres Lucía?_ и _Es Carlos_.
-          А **yo** и **tú** оставляют тогда, когда хотят подчеркнуть разницу между людьми: _Yo soy Ana, ¿y tú?_ значит «Я Ана, а ты?», _Yo me llamo Pablo, ¿y tú?_ значит «Меня зовут Пабло, а тебя?», а _Tú eres Carlos y yo soy Lucía_ значит «Ты Карлос, а я Лусия».
-      - tip: "Слово **él** со значком означает «он»: _Él es Carlos_, _¿Quién es él?_ А без значка **el** служит артиклем: _el café_, _el perro_, _el señor García_. Точно так же **sí** со значком означает «да»: _Sí, soy Ana_, а `si` без значка означает «если»."
-      - exercise:
-          title: Вставьте пропущенное слово
+      - more:
+          title: Почему часто без yo и tú?
+          text: |
+            Форма глагола и так показывает, кто говорит, поэтому _Soy Ana_ звучит естественнее, чем _Yo soy Ana_, а _Me llamo Pablo_ — чем _Yo me llamo Pablo_.
+            **Yo** и **tú** оставляют, когда хотят подчеркнуть разницу между людьми: _Yo soy Ana, ¿y tú?_ — «Я Ана, а ты?»
+      - choose:
+          title: Вставьте слово
           items:
-            - "Yo ___ Pablo. => soy"
-            - "¿Tú ___ Ana? => eres"
-            - "Ella ___ María. => es"
-            - "¿Cómo ___ llamas? => te"
-            - "Él ___ llama Carlos. => se"
-            - "Usted ___ el señor López, ¿no? => es"
-      - culture: |
-          У испанцев **две фамилии**: первую фамилию человек получает от отца, а вторую получает от матери. Например, полное имя Пикассо звучит так: Pablo Ruiz Picasso. Здесь Ruiz — это фамилия его отца, а Picasso — это фамилия его матери.
-          Если у родителей Carlos López Martínez и Carmen Ruiz García родится сын Pablo, то его будут звать Pablo López Ruiz.
-          Женщины после свадьбы фамилию не меняют, поэтому Carmen Ruiz García так и остаётся Carmen Ruiz García.
+            - q: "¿Cómo ___ llamas?"
+              options: "te | se | me"
+              explain: "«Ты» — te llamas: ¿Cómo te llamas?"
+            - q: "Él ___ llama Carlos."
+              options: "se | te | me"
+              explain: "«Он», «она», «вы» — se llama."
+            - lines: ["Ana: ¿Quién es?"]
+              q: "Ана показывает на фото Карлоса."
+              options: "Es Carlos. | Soy Carlos. | Eres Carlos."
+              explain: "О другом человеке говорят es: Es Carlos — «Это Карлос». Soy Carlos сказал бы сам Карлос."
+      - more:
+          title: Две фамилии
+          text: |
+            У испанцев **две фамилии**: первая — от отца, вторая — от матери. Полное имя Пикассо — Pablo Ruiz Picasso: Ruiz — фамилия отца, Picasso — фамилия матери.
+            Женщины после свадьбы фамилию не меняют: Carmen Ruiz García так и остаётся Carmen Ruiz García.
 
   - id: dialogue
     kind: dialogue
     title: На вечеринке
+    goal: понять разговор при знакомстве и ответить собеседнику
     blocks:
-      - "В этих диалогах нет новых слов: в них только то, что вы уже знаете. Сначала прочитайте их вслух, а потом послушайте аудио."
+      - "В этих диалогах только знакомые слова."
       - dialogue:
           lines:
             - "Pablo: ¡Hola! Me llamo Pablo. ¿Y tú? ¿Cómo te llamas? | Привет! Меня зовут Пабло. А тебя? Как тебя зовут?"
@@ -106,25 +195,51 @@ lessons:
             - "Lucía: ¡Hola! ¿Qué tal? | Привет! Как дела?"
             - "Ana: Muy bien. Soy Ana. Mucho gusto. | Очень хорошо. Я Ана. Очень приятно."
             - "Lucía: Igualmente, Ana. | Взаимно, Ана."
+      - choose:
+          title: Поняли?
+          items:
+            - q: "Почему Пабло говорит encantado, а Ана — encantada?"
+              options: "Пабло — мужчина, Ана — женщина. | Ана говорит на «вы». | Пабло старше Аны."
+              explain: "Окончание зависит от того, кто говорит: мужчина — encantado, женщина — encantada."
+            - q: "Кто такая Лусия?"
+              options: "подруга, которую Пабло знакомит с Аной | сестра Аны | администратор гостиницы"
       - dialogue:
           title: В гостинице
           lines:
             - "Recepcionista: Buenas noches. ¿Cómo se llama usted? | Добрый вечер. Как вас зовут?"
             - "Carlos: Me llamo Carlos López. | Меня зовут Карлос Лопес."
             - "Recepcionista: Muchas gracias, señor López. ¡Buenas noches! | Большое спасибо, сеньор Лопес. Доброй ночи!"
-      - exercise:
+      - choose:
           title: Поняли?
           items:
-            - "Почему Пабло говорит encantado, а Ана — encantada? => Потому что Пабло мужчина, а Ана женщина"
-            - "Кто такая Лусия? => подруга, которую Пабло знакомит с Аной"
-            - "Почему администратор говорит ¿Cómo se llama usted?, а не ¿Cómo te llamas? => Потому что ситуация официальная, а в такой ситуации говорят на «вы»"
-      - task: "Представьтесь в комментариях по-испански: поздоровайтесь и назовите своё имя. Потом ответьте кому-нибудь из участников фразой **Mucho gusto** или **Encantado / Encantada**."
+            - q: "Почему администратор говорит ¿Cómo se llama usted?, а не ¿Cómo te llamas?"
+              options: "Ситуация официальная, поэтому на «вы». | Карлос — его старый друг. | Он не расслышал имя."
+      - mission:
+          title: Новая соседка
+          text: "Вы — Лусия. В подъезде с вами знакомится новая соседка. Ответьте ей."
+      - choose:
+          items:
+            - lines: ["Ana: ¡Hola! Me llamo Ana. ¿Y tú?"]
+              options: "Me llamo Lucía. | Se llama Lucía. | ¿Cómo te llamas?"
+              explain: "О себе — me llamo. Se llama — «её (его) зовут»."
+            - lines: ["Ana: Encantada, Lucía."]
+              options: "Igualmente, Ana. | Encantado, Ana. | De nada, Ana."
+              explain: "Лусия — женщина, поэтому не encantado; лучший ответ — igualmente."
+            - lines: ["Ana: ¿Y él? ¿Quién es?"]
+              q: "Рядом с вами Пабло."
+              options: "Es Pablo. | Soy Pablo. | Eres Pablo."
+      - build:
+          items:
+            - es: "Perdón, ¿cómo se llama usted?"
+              ru: "К вам подошёл пожилой сосед. Спросите, как его зовут: «Извините, как вас зовут?»"
+              extra: [te]
 
   - id: listening
     kind: listening
     title: Кто есть кто?
+    goal: понять на слух, кого как зовут
     blocks:
-      - "Это задание на слух. Сначала **послушайте аудио** (оно ниже) два-три раза, а потом ответьте на вопросы в опросах. Текст спрятан, поэтому откройте его только в конце, когда захотите себя проверить."
+      - "Сначала послушайте разговор два-три раза. Текст спрятан: откройте его, только когда захотите себя проверить."
       - dialogue:
           hidden: true
           lines:
@@ -134,6 +249,12 @@ lessons:
             - "Iván: Es Olga. | Это Ольга."
             - "Olga: Hola. Sí, soy Olga. Mucho gusto. | Здравствуйте. Да, я Ольга. Очень приятно."
             - "Profesora: Igualmente, Olga. | Взаимно, Ольга."
+      - match:
+          title: Кто есть кто?
+          pairs:
+            - "Elena — преподавательница"
+            - "Iván — ученик"
+            - "Olga — ученица"
     quiz:
       - q: Как зовут преподавательницу?
         options: "Elena | Olga | Ana"

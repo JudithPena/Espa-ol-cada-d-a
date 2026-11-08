@@ -424,6 +424,9 @@ main { padding-block: 16px 110px; }
 
 /* Сценарий урока (уроки сайта с блоками learn, choose, write, match, sort, build, mission, more). */
 .player { grid-template-columns: minmax(0, 1fr); }   /* длинное название урока в .pctx не раздвигает экран */
+.pbody .wrap { grid-template-columns: minmax(0, 1fr); }   /* и длинное слово на карточке (encantado/a) — тоже */
+.wcard .word, .wcard .pron { overflow-wrap: anywhere; }
+@media (max-width: 360px) { .wcard.compact .word { font-size: 19px; } }
 .pctx { font-size: 12px; font-weight: 700; color: var(--muted); padding-bottom: 6px; margin-top: -6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .prompt .q.qtext { font-family: var(--body); font-weight: 700; font-size: 20px; }
 .qpic { width: 140px; height: 140px; border-radius: 18px; background: #f9f4ea; justify-self: center; object-fit: cover; }
@@ -2216,7 +2219,7 @@ function wordCard(w) {
   return `<div class="wcard ${kind}">
     ${kind === "big" ? `<img class="pic" src="${w.img}" alt="">` : ""}
     <div class="whead">${kind === "compact" ? `<img class="wpic" src="${w.img}" alt="">` : kind === "emo" ? `<span class="emo" aria-hidden="true">${esc(w.emoji)}</span>` : ""}
-      <div class="wbody"><span class="word${w.es.length > 18 ? " long" : ""}">${esc(w.es)}</span>${w.pron ? `<span class="pron">[${esc(w.pron)}]</span>` : ""}
+      <div class="wbody"><span class="word${w.es.length > 18 ? " long" : ""}">${esc(w.es).replace(/\//g, "/<wbr>")}</span>${w.pron ? `<span class="pron">[${esc(w.pron)}]</span>` : ""}
       </div></div>
     ${canSay(w.say) ? `<div class="aud"><button data-say="${esc(w.say)}" aria-label="Послушать">▶ Слушать</button><button data-slow data-say="${esc(w.say)}" aria-label="Послушать медленно">🐢 Медленно</button></div>` : ""}
     <div class="tr">${esc(w.ru)}</div>
