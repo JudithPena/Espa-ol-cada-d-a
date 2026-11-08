@@ -16,12 +16,12 @@ def test_all_typing_questions_have_complete_format_guidance():
                 if q.get('options'):
                     continue
                 format = q.get('inputFormat', group.get('inputFormat'))
-                assert format and all(format.get(k, '').strip() for k in ('instruction', 'example', 'placeholder')), (unit['number'], group['id'], q['prompt'])
+                assert format and all(format.get(k, '').strip() for k in ('instruction', 'placeholder')), (unit['number'], group['id'], q['prompt'])
                 if q.get('tiles') or q.get('guidedGaps'):
                     legacy += 1
                 else:
                     typed += 1
-    assert (typed, legacy) == (191, 49)
+    assert (typed, legacy) == (364, 49)
 
 
 @pytest.mark.parametrize('format', [{}, {'instruction':'Впиши слово'}, 'слово',

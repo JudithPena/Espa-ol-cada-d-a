@@ -773,12 +773,13 @@
       "inputLabel": "Выбор ответа",
       "theorySections": [
         2
-      ]
+      ],
+      "allowNoArticle": true
     },
     {
       "id": "10.3",
       "title": "10.3 · Куда и откуда?",
-      "instruction": "Дополни выражение. Место уже написано. ∅ — ничего не вставляем.",
+      "instruction": "Впиши артикль или слитную форму с предлогом. Место уже написано. Если артикль не нужен, нажми «Без артикля».",
       "questions": [
         {
           "prompt": "Ana va a ___ universidad.",
@@ -786,16 +787,14 @@
             "la"
           ],
           "explain": "Университет: ir a la universidad.",
-          "options": [
-            "el",
-            "la",
-            "Без артикля",
-            "al"
-          ],
           "translation": "Ана идёт в университет.",
           "sourceRef": "10.3.1",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль или слитную форму с предлогом. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Va a ___ cárcel.",
@@ -803,16 +802,14 @@
             "la"
           ],
           "explain": "Тюрьма: ir a la cárcel.",
-          "options": [
-            "el",
-            "la",
-            "al",
-            "Без артикля"
-          ],
           "translation": "Его отправляют в тюрьму.",
           "sourceRef": "10.3.2",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль или слитную форму с предлогом. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Llevan a Juan ___ hospital.",
@@ -820,16 +817,14 @@
             "al"
           ],
           "explain": "A + el hospital соединяем: al hospital.",
-          "options": [
-            "al",
-            "Без артикля",
-            "el",
-            "la"
-          ],
           "translation": "Хуана везут в больницу.",
           "sourceRef": "10.3.3",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль или слитную форму с предлогом. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Mi madre está en ___ casa.",
@@ -837,16 +832,14 @@
             "Без артикля"
           ],
           "explain": "В значении «дома» — en casa.",
-          "options": [
-            "la",
-            "al",
-            "el",
-            "Без артикля"
-          ],
           "translation": "Моя мама дома.",
           "sourceRef": "10.3.4",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль или слитную форму с предлогом. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Los niños van ___ colegio.",
@@ -854,16 +847,14 @@
             "al"
           ],
           "explain": "A + el colegio соединяем: al colegio.",
-          "options": [
-            "la",
-            "Без артикля",
-            "al",
-            "el"
-          ],
           "translation": "Дети идут в школу.",
           "sourceRef": "10.3.5",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль или слитную форму с предлогом. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Viene de ___ correos.",
@@ -871,16 +862,14 @@
             "Без артикля"
           ],
           "explain": "Обычное выражение de correos — с почты.",
-          "options": [
-            "el",
-            "la",
-            "al",
-            "Без артикля"
-          ],
           "translation": "Она возвращается с почты.",
           "sourceRef": "10.3.6",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль или слитную форму с предлогом. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Esta noche van ___ cine.",
@@ -888,16 +877,14 @@
             "al"
           ],
           "explain": "A + el cine соединяем: al cine.",
-          "options": [
-            "al",
-            "la",
-            "Без артикля",
-            "el"
-          ],
           "translation": "Сегодня вечером они идут в кино.",
           "sourceRef": "10.3.7",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль или слитную форму с предлогом. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Ahora están en ___ médico.",
@@ -905,16 +892,14 @@
             "el"
           ],
           "explain": "Обычное выражение estar en el médico — быть у врача.",
-          "options": [
-            "al",
-            "la",
-            "el",
-            "Без артикля"
-          ],
           "translation": "Сейчас они у врача.",
           "sourceRef": "10.3.8",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль или слитную форму с предлогом. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         }
       ],
       "preview": {
@@ -931,7 +916,9 @@
       "inputLabel": "Выбор ответа",
       "theorySections": [
         3
-      ]
+      ],
+      "allowNoArticle": true,
+      "articleContractions": true
     },
     {
       "id": "10.4",
@@ -999,7 +986,8 @@
       "inputLabel": "Выбор ответа",
       "theorySections": [
         1
-      ]
+      ],
+      "allowNoArticle": true
     }
   ],
   "learningOrder": [

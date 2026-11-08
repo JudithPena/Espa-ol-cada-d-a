@@ -442,6 +442,19 @@ function gQuestionMode(q, response) {
   if (q.tiles && !(response.value && !response.checked && !Array.isArray(response.chosen))) return 'build';
   return q.options ? 'choice' : 'input';
 }
+function gNoArticleControl(group,response) {
+  return group.allowNoArticle ? `<button type="button" class="btn ghost gno-article" data-gno-article aria-pressed="${grammarNormalize(response.value)==='без артикля'}" ${response.checked?'disabled':''}>Без артикля</button>` : '';
+}
+function gNoArticle() {
+  if(!G || G.ended || G.recovery) return;
+  const step=G.steps[G.at], response=gResponse(step), group=gGroups(gUnit()).find(g=>g.id===step.group);
+  if(!response || response.checked || !group?.allowNoArticle || gQuestionMode(group.questions[step.qi],response)!=='input') return;
+  response.value='∅'; gSave();
+  const input=document.getElementById('g-answer');
+  if(input) {input.value=response.value;input.focus({preventScroll:true});input.select();}
+  const check=document.querySelector('[data-gcheck]'); if(check)check.disabled=false;
+  document.querySelector('[data-gno-article]')?.setAttribute('aria-pressed','true');
+}
 function gBuild(action, index) {
   if (!G || G.ended || G.recovery) return;
   const step=G.steps[G.at], response=gResponse(step), q=gGroups(gUnit()).find(g=>g.id===step.group)?.questions[step.qi];
@@ -754,7 +767,7 @@ function gPlayerView() {
     const who = block ? `<div class="gwho"><img src="${esc(group.family.portraits[block.person])}" alt="" width="44" height="44"><b>Родственники ${esc(block.person)}</b></div>` : "";
     const mode=gQuestionMode(q,response);
     const options = mode==='gaps' ? gGuided(q,response,group,step.qi) : mode==='build' ? gBuilder(q,response) : q.options ? `<div class="${q.interaction==='gap-choice'?'gchoices':'opts'}${q.answerWarnings?' has-warnings':''}" role="group" aria-label="Варианты ответа">${gOrderedChoices(group,step.qi,null,attempt).map((o,position) => `<button class="opt ${grammarChoiceClass(q,o,response.value,response.checked,group)}" data-gpick="${q.options.indexOf(o)}" data-gvalue="${esc(o)}" data-gposition="${position}" aria-label="${esc(o === 'Без артикля' ? 'Ничего не вставлять' : gOptionLabel(q,o))}" aria-pressed="${response.value === o}" ${response.checked ? "disabled" : ""}><span class="k">${position + 1}</span><span class="goption-label"><span lang="es">${esc(gOptionLabel(q,o))}</span>${grammarChoiceNote(q,o,response.checked)}</span></button>`).join("")}</div>`
-      : `<div>${grammarInputHelp(q,group,"g-answer-format")}<label class="sr-only" for="g-answer">Ответ на испанском</label>${group.phraseInput && q.answers[0].split(' ').length>2 ? `<textarea class="ginput gphrase-input" id="g-answer" aria-label="Ответ на испанском" aria-describedby="g-answer-format" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" rows="2" placeholder="${esc(grammarInputPlaceholder(q,group))}" ${response.checked ? "disabled" : ""}>${esc(response.value)}</textarea>` : `<input class="ginput" id="g-answer" aria-label="Ответ на испанском" aria-describedby="g-answer-format" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="${esc(grammarInputPlaceholder(q,group))}" value="${esc(response.value)}" ${response.checked ? "disabled" : ""}>`}${response.checked ? "" : gCharsPanel(q)}</div>`;
+      : `<div>${grammarInputHelp(q,group,"g-answer-format")}<label class="sr-only" for="g-answer">Ответ на испанском</label>${group.phraseInput && q.answers[0].split(' ').length>2 ? `<textarea class="ginput gphrase-input" id="g-answer" aria-label="Ответ на испанском" aria-describedby="g-answer-format" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" rows="2" placeholder="${esc(grammarInputPlaceholder(q,group))}" ${response.checked ? "disabled" : ""}>${esc(response.value)}</textarea>` : `<input class="ginput" id="g-answer" enterkeyhint="done" autocorrect="off" aria-label="Ответ на испанском" aria-describedby="g-answer-format" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="${esc(grammarInputPlaceholder(q,group))}" value="${esc(response.value)}" ${response.checked ? "disabled" : ""}>`}${response.checked ? "" : gCharsPanel(q)}${gNoArticleControl(group,response)}</div>`;
     const source = q.sourceParts ? `<div class="gsource" lang="es"><span class="kicker">${esc(q.sourceLabel || 'Исходная фраза')}</span><p>${esc(q.sourceParts[0])}<strong>${esc(q.sourceParts[1])}</strong>${esc(q.sourceParts[2])}</p></div>` : "";
     const clues = q.clues ? `<div class="gclues" aria-label="Слова для ответа">${q.clues.map(([es,ru])=>`<span><b lang="es">${esc(es)}</b><small>${esc(ru)}</small></span>`).join("")}</div>` : "";
     const inline = group.inlineAnswer && mode==='input' && !q.options && q.prompt.includes("___");

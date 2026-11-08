@@ -515,7 +515,7 @@
     {
       "id": "11.2",
       "title": "11.2 · Который именно?",
-      "instruction": "Добавь el, la, los или las перед уточнением.",
+      "instruction": "Впиши определённый артикль перед уточнением. Вспомни, какое существительное не повторяется.",
       "questions": [
         {
           "prompt": "¿Qué gafas quieres? ___ de la derecha.",
@@ -523,16 +523,14 @@
             "las"
           ],
           "explain": "Подразумевается las gafas: las de la derecha.",
-          "options": [
-            "las",
-            "los",
-            "la",
-            "el"
-          ],
           "translation": "Выбираешь очки справа.",
           "sourceRef": "11.2.1",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "¿Quién es Alberto? ___ del pelo corto.",
@@ -540,16 +538,14 @@
             "el"
           ],
           "explain": "Подразумевается el chico: el del pelo corto.",
-          "options": [
-            "los",
-            "las",
-            "la",
-            "el"
-          ],
           "translation": "Альберто — парень с короткими волосами.",
           "sourceRef": "11.2.2",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "¿Qué escultura prefieres? ___ de la izquierda.",
@@ -557,16 +553,14 @@
             "la"
           ],
           "explain": "Подразумевается la escultura: la de la izquierda.",
-          "options": [
-            "las",
-            "los",
-            "la",
-            "el"
-          ],
           "translation": "Выбираешь скульптуру слева.",
           "sourceRef": "11.2.3",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "¿Qué galletas quieres? ___ de chocolate.",
@@ -574,16 +568,14 @@
             "las"
           ],
           "explain": "Подразумевается las galletas: las de chocolate.",
-          "options": [
-            "los",
-            "las",
-            "la",
-            "el"
-          ],
           "translation": "Хочешь шоколадное печенье.",
           "sourceRef": "11.2.4",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "¿Quién es Rosi? ___ de la falda larga.",
@@ -591,16 +583,14 @@
             "la"
           ],
           "explain": "Подразумевается la chica: la de la falda larga.",
-          "options": [
-            "las",
-            "la",
-            "los",
-            "el"
-          ],
           "translation": "Роси — девушка в длинной юбке.",
           "sourceRef": "11.2.5",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "¿Qué zapatos prefieres? ___ de arriba.",
@@ -608,16 +598,14 @@
             "los"
           ],
           "explain": "Подразумевается los zapatos: los de arriba.",
-          "options": [
-            "las",
-            "el",
-            "los",
-            "la"
-          ],
           "translation": "Выбираешь туфли на верхней полке.",
           "sourceRef": "11.2.6",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "¿Qué novela estás leyendo? ___ de Sandra Arenas.",
@@ -625,16 +613,14 @@
             "la"
           ],
           "explain": "Подразумевается la novela: la de Sandra Arenas.",
-          "options": [
-            "la",
-            "los",
-            "el",
-            "las"
-          ],
           "translation": "Читаешь роман Сандры Аренас.",
           "sourceRef": "11.2.7",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "¿Quién es tu padre? ___ del bigote.",
@@ -642,26 +628,24 @@
             "el"
           ],
           "explain": "Подразумевается el hombre: el del bigote.",
-          "options": [
-            "los",
-            "la",
-            "las",
-            "el"
-          ],
           "translation": "Твой отец — мужчина с усами.",
           "sourceRef": "11.2.8",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         }
       ],
       "preview": {
-        "source": "¿Qué gafas quieres? ___ de la derecha.",
+        "source": "¿Qué libros quieres? ___ de arriba.",
         "sentenceParts": [
-          "¿Qué gafas quieres? ",
-          " de la derecha."
+          "¿Qué libros quieres? ",
+          " de arriba."
         ],
-        "answer": "las",
-        "translation": "Какие очки хочешь? Те, что справа.",
+        "answer": "los",
+        "translation": "Какие книги хочешь? Те, что сверху.",
         "targetPrefix": "",
         "tip": ""
       },

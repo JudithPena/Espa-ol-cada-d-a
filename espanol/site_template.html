@@ -570,6 +570,8 @@ main { padding-block: 16px 110px; }
 .gfill-label { display: block; margin: 12px 0 6px; color: var(--muted); font-size: 13px; }
 .ginput-format { margin: 12px 0 8px; font-size: 14px; line-height: 1.5; }
 .ginput-format p { margin: 4px 0; }
+.gno-article { margin-top: 10px; min-height: 44px; max-width: 100%; white-space: normal; }
+.gno-article[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
 .ghearts { display: inline-flex; flex: none; gap: 3px; color: #cf4259; font-size: 24px; line-height: 1; }
 .ghearts .is-empty { color: var(--line); }
 .greview-label { flex: 1; min-width: 0; font-size: 14px; }
@@ -1665,11 +1667,11 @@ function gInsertChar(button) {
 const grammarInputFormat = (q, group) => q.inputFormat || group.inputFormat;
 function grammarInputHelp(q, group, id) {
   const format = grammarInputFormat(q, group);
-  return format ? `<div class="ginput-format" id="${esc(id)}"><p>${esc(format.instruction)}</p><p class="muted">Пример формата: <b lang="es">${esc(format.example)}</b></p></div>` : '';
+  return format ? `<div class="ginput-format" id="${esc(id)}"><p>${esc(format.instruction)}</p>${format.example ? `<p class="muted">Пример формата: <b lang="es">${esc(format.example)}</b></p>` : ''}</div>` : '';
 }
 const grammarInputPlaceholder = (q, group) => grammarInputFormat(q, group)?.placeholder || q.answerPlaceholder || group.answerPlaceholder || 'Ответ';
 const gOptionLabel = (q, value) => q.optionLabels?.[value] || (value === 'Без артикля' ? '∅' : value);
-const gInputChars = q => [...['á','é','í','ó','ú','ñ'], ...(/[üÜ]/.test([q.prompt,...q.answers].join(' '))?['ü']:[]), ...(q.answers.includes('Без артикля') ? ['∅'] : [])];
+const gInputChars = q => [...['á','é','í','ó','ú','ñ'], ...(/[üÜ]/.test([q.prompt,...q.answers].join(' '))?['ü']:[])];
 function grammarTable(t) {
   return `<div class="tbl" tabindex="0" role="region" aria-label="Таблица примеров"><table><thead><tr>${t.heads.map(h => `<th scope="col">${esc(h)}</th>`).join("")}</tr></thead><tbody>${t.rows.map(r => `<tr>${r.map(c => `<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
 }
@@ -2207,7 +2209,7 @@ document.addEventListener("submit", e => {
   gSubmitGrammarForm(unit,group,group.questions.map((_,i)=>data.get(`q${i}`) || ''));
 });
 document.addEventListener('pointerdown', e => {
-  if(e.target.closest('[data-gchar], [data-gaccent]') && document.activeElement?.matches?.('input, textarea')) e.preventDefault();
+  if(e.target.closest('[data-gchar], [data-gaccent], [data-gno-article]') && document.activeElement?.matches?.('input, textarea')) e.preventDefault();
 });
 document.addEventListener("click", e => {
   const closed = e.target.closest(".spoiler:not(.open)");
@@ -2237,6 +2239,7 @@ document.addEventListener("click", e => {
   if ("gback" in d) return gMove(-1);
   if ("gnext" in d) return gMove(1);
   if ("gcheck" in d) return gCheck();
+  if ("gnoArticle" in d) return gNoArticle();
   if ("gfeedbackToggle" in d) return gToggleFeedback();
   if ("ghideKeyboard" in d) return gHideKeyboard();
   if ("gretryMistakes" in d) return gRetry();
@@ -2319,7 +2322,7 @@ document.addEventListener("input", e => {
   }
   if (e.target.id === "g-answer" && G) {
     const response = gResponse(G.steps[G.at]);
-    if (!response.checked) { response.value = e.target.value; gSave(); const check = $("[data-gcheck]"); if (check) check.disabled = !response.value.trim(); }
+    if (!response.checked) { response.value = e.target.value; gSave(); const check = $("[data-gcheck]"); if (check) check.disabled = !response.value.trim(); document.querySelector('[data-gno-article]')?.setAttribute('aria-pressed',String(grammarNormalize(response.value)==='без артикля')); }
     return;
   }
   const grammarForm = e.target.closest("[data-grammar-form]");

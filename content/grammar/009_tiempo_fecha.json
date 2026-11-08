@@ -563,7 +563,7 @@
     {
       "id": "9.2",
       "title": "9.2 · Когда это происходит?",
-      "instruction": "Дополни дату, день недели или часть дня. ∅ — ничего не вставляем.",
+      "instruction": "Впиши артикль в дату, день недели или часть дня. Если артикль не нужен, нажми «Без артикля».",
       "questions": [
         {
           "prompt": "Mi cumpleaños es ___ 12 de febrero.",
@@ -571,16 +571,13 @@
             "el"
           ],
           "explain": "Перед датой события ставим el: el 12 de febrero.",
-          "options": [
-            "la",
-            "las",
-            "los",
-            "Без артикля",
-            "el"
-          ],
           "sourceRef": "9.2.1",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Voy al gimnasio ___ martes.",
@@ -588,17 +585,14 @@
             "los"
           ],
           "explain": "Каждый вторник: los martes.",
-          "options": [
-            "el",
-            "Без артикля",
-            "las",
-            "los",
-            "la"
-          ],
           "translation": "Это происходит каждый вторник.",
           "sourceRef": "9.2.2",
           "context": "Скажи, что ходишь в зал каждый вторник.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Trabajo por ___ noche.",
@@ -606,16 +600,13 @@
             "la"
           ],
           "explain": "Устойчивое выражение por la noche.",
-          "options": [
-            "los",
-            "la",
-            "las",
-            "Без артикля",
-            "el"
-          ],
           "sourceRef": "9.2.3",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Se casa ___ martes, 13 de julio.",
@@ -623,16 +614,13 @@
             "el"
           ],
           "explain": "Перед днём события ставим el.",
-          "options": [
-            "Без артикля",
-            "las",
-            "la",
-            "los",
-            "el"
-          ],
           "sourceRef": "9.2.4",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Se casa el martes, ___ 13 de julio.",
@@ -640,16 +628,13 @@
             "Без артикля"
           ],
           "explain": "Перед числом после дня недели второй артикль не нужен.",
-          "options": [
-            "la",
-            "el",
-            "Без артикля",
-            "las",
-            "los"
-          ],
           "sourceRef": "9.2.4",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "La fiesta es ___ domingo a las siete.",
@@ -657,16 +642,13 @@
             "el"
           ],
           "explain": "Событие в определённое воскресенье: el domingo.",
-          "options": [
-            "las",
-            "el",
-            "Без артикля",
-            "los",
-            "la"
-          ],
           "sourceRef": "9.2.5",
           "context": "Речь об одной вечеринке в ближайшее воскресенье.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "La fiesta es el domingo a ___ siete.",
@@ -674,16 +656,13 @@
             "las"
           ],
           "explain": "Время: a las siete.",
-          "options": [
-            "el",
-            "Без артикля",
-            "las",
-            "los",
-            "la"
-          ],
           "sourceRef": "9.2.5",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Hoy es ___ jueves, 4 de octubre.",
@@ -691,16 +670,13 @@
             "Без артикля"
           ],
           "explain": "После Hoy es день недели без артикля.",
-          "options": [
-            "Без артикля",
-            "los",
-            "la",
-            "las",
-            "el"
-          ],
           "sourceRef": "9.2.6",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Hoy es jueves, ___ 4 de octubre.",
@@ -708,16 +684,13 @@
             "Без артикля"
           ],
           "explain": "Число после дня недели без второго артикля.",
-          "options": [
-            "Без артикля",
-            "los",
-            "la",
-            "el",
-            "las"
-          ],
           "sourceRef": "9.2.6",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Hoy es jueves, 4 de ___ octubre.",
@@ -725,16 +698,13 @@
             "Без артикля"
           ],
           "explain": "Перед названием месяца артикль здесь не нужен.",
-          "options": [
-            "las",
-            "Без артикля",
-            "el",
-            "la",
-            "los"
-          ],
           "sourceRef": "9.2.6",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "El partido empieza a ___ diez.",
@@ -742,16 +712,13 @@
             "las"
           ],
           "explain": "Время: a las diez.",
-          "options": [
-            "las",
-            "el",
-            "la",
-            "Без артикля",
-            "los"
-          ],
           "sourceRef": "9.2.7",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Yo trabajo por ___ tarde.",
@@ -759,16 +726,13 @@
             "la"
           ],
           "explain": "Часть дня: por la tarde.",
-          "options": [
-            "los",
-            "las",
-            "la",
-            "Без артикля",
-            "el"
-          ],
           "sourceRef": "9.2.8",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Mi hermano trabaja por ___ mañana.",
@@ -776,16 +740,13 @@
             "la"
           ],
           "explain": "Часть дня: por la mañana.",
-          "options": [
-            "los",
-            "las",
-            "el",
-            "la",
-            "Без артикля"
-          ],
           "sourceRef": "9.2.8",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Nací ___ 2 de diciembre.",
@@ -793,16 +754,13 @@
             "el"
           ],
           "explain": "Перед датой события нужен el.",
-          "options": [
-            "Без артикля",
-            "la",
-            "las",
-            "el",
-            "los"
-          ],
           "sourceRef": "9.2.9",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Nací el 2 de ___ diciembre.",
@@ -810,16 +768,13 @@
             "Без артикля"
           ],
           "explain": "Перед месяцем после de артикля нет.",
-          "options": [
-            "la",
-            "Без артикля",
-            "los",
-            "el",
-            "las"
-          ],
           "sourceRef": "9.2.9",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Sale siempre ___ sábados.",
@@ -827,16 +782,13 @@
             "los"
           ],
           "explain": "Регулярно по субботам: los sábados.",
-          "options": [
-            "los",
-            "la",
-            "las",
-            "Без артикля",
-            "el"
-          ],
           "sourceRef": "9.2.10",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Vamos de vacaciones en ___ agosto.",
@@ -844,16 +796,13 @@
             "Без артикля"
           ],
           "explain": "После en название месяца без артикля.",
-          "options": [
-            "los",
-            "la",
-            "las",
-            "el",
-            "Без артикля"
-          ],
           "sourceRef": "9.2.11",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Tengo un examen ___ lunes.",
@@ -861,16 +810,13 @@
             "el"
           ],
           "explain": "Экзамен в определённый понедельник: el lunes.",
-          "options": [
-            "la",
-            "Без артикля",
-            "el",
-            "los",
-            "las"
-          ],
           "sourceRef": "9.2.12",
           "context": "Речь об одном экзамене в ближайший понедельник.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         }
       ],
       "preview": {
@@ -887,7 +833,8 @@
       "inputLabel": "Выбор ответа",
       "theorySections": [
         1
-      ]
+      ],
+      "allowNoArticle": true
     },
     {
       "id": "9.3",

@@ -1394,7 +1394,7 @@
     {
       "id": "7.3",
       "title": "7.3 · Несколько или вообще?",
-      "instruction": "Смотри на смысл: отдельные предметы или весь вид. ∅ — ничего не вставляем.",
+      "instruction": "Впиши артикль по смыслу: отдельные предметы или весь вид. Если артикль не нужен, нажми «Без артикля».",
       "questions": [
         {
           "prompt": "Me han regalado ___ bombones.",
@@ -1402,14 +1402,14 @@
             "unos"
           ],
           "explain": "Подарили несколько отдельных конфет.",
-          "options": [
-            "los",
-            "unos"
-          ],
           "translation": "Мне подарили несколько конфет.",
           "sourceRef": "7.3.1",
           "context": "Сообщи о подаренных конфетах впервые; какие именно — пока не уточняем.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "No me gusta ___ chocolate.",
@@ -1417,15 +1417,14 @@
             "el"
           ],
           "explain": "Речь о шоколаде вообще.",
-          "options": [
-            "Без артикля",
-            "un",
-            "el"
-          ],
           "translation": "Мне не нравится шоколад вообще.",
           "sourceRef": "7.3.2",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ piña, por favor.",
@@ -1433,15 +1432,14 @@
             "una"
           ],
           "explain": "Просим один ананас.",
-          "options": [
-            "una",
-            "la",
-            "Без артикля"
-          ],
           "translation": "Один ананас, пожалуйста.",
           "sourceRef": "7.3.3",
           "context": "Попроси один любой ананас, не выбирая конкретный.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ piña es mi fruta preferida.",
@@ -1449,15 +1447,14 @@
             "la"
           ],
           "explain": "Говорим о виде фруктов вообще.",
-          "options": [
-            "una",
-            "Без артикля",
-            "la"
-          ],
           "translation": "Ананас — мой любимый фрукт.",
           "sourceRef": "7.3.4",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Me encantan ___ cuadros de Dalí.",
@@ -1465,15 +1462,14 @@
             "los"
           ],
           "explain": "Говорим о картинах Дали в целом.",
-          "options": [
-            "unos",
-            "los",
-            "Без артикля"
-          ],
           "translation": "Мне очень нравятся картины Дали.",
           "sourceRef": "7.3.5",
           "context": "Скажи, что любишь картины Дали вообще.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "¿Te gustan ___ peras?",
@@ -1481,15 +1477,14 @@
             "las"
           ],
           "explain": "Спрашиваем о грушах вообще.",
-          "options": [
-            "Без артикля",
-            "las",
-            "unas"
-          ],
           "translation": "Тебе нравятся груши?",
           "sourceRef": "7.3.6",
           "context": "Спроси, нравятся ли человеку груши вообще.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Me he comprado ___ vaqueros.",
@@ -1497,14 +1492,14 @@
             "unos"
           ],
           "explain": "Куплены одни джинсы, впервые о них говорим.",
-          "options": [
-            "unos",
-            "los"
-          ],
           "translation": "Я купил себе джинсы.",
           "sourceRef": "7.3.7",
           "context": "Впервые сообщи о покупке джинсов, не уточняя, каких именно.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Te he comprado ___ margaritas.",
@@ -1512,14 +1507,14 @@
             "unas"
           ],
           "explain": "Речь о нескольких купленных цветах.",
-          "options": [
-            "unas",
-            "las"
-          ],
           "translation": "Я купил тебе несколько ромашек.",
           "sourceRef": "7.3.8",
           "context": "Впервые сообщи о купленных цветах, не уточняя, каких именно.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Quiero comprarme ___ pantalones cortos.",
@@ -1527,14 +1522,14 @@
             "unos"
           ],
           "explain": "Нужны какие-то шорты, конкретную пару ещё не выбрали.",
-          "options": [
-            "los",
-            "unos"
-          ],
           "translation": "Хочу купить себе шорты.",
           "sourceRef": "7.3.9",
           "context": "Нужны какие-нибудь шорты; конкретная пара ещё не выбрана.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Me encanta ___ agua.",
@@ -1542,15 +1537,14 @@
             "el"
           ],
           "explain": "Речь о воде вообще; перед agua ставим el.",
-          "options": [
-            "el",
-            "un",
-            "Без артикля"
-          ],
           "translation": "Я очень люблю воду.",
           "sourceRef": "7.3.10",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         }
       ],
       "preview": {
@@ -1567,7 +1561,8 @@
       "inputLabel": "Выбор ответа",
       "theorySections": [
         2
-      ]
+      ],
+      "allowNoArticle": true
     }
   ],
   "learningOrder": [

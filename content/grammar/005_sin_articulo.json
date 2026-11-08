@@ -378,12 +378,13 @@
         "example": "una (как в una médica muy buena)",
         "placeholder": "un, una или ∅"
       },
-      "revision": 2
+      "revision": 2,
+      "allowNoArticle": true
     },
     {
       "id": "5.2",
       "title": "5.2 · Профессия и описание",
-      "instruction": "Выбери артикль или «∅».",
+      "instruction": "Впиши артикль по смыслу. Если артикль не нужен, нажми «Без артикля».",
       "questions": [
         {
           "prompt": "¿Quién es Luis Miguel? Es ___ cantante.",
@@ -391,14 +392,13 @@
             "un"
           ],
           "explain": "Представляем человека: это певец.",
-          "options": [
-            "el",
-            "un",
-            "Без артикля"
-          ],
           "sourceRef": "5.2.1",
           "context": "Представь человека: «Это один из певцов». Выбери неопределённый артикль.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Luis Miguel es ___ mexicano.",
@@ -406,13 +406,13 @@
             "Без артикля"
           ],
           "explain": "Национальность после es называем без артикля.",
-          "options": [
-            "Без артикля",
-            "un"
-          ],
           "sourceRef": "5.2.1",
           "context": "Просто сообщи национальность человека.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "La doctora Ramírez es ___ médica buenísima.",
@@ -420,14 +420,13 @@
             "una"
           ],
           "explain": "Есть описание buenísima: una médica buenísima.",
-          "options": [
-            "Без артикля",
-            "una",
-            "la"
-          ],
           "sourceRef": "5.2.2",
           "context": "Нужен ли здесь артикль?",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "La doctora Ramírez es ___ argentina.",
@@ -435,13 +434,13 @@
             "Без артикля"
           ],
           "explain": "Национальность после es — без артикля.",
-          "options": [
-            "Без артикля",
-            "una"
-          ],
           "sourceRef": "5.2.2",
           "context": "Просто сообщи национальность человека.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "El marido de Luisa es ___ abogado.",
@@ -449,13 +448,13 @@
             "Без артикля"
           ],
           "explain": "Просто называем профессию.",
-          "options": [
-            "Без артикля",
-            "un"
-          ],
           "sourceRef": "5.2.3",
           "context": "Просто сообщи, кем работает человек, без оценки.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Es ___ abogado muy bueno.",
@@ -463,14 +462,13 @@
             "un"
           ],
           "explain": "Muy bueno оценивает работу адвоката: un abogado muy bueno.",
-          "options": [
-            "un",
-            "el",
-            "Без артикля"
-          ],
           "sourceRef": "5.2.3",
           "context": "Нужен ли здесь артикль?",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Tomás se ha hecho ___ musulmán.",
@@ -478,13 +476,13 @@
             "Без артикля"
           ],
           "explain": "Здесь говорится о принятии религии: se ha hecho musulmán.",
-          "options": [
-            "un",
-            "Без артикля"
-          ],
           "sourceRef": "5.2.4",
           "context": "Просто назови религию человека, без оценки.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Los tíos de Andrea son ___ protestantes.",
@@ -492,13 +490,13 @@
             "Без артикля"
           ],
           "explain": "Религию после son называем без артикля.",
-          "options": [
-            "unos",
-            "Без артикля"
-          ],
           "sourceRef": "5.2.5",
           "context": "Просто назови религию человека, без оценки.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "El hermano de Patricio es ___ actor famoso.",
@@ -506,14 +504,13 @@
             "un"
           ],
           "explain": "Famoso добавляет описание: un actor famoso.",
-          "options": [
-            "Без артикля",
-            "el",
-            "un"
-          ],
           "sourceRef": "5.2.6",
           "context": "Нужен ли здесь артикль?",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "¿Quién es Vargas Llosa? Es ___ escritor.",
@@ -521,14 +518,13 @@
             "un"
           ],
           "explain": "Представляем человека: это писатель.",
-          "options": [
-            "el",
-            "Без артикля",
-            "un"
-          ],
           "sourceRef": "5.2.7",
           "context": "Представь человека: «Это один из писателей». Выбери неопределённый артикль.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Vargas Llosa era ___ peruano.",
@@ -536,13 +532,13 @@
             "Без артикля"
           ],
           "explain": "Национальность после era — без артикля.",
-          "options": [
-            "Без артикля",
-            "un"
-          ],
           "sourceRef": "5.2.7",
           "context": "Просто сообщи национальность человека.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Alberto y Lola son ___ estudiantes.",
@@ -550,13 +546,13 @@
             "Без артикля"
           ],
           "explain": "Просто называем их занятие.",
-          "options": [
-            "unos",
-            "Без артикля"
-          ],
           "sourceRef": "5.2.8",
           "context": "Просто сообщи, кем работает человек, без оценки.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Alberto y Lola son ___ socialistas.",
@@ -564,13 +560,13 @@
             "Без артикля"
           ],
           "explain": "Говорим о взглядах после son без артикля.",
-          "options": [
-            "Без артикля",
-            "unos"
-          ],
           "sourceRef": "5.2.8",
           "context": "Просто назови политические взгляды этих людей.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Sarita quiere ser ___ bailarina.",
@@ -578,13 +574,13 @@
             "Без артикля"
           ],
           "explain": "После quiere ser называем профессию без артикля.",
-          "options": [
-            "una",
-            "Без артикля"
-          ],
           "sourceRef": "5.2.9",
           "context": "Просто сообщи, кем работает человек, без оценки.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "García Márquez fue ___ escritor de éxito.",
@@ -592,14 +588,13 @@
             "un"
           ],
           "explain": "De éxito — описание: успешный писатель.",
-          "options": [
-            "un",
-            "el",
-            "Без артикля"
-          ],
           "sourceRef": "5.2.10",
           "context": "Нужен ли здесь артикль?",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         }
       ],
       "preview": {
@@ -616,7 +611,8 @@
       "inputLabel": "Выбор ответа",
       "theorySections": [
         1
-      ]
+      ],
+      "allowNoArticle": true
     },
     {
       "id": "5.3",
@@ -906,7 +902,8 @@
         "instruction": "Впиши только un, una, unos, unas или ∅. Название предмета уже написано.",
         "example": "unos (несколько предметов мужского рода)",
         "placeholder": "Артикль или ∅"
-      }
+      },
+      "allowNoArticle": true
     }
   ],
   "learningOrder": [

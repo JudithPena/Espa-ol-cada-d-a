@@ -86,9 +86,12 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
             for format in [group.get('inputFormat')] + [q.get('inputFormat') for q in group['questions']]:
                 if format is not None and (not isinstance(format, dict) or any(
                     not isinstance(format.get(key), str) or not format[key].strip()
-                    for key in ('instruction', 'example', 'placeholder')
-                )):
-                    raise ValueError(f"{path}: input format requires instruction, example and placeholder")
+                    for key in ('instruction', 'placeholder')
+                ) or 'example' in format and (not isinstance(format['example'], str) or not format['example'].strip())):
+                    raise ValueError(f"{path}: input format requires instruction, placeholder and a nonempty example when supplied")
+            for key in ('allowNoArticle', 'articleContractions'):
+                if key in group and type(group[key]) is not bool:
+                    raise ValueError(f"{path}: {key} must be boolean")
             for item in [group] + group['questions']:
                 if 'accentSensitive' in item and type(item['accentSensitive']) is not bool:
                     raise ValueError(f"{path}: accentSensitive must be boolean")
@@ -98,6 +101,12 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
                     if item['shuffleOptions'] is False and (not isinstance(item.get('optionOrderReason'), str) or not item['optionOrderReason'].strip()):
                         raise ValueError(f"{path}: fixed option order requires optionOrderReason")
             for q in group["questions"]:
+                if q.get('interaction') == 'article-input':
+                    article_answers = {'el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas', 'al', 'del', 'lo', 'uno', 'без артикля'}
+                    if (q.get('options') or q.get('tiles') or q.get('guidedGaps') or q.get('gapParts')
+                            or not q.get('answers') or any(a.lower() not in article_answers for a in q['answers'])
+                            or 'Без артикля' in q['answers'] and not group.get('allowNoArticle')):
+                        raise ValueError(f"{path}: article-input requires short article answers and an explicit omission control")
                 if not q.get("explain") or not q.get("answers"):
                     raise ValueError(f"{path}: answer and explanation required")
                 if q.get("options") and not set(q["answers"]) <= set(q["options"]):

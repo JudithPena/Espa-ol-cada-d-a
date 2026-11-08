@@ -668,12 +668,12 @@ test('time practice offers complete openings for both current time and scheduled
  assert.ok(run('gPlayerView()').includes('&lt;img src=x&gt;'));
 });
 
-test('article omission is compact, accessible and works in converted input with a mobile symbol key',()=>{
+test('article omission is compact, accessible and works in converted input with an explicit control',()=>{
  const all=JSON.parse(fs.readFileSync('content/grammar/008_nombres_propios.json','utf8'));
  const run=context([all]);unlockUntil(run,'exercise:8.3');
  run(`gStart(COURSE.grammar[0].id,'exercise:8.3');G.at=3;`);
  assert.ok(run('gPlayerView()').includes('placeholder="Артикль или ∅"'));
- assert.ok(run('gPlayerView()').includes('data-gchar="∅"'));
+ assert.ok(run('gPlayerView()').includes('data-gno-article'));
  for(const spelling of ['∅','—','-','Без артикля']) assert.equal(run(`grammarCorrect(gUnit().exercises[2].questions[2],${JSON.stringify(spelling)})`),true);
  assert.equal(run(`grammarCorrect({answers:['las']},'∅')`),false);
  run(`gResponse(G.steps[G.at]).value='∅';gCheck();`);
@@ -751,19 +751,19 @@ test('all typing screens show a persistent format and example without changing g
     // A saved typed answer in a bank/guided task must retain an editable typing screen.
     if(q.tiles||q.guidedGaps) {r.value='saved answer';legacy++;} else typed++;
     let html=gPlayerView(),format=grammarInputFormat(q,group);
-    if(!html.includes(esc(format.instruction))||!html.includes(esc(format.example))||!html.includes('aria-describedby="g-answer-format"')) throw Error(group.id+': missing guidance');
+    if(!html.includes(esc(format.instruction))||(format.example && !html.includes(esc(format.example)))||!html.includes('aria-describedby="g-answer-format"')) throw Error(group.id+': missing guidance');
     if(!q.gapParts&&!html.includes('placeholder="'+esc(format.placeholder)+'"')) throw Error(group.id+': missing placeholder');
     r.value=q.answers[0];
     if(!grammarCorrect(q,r.value))throw Error(group.id+': changed answer');
     r.checked=true;r.good=true;
     html=gPlayerView();
-    if((gQuestionMode(q,r)==='input'&&!html.includes(esc(format.example)))||!html.includes('data-gnext'))throw Error(group.id+': guidance or manual Next disappeared');
+    if((gQuestionMode(q,r)==='input'&&(format.example && !html.includes(esc(format.example))))||!html.includes('data-gnext'))throw Error(group.id+': guidance or manual Next disappeared');
    }
    return {typed,legacy};
   })())`));
   typed+=result.typed;legacy+=result.legacy;
  }
- assert.equal(typed,191);assert.equal(legacy,49);
+ assert.equal(typed,364);assert.equal(legacy,49);
 });
 
 test('quantity answers accept digits or words while the field explains the quantity format', () => {
@@ -1690,7 +1690,7 @@ test('all grammar choice sets receive valid, balanced attempt orders without cha
    assert.deepEqual(result,{},`${u.number}/${g.id}: ${JSON.stringify(result)}`);
   }
  }
- assert.equal(standard,652);assert.equal(guided,9);
+ assert.equal(standard,479);assert.equal(guided,9);
  assert.equal(run('JSON.stringify(COURSE.grammar)'),before);
 });
 
@@ -1808,4 +1808,57 @@ test('multiple accepted answers cannot hide an always-correct last position behi
  var biased=Object.fromEntries(group.questions.map((q,i)=>{const o=['c','d','c','b'];o[i%4]='a';o[(i%4)===3?2:3]='b';const unused=['c','d'];for(let j=0;j<4;j++)if(o[j]!=='a'&&o[j]!=='b')o[j]=unused.shift();return [i,o]}));`);
  assert.ok(run('gChoiceOrderIssues(group,biased).some(x=>x.kind==="accepted-imbalance")'));
  assert.equal(run('gChoiceOrderIssues(group,gPlanChoiceOrders(group)).length'),0);
+});
+
+test('article recall accepts every preserved answer, case and whitespace, while rejecting extra accents and wrong forms',()=>{
+ const units=fs.readdirSync('content/grammar').filter(f=>f.endsWith('.json')).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
+ const run=context(units);
+ const result=JSON.parse(run(`JSON.stringify((()=>{let count=0;for(const u of COURSE.grammar)for(const g of u.exercises)for(const q of g.questions){if(q.interaction!=='article-input')continue;count++;for(const a of q.answers){const value='  '+a.toUpperCase().replace(/ /g,'   ')+'  ';if(!grammarResult(q,value,g,true).good)throw Error(g.id+': '+a);}if(grammarResult(q,'ellos',g,true).good)throw Error(g.id+': wrong article');if(q.inputFormat.example||q.options)throw Error(g.id+': answer cue');}return {count};})())`));
+ assert.equal(result.count,177);
+ for(const value of ['él','ellos','es la','un padre',''])assert.equal(run(`grammarResult(COURSE.grammar[5].exercises[1].questions[0],${JSON.stringify(value)},COURSE.grammar[5].exercises[1],true).good`),false);
+});
+
+test('omission control is available for both required and absent articles and does not submit or consume a life',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/005_sin_articulo.json','utf8'));
+ const run=context([u]);unlockUntil(run,'exercise:5.2');
+ run(`gStart(COURSE.grammar[0].id,'exercise:5.2');gMove(1);`);
+ assert.ok(run('gPlayerView()').includes('data-gno-article'));
+ assert.ok(!run('gPlayerView()').includes('data-gchar="∅"'));
+ run(`render=()=>{};document.querySelector=()=>null;gNoArticle();`);
+ assert.equal(run('gResponse(G.steps[G.at]).value'),'∅');
+ assert.equal(run('gResponse(G.steps[G.at]).checked'),false);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).errors'),0);
+ run('gCheck();');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).errors'),1);
+ run('gMove(1);');
+ assert.ok(run('gPlayerView()').includes('data-gno-article'));
+ run('gNoArticle();gCheck();');
+ assert.equal(run('gResponse(G.steps[G.at]).status'),'correct');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).errors'),1);
+});
+
+test('changing article choices to typing preserves saved answers, drafts, lives and original question position',()=>{
+ const current=JSON.parse(fs.readFileSync('content/grammar/006_articulo_definido.json','utf8'));
+ const old=JSON.parse(JSON.stringify(current));for(const q of old.exercises[1].questions){q.options=['el','la','los','las'];q.interaction='gap-choice';}
+ const storage=new Map();let run=context([old],storage);unlockUntil(run,'exercise:6.2');
+ run(`save();gStart(COURSE.grammar[0].id,'exercise:6.2');gMove(1);gPickValue('la');gMove(1);gResponse(G.steps[G.at]).value=' La ';gSave();`);
+ run=context([current],storage);run(`gStart(COURSE.grammar[0].id,'all',true);`);
+ assert.equal(run('G.steps[G.at].qi'),1);
+ assert.equal(run('gResponse(G.steps[G.at]).value'),' La ');
+ assert.equal(run('gQuestionMode(gUnit().exercises[1].questions[1],gResponse(G.steps[G.at]))'),'input');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).errors'),1);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).responses[0].checked'),true);
+ run('gCheck();');assert.equal(run('gResponse(G.steps[G.at]).status'),'correct');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).errors'),1);
+});
+
+test('family article recall stops on the third mistake and requires theory before a new attempt',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/006_articulo_definido.json','utf8'));
+ const run=context([u]);unlockUntil(run,'exercise:6.2');
+ run(`gStart(COURSE.grammar[0].id,'exercise:6.2');gMove(1);for(let i=0;i<3;i++){gResponse(G.steps[G.at]).value='unos';gCheck();if(i<2)gMove(1);}`);
+ assert.equal(run('G.recovery'),'6.2');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).errors'),3);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).status'),'failed');
+ assert.equal(run('P.xp'),0);
+ assert.ok(run('gPlayerView()').includes('data-greview-theory'));
 });

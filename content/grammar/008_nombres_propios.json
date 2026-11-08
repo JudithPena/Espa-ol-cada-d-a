@@ -496,12 +496,13 @@
         "instruction": "Впиши только el, la, los, las или ∅. Имя и остальное предложение уже написаны.",
         "example": "el (когда говорим о señor Alonso)",
         "placeholder": "Артикль или ∅"
-      }
+      },
+      "allowNoArticle": true
     },
     {
       "id": "8.2",
       "title": "8.2 · Здания, улицы и площади",
-      "instruction": "Дополни адрес или вопрос о месте. Учитывай род и число названия: el, la, los или las.",
+      "instruction": "Впиши определённый артикль в адрес или вопрос о месте. Учитывай род и число названия.",
       "questions": [
         {
           "prompt": "___ hotel Central está en la plaza de España.",
@@ -509,12 +510,8 @@
             "el"
           ],
           "explain": "Артикль относится к hotel: мужской род.",
-          "options": [
-            "el",
-            "la"
-          ],
           "sourceRef": "8.2.1",
-          "context": "Добавь артикль в адрес.",
+          "context": "Впиши артикль.",
           "facts": {
             "label": "Адрес",
             "items": [
@@ -524,7 +521,11 @@
               ]
             ]
           },
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "¿Dónde están ___ plazas de Madrid?",
@@ -535,13 +536,11 @@
           "sourceRef": "8.2.1",
           "context": "Спроси о площадях Мадрида.",
           "translation": "Где находятся площади Мадрида?",
-          "options": [
-            "el",
-            "los",
-            "las",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ museo Botero está en la calle Mayor.",
@@ -549,12 +548,8 @@
             "el"
           ],
           "explain": "Артикль относится к museo: мужской род.",
-          "options": [
-            "la",
-            "el"
-          ],
           "sourceRef": "8.2.2",
-          "context": "Добавь артикль в адрес.",
+          "context": "Впиши артикль.",
           "facts": {
             "label": "Адрес",
             "items": [
@@ -564,7 +559,11 @@
               ]
             ]
           },
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Estamos en ___ calle Mayor.",
@@ -575,13 +574,11 @@
           "sourceRef": "8.2.2",
           "context": "Скажи, на какой улице вы находитесь.",
           "translation": "Мы на улице Майор.",
-          "options": [
-            "el",
-            "las",
-            "la",
-            "los"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ banco Nacional está en la avenida de América.",
@@ -589,12 +586,8 @@
             "el"
           ],
           "explain": "Артикль относится к banco: мужской род.",
-          "options": [
-            "el",
-            "la"
-          ],
           "sourceRef": "8.2.3",
-          "context": "Добавь артикль в адрес.",
+          "context": "Впиши артикль.",
           "facts": {
             "label": "Адрес",
             "items": [
@@ -604,7 +597,11 @@
               ]
             ]
           },
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "¿Dónde están ___ museos de Madrid?",
@@ -614,7 +611,12 @@
           "explain": "Museos — мужской род, множественное число: los museos.",
           "sourceRef": "8.2.3",
           "context": "Спроси о музеях Мадрида.",
-          "translation": "Где находятся музеи Мадрида?"
+          "translation": "Где находятся музеи Мадрида?",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ teatro Lorca está en la avenida de América.",
@@ -622,12 +624,8 @@
             "el"
           ],
           "explain": "Артикль относится к teatro: мужской род.",
-          "options": [
-            "el",
-            "la"
-          ],
           "sourceRef": "8.2.4",
-          "context": "Добавь артикль в адрес.",
+          "context": "Впиши артикль.",
           "facts": {
             "label": "Адрес",
             "items": [
@@ -637,7 +635,11 @@
               ]
             ]
           },
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "¿Dónde está ___ teatro Lorca?",
@@ -648,13 +650,11 @@
           "sourceRef": "8.2.4",
           "context": "Спроси, где театр Лорка.",
           "translation": "Где находится театр Лорка?",
-          "options": [
-            "el",
-            "los",
-            "la",
-            "las"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ cine América está en la plaza Real.",
@@ -662,12 +662,8 @@
             "el"
           ],
           "explain": "Артикль относится к cine: мужской род.",
-          "options": [
-            "el",
-            "la"
-          ],
           "sourceRef": "8.2.5",
-          "context": "Добавь артикль в адрес.",
+          "context": "Впиши артикль.",
           "facts": {
             "label": "Адрес",
             "items": [
@@ -677,7 +673,11 @@
               ]
             ]
           },
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Vamos a ___ plaza Real.",
@@ -688,13 +688,11 @@
           "sourceRef": "8.2.5",
           "context": "Скажи, на какую площадь вы идёте.",
           "translation": "Мы идём на Королевскую площадь.",
-          "options": [
-            "la",
-            "las",
-            "el",
-            "los"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ hospital Universitario está en el paseo del Parque.",
@@ -702,12 +700,8 @@
             "el"
           ],
           "explain": "Артикль относится к hospital: мужской род.",
-          "options": [
-            "la",
-            "el"
-          ],
           "sourceRef": "8.2.6",
-          "context": "Добавь артикль в адрес.",
+          "context": "Впиши артикль.",
           "facts": {
             "label": "Адрес",
             "items": [
@@ -717,7 +711,11 @@
               ]
             ]
           },
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "¿Dónde están ___ calles Mayor y Real?",
@@ -727,7 +725,12 @@
           "explain": "Calles — несколько улиц, женский род: las calles. Названия не меняют выбор артикля.",
           "sourceRef": "8.2.6",
           "context": "Спроси о двух улицах.",
-          "translation": "Где находятся улицы Майор и Реаль?"
+          "translation": "Где находятся улицы Майор и Реаль?",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         }
       ],
       "preview": {
@@ -755,7 +758,7 @@
     {
       "id": "8.3",
       "title": "8.3 · Города, страны, реки",
-      "instruction": "Добавь артикль, если он нужен. Если ничего не нужно, введи ∅. Для некоторых названий допустимы оба варианта.",
+      "instruction": "В первых заданиях выбери или впиши артикль, затем вспоминай его самостоятельно. Если артикль не нужен, нажми «Без артикля». Для некоторых названий допустимы оба варианта.",
       "questions": [
         {
           "prompt": "___ Habana es la capital de Cuba.",
@@ -926,16 +929,13 @@
             "el"
           ],
           "explain": "Артикль относится к слову lago.",
-          "options": [
-            "el",
-            "Без артикля",
-            "los",
-            "la",
-            "las"
-          ],
           "sourceRef": "8.3.6",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "El lago Titicaca está entre ___ Perú y Bolivia.",
@@ -945,7 +945,12 @@
           ],
           "explain": "Допустимы Perú и el Perú.",
           "sourceRef": "8.3.6",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "El lago Titicaca está entre Perú y ___ Bolivia.",
@@ -953,16 +958,13 @@
             "Без артикля"
           ],
           "explain": "Bolivia обычно без артикля.",
-          "options": [
-            "Без артикля",
-            "la",
-            "las",
-            "los",
-            "el"
-          ],
           "sourceRef": "8.3.6",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ Amazonas es un río de América del Sur.",
@@ -970,16 +972,13 @@
             "el"
           ],
           "explain": "С названием реки используем el Amazonas.",
-          "options": [
-            "Без артикля",
-            "la",
-            "el",
-            "los",
-            "las"
-          ],
           "sourceRef": "8.3.7",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "El Amazonas es un río de ___ América del Sur.",
@@ -987,16 +986,13 @@
             "Без артикля"
           ],
           "explain": "Название континента — без артикля.",
-          "options": [
-            "las",
-            "los",
-            "el",
-            "Без артикля",
-            "la"
-          ],
           "sourceRef": "8.3.7",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ Jamaica está en el mar Caribe.",
@@ -1004,16 +1000,13 @@
             "Без артикля"
           ],
           "explain": "Название острова Jamaica обычно без артикля.",
-          "options": [
-            "el",
-            "la",
-            "los",
-            "Без артикля",
-            "las"
-          ],
           "sourceRef": "8.3.8",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Jamaica está en ___ mar Caribe.",
@@ -1021,16 +1014,13 @@
             "el"
           ],
           "explain": "Артикль относится к слову mar: el mar Caribe.",
-          "options": [
-            "Без артикля",
-            "la",
-            "las",
-            "el",
-            "los"
-          ],
           "sourceRef": "8.3.8",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ Puerto Rico está en las Antillas.",
@@ -1038,16 +1028,13 @@
             "Без артикля"
           ],
           "explain": "Puerto Rico обычно без артикля.",
-          "options": [
-            "las",
-            "los",
-            "Без артикля",
-            "el",
-            "la"
-          ],
           "sourceRef": "8.3.9",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Puerto Rico está en ___ islas Antillas.",
@@ -1055,16 +1042,13 @@
             "las"
           ],
           "explain": "Группа островов: las islas Antillas.",
-          "options": [
-            "los",
-            "las",
-            "Без артикля",
-            "la",
-            "el"
-          ],
           "sourceRef": "8.3.9",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ Francia está en Europa.",
@@ -1072,16 +1056,13 @@
             "Без артикля"
           ],
           "explain": "Francia обычно без артикля.",
-          "options": [
-            "la",
-            "Без артикля",
-            "el",
-            "las",
-            "los"
-          ],
           "sourceRef": "8.3.10",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Francia está en ___ Europa.",
@@ -1089,16 +1070,13 @@
             "Без артикля"
           ],
           "explain": "Europa обычно без артикля.",
-          "options": [
-            "las",
-            "los",
-            "el",
-            "la",
-            "Без артикля"
-          ],
           "sourceRef": "8.3.10",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ Pampa es una provincia de Argentina.",
@@ -1106,15 +1084,13 @@
             "La"
           ],
           "explain": "La — часть названия провинции La Pampa.",
-          "options": [
-            "Без артикля",
-            "El",
-            "La",
-            "Los"
-          ],
           "sourceRef": "8.3.11",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "La Pampa es una provincia de ___ Argentina.",
@@ -1124,7 +1100,12 @@
           ],
           "explain": "Употребляются Argentina и la Argentina; оба варианта допустимы.",
           "sourceRef": "8.3.11",
-          "context": "Дополни предложение."
+          "context": "Дополни предложение.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ Pirineos están entre España y Francia.",
@@ -1132,16 +1113,13 @@
             "los"
           ],
           "explain": "Название горной цепи: los Pirineos.",
-          "options": [
-            "el",
-            "la",
-            "los",
-            "Без артикля",
-            "las"
-          ],
           "sourceRef": "8.3.12",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Los Pirineos están entre ___ España y Francia.",
@@ -1149,16 +1127,13 @@
             "Без артикля"
           ],
           "explain": "España обычно без артикля.",
-          "options": [
-            "las",
-            "Без артикля",
-            "el",
-            "los",
-            "la"
-          ],
           "sourceRef": "8.3.12",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Los Pirineos están entre España y ___ Francia.",
@@ -1166,16 +1141,13 @@
             "Без артикля"
           ],
           "explain": "Francia обычно без артикля.",
-          "options": [
-            "Без артикля",
-            "las",
-            "los",
-            "la",
-            "el"
-          ],
           "sourceRef": "8.3.12",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
+            "placeholder": "Введите артикль"
+          }
         }
       ],
       "preview": {
@@ -1197,7 +1169,8 @@
       },
       "theorySections": [
         2
-      ]
+      ],
+      "allowNoArticle": true
     },
     {
       "id": "8.4",
@@ -1414,7 +1387,8 @@
       "inputLabel": "Выбор ответа",
       "theorySections": [
         3
-      ]
+      ],
+      "allowNoArticle": true
     }
   ],
   "learningOrder": [

@@ -951,7 +951,7 @@
     {
       "id": "2.1",
       "title": "2.1 · Распредели слова: el или la",
-      "instruction": "Выбери артикль для каждого слова. Для radio используй вариант Испании.",
+      "instruction": "В первых заданиях выбери артикль, затем вспоминай и вписывай его самостоятельно. Для radio используй вариант Испании.",
       "introGroups": [
         {
           "title": "el · мужской род",
@@ -1088,11 +1088,11 @@
           ],
           "explain": "la expresión — выражение. Суффикс -sión подсказывает женский род.",
           "translation": "выражение",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ foto",
@@ -1101,11 +1101,11 @@
           ],
           "explain": "la foto — фотография. Сокращение от fotografía сохраняет женский род.",
           "translation": "фотография",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ habitación",
@@ -1114,11 +1114,11 @@
           ],
           "explain": "la habitación — комната. Суффикс -ción подсказывает женский род.",
           "translation": "комната",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ hotel",
@@ -1127,11 +1127,11 @@
           ],
           "explain": "el hotel — отель. Род этого слова нужно запомнить: мужской.",
           "translation": "отель",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ idioma",
@@ -1140,11 +1140,11 @@
           ],
           "explain": "el idioma — язык. Исключение среди слов на -a: мужской род.",
           "translation": "язык",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ lámpara",
@@ -1153,11 +1153,11 @@
           ],
           "explain": "la lámpara — лампа. Слово на -a женского рода.",
           "translation": "лампа",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ lápiz",
@@ -1166,11 +1166,11 @@
           ],
           "explain": "el lápiz — карандаш. Род этого слова нужно запомнить: мужской.",
           "translation": "карандаш",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ leche",
@@ -1179,11 +1179,11 @@
           ],
           "explain": "la leche — молоко. Род этого слова нужно запомнить: женский.",
           "translation": "молоко",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ libro",
@@ -1192,11 +1192,11 @@
           ],
           "explain": "el libro — книга. Слово на -o мужского рода.",
           "translation": "книга",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ luz",
@@ -1205,11 +1205,11 @@
           ],
           "explain": "la luz — свет. Род этого слова нужно запомнить: женский.",
           "translation": "свет",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ mano",
@@ -1218,11 +1218,11 @@
           ],
           "explain": "la mano — кисть руки. Исключение среди слов на -o: женский род.",
           "translation": "кисть руки",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ minuto",
@@ -1231,11 +1231,11 @@
           ],
           "explain": "el minuto — минута. Слово на -o мужского рода.",
           "translation": "минута",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ museo",
@@ -1244,11 +1244,11 @@
           ],
           "explain": "el museo — музей. Слово на -o мужского рода.",
           "translation": "музей",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ noche",
@@ -1257,11 +1257,11 @@
           ],
           "explain": "la noche — ночь. Род этого слова нужно запомнить: женский.",
           "translation": "ночь",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ página",
@@ -1270,11 +1270,11 @@
           ],
           "explain": "la página — страница. Слово на -a женского рода.",
           "translation": "страница",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ planeta",
@@ -1283,11 +1283,11 @@
           ],
           "explain": "el planeta — планета. Исключение среди слов на -a: мужской род.",
           "translation": "планета",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ problema",
@@ -1296,11 +1296,11 @@
           ],
           "explain": "el problema — проблема. Исключение среди слов на -a: мужской род.",
           "translation": "проблема",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ radio",
@@ -1309,11 +1309,11 @@
           ],
           "explain": "В Испании радиоприёмник — la radio. В некоторых странах Америки говорят и el radio: это тоже правильно.",
           "translation": "радиоприёмник в Испании",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ teatro",
@@ -1322,11 +1322,11 @@
           ],
           "explain": "el teatro — театр. Слово на -o мужского рода.",
           "translation": "театр",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ teléfono",
@@ -1335,11 +1335,11 @@
           ],
           "explain": "el teléfono — телефон. Слово на -o мужского рода.",
           "translation": "телефон",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ universidad",
@@ -1348,11 +1348,11 @@
           ],
           "explain": "la universidad — университет. Окончание -dad подсказывает женский род.",
           "translation": "университет",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ vaso",
@@ -1361,11 +1361,11 @@
           ],
           "explain": "el vaso — стакан. Слово на -o мужского рода.",
           "translation": "стакан",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ ventana",
@@ -1374,11 +1374,11 @@
           ],
           "explain": "la ventana — окно. Слово на -a женского рода.",
           "translation": "окно",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ viernes",
@@ -1387,11 +1387,11 @@
           ],
           "explain": "el viernes — пятница. Названия дней недели мужского рода.",
           "translation": "пятница",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         }
       ],
       "inputLabel": "Выбор ответа",

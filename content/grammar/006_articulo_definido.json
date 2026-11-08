@@ -342,7 +342,7 @@
     {
       "id": "6.1",
       "title": "6.1 · Подбери артикль",
-      "instruction": "Выбери el, la, los или las.",
+      "instruction": "В первых заданиях выбери определённый артикль, затем впиши его самостоятельно.",
       "questions": [
         {
           "prompt": "___ casa",
@@ -418,16 +418,14 @@
             "la"
           ],
           "explain": "Habitación — женский род: la habitación.",
-          "options": [
-            "las",
-            "la",
-            "los",
-            "el"
-          ],
           "translation": "комната",
           "sourceRef": "6.1.5",
-          "context": "Выбери артикль.",
-          "interaction": "gap-choice"
+          "context": "Впиши артикль.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ águila",
@@ -435,16 +433,14 @@
             "el"
           ],
           "explain": "Перед águila с ударным начальным а ставим el.",
-          "options": [
-            "el",
-            "las",
-            "los",
-            "la"
-          ],
           "translation": "орёл",
           "sourceRef": "6.1.6",
-          "context": "Выбери артикль.",
-          "interaction": "gap-choice"
+          "context": "Впиши артикль.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ pantalones",
@@ -452,16 +448,14 @@
             "los"
           ],
           "explain": "Pantalones — мужской род, множественное число.",
-          "options": [
-            "los",
-            "el",
-            "las",
-            "la"
-          ],
           "translation": "брюки",
           "sourceRef": "6.1.7",
-          "context": "Выбери артикль.",
-          "interaction": "gap-choice"
+          "context": "Впиши артикль.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ aula",
@@ -469,16 +463,14 @@
             "el"
           ],
           "explain": "Перед aula с ударным начальным а ставим el.",
-          "options": [
-            "las",
-            "el",
-            "los",
-            "la"
-          ],
           "translation": "аудитория",
           "sourceRef": "6.1.8",
-          "context": "Выбери артикль.",
-          "interaction": "gap-choice"
+          "context": "Впиши артикль.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ sillas",
@@ -486,16 +478,14 @@
             "las"
           ],
           "explain": "Sillas — женский род, множественное число.",
-          "options": [
-            "la",
-            "el",
-            "las",
-            "los"
-          ],
           "translation": "стулья",
           "sourceRef": "6.1.9",
-          "context": "Выбери артикль.",
-          "interaction": "gap-choice"
+          "context": "Впиши артикль.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ lápices",
@@ -503,16 +493,14 @@
             "los"
           ],
           "explain": "Lápices — мужской род, множественное число.",
-          "options": [
-            "el",
-            "los",
-            "la",
-            "las"
-          ],
           "translation": "карандаши",
           "sourceRef": "6.1.10",
-          "context": "Выбери артикль.",
-          "interaction": "gap-choice"
+          "context": "Впиши артикль.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ tijeras",
@@ -520,16 +508,14 @@
             "las"
           ],
           "explain": "Tijeras — женский род, множественное число.",
-          "options": [
-            "la",
-            "los",
-            "las",
-            "el"
-          ],
           "translation": "ножницы",
           "sourceRef": "6.1.11",
-          "context": "Выбери артикль.",
-          "interaction": "gap-choice"
+          "context": "Впиши артикль.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ profesor",
@@ -537,16 +523,14 @@
             "el"
           ],
           "explain": "Profesor — мужской род.",
-          "options": [
-            "la",
-            "las",
-            "los",
-            "el"
-          ],
           "translation": "преподаватель",
           "sourceRef": "6.1.12",
-          "context": "Выбери артикль.",
-          "interaction": "gap-choice"
+          "context": "Впиши артикль.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ perro",
@@ -554,16 +538,14 @@
             "el"
           ],
           "explain": "Perro — мужской род.",
-          "options": [
-            "las",
-            "la",
-            "el",
-            "los"
-          ],
           "translation": "собака",
           "sourceRef": "6.1.13",
-          "context": "Выбери артикль.",
-          "interaction": "gap-choice"
+          "context": "Впиши артикль.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ hermana",
@@ -571,16 +553,14 @@
             "la"
           ],
           "explain": "Hermana — женский род.",
-          "options": [
-            "el",
-            "los",
-            "las",
-            "la"
-          ],
           "translation": "сестра",
           "sourceRef": "6.1.14",
-          "context": "Выбери артикль.",
-          "interaction": "gap-choice"
+          "context": "Впиши артикль.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ alumnos",
@@ -588,16 +568,14 @@
             "los"
           ],
           "explain": "Alumnos — мужской род, множественное число.",
-          "options": [
-            "los",
-            "el",
-            "la",
-            "las"
-          ],
           "translation": "ученики",
           "sourceRef": "6.1.15",
-          "context": "Выбери артикль.",
-          "interaction": "gap-choice"
+          "context": "Впиши артикль.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         }
       ],
       "preview": {
@@ -619,7 +597,7 @@
     {
       "id": "6.2",
       "title": "6.2 · Семья Марты",
-      "instruction": "Название родственника уже написано. Выбери артикль.",
+      "instruction": "Прочитай перевод и впиши только определённый артикль. Название родственника уже написано.",
       "questions": [
         {
           "prompt": "___ padre de Marta se llama Felipe.",
@@ -627,16 +605,14 @@
             "el"
           ],
           "explain": "Один отец: el padre.",
-          "options": [
-            "el",
-            "las",
-            "la",
-            "los"
-          ],
           "translation": "Отца Марты зовут Фелипе.",
           "sourceRef": "6.2.1",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ madre de Marta se llama Claudia.",
@@ -644,16 +620,14 @@
             "la"
           ],
           "explain": "Одна мама: la madre.",
-          "options": [
-            "los",
-            "el",
-            "la",
-            "las"
-          ],
           "translation": "Маму Марты зовут Клаудия.",
           "sourceRef": "6.2.2",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ tío de Marta se llama Javier.",
@@ -661,16 +635,14 @@
             "el"
           ],
           "explain": "Один дядя: el tío.",
-          "options": [
-            "la",
-            "el",
-            "los",
-            "las"
-          ],
           "translation": "Дядю Марты зовут Хавьер.",
           "sourceRef": "6.2.3",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ tía de Marta se llama Lucía.",
@@ -678,16 +650,14 @@
             "la"
           ],
           "explain": "Одна тётя: la tía.",
-          "options": [
-            "el",
-            "los",
-            "las",
-            "la"
-          ],
           "translation": "Тётю Марты зовут Лусия.",
           "sourceRef": "6.2.4",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ hermanos de Marta se llaman Enrique y Fernando.",
@@ -695,16 +665,14 @@
             "los"
           ],
           "explain": "Братьев несколько: los hermanos.",
-          "options": [
-            "el",
-            "las",
-            "la",
-            "los"
-          ],
           "translation": "Братьев Марты зовут Энрике и Фернандо.",
           "sourceRef": "6.2.5",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ hermana de Marta se llama Isabel.",
@@ -712,16 +680,14 @@
             "la"
           ],
           "explain": "Одна сестра: la hermana.",
-          "options": [
-            "los",
-            "las",
-            "la",
-            "el"
-          ],
           "translation": "Сестру Марты зовут Исабель.",
           "sourceRef": "6.2.6",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ marido de Marta se llama Juan.",
@@ -729,16 +695,14 @@
             "el"
           ],
           "explain": "Один муж: el marido.",
-          "options": [
-            "la",
-            "el",
-            "las",
-            "los"
-          ],
           "translation": "Мужа Марты зовут Хуан.",
           "sourceRef": "6.2.7",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ hijas de Marta se llaman Irene y Juana.",
@@ -746,26 +710,24 @@
             "las"
           ],
           "explain": "Дочерей несколько: las hijas.",
-          "options": [
-            "las",
-            "la",
-            "el",
-            "los"
-          ],
           "translation": "Дочерей Марты зовут Ирене и Хуана.",
           "sourceRef": "6.2.8",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         }
       ],
       "preview": {
-        "source": "___ madre de Marta se llama Claudia.",
+        "source": "___ abuela de Ana se llama Carmen.",
         "sentenceParts": [
           "",
-          " madre de Marta se llama Claudia."
+          " abuela de Ana se llama Carmen."
         ],
         "answer": "la",
-        "translation": "Маму Марты зовут Клаудия.",
+        "translation": "Бабушку Аны зовут Кармен.",
         "targetPrefix": "",
         "tip": ""
       },
@@ -777,7 +739,7 @@
     {
       "id": "6.3",
       "title": "6.3 · Понятно, о каком предмете речь",
-      "instruction": "Дополни реплику определённым артиклем.",
+      "instruction": "Впиши определённый артикль в реплику. Учитывай, о каком предмете говорят.",
       "questions": [
         {
           "prompt": "Susana está en ___ jardín.",
@@ -785,16 +747,14 @@
             "el"
           ],
           "explain": "Говорим о конкретном саде; jardín — мужской род.",
-          "options": [
-            "los",
-            "el",
-            "las",
-            "la"
-          ],
           "translation": "Сусана в саду этого дома.",
           "sourceRef": "6.3.1",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Cierra ___ ventana.",
@@ -802,16 +762,14 @@
             "la"
           ],
           "explain": "Нужно закрыть конкретное окно; ventana — женский род.",
-          "options": [
-            "los",
-            "el",
-            "la",
-            "las"
-          ],
           "translation": "Закрой это окно.",
           "sourceRef": "6.3.2",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Pásame ___ agua.",
@@ -819,16 +777,14 @@
             "el"
           ],
           "explain": "Перед agua ставим el, потому что первый а ударный.",
-          "options": [
-            "las",
-            "la",
-            "los",
-            "el"
-          ],
           "translation": "Передай воду, которая стоит на столе.",
           "sourceRef": "6.3.3",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Déjame ___ diccionario.",
@@ -836,18 +792,16 @@
             "el"
           ],
           "explain": "Просим конкретный словарь; diccionario — мужской род.",
-          "options": [
-            "la",
-            "el",
-            "las",
-            "los"
-          ],
           "translation": "Дай мне словарь, который у тебя в руках.",
           "sourceRef": "6.3.4",
           "context": "Дополни предложение.",
           "image": "art/002/03-diccionario.webp",
           "imageAlt": "Дай мне словарь, который у тебя в руках.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Enciende ___ luz.",
@@ -855,16 +809,14 @@
             "la"
           ],
           "explain": "Говорим о свете в этой комнате: la luz.",
-          "options": [
-            "la",
-            "los",
-            "las",
-            "el"
-          ],
           "translation": "Включи свет в комнате.",
           "sourceRef": "6.3.5",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Pásame ___ tijeras.",
@@ -872,28 +824,26 @@
             "las"
           ],
           "explain": "Просим конкретные ножницы: las tijeras.",
-          "options": [
-            "las",
-            "la",
-            "los",
-            "el"
-          ],
           "translation": "Передай эти ножницы.",
           "sourceRef": "6.3.6",
           "context": "Дополни предложение.",
           "image": "art/003/09-tijeras.webp",
           "imageAlt": "Передай эти ножницы.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         }
       ],
       "preview": {
-        "source": "Cierra ___ ventana.",
+        "source": "Abre ___ puerta.",
         "sentenceParts": [
-          "Cierra ",
-          " ventana."
+          "Abre ",
+          " puerta."
         ],
         "answer": "la",
-        "translation": "Закрой окно.",
+        "translation": "Открой дверь.",
         "targetPrefix": "",
         "tip": ""
       },
@@ -906,7 +856,7 @@
     {
       "id": "6.4",
       "title": "6.4 · Артикли в предложениях",
-      "instruction": "Выбери артикль. Если перед el нужны a или de, используй al или del.",
+      "instruction": "Впиши артикль. Если перед el нужны a или de, используй слитную форму al или del.",
       "questions": [
         {
           "prompt": "___ águilas son aves.",
@@ -914,18 +864,14 @@
             "las"
           ],
           "explain": "Говорим об орлах вообще: las águilas.",
-          "options": [
-            "la",
-            "al",
-            "el",
-            "los",
-            "del",
-            "las"
-          ],
           "translation": "Орлы — птицы.",
           "sourceRef": "6.4.1",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль или слитную форму с предлогом. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Montevideo es ___ capital de Uruguay.",
@@ -933,18 +879,14 @@
             "la"
           ],
           "explain": "У страны одна столица; capital — женский род.",
-          "options": [
-            "los",
-            "al",
-            "del",
-            "la",
-            "las",
-            "el"
-          ],
           "translation": "Монтевидео — столица Уругвая.",
           "sourceRef": "6.4.2",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль или слитную форму с предлогом. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Queremos ver ___ jefe de estudios.",
@@ -952,18 +894,14 @@
             "al"
           ],
           "explain": "Ver a + el jefe превращается в ver al jefe.",
-          "options": [
-            "la",
-            "al",
-            "el",
-            "los",
-            "del",
-            "las"
-          ],
           "translation": "Хотим увидеть заведующего учебной частью.",
           "sourceRef": "6.4.3",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль или слитную форму с предлогом. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Cierra ___ puerta del jardín.",
@@ -971,18 +909,14 @@
             "la"
           ],
           "explain": "Дверь конкретного сада: la puerta.",
-          "options": [
-            "del",
-            "el",
-            "la",
-            "las",
-            "los",
-            "al"
-          ],
           "translation": "Закрой дверь сада.",
           "sourceRef": "6.4.4",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль или слитную форму с предлогом. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Cierra la puerta ___ jardín.",
@@ -990,15 +924,14 @@
             "del"
           ],
           "explain": "De + el jardín = del jardín.",
-          "options": [
-            "del",
-            "de el",
-            "de la"
-          ],
           "translation": "Закрой дверь сада.",
           "sourceRef": "6.4.4",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль или слитную форму с предлогом. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Tenéis que ir ___ aula 15.",
@@ -1006,18 +939,14 @@
             "al"
           ],
           "explain": "A + el aula соединяем в al aula.",
-          "options": [
-            "los",
-            "del",
-            "al",
-            "el",
-            "las",
-            "la"
-          ],
           "translation": "Вам нужно пойти в аудиторию 15.",
           "sourceRef": "6.4.5",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль или слитную форму с предлогом. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ agua es necesaria para vivir.",
@@ -1025,18 +954,14 @@
             "el"
           ],
           "explain": "Agua — женский род с ударным начальным а: el agua.",
-          "options": [
-            "el",
-            "al",
-            "los",
-            "del",
-            "la",
-            "las"
-          ],
           "translation": "Вода необходима для жизни.",
           "sourceRef": "6.4.6",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль или слитную форму с предлогом. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "___ padres de Sofía viven aquí.",
@@ -1044,18 +969,14 @@
             "los"
           ],
           "explain": "Речь о конкретных родителях Софии: los padres.",
-          "options": [
-            "los",
-            "el",
-            "del",
-            "al",
-            "la",
-            "las"
-          ],
           "translation": "Родители Софии живут здесь.",
           "sourceRef": "6.4.7",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль или слитную форму с предлогом. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Me gustan ___ naranjas.",
@@ -1063,18 +984,14 @@
             "las"
           ],
           "explain": "Обобщение: мне нравятся апельсины вообще.",
-          "options": [
-            "al",
-            "los",
-            "el",
-            "las",
-            "la",
-            "del"
-          ],
           "translation": "Мне нравятся апельсины.",
           "sourceRef": "6.4.8",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль или слитную форму с предлогом. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Vivimos cerca ___ centro.",
@@ -1082,18 +999,14 @@
             "del"
           ],
           "explain": "Cerca de + el centro превращается в cerca del centro.",
-          "options": [
-            "al",
-            "los",
-            "el",
-            "la",
-            "del",
-            "las"
-          ],
           "translation": "Мы живём рядом с центром.",
           "sourceRef": "6.4.9",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль или слитную форму с предлогом. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         },
         {
           "prompt": "Ese coche es ___ padre de Mónica.",
@@ -1101,18 +1014,14 @@
             "del"
           ],
           "explain": "De + el padre соединяем в del padre.",
-          "options": [
-            "las",
-            "del",
-            "el",
-            "la",
-            "al",
-            "los"
-          ],
           "translation": "Эта машина принадлежит отцу Моники.",
           "sourceRef": "6.4.10",
           "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только артикль или слитную форму с предлогом. Остальную часть предложения не переписывай.",
+            "placeholder": "Введите артикль"
+          }
         }
       ],
       "preview": {
@@ -1129,7 +1038,8 @@
       "inputLabel": "Выбор ответа",
       "theorySections": [
         3
-      ]
+      ],
+      "articleContractions": true
     }
   ],
   "learningOrder": [
