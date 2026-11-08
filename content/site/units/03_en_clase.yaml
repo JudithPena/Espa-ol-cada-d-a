@@ -12,6 +12,8 @@ lessons:
     kind: vocab
     title: Задания по-испански
     goal: понять задание на испанском — escucha, lee, escribe, traduce
+    version: 2
+    # Карта экранов: docs/site_slide_maps/03_en_clase.md
     vocab:
       - "👂 escucha [эску́ча] — послушай, слушай :: Escucha, por favor. — Послушай, пожалуйста."
       - "🔁 repite [рэпи́тэ] — повтори :: Escucha y repite. — Слушай и повторяй."
@@ -24,6 +26,7 @@ lessons:
       - learn: [escucha, repite, lee]
       - choose:
           title: Что это?
+          skill: class_commands
           items:
             - img: escucha
               options: "escucha | lee | repite"
@@ -33,6 +36,7 @@ lessons:
       - tip: "Все эти команды звучат на «ты»: в Испании к ученикам обращаются на «ты» в любом возрасте. _Escucha, Pablo_ («Послушай, Пабло»), _Lee, por favor_ («Прочитай, пожалуйста»), _Responde, Carmen_ («Ответь, Кармен»)."
       - match:
           title: Соедините пары
+          rule: none
           pairs:
             - "escucha — послушай"
             - "repite — повтори"
@@ -42,6 +46,8 @@ lessons:
             - "responde — ответь"
       - choose:
           title: Что нужно сделать?
+          rule: none
+          skill: class_commands
           items:
             - q: "Lee y traduce."
               options: "Прочитай и переведи. | Послушай и повтори. | Напиши и переведи."
@@ -49,15 +55,22 @@ lessons:
               options: "Напиши и ответь. | Прочитай и ответь. | Напиши и переведи."
       - write:
           title: Как это сказать?
-          format: фраза по-испански
+          format: две команды по-испански
+          rule: none
+          skill: class_commands
           items:
             - q: "Послушай и повтори."
-              a: "Escucha y repite"
+              a: "Escucha y repite | Escucha y repite, por favor"
+              mistakes:
+                "lee y repite": "Lee — «прочитай». «Послушай» — **escucha**."
+                "escucha y responde": "Responde — «ответь». «Повтори» — **repite**."
+                "escucha repite": "Между двумя командами нужно **y** — «и»: escucha y repite."
 
   - id: vocab2
     kind: vocab
     title: Слова для занятий
     goal: понимать слова на уроке — вопрос, ответ, текст, перевод
+    version: 2
     vocab:
       - "🔤 la palabra [пала́бра] — слово"
       - "❓ la pregunta [прэгу́нта] — вопрос"
@@ -77,6 +90,7 @@ lessons:
       - learn: [la palabra, la pregunta, la respuesta]
       - choose:
           title: Traduce
+          skill: class_words
           items:
             - q: "la pregunta y la respuesta"
               options: "вопрос и ответ | ответ и вопрос | слово и ответ"
@@ -91,6 +105,7 @@ lessons:
             - "la palabra — слово"
       - choose:
           title: Что нужно сделать?
+          skill: class_commands
           items:
             - q: "Lee el texto."
               options: "Прочитай текст. | Напиши текст. | Переведи текст."
@@ -99,6 +114,7 @@ lessons:
       - write:
           title: Напишите с артиклем
           format: el или la + слово
+          skill: class_words
           items:
             - "вопрос => la pregunta"
             - "перевод => la traducción"
@@ -107,6 +123,7 @@ lessons:
     kind: dialogue
     title: Если вы не поняли
     goal: сказать, что не понимаете, попросить повторить и объяснить слово
+    version: 2
     vocab:
       - "🤷 No entiendo. [но энтьэ́ндо] — я не понимаю."
       - "🔁 Otra vez, por favor. [о́тра бэθ пор фабо́р] — ещё раз, пожалуйста."
@@ -119,6 +136,7 @@ lessons:
       - learn: [No entiendo., "Otra vez, por favor.", "Más despacio, por favor."]
       - choose:
           title: Что вы скажете?
+          skill: ask_in_class
           items:
             - q: "Собеседник говорит слишком быстро."
               options: "Más despacio, por favor. | Otra vez, por favor. | De nada."
@@ -128,6 +146,7 @@ lessons:
               explain: "Otra vez — «ещё раз»."
       - learn: ["¿Cómo se dice... en español?", "¿Qué significa...?", "¿Cómo se escribe?"]
       - dialogue:
+          id: lesson
           title: На уроке
           lines:
             - "Profesora: Buenos días. Escucha y repite: la casa. | Доброе утро. Слушай и повторяй: la casa."
@@ -144,15 +163,22 @@ lessons:
             - "Profesora: ¡Muy bien! | Очень хорошо!"
       - choose:
           title: Поняли?
+          source: lesson
+          skill: ask_in_class
           items:
             - q: "Что спросила Ольга о слове perro?"
               options: "¿Qué significa «perro»? | ¿Cómo se dice «perro»? | ¿Cómo estás?"
               explain: "Ольга не знала, что значит слово: ¿Qué significa «perro»?"
             - q: "Что сказал Иван, когда не понял?"
               options: "No entiendo. Más despacio, por favor. | Otra vez, por favor. | Muy bien, gracias."
-      - note: "Выражение **en español** означает «по-испански», дословно «на испанском»: _¿Cómo se dice «собака» en español?_ — «Как сказать „собака“ по-испански?», _Responde en español_ — «Ответь по-испански»."
+              explain: "Iván: No entiendo. Más despacio, por favor. — Иван просит говорить помедленнее."
+      - note:
+          id: en_espanol
+          text: "Выражение **en español** означает «по-испански», дословно «на испанском»: _¿Cómo se dice «собака» en español?_ — «Как сказать „собака“ по-испански?», _Responde en español_ — «Ответь по-испански»."
       - choose:
           title: Что ответить?
+          free: true
+          skill: ask_in_class
           items:
             - lines: ["Profesora: Lee, por favor: la tarea."]
               q: "Вы не знаете слово tarea."
@@ -161,8 +187,15 @@ lessons:
             - lines: ["Profesora: Escribe la palabra: «Málaga»."]
               q: "Вы не знаете, как пишется это слово."
               options: "¿Cómo se escribe? | ¿Qué significa? | No, gracias."
+              rule: none
+            - q: "Вы хотите узнать, как по-испански «спасибо»."
+              options: "¿Cómo se dice «спасибо» en español? | ¿Qué significa «спасибо»? | ¿Cómo se escribe «спасибо»?"
+              explain: "Как сказать по-испански — ¿Cómo se dice... en español? А ¿Qué significa...? спрашивают о значении испанского слова."
       - build:
           title: Соберите фразу
+          free: true
+          rule: none
+          skill: ask_in_class
           items:
             - es: "No entiendo. Otra vez, por favor."
               ru: "Я не понимаю. Ещё раз, пожалуйста."
@@ -171,12 +204,14 @@ lessons:
     kind: practice
     title: Practica en español
     goal: понять задание по-испански и спросить о незнакомом слове
+    version: 2
     vocab:
       - "🏋️ practica [пра́ктика] — тренируйся, практикуйся"
+    # Практикум начинается заданием; карточка practica — перед миссией.
     blocks:
-      - learn: [practica]
       - choose:
           title: Lee y traduce
+          skill: class_commands
           items:
             - q: "Escucha y repite la palabra."
               options: "Послушай и повтори слово. | Прочитай и повтори слово. | Послушай и переведи слово."
@@ -185,32 +220,56 @@ lessons:
       - write:
           title: Traduce
           format: фраза по-испански
+          skill: ask_in_class
           items:
-            - "Я не понимаю. => No entiendo"
+            - q: "Я не понимаю."
+              a: "No entiendo"
+              mistakes:
+                "no entendo": "Почти: в этом слове после `t` — `ie`: entiendo."
             - q: "Ещё раз, пожалуйста."
               a: "Otra vez, por favor"
+              mistakes:
+                "mas despacio por favor": "Más despacio — «помедленнее». «Ещё раз» — **otra vez**."
       - build:
           title: Traduce
+          skill: ask_in_class
           items:
             - es: "¿Cómo se dice «пиво» en español?"
               ru: "Как сказать «пиво» по-испански?"
-      - mission:
-          title: Урок испанского
-          text: "Вы на первом уроке в языковой школе в Мадриде. Преподавательница говорит только по-испански. Отвечайте ей."
+      - learn: [practica]
       - choose:
+          title: Что это значит?
+          items:
+            - q: "Practica en español."
+              options: "Тренируйся по-испански. | Переведи по-испански. | Повтори по-испански."
+              explain: "Practica — «тренируйся, практикуйся», en español — «по-испански»."
+      - mission:
+          id: school
+          title: Урок испанского
+          text: "Вы — Иван, на первом уроке в языковой школе в Мадриде. Преподавательница говорит только по-испански. Отвечайте ей."
+      - choose:
+          source: school
           items:
             - lines: ["Profesora: ¡Hola! ¿Cómo te llamas?"]
               options: "Me llamo Iván. | Te llamas Iván. | Se llama Iván."
+              explain: "О себе говорят me llamo: Me llamo Iván."
+              skill: me_llamo
             - lines: ["Profesora: Traduce: «la respuesta»."]
               options: "Ответ. | Вопрос. | Перевод."
+              skill: class_words
             - lines: ["Profesora: ¿Qué significa «gracias»?"]
               options: "«Спасибо». | «Пожалуйста». | «Извините»."
+              skill: ask_in_class
       - write:
+          source: school
+          skill: class_words
           items:
             - q: "Profesora: ¿Cómo se dice «сыр» en español? — Ответьте словом с артиклем."
               a: "el queso"
               format: el или la + слово
       - choose:
+          source: school
+          skill: ask_in_class
           items:
             - lines: ["Profesora: Escucha y repite: «la traducción»."]
               q: "Вы не расслышали слово."
@@ -219,25 +278,42 @@ lessons:
   - id: quiz
     kind: quiz
     title: Язык занятий
+    goal: понять задание по-испански, переспросить и спросить о незнакомом слове
+    version: 2
+    check: soft
     blocks:
       - "Это тест по теме «Язык занятий»."
       - cando:
           - "понимать задания: escucha, repite, lee, escribe, traduce, responde"
           - "спросить: ¿Cómo se dice...? ¿Qué significa...?"
           - "сказать, что не понимаете, и попросить повторить"
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "escribe — напиши"
+            - "traduce — переведи"
+            - "la palabra — слово"
+            - "No entiendo. — я не понимаю"
+            - "¿Cómo se escribe? — как это пишется?"
     quiz:
       - q: Что значит «Escucha y repite»?
         options: "Послушай и повтори | Прочитай и переведи | Напиши и ответь"
         explain: "Escucha значит «послушай», а repite значит «повтори». А «прочитай» по-испански будет lee, и «напиши» будет escribe."
+        skill: class_commands
       - q: Как спросить, что значит слово?
         options: "¿Qué significa...? | ¿Cómo se dice...? | ¿Cómo se escribe?"
         explain: "¿Qué significa...? значит «что значит...?». А ¿Cómo se dice...? значит «как сказать...?», и ¿Cómo se escribe? значит «как это пишется?»."
+        skill: ask_in_class
       - q: Собеседник говорит слишком быстро. Что сказать?
         options: "Más despacio, por favor. | Otra vez, por favor. | De nada."
         explain: "Más despacio значит «помедленнее», а otra vez значит «ещё раз»."
+        skill: ask_in_class
       - q: "¿Qué significa «la respuesta»?"
         options: "ответ | вопрос | слово"
         explain: "La respuesta значит «ответ». А «вопрос» по-испански будет la pregunta, и «слово» будет la palabra."
+        skill: class_words
       - q: Как попросить повторить ещё раз?
         options: "Otra vez, por favor. | No entiendo. | ¿Cómo se escribe?"
         explain: "Otra vez значит «ещё раз». А No entiendo значит «я не понимаю»."
+        skill: ask_in_class
