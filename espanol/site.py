@@ -594,9 +594,31 @@ def _split(block: Block) -> list[dict]:
     return [b] if b else []
 
 
+# Задания, которые без своего урока не понять: вопросы к диалогу или тексту и всё после миссии
+# («Вы — Марко…»). «🔁 Вспомним» и «Фразы и конструкции» их не берут (ctx). Новый виток урока
+# (порция слов, правило, таблица) снимает метку; после миссии она остаётся до конца урока.
+_CONTEXT = {"dialogue", "reading", "mission"}
+_NEW_CYCLE = {"learn", "rule", "compare", "table", "header", "examples", "conjugation", "list"}
+
+
+def mark_context(blocks: list[dict]) -> None:
+    ctx = mission = False
+    for b in blocks:
+        t = b["t"]
+        if t == "mission":
+            mission = True
+        if t in _CONTEXT:
+            ctx = True
+        elif t in _NEW_CYCLE:
+            ctx = mission
+        if t in ("choose", "write") and ctx:
+            b["ctx"] = True
+
+
 def lesson_data(lesson: Lesson, cards: dict[str, WordCard], lexicon=None) -> dict:
     unknown = (lambda text: lexicon.unknown_words(text, lesson)) if lexicon else (lambda text: [])
     blocks = [b for block in lesson.blocks for b in _split(block)]
+    mark_context(blocks)
     by_cell = ROW_ART.get(lesson.id, {})
     for blk in blocks:
         if by_cell and blk["t"] == "table":

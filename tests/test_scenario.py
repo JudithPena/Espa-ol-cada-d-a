@@ -159,16 +159,61 @@ def test_site_data_of_scenario(site):
 
 
 def test_scenario_audio(site):
-    data = site_data(site, load_cards(CONTENT), units={1})
+    """Каждая фраза, которую страница проиграет в задании сценария, есть в записи — по тому же ключу, по которому
+    её ищет страница: вопрос на слух, верный вариант, любой допустимый ответ ввода, реплика-контекст голосом
+    персонажа («@голос|текст»), стороны пар и карточки групп, фраза и каждое её слово в любом допустимом порядке."""
+    import re as _re
+
+    data = site_data(site, load_cards(CONTENT))
     texts = audio_texts(data)
-    assert "¡Buenas tardes!" in texts                        # испанский вариант выбора звучит после ответа
-    assert "Buenos días" in texts                            # ответ на ввод
-    assert "hasta luego" in texts                            # испанская сторона пары
-    assert "¡Adiós, Carlos!" in texts                        # вопрос на слух
-    assert "¿Cómo" in texts and "estás" in texts             # плитки «Соберите фразу», и лишняя тоже
-    pablo = [k for k in texts if k.startswith("@") and k.endswith("|¡Buenas noches, Lucía!")]
-    assert pablo                                             # реплика-контекст — голосом персонажа
-    assert not any(k for k in texts if "доброе утро" in k)   # русская сторона пары не озвучивается
+    clean = lambda t: " ".join(str(t).split())
+    spanish = lambda t: bool(_re.search("[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]", t)) and not _re.search("[А-Яа-яЁё]", t)
+    want = set()
+    for lesson in data["lessons"]:
+        for b in lesson["blocks"]:
+            t = b["t"]
+            if t == "choose":
+                for it in b["items"]:
+                    want |= {clean(it["say"])} - {""}
+                    if spanish(it["o"][0][1]):
+                        want.add(clean(it["o"][0][1]))
+                    want |= {f"@{it['cast'][line[0]]['v']}|{clean(line[3])}" for line in it["lines"]}
+            elif t == "write":
+                for it in b["items"]:
+                    want |= {clean(it["say"])} - {""}
+                    want |= {clean(a) for a in it["a"] if spanish(a)}
+            elif t == "match":
+                want |= {clean(x) for p in b["pairs"] for x in p[2:] if x}
+            elif t == "sort":
+                want |= {clean(say) for _, items in b["groups"] for _, say in items if say}
+            elif t == "build":
+                for it in b["items"]:
+                    for es in [it["es"], *it["alt"]]:
+                        want.add(clean(es))
+                        want |= {tok for tok in es.split(" ") if any(ch.isalpha() for ch in tok)}
+    missing = sorted(want - set(texts))
+    assert not missing, missing[:10]
+    assert "@" in next(k for k in texts if k.startswith("@"))   # реплики-контекст — голосом персонажа
+    assert not any("доброе утро" in k for k in texts)        # русская сторона пары не озвучивается
+
+
+def test_recall_skips_context_bound_tasks(site):
+    """«Вспомним» и «Фразы и конструкции» не берут вопросы к диалогу, тексту и миссии своего урока."""
+    data = site_data(site, load_cards(CONTENT))
+    for lesson in data["lessons"]:
+        ctx = mission = False
+        for b in lesson["blocks"]:
+            if b["t"] == "mission":
+                mission = True
+            if b["t"] in ("dialogue", "reading", "mission"):
+                ctx = True
+            elif b["t"] in ("learn", "rule", "compare", "table", "header", "examples", "conjugation", "list"):
+                ctx = mission
+            if b["t"] in ("choose", "write"):
+                assert bool(b.get("ctx")) == ctx, (lesson["id"], b["t"], b.get("title"))
+    flagged = [b for x in data["lessons"] for b in x["blocks"] if b.get("ctx")]
+    free = [b for x in data["lessons"] for b in x["blocks"] if b["t"] in ("choose", "write") and not b.get("ctx")]
+    assert flagged and len(free) > len(flagged) / 2
 
 
 def test_rebuilt_course_standard(site):

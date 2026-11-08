@@ -167,3 +167,20 @@ test('finishing a scripted lesson keeps the old progress format; recall uses onl
   run(`startLesson(${j})`);
   assert.ok(JSON.parse(run('JSON.stringify(S.steps.slice(1, 4).some(s => s.recall))')), 'в начале следующего урока — «Вспомним»');
 });
+
+test('recall never takes tasks bound to a dialogue, reading or mission; context lines play in the character voice', () => {
+  const run = context();
+  const i = run('LESSONS.findIndex(L => L.id === "saludos/dialogue")');
+  run(`P.done[LESSONS[${i}].id] = { stars: 1 }`);
+  const pool = JSON.parse(run(`JSON.stringify(recallPool(${i + 1}).map(x => x.make()).map(s => s.q || s.plain?.[s.correct] || s.a?.[0]))`));
+  const ctxQs = JSON.parse(run(`JSON.stringify(LESSONS[${i}].blocks.filter(b => b.ctx).flatMap(b => b.items.map(it => it.q)))`));
+  assert.ok(ctxQs.length > 0, 'в уроке есть вопросы к диалогу');
+  assert.ok(pool.length > 0, 'и задания без контекста');
+  for (const q of ctxQs.filter(Boolean)) assert.ok(!pool.includes(q), `«${q}» попал в «Вспомним»`);
+  // Реплика-контекст: кнопка с голосом персонажа, запись ищется по ключу «@голос|текст».
+  run('AUDIO["@es-ES-AlvaroNeural|¡Hola!"] = "x"');
+  const html = run('chatHTML({ lines: [["Pablo", "¡Hola!", "", "¡Hola!"]], cast: { Pablo: { v: "es-ES-AlvaroNeural", a: "" } } })');
+  assert.match(html, /data-voice="es-ES-AlvaroNeural"/);
+  assert.equal(run('canSay("¡Hola!", "es-ES-AlvaroNeural")'), true);
+  assert.equal(run('audioId("¡Hola!", "es-ES-AlvaroNeural")'), 'x');
+});

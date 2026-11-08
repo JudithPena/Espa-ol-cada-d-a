@@ -137,14 +137,14 @@ def audio_texts(data: dict) -> dict[str, tuple[str, str]]:
                     for line in it.get("lines") or []:
                         voice = it["cast"][line[0]]["v"]
                         add(line[3], voice, key=f"@{voice}|{_clean(line[3])}")
-                    for _, o in it["o"]:
-                        if _spanish(o):
-                            add(o)
+                    if it["o"] and _spanish(it["o"][0][1]):   # верный вариант звучит после ответа
+                        add(it["o"][0][1])
             elif t == "write":
                 for it in b["items"]:
                     add(it.get("say"))
-                    if it["a"] and _spanish(it["a"][0]):
-                        add(it["a"][0])
+                    for a in it["a"]:                       # звучит тот ответ, который ученик ввёл
+                        if _spanish(a):
+                            add(a)
             elif t == "match":
                 for left, right, say_l, say_r in b["pairs"]:
                     add(say_l)
@@ -157,8 +157,9 @@ def audio_texts(data: dict) -> dict[str, tuple[str, str]]:
                 for it in b["items"]:
                     for es in [it["es"], *it.get("alt", [])]:
                         add(es)
-                    for tok in it["es"].split(" ") + it.get("extra", []):
-                        add(tok)
+                    for es in [it["es"], *it.get("alt", [])]:   # плитка звучит словом своего порядка
+                        for tok in es.split(" "):
+                            add(tok)
             if t not in ("choose", "write"):
                 cards([x for x in b.get("items") or [] if isinstance(x, dict)])
             cards(b.get("steps") if t == "list" else None)

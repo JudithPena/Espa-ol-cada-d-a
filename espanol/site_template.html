@@ -1107,7 +1107,7 @@ function pickVoice() {
 }
 if (SPEECH) { pickVoice(); speechSynthesis.addEventListener?.("voiceschanged", pickVoice); }
 const audioId = (text, voice) => (voice && AUDIO[`@${voice}|${clean(text)}`]) || AUDIO[clean(text)] || null;
-const canSay = text => !!text && (!!audioId(text) || (SPEECH && (TTS.voice || (pickVoice(), TTS.voice))));
+const canSay = (text, voice) => !!text && (!!audioId(text, voice) || (SPEECH && (TTS.voice || (pickVoice(), TTS.voice))));
 // Один плеер на всю страницу: новая запись всегда останавливает прежнюю, две дорожки сразу не звучат.
 // clipGen — номер текущей записи: обработчики остановленной записи (onended, onerror) уже ничего не делают.
 let player = null, audioQueue = [], clipGen = 0;
@@ -1158,10 +1158,10 @@ function playClip(text, { voice = null, gender = "f", rate = 1, onend = () => {}
   setRate(rate);
   player.play()?.catch?.(live(err => { if (err?.name === "NotAllowedError") onblock(); }));
 }
-function say(text, { slow = false, queue = false, pitch = 1 } = {}) {
+function say(text, { slow = false, queue = false, pitch = 1, voice = null } = {}) {
   if (!text) return;
   if (!queue) stopSpeech();
-  const id = audioId(text);
+  const id = audioId(text, voice);
   if (id) {
     audioQueue.push({ id, slow });
     if (!queue || !player || player.paused || player.ended) playNext();
@@ -1515,6 +1515,7 @@ function recallPool(upto) {
     const L = LESSONS[k];
     if (!L.scripted || !P.done[L.id]) continue;
     L.blocks.forEach(b => {
+      if (b.ctx) return;   // вопрос к диалогу, тексту или миссии своего урока — без них не ответить
       if (b.t === "choose") b.items.filter(audible).forEach(it => out.push({ li: k, make: () => chooseStep(b, it) }));
       if (b.t === "write") b.items.filter(audible).forEach(it => out.push({ li: k, make: () => ({ type: "write", title: b.title, accents: b.accents, chars: b.chars, ...it }) }));
     });
@@ -1697,7 +1698,8 @@ function chatHTML(st) {
   const names = [...new Set(st.lines.map(l => l[0]))];
   return `<div class="mini-dlg">${st.lines.map(([who, es, ru, sp]) => {
     const c = st.cast?.[who] || { a: "" }, n = names.indexOf(who);
-    return `<div class="msg t${n % 4}${n % 2 ? " r" : ""}">${avaHTML(c.a)}<span class="who">${esc(who)}</span><div class="bubble"><span class="es">${es}</span>${canSay(sp) ? playBtn(sp, "lplay") : ""}</div></div>`;
+    const play = canSay(sp, c.v) ? `<button class="play lplay" data-say="${esc(sp)}" data-voice="${esc(c.v || "")}" aria-label="Послушать реплику">▶</button>` : "";
+    return `<div class="msg t${n % 4}${n % 2 ? " r" : ""}">${avaHTML(c.a)}<span class="who">${esc(who)}</span><div class="bubble"><span class="es">${es}</span>${play}</div></div>`;
   }).join("")}<div class="msg gap${names.length % 2 ? " r" : ""}"><span class="ava" aria-hidden="true">${AVA_ICON}</span><span class="who">Вы</span><div class="bubble">…</div></div></div>`;
 }
 const kickerOf = (st, fallback) => `<span class="kicker">${st.recall ? "🔁 Вспомним · " : st.mission ? `🎯 ${st.mission} · ` : ""}${st.title || fallback}</span>`;
@@ -2341,7 +2343,8 @@ function buildPick(k) {
   if (s.used[k]) return;   // уже стоит во фразе: второе касание (двойной тап) ошибкой не считаем
   const fit = cands.filter(c => tileKey(c[s.n]) === tileKey(s.tiles[k]));
   if (fit.length) {
-    s.cands = fit; s.used[k] = true; s.n++; s.here = 0; s.hint = null; s.flash = null; say(s.tiles[k]);
+    const raw = fit[0][s.n];
+    s.cands = fit; s.used[k] = true; s.n++; s.here = 0; s.hint = null; s.flash = null; say(raw);
     if (s.n >= fit[0].length) return answer(s.err === 0, st, { requeue: false });
   } else {
     s.err++; s.miss++; s.here++; s.flash = k;
@@ -2636,7 +2639,7 @@ document.addEventListener("click", e => {
     return toast(r.lessons ? `Пройдено уроков: ${r.lessons}, слов в повторении: ${r.words}` : "Начнём с первого урока");
   }
   if (d.add) { P.words[d.add] = { s: 0, due: dayNum() + INTERVALS[0] }; save(); closeSheet(); return toast("Слово добавлено: повторим завтра"); }
-  if (d.say != null) return say(d.say, { slow: "slow" in d });
+  if (d.say != null) return say(d.say, { slow: "slow" in d, voice: d.voice || null });
   if ("dlgAll" in d) return dlgMain();
   if ("dlgPick" in d) return dlgPick(el.closest("[data-dlg]"));
   if ("dlgTr" in d) return dlgTranslate(el);

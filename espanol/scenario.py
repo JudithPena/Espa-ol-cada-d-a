@@ -110,8 +110,9 @@ def check_lesson(lesson: Lesson, lexicon: Lexicon) -> list[Issue]:
     for k, block in enumerate(blocks):
         if block.type == "mission" and not any(b.type in GRADED_BLOCKS for b in blocks[k + 1:]):
             issues.append(Issue(lesson, "mission: после миссии нужно хотя бы одно задание"))
-        if block.type == "more" and k == 0:
-            issues.append(Issue(lesson, "more: свёрнутое пояснение должно идти после блока, который оно поясняет"))
+        if block.type == "more" and (k == 0 or blocks[k - 1].type in GRADED_BLOCKS | {"learn", "exercise", "mission"}):
+            issues.append(Issue(lesson, "more: свёрнутое пояснение должно идти сразу после объяснения, которое оно дополняет "
+                                        "(после задания или порции слов оно встанет отдельным экраном)"))
     if not lesson.scripted:
         return issues
     by_es = {item.es: item for item in lesson.vocab}
