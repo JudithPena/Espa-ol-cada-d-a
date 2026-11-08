@@ -313,6 +313,16 @@ function gSyncViewport() {
   player.classList.toggle('is-short',typing && (viewport?.height || window.innerHeight)<600);
   const body=player.querySelector?.('.pbody');
   if(typing && body && body.scrollHeight<=body.clientHeight+2) body.scrollTop=0;
+  // A clock or a long prompt can push the focused field below the fixed footer.
+  // Scroll only the exercise body, keeping the field and its character keys visible.
+  const field=typing && active.getBoundingClientRect?.(), bounds=body?.getBoundingClientRect?.();
+  if(field && bounds && bounds.bottom>bounds.top) {
+    const keys=active.parentElement?.querySelector?.('.gaccents')?.getBoundingClientRect?.();
+    let bottom=keys?.bottom || field.bottom;
+    if(bottom-field.top>bounds.bottom-bounds.top-24) bottom=field.bottom;
+    if(field.top<bounds.top+12) body.scrollTop-=bounds.top+12-field.top;
+    else if(bottom>bounds.bottom-12) body.scrollTop+=bottom-bounds.bottom+12;
+  }
 }
 function gHideKeyboard() {
   document.activeElement?.blur?.();
@@ -616,6 +626,9 @@ const G_UNIT_ICONS = {
   '019_mio_tuyo_suyo': '🔑',
   '020_todos_algunos_ninguno': '🧺',
   '021_uno_otro_cualquiera': '🧩',
+  '025_uno_dos_tres': '🔢',
+  '026_cien_mil_millon': '💶',
+  '027_primero_segundo': '🏢',
 };
 function gUnitComplete(unit) {
   const routes=gRoutes(unit);
@@ -713,7 +726,7 @@ function gFinalView(unit, tested, good) {
   const correct = unit.exercises.reduce((n,g) => n+(P.grammar[grammarKey(unit,g)]?.correct||0),0);
   return `<div class="player gplayer gfinal"><div class="ptop"><div class="wrap"><button class="x" data-gmain aria-label="На главную">×</button><div class="bar"><i style="width:100%"></i></div><span class="pcount">✓</span></div></div>
     <div class="pbody">${gFireworks()}<div class="wrap gresult"><span class="gresult-icon" aria-hidden="true">🏆</span><span class="kicker" lang="es">¡Enhorabuena!</span><h2 id="g-title" tabindex="-1">Поздравляю! Урок пройден!</h2><p>${esc(unit.title)} · ${esc(unit.subtitle)}</p>
-    <div class="gfinal-score"><b>${unit.exercises.length} упражнения завершены</b><span>Лучший результат: ${correct} из ${total}</span></div>
+    <div class="gfinal-score"><b>${unit.exercises.length} ${plural(unit.exercises.length,'упражнение завершено','упражнения завершены','упражнений завершено')}</b><span>Лучший результат: ${correct} из ${total}</span></div>
     ${nextUnit ? `<section class="gnext-lesson" aria-label="Следующий урок"><span class="kicker">Далее · Урок ${esc(nextUnit.number)}</span><h3>${esc(nextUnit.title)}</h3>${nextUnit.subtitle?`<p>${esc(nextUnit.subtitle)}</p>`:''}${!nextOpen?'<p class="gnext-status">🔒 Следующий урок пока недоступен</p>':gUnitComplete(nextUnit)?'<p class="gnext-status">✓ Уже пройден · можно повторить</p>':''}</section>` : '<p class="gcourse-complete" role="status">Все уроки раздела пройдены!</p>'}
     ${nextUnit && nextOpen ? `<button class="btn wide" data-gnext-unit="${esc(nextUnit.id)}">Начать следующий урок</button>` : '<button class="btn wide" data-grammar-list>К списку уроков</button>'}
     <button class="btn ghost wide" data-gmain>На главную</button><button class="btn ghost wide" data-gexit>К разделам урока</button>${nextUnit && nextOpen?'<button class="btn ghost wide" data-grammar-list>К списку уроков</button>':''}</div></div><div></div></div>`;

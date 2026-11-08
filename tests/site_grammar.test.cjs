@@ -613,7 +613,7 @@ test('the group-name mini-check keeps errors and repeats them without losing liv
 test('every mini-check in all 17 units renders choices and completes by clicking',()=>{
  const units=fs.readdirSync('content/grammar').filter(f=>f.endsWith('.json')).sort()
   .map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
- assert.equal(units.length,21);
+ assert.equal(units.length,24);
  for(const unit of units){
   const run=context([unit]);
   for(const [index,section] of unit.sections.entries()){
@@ -763,7 +763,7 @@ test('all typing screens show a persistent format and example without changing g
   })())`));
   typed+=result.typed;legacy+=result.legacy;
  }
- assert.equal(typed,469);assert.equal(legacy,56);
+ assert.equal(typed,573);assert.equal(legacy,60);
 });
 
 test('quantity answers accept digits or words while the field explains the quantity format', () => {
@@ -823,7 +823,7 @@ test('the size-based life limit stops every exercise in all 17 units, without cr
   assert.equal(run(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id===${JSON.stringify(group.id)})).errors`),limit);
   count++;
  }
- assert.equal(count,74);
+ assert.equal(count,86);
 });
 
 test('exit, route restart, whole-unit restart and reload preserve the failed or active attempt', () => {
@@ -1160,7 +1160,7 @@ test('grammar list gives each theme a distinct icon and marks only fully complet
  const run=context(units);
  run('view.grammar=null;');
  const icons=run('COURSE.grammar.map(u=>G_UNIT_ICONS[u.id])');
- assert.ok(icons.every(Boolean));assert.equal(new Set(icons).size,21);
+ assert.ok(icons.every(Boolean));assert.equal(new Set(icons).size,24);
  assert.ok(!run('grammarView()').includes('gcompleted-badge'));
  // Completing the exercises alone leaves mini-checks and theory unfinished.
  run(`const doneUnit=COURSE.grammar[0];for(const g of doneUnit.exercises)P.grammar[grammarKey(doneUnit,g)]={correct:0,total:g.questions.length};`);
@@ -1171,7 +1171,7 @@ test('grammar list gives each theme a distinct icon and marks only fully complet
  assert.equal(run('gUnitComplete(COURSE.grammar[0])'),true);
  const html=run('grammarView()');
  assert.equal((html.match(/gcompleted-badge/g)||[]).length,1);
- assert.ok(html.includes('Пройдено тем: 1 из 21'));
+ assert.ok(html.includes('Пройдено тем: 1 из 24'));
  assert.match(html,/class="mcard gcomplete" data-grammar="001_el_hijo_la_hija"/);
  assert.match(html,/class="mcard " data-grammar="002_el_libro_la_mesa"/);
  run('delete P.grammarRead[COURSE.grammar[0].id+"/summary"];');
@@ -1521,7 +1521,7 @@ test('multi-answer audit keeps regional, contextual and equally valid choices gr
    }
   }
  }
- assert.equal(questions,1048);assert.equal(alternatives,86);assert.equal(warnings,6);
+ assert.equal(questions,1182);assert.equal(alternatives,137);assert.equal(warnings,6);
 });
 
 test('yellow mini-check choices still have no lives and complete normally',()=>{
@@ -1559,7 +1559,7 @@ test('all 17 completion screens derive the next lesson from course order and pre
    assert.ok(html.includes('Все уроки раздела пройдены!'));assert.ok(!html.includes('data-gnext-unit'));
    handlers.click({target:{closest:s=>s==='button, .spoiler, [data-say], [data-line]'?{dataset:{grammarList:''}}:null,classList:{contains:()=>false}}});
    assert.equal(run('G'),null);assert.equal(run('view.grammar'),null);assert.equal(run('view.tab'),'grammar');
-   assert.equal((run('grammarView()').match(/data-grammar="/g)||[]).length,21);
+   assert.equal((run('grammarView()').match(/data-grammar="/g)||[]).length,24);
   }
   assert.equal(run('JSON.stringify(P)'),before);
  }
@@ -1690,7 +1690,7 @@ test('all grammar choice sets receive valid, balanced attempt orders without cha
    assert.deepEqual(result,{},`${u.number}/${g.id}: ${JSON.stringify(result)}`);
   }
  }
- assert.equal(standard,523);assert.equal(guided,9);
+ assert.equal(standard,549);assert.equal(guided,9);
  assert.equal(run('JSON.stringify(COURSE.grammar)'),before);
 });
 
@@ -2080,4 +2080,65 @@ test('unit 21 completes every new format and reaches the final summary without c
  assert.ok(turns<100);assert.equal(run('gUnitComplete(gUnit())'),true);
  assert.equal(run('P.xp'),76);
  assert.ok(run('gPlayerView()').includes('Все уроки раздела пройдены!'));
+});
+
+test('numeral unit 25 distinguishes agreement, accents, date alternatives and leading telephone zeroes',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/025_numeros_0_99.json','utf8'));const run=context([u]);
+ for(const [gi,qi,a,status] of [[0,0,'veintiun','almost'],[0,0,'veintiuno','wrong'],[0,6,'treinta y una','correct'],[0,6,'treintaiuna','correct'],[1,0,'primero','correct'],[1,5,'veintiún','wrong'],[3,0,'dos','wrong'],[3,5,'cero uno','correct'],[2,1,'las una y cuarto','wrong']]){
+  assert.equal(run(`grammarResult(COURSE.grammar[0].exercises[${gi}].questions[${qi}],${JSON.stringify(a)}).status`),status);
+ }
+});
+
+test('typing after a tall clock scrolls only the body to expose the field and Spanish keys',()=>{
+ const run=context();
+ run(`var scroller={scrollTop:0,scrollHeight:900,clientHeight:400,getBoundingClientRect:()=>({top:120,bottom:520})};
+ var fieldRect={top:480,bottom:550};var keyRect={bottom:610};
+ var input={matches:()=>true,getBoundingClientRect:()=>fieldRect,parentElement:{querySelector:()=>({getBoundingClientRect:()=>keyRect})}};
+ document.activeElement=input;document.querySelector=()=>({style:{},classList:{toggle:()=>{}},querySelector:()=>scroller});gSyncViewport();`);
+ assert.equal(run('scroller.scrollTop'),102);
+ run('scroller.scrollTop=0;fieldRect={top:180,bottom:240};keyRect={bottom:290};gSyncViewport();');
+ assert.equal(run('scroller.scrollTop'),0,'already visible input does not jump');
+ run('scroller.scrollTop=200;fieldRect={top:70,bottom:130};keyRect={bottom:180};gSyncViewport();');
+ assert.equal(run('scroller.scrollTop'),138,'a field above the body is brought back');
+});
+
+test('numeral unit 26 rejects cien/ciento, agreement and million/de errors but accepts decimal variants',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/026_cien_mil_millon.json','utf8'));const run=context([u]);
+ for(const [gi,qi,a,status] of [[0,0,'ciento','wrong'],[0,1,'cien un','wrong'],[0,2,'quinientos','wrong'],[1,1,'un mil setenta','wrong'],[1,3,'un millon doscientos treinta y un mil setecientos cincuenta y ocho','almost'],[2,0,'ciento quince coma uno cero','correct'],[2,0,'ciento quince con diez','correct'],[2,7,'mil cuatrocientos veintiún','wrong'],[3,0,'dos millones de','wrong'],[3,2,'trescientos','wrong'],[4,1,'dos mil uno','correct']]){
+  assert.equal(run(`grammarResult(COURSE.grammar[0].exercises[${gi}].questions[${qi}],${JSON.stringify(a)}).status`),status);
+ }
+});
+
+test('growing phrase input preserves the draft and resynchronizes its visible area without grading',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/026_cien_mil_millon.json','utf8'));const handlers={};const run=context([u],new Map(),handlers);
+ unlockUntil(run,'exercise:26.1');run(`gStart(COURSE.grammar[0].id,'exercise:26.1');gMove(1);var syncCalls=0;gSyncViewport=()=>syncCalls++;document.querySelector=()=>null;`);
+ handlers.input({target:{id:'g-answer',tagName:'TEXTAREA',dataset:{},value:'mil setenta',closest:()=>null}});
+ assert.equal(run('syncCalls'),1);assert.equal(run('gResponse(G.steps[G.at]).value'),'mil setenta');
+ assert.equal(run('gResponse(G.steps[G.at]).checked'),false);assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).errors'),0);
+});
+
+test('ordinal unit 27 separates apocope, gender, quantity and alternative high-number readings',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/027_ordinales.json','utf8'));const run=context([u]);
+ for(const [ref,a,status] of [['27.1.4','tercero','wrong'],['27.1.6','primer','correct'],['27.1.9','septimo','almost'],['27.1.9','sétimo','correct'],['27.2.2','primero','wrong'],['27.2.3','veintitres','almost'],['27.2.4','duodécimo','correct'],['27.3.3a','decimoquinto','wrong'],['27.3.3b','undécimo','correct'],['27.3.5','tercer','wrong'],['27.3.6','primeros','wrong'],['27.3.12','cuartas','correct']]){
+  assert.equal(run(`grammarResult(COURSE.grammar[0].exercises.flatMap(g=>g.questions).find(q=>q.sourceRef===${JSON.stringify(ref)}),${JSON.stringify(a)}).status`),status,ref+'/'+a);
+ }
+});
+
+test('numeral lessons fully complete all formats and retain failures across reload and retry',()=>{
+ const units=fs.readdirSync('content/grammar').filter(f=>/^02[5-7]_.*\.json$/.test(f)).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
+ for(const u of units){
+  const run=context([u]);run(`gStart(COURSE.grammar[0].id,'all');`);let turns=0;
+  while(!run('G.ended')&&turns++<180){run(`var s=G.steps[G.at];if(s.type==='question'){var g=gGroups(gUnit()).find(g=>g.id===s.group);gResponse(s).value=g.questions[s.qi].answers[0];gCheck();}gMove(1);`);}
+  assert.ok(turns<180);assert.equal(run('gUnitComplete(gUnit())'),true);
+  if(u.number===26)assert.ok(run('gPlayerView()').includes('5 упражнений завершено'));
+  for(const g of u.exercises){
+   const storage=new Map();let retry=context([u],storage);unlockUntil(retry,'exercise:'+g.id);
+   retry(`save();gStart(COURSE.grammar[0].id,'exercise:${g.id}');gMove(1);for(let i=0;i<3;i++){gResponse(G.steps[G.at]).value='incorrecto';gCheck();if(!G.recovery)gMove(1);}`);
+   assert.equal(retry(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id==='${g.id}')).status`),'failed');
+   retry=context([u],storage);retry(`gStart(COURSE.grammar[0].id,'all',true);gReviewTheory();`);
+   assert.ok(retry('gPlayerView()').includes(u.sections[g.theorySections[0]].title));
+   for(let i=1;i<g.theorySections.length;i++)retry('gMove(1);');retry('gRepeatExercise();');
+   assert.equal(retry(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id==='${g.id}')).errors`),0);
+  }
+ }
 });

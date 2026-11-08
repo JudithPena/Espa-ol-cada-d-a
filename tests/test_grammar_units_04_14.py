@@ -16,7 +16,7 @@ SOURCE_ROWS = {
 
 def test_all_supplied_tasks_survive_adaptation_and_have_clear_gaps():
     units = load_grammar()
-    assert [u['number'] for u in units] == list(range(1, 22))
+    assert [u['number'] for u in units] == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 25, 26, 27]
     for u in units:
         if u['number'] not in SOURCE_ROWS:
             continue

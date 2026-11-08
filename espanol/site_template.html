@@ -607,6 +607,9 @@ main { padding-block: 16px 110px; }
 .gchoice:has(input:checked) { background: var(--accent-soft); border-color: var(--accent); }
 .ginput { width: 100%; min-height: 46px; padding: 10px 12px; background: var(--bg); color: var(--ink); border: 2px solid var(--line); border-radius: 10px; font: inherit; }
 .gphrase-input { display: block; resize: vertical; line-height: 1.5; }
+@supports (field-sizing: content) {
+  .gplayer textarea.gphrase-input { field-sizing: content; min-height: 4em; max-height: 50vh; }
+}
 .gblank { display: inline-block; min-width: 8ch; padding: 0 12px; margin: 0 4px; border: 2px dashed var(--accent); border-radius: 7px; background: var(--accent-soft); color: var(--accent); text-align: center; vertical-align: baseline; }
 .gpreview-insert { color: var(--accent); background: var(--surface); border-bottom: 3px solid var(--accent); border-radius: 4px; padding: 1px 4px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 .gclues { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
@@ -2704,6 +2707,7 @@ document.addEventListener("input", e => {
   if (e.target.id === "g-answer" && G) {
     const response = gResponse(G.steps[G.at]);
     if (!response.checked) { response.value = e.target.value; gSave(); const check = $("[data-gcheck]"); if (check) check.disabled = !response.value.trim(); document.querySelector('[data-gno-article]')?.setAttribute('aria-pressed',String(grammarNormalize(response.value)==='без артикля')); }
+    if(e.target.tagName === 'TEXTAREA') gSyncViewport();
     return;
   }
   const grammarForm = e.target.closest("[data-grammar-form]");

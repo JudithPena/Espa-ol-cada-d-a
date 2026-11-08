@@ -1,0 +1,1696 @@
+{
+  "id": "026_cien_mil_millon",
+  "number": 26,
+  "title": "Cien, mil, un millón…",
+  "subtitle": "Сотни, большие числа, цены и годы",
+  "level": "A1",
+  "sections": [
+    {
+      "title": "Сто и остальные сотни",
+      "presentation": "paradigm",
+      "paragraphs": [
+        "Ровно сто — **`cien`**. Если после ста есть ещё единицы или десятки, говорим **`ciento`**: `ciento cinco` — 105. Между сотней и остатком `y` не ставим: `ciento veinte`, а не `ciento y veinte`.",
+        "У чисел от двухсот есть мужская и женская формы: `doscientos euros`, но `doscientas personas`. **`Cien` не меняется**. Запомни необычные основы: **`quinientos`, `setecientos`, `novecientos`**."
+      ],
+      "table": {
+        "heads": [
+          "Число",
+          "Мужской род",
+          "Женский род"
+        ],
+        "compactForms": true,
+        "rows": [
+          [
+            "100",
+            "cien",
+            "cien"
+          ],
+          [
+            "200",
+            "doscientos",
+            "doscientas"
+          ],
+          [
+            "300",
+            "trescientos",
+            "trescientas"
+          ],
+          [
+            "400",
+            "cuatrocientos",
+            "cuatrocientas"
+          ],
+          [
+            "500",
+            "quinientos",
+            "quinientas"
+          ],
+          [
+            "600",
+            "seiscientos",
+            "seiscientas"
+          ],
+          [
+            "700",
+            "setecientos",
+            "setecientas"
+          ],
+          [
+            "800",
+            "ochocientos",
+            "ochocientas"
+          ],
+          [
+            "900",
+            "novecientos",
+            "novecientas"
+          ]
+        ]
+      },
+      "check": {
+        "id": "check-1",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "Tengo ___ euros.",
+            "answers": [
+              "cien"
+            ],
+            "explain": "Ровно 100 перед существительным — cien. Ciento нужно внутри 101–199.",
+            "context": "У меня ровно 100 евро.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "ciento",
+              "cien",
+              "cienta"
+            ]
+          },
+          {
+            "prompt": "Hay ___ personas.",
+            "answers": [
+              "quinientas"
+            ],
+            "explain": "Personas — женский род; 500 — quinientas, не cincocientas.",
+            "context": "Здесь 500 человек.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "quinientos",
+              "cincocientas",
+              "quinientas"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Собираем тысячи и миллионы по частям",
+      "presentation": "examples",
+      "paragraphs": [
+        "Разбей большое число справа налево на группы по три цифры: **миллионы → тысячи → остаток**. Например, `2 079` — `dos mil setenta y nueve`. Между этими частями `y` не нужна; она остаётся только между десятком и единицами.",
+        "**Тысяча — `mil`, без `un`**: `mil euros`, `cien mil euros`. Миллион — **`un millón`**, несколько миллионов — **`dos millones`**. Перед `mil` окончание `uno` сокращаем: `treinta y un mil`. Если считаем предметы женского рода, возможны `treinta y una mil` и `treinta y un mil`; сотни согласуем: `doscientas mil personas`.",
+        "Если сразу после `millón / millones` идёт название того, что считаем, ставим **`de`**: `dos millones de euros`. Если после миллионов число продолжается, `de` не нужна: `dos millones cien mil euros`."
+      ],
+      "wordGroups": [
+        {
+          "title": "Только тысячи",
+          "words": [
+            [
+              "mil / diez mil / cien mil",
+              "1 000 / 10 000 / 100 000"
+            ]
+          ]
+        },
+        {
+          "title": "Разряды вместе",
+          "words": [
+            [
+              "un millón | doscientos mil | treinta",
+              "1 200 030: читаем части по порядку"
+            ]
+          ]
+        },
+        {
+          "title": "Проверяем de",
+          "words": [
+            [
+              "un millón de euros",
+              "1 000 000 евро"
+            ],
+            [
+              "un millón doscientos mil euros",
+              "1 200 000 евро"
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-2",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "1 000 euros → ___ euros",
+            "answers": [
+              "mil"
+            ],
+            "explain": "Тысяча перед названием предмета — mil, без un.",
+            "context": "Выбери число для одной тысячи евро.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "un mil",
+              "mil",
+              "uno mil"
+            ]
+          },
+          {
+            "prompt": "2 000 000 euros → ___ euros",
+            "answers": [
+              "dos millones de"
+            ],
+            "explain": "После целых миллионов перед euros нужна de.",
+            "context": "Два миллиона евро.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "dos millones",
+              "dos millones de",
+              "dos millón de"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Десятичные числа и цены",
+      "presentation": "comparison",
+      "paragraphs": [
+        "В `6,10` целую и дробную части разделяет запятая. Можно прочитать **`seis coma diez`** или **`seis con diez`**. Для точной передачи записи можно называть цифры после запятой по одной: `seis coma uno cero`. В этих заданиях принимаем оба способа.",
+        "В цене перед названием валюты согласуем число: `trescientos un euros`, но `mil cuatrocientas veintiuna coronas danesas`. Когда валюта уже написана в предложении, вводи только числительное."
+      ],
+      "wordGroups": [
+        {
+          "title": "Сотни перед валютой",
+          "words": [
+            [
+              "doscientos cinco dólares",
+              "205 долларов"
+            ],
+            [
+              "ochocientas treinta y una liras turcas",
+              "831 турецкая лира"
+            ]
+          ]
+        },
+        {
+          "title": "Запятая",
+          "words": [
+            [
+              "doce coma cincuenta / doce con cincuenta",
+              "12,50"
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-3",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "301 euros → ___ euros",
+            "answers": [
+              "trescientos un"
+            ],
+            "explain": "Euros — мужской род: trescientos un. Uno перед euros сокращается.",
+            "context": "Запиши 301 евро.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "trescientos uno",
+              "trescientas una",
+              "trescientos un"
+            ]
+          },
+          {
+            "prompt": "1421 coronas → ___ coronas",
+            "answers": [
+              "mil cuatrocientas veintiuna"
+            ],
+            "explain": "Coronas — женский род: и сотни, и окончание veintiuna согласуем с ним.",
+            "context": "Выбери форму для 1421 кроны.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "mil cuatrocientos veintiún",
+              "mil cuatrocientas veintiuna",
+              "mil cuatrocientas veintiuno"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Большие числа в обычной фразе",
+      "presentation": "examples",
+      "paragraphs": [
+        "Чтобы назвать количество, расстояние, вес или возраст, ставь число перед названием: `ciento ocho kilos`, `trescientas mariposas`. Смотри, **какой род у существительного** и написана ли `de` после пропуска.",
+        "Сравни две фразы: `Hay dos millones de personas` и `Hay dos millones cien mil personas`. Если `de` уже стоит в задании после поля, повторять её в ответе не нужно."
+      ],
+      "dialogues": [
+        {
+          "title": "Сколько страниц?",
+          "lines": [
+            [
+              "¿Cuántas páginas tiene el libro?",
+              "Сколько страниц в книге?"
+            ],
+            [
+              "Trescientas veinte.",
+              "Триста двадцать."
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-4",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "Hay ___ mariposas.",
+            "answers": [
+              "trescientas"
+            ],
+            "explain": "Mariposas — женский род: trescientas.",
+            "context": "В коллекции 300 бабочек.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "trescientos",
+              "trescientas",
+              "trescientos de"
+            ]
+          },
+          {
+            "prompt": "Hay ___ de habitantes.",
+            "answers": [
+              "tres millones"
+            ],
+            "explain": "De уже стоит за пропуском; вводим tres millones.",
+            "context": "В этом примере в городе три миллиона жителей.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "tres millones de",
+              "tres millón",
+              "tres millones"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Читаем год и полную дату",
+      "presentation": "examples",
+      "paragraphs": [
+        "Год читаем **целиком как обычное число**: `1989` — `mil novecientos ochenta y nueve`, `2002` — `dos mil dos`. Не разделяем год на две пары, как иногда делают в английском.",
+        "Полная дата: **день + `de` + месяц + `de` + год**. Например, `doce de marzo de dos mil tres` — 12 марта 2003 года. Перед `mil` не добавляем `un`; в самом году не нужно слово `año`."
+      ],
+      "wordGroups": [
+        {
+          "title": "Годы разных столетий",
+          "words": [
+            [
+              "mil seiscientos trece",
+              "1613"
+            ],
+            [
+              "dos mil uno",
+              "2001"
+            ]
+          ]
+        },
+        {
+          "title": "Дата целиком",
+          "words": [
+            [
+              "veintiuno de enero de mil ochocientos doce",
+              "21 января 1812 года"
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-5",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "2008 → ___",
+            "answers": [
+              "dos mil ocho"
+            ],
+            "explain": "2008 читаем dos mil ocho. Слово y между mil и ocho не нужно.",
+            "context": "Выбери правильное чтение года.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "dos mil y ocho",
+              "veinte ocho",
+              "dos mil ocho"
+            ]
+          },
+          {
+            "prompt": "12/03/2003 → ___",
+            "answers": [
+              "doce de marzo de dos mil tres"
+            ],
+            "explain": "В полной дате de стоит и перед месяцем, и перед годом.",
+            "context": "Двенадцатое марта 2003 года.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "doce marzo dos mil tres",
+              "doce de marzo de dos mil tres",
+              "doce de marzo de dos mil y tres"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "26.a",
+      "title": "26.a · Сотни: число и род",
+      "theorySections": [
+        0
+      ],
+      "questions": [
+        {
+          "prompt": "___ euros",
+          "answers": [
+            "cien"
+          ],
+          "explain": "Ровно сто — cien.",
+          "context": "Запиши 100 перед euros.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "___ libros",
+          "answers": [
+            "ciento un"
+          ],
+          "explain": "В 101 используем ciento, а uno перед libros сокращаем до un.",
+          "context": "Запиши 101 перед libros.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "___ mesas",
+          "answers": [
+            "quinientas"
+          ],
+          "explain": "500 перед mesas — quinientas.",
+          "context": "Запиши 500 перед mesas.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "___ euros",
+          "answers": [
+            "setecientos"
+          ],
+          "explain": "700 — setecientos, не sietecientos.",
+          "context": "Запиши 700 перед euros.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "___ personas",
+          "answers": [
+            "novecientas"
+          ],
+          "explain": "900 — novecientas перед женским personas.",
+          "context": "Запиши 900 перед personas.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Hay ___ sillas.",
+          "answers": [
+            "trescientas"
+          ],
+          "explain": "Sillas — женский род: trescientas.",
+          "context": "Исправь trescientos в этой фразе.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "Hay ",
+            "trescientos",
+            " sillas."
+          ],
+          "sourceLabel": "Найди ошибку"
+        }
+      ],
+      "preview": {
+        "source": "___ personas",
+        "sentenceParts": [
+          "",
+          " personas"
+        ],
+        "answer": "doscientas",
+        "targetPrefix": "",
+        "translation": "200 человек"
+      },
+      "instruction": "Впиши только числительное. В последнем задании исправь выделенную форму.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши только пропущенную часть словами. Остальную фразу не повторяй.",
+        "placeholder": "Число словами"
+      }
+    },
+    {
+      "id": "26.1",
+      "title": "26.1 · Тысячи и миллионы",
+      "theorySections": [
+        0,
+        1
+      ],
+      "questions": [
+        {
+          "prompt": "___",
+          "answers": [
+            "ciento ochenta y tres",
+            "ciento ochentaitrés"
+          ],
+          "explain": "Читаем части по порядку: ciento ochenta y tres. Между разрядами y не добавляем.",
+          "context": "Запиши число 183 словами.",
+          "sourceRef": "26.1.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Части числа",
+            "items": [
+              [
+                "Остаток",
+                "183"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "___",
+          "answers": [
+            "mil setenta"
+          ],
+          "explain": "Читаем части по порядку: mil setenta. Между разрядами y не добавляем.",
+          "context": "Запиши число 1 070 словами.",
+          "sourceRef": "26.1.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Части числа",
+            "items": [
+              [
+                "Тысячи",
+                "1"
+              ],
+              [
+                "Остаток",
+                "070"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "___",
+          "answers": [
+            "tres mil quinientos sesenta y uno",
+            "tres mil quinientos sesentaiuno"
+          ],
+          "explain": "Читаем части по порядку: tres mil quinientos sesenta y uno. Между разрядами y не добавляем.",
+          "context": "Запиши число 3 561 словами.",
+          "sourceRef": "26.1.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Части числа",
+            "items": [
+              [
+                "Тысячи",
+                "3"
+              ],
+              [
+                "Остаток",
+                "561"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "___",
+          "answers": [
+            "un millón doscientos treinta y un mil setecientos cincuenta y ocho",
+            "un millón doscientos treinta y un mil setecientos cincuentaiocho",
+            "un millón doscientos treintaiún mil setecientos cincuenta y ocho",
+            "un millón doscientos treintaiún mil setecientos cincuentaiocho"
+          ],
+          "explain": "Читаем части по порядку: un millón doscientos treinta y un mil setecientos cincuenta y ocho. Между разрядами y не добавляем.",
+          "context": "Запиши число 1 231 758 словами.",
+          "sourceRef": "26.1.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Части числа",
+            "items": [
+              [
+                "Миллионы",
+                "1"
+              ],
+              [
+                "Тысячи",
+                "231"
+              ],
+              [
+                "Остаток",
+                "758"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "___",
+          "answers": [
+            "tres millones cincuenta mil novecientos cuarenta y siete",
+            "tres millones cincuenta mil novecientos cuarentaisiete"
+          ],
+          "explain": "Читаем части по порядку: tres millones cincuenta mil novecientos cuarenta y siete. Между разрядами y не добавляем.",
+          "context": "Запиши число 3 050 947 словами.",
+          "sourceRef": "26.1.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Части числа",
+            "items": [
+              [
+                "Миллионы",
+                "3"
+              ],
+              [
+                "Тысячи",
+                "050"
+              ],
+              [
+                "Остаток",
+                "947"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "___",
+          "answers": [
+            "veintidós millones ochocientos noventa y un mil seiscientos cuatro",
+            "veintidós millones ochocientos noventaiún mil seiscientos cuatro"
+          ],
+          "explain": "Читаем части по порядку: veintidós millones ochocientos noventa y un mil seiscientos cuatro. Между разрядами y не добавляем.",
+          "context": "Запиши число 22 891 604 словами.",
+          "sourceRef": "26.1.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Части числа",
+            "items": [
+              [
+                "Миллионы",
+                "22"
+              ],
+              [
+                "Тысячи",
+                "891"
+              ],
+              [
+                "Остаток",
+                "604"
+              ]
+            ]
+          }
+        }
+      ],
+      "preview": {
+        "source": "___",
+        "sentenceParts": [
+          "",
+          ""
+        ],
+        "answer": "dos mil ciento cinco",
+        "targetPrefix": "",
+        "translation": "2 105"
+      },
+      "instruction": "Запиши число целиком словами. Карточки показывают разряды, но не готовые слова.",
+      "inlineAnswer": false,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши всё число словами, без цифр и без названия предмета.",
+        "placeholder": "Число целиком"
+      },
+      "phraseInput": true
+    },
+    {
+      "id": "26.2",
+      "title": "26.2 · Запятая и цены",
+      "theorySections": [
+        0,
+        1,
+        2
+      ],
+      "questions": [
+        {
+          "prompt": "___",
+          "answers": [
+            "ciento quince coma diez",
+            "ciento quince con diez",
+            "ciento quince coma uno cero"
+          ],
+          "explain": "Запятую читаем coma или con. Можно прочитать дробную часть числом или по цифрам после coma.",
+          "context": "Прочитай десятичное число 115,10.",
+          "sourceRef": "26.1.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Десятичная запись",
+            "items": [
+              [
+                "Число",
+                "115,10"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "___",
+          "answers": [
+            "cuatrocientos quince coma veinticinco",
+            "cuatrocientos quince con veinticinco",
+            "cuatrocientos quince coma dos cinco"
+          ],
+          "explain": "Запятую читаем coma или con. Можно прочитать дробную часть числом или по цифрам после coma.",
+          "context": "Прочитай десятичное число 415,25.",
+          "sourceRef": "26.1.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Десятичная запись",
+            "items": [
+              [
+                "Число",
+                "415,25"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "___ dólares",
+          "answers": [
+            "doscientos cinco"
+          ],
+          "explain": "doscientos cinco dólares. Согласуем сотни и окончание uno с названием валюты.",
+          "context": "Запиши цену 205 словами.",
+          "sourceRef": "26.2.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Цена",
+            "items": [
+              [
+                "Сумма",
+                "205"
+              ],
+              [
+                "Валюта",
+                "dólares"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "___ euros",
+          "answers": [
+            "trescientos un"
+          ],
+          "explain": "trescientos un euros. Согласуем сотни и окончание uno с названием валюты.",
+          "context": "Запиши цену 301 словами.",
+          "sourceRef": "26.2.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Цена",
+            "items": [
+              [
+                "Сумма",
+                "301"
+              ],
+              [
+                "Валюта",
+                "euros"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "___ yenes",
+          "answers": [
+            "dos mil seiscientos doce"
+          ],
+          "explain": "dos mil seiscientos doce yenes. Согласуем сотни и окончание uno с названием валюты.",
+          "context": "Запиши цену 2 612 словами.",
+          "sourceRef": "26.2.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Цена",
+            "items": [
+              [
+                "Сумма",
+                "2 612"
+              ],
+              [
+                "Валюта",
+                "yenes"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "___ euros",
+          "answers": [
+            "ochenta y tres mil ciento noventa y cinco",
+            "ochenta y tres mil ciento noventaicinco",
+            "ochentaitrés mil ciento noventa y cinco",
+            "ochentaitrés mil ciento noventaicinco"
+          ],
+          "explain": "ochenta y tres mil ciento noventa y cinco euros. Согласуем сотни и окончание uno с названием валюты.",
+          "context": "Запиши цену 83 195 словами.",
+          "sourceRef": "26.2.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Цена",
+            "items": [
+              [
+                "Сумма",
+                "83 195"
+              ],
+              [
+                "Валюта",
+                "euros"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "___ reales",
+          "answers": [
+            "quinientos sesenta y ocho",
+            "quinientos sesentaiocho"
+          ],
+          "explain": "quinientos sesenta y ocho reales. Согласуем сотни и окончание uno с названием валюты.",
+          "context": "Запиши цену 568 словами.",
+          "sourceRef": "26.2.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Цена",
+            "items": [
+              [
+                "Сумма",
+                "568"
+              ],
+              [
+                "Валюта",
+                "reales"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "___ coronas danesas",
+          "answers": [
+            "mil cuatrocientas veintiuna"
+          ],
+          "explain": "mil cuatrocientas veintiuna coronas danesas. Согласуем сотни и окончание uno с названием валюты.",
+          "context": "Запиши цену 1 421 словами.",
+          "sourceRef": "26.2.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Цена",
+            "items": [
+              [
+                "Сумма",
+                "1 421"
+              ],
+              [
+                "Валюта",
+                "coronas danesas"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "___ liras turcas",
+          "answers": [
+            "ochocientas treinta y una",
+            "ochocientas treintaiuna"
+          ],
+          "explain": "ochocientas treinta y una liras turcas. Согласуем сотни и окончание uno с названием валюты.",
+          "context": "Запиши цену 831 словами.",
+          "sourceRef": "26.2.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Цена",
+            "items": [
+              [
+                "Сумма",
+                "831"
+              ],
+              [
+                "Валюта",
+                "liras turcas"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "___ pesos mexicanos",
+          "answers": [
+            "cuatrocientos setenta y un mil novecientos cincuenta",
+            "cuatrocientos setentaiún mil novecientos cincuenta"
+          ],
+          "explain": "cuatrocientos setenta y un mil novecientos cincuenta pesos mexicanos. Согласуем сотни и окончание uno с названием валюты.",
+          "context": "Запиши цену 471 950 словами.",
+          "sourceRef": "26.2.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Цена",
+            "items": [
+              [
+                "Сумма",
+                "471 950"
+              ],
+              [
+                "Валюта",
+                "pesos mexicanos"
+              ]
+            ]
+          }
+        }
+      ],
+      "preview": {
+        "source": "___ coronas",
+        "sentenceParts": [
+          "",
+          " coronas"
+        ],
+        "answer": "mil doscientas",
+        "targetPrefix": "",
+        "translation": "1 200 крон"
+      },
+      "instruction": "В первых двух заданиях прочитай десятичную запись целиком. В ценах впиши только число: название валюты уже написано.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши числительное словами. Если валюта уже написана, не повторяй её.",
+        "placeholder": "Число словами"
+      },
+      "phraseInput": true
+    },
+    {
+      "id": "26.3",
+      "title": "26.3 · Количество, расстояние и возраст",
+      "theorySections": [
+        0,
+        1,
+        3
+      ],
+      "questions": [
+        {
+          "prompt": "La Habana tiene ___ de habitantes.",
+          "answers": [
+            "dos millones"
+          ],
+          "explain": "dos millones. Проверяем сотни и порядок частей; написанные слова не повторяем.",
+          "context": "Учебные данные: два миллиона жителей. De уже написано.",
+          "sourceRef": "26.3.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Число для пропуска",
+            "items": [
+              [
+                "Дано",
+                "2 000 000"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "María gana ___ euros al mes.",
+          "answers": [
+            "dos mil ochenta y cinco",
+            "dos mil ochentaicinco"
+          ],
+          "explain": "dos mil ochenta y cinco. Проверяем сотни и порядок частей; написанные слова не повторяем.",
+          "context": "В этой истории Мария зарабатывает 2 085 евро в месяц.",
+          "sourceRef": "26.3.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Число для пропуска",
+            "items": [
+              [
+                "Дано",
+                "2 085"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Rafael tiene una colección de más de ___ mariposas.",
+          "answers": [
+            "trescientas"
+          ],
+          "explain": "trescientas. Название женского рода: trescientas.",
+          "context": "У Рафаэля коллекция из более чем 300 бабочек.",
+          "sourceRef": "26.3.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Число для пропуска",
+            "items": [
+              [
+                "Дано",
+                "300"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "En esta historia, Clara tiene ___ años.",
+          "answers": [
+            "ciento dieciocho"
+          ],
+          "explain": "ciento dieciocho. Проверяем сотни и порядок частей; написанные слова не повторяем.",
+          "context": "Кларе в этой истории 118 лет.",
+          "sourceRef": "26.3.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Число для пропуска",
+            "items": [
+              [
+                "Дано",
+                "118"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Según este itinerario, de Cartagena a Bogotá hay ___ kilómetros.",
+          "answers": [
+            "mil doscientos setenta y cuatro",
+            "mil doscientos setentaicuatro"
+          ],
+          "explain": "mil doscientos setenta y cuatro. Проверяем сотни и порядок частей; написанные слова не повторяем.",
+          "context": "По этому учебному маршруту расстояние — 1 274 км.",
+          "sourceRef": "26.3.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Число для пропуска",
+            "items": [
+              [
+                "Дано",
+                "1 274"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Alberto pesa ___ kilos.",
+          "answers": [
+            "ciento ocho"
+          ],
+          "explain": "ciento ocho. Проверяем сотни и порядок частей; написанные слова не повторяем.",
+          "context": "Собери число 108 перед kilos. Не все слова нужны.",
+          "sourceRef": "26.3.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Число для пропуска",
+            "items": [
+              [
+                "Дано",
+                "108"
+              ]
+            ]
+          },
+          "interaction": "build",
+          "tiles": [
+            "ocho",
+            "ciento",
+            "cien",
+            "y"
+          ]
+        },
+        {
+          "prompt": "Machu Picchu tiene más de ___ años.",
+          "answers": [
+            "quinientos"
+          ],
+          "explain": "quinientos. Проверяем сотни и порядок частей; написанные слова не повторяем.",
+          "context": "Мачу-Пикчу больше 500 лет.",
+          "sourceRef": "26.3.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Число для пропуска",
+            "items": [
+              [
+                "Дано",
+                "500"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "En este anuncio, la televisión cuesta ___ bolívares.",
+          "answers": [
+            "trescientos diez"
+          ],
+          "explain": "trescientos diez. Проверяем сотни и порядок частей; написанные слова не повторяем.",
+          "context": "В этом объявлении телевизор стоит 310 боливаров.",
+          "sourceRef": "26.3.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Число для пропуска",
+            "items": [
+              [
+                "Дано",
+                "310"
+              ]
+            ]
+          }
+        }
+      ],
+      "preview": {
+        "source": "El libro tiene ___ páginas.",
+        "sentenceParts": [
+          "El libro tiene ",
+          " páginas."
+        ],
+        "answer": "doscientas cuarenta",
+        "targetPrefix": "",
+        "translation": "В книге 240 страниц."
+      },
+      "instruction": "Дополни предложение числом словами. Учитывай род существительного и уже написанную de.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши только пропущенную часть словами. Остальную фразу не повторяй.",
+        "placeholder": "Число словами"
+      },
+      "phraseInput": true
+    },
+    {
+      "id": "26.4",
+      "title": "26.4 · Годы в датах",
+      "theorySections": [
+        4
+      ],
+      "questions": [
+        {
+          "prompt": "veintiuno de enero de ___",
+          "answers": [
+            "mil ochocientos doce"
+          ],
+          "explain": "Год 1812 — mil ochocientos doce. Дата читается: veintiuno de enero de mil ochocientos doce.",
+          "context": "Дополни дату: впиши только год словами.",
+          "sourceRef": "26.4.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Календарная дата",
+            "items": [
+              [
+                "День",
+                "21"
+              ],
+              [
+                "Месяц",
+                "enero"
+              ],
+              [
+                "Год",
+                "1812"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "dos de mayo de ___",
+          "answers": [
+            "dos mil uno"
+          ],
+          "explain": "Год 2001 — dos mil uno. Дата читается: dos de mayo de dos mil uno.",
+          "context": "Дополни дату: впиши только год словами.",
+          "sourceRef": "26.4.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Календарная дата",
+            "items": [
+              [
+                "День",
+                "2"
+              ],
+              [
+                "Месяц",
+                "mayo"
+              ],
+              [
+                "Год",
+                "2001"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "veinticinco de octubre de ___",
+          "answers": [
+            "mil novecientos cincuenta y cuatro",
+            "mil novecientos cincuentaicuatro"
+          ],
+          "explain": "Год 1954 — mil novecientos cincuenta y cuatro. Дата читается: veinticinco de octubre de mil novecientos cincuenta y cuatro.",
+          "context": "Дополни дату: впиши только год словами.",
+          "sourceRef": "26.4.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Календарная дата",
+            "items": [
+              [
+                "День",
+                "25"
+              ],
+              [
+                "Месяц",
+                "octubre"
+              ],
+              [
+                "Год",
+                "1954"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "treinta y uno de diciembre de ___",
+          "answers": [
+            "dos mil ocho"
+          ],
+          "explain": "Год 2008 — dos mil ocho. Дата читается: treinta y uno de diciembre de dos mil ocho.",
+          "context": "Дополни дату: впиши только год словами.",
+          "sourceRef": "26.4.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Календарная дата",
+            "items": [
+              [
+                "День",
+                "31"
+              ],
+              [
+                "Месяц",
+                "diciembre"
+              ],
+              [
+                "Год",
+                "2008"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "diez de julio de ___",
+          "answers": [
+            "mil seiscientos trece"
+          ],
+          "explain": "Год 1613 — mil seiscientos trece. Дата читается: diez de julio de mil seiscientos trece.",
+          "context": "Дополни дату: впиши только год словами.",
+          "sourceRef": "26.4.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Календарная дата",
+            "items": [
+              [
+                "День",
+                "10"
+              ],
+              [
+                "Месяц",
+                "julio"
+              ],
+              [
+                "Год",
+                "1613"
+              ]
+            ]
+          }
+        }
+      ],
+      "preview": {
+        "source": "doce de marzo de ___",
+        "sentenceParts": [
+          "doce de marzo de ",
+          ""
+        ],
+        "answer": "dos mil tres",
+        "targetPrefix": "",
+        "translation": "12 марта 2003 года"
+      },
+      "instruction": "День и месяц уже написаны. Впиши только год целиком словами.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши только год словами. День, месяц и de не повторяй.",
+        "placeholder": "Год словами",
+        "example": "mil novecientos veinte"
+      },
+      "phraseInput": true
+    }
+  ],
+  "learningOrder": [
+    "section:0",
+    "exercise:26.a",
+    "section:1",
+    "exercise:26.1",
+    "section:2",
+    "exercise:26.2",
+    "section:3",
+    "exercise:26.3",
+    "section:4",
+    "exercise:26.4",
+    "summary"
+  ],
+  "summary": {
+    "wordGroups": [
+      {
+        "title": "Сто и сотни",
+        "words": [
+          [
+            "cien / ciento cinco",
+            "100 / 105"
+          ],
+          [
+            "quinientos / setecientos / novecientos",
+            "500 / 700 / 900"
+          ],
+          [
+            "trescientas páginas",
+            "Сотни согласуем с существительным"
+          ]
+        ]
+      },
+      {
+        "title": "Тысячи и миллионы",
+        "words": [
+          [
+            "mil / un millón / dos millones",
+            "1 000 / 1 000 000 / 2 000 000"
+          ],
+          [
+            "dos millones de euros / dos millones cien mil euros",
+            "De — только сразу между миллионами и существительным"
+          ]
+        ]
+      },
+      {
+        "title": "Запятая и год",
+        "words": [
+          [
+            "seis coma diez / seis con diez",
+            "6,10"
+          ],
+          [
+            "doce de marzo de dos mil tres",
+            "12 марта 2003 года"
+          ]
+        ]
+      }
+    ]
+  }
+}
