@@ -14,9 +14,140 @@ function gStoreAttempt(unit, group, attempt) {
   const records=gAttempts(); records[grammarKey(unit,group)]=attempt;
   store.set(G_ATTEMPTS_KEY,JSON.stringify(records));
 }
+function gChoiceSpecs(group) {
+  const specs=[];
+  group.questions.forEach((q,qi)=>{
+    const fixed=group.shuffleOptions===false || q.shuffleOptions===false;
+    // A guided task can retain an old full-answer list for saved legacy responses only.
+    if(q.options) specs.push({key:String(qi),values:q.options,answer:q.answers.find(a=>!q.answerWarnings?.[a]) || q.answers[0],answers:q.options.filter(value=>grammarCorrect(q,value)),fixed:fixed || !!q.guidedGaps});
+    if(q.guidedGaps) {
+      const {parts,choices}=q.guidedGaps, matches=[];
+      const visit=values=>{
+        if(values.length===choices.length) {
+          const answer=gComposeGaps(parts,values);
+          const rank=q.answers.findIndex(a=>grammarNormalize(a)===grammarNormalize(answer));
+          if(rank>=0)matches.push({rank,values});
+        } else choices[values.length].forEach(value=>visit([...values,value]));
+      };
+      visit([]); matches.sort((a,b)=>a.rank-b.rank);
+      choices.forEach((values,slot)=>specs.push({key:`${qi}:${slot}`,values,answer:matches[0]?.values[slot],answers:[...new Set(matches.map(m=>m.values[slot]))],fixed}));
+    }
+  });
+  return specs;
+}
+function gChoicePermutation(order, values) {
+  return Array.isArray(order) && order.length===values.length
+    && values.every(value=>order.filter(v=>v===value).length===values.filter(v=>v===value).length);
+}
+function gShuffleChoices(values, random=Math.random) {
+  const result=values.slice();
+  for(let i=result.length-1;i>0;i--) {const j=Math.floor(random()*(i+1));[result[i],result[j]]=[result[j],result[i]];}
+  return result;
+}
+function gChoiceBucketIssues(specs, orders) {
+  const issues=[], size=specs[0]?.values.length;
+  if(!size)return issues;
+  const positions=specs.map(s=>orders[s.key]?.indexOf(s.answer)), counts=Array(size).fill(0);
+  positions.forEach(p=>{if(p>=0)counts[p]++;});
+  if(specs.some(s=>!gChoicePermutation(orders[s.key],s.values)) || positions.some(p=>!(p>=0)))return ['invalid'];
+  // Small samples must not promise the learner a remaining position by an exact quota.
+  if(specs.length>=8) {
+    const expected=specs.length/size, tolerance=Math.max(1.5,Math.ceil(expected/4));
+    if(counts.some(n=>Math.abs(n-expected)>tolerance))issues.push('imbalance');
+    const accepted=Array(size).fill(0);
+    specs.forEach(s=>orders[s.key].forEach((value,i)=>{if(s.answers.includes(value))accepted[i]++;}));
+    const acceptedExpected=accepted.reduce((n,k)=>n+k,0)/size, acceptedTolerance=Math.max(1.5,Math.ceil(acceptedExpected/4));
+    if(accepted.some(n=>Math.abs(n-acceptedExpected)>acceptedTolerance))issues.push('accepted-imbalance');
+  }
+  if(specs.length>=5 && Math.max(...counts)>=Math.ceil(specs.length*.8) && !issues.includes('imbalance'))issues.push('imbalance');
+  for(let i=3;i<positions.length;i++)if(positions.slice(i-3,i+1).every(p=>p===positions[i])){issues.push('run');break;}
+  for(let i=0;i+5<positions.length;i++) {
+    const six=positions.slice(i,i+6);
+    if([2,3].some(period=>six.every((p,k)=>p===six[k%period]))) {issues.push('cycle');break;}
+    if(size>=3 && [1,size-1].some(delta=>six.slice(1).every((p,k)=>(p-six[k]+size)%size===delta))) {issues.push('cycle');break;}
+  }
+  return issues;
+}
+function gChoiceSequenceIssues(specs, orders) {
+  const positions=specs.filter(s=>!s.fixed).map(s=>orders[s.key]?.indexOf(s.answer)), issues=[];
+  for(let i=3;i<positions.length;i++)if(positions.slice(i-3,i+1).every(p=>p===positions[i])){issues.push('run');break;}
+  for(let i=0;i+5<positions.length;i++) {
+    const six=positions.slice(i,i+6), size=Math.max(...six)+1;
+    if([2,3].some(period=>six.every((p,k)=>p===six[k%period]))
+       || (size>=3 && [1,size-1].some(delta=>six.slice(1).every((p,k)=>(p-six[k]+size)%size===delta)))){issues.push('cycle');break;}
+  }
+  return issues;
+}
+function gChoiceOrderIssues(group, orders) {
+  const buckets=new Map(), issues=[], specs=gChoiceSpecs(group);
+  for(const spec of specs) {
+    if(!gChoicePermutation(orders?.[spec.key],spec.values))issues.push({kind:'invalid',key:spec.key});
+    if(spec.fixed)continue;
+    const bucket=buckets.get(spec.values.length) || [];bucket.push(spec);buckets.set(spec.values.length,bucket);
+  }
+  for(const [size,items] of buckets)for(const kind of gChoiceBucketIssues(items,orders || {}))issues.push({kind,size});
+  for(const kind of gChoiceSequenceIssues(specs,orders || {}))issues.push({kind,scope:'exercise'});
+  return issues;
+}
+function gPlanChoiceOrders(group, random=Math.random, round=0) {
+  if(round===0) {
+    // Expand one random seed into a stream, so a low-entropy draw cannot repeat a layout per question.
+    let state=Math.floor(random()*4294967296)>>>0;
+    random=()=>{state=(state+0x6D2B79F5)>>>0;let x=state;x=Math.imul(x^(x>>>15),x|1);x^=x+Math.imul(x^(x>>>7),x|61);return ((x^(x>>>14))>>>0)/4294967296;};
+  }
+  const orders={}, buckets=new Map();
+  for(const spec of gChoiceSpecs(group)) {
+    orders[spec.key]=spec.values.slice();
+    if(!spec.fixed) {const bucket=buckets.get(spec.values.length) || [];bucket.push(spec);buckets.set(spec.values.length,bucket);}
+  }
+  for(const [size,specs] of buckets) {
+    let best=null, bestScore=Infinity;
+    for(let trial=0;trial<256;trial++) {
+      let slots;
+      if(specs.length<8)slots=specs.map(()=>Math.floor(random()*size));
+      else {
+        const expected=specs.length/size, tolerance=Math.max(1.5,Math.ceil(expected/4));
+        const counts=Array(size).fill(Math.floor(expected));
+        gShuffleChoices(Array.from({length:size},(_,i)=>i),random).slice(0,specs.length%size).forEach(i=>counts[i]++);
+        // Vary the counts within the allowed range: balanced does not mean a fixed quota.
+        for(let i=0;i<specs.length;i++) {
+          const from=Math.floor(random()*size),to=Math.floor(random()*size);
+          if(from!==to && counts[from]>0 && Math.abs(counts[from]-1-expected)<=tolerance && Math.abs(counts[to]+1-expected)<=tolerance){counts[from]--;counts[to]++;}
+        }
+        slots=gShuffleChoices(counts.flatMap((n,i)=>Array(n).fill(i)),random);
+      }
+      const candidate={};
+      specs.forEach((s,i)=>{const rest=s.values.slice();rest.splice(rest.indexOf(s.answer),1);const shuffled=gShuffleChoices(rest,random);shuffled.splice(slots[i],0,s.answer);candidate[s.key]=shuffled;});
+      const score=gChoiceBucketIssues(specs,candidate).length;
+      if(score<bestScore){best=candidate;bestScore=score;}
+      if(!score)break;
+    }
+    Object.assign(orders,best);
+  }
+  // Different option counts can be interleaved in one exercise; inspect their combined sequence too.
+  if(round<64 && gChoiceOrderIssues(group,orders).length)return gPlanChoiceOrders(group,random,round+1);
+  return orders;
+}
+function gEnsureChoiceOrders(group, attempt) {
+  let changed=false;
+  if(!attempt.optionOrders || typeof attempt.optionOrders!=='object' || Array.isArray(attempt.optionOrders)){attempt.optionOrders={};changed=true;}
+  for(const spec of gChoiceSpecs(group))if(!gChoicePermutation(attempt.optionOrders[spec.key],spec.values)) {
+    // Preserve the source order for pre-shuffle attempts; never reset their responses or lives.
+    attempt.optionOrders[spec.key]=spec.values.slice();changed=true;
+  }
+  return changed;
+}
+function gOrderedChoices(group, qi, slot=null, attempt=null) {
+  const q=group.questions[qi], source=slot===null?q.options:q.guidedGaps.choices[slot];
+  const key=slot===null?String(qi):`${qi}:${slot}`, order=attempt?.optionOrders?.[key];
+  return gChoicePermutation(order,source)?order:source;
+}
 function gNewAttempt(group, responses={}) {
   const errors=Object.values(responses).filter(r=>r.checked && !r.good).length;
-  return {id:Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),revision:group.revision || 1,errors,limit:gErrorLimit(group),status:gOutOfLives(group,errors)?'failed':'active',responses};
+  const attempt={id:Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),revision:group.revision || 1,errors,limit:gErrorLimit(group),status:gOutOfLives(group,errors)?'failed':'active',responses};
+  if(Object.keys(responses).length)gEnsureChoiceOrders(group,attempt);
+  else attempt.optionOrders=gPlanChoiceOrders(group);
+  return attempt;
 }
 function gRefreshAttemptVersions(unit) {
   const records=gAttempts(), current=G.steps[G.at]; let changed=false, restartGroup=null;
@@ -71,6 +202,7 @@ function gEnsureAttempt(unit, group) {
     G.responses[group.id]=attempt.responses;
     G.attemptIds[group.id]=attempt.id;
   }
+  if(gEnsureChoiceOrders(group,attempt))gStoreAttempt(unit,group,attempt);
   if(['failed','review'].includes(attempt.status)) G.recovery=group.id;
   return attempt;
 }
@@ -292,12 +424,16 @@ function gCheck() {
   gSave(); render(); sfx(response.status==='almost'?'almost':response.good);
 }
 function gPick(index) {
+  const step=G?.steps[G.at], q=step?.group && gGroups(gUnit()).find(g=>g.id===step.group)?.questions[step.qi];
+  if(Number.isInteger(index) && q?.options?.[index]!==undefined)gPickValue(q.options[index]);
+}
+function gPickValue(value) {
   if (!G || G.ended || G.recovery) return;
   const step = G.steps[G.at], response = gResponse(step);
   if (!response || response.checked) return;
   const options = gGroups(gUnit()).find(g => g.id === step.group).questions[step.qi].options;
-  if (!Number.isInteger(index) || !options || index < 0 || index >= options.length) return;
-  response.value = options[index];
+  if (!options?.includes(value)) return;
+  response.value = value;
   gCheck();
 }
 function gQuestionMode(q, response) {
@@ -334,7 +470,7 @@ function gComposeGaps(parts, values) {
 function gSelectGap(slot, option) {
   if (!G || G.ended || G.recovery) return;
   const response=gResponse(G.steps[G.at]);
-  const q=gGroups(gUnit()).find(g=>g.id===G.steps[G.at].group)?.questions[G.steps[G.at].qi];
+  const group=gGroups(gUnit()).find(g=>g.id===G.steps[G.at].group), q=group?.questions[G.steps[G.at].qi];
   if (!response || response.checked || !q?.guidedGaps || !Number.isInteger(slot) || !q.guidedGaps.choices[slot]) return;
   if (option !== undefined && (!Number.isInteger(option) || !q.guidedGaps.choices[slot][option])) return;
   response.slotValues ||= Array(q.guidedGaps.choices.length).fill('');
@@ -349,17 +485,22 @@ function gSelectGap(slot, option) {
   gSave();
   const area=document.querySelector('.gguided');
   if(area) {
-    area.innerHTML=gGuidedContents(q,response);
+    area.innerHTML=gGuidedContents(q,response,group,G.steps[G.at].qi);
     area.querySelector(`[data-gslot="${response.activeGap}"]`)?.focus({preventScroll:true});
   }
   const check=document.querySelector('[data-gcheck]'); if(check)check.disabled=!response.value;
 }
-function gGuidedContents(q,response) {
+function gSelectGapValue(slot,value) {
+  const step=G?.steps[G.at], q=step?.group && gGroups(gUnit()).find(g=>g.id===step.group)?.questions[step.qi];
+  const choices=q?.guidedGaps?.choices[slot];
+  if(choices?.includes(value))gSelectGap(slot,choices.indexOf(value));
+}
+function gGuidedContents(q,response,group=null,qi=null) {
   const {parts,choices}=q.guidedGaps, values=response.slotValues || [], active=response.activeGap || 0;
   const [before,after]=q.prompt.split('___');
-  return `${gAnswerHint(q)}<p class="gguided-sentence" lang="es">${esc(before)}${parts.map((part,i)=>`${esc(part)}${i<choices.length ? `<button class="gguided-slot ${i===active && !response.checked?'is-active':''}" data-gslot="${i}" aria-label="Пропуск ${i+1}${values[i]?': '+esc(values[i]):''}" ${response.checked?'disabled':''}>${esc(values[i] || '…')}<small aria-hidden="true">${i+1}</small></button>`:''}`).join('')}${esc(after || '')}</p>${response.checked?'':`<div class="gguided-options" role="group" aria-label="Варианты для пропуска ${active+1}"><p class="muted">Выбери слово для пропуска ${active+1} из ${choices.length}</p><div class="gbuild-bank">${choices[active].map((word,i)=>`<button class="gtile" data-gslot-choice="${i}" data-slot="${active}" lang="es" aria-pressed="${values[active]===word}">${esc(word)}</button>`).join('')}</div></div>`}`;
+  return `${gAnswerHint(q)}<p class="gguided-sentence" lang="es">${esc(before)}${parts.map((part,i)=>`${esc(part)}${i<choices.length ? `<button class="gguided-slot ${i===active && !response.checked?'is-active':''}" data-gslot="${i}" aria-label="Пропуск ${i+1}${values[i]?': '+esc(values[i]):''}" ${response.checked?'disabled':''}>${esc(values[i] || '…')}<small aria-hidden="true">${i+1}</small></button>`:''}`).join('')}${esc(after || '')}</p>${response.checked?'':`<div class="gguided-options" role="group" aria-label="Варианты для пропуска ${active+1}"><p class="muted">Выбери слово для пропуска ${active+1} из ${choices.length}</p><div class="gbuild-bank">${(group?gOrderedChoices(group,qi,active,gAttempt(gUnit(),group)):choices[active]).map(word=>`<button class="gtile" data-gslot-choice="${choices[active].indexOf(word)}" data-gslot-value="${esc(word)}" data-slot="${active}" lang="es" aria-pressed="${values[active]===word}">${esc(word)}</button>`).join('')}</div></div>`}`;
 }
-function gGuided(q,response) { return `<div class="gguided">${gGuidedContents(q,response)}</div>`; }
+function gGuided(q,response,group,qi) { return `<div class="gguided">${gGuidedContents(q,response,group,qi)}</div>`; }
 function gMove(delta) {
   if(!G) return;
   if(G.recovery) return gReviewMove(delta);
@@ -612,7 +753,7 @@ function gPlayerView() {
     title = q.context || (group.inlineAnswer ? "Дополни фразу" : q.image ? (group.pictureTitle || "Выбери название профессии") : q.prompt);
     const who = block ? `<div class="gwho"><img src="${esc(group.family.portraits[block.person])}" alt="" width="44" height="44"><b>Родственники ${esc(block.person)}</b></div>` : "";
     const mode=gQuestionMode(q,response);
-    const options = mode==='gaps' ? gGuided(q,response) : mode==='build' ? gBuilder(q,response) : q.options ? `<div class="${q.interaction==='gap-choice'?'gchoices':'opts'}${q.answerWarnings?' has-warnings':''}" role="group" aria-label="Варианты ответа">${q.options.map((o,i) => `<button class="opt ${grammarChoiceClass(q,o,response.value,response.checked,group)}" data-gpick="${i}" aria-label="${esc(o === 'Без артикля' ? 'Ничего не вставлять' : gOptionLabel(q,o))}" aria-pressed="${response.value === o}" ${response.checked ? "disabled" : ""}><span class="k">${i + 1}</span><span class="goption-label"><span lang="es">${esc(gOptionLabel(q,o))}</span>${grammarChoiceNote(q,o,response.checked)}</span></button>`).join("")}</div>`
+    const options = mode==='gaps' ? gGuided(q,response,group,step.qi) : mode==='build' ? gBuilder(q,response) : q.options ? `<div class="${q.interaction==='gap-choice'?'gchoices':'opts'}${q.answerWarnings?' has-warnings':''}" role="group" aria-label="Варианты ответа">${gOrderedChoices(group,step.qi,null,attempt).map((o,position) => `<button class="opt ${grammarChoiceClass(q,o,response.value,response.checked,group)}" data-gpick="${q.options.indexOf(o)}" data-gvalue="${esc(o)}" data-gposition="${position}" aria-label="${esc(o === 'Без артикля' ? 'Ничего не вставлять' : gOptionLabel(q,o))}" aria-pressed="${response.value === o}" ${response.checked ? "disabled" : ""}><span class="k">${position + 1}</span><span class="goption-label"><span lang="es">${esc(gOptionLabel(q,o))}</span>${grammarChoiceNote(q,o,response.checked)}</span></button>`).join("")}</div>`
       : `<div>${grammarInputHelp(q,group,"g-answer-format")}<label class="sr-only" for="g-answer">Ответ на испанском</label>${group.phraseInput && q.answers[0].split(' ').length>2 ? `<textarea class="ginput gphrase-input" id="g-answer" aria-label="Ответ на испанском" aria-describedby="g-answer-format" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" rows="2" placeholder="${esc(grammarInputPlaceholder(q,group))}" ${response.checked ? "disabled" : ""}>${esc(response.value)}</textarea>` : `<input class="ginput" id="g-answer" aria-label="Ответ на испанском" aria-describedby="g-answer-format" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="${esc(grammarInputPlaceholder(q,group))}" value="${esc(response.value)}" ${response.checked ? "disabled" : ""}>`}${response.checked ? "" : gCharsPanel(q)}</div>`;
     const source = q.sourceParts ? `<div class="gsource" lang="es"><span class="kicker">${esc(q.sourceLabel || 'Исходная фраза')}</span><p>${esc(q.sourceParts[0])}<strong>${esc(q.sourceParts[1])}</strong>${esc(q.sourceParts[2])}</p></div>` : "";
     const clues = q.clues ? `<div class="gclues" aria-label="Слова для ответа">${q.clues.map(([es,ru])=>`<span><b lang="es">${esc(es)}</b><small>${esc(ru)}</small></span>`).join("")}</div>` : "";

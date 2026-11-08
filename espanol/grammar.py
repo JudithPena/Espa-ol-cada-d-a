@@ -92,6 +92,11 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
             for item in [group] + group['questions']:
                 if 'accentSensitive' in item and type(item['accentSensitive']) is not bool:
                     raise ValueError(f"{path}: accentSensitive must be boolean")
+                if 'shuffleOptions' in item:
+                    if type(item['shuffleOptions']) is not bool:
+                        raise ValueError(f"{path}: shuffleOptions must be boolean")
+                    if item['shuffleOptions'] is False and (not isinstance(item.get('optionOrderReason'), str) or not item['optionOrderReason'].strip()):
+                        raise ValueError(f"{path}: fixed option order requires optionOrderReason")
             for q in group["questions"]:
                 if not q.get("explain") or not q.get("answers"):
                     raise ValueError(f"{path}: answer and explanation required")

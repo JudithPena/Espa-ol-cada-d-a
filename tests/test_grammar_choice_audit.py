@@ -20,9 +20,8 @@ def test_audit_covers_all_units_and_offers_every_accepted_choice():
         for group in groups(unit):
             choices = [q for q in group['questions'] if q.get('options') and not q.get('guidedGaps')]
             assert all(set(q['answers']) <= set(q['options']) for q in choices)
-            # A systematic last-button shortcut must not return in longer practice groups.
-            if len(choices) >= 4:
-                assert sum(q['options'][-1] in q['answers'] for q in choices) / len(choices) <= .8
+            # Source order is not presentation order. Runtime distribution is checked
+            # against persisted per-attempt plans in site_grammar.test.cjs.
 
 
 def test_plural_production_and_kinship_use_the_rule_instead_of_recognition():

@@ -1676,3 +1676,136 @@ test('an old failed profession attempt reopens the newly required theory instead
  assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),0);
  run(`gMove(1)`);assert.equal(run('G.steps[G.at].type'),'question');
 });
+
+test('all grammar choice sets receive valid, balanced attempt orders without changing course data',()=>{
+ const units=fs.readdirSync('content/grammar').filter(f=>f.endsWith('.json')).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
+ const run=context(units);
+ run(`function seeded(seed){let n=seed>>>0;return ()=>((n=(1664525*n+1013904223)>>>0)/4294967296);}`);
+ const before=run('JSON.stringify(COURSE.grammar)');let standard=0,guided=0;
+ for(const [ui,u] of units.entries()){
+  const groups=[...u.sections.filter(s=>s.check).map(s=>s.check),...u.exercises];
+  for(const [gi,g] of groups.entries()){
+   standard+=g.questions.filter(q=>q.options).length;guided+=g.questions.filter(q=>q.guidedGaps).length;
+   const result=JSON.parse(run(`JSON.stringify((()=>{const g=gGroups(COURSE.grammar[${ui}])[${gi}];for(let seed=1;seed<=12;seed++){const orders=gPlanChoiceOrders(g,seeded(seed*7919));const issues=gChoiceOrderIssues(g,orders);if(issues.length)return {seed,issues};for(const s of gChoiceSpecs(g))if(!gChoicePermutation(orders[s.key],s.values))return {bad:s.key};}return {};})())`));
+   assert.deepEqual(result,{},`${u.number}/${g.id}: ${JSON.stringify(result)}`);
+  }
+ }
+ assert.equal(standard,652);assert.equal(guided,9);
+ assert.equal(run('JSON.stringify(COURSE.grammar)'),before);
+});
+
+test('distribution control detects skew, runs and cycles, while short checks have no exact position quota',()=>{
+ const run=context();
+ run(`var group={questions:Array.from({length:24},()=>({answers:['d'],options:['a','b','c','d']}))};
+ var source=Object.fromEntries(group.questions.map((q,i)=>[i,q.options]));`);
+ assert.ok(run('gChoiceOrderIssues(group,source).some(x=>x.kind==="imbalance")'));
+ assert.ok(run('gChoiceOrderIssues(group,source).some(x=>x.kind==="run")'));
+ run(`var cycle=Object.fromEntries(group.questions.map((q,i)=>{const a=q.options.filter(v=>v!=='d');a.splice(i%4,0,'d');return [i,a]}));`);
+ assert.ok(run('gChoiceOrderIssues(group,cycle).some(x=>x.kind==="cycle")'));
+ assert.deepEqual(JSON.parse(run('JSON.stringify(gChoiceOrderIssues(group,gPlanChoiceOrders(group)))')),[]);
+ run(`var short={questions:[{answers:['yes'],options:['yes','no']},{answers:['yes'],options:['yes','no']}]};var patterns=new Set();for(let i=0;i<100;i++){const o=gPlanChoiceOrders(short);patterns.add([o[0].indexOf('yes'),o[1].indexOf('yes')].join());}`);
+ assert.equal(run('patterns.size'),4);
+});
+
+test('attempt order is unchanged by checking, back, reload and correction; completed repeats use a fresh attempt',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/004_articulo_indefinido.json','utf8'));
+ u.exercises[0].questions=Array.from({length:8},()=>({prompt:'___',answers:['a'],options:['a','b','c','d'],explain:'a'}));
+ const storage=new Map();let run=context([u],storage);unlockUntil(run,'exercise:4.1');
+ run(`save();gStart(COURSE.grammar[0].id,'exercise:4.1');gMove(1);`);
+ const orders=run('JSON.stringify(gAttempt(gUnit(),gUnit().exercises[0]).optionOrders)'),attemptId=run('gAttempt(gUnit(),gUnit().exercises[0]).id');
+ run(`gPickValue('b');gMove(1);gMove(-1);gExit();`);
+ run=context([u],storage);run(`gStart(COURSE.grammar[0].id,'all',true);`);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).id'),attemptId);
+ assert.equal(run('JSON.stringify(gAttempt(gUnit(),gUnit().exercises[0]).optionOrders)'),orders);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),1);
+ run(`gMove(1);while(!G.ended){gPickValue('a');gMove(1);}`);
+ assert.equal(run('JSON.stringify(gAttempt(gUnit(),gUnit().exercises[0]).optionOrders)'),orders);
+ assert.equal(run('P.grammar[grammarKey(gUnit(),gUnit().exercises[0])].correct'),7);
+ run(`gStart(gUnit().id,'exercise:4.1');gMove(1);`);
+ assert.notEqual(run('gAttempt(gUnit(),gUnit().exercises[0]).id'),attemptId);
+ assert.equal(run('gResponse(G.steps[G.at]).checked'),false);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),0);
+ assert.equal(run('gChoiceOrderIssues(gUnit().exercises[0],gAttempt(gUnit(),gUnit().exercises[0]).optionOrders).length'),0);
+});
+
+test('choice events and numeric keys follow displayed values rather than source positions',()=>{
+ const handlers={},run=context([unit],new Map(),handlers);
+ run(`gStart(COURSE.grammar[0].id,'section:0');gMove(1);
+ var group=gUnit().sections[0].check,q=group.questions[0],record=gAttempt(gUnit(),group);
+ record.optionOrders[0]=q.options.slice().reverse();gStoreAttempt(gUnit(),group,record);`);
+ const displayed=JSON.parse(run('JSON.stringify(gOrderedChoices(group,0,null,gAttempt(gUnit(),group)))'));
+ let html=run('gPlayerView()');
+ const values=[...html.matchAll(/data-gvalue="([^"]*)"/g)].map(m=>m[1]);assert.deepEqual(values,displayed);
+ run(`document.querySelector=selector=>selector==='[data-gposition="0"]'?{disabled:false,click:()=>gPickValue(${JSON.stringify(displayed[0])})}:null;`);
+ handlers.keydown({key:'1',target:{tagName:'DIV',dataset:{},closest:()=>null}});
+ assert.equal(run('gResponse(G.steps[G.at]).value'),displayed[0]);
+ assert.equal(run('gResponse(G.steps[G.at]).good'),run(`grammarCorrect(q,${JSON.stringify(displayed[0])})`));
+ const handlers2={},r2=context([unit],new Map(),handlers2);
+ r2(`gStart(COURSE.grammar[0].id,'section:0');gMove(1)`);
+ handlers2.click({target:{closest:s=>s==='button, .spoiler, [data-say], [data-line]'?{dataset:{gvalue:'la',gpick:'0'}}:null,classList:{contains:()=>false}}});
+ assert.equal(r2('gResponse(G.steps[G.at]).value'),'la');assert.equal(r2('gResponse(G.steps[G.at]).good'),true);
+});
+
+test('legacy and damaged order records preserve answered values, lives and valid existing orders',()=>{
+ const storage=new Map();let run=context([unit],storage);run(`save();gStart(COURSE.grammar[0].id,'section:0');gMove(1);gPickValue('el');gExit();
+ var records=gAttempts(),key=grammarKey(COURSE.grammar[0],COURSE.grammar[0].sections[0].check);delete records[key].optionOrders;store.set(G_ATTEMPTS_KEY,JSON.stringify(records));`);
+ run=context([unit],storage);run(`gStart(COURSE.grammar[0].id,'all',true);`);
+ assert.equal(run('gResponse(G.steps[G.at]).value'),'el');
+ assert.equal(run('gAttempt(gUnit(),gUnit().sections[0].check).errors'),1);
+ assert.equal(run('JSON.stringify(gAttempt(gUnit(),gUnit().sections[0].check).optionOrders[0])'),run('JSON.stringify(gUnit().sections[0].check.questions[0].options)'));
+ run(`var record=gAttempt(gUnit(),gUnit().sections[0].check);var oldFirst=JSON.stringify(record.optionOrders[0]);record.optionOrders[1]=['bad'];gStoreAttempt(gUnit(),gUnit().sections[0].check,record);gEnsureAttempt(gUnit(),gUnit().sections[0].check);`);
+ assert.equal(run('JSON.stringify(gAttempt(gUnit(),gUnit().sections[0].check).optionOrders[0])'),run('oldFirst'));
+ assert.equal(run('gAttempt(gUnit(),gUnit().sections[0].check).errors'),1);
+ assert.equal(run('gChoicePermutation(gAttempt(gUnit(),gUnit().sections[0].check).optionOrders[1],gUnit().sections[0].check.questions[1].options)'),true);
+});
+
+test('guided choice values and their stored order survive editing and reload without touching word banks',()=>{
+ const storage=new Map();let run=context([unit17],storage);unlockUntil(run,'exercise:17.3');
+ run(`save();document.querySelector=()=>null;gStart(COURSE.grammar[0].id,'exercise:17.3');gMove(1);
+ var group=gUnit().exercises[2],specs=gChoiceSpecs(group),originalTiles=JSON.stringify(group.questions.map(q=>q.tiles));`);
+ const orders=run('JSON.stringify(gAttempt(gUnit(),group).optionOrders)');
+ run(`for(let slot=0;slot<group.questions[0].guidedGaps.choices.length;slot++)gSelectGapValue(slot,specs.find(s=>s.key==='0:'+slot).answer);gCheck();`);
+ assert.equal(run('gResponse(G.steps[G.at]).good'),true);
+ assert.equal(run('JSON.stringify(group.questions.map(q=>q.tiles))'),run('originalTiles'));
+ assert.equal(run('JSON.stringify(gAttempt(gUnit(),group).optionOrders)'),orders);
+ run('gExit()');run=context([unit17],storage);run(`gStart(COURSE.grammar[0].id,'all',true)`);
+ assert.equal(run('gResponse(G.steps[G.at]).good'),true);
+ assert.equal(run('JSON.stringify(gAttempt(gUnit(),gUnit().exercises[2]).optionOrders)'),orders);
+});
+
+test('ordered pedagogical choices can explicitly opt out with no content reordering',()=>{
+ const run=context();
+ run(`var fixed={shuffleOptions:false,optionOrderReason:'Частотная шкала по возрастанию',questions:Array.from({length:12},()=>({answers:['c'],options:['a','b','c']}))};`);
+ assert.equal(run('Object.values(gPlanChoiceOrders(fixed)).every(o=>o.join()===\'a,b,c\')'),true);
+ assert.equal(run('gChoiceOrderIssues(fixed,gPlanChoiceOrders(fixed)).length'),0);
+ run(`delete fixed.shuffleOptions;fixed.questions.forEach(q=>q.shuffleOptions=false);`);
+ assert.equal(run('Object.values(gPlanChoiceOrders(fixed)).every(o=>o.join()===\'a,b,c\')'),true);
+});
+
+test('failed exercise recovery creates new orders while preserving the same order throughout the failed attempt',()=>{
+ const storage=new Map(),run=context([unit],storage);unlockUntil(run,'exercise:1.1');
+ run(`gStart(COURSE.grammar[0].id,'exercise:1.1');gMove(1);var firstId=gAttempt(gUnit(),gUnit().exercises[0]).id,firstOrders=JSON.stringify(gAttempt(gUnit(),gUnit().exercises[0]).optionOrders);
+ for(let i=0;i<3;i++){gResponse(G.steps[G.at]).value='wrong';gCheck();if(!G.recovery)gMove(1);}`);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).status'),'failed');
+ assert.equal(run('JSON.stringify(gAttempt(gUnit(),gUnit().exercises[0]).optionOrders)'),run('firstOrders'));
+ run(`gReviewTheory();while(gAttempt(gUnit(),gUnit().exercises[0]).reviewAt<gTheorySections(gUnit(),gUnit().exercises[0]).length-1)gReviewMove(1);gRepeatExercise();`);
+ assert.notEqual(run('gAttempt(gUnit(),gUnit().exercises[0]).id'),run('firstId'));
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),0);
+ assert.equal(run('gChoiceOrderIssues(gUnit().exercises[0],gAttempt(gUnit(),gUnit().exercises[0]).optionOrders).length'),0);
+});
+
+test('a degenerate random seed still expands to a non-repeating valid plan',()=>{
+ const run=context();
+ run(`var group={questions:Array.from({length:32},()=>({answers:['d'],options:['a','b','c','d']}))};var order=gPlanChoiceOrders(group,()=>0);`);
+ assert.equal(run('gChoiceOrderIssues(group,order).length'),0);
+ assert.ok(run('Object.values(order).some(o=>o.indexOf("d")===0)'));
+ assert.ok(run('Object.values(order).some(o=>o.indexOf("d")===3)'));
+});
+
+test('multiple accepted answers cannot hide an always-correct last position behind balanced primary answers',()=>{
+ const run=context();
+ run(`var group={questions:Array.from({length:8},()=>({answers:['a','b'],options:['a','b','c','d']}))};
+ var biased=Object.fromEntries(group.questions.map((q,i)=>{const o=['c','d','c','b'];o[i%4]='a';o[(i%4)===3?2:3]='b';const unused=['c','d'];for(let j=0;j<4;j++)if(o[j]!=='a'&&o[j]!=='b')o[j]=unused.shift();return [i,o]}));`);
+ assert.ok(run('gChoiceOrderIssues(group,biased).some(x=>x.kind==="accepted-imbalance")'));
+ assert.equal(run('gChoiceOrderIssues(group,gPlanChoiceOrders(group)).length'),0);
+});

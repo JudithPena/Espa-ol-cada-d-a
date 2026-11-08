@@ -1725,7 +1725,7 @@ function grammarForm(unit, group) {
         <fieldset class="gquestion"><legend>${esc(q.context || q.prompt)}</legend>
         ${q.context ? `<p class="gquestion-sentence" lang="es">${esc(q.prompt)}</p>` : ""}
         ${q.image ? `<img class="gillustration" src="${esc(q.image)}" alt="${esc(q.imageAlt || "")}" width="384" height="384" loading="lazy">` : ""}
-        ${q.options ? `<div class="gchoices">${q.options.map(o => `<label class="gchoice ${grammarChoiceClass(q,o,value,!!attempt,group)}"><input type="radio" name="q${i}" value="${esc(o)}" aria-label="${esc(o === 'Без артикля' ? 'Ничего не вставлять' : gOptionLabel(q,o))}" required ${value === o ? "checked" : ""} ${attempt ? "disabled" : ""}><span class="goption-label"><span lang="es">${esc(gOptionLabel(q,o))}</span>${grammarChoiceNote(q,o,!!attempt)}</span></label>`).join("")}</div>`
+        ${q.options ? `<div class="gchoices">${gOrderedChoices(group,i,null,gAttempt(unit,group)).map(o => `<label class="gchoice ${grammarChoiceClass(q,o,value,!!attempt,group)}"><input type="radio" name="q${i}" value="${esc(o)}" aria-label="${esc(o === 'Без артикля' ? 'Ничего не вставлять' : gOptionLabel(q,o))}" required ${value === o ? "checked" : ""} ${attempt ? "disabled" : ""}><span class="goption-label"><span lang="es">${esc(gOptionLabel(q,o))}</span>${grammarChoiceNote(q,o,!!attempt)}</span></label>`).join("")}</div>`
           : `${grammarInputHelp(q,group,`g-format-${group.id}-${i}`)}<input class="ginput" name="q${i}" aria-describedby="g-format-${esc(group.id)}-${i}" placeholder="${esc(grammarInputPlaceholder(q,group))}" aria-label="${esc(q.context ? q.context + " " + q.prompt : q.prompt)}" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" required value="${esc(value)}" ${attempt ? "disabled" : ""}>${attempt ? "" : `<div class="gaccents" aria-label="Испанские буквы">${gInputChars(q).map(c => `<button type="button" class="btn ghost sm" data-gaccent="${c}" data-ginput="q${i}" aria-label="Вставить ${c}">${c}</button>`).join("")}</div>`}`}
         ${attempt ? `<div class="gfeedback ${result.status==='almost'?'almost':good ? "good" : ""}"><b>${result.status==='almost'?esc(grammarFeedbackTitle(result)):good ? "✓ Верно" : `✗ Верный ответ: ${esc(q.answers.join(" / "))}`}</b>${grammarAccentHint(result)}<p>${esc(grammarFeedbackExplanation(q,result))}</p></div>` : ""}</fieldset>`;
     }).join("")}
@@ -2228,6 +2228,7 @@ document.addEventListener("click", e => {
   if ("greviewNext" in d) return gReviewMove(1);
   if ("grepeatExercise" in d) return gRepeatExercise();
   if (d.gslot != null) return gSelectGap(+d.gslot);
+  if (d.gslotValue != null) return gSelectGapValue(+d.slot,d.gslotValue);
   if (d.gslotChoice != null) return gSelectGap(+d.slot,+d.gslotChoice);
   if (d.gadd != null) return gBuild('add',+d.gadd);
   if (d.gremove != null) return gBuild('remove',+d.gremove);
@@ -2239,6 +2240,7 @@ document.addEventListener("click", e => {
   if ("gfeedbackToggle" in d) return gToggleFeedback();
   if ("ghideKeyboard" in d) return gHideKeyboard();
   if ("gretryMistakes" in d) return gRetry();
+  if (d.gvalue != null && G) return gPickValue(d.gvalue);
   if (d.gpick != null && G) return gPick(+d.gpick);
   if (d.gchar && G) return gInsertChar(el);
   if (d.grammar) { view.grammar = d.grammar; view.tab = "grammar"; render(); window.scrollTo(0, 0); return; }
@@ -2340,7 +2342,7 @@ document.addEventListener("keydown", e => {
   if (G && !G.ended) {
     if(e.key === 'Enter' && e.target.dataset?.ggap === '0' && !e.shiftKey) { e.preventDefault(); $('[data-ggap="1"]')?.focus(); return; }
     if (e.key === "Enter" && !e.shiftKey && !e.target.closest("summary,button")) { e.preventDefault(); const s = G.steps[G.at]; return s.type === "question" && !gResponse(s).checked ? gCheck() : gMove(1); }
-    if (!["INPUT","TEXTAREA"].includes(e.target.tagName) && /^[1-9]$/.test(e.key)) { const option = $(`[data-gpick="${+e.key - 1}"]`); if (option && !option.disabled) option.click(); }
+    if (!["INPUT","TEXTAREA"].includes(e.target.tagName) && /^[1-9]$/.test(e.key)) { const option = $(`[data-gposition="${+e.key - 1}"]`); if (option && !option.disabled) option.click(); }
     return;
   }
   if (!S || S.kind === "result") return;

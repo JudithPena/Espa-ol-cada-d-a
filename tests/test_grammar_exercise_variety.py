@@ -46,7 +46,7 @@ def test_other_flagged_series_require_different_decisions():
     assert any('Почему' in q['prompt'] for q in feminine)
 
 
-def test_audit_covers_every_group_and_no_constant_position_shortcut_returns():
+def test_variety_audit_covers_every_group_and_exercises_require_different_answers():
     units = load_grammar()
     report = json.loads((Path(__file__).parents[1] / 'docs/grammar_exercise_variety_audit.json').read_text())
     assert len(report['units']) == 17
@@ -55,9 +55,8 @@ def test_audit_covers_every_group_and_no_constant_position_shortcut_returns():
         assert review['unit'] == u['number']
         assert {g['id'] for g in groups} == {g['id'] for g in review['groups']}
         for g in groups:
-            positions = [q['options'].index(q['answers'][0]) for q in g['questions'] if q.get('options')]
-            if len(positions) >= 3:
-                assert len(set(positions)) > 1, (u['number'], g['id'])
+            # Attempt-time shuffling, including distribution and sequence checks,
+            # replaces restrictions on the unrendered source-array positions.
             if g in u['exercises']:
                 assert len({q['answers'][0] for q in g['questions']}) > 1
     # Interleaving keeps all eight nationality models while removing the rigid three-question cycle.

@@ -21,6 +21,8 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: "22"
+      - name: Плеер грамматики и распределение вариантов ответа
+        run: node --test tests/site_grammar.test.cjs
       - name: Тесты бота на Cloudflare
         run: |
           python -m espanol bot-data --no-audio
