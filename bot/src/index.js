@@ -168,6 +168,12 @@ async function handleUpdate(update, env, origin) {
 
 async function handleCallback(cq, env, origin) {
   const [action] = String(cq.data || "").split(":");
+  const own = deckBook(env, cq.from.id);
+  if (own && (action.startsWith("c") || action === "go")) { // кнопки старой колоды курса: у владельцев личных колод ведут в их колоду
+    await tg(env, "answerCallbackQuery", { callback_query_id: cq.id });
+    if (action === "cgo" || action === "go") return startStudy(own, env, cq.message.chat.id, cq.from.id, origin);
+    return;
+  }
   if (action.startsWith("c")) return handleStudyCallback(BOOKS.c, cq, env, origin);
   const mine = deckBook(env, cq.from.id); // кнопки колоды: у автора «p…», у Гали «w…»
   if (mine && action.startsWith(mine.id)) return handleStudyCallback(mine, cq, env, origin);

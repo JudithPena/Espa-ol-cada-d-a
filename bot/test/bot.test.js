@@ -397,3 +397,20 @@ test("/progreso: сводка по трём колодам только авто
     PAPA.push(...savedPapa);
   }
 });
+
+test("кнопка старой колоды курса у папы открывает его личную колоду, а не слова курса", async () => {
+  const savedPapa = PAPA.splice(0);
+  PAPA.push(...["a", "b", "c"].map((x) => sample(x)));
+  env.PAPA_CHAT_ID = "7";
+  try {
+    calls = [];
+    await post({ callback_query: { id: "q", data: "cgo", from: { id: 7 }, message: { chat: { id: 7 }, message_id: 1 } } });
+    const text = calls.map((c) => c.body.text || "").join("\n");
+    assert.match(text, /Мои слова/);
+    assert.doesNotMatch(text, /Повторение слов/);
+  } finally {
+    delete env.PAPA_CHAT_ID;
+    PAPA.length = 0;
+    PAPA.push(...savedPapa);
+  }
+});
