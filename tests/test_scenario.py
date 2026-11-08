@@ -169,3 +169,24 @@ def test_scenario_audio(site):
     pablo = [k for k in texts if k.startswith("@") and k.endswith("|¡Buenas noches, Lucía!")]
     assert pablo                                             # реплика-контекст — голосом персонажа
     assert not any(k for k in texts if "доброе утро" in k)   # русская сторона пары не озвучивается
+
+
+def test_rebuilt_course_standard(site):
+    """Стандарт перестройки A0–A1 (docs/site_lessons_guide.md): короткие порции слов, микроцель у каждого
+    урока-сценария, ни одного упражнения с автодистракторами и задания-самопроверки, верный вариант не выдаёт себя длиной."""
+    from espanol.markup import plain
+
+    for lesson in site.lessons:
+        types = {b.type for b in lesson.blocks}
+        assert not types & {"exercise", "task"}, f"{lesson.id}: старые блоки exercise/task"
+        if lesson.scripted:
+            assert lesson.goal, f"{lesson.id}: нет goal"
+            assert all(len(b.data) <= 6 for b in lesson.blocks if b.type == "learn"), lesson.id
+        elif lesson.kind not in ("intro", "quiz", "final"):
+            raise AssertionError(f"{lesson.id}: урок не переписан сценарием")
+    for unit in site.units:
+        items = [it for L in unit.lessons for b in L.blocks if b.type == "choose" for it in b.data["items"]]
+        if len(items) < 5:
+            continue
+        longest = sum(1 for it in items if (lens := [len(plain(o)) for o in it["options"]])[0] == max(lens) and lens.count(max(lens)) == 1)
+        assert longest / len(items) <= 0.6, f"тема {unit.number}: верный вариант самый длинный в {longest} из {len(items)}"
