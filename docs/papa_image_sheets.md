@@ -55,3 +55,24 @@ Create one square 1024x1024 image: a 2x2 grid of four separate flat vector illus
 ```
 Create one square 1024x1024 image: a 2x2 grid of four separate flat vector illustrations, divided by thin white gutters (no borders, no captions). Warm pastel colors, clean outlines, light background, large simple objects, minimal detail, the same style in all four panels, each panel readable on a phone screen. When the scene has the recurring hero, he is a friendly man about 60 with short gray hair; when a profession is named, show a person of that profession instead. No text, letters, numbers, logos or watermarks anywhere (clocks and calendars show only hands and icons). Panels, left to right, top to bottom: (1) close-up of one leg of the hero highlighted in a warm color, the other leg paler; (2) the hero hugging a younger man, above them a small family tree with two branches from the same grandparents; (3) the hero running fast with a briefcase, looking at his wristwatch, tie and hair flying; (4) a round table, a round clock and a round plate side by side, their edges outlined with a warm line;
 ```
+
+
+# Четвёртый список (10 слов): листы 10–12
+
+## Лист 10: estupenda, demasiado, perder, perdido
+
+```
+Create one square 1024x1024 image: a 2x2 grid of four separate flat vector illustrations, divided by thin white gutters (no borders, no captions). Warm pastel colors, clean outlines, light background, large simple objects, minimal detail, the same style in all four panels, each panel readable on a phone screen. When the scene has the recurring hero, he is a friendly man about 60 with short gray hair; when a profession is named, show a person of that profession instead. No text, letters, numbers, logos or watermarks anywhere (clocks and calendars show only hands and icons). Panels, left to right, top to bottom: (1) a smiling woman about 60 giving a big thumbs up in front of a lovely house with a garden, sparkles around her; (2) a teacup overflowing with tea onto the saucer, a sugar bowl beside it, the hero looking at it in surprise; (3) the hero checking his empty coat pockets with a worried face, a small key icon with a question mark floating above his head; (4) the hero standing alone at a street crossing with a folded map, confused, blank arrow signposts pointing in different directions;
+```
+
+## Лист 11: equipaje, parecido, imposible, parece
+
+```
+Create one square 1024x1024 image: a 2x2 grid of four separate flat vector illustrations, divided by thin white gutters (no borders, no captions). Warm pastel colors, clean outlines, light background, large simple objects, minimal detail, the same style in all four panels, each panel readable on a phone screen. When the scene has the recurring hero, he is a friendly man about 60 with short gray hair; when a profession is named, show a person of that profession instead. No text, letters, numbers, logos or watermarks anywhere (clocks and calendars show only hands and icons). Panels, left to right, top to bottom: (1) a stack of suitcases and a travel bag on a luggage cart in an airport hall; (2) a grandfather and his grandson standing side by side wearing the same kind of cap and the same smile, clearly looking alike; (3) the hero in front of a very tall wall with a tiny ladder that is far too short, he scratches his head; (4) the hero looking out of a window at dark clouds, a thought bubble above him with raindrops;
+```
+
+## Лист 12: paraguas, andar
+
+```
+Create one square 1024x1024 image: a 2x2 grid of four separate flat vector illustrations, divided by thin white gutters (no borders, no captions). Warm pastel colors, clean outlines, light background, large simple objects, minimal detail, the same style in all four panels, each panel readable on a phone screen. When the scene has the recurring hero, he is a friendly man about 60 with short gray hair; when a profession is named, show a person of that profession instead. No text, letters, numbers, logos or watermarks anywhere (clocks and calendars show only hands and icons). Panels, left to right, top to bottom: (1) an open red umbrella in the rain, raindrops falling around it, a puddle on the ground; (2) the hero walking along a park path in a relaxed stride, trees and a bench around him; (3) empty plain light background, nothing drawn; (4) empty plain light background, nothing drawn;
+```
