@@ -1,0 +1,1210 @@
+{
+  "id": "021_uno_otro_cualquiera",
+  "number": 21,
+  "title": "Uno, otro, cualquiera",
+  "subtitle": "Один, другой и любой",
+  "level": "A1",
+  "sections": [
+    {
+      "title": "Один, ещё один или другой",
+      "presentation": "comparison",
+      "paragraphs": [
+        "Если просто просишь или называешь какой-то предмет, используй **`un / una`**. Если нужен **ещё один** или **другой взамен**, используй **`otro / otra`**. Например, сначала заказываешь `un café`, а когда выпил его — `otro café`.",
+        "Форму выбираем по роду и числу существительного: `otra bolsa` — другой пакет, `otros libros` — другие книги. Чтобы сказать «ещё два», ставим `otros / otras` перед числом: `otras dos sillas` — ещё два стула."
+      ],
+      "wordGroups": [
+        {
+          "title": "Первый заказ",
+          "words": [
+            [
+              "Un café, por favor.",
+              "Кофе, пожалуйста."
+            ]
+          ]
+        },
+        {
+          "title": "Ещё один",
+          "words": [
+            [
+              "Otro café, por favor.",
+              "Ещё один кофе, пожалуйста."
+            ]
+          ]
+        },
+        {
+          "title": "Замена",
+          "words": [
+            [
+              "Quiero otro café. Este está frío.",
+              "Хочу другой кофе. Этот холодный."
+            ]
+          ]
+        }
+      ],
+      "table": {
+        "heads": [
+          "О чём говорим",
+          "Один / несколько",
+          "Ещё один / другие"
+        ],
+        "rows": [
+          [
+            "Мужской род, один",
+            "un libro",
+            "otro libro"
+          ],
+          [
+            "Женский род, один",
+            "una bolsa",
+            "otra bolsa"
+          ],
+          [
+            "Мужской род, несколько",
+            "unos libros",
+            "otros libros"
+          ],
+          [
+            "Женский род, несколько",
+            "unas bolsas",
+            "otras bolsas"
+          ]
+        ],
+        "compactForms": true
+      },
+      "notes": [
+        "Перед otro не добавляем un: otro libro, а не un otro libro. Но la otra bolsa («тот другой пакет») — возможное сочетание: запрет касается именно un / una / unos / unas перед otro."
+      ],
+      "check": {
+        "id": "check-1",
+        "title": "Мини-проверка",
+        "instruction": "Выбери форму, которая подходит по смыслу и месту в предложении.",
+        "questions": [
+          {
+            "prompt": "Dame ___ vaso, por favor.",
+            "answers": [
+              "otro"
+            ],
+            "explain": "Нужен другой стакан взамен разбитого: otro vaso. Перед otro артикль un не ставим.",
+            "context": "Этот стакан разбит. Попроси другой.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "un otro",
+              "otro",
+              "otra"
+            ]
+          },
+          {
+            "prompt": "Necesitamos ___ dos sillas.",
+            "answers": [
+              "otras"
+            ],
+            "explain": "Sillas — женский род, множественное число. «Ещё два стула» — otras dos sillas; de перед числом здесь не нужно.",
+            "context": "Пришли ещё два гостя. Нужны ещё два стула.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "otras de",
+              "otros",
+              "otras"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Любой: неважно, какой именно",
+      "presentation": "paradigm",
+      "paragraphs": [
+        "Если подойдёт **любой** предмет и неважно, какой именно, перед его названием обычно ставим **`cualquier`**: `cualquier libro` — любая книга, `cualquier hora` — любое время. В этой конструкции существительное стоит в единственном числе, а форма `cualquier` подходит к обоим родам.",
+        "После существительного и без повторения его названия используем полную форму **`cualquiera`**. Если выбираем из определённой группы, добавляем **`de`**: `cualquiera de estos libros` — любая из этих книг. В `uno cualquiera / una cualquiera` формы `uno / una` зависят от рода уже названного предмета, а `cualquiera` не меняется."
+      ],
+      "table": {
+        "heads": [
+          "Где стоит слово",
+          "Как сказать",
+          "Что это значит"
+        ],
+        "rows": [
+          [
+            "Перед названием",
+            "cualquier libro / cualquier hora",
+            "любая книга / любое время"
+          ],
+          [
+            "После названия",
+            "un libro cualquiera",
+            "какая-нибудь книга, без разницы какая"
+          ],
+          [
+            "Вместо названия",
+            "uno cualquiera / una cualquiera",
+            "любой / любая из обсуждаемых предметов"
+          ],
+          [
+            "Перед группой",
+            "cualquiera de estos libros",
+            "любая из этих книг"
+          ]
+        ],
+        "compactForms": true
+      },
+      "dialogues": [
+        {
+          "title": "Выбираем книгу",
+          "lines": [
+            [
+              "¿Qué libro quieres?",
+              "Какую книгу ты хочешь?"
+            ],
+            [
+              "Dame uno cualquiera. Todos me interesan.",
+              "Дай любую. Мне все интересны."
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-2",
+        "title": "Мини-проверка",
+        "instruction": "Выбери форму, которая подходит по смыслу и месту в предложении.",
+        "questions": [
+          {
+            "prompt": "Puedes usar ___ ordenador.",
+            "answers": [
+              "cualquier"
+            ],
+            "explain": "Перед названием ordenador нужна форма cualquier. Cualquiera используем после названия или самостоятельно.",
+            "context": "Подойдёт любой компьютер.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "cualquiera de",
+              "cualquier",
+              "cualquiera"
+            ]
+          },
+          {
+            "prompt": "Puedes usar ___ de estos ordenadores.",
+            "answers": [
+              "cualquiera"
+            ],
+            "explain": "Перед de нужна полная форма cualquiera. De уже написано, повторять его не нужно: cualquiera de estos ordenadores.",
+            "context": "Любой из этих компьютеров работает.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "cualquier",
+              "cualquiera de",
+              "cualquiera"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Один или другой из известной группы",
+      "presentation": "examples",
+      "paragraphs": [
+        "Когда выбираем **кого-то или что-то из известной группы**, ставим `de`: **`uno de mis amigos`** — один из моих друзей, **`otra de esas bolsas`** — ещё одна из тех сумок. После `de` можно назвать группу словами `los / las`, `mis / tus`, `estos / esas` или местоимением `nosotros / vosotros / ustedes`.",
+        "Сравни: **`otros dos libros`** — ещё две книги; **`otro de estos libros`** — ещё одна из этих книг. Перед числом в первом сочетании `de` не нужно. Во втором `de` связывает выбранную книгу с группой. Чтобы сказать «любой из», используй **`cualquiera de`**."
+      ],
+      "wordGroups": [
+        {
+          "title": "Один из группы",
+          "words": [
+            [
+              "uno de tus primos",
+              "один из твоих двоюродных братьев"
+            ],
+            [
+              "una de mis amigas",
+              "одна из моих подруг"
+            ]
+          ]
+        },
+        {
+          "title": "Другой / ещё один из группы",
+          "words": [
+            [
+              "otro de los libros",
+              "другая / ещё одна из книг"
+            ],
+            [
+              "otra de esas bolsas",
+              "другая / ещё одна из тех сумок"
+            ]
+          ]
+        },
+        {
+          "title": "Любой из группы",
+          "words": [
+            [
+              "cualquiera de nosotros",
+              "любой из нас"
+            ],
+            [
+              "cualquiera de estas corbatas",
+              "любой из этих галстуков"
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-3",
+        "title": "Мини-проверка",
+        "instruction": "Выбери форму, которая подходит по смыслу и месту в предложении.",
+        "questions": [
+          {
+            "prompt": "Ayer hablé con ___ tus amigas.",
+            "answers": [
+              "una de"
+            ],
+            "explain": "Одна из твоих подруг — una de tus amigas. Una согласуется с выбранной подругой, de вводит группу.",
+            "context": "Вчера я говорил с одной из твоих подруг.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "una",
+              "una de",
+              "unas de"
+            ]
+          },
+          {
+            "prompt": "Dame ___ dos vasos.",
+            "answers": [
+              "otros"
+            ],
+            "explain": "Ещё два стакана — otros dos vasos. Перед числом не добавляем de, а otros согласуется с vasos.",
+            "context": "Попроси ещё два стакана.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "otro",
+              "otros de",
+              "otros"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Не повторяем уже названный предмет",
+      "presentation": "examples",
+      "paragraphs": [
+        "Если из разговора понятно, о каких предметах идёт речь, **существительное можно не повторять**. Одна печенька — `una`, ещё одна — `otra`; другие ботинки — `otros`. Когда нужно сказать «один» без названия мужского рода, используй **`uno`**, а не `un`: `Quiero uno` — «Хочу один».",
+        "**`Cualquiera`** означает «любой / любая», когда выбор не важен. О названном предмете можно ответить и `uno cualquiera / una cualquiera`. Чтобы сказать «любой человек», достаточно `cualquiera`: `Cualquiera puede hacerlo` — «Любой может это сделать»."
+      ],
+      "dialogues": [
+        {
+          "title": "В кафе",
+          "lines": [
+            [
+              "¿Quieres una galleta?",
+              "Хочешь печеньку?"
+            ],
+            [
+              "Sí, quiero una.",
+              "Да, хочу одну."
+            ],
+            [
+              "¿Otra?",
+              "Ещё одну?"
+            ],
+            [
+              "No, gracias.",
+              "Нет, спасибо."
+            ]
+          ]
+        },
+        {
+          "title": "В магазине",
+          "lines": [
+            [
+              "¿Te gustan estos zapatos?",
+              "Тебе нравятся эти ботинки?"
+            ],
+            [
+              "No. Enséñame otros, por favor.",
+              "Нет. Покажи мне другие, пожалуйста."
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-4",
+        "title": "Мини-проверка",
+        "instruction": "Выбери форму, которая подходит по смыслу и месту в предложении.",
+        "questions": [
+          {
+            "prompt": "¿Quieres un bocadillo? — Sí, quiero ___.",
+            "answers": [
+              "uno"
+            ],
+            "explain": "Bocadillo — мужской род. Без существительного нужна полная форма uno; un ставим перед названием.",
+            "context": "Скажи, что хочешь один бутерброд.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "un",
+              "una",
+              "uno"
+            ]
+          },
+          {
+            "prompt": "¿Te gustan estas camisas? — No, quiero ___.",
+            "answers": [
+              "otras"
+            ],
+            "explain": "Camisas — женский род, несколько: otras. Существительное не повторяем.",
+            "context": "Хочешь другие рубашки, а не эти.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "otros",
+              "otra",
+              "otras"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "21.1",
+      "title": "21.1 · Один или ещё один?",
+      "instruction": "Прочитай ситуацию и дополни просьбу формой un / una / unos / unas или otro / otra / otros / otras. Название предмета уже написано.",
+      "theorySections": [
+        0
+      ],
+      "inlineAnswer": true,
+      "inputLabel": "Короткий ввод",
+      "inputFormat": {
+        "instruction": "Впиши только пропущенное слово. Остальную фразу не повторяй.",
+        "placeholder": "Пропущенное слово"
+      },
+      "questions": [
+        {
+          "prompt": "___ tónica, por favor.",
+          "answers": [
+            "una"
+          ],
+          "explain": "Первый напиток: una tónica. Tónica — женский род, одна порция; другого напитка до этого не было.",
+          "context": "Ты только пришёл в кафе. Заказываешь свой первый тоник.",
+          "sourceRef": "21.1.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Deme ___ bolsa, por favor. Esta está rota.",
+          "answers": [
+            "otra"
+          ],
+          "explain": "Просим другой пакет вместо порванного: otra bolsa. Не una otra и не otro.",
+          "context": "Тебе уже дали пакет, но он порван. Попроси другой.",
+          "sourceRef": "21.1.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Préstame ___ libro, por favor.",
+          "answers": [
+            "un"
+          ],
+          "explain": "Просим какую-нибудь одну книгу впервые: un libro. Otro означало бы другой или ещё один.",
+          "context": "У тебя нет книги. Просишь у подруги какую-нибудь одну почитать.",
+          "sourceRef": "21.1.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "___ tónica, por favor.",
+          "answers": [
+            "otra"
+          ],
+          "explain": "Повторный заказ: otra tónica — ещё один тоник. Форма женского рода, как tónica.",
+          "context": "Первый тоник уже выпит. Закажи ещё один.",
+          "sourceRef": "21.1.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Préstame ___ libros. Estos los he leído.",
+          "answers": [
+            "otros"
+          ],
+          "explain": "Нужны другие книги: otros libros. Libros — мужской род, множественное число.",
+          "context": "Эти книги ты уже прочитал. Просишь другие.",
+          "sourceRef": "21.1.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Deme ___ bolsa, por favor.",
+          "answers": [
+            "una"
+          ],
+          "explain": "Первый пакет: una bolsa. Otra означало бы ещё один или другой пакет.",
+          "context": "Ты купил продукты. Пакета у тебя пока нет. Попроси один.",
+          "sourceRef": "21.1.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Tráiganos ___ cucharas, por favor. Estas están sucias.",
+          "answers": [
+            "otras"
+          ],
+          "explain": "Нужны другие ложки взамен грязных: otras cucharas. Женский род, несколько.",
+          "context": "Ложки на столе грязные. Попросите заменить их.",
+          "sourceRef": "21.1.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¡Qué rica estaba! ¿Me das ___ manzana?",
+          "answers": [
+            "otra"
+          ],
+          "explain": "Ты уже съел яблоко и хочешь ещё одно: otra manzana. Перед otra артикль una не ставим.",
+          "context": "Яблоко было очень вкусным. Попроси ещё одно.",
+          "sourceRef": "21.1.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        }
+      ],
+      "preview": {
+        "source": "Dame ___ taza, por favor. Esta está sucia.",
+        "sentenceParts": [
+          "Dame ",
+          " taza, por favor. Esta está sucia."
+        ],
+        "answer": "otra",
+        "targetPrefix": "",
+        "translation": "Дай другую чашку, пожалуйста. Эта грязная.",
+        "tip": ""
+      }
+    },
+    {
+      "id": "21.2",
+      "title": "21.2 · Как сказать «любой»",
+      "instruction": "Впиши cualquier, cualquiera или cualquiera de. Выбор не важен; форма зависит от места пропуска.",
+      "theorySections": [
+        1
+      ],
+      "inlineAnswer": true,
+      "inputLabel": "Короткий ввод",
+      "inputFormat": {
+        "instruction": "Впиши только пропущенную часть: cualquier, cualquiera или cualquiera de. Не повторяй остальные слова.",
+        "placeholder": "Одно или два слова"
+      },
+      "questions": [
+        {
+          "prompt": "Esto lo puedes encontrar en ___ tienda.",
+          "answers": [
+            "cualquier",
+            "cualquiera"
+          ],
+          "explain": "Перед названием tienda обычно ставим cualquier: в любом магазине. Cualquier подходит к обоим родам.",
+          "context": "Это продаётся в любом магазине.",
+          "sourceRef": "21.2.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "answerWarnings": {
+            "cualquiera": {
+              "message": "Форма допустима в некоторых регионах; обычно перед существительным говорят cualquier.",
+              "explanation": "Перед существительным женского рода полная форма cualquiera встречается, например, в Чили. Общая форма для обоих родов — cualquier: cualquier tienda.",
+              "preferred": "cualquier",
+              "source": "https://www.rae.es/dpd/cualquiera"
+            }
+          }
+        },
+        {
+          "prompt": "Eso es complicado. No lo puede hacer ___ nosotros.",
+          "answers": [
+            "cualquiera de"
+          ],
+          "explain": "Любой из нас — cualquiera de nosotros. Перед местоимением группы нужна полная форма и de.",
+          "context": "Это сложно. Не любой из нас сможет это сделать.",
+          "sourceRef": "21.2.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Si quieres ayuda, ven ___ día por la mañana. Estoy siempre libre.",
+          "answers": [
+            "cualquier"
+          ],
+          "explain": "Перед día нужна форма cualquier: в любой день утром. De здесь не вводит группу и не нужно.",
+          "context": "Если нужна помощь, приходи в любой день утром: я всегда свободен.",
+          "sourceRef": "21.2.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Usa ___ esos ordenadores. Todos funcionan.",
+          "answers": [
+            "cualquiera de"
+          ],
+          "explain": "Любой из этих компьютеров — cualquiera de esos ordenadores. Esos уже указывает на группу.",
+          "context": "Можешь пользоваться любым из этих компьютеров. Все работают.",
+          "sourceRef": "21.2.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Dale una excusa ___. No le importará.",
+          "answers": [
+            "cualquiera"
+          ],
+          "explain": "После существительного употребляем полную форму: una excusa cualquiera. De здесь не вводит группу и не нужно.",
+          "context": "Придумай любую отговорку. Ему будет всё равно.",
+          "sourceRef": "21.2.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        }
+      ],
+      "preview": {
+        "source": "Puedes usar ___ vaso.",
+        "sentenceParts": [
+          "Puedes usar ",
+          " vaso."
+        ],
+        "answer": "cualquier",
+        "targetPrefix": "",
+        "translation": "Можешь взять любой стакан.",
+        "tip": ""
+      }
+    },
+    {
+      "id": "21.3",
+      "title": "21.3 · Один из группы и ещё несколько",
+      "instruction": "Дополни фразы формами uno / una / unos / unas, otro / otra / otros / otras или cualquiera. Добавь de, если речь об одном из известной группы.",
+      "theorySections": [
+        2
+      ],
+      "inlineAnswer": true,
+      "inputLabel": "Короткий ввод",
+      "inputFormat": {
+        "instruction": "Впиши только пропущенную часть. Названия предметов и остальную фразу не повторяй; добавь de, если оно нужно.",
+        "placeholder": "Пропущенное слово или сочетание",
+        "example": "uno de"
+      },
+      "questions": [
+        {
+          "prompt": "¿Te gustan las galletas? Toma ___.",
+          "answers": [
+            "una"
+          ],
+          "explain": "Предлагаем одну печеньку: una. Название galleta уже понятно, повторять его не нужно.",
+          "context": "Тебе предлагают одну печеньку. Раньше ты их ещё не брал.",
+          "sourceRef": "21.3.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Este helado estaba riquísimo. Quiero ___.",
+          "answers": [
+            "otro"
+          ],
+          "explain": "Ещё одно мороженое — otro. Helado мужского рода, но само существительное повторять не нужно.",
+          "context": "Мороженое было очень вкусным. Хочешь ещё одно.",
+          "sourceRef": "21.3.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Diez euros no son suficientes. Necesitamos ___ cinco.",
+          "answers": [
+            "otros"
+          ],
+          "explain": "Ещё пять евро — otros cinco. Euros — мужской род, несколько; перед числом de не ставим.",
+          "context": "Десяти евро мало. Нужно ещё пять.",
+          "sourceRef": "21.3.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿Dónde estabas? — Con ___ amigas.",
+          "answers": [
+            "unas"
+          ],
+          "explain": "Amigas — женский род, несколько: unas amigas. Unas называет неопределённую группу подруг; otras означало бы других подруг.",
+          "context": "Ты был с несколькими подругами; точное число не называешь.",
+          "sourceRef": "21.3.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Ayer jugué al tenis con ___ tus primos.",
+          "answers": [
+            "uno de"
+          ],
+          "explain": "Один из твоих двоюродных братьев — uno de tus primos. De нужно перед обозначением группы.",
+          "context": "Вчера я играл в теннис с одним из твоих двоюродных братьев.",
+          "sourceRef": "21.3.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "inputFormat": {
+            "instruction": "Впиши только пропущенную часть. Названия предметов и остальную фразу не повторяй; добавь de, если оно нужно.",
+            "placeholder": "Пропущенное слово или сочетание"
+          }
+        },
+        {
+          "prompt": "Si vienen Arnaldo y Marta al concierto, necesitaremos ___ dos entradas.",
+          "answers": [
+            "otras"
+          ],
+          "explain": "Ещё два билета — otras dos entradas. Entradas женского рода; de перед dos не нужно.",
+          "context": "Если придут Арнальдо и Марта, нужны ещё два билета.",
+          "sourceRef": "21.3.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Quiero ___ esas corbatas.",
+          "answers": [
+            "cualquiera de",
+            "una cualquiera de"
+          ],
+          "explain": "Любой из этих галстуков — cualquiera de esas corbatas; можно и una cualquiera de esas corbatas. Corbata — женский род.",
+          "context": "Хочу любой из этих галстуков. Мне всё равно, какой.",
+          "sourceRef": "21.3.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Han llegado ___ libros para la biblioteca.",
+          "answers": [
+            "otros"
+          ],
+          "explain": "Пришла ещё одна партия книг: otros libros. Это дополнительные книги, поэтому otros, а не unos.",
+          "context": "Вчера уже привезли книги. Сегодня для библиотеки привезли ещё книги.",
+          "sourceRef": "21.3.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        }
+      ],
+      "preview": {
+        "source": "Necesito ___ estas cajas.",
+        "sentenceParts": [
+          "Necesito ",
+          " estas cajas."
+        ],
+        "answer": "otra de",
+        "targetPrefix": "",
+        "translation": "Мне нужна ещё одна из этих коробок.",
+        "tip": ""
+      }
+    },
+    {
+      "id": "21.4",
+      "title": "21.4 · Короткие ответы без повторов",
+      "instruction": "Дополни ответы, затем исправь две ошибки и собери две фразы. Следи за родом и числом предмета, о котором говорили.",
+      "theorySections": [
+        3
+      ],
+      "inlineAnswer": false,
+      "inputLabel": "Короткий ввод",
+      "inputFormat": {
+        "instruction": "Впиши только слово вместо уже названного предмета. Не повторяй существительное и остальную фразу.",
+        "placeholder": "Короткий ответ",
+        "example": "una"
+      },
+      "questions": [
+        {
+          "prompt": "¿Le gustan estos zapatos? — No, enséñeme ___, por favor.",
+          "answers": [
+            "otros"
+          ],
+          "explain": "Zapatos — мужской род, несколько: otros. Не повторяем уже названные ботинки.",
+          "context": "Эти ботинки тебе не нравятся. Попроси показать другие.",
+          "sourceRef": "21.4.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "No es muy difícil. ___ puede hacerlo.",
+          "answers": [
+            "cualquiera"
+          ],
+          "explain": "Любой человек — cualquiera. Самостоятельная форма не сокращается до cualquier.",
+          "context": "Это нетрудно. Любой человек может это сделать.",
+          "sourceRef": "21.4.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿Qué trabajo quieres hacer? — ___. Necesito trabajar.",
+          "answers": [
+            "cualquiera",
+            "uno cualquiera"
+          ],
+          "explain": "Подойдёт любая работа: cualquiera или uno cualquiera. Trabajo — мужской род; una не подходит.",
+          "context": "Подойдёт любая работа. Тебе нужно работать.",
+          "sourceRef": "21.4.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "He perdido el tren a Cuzco. ¿Cuándo hay ___?",
+          "answers": [
+            "otro"
+          ],
+          "explain": "Следующий, другой поезд — otro. Tren — мужской род; название уже понятно.",
+          "context": "Ты опоздал на поезд в Куско. Спроси, когда будет другой.",
+          "sourceRef": "21.4.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿Le gustan estos plátanos? — No, deme ___. Esos están muy verdes.",
+          "answers": [
+            "otros"
+          ],
+          "explain": "Нужны другие бананы: otros. Мужской род, множественное число, существительное не повторяем.",
+          "context": "Эти бананы слишком зелёные. Попроси другие.",
+          "sourceRef": "21.4.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Necesito ___.",
+          "answers": [
+            "otra bolsa"
+          ],
+          "explain": "Перед otra не нужен артикль una: otra bolsa. Сохраняем женский род существительного.",
+          "context": "Исправь сочетание «una otra bolsa». Впиши правильное сочетание целиком.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "Necesito ",
+            "una otra bolsa",
+            "."
+          ],
+          "sourceLabel": "Найди ошибку",
+          "inputFormat": {
+            "instruction": "Впиши исправленное сочетание целиком: слово со значением «другой» и название предмета.",
+            "placeholder": "Исправленное сочетание",
+            "example": "otro vaso"
+          }
+        },
+        {
+          "prompt": "Puedes elegir ___.",
+          "answers": [
+            "cualquiera de estos libros"
+          ],
+          "explain": "Любую из этих книг — cualquiera de estos libros. Перед de нужна полная форма cualquiera, а не cualquier.",
+          "context": "Исправь «cualquier de estos libros». Впиши всё исправленное сочетание.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "Puedes elegir ",
+            "cualquier de estos libros",
+            "."
+          ],
+          "sourceLabel": "Найди ошибку",
+          "inputFormat": {
+            "instruction": "Впиши всё исправленное сочетание после elegir. Сам глагол не повторяй.",
+            "placeholder": "Исправленное сочетание",
+            "example": "cualquiera de mis vasos"
+          }
+        },
+        {
+          "prompt": "___",
+          "answers": [
+            "Quiero otros dos libros"
+          ],
+          "explain": "Ещё две книги — otros dos libros. Перед числом dos слово de не нужно.",
+          "context": "Собери фразу: «Хочу ещё две книги». Начни с Quiero.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "libros",
+            "Quiero",
+            "dos",
+            "otros"
+          ],
+          "inputFormat": {
+            "instruction": "Собери полное предложение без точки. Начни с Quiero.",
+            "placeholder": "Полное предложение"
+          }
+        },
+        {
+          "prompt": "___",
+          "answers": [
+            "Puedes usar cualquiera de estos vasos"
+          ],
+          "explain": "Любой из этих стаканов — cualquiera de estos vasos. Выбираем один стакан из известной группы.",
+          "context": "Собери фразу: «Можешь взять любой из этих стаканов». Начни с Puedes.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "estos",
+            "Puedes",
+            "vasos",
+            "cualquiera",
+            "usar",
+            "de"
+          ],
+          "inputFormat": {
+            "instruction": "Собери полное предложение без точки. Начни с Puedes.",
+            "placeholder": "Полное предложение"
+          }
+        }
+      ],
+      "preview": {
+        "source": "¿Quieres una revista? — Sí, quiero ___.",
+        "sentenceParts": [
+          "¿Quieres una revista? — Sí, quiero ",
+          "."
+        ],
+        "answer": "una",
+        "targetPrefix": "",
+        "translation": "Хочешь журнал? — Да, хочу один.",
+        "tip": ""
+      },
+      "phraseInput": true
+    }
+  ],
+  "learningOrder": [
+    "section:0",
+    "exercise:21.1",
+    "section:1",
+    "exercise:21.2",
+    "section:2",
+    "exercise:21.3",
+    "section:3",
+    "exercise:21.4",
+    "summary"
+  ],
+  "summary": {
+    "wordGroups": [
+      {
+        "title": "Один / ещё один / ещё два",
+        "words": [
+          [
+            "un libro → otro libro → otros dos libros",
+            "книга → ещё одна книга → ещё две книги"
+          ]
+        ]
+      },
+      {
+        "title": "Любой: важен порядок",
+        "words": [
+          [
+            "cualquier libro / un libro cualquiera",
+            "любая книга"
+          ],
+          [
+            "cualquiera de estos libros",
+            "любая из этих книг"
+          ]
+        ]
+      },
+      {
+        "title": "Название можно не повторять",
+        "words": [
+          [
+            "Quiero uno. / Quiero otro.",
+            "Хочу один. / Хочу ещё один."
+          ],
+          [
+            "Dame una cualquiera.",
+            "Дай любую из обсуждаемых вещей."
+          ]
+        ]
+      },
+      {
+        "title": "Выбираем из группы",
+        "words": [
+          [
+            "uno de mis amigos / otra de esas bolsas",
+            "один из моих друзей / ещё одна из тех сумок"
+          ]
+        ]
+      }
+    ]
+  }
+}

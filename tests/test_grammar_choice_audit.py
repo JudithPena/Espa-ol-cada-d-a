@@ -48,7 +48,7 @@ def test_optional_normative_forms_remain_accepted_without_becoming_false_choices
 
 def test_all_mini_checks_offer_choices_without_typing():
     units = load_grammar()
-    assert len(units) == 20
+    assert len(units) == 21
     for unit in units:
         for section in unit['sections']:
             check = section.get('check')
