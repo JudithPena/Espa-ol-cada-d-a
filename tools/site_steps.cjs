@@ -2,7 +2,7 @@
 // Шаги урока так, как их строит движок страницы: для карт слайдов (docs/site_slide_maps) и аудита.
 //   node tools/site_steps.cjs saludos/vocab1 [--done] [--json]   — один урок
 //   node tools/site_steps.cjs --unit 1 [--done]                     — все уроки темы
-// --done — все предыдущие уроки пройдены (как у ученика, который идёт по порядку).
+// --done — все предыдущие уроки пройдены (как у ученика, который идёт по порядку); навыки ещё не повторялись.
 const {SIG_CODE, siteData, context} = require('./site_vm.cjs');
 
 const args = process.argv.slice(2);

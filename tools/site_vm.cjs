@@ -61,19 +61,33 @@ function context(data, storage = new Map(), opts = {}) {
   sandbox.speechSynthesis = {getVoices: () => voices, addEventListener: noop, speak: noop, cancel: noop};
   if (opts.speech) sandbox.window.speechSynthesis = sandbox.speechSynthesis;
   sandbox.SpeechSynthesisUtterance = function (t) { this.text = t; };
+  // Плеер записей: opts.audioFail — "error" (запись не загрузилась) или "block" (браузер не дал включить звук).
+  sandbox.Audio = function () {
+    this.paused = true;
+    this.play = () => {
+      if (opts.audioFail === 'error') { this.onerror?.(); return Promise.resolve(); }
+      if (opts.audioFail === 'block') return Promise.reject(Object.assign(new Error('blocked'), {name: 'NotAllowedError'}));
+      this.paused = false; return Promise.resolve();
+    };
+    this.pause = () => { this.paused = true; };
+  };
   const ctx = vm.createContext(sandbox);
   const course = {grammar: [], ...data, ...(opts.audio ? {audio: opts.audio} : {})};
   vm.runInContext(script.replace('/*__DATA__*/{}', JSON.stringify(course)).replace(/render\(\);\s*$/, ''), ctx);
   const run = code => vm.runInContext(code, ctx);
-  run('render = () => {}; say = () => {}; sfx = () => {}');
+  // Отрисовка без DOM: только playerView (он заводит состояние шага), как render() в браузере.
+  // opts.audio — проверяем и сам звук, иначе say отключён.
+  run(`render = () => { if (S && S.kind !== "result" && S.steps?.[S.at]) playerView(); }; sfx = () => {}; ${opts.audio ? '' : 'say = () => {};'}`);
   return run;
 }
 
 // Сигнатура шагов урока для карт слайдов (docs/site_slide_maps/README.md): T(блоки) — экран объяснения, W — карточка
 // слова, C — выбор, I — ввод, M — пары, S — группы, B — сборка фразы, F — «Мастер фраз», Q — тест, V — вопрос на слово;
 // @id — источник задания, ~ — на слух, R: — повторение, ×N — N шагов подряд.
+// Шаг повторения (блок review) — просто «R»: его задание выбирается из навыков, которым пора, и меняется от раза к разу.
 const SIG_CODE = `function stepSig(st) {
-  const pre = st.recall || st.review ? "R:" : "";
+  if (st.recall || st.review) return "R";
+  const pre = "";
   const src = st.src != null ? "@" + (LESSONS[st.li]?.blocks[st.src]?.id || st.src) : "";
   const ear = st.say ? "~" : "";
   switch (st.type) {

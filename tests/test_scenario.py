@@ -186,6 +186,8 @@ def test_scenario_audio(site):
                 want |= {clean(x) for p in b["pairs"] for x in p[2:] if x}
             elif t == "sort":
                 want |= {clean(say) for _, items in b["groups"] for _, say in items if say}
+            elif t == "recap" and b.get("phrase"):
+                want.add(clean(b["phrase"]))
             elif t == "build":
                 for it in b["items"]:
                     for es in [it["es"], *it["alt"]]:

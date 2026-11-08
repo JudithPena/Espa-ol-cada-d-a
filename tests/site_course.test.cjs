@@ -305,6 +305,22 @@ test('приёмка 8: listening without any audio is never 100 % — status, a
   assert.match(run('stepBody(S.steps[0])'), /Запись не загрузилась/);
 });
 
+test('приёмка 8: a recording that fails to load or is blocked shows its status instead of silence', async () => {
+  const data = mini([{id: 'dict', kind: 'listening', version: 2, goal: 'g', blocks: [{write: {items: [{say: 'sí', a: 'sí'}]}}]}]);
+  let run = context(data, new Map(), {audio: {'sí': 'a1'}, audioFail: 'error'});
+  run('startLesson(1)');
+  assert.equal(run('S.state.audio'), 'fail', 'запись не загрузилась, испанского голоса нет');
+  assert.match(run('stepBody(S.steps[0])'), /Запись не загрузилась[\s\S]*Попробовать снова/);
+  // Нажатие ▶ (say) тоже показывает статус, а не молчит.
+  run('S.state.audio = null; say("sí")');
+  assert.equal(run('S.state.audio'), 'fail');
+  run = context(data, new Map(), {audio: {'sí': 'a1'}, audioFail: 'block'});
+  run('startLesson(1)');
+  await new Promise(r => setImmediate(r));
+  assert.equal(run('S.state.audio'), 'blocked');
+  assert.match(run('stepBody(S.steps[0])'), /Браузер не дал включить звук/);
+});
+
 test('приёмка 9: old completions stay, but goals of an updated lesson are not confirmed until the new version', () => {
   const data = mini([
     {id: 'a', kind: 'vocab', version: 2, goal: 'здороваться', vocab: ['buenos días — доброе утро'], blocks: [{learn: ['buenos días']}, {recap: {}}]},
@@ -458,8 +474,10 @@ test('приёмка 13: slide maps match what the engine builds', () => {
   }
   const run = context(site);
   run(SIG_CODE);
-  for (const L of site.lessons.filter(L => (L.version || 1) >= 2)) {
-    assert.ok(maps.has(L.id), `${L.id}: перестроенный урок без карты слайдов`);
+  // Тема, где перестроен хоть один урок, должна иметь карты всех своих уроков (и тесты темы тоже).
+  const reworked = new Set(site.lessons.filter(L => (L.version || 1) >= 2).map(L => L.unit));
+  for (const L of site.lessons.filter(L => reworked.has(L.unit))) {
+    assert.ok(maps.has(L.id), `${L.id}: урок перестроенной темы без карты слайдов`);
     const i = idx(run, L.id);
     run(`P = fresh(); LESSONS.slice(0, ${i}).forEach(L => { P.done[L.id] = {stars: 3}; }); startLesson(${i})`);
     // V-вопросы на слова (recap) перемешиваются: сравниваем без порядка внутри них.

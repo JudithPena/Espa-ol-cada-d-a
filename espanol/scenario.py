@@ -245,7 +245,7 @@ def _screens(lesson: Lesson) -> list[list]:
                 screens.append(cur)
             cur = []
             continue
-        if block.meta.get("slide") == "new" and cur:
+        if (block.meta.get("slide") == "new" or block.type == "mission") and cur:   # как authoredScreens на странице
             screens.append(cur)
             cur = []
         cur.append(block)

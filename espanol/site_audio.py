@@ -125,6 +125,8 @@ def audio_texts(data: dict) -> dict[str, tuple[str, str]]:
                     add(line[3])
             elif t == "reading":
                 add(b.get("say"))
+            elif t == "recap":   # «Мастер фраз» блока recap звучит на слух
+                add(b.get("phrase"))
             elif t == "conjugation":
                 for f in b.get("forms", []):
                     add(f)

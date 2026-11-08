@@ -1176,10 +1176,28 @@ function playNext() {
   const next = audioQueue.shift();
   if (!next) return;
   player = player || new Audio();
-  player.onended = playNext; player.onerror = null;
+  player.onended = playNext;
+  // Запись не загрузилась: испанский голос телефона, если он есть; иначе задание на слух покажет «Запись не
+  // загрузилась» и «Попробовать снова» (ошибка ученика это не ошибка).
+  player.onerror = () => { player.onerror = null; if (!speakText(next.text, next.slow)) audioTrouble(next.text, "fail"); playNext(); };
   player.src = `a/${next.id}.mp3`;
   setRate(next.slow ? 0.7 : 1);
-  player.play()?.catch?.(() => {});
+  player.play()?.catch?.(err => { if (err?.name === "NotAllowedError") audioTrouble(next.text, "blocked"); });
+}
+// Звук задания на слух не включился: статус на экране задания (только если это его фраза и ответа ещё нет).
+function audioTrouble(text, kind) {
+  const st = S?.steps?.[S.at];
+  if (!st || !S.state || S.state.result || clean(listenText(st)) !== clean(text)) return;
+  if (S.state.audio === kind) return;
+  S.state.audio = kind; render();
+}
+function speakText(text, slow = false) {
+  if (!SPEECH || !TTS.voice && (pickVoice(), !TTS.voice)) return false;
+  try {
+    const u = new SpeechSynthesisUtterance(clean(text));
+    u.lang = "es-ES"; u.voice = TTS.voice; u.rate = slow ? 0.6 : 0.9;
+    speechSynthesis.speak(u); return true;
+  } catch (e) { return false; }
 }
 // Одна запись с концом и ошибкой: так играют реплики диалога. Нет записи или она не загрузилась —
 // испанский голос телефона, если он есть; иначе onfail.
@@ -1210,7 +1228,7 @@ function say(text, { slow = false, queue = false, pitch = 1, voice = null } = {}
   if (!queue) stopSpeech();
   const id = audioId(text, voice);
   if (id) {
-    audioQueue.push({ id, slow });
+    audioQueue.push({ id, slow, text });
     if (!queue || !player || player.paused || player.ended) playNext();
     return;
   }
@@ -2844,7 +2862,7 @@ function resultView() {
   const control = r.check && lesson;
   const topicsHTML = control && r.topics.length ? `<div class="panel topics"><b>По темам</b><ul>${r.topics.map(t =>
     `<li class="${t.score >= PASS ? "ok" : t.score < 0.6 ? "weak" : "mid"}"><span>${t.score >= PASS ? "✓" : "↻"} ${esc(t.title)} — ${Math.round(t.score * 100)} %</span>${t.score < PASS && t.li >= 0 ? `<button class="btn ghost sm" data-lesson="${t.li}" data-free>Урок ${LESSONS[t.li].n}</button>` : ""}</li>`).join("")}</ul></div>` : "";
-  const failed = control && pct < PASS * 100;
+  const failed = control && r.score < PASS;   // как в finish(): по точному баллу, а не по округлённым процентам
   const title = !lesson ? "Повторение закончено!" : failed ? "Нужно повторить" : r.check === "control" ? `${esc(L.title)}: сдано!` : `Урок ${L.n} пройден!`;
   const lead = failed ? `<p class="verdict">Результат ${pct} % — нужно ${PASS * 100} %. ${r.check === "control" ? "Следующий урок откроется, когда итог будет сдан." : "Урок засчитан, но эти темы стоит повторить."}</p>`
     : control ? `<p class="verdict">Результат ${pct} % (нужно ${PASS * 100} %).</p>` : "";
