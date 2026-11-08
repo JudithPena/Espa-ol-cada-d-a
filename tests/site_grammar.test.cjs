@@ -613,7 +613,7 @@ test('the group-name mini-check keeps errors and repeats them without losing liv
 test('every mini-check in all 17 units renders choices and completes by clicking',()=>{
  const units=fs.readdirSync('content/grammar').filter(f=>f.endsWith('.json')).sort()
   .map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
- assert.equal(units.length,19);
+ assert.equal(units.length,20);
  for(const unit of units){
   const run=context([unit]);
   for(const [index,section] of unit.sections.entries()){
@@ -763,7 +763,7 @@ test('all typing screens show a persistent format and example without changing g
   })())`));
   typed+=result.typed;legacy+=result.legacy;
  }
- assert.equal(typed,413);assert.equal(legacy,52);
+ assert.equal(typed,441);assert.equal(legacy,54);
 });
 
 test('quantity answers accept digits or words while the field explains the quantity format', () => {
@@ -823,7 +823,7 @@ test('the size-based life limit stops every exercise in all 17 units, without cr
   assert.equal(run(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id===${JSON.stringify(group.id)})).errors`),limit);
   count++;
  }
- assert.equal(count,66);
+ assert.equal(count,70);
 });
 
 test('exit, route restart, whole-unit restart and reload preserve the failed or active attempt', () => {
@@ -1152,7 +1152,7 @@ test('every accepted alternative in mini-checks is offered and any one correct c
    }
   }
  }
- assert.equal(checked,12);
+ assert.equal(checked,14);
 });
 
 test('grammar list gives each theme a distinct icon and marks only fully completed themes',()=>{
@@ -1160,7 +1160,7 @@ test('grammar list gives each theme a distinct icon and marks only fully complet
  const run=context(units);
  run('view.grammar=null;');
  const icons=run('COURSE.grammar.map(u=>G_UNIT_ICONS[u.id])');
- assert.ok(icons.every(Boolean));assert.equal(new Set(icons).size,19);
+ assert.ok(icons.every(Boolean));assert.equal(new Set(icons).size,20);
  assert.ok(!run('grammarView()').includes('gcompleted-badge'));
  // Completing the exercises alone leaves mini-checks and theory unfinished.
  run(`const doneUnit=COURSE.grammar[0];for(const g of doneUnit.exercises)P.grammar[grammarKey(doneUnit,g)]={correct:0,total:g.questions.length};`);
@@ -1171,7 +1171,7 @@ test('grammar list gives each theme a distinct icon and marks only fully complet
  assert.equal(run('gUnitComplete(COURSE.grammar[0])'),true);
  const html=run('grammarView()');
  assert.equal((html.match(/gcompleted-badge/g)||[]).length,1);
- assert.ok(html.includes('Пройдено тем: 1 из 19'));
+ assert.ok(html.includes('Пройдено тем: 1 из 20'));
  assert.match(html,/class="mcard gcomplete" data-grammar="001_el_hijo_la_hija"/);
  assert.match(html,/class="mcard " data-grammar="002_el_libro_la_mesa"/);
  run('delete P.grammarRead[COURSE.grammar[0].id+"/summary"];');
@@ -1521,7 +1521,7 @@ test('multi-answer audit keeps regional, contextual and equally valid choices gr
    }
   }
  }
- assert.equal(questions,970);assert.equal(alternatives,72);assert.equal(warnings,5);
+ assert.equal(questions,1010);assert.equal(alternatives,83);assert.equal(warnings,5);
 });
 
 test('yellow mini-check choices still have no lives and complete normally',()=>{
@@ -1559,7 +1559,7 @@ test('all 17 completion screens derive the next lesson from course order and pre
    assert.ok(html.includes('Все уроки раздела пройдены!'));assert.ok(!html.includes('data-gnext-unit'));
    handlers.click({target:{closest:s=>s==='button, .spoiler, [data-say], [data-line]'?{dataset:{grammarList:''}}:null,classList:{contains:()=>false}}});
    assert.equal(run('G'),null);assert.equal(run('view.grammar'),null);assert.equal(run('view.tab'),'grammar');
-   assert.equal((run('grammarView()').match(/data-grammar="/g)||[]).length,19);
+   assert.equal((run('grammarView()').match(/data-grammar="/g)||[]).length,20);
   }
   assert.equal(run('JSON.stringify(P)'),before);
  }
@@ -1690,7 +1690,7 @@ test('all grammar choice sets receive valid, balanced attempt orders without cha
    assert.deepEqual(result,{},`${u.number}/${g.id}: ${JSON.stringify(result)}`);
   }
  }
- assert.equal(standard,505);assert.equal(guided,9);
+ assert.equal(standard,515);assert.equal(guided,9);
  assert.equal(run('JSON.stringify(COURSE.grammar)'),before);
 });
 
@@ -1993,4 +1993,42 @@ test('new possessive units fail at three errors, preserve failure on reload, and
    assert.equal(run('P.xp'),0);
   }
  }
+});
+
+test('unit 20 accepts omitted acute accent with a warning but rejects wrong indefinite forms',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/020_indefinidos.json','utf8'));
+ const run=context([u]);unlockUntil(run,'exercise:20.2');
+ run(`gStart(COURSE.grammar[0].id,'exercise:20.2');gMove(1);G.at=G.steps.findIndex(s=>s.type==='question'&&s.group==='20.2'&&s.qi===6);gResponse(G.steps[G.at]).value='ningun';gCheck();`);
+ assert.equal(run('gResponse(G.steps[G.at]).status'),'almost');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).errors'),0);
+ assert.equal(run(`grammarResult(gUnit().exercises[1].questions[6],'ninguno').good`),false);
+ assert.equal(run(`grammarResult(gUnit().exercises[2].questions[2],'ningún de').good`),false);
+ assert.equal(run(`grammarResult(gUnit().exercises[3].questions[1],'todo').good`),false);
+ assert.equal(run(`grammarResult(gUnit().exercises[3].questions[3],'ninguno').good`),false);
+ assert.equal(run(`grammarResult(gUnit().exercises[0].questions[0],'  TODAS   LAS CAJAS  ').good`),true);
+});
+
+test('unit 20 stops every exercise at three errors and returns to its own theory after reload',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/020_indefinidos.json','utf8'));
+ for(const g of u.exercises){
+  const storage=new Map();let run=context([u],storage);unlockUntil(run,'exercise:'+g.id);
+  run(`save();gStart(COURSE.grammar[0].id,'exercise:${g.id}');gMove(1);for(let i=0;i<3;i++){gResponse(G.steps[G.at]).value='incorrecto';gCheck();if(!G.recovery)gMove(1);}`);
+  assert.equal(run(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id==='${g.id}')).status`),'failed');
+  assert.equal(run(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id==='${g.id}')).errors`),3);
+  run=context([u],storage);run(`gStart(COURSE.grammar[0].id,'all',true);gReviewTheory();`);
+  assert.ok(run('gPlayerView()').includes(u.sections[g.theorySections[0]].title));
+  assert.equal(run('P.xp'),0);
+ }
+});
+
+test('unit 20 requires both dialogue gaps and preserves a partial answer on reload',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/020_indefinidos.json','utf8'));
+ const storage=new Map();let run=context([u],storage);unlockUntil(run,'exercise:20.4');
+ run(`save();gStart(COURSE.grammar[0].id,'exercise:20.4');gMove(1);var response=gResponse(G.steps[G.at]);response.gapValues=['algunos',''];response.value='';gSave();gCheck();`);
+ assert.equal(run('gResponse(G.steps[G.at]).checked'),false);
+ run=context([u],storage);run(`gStart(COURSE.grammar[0].id,'all',true);`);
+ assert.equal(run('gResponse(G.steps[G.at]).gapValues[0]'),'algunos');
+ assert.equal(run('gResponse(G.steps[G.at]).checked'),false);
+ run(`var r=gResponse(G.steps[G.at]);r.gapValues=['algunos','todos'];r.value='algunos todos';gCheck();`);
+ assert.equal(run('gResponse(G.steps[G.at]).status'),'correct');
 });

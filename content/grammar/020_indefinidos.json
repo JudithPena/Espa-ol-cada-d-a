@@ -1,0 +1,1287 @@
+{
+  "id": "020_todos_algunos_ninguno",
+  "number": 20,
+  "title": "Todos, algunos, unos, ninguno…",
+  "subtitle": "Все, некоторые, один и ни одного",
+  "level": "A1",
+  "sections": [
+    {
+      "title": "Вся группа, часть, один или ни одного",
+      "paragraphs": [
+        "**`Todos / todas` — вся группа; `algunos / algunas` или `unos / unas` — несколько её участников; `un / una` — один неопределённый участник; `ningún / ninguna` — ни одного.** Форму согласуем с существительным.",
+        "`Algunos` и `unos` во многих ситуациях близки по смыслу. `Unos` часто представляет несколько новых людей или вещей, а `algunos` подчёркивает часть группы. Это не жёсткое противопоставление: когда обе формы подходят, обе правильны.",
+        "`Una manzana` — одно яблоко; `ninguna pera` — ни одной груши. В `Ninguna pera está podrida` слово `ninguna` уже выражает отрицание: ни одна груша не гнилая. `Podrido` — гнилой, `roto` — разбитый, `reluciente` — блестящий."
+      ],
+      "presentation": "examples",
+      "check": {
+        "id": "check-1",
+        "title": "Мини-проверка",
+        "instruction": "Выбери форму по ситуации.",
+        "questions": [
+          {
+            "prompt": "___ están vacías.",
+            "answers": [
+              "todas las cajas"
+            ],
+            "explain": "Пусты все коробки; cajas — женский род, несколько: todas las cajas.",
+            "context": "Все пять коробок пусты. Выбери сочетание с названием предмета.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "todas las cajas",
+              "algunas cajas",
+              "ninguna caja"
+            ]
+          },
+          {
+            "prompt": "___ está podrida.",
+            "answers": [
+              "ninguna pera"
+            ],
+            "explain": "Ни одной испорченной груши: ninguna pera. Единственное число: está.",
+            "context": "Все груши свежие.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "una pera",
+              "ninguna pera",
+              "algunas peras"
+            ]
+          }
+        ]
+      },
+      "wordGroups": [
+        {
+          "title": "Вся группа",
+          "words": [
+            [
+              "Todos los niños están aquí.",
+              "Все дети здесь."
+            ]
+          ]
+        },
+        {
+          "title": "Часть группы",
+          "words": [
+            [
+              "Algunos niños están aquí.",
+              "Некоторые дети здесь."
+            ]
+          ]
+        },
+        {
+          "title": "Один / ни одного",
+          "words": [
+            [
+              "Un niño está aquí.",
+              "Один мальчик здесь."
+            ],
+            [
+              "Ningún niño está aquí.",
+              "Ни одного ребёнка здесь нет."
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Todo el pan, todas mis amigas",
+      "paragraphs": [
+        "**`Todo / toda` с единственным числом** обозначает весь предмет или всё количество: `todo el pan` — весь хлеб, `toda mi familia` — вся моя семья, `toda esa basura` — весь тот мусор. После `todo` может стоять артикль, притяжательное или указательное слово.",
+        "**`Todos / todas` с множественным числом** обозначает всех участников: `todos los veranos` — каждое лето, `todas mis amigas` — все мои подруги. Два определителя подряд не добавляем: `todas mis amigas`, а не `todas las mis amigas`.",
+        "С личными местоимениями артикль не нужен: `todos nosotros` — все мы, `todas ellas` — все они (женщины). Пол и число формы определяются группой, о которой говорим."
+      ],
+      "presentation": "examples",
+      "check": {
+        "id": "check-2",
+        "title": "Мини-проверка",
+        "instruction": "Выбери форму по ситуации.",
+        "questions": [
+          {
+            "prompt": "___ mi familia habla español.",
+            "answers": [
+              "toda"
+            ],
+            "explain": "Familia — женский род, единственное число: toda mi familia.",
+            "context": "Вся моя семья говорит по-испански.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "toda",
+              "todas",
+              "todo"
+            ]
+          },
+          {
+            "prompt": "___ nosotros queremos ir.",
+            "answers": [
+              "todos"
+            ],
+            "explain": "С nosotros используем todos без артикля.",
+            "context": "Все мы хотим пойти.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "todo",
+              "todos",
+              "todos los"
+            ]
+          }
+        ]
+      },
+      "schemes": [
+        {
+          "from": "todo el pan",
+          "to": "todos los panes",
+          "note": "Весь хлеб → все буханки",
+          "label": "Весь объём и все предметы"
+        },
+        {
+          "from": "toda mi familia",
+          "to": "todas mis amigas",
+          "note": "Одна семья → несколько подруг",
+          "label": "Одна семья и несколько подруг"
+        }
+      ]
+    },
+    {
+      "title": "Algún и ningún: перед словом и без него",
+      "paragraphs": [
+        "**Перед существительным мужского рода единственного числа** `alguno` сокращается до `algún`, `ninguno` — до `ningún`, а `uno` — до `un`: `algún alumno`, `ningún coche`, `un libro`. Знак ударения в `algún` и `ningún` сохраняем.",
+        "Перед существительным женского рода обычно используем `alguna`, `ninguna`, `una`: `alguna pregunta`, `ninguna casa`. Для нескольких неопределённых предметов есть `algunos / algunas`, `unos / unas`. Чтобы сказать «ни одного» об обычных счётных предметах, обычно используем единственное число: `No tengo ningún libro`.",
+        "Без существительного остаются полные формы: `¿Tienes algún libro? — Sí, tengo uno`; `¿Conoces algún país de Asia? — No, no conozco ninguno`. Вопрос с `algún` не означает, что мы уже знаем, какой именно предмет имеется в виду."
+      ],
+      "presentation": "examples",
+      "check": {
+        "id": "check-3",
+        "title": "Мини-проверка",
+        "instruction": "Выбери форму по ситуации.",
+        "questions": [
+          {
+            "prompt": "¿Tienes ___ libro en español?",
+            "answers": [
+              "algún",
+              "un"
+            ],
+            "explain": "Перед libro нужны algún или un; обе формы подходят к вопросу о неопределённой книге.",
+            "context": "Есть ли у тебя какая-нибудь книга на испанском?",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "algún",
+              "un",
+              "alguno"
+            ]
+          },
+          {
+            "prompt": "No tengo ___ coche.",
+            "answers": [
+              "ningún"
+            ],
+            "explain": "Перед coche нужна сокращённая форма ningún; no уже стоит перед глаголом.",
+            "context": "У меня нет ни одной машины.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "ninguno",
+              "ningún",
+              "ninguna"
+            ]
+          }
+        ]
+      },
+      "table": {
+        "compactForms": true,
+        "heads": [
+          "Значение",
+          "Перед мужским словом",
+          "Перед женским словом",
+          "Без существительного"
+        ],
+        "rows": [
+          [
+            "Один",
+            "un libro",
+            "una revista",
+            "uno / una"
+          ],
+          [
+            "Какой-нибудь",
+            "algún libro",
+            "alguna revista",
+            "alguno / alguna"
+          ],
+          [
+            "Ни одного",
+            "ningún libro",
+            "ninguna revista",
+            "ninguno / ninguna"
+          ]
+        ]
+      }
+    },
+    {
+      "title": "Один из группы: uno de…",
+      "paragraphs": [
+        "**`Uno / una de…`** — один / одна из группы; **`alguno / alguna de…`** — кто-нибудь или какой-нибудь из неё; **`ninguno / ninguna de…`** — ни один / ни одна. Перед `de` формы `alguno` и `ninguno` не сокращаются.",
+        "Группа после `de` может быть названа местоимением (`uno de nosotros`), существительным с артиклем (`ninguno de los niños`), притяжательным (`una de mis amigas`) или указательным словом (`alguno de estos libros`). Род выбираем по тому, кого или что выделяем.",
+        "С `uno`, `alguno`, `ninguno` в подлежащем в этих нейтральных примерах используем глагол в единственном числе: `Uno de mis tíos vive en Caracas`, `Ninguno de nosotros ha estado allí`."
+      ],
+      "presentation": "examples",
+      "check": {
+        "id": "check-4",
+        "title": "Мини-проверка",
+        "instruction": "Выбери форму по ситуации.",
+        "questions": [
+          {
+            "prompt": "___ mis amigas vive en Lima.",
+            "answers": [
+              "una de"
+            ],
+            "explain": "Выделяем одну подругу: una de mis amigas.",
+            "context": "Одна из моих подруг живёт в Лиме.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "una de",
+              "una",
+              "un de"
+            ]
+          },
+          {
+            "prompt": "¿___ ustedes habla quechua?",
+            "answers": [
+              "alguno de"
+            ],
+            "explain": "После alguno ставим de перед ustedes; habla согласовано с alguno.",
+            "context": "Кто-нибудь из вас говорит на кечуа?",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "alguno de",
+              "algún de",
+              "alguno"
+            ]
+          }
+        ]
+      },
+      "dialogues": [
+        {
+          "title": "Выбираем из известных вещей",
+          "lines": [
+            [
+              "¿Es tuyo alguno de estos libros?",
+              "Какая-нибудь из этих книг твоя?"
+            ],
+            [
+              "Sí, uno de ellos es mío.",
+              "Да, одна из них моя."
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Ninguno и no: где стоит отрицание",
+      "paragraphs": [
+        "**Если `ninguno` или сочетание с `ningún / ninguna` стоит перед глаголом, дополнительное `no` обычно не нужно:** `Ninguno de mis amigos ha salido` — никто из моих друзей не вышел.",
+        "**Если отрицательное слово стоит после глагола, обычно нужно `no` перед глаголом:** `No ha salido ninguno de mis amigos`. Это обычное испанское отрицание, а не ошибка из-за двух отрицательных слов.",
+        "Если предметы уже названы, существительное можно не повторять: `Conozco a algunos, pero no a todos` — я знаю некоторых, но не всех. О книгах говорим `Los he comprado todos` — купил все. Отдельное `todo` может означать «всё»: `Lo he comprado todo`. Не заменяй `todos` на `todo`, если речь о нескольких названных книгах."
+      ],
+      "presentation": "examples",
+      "check": {
+        "id": "check-5",
+        "title": "Мини-проверка",
+        "instruction": "Выбери форму по ситуации.",
+        "questions": [
+          {
+            "prompt": "___ de nosotros ha estado allí.",
+            "answers": [
+              "ninguno"
+            ],
+            "explain": "Отрицательное подлежащее перед ha: ninguno, без дополнительного no.",
+            "context": "Никто из нас там не был.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "ninguno",
+              "alguno",
+              "ningunos"
+            ]
+          },
+          {
+            "prompt": "___ ha venido ninguno.",
+            "answers": [
+              "no"
+            ],
+            "explain": "Ninguno стоит после глагола, поэтому перед ha venido нужно no.",
+            "context": "Никто не пришёл.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "no",
+              "sí",
+              "ya"
+            ]
+          }
+        ]
+      },
+      "wordGroups": [
+        {
+          "title": "Отрицательное слово до глагола",
+          "words": [
+            [
+              "Ninguna de mis amigas ha venido.",
+              "Ни одна из моих подруг не пришла."
+            ]
+          ]
+        },
+        {
+          "title": "Отрицательное слово после глагола",
+          "words": [
+            [
+              "No ha venido ninguna de mis amigas.",
+              "Ни одна из моих подруг не пришла."
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "20.1",
+      "title": "20.1 · Описываем группу",
+      "instruction": "По данным составь сочетание: вся группа, часть, ровно один или ни одного + название предмета. Точное число не вписывай.",
+      "questions": [
+        {
+          "prompt": "___ están vacías.",
+          "answers": [
+            "todas las cajas"
+          ],
+          "explain": "Cajas — женский род, несколько; вся группа: todas las cajas.",
+          "context": "Пусты все пять коробок.",
+          "sourceRef": "20.1.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Наглядные данные",
+            "items": [
+              [
+                "Всего предметов",
+                "5"
+              ],
+              [
+                "Пустых",
+                "5"
+              ]
+            ]
+          },
+          "clues": [
+            [
+              "caja",
+              "коробка"
+            ]
+          ]
+        },
+        {
+          "prompt": "___ están cerradas.",
+          "answers": [
+            "algunas cajas",
+            "unas cajas"
+          ],
+          "explain": "Часть группы: algunas cajas или unas cajas. Обе формы согласуются с cajas.",
+          "context": "Три из шести коробок закрыты; скажи «некоторые коробки», без точного числа.",
+          "sourceRef": "20.1.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Наглядные данные",
+            "items": [
+              [
+                "Всего предметов",
+                "6"
+              ],
+              [
+                "Закрытых",
+                "3"
+              ]
+            ]
+          },
+          "clues": [
+            [
+              "caja",
+              "коробка"
+            ]
+          ]
+        },
+        {
+          "prompt": "___ están rotos.",
+          "answers": [
+            "algunos platos",
+            "unos platos"
+          ],
+          "explain": "Platos — мужской род, несколько: algunos platos / unos platos.",
+          "context": "Две из восьми тарелок разбиты; назови часть группы без точного числа.",
+          "sourceRef": "20.1.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Наглядные данные",
+            "items": [
+              [
+                "Всего предметов",
+                "8"
+              ],
+              [
+                "Разбитых",
+                "2"
+              ]
+            ]
+          },
+          "clues": [
+            [
+              "plato",
+              "тарелка"
+            ]
+          ]
+        },
+        {
+          "prompt": "___ está roto.",
+          "answers": [
+            "un vaso"
+          ],
+          "explain": "Один стакан: un vaso. Единственное число: está.",
+          "context": "Разбит ровно один стакан.",
+          "sourceRef": "20.1.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Наглядные данные",
+            "items": [
+              [
+                "Всего предметов",
+                "5"
+              ],
+              [
+                "Разбитых",
+                "1"
+              ]
+            ]
+          },
+          "clues": [
+            [
+              "vaso",
+              "стакан"
+            ]
+          ]
+        },
+        {
+          "prompt": "___ están parados.",
+          "answers": [
+            "todos los coches"
+          ],
+          "explain": "Вся группа: todos los coches. Parados — остановились, стоят.",
+          "context": "Все восемь машин стоят.",
+          "sourceRef": "20.1.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Наглядные данные",
+            "items": [
+              [
+                "Всего предметов",
+                "8"
+              ],
+              [
+                "Остановившихся",
+                "8"
+              ]
+            ]
+          },
+          "clues": [
+            [
+              "coche",
+              "машина"
+            ]
+          ]
+        },
+        {
+          "prompt": "___ está podrida.",
+          "answers": [
+            "una manzana"
+          ],
+          "explain": "Manzana — женский род, один предмет: una manzana.",
+          "context": "Испорчено ровно одно яблоко.",
+          "sourceRef": "20.1.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Наглядные данные",
+            "items": [
+              [
+                "Всего предметов",
+                "6"
+              ],
+              [
+                "Гнилых",
+                "1"
+              ]
+            ]
+          },
+          "clues": [
+            [
+              "manzana",
+              "яблоко"
+            ]
+          ]
+        },
+        {
+          "prompt": "___ está podrida.",
+          "answers": [
+            "ninguna pera"
+          ],
+          "explain": "Ноль испорченных груш: ninguna pera. Перед глаголом дополнительное no не нужно.",
+          "context": "Все пять груш свежие: ни одной гнилой.",
+          "sourceRef": "20.1.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Наглядные данные",
+            "items": [
+              [
+                "Всего предметов",
+                "5"
+              ],
+              [
+                "Гнилых",
+                "0"
+              ]
+            ]
+          },
+          "clues": [
+            [
+              "pera",
+              "груша"
+            ]
+          ]
+        },
+        {
+          "prompt": "___ están relucientes.",
+          "answers": [
+            "algunos vasos",
+            "unos vasos"
+          ],
+          "explain": "Несколько стаканов: algunos vasos / unos vasos. Relucientes — блестящие.",
+          "context": "Три из пяти стаканов блестят. Назови часть группы без точного числа.",
+          "sourceRef": "20.1.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Наглядные данные",
+            "items": [
+              [
+                "Всего предметов",
+                "5"
+              ],
+              [
+                "Блестящих",
+                "3"
+              ]
+            ]
+          },
+          "clues": [
+            [
+              "vaso",
+              "стакан"
+            ]
+          ]
+        }
+      ],
+      "theorySections": [
+        0
+      ],
+      "inputFormat": {
+        "instruction": "Впиши количественное слово и название предмета в нужной форме. Для всей группы добавь артикль. Без точного числа и без точки.",
+        "placeholder": "Количество и название"
+      }
+    },
+    {
+      "id": "20.2",
+      "title": "20.2 · Выбираем форму по смыслу",
+      "instruction": "Впиши одно слово. Учитывай, говорится ли обо всей группе, её части или отсутствии участников.",
+      "questions": [
+        {
+          "prompt": "Alicia está estudiando con ___ compañeros.",
+          "answers": [
+            "unos",
+            "algunos"
+          ],
+          "explain": "Часть группы: unos compañeros и algunos compañeros подходят.",
+          "context": "Алисия занимается с несколькими однокурсниками; точное число не называем.",
+          "sourceRef": "20.2.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "En ___ países de África se habla español.",
+          "answers": [
+            "algunos",
+            "unos"
+          ],
+          "explain": "Países — мужской род, несколько: algunos / unos.",
+          "context": "В некоторых странах Африки говорят по-испански. Речь о части стран, не о статусе официального языка.",
+          "sourceRef": "20.2.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿Has estado en ___ país de América?",
+          "answers": [
+            "algún",
+            "un"
+          ],
+          "explain": "Перед país используем algún или un; alguno перед существительным здесь не подходит.",
+          "context": "Вопрос об опыте: бывал ли ты в какой-нибудь стране Америки?",
+          "sourceRef": "20.2.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "___ mi familia habla español.",
+          "answers": [
+            "toda"
+          ],
+          "explain": "Вся семья: toda mi familia. Familia — женский род, один коллектив.",
+          "context": "Каждый член моей семьи говорит по-испански.",
+          "sourceRef": "20.2.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "___ mis amigas son simpáticas.",
+          "answers": [
+            "todas"
+          ],
+          "explain": "Все подруги: todas mis amigas. Mis уже стоит после пропуска.",
+          "context": "Все мои подруги приятные, исключений нет.",
+          "sourceRef": "20.2.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "___ aves no pueden volar.",
+          "answers": [
+            "algunas",
+            "unas"
+          ],
+          "explain": "Aves — женский род, несколько: algunas / unas.",
+          "context": "Страусы и пингвины не летают, но многие другие птицы летают. Назови часть группы.",
+          "sourceRef": "20.2.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "___ elefante de este parque come carne.",
+          "answers": [
+            "ningún"
+          ],
+          "explain": "Ни один слон из этой группы: ningún elefante; отрицательное слово стоит перед come.",
+          "context": "В этом парке рацион всех слонов растительный; мясом здесь не кормят ни одного слона.",
+          "sourceRef": "20.2.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        }
+      ],
+      "theorySections": [
+        1,
+        2
+      ],
+      "inputFormat": {
+        "instruction": "Впиши только пропущенное слово. Остальную фразу не повторяй.",
+        "placeholder": "Пропущенное слово"
+      }
+    },
+    {
+      "id": "20.3",
+      "title": "20.3 · Кто-то из нас, один из них",
+      "instruction": "Впиши полное пропущенное сочетание. Включи de там, где оно связывает выбранного участника с группой.",
+      "questions": [
+        {
+          "prompt": "Ayer conocí a ___ tus hermanos.",
+          "answers": [
+            "uno de"
+          ],
+          "explain": "Uno de tus hermanos: один из названной группы.",
+          "context": "Вчера я познакомился ровно с одним из твоих братьев.",
+          "sourceRef": "20.3.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ ustedes habla quechua?",
+          "answers": [
+            "alguno de",
+            "uno de"
+          ],
+          "explain": "Вопрос о неопределённом участнике группы: alguno de / uno de ustedes.",
+          "context": "Спроси, говорит ли кто-нибудь из вас на кечуа; адресаты — смешанная группа, обращение ustedes.",
+          "sourceRef": "20.3.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "No he conocido a ___ mis abuelas.",
+          "answers": [
+            "ninguna de"
+          ],
+          "explain": "Abuelas — женский род: ninguna de. No уже стоит перед глаголом.",
+          "context": "Я не познакомился ни с одной из моих бабушек.",
+          "sourceRef": "20.3.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿Trabaja ___ tus hermanos?",
+          "answers": [
+            "alguno de",
+            "uno de"
+          ],
+          "explain": "Один неопределённый брат из группы: alguno de / uno de tus hermanos.",
+          "context": "Спроси, работает ли кто-нибудь из братьев собеседника.",
+          "sourceRef": "20.3.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Felipe sale con ___ mis amigas.",
+          "answers": [
+            "una de"
+          ],
+          "explain": "Подруга одна из группы: una de mis amigas.",
+          "context": "Фелипе встречается с одной из моих подруг.",
+          "sourceRef": "20.3.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "___ nosotros ha estado en la Isla de Pascua, pero nos gustaría ir.",
+          "answers": [
+            "ninguno de"
+          ],
+          "explain": "Ninguno de nosotros стоит перед ha estado, поэтому дополнительное no не нужно.",
+          "context": "Никто из нашей смешанной группы не был на острове Пасхи; нам хотелось бы туда поехать.",
+          "sourceRef": "20.3.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        }
+      ],
+      "theorySections": [
+        2,
+        3
+      ],
+      "inputFormat": {
+        "instruction": "Впиши два слова: нужную форму и de. Название группы после пропуска не повторяй.",
+        "placeholder": "Форма слова + de"
+      }
+    },
+    {
+      "id": "20.4",
+      "title": "20.4 · Продолжаем разговор и исправляем ошибки",
+      "instruction": "Впиши продолжение диалога, затем исправь слова и собери два предложения с отрицанием.",
+      "questions": [
+        {
+          "prompt": "¿Conoces a los amigos de Pedro? — Conozco a ___, pero no a ___.",
+          "answers": [
+            "algunos todos",
+            "unos todos"
+          ],
+          "explain": "В первой части называем часть знакомых: algunos / unos; во второй — всю группу: todos.",
+          "context": "Ты знаком с несколькими друзьями Педро, но не со всеми.",
+          "sourceRef": "20.4.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿Conoces a los amigos de Pedro? — Conozco a ",
+            ", pero no a ",
+            "."
+          ],
+          "inputFormat": {
+            "instruction": "В каждый пропуск впиши одно слово: сначала часть группы, затем всю группу.",
+            "placeholder": "Одно слово в каждый пропуск"
+          }
+        },
+        {
+          "prompt": "¿Has comprado ya los libros? — Sí, los he comprado ___.",
+          "answers": [
+            "todos"
+          ],
+          "explain": "Речь о нескольких книгах мужского рода: todos. Todo означало бы «всё» в другой конструкции.",
+          "context": "Ты уже купил все книги, которые обсуждали.",
+          "sourceRef": "20.4.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿Conoces algún país de Asia? — No, no conozco ___.",
+          "answers": [
+            "ninguno"
+          ],
+          "explain": "País подразумевается, поэтому полная форма ninguno. Ningún используется перед существительным.",
+          "context": "Ответ отрицательный: ни одной страны Азии не знаешь.",
+          "sourceRef": "20.4.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿Has visto a alguna de mis hermanas? — No, no he visto a ___.",
+          "answers": [
+            "ninguna"
+          ],
+          "explain": "Hermanas — женский род: ninguna. De mis hermanas можно не повторять.",
+          "context": "Ты не видел ни одной из сестёр собеседника.",
+          "sourceRef": "20.4.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Me encantan las mariposas. ___ tienen las alas muy bonitas.",
+          "answers": [
+            "todas"
+          ],
+          "explain": "Mariposas — женский род, несколько: todas. Существительное уже названо.",
+          "context": "Говорящий описывает всю группу бабочек, о которой идёт речь.",
+          "sourceRef": "20.4.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "___",
+          "answers": [
+            "ningún"
+          ],
+          "explain": "Перед существительным libro нужно ningún.",
+          "context": "Исправь только неверное слово: «No tengo ninguno libro».",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "inputFormat": {
+            "instruction": "Впиши только исправленное слово.",
+            "placeholder": "Исправленное слово"
+          }
+        },
+        {
+          "prompt": "___",
+          "answers": [
+            "toda"
+          ],
+          "explain": "Familia — женский род, единственное число: toda.",
+          "context": "Исправь только неверное слово: «Todos mi familia está aquí».",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "inputFormat": {
+            "instruction": "Впиши только исправленное слово.",
+            "placeholder": "Исправленное слово"
+          }
+        },
+        {
+          "prompt": "___",
+          "answers": [
+            "Ninguno de mis amigos ha salido"
+          ],
+          "explain": "Ninguno перед глаголом не требует no; если ninguno стоит после глагола, no ставим перед ним.",
+          "context": "Собери предложение без точки.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "ha",
+            "amigos",
+            "Ninguno",
+            "salido",
+            "de",
+            "mis"
+          ],
+          "answerHint": "Никто из моих друзей не вышел. Начни с Ninguno.",
+          "inputFormat": {
+            "instruction": "Собери предложение по указанному началу, без точки.",
+            "placeholder": "Полное предложение"
+          }
+        },
+        {
+          "prompt": "___",
+          "answers": [
+            "No ha salido ninguno de mis amigos"
+          ],
+          "explain": "Ninguno перед глаголом не требует no; если ninguno стоит после глагола, no ставим перед ним.",
+          "context": "Собери предложение без точки.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "ninguno",
+            "amigos",
+            "No",
+            "de",
+            "salido",
+            "mis",
+            "ha"
+          ],
+          "answerHint": "Никто из моих друзей не вышел. Начни с No.",
+          "inputFormat": {
+            "instruction": "Собери предложение по указанному началу, без точки.",
+            "placeholder": "Полное предложение"
+          }
+        }
+      ],
+      "theorySections": [
+        2,
+        3,
+        4
+      ],
+      "inputFormat": {
+        "instruction": "Впиши только пропущенное слово. Остальную фразу не повторяй.",
+        "placeholder": "Пропущенное слово"
+      }
+    }
+  ],
+  "learningOrder": [
+    "section:0",
+    "exercise:20.1",
+    "section:1",
+    "section:2",
+    "exercise:20.2",
+    "section:3",
+    "exercise:20.3",
+    "section:4",
+    "exercise:20.4",
+    "summary"
+  ],
+  "summary": {
+    "wordGroups": [
+      {
+        "title": "Количество и форма",
+        "words": [
+          [
+            "todas las cajas / algunas cajas",
+            "Вся группа / часть группы"
+          ],
+          [
+            "un vaso / ningún vaso",
+            "Один / ни одного"
+          ],
+          [
+            "algún libro / alguno de los libros",
+            "Перед существительным / один из группы"
+          ]
+        ]
+      },
+      {
+        "title": "Отрицание",
+        "words": [
+          [
+            "Ninguno ha venido.",
+            "Отрицательное слово до глагола"
+          ],
+          [
+            "No ha venido ninguno.",
+            "После глагола — с no впереди"
+          ]
+        ]
+      }
+    ]
+  }
+}

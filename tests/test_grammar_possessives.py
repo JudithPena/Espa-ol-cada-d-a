@@ -4,7 +4,7 @@ from espanol.grammar import load_grammar
 
 
 def test_new_possessive_units_preserve_each_source_task_and_add_targeted_corrections():
-    units = load_grammar()[-2:]
+    units = [u for u in load_grammar() if u["number"] in [18,19]]
     assert [u['number'] for u in units] == [18, 19]
     for u, source_counts, totals in zip(units, [[10,8,10],[8,10,8]], [[10,8,14],[8,10,12]]):
         assert [len(g['questions']) for g in u['exercises']] == totals
@@ -19,7 +19,7 @@ def test_new_possessive_units_preserve_each_source_task_and_add_targeted_correct
 
 
 def test_possessive_context_and_normative_alternatives():
-    a,b = load_grammar()[-2:]
+    a,b = [u for u in load_grammar() if u["number"] in [18,19]]
     family = a['exercises'][0]
     assert family['questions'][5]['answers'] == ['su']
     assert 'жене Begoña' in family['questions'][5]['context']

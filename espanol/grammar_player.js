@@ -614,6 +614,7 @@ const G_UNIT_ICONS = {
   '017_la_mas_alta': '🏆',
   '018_mi_tu_su': '🏠',
   '019_mio_tuyo_suyo': '🔑',
+  '020_todos_algunos_ninguno': '🧺',
 };
 function gUnitComplete(unit) {
   const routes=gRoutes(unit);
