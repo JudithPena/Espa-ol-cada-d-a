@@ -7,65 +7,100 @@ goals:
   - понимать род слов и выбирать артикль el, la, un, una
   - образовывать множественное число и говорить, что где есть
 
+# Сценарий (docs/site_lessons_guide.md): одна грамматическая цель на цикл —
+# ¿Qué es esto? → un / una → el / la → множественное число → hay → миссия «Комната Лусии».
 lessons:
   - id: vocab1
     kind: vocab
     title: ¿Qué es esto?
+    goal: спросить «Что это?» и назвать пять вещей
     vocab:
       - "❓ ¿Qué es esto? [кэ эс э́сто] — что это? :: ¿Qué es esto? Es un libro. — Что это? Это книга."
-      - "☝️ un / una [ун, у́на] — (какой-то) один, одна; неопределённый артикль :: Es una llave. — Это ключ."
       - "📕 el libro [ли́бро] — книга"
       - "📓 el cuaderno [куадэ́рно] — тетрадь"
       - "🖊 el bolígrafo [боли́графо] — ручка"
+      - "☝️ un / una [ун, у́на] — (какой-то) один, одна; неопределённый артикль :: Es una llave. — Это ключ."
       - "🎒 la mochila [мочи́ла] — рюкзак"
       - "🔑 la llave [лья́бэ] — ключ"
     blocks:
-      - "Самый простой способ узнать новое слово такой: покажите на предмет и спросите **¿Qué es esto?**, то есть «Что это?». В ответ вы услышите **Es un...** или **Es una...** и название предмета."
+      - "Самый простой способ узнать новое слово: покажите на предмет и спросите **¿Qué es esto?** — «Что это?». В ответ вы услышите **Es un…** и название предмета."
+      - learn: ["¿Qué es esto?", el libro, el cuaderno, el bolígrafo]
       - examples:
           items:
             - "¿Qué es esto? Es un cuaderno. — Что это? Это тетрадь."
-            - "¿Qué es esto? Es una mochila. — Что это? Это рюкзак."
             - "¿Es un libro? No, es un cuaderno. — Это книга? Нет, это тетрадь."
-      - tip: "Заметили? Перед одними словами стоит **un**, а перед другими стоит **una**: _un libro, un cuaderno, un bolígrafo_, но _una mochila, una llave_. Это зависит от рода слова. В следующем уроке мы разберёмся, как род узнать."
-      - exercise:
-          title: Responde
+      - choose:
+          title: "¿Qué es esto?"
           items:
-            - "📕 ¿Qué es esto? => Es un libro."
-            - "🔑 ¿Qué es esto? => Es una llave."
-            - "🖊 ¿Qué es esto? => Es un bolígrafo."
-            - "🎒 ¿Qué es esto? => Es una mochila."
+            - img: el libro
+              options: "Es un libro. | Es un cuaderno. | Es un bolígrafo."
+            - img: el bolígrafo
+              options: "Es un bolígrafo. | Es un libro. | Es un cuaderno."
+      - learn: [la mochila, la llave, un / una]
+      - examples:
+          items:
+            - "¿Qué es esto? Es una mochila. — Что это? Это рюкзак."
+            - "¿Qué es esto? Es una llave. — Что это? Это ключ."
+      - tip: "Заметили? Перед одними словами стоит **un**, а перед другими — **una**: _un libro, un cuaderno, un bolígrafo_, но _una mochila, una llave_. Это зависит от рода слова: в следующем уроке разберёмся, как его узнать."
+      - match:
+          title: Соедините пары
+          pairs:
+            - "el libro — книга"
+            - "el cuaderno — тетрадь"
+            - "el bolígrafo — ручка"
+            - "la mochila — рюкзак"
+            - "la llave — ключ"
+      - choose:
+          title: Что ответить?
+          items:
+            - img: el cuaderno
+              lines: ["Ana: ¿Es un libro?"]
+              options: "No, es un cuaderno. | Sí, es un libro. | No, es una llave."
+              explain: "На картинке тетрадь, поэтому: No, es un cuaderno — «Нет, это тетрадь»."
+      - write:
+          title: "¿Qué es esto?"
+          format: "фраза: Es un… / Es una…"
+          items:
+            - img: la mochila
+              a: "Es una mochila"
+            - img: el cuaderno
+              a: "Es un cuaderno"
+            - img: la llave
+              a: "Es una llave"
 
   - id: genero
     kind: grammar
     title: "Мужской и женский род: el, la, un, una"
+    goal: выбрать el или la, un или una по роду слова
     vocab:
       - "🍽️ la mesa [мэ́са] — стол"
       - "🪑 la silla [си́лья] — стул"
       - "📅 el día [ди́а] — день"
-      - "🖼️ la foto [фо́то] — фотография"
       - "🗺 el mapa [ма́па] — карта"
+      - "🖼️ la foto [фо́то] — фотография"
       - "🔀 o [о] — или :: ¿El o la? — El или la?"
     blocks:
-      - "Посмотрите на три группы слов. Как вы думаете, можно ли по окончанию слова угадать его артикль?"
-      - table:
-          rows:
-            - ["el libro, el cuaderno, el bolígrafo", "эти слова заканчиваются на `-o`, и перед ними стоит **el**"]
-            - ["la mochila, la mesa, la silla", "эти слова заканчиваются на `-a`, и перед ними стоит **la**"]
-            - ["el café, el hotel, la llave", "у этих слов другие окончания, поэтому артикль нужно запомнить"]
+      - "Посмотрите на группы слов. Можно ли по окончанию угадать, какой нужен артикль?"
+      - learn: [la mesa, la silla]
       - compare:
           cards:
             - head: el … -o
               say: false
               label: мужской род
               tone: blue
-              text: Если слово заканчивается на **-o**, то перед ним обычно ставится **el**.
-              ex: [el libro, el cuaderno, el queso, el vino]
+              text: Если слово заканчивается на **-o**, то перед ним обычно ставится **el** или **un**.
+              ex: [el libro, el cuaderno, un bolígrafo, un queso]
             - head: la … -a
               say: false
               label: женский род
               tone: rose
-              text: Если слово заканчивается на **-a**, то перед ним обычно ставится **la**.
-              ex: [la mesa, la silla, la casa, la plaza]
+              text: Если слово заканчивается на **-a**, то перед ним обычно ставится **la** или **una**.
+              ex: [la mesa, la silla, una mochila, una casa]
+      - sort:
+          title: Мужской или женский род?
+          groups:
+            "un — мужской": [cuaderno, libro, bolígrafo, vino]
+            "una — женский": [mesa, silla, mochila, casa]
       - compare:
           cards:
             - head: el или la?
@@ -73,7 +108,8 @@ lessons:
               label: другие окончания
               tone: gray
               text: Если слово заканчивается на другую букву, то по окончанию род не угадать, и его нужно запомнить. Например, chocolate и llave оба заканчиваются на `-e`, но говорят el chocolate и la llave. Поэтому учите слова сразу **с артиклем**.
-              ex: [el café, el hotel, el jamón, el chocolate, la llave, la traducción]
+              ex: [el café, el hotel, el chocolate, la llave]
+      - learn: [el día, el mapa, la foto]
       - compare:
           title: Исключения
           cards:
@@ -86,70 +122,125 @@ lessons:
               label: на -o, но женского рода
               tone: rose
               text: Слово foto заканчивается на `-o`, но оно женского рода, потому что это сокращение от `la fotografía`.
-              ex: [la foto, una foto, la foto de Pablo]
+              ex: [la foto, una foto]
+      - write:
+          title: Un или una?
+          format: un или una
+          items:
+            - q: "Es ___ silla."
+              a: una
+              explain: "Silla заканчивается на -a и женского рода: una silla."
+            - q: "Es ___ mapa."
+              a: un
+              explain: "Mapa — исключение: на -a, но мужского рода, поэтому un mapa."
+            - q: "Es ___ llave."
+              a: una
+              explain: "Llave надо запомнить: la llave, una llave."
+            - q: "Es ___ hotel."
+              a: un
+              explain: "Hotel мужского рода: el hotel, un hotel."
+            - q: "Es ___ foto."
+              a: una
+              explain: "Foto — исключение: на -o, но женского рода, потому что это сокращение от `la fotografía`."
+      - header: Un или el?
+      - learn: [o]
       - table:
           title: Артикли
           rows:
-            - ["**el** и **la** ставятся, когда речь идёт о том самом, уже известном предмете", "**el** libro, **la** mesa, **el** mapa, **la** foto"]
-            - ["**un** и **una** ставятся, когда речь идёт о каком-то предмете, одном из многих", "**un** libro, **una** mesa, **un** mapa, **una** foto"]
-      - "Посмотрите, как это работает в речи. Когда предмет появляется впервые, говорят **un** или **una**. Когда о нём уже говорили и понятно, о каком предмете речь, говорят **el** или **la**."
+            - ["**un** и **una** ставятся, когда предмет появляется впервые: какой-то, один из многих", "**un** libro, **una** mesa, **un** mapa, **una** foto"]
+            - ["**el** и **la** ставятся, когда речь о том самом, уже известном предмете", "**el** libro, **la** mesa, **el** mapa, **la** foto"]
       - examples:
           items:
             - "Es un libro. El libro es de Ana. — Это книга. Книга — Аны."
             - "Es una foto. La foto es de Pablo. — Это фотография. Фото — Пабло."
-            - "Es un mapa. El mapa es de Carlos. — Это карта. Карта — Карлоса."
-      - note: "Слово **de** показывает, кому что принадлежит. Сначала называют предмет, а потом через **de** называют владельца: _el libro de Ana_ значит «книга Аны», _el amigo de Pablo_ значит «друг Пабло», а _la mochila de Carlos_ значит «рюкзак Карлоса»."
-      - exercise:
-          title: "¿El o la?"
+      - more:
+          title: Что значит de?
+          text: "Слово **de** показывает, кому что принадлежит. Сначала называют предмет, а потом через **de** называют владельца: _el libro de Ana_ — «книга Аны», _la mochila de Carlos_ — «рюкзак Карлоса»."
+      - choose:
+          title: Un или el?
           items:
-            - "___ mesa => la"
+            - q: "Es un mapa. ___ mapa es de Carlos."
+              options: "El | Un"
+              explain: "Карта уже названа — это та самая карта, поэтому el."
+            - q: "¿Qué es esto? Es ___ foto."
+              options: "una | la"
+              explain: "Предмет появляется в разговоре впервые, поэтому una."
+            - q: "Es una mesa. ___ mesa es de Lucía."
+              options: "La | Una"
+              explain: "Стол уже назван — это тот самый стол, поэтому la."
+      - write:
+          title: ¿El o la?
+          format: el или la
+          items:
             - "___ cuaderno => el"
-            - "___ llave => la"
             - "___ día => el"
+            - "___ silla => la"
             - "___ foto => la"
-            - "___ mapa => el"
-      - exercise:
-          title: "¿Un o una?"
-          items:
-            - "Es ___ silla. => una"
-            - "Es ___ bolígrafo. => un"
-            - "Es ___ mochila. => una"
-            - "Es ___ hotel. => un"
 
   - id: vocab2
     kind: vocab
     title: В комнате
+    goal: назвать вещи в комнате вместе с артиклем
     vocab:
-      - "💻 el ordenador [ордэнадо́р] — компьютер"
-      - "📱 el móvil [мо́биль] — мобильный телефон"
       - "🚪 la puerta [пуэ́рта] — дверь"
       - "🪟 la ventana [бэнта́на] — окно"
-      - "⌚ el reloj [рэло́х] — часы"
       - "💡 la lámpara [ла́мпара] — лампа"
+      - "💻 el ordenador [ордэнадо́р] — компьютер"
+      - "📱 el móvil [мо́биль] — мобильный телефон"
+      - "⌚ el reloj [рэло́х] — часы"
     blocks:
-      - "Сегодня у нас шесть слов о том, что окружает вас прямо сейчас. Посмотрите вокруг и назовите вслух всё, что знаете: **Es una ventana. Es un móvil...**"
-      - latam: "компьютер называют **la computadora**, а мобильный телефон называют **el celular**: _Es la computadora de Ana._ _Es el celular de Pablo._ _¿Es tu celular?_"
-      - tip: "В слове **reloj** последняя буква `j` почти не слышна, поэтому слово читается примерно как [рэло́]: _Es un reloj._ _Es el reloj de Carlos._"
-      - exercise:
-          title: "Traduce (с артиклем!)"
+      - "Посмотрите вокруг: что из этого есть рядом с вами прямо сейчас?"
+      - learn: [la puerta, la ventana, la lámpara]
+      - choose:
+          title: "¿Qué es esto?"
           items:
-            - "окно => la ventana"
-            - "часы => el reloj"
-            - "дверь => la puerta"
-            - "компьютер => el ordenador"
-            - "Это мобильный Пабло. => Es el móvil de Pablo."
+            - img: la ventana
+              options: "la ventana | la puerta | la lámpara"
+            - img: la lámpara
+              options: "la lámpara | la ventana | la puerta"
+      - learn: [el ordenador, el móvil, el reloj]
+      - tip: "В слове **reloj** последняя буква `j` почти не слышна, поэтому слово читается примерно как [рэло́]: _Es un reloj._ _Es el reloj de Carlos._"
+      - more:
+          title: 🌎 А в Латинской Америке?
+          text: "Компьютер там называют **la computadora**, а мобильный телефон — **el celular**: _Es la computadora de Ana._ _Es el celular de Pablo._"
+      - write:
+          title: Напишите с артиклем
+          format: el или la + слово
+          items:
+            - img: el reloj
+              a: "el reloj"
+            - img: la puerta
+              a: "la puerta"
+            - img: el móvil
+              a: "el móvil"
+            - q: окно
+              a: "la ventana"
+            - q: компьютер
+              a: "el ordenador"
+      - choose:
+          title: Послушайте и выберите
+          items:
+            - say: "Es el móvil de Pablo."
+              options: "Это мобильный Пабло. | Это компьютер Пабло. | Это часы Пабло."
+      - build:
+          title: Соберите фразу
+          items:
+            - es: "Es el reloj de Carlos."
+              ru: "Это часы Карлоса."
+              extra: [un]
     forms: [computadora, celular]
 
   - id: plural
     kind: grammar
     title: "Много вещей: los, las, hay"
+    goal: сказать, сколько вещей и что где есть
     unlocks: [plural]
     vocab:
       - "👥 los / las [лос, лас] — артикль во множественном числе :: los libros, las mesas — книги, столы"
       - "👥 unos / unas [у́нос, у́нас] — несколько, какие-то :: unos cuadernos — несколько тетрадей"
+      - "✏️ el lápiz [ла́пиθ] — карандаш"
       - "✅ hay [ай] — есть, имеется :: En la mesa hay un libro. — На столе (лежит) книга."
       - "❓ ¿Qué hay en...? [кэ ай эн] — что есть в / на...? :: ¿Qué hay en la mochila? — Что в рюкзаке?"
-      - "✏️ el lápiz [ла́пиθ] — карандаш"
     blocks:
       - "Посмотрите, как меняются слова, когда предметов много. Видите три разных случая?"
       - table:
@@ -157,6 +248,7 @@ lessons:
             - ["el libro → los libro**s**", "la mesa → las mesa**s**"]
             - ["el reloj → los reloj**es**", "el móvil → los móvil**es**"]
             - ["el lápiz → los lápi**ces**", "буква `z` меняется на `c`, и добавляется `-es`"]
+      - learn: [los / las, unos / unas, el lápiz]
       - compare:
           cards:
             - head: + -s
@@ -170,7 +262,7 @@ lessons:
               label: после согласной
               tone: sun
               text: Если слово заканчивается на согласную, то к нему добавляется `-es`.
-              ex: [relojes, hoteles, móviles, señores]
+              ex: [relojes, hoteles, móviles]
       - compare:
           join: true
           cards:
@@ -179,7 +271,7 @@ lessons:
               label: "слова на `z`"
               tone: gray
               text: Если слово заканчивается на `z`, то `z` меняется на `c`, и добавляется `-es`. Из lápiz получается lápices.
-              ex: [un lápiz, dos lápices, tres lápices]
+              ex: [un lápiz, dos lápices]
       - compare:
           style: small
           title: Артикли тоже меняются
@@ -192,43 +284,81 @@ lessons:
               label: вместо un
             - head: unas
               label: вместо una
-      - compare:
-          join: true
-          cards:
-            - head: los libros
-              label: меняются и слово, и артикль
-              tone: mint
-              text: Во множественном числе меняется не только слово, но и артикль перед ним.
-              ex: [las mesas, unos cuadernos, unas llaves]
+      - match:
+          title: Один и несколько
+          pairs:
+            - "el libro — los libros"
+            - "la mesa — las mesas"
+            - "el reloj — los relojes"
+            - "el lápiz — los lápices"
+            - "una llave — unas llaves"
+      - write:
+          title: Множественное число
+          format: артикль + слово
+          items:
+            - q: el cuaderno
+              a: los cuadernos
+            - q: la ventana
+              a: las ventanas
+            - q: el móvil
+              a: los móviles
+              explain: "Móvil заканчивается на согласную, поэтому -es: móviles."
+            - q: un lápiz
+              a: unos lápices
+              explain: "`z` меняется на `c` и добавляется -es; un становится unos: unos lápices."
+            - q: el día
+              a: los días
+              explain: "Día мужского рода, хоть и на -a: el día — los días."
       - header: "Hay — «есть, имеется»"
+      - learn: [hay, "¿Qué hay en...?"]
       - |
-        1. Слово **hay** никогда не меняется: и об одном предмете, и о многих говорят **hay**. _Hay un libro._ _Hay dos libros._ _Hay unas llaves._
-        2. После **hay** обычно не ставят **el** и **la**, потому что **hay** сообщает о каком-то новом предмете. Поэтому говорят _hay un libro_, а не `hay el libro`, и _hay una mesa_, а не `hay la mesa`.
+        1. Слово **hay** никогда не меняется: и об одном предмете, и о многих говорят **hay**. _Hay un libro._ _Hay dos libros._
+        2. После **hay** обычно не ставят **el** и **la**, потому что **hay** сообщает о каком-то новом предмете. Поэтому говорят _hay un libro_, а не `hay el libro`.
         3. Если чего-то нет, то перед **hay** ставится **no**: _No hay ventanas._ _En la mesa no hay libros._
       - examples:
           items:
             - "En la mesa hay un ordenador y dos libros. — На столе компьютер и две книги."
             - "¿Qué hay en la mochila? Hay unas llaves. — Что в рюкзаке? Какие-то ключи."
-            - "No hay ventanas. — Окон нет."
-      - exercise:
-          title: Множественное число
+      - choose:
+          title: Hay + артикль
           items:
-            - "el cuaderno => los cuadernos"
-            - "la llave => las llaves"
-            - "el hotel => los hoteles"
-            - "el lápiz => los lápices"
-            - "una silla => unas sillas"
-            - "el día => los días"
+            - q: "Hay ___ libro en la mesa."
+              options: "un | el"
+              explain: "После hay обычно не ставят el и la: hay сообщает о новом предмете, поэтому hay un libro."
+            - q: "En la mochila ___ unas llaves."
+              options: "hay | es"
+              explain: "Когда говорят, что где-то что-то есть или лежит, используют hay."
+      - choose:
+          title: Послушайте и выберите
+          items:
+            - say: "En la mesa hay dos libros y un móvil."
+              q: Что на столе?
+              options: "две книги и мобильный | две книги и часы | книга и два мобильных"
+            - say: "En la mochila no hay libros."
+              q: Что вы услышали?
+              options: "В рюкзаке нет книг. | В рюкзаке есть книги. | На столе нет книг."
+      - build:
+          title: Соберите фразу
+          items:
+            - es: "En la mesa hay un libro y dos bolígrafos."
+              ru: "На столе книга и две ручки."
+              alt: ["Hay un libro y dos bolígrafos en la mesa."]
 
   - id: lectura
     kind: reading
     title: ¿Qué hay en la mochila?
+    goal: понять короткое описание и сказать, что где есть
     vocab:
       - "🍼 la botella [ботэ́лья] — бутылка"
       - "👓 las gafas [га́фас] — очки"
       - "💶 el dinero [дине́ро] — деньги"
     blocks:
-      - "Прочитайте текст, а потом послушайте аудио. В конце урока вас ждут вопросы на испанском, и вы уже сможете на них ответить."
+      - learn: [la botella, las gafas, el dinero]
+      - choose:
+          title: "¿Qué es esto?"
+          items:
+            - img: la botella
+              options: "Es una botella. | Es un móvil. | Es una llave."
       - reading:
           title: La mochila de Ana
           text: |
@@ -243,14 +373,22 @@ lessons:
             Там книга, две тетради, три ручки и карандаш. Ещё там ключи, очки и мобильный. Есть бутылка, но нет денег.
 
             А компьютер? Компьютера нет! Компьютер Аны дома.
-      - note: "**Está en casa** значит «находится дома». Глагол **está** мы подробно разберём позже, а пока запомните **en casa** как готовую фразу, которая значит «дома»: _El ordenador está en casa._ _Ana está en casa._ _¿Dónde está el ordenador? En casa._"
-      - exercise:
+      - choose:
           title: Responde
           items:
-            - "¿Cuántos cuadernos hay? => Hay dos cuadernos."
-            - "¿Hay un móvil? => Sí, hay un móvil."
-            - "¿Hay dinero? => No, no hay dinero."
-            - "¿Dónde está el ordenador? => En casa."
+            - q: "¿Cuántos cuadernos hay?"
+              options: "Hay dos cuadernos. | Hay tres cuadernos. | Hay un cuaderno."
+            - q: "¿Hay dinero?"
+              options: "No, no hay dinero. | Sí, hay dinero."
+            - q: "¿Dónde está el ordenador?"
+              options: "En casa. | En la mochila. | En la mesa."
+              explain: "El ordenador de Ana está en casa — компьютер дома."
+      - sort:
+          title: Что есть в рюкзаке Аны?
+          groups:
+            "✅ hay": [unas llaves, unas gafas, una botella, un móvil]
+            "❌ no hay": [dinero, ordenador]
+      - note: "**Está en casa** значит «находится дома». Глагол **está** мы подробно разберём позже, а пока запомните **en casa** как готовую фразу: _Ana está en casa._ _¿Dónde está el ordenador? En casa._"
     quiz:
       - q: ¿Cuántos bolígrafos hay en la mochila?
         options: "tres | dos | uno"
@@ -260,32 +398,62 @@ lessons:
   - id: practica
     kind: practice
     title: el, la, los, las
+    goal: описать комнату — что в ней есть и сколько
     blocks:
-      - "Сегодня тренируем артикли и множественное число. Сначала ответьте вслух, а потом проверьте себя."
-      - exercise:
-          title: "¿El, la, los o las?"
+      - write:
+          title: Исправьте ошибку
+          format: правильный вариант
           items:
-            - "___ ventanas => las"
-            - "___ reloj => el"
-            - "___ gafas => las"
-            - "___ días => los"
-            - "___ mapa => el"
-            - "___ fotos => las"
-      - exercise:
-          title: Traduce
+            - q: "`la día`"
+              a: "el día"
+              explain: "Día — исключение: на -a, но мужского рода."
+            - q: "`los lápizes`"
+              a: "los lápices"
+              explain: "`z` меняется на `c`: lápiz — lápices."
+            - q: "`Hay el libro en la mesa.`"
+              a: "Hay un libro en la mesa | En la mesa hay un libro"
+              explain: "После hay не ставят el и la: hay un libro."
+      - compare:
+          style: small
+          title: Это… — один или несколько
+          cards:
+            - head: Es una llave.
+              label: Это ключ.
+            - head: Son unas llaves.
+              label: Это ключи.
+          note: "Когда предмет один, говорят **Es…**, а когда предметов несколько — **Son…**. Вопрос не меняется: _¿Qué es esto?_ **Son** — тоже форма глагола **ser**."
+      - choose:
+          title: Es или son?
           items:
-            - "Что это? Это ключи. => ¿Qué es esto? Son unas llaves."
-            - "На столе две бутылки. => En la mesa hay dos botellas."
-            - "В рюкзаке нет денег. => En la mochila no hay dinero."
-            - "Это телефон Пабло. => Es el teléfono de Pablo."
-      - note: "Почему в ответе **son**, а не **es**? Когда мы показываем на один предмет, то говорим **Es…** («Это…»): _Es una llave_ значит «Это ключ». А когда предметов несколько, то говорим **Son…**: _Son unas llaves_ значит «Это ключи». Вопрос при этом не меняется: _¿Qué es esto?_ Ещё примеры: _Es un libro_ → _Son unos libros_; _Es una foto_ → _Son unas fotos_. **Son** — это тоже форма глагола **ser**, и все его формы мы разберём в следующей теме."
-      - exercise:
-          title: Найдите ошибку
+            - q: "¿Qué es esto? ___ unos lápices."
+              options: "Son | Es"
+            - q: "¿Qué es esto? ___ un reloj."
+              options: "Es | Son"
+      - mission:
+          title: Комната Лусии
+          text: "В комнате Лусии: на столе компьютер и две лампы, у стены три стула, в рюкзаке ключи. Окна нет. Расскажите об этой комнате по-испански."
+      - build:
           items:
-            - "la día => el día"
-            - "`los lápizes` => los lápices"
-            - "Hay el libro en la mesa. => Hay un libro en la mesa."
-      - task: "Что лежит у вас на столе? Напишите об этом в комментариях и начните так: **En mi mesa hay...**"
+            - es: "En la mesa hay un ordenador y dos lámparas."
+              ru: "На столе компьютер и две лампы."
+              alt: ["Hay un ordenador y dos lámparas en la mesa."]
+              extra: [el]
+      - write:
+          format: "фраза: Hay…"
+          items:
+            - q: "Сколько стульев в комнате? Ответьте фразой с hay."
+              a: "Hay tres sillas"
+            - q: "Окна в комнате нет. Скажите это по-испански."
+              a: "No hay ventanas | No hay ventana"
+              explain: "Если чего-то нет, перед hay ставят no: No hay ventanas."
+      - choose:
+          items:
+            - lines: ["Lucía: ¿Qué hay en la mesa?"]
+              options: "Hay un ordenador y dos lámparas. | Es un ordenador y dos lámparas. | Hay el ordenador y las lámparas."
+              explain: "Что где есть — hay, и после hay — un, unos, а не el, los."
+            - say: "En la mochila hay unas llaves."
+              q: "Где ключи?"
+              options: "в рюкзаке | на столе | ключей нет"
     forms: [son]
 
   - id: quiz

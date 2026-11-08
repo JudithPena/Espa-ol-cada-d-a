@@ -11,6 +11,7 @@ lessons:
   - id: vocab
     kind: vocab
     title: Как вы себя чувствуете?
+    goal: рассказать, как вы себя чувствуете сегодня
     vocab:
       - "📅 hoy [ой] — сегодня :: Hoy estoy bien. — Сегодня у меня всё хорошо."
       - "😴 cansado/a [канса́до, канса́да] — уставший"
@@ -21,72 +22,98 @@ lessons:
       - "⏳ ocupado/a [окупа́до, окупа́да] — занятой"
       - "🥱 aburrido/a [абурри́до, абурри́да] — скучающий; скучный"
     blocks:
-      - "Вы помните вопрос **¿Cómo estás?**, который значит «как ты?». Теперь вы сможете ответить на него подробнее: для этого нужен глагол **estar** и слово, которое описывает ваше состояние."
-      - examples:
+      - "На вопрос **¿Cómo estás?** теперь можно ответить подробнее: **estar** + слово, которое описывает состояние."
+      - learn: [hoy, cansado/a, contento/a, triste]
+      - choose:
+          title: "¿Cómo estás?"
           items:
-            - "¿Cómo estás? Estoy cansado. — Как ты? Я устал."
-            - "Hoy Ana está muy contenta. — Сегодня Ана очень довольна."
-            - "¿Estás triste? — Тебе грустно?"
-            - "Mi padre está enfermo. — Мой отец болеет."
-            - "Estamos muy ocupados. — Мы очень заняты."
-      - tip: "Слова, которые описывают состояние, — это тоже прилагательные, поэтому они согласуются с тем, о ком вы говорите. Если речь идёт о мужчине, то слово заканчивается на **-o**: _Pablo está cansado._ _Carlos está nervioso._ Если речь идёт о женщине, то оно заканчивается на **-a**: _Ana está cansada._ _Mi madre está ocupada._ Если людей несколько, то в конце добавляется **-s**: _Estamos cansados._ _Mis hermanas están contentas._ А слово **triste** по родам не меняется: _Pablo está triste._ _Ana está triste._"
-      - exercise:
+            - q: "😴 Вы не спали всю ночь."
+              options: "Estoy cansado. | Estoy contento. | Estoy triste."
+            - q: "😃 У вас отличная новость."
+              options: "Estoy contento. | Estoy cansado. | Estoy triste."
+      - tip: "Это прилагательные, поэтому они согласуются: _Pablo está cansado_, _Ana está cansada_, _Estamos cansados_. **triste** по родам не меняется: _Pablo está triste_, _Ana está triste_."
+      - learn: [nervioso/a, enfermo/a, ocupado/a, aburrido/a]
+      - match:
+          title: Соедините пары
+          pairs:
+            - "nervioso — взволнованный"
+            - "enfermo — больной"
+            - "ocupado — занятой"
+            - "aburrido — скучающий"
+            - "contento — довольный"
+      - write:
           title: Traduce
+          format: фраза по-испански
           items:
-            - "Я сегодня устала. => Hoy estoy cansada."
-            - "Ты занят? => ¿Estás ocupado?"
-            - "Они очень довольны. => Están muy contentos."
-            - "Моя сестра болеет. => Mi hermana está enferma."
+            - "Я (женщина) сегодня устала. => Hoy estoy cansada | Estoy cansada hoy"
+            - "Моя сестра болеет. => Mi hermana está enferma"
+            - "Мы очень заняты. => Estamos muy ocupados | Estamos muy ocupadas"
 
   - id: gramatica
     kind: grammar
     title: Ser или estar?
+    goal: выбрать ser или estar
     vocab:
       - "⏰ ahora [ао́ра] — сейчас :: Ahora estoy en casa. — Сейчас я дома."
       - "♾ siempre [сьэ́мпрэ] — всегда"
     blocks:
-      - "В испанском языке есть два глагола со значением «быть»: **ser** и **estar**. Посмотрите на пары предложений и подумайте, в чём между ними разница."
+      - "В испанском два глагола «быть»: **ser** и **estar**. Посмотрите на пары: в чём разница?"
       - examples:
           items:
-            - "Pablo es alto. — Пабло высокий. (всегда)"
-            - "Pablo está cansado. — Пабло устал. (сейчас)"
+            - "Pablo es alto. — Пабло высокий."
+            - "Pablo está cansado. — Пабло устал."
             - "Ana es médica. — Ана — врач."
             - "Ana está en el hospital. — Ана в больнице."
-            - "Soy de Kiev. — Я из Киева."
-            - "Estoy en Madrid. — Я в Мадриде."
-      - rule: |
-          Глагол **SER** отвечает на вопросы «**кто** это?» и «**какой** он по своей сути?».
-          • С ним называют имя: _Soy Carmen._ _Ella es Isabel._
-          • С ним называют профессию: _Ana es médica._ _Mi padre es ingeniero._
-          • С ним говорят, откуда человек и какой он национальности: _Soy ucraniana._ _Somos de Kiev._ _Lucía es de Sevilla._
-          • С ним описывают внешность: _Pablo es alto._ _Mi hermana es rubia._
-          • С ним описывают характер: _Mi abuelo es muy serio._ _Eres muy simpática._
-          Глагол **ESTAR** отвечает на вопросы «**где**?» и «**в каком состоянии** сейчас?».
-          • С ним говорят, где находится человек или вещь: _Estoy en Madrid._ _Ana está en el hospital._ _¿Dónde está el baño?_
-          • С ним рассказывают о самочувствии: _Pablo está cansado._ _Mi padre está enfermo._
-          • С ним рассказывают о настроении: _Hoy estoy contenta._ _¿Estás triste?_
-      - tip: "Запомните простую подсказку: если вы говорите о том, как себя чувствуете или где находитесь, то всегда нужен глагол **estar**: _¿Cómo estás? — Estoy bien._ _¿Dónde estás? — Estoy en casa._"
-      - "Иногда от выбора глагола зависит смысл всей фразы. Если сказать **ser aburrido**, то это значит «быть скучным человеком», а если сказать **estar aburrido**, то это значит «скучать прямо сейчас»."
+      - compare:
+          cards:
+            - head: SER
+              say: false
+              label: кто это и какой он по сути
+              tone: blue
+              text: имя, профессия, откуда и национальность, внешность, характер
+              ex: ["Soy Carmen.", "Ana es médica.", "Somos de Kiev.", "Eres muy simpática."]
+            - head: ESTAR
+              say: false
+              label: где и в каком состоянии сейчас
+              tone: sun
+              text: где находится человек или вещь, самочувствие, настроение
+              ex: ["Estoy en Madrid.", "Pablo está cansado.", "¿Estás triste?"]
+      - sort:
+          title: "Ser или estar?"
+          groups:
+            "ser": [médica, alto, de Kiev, simpática]
+            "estar": [cansado, en Madrid, enfermo, contenta]
+      - learn: [ahora, siempre]
+      - "Иногда от глагола зависит смысл: **ser aburrido** — «быть скучным человеком», **estar aburrido** — «скучать прямо сейчас»."
       - examples:
-          title: Одно слово — разный смысл
           items:
             - "Pablo es aburrido. — Пабло скучный (человек)."
             - "Pablo está aburrido. — Пабло скучно (сейчас)."
             - "Mi abuelo siempre es muy serio, pero ahora está contento. — Мой дедушка всегда очень серьёзный, но сейчас доволен."
-      - exercise:
+      - choose:
           title: "¿Ser o estar?"
           items:
+            - q: "Hoy Pablo ___ aburrido: no hay tele en casa."
+              options: "está | es"
+              explain: "Пабло скучно сейчас — это состояние: está."
+            - q: "Mi abuelo siempre ___ muy serio."
+              options: "es | está"
+              explain: "Siempre — постоянная черта характера: es."
+      - write:
+          title: "¿Ser o estar?"
+          format: форма ser или estar
+          items:
             - "Yo ___ de Ucrania. => soy"
-            - "Ahora ___ en la oficina. (yo) => estoy"
+            - "Ahora (yo) ___ en la oficina. => estoy"
             - "Mi hermana ___ muy simpática. => es"
             - "Hoy mi hermana ___ triste. => está"
             - "Nosotros ___ estudiantes. => somos"
             - "¿Dónde ___ tus padres? => están"
-            - "Javier ___ médico, pero hoy ___ enfermo. => es / está"
 
   - id: dialogo
     kind: dialogue
     title: ¿Qué te pasa?
+    goal: спросить, что случилось, и объяснить причину
     vocab:
       - "❓ ¿Qué te pasa? [кэ тэ па́са] — что с тобой? что случилось?"
       - "❓ ¿Por qué? [пор кэ] — почему?"
@@ -94,7 +121,25 @@ lessons:
       - "👔 el jefe / la jefa [хэ́фэ, хэ́фа] — начальник, начальница"
       - "🎉 ¡Qué bien! [кэ бьен] — как здорово!"
     blocks:
-      - "Обратите внимание на два похожих слова. Вопрос **¿por qué?**, то есть «почему?», пишется раздельно и с ударением: _¿Por qué estás triste?_ _¿Por qué estudias español?_ А ответ **porque**, то есть «потому что», пишется слитно и без ударения: _Porque estoy muy cansado._ _Porque mi novia vive en Sevilla._"
+      - learn: ["¿Qué te pasa?", "¿Por qué?", porque]
+      - compare:
+          cards:
+            - head: ¿por qué?
+              label: «почему?» — раздельно и с ударением
+              tone: blue
+              ex: ["¿Por qué estás triste?"]
+            - head: porque
+              label: «потому что» — слитно, без ударения
+              tone: mint
+              ex: ["Porque estoy muy cansado."]
+      - choose:
+          title: Por qué или porque?
+          items:
+            - q: "Как спросить «Почему ты грустный?»"
+              options: "¿Por qué estás triste? | ¿Porque estás triste? | ¿Qué estás triste?"
+            - q: "— ¿Por qué estudias español? — ___ mi novia vive en Sevilla."
+              options: "Porque | Por qué | Qué"
+      - learn: [el jefe / la jefa, ¡Qué bien!]
       - dialogue:
           lines:
             - "Ana: Hola, Pablo. ¿Qué tal? | Привет, Пабло. Как дела?"
@@ -108,44 +153,75 @@ lessons:
             - "Ana: ¡Muy bien! Estoy muy contenta: ¡tengo un piso nuevo! | Отлично! Я очень довольна: у меня новая квартира!"
             - "Pablo: ¡Qué bien! ¿Dónde está? | Как здорово! Где она?"
             - "Ana: En el centro, cerca de la universidad. ¡Y es muy bonito! | В центре, недалеко от университета. И очень красивая!"
-      - note: "Слово **¡Vaya!** значит «вот как» или «ну и ну». Так говорят, когда слышат неожиданную или неприятную новость: _Estoy enfermo. — ¡Vaya!_ _No hay café. — ¡Vaya!_"
-      - exercise:
+      - more:
+          title: ¡Vaya!
+          text: "**¡Vaya!** — «вот как», «ну и ну»: так говорят, услышав неожиданную или неприятную новость. _Estoy enfermo. — ¡Vaya!_"
+      - choose:
           title: Responde
           items:
-            - "¿Cómo está Pablo? => Está cansado."
-            - "¿Por qué? => Porque trabaja mucho."
-            - "¿Cómo es su jefe? => Es muy antipático."
-            - "¿Por qué está contenta Ana? => Porque tiene un piso nuevo."
+            - q: "¿Cómo está Pablo?"
+              options: "Está cansado. | Está enfermo. | Está contento."
+            - q: "¿Por qué está cansado?"
+              options: "Porque trabaja mucho. | Porque está enfermo. | Porque tiene un piso nuevo."
+            - q: "¿Por qué está contenta Ana?"
+              options: "Porque tiene un piso nuevo. | Porque su jefe es simpático. | Porque está en Sevilla."
+      - choose:
+          title: Что ответить?
+          items:
+            - lines: ["Ana: ¡Tengo un piso nuevo!"]
+              options: "¡Qué bien! | ¿Qué te pasa? | Porque."
+      - build:
+          title: Соберите фразу
+          items:
+            - es: "Estoy cansado porque trabajo mucho."
+              ru: "Я устал, потому что много работаю."
+              extra: [qué]
     forms: [vaya]
 
   - id: practica
     kind: practice
     title: Ser и estar на практике
+    goal: рассказать о себе и о других с ser и estar
     blocks:
-      - "Сегодня мы тренируем самую важную пару глаголов уровня A1. Не торопитесь и для каждого предложения спросите себя, о чём в нём говорится. Если о том, кто это и какой он по сути, то нужен **ser**. Если о том, где он и в каком состоянии сейчас, то нужен **estar**."
-      - exercise:
+      - "Для каждой фразы спросите себя: это кто и какой по сути (**ser**) или где и в каком состоянии сейчас (**estar**)?"
+      - write:
           title: "¿Ser o estar?"
+          format: форма ser или estar
           items:
             - "Madrid ___ en España. => está"
             - "Lucía ___ española, de Sevilla. => es"
             - "¿Por qué ___ (tú) nervioso? => estás"
             - "Mis abuelos ___ mayores. => son"
-            - "El café ___ en la mesa. => está"
             - "Vosotros ___ muy divertidos. => sois"
-            - "Hoy (yo) ___ muy ocupada. => estoy"
-      - exercise:
-          title: Traduce
+      - write:
+          title: Исправьте ошибку
+          format: правильная фраза
           items:
-            - "Мой брат — программист. Сейчас он в офисе. => Mi hermano es programador. Ahora está en la oficina."
-            - "Почему ты грустная? — Потому что мой кот болеет. => ¿Por qué estás triste? — Porque mi gato está enfermo."
-            - "Мы из Киева, но сейчас мы в Барселоне. => Somos de Kiev, pero ahora estamos en Barcelona."
-      - exercise:
-          title: Найдите ошибку
-          items:
-            - "`Soy` cansado. => Estoy cansado."
-            - "Mi padre `está` ingeniero. => Mi padre es ingeniero."
+            - "`Soy` cansado. => Estoy cansado"
+            - "Mi padre `está` ingeniero. => Mi padre es ingeniero"
             - "¿Dónde `es` el baño? => ¿Dónde está el baño?"
-      - task: "Как вы себя чувствуете сегодня? Напишите об этом в комментариях по образцу **Hoy estoy... porque...** Например: _Hoy estoy cansado porque trabajo mucho._"
+      - mission:
+          title: Звонок маме
+          text: "Вы — Лусия. Вы в Барселоне по работе и очень устали: работы много. Ваш новый начальник — очень приятный человек. Звонит мама."
+      - choose:
+          items:
+            - lines: ["Madre: Hola, Lucía. ¿Dónde estás?"]
+              options: "Estoy en Barcelona. | Soy en Barcelona. | Es en Barcelona."
+      - write:
+          items:
+            - q: "Madre: ¿Cómo estás? — Ответьте: вы устали, потому что много работаете."
+              a: "Estoy cansada porque trabajo mucho | Estoy muy cansada porque trabajo mucho"
+              format: ответ по-испански
+      - choose:
+          items:
+            - lines: ["Madre: ¿Y cómo es tu jefe?"]
+              options: "Es muy simpático. | Está muy simpático. | Estoy muy simpática."
+              explain: "Характер — ser: es simpático."
+      - build:
+          items:
+            - es: "Somos de Kiev, pero ahora estamos en Barcelona."
+              ru: "Скажите о себе и коллеге: «Мы из Киева, но сейчас мы в Барселоне»."
+              extra: [son]
 
   - id: quiz
     kind: quiz

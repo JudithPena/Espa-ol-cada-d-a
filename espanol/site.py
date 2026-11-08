@@ -479,6 +479,8 @@ def _block(block: Block) -> dict | None:
     if t == "reading":
         return {"t": t, "title": _html(d["title"]), "html": _html(d["text"]),
                 "tr": _html(d["translation"]), "say": plain(d["text"])}
+    if t in SCENARIO:
+        return SCENARIO[t](d)
     if t == "exercise":
         items = []
         for q, raw in d["items"]:
@@ -496,6 +498,70 @@ def _block(block: Block) -> dict | None:
         title = re.sub(r"\bпроверьте\b", "выберите", d["title"] or "")
         return {"t": t, "title": _html(title), "items": items} if items else None
     raise ValueError(f"блок {t} не поддерживается сайтом")  # pragma: no cover
+
+
+# ---------------------------------------------------------------- сценарий урока (блоки сайта)
+# Данные для страницы: варианты и ответы — в двух видах, HTML для показа и чистый текст для проверки
+# и озвучки. Первый вариант выбора — верный, страница перемешивает их в каждой попытке.
+
+def _is_es(text: str) -> bool:
+    """Испанский текст (озвучиваем): есть латиница и нет кириллицы."""
+    return bool(_LATIN_WORD.search(text)) and not _CYR.search(text)
+
+
+def _say(text: str) -> str:
+    text = plain(text)
+    return text if _is_es(text) else ""
+
+
+def _img(es: str) -> str:
+    """Картинка задания — слово курса с картинкой (ART_SLUGS): страница берёт её из карточки слова."""
+    return es if es and es in ART_SLUGS else ""
+
+
+def _lines(lines) -> tuple[dict, list]:
+    voices = cast(list(dict.fromkeys(sp for sp, _, _ in lines))) if lines else {}
+    return voices, [[sp, _html(es), _html(ru), plain(es)] for sp, es, ru in lines]
+
+
+def _choose(d) -> dict:
+    items = []
+    for it in d["items"]:
+        voices, lines = _lines(it["lines"])
+        items.append({"q": _html(it["q"]), "o": [[_html(o), plain(o)] for o in it["options"]],
+                      "explain": _html(it["explain"]), "say": plain(it["say"]), "lines": lines, "cast": voices,
+                      "img": _img(it["img"])})
+    return {"t": "choose", "title": _html(d["title"]), "items": items}
+
+
+_SPECIAL = re.compile("[áéíóúüñÁÉÍÓÚÜÑ]")
+
+
+def _write(d) -> dict:
+    # Кнопки á é í ó ú ü ñ — в блоке, где такие буквы есть хотя бы в одном ответе (во всех его заданиях,
+    # чтобы кнопки не выдавали, в каком ответе они нужны). Для артиклей кнопки не нужны.
+    chars = any(_SPECIAL.search(a) for it in d["items"] for a in it["answers"])
+    return {"t": "write", "title": _html(d["title"]), "accents": d["accents"], "chars": chars, "items": [{
+        "q": _html(it["q"]), "a": [plain(a) for a in it["answers"]], "show": _html(it["answers"][0]),
+        "explain": _html(it["explain"]), "say": plain(it["say"]), "format": it["format"] or d["format"],
+        "img": _img(it["img"]),
+    } for it in d["items"]]}
+
+
+SCENARIO = {
+    "learn": lambda d: {"t": "learn", "words": [plain(es) for es in d]},
+    "choose": _choose,
+    "write": _write,
+    "match": lambda d: {"t": "match", "title": _html(d["title"]),
+                        "pairs": [[plain(a), plain(b), _say(a), _say(b)] for a, b in d["pairs"]]},
+    "sort": lambda d: {"t": "sort", "title": _html(d["title"]),
+                       "groups": [[_html(name), [[plain(x), _say(x)] for x in xs]] for name, xs in d["groups"]]},
+    "build": lambda d: {"t": "build", "title": _html(d["title"]),
+                        "items": [{"es": plain(it["es"]), "ru": plain(it["ru"]), "alt": [plain(a) for a in it["alt"]],
+                                   "extra": [plain(x) for x in it["extra"]]} for it in d["items"]]},
+    "mission": lambda d: {"t": "mission", "title": _html(d["title"]), "html": _html(d["text"])},
+    "more": lambda d: {"t": "more", "title": _html(d["title"]), "html": _html(d["text"]), "join": True},
+}
 
 
 def _sentences(lesson: Lesson) -> list[list[str]]:
@@ -528,9 +594,31 @@ def _split(block: Block) -> list[dict]:
     return [b] if b else []
 
 
+# Задания, которые без своего урока не понять: вопросы к диалогу или тексту и всё после миссии
+# («Вы — Марко…»). «🔁 Вспомним» и «Фразы и конструкции» их не берут (ctx). Новый виток урока
+# (порция слов, правило, таблица) снимает метку; после миссии она остаётся до конца урока.
+_CONTEXT = {"dialogue", "reading", "mission"}
+_NEW_CYCLE = {"learn", "rule", "compare", "table", "header", "examples", "conjugation", "list"}
+
+
+def mark_context(blocks: list[dict]) -> None:
+    ctx = mission = False
+    for b in blocks:
+        t = b["t"]
+        if t == "mission":
+            mission = True
+        if t in _CONTEXT:
+            ctx = True
+        elif t in _NEW_CYCLE:
+            ctx = mission
+        if t in ("choose", "write") and ctx:
+            b["ctx"] = True
+
+
 def lesson_data(lesson: Lesson, cards: dict[str, WordCard], lexicon=None) -> dict:
     unknown = (lambda text: lexicon.unknown_words(text, lesson)) if lexicon else (lambda text: [])
     blocks = [b for block in lesson.blocks for b in _split(block)]
+    mark_context(blocks)
     by_cell = ROW_ART.get(lesson.id, {})
     for blk in blocks:
         if by_cell and blk["t"] == "table":
@@ -539,7 +627,7 @@ def lesson_data(lesson: Lesson, cards: dict[str, WordCard], lexicon=None) -> dic
     return {
         "n": lesson.number, "id": lesson.id, "unit": lesson.unit.number, "level": lesson.level,
         "kind": lesson.kind, "kindLabel": lesson.kind_label, "emoji": lesson.kind_emoji,
-        "title": plain(lesson.title),
+        "title": plain(lesson.title), "goal": plain(lesson.goal), "scripted": lesson.scripted,
         "words": [_word(item, cards.get(item.key), unknown) for item in lesson.vocab],
         "blocks": blocks,
         "quiz": [{"q": plain(q.question), "options": [plain(o) for o in q.options], "correct": q.correct,

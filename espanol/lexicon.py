@@ -126,10 +126,48 @@ def lesson_texts(lesson: Lesson, include_unit_title: bool = False) -> list[tuple
             for c in d["cards"]:
                 out += [(where, c["head"]), (where, c["label"]), (where, c["text"])]
                 out += [(where, s) for pair in c["ex"] for s in pair]
+        elif block.type in SCENARIO_TEXTS:
+            out += [(where, t) for t in SCENARIO_TEXTS[block.type](d)]
     for n, q in enumerate(lesson.quiz, 1):
         where = f"тест, вопрос {n}"
         out += [(where, q.question), (where, q.options[q.correct]), (where, q.explain)]
     return [(w, t) for w, t in out if t]
+
+
+def _choose_texts(d) -> list[str]:
+    out = [d["title"]]
+    for it in d["items"]:
+        out += [it["q"], it["options"][0] if it["options"] else "", it["explain"], it["say"]]
+        out += [t for line in it["lines"] for t in line]
+    return out
+
+
+def _write_texts(d) -> list[str]:
+    return [d["title"]] + [t for it in d["items"] for t in (it["q"], *it["answers"], it["explain"], it["say"])]
+
+
+# Тексты блоков сценария урока сайта, которые видит ученик (кроме неверных вариантов — см. lesson_distractors).
+SCENARIO_TEXTS = {
+    "choose": _choose_texts,
+    "write": _write_texts,
+    "match": lambda d: [d["title"]] + [t for pair in d["pairs"] for t in pair],
+    "sort": lambda d: [d["title"]] + [t for name, items in d["groups"] for t in (name, *items)],
+    "build": lambda d: [d["title"]] + [t for it in d["items"] for t in (it["es"], it["ru"], *it["alt"])],
+    "mission": lambda d: [d["title"], d["text"]],
+    "more": lambda d: [d["title"], d["text"]],
+}
+
+
+def lesson_distractors(lesson: Lesson) -> list[tuple[str, str]]:
+    """Неверные варианты заданий сайта: в них можно нарочно писать ошибки (`lápizes`),
+    но нельзя слова, которые вводятся позже: такой вариант отбрасывается без знания темы."""
+    out = []
+    for block in lesson.blocks:
+        if block.type == "choose":
+            out += [(f"блок choose, неверный вариант", o) for it in block.data["items"] for o in it["options"][1:]]
+        elif block.type == "build":
+            out += [(f"блок build, лишняя плитка", x) for it in block.data["items"] for x in it["extra"]]
+    return out
 
 
 @dataclass
@@ -201,6 +239,11 @@ class Lexicon:
             later = self.first_seen.get(word.lower())
             hint = f" (вводится позже: урок {later.number})" if later else ""
             issues.append(Issue(lesson, f"незнакомое слово «{word}»{hint} — {where}"))
+        for where, text in lesson_distractors(lesson):
+            for word in self.unknown_words(text, lesson):
+                later = self.first_seen.get(word.lower())
+                if later and later.index > lesson.index:
+                    issues.append(Issue(lesson, f"слово «{word}» вводится позже (урок {later.number}) — {where}: «{plain(text)[:60]}»"))
         return issues
 
     def check(self) -> list[Issue]:

@@ -11,6 +11,7 @@ lessons:
   - id: vocab1
     kind: vocab
     title: ¿A qué te dedicas?
+    goal: спросить, кем человек работает, и назвать профессию
     vocab:
       - "💼 ¿A qué te dedicas? [а кэ тэ дэди́кас] — чем ты занимаешься? кем работаешь?"
       - "👨‍🏫 el profesor / la profesora [профэсо́р, профэсо́ра] — преподаватель, учитель(ница)"
@@ -20,31 +21,46 @@ lessons:
       - "👷 el ingeniero / la ingeniera [инхэнье́ро, инхэнье́ра] — инженер"
       - "💻 el programador / la programadora [програмадо́р, програмадо́ра] — программист(ка)"
     blocks:
-      - "Сегодня вы узнаете, как спросить о профессии и как ответить на этот вопрос. Посмотрите на примеры: чего в них не хватает по сравнению с фразой «Es un libro»?"
+      - "Посмотрите на примеры: чего в них не хватает по сравнению с фразой «Es un libro»?"
       - examples:
           items:
             - "¿A qué te dedicas? Soy profesora. — Кем ты работаешь? Я учительница."
             - "Pablo es médico. — Пабло врач."
-            - "Ana es estudiante. — Ана студентка."
-            - "¿Eres ingeniero? No, soy programador. — Ты инженер? Нет, я программист."
-      - rule: "Если вы называете профессию после глагола **ser**, то артикль не ставится: _Soy profesora._ _Pablo es médico._ _Ana es estudiante._ _¿Eres ingeniero?_ Поэтому сказать `Soy una profesora` будет ошибкой."
-      - tip: |
-          Женский род у профессий образуется знакомым способом.
-          1. Если слово заканчивается на **-o**, то **-o** меняется на **-a**: médic**a**, camarer**a**, ingenier**a**.
-          2. Если слово заканчивается на согласную, то добавляется **-a**: profesor**a**, programador**a**.
-          3. А слово **estudiante** одно и для мужчин, и для женщин, меняется только артикль: _el estudiante, la estudiante_. _Pablo es estudiante._ _Ana es estudiante._
-      - exercise:
-          title: Traduce
+      - learn: ["¿A qué te dedicas?", el profesor / la profesora, el médico / la médica, el/la estudiante]
+      - rule: "Если профессию называют после глагола **ser**, то артикль не ставится: _Soy profesora._ _Pablo es médico._ _Ana es estudiante._ Сказать `Soy una profesora` — ошибка."
+      - choose:
+          title: Как сказать?
           items:
-            - "Я программист. => Soy programador."
-            - "Она врач. => Es médica."
-            - "Ты студент? => ¿Eres estudiante?"
-            - "Карлос официант. => Carlos es camarero."
-            - "Кем ты работаешь? => ¿A qué te dedicas?"
+            - q: "Я учительница."
+              options: "Soy profesora. | Soy una profesora. | Soy profesor."
+              explain: "После ser профессию называют без артикля; женщина — profesora."
+            - lines: ["Pablo: ¿A qué te dedicas?"]
+              q: "Вы студент."
+              options: "Soy estudiante. | Soy un estudiante. | Eres estudiante."
+      - learn: [el camarero / la camarera, el ingeniero / la ingeniera, el programador / la programadora]
+      - tip: |
+          Женский род профессий образуется знакомым способом.
+          1. **-o** меняется на **-a**: médic**a**, camarer**a**, ingenier**a**.
+          2. После согласной добавляется **-a**: profesor**a**, programador**a**.
+          3. **estudiante** — одно слово для всех, меняется только артикль: _el estudiante, la estudiante_.
+      - sort:
+          title: Кто это — Пабло или Ана?
+          groups:
+            "👨 Pablo es…": [médico, profesor, ingeniero]
+            "👩 Ana es…": [camarera, programadora, médica]
+            "👫 и Пабло, и Ана": [estudiante]
+      - write:
+          title: Traduce
+          format: фраза по-испански
+          items:
+            - "Я программист. => Soy programador"
+            - "Она врач. => Es médica | Ella es médica"
+            - "Карлос официант. => Carlos es camarero"
 
   - id: vocab2
     kind: vocab
     title: ¿Dónde trabajas?
+    goal: сказать, где вы работаете или учитесь
     vocab:
       - "🛠 trabajar [трабаха́р] — работать {forms: trabajo trabajas trabaja} :: Trabajo en una oficina. — Я работаю в офисе."
       - "📚 estudiar [эстудья́р] — учиться; изучать {forms: estudio estudias estudia} :: Estudio español. — Я изучаю испанский."
@@ -54,26 +70,44 @@ lessons:
       - "🍴 el restaurante [рэстаура́нтэ] — ресторан"
       - "🏛 la universidad [унибэрсида́д] — университет"
     blocks:
-      - "Сегодня у нас два глагола и пять мест, где люди работают и учатся. Чтобы сказать, где вы работаете или учитесь, поставьте перед местом слово **en**: _Trabajo en una oficina._ _Estudio en la universidad._"
-      - examples:
+      - "Чтобы сказать, где вы работаете или учитесь, поставьте перед местом **en**: _Trabajo en una oficina._ _Estudio en la universidad._"
+      - learn: [trabajar, estudiar]
+      - tip: "**Estudiar** — и «учиться», и «изучать». _Estudio en la universidad_ — «я учусь в университете», а _Estudio español_ — «я изучаю испанский»."
+      - choose:
+          title: Traduce
           items:
-            - "¿Dónde trabajas? Trabajo en un hospital. — Где ты работаешь? В больнице."
-            - "Ana estudia en la universidad. — Ана учится в университете."
-            - "¿Trabajas o estudias? — Ты работаешь или учишься?"
-            - "Pablo es camarero. Trabaja en un restaurante. — Пабло официант. Работает в ресторане."
-      - tip: "Глагол **estudiar** значит и «учиться», и «изучать». Если после него сказано, где вы учитесь, то он переводится как «учиться»: _Estudio en la universidad_ — «я учусь в университете», _Ana estudia en una escuela_ — «Ана учится в школе». А если после него сказано, что вы изучаете, то он переводится как «изучать»: _Estudio español_ — «я изучаю испанский», _¿Estudias inglés?_ — «ты изучаешь английский?»."
-      - exercise:
+            - q: "Estudio español."
+              options: "Я изучаю испанский. | Я учусь в Испании. | Я говорю по-испански."
+      - learn: [el hospital, la escuela, la oficina, el restaurante, la universidad]
+      - match:
+          title: Соедините пары
+          pairs:
+            - "el hospital — больница"
+            - "la escuela — школа"
+            - "la oficina — офис"
+            - "el restaurante — ресторан"
+            - "la universidad — университет"
+      - choose:
           title: Responde
           items:
-            - "Lucía es profesora. ¿Dónde trabaja? => Trabaja en una escuela."
-            - "Javier es médico. ¿Dónde trabaja? => Trabaja en un hospital."
-            - "Diego es estudiante. ¿Dónde estudia? => Estudia en la universidad."
-            - "¿Trabajas o estudias? => Trabajo... / Estudio..."
+            - q: "Lucía es profesora. ¿Dónde trabaja?"
+              options: "Trabaja en una escuela. | Trabaja en un hospital. | Trabaja en un restaurante."
+            - q: "Javier es médico. ¿Dónde trabaja?"
+              options: "Trabaja en un hospital. | Trabaja en una escuela. | Estudia en la universidad."
+            - say: "Pablo es camarero. Trabaja en un restaurante."
+              options: "Пабло официант в ресторане. | Пабло повар в ресторане. | Пабло работает в офисе."
+      - write:
+          title: Traduce
+          format: фраза по-испански
+          items:
+            - "Я работаю в офисе. => Trabajo en una oficina | Trabajo en la oficina"
+            - "Ана учится в университете. => Ana estudia en la universidad | Ana estudia en una universidad"
     forms: [estudias, trabajas]
 
   - id: presente
     kind: grammar
     title: "Мы, вы, они: глаголы на -ar"
+    goal: сказать «мы работаем», «вы говорите», «они учатся»
     unlocks: [present_ar]
     vocab:
       - "👫 nosotros / nosotras [носо́трос, носо́трас] — мы"
@@ -86,71 +120,84 @@ lessons:
       - examples:
           items:
             - "Yo trabajo en una oficina. — Я работаю в офисе."
-            - "Tú trabajas en un hospital. — Ты работаешь в больнице."
-            - "Ella trabaja en una escuela. — Она работает в школе."
             - "Nosotros trabajamos en un restaurante. — Мы работаем в ресторане."
-            - "Vosotros trabajáis en la universidad. — Вы работаете в университете."
             - "Ellos trabajan en casa. — Они работают дома."
-      - rule: "Чтобы получить нужную форму, отбросьте у глагола окончание **-ar** и добавьте окончание лица: **-o, -as, -a, -amos, -áis, -an**. Например, из trabajar получается trabaj**o** — «я работаю», trabaj**amos** — «мы работаем», trabaj**an** — «они работают». Так же спрягаются почти все глаголы на **-ar**: из hablar получается habl**amos** — «мы говорим», из estudiar получается estudi**áis** — «вы учитесь», а из llamarse получается _se llam**an**_ — «их зовут»."
-      - conjugation:
-          verb: trabajar
-          ru: работать
+      - learn: [nosotros / nosotras, vosotros / vosotras, ellos, ellas, ustedes]
       - compare:
           title: Мы и вы
           cards:
             - head: nosotros / nosotras
               label: «мы»
               tone: blue
-              text: Говорите **nosotros**, если в группе только мужчины или есть хотя бы один мужчина, и **nosotras**, если в группе только женщины. Пабло и Ана скажут о себе _nosotros trabajamos_, а Ана и Лусия скажут _nosotras trabajamos_.
-              ex:
-                - "Nosotros hablamos ucraniano."
-                - "Nosotras somos estudiantes."
+              text: '**nosotras** — если в группе только женщины; если есть хоть один мужчина — **nosotros**.'
+              ex: ["Nosotros hablamos ucraniano.", "Nosotras somos estudiantes."]
             - head: vosotros / vosotras
               label: неформальное «вы»
               tone: sun
-              text: 'Так обращаются к друзьям и знакомым. Здесь всё так же: **vosotros** говорят, если в группе есть хотя бы один мужчина, а **vosotras** — если в группе только женщины.'
-              ex:
-                - "¿Vosotros habláis inglés?"
-                - "¿Vosotras sois profesoras?"
+              text: 'Так обращаются к друзьям и знакомым. Правило то же: **vosotras** — только женщинам.'
+              ex: ["¿Vosotros habláis inglés?"]
       - compare:
           title: Они и вежливое «вы»
           cards:
             - head: ellos / ellas
               label: «они»
               tone: mint
-              text: Говорите **ellos**, если в группе только мужчины или есть хотя бы один мужчина, и **ellas**, если в группе только женщины.
-              ex:
-                - "Ellos son médicos."
-                - "Ellos estudian en la universidad."
-                - "Ellas son profesoras."
+              text: '**ellas** — только женщины, иначе **ellos**.'
+              ex: ["Ellos son médicos.", "Ellas son profesoras."]
             - head: ustedes
-              label: вежливое «вы» группе людей
+              label: вежливое «вы» группе
               tone: rose
-              text: 'С **ustedes** глагол стоит в той же форме, что с **ellos** и **ellas**: _ustedes trabajan_, _ustedes hablan_, _ustedes son_.'
-              ex:
-                - "¿Ustedes hablan español?"
-                - "¿Ustedes son estudiantes?"
-      - latam: "**vosotros** не используют. Когда обращаются к любой группе людей, и к друзьям, и к незнакомым, говорят **ustedes**: _¿Ustedes son estudiantes?_ _¿Dónde trabajan ustedes?_ _¿Ustedes hablan inglés?_"
+              text: 'Глагол — как с **ellos**: _ustedes trabajan_, _ustedes son_.'
+              ex: ["¿Ustedes hablan español?"]
+      - choose:
+          title: Кто это?
+          items:
+            - q: "Лусия и Елена говорят о себе: «мы»."
+              options: "nosotras | nosotros | ellas"
+            - q: "Вы говорите о Диего и Ане: «они»."
+              options: "ellos | ellas | nosotros"
+              explain: "В группе есть мужчина (Диего), поэтому ellos."
+            - q: "Вы вежливо обращаетесь к двум сеньорам."
+              options: "ustedes | vosotros | usted"
+      - header: Окончания -ar
+      - rule: "Отбросьте у глагола **-ar** и добавьте окончание лица: **-o, -as, -a, -amos, -áis, -an**. Из trabajar — trabaj**o**, trabaj**amos**, trabaj**an**; из hablar — habl**amos**; из estudiar — estudi**áis**."
+      - conjugation:
+          verb: trabajar
+          ru: работать
+      - more:
+          title: 🌎 А в Латинской Америке?
+          text: "**Vosotros** там не используют: к любой группе — и к друзьям, и к незнакомым — обращаются **ustedes**: _¿Ustedes son estudiantes?_"
+      - write:
+          title: Вставьте форму глагола
+          format: форма глагола
+          items:
+            - "Nosotros ___ (hablar) español. => hablamos"
+            - "¿Vosotros ___ (estudiar) inglés? => estudiáis"
+            - "Ellas ___ (trabajar) en una oficina. => trabajan"
+            - q: "Ustedes ___ (hablar) muy bien."
+              a: hablan
+              explain: "С ustedes — та же форма, что с ellos: hablan."
       - header: "Глагол ser полностью"
       - conjugation:
           verb: ser
           ru: быть
           highlight: false
           forms: [soy, eres, es, somos, sois, son]
-      - "Глагол **ser** спрягается не по правилу, поэтому его формы нужно просто запомнить: _Nosotros somos estudiantes._ _¿Vosotros sois de Madrid?_ _Ellas son médicas._"
-      - exercise:
-          title: Responde
+      - "**Ser** спрягается не по правилу — формы нужно запомнить: _Nosotros somos estudiantes._ _¿Vosotros sois de Madrid?_ _Ellas son médicas._"
+      - choose:
+          title: Выберите форму ser
           items:
-            - "Nosotros ___ (hablar) español. => hablamos"
-            - "¿Vosotros ___ (estudiar) inglés? => estudiáis"
-            - "Ellas ___ (trabajar) en una oficina. => trabajan"
-            - "Ustedes ___ (hablar) muy bien. => hablan"
-            - "Nosotras ___ (ser) estudiantes. => somos"
-            - "¿Vosotros ___ (ser) de Madrid? => sois"
+            - q: "Nosotras ___ estudiantes."
+              options: "somos | son | sois"
+            - q: "¿Vosotros ___ de Madrid?"
+              options: "sois | son | somos"
+            - q: "Ellas ___ médicas."
+              options: "son | sois | es"
 
   - id: lectura
     kind: reading
     title: Mis amigos y su trabajo
+    goal: понять текст о том, кто где работает
     vocab:
       - "📰 el/la periodista [пэрьоди́ста] — журналист(ка)"
       - "⚖️ el abogado / la abogada [абога́до, абога́да] — юрист, адвокат"
@@ -158,7 +205,14 @@ lessons:
       - "👨‍🍳 el cocinero / la cocinera [коθинэ́ро, коθинэ́ра] — повар"
       - "💪 mucho [му́чо] — много :: Trabajo mucho. — Я много работаю."
     blocks:
-      - "Прочитайте текст вслух. Обращайте внимание на окончания глаголов: по ним видно, кто что делает."
+      - learn: [el/la periodista, el abogado / la abogada, el enfermero / la enfermera, el cocinero / la cocinera, mucho]
+      - match:
+          title: Соедините пары
+          pairs:
+            - "el periodista — журналист"
+            - "la abogada — юрист"
+            - "la enfermera — медсестра"
+            - "el cocinero — повар"
       - reading:
           title: Mis amigos y su trabajo
           text: |
@@ -181,15 +235,21 @@ lessons:
             Мой друг Диего — студент. Учится в университете и ещё работает: он официант в ресторане.
 
             А я? Я много работаю, но и учусь тоже. Изучаю английский!
-      - exercise:
+      - more:
+          title: el periodista, la periodista
+          text: "**Periodista** заканчивается на `-a`, но слово одно для мужчин и женщин, меняется только артикль: _Pablo es periodista._ _Laura y Carmen son periodistas._"
+      - choose:
           title: Responde
           items:
-            - "¿Qué es Marta? => Es profesora."
-            - "¿Dónde trabaja Javier? => En un hospital."
-            - "¿Qué es Rosa? => Es enfermera."
-            - "¿Dónde viven Laura y Carmen? => En Toledo."
-            - "¿Diego trabaja o estudia? => Estudia y también trabaja."
-      - note: "Слово **periodista** заканчивается на `-a`, но оно одно и для мужчин, и для женщин, меняется только артикль: _el periodista, la periodista_. _Pablo es periodista._ _Laura y Carmen son periodistas._"
+            - q: "¿Dónde trabaja Javier?"
+              options: "En un hospital. | En una escuela. | En un restaurante."
+            - q: "¿Qué es Rosa?"
+              options: "Es enfermera. | Es médica. | Es periodista."
+            - q: "¿Dónde viven Laura y Carmen?"
+              options: "En Toledo. | En Madrid. | En Sevilla."
+              explain: "Trabajan en Madrid, pero viven en Toledo."
+            - q: "¿Diego trabaja o estudia?"
+              options: "Estudia y también trabaja. | Estudia, pero no trabaja. | Trabaja, pero no estudia."
     forms: [viven]
     quiz:
       - q: ¿Dónde trabajan Laura y Carmen?
@@ -201,8 +261,9 @@ lessons:
   - id: dialogo
     kind: dialogue
     title: ¿Sois estudiantes?
+    goal: обратиться к группе людей на «вы» — vosotros и ustedes
     blocks:
-      - "Это диалог на вечеринке. Посмотрите, как обращаются к группе людей. Новых слов в этом уроке нет."
+      - "Это разговор на вечеринке. Посмотрите, как обращаются к группе людей."
       - dialogue:
           lines:
             - "Lucía: Hola, ¿sois estudiantes? | Привет, вы студенты?"
@@ -213,30 +274,48 @@ lessons:
             - "Diego: ¿Y habláis inglés? | А вы говорите по-английски?"
             - "Elena: Sí, hablamos inglés y un poco de francés. ¿Y vosotros? | Да, говорим по-английски и немного по-французски. А вы?"
             - "Diego: Nosotros hablamos inglés y estudiamos alemán. | Мы говорим по-английски и учим немецкий."
-      - exercise:
+      - choose:
           title: Responde
           items:
-            - "¿Diego trabaja o estudia? => Estudia."
-            - "¿Qué es Elena? => Es abogada."
-            - "¿Dónde trabaja Lucía? => En un hospital."
-            - "¿Qué estudian Diego y su amigo? => Alemán."
-      - exercise:
-          title: "Скажите вежливо: вместо vosotros используйте ustedes"
+            - q: "¿Qué es Elena?"
+              options: "Es abogada. | Es enfermera. | Es estudiante."
+            - q: "¿Dónde trabaja Lucía?"
+              options: "En un hospital. | En una oficina. | En la universidad."
+            - q: "¿Qué estudian Diego y su amigo?"
+              options: "Alemán. | Inglés. | Francés."
+      - choose:
+          title: Что ответить?
           items:
-            - "¿Sois estudiantes? => ¿Ustedes son estudiantes?"
-            - "¿Dónde trabajáis? => ¿Dónde trabajan ustedes?"
-            - "¿Habláis inglés? => ¿Ustedes hablan inglés?"
+            - lines: ["Diego: ¿Sois estudiantes?"]
+              q: "Вы с подругой — студентки."
+              options: "Sí, somos estudiantes. | Sí, sois estudiantes. | Sí, son estudiantes."
+              explain: "О себе и подруге — «мы»: somos."
+      - write:
+          title: "Скажите вежливо: ustedes вместо vosotros"
+          format: вопрос по-испански
+          items:
+            - "¿Sois estudiantes? => ¿Ustedes son estudiantes? | ¿Son ustedes estudiantes? | ¿Son estudiantes?"
+            - "¿Habláis inglés? => ¿Ustedes hablan inglés? | ¿Hablan ustedes inglés? | ¿Hablan inglés?"
+      - build:
+          title: "Скажите вежливо: ustedes вместо vosotros"
+          items:
+            - es: "¿Dónde trabajan ustedes?"
+              ru: "¿Dónde trabajáis? → вежливо: «Где вы работаете?»"
+              extra: [trabajáis]
 
   - id: practica
     kind: practice
     title: Глаголы на -ar
+    goal: рассказать, кто чем занимается, — работаем, учимся, готовим
     vocab:
       - "🎧 escuchar [эскуча́р] — слушать :: Escucho música. — Я слушаю музыку."
       - "🍳 cocinar [коθина́р] — готовить (еду)"
     blocks:
-      - "Сегодня тренируем спряжение. Два новых глагола, **escuchar** и **cocinar**, спрягаются точно так же, как **trabajar**: из escuchar получается escuch**o**, escuch**amos**, escuch**an**, а из cocinar получается cocin**o**, cocin**amos**, cocin**an**."
-      - exercise:
+      - "Два новых глагола спрягаются точно так же, как **trabajar**: escuch**o**, escuch**amos**, escuch**an**; cocin**o**, cocin**amos**, cocin**an**."
+      - learn: [escuchar, cocinar]
+      - write:
           title: Responde
+          format: форма глагола
           items:
             - "yo / escuchar => escucho"
             - "tú / cocinar => cocinas"
@@ -244,21 +323,36 @@ lessons:
             - "ellos / hablar => hablan"
             - "vosotras / escuchar => escucháis"
             - "usted / trabajar => trabaja"
-      - exercise:
-          title: Traduce
+      - write:
+          title: Исправьте ошибку
+          format: правильная фраза
           items:
-            - "Мы слушаем музыку. => Escuchamos música."
-            - "Пабло хорошо готовит. => Pablo cocina bien."
-            - "Вы (группе) говорите по-украински? => ¿Habláis ucraniano?"
-            - "Они не работают, они учатся. => No trabajan, estudian."
-            - "Я много работаю. => Trabajo mucho."
-      - exercise:
-          title: Найдите ошибку
+            - "Nosotros `trabajan` en un hospital. => Nosotros trabajamos en un hospital | Trabajamos en un hospital"
+            - "Soy `una` profesora. => Soy profesora"
+            - "Ellas `habla` inglés. => Ellas hablan inglés"
+      - mission:
+          title: Знакомство в общежитии
+          text: "Вы — Ана. Учитесь в университете в Мадриде и работаете официанткой в ресторане. Ваша подруга Лусия учится вместе с вами. С вами знакомятся Диего и Пабло."
+      - choose:
           items:
-            - "Nosotros `trabajan` en un hospital. => Nosotros trabajamos..."
-            - "Soy `una` profesora. => Soy profesora."
-            - "Ellas `habla` inglés. => Ellas hablan inglés."
-      - task: "Расскажите в комментариях о себе: **Soy... Trabajo en...** или **Estudio...** А потом расскажите о друге или подруге: **Mi amigo / Mi amiga es... Trabaja en...**"
+            - lines: ["Diego: ¿A qué te dedicas?"]
+              options: "Soy estudiante y trabajo en un restaurante. | Soy una estudiante y una camarera. | Es estudiante y trabaja en un restaurante."
+              explain: "О себе — soy и trabajo; профессию называют без артикля."
+      - write:
+          items:
+            - q: "Pablo: ¿Dónde estudias?"
+              a: "Estudio en la universidad | En la universidad | Estudio en la universidad de Madrid"
+              format: ответ по-испански
+      - choose:
+          items:
+            - lines: ["Diego: Pablo y yo estudiamos en la universidad. ¿Y vosotras?"]
+              q: "Вы отвечаете за себя и Лусию."
+              options: "Nosotras también estudiamos. | Vosotras también estudiáis. | Ellas también estudian."
+      - build:
+          items:
+            - es: "Lucía y yo escuchamos música y cocinamos."
+              ru: "Расскажите: «Мы с Лусией слушаем музыку и готовим»."
+              extra: [escuchan]
 
   - id: quiz
     kind: quiz

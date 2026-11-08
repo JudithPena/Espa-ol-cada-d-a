@@ -11,96 +11,141 @@ lessons:
   - id: gerundio
     kind: grammar
     title: "Estoy hablando: что происходит сейчас"
+    goal: сказать, что вы делаете прямо сейчас — estoy hablando
     unlocks: [gerund]
     vocab:
       - "⚡ ahora mismo [ао́ра ми́смо] — прямо сейчас"
       - "⏱ en este momento [эн э́стэ момэ́нто] — в данный момент"
       - "⏳ esperar [эспэра́р] — ждать :: Estoy esperando el autobús. — Я жду автобус."
     blocks:
-      - "Посмотрите на примеры и подумайте, из каких двух частей состоит сказуемое в каждой фразе."
+      - "Из каких двух частей состоит сказуемое в каждой фразе?"
       - examples:
           items:
             - "¿Qué estás haciendo? Estoy cocinando. — Что ты делаешь? Готовлю."
-            - "Ana está leyendo un libro. — Ана читает книгу."
             - "Los niños están durmiendo. — Дети спят."
-            - "Estamos esperando el autobús. — Мы ждём автобус."
-            - "Ahora mismo estoy estudiando español. — Прямо сейчас я учу испанский."
-      - rule: |
-          Если действие происходит **прямо сейчас**, в момент разговора, то используйте глагол **estar** в нужной форме и герундий: _Estoy cocinando._ — «Я готовлю», _¿Qué estás haciendo?_ — «Что ты делаешь?», _Estamos esperando el autobús._ — «Мы ждём автобус».
-          Герундий образуется так:
-          1. Если глагол заканчивается на **-ar**, то отбросьте **-ar** и добавьте **-ando**. Так из hablar получается habl**ando**, из trabajar получается trabaj**ando**, а из cocinar получается cocin**ando**.
-          2. Если глагол заканчивается на **-er** или **-ir**, то вместо этого окончания добавьте **-iendo**. Так из comer получается com**iendo**, из beber получается beb**iendo**, а из vivir и escribir получаются viv**iendo** и escrib**iendo**.
-          Сам герундий никогда не меняется, а меняется только **estar**: _estoy hablando, estás hablando, está hablando, estamos hablando, están hablando_.
+      - learn: [ahora mismo, en este momento, esperar]
+      - compare:
+          title: estar + герундий
+          lead: 'Действие **прямо сейчас** — **estar** в нужной форме + герундий. Герундий не меняется, меняется только **estar**: _estoy hablando, estás hablando, estamos hablando_.'
+          cards:
+            - head: -ar → -ando
+              say: false
+              label: hablar → hablando
+              tone: blue
+              ex: ["Estoy cocinando.", "Estamos esperando el autobús."]
+            - head: -er, -ir → -iendo
+              say: false
+              label: comer → comiendo
+              tone: sun
+              ex: ["Ana está comiendo.", "Estoy escribiendo."]
+      - write:
+          title: Образуйте герундий
+          format: герундий
+          items:
+            - "hablar => hablando"
+            - "comer => comiendo"
+            - "escribir => escribiendo"
+      - write:
+          title: estar + герундий
+          format: estar + герундий
+          items:
+            - "(yo) ___ (estudiar) => estoy estudiando"
+            - "Ellos ___ (ver) la tele. => están viendo"
+      - header: Особые формы
       - table:
-          title: Особые формы
           rows:
             - ["leer", "**leyendo**"]
             - ["dormir", "**durmiendo**"]
             - ["pedir", "**pidiendo**"]
             - ["ir", "**yendo**"]
-      - |
-        Эти четыре формы образуются не по правилу, поэтому их нужно запомнить.
-        У глагола leer основа заканчивается на гласную, поэтому в окончании `-iendo` вместо `i` пишется `y`: _¿Qué estás leyendo?_ — «Что ты читаешь?», _Estoy leyendo un libro en español._ — «Я читаю книгу на испанском».
-        У глаголов dormir и pedir в корне меняется гласная: `o` превращается в `u`, а `e` превращается в `i`. Например: _El gato está durmiendo._ — «Кот спит», _Carlos está pidiendo la cuenta._ — «Карлос просит счёт», _Estoy pidiendo un café._ — «Я заказываю кофе».
-        А от глагола ir получается совсем короткая форма: _Estoy yendo a la estación._ — «Я иду на вокзал», _Estamos yendo a casa._ — «Мы идём домой».
-      - rule: |
-          Сравните два времени. Обычное настоящее время описывает привычки и то, что происходит регулярно: _Los sábados jugamos al fútbol._ — «По субботам мы играем в футбол», _Ana siempre come en casa._ — «Ана всегда обедает дома», _Normalmente me levanto a las siete._ — «Обычно я встаю в семь».
-          А **estar + герундий** описывает то, что происходит именно сейчас: _Ahora mismo estamos jugando al fútbol._ — «Прямо сейчас мы играем в футбол», _Hoy Ana está comiendo en un restaurante._ — «Сегодня Ана обедает в ресторане», _En este momento estoy esperando a Pablo._ — «В данный момент я жду Пабло».
-          Поэтому в одной фразе часто встречаются оба времени: _Normalmente trabajo en la oficina, pero hoy estoy trabajando en casa._ — «Обычно я работаю в офисе, но сегодня работаю дома».
-      - note: "Если глагол возвратный, то местоимение ставится перед **estar**: _Me estoy duchando._ — «Я принимаю душ», _¿Te estás vistiendo?_ — «Ты одеваешься?», _Pablo se está levantando._ — «Пабло встаёт», _Los niños se están acostando._ — «Дети ложатся спать»."
-      - exercise:
-          title: Responde
+      - "У **leer** основа кончается на гласную — вместо `i` пишется `y`: _leyendo_. У **dormir** и **pedir** меняется гласная корня: `o` → `u`, `e` → `i`. А от **ir** — совсем короткая форма: _Estamos yendo a casa._"
+      - write:
+          title: Образуйте герундий
+          format: герундий
           items:
-            - "hablar => hablando"
-            - "comer => comiendo"
-            - "escribir => escribiendo"
             - "leer => leyendo"
             - "dormir => durmiendo"
-            - "(yo) ___ (estudiar) => Estoy estudiando"
-            - "Ellos ___ (ver) la tele. => están viendo"
+      - choose:
+          title: Выберите
+          items:
+            - q: "Carlos ___ la cuenta."
+              options: "está pidiendo | está pediendo | está pidendo"
+      - header: Привычка или сейчас?
+      - compare:
+          cards:
+            - head: обычное настоящее
+              say: false
+              label: привычка, регулярно
+              tone: mint
+              ex: ["Los sábados jugamos al fútbol.", "Normalmente me levanto a las siete."]
+            - head: estar + герундий
+              say: false
+              label: именно сейчас
+              tone: rose
+              ex: ["Ahora mismo estamos jugando al fútbol.", "En este momento estoy esperando a Pablo."]
+          note: "Часто — оба в одной фразе: _Normalmente trabajo en la oficina, pero hoy estoy trabajando en casa._"
+      - choose:
+          title: Выберите
+          items:
+            - q: "Ahora mismo ___ un café."
+              options: "estoy tomando | tomo siempre | tomando"
+            - q: "Pablo ___ levantando. (возвратный глагол)"
+              options: "se está | está se | se es"
+              explain: "Местоимение возвратного глагола ставится перед estar: Pablo se está levantando."
 
   - id: practica
     kind: practice
     title: ¿Qué están haciendo?
+    goal: описать, что люди делают прямо сейчас
     blocks:
-      - "Опишите, что делают эти люди прямо сейчас. Для этого используйте **estar + герундий**: сначала поставьте **estar** в нужную форму, а потом добавьте герундий. Например: _Carlos está cantando._ — «Карлос поёт», _Estamos esperando el autobús._ — «Мы ждём автобус»."
-      - exercise:
+      - write:
           title: "¿Qué está haciendo?"
+          format: estar + герундий
           items:
-            - "🏊 Pablo => Está nadando."
-            - "📖 Ana => Está leyendo."
-            - "😴 el gato => Está durmiendo."
-            - "🍳 mis padres => Están cocinando."
-            - "💃 nosotras => Estamos bailando."
-            - "☕ tú => Estás tomando un café."
-      - exercise:
-          title: Traduce
-          items:
-            - "Что ты сейчас делаешь? => ¿Qué estás haciendo ahora?"
-            - "Я жду друга. => Estoy esperando a un amigo."
-            - "Идёт дождь. (прямо сейчас) => Está lloviendo."
-            - "Мы обедаем. => Estamos comiendo."
-            - "Они смотрят фильм. => Están viendo una película."
-      - tip: "Если в предложении есть слова **normalmente**, **siempre** или **los sábados**, то речь идёт о привычке, и тогда нужно обычное настоящее время: _Siempre desayuno en casa._ — «Я всегда завтракаю дома». А если есть **ahora mismo** или **en este momento**, то действие происходит сейчас, и тогда нужно **estar + герундий**: _En este momento estoy leyendo._ — «В данный момент я читаю»."
-      - exercise:
-          title: "Какое время нужно: обычное настоящее или estar + герундий?"
+            - "🏊 Pablo => Está nadando | Pablo está nadando"
+            - "📖 Ana => Está leyendo | Ana está leyendo"
+            - "😴 el gato => Está durmiendo | El gato está durmiendo"
+            - "🍳 mis padres => Están cocinando | Mis padres están cocinando"
+            - "💃 nosotras => Estamos bailando | Nosotras estamos bailando"
+      - tip: "**normalmente**, **siempre**, **los sábados** — привычка, обычное настоящее: _Siempre desayuno en casa._ **ahora mismo**, **en este momento** — сейчас, **estar + герундий**: _En este momento estoy leyendo._"
+      - write:
+          title: "Обычное настоящее или estar + герундий?"
+          format: форма глагола
           items:
             - "Normalmente (yo) ___ (trabajar) en casa. => trabajo"
             - "Ahora mismo (yo) ___ (trabajar). => estoy trabajando"
             - "Los sábados ___ (nosotros, jugar) al fútbol. => jugamos"
             - "No puedo hablar: ___ (yo, comer). => estoy comiendo"
-      - task: "Что вы делаете прямо сейчас, кроме того, что читаете этот пост? 😉 Напишите в комментариях фразу, которая начинается со слов **Ahora mismo estoy...**"
+      - mission:
+          title: Видеозвонок
+          text: "Диего звонит вам по видео. Вы готовите ужин, ваша сестра читает, а кот спит на диване."
+      - choose:
+          items:
+            - lines: ["Diego: ¡Hola! ¿Qué estás haciendo?"]
+              options: "Estoy cocinando. | Cocino siempre. | Estoy cocinar."
+      - write:
+          items:
+            - q: "Diego: ¿Y tu hermana?"
+              a: "Está leyendo | Mi hermana está leyendo"
+              format: ответ по-испански
+      - build:
+          items:
+            - es: "El gato está durmiendo en el sofá."
+              ru: "Diego: ¿Y el gato? — «Кот спит на диване»."
+              extra: [dormiendo]
 
   - id: llamada
     kind: listening
     title: Телефонный звонок
+    goal: ответить на звонок и понять на слух, кто что делает
     vocab:
       - "📞 ¿Diga? [ди́га] — алло? (ответ на звонок)"
       - "📝 el examen [экса́мэн] — экзамен {pl: exámenes}"
       - "👂 oye [о́йэ] — слушай (чтобы привлечь внимание)"
       - "📲 luego te llamo [луэ́го тэ лья́мо] — я тебе перезвоню"
     blocks:
-      - "Пабло звонит Ане. Сначала послушайте разговор: его текст спрятан ниже. Потом ответьте на вопросы теста."
+      - "Пабло звонит Ане. Сначала слова, потом послушайте разговор: его текст спрятан."
+      - learn: ["¿Diga?", el examen, oye, luego te llamo]
       - dialogue:
           hidden: true
           lines:
@@ -114,6 +159,13 @@ lessons:
             - "Pablo: Oye, ¿quedamos mañana? | Слушай, встретимся завтра?"
             - "Ana: Vale, pero ahora estoy muy ocupada. Luego te llamo. | Давай, но сейчас я очень занята. Перезвоню тебе."
             - "Pablo: ¡Hasta luego! | Пока!"
+      - choose:
+          title: Поняли?
+          items:
+            - q: "¿Quién va a cenar en casa de Ana esta noche?"
+              options: "Sus padres. | Pablo. | Lucía y su hermano."
+            - q: "Что Ана говорит в конце разговора?"
+              options: "Luego te llamo. | Lo siento, no puedo. | ¡Que te mejores!"
       - note: "В Испании, когда звонит телефон, обычно отвечают **¿Diga?** или **¿Sí?**, а в Мексике говорят **¿Bueno?**. Если же звоните вы, то представьтесь со словом **Soy**: _Hola, Ana. Soy Pablo._ — «Привет, Ана. Это Пабло», _Buenos días, soy Carmen López._ — «Добрый день, это Кармен Лопес»."
     quiz:
       - q: ¿Qué está haciendo Ana?

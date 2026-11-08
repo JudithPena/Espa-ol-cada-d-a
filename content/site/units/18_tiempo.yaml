@@ -11,6 +11,7 @@ lessons:
   - id: clima
     kind: vocab
     title: ¿Qué tiempo hace?
+    goal: рассказать, какая сегодня погода
     vocab:
       - "🌡 ¿Qué tiempo hace? [кэ тьэ́мпо а́θэ] — какая погода?"
       - "🥵 hace calor [а́θэ кало́р] — жарко"
@@ -21,30 +22,35 @@ lessons:
       - "🌧 llover [льобэ́р] — идти (о дожде) :: Hoy llueve. — Сегодня идёт дождь."
       - "🌨 nevar [нэба́р] — идти (о снеге) :: En Kiev nieva mucho. — В Киеве много снега."
     blocks:
-      - "О погоде можно поговорить с кем угодно, поэтому эта тема пригодится вам каждый день. Посмотрите на примеры и найдите глагол, который испанцы используют, когда говорят о погоде."
-      - rule: |
-          1. Когда испанцы говорят о жаре, холоде, солнце и ветре, они используют глагол **hace**, то есть дословно «делает». Например, _hace calor_ означает «жарко», а буквально «делает жару». Так же говорят: _Hoy hace calor._ (Сегодня жарко.) _En Kiev hace frío._ (В Киеве холодно.) _En Sevilla hace sol._ (В Севилье солнечно.) _Hoy hace viento._ (Сегодня ветрено.)
-          2. Хорошую и плохую погоду тоже описывают с глаголом **hace**: _Hoy hace buen tiempo._ (Сегодня хорошая погода.) _En Galicia hace mal tiempo._ (В Галисии плохая погода.) _¿Qué tiempo hace en Madrid?_ (Какая погода в Мадриде?)
-          3. Для дождя и снега в испанском есть отдельные глаголы, поэтому **hace** с ними не нужен: **llueve** значит «идёт дождь», а **nieva** значит «идёт снег». Например: _Hoy llueve._ (Сегодня идёт дождь.) _En Kiev nieva._ (В Киеве идёт снег.) _En Málaga no nieva._ (В Малаге не бывает снега.)
-      - examples:
-          items:
-            - "¿Qué tiempo hace hoy? Hace sol y hace calor. — Какая сегодня погода? Солнечно и жарко."
-            - "Hoy hace mal tiempo: llueve y hace viento. — Сегодня плохая погода: дождь и ветер."
-            - "En Kiev hace mucho frío. — В Киеве очень холодно."
-      - tip: "Чтобы сказать «очень жарко», говорят **hace mucho calor**, а не `muy calor`, потому что **calor** — это существительное «жара», а перед существительным ставится **mucho**. Точно так же говорят _hace mucho frío_, _hace mucho sol_ и _hace mucho viento_. Подробнее о разнице между **muy** и **mucho** мы поговорим через пару уроков."
-      - exercise:
+      - "О погоде можно поговорить с кем угодно. Какой глагол испанцы используют, когда говорят о погоде?"
+      - learn: ["¿Qué tiempo hace?", hace calor, hace frío, hace sol]
+      - rule: "О жаре, холоде, солнце и ветре говорят с глаголом **hace** — дословно «делает»: _hace calor_ — «делает жару», то есть «жарко». _En Kiev hace frío._ _En Sevilla hace sol._"
+      - choose:
           title: "¿Qué tiempo hace?"
           items:
-            - "☀️🥵 => Hace sol y hace calor."
-            - "🌧 => Llueve."
-            - "🌨🥶 => Nieva y hace frío."
-            - "💨 => Hace viento."
-            - "🌤 => Hace buen tiempo."
-      - task: "Какая погода сегодня там, где вы живёте? Напишите об этом в комментариях по образцу **Hoy en... hace...**, например: _Hoy en Kiev hace frío y llueve._"
+            - q: "☀️🥵"
+              options: "Hace sol y hace calor. | Es sol y es calor. | Está sol y calor."
+      - learn: [hace viento, hace buen tiempo / hace mal tiempo, llover, nevar]
+      - rule: "Для дождя и снега — отдельные глаголы, **hace** не нужен: **llueve** — «идёт дождь», **nieva** — «идёт снег»: _Hoy llueve._ _En Málaga no nieva._"
+      - write:
+          title: "¿Qué tiempo hace?"
+          format: фраза по-испански
+          items:
+            - "🌧 => Llueve | Hoy llueve"
+            - "🌨🥶 => Nieva y hace frío | Hace frío y nieva"
+            - "💨 => Hace viento | Hoy hace viento"
+            - "🌤 => Hace buen tiempo | Hoy hace buen tiempo"
+      - tip: "«Очень жарко» — **hace mucho calor**, а не `muy calor`: **calor** — существительное «жара», перед ним ставится **mucho**. Так же _hace mucho frío_, _hace mucho viento_."
+      - choose:
+          title: Послушайте и выберите
+          items:
+            - say: "Hoy hace mal tiempo: llueve y hace viento."
+              options: "Плохая погода: дождь и ветер. | Хорошая погода: солнце и ветер. | Плохая погода: снег и холод."
 
   - id: estaciones
     kind: vocab
     title: Времена года
+    goal: назвать времена года и сказать, какое у вас любимое
     vocab:
       - "🗓 la estación del año [эстаθьо́н дэль а́ньо] — время года"
       - "🌸 la primavera [примабэ́ра] — весна"
@@ -54,27 +60,44 @@ lessons:
       - "☁️ está nublado [эста́ нубла́до] — облачно, пасмурно"
       - "❤️ favorito/a [фабори́то, фабори́та] — любимый"
     blocks:
-      - "Сегодня вы выучите названия четырёх времён года. Обратите внимание, что слово **la estación** означает и «вокзал», и «время года», а какое из значений имеется в виду, обычно понятно из разговора."
-      - examples:
+      - "**la estación** — и «вокзал», и «время года»: какое значение, обычно понятно из разговора."
+      - learn: [la estación del año, la primavera, el verano, el otoño, el invierno]
+      - match:
+          title: Соедините пары
+          pairs:
+            - "la primavera — весна"
+            - "el verano — лето"
+            - "el otoño — осень"
+            - "el invierno — зима"
+      - compare:
+          cards:
+            - head: en verano
+              label: когда — en, без артикля
+              tone: blue
+              ex: ["En verano hace calor.", "En invierno nieva."]
+            - head: el verano
+              label: о самом времени года — с артиклем
+              tone: sun
+              ex: ["La primavera es muy bonita."]
+      - choose:
+          title: Выберите
           items:
-            - "En verano hace mucho calor. — Летом очень жарко."
-            - "En invierno nieva. — Зимой идёт снег."
-            - "En otoño llueve y está nublado. — Осенью дождливо и пасмурно."
-            - "Mi estación favorita es la primavera. — Моё любимое время года — весна."
-      - rule: |
-          1. Если вы хотите сказать, **когда** что-то происходит, то поставьте перед временем года предлог **en**, а артикль в этом случае не нужен: _En verano hace calor._ (Летом жарко.) _En invierno nieva._ (Зимой идёт снег.) _En otoño llueve._ (Осенью идёт дождь.)
-          2. Если же время года — это то, о чём вы рассказываете, то перед ним ставится артикль: _La primavera es muy bonita._ (Весна очень красивая.) _Mi estación favorita es el verano._ (Моё любимое время года — лето.) _El invierno en Kiev es muy largo._ (Зима в Киеве очень долгая.)
-      - culture: "В Аргентине и Чили времена года идут наоборот, потому что эти страны находятся в Южном полушарии. Поэтому Новый год там празднуют летом, на пляже ☀️, а в июле там зима."
-      - exercise:
-          title: Responde
+            - q: "___ verano hace mucho calor."
+              options: "En | El | En el"
+      - learn: [está nublado, favorito/a]
+      - culture: "В Аргентине и Чили времена года наоборот — это Южное полушарие. Новый год там празднуют летом, на пляже ☀️, а в июле там зима."
+      - write:
+          title: Traduce
+          format: фраза по-испански
           items:
-            - "¿Qué tiempo hace en verano en España? => Hace sol y mucho calor."
-            - "¿Qué tiempo hace en invierno en Ucrania? => Hace mucho frío y nieva."
-            - "¿Cuál es tu estación favorita? => Mi estación favorita es..."
+            - "Зимой идёт снег. => En invierno nieva"
+            - "Моё любимое время года — лето. => Mi estación favorita es el verano"
+            - "Осенью пасмурно. => En otoño está nublado"
 
   - id: meses1
     kind: vocab
     title: Месяцы и даты
+    goal: назвать месяц и дату и спросить о дне рождения
     vocab:
       - "📅 el mes [мэс] — месяц"
       - "❓ ¿Cuándo? [куа́ндо] — когда?"
@@ -93,75 +116,107 @@ lessons:
       - "🎂 el cumpleaños [кумплэа́ньос] — день рождения"
       - "📆 la fecha [фэ́ча] — дата"
     blocks:
-      - "Сегодня вы выучите все двенадцать месяцев и узнаете, как по-испански назвать дату. Испанские названия месяцев похожи на русские, поэтому их легко запомнить. Обратите внимание, что по-испански месяцы пишутся с маленькой буквы: _enero_, _febrero_, _junio_. А чтобы сказать «в каком-то месяце», поставьте перед ним предлог **en**, так же как с временами года: _en enero_ (в январе), _en marzo_ (в марте), _en mayo_ (в мае)."
-      - examples:
+      - "Месяцы похожи на русские, а пишутся с маленькой буквы. «В каком месяце» — **en**: _en enero_, _en mayo_."
+      - learn: [el mes, "¿Cuándo?", enero, febrero, marzo, abril]
+      - choose:
+          title: Выберите
           items:
-            - "En enero hace mucho frío. — В январе очень холодно."
-            - "¿Cuándo vas a España? En mayo. — Когда ты едешь в Испанию? В мае."
-            - "Junio es mi mes favorito. — Июнь — мой любимый месяц."
-            - "¿Qué fecha es hoy? Es el diez de octubre. — Какое сегодня число? Десятое октября."
-            - "¿Cuándo es tu cumpleaños? Es el veinte de enero. — Когда у тебя день рождения? Двадцатого января."
-            - "Mi cumpleaños es en agosto. — Мой день рождения в августе."
-            - "Hoy es el uno de julio. — Сегодня первое июля."
-      - exercise:
-          title: Traduce
+            - q: "Какой месяц идёт после febrero?"
+              options: "marzo | abril | enero"
+      - learn: [mayo, junio, julio, agosto]
+      - choose:
+          title: Послушайте и выберите
           items:
-            - "в феврале => en febrero"
-            - "в апреле => en abril"
-            - "Март — весенний месяц. => Marzo es un mes de primavera."
-            - "Когда? В июне. => ¿Cuándo? En junio."
+            - say: "Voy a España en julio."
+              options: "Я еду в Испанию в июле. | Я еду в Испанию в июне. | Я еду в Испанию в августе."
+      - learn: [septiembre, octubre, noviembre, diciembre]
+      - match:
+          title: Соедините пары
+          pairs:
+            - "junio — июнь"
+            - "julio — июль"
+            - "agosto — август"
+            - "septiembre — сентябрь"
+            - "diciembre — декабрь"
+      - learn: [el cumpleaños, la fecha]
       - rule: |
-          1. Дата строится по схеме **el + число + de + месяц**: сначала идёт артикль **el**, потом число, потом предлог **de** и название месяца. Например: _el cinco de mayo_ (пятое мая), _el doce de octubre_ (двенадцатое октября), _el treinta de junio_ (тридцатое июня).
-          2. В испанском для дат используют обычные числа, а не порядковые. Поэтому _el veinte_ означает «двадцатое», хотя дословно это «двадцать»: _el veinte de enero_ (двадцатое января), _el quince de agosto_ (пятнадцатое августа). Только первое число можно назвать двумя способами: и _el uno de julio_, и _el primero de julio_ означают «первое июля».
-          3. Год читается как обычное число: 2026 читается _dos mil veintiséis_, 2000 читается _dos mil_, а 1990 читается _mil novecientos noventa_.
-          4. Если вы называете только месяц, без числа, то вместо **el** нужен предлог **en**: _Mi cumpleaños es en septiembre._ (Мой день рождения в сентябре.) _En diciembre hace frío._ (В декабре холодно.) _Voy a España en julio._ (Я еду в Испанию в июле.)
-      - exercise:
-          title: Traduce
+          1. Дата: **el + число + de + месяц**: _el cinco de mayo_, _el doce de octubre_.
+          2. Число обычное, не порядковое: _el veinte de enero_ — «двадцатое января». Первое — и _el uno_, и _el primero_.
+          3. Только месяц, без числа, — **en**: _Mi cumpleaños es en septiembre._
+      - write:
+          title: Напишите дату
+          format: дата словами
           items:
             - "8 марта => el ocho de marzo"
-            - "1 сентября => el uno (primero) de septiembre"
             - "31 декабря => el treinta y uno de diciembre"
-            - "Мой день рождения 14 ноября. => Mi cumpleaños es el catorce de noviembre."
-      - task: "Когда у вас день рождения? Напишите об этом в комментариях по образцу **Mi cumpleaños es el... de...**"
+            - "1 сентября => el uno de septiembre | el primero de septiembre"
+      - choose:
+          title: Выберите
+          items:
+            - q: "Мой день рождения в сентябре."
+              options: "Mi cumpleaños es en septiembre. | Mi cumpleaños es el septiembre. | Mi cumpleaños es de septiembre."
+      - write:
+          title: Послушайте и запишите цифрами
+          format: число и месяц цифрами, например 5.3
+          items:
+            - say: "el catorce de noviembre"
+              a: "14.11 | 14/11 | 14 11"
+            - say: "el tres de mayo"
+              a: "3.5 | 03.05 | 3/5 | 3 5"
 
   - id: muy_mucho
     kind: grammar
     title: Muy или mucho?
+    goal: выбрать muy или mucho
     vocab:
       - "🌡 el grado [гра́до] — градус :: Hoy hace treinta grados. — Сегодня тридцать градусов."
     blocks:
-      - "Оба слова, **muy** и **mucho**, могут переводиться как «очень», а **mucho** к тому же значит «много». Посмотрите на примеры и обратите внимание, с какими словами стоит каждое из них."
-      - examples:
-          items:
-            - "Hoy hace mucho calor. — Сегодня очень жарко."
-            - "Está muy nublado. — Очень пасмурно."
-            - "En Galicia llueve mucho. — В Галисии много дождей."
-            - "El abrigo es muy caro. — Пальто очень дорогое."
-            - "Hay mucha gente en la playa. — На пляже много людей."
-      - rule: |
-          1. Если «очень» относится к прилагательному или наречию, то нужно слово **muy**. Оно ставится перед этим словом и никогда не меняет форму: _La chaqueta es muy cara._ (Куртка очень дорогая.) _Los zapatos son muy caros._ (Туфли очень дорогие.) _Estoy muy bien._ (У меня всё очень хорошо.) _Me levanto muy temprano._ (Я встаю очень рано.)
-          2. Если после «очень» или «много» стоит существительное, то нужно слово **mucho**, и оно согласуется с существительным в роде и числе, как прилагательное: _Hoy hace mucho calor._ (Сегодня очень жарко.) _Hay mucha leche en la nevera._ (В холодильнике много молока.) _Carlos tiene muchos libros._ (У Карлоса много книг.) _En el centro hay muchas tiendas._ (В центре много магазинов.)
-          3. Если «много» или «очень» относится к глаголу, то **mucho** ставится после глагола и тоже не меняет форму: _En Galicia llueve mucho._ (В Галисии часто идут дожди.) _Mis padres trabajan mucho._ (Мои родители много работают.) _Carlos lee mucho._ (Карлос много читает.)
-      - exercise:
+      - "**muy** и **mucho** могут переводиться как «очень», а **mucho** ещё и «много». С какими словами стоит каждое?"
+      - learn: [el grado]
+      - compare:
+          cards:
+            - head: muy + прилагательное
+              say: false
+              label: не меняется
+              tone: blue
+              ex: ["La chaqueta es muy cara.", "Me levanto muy temprano."]
+            - head: mucho + существительное
+              say: false
+              label: mucho, mucha, muchos, muchas
+              tone: sun
+              ex: ["Hoy hace mucho calor.", "Hay mucha gente.", "Tengo muchos libros."]
+            - head: глагол + mucho
+              say: false
+              label: не меняется
+              tone: mint
+              ex: ["En Galicia llueve mucho.", "Carlos lee mucho."]
+      - write:
           title: "¿Muy o mucho?"
+          format: muy или mucho в нужной форме
           items:
             - "Hace ___ frío. => mucho"
             - "Madrid es ___ bonito. => muy"
             - "En verano hay ___ gente en la playa. => mucha"
             - "Mi hermano duerme ___. => mucho"
-            - "Hoy hace ___ buen tiempo. => muy"
             - "Tengo ___ amigos. => muchos"
+      - choose:
+          title: Выберите
+          items:
+            - q: "Hoy hace treinta grados: hace ___ calor."
+              options: "mucho | muy | mucha"
 
   - id: lectura
     kind: reading
     title: Климат Испании
+    goal: понять текст о климате и рассказать о погоде у себя
     vocab:
       - "🌍 el clima [кли́ма] — климат"
       - "⬆️ el norte [но́ртэ] — север"
       - "⬇️ el sur [сур] — юг"
       - "🤏 casi [ка́си] — почти"
     blocks:
-      - "Испания не очень большая страна, но погода в разных её частях очень разная. Прочитайте текст и найдите в нём все слова, которые говорят о погоде."
+      - "Испания не очень большая, но погода в разных её частях очень разная."
+      - learn: [el clima, el norte, el sur, casi]
       - reading:
           title: El clima de España
           text: |
@@ -179,14 +234,32 @@ lessons:
 
             На юге, в Андалусии, солнце почти весь год. Летом очень жарко: иногда сорок пять градусов!
 
-            А в Украины? В Украины зимой очень холодно и много снега. Но летом иногда бывает жарко!
-      - exercise:
-          title: Responde
+            А в Украине? В Украине зимой очень холодно и много снега. Но летом иногда бывает жарко!
+      - more:
+          title: Восток и запад
+          text: "**el este** — «восток», **el oeste** — «запад»: _Valencia está en el este de España._"
+      - sort:
+          title: Где так?
+          groups:
+            "Galicia": [llueve mucho, todo es muy verde]
+            "Andalucía": [hace sol casi todo el año, a veces 45 grados]
+      - mission:
+          title: Погода у вас
+          text: "Друг из Мадрида звонит вам в Киев. Сегодня у вас минус два, идёт снег. Ваш день рождения — третьего мая."
+      - choose:
           items:
-            - "¿Qué tiempo hace en Galicia? => Llueve mucho y no hace mucho calor."
-            - "¿Cómo es el invierno en Madrid? => Hace mucho frío."
-            - "¿Dónde hace sol casi todo el año? => En el sur, en Andalucía."
-      - note: "Кроме севера и юга, есть ещё две стороны света: **el este** означает «восток», а **el oeste** означает «запад». Например, фраза _Valencia está en el este de España_ значит «Валенсия находится на востоке Испании»."
+            - lines: ["Pablo: ¿Qué tiempo hace en Kiev?"]
+              options: "Hace mucho frío y nieva. | Hace muy frío y nieva. | Es frío y nieva."
+      - write:
+          items:
+            - q: "Pablo: ¿Cuándo es tu cumpleaños?"
+              a: "Es el tres de mayo | El tres de mayo | Mi cumpleaños es el tres de mayo"
+              format: ответ по-испански
+      - build:
+          items:
+            - es: "En Kiev nieva mucho en invierno."
+              ru: "Расскажите: «В Киеве зимой много снега»."
+              extra: [muy]
     forms: [oeste]
     quiz:
       - q: ¿Dónde llueve mucho?

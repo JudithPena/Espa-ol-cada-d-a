@@ -110,7 +110,13 @@ def cmd_validate(args, settings) -> int:
     course, lexicon, renderer = build(settings)
     problems = validate(course, lexicon, renderer, settings.content_dir)
     # Сайт: то же правило «только пройденные слова», но по своим урокам.
-    problems += [f"Сайт: {issue}" for issue in Lexicon(site_course(settings)).check()]
+    site = site_course(settings)
+    site_lexicon = Lexicon(site)
+    problems += [f"Сайт: {issue}" for issue in site_lexicon.check()]
+    # Сценарии уроков сайта: порции слов, задания не раньше карточек (espanol/scenario.py).
+    from .scenario import channel_issues, check as check_scenarios
+    problems += [f"Сайт: {issue}" for issue in check_scenarios(site, site_lexicon)]
+    problems += [str(issue) for issue in channel_issues(course)]
     for p in problems:
         print("❌", p)
     words = len(course.items)

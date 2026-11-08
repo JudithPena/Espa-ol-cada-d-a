@@ -7,10 +7,13 @@ goals:
   - спросить, как дела, и ответить
   - выбрать «ты» или «вы»
 
+# Сценарий уроков сайта (docs/site_lessons_guide.md): слова порциями (learn), задания сразу после
+# своей порции, в конце урока — разговор, где нужно ответить собеседнику.
 lessons:
   - id: vocab1
     kind: vocab
     title: Привет и пока
+    goal: здороваться утром, днём и вечером и прощаться
     vocab:
       - "☀️ buenos días [буэ́нос ди́ас] — доброе утро; добрый день (до обеда) :: ¡Buenos días, María! — Доброе утро, Мария!"
       - "🌇 buenas tardes [буэ́нас та́рдэс] — добрый день; добрый вечер (после обеда) :: ¡Buenas tardes, Pablo! — Добрый день, Пабло!"
@@ -19,28 +22,81 @@ lessons:
       - "🔜 hasta luego [а́ста луэ́го] — до встречи; пока :: ¡Hasta luego, Lucía! — До встречи, Лусия!"
       - "📅 hasta mañana [а́ста манья́на] — до завтра :: ¡Hasta mañana, Pablo! — До завтра, Пабло!"
     blocks:
-      - |
-        В испанском приветствие зависит от времени суток. Только **¡Hola!** подходит всегда, в любое время дня, и его можно сочетать с другими приветствиями: _¡Hola, buenos días!_, _¡Hola, buenas tardes!_, _¡Hola, buenas noches!_
+      - "В испанском приветствие зависит от времени суток. Только **¡Hola!** подходит всегда, и его можно сочетать с другими приветствиями: _¡Hola, buenos días!_, _¡Hola, buenas tardes!_"
+      - learn: [buenos días, buenas tardes, buenas noches]
       - header: Когда что говорить
       - list:
-          - "☀️ С утра и до обеда говорят **buenos días**. В Испании обедают около 14:00, поэтому так здороваются почти до двух часов дня: _¡Buenos días!_, _¡Buenos días, María!_, _¡Hola, buenos días!_"
-          - "🌇 После обеда и до темноты говорят **buenas tardes**: _¡Buenas tardes!_, _¡Buenas tardes, Carlos!_, _¡Hola, buenas tardes!_"
-          - "🌙 Поздно вечером и перед сном говорят **buenas noches**. Этой фразой и здороваются вечером, и прощаются перед сном: _¡Buenas noches!_, _¡Hola, buenas noches!_, _Buenas noches, Ana._"
-      - tip: |
-          Слово **hasta** значит «до». Поэтому _hasta luego_ дословно означает «до потом», то есть «до встречи», а _hasta mañana_ означает «до завтра»: _¡Hasta luego, Pablo!_, _¡Hasta luego, Lucía!_, _¡Hasta mañana, Carmen!_
-          А **adiós** значит «до свидания» или «пока». Иногда так прощаются надолго или даже навсегда 🙂: _¡Adiós, Carlos!_, _¡Adiós, María!_
-      - exercise:
+          - "☀️ С утра и до обеда говорят **buenos días**. В Испании обедают около 14:00, поэтому так здороваются почти до двух часов дня: _¡Buenos días!_, _¡Buenos días, María!_"
+          - "🌇 После обеда и до темноты говорят **buenas tardes**: _¡Buenas tardes!_, _¡Buenas tardes, Carlos!_"
+          - "🌙 Поздно вечером и перед сном говорят **buenas noches**. Этой фразой и здороваются вечером, и прощаются перед сном: _¡Buenas noches!_, _Buenas noches, Ana._"
+      - choose:
           title: Что вы скажете?
           items:
-            - "9:00, коллеге в офисе => ¡Buenos días!"
-            - "17:00, соседу => ¡Buenas tardes!"
-            - "23:00, перед сном => ¡Buenas noches!"
-            - "Уходите и увидитесь завтра => ¡Hasta mañana!"
-            - "Уходите ненадолго => ¡Hasta luego!"
+            - q: "13:30. Вы заходите в магазин в Мадриде."
+              options: "¡Buenos días! | ¡Buenas tardes! | ¡Buenas noches!"
+              explain: "В Испании обедают около 14:00, поэтому до обеда, даже в половине второго, говорят buenos días."
+            - q: "18:00. Соседка возвращается домой с работы."
+              options: "¡Buenas tardes! | ¡Buenos días! | ¡Buenas noches!"
+              explain: "После обеда и до темноты говорят buenas tardes."
+            - q: "23:00. Вы желаете семье спокойной ночи."
+              options: "¡Buenas noches! | ¡Buenas tardes! | ¡Buenos días!"
+              explain: "Поздно вечером и перед сном говорят buenas noches."
+      - write:
+          title: Поздоровайтесь
+          format: фраза по-испански
+          items:
+            - q: "☀️ 9:00. Вы входите в офис."
+              a: "Buenos días | Hola, buenos días"
+              explain: "До обеда здороваются словами buenos días."
+            - q: "🌇 17:00. Вы встречаете соседа."
+              a: "Buenas tardes | Hola, buenas tardes"
+              explain: "После обеда и до темноты здороваются словами buenas tardes."
+      - learn: [adiós, hasta luego, hasta mañana]
+      - tip: |
+          Слово **hasta** значит «до». Поэтому _hasta luego_ дословно означает «до потом», то есть «до встречи», а _hasta mañana_ означает «до завтра»: _¡Hasta luego, Pablo!_, _¡Hasta mañana, Carmen!_
+          А **adiós** значит «до свидания» или «пока»: _¡Adiós, Carlos!_, _¡Adiós, María!_
+      - choose:
+          title: Как попрощаться?
+          items:
+            - q: "Вы уходите с работы, а завтра снова придёте."
+              options: "¡Hasta mañana! | ¡Hasta luego! | ¡Buenos días!"
+              explain: "Hasta mañana значит «до завтра»: вы увидитесь завтра."
+            - q: "Вы уходите на обед и вернётесь через час."
+              options: "¡Hasta luego! | ¡Hasta mañana! | ¡Buenas noches!"
+              explain: "Hasta luego значит «до встречи»: вы увидитесь сегодня же."
+            - say: "¡Adiós, Carlos!"
+              options: "¡Adiós, Carlos! | ¡Hola, Carlos! | ¡Hasta luego, Carlos!"
+      - match:
+          title: Соедините пары
+          pairs:
+            - "buenos días — доброе утро"
+            - "buenas tardes — добрый день (после обеда)"
+            - "hasta luego — до встречи"
+            - "hasta mañana — до завтра"
+            - "adiós — до свидания"
+      - dialogue:
+          title: Вечером у подъезда
+          lines:
+            - "Pablo: ¡Hola, Lucía! ¡Buenas tardes! | Привет, Лусия! Добрый вечер!"
+            - "Lucía: ¡Buenas tardes, Pablo! | Добрый вечер, Пабло!"
+            - "Pablo: ¡Hasta mañana, Lucía! | До завтра, Лусия!"
+            - "Lucía: ¡Adiós, Pablo! | Пока, Пабло!"
+      - choose:
+          title: Ответьте Пабло
+          items:
+            - lines: ["Pablo: ¡Buenas noches, Lucía!"]
+              q: "23:00. Пабло здоровается с вами в подъезде."
+              options: "¡Buenas noches, Pablo! | ¡Buenos días, Pablo! | ¡Buenas tardes, Pablo!"
+              explain: "На приветствие отвечают тем же приветствием: поздно вечером — buenas noches."
+            - lines: ["Pablo: ¡Hasta mañana!"]
+              q: "Пабло уходит домой."
+              options: "¡Adiós, Pablo! | ¡Hola, Pablo! | ¡Buenos días, Pablo!"
+              explain: "Пабло прощается, поэтому и вы прощаетесь: adiós или hasta mañana."
 
   - id: vocab2
     kind: vocab
     title: "¿Qué tal? Как дела?"
+    goal: спросить, как дела, и ответить в одно-два слова
     vocab:
       - "❓ ¿Qué tal? [кэ таль] — как дела? :: ¡Hola, Ana! ¿Qué tal? — Привет, Ана! Как дела?"
       - "🙂 bien [бьен] — хорошо :: Bien, gracias. — Хорошо, спасибо."
@@ -49,34 +105,60 @@ lessons:
       - "😕 mal [маль] — плохо"
       - "🙋 ¿Y tú? [и ту] — а ты? :: Bien, ¿y tú? — Хорошо, а ты?"
     blocks:
-      - "После приветствия обычно спрашивают, как дела. Отвечать подробно не принято, поэтому хватит одного-двух слов."
-      - table:
-          title: От лучшего к худшему
-          rows:
-            - ["😀", "**muy bien** значит «очень хорошо»: _¡Muy bien!_ или _Muy bien, gracias._"]
-            - ["🙂", "**bien** значит «хорошо»: _Bien, gracias._ или _Bien, ¿y tú?_"]
-            - ["😐", "**regular** значит «так себе»: _Regular..._ или _Regular, gracias._"]
-            - ["😕", "**mal** значит «плохо»: _Mal..._ или _Muy mal._"]
-      - tip: |
-          Слово **y** значит «и» или «а».
-          В значении «а» оно помогает вежливо вернуть вопрос собеседнику: _¿Y tú?_ — «А ты?», _Bien, ¿y tú?_ — «Хорошо, а ты?», _Muy bien, gracias. ¿Y tú?_ — «Очень хорошо, спасибо. А ты?»
-          В значении «и» оно соединяет слова: _Carmen y Carlos_ — «Кармен и Карлос», _el queso y el vino_ — «сыр и вино», _el café y el chocolate_ — «кофе и шоколад».
+      - "После приветствия обычно спрашивают, как дела. Отвечать подробно не принято: хватит одного-двух слов."
       - dialogue:
           title: Короткий разговор
           lines:
             - "Lucía: ¡Hola! ¿Qué tal? | Привет! Как дела?"
             - "Pablo: Muy bien, gracias. ¿Y tú? | Очень хорошо, спасибо. А ты?"
             - "Lucía: Bien. | Хорошо."
-      - exercise:
-          title: Ответьте
+      - learn: ["¿Qué tal?", muy bien, bien, regular, mal]
+      - table:
+          title: От лучшего к худшему
+          rows:
+            - ["😀", "**muy bien** значит «очень хорошо»: _¡Muy bien!_ или _Muy bien, gracias._"]
+            - ["🙂", "**bien** значит «хорошо»: _Bien, gracias._"]
+            - ["😐", "**regular** значит «так себе»: _Regular..._ или _Regular, gracias._"]
+            - ["😕", "**mal** значит «плохо»: _Mal..._ или _Muy mal._"]
+      - choose:
+          title: Как у вас дела?
           items:
-            - "¿Qué tal? (у вас всё отлично) => Muy bien, gracias. ¿Y tú?"
-            - "¿Qué tal? (так себе) => Regular. ¿Y tú?"
-            - "Спросите друга, как дела => ¿Qué tal?"
+            - q: "😐 Дела так себе. Что ответить на ¿Qué tal?"
+              options: "Regular. | Muy bien. | Mal."
+              explain: "Regular значит «так себе»: не хорошо и не плохо."
+            - q: "😀 У вас всё отлично."
+              options: "Muy bien, gracias. | Bien, gracias. | Regular, gracias."
+              explain: "Muy bien значит «очень хорошо», а bien — просто «хорошо»."
+            - q: "😕 У вас болит голова, всё плохо."
+              options: "Mal... | Regular... | Bien..."
+      - learn: ["¿Y tú?"]
+      - tip: |
+          Слово **y** значит «и» или «а».
+          В значении «а» оно помогает вежливо вернуть вопрос собеседнику: _¿Y tú?_ — «А ты?», _Bien, ¿y tú?_ — «Хорошо, а ты?»
+          В значении «и» оно соединяет слова: _Carmen y Carlos_ — «Кармен и Карлос», _el queso y el vino_ — «сыр и вино».
+      - choose:
+          title: Что ответить?
+          items:
+            - lines: ["Lucía: ¡Hola, Pablo! ¿Qué tal?"]
+              options: "Bien, gracias. ¿Y tú? | ¿Qué tal? ¿Y tú? | ¡Adiós! ¿Y tú?"
+              explain: "Сначала отвечают, как дела, а потом возвращают вопрос: ¿Y tú?"
+      - write:
+          title: Ответьте и спросите в ответ
+          format: ответ по-испански
+          items:
+            - q: "Друг спрашивает: ¿Qué tal? У вас всё хорошо."
+              a: "Bien, gracias. ¿Y tú? | Bien, ¿y tú? | Bien, gracias, ¿y tú? | Muy bien, gracias. ¿Y tú? | Muy bien, ¿y tú?"
+              explain: "Ответ — bien, а вопрос в ответ — ¿Y tú?"
+      - build:
+          title: Соберите фразу
+          items:
+            - "¡Hola, Ana! ¿Qué tal? — Привет, Ана! Как дела?"
+            - "Muy bien, gracias. ¿Y tú? — Очень хорошо, спасибо. А ты?"
 
   - id: grammar
     kind: grammar
     title: «Ты» и «вы». Знаки ¿? и ¡!
+    goal: выбрать «ты» или «вы» и правильно записать вопрос и восклицание
     vocab:
       - "🧑 tú [ту] — ты"
       - "🎩 usted [устэ́д] — вы (вежливо, одному человеку)"
@@ -98,6 +180,7 @@ lessons:
           lines:
             - "Lucía: Buenos días, señor García. ¿Cómo está usted? | Доброе утро, сеньор Гарсия. Как вы поживаете?"
             - "Señor García: Muy bien, gracias. ¿Y usted? | Очень хорошо, спасибо. А вы?"
+      - learn: [tú, usted, el señor, la señora]
       - header: Ты или вы?
       - compare:
           cards:
@@ -106,17 +189,16 @@ lessons:
               tone: blue
               text: С друзьями, родными, коллегами и ровесниками. В Испании на «ты» переходят очень быстро.
               ex:
-                - "¿Cómo estás, Pablo? — Как ты, Пабло?"
+                - "¿Y tú, Pablo? — А ты, Пабло?"
                 - "Bien, ¿y tú? — Хорошо, а ты?"
-                - "¡Hola, Carmen! ¿Cómo estás? — Привет, Кармен! Как ты?"
             - head: usted
               label: вежливое «вы» одному человеку
               tone: sun
               text: С пожилыми людьми и с незнакомыми людьми в официальной обстановке.
               ex:
-                - "¿Cómo está usted, señora López? — Как вы поживаете, сеньора Лопес?"
-                - "Muy bien, ¿y usted? — Очень хорошо, а вы?"
                 - "¿Y usted, señor García? — А вы, сеньор Гарсия?"
+                - "Buenas tardes, señora. — Добрый день, сеньора."
+      - learn: ["¿Cómo estás?", "¿Cómo está usted?", "¿Y usted?"]
       - compare:
           style: small
           title: Один вопрос — две формы
@@ -135,6 +217,20 @@ lessons:
               ex:
                 - "¡Hola, Pablo! ¿Qué tal? — Привет, Пабло! Как дела?"
                 - "Buenos días, señora López. ¿Qué tal? — Доброе утро, сеньора Лопес. Как дела?"
+      - sort:
+          title: Другу или сеньору Гарсии?
+          groups:
+            "🧑 другу (tú)": ["¿Cómo estás?", "¿Y tú?", "Bien, ¿y tú?"]
+            "🎩 сеньору (usted)": ["¿Cómo está usted?", "¿Y usted?", "Muy bien, ¿y usted?"]
+      - choose:
+          title: Что ответить?
+          items:
+            - lines: ["Señor García: Buenos días, Lucía. ¿Cómo está usted?"]
+              options: "Muy bien, gracias. ¿Y usted? | Muy bien, gracias. ¿Y tú? | ¿Cómo estás?"
+              explain: "С сеньором Гарсией говорят на «вы», поэтому вопрос в ответ — ¿Y usted?"
+            - lines: ["Pablo: ¡Hola! ¿Cómo estás?"]
+              options: "Bien, gracias. ¿Y tú? | Bien, gracias. ¿Y usted? | ¿Cómo está usted?"
+              explain: "Пабло — друг, с ним говорят на «ты»: ¿Y tú?"
       - header: Перевёрнутые знаки
       - compare:
           lead: В испанском вопрос и восклицание выделяют знаками с двух сторон, а знак в начале фразы переворачивают.
@@ -146,14 +242,12 @@ lessons:
               ex:
                 - "¿Qué tal?"
                 - "¿Cómo estás?"
-                - "¿Y usted?"
             - head: ¡ … !
               label: Восклицание
               tone: sun
               text: Перед восклицанием ставится ¡, а после него ставится !
               ex:
                 - "¡Hola!"
-                - "¡Buenos días!"
                 - "¡Hasta mañana!"
       - compare:
           join: true
@@ -167,17 +261,26 @@ lessons:
             - head: ¡Sí!
               label: Да!
           note: Поэтому уже по первому знаку видно, вопрос это или восклицание.
-      - exercise:
+      - choose:
+          title: Где написано правильно?
           items:
-            - "Как спросить «как дела?» у друга? => ¿Qué tal? / ¿Cómo estás?"
-            - "…у пожилой сеньоры? => ¿Qué tal? / ¿Cómo está usted?"
-            - "Ответьте другу и спросите в ответ => Bien, gracias. ¿Y tú?"
-            - "Ответьте сеньору Гарсия и спросите в ответ => Muy bien, gracias. ¿Y usted?"
-            - "Где ошибка: «`Que tal?`» => Нужны оба знака и ударение: ¿Qué tal?"
+            - q: "Вопрос «Как дела?»"
+              options: "¿Qué tal? | Qué tal? | ¿Qué tal¿"
+              explain: "В начале вопроса стоит перевёрнутый знак ¿, в конце — обычный ?"
+            - q: "Восклицание «Доброе утро!»"
+              options: "¡Buenos días! | Buenos días! | !Buenos días¡"
+              explain: "В начале восклицания стоит перевёрнутый знак ¡, в конце — обычный !"
+      - build:
+          title: Соберите фразу
+          items:
+            - es: "¡Buenas tardes, señora! ¿Cómo está usted?"
+              ru: "Добрый день, сеньора! Как вы поживаете?"
+              extra: [estás]
 
   - id: dialogue
     kind: dialogue
     title: Утро в офисе
+    goal: поблагодарить, извиниться и попросить кофе
     vocab:
       - "🙏 por favor [пор фабо́р] — пожалуйста (просьба) :: Un café, por favor. — Кофе, пожалуйста. {forms: un}"
       - "🙏 muchas gracias [му́час гра́θиас] — большое спасибо"
@@ -185,7 +288,22 @@ lessons:
       - "🙇 perdón [пэрдо́н] — извините, простите"
       - "👌 vale [ба́лэ] — ладно, хорошо, окей"
     blocks:
-      - "Прочитайте диалоги вслух, а затем послушайте аудио. Перевод спрятан, поэтому сначала попробуйте понять всё сами, а потом проверьте себя."
+      - "Лусия и Пабло работают в одном офисе в Мадриде."
+      - learn: [por favor, muchas gracias, de nada]
+      - match:
+          title: Соедините пары
+          pairs:
+            - "por favor — пожалуйста (просьба)"
+            - "muchas gracias — большое спасибо"
+            - "de nada — не за что"
+            - "buenos días — доброе утро"
+      - choose:
+          title: Что ответить?
+          items:
+            - lines: ["Pablo: ¡Muchas gracias, Lucía!"]
+              options: "De nada. | Por favor. | Muy bien."
+              explain: "На «спасибо» отвечают de nada — «не за что». Por favor говорят, когда о чём-то просят."
+      - learn: [perdón, vale]
       - dialogue:
           title: Утром
           lines:
@@ -197,6 +315,22 @@ lessons:
             - "Pablo: ¡Perdón! El café... | Ой, прости! Кофе..."
             - "Lucía: ¡No, no, Pablo! Vale, gracias. | Ничего-ничего, Пабло! Всё хорошо, спасибо."
             - "Pablo: De nada. | Не за что."
+      - choose:
+          title: Поняли?
+          items:
+            - q: "Как дела у Лусии утром?"
+              options: "Muy bien. | Regular. | Mal."
+            - q: "Что Пабло предлагает Лусии?"
+              options: "Café. | Vino. | Chocolate."
+            - q: "Почему Пабло говорит ¡Perdón!?"
+              options: "Он пролил кофе. | Он опоздал на работу. | Он забыл имя Лусии."
+              explain: "Pablo: ¡Perdón! El café... — с кофе что-то случилось, и Пабло извиняется."
+      - note: |
+          Слово **vale** испанцы очень любят: оно значит «ладно», «хорошо» или «договорились». На вопрос _¿Café?_ можно ответить _Vale_, то есть «давай», а на _¡Hasta mañana!_ — _¡Vale!_, то есть «договорились!».
+          Ещё запомните фразу _Un café, por favor_ — «Кофе, пожалуйста». Так же можно попросить вино или шоколад: _Un vino, por favor_, _Un chocolate, por favor_. Слово **un** мы разберём позже.
+      - more:
+          title: 🌎 А в Латинской Америке?
+          text: "Слово **vale** там почти не говорят, а вместо него говорят _está bien_, что тоже значит «хорошо» или «ладно»: на вопрос _¿Café?_ отвечают _Sí, está bien_."
       - dialogue:
           title: Вечером
           voices: {Señor García: m}
@@ -206,44 +340,77 @@ lessons:
             - "Señor García: Bien, gracias. ¿Y usted? | Хорошо, спасибо. А вы?"
             - "Lucía: Regular... ¡Hasta mañana, señor García! | Так себе... До завтра, сеньор Гарсия!"
             - "Señor García: ¡Adiós, Lucía! | До свидания, Лусия!"
-      - exercise:
+      - choose:
           title: Поняли?
           items:
-            - "Как дела у Лусии утром? => Muy bien — очень хорошо"
-            - "Что Пабло предлагает Лусии? => café — кофе"
-            - "Лусия и сеньор Гарсия на «ты» или на «вы»? => на «вы»: ¿Cómo está usted?"
-            - "Как дела у Лусии вечером? => regular — так себе"
-      - note: |
-          Слово **vale** испанцы очень любят: оно значит «ладно», «хорошо» или «договорились». Например, на вопрос _¿Café?_ можно ответить _Vale_, то есть «давай». Можно сказать _Vale, gracias_, то есть «хорошо, спасибо». А на _¡Hasta mañana!_ можно ответить _¡Vale!_, то есть «договорились!».
-          Ещё запомните фразу _Un café, por favor_, которая означает «Кофе, пожалуйста». Точно так же можно попросить вино или горячий шоколад: _Un vino, por favor_ и _Un chocolate, por favor_. Слово **un** мы разберём позже.
-      - latam: "слово **vale** почти не говорят, а вместо него обычно говорят _está bien_, что тоже значит «хорошо» или «ладно». Например, на вопрос _¿Café?_ отвечают _Sí, está bien_, а вместо _Vale, gracias_ говорят _Está bien, gracias_."
+            - q: "Как дела у Лусии вечером?"
+              options: "Regular. | Muy bien. | Bien."
+            - q: "Лусия и сеньор Гарсия говорят на «ты» или на «вы»?"
+              options: "на «вы»: ¿Cómo está usted? | на «ты»: ¿Cómo estás?"
+              explain: "Лусия спрашивает ¿Cómo está usted?, а сеньор Гарсия отвечает ¿Y usted? — это вежливое «вы»."
+      - choose:
+          title: Что ответить?
+          items:
+            - lines: ["Pablo: ¿Café?"]
+              options: "¡Sí, por favor! | ¡De nada! | ¡Perdón!"
+              explain: "Когда вам что-то предлагают и вы согласны, говорят sí, por favor — «да, пожалуйста»."
+            - lines: ["Lucía: ¡Perdón, Pablo!"]
+              options: "¡No, no! Vale. | ¡Sí, por favor! | ¡Muchas gracias!"
+              explain: "На «извини» можно ответить ¡No, no! Vale — «ничего, всё хорошо»."
+      - write:
+          title: Попросите
+          format: фраза по-испански
+          items:
+            - q: "Вы в кафе. Попросите кофе."
+              a: "Un café, por favor | Hola, un café, por favor | Buenos días, un café, por favor"
+              explain: "Un café, por favor — «Кофе, пожалуйста»."
 
   - id: practice
     kind: practice
     title: Поздоровайтесь!
+    goal: провести короткий разговор от «здравствуйте» до «до завтра»
     blocks:
-      - "Переведите на испанский. Сначала скажите перевод вслух, а потом откройте ответ и проверьте себя."
-      - exercise:
-          title: Переведите
-          items:
-            - "Доброе утро! => ¡Buenos días!"
-            - "Привет! Как дела? => ¡Hola! ¿Qué tal?"
-            - "Хорошо, спасибо. А ты? => Bien, gracias. ¿Y tú?"
-            - "Добрый вечер, сеньора! Как вы поживаете? => ¡Buenas tardes, señora! ¿Cómo está usted?"
-            - "Большое спасибо! — Не за что. => ¡Muchas gracias! — De nada."
-            - "Пока! До завтра! => ¡Adiós! ¡Hasta mañana!"
-      - exercise:
-          title: Восстановите диалог
-          items:
-            - "Bien, gracias. ¿Y tú? / ¡Hola, Ana! ¿Qué tal? / Muy bien. => ¡Hola, Ana! ¿Qué tal? — Bien, gracias. ¿Y tú? — Muy bien."
-            - "¡Adiós! / ¡Hasta luego, Carlos! => ¡Hasta luego, Carlos! — ¡Adiós!"
-      - exercise:
+      - choose:
           title: Найдите ошибку
           items:
-            - "¿Cómo estás, señor García? => С сеньором говорят на «вы»: ¿Cómo está usted?"
-            - "23:00 — ¡Buenos días! => Поздно вечером говорят ¡Buenas noches!"
-            - "Muchas gracias! => Нужен перевёрнутый знак: ¡Muchas gracias!"
-      - task: "Поздоровайтесь вслух так, как подходит к тому времени дня, когда вы читаете этот пост, и ответьте вслух на вопрос **¿Qué tal?** А потом проверьте себя в опросах."
+            - q: "«¿Cómo estás, señor García?» — что здесь не так?"
+              options: "С сеньором говорят на «вы»: ¿Cómo está usted? | Нужен знак ¡ в начале. | Здесь всё правильно."
+              explain: "С пожилым соседом говорят на «вы», поэтому ¿Cómo está usted?"
+            - q: "«23:00 — ¡Buenos días!» — что здесь не так?"
+              options: "Поздно вечером говорят ¡Buenas noches! | Нужно ¡Buenos tardes! | Здесь всё правильно."
+              explain: "Buenos días говорят до обеда, а поздно вечером — buenas noches."
+      - mission:
+          title: Первый день в офисе
+          text: "Вы первый день работаете в офисе в Мадриде. Сейчас 9:00. Поговорите с коллегами — от приветствия до прощания."
+      - choose:
+          items:
+            - lines: ["Pablo: ¡Buenos días! ¿Qué tal?"]
+              options: "Muy bien, gracias. ¿Y tú? | Muy bien, gracias. ¿Y usted? | De nada. ¿Y tú?"
+              explain: "Пабло — коллега-ровесник, с ним на «ты»: ¿Y tú?"
+            - lines: ["Señor García: Buenos días. ¿Cómo está usted?"]
+              options: "Bien, gracias. ¿Y usted? | Bien, gracias. ¿Y tú? | Buenas noches. ¿Y usted?"
+              explain: "Сеньор Гарсия — пожилой начальник, с ним на «вы»: ¿Y usted?"
+      - write:
+          items:
+            - q: "Лусия приносит вам кофе. Поблагодарите её."
+              a: "Muchas gracias | Gracias | Muchas gracias, Lucía | Gracias, Lucía"
+              format: фраза по-испански
+      - choose:
+          items:
+            - lines: ["Lucía: ¡Muchas gracias!"]
+              q: "Вы помогли Лусии с компьютером, и она благодарит вас."
+              options: "De nada. | Por favor. | Perdón."
+              explain: "На «спасибо» отвечают de nada — «не за что»."
+      - write:
+          items:
+            - q: "Вы случайно толкнули сеньору у лифта. Извинитесь."
+              a: "Perdón | Perdón, señora | ¡Perdón!"
+              format: слово по-испански
+      - build:
+          items:
+            - es: "¡Hasta mañana, Pablo!"
+              ru: "17:00. Попрощайтесь с Пабло до завтра."
+              extra: [luego]
     quiz:
       - q: "Сейчас 22:30, и вы заходите к соседям. Как поздороваться?"
         options: "¡Buenas noches! | ¡Buenos días! | ¡Buenas tardes!"
@@ -251,9 +418,6 @@ lessons:
       - q: "Сейчас 16:00, и вы здороваетесь с сеньором Гарсией. Что сказать?"
         options: "Buenas tardes, señor García. | Buenos días, señor García. | Buenas noches, señor García."
         explain: "После обеда и до позднего вечера говорят buenas tardes. Buenos días говорят до обеда, а buenas noches говорят поздно вечером."
-      - q: "Вам говорят: ¡Muchas gracias! Что ответить?"
-        options: "De nada. | Por favor. | Perdón."
-        explain: "На «спасибо» отвечают de nada, что значит «не за что». Por favor значит «пожалуйста», когда о чём-то просят, а perdón значит «извините»."
       - q: "Как ответить на ¿Qué tal?, если дела так себе?"
         options: "Regular. | Muy bien. | De nada."
         explain: "Regular значит «так себе». Muy bien значит «очень хорошо», а de nada значит «не за что», и так отвечают на «спасибо»."

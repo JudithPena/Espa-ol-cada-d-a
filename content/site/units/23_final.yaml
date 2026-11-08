@@ -10,20 +10,95 @@ goals:
 lessons:
   - id: repaso
     kind: review
-    title: Большое повторение A1
-    recall: 20
+    title: "Большое повторение A1: неделя в Севилье"
+    goal: провести неделю в испанском городе — от гостиницы до звонка домой — на материале всего курса
     blocks:
-      - |
-        Вы вышли на финишную прямую! Впереди вас ждут итоговый текст и большой тест. Сегодня мы повторяем слова, которые давно не встречались. Не подглядывайте: сначала скажите ответ вслух, а потом откройте его и проверьте себя.
+      - "Вы на финишной прямой! Новых слов нет: всё, что нужно, вы уже знаете. Проведите неделю в Севилье — шесть ситуаций подряд."
+      - mission:
+          title: Гостиница
+          text: "Вы прилетели в Севилью и приехали в гостиницу."
+      - choose:
+          items:
+            - lines: ["Recepcionista: Buenas tardes. ¿Cómo se llama usted?"]
+              q: "Вас зовут Марта Лопес."
+              options: "Me llamo Marta López. | Se llama Marta López. | Soy llamo Marta López."
+            - lines: ["Recepcionista: Su habitación es la número doce, en el segundo piso."]
+              q: "Какая у вас комната?"
+              options: "№ 12 на втором этаже | № 12 на первом этаже | № 2 на двенадцатом этаже"
+      - mission:
+          title: Дорога в музей
+          text: "Утром вы идёте в музей и спрашиваете дорогу у сеньоры."
+      - build:
+          items:
+            - es: "Perdone, ¿dónde está el museo?"
+              ru: "Вежливо спросите: «Извините, где музей?»"
+              extra: [perdona]
+      - choose:
+          items:
+            - say: "Todo recto y la segunda calle a la izquierda. Está cerca."
+              q: "Как пройти?"
+              options: "прямо и вторая улица налево, это близко | прямо и первая улица направо, это далеко | вторая улица направо, это близко"
+      - mission:
+          title: Обед в баре
+          text: "После музея вы голодны. Вы в баре."
+      - choose:
+          items:
+            - lines: ["Camarero: Hola. ¿Qué quiere tomar?"]
+              q: "Вы хотите пить и есть: сок и бутерброд с хамоном."
+              options: "Un zumo y un bocadillo de jamón, por favor. | Tengo sed y un bocadillo, por favor. | Para mí, la cuenta, por favor."
+      - write:
+          items:
+            - q: "Вы поели. Попросите счёт."
+              a: "La cuenta, por favor | Perdone, la cuenta, por favor"
+              format: фраза по-испански
+      - mission:
+          title: Магазин
+          text: "Вечером вы покупаете футболку в подарок брату."
+      - choose:
+          items:
+            - lines: ["Dependienta: ¿Qué busca?"]
+              options: "Busco una camiseta para mi hermano. | Busco un camiseta para mi hermano. | Busco una camiseta de mi hermano."
+            - say: "Esta cuesta veinticinco euros."
+              q: "Сколько стоит футболка?"
+              options: "25 € | 35 € | 52 €"
+      - mission:
+          title: Аптека
+          text: "Утром у вас болит голова. Вы в аптеке."
+      - write:
+          items:
+            - q: "Скажите: «У меня болит голова»."
+              a: "Me duele la cabeza | Me duele mucho la cabeza"
+              format: фраза по-испански
+      - choose:
+          items:
+            - lines: ["Farmacéutico: Tome una pastilla dos veces al día. ¡Que se mejore!"]
+              options: "Muchas gracias. | ¡Que te mejores! | Lo siento."
+      - mission:
+          title: Звонок домой
+          text: "Вечером вы звоните маме и рассказываете о неделе: что вы уже сделали, что делаете сейчас и что будете делать завтра."
+      - choose:
+          items:
+            - lines: ["Madre: ¿Qué has hecho esta semana?"]
+              options: "He visitado un museo y he comprado una camiseta. | Visito un museo y compro una camiseta. | Voy a visitar un museo."
+              explain: "О том, что уже сделано на этой неделе, — haber + причастие."
+            - lines: ["Madre: ¿Y qué estás haciendo ahora?"]
+              options: "Estoy descansando en el hotel. | Descanso siempre en el hotel. | He descansado en el hotel."
+      - write:
+          items:
+            - q: "Madre: ¿Y mañana? — «Завтра я поеду в Мадрид на поезде»."
+              a: "Mañana voy a ir a Madrid en tren | Voy a ir a Madrid en tren | Mañana voy a Madrid en tren"
+              format: фраза по-испански
 
   - id: lectura
     kind: reading
     title: Неделя в Мадриде
+    goal: прочитать связный текст без словаря и найти в нём всё, что вы прошли
     vocab:
       - "📦 la cosa [ко́са] — вещь, дело"
       - "🚶 pasear [пасэа́р] — гулять :: Paseo por el parque. — Я гуляю по парку."
     blocks:
-      - "Это итоговый текст курса, и в нём собрано почти всё, что вы прошли. Сначала прочитайте его без перевода, а потом откройте перевод и проверьте себя."
+      - "Итоговый текст курса: в нём собрано почти всё, что вы прошли. Сначала прочитайте без перевода."
+      - learn: [la cosa, pasear]
       - reading:
           title: Una semana en Madrid
           text: |
@@ -46,23 +121,25 @@ lessons:
             Сегодня очень жарко: тридцать восемь градусов! Поэтому сейчас мы отдыхаем в гостинице.
 
             Завтра мы поедем в Толедо на поезде. В субботу нам нужно возвращаться в Киев. Но в следующем году я снова поеду в Испанию!
-      - "Теперь вернитесь к тексту и найдите в нём всё, что вы прошли за курс:"
-      - list:
-          - "настоящее время, когда Ирина описывает город и местные привычки: _Madrid es una ciudad muy grande_, _Aquí la gente cena muy tarde_;"
-          - "**estar + герундий**, когда Ирина говорит, что они делают прямо сейчас:_Ahora estamos descansando en el hotel_;"
-          - "прошедшее время с **haber**, когда Ирина рассказывает, что они сделали на этой неделе: _Hemos visto muchas cosas_, _Hemos paseado por el parque_;"
-          - "**ir a** с инфинитивом, когда она говорит о планах: _Mañana vamos a ir a Toledo_, _Voy a volver a España_;"
-          - "**tener que** с инфинитивом, когда что-то нужно сделать: _El sábado tenemos que volver a Kiev_;"
-          - "**me encanta**, как и **me gusta**, когда что-то очень нравится: _Me encanta la comida española_."
-      - note: "Выражение **por eso** значит «поэтому». С его помощью объясняют, почему что-то происходит: _Hoy hace mucho calor. Por eso estamos en el hotel._ — «Сегодня очень жарко. Поэтому мы в гостинице», _Mañana tengo un examen. Por eso estoy estudiando._ — «Завтра у меня экзамен. Поэтому я сейчас занимаюсь», _Me encanta España. Por eso estudio español._ — «Я обожаю Испанию. Поэтому я учу испанский»."
-      - exercise:
+      - more:
+          title: por eso
+          text: "**por eso** — «поэтому»: _Hoy hace mucho calor. Por eso estamos en el hotel._ _Me encanta España. Por eso estudio español._"
+      - choose:
           title: Responde
           items:
-            - "¿Dónde está Irina ahora? => En Madrid, en el hotel."
-            - "¿Qué ha visitado esta semana? => El museo del Prado y el parque del Retiro."
-            - "¿Qué tiempo hace hoy? => Hace mucho calor: treinta y ocho grados."
-            - "¿Qué van a hacer mañana? => Van a ir a Toledo en tren."
-            - "¿Cuándo tienen que volver a Kiev? => El sábado."
+            - q: "¿Qué ha visitado Irina esta semana?"
+              options: "El museo del Prado y el parque del Retiro. | Toledo y Sevilla. | Muchos hoteles."
+            - q: "¿Qué tiempo hace hoy?"
+              options: "Hace mucho calor: treinta y ocho grados. | Hace frío y llueve. | Hace buen tiempo: veinte grados."
+            - q: "¿Qué van a hacer mañana?"
+              options: "Van a ir a Toledo en tren. | Van a volver a Kiev. | Van a descansar en el hotel."
+      - sort:
+          title: Найдите в тексте всё, что вы прошли
+          groups:
+            "⚡ ahora (estar + герундий)": [estamos descansando]
+            "✅ esta semana (haber)": [hemos visto, hemos paseado]
+            "🔜 planes (ir a)": [vamos a ir, voy a volver]
+            "❗ tener que": [tenemos que volver]
     forms: [eso]
     quiz:
       - q: ¿Qué le encanta a Irina?
@@ -75,8 +152,7 @@ lessons:
     title: Итоговый тест A1
     auto_quiz: 2
     blocks:
-      - |
-        Это итоговый тест по всему курсу. В нём двенадцать вопросов по грамматике и ещё несколько вопросов на слова из разных тем. Отвечайте спокойно и по памяти. Если вы ошиблись, то откройте пояснение под вопросом и вернитесь к нужной теме: её легко найти по хештегам.
+      - "Итоговый тест по всему курсу: двенадцать вопросов по грамматике. Отвечайте спокойно и по памяти. Ошиблись — прочитайте пояснение и вернитесь к нужной теме на карте курса."
     quiz:
       - q: "— ¿Cómo te llamas? — ..."
         options: "Me llamo Irina. | Soy llamo Irina. | Mi llamo Irina."
@@ -118,12 +194,13 @@ lessons:
   - id: fin
     kind: finale
     title: ¡Enhorabuena!
+    goal: увидеть, чему вы научились за курс, и выбрать, что делать дальше
     vocab:
       - "🎉 ¡Enhorabuena! [энорабуэ́на] — поздравляю! поздравляем!"
       - "🍀 ¡Mucha suerte! [му́ча суэ́ртэ] — удачи!"
     blocks:
-      - |
-        **¡Enhorabuena!** Вы прошли путь от первого слова **¡Hola!** до уровня **A1**. За это время вы выучили больше шестисот слов и выражений, прошли двадцать три темы и сделали сотни упражнений и тестов. И всё это вы сделали маленькими шагами, день за днём.
+      - "**¡Enhorabuena!** Вы прошли путь от первого **¡Hola!** до уровня **A1**: больше шестисот слов и выражений, двадцать три темы, сотни заданий — маленькими шагами, день за днём."
+      - learn: ["¡Enhorabuena!", "¡Mucha suerte!"]
       - cando:
           - "познакомиться и рассказать о себе, о семье, о работе и учёбе: _Me llamo Ana, soy de Ucrania y trabajo en una oficina._"
           - "описать людей, свой дом и город: _Mi hermano es alto y moreno. Mi casa tiene tres habitaciones._"
@@ -134,9 +211,14 @@ lessons:
           - "объясниться у врача: _Me duele la cabeza._"
       - header: Что дальше?
       - list:
-          - "🔁 **Повторяйте**: пролистайте канал с самого начала и найдите тесты и повторения по хештегам #тест и #повторение."
-          - "🎬 **Смотрите и слушайте**: включайте сериалы и видео для начинающих с испанскими субтитрами и слушайте песни на испанском."
-          - "💬 **Говорите**: найдите партнёра для языкового обмена, ведь вы уже умеете написать о себе анкету."
-          - "📝 **Проверьте уровень**: Институт Сервантеса проводит международный экзамен DELE A1, и вы уже можете к нему готовиться."
-          - "📚 **Переходите к уровню A2**: на нём вы изучите прошедшие времена, научитесь сравнивать, давать советы и инструкции."
-      - "Спасибо, что учились с нами! Напишите в комментариях по-испански, что вам больше всего понравилось в курсе. Можно начать так: _Me ha encantado..._ **¡Mucha suerte!** 🇪🇸"
+          - "🔁 **Повторяйте**: во вкладке «Повторить» — слова и «Фразы и конструкции» из пройденных уроков."
+          - "🎬 **Смотрите и слушайте**: сериалы и видео для начинающих с испанскими субтитрами, песни на испанском; на главной есть «Разбор видео»."
+          - "💬 **Говорите**: найдите партнёра для языкового обмена — анкету о себе вы уже умеете написать."
+          - "📝 **Проверьте уровень**: Институт Сервантеса проводит международный экзамен DELE A1. Этот курс — хорошая подготовка, но сам по себе он сертификата не даёт."
+          - "📚 **Переходите к A2**: прошедшие времена, сравнения, советы и инструкции."
+      - choose:
+          title: Последнее задание
+          items:
+            - lines: ["Profesora: ¡Enhorabuena! Ya has terminado las lecciones de A1."]
+              options: "¡Muchas gracias! | ¡Que te mejores! | Lo siento."
+      - "**¡Mucha suerte!** 🇪🇸"
