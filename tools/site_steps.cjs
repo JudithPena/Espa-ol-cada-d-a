@@ -3,7 +3,7 @@
 //   node tools/site_steps.cjs saludos/vocab1 [--done] [--json]   — один урок
 //   node tools/site_steps.cjs --unit 1 [--done]                     — все уроки темы
 // --done — все предыдущие уроки пройдены (как у ученика, который идёт по порядку).
-const {siteData, context} = require('./site_vm.cjs');
+const {SIG_CODE, siteData, context} = require('./site_vm.cjs');
 
 const args = process.argv.slice(2);
 const flag = f => args.includes(f);
@@ -12,33 +12,7 @@ const ids = args.filter((a, k) => !a.startsWith('--') && (unitAt < 0 || k !== un
 const data = siteData();
 const run = context(data);
 
-// Сигнатура шага: T(блоки) — экран объяснения, W — карточка слова, C — выбор, I — ввод, M — пары, S — группы,
-// B — сборка фразы, F — «Мастер фраз», Q — тест, V — вопрос на слово; @id — источник, ~ — на слух, R: — повторение.
-run(`function stepSig(st) {
-  const pre = st.recall || st.review ? "R:" : "";
-  const src = st.srcId ? "@" + st.srcId : st.src != null ? "@" + st.src : "";
-  const ear = st.say ? "~" : "";
-  switch (st.type) {
-    case "intro": return "intro" + (st.lead && st.lead.length ? "(" + st.lead.map(b => b.t).join("+") + ")" : "");
-    case "theory": return "T(" + st.blocks.map(b => b.t).join("+") + ")";
-    case "word": return "W";
-    case "write": return pre + "I" + ear + src;
-    case "match": return pre + "M";
-    case "sort": return pre + "S";
-    case "build": return pre + "B";
-    case "mf": return pre + "F";
-    case "mc": return pre + (st.mode === "quiz" ? "Q" : st.mode === "choose" ? "C" : "V") + ear + src;
-  }
-  return st.type;
-}
-function signature(steps) {
-  const out = [];
-  for (const t of steps.map(stepSig)) {
-    const last = out[out.length - 1];
-    if (last && last[0] === t) last[1]++; else out.push([t, 1]);
-  }
-  return out.map(([t, n]) => n > 1 ? t + "×" + n : t).join(" ");
-}`);
+run(SIG_CODE);
 
 const lessons = unitAt >= 0 ? data.lessons.filter(L => L.unit === +args[unitAt + 1]).map(L => L.id) : ids;
 for (const id of lessons) {

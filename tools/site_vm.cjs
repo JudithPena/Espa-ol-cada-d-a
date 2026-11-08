@@ -25,6 +25,25 @@ print(json.dumps({k: d[k] for k in ("lessons", "units", "intervals", "skills") i
 `], {cwd: ROOT, maxBuffer: 256 * 1024 * 1024}).toString());
 }
 
+// Маленький курс сайта из описания (темы как в YAML) — через тот же конвейер, что и настоящий: load_course → site_data.
+function siteDataFrom(units, skills = {}) {
+  const os = require('node:os');
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'site-course-'));
+  fs.mkdirSync(path.join(dir, 'units'));
+  fs.writeFileSync(path.join(dir, 'course.yaml'), JSON.stringify({title: 't', names: {female: ['Ana', 'Lucía'], male: ['Pablo']}}));
+  fs.writeFileSync(path.join(dir, 'skills.yaml'), JSON.stringify(skills));
+  units.forEach((u, k) => fs.writeFileSync(path.join(dir, 'units', `${String(k).padStart(2, '0')}_${u.id}.yaml`), JSON.stringify({number: k, level: 'A0', title: u.id, ...u})));
+  const out = execFileSync('python3', ['-c', `
+import json, sys
+from espanol.course import load_course
+from espanol.site import site_data
+d = site_data(load_course(sys.argv[1]), {})
+print(json.dumps({k: d[k] for k in ("lessons", "units", "intervals", "skills")}, ensure_ascii=False))
+`, dir], {cwd: ROOT, maxBuffer: 64 * 1024 * 1024}).toString();
+  fs.rmSync(dir, {recursive: true, force: true});
+  return JSON.parse(out);
+}
+
 // opts.speech — есть ли испанский голос телефона; opts.audio — карта записей COURSE.audio.
 function context(data, storage = new Map(), opts = {}) {
   const noop = () => {};
@@ -50,4 +69,30 @@ function context(data, storage = new Map(), opts = {}) {
   return run;
 }
 
-module.exports = {ROOT, script, siteData, context};
+// Сигнатура шагов урока для карт слайдов (docs/site_slide_maps/README.md): T(блоки) — экран объяснения, W — карточка
+// слова, C — выбор, I — ввод, M — пары, S — группы, B — сборка фразы, F — «Мастер фраз», Q — тест, V — вопрос на слово;
+// @id — источник задания, ~ — на слух, R: — повторение, ×N — N шагов подряд.
+const SIG_CODE = `function stepSig(st) {
+  const pre = st.recall || st.review ? "R:" : "";
+  const src = st.src != null ? "@" + (LESSONS[st.li]?.blocks[st.src]?.id || st.src) : "";
+  const ear = st.say ? "~" : "";
+  switch (st.type) {
+    case "intro": return "intro";
+    case "theory": return "T(" + st.blocks.map(b => b.t).join("+") + ")";
+    case "word": return "W";
+    case "write": return pre + "I" + ear + src;
+    case "match": return pre + "M";
+    case "sort": return pre + "S";
+    case "build": return pre + "B";
+    case "mf": return pre + "F";
+    case "mc": return pre + (st.mode === "quiz" ? "Q" : st.mode === "choose" ? "C" : "V") + ear + src;
+  }
+  return st.type;
+}
+function signature(steps) {
+  const out = [];
+  for (const t of steps.map(stepSig)) { const l = out[out.length - 1]; if (l && l[0] === t) l[1]++; else out.push([t, 1]); }
+  return out.map(([t, n]) => n > 1 ? t + "×" + n : t).join(" ");
+}`;
+
+module.exports = {ROOT, SIG_CODE, script, siteData, siteDataFrom, context};
