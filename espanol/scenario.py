@@ -24,8 +24,8 @@ def _key(text: str) -> str:
 
 
 def _exact(text: str) -> str:
-    """Вариант выбора как его видит ученик: без регистра и лишних пробелов, но со знаками ¿ ? ¡ !."""
-    return " ".join(plain(text).lower().split())
+    """Вариант выбора как его видит ученик: без лишних пробелов, но с регистром (ho-TEL / HO-tel) и знаками ¿ ? ¡ !."""
+    return " ".join(plain(text).split())
 
 
 def _tile(token: str) -> str:
@@ -138,7 +138,8 @@ def check_lesson(lesson: Lesson, lexicon: Lexicon) -> list[Issue]:
         if block.type not in GRADED_BLOCKS | {"exercise"}:
             continue
         later = {es for es, at in placed.items() if at > k}
-        used = {tok for text in _graded_texts(block) for tok in _tokens(text)}
+        shown = set().union(*(forms[es] for es, at in placed.items() if at < k))   # «el» уже пришло с «el taxi»
+        used = {tok for text in _graded_texts(block) for tok in _tokens(text)} - shown
         for es in sorted(later):
             hit = sorted(used & forms[es])
             if hit:

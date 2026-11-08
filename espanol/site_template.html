@@ -1481,9 +1481,11 @@ function chooseStep(b, it) {
   return { type: "mc", mode: "choose", title: b.title, q: it.q, html: true, say: it.say, lines: it.lines, cast: it.cast, img: it.img,
            options: order.map(k => it.o[k][0]), plain: order.map(k => it.o[k][1]), correct: order.indexOf(0), explain: it.explain };
 }
+// Задание на слух без записи и без испанского голоса в телефоне ответить нельзя — такое пропускаем.
+const audible = it => !it.say || canSay(it.say);
 function blockSteps(b) {
-  if (b.t === "choose") return b.items.map(it => chooseStep(b, it));
-  if (b.t === "write") return b.items.map(it => ({ type: "write", title: b.title, accents: b.accents, chars: b.chars, ...it }));
+  if (b.t === "choose") return b.items.filter(audible).map(it => chooseStep(b, it));
+  if (b.t === "write") return b.items.filter(audible).map(it => ({ type: "write", title: b.title, accents: b.accents, chars: b.chars, ...it }));
   if (b.t === "match") return [{ type: "match", title: b.title, pairs: b.pairs }];
   if (b.t === "sort") return [{ type: "sort", title: b.title, groups: b.groups }];
   if (b.t === "build") return b.items.map(it => ({ type: "build", title: b.title, es: it.es, ru: it.ru, alt: it.alt, extra: it.extra }));
@@ -1508,8 +1510,8 @@ function recallPool(upto) {
     const L = LESSONS[k];
     if (!L.scripted || !P.done[L.id]) continue;
     L.blocks.forEach(b => {
-      if (b.t === "choose") b.items.forEach(it => out.push({ li: k, make: () => chooseStep(b, it) }));
-      if (b.t === "write") b.items.forEach(it => out.push({ li: k, make: () => ({ type: "write", title: b.title, accents: b.accents, chars: b.chars, ...it }) }));
+      if (b.t === "choose") b.items.filter(audible).forEach(it => out.push({ li: k, make: () => chooseStep(b, it) }));
+      if (b.t === "write") b.items.filter(audible).forEach(it => out.push({ li: k, make: () => ({ type: "write", title: b.title, accents: b.accents, chars: b.chars, ...it }) }));
     });
   }
   return out;
