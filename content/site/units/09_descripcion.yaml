@@ -12,6 +12,7 @@ lessons:
     kind: vocab
     title: Уровень A1 — больше испанского
     goal: понимать испанские названия частей урока
+    version: 2
     vocab:
       - "📖 la lección [лэкθьо́н] — урок"
       - "🗂 el tema [тэ́ма] — тема"
@@ -24,11 +25,14 @@ lessons:
     blocks:
       - "🎉 **Добро пожаловать на уровень A1!** Испанского становится больше. Начнём со слов, которыми называют части урока."
       - learn: [la lección, el tema, el vocabulario, la gramática]
-      - rule: |
-          1. **tema** мужского рода, хотя заканчивается на `-a`: _el tema_, _un tema_, _el tema de la lección_.
-          2. Такие слова вы уже встречали: **el día**, **el mapa**. Так же ведут себя **el problema** («проблема») и **el idioma** («язык»).
+      - rule:
+          id: tema
+          text: |
+            1. **tema** мужского рода, хотя заканчивается на `-a`: _el tema_, _un tema_, _el tema de la lección_.
+            2. Такие слова вы уже встречали: **el día**, **el mapa**. Так же ведут себя **el problema** («проблема») и **el idioma** («язык»).
       - choose:
           title: ¿El o la?
+          skill: gender
           items:
             - q: "___ tema de la lección"
               options: "el | la"
@@ -38,6 +42,7 @@ lessons:
       - learn: [el diálogo, la lectura, la práctica, el test]
       - match:
           title: Соедините пары
+          rule: none
           pairs:
             - "la lección — урок"
             - "el vocabulario — лексика"
@@ -47,6 +52,7 @@ lessons:
       - tip: "**práctica** и **practica** различаются только ударением. Со значком — существительное «практика»: _la práctica_. Без значка — глагол «тренируется», «тренируйся»: _Ana practica español._"
       - choose:
           title: Со значком или без?
+          skill: accent_meaning
           items:
             - q: "Ana ___ español en casa."
               options: "practica | práctica"
@@ -57,11 +63,15 @@ lessons:
       - write:
           title: Traduce
           format: слова по-испански
+          rule: none
+          skill: class_words
           items:
             - "урок грамматики => la lección de gramática | una lección de gramática"
             - "тест по лексике => el test de vocabulario | un test de vocabulario"
       - build:
           title: Соберите фразу
+          rule: none
+          skill: class_words
           items:
             - "¿Cuál es el tema de la lección? — Какая тема урока?"
     forms: [problema, idioma]
@@ -70,6 +80,7 @@ lessons:
     kind: vocab
     title: Внешность
     goal: описать внешность — высокий, светловолосый, красивый
+    version: 2
     vocab:
       - "🧑 el chico / la chica [чи́ко, чи́ка] — парень, мальчик / девушка, девочка"
       - "🦒 alto/a [а́льто, а́льта] — высокий / высокая"
@@ -83,6 +94,7 @@ lessons:
       - "У прилагательных, как у национальностей, обычно две формы: **-o** — о мужчине, **-a** — о женщине."
       - learn: [el chico / la chica, alto/a, bajo/a, joven]
       - compare:
+          id: adj_o_a
           cards:
             - head: alto → alta
               label: -o → -a
@@ -97,6 +109,7 @@ lessons:
           text: "В Испании **moreno** обычно значит «темноволосый», но так говорят и о смуглом или загорелом человеке: _Carlos es moreno_ — «темноволосый» или «смуглый». Что имеется в виду, понятно из ситуации."
       - choose:
           title: Выберите форму
+          skill: adj_gender
           items:
             - q: "Ana es ___ (невысокая)."
               options: "baja | bajo | bajas"
@@ -105,6 +118,8 @@ lessons:
       - learn: [rubio/a, moreno/a, guapo/a, delgado/a]
       - sort:
           title: Кто это — Пабло или Ана?
+          rule: adj_o_a
+          skill: adj_gender
           groups:
             "👨 Pablo es…": [alto, rubio, delgado]
             "👩 Ana es…": [baja, morena, guapa]
@@ -116,11 +131,14 @@ lessons:
             - "Он высокий. => Es alto | Él es alto"
             - "Она блондинка. => Es rubia | Ella es rubia"
             - "Девушка очень красивая. => La chica es muy guapa"
+          rule: adj_o_a
+          skill: adj_gender
 
   - id: vocab2
     kind: vocab
     title: Характер
     goal: описать характер человека
+    version: 2
     vocab:
       - "😊 simpático/a [симпа́тико, симпа́тика] — милый, приятный, дружелюбный"
       - "😒 antipático/a [антипа́тико, антипа́тика] — неприятный"
@@ -137,6 +155,7 @@ lessons:
       - learn: [simpático/a, antipático/a, inteligente, divertido/a]
       - match:
           title: Соедините пары
+          rule: none
           pairs:
             - "simpático — приятный, дружелюбный"
             - "antipático — неприятный"
@@ -145,11 +164,14 @@ lessons:
       - learn: [serio/a, tímido/a, trabajador/a]
       - choose:
           title: Выберите слово
+          rule: none
+          skill: adj_gender
           items:
             - q: "Carmen trabaja mucho. Es muy ___."
               options: "trabajadora | trabajador | tímida"
             - say: "Mi hermano es divertido, pero un poco tímido."
               options: "Мой брат весёлый, но немного застенчивый. | Мой брат серьёзный, но очень весёлый. | Моя сестра весёлая и застенчивая."
+              noaudio: {q: "Что значит «Mi hermano es divertido, pero un poco tímido»?", options: "Мой брат весёлый, но немного застенчивый. | Мой брат серьёзный, но очень весёлый. | Моя сестра весёлая и застенчивая."}
       - write:
           title: Traduce
           format: фраза по-испански
@@ -157,11 +179,15 @@ lessons:
             - "Она очень умная. => Es muy inteligente | Ella es muy inteligente"
             - "Лусия немного застенчивая. => Lucía es un poco tímida"
             - "Мой отец серьёзный. => Mi padre es serio"
+          rule: none
+          skill: adj_gender
+
 
   - id: concordancia
     kind: grammar
     title: "Alto, alta, altos, altas"
     goal: согласовать прилагательное — alto, alta, altos, altas
+    version: 2
     vocab:
       - "❓ ¿Cómo es...? [ко́мо эс] — какой (какая) он / она? :: ¿Cómo es tu hermana? — Какая твоя сестра?"
       - "➕ muy [муй] — очень"
@@ -172,12 +198,15 @@ lessons:
           items:
             - "Mis hermanos son altos. Mis primas son altas. — Мои братья высокие. Мои двоюродные сёстры высокие."
             - "Carlos es inteligente. Lucía es inteligente. — Карлос умный. Лусия умная."
-      - rule: |
-          1. Прилагательное на **-o** меняется по роду и числу — четыре формы: alt**o**, alt**a**, alt**os**, alt**as**.
-          2. На **-e** или согласную — одна форма для обоих родов: _un chico inteligente_, _una chica inteligente_. Кроме национальностей и слов на `-or`: _española_, _trabajadora_.
-          3. Во множественном числе: после гласной **-s**, после согласной **-es**: _inteligentes_, _jóvenes_, _mayores_. В **jóvenes** появляется значок: ударение остаётся на том же слоге.
+      - rule:
+          id: agreement
+          text: |
+            1. Прилагательное на **-o** меняется по роду и числу — четыре формы: alt**o**, alt**a**, alt**os**, alt**as**.
+            2. На **-e** или согласную — одна форма для обоих родов: _un chico inteligente_, _una chica inteligente_. Кроме национальностей и слов на `-or`: _española_, _trabajadora_.
+            3. Во множественном числе: после гласной **-s**, после согласной **-es**: _inteligentes_, _jóvenes_, _mayores_. В **jóvenes** появляется значок: ударение остаётся на том же слоге.
       - sort:
           title: Кто такой?
+          skill: adj_agreement
           groups:
             "mi hermano es…": [alto, simpático]
             "mi hermana es…": [alta, simpática]
@@ -185,7 +214,9 @@ lessons:
             "mis hermanas son…": [altas, simpáticas]
       - write:
           title: Поставьте прилагательное в нужную форму
-          format: прилагательное
+          format: одно прилагательное в нужной форме
+          rule: agreement
+          skill: adj_agreement
           items:
             - "Mi madre es (alto) ___ => alta"
             - "Mis amigos son (simpático) ___ => simpáticos"
@@ -193,16 +224,22 @@ lessons:
             - "Lucía y Ana son (trabajador) ___ => trabajadoras"
             - "Es una chica muy (inteligente) ___ => inteligente"
       - learn: ["¿Cómo es...?", muy, bastante]
-      - note: "**¿Cómo es?** — о постоянных качествах, «какой он?»: _¿Cómo es tu padre?_ А **¿Cómo estás?** — о самочувствии, «как ты?». Эту разницу мы скоро разберём подробно."
+      - note:
+          id: como_es
+          text: "**¿Cómo es?** — о постоянных качествах, «какой он?»: _¿Cómo es tu padre?_ А **¿Cómo estás?** — о самочувствии, «как ты?». Эту разницу мы скоро разберём подробно."
       - choose:
           title: Как спросить?
+          skill: como_es
           items:
             - q: "Какая твоя мама? (её характер)"
               options: "¿Cómo es tu madre? | ¿Cómo está tu madre? | ¿Qué es tu madre?"
               explain: "О постоянных качествах — ¿Cómo es...? ¿Cómo está...? — о самочувствии."
-      - rule: "Прилагательное обычно стоит **после** существительного: _un amigo simpático_ — «приятный друг», _una chica alta_ — «высокая девушка»."
+      - rule:
+          id: after_noun
+          text: "Прилагательное обычно стоит **после** существительного: _un amigo simpático_ — «приятный друг», _una chica alta_ — «высокая девушка»."
       - build:
           title: Соберите фразу
+          skill: adj_agreement
           items:
             - es: "Tengo unas amigas muy divertidas."
               ru: "У меня очень весёлые подруги."
@@ -212,11 +249,14 @@ lessons:
           format: фраза по-испански
           items:
             - "Он довольно серьёзный. => Es bastante serio | Él es bastante serio"
+          rule: none
+          skill: adj_gender
 
   - id: colores
     kind: vocab
     title: Цвета
     goal: сказать, какого цвета предмет
+    version: 2
     vocab:
       - "🎨 ¿De qué color es? [дэ кэ коло́р эс] — какого это цвета? {forms: color colores}"
       - "🔴 rojo/a [ро́хо, ро́ха] — красный"
@@ -231,13 +271,17 @@ lessons:
       - write:
           title: "¿De qué color es?"
           format: цвет по-испански
+          skill: adj_agreement
           items:
             - "🐸 => verde | es verde"
             - "🍅 => rojo | es rojo"
       - learn: [amarillo/a, blanco/a, negro/a, marrón]
-      - "Цвета — тоже прилагательные. На **-o** — четыре формы: _un bolígrafo rojo_, _una mochila roja_, _unas sillas rojas_. На **-e** или согласную — одна форма для обоих родов, во множественном числе **-s** или **-es**: _una puerta verde_, _unas llaves azules_, _una mesa marrón_."
+      - text:
+          id: colors
+          text: "Цвета — тоже прилагательные. На **-o** — четыре формы: _un bolígrafo rojo_, _una mochila roja_, _unas sillas rojas_. На **-e** или согласную — одна форма для обоих родов, во множественном числе **-s** или **-es**: _una puerta verde_, _unas llaves azules_, _una mesa marrón_."
       - match:
           title: Соедините пары
+          rule: none
           pairs:
             - "amarillo — жёлтый"
             - "blanco — белый"
@@ -246,13 +290,17 @@ lessons:
             - "azul — синий"
       - write:
           title: Поставьте цвет в нужную форму
-          format: прилагательное
+          format: один цвет в нужной форме
+          rule: colors
+          skill: adj_agreement
           items:
             - "Las sillas son (blanco) ___ => blancas"
             - "una mochila (rojo) ___ => roja"
             - "unas llaves (azul) ___ => azules"
       - choose:
           title: "¿De qué color es?"
+          rule: colors
+          skill: adj_agreement
           items:
             - q: "🧀 ¿De qué color es el queso?"
               options: "Es amarillo. | Es amarilla. | Es azul."
@@ -264,6 +312,7 @@ lessons:
     kind: grammar
     title: Глаза и волосы
     goal: описать глаза и волосы человека
+    version: 2
     vocab:
       - "👁 el ojo [о́хо] — глаз"
       - "💇 el pelo [пэ́ло] — волосы"
@@ -278,15 +327,21 @@ lessons:
           items:
             - "Tengo los ojos azules. — У меня голубые глаза."
             - "Ana tiene el pelo largo y rubio. — У Аны длинные светлые волосы."
-      - rule: |
-          1. **tener** + **los ojos** / **el pelo** + цвет или длина: _Tiene los ojos verdes._ _Tengo el pelo largo._
-          2. **el pelo** — в единственном числе (все волосы в целом), поэтому и прилагательное в единственном: _el pelo corto_, _el pelo castaño_.
-          3. **los ojos** — во множественном, поэтому _los ojos azules_, _los ojos negros_.
+      - rule:
+          id: ojos
+          text: |
+            1. **tener** + **los ojos** / **el pelo** + цвет или длина: _Tiene los ojos verdes._ _Tengo el pelo largo._
+            2. **el pelo** — в единственном числе (все волосы в целом), поэтому и прилагательное в единственном: _el pelo corto_, _el pelo castaño_.
+            3. **los ojos** — во множественном, поэтому _los ojos azules_, _los ojos negros_.
       - choose:
           title: Как сказать?
+          skill: appearance
           items:
             - q: "У него короткие волосы."
               options: "Tiene el pelo corto. | Es el pelo corto. | Tiene los pelos cortos."
+            - q: "У Пабло каштановые волосы."
+              options: "Pablo tiene el pelo castaño. | Pablo tiene el pelo castaña. | Pablo es el pelo castaño."
+              explain: "Pelo — мужского рода и в единственном числе: el pelo castaño."
             - q: "У Аны голубые глаза."
               options: "Ana tiene los ojos azules. | Ana tiene los ojos azul. | Ana es los ojos azules."
       - write:
@@ -295,22 +350,34 @@ lessons:
           items:
             - "У неё зелёные глаза. => Tiene los ojos verdes | Ella tiene los ojos verdes"
             - "У меня короткие чёрные волосы. => Tengo el pelo corto y negro | Tengo el pelo negro y corto"
+          rule: ojos
+          skill: appearance
+
       - learn: [llevar]
       - "Глагол **llevar** («носить») спрягается, как **hablar**: _Llevo gafas._ _¿Llevas gafas?_ _Mi abuelo lleva gafas._"
       - mission:
+          id: airport
           title: Встреча в аэропорту
           text: "Вы встречаете в аэропорту Мадрида друга вашей подруги — Оскара. Вы его ещё не видели, поэтому подруга описывает его по телефону."
       - choose:
+          free: true
+          skill: appearance
           items:
             - say: "Óscar es alto y rubio. Tiene los ojos azules y lleva gafas."
               q: "Какой Оскар?"
               options: "высокий блондин с голубыми глазами, в очках | невысокий брюнет с голубыми глазами | высокий блондин с зелёными глазами, без очков"
+              noaudio: {q: "«Óscar es alto y rubio. Tiene los ojos azules y lleva gafas.» Какой Оскар?", options: "высокий блондин с голубыми глазами, в очках | невысокий брюнет с голубыми глазами | высокий блондин с зелёными глазами, без очков"}
       - write:
+          free: true
+          rule: ojos
+          skill: appearance
           items:
             - q: "Опишите себя в ответ (вы — Лусия): «Я невысокая, у меня длинные чёрные волосы»."
               a: "Soy baja y tengo el pelo largo y negro | Soy baja, tengo el pelo largo y negro | Soy baja y tengo el pelo negro y largo"
               format: фраза по-испански
       - build:
+          free: true
+          skill: adj_agreement
           items:
             - es: "Llevo una mochila roja."
               ru: "Добавьте: «У меня (я ношу) красный рюкзак»."
@@ -320,11 +387,13 @@ lessons:
     kind: reading
     title: Mi mejor amiga
     goal: понять описание человека
+    version: 2
     vocab:
       - "🥇 mejor [мэхо́р] — лучший {pos: adj} :: mi mejor amigo — мой лучший друг"
     blocks:
       - learn: [mejor]
       - reading:
+          id: laura
           title: Mi mejor amiga
           text: |
             Mi mejor amiga se llama Laura. Es de Málaga, pero vive en Madrid. Tiene veinte años y es estudiante.
@@ -344,7 +413,12 @@ lessons:
             Её парень Уго — журналист. Он темноволосый, невысокий и очень приятный. И очень трудолюбивый!
       - choose:
           title: Responde
+          source: laura
+          rule: none
           items:
+            - q: "Кто такая Лаура?"
+              options: "Mi mejor amiga. | Mi hermana. | Mi profesora."
+              explain: "Mi mejor amiga se llama Laura. — Лаура — лучшая подруга."
             - q: "¿De qué color son los ojos de Laura?"
               options: "Son verdes. | Son azules. | Son negros."
             - q: "¿Qué es Hugo?"
@@ -354,16 +428,22 @@ lessons:
     quiz:
       - q: ¿Cómo es el pelo de Laura?
         options: "largo y castaño | corto y rubio | largo y negro"
+        source: laura
+        skill: appearance
       - q: ¿Cómo es Hugo?
         options: "bajo y simpático | alto y serio | rubio y tímido"
+        source: laura
+        skill: adj_gender
 
   - id: escucha
     kind: listening
     title: ¿Quién es quién?
     goal: понять на слух описание людей
+    version: 2
     blocks:
       - "Карина описывает трёх человек со свадебной фотографии. Послушайте её рассказ."
       - dialogue:
+          id: karina
           hidden: true
           voices: {Karina: f}
           lines:
@@ -372,21 +452,28 @@ lessons:
             - "Karina: El señor bajo es mi padre. Lleva gafas. Es serio, pero muy simpático. | Невысокий сеньор — мой отец. Он носит очки. Серьёзный, но очень приятный."
       - choose:
           title: Responde
+          source: karina
           items:
             - q: "¿Cómo es el padre de Karina?"
               options: "Serio, pero muy simpático. | Muy divertido. | Tímido y antipático."
     allow: [Karina]
     quiz:
       - q: ¿Cómo es Óscar?
+        source: karina
         options: "alto y rubio | bajo y moreno | alto y moreno"
       - q: ¿Quién es Clara?
+        source: karina
         options: "la mujer de Óscar | la hermana de Karina | la madre de Karina"
       - q: ¿Quién lleva gafas?
+        source: karina
         options: "el padre | Óscar | Clara"
 
   - id: quiz
     kind: quiz
     title: Описание людей
+    goal: описать внешность и характер, согласовать прилагательное и назвать цвета
+    version: 2
+    check: soft
     blocks:
       - "Сегодня у нас тест по теме «Описание людей»."
       - cando:
@@ -394,19 +481,33 @@ lessons:
           - "описать характер: Es simpática, inteligente..."
           - "согласовать прилагательные: alto, alta, altos, altas"
           - "назвать цвета"
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "rubio — светловолосый"
+            - "delgado — стройный"
+            - "divertido — весёлый"
+            - "el pelo — волосы"
+            - "blanco — белый"
     quiz:
       - q: "Mis hermanas son muy ___"
         options: "simpáticas | simpáticos | simpática"
         explain: "Слово hermanas женского рода и стоит во множественном числе, поэтому прилагательное тоже ставится в женский род и множественное число: simpáticas."
+        skill: adj_agreement
       - q: "Ana tiene los ojos ___"
         options: "verdes | verde | verdas"
         explain: "Слово ojos стоит во множественном числе, поэтому verde тоже ставится во множественное число. У verde одна форма для обоих родов, и к ней добавляется -s: verdes."
+        skill: adj_agreement
       - q: Как спросить «Какая твоя мама?»
         options: "¿Cómo es tu madre? | ¿Cómo está tu madre? | ¿Qué es tu madre?"
         explain: "Вопрос ¿Cómo es...? задают о постоянных качествах человека, а вопрос ¿Cómo está...? задают о самочувствии."
+        skill: como_es
       - q: Как сказать «У него короткие волосы»?
         options: "Tiene el pelo corto. | Es el pelo corto. | Tiene los pelos cortos."
         explain: "Внешность описывают с глаголом tener, а слово pelo стоит в единственном числе, поэтому правильно сказать Tiene el pelo corto."
+        skill: appearance
       - q: "Mis profesores son ___"
         options: "jóvenes | jóvens | joven"
         explain: "Слово joven заканчивается на согласную, поэтому во множественном числе к нему добавляется -es, а над o появляется значок ´: jóvenes."
+        skill: adj_agreement

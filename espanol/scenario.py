@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import re
 
-from .course import GRADED_BLOCKS, RULE_TARGETS, SITE_ONLY_BLOCKS, SOURCE_BLOCKS, Course, Lesson
+from .course import FEATURES, GRADED_BLOCKS, RULE_TARGETS, SITE_ONLY_BLOCKS, SOURCE_BLOCKS, Course, Lesson
 from .lexicon import SCENARIO_TEXTS, Issue, Lexicon, generated_forms, lesson_texts
 from .markup import checkable, plain
 from .tokens import spanish_words
@@ -237,7 +237,9 @@ def _covered(item, asked: list[str]) -> bool:
     strip = lambda t: _key(re.sub(r"^(?:el/la|el|la|los|las|un|una)\s+", "", t.strip(), flags=re.I))
     core = strip(item.es.split("/")[0])
     # «el amigo / la amiga» — обе формы: задание может спрашивать любую
-    forms = {core} | {strip(v) for v in re.split(r"\s/\s", item.es)} | ({_key(f) for f in item.base_forms()} if item.pos in ("verb", "adj") else set()) | {_key(f) for f in item.extra_forms}
+    forms = {core} | {strip(v) for v in re.split(r"\s/\s", item.es)}
+    # формы, которые ученик образует по правилам: los ojos — el ojo, lleva — llevar
+    forms |= {_key(f) for f in generated_forms(item, frozenset(FEATURES))} | ({_key(f) for f in item.base_forms()} if item.pos in ("verb", "adj") else set()) | {_key(f) for f in item.extra_forms}
     if re.search(r"\.\.\.|…", item.es):   # фраза с пропуском: «¿Cómo se dice... en español?» — все её части
         parts = [_key(p) for p in re.split(r"\.\.\.|…", item.es) if _key(p)]
         if any(all(f" {p} " in t for p in parts) for t in asked):
