@@ -39,7 +39,7 @@
 | 07 | Профессии | готово: 7 уроков `version: 2`; ввод профессий принимает оба рода, практикум с задания, вопросы к тексту `marta` и разговору `party`, миссия `dorm` | [07_trabajo.md](site_slide_maps/07_trabajo.md) | «тема 07» |
 | 08 | Семья (итог A0) | готово: 7 уроков `version: 2`; **итог A0 `familia/repaso` — `check: control`** (80 %, навыки у всех 10 заданий, слабые темы со ссылками, A1 закрыт до сдачи), альтернативы без звука, вопросы к `pablo`, `photos`, `olga` | [08_familia.md](site_slide_maps/08_familia.md) | «тема 08» |
 | 09 | Описание людей | готово: 9 уроков `version: 2`; ввод к своим правилам (-o/-a, согласование, цвета, ojos), вопросы к `laura`/`karina`, миссия в аэропорту — самостоятельные задания с альтернативой | [09_descripcion.md](site_slide_maps/09_descripcion.md) | «тема 09» |
-| 10 | Дом | — | | |
+| 10 | Дом | готово: 8 уроков `version: 2`; тест к тексту перенесён от конца урока к тексту, карточки aquí/allí больше не разрывают объяснение, пояснения к «de el», «es en», «entre de» | [10_casa.md](site_slide_maps/10_casa.md) | «тема 10» |
 | 11 | Ser и estar | — | | |
 | 12 | Город | — | | |
 | 13 | Еда | — | | |
@@ -75,10 +75,10 @@
 
 ## Последний юнит
 
-- **09 Описание людей:** validate ✅, pytest 277, node 25/25, Playwright: 9 уроков на 320/390/430, с ошибками, без звука.
-  Проверка покрытия учитывает формы по правилам (los ojos — el ojo, lleva — llevar).
+- **10 Дом:** validate ✅, pytest 277, node 25/25, Playwright: 8 уроков на 320/390/430, с ошибками, без звука.
+  Проверка покрытия: формы из таблицы спряжения урока, «encima de» → «encima del».
 
 ## Следующий шаг
 
-Тема 10 «Мой дом»: карты `docs/site_slide_maps/10_casa.md`, правка `10_casa.yaml`: тест урока `escucha` к скрытому
-диалогу, hay / está / están вводом, предлоги; навыки `rooms`, `estar_location`, `prepositions`, `hay_esta`.
+Тема 11 «¿Cómo estás? Состояния»: карты `docs/site_slide_maps/11_ser_estar.md`, правка `11_ser_estar.yaml`;
+навыки `estar_state`, `ser_estar`, `porque`.

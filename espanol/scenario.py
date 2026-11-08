@@ -206,8 +206,9 @@ def _strict_issues(lesson: Lesson) -> list[str]:
                 out.append(f"тест, вопрос {n} «{plain(q.question)[:40]}»: в уроке есть источник — укажите source: id или free: true")
     if lesson.scripted and not any(b.type == "recap" for b in lesson.blocks):
         asked = _asked_texts(lesson)
+        conj = {b.data["verb"].lower(): b.data["forms"] for b in lesson.blocks if b.type == "conjugation"}
         for item in lesson.vocab:
-            if item.srs and not _covered(item, asked):
+            if item.srs and not _covered(item, asked, conj.get(item.es.lower(), [])):
                 out.append(f"слово «{item.es}» не проверяется ни одним заданием: добавьте задание или блок recap")
     return out
 
@@ -232,14 +233,16 @@ def _asked_texts(lesson: Lesson) -> list[str]:
     return [f" {_key(t)} " for t in out if t]
 
 
-def _covered(item, asked: list[str]) -> bool:
+def _covered(item, asked: list[str], conj_forms=()) -> bool:
     """Слово проверяется, если задание спрашивает его само или его форму: soy, eres, es — это ser; mexicana — mexicano/a."""
     strip = lambda t: _key(re.sub(r"^(?:el/la|el|la|los|las|un|una)\s+", "", t.strip(), flags=re.I))
     core = strip(item.es.split("/")[0])
     # «el amigo / la amiga» — обе формы: задание может спрашивать любую
     forms = {core} | {strip(v) for v in re.split(r"\s/\s", item.es)}
     # формы, которые ученик образует по правилам: los ojos — el ojo, lleva — llevar
-    forms |= {_key(f) for f in generated_forms(item, frozenset(FEATURES))} | ({_key(f) for f in item.base_forms()} if item.pos in ("verb", "adj") else set()) | {_key(f) for f in item.extra_forms}
+    forms |= {_key(f) for f in generated_forms(item, frozenset(FEATURES))} | {_key(f) for f in conj_forms}
+    forms |= ({_key(f) for f in item.base_forms()} if item.pos in ("verb", "adj") else set()) | {_key(f) for f in item.extra_forms}
+    forms |= {f[:-3] + " del" for f in forms if f.endswith(" de")}   # encima de → encima del sofá
     if re.search(r"\.\.\.|…", item.es):   # фраза с пропуском: «¿Cómo se dice... en español?» — все её части
         parts = [_key(p) for p in re.split(r"\.\.\.|…", item.es) if _key(p)]
         if any(all(f" {p} " in t for p in parts) for t in asked):
