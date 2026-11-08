@@ -612,6 +612,8 @@ const G_UNIT_ICONS = {
   '015_mas_caro': '⚖️',
   '016_tan_alto': '🟰',
   '017_la_mas_alta': '🏆',
+  '018_mi_tu_su': '🏠',
+  '019_mio_tuyo_suyo': '🔑',
 };
 function gUnitComplete(unit) {
   const routes=gRoutes(unit);
@@ -723,8 +725,10 @@ function gWorkedPreview(preview) {
   return `${esc(preview.sentenceParts[0])}<mark class="gpreview-insert">${esc(preview.displayAnswer ?? preview.answer)}</mark>${esc(preview.sentenceParts[1])}`;
 }
 function gGapSentence(q,response) {
-  const values=response.gapValues || (response.value ? response.value.split(" ") : []);
-  return `<div class="gfill-sentence"><p class="ggap-line" lang="es">${q.gapParts.map((part,i)=>`${esc(part)}${i<q.gapParts.length-1?`<span class="ggap-control"><input class="ginput ggap-input" id="${i?'g-answer-'+i:'g-answer'}" data-ggap="${i}" aria-describedby="g-answer-format" aria-label="Пропуск ${i+1}" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="…" value="${esc(values[i] || '')}" ${response.checked?'disabled':''}>${response.checked?'':gCharsPanel(q,i?'g-answer-'+i:'g-answer')}</span>`:''}`).join('')}</p></div>`;
+  const words=response.value ? response.value.split(" ") : [];
+  let offset=0;
+  const values=response.gapValues || (q.gapWordCounts ? q.gapWordCounts.map(n=>{const value=words.slice(offset,offset+n).join(' ');offset+=n;return value;}) : words);
+  return `<div class="gfill-sentence"><p class="ggap-line" lang="es">${q.gapParts.map((part,i)=>`${esc(part)}${i<q.gapParts.length-1?`<span class="ggap-control"><input class="ginput ggap-input" id="${i?'g-answer-'+i:'g-answer'}" data-ggap="${i}" data-gwords="${q.gapWordCounts?.[i] || 1}" aria-describedby="g-answer-format" aria-label="Пропуск ${i+1}" lang="es" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="…" value="${esc(values[i] || '')}" ${response.checked?'disabled':''}>${response.checked?'':gCharsPanel(q,i?'g-answer-'+i:'g-answer')}</span>`:''}`).join('')}</p></div>`;
 }
 function gIntro(group) {
   const pictures = group.questions.filter(q => q.image).slice(0,3);

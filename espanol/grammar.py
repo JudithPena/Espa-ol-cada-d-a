@@ -101,6 +101,15 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
                     if item['shuffleOptions'] is False and (not isinstance(item.get('optionOrderReason'), str) or not item['optionOrderReason'].strip()):
                         raise ValueError(f"{path}: fixed option order requires optionOrderReason")
             for q in group["questions"]:
+                if 'inputChars' in q and (not isinstance(q['inputChars'], list) or not q['inputChars']
+                        or len(set(q['inputChars'])) != len(q['inputChars'])
+                        or any(c not in ['á', 'é', 'í', 'ó', 'ú', 'ü', 'ñ'] for c in q['inputChars'])):
+                    raise ValueError(f"{path}: inputChars must contain distinct Spanish characters")
+                if 'gapWordCounts' in q and (not q.get('gapParts')
+                        or len(q['gapWordCounts']) != len(q['gapParts']) - 1
+                        or any(type(n) is not int or n < 1 for n in q['gapWordCounts'])
+                        or sum(q['gapWordCounts']) != len(q['answers'][0].split())):
+                    raise ValueError(f"{path}: gapWordCounts must describe the words in each gap")
                 if q.get('interaction') == 'article-input':
                     article_answers = {'el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas', 'al', 'del', 'lo', 'uno', 'без артикля'}
                     if (q.get('options') or q.get('tiles') or q.get('guidedGaps') or q.get('gapParts')

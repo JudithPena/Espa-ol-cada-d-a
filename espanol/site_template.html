@@ -591,6 +591,7 @@ main { padding-block: 16px 110px; }
 .ggap-line { line-height: 2.8 !important; }
 .ggap-input { display: inline-block; width: 5ch; min-height: 42px; line-height: 1.4; padding: 4px 6px; margin: 0 4px; text-align: center; vertical-align: baseline; border-style: dashed; }
 .ggap-input[data-ggap="1"] { width: 7ch; }
+.ggap-input[data-gwords="2"] { width: 12ch; max-width: 100%; }
 .gfeedback { margin: 10px 0; padding: 12px; border-radius: 10px; background: var(--bad-soft); }
 .gfeedback.good { background: var(--good-soft); }
 .gfeedback p { margin: 4px 0 0; }
@@ -1671,7 +1672,7 @@ function grammarInputHelp(q, group, id) {
 }
 const grammarInputPlaceholder = (q, group) => grammarInputFormat(q, group)?.placeholder || q.answerPlaceholder || group.answerPlaceholder || 'Ответ';
 const gOptionLabel = (q, value) => q.optionLabels?.[value] || (value === 'Без артикля' ? '∅' : value);
-const gInputChars = q => [...['á','é','í','ó','ú','ñ'], ...(/[üÜ]/.test([q.prompt,...q.answers].join(' '))?['ü']:[])];
+const gInputChars = q => q.inputChars || [...['á','é','í','ó','ú','ñ'], ...(/[üÜ]/.test([q.prompt,...q.answers].join(' '))?['ü']:[])];
 function grammarTable(t) {
   return `<div class="tbl" tabindex="0" role="region" aria-label="Таблица примеров"><table><thead><tr>${t.heads.map(h => `<th scope="col">${esc(h)}</th>`).join("")}</tr></thead><tbody>${t.rows.map(r => `<tr>${r.map(c => `<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
 }
