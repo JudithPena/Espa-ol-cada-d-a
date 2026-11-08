@@ -154,6 +154,15 @@ async function handleUpdate(update, env, origin) {
   if (owner && cmd === "/progreso") { // сводка по трём колодам — только автору
     return tg(env, "sendMessage", { chat_id: chat, parse_mode: "HTML", text: await progressReport(env) });
   }
+  if (owner && cmd === "/reiniciar") { // сбросить счётчик новых слов за сегодня: /reiniciar [yo|galya|papa]
+    const who = { yo: [BOOKS.p, env.ADMIN_CHAT_ID], galya: [BOOKS.w, env.GALYA_CHAT_ID], papa: [BOOKS.d, env.PAPA_CHAT_ID] }[param.toLowerCase() || "yo"];
+    if (!who || !who[1]) return tg(env, "sendMessage", { chat_id: chat, text: "Формат: /reiniciar, /reiniciar galya или /reiniciar papa" });
+    const deck = await who[0].load(env, who[1]);
+    deck.fresh = 0;
+    deck.session = null;
+    await who[0].save(env, who[1], deck);
+    return tg(env, "sendMessage", { chat_id: chat, text: "✅ Счётчик на сегодня сброшен: /palabras снова даст новые слова." });
+  }
   if (cmd === "/id") {
     return tg(env, "sendMessage", { chat_id: chat, parse_mode: "HTML", text: `Номер этого чата: <code>${chat}</code>` });
   }

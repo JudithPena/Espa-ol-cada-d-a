@@ -414,3 +414,18 @@ test("кнопка старой колоды курса у папы открыв
     PAPA.push(...savedPapa);
   }
 });
+
+test("/reiniciar: автор сбрасывает счётчик новых слов за сегодня", async () => {
+  await withDeck([sample("a"), sample("b"), sample("c")], async () => {
+    await post(owner("/palabras"));
+    await post(ownerPress("pl:a", false));
+    const before = "deck:1";
+    const deck = JSON.parse(kv.get(before));
+    assert.ok(deck.fresh > 0 && deck.session);
+    await post(owner("/reiniciar"));
+    const after = JSON.parse(kv.get(before));
+    assert.equal(after.fresh, 0);
+    assert.equal(after.session, null);
+    assert.match(textOf(calls.at(-1)), /сброшен/);
+  });
+});
