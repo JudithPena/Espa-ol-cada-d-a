@@ -11,6 +11,7 @@ lessons:
   - id: curso
     kind: vocab
     title: Уровень A1 — больше испанского
+    goal: понимать испанские названия частей урока
     vocab:
       - "📖 la lección [лэкθьо́н] — урок"
       - "🗂 el tema [тэ́ма] — тема"
@@ -21,25 +22,54 @@ lessons:
       - "✍️ la práctica [пра́ктика] — практика"
       - "🧠 el test [тэст] — тест {pl: los tests}"
     blocks:
-      - |
-        🎉 **Добро пожаловать на уровень A1!** Мы делаем новый шаг погружения в язык: с этого поста заголовки тоже становятся испанскими. Вместо «Урок» и «Тема» вы увидите **Lección** и **Tema**, а вместо «Лексика», «Грамматика» и «Чтение» вы увидите **Vocabulario**, **Gramática** и **Lectura**.
+      - "🎉 **Добро пожаловать на уровень A1!** Испанского становится больше. Начнём со слов, которыми называют части урока."
+      - learn: [la lección, el tema, el vocabulario, la gramática]
       - rule: |
-          1. Слово **tema** мужского рода, хотя оно заканчивается на `-a`. Поэтому говорят _el tema_, _un tema_, _el tema de la lección_.
-          2. Такие слова вы уже встречали: это **el día** и **el mapa**. Например: _un día_, _el mapa de España_.
-          3. Так же ведут себя слова **el problema** («проблема») и **el idioma** («язык»): _un problema_, _el idioma español_.
-      - tip: "Слова **práctica** и **practica** различаются только ударением, но значат разное. Если над `a` стоит значок ´, то ударение падает на первый слог, и это существительное «практика»: **prác**tica, _la práctica_, _práctica de gramática_. Если значка нет, то ударение падает на второй слог, и это глагол «тренируется» или «тренируйся»: prac**ti**ca, _Ana practica español_, _¡Practica la gramática!_ Значит, значок ´ может изменить смысл слова."
-      - exercise:
-          title: Traduce
+          1. **tema** мужского рода, хотя заканчивается на `-a`: _el tema_, _un tema_, _el tema de la lección_.
+          2. Такие слова вы уже встречали: **el día**, **el mapa**. Так же ведут себя **el problema** («проблема») и **el idioma** («язык»).
+      - choose:
+          title: ¿El o la?
           items:
-            - "урок грамматики => la lección de gramática"
-            - "тест по лексике => el test de vocabulario"
-            - "текст для чтения => un texto de lectura"
-            - "Какая тема урока? => ¿Cuál es el tema de la lección?"
+            - q: "___ tema de la lección"
+              options: "el | la"
+              explain: "Tema — исключение: на -a, но мужского рода."
+            - q: "___ gramática"
+              options: "la | el"
+      - learn: [el diálogo, la lectura, la práctica, el test]
+      - match:
+          title: Соедините пары
+          pairs:
+            - "la lección — урок"
+            - "el vocabulario — лексика"
+            - "el diálogo — диалог"
+            - "la lectura — чтение"
+            - "la práctica — практика"
+      - tip: "**práctica** и **practica** различаются только ударением. Со значком — существительное «практика»: _la práctica_. Без значка — глагол «тренируется», «тренируйся»: _Ana practica español._"
+      - choose:
+          title: Со значком или без?
+          items:
+            - q: "Ana ___ español en casa."
+              options: "practica | práctica"
+              explain: "Здесь нужен глагол «тренируется» — без значка: practica."
+            - q: "la ___ de gramática"
+              options: "práctica | practica"
+              explain: "После la — существительное «практика», со значком: práctica."
+      - write:
+          title: Traduce
+          format: слова по-испански
+          items:
+            - "урок грамматики => la lección de gramática | una lección de gramática"
+            - "тест по лексике => el test de vocabulario | un test de vocabulario"
+      - build:
+          title: Соберите фразу
+          items:
+            - "¿Cuál es el tema de la lección? — Какая тема урока?"
     forms: [problema, idioma]
 
   - id: vocab1
     kind: vocab
     title: Внешность
+    goal: описать внешность — высокий, светловолосый, красивый
     vocab:
       - "🧑 el chico / la chica [чи́ко, чи́ка] — парень, мальчик / девушка, девочка"
       - "🦒 alto/a [а́льто, а́льта] — высокий / высокая"
@@ -50,25 +80,47 @@ lessons:
       - "😍 guapo/a [гуа́по, гуа́па] — красивый / красивая"
       - "🧍 delgado/a [дэльга́до, дэльга́да] — худой, стройный"
     blocks:
-      - "Начинаем описывать людей. У прилагательных, как и у национальностей, обычно есть мужская и женская форма. Если в мужском роде прилагательное заканчивается на `-o`, то в женском роде оно заканчивается на `-a`: _Pablo es alto_, но _Ana es alta_; _Carlos es rubio_, но _Marta es rubia_. А у слова **joven** одна форма для обоих родов: _Pablo es joven_ и _Ana es joven_."
-      - examples:
+      - "У прилагательных, как у национальностей, обычно две формы: **-o** — о мужчине, **-a** — о женщине."
+      - learn: [el chico / la chica, alto/a, bajo/a, joven]
+      - compare:
+          cards:
+            - head: alto → alta
+              label: -o → -a
+              tone: blue
+              ex: ["Pablo es alto. — Пабло высокий.", "Ana es alta. — Ана высокая."]
+            - head: joven
+              label: одна форма для всех
+              tone: mint
+              ex: ["Pablo es joven.", "Ana es joven."]
+      - choose:
+          title: Выберите форму
           items:
-            - "Pablo es alto y moreno. — Пабло высокий и темноволосый."
-            - "Ana es baja y rubia. — Ана невысокая и светловолосая."
-            - "El chico es muy guapo. — Парень очень красивый."
-            - "Mi abuela es mayor, pero mi abuelo es joven. — Моя бабушка пожилая, а дедушка молодой."
-      - tip: "В Испании слово **moreno** обычно значит «темноволосый»: _Mi padre es moreno y mi madre es rubia_ — «Мой отец темноволосый, а мама светловолосая». Но так же говорят и о человеке со смуглой или загорелой кожей, поэтому фраза _Carlos es moreno_ может значить и «Карлос темноволосый», и «Карлос смуглый». Что имеется в виду, обычно понятно из ситуации."
-      - exercise:
+            - q: "Ana es ___ (невысокая)."
+              options: "baja | bajo | bajas"
+            - q: "El chico es ___ (молодой)."
+              options: "joven | jóvena | jóvenes"
+      - learn: [rubio/a, moreno/a, guapo/a, delgado/a]
+      - more:
+          title: moreno — тёмные волосы или смуглая кожа?
+          text: "В Испании **moreno** обычно значит «темноволосый», но так говорят и о смуглом или загорелом человеке: _Carlos es moreno_ — «темноволосый» или «смуглый». Что имеется в виду, понятно из ситуации."
+      - sort:
+          title: Кто это — Пабло или Ана?
+          groups:
+            "👨 Pablo es…": [alto, rubio, delgado]
+            "👩 Ana es…": [baja, morena, guapa]
+            "👫 оба": [joven]
+      - write:
           title: Traduce
+          format: фраза по-испански
           items:
-            - "Он высокий. => Es alto."
-            - "Она блондинка. => Es rubia."
-            - "Девушка очень красивая. => La chica es muy guapa."
-            - "Мой брат худой и невысокий. => Mi hermano es delgado y bajo."
+            - "Он высокий. => Es alto | Él es alto"
+            - "Она блондинка. => Es rubia | Ella es rubia"
+            - "Девушка очень красивая. => La chica es muy guapa"
 
   - id: vocab2
     kind: vocab
     title: Характер
+    goal: описать характер человека
     vocab:
       - "😊 simpático/a [симпа́тико, симпа́тика] — милый, приятный, дружелюбный"
       - "😒 antipático/a [антипа́тико, антипа́тика] — неприятный"
@@ -78,60 +130,93 @@ lessons:
       - "🙈 tímido/a [ти́мидо, ти́мида] — застенчивый"
       - "💪 trabajador/a [трабахадо́р, трабахадо́ра] — трудолюбивый"
     blocks:
-      - "Теперь поговорим о характере. Испанцы очень ценят, когда человек **simpático**: это слово значит и «милый», и «открытый», и «приятный в общении»."
-      - examples:
+      - "Испанцы очень ценят, когда человек **simpático**: это и «милый», и «открытый», и «приятный в общении»."
+      - learn: [simpático/a, antipático/a, inteligente, divertido/a]
+      - match:
+          title: Соедините пары
+          pairs:
+            - "simpático — приятный, дружелюбный"
+            - "antipático — неприятный"
+            - "inteligente — умный"
+            - "divertido — весёлый"
+      - learn: [serio/a, tímido/a, trabajador/a]
+      - more:
+          title: trabajador — trabajadora
+          text: "**trabajador** родственно глаголу **trabajar**. Хотя оно кончается на согласную, у него есть женская форма на `-a`, как у profesor**a**: _Carmen es muy trabajadora._"
+      - choose:
+          title: Выберите слово
           items:
-            - "Mi profesora es muy simpática. — Моя преподавательница очень приятная."
-            - "Carlos es inteligente y trabajador. — Карлос умный и трудолюбивый."
-            - "Mi hermano es divertido, pero un poco tímido. — Мой брат весёлый, но немного застенчивый."
-      - tip: "Слово **trabajador** («трудолюбивый») родственно глаголу **trabajar** («работать»): _Carlos trabaja mucho, es muy trabajador_ — «Карлос много работает, он очень трудолюбивый». Хотя оно заканчивается на согласную, у него есть женская форма с окончанием `-a`, как у слов profesor**a** и programador**a**: _Carmen es trabajadora_, _Mi madre es muy trabajadora_."
-      - exercise:
+            - q: "Carmen trabaja mucho. Es muy ___."
+              options: "trabajadora | trabajador | tímida"
+            - say: "Mi hermano es divertido, pero un poco tímido."
+              options: "Мой брат весёлый, но немного застенчивый. | Мой брат серьёзный, но очень весёлый. | Моя сестра весёлая и застенчивая."
+      - write:
           title: Traduce
+          format: фраза по-испански
           items:
-            - "Она очень умная. => Es muy inteligente."
-            - "Мой отец серьёзный, а мама весёлая. => Mi padre es serio y mi madre es divertida."
-            - "Сеньор Гарсия неприятный. => El señor García es antipático."
-            - "Лусия немного застенчивая. => Lucía es un poco tímida."
+            - "Она очень умная. => Es muy inteligente | Ella es muy inteligente"
+            - "Лусия немного застенчивая. => Lucía es un poco tímida"
+            - "Мой отец серьёзный. => Mi padre es serio"
 
   - id: concordancia
     kind: grammar
     title: "Alto, alta, altos, altas"
+    goal: согласовать прилагательное — alto, alta, altos, altas
     vocab:
       - "❓ ¿Cómo es...? [ко́мо эс] — какой (какая) он / она? :: ¿Cómo es tu hermana? — Какая твоя сестра?"
       - "➕ muy [муй] — очень"
       - "↗️ bastante [баста́нтэ] — довольно, достаточно :: Es bastante alto. — Он довольно высокий."
     blocks:
-      - "Посмотрите, как меняются прилагательные в этих примерах, и попробуйте найти две разные группы."
+      - "Посмотрите, как меняются прилагательные, и найдите две разные группы."
       - examples:
           items:
-            - "Pablo es alto. Ana es alta. — Пабло высокий. Ана высокая."
             - "Mis hermanos son altos. Mis primas son altas. — Мои братья высокие. Мои двоюродные сёстры высокие."
             - "Carlos es inteligente. Lucía es inteligente. — Карлос умный. Лусия умная."
-            - "Mis profesores son jóvenes. — Мои преподаватели молодые."
       - rule: |
-          1. Если прилагательное заканчивается на **-o**, то оно меняется и по роду, и по числу, поэтому у него четыре формы: alt**o**, alt**a**, alt**os**, alt**as**. Например: _un chico simpático_, _una chica simpática_, _unos chicos simpáticos_, _unas chicas simpáticas_.
-          2. Если прилагательное заканчивается на **-e** или на согласную, то у него одна форма для обоих родов: _un chico inteligente_ и _una chica inteligente_, _mi padre es joven_ и _mi madre es joven_. Исключение составляют национальности и слова на `-or`: у них есть женская форма на `-a`, например _español_ и _española_, _trabajador_ и _trabajadora_.
-          3. Во множественном числе к прилагательному добавляется `-s`, если оно заканчивается на гласную, и `-es`, если оно заканчивается на согласную: _Mis amigas son inteligentes_, _Mis tíos son jóvenes_, _Mis abuelos son mayores_. Обратите внимание: в слове **jóvenes** появляется значок ´, потому что ударение остаётся на том же слоге.
-          4. Прилагательное обычно ставится **после** существительного, а не перед ним, как в русском: _un amigo simpático_ — «приятный друг», _una chica alta_ — «высокая девушка», _un profesor joven_ — «молодой преподаватель».
-      - note: "Вопрос **¿Cómo es?** задают о постоянных качествах, то есть спрашивают «какой он?»: _¿Cómo es tu padre?_ — «Какой у тебя отец?», _¿Cómo es tu profesor?_ — «Какой у тебя преподаватель?». А вопрос **¿Cómo estás?** задают о самочувствии, то есть спрашивают «как ты?»: _¿Cómo estás, Ana?_ — «Как ты, Ана?», _¿Cómo está usted?_ — «Как вы поживаете?». Эту разницу мы скоро разберём подробно."
-      - exercise:
-          title: Responde
+          1. Прилагательное на **-o** меняется по роду и числу — четыре формы: alt**o**, alt**a**, alt**os**, alt**as**.
+          2. На **-e** или согласную — одна форма для обоих родов: _un chico inteligente_, _una chica inteligente_. Кроме национальностей и слов на `-or`: _española_, _trabajadora_.
+          3. Во множественном числе: после гласной **-s**, после согласной **-es**: _inteligentes_, _jóvenes_, _mayores_. В **jóvenes** появляется значок: ударение остаётся на том же слоге.
+      - sort:
+          title: Кто такой?
+          groups:
+            "mi hermano es…": [alto, simpático]
+            "mi hermana es…": [alta, simpática]
+            "mis hermanos son…": [altos, simpáticos]
+            "mis hermanas son…": [altas, simpáticas]
+      - write:
+          title: Поставьте прилагательное в нужную форму
+          format: прилагательное
           items:
             - "Mi madre es (alto) ___ => alta"
             - "Mis amigos son (simpático) ___ => simpáticos"
             - "Las chicas son (joven) ___ => jóvenes"
             - "Lucía y Ana son (trabajador) ___ => trabajadoras"
             - "Es una chica muy (inteligente) ___ => inteligente"
-      - exercise:
-          title: Traduce
+      - learn: ["¿Cómo es...?", muy, bastante]
+      - note: "**¿Cómo es?** — о постоянных качествах, «какой он?»: _¿Cómo es tu padre?_ А **¿Cómo estás?** — о самочувствии, «как ты?». Эту разницу мы скоро разберём подробно."
+      - choose:
+          title: Как спросить?
           items:
-            - "Какой твой брат? => ¿Cómo es tu hermano?"
-            - "Он довольно серьёзный. => Es bastante serio."
-            - "У меня очень весёлые подруги. => Tengo unas amigas muy divertidas."
+            - q: "Какая твоя мама? (её характер)"
+              options: "¿Cómo es tu madre? | ¿Cómo está tu madre? | ¿Qué es tu madre?"
+              explain: "О постоянных качествах — ¿Cómo es...? ¿Cómo está...? — о самочувствии."
+      - rule: "Прилагательное обычно стоит **после** существительного: _un amigo simpático_ — «приятный друг», _una chica alta_ — «высокая девушка»."
+      - build:
+          title: Соберите фразу
+          items:
+            - es: "Tengo unas amigas muy divertidas."
+              ru: "У меня очень весёлые подруги."
+              extra: [divertidos]
+      - write:
+          title: Traduce
+          format: фраза по-испански
+          items:
+            - "Он довольно серьёзный. => Es bastante serio | Él es bastante serio"
 
   - id: colores
     kind: vocab
     title: Цвета
+    goal: сказать, какого цвета предмет
     vocab:
       - "🎨 ¿De qué color es? [дэ кэ коло́р эс] — какого это цвета? {forms: color colores}"
       - "🔴 rojo/a [ро́хо, ро́ха] — красный"
@@ -142,25 +227,43 @@ lessons:
       - "⚫ negro/a [нэ́гро, нэ́гра] — чёрный"
       - "🟤 marrón [марро́н] — коричневый {pos: adj}"
     blocks:
-      - "Названия цветов тоже являются прилагательными, поэтому они согласуются с существительным в роде и числе. Если цвет заканчивается на `-o`, то у него четыре формы: _un bolígrafo rojo_, _una mochila roja_, _unos libros rojos_, _unas sillas rojas_. Если цвет заканчивается на `-e` или на согласную, то форма одна для обоих родов, а во множественном числе добавляется `-s` или `-es`: _un libro verde_ и _una puerta verde_, _un móvil azul_ и _unas llaves azules_, _un perro marrón_ и _una mesa marrón_."
-      - examples:
+      - learn: ["¿De qué color es?", rojo/a, azul, verde]
+      - write:
+          title: "¿De qué color es?"
+          format: цвет по-испански
           items:
-            - "La mochila es roja. — Рюкзак красный."
-            - "El libro es azul. — Книга синяя."
-            - "Las llaves son negras. — Ключи чёрные."
-            - "¿De qué color es tu móvil? Es blanco. — Какого цвета твой телефон? Белый."
-      - exercise:
-          title: Responde
+            - "🐸 => verde | es verde"
+            - "🍅 => rojo | es rojo"
+      - learn: [amarillo/a, blanco/a, negro/a, marrón]
+      - "Цвета — тоже прилагательные. На **-o** — четыре формы: _un bolígrafo rojo_, _una mochila roja_, _unas sillas rojas_. На **-e** или согласную — одна форма для обоих родов, во множественном числе **-s** или **-es**: _una puerta verde_, _unas llaves azules_, _una mesa marrón_."
+      - match:
+          title: Соедините пары
+          pairs:
+            - "amarillo — жёлтый"
+            - "blanco — белый"
+            - "negro — чёрный"
+            - "marrón — коричневый"
+            - "azul — синий"
+      - write:
+          title: Поставьте цвет в нужную форму
+          format: прилагательное
           items:
-            - "🍷 ¿De qué color es el vino? => Es rojo (o blanco)."
-            - "🧀 ¿De qué color es el queso? => Es amarillo."
-            - "🐸 ¿De qué color es? => Es verde."
-            - "☕ ¿De qué color es el café? => Es negro o marrón."
             - "Las sillas son (blanco) ___ => blancas"
+            - "una mochila (rojo) ___ => roja"
+            - "unas llaves (azul) ___ => azules"
+      - choose:
+          title: "¿De qué color es?"
+          items:
+            - q: "🧀 ¿De qué color es el queso?"
+              options: "Es amarillo. | Es amarilla. | Es azul."
+              explain: "Queso мужского рода — amarillo."
+            - q: "☕ ¿De qué color es el café?"
+              options: "Es negro o marrón. | Es negra o marrona. | Es verde."
 
   - id: ojos
     kind: grammar
     title: Глаза и волосы
+    goal: описать глаза и волосы человека
     vocab:
       - "👁 el ojo [о́хо] — глаз"
       - "💇 el pelo [пэ́ло] — волосы"
@@ -169,34 +272,58 @@ lessons:
       - "🌰 castaño/a [каста́ньо, каста́нья] — каштановый (о волосах)"
       - "👓 llevar [льеба́р] — носить (одежду, очки) :: Llevo gafas. — Я ношу очки."
     blocks:
-      - "Как описать глаза и волосы? Для этого испанцы используют глагол **tener**, то есть говорят не «у него голубые глаза», а «он имеет голубые глаза»."
+      - "Глаза и волосы испанцы описывают с глаголом **tener**: не «у него голубые глаза», а «он имеет голубые глаза»."
+      - learn: [el ojo, el pelo, largo/a, corto/a, castaño/a]
       - examples:
           items:
             - "Tengo los ojos azules. — У меня голубые глаза."
             - "Ana tiene el pelo largo y rubio. — У Аны длинные светлые волосы."
-            - "Mi padre tiene el pelo corto y castaño. — У моего отца короткие каштановые волосы."
-            - "Javier lleva gafas. — Хавьер носит очки."
       - rule: |
-          1. Чтобы описать глаза или волосы, возьмите глагол **tener**, затем **los ojos** или **el pelo**, а после них поставьте цвет или длину: _Tiene los ojos verdes_ — «У него зелёные глаза», _Tengo el pelo largo_ — «У меня длинные волосы», _Mi madre tiene el pelo rubio_ — «У моей мамы светлые волосы».
-          2. Слово **el pelo** стоит в единственном числе, потому что оно означает все волосы в целом. Поэтому прилагательное после него тоже стоит в единственном числе: _el pelo corto_, _el pelo castaño_, _el pelo negro_.
-          3. А слово **los ojos** стоит во множественном числе, поэтому и прилагательное ставится во множественное число: _los ojos azules_, _los ojos negros_, _los ojos marrones_.
-          4. Глагол **llevar** («носить») правильный и заканчивается на `-ar`, поэтому он спрягается так же, как hablar: _Llevo gafas_ — «Я ношу очки», _¿Llevas gafas?_ — «Ты носишь очки?», _Mi abuelo lleva gafas_ — «Мой дедушка носит очки».
-      - exercise:
-          title: Traduce
+          1. **tener** + **los ojos** / **el pelo** + цвет или длина: _Tiene los ojos verdes._ _Tengo el pelo largo._
+          2. **el pelo** — в единственном числе (все волосы в целом), поэтому и прилагательное в единственном: _el pelo corto_, _el pelo castaño_.
+          3. **los ojos** — во множественном, поэтому _los ojos azules_, _los ojos negros_.
+      - choose:
+          title: Как сказать?
           items:
-            - "У неё зелёные глаза. => Tiene los ojos verdes."
-            - "У меня короткие тёмные волосы. => Tengo el pelo corto y negro."
-            - "Вы носите очки? (на «ты») => ¿Llevas gafas?"
-            - "У моих братьев голубые глаза. => Mis hermanos tienen los ojos azules."
-      - task: "Опишите себя в комментариях. Можно начать так: **Soy... Tengo los ojos... y el pelo...**"
+            - q: "У него короткие волосы."
+              options: "Tiene el pelo corto. | Es el pelo corto. | Tiene los pelos cortos."
+            - q: "У Аны голубые глаза."
+              options: "Ana tiene los ojos azules. | Ana tiene los ojos azul. | Ana es los ojos azules."
+      - write:
+          title: Traduce
+          format: фраза по-испански
+          items:
+            - "У неё зелёные глаза. => Tiene los ojos verdes | Ella tiene los ojos verdes"
+            - "У меня короткие чёрные волосы. => Tengo el pelo corto y negro | Tengo el pelo negro y corto"
+      - learn: [llevar]
+      - "Глагол **llevar** («носить») спрягается, как **hablar**: _Llevo gafas._ _¿Llevas gafas?_ _Mi abuelo lleva gafas._"
+      - mission:
+          title: Встреча в аэропорту
+          text: "Вы встречаете в аэропорту Мадрида друга вашей подруги — Оскара. Вы его ещё не видели, поэтому подруга описывает его по телефону."
+      - choose:
+          items:
+            - say: "Óscar es alto y rubio. Tiene los ojos azules y lleva gafas."
+              q: "Какой Оскар?"
+              options: "высокий блондин с голубыми глазами, в очках | невысокий брюнет с голубыми глазами | высокий блондин с зелёными глазами, без очков"
+      - write:
+          items:
+            - q: "Опишите себя в ответ (вы — Лусия): «Я невысокая, у меня длинные чёрные волосы»."
+              a: "Soy baja y tengo el pelo largo y negro | Soy baja, tengo el pelo largo y negro | Soy baja y tengo el pelo negro y largo"
+              format: фраза по-испански
+      - build:
+          items:
+            - es: "Llevo una mochila roja."
+              ru: "Добавьте: «У меня (я ношу) красный рюкзак»."
+              extra: [rojo]
 
   - id: lectura
     kind: reading
     title: Mi mejor amiga
+    goal: понять описание человека
     vocab:
       - "🥇 mejor [мэхо́р] — лучший {pos: adj} :: mi mejor amigo — мой лучший друг"
     blocks:
-      - "Прочитайте описание и постарайтесь представить себе Лауру и Уго. А потом проверьте себя по вопросам."
+      - learn: [mejor]
       - reading:
           title: Mi mejor amiga
           text: |
@@ -215,13 +342,15 @@ lessons:
             Она очень умная и весёлая, но немного застенчивая.
 
             Её парень Уго — журналист. Он темноволосый, невысокий и очень приятный. И очень трудолюбивый!
-      - exercise:
+      - choose:
           title: Responde
           items:
-            - "¿Cómo es Laura? => Es alta y delgada; inteligente y divertida."
-            - "¿De qué color son sus ojos? => Son verdes."
-            - "¿Qué es Hugo? => Es periodista."
-            - "¿Cómo es Hugo? => Es moreno, bajo y muy simpático."
+            - q: "¿De qué color son los ojos de Laura?"
+              options: "Son verdes. | Son azules. | Son negros."
+            - q: "¿Qué es Hugo?"
+              options: "Es periodista. | Es estudiante. | Es profesor."
+            - q: "¿Cómo es Laura?"
+              options: "Inteligente y divertida, pero un poco tímida. | Seria y antipática. | Baja y rubia."
     quiz:
       - q: ¿Cómo es el pelo de Laura?
         options: "largo y castaño | corto y rubio | largo y negro"
@@ -231,8 +360,9 @@ lessons:
   - id: escucha
     kind: listening
     title: ¿Quién es quién?
+    goal: понять на слух описание людей
     blocks:
-      - "Карина описывает трёх человек со свадебной фотографии. Послушайте её рассказ и ответьте на вопросы."
+      - "Карина описывает трёх человек со свадебной фотографии. Послушайте её рассказ."
       - dialogue:
           hidden: true
           voices: {Karina: f}
@@ -240,6 +370,11 @@ lessons:
             - "Karina: Mira la foto. El chico alto y rubio es mi hermano Óscar. Es muy divertido. | Посмотри на фото. Высокий светловолосый парень — мой брат Оскар. Он очень весёлый."
             - "Karina: La chica morena es su mujer, Clara. Tiene los ojos negros y el pelo muy largo. | Темноволосая девушка — его жена Клара. У неё чёрные глаза и очень длинные волосы."
             - "Karina: El señor bajo es mi padre. Lleva gafas. Es serio, pero muy simpático. | Невысокий сеньор — мой отец. Он носит очки. Серьёзный, но очень приятный."
+      - choose:
+          title: Responde
+          items:
+            - q: "¿Cómo es el padre de Karina?"
+              options: "Serio, pero muy simpático. | Muy divertido. | Tímido y antipático."
     allow: [Karina]
     quiz:
       - q: ¿Cómo es Óscar?
