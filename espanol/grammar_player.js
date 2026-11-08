@@ -615,6 +615,7 @@ const G_UNIT_ICONS = {
   '018_mi_tu_su': '🏠',
   '019_mio_tuyo_suyo': '🔑',
   '020_todos_algunos_ninguno': '🧺',
+  '021_uno_otro_cualquiera': '🧩',
 };
 function gUnitComplete(unit) {
   const routes=gRoutes(unit);

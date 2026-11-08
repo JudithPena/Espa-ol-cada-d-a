@@ -36,4 +36,5 @@ def test_old_unit_files_remain_byte_identical_to_pre_possessive_baseline():
     baseline=json.loads(Path('tests/data/grammar_before_possessives.json').read_text())
     import hashlib
     for name,digest in baseline.items():
-        assert hashlib.sha256((Path('content/grammar')/name).read_bytes()).hexdigest()==digest
+        # Git checks out CRLF on Windows; compare repository-normalized bytes.
+        assert hashlib.sha256((Path('content/grammar')/name).read_bytes().replace(b'\r\n', b'\n')).hexdigest()==digest
