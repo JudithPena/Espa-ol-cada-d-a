@@ -1605,6 +1605,7 @@ function writeWhy(st, typed) {
   if (ARTS.has(aw[0]) && ARTS.has(gw[0]) && aw.slice(1).join(" ") === gw.slice(1).join(" ")) return "Слово верное, а артикль другой.";
   if (ARTS.has(aw[0]) && aw.slice(1).join(" ") === got) return "Нужен артикль: напишите слово вместе с артиклем.";
   if (ARTS.has(gw[0]) && !ARTS.has(aw[0]) && gw.slice(1).join(" ") === a) return "Здесь артикль не нужен.";
+  if (/\d/.test(a)) return st.say ? "Пока не так. Послушайте ещё раз." : "Пока не так.";
   if (gw.length < aw.length) return "Не хватает слова.";
   if (gw.length > aw.length) return "Есть лишнее слово.";
   return "Пока не так.";
