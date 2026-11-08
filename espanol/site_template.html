@@ -423,6 +423,7 @@ main { padding-block: 16px 110px; }
 .letter { text-align: center; }
 
 /* Сценарий урока (уроки сайта с блоками learn, choose, write, match, sort, build, mission, more). */
+.player { grid-template-columns: minmax(0, 1fr); }   /* длинное название урока в .pctx не раздвигает экран */
 .pctx { font-size: 12px; font-weight: 700; color: var(--muted); padding-bottom: 6px; margin-top: -6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .prompt .q.qtext { font-family: var(--body); font-weight: 700; font-size: 20px; }
 .qpic { width: 140px; height: 140px; border-radius: 18px; background: #f9f4ea; justify-self: center; object-fit: cover; }
@@ -1482,7 +1483,7 @@ function chooseStep(b, it) {
 }
 function blockSteps(b) {
   if (b.t === "choose") return b.items.map(it => chooseStep(b, it));
-  if (b.t === "write") return b.items.map(it => ({ type: "write", title: b.title, accents: b.accents, ...it }));
+  if (b.t === "write") return b.items.map(it => ({ type: "write", title: b.title, accents: b.accents, chars: b.chars, ...it }));
   if (b.t === "match") return [{ type: "match", title: b.title, pairs: b.pairs }];
   if (b.t === "sort") return [{ type: "sort", title: b.title, groups: b.groups }];
   if (b.t === "build") return b.items.map(it => ({ type: "build", title: b.title, es: it.es, ru: it.ru, alt: it.alt, extra: it.extra }));
@@ -1508,7 +1509,7 @@ function recallPool(upto) {
     if (!L.scripted || !P.done[L.id]) continue;
     L.blocks.forEach(b => {
       if (b.t === "choose") b.items.forEach(it => out.push({ li: k, make: () => chooseStep(b, it) }));
-      if (b.t === "write") b.items.forEach(it => out.push({ li: k, make: () => ({ type: "write", title: b.title, accents: b.accents, ...it }) }));
+      if (b.t === "write") b.items.forEach(it => out.push({ li: k, make: () => ({ type: "write", title: b.title, accents: b.accents, chars: b.chars, ...it }) }));
     });
   }
   return out;
@@ -2272,7 +2273,7 @@ function stepBody(st) {
         <div class="wbox"><input class="field wfield ${cls}" id="wans" type="text" value="${esc(s.value || "")}" ${done ? "disabled" : ""}
             autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" lang="es" enterkeyhint="done"
             placeholder="${esc(st.format || "Ответ")}" aria-label="${esc(st.format || "Ответ")}">
-          ${done ? "" : `<div class="chars" role="group" aria-label="Испанские буквы">${chars.map(c => `<button type="button" data-wchar="${c}" aria-label="Вставить ${c}">${c}</button>`).join("")}</div>`}
+          ${done || !st.chars ? "" : `<div class="chars" role="group" aria-label="Испанские буквы">${chars.map(c => `<button type="button" data-wchar="${c}" aria-label="Вставить ${c}">${c}</button>`).join("")}</div>`}
           ${s.why && !done ? `<div class="wwhy" role="status">${esc(s.why)} Попробуйте ещё раз.</div>` : ""}</div>`;
     }
     case "match": {
@@ -2286,9 +2287,9 @@ function stepBody(st) {
     case "sort": {
       const s = S.state, cur = s.order[s.k];
       return `<div class="prompt">${kickerOf(st, "Распределите по группам")}</div>
-        ${cur && !s.result ? `<div class="scard"><span>${esc(cur[0][0])}</span>${cur[0][1] && canSay(cur[0][1]) ? playBtn(cur[0][1]) : ""}</div><div class="scount">${s.k + 1} из ${s.order.length}</div>` : ""}
+        ${cur && !s.result ? `<div class="scard"><span>${esc(cur[0][0])}</span>${cur[0][1] && canSay(cur[0][1]) ? playBtn(cur[0][1]) : ""}</div><div class="scount" role="status">${s.k + 1} из ${s.order.length}${s.flash != null ? " · ✗ не в эту группу" : ""}</div>` : ""}
         <div class="sgroups">${st.groups.map(([name], g) => `<button class="sg${s.flash === g ? " bad" : ""}${s.hint === g ? " hint" : ""}" data-sg="${g}" ${s.result ? "disabled" : ""}>
-          <b>${name}</b><span class="sg-items">${s.placed[g].map(x => `<i>${esc(x)}</i>`).join("")}</span></button>`).join("")}</div>`;
+          <b>${name}${s.hint === g ? " 👈" : ""}</b><span class="sg-items">${s.placed[g].map(x => `<i>${esc(x)}</i>`).join("")}</span></button>`).join("")}</div>`;
     }
     case "task":
       return `<div class="prompt"><span class="kicker">${st.title ? st.title : "Упражнение"}</span><div class="q" style="font-family:var(--body);font-weight:700;font-size:20px">${st.q}</div></div>
@@ -2316,16 +2317,26 @@ function mfLetter(ch) {
   if (s.n >= t.length) return answer(s.err === 0, st, { requeue: false });
   $(".mf").outerHTML = mfSlots(st, s);
 }
+// Плитка сравнивается без регистра и знаков по краям: «En» и «en», «mesa.» и «mesa» — одна плитка.
+const tileKey = t => String(t).toLowerCase().replace(/^[¿¡"«]+|[.,;:!?"»…]+$/g, "");
+// Плитки задания сценария: без точек и заглавной буквы в начале, чтобы первое и последнее слово не выдавали
+// себя и любой допустимый порядок (alt) собирался из тех же плиток. Имена (Pablo, España) остаются с заглавной.
+const COMMON_WORDS = new Set("el la los las un una unos unas en de y o es son hay no sí está están qué cómo dónde".split(" "));
+const bareTok = t => String(t).replace(/^[¿¡"«]+|[.,;:!?"»…]+$/g, "");
+function buildTiles(st) {
+  const show = t => { const b = bareTok(t), low = b.toLowerCase(); return b !== low && (FORMS[low] || COMMON_WORDS.has(low) || WORDS.has(low)) ? low : b; };
+  return shuffle(st.es.split(" ").map(show).concat((st.extra || []).map(show)));
+}
 function buildPick(k) {
   const st = S.steps[S.at], s = S.state, cands = s.cands || [tokens(st)], want = cands[0][s.n];
   if (s.used[k]) return;   // уже стоит во фразе: второе касание (двойной тап) ошибкой не считаем
-  const fit = cands.filter(c => c[s.n] === s.tiles[k]);
+  const fit = cands.filter(c => tileKey(c[s.n]) === tileKey(s.tiles[k]));
   if (fit.length) {
     s.cands = fit; s.used[k] = true; s.n++; s.here = 0; s.hint = null; s.flash = null; say(s.tiles[k]);
     if (s.n >= fit[0].length) return answer(s.err === 0, st, { requeue: false });
   } else {
     s.err++; s.miss++; s.here++; s.flash = k;
-    if (s.here >= 2) s.hint = s.tiles.findIndex((w, j) => w === want && !s.used[j]);
+    if (s.here >= 2) s.hint = s.tiles.findIndex((w, j) => tileKey(w) === tileKey(want) && !s.used[j]);
   }
   render();
 }
@@ -2340,7 +2351,7 @@ function buildVerdict(st, s) {
 function hint() {
   const st = S.steps[S.at], s = S.state;
   s.err++; s.helps++;
-  if (st.type === "build") { s.hint = s.tiles.findIndex((w, j) => w === (s.cands || [tokens(st)])[0][s.n] && !s.used[j]); return render(); }
+  if (st.type === "build") { s.hint = s.tiles.findIndex((w, j) => tileKey(w) === tileKey((s.cands || [tokens(st)])[0][s.n]) && !s.used[j]); return render(); }
   s.n++; s.here = 0; s.flash = false; s.hint = false; mfSkip(st, s);   // мастер фраз: открыть слово
   if (s.n >= tokens(st).length) return answer(false, st, { requeue: false });
   $(".mf").outerHTML = mfSlots(st, s); $("#letter")?.focus();
@@ -2383,7 +2394,7 @@ function playerView() {
   const st = S.steps[S.at];
   if (!S.state) {
     S.state = { n: 0, err: 0, miss: 0, helps: 0, here: 0 };
-    if (st.type === "build") Object.assign(S.state, { tiles: shuffle(tokens(st).concat(st.extra || [])), used: [], cands: [st.es, ...(st.alt || [])].map(x => x.split(" ")) });
+    if (st.type === "build") Object.assign(S.state, { tiles: Array.isArray(st.alt) ? buildTiles(st) : shuffle(tokens(st)), used: [], cands: [st.es, ...(st.alt || [])].map(x => x.split(" ")) });
     if (st.type === "mf") mfSkip(st, S.state);
     if (st.type === "write") Object.assign(S.state, { value: "", tries: 0 });
     if (st.type === "match") Object.assign(S.state, { left: shuffle(st.pairs.map((_, k) => k)), done: [], sel: null, bad: null });

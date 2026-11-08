@@ -534,8 +534,14 @@ def _choose(d) -> dict:
     return {"t": "choose", "title": _html(d["title"]), "items": items}
 
 
+_SPECIAL = re.compile("[áéíóúüñÁÉÍÓÚÜÑ]")
+
+
 def _write(d) -> dict:
-    return {"t": "write", "title": _html(d["title"]), "accents": d["accents"], "items": [{
+    # Кнопки á é í ó ú ü ñ — в блоке, где такие буквы есть хотя бы в одном ответе (во всех его заданиях,
+    # чтобы кнопки не выдавали, в каком ответе они нужны). Для артиклей кнопки не нужны.
+    chars = any(_SPECIAL.search(a) for it in d["items"] for a in it["answers"])
+    return {"t": "write", "title": _html(d["title"]), "accents": d["accents"], "chars": chars, "items": [{
         "q": _html(it["q"]), "a": [plain(a) for a in it["answers"]], "show": _html(it["answers"][0]),
         "explain": _html(it["explain"]), "say": plain(it["say"]), "format": it["format"] or d["format"],
         "img": _img(it["img"]),

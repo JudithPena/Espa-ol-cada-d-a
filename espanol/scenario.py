@@ -28,6 +28,11 @@ def _exact(text: str) -> str:
     return " ".join(plain(text).lower().split())
 
 
+def _tile(token: str) -> str:
+    """Плитка «Соберите фразу» без регистра и знаков по краям: так её сравнивает страница."""
+    return re.sub(r"^[¿¡\"«]+|[.,;:!?\"»…]+$", "", token.lower())
+
+
 def _tokens(text: str) -> list[str]:
     return [w.lower() for w in spanish_words(checkable(text))]
 
@@ -55,14 +60,14 @@ def _block_issues(lesson: Lesson, block) -> list[str]:
                 out.append(f"choose: нужно от 2 до {MAX_OPTIONS} вариантов — {it['q'] or it['say']!r}")
             if len(set(keys)) != len(keys):
                 out.append(f"choose: одинаковые варианты — {it['options']!r}")
-            if not (it["q"] or it["say"] or it["lines"]):
-                out.append("choose: у вопроса нет ни q, ни say, ни lines")
+            if not (it["q"] or it["say"] or it["lines"] or it["img"]):
+                out.append("choose: у вопроса нет ни q, ни say, ни lines, ни img")
     elif t == "write":
         for it in d["items"]:
             if not it["answers"]:
                 out.append(f"write: нет ответа — {it['q']!r}")
-            if not (it["q"] or it["say"]):
-                out.append("write: у задания нет ни q, ни say")
+            if not (it["q"] or it["say"] or it["img"]):
+                out.append("write: у задания нет ни q, ни say, ни img")
     elif t == "match":
         lefts, rights = [_key(a) for a, _ in d["pairs"]], [_key(b) for _, b in d["pairs"]]
         if not 2 <= len(lefts) <= MAX_PAIRS:
@@ -81,17 +86,26 @@ def _block_issues(lesson: Lesson, block) -> list[str]:
             if not 2 <= len(words) <= 10:
                 out.append(f"build: во фразе нужно от 2 до 10 слов — {it['es']!r}")
             for alt in it["alt"]:
-                if sorted(alt.split()) != sorted(words):
+                if sorted(map(_tile, alt.split())) != sorted(map(_tile, words)):
                     out.append(f"build: другой порядок должен состоять из тех же плиток — {alt!r}")
-            if set(it["extra"]) & set(words):
+            if {_tile(x) for x in it["extra"]} & {_tile(x) for x in words}:
                 out.append(f"build: лишняя плитка совпадает со словом фразы — {it['extra']!r}")
     elif t == "learn":
         pass
     return out
 
 
+def _img_issues(block) -> list[str]:
+    from .site import ART, ART_SLUGS
+
+    if block.type not in ("choose", "write"):
+        return []
+    bad = [it["img"] for it in block.data["items"] if it["img"] and not (it["img"] in ART_SLUGS and (ART / f"{ART_SLUGS[it['img']]}.webp").exists())]
+    return [f"{block.type}: у слова «{x}» нет картинки (ART_SLUGS в espanol/site.py)" for x in bad]
+
+
 def check_lesson(lesson: Lesson, lexicon: Lexicon) -> list[Issue]:
-    issues = [Issue(lesson, msg) for block in lesson.blocks for msg in _block_issues(lesson, block)]
+    issues = [Issue(lesson, msg) for block in lesson.blocks for msg in _block_issues(lesson, block) + _img_issues(block)]
     blocks = lesson.blocks
     for k, block in enumerate(blocks):
         if block.type == "mission" and not any(b.type in GRADED_BLOCKS for b in blocks[k + 1:]):
