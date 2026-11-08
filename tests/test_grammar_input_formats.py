@@ -8,7 +8,7 @@ from espanol.grammar import load_grammar
 
 def test_all_typing_questions_have_complete_format_guidance():
     units = load_grammar()
-    assert len(units) == 27
+    assert len(units) == 29
     typed = legacy = 0
     for unit in units:
         for group in [s['check'] for s in unit['sections'] if s.get('check')] + unit['exercises']:
@@ -21,7 +21,7 @@ def test_all_typing_questions_have_complete_format_guidance():
                     legacy += 1
                 else:
                     typed += 1
-    assert (typed, legacy) == (663, 65)
+    assert (typed, legacy) == (723, 70)
 
 
 @pytest.mark.parametrize('format', [{}, {'instruction':'Впиши слово'}, 'слово',

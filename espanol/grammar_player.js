@@ -632,6 +632,8 @@ const G_UNIT_ICONS = {
   '025_uno_dos_tres': '🔢',
   '026_cien_mil_millon': '💶',
   '027_primero_segundo': '🏢',
+  '028_relativos_que': '🔗',
+  '029_cuyo_donde_cuando': '🧭',
 };
 function gUnitComplete(unit) {
   const routes=gRoutes(unit);
