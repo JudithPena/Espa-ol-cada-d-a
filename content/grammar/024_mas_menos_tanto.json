@@ -1,0 +1,1363 @@
+{
+  "id": "024_mas_menos_tanto",
+  "number": 24,
+  "title": "Más, menos, tanto… como",
+  "subtitle": "Как сравнить количество",
+  "level": "A1",
+  "sections": [
+    {
+      "title": "Больше или меньше — más и menos",
+      "presentation": "comparison",
+      "paragraphs": [
+        "Если сравниваем, **сколько чего-то у двух людей или в двух ситуациях**, используем `más` — больше или `menos` — меньше: `Ana tiene más libros que yo` — у Аны больше книг, чем у меня.",
+        "Между словом количества и `que` ставим название: **`más / menos + название + que`**. Например, `Hoy tengo menos trabajo que ayer` — сегодня у меня меньше работы, чем вчера.",
+        "**`Más` и `menos` не меняются по роду и числу**: `más agua`, `más libros`, `menos horas`. Если уже понятно, с чем сравниваем, вторую часть можно не повторять: после обеда `Ahora tengo menos hambre` — теперь я меньше голоден."
+      ],
+      "wordGroups": [
+        {
+          "title": "📚 У Аны 8 книг, у меня 3",
+          "words": [
+            [
+              "Ana tiene más libros que yo.",
+              "У Аны больше книг, чем у меня."
+            ]
+          ]
+        },
+        {
+          "title": "📚 У меня 3 книги, у Аны 8",
+          "words": [
+            [
+              "Tengo menos libros que Ana.",
+              "У меня меньше книг, чем у Аны."
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-1",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "Ana tiene ___ libros que Luis.",
+            "answers": [
+              "más"
+            ],
+            "explain": "У Аны книг больше: más. Tanto строится с como, а не que.",
+            "context": "У Аны восемь книг, у Луиса три. Дополни сравнение.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "menos",
+              "tantos",
+              "más"
+            ]
+          },
+          {
+            "prompt": "Tengo menos tiempo ___ tú.",
+            "answers": [
+              "que"
+            ],
+            "explain": "После menos в таком сравнении ставим que.",
+            "context": "У меня меньше времени, чем у тебя.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "como",
+              "que",
+              "de"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Столько же — tanto… como",
+      "presentation": "paradigm",
+      "paragraphs": [
+        "Если количество одинаковое, говорим **`tanto / tanta / tantos / tantas + название + como`**: `Tengo tantas sillas como tú` — у меня столько же стульев, сколько у тебя. Форму `tanto` выбираем по роду и числу названия.",
+        "Если в нашей ситуации чего-то меньше, можно сказать **`no… tanto… como`**: `No tengo tantos libros como Ana` — у меня не столько книг, сколько у Аны. Например, у меня три, а у неё восемь.",
+        "Сравни количество и качество: **`tanta agua como` — столько же воды, сколько**, но **`tan fría como` — такая же холодная, как**. Перед названием `agua` нужна полная форма `tanta`, не `tan`. `Agua`, `hambre`, `gente` — женского рода."
+      ],
+      "table": {
+        "heads": [
+          "С чем сочетаем",
+          "Столько же"
+        ],
+        "compactForms": true,
+        "rows": [
+          [
+            "Мужской род, ед. ч.",
+            "tanto dinero como tú"
+          ],
+          [
+            "Женский род, ед. ч.",
+            "tanta agua como tú"
+          ],
+          [
+            "Мужской род, мн. ч.",
+            "tantos libros como tú"
+          ],
+          [
+            "Женский род, мн. ч.",
+            "tantas horas como tú"
+          ]
+        ]
+      },
+      "check": {
+        "id": "check-2",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "Tenemos ___ prisa como tú.",
+            "answers": [
+              "tanta"
+            ],
+            "explain": "Prisa — женский род, единственное число: tanta prisa.",
+            "context": "Мы спешим так же, как ты.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "tanto",
+              "tanta",
+              "tantas"
+            ]
+          },
+          {
+            "prompt": "Tengo tantos libros ___ ella.",
+            "answers": [
+              "como"
+            ],
+            "explain": "Равное количество выражаем через tanto…como.",
+            "context": "У меня столько же книг, сколько у неё.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "que",
+              "de",
+              "como"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Сравни данные и свяжи две части",
+      "presentation": "examples",
+      "paragraphs": [
+        "Сначала посмотри на количества: **больше → `más… que`, меньше → `menos… que`, столько же → `tanto… como`**. Например, у Клары двадцать песо, у Роберто двести: `Clara tiene menos dinero que Roberto`.",
+        "**После `que` и `como` здесь используем `yo`, `tú`, `él`, `ella`, `nosotros`, `vosotros`, `ustedes`**: `Tengo más libros que tú`, `Tengo tanta hambre como él`. В таких фразах нужно `que yo`, а не `que mí`.",
+        "В упражнениях название и имя уже написаны. Заполняем только связки: `Clara tiene ___ dinero ___ Roberto` → `menos` и `que`. Если стоит `no`, проверь весь смысл: `Elsa no bebe tanta leche como Eloy` — Эльса пьёт молока меньше, чем Элой."
+      ],
+      "dialogues": [
+        {
+          "title": "Сколько у тебя времени?",
+          "lines": [
+            [
+              "Tengo dos horas libres. ¿Y tú?",
+              "У меня два свободных часа. А у тебя?"
+            ],
+            [
+              "Tengo más tiempo que tú: tres horas.",
+              "У меня больше времени, чем у тебя: три часа."
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-3",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "Tengo más libros que ___.",
+            "answers": [
+              "tú"
+            ],
+            "explain": "После que в этом сравнении нужно tú — «ты». Tu без знака — «твой», а ti здесь не подходит.",
+            "context": "Книг у меня больше, чем у тебя. Выбери местоимение.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "ti",
+              "tu",
+              "tú"
+            ]
+          },
+          {
+            "prompt": "У меня два стула, у тебя пять. Начни с No tengo.",
+            "answers": [
+              "No tengo tantas sillas como tú."
+            ],
+            "explain": "Под отрицанием сравниваем с большим количеством: no tengo tantas sillas como tú.",
+            "context": "Выбери фразу с нужной формой и связкой.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "No tengo tantos sillas como tú.",
+              "No tengo tantas sillas que tú.",
+              "No tengo tantas sillas como tú."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Короткий ответ: больше, меньше или столько же",
+      "presentation": "examples",
+      "paragraphs": [
+        "Если название уже прозвучало, **необязательно повторять его**: `—Tengo dos hijos. —Yo tengo más` — «У меня двое детей. —А у меня больше». Можно уточнить, с кем сравниваем: `Yo tengo más que tú`.",
+        "В коротком ответе `tanto` сохраняет род и число названия: `—Tengo diez libros. —Yo no tengo tantos` — «У меня десять книг. —У меня не столько». Для `horas` будет `tantas`, для `agua` — `tanta`.",
+        "Чтобы ясно сказать **«столько же» в утвердительном сравнении**, используй `como`: `Yo tengo tantos como tú` — у меня столько же, сколько у тебя. Если сказать просто `Tengo tantos libros…`, фраза может выражать «У меня так много книг…» — это уже другой смысл.",
+        "Когда сравниваем само действие без названия, используем **неизменяемое `tanto`**: `Trabajo tanto como tú` — я работаю столько же, сколько ты. Но с написанным `horas` согласуем: `Trabajo tantas horas como tú`."
+      ],
+      "dialogues": [
+        {
+          "title": "Отпуск",
+          "lines": [
+            [
+              "Tengo veinte días de vacaciones.",
+              "У меня двадцать дней отпуска."
+            ],
+            [
+              "Yo tengo menos: quince.",
+              "А у меня меньше: пятнадцать."
+            ]
+          ]
+        },
+        {
+          "title": "Одинаковое количество",
+          "lines": [
+            [
+              "Tengo tres entradas.",
+              "У меня три билета."
+            ],
+            [
+              "Yo tengo tantas como tú.",
+              "У меня столько же, сколько у тебя."
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-4",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "—Tengo diez revistas. —Yo no tengo ___.",
+            "answers": [
+              "tantas"
+            ],
+            "explain": "Подразумеваем revistas: женский род, множественное число — tantas.",
+            "context": "У меня не столько журналов.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "tanto",
+              "tantas",
+              "tantos"
+            ]
+          },
+          {
+            "prompt": "—Trabajo seis horas. —Yo trabajo ___ tú.",
+            "answers": [
+              "tanto como"
+            ],
+            "explain": "Сравниваем действие trabajo без названия horas: tanto como.",
+            "context": "Я работаю столько же, сколько ты.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "tantas como",
+              "tanto que",
+              "tanto como"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "24.1a",
+      "title": "24.1a · Больше или меньше — дополни фразу",
+      "theorySections": [
+        0
+      ],
+      "questions": [
+        {
+          "prompt": "En estos datos, Buenos Aires tiene ___ habitantes que Madrid.",
+          "answers": [
+            "más"
+          ],
+          "explain": "más + название + que. Форма más не зависит от рода и числа названия.",
+          "context": "По учебным данным в этой задаче жителей в Буэнос-Айресе больше, чем в Мадриде.",
+          "sourceRef": "24.1.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Ahora bebo ___ leche que cuando era pequeño.",
+          "answers": [
+            "menos"
+          ],
+          "explain": "menos + название + que. Форма menos не зависит от рода и числа названия.",
+          "context": "Сейчас я пью меньше молока, чем в детстве.",
+          "sourceRef": "24.1.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Sol ha leído ___ libros que yo.",
+          "answers": [
+            "más"
+          ],
+          "explain": "más + название + que. Форма más не зависит от рода и числа названия.",
+          "context": "Соль прочитала больше книг, чем я.",
+          "sourceRef": "24.1.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "José Manuel trabaja ___ horas que tú.",
+          "answers": [
+            "menos"
+          ],
+          "explain": "menos + название + que. Форма menos не зависит от рода и числа названия.",
+          "context": "Хосе Мануэль работает меньше часов, чем ты.",
+          "sourceRef": "24.1.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Samuel tiene ___ ropa que yo.",
+          "answers": [
+            "más"
+          ],
+          "explain": "más + название + que. Форма más не зависит от рода и числа названия.",
+          "context": "У Самуэля больше одежды, чем у меня.",
+          "sourceRef": "24.1.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "En esta historia, en La Paz hace ___ frío que en Caracas.",
+          "answers": [
+            "más"
+          ],
+          "explain": "más + название + que. Форма más не зависит от рода и числа названия.",
+          "context": "В этой истории в Ла-Пасе холоднее, чем в Каракасе.",
+          "sourceRef": "24.1.9",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        }
+      ],
+      "preview": {
+        "source": "Tengo ___ maletas que tú.",
+        "sentenceParts": [
+          "Tengo ",
+          " maletas que tú."
+        ],
+        "answer": "menos",
+        "targetPrefix": "",
+        "translation": "У меня меньше чемоданов, чем у тебя."
+      },
+      "instruction": "Вставь más или menos по смыслу ситуации. Название и que уже написаны.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши только más или menos. Остальную фразу не повторяй.",
+        "placeholder": "Más или menos"
+      }
+    },
+    {
+      "id": "24.1b",
+      "title": "24.1b · Столько же — выбери форму tanto",
+      "theorySections": [
+        1
+      ],
+      "questions": [
+        {
+          "prompt": "No tengo ___ amigos como mi hermana.",
+          "answers": [
+            "tantos"
+          ],
+          "explain": "Amigos — мужской род, множественное число: tantos.",
+          "context": "У меня меньше друзей, чем у сестры: не столько же.",
+          "sourceRef": "24.1.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "En esta historia, en Canarias no hace ___ calor como en Cuba.",
+          "answers": [
+            "tanto"
+          ],
+          "explain": "Calor — мужской род, единственное число: tanto.",
+          "context": "В этой истории на Канарах не так жарко, как на Кубе.",
+          "sourceRef": "24.1.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Tenemos ___ prisa como tú.",
+          "answers": [
+            "tanta"
+          ],
+          "explain": "Prisa — женский род, единственное число: tanta.",
+          "context": "Мы спешим так же сильно, как ты.",
+          "sourceRef": "24.1.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Tengo ___ botellas como tú.",
+          "answers": [
+            "tantas"
+          ],
+          "explain": "Botellas — женский род, множественное число: tantas.",
+          "context": "У нас одинаковое количество бутылок.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "No queda ___ agua como antes.",
+          "answers": [
+            "tanta"
+          ],
+          "explain": "Agua — женский род: tanta, даже при сочетании el agua.",
+          "context": "Воды осталось меньше, чем было раньше.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Tengo ___ hambre como ella.",
+          "answers": [
+            "tanta"
+          ],
+          "explain": "Hambre — женский род и единственное число: tanta.",
+          "context": "Я голоден так же, как она.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        }
+      ],
+      "preview": {
+        "source": "Hoy tengo ___ trabajo como ayer.",
+        "sentenceParts": [
+          "Hoy tengo ",
+          " trabajo como ayer."
+        ],
+        "answer": "tanto",
+        "targetPrefix": "",
+        "translation": "Сегодня работы столько же, сколько вчера."
+      },
+      "instruction": "Вставь tanto, tanta, tantos или tantas. Проверь род и число названия после пропуска.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши только нужную форму tanto. Название и como уже написаны.",
+        "placeholder": "Форма tanto"
+      }
+    },
+    {
+      "id": "24.2",
+      "title": "24.2 · Сравни два количества",
+      "theorySections": [
+        2
+      ],
+      "questions": [
+        {
+          "prompt": "Clara tiene ___ dinero ___ Roberto.",
+          "answers": [
+            "menos que"
+          ],
+          "explain": "У Клары меньше денег: menos dinero que Roberto.",
+          "context": "Сравни, сколько денег у Клары и Роберто.",
+          "sourceRef": "24.2.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "Clara tiene ",
+            " dinero ",
+            " Roberto."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "facts": {
+            "label": "Данные для сравнения",
+            "items": [
+              [
+                "Clara",
+                "20 pesos"
+              ],
+              [
+                "Roberto",
+                "200 pesos"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Elsa no bebe ___ leche ___ Eloy.",
+          "answers": [
+            "tanta como"
+          ],
+          "explain": "После no bebe: tanta leche como Eloy. Leche — женский род.",
+          "context": "Эльса пьёт молока меньше; начни сравнение с уже написанного no.",
+          "sourceRef": "24.2.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "Elsa no bebe ",
+            " leche ",
+            " Eloy."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "facts": {
+            "label": "Данные для сравнения",
+            "items": [
+              [
+                "Elsa",
+                "0,5 litros"
+              ],
+              [
+                "Eloy",
+                "1 litro"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Hoy hace ___ calor ___ ayer.",
+          "answers": [
+            "más que"
+          ],
+          "explain": "Más calor que ayer — жары больше, чем вчера.",
+          "context": "Сегодня жарче, чем вчера.",
+          "sourceRef": "24.2.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "Hoy hace ",
+            " calor ",
+            " ayer."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "facts": {
+            "label": "Данные для сравнения",
+            "items": [
+              [
+                "Hoy",
+                "30 °C"
+              ],
+              [
+                "Ayer",
+                "25 °C"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Rosario no tiene ___ habitantes ___ Mendoza.",
+          "answers": [
+            "tantos como"
+          ],
+          "explain": "Habitantes — мужской род, множественное число: tantos…como.",
+          "context": "По учебным данным жителей в Росарио меньше. Дополни отрицательное сравнение.",
+          "sourceRef": "24.2.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "Rosario no tiene ",
+            " habitantes ",
+            " Mendoza."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "facts": {
+            "label": "Данные для сравнения",
+            "items": [
+              [
+                "Rosario",
+                "1 millón"
+              ],
+              [
+                "Mendoza",
+                "1,5 millones"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Simón tiene ___ años ___ yo.",
+          "answers": [
+            "más que"
+          ],
+          "explain": "Más años que yo — лет больше, чем у меня.",
+          "context": "Симон старше меня: сравни количество лет.",
+          "sourceRef": "24.2.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "Simón tiene ",
+            " años ",
+            " yo."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "facts": {
+            "label": "Данные для сравнения",
+            "items": [
+              [
+                "Simón",
+                "30 años"
+              ],
+              [
+                "Yo",
+                "28 años"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Hoy no han venido ___ estudiantes ___ ayer.",
+          "answers": [
+            "tantos como"
+          ],
+          "explain": "Estudiantes — множественное число; в этом сравнении tantos…como.",
+          "context": "Сегодня студентов пришло меньше. Начало с no уже написано.",
+          "sourceRef": "24.2.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "Hoy no han venido ",
+            " estudiantes ",
+            " ayer."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "facts": {
+            "label": "Данные для сравнения",
+            "items": [
+              [
+                "Hoy",
+                "10 estudiantes"
+              ],
+              [
+                "Ayer",
+                "12 estudiantes"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Hoy no hace ___ frío ___ ayer.",
+          "answers": [
+            "tanto como"
+          ],
+          "explain": "Frío — мужской род, единственное число: tanto frío como ayer.",
+          "context": "Сегодня не так холодно, как вчера.",
+          "sourceRef": "24.2.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "Hoy no hace ",
+            " frío ",
+            " ayer."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "facts": {
+            "label": "Данные для сравнения",
+            "items": [
+              [
+                "Hoy",
+                "10 °C"
+              ],
+              [
+                "Ayer",
+                "5 °C"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Irene tiene ___ hambre ___ yo.",
+          "answers": [
+            "más que"
+          ],
+          "explain": "Más hambre que yo — голод сильнее, чем у меня. Más не меняется.",
+          "context": "Ирене говорит, что голоднее меня. Дополни сравнение.",
+          "sourceRef": "24.2.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "Irene tiene ",
+            " hambre ",
+            " yo."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "facts": {
+            "label": "Данные для сравнения",
+            "items": [
+              [
+                "Irene",
+                "Не ела со вчерашнего вечера"
+              ],
+              [
+                "Yo",
+                "Не ел с утра"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Tengo ___ corbatas ___ tú.",
+          "answers": [
+            "tantas como"
+          ],
+          "explain": "Corbatas — женский род, множественное число: tantas…como.",
+          "context": "У нас одинаковое количество галстуков.",
+          "sourceRef": "24.2.9",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "Tengo ",
+            " corbatas ",
+            " tú."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "facts": {
+            "label": "Данные для сравнения",
+            "items": [
+              [
+                "Yo",
+                "2 corbatas"
+              ],
+              [
+                "Tú",
+                "2 corbatas"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "He recibido ___ postales ___ vosotros.",
+          "answers": [
+            "menos que"
+          ],
+          "explain": "Меньше открыток: menos postales que vosotros.",
+          "context": "Я получил меньше открыток, чем вы.",
+          "sourceRef": "24.2.10",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "He recibido ",
+            " postales ",
+            " vosotros."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "facts": {
+            "label": "Данные для сравнения",
+            "items": [
+              [
+                "Yo",
+                "3 postales"
+              ],
+              [
+                "Vosotros",
+                "5 postales"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Tengo más libros ___ tú.",
+          "answers": [
+            "que"
+          ],
+          "explain": "После más нужно que; como используем с tanto.",
+          "context": "Исправь только связку в сравнении.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "Tengo más libros ",
+            "como",
+            " tú."
+          ],
+          "sourceLabel": "Исправь связку",
+          "inputFormat": {
+            "instruction": "Впиши только исправленную связку.",
+            "placeholder": "Que или como"
+          }
+        },
+        {
+          "prompt": "___",
+          "answers": [
+            "más tiempo que yo"
+          ],
+          "explain": "При сравнении используем que yo, не que mí; más перед временем не меняется.",
+          "context": "Собери «больше времени, чем у меня». Не все слова нужны.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "yo",
+            "como",
+            "más",
+            "tiempo",
+            "que",
+            "mí"
+          ],
+          "inputFormat": {
+            "instruction": "Собери только указанное сочетание, без Tengo.",
+            "placeholder": "Сочетание"
+          }
+        }
+      ],
+      "preview": {
+        "source": "Tengo ___.",
+        "sentenceParts": [
+          "Tengo ",
+          "."
+        ],
+        "answer": "tantas maletas como tú",
+        "targetPrefix": "",
+        "translation": "У меня столько же чемоданов, сколько у тебя."
+      },
+      "instruction": "Посмотри на данные и заполни две связки. Названия и имена уже написаны. В конце исправь одну связку и собери сочетание.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "В первом поле — más, menos или форма tanto; во втором — que или como.",
+        "placeholder": "Связка"
+      }
+    },
+    {
+      "id": "24.3",
+      "title": "24.3 · Продолжи разговор без повторов",
+      "theorySections": [
+        3
+      ],
+      "questions": [
+        {
+          "prompt": "—Felipe tiene dos hijos. —Yo tengo ___. Tengo cuatro.",
+          "answers": [
+            "más",
+            "más que él"
+          ],
+          "explain": "Подразумеваем hijos. Больше — más; можно уточнить más que él.",
+          "context": "У Фелипе двое детей, у меня четверо: у меня больше.",
+          "sourceRef": "24.3.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "—Tengo siete hermanos. —Yo tengo casi ___. Tengo seis.",
+          "answers": [
+            "tantos como tú"
+          ],
+          "explain": "Hermanos — мужской род, множественное число: tantos como tú.",
+          "context": "У тебя семь братьев и сестёр, у меня шесть: почти столько же. Дополни сравнение с «тобой».",
+          "sourceRef": "24.3.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "—Aurora tiene treinta días de vacaciones. —Yo tengo ___. Tengo veintidós.",
+          "answers": [
+            "menos",
+            "menos que ella"
+          ],
+          "explain": "Меньше дней — menos; допустимо уточнить menos que ella.",
+          "context": "У Ауроры тридцать дней отпуска, у меня двадцать два: у меня меньше.",
+          "sourceRef": "24.3.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "—Tengo quinientos libros. —Yo no tengo ___. Tengo trescientos.",
+          "answers": [
+            "tantos",
+            "tantos como tú"
+          ],
+          "explain": "Подразумеваем libros: tantos. Под отрицанием понятное como tú можно не повторять.",
+          "context": "У тебя пятьсот книг, у меня триста: у меня не столько.",
+          "sourceRef": "24.3.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "—Tengo sueño. He dormido cuatro horas. —Yo tengo ___. Solo he dormido dos.",
+          "answers": [
+            "más",
+            "más que tú"
+          ],
+          "explain": "Сравниваем сонливость sueño: más; допустимо más que tú.",
+          "context": "Я говорю, что хочу спать сильнее, чем ты.",
+          "sourceRef": "24.3.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "—Hoy hay doscientos espectadores. —Ayer había ___. Solo cincuenta.",
+          "answers": [
+            "menos",
+            "menos que hoy"
+          ],
+          "explain": "Сравниваем зрителей: menos; можно уточнить menos que hoy.",
+          "context": "Сегодня двести зрителей, вчера было только пятьдесят: вчера меньше.",
+          "sourceRef": "24.3.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "—Hemos estado en diez países. —Yo he estado en ___. He estado en doce.",
+          "answers": [
+            "más",
+            "más que vosotros",
+            "más que ustedes"
+          ],
+          "explain": "После en используем más без повторения países; можно добавить que vosotros / que ustedes.",
+          "context": "Вы были в десяти странах, я в двенадцати: я в большем количестве стран.",
+          "sourceRef": "24.3.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "—Trabajo ocho horas al día. —Yo trabajo ___. También ocho.",
+          "answers": [
+            "tanto como tú"
+          ],
+          "explain": "После trabajo без названия horas используем tanto como tú.",
+          "context": "Мы работаем одинаковое количество часов. Дополни сравнение с «тобой».",
+          "sourceRef": "24.3.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "—Tengo diez sillas. —Yo no tengo ___. Solo seis.",
+          "answers": [
+            "tantas",
+            "tantas como tú"
+          ],
+          "explain": "Sillas — женский род, множественное число; без названия сохраняем tantas.",
+          "context": "У тебя десять стульев, у меня шесть: у меня не столько.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        }
+      ],
+      "preview": {
+        "source": "—Tengo cinco entradas. —Yo no tengo ___.",
+        "sentenceParts": [
+          "—Tengo cinco entradas. —Yo no tengo ",
+          "."
+        ],
+        "answer": "tantas",
+        "targetPrefix": "",
+        "translation": "—У меня пять билетов. —У меня не столько."
+      },
+      "instruction": "Ответь коротко по ситуации. Названия повторять не нужно. Там, где указано «с тобой», допиши como tú.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши только пропущенное слово или сравнительное сочетание. Остальную реплику не повторяй.",
+        "placeholder": "Пропущенная часть"
+      }
+    }
+  ],
+  "learningOrder": [
+    "section:0",
+    "exercise:24.1a",
+    "section:1",
+    "exercise:24.1b",
+    "section:2",
+    "exercise:24.2",
+    "section:3",
+    "exercise:24.3",
+    "summary"
+  ],
+  "summary": {
+    "wordGroups": [
+      {
+        "title": "Больше и меньше",
+        "words": [
+          [
+            "más libros que tú",
+            "больше книг, чем у тебя"
+          ],
+          [
+            "menos agua que antes",
+            "меньше воды, чем раньше"
+          ]
+        ]
+      },
+      {
+        "title": "Столько же",
+        "words": [
+          [
+            "tanto dinero / tanta agua",
+            "род и число названия"
+          ],
+          [
+            "tantos libros / tantas horas",
+            "во множественном числе"
+          ],
+          [
+            "Tengo tantas horas como tú.",
+            "У меня столько же часов, сколько у тебя."
+          ]
+        ]
+      },
+      {
+        "title": "Короткий ответ",
+        "words": [
+          [
+            "Yo tengo más. / Yo tengo menos.",
+            "Название понятно из разговора"
+          ],
+          [
+            "Yo no tengo tantos.",
+            "Не столько; подразумеваем libros"
+          ],
+          [
+            "Yo tengo tantos como tú.",
+            "Столько же, сколько у тебя"
+          ],
+          [
+            "Trabajo tanto como tú.",
+            "Сравниваем действие: tanto не меняется"
+          ]
+        ]
+      }
+    ]
+  }
+}

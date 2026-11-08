@@ -613,7 +613,7 @@ test('the group-name mini-check keeps errors and repeats them without losing liv
 test('every mini-check in all 17 units renders choices and completes by clicking',()=>{
  const units=fs.readdirSync('content/grammar').filter(f=>f.endsWith('.json')).sort()
   .map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
- assert.equal(units.length,24);
+ assert.equal(units.length,27);
  for(const unit of units){
   const run=context([unit]);
   for(const [index,section] of unit.sections.entries()){
@@ -763,7 +763,7 @@ test('all typing screens show a persistent format and example without changing g
   })())`));
   typed+=result.typed;legacy+=result.legacy;
  }
- assert.equal(typed,573);assert.equal(legacy,60);
+ assert.equal(typed,663);assert.equal(legacy,65);
 });
 
 test('quantity answers accept digits or words while the field explains the quantity format', () => {
@@ -823,7 +823,7 @@ test('the size-based life limit stops every exercise in all 17 units, without cr
   assert.equal(run(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id===${JSON.stringify(group.id)})).errors`),limit);
   count++;
  }
- assert.equal(count,86);
+ assert.equal(count,97);
 });
 
 test('exit, route restart, whole-unit restart and reload preserve the failed or active attempt', () => {
@@ -1152,7 +1152,7 @@ test('every accepted alternative in mini-checks is offered and any one correct c
    }
   }
  }
- assert.equal(checked,14);
+ assert.equal(checked,16);
 });
 
 test('grammar list gives each theme a distinct icon and marks only fully completed themes',()=>{
@@ -1160,7 +1160,7 @@ test('grammar list gives each theme a distinct icon and marks only fully complet
  const run=context(units);
  run('view.grammar=null;');
  const icons=run('COURSE.grammar.map(u=>G_UNIT_ICONS[u.id])');
- assert.ok(icons.every(Boolean));assert.equal(new Set(icons).size,24);
+ assert.ok(icons.every(Boolean));assert.equal(new Set(icons).size,27);
  assert.ok(!run('grammarView()').includes('gcompleted-badge'));
  // Completing the exercises alone leaves mini-checks and theory unfinished.
  run(`const doneUnit=COURSE.grammar[0];for(const g of doneUnit.exercises)P.grammar[grammarKey(doneUnit,g)]={correct:0,total:g.questions.length};`);
@@ -1171,7 +1171,7 @@ test('grammar list gives each theme a distinct icon and marks only fully complet
  assert.equal(run('gUnitComplete(COURSE.grammar[0])'),true);
  const html=run('grammarView()');
  assert.equal((html.match(/gcompleted-badge/g)||[]).length,1);
- assert.ok(html.includes('Пройдено тем: 1 из 24'));
+ assert.ok(html.includes('Пройдено тем: 1 из 27'));
  assert.match(html,/class="mcard gcomplete" data-grammar="001_el_hijo_la_hija"/);
  assert.match(html,/class="mcard " data-grammar="002_el_libro_la_mesa"/);
  run('delete P.grammarRead[COURSE.grammar[0].id+"/summary"];');
@@ -1521,7 +1521,7 @@ test('multi-answer audit keeps regional, contextual and equally valid choices gr
    }
   }
  }
- assert.equal(questions,1182);assert.equal(alternatives,137);assert.equal(warnings,6);
+ assert.equal(questions,1299);assert.equal(alternatives,148);assert.equal(warnings,6);
 });
 
 test('yellow mini-check choices still have no lives and complete normally',()=>{
@@ -1559,7 +1559,7 @@ test('all 17 completion screens derive the next lesson from course order and pre
    assert.ok(html.includes('Все уроки раздела пройдены!'));assert.ok(!html.includes('data-gnext-unit'));
    handlers.click({target:{closest:s=>s==='button, .spoiler, [data-say], [data-line]'?{dataset:{grammarList:''}}:null,classList:{contains:()=>false}}});
    assert.equal(run('G'),null);assert.equal(run('view.grammar'),null);assert.equal(run('view.tab'),'grammar');
-   assert.equal((run('grammarView()').match(/data-grammar="/g)||[]).length,24);
+   assert.equal((run('grammarView()').match(/data-grammar="/g)||[]).length,27);
   }
   assert.equal(run('JSON.stringify(P)'),before);
  }
@@ -1690,7 +1690,7 @@ test('all grammar choice sets receive valid, balanced attempt orders without cha
    assert.deepEqual(result,{},`${u.number}/${g.id}: ${JSON.stringify(result)}`);
   }
  }
- assert.equal(standard,549);assert.equal(guided,9);
+ assert.equal(standard,571);assert.equal(guided,9);
  assert.equal(run('JSON.stringify(COURSE.grammar)'),before);
 });
 
@@ -2080,6 +2080,71 @@ test('unit 21 completes every new format and reaches the final summary without c
  assert.ok(turns<100);assert.equal(run('gUnitComplete(gUnit())'),true);
  assert.equal(run('P.xp'),76);
  assert.ok(run('gPlayerView()').includes('Все уроки раздела пройдены!'));
+});
+
+test('unit 22 distinguishes agreement, sufficiency and context-equivalent short answers',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/022_cantidad.json','utf8'));const run=context([u]);
+ for(const [gi,qi,a,status] of [[0,3,'mucha','correct'],[0,3,'mucho','wrong'],[0,6,'poca','correct'],[1,0,'demasiadas','correct'],[1,0,'demasiados','wrong'],[1,4,'suficienta','wrong'],[2,3,'bastantes gente','wrong'],[2,5,'muchos arboles','almost'],[3,1,'bastantes','correct'],[3,2,'bastante','correct'],[3,3,'muchas','wrong']]){
+  assert.equal(run(`grammarResult(COURSE.grammar[0].exercises[${gi}].questions[${qi}],${JSON.stringify(a)}).status`),status);
+ }
+});
+
+test('quantity lessons complete every format and retain three-error recovery across reload',()=>{
+ const units=fs.readdirSync('content/grammar').filter(f=>/^02[2-4]_.*\.json$/.test(f)).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
+ for(const u of units){
+  const run=context([u]);run(`gStart(COURSE.grammar[0].id,'all');`);let turns=0;
+  while(!run('G.ended')&&turns++<180){run(`var s=G.steps[G.at];if(s.type==='question'){var g=gGroups(gUnit()).find(g=>g.id===s.group);gResponse(s).value=g.questions[s.qi].answers[0];gCheck();}gMove(1);`);}
+  assert.ok(turns<180);assert.equal(run('gUnitComplete(gUnit())'),true);
+  for(const g of u.exercises){
+   const storage=new Map();let retry=context([u],storage);unlockUntil(retry,'exercise:'+g.id);
+   retry(`save();gStart(COURSE.grammar[0].id,'exercise:${g.id}');gMove(1);gResponse(G.steps[G.at]).value='parcial';gSave();`);
+   retry=context([u],storage);retry(`gStart(COURSE.grammar[0].id,'all',true);`);
+   assert.equal(retry('gResponse(G.steps[G.at]).value'),'parcial');
+   retry(`var savedBest=JSON.stringify(P.grammar);for(let i=0;i<3;i++){gResponse(G.steps[G.at]).value='incorrecto';gCheck();if(!G.recovery)gMove(1);}`);
+   assert.equal(retry(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id==='${g.id}')).errors`),3);
+   assert.equal(retry('JSON.stringify(P.grammar)'),retry('savedBest'));
+   retry=context([u],storage);retry(`gStart(COURSE.grammar[0].id,'all',true);`);
+   assert.ok(retry('G.recovery'));retry('gReviewTheory();');
+   assert.ok(retry('gPlayerView()').includes(u.sections[g.theorySections[0]].title));
+   for(let i=1;i<g.theorySections.length;i++)retry('gMove(1);');retry('gRepeatExercise();');
+   assert.equal(retry(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id==='${g.id}')).errors`),0);
+  }
+ }
+});
+
+test('unit 23 distinguishes people and things, negation order and quantity de',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/023_alguien_algo.json','utf8'));const run=context([u]);
+ for(const [gi,qi,a,status] of [[0,0,'No hay nadie','wrong'],[0,1,'Hay alguien','correct'],[0,3,'No hay nada','wrong'],[1,3,'algo','wrong'],[1,5,'Nadie','correct'],[1,10,'Nadie no ha venido','wrong'],[1,10,'Nadie ha venido','correct'],[2,0,'nada algo','wrong'],[2,0,'nada de algo de','correct'],[2,1,'algo de','wrong'],[2,2,'nada algo de','correct']])
+  assert.equal(run(`grammarResult(COURSE.grammar[0].exercises[${gi}].questions[${qi}],${JSON.stringify(a)}).status`),status);
+ const storage=new Map();let r=context([u],storage);unlockUntil(r,'exercise:23.3');
+ r(`save();gStart(COURSE.grammar[0].id,'exercise:23.3');gMove(1);var x=gResponse(G.steps[G.at]);x.gapValues=['nada de',''];x.value='';gSave();gCheck();`);
+ assert.equal(r('gResponse(G.steps[G.at]).checked'),false);
+ r=context([u],storage);r(`gStart(COURSE.grammar[0].id,'all',true);`);
+ assert.equal(r('gResponse(G.steps[G.at]).gapValues[0]'),'nada de');
+ r(`var x=gResponse(G.steps[G.at]);x.gapValues=['nada de','algo de'];x.value='nada de algo de';gCheck();`);
+ assert.equal(r('gResponse(G.steps[G.at]).status'),'correct');
+});
+
+test('unit 24 checks comparison links, noun agreement and meaning-changing accents',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/024_mas_menos_tanto.json','utf8'));const run=context([u]);
+ for(const [gi,qi,a,status] of [[0,0,'mas','wrong'],[0,0,'más','correct'],[1,4,'tanto','wrong'],[1,4,'tanta','correct'],[2,0,'menos como','wrong'],[2,0,'menos que','correct'],[2,1,'tanta como','correct'],[2,1,'tanto como','wrong'],[3,1,'tantos como tu','wrong'],[3,3,'tantos como tú','correct'],[3,7,'tantas como tú','wrong'],[3,7,'tanto como tú','correct'],[3,8,'tantas','correct']])
+  assert.equal(run(`grammarResult(COURSE.grammar[0].exercises[${gi}].questions[${qi}],${JSON.stringify(a)}).status`),status);
+ const storage=new Map();let r=context([u],storage);unlockUntil(r,'exercise:24.2');
+ r(`save();gStart(COURSE.grammar[0].id,'exercise:24.2');gMove(1);var x=gResponse(G.steps[G.at]);x.gapValues=['menos',''];x.value='';gSave();gCheck();`);
+ assert.equal(r('gResponse(G.steps[G.at]).checked'),false);
+ r=context([u],storage);r(`gStart(COURSE.grammar[0].id,'all',true);`);
+ assert.equal(r('gResponse(G.steps[G.at]).gapValues[0]'),'menos');
+ r(`var x=gResponse(G.steps[G.at]);x.gapValues=['menos','que'];x.value='menos que';gCheck();`);
+ assert.equal(r('gResponse(G.steps[G.at]).status'),'correct');
+});
+
+test('course next-lesson cards now connect 21 through 27 without skipping 22 to 24',()=>{
+ const units=fs.readdirSync('content/grammar').filter(f=>/^02[1-7]_.*\.json$/.test(f)).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
+ for(let i=0;i<units.length-1;i++){
+  const run=context(units);
+  assert.equal(run(`gNextUnit(COURSE.grammar[${i}]).number`),units[i+1].number);
+  const html=run(`gFinalView(COURSE.grammar[${i}],[],0)`);assert.ok(html.includes('Далее · Урок '+units[i+1].number));assert.ok(html.includes(units[i+1].title));
+ }
 });
 
 test('numeral unit 25 distinguishes agreement, accents, date alternatives and leading telephone zeroes',()=>{

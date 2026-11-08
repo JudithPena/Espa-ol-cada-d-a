@@ -1,0 +1,1055 @@
+{
+  "id": "023_alguien_algo",
+  "number": 23,
+  "title": "Alguien, algo, nadie, nada",
+  "subtitle": "Кто-то, что-то, никто и ничего",
+  "level": "A1",
+  "sections": [
+    {
+      "title": "Кто-то или что-то есть — или нет",
+      "presentation": "comparison",
+      "paragraphs": [
+        "Если **человек есть, но мы не называем, кто это**, используем `alguien`: `Hay alguien en la puerta` — у двери кто-то есть. Если речь **о вещи или событии**, используем `algo`: `Hay algo en la caja` — в коробке что-то есть.",
+        "Если людей нет, говорим **`No hay nadie` — никого нет**. Если нет вещей, говорим **`No hay nada` — ничего нет**. Например, в комнате может быть мебель, но не быть людей: `No hay nadie en la habitación`.",
+        "В обычном вопросе об неизвестном человеке тоже используем `alguien`: `¿Hay alguien ahí?` — там кто-нибудь есть? О неизвестной вещи спрашиваем `¿Hay algo en la caja?` — в коробке что-нибудь есть? Эти четыре слова не меняем по роду и числу."
+      ],
+      "table": {
+        "heads": [
+          "О чём говорим",
+          "Есть",
+          "Нет"
+        ],
+        "rows": [
+          [
+            "👤 Человек",
+            "Hay alguien. (Кто-то есть.)",
+            "No hay nadie. (Никого нет.)"
+          ],
+          [
+            "📦 Вещь",
+            "Hay algo. (Что-то есть.)",
+            "No hay nada. (Ничего нет.)"
+          ]
+        ]
+      },
+      "check": {
+        "id": "check-1",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "Hay ___ esperando en recepción.",
+            "answers": [
+              "alguien"
+            ],
+            "explain": "Ждёт человек, поэтому alguien. Algo относится к вещи или событию.",
+            "context": "На ресепшене ждёт какой-то человек.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "algo",
+              "alguien",
+              "nadie"
+            ]
+          },
+          {
+            "prompt": "No hay ___ dentro de la bolsa.",
+            "answers": [
+              "nada"
+            ],
+            "explain": "Сумка совсем пустая: No hay nada. Nadie означает отсутствие людей.",
+            "context": "Сумка совсем пустая: в ней нет ни одной вещи.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "nadie",
+              "algo",
+              "nada"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Когда перед глаголом нужно no",
+      "presentation": "examples",
+      "paragraphs": [
+        "**Если `nadie` или `nada` стоит после глагола, перед глаголом обычно нужно `no`**: `No ha venido nadie` — никто не пришёл; `No he hecho nada` — я ничего не сделал. Два отрицательных слова здесь не отменяют друг друга.",
+        "**Если начинаем с `nadie` или `nada`, ещё одно `no` перед глаголом не добавляем**: `Nadie ha venido` — никто не пришёл; `Nada ha cambiado` — ничего не изменилось. Смысл остаётся отрицательным.",
+        "Сравни две фразы с одинаковым смыслом: `Nadie me ha visto` и `No me ha visto nadie` — меня никто не видел. В этих примерах меняется порядок слов, а не результат действия."
+      ],
+      "wordGroups": [
+        {
+          "title": "Начинаем с nadie",
+          "words": [
+            [
+              "Nadie ha venido.",
+              "Никто не пришёл."
+            ],
+            [
+              "Nadie me ha visto.",
+              "Меня никто не видел."
+            ]
+          ]
+        },
+        {
+          "title": "Ставим nadie после глагола",
+          "words": [
+            [
+              "No ha venido nadie.",
+              "Никто не пришёл."
+            ],
+            [
+              "No me ha visto nadie.",
+              "Меня никто не видел."
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-2",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "Никто не пришёл. Начни с Nadie.",
+            "answers": [
+              "Nadie ha venido."
+            ],
+            "explain": "После Nadie перед глаголом ещё одно no не нужно.",
+            "context": "Выбери фразу без лишнего отрицания.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "Nadie no ha venido.",
+              "Nadie ha venido.",
+              "Nadie ha venido no."
+            ]
+          },
+          {
+            "prompt": "Я ничего не сделал. Начни с No.",
+            "answers": [
+              "No he hecho nada."
+            ],
+            "explain": "Nada после глагола сочетается с no перед ним.",
+            "context": "Выбери фразу с правильным порядком отрицания.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "No he hecho alguien.",
+              "No he hecho algo.",
+              "No he hecho nada."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Немного сыра или совсем ничего",
+      "presentation": "examples",
+      "paragraphs": [
+        "Когда говорим о небольшом количестве воды, сыра или денег, используем **`algo de` перед названием**: `Queda algo de queso` — осталось немного сыра. Если совсем не осталось, говорим **`No queda nada de queso` — сыра совсем не осталось**.",
+        "Если название уже прозвучало, его можно не повторять: `¿Queda pan? —Queda algo` — «Хлеб остался? —Немного». Тогда `de` тоже не нужно: `¿Y leche? —No queda nada` — «А молоко? —Совсем не осталось».",
+        "Эти формы не подстраиваются под род названия: `algo de agua`, `algo de queso`, `nada de leche`. В задании смотри, написано ли название после пропуска: `___ queso` → `algo de / nada de`; без повторения названия → `algo / nada`."
+      ],
+      "dialogues": [
+        {
+          "title": "Что осталось в холодильнике?",
+          "lines": [
+            [
+              "¿Queda queso?",
+              "Сыр остался?"
+            ],
+            [
+              "Queda algo, pero poco.",
+              "Немного, но мало."
+            ],
+            [
+              "¿Y leche?",
+              "А молоко?"
+            ],
+            [
+              "No queda nada.",
+              "Совсем не осталось."
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-3",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "No queda ___ leche.",
+            "answers": [
+              "nada de"
+            ],
+            "explain": "Перед уже написанным названием leche нужна конструкция nada de.",
+            "context": "Молока совсем не осталось.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "nada",
+              "nadie",
+              "nada de"
+            ]
+          },
+          {
+            "prompt": "—¿Queda pan? —Sí, queda ___.",
+            "answers": [
+              "algo"
+            ],
+            "explain": "Хлеб уже назван, поэтому algo без de.",
+            "context": "Хлеба осталось немного.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "algo de",
+              "algo",
+              "alguien"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "23.1",
+      "title": "23.1 · Опиши, что есть в этой ситуации",
+      "theorySections": [
+        0
+      ],
+      "questions": [
+        {
+          "prompt": "___ en la mesa.",
+          "answers": [
+            "No hay nada"
+          ],
+          "explain": "Отрицаем наличие вещей: No hay nada.",
+          "context": "Стол совершенно пустой: на нём нет вещей.",
+          "sourceRef": "23.1.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Сцена",
+            "items": [
+              [
+                "Схема",
+                "🪑 · пустая поверхность"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "___ en mi habitación.",
+          "answers": [
+            "Hay alguien"
+          ],
+          "explain": "Человек есть, но кто это — неизвестно: Hay alguien.",
+          "context": "За матовым стеклом двери виден силуэт человека.",
+          "sourceRef": "23.1.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Сцена",
+            "items": [
+              [
+                "Схема",
+                "🚪 👤"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "___ detrás del árbol.",
+          "answers": [
+            "Hay algo"
+          ],
+          "explain": "Говорим о неопознанной вещи: Hay algo.",
+          "context": "Из-за дерева виден край неизвестного предмета. Человека там не видно.",
+          "sourceRef": "23.1.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Сцена",
+            "items": [
+              [
+                "Схема",
+                "🌳 📦"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "___ en el salón.",
+          "answers": [
+            "No hay nadie"
+          ],
+          "explain": "Отсутствуют люди, а не мебель: No hay nadie.",
+          "context": "В гостиной есть диван и стол, но людей нет.",
+          "sourceRef": "23.1.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Сцена",
+            "items": [
+              [
+                "Схема",
+                "🛋️ 🪑"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "___ en el libro.",
+          "answers": [
+            "Hay algo"
+          ],
+          "explain": "В книге есть вещь: Hay algo.",
+          "context": "Между страницами лежит какой-то небольшой предмет.",
+          "sourceRef": "23.1.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Сцена",
+            "items": [
+              [
+                "Схема",
+                "📖 ✉️"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "___ en la piscina.",
+          "answers": [
+            "No hay nadie"
+          ],
+          "explain": "Людей нет: No hay nadie. Это не значит, что нет воды.",
+          "context": "В бассейне вода есть, но никто не плавает.",
+          "sourceRef": "23.1.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Сцена",
+            "items": [
+              [
+                "Схема",
+                "🏊 · без пловцов"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "___ en la caja.",
+          "answers": [
+            "No hay nada"
+          ],
+          "explain": "Вещей внутри нет: No hay nada.",
+          "context": "Открытая коробка совершенно пустая.",
+          "sourceRef": "23.1.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Сцена",
+            "items": [
+              [
+                "Схема",
+                "📦 · пусто"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "___ en el árbol.",
+          "answers": [
+            "Hay algo"
+          ],
+          "explain": "Неизвестный предмет: Hay algo.",
+          "context": "В листве заметен тёмный предмет, но нельзя понять, что это.",
+          "sourceRef": "23.1.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Сцена",
+            "items": [
+              [
+                "Схема",
+                "🌳 ❔"
+              ]
+            ]
+          }
+        }
+      ],
+      "preview": {
+        "source": "___ en el bolsillo.",
+        "sentenceParts": [
+          "",
+          " en el bolsillo."
+        ],
+        "answer": "Hay algo",
+        "targetPrefix": "",
+        "translation": "В кармане что-то есть."
+      },
+      "instruction": "Дополни фразу конструкцией Hay / No hay и подходящим словом. Различай людей и вещи.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши только Hay или No hay вместе с alguien, algo, nadie или nada. Место уже написано.",
+        "placeholder": "Hay / No hay + слово"
+      }
+    },
+    {
+      "id": "23.2",
+      "title": "23.2 · Кто-то, что-то — или никто и ничего",
+      "theorySections": [
+        1
+      ],
+      "questions": [
+        {
+          "prompt": "Hay ___ esperándole en recepción.",
+          "answers": [
+            "alguien"
+          ],
+          "explain": "Человек с неизвестным именем — alguien.",
+          "context": "На ресепшене вас ждёт какой-то человек.",
+          "sourceRef": "23.2.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Me han dado ___ para ti.",
+          "answers": [
+            "algo"
+          ],
+          "explain": "Передали вещь, не человека: algo.",
+          "context": "Мне передали для тебя какую-то вещь.",
+          "sourceRef": "23.2.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "___ huele mal en la cocina.",
+          "answers": [
+            "algo"
+          ],
+          "explain": "Источник запаха — вещь: algo.",
+          "context": "На кухне неприятно пахнет какой-то продукт. Не знаем, какой именно.",
+          "sourceRef": "23.2.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Hoy no he hecho ___.",
+          "answers": [
+            "nada"
+          ],
+          "explain": "После no he hecho говорим nada — ничего.",
+          "context": "Сегодня я совсем ничего не сделал.",
+          "sourceRef": "23.2.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿Ha visto ___ mi bolígrafo?",
+          "answers": [
+            "alguien"
+          ],
+          "explain": "Спрашиваем о человеке, который мог видеть ручку: alguien.",
+          "context": "Вежливо спрашиваем, не видел ли кто-нибудь мою ручку.",
+          "sourceRef": "23.2.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "___ quiere acompañarme al cine.",
+          "answers": [
+            "nadie"
+          ],
+          "explain": "Nadie перед глаголом: ещё одно no не добавляем.",
+          "context": "Никто не хочет идти со мной в кино.",
+          "sourceRef": "23.2.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Necesito que ___ me ayude con este ejercicio.",
+          "answers": [
+            "alguien"
+          ],
+          "explain": "Нужен человек: alguien. Глагольная часть уже написана.",
+          "context": "Мне нужен кто-нибудь, кто поможет с упражнением.",
+          "sourceRef": "23.2.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Hay mucha gente en la calle. ¿Ha pasado ___?",
+          "answers": [
+            "algo"
+          ],
+          "explain": "Событие — algo, а не alguien.",
+          "context": "На улице много людей. Спрашиваем, не случилось ли что-нибудь.",
+          "sourceRef": "23.2.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "No ha pasado ___. Ha sido una falsa alarma.",
+          "answers": [
+            "nada"
+          ],
+          "explain": "No ha pasado nada — ничего не случилось.",
+          "context": "Ничего не случилось. Это была ложная тревога.",
+          "sourceRef": "23.2.9",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "No hay ___ en casa de Tomás.",
+          "answers": [
+            "nadie"
+          ],
+          "explain": "Говорим об отсутствии людей: nadie.",
+          "context": "Дома у Томаса никого нет; на телефон не отвечают.",
+          "sourceRef": "23.2.10",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "___",
+          "answers": [
+            "Nadie ha venido"
+          ],
+          "explain": "Nadie уже выражает отрицание перед глаголом, поэтому лишнее no убираем.",
+          "context": "Исправь фразу «Никто не пришёл», сохранив Nadie в начале.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "Nadie ",
+            "no",
+            " ha venido."
+          ],
+          "sourceLabel": "Убери лишнее отрицание",
+          "inputFormat": {
+            "instruction": "Напиши исправленную фразу целиком, начиная с Nadie.",
+            "placeholder": "Исправленная фраза"
+          }
+        },
+        {
+          "prompt": "___",
+          "answers": [
+            "No ha venido nadie"
+          ],
+          "explain": "Nadie после глагола: перед ha venido нужно No.",
+          "context": "Собери «Никто не пришёл», начиная с No.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "alguien",
+            "venido",
+            "No",
+            "nadie",
+            "ha"
+          ],
+          "inputFormat": {
+            "instruction": "Собери полную фразу, начиная с No.",
+            "placeholder": "Фраза"
+          }
+        },
+        {
+          "prompt": "___",
+          "answers": [
+            "Nada ha cambiado"
+          ],
+          "explain": "Nada перед глаголом выражает отрицание без no.",
+          "context": "Собери «Ничего не изменилось», начиная с Nada.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "ha",
+            "no",
+            "cambiado",
+            "Nada"
+          ],
+          "inputFormat": {
+            "instruction": "Собери полную фразу, начиная с Nada. Не все слова нужны.",
+            "placeholder": "Фраза"
+          }
+        }
+      ],
+      "preview": {
+        "source": "Hoy no he comprado ___.",
+        "sentenceParts": [
+          "Hoy no he comprado ",
+          "."
+        ],
+        "answer": "nada",
+        "targetPrefix": "",
+        "translation": "Сегодня я ничего не купил."
+      },
+      "instruction": "Вставь одно из четырёх слов: alguien, algo, nadie, nada. В конце исправь отрицание и собери две фразы.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши одно слово: alguien, algo, nadie или nada.",
+        "placeholder": "Пропущенное слово"
+      }
+    },
+    {
+      "id": "23.3",
+      "title": "23.3 · Загляни в холодильник и ответь",
+      "theorySections": [
+        2
+      ],
+      "questions": [
+        {
+          "prompt": "—¿Hay comida? —No queda ___ queso, pero queda ___ jamón.",
+          "answers": [
+            "nada de algo de"
+          ],
+          "explain": "Перед queso и jamón нужно de: nada de queso, algo de jamón.",
+          "context": "Сыра нет совсем, но немного ветчины осталось.",
+          "sourceRef": "23.3.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "—¿Hay comida? —No queda ",
+            " queso, pero queda ",
+            " jamón."
+          ],
+          "gapWordCounts": [
+            2,
+            2
+          ]
+        },
+        {
+          "prompt": "—¿Queda pan? —Queda ___, pero poco.",
+          "answers": [
+            "algo"
+          ],
+          "explain": "Pan уже назван в вопросе: algo без de.",
+          "context": "Хлеб остался, но совсем немного.",
+          "sourceRef": "23.3.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "—¿Y leche? —No queda ___, pero queda ___ zumo.",
+          "answers": [
+            "nada algo de"
+          ],
+          "explain": "Без повторения leche — nada; перед zumo — algo de.",
+          "context": "Молока нет совсем, но немного сока осталось.",
+          "sourceRef": "23.3.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "—¿Y leche? —No queda ",
+            ", pero queda ",
+            " zumo."
+          ],
+          "gapWordCounts": [
+            1,
+            2
+          ]
+        },
+        {
+          "prompt": "—Necesitamos comprar comida. ¿Tenéis dinero? —Tenemos ___, pero poco.",
+          "answers": [
+            "algo"
+          ],
+          "explain": "Dinero уже названо, поэтому algo без de.",
+          "context": "Деньги есть, но немного.",
+          "sourceRef": "23.3.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "—¿Qué podemos comprar? —Podemos comprar ___ pan y ___ queso.",
+          "answers": [
+            "algo de algo de"
+          ],
+          "explain": "Оба названия написаны после пропуска: algo de pan y algo de queso.",
+          "context": "Можем купить немного хлеба и немного сыра.",
+          "sourceRef": "23.3.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "—¿Qué podemos comprar? —Podemos comprar ",
+            " pan y ",
+            " queso."
+          ],
+          "gapWordCounts": [
+            2,
+            2
+          ]
+        },
+        {
+          "prompt": "—¿Y fruta? —No podemos comprar ___ fruta. No tenemos suficiente dinero.",
+          "answers": [
+            "nada de"
+          ],
+          "explain": "Перед названием fruta ставим nada de.",
+          "context": "На фрукты денег не осталось; никаких фруктов купить не можем.",
+          "sourceRef": "23.3.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "—¿Queda agua? —Sí, queda ___.",
+          "answers": [
+            "algo"
+          ],
+          "explain": "Agua уже названа: algo без de.",
+          "context": "Воды осталось немного.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "—¿Tienes dinero? —No tengo ___.",
+          "answers": [
+            "nada"
+          ],
+          "explain": "В коротком ответе без названия денег достаточно nada.",
+          "context": "У меня совсем нет денег.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        }
+      ],
+      "preview": {
+        "source": "—¿Queda arroz? —Sí, queda ___.",
+        "sentenceParts": [
+          "—¿Queda arroz? —Sí, queda ",
+          "."
+        ],
+        "answer": "algo",
+        "targetPrefix": "",
+        "translation": "—Рис остался? —Да, немного."
+      },
+      "instruction": "Дополни диалог. В каждом поле напиши algo, nada, algo de или nada de. Названия продуктов и остальные слова уже написаны.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "В каждом пропуске впиши algo, nada, algo de или nada de; названия не повторяй.",
+        "placeholder": "Пропущенное слово или сочетание"
+      }
+    }
+  ],
+  "learningOrder": [
+    "section:0",
+    "exercise:23.1",
+    "section:1",
+    "exercise:23.2",
+    "section:2",
+    "exercise:23.3",
+    "summary"
+  ],
+  "summary": {
+    "wordGroups": [
+      {
+        "title": "Человек или вещь",
+        "words": [
+          [
+            "alguien / nadie",
+            "кто-то / никто"
+          ],
+          [
+            "algo / nada",
+            "что-то / ничего"
+          ]
+        ]
+      },
+      {
+        "title": "Отрицание и порядок слов",
+        "words": [
+          [
+            "Nadie ha venido.",
+            "Никто не пришёл."
+          ],
+          [
+            "No ha venido nadie.",
+            "Тот же смысл; nadie после глагола — добавляем no."
+          ]
+        ]
+      },
+      {
+        "title": "Количество и короткий ответ",
+        "words": [
+          [
+            "Queda algo de queso.",
+            "Осталось немного сыра."
+          ],
+          [
+            "No queda nada de leche.",
+            "Молока совсем не осталось."
+          ],
+          [
+            "¿Queda pan? —Queda algo.",
+            "Без повторения названия de не нужно."
+          ]
+        ]
+      }
+    ]
+  }
+}
