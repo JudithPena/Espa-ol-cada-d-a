@@ -1600,6 +1600,7 @@ function accentChangesMeaning(answer, typed) {
 function writeWhy(st, typed) {
   const got = wNorm(typed), a = wNorm(st.a[0]), aw = a.split(" "), gw = got.split(" ");
   if (st.a.some(x => accentChangesMeaning(x, typed) && wFlat(wNorm(x)) === wFlat(got))) return "Здесь знак ударения меняет смысл слова.";
+  if (st.a.some(x => wFlat(wNorm(x)) === wFlat(got))) return "Проверьте знак ударения: где он нужен, а где нет.";
   if (st.a.some(x => wFlat(wNorm(x)).replace(/ñ/g, "n") === wFlat(got).replace(/ñ/g, "n"))) return "Посмотрите на букву ñ: n и ñ — разные буквы.";
   if (ARTS.has(aw[0]) && ARTS.has(gw[0]) && aw.slice(1).join(" ") === gw.slice(1).join(" ")) return "Слово верное, а артикль другой.";
   if (ARTS.has(aw[0]) && aw.slice(1).join(" ") === got) return "Нужен артикль: напишите слово вместе с артиклем.";
