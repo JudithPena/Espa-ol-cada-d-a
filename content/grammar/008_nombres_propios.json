@@ -361,7 +361,7 @@
     {
       "id": "8.1",
       "title": "8.1 · О человеке или к человеку?",
-      "instruction": "Определи, нужен ли артикль перед обращением или именем. ∅ — ничего не вставляем.",
+      "instruction": "Различай рассказ о человеке и прямое обращение к нему. Выбери или впиши артикль; ∅ — ничего не добавляем.",
       "questions": [
         {
           "prompt": "¿Dónde vive ___ don José?",
@@ -370,27 +370,29 @@
           ],
           "explain": "Перед don артикль обычно не нужен.",
           "options": [
+            "el",
             "la",
-            "Без артикля",
-            "el"
+            "Без артикля"
           ],
           "sourceRef": "8.1.1",
-          "context": "Дополни фразу в нейтральной речи, без разговорного артикля перед именем.",
+          "context": "Спроси, где живёт дон Хосе.",
           "interaction": "gap-choice"
         },
         {
-          "prompt": "Buenas tardes, ___ señor Alfonsín.",
+          "prompt": "Aquí vive ___ señor Alfonsín.",
           "answers": [
-            "Без артикля"
+            "el"
           ],
-          "explain": "Прямое обращение — без артикля.",
-          "options": [
-            "Без артикля",
-            "el",
-            "la"
-          ],
+          "explain": "Говорим о человеке: el señor Alfonsín. При приветствии артикля не было бы.",
           "sourceRef": "8.1.2",
-          "context": "Дополни фразу в нейтральной речи, без разговорного артикля перед именем.",
+          "context": "Ты рассказываешь о сеньоре Альфонсине, а не обращаешься к нему.",
+          "translation": "Здесь живёт сеньор Альфонсин.",
+          "options": [
+            "el",
+            "Без артикля",
+            "la",
+            "las"
+          ],
           "interaction": "gap-choice"
         },
         {
@@ -401,11 +403,11 @@
           "explain": "Перед именем в таком обращении артикля нет.",
           "options": [
             "Без артикля",
-            "la",
-            "el"
+            "el",
+            "la"
           ],
           "sourceRef": "8.1.2",
-          "context": "Дополни фразу в нейтральной речи, без разговорного артикля перед именем.",
+          "context": "Поприветствуй Элену.",
           "interaction": "gap-choice"
         },
         {
@@ -415,12 +417,12 @@
           ],
           "explain": "Говорим о докторе: la doctora Castro.",
           "options": [
+            "la",
             "el",
-            "Без артикля",
-            "la"
+            "Без артикля"
           ],
           "sourceRef": "8.1.3",
-          "context": "Дополни предложение.",
+          "context": "Ты говоришь о месте работы врача.",
           "interaction": "gap-choice"
         },
         {
@@ -430,28 +432,23 @@
           ],
           "explain": "Спрашиваем о конкретной женщине: la señora Jiménez.",
           "options": [
-            "la",
+            "el",
             "Без артикля",
-            "el"
+            "la"
           ],
           "sourceRef": "8.1.4",
-          "context": "Дополни предложение.",
+          "context": "Спроси другого человека, кто такая сеньора Хименес.",
           "interaction": "gap-choice"
         },
         {
-          "prompt": "Aquí trabaja ___ Josefa.",
+          "prompt": "¿Dónde está ___ doctor Rojo?",
           "answers": [
-            "Без артикля"
+            "el"
           ],
-          "explain": "Обычное имя в нейтральной речи — без артикля.",
-          "options": [
-            "la",
-            "el",
-            "Без артикля"
-          ],
+          "explain": "Речь о враче, а не обращение к нему: el doctor Rojo. Сравни следующее приветствие.",
           "sourceRef": "8.1.5",
-          "context": "Дополни фразу в нейтральной речи, без разговорного артикля перед именем.",
-          "interaction": "gap-choice"
+          "context": "Ты спрашиваешь другого человека о докторе Рохо.",
+          "translation": "Где доктор Рохо?"
         },
         {
           "prompt": "Buenos días, ___ doctor Rojo.",
@@ -460,28 +457,23 @@
           ],
           "explain": "Прямое обращение — без артикля.",
           "options": [
+            "el",
             "la",
-            "Без артикля",
-            "el"
+            "Без артикля"
           ],
           "sourceRef": "8.1.6",
-          "context": "Дополни фразу в нейтральной речи, без разговорного артикля перед именем.",
+          "context": "Поприветствуй доктора Рохо.",
           "interaction": "gap-choice"
         },
         {
-          "prompt": "Buenos días, ___ María.",
+          "prompt": "Aquí trabajan ___ doctoras Castro y Ramírez.",
           "answers": [
-            "Без артикля"
+            "las"
           ],
-          "explain": "Обращаемся по имени — без артикля.",
-          "options": [
-            "la",
-            "Без артикля",
-            "el"
-          ],
+          "explain": "Говорим о двух женщинах: doctoras, женский род и множественное число, поэтому las.",
           "sourceRef": "8.1.6",
-          "context": "Дополни фразу в нейтральной речи, без разговорного артикля перед именем.",
-          "interaction": "gap-choice"
+          "context": "Здесь работают две женщины-врача.",
+          "translation": "Здесь работают доктора Кастро и Рамирес."
         }
       ],
       "preview": {
@@ -495,15 +487,21 @@
         "targetPrefix": "",
         "tip": ""
       },
-      "inputLabel": "Выбор ответа",
+      "inputLabel": "Выбор ответа · Короткий ввод",
       "theorySections": [
         0
-      ]
+      ],
+      "revision": 2,
+      "inputFormat": {
+        "instruction": "Впиши только el, la, los, las или ∅. Имя и остальное предложение уже написаны.",
+        "example": "el (когда говорим о señor Alonso)",
+        "placeholder": "Артикль или ∅"
+      }
     },
     {
       "id": "8.2",
-      "title": "8.2 · Где находится здание?",
-      "instruction": "Выбери артикль. Название места и адрес уже даны.",
+      "title": "8.2 · Здания, улицы и площади",
+      "instruction": "Дополни адрес или вопрос о месте. Учитывай род и число названия: el, la, los или las.",
       "questions": [
         {
           "prompt": "___ hotel Central está en la plaza de España.",
@@ -512,8 +510,8 @@
           ],
           "explain": "Артикль относится к hotel: мужской род.",
           "options": [
-            "la",
-            "el"
+            "el",
+            "la"
           ],
           "sourceRef": "8.2.1",
           "context": "Добавь артикль в адрес.",
@@ -529,26 +527,20 @@
           "interaction": "gap-choice"
         },
         {
-          "prompt": "El hotel Central está en ___ plaza de España.",
+          "prompt": "¿Dónde están ___ plazas de Madrid?",
           "answers": [
+            "las"
+          ],
+          "explain": "Plazas — женский род, множественное число: las plazas.",
+          "sourceRef": "8.2.1",
+          "context": "Спроси о площадях Мадрида.",
+          "translation": "Где находятся площади Мадрида?",
+          "options": [
+            "el",
+            "los",
+            "las",
             "la"
           ],
-          "explain": "Артикль относится к plaza.",
-          "options": [
-            "la",
-            "el"
-          ],
-          "sourceRef": "8.2.1",
-          "context": "Добавь артикль в адрес.",
-          "facts": {
-            "label": "Адрес",
-            "items": [
-              [
-                "hotel Central",
-                "plaza de España"
-              ]
-            ]
-          },
           "interaction": "gap-choice"
         },
         {
@@ -575,26 +567,20 @@
           "interaction": "gap-choice"
         },
         {
-          "prompt": "El museo Botero está en ___ calle Mayor.",
+          "prompt": "Estamos en ___ calle Mayor.",
           "answers": [
             "la"
           ],
-          "explain": "Артикль относится к calle.",
+          "explain": "Артикль выбираем по слову calle, а не по названию Mayor: la calle Mayor.",
+          "sourceRef": "8.2.2",
+          "context": "Скажи, на какой улице вы находитесь.",
+          "translation": "Мы на улице Майор.",
           "options": [
             "el",
-            "la"
+            "las",
+            "la",
+            "los"
           ],
-          "sourceRef": "8.2.2",
-          "context": "Добавь артикль в адрес.",
-          "facts": {
-            "label": "Адрес",
-            "items": [
-              [
-                "museo Botero",
-                "calle Mayor"
-              ]
-            ]
-          },
           "interaction": "gap-choice"
         },
         {
@@ -621,27 +607,14 @@
           "interaction": "gap-choice"
         },
         {
-          "prompt": "El banco Nacional está en ___ avenida de América.",
+          "prompt": "¿Dónde están ___ museos de Madrid?",
           "answers": [
-            "la"
+            "los"
           ],
-          "explain": "Артикль относится к avenida.",
-          "options": [
-            "el",
-            "la"
-          ],
+          "explain": "Museos — мужской род, множественное число: los museos.",
           "sourceRef": "8.2.3",
-          "context": "Добавь артикль в адрес.",
-          "facts": {
-            "label": "Адрес",
-            "items": [
-              [
-                "banco Nacional",
-                "avenida de América"
-              ]
-            ]
-          },
-          "interaction": "gap-choice"
+          "context": "Спроси о музеях Мадрида.",
+          "translation": "Где находятся музеи Мадрида?"
         },
         {
           "prompt": "___ teatro Lorca está en la avenida de América.",
@@ -667,26 +640,20 @@
           "interaction": "gap-choice"
         },
         {
-          "prompt": "El teatro Lorca está en ___ avenida de América.",
+          "prompt": "¿Dónde está ___ teatro Lorca?",
           "answers": [
-            "la"
+            "el"
           ],
-          "explain": "Артикль относится к avenida.",
+          "explain": "Артикль относится к teatro — мужскому роду единственного числа: el teatro Lorca.",
+          "sourceRef": "8.2.4",
+          "context": "Спроси, где театр Лорка.",
+          "translation": "Где находится театр Лорка?",
           "options": [
             "el",
-            "la"
+            "los",
+            "la",
+            "las"
           ],
-          "sourceRef": "8.2.4",
-          "context": "Добавь артикль в адрес.",
-          "facts": {
-            "label": "Адрес",
-            "items": [
-              [
-                "teatro Lorca",
-                "avenida de América"
-              ]
-            ]
-          },
           "interaction": "gap-choice"
         },
         {
@@ -713,26 +680,20 @@
           "interaction": "gap-choice"
         },
         {
-          "prompt": "El cine América está en ___ plaza Real.",
+          "prompt": "Vamos a ___ plaza Real.",
           "answers": [
             "la"
           ],
-          "explain": "Артикль относится к plaza.",
+          "explain": "Plaza — женский род: a la plaza Real. A и la пишем раздельно.",
+          "sourceRef": "8.2.5",
+          "context": "Скажи, на какую площадь вы идёте.",
+          "translation": "Мы идём на Королевскую площадь.",
           "options": [
             "la",
-            "el"
+            "las",
+            "el",
+            "los"
           ],
-          "sourceRef": "8.2.5",
-          "context": "Добавь артикль в адрес.",
-          "facts": {
-            "label": "Адрес",
-            "items": [
-              [
-                "cine América",
-                "plaza Real"
-              ]
-            ]
-          },
           "interaction": "gap-choice"
         },
         {
@@ -759,27 +720,14 @@
           "interaction": "gap-choice"
         },
         {
-          "prompt": "El hospital Universitario está en ___ paseo del Parque.",
+          "prompt": "¿Dónde están ___ calles Mayor y Real?",
           "answers": [
-            "el"
+            "las"
           ],
-          "explain": "Артикль относится к paseo.",
-          "options": [
-            "el",
-            "la"
-          ],
+          "explain": "Calles — несколько улиц, женский род: las calles. Названия не меняют выбор артикля.",
           "sourceRef": "8.2.6",
-          "context": "Добавь артикль в адрес.",
-          "facts": {
-            "label": "Адрес",
-            "items": [
-              [
-                "hospital Universitario",
-                "paseo del Parque"
-              ]
-            ]
-          },
-          "interaction": "gap-choice"
+          "context": "Спроси о двух улицах.",
+          "translation": "Где находятся улицы Майор и Реаль?"
         }
       ],
       "preview": {
@@ -793,10 +741,16 @@
         "targetPrefix": "",
         "tip": ""
       },
-      "inputLabel": "Выбор ответа",
+      "inputLabel": "Выбор ответа · Короткий ввод",
       "theorySections": [
         1
-      ]
+      ],
+      "revision": 2,
+      "inputFormat": {
+        "instruction": "Впиши только определённый артикль: el, la, los или las. Остальное предложение уже написано.",
+        "example": "los (перед museos)",
+        "placeholder": "el, la, los или las"
+      }
     },
     {
       "id": "8.3",

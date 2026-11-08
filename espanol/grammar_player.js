@@ -16,11 +16,41 @@ function gStoreAttempt(unit, group, attempt) {
 }
 function gNewAttempt(group, responses={}) {
   const errors=Object.values(responses).filter(r=>r.checked && !r.good).length;
-  return {id:Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),errors,limit:gErrorLimit(group),status:gOutOfLives(group,errors)?'failed':'active',responses};
+  return {id:Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),revision:group.revision || 1,errors,limit:gErrorLimit(group),status:gOutOfLives(group,errors)?'failed':'active',responses};
+}
+function gRefreshAttemptVersions(unit) {
+  const records=gAttempts(), current=G.steps[G.at]; let changed=false, restartGroup=null;
+  G.groupRevisions ||= {};
+  for(const group of gGroups(unit)) {
+    const key=grammarKey(unit,group), old=records[key], revision=group.revision || 1;
+    const savedRevision=old?.revision ?? G.groupRevisions[group.id] ?? 1;
+    if(savedRevision!==revision && (old || Object.keys(G.responses[group.id] || {}).length)) {
+      records[key]=gNewAttempt(group); changed=true;
+      G.responses[group.id]={}; G.attemptIds[group.id]=records[key].id;
+      // Old answers and old correction steps belong to different questions.
+      G.steps=G.steps.filter(s=>s.group!==group.id || !s.correction);
+      if(current?.group===group.id || G.recovery===group.id) {
+        restartGroup=group;
+        G.ended=false; if(G.recovery===group.id) delete G.recovery;
+      }
+    }
+    G.groupRevisions[group.id]=revision;
+  }
+  if(restartGroup) {
+    const start=G.steps.findIndex(s=>(s.group===restartGroup.id && s.type==='intro')
+      || (s.type==='theory' && unit.sections[s.section].check?.id===restartGroup.id));
+    G.at=start>=0 && gRouteOpen(unit,gStepRoute(unit,G.steps[start])) ? start
+      : Math.max(0,G.steps.findIndex(s=>gRouteOpen(unit,gStepRoute(unit,s)) && !gRouteDone(unit,gStepRoute(unit,s))));
+  }
+  else if(current) G.at=Math.max(0,G.steps.indexOf(current));
+  if(changed) store.set(G_ATTEMPTS_KEY,JSON.stringify(records));
 }
 function gEnsureAttempt(unit, group) {
   G.attemptIds ||= {};
   let attempt=gAttempt(unit,group);
+  if(attempt && (attempt.revision || 1)!==(group.revision || 1)) {
+    gRefreshAttemptVersions(unit); attempt=gAttempt(unit,group);
+  }
   if(attempt && attempt.limit!==gErrorLimit(group)) {
     // Keep answered questions and mistakes when an older attempt gains lives.
     if((!gHasLives(group) || (gErrorLimit(group)>(attempt.limit ?? 3) && !gOutOfLives(group,attempt.errors))) && ['failed','review'].includes(attempt.status)) {
@@ -196,7 +226,7 @@ function gStart(unitId, route = "all", resume = false) {
   const steps = gSteps(unit, route);
   if (saved?.unit === unit.id && Array.isArray(saved.steps) && saved.steps.length && saved.at >= 0 && saved.at < saved.steps.length) {
     const restoredRoute=gRouteOpen(unit,saved.route)?saved.route:'all';
-    const reordered=saved.retry && restoredRoute===saved.route ? saved.steps : gSteps(unit,restoredRoute);
+    const reordered=saved.retry && restoredRoute===saved.route && (saved.unitRevision || 1)===(unit.revision || 1) ? saved.steps : gSteps(unit,restoredRoute);
     const old=saved.steps[saved.at];
     let at=reordered.findIndex(s=>s.type===old.type && s.section===old.section && s.group===old.group && s.qi===old.qi && !!s.correction===!!old.correction);
     if(at<0 || !gRouteOpen(unit,gStepRoute(unit,reordered[at]))) at=reordered.findIndex(s=>gRouteOpen(unit,gStepRoute(unit,s)) && !gRouteDone(unit,gStepRoute(unit,s)));
@@ -204,6 +234,8 @@ function gStart(unitId, route = "all", resume = false) {
   }
   else if (steps.length) G = {unit:unit.id, route, steps, at:0, responses:{}, ended:false};
   else return;
+  G.unitRevision=unit.revision || 1; G.attemptIds ||= {};
+  gRefreshAttemptVersions(unit);
   view.grammar = unit.id; view.tab = "grammar"; S = null;
   gSave(); render();
 }
@@ -211,6 +243,7 @@ function gResponse(step) {
   if (step.type !== "question") return null;
   const group=gGroups(gUnit()).find(g=>g.id===step.group);
   gEnsureAttempt(gUnit(),group);
+  if(G.steps[G.at]!==step) return null;
   G.responses[step.group] ||= {};
   const response=G.responses[step.group][step.qi] ||= {value:"", checked:false};
   const q=gGroups(gUnit()).find(g=>g.id===step.group)?.questions[step.qi];
@@ -332,7 +365,7 @@ function gMove(delta) {
   if(G.recovery) return gReviewMove(delta);
   if (delta < 0 && G.at === 0) return gExit();
   const step = G.steps[G.at];
-  if (delta > 0 && step.type === "question" && !gResponse(step).checked) return;
+  if (delta > 0 && step.type === "question" && !gResponse(step)?.checked) return;
   if (delta > 0 && (step.type === "summary" || (step.type === "theory" && !gUnit().sections[step.section].check))) {
     P.grammarRead ||= {}; P.grammarRead[`${G.unit}/${gStepRoute(gUnit(),step)}`] = true; save();
   }

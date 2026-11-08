@@ -380,184 +380,162 @@
   "exercises": [
     {
       "id": "9.1",
-      "title": "9.1 · Который час?",
-      "instruction": "Выбери начало фразы по времени на часах: Es la или Son las.",
+      "title": "9.1 · Который час? Во сколько?",
+      "instruction": "Прочитай вопрос: нужно назвать текущее время или сказать, во сколько что-то происходит. Выбери либо впиши начало фразы целиком.",
       "questions": [
         {
-          "prompt": "___ tres y veinte.",
+          "prompt": "¿Qué hora es? ___ tres y veinte.",
           "answers": [
-            "las"
+            "Son las"
           ],
-          "explain": "Для одного часа говорим Es la una, для остальных — Son las: Son las tres y veinte.",
-          "options": [
-            "las",
-            "la"
-          ],
+          "explain": "Называем время, не момент события. Tres — не один час: Son las tres y veinte.",
           "sourceRef": "9.1.1",
           "clock": {
             "hour": 3,
             "minute": 20
           },
-          "context": "Выбери начало фразы.",
-          "interaction": "gap-choice",
-          "optionLabels": {
-            "la": "Es la",
-            "las": "Son las"
-          }
+          "context": "Спроси и назови текущее время.",
+          "translation": "Который час? Сейчас три двадцать.",
+          "options": [
+            "Son las",
+            "A las",
+            "Es la",
+            "A la"
+          ],
+          "interaction": "gap-choice"
         },
         {
-          "prompt": "___ una y veinticinco.",
+          "prompt": "¿Qué hora es? ___ una y veinticinco.",
           "answers": [
-            "la"
+            "Es la"
           ],
-          "explain": "Для одного часа говорим Es la una, для остальных — Son las: Es la una y veinticinco.",
-          "options": [
-            "las",
-            "la"
-          ],
+          "explain": "Для одного часа используем единственное число: Es la una y veinticinco.",
           "sourceRef": "9.1.2",
           "clock": {
             "hour": 1,
             "minute": 25
           },
-          "context": "Выбери начало фразы.",
-          "interaction": "gap-choice",
-          "optionLabels": {
-            "la": "Es la",
-            "las": "Son las"
-          }
+          "context": "Назови текущее время.",
+          "translation": "Сейчас час двадцать пять.",
+          "options": [
+            "A la",
+            "A las",
+            "Son las",
+            "Es la"
+          ],
+          "interaction": "gap-choice"
         },
         {
-          "prompt": "___ cuatro menos diez.",
+          "prompt": "¿A qué hora sale el tren? ___ cuatro menos diez.",
           "answers": [
-            "las"
+            "A las"
           ],
-          "explain": "Для одного часа говорим Es la una, для остальных — Son las: Son las cuatro menos diez.",
-          "options": [
-            "las",
-            "la"
-          ],
+          "explain": "В вопросе «во сколько?» перед названием времени нужно a: A las cuatro menos diez.",
           "sourceRef": "9.1.3",
           "clock": {
             "hour": 3,
             "minute": 50
           },
-          "context": "Выбери начало фразы.",
-          "interaction": "gap-choice",
-          "optionLabels": {
-            "la": "Es la",
-            "las": "Son las"
-          }
+          "context": "Ответь, во сколько отправляется поезд.",
+          "translation": "Во сколько отправляется поезд? Без десяти четыре.",
+          "options": [
+            "A la",
+            "Es la",
+            "Son las",
+            "A las"
+          ],
+          "interaction": "gap-choice"
         },
         {
-          "prompt": "___ dos.",
+          "prompt": "¿Qué hora es? ___ dos.",
           "answers": [
-            "las"
+            "Son las"
           ],
-          "explain": "Для одного часа говорим Es la una, для остальных — Son las: Son las dos.",
-          "options": [
-            "las",
-            "la"
-          ],
+          "explain": "Dos требует множественного числа: Son las dos. Предлог a не нужен.",
           "sourceRef": "9.1.4",
           "clock": {
             "hour": 2,
             "minute": 0
           },
-          "context": "Выбери начало фразы.",
-          "interaction": "gap-choice",
-          "optionLabels": {
-            "la": "Es la",
-            "las": "Son las"
-          }
+          "context": "Назови текущее время.",
+          "translation": "Сейчас два часа."
         },
         {
-          "prompt": "___ ocho y media.",
+          "prompt": "La película empieza ___ ocho y media.",
           "answers": [
-            "las"
+            "a las"
           ],
-          "explain": "Для одного часа говорим Es la una, для остальных — Son las: Son las ocho y media.",
-          "options": [
-            "la",
-            "las"
-          ],
+          "explain": "Говорим о времени события: empieza a las ocho y media.",
           "sourceRef": "9.1.5",
           "clock": {
             "hour": 8,
             "minute": 30
           },
-          "context": "Выбери начало фразы.",
-          "interaction": "gap-choice",
-          "optionLabels": {
-            "la": "Es la",
-            "las": "Son las"
-          }
+          "context": "Сообщи время начала фильма.",
+          "translation": "Фильм начинается в половине девятого.",
+          "options": [
+            "es la",
+            "a las",
+            "son las",
+            "a la"
+          ],
+          "interaction": "gap-choice"
         },
         {
-          "prompt": "___ doce y cinco.",
+          "prompt": "¿Qué hora es? ___ doce y cinco.",
           "answers": [
-            "las"
+            "Son las"
           ],
-          "explain": "Для одного часа говорим Es la una, для остальных — Son las: Son las doce y cinco.",
-          "options": [
-            "la",
-            "las"
-          ],
+          "explain": "Называем текущее время: Son las doce y cinco.",
           "sourceRef": "9.1.6",
           "clock": {
             "hour": 12,
             "minute": 5
           },
-          "context": "Выбери начало фразы.",
-          "interaction": "gap-choice",
-          "optionLabels": {
-            "la": "Es la",
-            "las": "Son las"
-          }
+          "context": "Назови текущее время.",
+          "translation": "Сейчас двенадцать часов пять минут.",
+          "options": [
+            "Son las",
+            "A las",
+            "A la",
+            "Es la"
+          ],
+          "interaction": "gap-choice"
         },
         {
-          "prompt": "___ una menos cuarto.",
+          "prompt": "¿A qué hora empieza la película? ___ una menos cuarto.",
           "answers": [
-            "la"
+            "A la"
           ],
-          "explain": "Для одного часа говорим Es la una, для остальных — Son las: Es la una menos cuarto.",
-          "options": [
-            "las",
-            "la"
-          ],
+          "explain": "В ответе «во сколько?» нужно a; перед una — единственное число: A la una menos cuarto.",
           "sourceRef": "9.1.7",
           "clock": {
             "hour": 12,
             "minute": 45
           },
-          "context": "Выбери начало фразы.",
-          "interaction": "gap-choice",
-          "optionLabels": {
-            "la": "Es la",
-            "las": "Son las"
-          }
+          "context": "Ответь, во сколько начинается фильм.",
+          "translation": "Во сколько начинается фильм? Без четверти час."
         },
         {
-          "prompt": "___ once y cuarto.",
+          "prompt": "¿Qué hora es? ___ once y cuarto.",
           "answers": [
-            "las"
+            "Son las"
           ],
-          "explain": "Для одного часа говорим Es la una, для остальных — Son las: Son las once y cuarto.",
-          "options": [
-            "las",
-            "la"
-          ],
+          "explain": "Для once используем Son las: Son las once y cuarto.",
           "sourceRef": "9.1.8",
           "clock": {
             "hour": 11,
             "minute": 15
           },
-          "context": "Выбери начало фразы.",
-          "interaction": "gap-choice",
-          "optionLabels": {
-            "la": "Es la",
-            "las": "Son las"
-          }
+          "context": "Назови текущее время.",
+          "translation": "Сейчас четверть двенадцатого.",
+          "options": [
+            "Es la",
+            "A la",
+            "A las",
+            "Son las"
+          ],
+          "interaction": "gap-choice"
         }
       ],
       "preview": {
@@ -571,10 +549,16 @@
         "targetPrefix": "",
         "tip": ""
       },
-      "inputLabel": "Выбор ответа",
+      "inputLabel": "Выбор ответа · Короткий ввод",
       "theorySections": [
         0
-      ]
+      ],
+      "revision": 2,
+      "inputFormat": {
+        "instruction": "Впиши начало фразы целиком: es la, son las, a la или a las. Часы и минуты уже написаны.",
+        "example": "a las (в ответе «во сколько?»)",
+        "placeholder": "es la, son las, a la или a las"
+      }
     },
     {
       "id": "9.2",

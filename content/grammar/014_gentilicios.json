@@ -271,62 +271,30 @@
     {
       "id": "14.1",
       "title": "14.1 · Измени форму",
-      "instruction": "Дополни предложение подходящей формой слова из подсказки.",
+      "instruction": "Прочитай местоимение и подсказку заново в каждом вопросе. Модели с разными окончаниями чередуются; впиши или выбери нужную форму.",
       "questions": [
-        {
-          "prompt": "Ella es ___.",
-          "answers": [
-            "brasileña"
-          ],
-          "explain": "Ella — одна женщина. Подходящая форма: brasileña.",
-          "translation": "одна женщина",
-          "sourceRef": "14.1.1",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "brasileño",
-              "бразильский"
-            ]
-          ]
-        },
         {
           "prompt": "Ellos son ___.",
           "answers": [
-            "brasileños"
+            "japoneses"
           ],
-          "explain": "Ellos — несколько мужчин. Подходящая форма: brasileños.",
+          "explain": "Ellos — несколько мужчин. Подходящая форма: japoneses.",
           "translation": "несколько мужчин",
-          "sourceRef": "14.1.1",
+          "sourceRef": "14.1.5",
           "context": "Измени слово для указанной группы.",
           "clues": [
             [
-              "brasileño",
-              "бразильский"
+              "japonés",
+              "японский"
             ]
           ],
           "options": [
-            "brasileña",
-            "brasileñas",
-            "brasileños",
-            "brasileño"
+            "japonesa",
+            "japonés",
+            "japoneses",
+            "japonesas"
           ],
           "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Ellas son ___.",
-          "answers": [
-            "brasileñas"
-          ],
-          "explain": "Ellas — несколько женщин. Подходящая форма: brasileñas.",
-          "translation": "несколько женщин",
-          "sourceRef": "14.1.1",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "brasileño",
-              "бразильский"
-            ]
-          ]
         },
         {
           "prompt": "Ella es ___.",
@@ -345,89 +313,18 @@
           ]
         },
         {
-          "prompt": "Ellos son ___.",
-          "answers": [
-            "costarricenses"
-          ],
-          "explain": "Ellos — несколько мужчин. Подходящая форма: costarricenses.",
-          "translation": "несколько мужчин",
-          "sourceRef": "14.1.2",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "costarricense",
-              "коста-риканский"
-            ]
-          ]
-        },
-        {
           "prompt": "Ellas son ___.",
           "answers": [
-            "costarricenses"
+            "venezolanas"
           ],
-          "explain": "Ellas — несколько женщин. Подходящая форма: costarricenses.",
+          "explain": "Ellas — несколько женщин. Подходящая форма: venezolanas.",
           "translation": "несколько женщин",
-          "sourceRef": "14.1.2",
+          "sourceRef": "14.1.7",
           "context": "Измени слово для указанной группы.",
           "clues": [
             [
-              "costarricense",
-              "коста-риканский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Ella es ___.",
-          "answers": [
-            "escocesa"
-          ],
-          "explain": "Ella — одна женщина. Подходящая форма: escocesa.",
-          "translation": "одна женщина",
-          "sourceRef": "14.1.3",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "escocés",
-              "шотландский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Ellos son ___.",
-          "answers": [
-            "escoceses"
-          ],
-          "explain": "Ellos — несколько мужчин. Подходящая форма: escoceses.",
-          "translation": "несколько мужчин",
-          "sourceRef": "14.1.3",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "escocés",
-              "шотландский"
-            ]
-          ],
-          "options": [
-            "escocesa",
-            "escocesas",
-            "escoceses",
-            "escocés"
-          ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Ellas son ___.",
-          "answers": [
-            "escocesas"
-          ],
-          "explain": "Ellas — несколько женщин. Подходящая форма: escocesas.",
-          "translation": "несколько женщин",
-          "sourceRef": "14.1.3",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "escocés",
-              "шотландский"
+              "venezolano",
+              "венесуэльский"
             ]
           ]
         },
@@ -450,17 +347,71 @@
         {
           "prompt": "Ellos son ___.",
           "answers": [
-            "iraníes",
-            "iranís"
+            "brasileños"
           ],
-          "explain": "Ellos — несколько мужчин. Подходящая форма: iraníes или iranís.",
+          "explain": "Ellos — несколько мужчин. Подходящая форма: brasileños.",
           "translation": "несколько мужчин",
-          "sourceRef": "14.1.4",
+          "sourceRef": "14.1.1",
           "context": "Измени слово для указанной группы.",
           "clues": [
             [
-              "iraní",
-              "иранский"
+              "brasileño",
+              "бразильский"
+            ]
+          ],
+          "options": [
+            "brasileñas",
+            "brasileña",
+            "brasileños",
+            "brasileño"
+          ],
+          "interaction": "gap-choice"
+        },
+        {
+          "prompt": "Ellas son ___.",
+          "answers": [
+            "nicaragüenses"
+          ],
+          "explain": "Ellas — несколько женщин. Подходящая форма: nicaragüenses.",
+          "translation": "несколько женщин",
+          "sourceRef": "14.1.6",
+          "context": "Измени слово для указанной группы.",
+          "clues": [
+            [
+              "nicaragüense",
+              "никарагуанский"
+            ]
+          ]
+        },
+        {
+          "prompt": "Ella es ___.",
+          "answers": [
+            "escocesa"
+          ],
+          "explain": "Ella — одна женщина. Подходящая форма: escocesa.",
+          "translation": "одна женщина",
+          "sourceRef": "14.1.3",
+          "context": "Измени слово для указанной группы.",
+          "clues": [
+            [
+              "escocés",
+              "шотландский"
+            ]
+          ]
+        },
+        {
+          "prompt": "Ellas son ___.",
+          "answers": [
+            "vietnamitas"
+          ],
+          "explain": "Ellas — несколько женщин. Подходящая форма: vietnamitas.",
+          "translation": "несколько женщин",
+          "sourceRef": "14.1.8",
+          "context": "Измени слово для указанной группы.",
+          "clues": [
+            [
+              "vietnamita",
+              "вьетнамский"
             ]
           ]
         },
@@ -484,55 +435,16 @@
         {
           "prompt": "Ella es ___.",
           "answers": [
-            "japonesa"
+            "brasileña"
           ],
-          "explain": "Ella — одна женщина. Подходящая форма: japonesa.",
+          "explain": "Ella — одна женщина. Подходящая форма: brasileña.",
           "translation": "одна женщина",
-          "sourceRef": "14.1.5",
+          "sourceRef": "14.1.1",
           "context": "Измени слово для указанной группы.",
           "clues": [
             [
-              "japonés",
-              "японский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Ellos son ___.",
-          "answers": [
-            "japoneses"
-          ],
-          "explain": "Ellos — несколько мужчин. Подходящая форма: japoneses.",
-          "translation": "несколько мужчин",
-          "sourceRef": "14.1.5",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "japonés",
-              "японский"
-            ]
-          ],
-          "options": [
-            "japonesa",
-            "japonesas",
-            "japoneses",
-            "japonés"
-          ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Ellas son ___.",
-          "answers": [
-            "japonesas"
-          ],
-          "explain": "Ellas — несколько женщин. Подходящая форма: japonesas.",
-          "translation": "несколько женщин",
-          "sourceRef": "14.1.5",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "japonés",
-              "японский"
+              "brasileño",
+              "бразильский"
             ]
           ]
         },
@@ -553,50 +465,18 @@
           ]
         },
         {
-          "prompt": "Ellos son ___.",
-          "answers": [
-            "nicaragüenses"
-          ],
-          "explain": "Ellos — несколько мужчин. Подходящая форма: nicaragüenses.",
-          "translation": "несколько мужчин",
-          "sourceRef": "14.1.6",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "nicaragüense",
-              "никарагуанский"
-            ]
-          ]
-        },
-        {
           "prompt": "Ellas son ___.",
           "answers": [
-            "nicaragüenses"
+            "escocesas"
           ],
-          "explain": "Ellas — несколько женщин. Подходящая форма: nicaragüenses.",
+          "explain": "Ellas — несколько женщин. Подходящая форма: escocesas.",
           "translation": "несколько женщин",
-          "sourceRef": "14.1.6",
+          "sourceRef": "14.1.3",
           "context": "Измени слово для указанной группы.",
           "clues": [
             [
-              "nicaragüense",
-              "никарагуанский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Ella es ___.",
-          "answers": [
-            "venezolana"
-          ],
-          "explain": "Ella — одна женщина. Подходящая форма: venezolana.",
-          "translation": "одна женщина",
-          "sourceRef": "14.1.7",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "venezolano",
-              "венесуэльский"
+              "escocés",
+              "шотландский"
             ]
           ]
         },
@@ -616,42 +496,42 @@
             ]
           ],
           "options": [
-            "venezolana",
-            "venezolanas",
             "venezolanos",
-            "venezolano"
+            "venezolano",
+            "venezolanas",
+            "venezolana"
           ],
           "interaction": "gap-choice"
         },
         {
-          "prompt": "Ellas son ___.",
+          "prompt": "Ellos son ___.",
           "answers": [
-            "venezolanas"
+            "costarricenses"
           ],
-          "explain": "Ellas — несколько женщин. Подходящая форма: venezolanas.",
-          "translation": "несколько женщин",
-          "sourceRef": "14.1.7",
+          "explain": "Ellos — несколько мужчин. Подходящая форма: costarricenses.",
+          "translation": "несколько мужчин",
+          "sourceRef": "14.1.2",
           "context": "Измени слово для указанной группы.",
           "clues": [
             [
-              "venezolano",
-              "венесуэльский"
+              "costarricense",
+              "коста-риканский"
             ]
           ]
         },
         {
           "prompt": "Ella es ___.",
           "answers": [
-            "vietnamita"
+            "japonesa"
           ],
-          "explain": "Ella — одна женщина. Подходящая форма: vietnamita.",
+          "explain": "Ella — одна женщина. Подходящая форма: japonesa.",
           "translation": "одна женщина",
-          "sourceRef": "14.1.8",
+          "sourceRef": "14.1.5",
           "context": "Измени слово для указанной группы.",
           "clues": [
             [
-              "vietnamita",
-              "вьетнамский"
+              "japonés",
+              "японский"
             ]
           ]
         },
@@ -672,18 +552,138 @@
           ]
         },
         {
+          "prompt": "Ellos son ___.",
+          "answers": [
+            "iraníes",
+            "iranís"
+          ],
+          "explain": "Ellos — несколько мужчин. Подходящая форма: iraníes или iranís.",
+          "translation": "несколько мужчин",
+          "sourceRef": "14.1.4",
+          "context": "Измени слово для указанной группы.",
+          "clues": [
+            [
+              "iraní",
+              "иранский"
+            ]
+          ]
+        },
+        {
           "prompt": "Ellas son ___.",
           "answers": [
-            "vietnamitas"
+            "brasileñas"
           ],
-          "explain": "Ellas — несколько женщин. Подходящая форма: vietnamitas.",
+          "explain": "Ellas — несколько женщин. Подходящая форма: brasileñas.",
           "translation": "несколько женщин",
+          "sourceRef": "14.1.1",
+          "context": "Измени слово для указанной группы.",
+          "clues": [
+            [
+              "brasileño",
+              "бразильский"
+            ]
+          ]
+        },
+        {
+          "prompt": "Ellos son ___.",
+          "answers": [
+            "nicaragüenses"
+          ],
+          "explain": "Ellos — несколько мужчин. Подходящая форма: nicaragüenses.",
+          "translation": "несколько мужчин",
+          "sourceRef": "14.1.6",
+          "context": "Измени слово для указанной группы.",
+          "clues": [
+            [
+              "nicaragüense",
+              "никарагуанский"
+            ]
+          ]
+        },
+        {
+          "prompt": "Ellos son ___.",
+          "answers": [
+            "escoceses"
+          ],
+          "explain": "Ellos — несколько мужчин. Подходящая форма: escoceses.",
+          "translation": "несколько мужчин",
+          "sourceRef": "14.1.3",
+          "context": "Измени слово для указанной группы.",
+          "clues": [
+            [
+              "escocés",
+              "шотландский"
+            ]
+          ],
+          "options": [
+            "escoceses",
+            "escocesa",
+            "escocesas",
+            "escocés"
+          ],
+          "interaction": "gap-choice"
+        },
+        {
+          "prompt": "Ella es ___.",
+          "answers": [
+            "vietnamita"
+          ],
+          "explain": "Ella — одна женщина. Подходящая форма: vietnamita.",
+          "translation": "одна женщина",
           "sourceRef": "14.1.8",
           "context": "Измени слово для указанной группы.",
           "clues": [
             [
               "vietnamita",
               "вьетнамский"
+            ]
+          ]
+        },
+        {
+          "prompt": "Ellas son ___.",
+          "answers": [
+            "japonesas"
+          ],
+          "explain": "Ellas — несколько женщин. Подходящая форма: japonesas.",
+          "translation": "несколько женщин",
+          "sourceRef": "14.1.5",
+          "context": "Измени слово для указанной группы.",
+          "clues": [
+            [
+              "japonés",
+              "японский"
+            ]
+          ]
+        },
+        {
+          "prompt": "Ellas son ___.",
+          "answers": [
+            "costarricenses"
+          ],
+          "explain": "Ellas — несколько женщин. Подходящая форма: costarricenses.",
+          "translation": "несколько женщин",
+          "sourceRef": "14.1.2",
+          "context": "Измени слово для указанной группы.",
+          "clues": [
+            [
+              "costarricense",
+              "коста-риканский"
+            ]
+          ]
+        },
+        {
+          "prompt": "Ella es ___.",
+          "answers": [
+            "venezolana"
+          ],
+          "explain": "Ella — одна женщина. Подходящая форма: venezolana.",
+          "translation": "одна женщина",
+          "sourceRef": "14.1.7",
+          "context": "Измени слово для указанной группы.",
+          "clues": [
+            [
+              "venezolano",
+              "венесуэльский"
             ]
           ]
         }
@@ -707,7 +707,8 @@
       },
       "theorySections": [
         0
-      ]
+      ],
+      "revision": 2
     },
     {
       "id": "14.2",
@@ -746,9 +747,9 @@
             ]
           ],
           "options": [
-            "chino",
+            "chinas",
             "china",
-            "chinas"
+            "chino"
           ],
           "interaction": "gap-choice"
         },
@@ -800,10 +801,10 @@
             ]
           ],
           "options": [
+            "italiano",
             "italiana",
             "italianos",
-            "italianas",
-            "italiano"
+            "italianas"
           ],
           "interaction": "gap-choice"
         },
@@ -855,9 +856,9 @@
             ]
           ],
           "options": [
-            "ruso",
+            "rusos",
             "rusa",
-            "rusos"
+            "ruso"
           ],
           "interaction": "gap-choice"
         }

@@ -595,16 +595,18 @@
             ]
           },
           {
-            "prompt": "___ expresión",
+            "prompt": "Какое слово мужского рода?",
             "answers": [
-              "la"
+              "el avión"
             ],
-            "explain": "la expresión — выражение. Суффикс -sión подсказывает женский род.",
+            "explain": "Avión оканчивается на -ón, а не на -ción. Поэтому правило о словах на -ción к нему не относится: el avión.",
             "translation": "выражение",
             "options": [
-              "la",
-              "el"
-            ]
+              "la canción",
+              "el avión",
+              "la expresión"
+            ],
+            "context": "Проверь окончание целиком."
           },
           {
             "prompt": "___ universidad",
@@ -619,18 +621,21 @@
             ]
           },
           {
-            "prompt": "___ libertad",
+            "prompt": "Почему перед libertad стоит la?",
             "answers": [
-              "la"
+              "Libertad оканчивается на -tad и имеет женский род."
             ],
-            "explain": "la libertad — свобода. Окончание -tad подсказывает женский род.",
+            "explain": "Окончание -tad помогает узнать женский род: la libertad. Не все слова на согласную женского рода.",
             "translation": "свобода",
             "options": [
-              "el",
-              "la"
-            ]
+              "Любое слово на согласную — женского рода.",
+              "Libertad оканчивается на -tad и имеет женский род.",
+              "Род всегда совпадает с русским переводом."
+            ],
+            "context": "Выбери объяснение."
           }
-        ]
+        ],
+        "revision": 2
       },
       "presentation": "examples"
     },

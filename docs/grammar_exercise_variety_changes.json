@@ -1,0 +1,3426 @@
+[
+  {
+    "unit": 2,
+    "group": "check-e",
+    "action": "redesigned",
+    "metadata": {
+      "revision": {
+        "before": null,
+        "after": 2
+      }
+    },
+    "questions": [
+      {
+        "number": 2,
+        "changes": {
+          "answers": {
+            "before": [
+              "la"
+            ],
+            "after": [
+              "el avión"
+            ]
+          },
+          "options": {
+            "before": [
+              "la",
+              "el"
+            ],
+            "after": [
+              "la canción",
+              "el avión",
+              "la expresión"
+            ]
+          },
+          "context": {
+            "before": null,
+            "after": "Проверь окончание целиком."
+          },
+          "prompt": {
+            "before": "___ expresión",
+            "after": "Какое слово мужского рода?"
+          },
+          "explain": {
+            "before": "la expresión — выражение. Суффикс -sión подсказывает женский род.",
+            "after": "Avión оканчивается на -ón, а не на -ción. Поэтому правило о словах на -ción к нему не относится: el avión."
+          }
+        }
+      },
+      {
+        "number": 4,
+        "changes": {
+          "answers": {
+            "before": [
+              "la"
+            ],
+            "after": [
+              "Libertad оканчивается на -tad и имеет женский род."
+            ]
+          },
+          "options": {
+            "before": [
+              "el",
+              "la"
+            ],
+            "after": [
+              "Любое слово на согласную — женского рода.",
+              "Libertad оканчивается на -tad и имеет женский род.",
+              "Род всегда совпадает с русским переводом."
+            ]
+          },
+          "context": {
+            "before": null,
+            "after": "Выбери объяснение."
+          },
+          "prompt": {
+            "before": "___ libertad",
+            "after": "Почему перед libertad стоит la?"
+          },
+          "explain": {
+            "before": "la libertad — свобода. Окончание -tad подсказывает женский род.",
+            "after": "Окончание -tad помогает узнать женский род: la libertad. Не все слова на согласную женского рода."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "unit": 3,
+    "group": "check-f",
+    "action": "positions_only",
+    "metadata": {},
+    "questions": [
+      {
+        "number": 1,
+        "changes": {
+          "options": {
+            "before": [
+              "los jueveses",
+              "los jueves"
+            ],
+            "after": [
+              "los jueves",
+              "los jueveses"
+            ]
+          }
+        }
+      },
+      {
+        "number": 4,
+        "changes": {
+          "options": {
+            "before": [
+              "meses",
+              "mess"
+            ],
+            "after": [
+              "mess",
+              "meses"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "unit": 3,
+    "group": "check-g",
+    "action": "positions_only",
+    "metadata": {},
+    "questions": [
+      {
+        "number": 2,
+        "changes": {
+          "options": {
+            "before": [
+              "leónes",
+              "leones",
+              "léones"
+            ],
+            "after": [
+              "leones",
+              "léones",
+              "leónes"
+            ]
+          }
+        }
+      },
+      {
+        "number": 3,
+        "changes": {
+          "options": {
+            "before": [
+              "jovenes",
+              "jóvenes",
+              "jovéns"
+            ],
+            "after": [
+              "jovenes",
+              "jovéns",
+              "jóvenes"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "unit": 5,
+    "group": "check-a",
+    "action": "redesigned",
+    "metadata": {
+      "revision": {
+        "before": null,
+        "after": 2
+      }
+    },
+    "questions": [
+      {
+        "number": 2,
+        "changes": {
+          "answers": {
+            "before": [
+              "Без артикля"
+            ],
+            "after": [
+              "Называем будущую профессию."
+            ]
+          },
+          "options": {
+            "before": [
+              "una",
+              "Без артикля"
+            ],
+            "after": [
+              "После ser артиклей никогда не бывает.",
+              "Называем будущую профессию.",
+              "Перед словами женского рода артикль не нужен."
+            ]
+          },
+          "context": {
+            "before": "Просто сообщи, кем работает человек, без оценки.",
+            "after": "Выбери объяснение правила."
+          },
+          "prompt": {
+            "before": "Quiero ser ___ bailarina.",
+            "after": "Quiero ser bailarina. Почему перед bailarina нет артикля?"
+          },
+          "explain": {
+            "before": "После quiero ser называем профессию без артикля.",
+            "after": "Хочу стать танцовщицей: после quiero ser просто называем профессию, без её оценки. В других фразах после ser артикль возможен."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "unit": 5,
+    "group": "5.1",
+    "action": "redesigned",
+    "metadata": {
+      "inputLabel": {
+        "before": "Выбор ответа",
+        "after": "Выбор ответа · Короткий ввод"
+      },
+      "inputFormat": {
+        "before": null,
+        "after": {
+          "instruction": "Впиши только un, una или ∅. Символ ∅ означает, что артикль не нужен. Остальное предложение уже написано.",
+          "example": "una (как в una médica muy buena)",
+          "placeholder": "un, una или ∅"
+        }
+      },
+      "theorySections": {
+        "before": [
+          0
+        ],
+        "after": [
+          0,
+          1
+        ]
+      },
+      "revision": {
+        "before": null,
+        "after": 2
+      },
+      "preview": {
+        "before": {
+          "source": "Eva es ___ abogada.",
+          "sentenceParts": [
+            "Eva es ",
+            " abogada."
+          ],
+          "answer": "Без артикля",
+          "translation": "Ева — адвокат. Перед abogada ничего не добавляем.",
+          "targetPrefix": "",
+          "tip": "∅ — перед словом ничего не добавляем.",
+          "displayAnswer": "∅"
+        },
+        "after": {
+          "source": "Es ___ médica muy buena.",
+          "sentenceParts": [
+            "Es ",
+            " médica muy buena."
+          ],
+          "answer": "una",
+          "translation": "Она очень хороший врач.",
+          "targetPrefix": "",
+          "tip": "Здесь даём характеристику, а не просто называем профессию."
+        }
+      },
+      "instruction": {
+        "before": "Просто назови профессию. Реши, нужен ли артикль. ∅ — ничего не вставляем.",
+        "after": "Реши по смыслу: просто называем профессию или оцениваем человека? Выбери либо впиши подходящий вариант. ∅ означает отсутствие артикля."
+      }
+    },
+    "questions": [
+      {
+        "number": 1,
+        "changes": {
+          "options": {
+            "before": [
+              "una",
+              "Без артикля"
+            ],
+            "after": [
+              "Без артикля",
+              "un",
+              "una"
+            ]
+          },
+          "translation": {
+            "before": "Ева работает адвокатом.",
+            "after": "Я адвокат."
+          },
+          "context": {
+            "before": "Просто сообщи, кем работает человек, без оценки.",
+            "after": "Ева рассказывает, кем работает, без оценки её работы."
+          },
+          "prompt": {
+            "before": "Eva es ___ abogada.",
+            "after": "Soy ___ abogada."
+          },
+          "explain": {
+            "before": "Профессия после es без дополнительного описания: es abogada.",
+            "after": "Когда просто называем свою профессию после soy, артикль обычно не нужен: soy abogada."
+          }
+        }
+      },
+      {
+        "number": 2,
+        "changes": {
+          "answers": {
+            "before": [
+              "Без артикля"
+            ],
+            "after": [
+              "un"
+            ]
+          },
+          "options": {
+            "before": [
+              "Без артикля",
+              "un"
+            ],
+            "after": [
+              "Без артикля",
+              "una",
+              "un"
+            ]
+          },
+          "translation": {
+            "before": "Хосе Луис — студент.",
+            "after": "Хосе Луис — очень хороший студент."
+          },
+          "context": {
+            "before": "Просто сообщи, кем работает человек, без оценки.",
+            "after": "Хосе Луиса хвалят за учёбу."
+          },
+          "prompt": {
+            "before": "José Luis es ___ estudiante.",
+            "after": "José Luis es ___ estudiante muy bueno."
+          },
+          "explain": {
+            "before": "Просто сообщаем, что он студент: es estudiante.",
+            "after": "Здесь не просто называем занятие, а даём оценку: un estudiante muy bueno."
+          }
+        }
+      },
+      {
+        "number": 3,
+        "changes": {
+          "answers": {
+            "before": [
+              "Без артикля"
+            ],
+            "after": [
+              "una"
+            ]
+          },
+          "options": {
+            "before": [
+              "Без артикля",
+              "un"
+            ],
+            "after": [
+              "un",
+              "Без артикля",
+              "una"
+            ]
+          },
+          "translation": {
+            "before": "Мар работает актрисой.",
+            "after": "Мар — известная актриса."
+          },
+          "context": {
+            "before": "Просто сообщи, кем работает человек, без оценки.",
+            "after": "Расскажи об известной актрисе."
+          },
+          "prompt": {
+            "before": "Mar es ___ actriz.",
+            "after": "Mar es ___ actriz famosa."
+          },
+          "explain": {
+            "before": "Называем профессию: es actriz.",
+            "after": "Famosa описывает актрису; используем модель с неопределённым артиклем: una actriz famosa."
+          }
+        }
+      },
+      {
+        "number": 4,
+        "changes": {
+          "options": {
+            "before": [
+              "Без артикля",
+              "un"
+            ],
+            "after": null
+          },
+          "interaction": {
+            "before": "gap-choice",
+            "after": null
+          },
+          "translation": {
+            "before": "Феликс работает фотографом.",
+            "after": "Феликс работает фотографом?"
+          },
+          "context": {
+            "before": "Просто сообщи, кем работает человек, без оценки.",
+            "after": "Ты хочешь узнать профессию Феликса, без оценки его работы."
+          },
+          "prompt": {
+            "before": "Félix es ___ fotógrafo.",
+            "after": "¿Félix es ___ fotógrafo?"
+          },
+          "explain": {
+            "before": "Называем профессию: es fotógrafo.",
+            "after": "В вопросе о профессии действует та же модель без артикля: ¿Es fotógrafo?"
+          }
+        }
+      },
+      {
+        "number": 5,
+        "changes": {
+          "answers": {
+            "before": [
+              "Без артикля"
+            ],
+            "after": [
+              "un"
+            ]
+          },
+          "options": {
+            "before": [
+              "un",
+              "Без артикля"
+            ],
+            "after": [
+              "un",
+              "Без артикля",
+              "una"
+            ]
+          },
+          "translation": {
+            "before": "Роберто работает врачом.",
+            "after": "Роберто — отличный врач."
+          },
+          "context": {
+            "before": "Просто сообщи, кем работает человек, без оценки.",
+            "after": "Похвали Роберто как врача."
+          },
+          "prompt": {
+            "before": "Roberto es ___ médico.",
+            "after": "Roberto es ___ médico buenísimo."
+          },
+          "explain": {
+            "before": "Называем профессию: es médico.",
+            "after": "Buenísimo даёт оценку: un médico buenísimo. Médico — мужского рода."
+          }
+        }
+      },
+      {
+        "number": 6,
+        "changes": {
+          "options": {
+            "before": [
+              "un",
+              "Без артикля"
+            ],
+            "after": [
+              "una",
+              "un",
+              "Без артикля"
+            ]
+          },
+          "translation": {
+            "before": "Адриан работает поваром.",
+            "after": "Адриан хочет стать поваром."
+          },
+          "context": {
+            "before": "Просто сообщи, кем работает человек, без оценки.",
+            "after": "Адриан говорит о будущей профессии."
+          },
+          "prompt": {
+            "before": "Adrián es ___ cocinero.",
+            "after": "Adrián quiere ser ___ cocinero."
+          },
+          "explain": {
+            "before": "Называем профессию: es cocinero.",
+            "after": "После quiere ser просто называем профессию: quiere ser cocinero, без артикля."
+          }
+        }
+      },
+      {
+        "number": 7,
+        "changes": {
+          "answers": {
+            "before": [
+              "Без артикля"
+            ],
+            "after": [
+              "una"
+            ]
+          },
+          "options": {
+            "before": [
+              "una",
+              "Без артикля"
+            ],
+            "after": null
+          },
+          "interaction": {
+            "before": "gap-choice",
+            "after": null
+          },
+          "translation": {
+            "before": "Элоиса работает официанткой.",
+            "after": "Элоиса — очень приветливая официантка."
+          },
+          "context": {
+            "before": "Просто сообщи, кем работает человек, без оценки.",
+            "after": "Отметь приветливость Элоисы."
+          },
+          "prompt": {
+            "before": "Eloísa es ___ camarera.",
+            "after": "Eloísa es ___ camarera muy simpática."
+          },
+          "explain": {
+            "before": "Называем профессию: es camarera.",
+            "after": "Для такой характеристики используем una camarera muy simpática; camarera — женского рода."
+          }
+        }
+      },
+      {
+        "number": 8,
+        "changes": {
+          "options": {
+            "before": [
+              "Без артикля",
+              "una"
+            ],
+            "after": [
+              "unas",
+              "Без артикля",
+              "unos"
+            ]
+          },
+          "translation": {
+            "before": "Леонор работает преподавательницей.",
+            "after": "Леонор и Ана — преподавательницы."
+          },
+          "context": {
+            "before": "Просто сообщи, кем работает человек, без оценки.",
+            "after": "Сообщи, кем работают Леонор и Ана, без оценки их работы."
+          },
+          "prompt": {
+            "before": "Leonor es ___ profesora.",
+            "after": "Leonor y Ana son ___ profesoras."
+          },
+          "explain": {
+            "before": "Называем профессию: es profesora.",
+            "after": "Называем профессию нескольких людей без описания: son profesoras. Во множественном числе артикль здесь тоже обычно не нужен."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "unit": 5,
+    "group": "5.2",
+    "action": "redesigned",
+    "metadata": {},
+    "questions": [
+      {
+        "number": 6,
+        "changes": {
+          "explain": {
+            "before": "Muy caro описывает адвоката: un abogado muy caro.",
+            "after": "Muy bueno оценивает работу адвоката: un abogado muy bueno."
+          },
+          "prompt": {
+            "before": "Es ___ abogado muy caro.",
+            "after": "Es ___ abogado muy bueno."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "unit": 5,
+    "group": "5.3",
+    "action": "redesigned",
+    "metadata": {
+      "inputLabel": {
+        "before": "Выбор ответа",
+        "after": "Выбор ответа · Короткий ввод"
+      },
+      "inputFormat": {
+        "before": null,
+        "after": {
+          "instruction": "Впиши только un, una, unos, unas или ∅. Название предмета уже написано.",
+          "example": "unos (несколько предметов мужского рода)",
+          "placeholder": "Артикль или ∅"
+        }
+      },
+      "revision": {
+        "before": null,
+        "after": 2
+      },
+      "instruction": {
+        "before": "Дополни фразу. Если ничего добавлять не нужно, выбери «∅».",
+        "after": "Определи смысл: продукт или занятие вообще, отдельный предмет, порция или несколько вещей. Выбери либо впиши артикль; ∅ — без артикля."
+      }
+    },
+    "questions": [
+      {
+        "number": 1,
+        "changes": {
+          "options": {
+            "before": [
+              "Без артикля",
+              "una"
+            ],
+            "after": [
+              "una",
+              "Без артикля"
+            ]
+          }
+        }
+      },
+      {
+        "number": 2,
+        "changes": {
+          "answers": {
+            "before": [
+              "Без артикля"
+            ],
+            "after": [
+              "una"
+            ]
+          },
+          "options": {
+            "before": [
+              "un",
+              "Без артикля"
+            ],
+            "after": [
+              "una",
+              "unas",
+              "unos",
+              "un",
+              "Без артикля"
+            ]
+          },
+          "translation": {
+            "before": null,
+            "after": "Одну тортилью, пожалуйста."
+          },
+          "explain": {
+            "before": "После soy называем особенности питания без артикля.",
+            "after": "Речь об одном целом блюде, а не о продукте вообще: una tortilla."
+          },
+          "context": {
+            "before": "Дополни фразу: артикль или без артикля?",
+            "after": "Закажи одну целую тортилью."
+          },
+          "prompt": {
+            "before": "No, soy ___ vegetariano.",
+            "after": "Quiero ___ tortilla, por favor."
+          }
+        }
+      },
+      {
+        "number": 4,
+        "changes": {
+          "options": {
+            "before": [
+              "las",
+              "unas"
+            ],
+            "after": [
+              "Без артикля",
+              "una",
+              "unos",
+              "un",
+              "unas"
+            ]
+          },
+          "translation": {
+            "before": null,
+            "after": "У меня есть несколько китайских монет."
+          },
+          "explain": {
+            "before": "Речь о нескольких купленных монетах: unas monedas chinas.",
+            "after": "Называем несколько монет, а не занятие коллекционированием: unas monedas chinas."
+          },
+          "context": {
+            "before": "Сообщи, что купил несколько монет. Выбери неопределённый артикль.",
+            "after": "У тебя несколько китайских монет; точное число не называешь."
+          },
+          "prompt": {
+            "before": "Ayer me compré ___ monedas chinas.",
+            "after": "Tengo ___ monedas chinas."
+          }
+        }
+      },
+      {
+        "number": 5,
+        "changes": {
+          "options": {
+            "before": [
+              "Без артикля",
+              "un",
+              "el"
+            ],
+            "after": [
+              "el",
+              "Без артикля",
+              "un"
+            ]
+          }
+        }
+      },
+      {
+        "number": 9,
+        "changes": {
+          "answers": {
+            "before": [
+              "Без артикля"
+            ],
+            "after": [
+              "una"
+            ]
+          },
+          "options": {
+            "before": [
+              "unos",
+              "Без артикля"
+            ],
+            "after": null
+          },
+          "translation": {
+            "before": null,
+            "after": "У меня есть дочь."
+          },
+          "explain": {
+            "before": "Спрашиваем, есть ли дети, не уточняя их количество.",
+            "after": "Одна дочь — una hija. Вопрос о наличии детей вообще был бы ¿Tienes hijos?, без артикля."
+          },
+          "context": {
+            "before": "Спроси о наличии детей, без указания количества.",
+            "after": "Сообщи, что у тебя одна дочь."
+          },
+          "prompt": {
+            "before": "¿Tenéis ___ hijos?",
+            "after": "Tengo ___ hija."
+          },
+          "interaction": {
+            "before": "gap-choice",
+            "after": null
+          }
+        }
+      },
+      {
+        "number": 11,
+        "changes": {
+          "answers": {
+            "before": [
+              "Без артикля"
+            ],
+            "after": [
+              "un"
+            ]
+          },
+          "options": {
+            "before": [
+              "Без артикля",
+              "un"
+            ],
+            "after": [
+              "un",
+              "unas",
+              "unos",
+              "Без артикля",
+              "una"
+            ]
+          },
+          "translation": {
+            "before": null,
+            "after": "Эрнесто — очень хороший музыкант."
+          },
+          "explain": {
+            "before": "Просто называем профессию.",
+            "after": "Даём оценку музыканту: un músico muy bueno, как в модели профессии с описанием."
+          },
+          "context": {
+            "before": "Просто сообщи, кем работает человек, без оценки.",
+            "after": "Похвали Эрнесто как музыканта."
+          },
+          "prompt": {
+            "before": "Ernesto es ___ músico.",
+            "after": "Ernesto es ___ músico muy bueno."
+          }
+        }
+      },
+      {
+        "number": 12,
+        "changes": {
+          "options": {
+            "before": [
+              "unas",
+              "Без артикля"
+            ],
+            "after": [
+              "Без артикля",
+              "unas"
+            ]
+          }
+        }
+      },
+      {
+        "number": 13,
+        "changes": {
+          "answers": {
+            "before": [
+              "Без артикля"
+            ],
+            "after": [
+              "un"
+            ]
+          },
+          "options": {
+            "before": [
+              "Без артикля",
+              "un"
+            ],
+            "after": null
+          },
+          "translation": {
+            "before": null,
+            "after": "Мне нужна тетрадь."
+          },
+          "explain": {
+            "before": "Спрашиваем о деньгах без указания суммы.",
+            "after": "Cuaderno — отдельный предмет мужского рода; один такой предмет — un cuaderno."
+          },
+          "context": {
+            "before": "Спроси, нужны ли деньги, не называя сумму.",
+            "after": "Тебе нужна одна тетрадь."
+          },
+          "prompt": {
+            "before": "¿Necesitas ___ dinero?",
+            "after": "Necesito ___ cuaderno."
+          },
+          "interaction": {
+            "before": "gap-choice",
+            "after": null
+          }
+        }
+      },
+      {
+        "number": 15,
+        "changes": {
+          "options": {
+            "before": [
+              "un",
+              "Без артикля",
+              "el"
+            ],
+            "after": [
+              "Без артикля",
+              "el",
+              "un"
+            ]
+          }
+        }
+      },
+      {
+        "number": 16,
+        "changes": {
+          "answers": {
+            "before": [
+              "Без артикля"
+            ],
+            "after": [
+              "una"
+            ]
+          },
+          "options": {
+            "before": [
+              "una",
+              "Без артикля"
+            ],
+            "after": [
+              "una",
+              "Без артикля",
+              "un",
+              "unos",
+              "unas"
+            ]
+          },
+          "translation": {
+            "before": null,
+            "after": "Каролина — очень любезная продавщица."
+          },
+          "explain": {
+            "before": "Называем профессию.",
+            "after": "Amable — любезная. Оцениваем человека: una vendedora muy amable."
+          },
+          "context": {
+            "before": "Просто сообщи, кем работает человек, без оценки.",
+            "after": "Отметь любезность продавщицы."
+          },
+          "prompt": {
+            "before": "Carolina es ___ vendedora.",
+            "after": "Carolina es ___ vendedora muy amable."
+          }
+        }
+      },
+      {
+        "number": 17,
+        "changes": {
+          "answers": {
+            "before": [
+              "Без артикля"
+            ],
+            "after": [
+              "unos"
+            ]
+          },
+          "options": {
+            "before": [
+              "Без артикля",
+              "unas"
+            ],
+            "after": null
+          },
+          "translation": {
+            "before": null,
+            "after": "Она продаёт несколько книг."
+          },
+          "explain": {
+            "before": "Называем вид товара, а не конкретные экземпляры.",
+            "after": "Выделяем несколько экземпляров: unos libros. Вид товара без количества — vende libros."
+          },
+          "context": {
+            "before": "Назови вид товара: энциклопедии, без указания количества.",
+            "after": "Она продаёт несколько книг, а не просто называет свой вид товара."
+          },
+          "prompt": {
+            "before": "Vende ___ enciclopedias.",
+            "after": "Vende ___ libros."
+          },
+          "interaction": {
+            "before": "gap-choice",
+            "after": null
+          }
+        }
+      },
+      {
+        "number": 18,
+        "changes": {
+          "options": {
+            "before": [
+              "Без артикля",
+              "unos"
+            ],
+            "after": [
+              "unos",
+              "Без артикля"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "unit": 5,
+    "section": 2,
+    "changes": {
+      "paragraphs": {
+        "before": [
+          "Сравни: **`Es médico` — он врач; `Es un médico buenísimo` — он отличный врач.** Когда к профессии добавляется характеристика, часто появляется неопределённый артикль.",
+          "Представляя человека, тоже можно сказать `Es un cantante` — это певец. Национальность, религию и взгляды после `ser` обычно называем без артикля: `Es mexicano`, `Son protestantes`."
+        ],
+        "after": [
+          "Когда просто называем профессию, обычно говорим **`Es médico` — он врач**, без артикля. Когда оцениваем человека или добавляем описание, часто используем **`Es un médico buenísimo` — он отличный врач**. Для женщины выбираем `una`: `Es una actriz famosa` — она известная актриса. Это обычные модели, а не правило «любое прилагательное всегда требует артикля».",
+          "Представляя человека, тоже можно сказать `Es un cantante` — это певец. Национальность, религию и взгляды после `ser` обычно называем без артикля: `Es mexicano`, `Son protestantes`."
+        ]
+      }
+    }
+  },
+  {
+    "unit": 5,
+    "metadata": {
+      "revision": {
+        "before": null,
+        "after": 2
+      },
+      "learningOrder": {
+        "before": [
+          "section:0",
+          "exercise:5.1",
+          "section:1",
+          "exercise:5.2",
+          "section:2",
+          "exercise:5.3",
+          "summary"
+        ],
+        "after": [
+          "section:0",
+          "section:1",
+          "exercise:5.1",
+          "exercise:5.2",
+          "section:2",
+          "exercise:5.3",
+          "summary"
+        ]
+      }
+    }
+  },
+  {
+    "unit": 8,
+    "group": "8.1",
+    "action": "redesigned",
+    "metadata": {
+      "inputLabel": {
+        "before": "Выбор ответа",
+        "after": "Выбор ответа · Короткий ввод"
+      },
+      "inputFormat": {
+        "before": null,
+        "after": {
+          "instruction": "Впиши только el, la, los, las или ∅. Имя и остальное предложение уже написаны.",
+          "example": "el (когда говорим о señor Alonso)",
+          "placeholder": "Артикль или ∅"
+        }
+      },
+      "revision": {
+        "before": null,
+        "after": 2
+      },
+      "instruction": {
+        "before": "Определи, нужен ли артикль перед обращением или именем. ∅ — ничего не вставляем.",
+        "after": "Различай рассказ о человеке и прямое обращение к нему. Выбери или впиши артикль; ∅ — ничего не добавляем."
+      }
+    },
+    "questions": [
+      {
+        "number": 1,
+        "changes": {
+          "options": {
+            "before": [
+              "la",
+              "Без артикля",
+              "el"
+            ],
+            "after": [
+              "el",
+              "la",
+              "Без артикля"
+            ]
+          },
+          "context": {
+            "before": "Дополни фразу в нейтральной речи, без разговорного артикля перед именем.",
+            "after": "Спроси, где живёт дон Хосе."
+          }
+        }
+      },
+      {
+        "number": 2,
+        "changes": {
+          "answers": {
+            "before": [
+              "Без артикля"
+            ],
+            "after": [
+              "el"
+            ]
+          },
+          "options": {
+            "before": [
+              "Без артикля",
+              "el",
+              "la"
+            ],
+            "after": [
+              "el",
+              "Без артикля",
+              "la",
+              "las"
+            ]
+          },
+          "translation": {
+            "before": null,
+            "after": "Здесь живёт сеньор Альфонсин."
+          },
+          "explain": {
+            "before": "Прямое обращение — без артикля.",
+            "after": "Говорим о человеке: el señor Alfonsín. При приветствии артикля не было бы."
+          },
+          "context": {
+            "before": "Дополни фразу в нейтральной речи, без разговорного артикля перед именем.",
+            "after": "Ты рассказываешь о сеньоре Альфонсине, а не обращаешься к нему."
+          },
+          "prompt": {
+            "before": "Buenas tardes, ___ señor Alfonsín.",
+            "after": "Aquí vive ___ señor Alfonsín."
+          }
+        }
+      },
+      {
+        "number": 3,
+        "changes": {
+          "options": {
+            "before": [
+              "Без артикля",
+              "la",
+              "el"
+            ],
+            "after": [
+              "Без артикля",
+              "el",
+              "la"
+            ]
+          },
+          "context": {
+            "before": "Дополни фразу в нейтральной речи, без разговорного артикля перед именем.",
+            "after": "Поприветствуй Элену."
+          }
+        }
+      },
+      {
+        "number": 4,
+        "changes": {
+          "options": {
+            "before": [
+              "el",
+              "Без артикля",
+              "la"
+            ],
+            "after": [
+              "la",
+              "el",
+              "Без артикля"
+            ]
+          },
+          "context": {
+            "before": "Дополни предложение.",
+            "after": "Ты говоришь о месте работы врача."
+          }
+        }
+      },
+      {
+        "number": 5,
+        "changes": {
+          "options": {
+            "before": [
+              "la",
+              "Без артикля",
+              "el"
+            ],
+            "after": [
+              "el",
+              "Без артикля",
+              "la"
+            ]
+          },
+          "context": {
+            "before": "Дополни предложение.",
+            "after": "Спроси другого человека, кто такая сеньора Хименес."
+          }
+        }
+      },
+      {
+        "number": 6,
+        "changes": {
+          "answers": {
+            "before": [
+              "Без артикля"
+            ],
+            "after": [
+              "el"
+            ]
+          },
+          "options": {
+            "before": [
+              "la",
+              "el",
+              "Без артикля"
+            ],
+            "after": null
+          },
+          "translation": {
+            "before": null,
+            "after": "Где доктор Рохо?"
+          },
+          "explain": {
+            "before": "Обычное имя в нейтральной речи — без артикля.",
+            "after": "Речь о враче, а не обращение к нему: el doctor Rojo. Сравни следующее приветствие."
+          },
+          "context": {
+            "before": "Дополни фразу в нейтральной речи, без разговорного артикля перед именем.",
+            "after": "Ты спрашиваешь другого человека о докторе Рохо."
+          },
+          "prompt": {
+            "before": "Aquí trabaja ___ Josefa.",
+            "after": "¿Dónde está ___ doctor Rojo?"
+          },
+          "interaction": {
+            "before": "gap-choice",
+            "after": null
+          }
+        }
+      },
+      {
+        "number": 7,
+        "changes": {
+          "options": {
+            "before": [
+              "la",
+              "Без артикля",
+              "el"
+            ],
+            "after": [
+              "el",
+              "la",
+              "Без артикля"
+            ]
+          },
+          "context": {
+            "before": "Дополни фразу в нейтральной речи, без разговорного артикля перед именем.",
+            "after": "Поприветствуй доктора Рохо."
+          }
+        }
+      },
+      {
+        "number": 8,
+        "changes": {
+          "answers": {
+            "before": [
+              "Без артикля"
+            ],
+            "after": [
+              "las"
+            ]
+          },
+          "options": {
+            "before": [
+              "la",
+              "Без артикля",
+              "el"
+            ],
+            "after": null
+          },
+          "translation": {
+            "before": null,
+            "after": "Здесь работают доктора Кастро и Рамирес."
+          },
+          "explain": {
+            "before": "Обращаемся по имени — без артикля.",
+            "after": "Говорим о двух женщинах: doctoras, женский род и множественное число, поэтому las."
+          },
+          "context": {
+            "before": "Дополни фразу в нейтральной речи, без разговорного артикля перед именем.",
+            "after": "Здесь работают две женщины-врача."
+          },
+          "prompt": {
+            "before": "Buenos días, ___ María.",
+            "after": "Aquí trabajan ___ doctoras Castro y Ramírez."
+          },
+          "interaction": {
+            "before": "gap-choice",
+            "after": null
+          }
+        }
+      }
+    ]
+  },
+  {
+    "unit": 8,
+    "group": "8.2",
+    "action": "redesigned",
+    "metadata": {
+      "inputLabel": {
+        "before": "Выбор ответа",
+        "after": "Выбор ответа · Короткий ввод"
+      },
+      "title": {
+        "before": "8.2 · Где находится здание?",
+        "after": "8.2 · Здания, улицы и площади"
+      },
+      "inputFormat": {
+        "before": null,
+        "after": {
+          "instruction": "Впиши только определённый артикль: el, la, los или las. Остальное предложение уже написано.",
+          "example": "los (перед museos)",
+          "placeholder": "el, la, los или las"
+        }
+      },
+      "revision": {
+        "before": null,
+        "after": 2
+      },
+      "instruction": {
+        "before": "Выбери артикль. Название места и адрес уже даны.",
+        "after": "Дополни адрес или вопрос о месте. Учитывай род и число названия: el, la, los или las."
+      }
+    },
+    "questions": [
+      {
+        "number": 1,
+        "changes": {
+          "options": {
+            "before": [
+              "la",
+              "el"
+            ],
+            "after": [
+              "el",
+              "la"
+            ]
+          }
+        }
+      },
+      {
+        "number": 2,
+        "changes": {
+          "answers": {
+            "before": [
+              "la"
+            ],
+            "after": [
+              "las"
+            ]
+          },
+          "options": {
+            "before": [
+              "la",
+              "el"
+            ],
+            "after": [
+              "el",
+              "los",
+              "las",
+              "la"
+            ]
+          },
+          "facts": {
+            "before": {
+              "label": "Адрес",
+              "items": [
+                [
+                  "hotel Central",
+                  "plaza de España"
+                ]
+              ]
+            },
+            "after": null
+          },
+          "translation": {
+            "before": null,
+            "after": "Где находятся площади Мадрида?"
+          },
+          "context": {
+            "before": "Добавь артикль в адрес.",
+            "after": "Спроси о площадях Мадрида."
+          },
+          "prompt": {
+            "before": "El hotel Central está en ___ plaza de España.",
+            "after": "¿Dónde están ___ plazas de Madrid?"
+          },
+          "explain": {
+            "before": "Артикль относится к plaza.",
+            "after": "Plazas — женский род, множественное число: las plazas."
+          }
+        }
+      },
+      {
+        "number": 4,
+        "changes": {
+          "options": {
+            "before": [
+              "el",
+              "la"
+            ],
+            "after": [
+              "el",
+              "las",
+              "la",
+              "los"
+            ]
+          },
+          "facts": {
+            "before": {
+              "label": "Адрес",
+              "items": [
+                [
+                  "museo Botero",
+                  "calle Mayor"
+                ]
+              ]
+            },
+            "after": null
+          },
+          "translation": {
+            "before": null,
+            "after": "Мы на улице Майор."
+          },
+          "context": {
+            "before": "Добавь артикль в адрес.",
+            "after": "Скажи, на какой улице вы находитесь."
+          },
+          "prompt": {
+            "before": "El museo Botero está en ___ calle Mayor.",
+            "after": "Estamos en ___ calle Mayor."
+          },
+          "explain": {
+            "before": "Артикль относится к calle.",
+            "after": "Артикль выбираем по слову calle, а не по названию Mayor: la calle Mayor."
+          }
+        }
+      },
+      {
+        "number": 6,
+        "changes": {
+          "answers": {
+            "before": [
+              "la"
+            ],
+            "after": [
+              "los"
+            ]
+          },
+          "options": {
+            "before": [
+              "el",
+              "la"
+            ],
+            "after": null
+          },
+          "interaction": {
+            "before": "gap-choice",
+            "after": null
+          },
+          "facts": {
+            "before": {
+              "label": "Адрес",
+              "items": [
+                [
+                  "banco Nacional",
+                  "avenida de América"
+                ]
+              ]
+            },
+            "after": null
+          },
+          "translation": {
+            "before": null,
+            "after": "Где находятся музеи Мадрида?"
+          },
+          "context": {
+            "before": "Добавь артикль в адрес.",
+            "after": "Спроси о музеях Мадрида."
+          },
+          "prompt": {
+            "before": "El banco Nacional está en ___ avenida de América.",
+            "after": "¿Dónde están ___ museos de Madrid?"
+          },
+          "explain": {
+            "before": "Артикль относится к avenida.",
+            "after": "Museos — мужской род, множественное число: los museos."
+          }
+        }
+      },
+      {
+        "number": 8,
+        "changes": {
+          "answers": {
+            "before": [
+              "la"
+            ],
+            "after": [
+              "el"
+            ]
+          },
+          "options": {
+            "before": [
+              "el",
+              "la"
+            ],
+            "after": [
+              "el",
+              "los",
+              "la",
+              "las"
+            ]
+          },
+          "facts": {
+            "before": {
+              "label": "Адрес",
+              "items": [
+                [
+                  "teatro Lorca",
+                  "avenida de América"
+                ]
+              ]
+            },
+            "after": null
+          },
+          "translation": {
+            "before": null,
+            "after": "Где находится театр Лорка?"
+          },
+          "context": {
+            "before": "Добавь артикль в адрес.",
+            "after": "Спроси, где театр Лорка."
+          },
+          "prompt": {
+            "before": "El teatro Lorca está en ___ avenida de América.",
+            "after": "¿Dónde está ___ teatro Lorca?"
+          },
+          "explain": {
+            "before": "Артикль относится к avenida.",
+            "after": "Артикль относится к teatro — мужскому роду единственного числа: el teatro Lorca."
+          }
+        }
+      },
+      {
+        "number": 10,
+        "changes": {
+          "options": {
+            "before": [
+              "la",
+              "el"
+            ],
+            "after": [
+              "la",
+              "las",
+              "el",
+              "los"
+            ]
+          },
+          "facts": {
+            "before": {
+              "label": "Адрес",
+              "items": [
+                [
+                  "cine América",
+                  "plaza Real"
+                ]
+              ]
+            },
+            "after": null
+          },
+          "translation": {
+            "before": null,
+            "after": "Мы идём на Королевскую площадь."
+          },
+          "context": {
+            "before": "Добавь артикль в адрес.",
+            "after": "Скажи, на какую площадь вы идёте."
+          },
+          "prompt": {
+            "before": "El cine América está en ___ plaza Real.",
+            "after": "Vamos a ___ plaza Real."
+          },
+          "explain": {
+            "before": "Артикль относится к plaza.",
+            "after": "Plaza — женский род: a la plaza Real. A и la пишем раздельно."
+          }
+        }
+      },
+      {
+        "number": 12,
+        "changes": {
+          "answers": {
+            "before": [
+              "el"
+            ],
+            "after": [
+              "las"
+            ]
+          },
+          "options": {
+            "before": [
+              "el",
+              "la"
+            ],
+            "after": null
+          },
+          "interaction": {
+            "before": "gap-choice",
+            "after": null
+          },
+          "facts": {
+            "before": {
+              "label": "Адрес",
+              "items": [
+                [
+                  "hospital Universitario",
+                  "paseo del Parque"
+                ]
+              ]
+            },
+            "after": null
+          },
+          "translation": {
+            "before": null,
+            "after": "Где находятся улицы Майор и Реаль?"
+          },
+          "context": {
+            "before": "Добавь артикль в адрес.",
+            "after": "Спроси о двух улицах."
+          },
+          "prompt": {
+            "before": "El hospital Universitario está en ___ paseo del Parque.",
+            "after": "¿Dónde están ___ calles Mayor y Real?"
+          },
+          "explain": {
+            "before": "Артикль относится к paseo.",
+            "after": "Calles — несколько улиц, женский род: las calles. Названия не меняют выбор артикля."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "unit": 9,
+    "group": "9.1",
+    "action": "redesigned",
+    "metadata": {
+      "inputLabel": {
+        "before": "Выбор ответа",
+        "after": "Выбор ответа · Короткий ввод"
+      },
+      "title": {
+        "before": "9.1 · Который час?",
+        "after": "9.1 · Который час? Во сколько?"
+      },
+      "inputFormat": {
+        "before": null,
+        "after": {
+          "instruction": "Впиши начало фразы целиком: es la, son las, a la или a las. Часы и минуты уже написаны.",
+          "example": "a las (в ответе «во сколько?»)",
+          "placeholder": "es la, son las, a la или a las"
+        }
+      },
+      "revision": {
+        "before": null,
+        "after": 2
+      },
+      "instruction": {
+        "before": "Выбери начало фразы по времени на часах: Es la или Son las.",
+        "after": "Прочитай вопрос: нужно назвать текущее время или сказать, во сколько что-то происходит. Выбери либо впиши начало фразы целиком."
+      }
+    },
+    "questions": [
+      {
+        "number": 1,
+        "changes": {
+          "answers": {
+            "before": [
+              "las"
+            ],
+            "after": [
+              "Son las"
+            ]
+          },
+          "options": {
+            "before": [
+              "las",
+              "la"
+            ],
+            "after": [
+              "Son las",
+              "A las",
+              "Es la",
+              "A la"
+            ]
+          },
+          "translation": {
+            "before": null,
+            "after": "Который час? Сейчас три двадцать."
+          },
+          "optionLabels": {
+            "before": {
+              "la": "Es la",
+              "las": "Son las"
+            },
+            "after": null
+          },
+          "context": {
+            "before": "Выбери начало фразы.",
+            "after": "Спроси и назови текущее время."
+          },
+          "prompt": {
+            "before": "___ tres y veinte.",
+            "after": "¿Qué hora es? ___ tres y veinte."
+          },
+          "explain": {
+            "before": "Для одного часа говорим Es la una, для остальных — Son las: Son las tres y veinte.",
+            "after": "Называем время, не момент события. Tres — не один час: Son las tres y veinte."
+          }
+        }
+      },
+      {
+        "number": 2,
+        "changes": {
+          "answers": {
+            "before": [
+              "la"
+            ],
+            "after": [
+              "Es la"
+            ]
+          },
+          "options": {
+            "before": [
+              "las",
+              "la"
+            ],
+            "after": [
+              "A la",
+              "A las",
+              "Son las",
+              "Es la"
+            ]
+          },
+          "translation": {
+            "before": null,
+            "after": "Сейчас час двадцать пять."
+          },
+          "optionLabels": {
+            "before": {
+              "la": "Es la",
+              "las": "Son las"
+            },
+            "after": null
+          },
+          "context": {
+            "before": "Выбери начало фразы.",
+            "after": "Назови текущее время."
+          },
+          "prompt": {
+            "before": "___ una y veinticinco.",
+            "after": "¿Qué hora es? ___ una y veinticinco."
+          },
+          "explain": {
+            "before": "Для одного часа говорим Es la una, для остальных — Son las: Es la una y veinticinco.",
+            "after": "Для одного часа используем единственное число: Es la una y veinticinco."
+          }
+        }
+      },
+      {
+        "number": 3,
+        "changes": {
+          "answers": {
+            "before": [
+              "las"
+            ],
+            "after": [
+              "A las"
+            ]
+          },
+          "options": {
+            "before": [
+              "las",
+              "la"
+            ],
+            "after": [
+              "A la",
+              "Es la",
+              "Son las",
+              "A las"
+            ]
+          },
+          "translation": {
+            "before": null,
+            "after": "Во сколько отправляется поезд? Без десяти четыре."
+          },
+          "optionLabels": {
+            "before": {
+              "la": "Es la",
+              "las": "Son las"
+            },
+            "after": null
+          },
+          "context": {
+            "before": "Выбери начало фразы.",
+            "after": "Ответь, во сколько отправляется поезд."
+          },
+          "prompt": {
+            "before": "___ cuatro menos diez.",
+            "after": "¿A qué hora sale el tren? ___ cuatro menos diez."
+          },
+          "explain": {
+            "before": "Для одного часа говорим Es la una, для остальных — Son las: Son las cuatro menos diez.",
+            "after": "В вопросе «во сколько?» перед названием времени нужно a: A las cuatro menos diez."
+          }
+        }
+      },
+      {
+        "number": 4,
+        "changes": {
+          "answers": {
+            "before": [
+              "las"
+            ],
+            "after": [
+              "Son las"
+            ]
+          },
+          "options": {
+            "before": [
+              "las",
+              "la"
+            ],
+            "after": null
+          },
+          "interaction": {
+            "before": "gap-choice",
+            "after": null
+          },
+          "translation": {
+            "before": null,
+            "after": "Сейчас два часа."
+          },
+          "optionLabels": {
+            "before": {
+              "la": "Es la",
+              "las": "Son las"
+            },
+            "after": null
+          },
+          "context": {
+            "before": "Выбери начало фразы.",
+            "after": "Назови текущее время."
+          },
+          "prompt": {
+            "before": "___ dos.",
+            "after": "¿Qué hora es? ___ dos."
+          },
+          "explain": {
+            "before": "Для одного часа говорим Es la una, для остальных — Son las: Son las dos.",
+            "after": "Dos требует множественного числа: Son las dos. Предлог a не нужен."
+          }
+        }
+      },
+      {
+        "number": 5,
+        "changes": {
+          "answers": {
+            "before": [
+              "las"
+            ],
+            "after": [
+              "a las"
+            ]
+          },
+          "options": {
+            "before": [
+              "la",
+              "las"
+            ],
+            "after": [
+              "es la",
+              "a las",
+              "son las",
+              "a la"
+            ]
+          },
+          "translation": {
+            "before": null,
+            "after": "Фильм начинается в половине девятого."
+          },
+          "optionLabels": {
+            "before": {
+              "la": "Es la",
+              "las": "Son las"
+            },
+            "after": null
+          },
+          "context": {
+            "before": "Выбери начало фразы.",
+            "after": "Сообщи время начала фильма."
+          },
+          "prompt": {
+            "before": "___ ocho y media.",
+            "after": "La película empieza ___ ocho y media."
+          },
+          "explain": {
+            "before": "Для одного часа говорим Es la una, для остальных — Son las: Son las ocho y media.",
+            "after": "Говорим о времени события: empieza a las ocho y media."
+          }
+        }
+      },
+      {
+        "number": 6,
+        "changes": {
+          "answers": {
+            "before": [
+              "las"
+            ],
+            "after": [
+              "Son las"
+            ]
+          },
+          "options": {
+            "before": [
+              "la",
+              "las"
+            ],
+            "after": [
+              "Son las",
+              "A las",
+              "A la",
+              "Es la"
+            ]
+          },
+          "translation": {
+            "before": null,
+            "after": "Сейчас двенадцать часов пять минут."
+          },
+          "optionLabels": {
+            "before": {
+              "la": "Es la",
+              "las": "Son las"
+            },
+            "after": null
+          },
+          "context": {
+            "before": "Выбери начало фразы.",
+            "after": "Назови текущее время."
+          },
+          "prompt": {
+            "before": "___ doce y cinco.",
+            "after": "¿Qué hora es? ___ doce y cinco."
+          },
+          "explain": {
+            "before": "Для одного часа говорим Es la una, для остальных — Son las: Son las doce y cinco.",
+            "after": "Называем текущее время: Son las doce y cinco."
+          }
+        }
+      },
+      {
+        "number": 7,
+        "changes": {
+          "answers": {
+            "before": [
+              "la"
+            ],
+            "after": [
+              "A la"
+            ]
+          },
+          "options": {
+            "before": [
+              "las",
+              "la"
+            ],
+            "after": null
+          },
+          "interaction": {
+            "before": "gap-choice",
+            "after": null
+          },
+          "translation": {
+            "before": null,
+            "after": "Во сколько начинается фильм? Без четверти час."
+          },
+          "optionLabels": {
+            "before": {
+              "la": "Es la",
+              "las": "Son las"
+            },
+            "after": null
+          },
+          "context": {
+            "before": "Выбери начало фразы.",
+            "after": "Ответь, во сколько начинается фильм."
+          },
+          "prompt": {
+            "before": "___ una menos cuarto.",
+            "after": "¿A qué hora empieza la película? ___ una menos cuarto."
+          },
+          "explain": {
+            "before": "Для одного часа говорим Es la una, для остальных — Son las: Es la una menos cuarto.",
+            "after": "В ответе «во сколько?» нужно a; перед una — единственное число: A la una menos cuarto."
+          }
+        }
+      },
+      {
+        "number": 8,
+        "changes": {
+          "answers": {
+            "before": [
+              "las"
+            ],
+            "after": [
+              "Son las"
+            ]
+          },
+          "options": {
+            "before": [
+              "las",
+              "la"
+            ],
+            "after": [
+              "Es la",
+              "A la",
+              "A las",
+              "Son las"
+            ]
+          },
+          "translation": {
+            "before": null,
+            "after": "Сейчас четверть двенадцатого."
+          },
+          "optionLabels": {
+            "before": {
+              "la": "Es la",
+              "las": "Son las"
+            },
+            "after": null
+          },
+          "context": {
+            "before": "Выбери начало фразы.",
+            "after": "Назови текущее время."
+          },
+          "prompt": {
+            "before": "___ once y cuarto.",
+            "after": "¿Qué hora es? ___ once y cuarto."
+          },
+          "explain": {
+            "before": "Для одного часа говорим Es la una, для остальных — Son las: Son las once y cuarto.",
+            "after": "Для once используем Son las: Son las once y cuarto."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "unit": 12,
+    "group": "12.1",
+    "action": "positions_only",
+    "metadata": {},
+    "questions": [
+      {
+        "number": 1,
+        "changes": {
+          "options": {
+            "before": [
+              "estas",
+              "aquellas",
+              "esas"
+            ],
+            "after": [
+              "esas",
+              "estas",
+              "aquellas"
+            ]
+          }
+        }
+      },
+      {
+        "number": 2,
+        "changes": {
+          "options": {
+            "before": [
+              "esta",
+              "aquella",
+              "esa"
+            ],
+            "after": [
+              "esta",
+              "esa",
+              "aquella"
+            ]
+          }
+        }
+      },
+      {
+        "number": 4,
+        "changes": {
+          "options": {
+            "before": [
+              "aquel",
+              "ese",
+              "este"
+            ],
+            "after": [
+              "ese",
+              "aquel",
+              "este"
+            ]
+          }
+        }
+      },
+      {
+        "number": 5,
+        "changes": {
+          "options": {
+            "before": [
+              "estas",
+              "esas",
+              "aquellas"
+            ],
+            "after": [
+              "esas",
+              "aquellas",
+              "estas"
+            ]
+          }
+        }
+      },
+      {
+        "number": 6,
+        "changes": {
+          "options": {
+            "before": [
+              "ese",
+              "aquel",
+              "este"
+            ],
+            "after": [
+              "ese",
+              "este",
+              "aquel"
+            ]
+          }
+        }
+      },
+      {
+        "number": 8,
+        "changes": {
+          "options": {
+            "before": [
+              "aquellas",
+              "esas",
+              "estas"
+            ],
+            "after": [
+              "aquellas",
+              "estas",
+              "esas"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "unit": 13,
+    "group": "13.1",
+    "action": "positions_only",
+    "metadata": {},
+    "questions": [
+      {
+        "number": 5,
+        "changes": {
+          "options": {
+            "before": [
+              "simpático",
+              "simpáticas",
+              "simpática",
+              "simpáticos"
+            ],
+            "after": [
+              "simpático",
+              "simpática",
+              "simpáticos",
+              "simpáticas"
+            ]
+          }
+        }
+      },
+      {
+        "number": 8,
+        "changes": {
+          "options": {
+            "before": [
+              "rojo",
+              "rojos",
+              "roja"
+            ],
+            "after": [
+              "roja",
+              "rojo",
+              "rojos"
+            ]
+          }
+        }
+      },
+      {
+        "number": 11,
+        "changes": {
+          "options": {
+            "before": [
+              "negra",
+              "negras",
+              "negros",
+              "negro"
+            ],
+            "after": [
+              "negro",
+              "negras",
+              "negra",
+              "negros"
+            ]
+          }
+        }
+      },
+      {
+        "number": 14,
+        "changes": {
+          "options": {
+            "before": [
+              "amarillo",
+              "amarillos",
+              "amarilla"
+            ],
+            "after": [
+              "amarillo",
+              "amarilla",
+              "amarillos"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "unit": 13,
+    "group": "13.3",
+    "action": "positions_only",
+    "metadata": {},
+    "questions": [
+      {
+        "number": 2,
+        "changes": {
+          "options": {
+            "before": [
+              "rojo",
+              "rojos",
+              "roja"
+            ],
+            "after": [
+              "rojos",
+              "rojo",
+              "roja"
+            ]
+          }
+        }
+      },
+      {
+        "number": 5,
+        "changes": {
+          "options": {
+            "before": [
+              "preferidos",
+              "preferidas",
+              "preferida",
+              "preferido"
+            ],
+            "after": [
+              "preferida",
+              "preferidas",
+              "preferido",
+              "preferidos"
+            ]
+          }
+        }
+      },
+      {
+        "number": 8,
+        "changes": {
+          "options": {
+            "before": [
+              "preferida",
+              "preferidos",
+              "preferido"
+            ],
+            "after": [
+              "preferidos",
+              "preferida",
+              "preferido"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "unit": 14,
+    "group": "14.1",
+    "action": "redesigned",
+    "metadata": {
+      "revision": {
+        "before": null,
+        "after": 2
+      },
+      "instruction": {
+        "before": "Дополни предложение подходящей формой слова из подсказки.",
+        "after": "Прочитай местоимение и подсказку заново в каждом вопросе. Модели с разными окончаниями чередуются; впиши или выбери нужную форму."
+      }
+    },
+    "questions": [
+      {
+        "number": 1,
+        "changes": {
+          "options": {
+            "before": null,
+            "after": [
+              "japonesa",
+              "japonés",
+              "japoneses",
+              "japonesas"
+            ]
+          },
+          "interaction": {
+            "before": null,
+            "after": "gap-choice"
+          },
+          "prompt": {
+            "before": "Ella es ___.",
+            "after": "Ellos son ___."
+          },
+          "sourceRef": {
+            "before": "14.1.1",
+            "after": "14.1.5"
+          },
+          "answers": {
+            "before": [
+              "brasileña"
+            ],
+            "after": [
+              "japoneses"
+            ]
+          },
+          "clues": {
+            "before": [
+              [
+                "brasileño",
+                "бразильский"
+              ]
+            ],
+            "after": [
+              [
+                "japonés",
+                "японский"
+              ]
+            ]
+          },
+          "translation": {
+            "before": "одна женщина",
+            "after": "несколько мужчин"
+          },
+          "explain": {
+            "before": "Ella — одна женщина. Подходящая форма: brasileña.",
+            "after": "Ellos — несколько мужчин. Подходящая форма: japoneses."
+          }
+        }
+      },
+      {
+        "number": 2,
+        "changes": {
+          "sourceRef": {
+            "before": "14.1.1",
+            "after": "14.1.2"
+          },
+          "answers": {
+            "before": [
+              "brasileños"
+            ],
+            "after": [
+              "costarricense"
+            ]
+          },
+          "options": {
+            "before": [
+              "brasileña",
+              "brasileñas",
+              "brasileños",
+              "brasileño"
+            ],
+            "after": null
+          },
+          "interaction": {
+            "before": "gap-choice",
+            "after": null
+          },
+          "clues": {
+            "before": [
+              [
+                "brasileño",
+                "бразильский"
+              ]
+            ],
+            "after": [
+              [
+                "costarricense",
+                "коста-риканский"
+              ]
+            ]
+          },
+          "translation": {
+            "before": "несколько мужчин",
+            "after": "одна женщина"
+          },
+          "prompt": {
+            "before": "Ellos son ___.",
+            "after": "Ella es ___."
+          },
+          "explain": {
+            "before": "Ellos — несколько мужчин. Подходящая форма: brasileños.",
+            "after": "Ella — одна женщина. Подходящая форма: costarricense."
+          }
+        }
+      },
+      {
+        "number": 3,
+        "changes": {
+          "sourceRef": {
+            "before": "14.1.1",
+            "after": "14.1.7"
+          },
+          "answers": {
+            "before": [
+              "brasileñas"
+            ],
+            "after": [
+              "venezolanas"
+            ]
+          },
+          "clues": {
+            "before": [
+              [
+                "brasileño",
+                "бразильский"
+              ]
+            ],
+            "after": [
+              [
+                "venezolano",
+                "венесуэльский"
+              ]
+            ]
+          },
+          "explain": {
+            "before": "Ellas — несколько женщин. Подходящая форма: brasileñas.",
+            "after": "Ellas — несколько женщин. Подходящая форма: venezolanas."
+          }
+        }
+      },
+      {
+        "number": 4,
+        "changes": {
+          "sourceRef": {
+            "before": "14.1.2",
+            "after": "14.1.4"
+          },
+          "answers": {
+            "before": [
+              "costarricense"
+            ],
+            "after": [
+              "iraní"
+            ]
+          },
+          "clues": {
+            "before": [
+              [
+                "costarricense",
+                "коста-риканский"
+              ]
+            ],
+            "after": [
+              [
+                "iraní",
+                "иранский"
+              ]
+            ]
+          },
+          "explain": {
+            "before": "Ella — одна женщина. Подходящая форма: costarricense.",
+            "after": "Ella — одна женщина. Подходящая форма: iraní."
+          }
+        }
+      },
+      {
+        "number": 5,
+        "changes": {
+          "options": {
+            "before": null,
+            "after": [
+              "brasileñas",
+              "brasileña",
+              "brasileños",
+              "brasileño"
+            ]
+          },
+          "interaction": {
+            "before": null,
+            "after": "gap-choice"
+          },
+          "sourceRef": {
+            "before": "14.1.2",
+            "after": "14.1.1"
+          },
+          "answers": {
+            "before": [
+              "costarricenses"
+            ],
+            "after": [
+              "brasileños"
+            ]
+          },
+          "clues": {
+            "before": [
+              [
+                "costarricense",
+                "коста-риканский"
+              ]
+            ],
+            "after": [
+              [
+                "brasileño",
+                "бразильский"
+              ]
+            ]
+          },
+          "explain": {
+            "before": "Ellos — несколько мужчин. Подходящая форма: costarricenses.",
+            "after": "Ellos — несколько мужчин. Подходящая форма: brasileños."
+          }
+        }
+      },
+      {
+        "number": 6,
+        "changes": {
+          "sourceRef": {
+            "before": "14.1.2",
+            "after": "14.1.6"
+          },
+          "answers": {
+            "before": [
+              "costarricenses"
+            ],
+            "after": [
+              "nicaragüenses"
+            ]
+          },
+          "clues": {
+            "before": [
+              [
+                "costarricense",
+                "коста-риканский"
+              ]
+            ],
+            "after": [
+              [
+                "nicaragüense",
+                "никарагуанский"
+              ]
+            ]
+          },
+          "explain": {
+            "before": "Ellas — несколько женщин. Подходящая форма: costarricenses.",
+            "after": "Ellas — несколько женщин. Подходящая форма: nicaragüenses."
+          }
+        }
+      },
+      {
+        "number": 8,
+        "changes": {
+          "sourceRef": {
+            "before": "14.1.3",
+            "after": "14.1.8"
+          },
+          "answers": {
+            "before": [
+              "escoceses"
+            ],
+            "after": [
+              "vietnamitas"
+            ]
+          },
+          "options": {
+            "before": [
+              "escocesa",
+              "escocesas",
+              "escoceses",
+              "escocés"
+            ],
+            "after": null
+          },
+          "interaction": {
+            "before": "gap-choice",
+            "after": null
+          },
+          "clues": {
+            "before": [
+              [
+                "escocés",
+                "шотландский"
+              ]
+            ],
+            "after": [
+              [
+                "vietnamita",
+                "вьетнамский"
+              ]
+            ]
+          },
+          "translation": {
+            "before": "несколько мужчин",
+            "after": "несколько женщин"
+          },
+          "prompt": {
+            "before": "Ellos son ___.",
+            "after": "Ellas son ___."
+          },
+          "explain": {
+            "before": "Ellos — несколько мужчин. Подходящая форма: escoceses.",
+            "after": "Ellas — несколько женщин. Подходящая форма: vietnamitas."
+          }
+        }
+      },
+      {
+        "number": 9,
+        "changes": {
+          "sourceRef": {
+            "before": "14.1.3",
+            "after": "14.1.4"
+          },
+          "answers": {
+            "before": [
+              "escocesas"
+            ],
+            "after": [
+              "iraníes",
+              "iranís"
+            ]
+          },
+          "clues": {
+            "before": [
+              [
+                "escocés",
+                "шотландский"
+              ]
+            ],
+            "after": [
+              [
+                "iraní",
+                "иранский"
+              ]
+            ]
+          },
+          "explain": {
+            "before": "Ellas — несколько женщин. Подходящая форма: escocesas.",
+            "after": "Ellas — несколько женщин. Подходящая форма: iraníes или iranís."
+          }
+        }
+      },
+      {
+        "number": 10,
+        "changes": {
+          "sourceRef": {
+            "before": "14.1.4",
+            "after": "14.1.1"
+          },
+          "answers": {
+            "before": [
+              "iraní"
+            ],
+            "after": [
+              "brasileña"
+            ]
+          },
+          "clues": {
+            "before": [
+              [
+                "iraní",
+                "иранский"
+              ]
+            ],
+            "after": [
+              [
+                "brasileño",
+                "бразильский"
+              ]
+            ]
+          },
+          "explain": {
+            "before": "Ella — одна женщина. Подходящая форма: iraní.",
+            "after": "Ella — одна женщина. Подходящая форма: brasileña."
+          }
+        }
+      },
+      {
+        "number": 11,
+        "changes": {
+          "sourceRef": {
+            "before": "14.1.4",
+            "after": "14.1.6"
+          },
+          "answers": {
+            "before": [
+              "iraníes",
+              "iranís"
+            ],
+            "after": [
+              "nicaragüense"
+            ]
+          },
+          "clues": {
+            "before": [
+              [
+                "iraní",
+                "иранский"
+              ]
+            ],
+            "after": [
+              [
+                "nicaragüense",
+                "никарагуанский"
+              ]
+            ]
+          },
+          "translation": {
+            "before": "несколько мужчин",
+            "after": "одна женщина"
+          },
+          "prompt": {
+            "before": "Ellos son ___.",
+            "after": "Ella es ___."
+          },
+          "explain": {
+            "before": "Ellos — несколько мужчин. Подходящая форма: iraníes или iranís.",
+            "after": "Ella — одна женщина. Подходящая форма: nicaragüense."
+          }
+        }
+      },
+      {
+        "number": 12,
+        "changes": {
+          "sourceRef": {
+            "before": "14.1.4",
+            "after": "14.1.3"
+          },
+          "answers": {
+            "before": [
+              "iraníes",
+              "iranís"
+            ],
+            "after": [
+              "escocesas"
+            ]
+          },
+          "clues": {
+            "before": [
+              [
+                "iraní",
+                "иранский"
+              ]
+            ],
+            "after": [
+              [
+                "escocés",
+                "шотландский"
+              ]
+            ]
+          },
+          "explain": {
+            "before": "Ellas — несколько женщин. Подходящая форма: iraníes или iranís.",
+            "after": "Ellas — несколько женщин. Подходящая форма: escocesas."
+          }
+        }
+      },
+      {
+        "number": 13,
+        "changes": {
+          "options": {
+            "before": null,
+            "after": [
+              "venezolanos",
+              "venezolano",
+              "venezolanas",
+              "venezolana"
+            ]
+          },
+          "interaction": {
+            "before": null,
+            "after": "gap-choice"
+          },
+          "prompt": {
+            "before": "Ella es ___.",
+            "after": "Ellos son ___."
+          },
+          "sourceRef": {
+            "before": "14.1.5",
+            "after": "14.1.7"
+          },
+          "answers": {
+            "before": [
+              "japonesa"
+            ],
+            "after": [
+              "venezolanos"
+            ]
+          },
+          "clues": {
+            "before": [
+              [
+                "japonés",
+                "японский"
+              ]
+            ],
+            "after": [
+              [
+                "venezolano",
+                "венесуэльский"
+              ]
+            ]
+          },
+          "translation": {
+            "before": "одна женщина",
+            "after": "несколько мужчин"
+          },
+          "explain": {
+            "before": "Ella — одна женщина. Подходящая форма: japonesa.",
+            "after": "Ellos — несколько мужчин. Подходящая форма: venezolanos."
+          }
+        }
+      },
+      {
+        "number": 14,
+        "changes": {
+          "sourceRef": {
+            "before": "14.1.5",
+            "after": "14.1.2"
+          },
+          "answers": {
+            "before": [
+              "japoneses"
+            ],
+            "after": [
+              "costarricenses"
+            ]
+          },
+          "options": {
+            "before": [
+              "japonesa",
+              "japonesas",
+              "japoneses",
+              "japonés"
+            ],
+            "after": null
+          },
+          "interaction": {
+            "before": "gap-choice",
+            "after": null
+          },
+          "clues": {
+            "before": [
+              [
+                "japonés",
+                "японский"
+              ]
+            ],
+            "after": [
+              [
+                "costarricense",
+                "коста-риканский"
+              ]
+            ]
+          },
+          "explain": {
+            "before": "Ellos — несколько мужчин. Подходящая форма: japoneses.",
+            "after": "Ellos — несколько мужчин. Подходящая форма: costarricenses."
+          }
+        }
+      },
+      {
+        "number": 15,
+        "changes": {
+          "answers": {
+            "before": [
+              "japonesas"
+            ],
+            "after": [
+              "japonesa"
+            ]
+          },
+          "translation": {
+            "before": "несколько женщин",
+            "after": "одна женщина"
+          },
+          "prompt": {
+            "before": "Ellas son ___.",
+            "after": "Ella es ___."
+          },
+          "explain": {
+            "before": "Ellas — несколько женщин. Подходящая форма: japonesas.",
+            "after": "Ella — одна женщина. Подходящая форма: japonesa."
+          }
+        }
+      },
+      {
+        "number": 16,
+        "changes": {
+          "sourceRef": {
+            "before": "14.1.6",
+            "after": "14.1.8"
+          },
+          "answers": {
+            "before": [
+              "nicaragüense"
+            ],
+            "after": [
+              "vietnamitas"
+            ]
+          },
+          "clues": {
+            "before": [
+              [
+                "nicaragüense",
+                "никарагуанский"
+              ]
+            ],
+            "after": [
+              [
+                "vietnamita",
+                "вьетнамский"
+              ]
+            ]
+          },
+          "translation": {
+            "before": "одна женщина",
+            "after": "несколько мужчин"
+          },
+          "prompt": {
+            "before": "Ella es ___.",
+            "after": "Ellos son ___."
+          },
+          "explain": {
+            "before": "Ella — одна женщина. Подходящая форма: nicaragüense.",
+            "after": "Ellos — несколько мужчин. Подходящая форма: vietnamitas."
+          }
+        }
+      },
+      {
+        "number": 17,
+        "changes": {
+          "sourceRef": {
+            "before": "14.1.6",
+            "after": "14.1.4"
+          },
+          "answers": {
+            "before": [
+              "nicaragüenses"
+            ],
+            "after": [
+              "iraníes",
+              "iranís"
+            ]
+          },
+          "clues": {
+            "before": [
+              [
+                "nicaragüense",
+                "никарагуанский"
+              ]
+            ],
+            "after": [
+              [
+                "iraní",
+                "иранский"
+              ]
+            ]
+          },
+          "explain": {
+            "before": "Ellos — несколько мужчин. Подходящая форма: nicaragüenses.",
+            "after": "Ellos — несколько мужчин. Подходящая форма: iraníes или iranís."
+          }
+        }
+      },
+      {
+        "number": 18,
+        "changes": {
+          "sourceRef": {
+            "before": "14.1.6",
+            "after": "14.1.1"
+          },
+          "answers": {
+            "before": [
+              "nicaragüenses"
+            ],
+            "after": [
+              "brasileñas"
+            ]
+          },
+          "clues": {
+            "before": [
+              [
+                "nicaragüense",
+                "никарагуанский"
+              ]
+            ],
+            "after": [
+              [
+                "brasileño",
+                "бразильский"
+              ]
+            ]
+          },
+          "explain": {
+            "before": "Ellas — несколько женщин. Подходящая форма: nicaragüenses.",
+            "after": "Ellas — несколько женщин. Подходящая форма: brasileñas."
+          }
+        }
+      },
+      {
+        "number": 19,
+        "changes": {
+          "sourceRef": {
+            "before": "14.1.7",
+            "after": "14.1.6"
+          },
+          "answers": {
+            "before": [
+              "venezolana"
+            ],
+            "after": [
+              "nicaragüenses"
+            ]
+          },
+          "clues": {
+            "before": [
+              [
+                "venezolano",
+                "венесуэльский"
+              ]
+            ],
+            "after": [
+              [
+                "nicaragüense",
+                "никарагуанский"
+              ]
+            ]
+          },
+          "translation": {
+            "before": "одна женщина",
+            "after": "несколько мужчин"
+          },
+          "prompt": {
+            "before": "Ella es ___.",
+            "after": "Ellos son ___."
+          },
+          "explain": {
+            "before": "Ella — одна женщина. Подходящая форма: venezolana.",
+            "after": "Ellos — несколько мужчин. Подходящая форма: nicaragüenses."
+          }
+        }
+      },
+      {
+        "number": 20,
+        "changes": {
+          "sourceRef": {
+            "before": "14.1.7",
+            "after": "14.1.3"
+          },
+          "answers": {
+            "before": [
+              "venezolanos"
+            ],
+            "after": [
+              "escoceses"
+            ]
+          },
+          "options": {
+            "before": [
+              "venezolana",
+              "venezolanas",
+              "venezolanos",
+              "venezolano"
+            ],
+            "after": [
+              "escoceses",
+              "escocesa",
+              "escocesas",
+              "escocés"
+            ]
+          },
+          "clues": {
+            "before": [
+              [
+                "venezolano",
+                "венесуэльский"
+              ]
+            ],
+            "after": [
+              [
+                "escocés",
+                "шотландский"
+              ]
+            ]
+          },
+          "explain": {
+            "before": "Ellos — несколько мужчин. Подходящая форма: venezolanos.",
+            "after": "Ellos — несколько мужчин. Подходящая форма: escoceses."
+          }
+        }
+      },
+      {
+        "number": 21,
+        "changes": {
+          "sourceRef": {
+            "before": "14.1.7",
+            "after": "14.1.8"
+          },
+          "answers": {
+            "before": [
+              "venezolanas"
+            ],
+            "after": [
+              "vietnamita"
+            ]
+          },
+          "clues": {
+            "before": [
+              [
+                "venezolano",
+                "венесуэльский"
+              ]
+            ],
+            "after": [
+              [
+                "vietnamita",
+                "вьетнамский"
+              ]
+            ]
+          },
+          "translation": {
+            "before": "несколько женщин",
+            "after": "одна женщина"
+          },
+          "prompt": {
+            "before": "Ellas son ___.",
+            "after": "Ella es ___."
+          },
+          "explain": {
+            "before": "Ellas — несколько женщин. Подходящая форма: venezolanas.",
+            "after": "Ella — одна женщина. Подходящая форма: vietnamita."
+          }
+        }
+      },
+      {
+        "number": 22,
+        "changes": {
+          "sourceRef": {
+            "before": "14.1.8",
+            "after": "14.1.5"
+          },
+          "answers": {
+            "before": [
+              "vietnamita"
+            ],
+            "after": [
+              "japonesas"
+            ]
+          },
+          "clues": {
+            "before": [
+              [
+                "vietnamita",
+                "вьетнамский"
+              ]
+            ],
+            "after": [
+              [
+                "japonés",
+                "японский"
+              ]
+            ]
+          },
+          "translation": {
+            "before": "одна женщина",
+            "after": "несколько женщин"
+          },
+          "prompt": {
+            "before": "Ella es ___.",
+            "after": "Ellas son ___."
+          },
+          "explain": {
+            "before": "Ella — одна женщина. Подходящая форма: vietnamita.",
+            "after": "Ellas — несколько женщин. Подходящая форма: japonesas."
+          }
+        }
+      },
+      {
+        "number": 23,
+        "changes": {
+          "sourceRef": {
+            "before": "14.1.8",
+            "after": "14.1.2"
+          },
+          "answers": {
+            "before": [
+              "vietnamitas"
+            ],
+            "after": [
+              "costarricenses"
+            ]
+          },
+          "clues": {
+            "before": [
+              [
+                "vietnamita",
+                "вьетнамский"
+              ]
+            ],
+            "after": [
+              [
+                "costarricense",
+                "коста-риканский"
+              ]
+            ]
+          },
+          "translation": {
+            "before": "несколько мужчин",
+            "after": "несколько женщин"
+          },
+          "prompt": {
+            "before": "Ellos son ___.",
+            "after": "Ellas son ___."
+          },
+          "explain": {
+            "before": "Ellos — несколько мужчин. Подходящая форма: vietnamitas.",
+            "after": "Ellas — несколько женщин. Подходящая форма: costarricenses."
+          }
+        }
+      },
+      {
+        "number": 24,
+        "changes": {
+          "sourceRef": {
+            "before": "14.1.8",
+            "after": "14.1.7"
+          },
+          "answers": {
+            "before": [
+              "vietnamitas"
+            ],
+            "after": [
+              "venezolana"
+            ]
+          },
+          "clues": {
+            "before": [
+              [
+                "vietnamita",
+                "вьетнамский"
+              ]
+            ],
+            "after": [
+              [
+                "venezolano",
+                "венесуэльский"
+              ]
+            ]
+          },
+          "translation": {
+            "before": "несколько женщин",
+            "after": "одна женщина"
+          },
+          "prompt": {
+            "before": "Ellas son ___.",
+            "after": "Ella es ___."
+          },
+          "explain": {
+            "before": "Ellas — несколько женщин. Подходящая форма: vietnamitas.",
+            "after": "Ella — одна женщина. Подходящая форма: venezolana."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "unit": 14,
+    "group": "14.2",
+    "action": "positions_only",
+    "metadata": {},
+    "questions": [
+      {
+        "number": 2,
+        "changes": {
+          "options": {
+            "before": [
+              "chino",
+              "china",
+              "chinas"
+            ],
+            "after": [
+              "chinas",
+              "china",
+              "chino"
+            ]
+          }
+        }
+      },
+      {
+        "number": 5,
+        "changes": {
+          "options": {
+            "before": [
+              "italiana",
+              "italianos",
+              "italianas",
+              "italiano"
+            ],
+            "after": [
+              "italiano",
+              "italiana",
+              "italianos",
+              "italianas"
+            ]
+          }
+        }
+      },
+      {
+        "number": 8,
+        "changes": {
+          "options": {
+            "before": [
+              "ruso",
+              "rusa",
+              "rusos"
+            ],
+            "after": [
+              "rusos",
+              "rusa",
+              "ruso"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "unit": 15,
+    "group": "15.4",
+    "action": "positions_only",
+    "metadata": {},
+    "questions": [
+      {
+        "number": 8,
+        "changes": {
+          "options": {
+            "before": [
+              "más larga",
+              "menos larga"
+            ],
+            "after": [
+              "menos larga",
+              "más larga"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "unit": 17,
+    "group": "check-g",
+    "action": "positions_only",
+    "metadata": {},
+    "questions": [
+      {
+        "number": 1,
+        "changes": {
+          "options": {
+            "before": [
+              "de",
+              "que"
+            ],
+            "after": [
+              "que",
+              "de"
+            ]
+          }
+        }
+      },
+      {
+        "number": 2,
+        "changes": {
+          "options": {
+            "before": [
+              "de",
+              "que"
+            ],
+            "after": [
+              "que",
+              "de"
+            ]
+          }
+        }
+      },
+      {
+        "number": 3,
+        "changes": {
+          "options": {
+            "before": [
+              "de",
+              "que"
+            ],
+            "after": [
+              "que",
+              "de"
+            ]
+          }
+        }
+      }
+    ]
+  }
+]

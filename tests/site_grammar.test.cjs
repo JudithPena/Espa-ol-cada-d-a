@@ -652,19 +652,19 @@ test('gorilla mini-check resumes a typed answer with choices and accepts stored 
  assert.ok(run('gPlayerView()').includes('la gorila'));
 });
 
-test('time options display whole sentence openings while old stored article values still grade',()=>{
+test('time practice offers complete openings for both current time and scheduled events',()=>{
  const all=JSON.parse(fs.readFileSync('content/grammar/009_tiempo_fecha.json','utf8'));
  const run=context([all]);unlockUntil(run,'exercise:9.1');
  run(`gStart(COURSE.grammar[0].id,'exercise:9.1');gMove(1);`);
  let html=run('gPlayerView()');
  assert.ok(html.includes('Es la') && html.includes('Son las'));
  assert.ok(!html.includes('Son ___'));
- run(`gPick(gUnit().exercises[0].questions[0].options.indexOf('las'));`);
- assert.equal(run('gResponse(G.steps[G.at]).value'),'las');
+ run(`gPick(gUnit().exercises[0].questions[0].options.indexOf('Son las'));`);
+ assert.equal(run('gResponse(G.steps[G.at]).value'),'Son las');
  assert.equal(run('gResponse(G.steps[G.at]).good'),true);
  assert.equal(run('G.at'),1);
  assert.equal(run(`gOptionLabel({optionLabels:{la:'<img>'}},'la')`),'<img>');
- run(`gUnit().exercises[0].questions[0].optionLabels.las='<img src=x>';`);
+ run(`gUnit().exercises[0].questions[0].optionLabels={'Son las':'<img src=x>'};`);
  assert.ok(run('gPlayerView()').includes('&lt;img src=x&gt;'));
 });
 
@@ -763,7 +763,7 @@ test('all typing screens show a persistent format and example without changing g
   })())`));
   typed+=result.typed;legacy+=result.legacy;
  }
- assert.equal(typed,180);assert.equal(legacy,49);
+ assert.equal(typed,191);assert.equal(legacy,49);
 });
 
 test('quantity answers accept digits or words while the field explains the quantity format', () => {
@@ -1591,4 +1591,88 @@ test('next lesson uses actual metadata and order, escapes titles, and ignores st
  assert.ok(html.includes('Описание «длинной темы»'));
  assert.equal(run('gNextUnit({id:"missing"})'),undefined);
  run(`gStartNextUnit(COURSE.grammar[2].id);`);assert.equal(run('G.unit'),unit.id);
+});
+
+test('revised profession practice never reuses answers from the old all-omission exercise',()=>{
+ const updated=JSON.parse(fs.readFileSync('content/grammar/005_sin_articulo.json','utf8'));
+ const legacy=structuredClone(updated);delete legacy.revision;
+ legacy.learningOrder=['section:0','exercise:5.1','section:1','exercise:5.2','section:2','exercise:5.3','summary'];
+ delete legacy.exercises[0].revision;
+ for(const q of legacy.exercises[0].questions)q.answers=['Без артикля'];
+ const storage=new Map();let run=context([legacy],storage);unlockUntil(run,'exercise:5.1');
+ run(`render=()=>{};save();P.xp=52;P.grammar['other-unit/practice']={correct:4,total:4};
+   var u=COURSE.grammar[0],g=u.exercises[0];P.grammar[grammarKey(u,g)]={correct:8,total:8};save();
+   gStoreAttempt(u,u.exercises[1],gNewAttempt(u.exercises[1],{0:{value:'wrong',checked:true,good:false}}));
+   gStart(u.id,'exercise:5.1');gMove(1);
+   for(let i=0;i<2;i++){gResponse(G.steps[G.at]).value='Без артикля';gCheck();gMove(1);}
+   gResponse(G.steps[G.at]).value='un';gCheck();gExit();
+   var records=gAttempts();delete records[grammarKey(u,g)].revision;store.set(G_ATTEMPTS_KEY,JSON.stringify(records));
+   var session=gSaved();delete session.unitRevision;delete session.groupRevisions;store.set(G_SESSION_KEY,JSON.stringify(session));`);
+ const previous=run('JSON.stringify(P)'),otherAttempt=run('JSON.stringify(gAttempt(COURSE.grammar[0],COURSE.grammar[0].exercises[1]))');
+ run=context([updated],storage);run(`render=()=>{};gStart(COURSE.grammar[0].id,'all',true);`);
+ assert.equal(run('JSON.stringify(P)'),previous);
+ assert.equal(run('G.steps[G.at].type'),'theory');assert.equal(run('G.steps[G.at].section'),1);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).revision'),2);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),0);
+ assert.equal(run('Object.keys(gAttempt(gUnit(),gUnit().exercises[0]).responses).length'),0);
+ assert.equal(run('JSON.stringify(gAttempt(gUnit(),gUnit().exercises[1]))'),otherAttempt);
+ run(`P.grammar[grammarKey(gUnit(),gUnit().sections[1].check)]={correct:2,total:2};gStart(gUnit().id,'exercise:5.1');gMove(1);`);
+ assert.equal(run('gResponse(G.steps[G.at]).checked'),false);
+ assert.equal(run('P.xp'),52);
+});
+
+test('an updated exercise discards obsolete correction steps while the same revision retains errors',()=>{
+ const updated=JSON.parse(fs.readFileSync('content/grammar/009_tiempo_fecha.json','utf8'));
+ const legacy=structuredClone(updated);delete legacy.exercises[0].revision;
+ const storage=new Map();let run=context([legacy],storage);unlockUntil(run,'exercise:9.1');
+ run(`render=()=>{};save();gStart(COURSE.grammar[0].id,'exercise:9.1');gMove(1);
+   while(!G.steps[G.at].correction){const s=G.steps[G.at],q=gUnit().exercises[0].questions[s.qi];gResponse(s).value=s.qi===0?'wrong':q.answers[0];gCheck();gMove(1);}gExit();`);
+ run=context([updated],storage);run(`render=()=>{};gStart(COURSE.grammar[0].id,'all',true);`);
+ assert.equal(run('G.steps[G.at].type'),'intro');
+ assert.equal(run('G.steps.some(s=>s.correction)'),false);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),0);
+ run(`gMove(1);for(let i=0;i<2;i++){gResponse(G.steps[G.at]).value='wrong';gCheck();gMove(1);}gExit();`);
+ run=context([updated],storage);run(`render=()=>{};gStart(COURSE.grammar[0].id,'all',true);`);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),2);
+ run(`gResponse(G.steps[G.at]).value='wrong';gCheck();`);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).status'),'failed');
+ assert.equal(run('G.recovery'),'9.1');
+});
+
+test('all eight new profession questions pass with their contextual answers and cannot be passed by omission',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/005_sin_articulo.json','utf8'));
+ let run=context([u]);unlockUntil(run,'exercise:5.1');
+ run(`gStart(COURSE.grammar[0].id,'exercise:5.1');gMove(1);while(!G.ended){const s=G.steps[G.at];gResponse(s).value=gUnit().exercises[0].questions[s.qi].answers[0];gCheck();gMove(1);}`);
+ assert.equal(run('P.grammar[grammarKey(gUnit(),gUnit().exercises[0])].correct'),8);
+ assert.equal(run('P.xp'),16);
+ run=context([u]);unlockUntil(run,'exercise:5.1');
+ run(`gStart(COURSE.grammar[0].id,'exercise:5.1');gMove(1);while(!G.ended&&!G.recovery){gResponse(G.steps[G.at]).value='Без артикля';gCheck();if(!G.recovery)gMove(1);}`);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).status'),'failed');
+ assert.equal(run('P.xp'),0);
+});
+
+test('migrating several revised exercises returns the current exercise to its beginning only once',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/008_nombres_propios.json','utf8'));
+ const storage=new Map();let run=context([u],storage);unlockUntil(run,'exercise:8.1');
+ run(`render=()=>{};save();gStart(COURSE.grammar[0].id,'exercise:8.1');G.at=4;
+   var records=gAttempts();for(const g of gUnit().exercises.slice(0,2)){records[grammarKey(gUnit(),g)]={...gNewAttempt(g),revision:1,responses:{0:{value:'Без артикля',checked:true,good:true}}};}
+   store.set(G_ATTEMPTS_KEY,JSON.stringify(records));store.set(G_SESSION_KEY,JSON.stringify(G));G=null;`);
+ run=context([u],storage);run(`gStart(COURSE.grammar[0].id,'all',true)`);
+ assert.equal(run('G.steps[G.at].type'),'intro');assert.equal(run('G.steps[G.at].group'),'8.1');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).revision'),2);
+ assert.equal(run('Object.keys(gAttempt(gUnit(),gUnit().exercises[1]).responses).length'),0);
+});
+
+test('an old failed profession attempt reopens the newly required theory instead of a locked exercise',()=>{
+ const updated=JSON.parse(fs.readFileSync('content/grammar/005_sin_articulo.json','utf8'));
+ const legacy=structuredClone(updated);delete legacy.revision;delete legacy.exercises[0].revision;
+ legacy.learningOrder=['section:0','exercise:5.1','section:1','exercise:5.2','section:2','exercise:5.3','summary'];
+ const storage=new Map();let run=context([legacy],storage);unlockUntil(run,'exercise:5.1');
+ run(`render=()=>{};save();gStart(COURSE.grammar[0].id,'exercise:5.1');gMove(1);
+   for(let i=0;i<3;i++){gResponse(G.steps[G.at]).value='wrong';gCheck();if(!G.recovery)gMove(1);}gExit();`);
+ run=context([updated],storage);run(`gStart(COURSE.grammar[0].id,'all',true);`);
+ assert.ok(!run('G.recovery'));
+ assert.equal(run('G.steps[G.at].type'),'theory');assert.equal(run('G.steps[G.at].section'),1);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),0);
+ run(`gMove(1)`);assert.equal(run('G.steps[G.at].type'),'question');
 });

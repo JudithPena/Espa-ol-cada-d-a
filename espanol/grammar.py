@@ -37,6 +37,8 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
     units = []
     for path in sorted(directory.glob("*.json")):
         unit = json.loads(path.read_text(encoding="utf-8"))
+        if 'revision' in unit and (type(unit['revision']) is not int or unit['revision'] < 1):
+            raise ValueError(f"{path}: revision must be a positive integer")
         if any(u["id"] == unit["id"] for u in units):
             raise ValueError(f"{path}: duplicate grammar unit id")
         if "learningOrder" in unit:
@@ -70,6 +72,8 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
                 art["image"] = _image_uri(directory, art["image"])
         ids = set()
         for group in [s["check"] for s in unit["sections"] if s.get("check")] + unit["exercises"]:
+            if 'revision' in group and (type(group['revision']) is not int or group['revision'] < 1):
+                raise ValueError(f"{path}: revision must be a positive integer")
             if group["id"] in ids:
                 raise ValueError(f"{path}: duplicate exercise id")
             ids.add(group["id"])
