@@ -240,6 +240,12 @@ test('приёмка 3, 4: a question about a dialogue shows its own source and 
   assert.equal(after[first + 2], 'Как дела у Лусии утром? (повтор)', after.join(' | '));
   assert.notEqual(after[after.length - 1], 'Как дела у Лусии утром? (повтор)');
   assert.ok(J(run, `S.steps[${first + 2}].srcOpen`), 'повтор — с открытым источником');
+  // Вторая ошибка в той же группе — повтор встаёт после первого повтора, порядок вопросов сохраняется.
+  const second = J(run, 'S.steps.findIndex(s => s.q === "Что она говорит?")');
+  run(`S.at = ${second}; S.state = null; playerView(); S.state.pick = (S.steps[S.at].correct + 1) % 2; answer(false, S.steps[S.at])`);
+  const order = J(run, `S.steps.slice(${first}, ${first} + 4).map(s => s.q + (s.retry ? " (повтор)" : ""))`);
+  assert.deepEqual(order, ['Как дела у Лусии утром?', 'Что она говорит?', 'Как дела у Лусии утром? (повтор)', 'Что она говорит? (повтор)']);
+  run(`S.at = ${first}; S.state = null; playerView(); S.state.result = "bad"`);
   // Открытие источника не сбрасывает ответ.
   run('S.state.srcOpen = true');
   assert.match(run('stepBody(S.steps[S.at])'), /details class="src" data-src open/);
@@ -456,6 +462,48 @@ test('context lines play in the character voice', () => {
   assert.match(html, /data-voice="es-ES-AlvaroNeural"/);
   assert.equal(run('canSay("¡Hola!", "es-ES-AlvaroNeural")'), true);
   assert.equal(run('audioId("¡Hola!", "es-ES-AlvaroNeural")'), 'x');
+});
+
+test('приёмка 1–7 на реальных уроках темы 01 и 02', () => {
+  const run = context(site, new Map(), {audio: {}});
+  run('say = () => {}');
+  // 2: «Поздоровайтесь!» открывается заданием, без титульного экрана и кнопки «Начать».
+  run(`startLesson(${idx(run, 'saludos/practice')})`);
+  assert.equal(run('S.steps[0].type'), 'mc');
+  assert.doesNotMatch(run('stepFoot(S.steps[0])'), /Начать/);
+  // 1: «Как тебя зовут?» открывается разговором на вечеринке.
+  run(`startLesson(${idx(run, 'presentarse/vocab')})`);
+  assert.equal(run('S.steps[0].type'), 'theory');
+  assert.ok(run('S.steps[0].blocks.some(b => b.t === "dialogue")'));
+  // 3, 4: вопросы к двум диалогам «Утро в офисе» — каждый к своему.
+  run(`startLesson(${idx(run, 'saludos/dialogue')})`);
+  const at = q => run(`S.steps.findIndex(s => s.q === ${JSON.stringify(q)})`);
+  const srcTitle = q => run(`LESSONS[S.li].blocks[S.steps[${at(q)}].src].title`);
+  assert.equal(srcTitle('Как дела у Лусии утром?'), 'Утром');
+  assert.equal(srcTitle('Как дела у Лусии вечером?'), 'Вечером');
+  const i = at('Как дела у Лусии утром?');
+  run(`S.at = ${i}; S.state = null; playerView()`);
+  assert.match(run('stepBody(S.steps[S.at])'), /Показать диалог «Утром»/);
+  run('S.state.pick = (S.steps[S.at].correct + 1) % 3; answer(false, S.steps[S.at])');
+  const qs = J(run, 'S.steps.map(s => s.q)');
+  assert.equal(qs.indexOf('Как дела у Лусии утром?', i + 1), i + 3, 'повтор — сразу после вопросов к этому диалогу');
+  // 5: кофе — ясная формулировка и формат, пояснение к el cafe por favor.
+  const coffee = J(run, 'S.steps.find(s => s.type === "write" && /кофе/.test(s.q))');
+  assert.match(coffee.q, /Напишите по-испански: «Один кофе, пожалуйста»/);
+  assert.equal(coffee.format, 'короткая фраза');
+  for (const ok of ['Un café, por favor', 'Hola, un café, por favor', 'Buenos días, un café, por favor'])
+    assert.equal(J(run, `writeResult(${JSON.stringify(coffee)}, ${JSON.stringify(ok)}).ok`), true, ok);
+  const why = J(run, `writeResult(${JSON.stringify(coffee)}, "el cafe por favor").why`);
+  assert.match(why.html, /<b>un<\/b> café: un значит «один»/);
+  assert.match(why.html, /ударения/);
+  // 6: «¡Hasta mañana, Pablo!» в практикуме — одна неверная плитка, потом верно → зелёный.
+  run(`startLesson(${idx(run, 'saludos/practice')})`);
+  const b = run('S.steps.findIndex(s => s.type === "build")');
+  run(`S.at = ${b}; S.state = null; playerView(); SFX = []; sfx = ok => SFX.push(ok)`);
+  const pick = t => run(`buildPick(S.state.tiles.findIndex((x, j) => !S.state.used[j] && tileKey(x) === tileKey(${JSON.stringify(t)})))`);
+  pick('hasta'); pick('luego'); pick('mañana'); pick('Pablo');
+  assert.equal(run('S.state.result'), 'good');
+  assert.deepEqual(J(run, 'SFX'), [true]);
 });
 
 // Приёмка 13: у каждого перестроенного урока есть карта слайдов (docs/site_slide_maps), и её сигнатура совпадает

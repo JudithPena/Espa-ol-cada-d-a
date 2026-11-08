@@ -200,12 +200,24 @@ def test_scenario_audio(site):
     assert not any("доброе утро" in k for k in texts)        # русская сторона пары не озвучивается
 
 
-def test_recall_skips_context_bound_tasks(site):
-    """«Вспомним» и «Фразы и конструкции» не берут вопросы к диалогу, тексту и миссии своего урока."""
+def test_context_tasks_are_bound_to_their_source(site):
+    """Вопросы к диалогу, тексту и миссии не уходят в повторение и в конец урока. У перестроенного урока
+    (version 2) привязка только явная: src — номер блока-источника выше по уроку или free; у прежних — метка ctx."""
     data = site_data(site, load_cards(CONTENT))
     for lesson in data["lessons"]:
+        blocks, seen = lesson["blocks"], False
+        if lesson["version"] >= 2:
+            for k, b in enumerate(blocks):
+                seen = seen or b["t"] in ("dialogue", "reading", "mission")
+                if b["t"] in ("choose", "write") and seen:
+                    for it in b["items"]:
+                        assert "src" in it or it.get("free"), (lesson["id"], b.get("title"), it.get("q"))
+                        if "src" in it:
+                            assert it["src"] < k and blocks[it["src"]]["t"] in ("dialogue", "reading", "mission"), (lesson["id"], it.get("q"))
+                assert "ctx" not in b, lesson["id"]
+            continue
         ctx = mission = False
-        for b in lesson["blocks"]:
+        for b in blocks:
             if b["t"] == "mission":
                 mission = True
             if b["t"] in ("dialogue", "reading", "mission"):
@@ -214,9 +226,6 @@ def test_recall_skips_context_bound_tasks(site):
                 ctx = mission
             if b["t"] in ("choose", "write"):
                 assert bool(b.get("ctx")) == ctx, (lesson["id"], b["t"], b.get("title"))
-    flagged = [b for x in data["lessons"] for b in x["blocks"] if b.get("ctx")]
-    free = [b for x in data["lessons"] for b in x["blocks"] if b["t"] in ("choose", "write") and not b.get("ctx")]
-    assert flagged and len(free) > len(flagged) / 2
 
 
 def test_rebuilt_course_standard(site):
