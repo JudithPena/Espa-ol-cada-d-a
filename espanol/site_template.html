@@ -299,6 +299,8 @@ main { padding-block: 16px 110px; }
 .cmp-label { font-size: 15px; }
 .cmp-text { font-size: 14.5px; line-height: 1.4; }
 .cmp.big .cmp-row.n1 .cmp-head { font-size: 28px; }
+.cmp-head { overflow-wrap: anywhere; }
+.cmp.big .cmp-row:not(.n1) .cmp-head.long { font-size: 19px; }
 .cmp .exs { gap: 6px; }
 .cmp .exw { font-size: 15px; padding: 3px 8px; }
 .cmp.small .cmp-card { justify-items: center; text-align: center; padding: 10px 6px; gap: 2px; background: var(--sunken); box-shadow: none; }
@@ -2177,7 +2179,7 @@ const stepsOl = items => `<ol class="steps">${items.map(it => `<li><span class="
 // Сравнение карточками рядом (уроки сайта): big — крупные цветные карточки (одна — во всю ширину), small — компактные плитки.
 const compareHTML = b => `<div class="cmp ${b.style === "small" ? "small" : "big"}">${b.title ? `<h4>${b.title}</h4>` : ""}${b.lead ? `<p class="cmp-lead">${b.lead}</p>` : ""}
   <div class="cmp-row n${b.cards.length}${b.cards.some(c => c.ex.some(e => e[1].length > 16)) ? " hasex" : ""}">${b.cards.map(c => `<div class="cmp-card ${esc(c.tone || "")}">
-    ${c.say ? `<button class="cmp-head${c.say.length > 9 ? " long" : ""}" data-say="${esc(c.say)}">${c.head}</button>` : `<span class="cmp-head">${c.head}</span>`}
+    ${c.say ? `<button class="cmp-head${c.say.length > 9 ? " long" : ""}" data-say="${esc(c.say)}">${c.head}</button>` : `<span class="cmp-head${c.head.replace(/<[^>]*>/g, "").length > 12 ? " long" : ""}">${c.head}</span>`}
     ${c.label ? `<b class="cmp-label">${c.label}</b>` : ""}${c.html ? `<span class="cmp-text">${c.html}</span>` : ""}${exChips(c.ex)}</div>`).join("")}</div>
   ${b.note ? `<p class="cmp-note">${b.note}</p>` : ""}</div>`;
 // Пункты с эмодзи — шкала: значок на линии, мысль и плитки примеров рядом.
