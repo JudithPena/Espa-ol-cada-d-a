@@ -486,6 +486,7 @@ main { padding-block: 16px 110px; }
 /* итог урока */
 .result { text-align: center; display: grid; gap: 18px; justify-items: center; padding-top: 24px; }
 /* Доводка A0–A1: шапка с целью, источник в задании, звук, итог задания и итоги контроля */
+.ptop .wrap.pctx { display: block; }
 .pctx .pgoal { display: block; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .pfoot.shown { background: var(--sunken); border-color: transparent; }
 .pfoot.shown .fb h3 { color: var(--ink); }
@@ -1973,10 +1974,10 @@ function altStep(st) {
   if (!na) return { type: "deferred", orig: st };
   if (st.type === "mc") {
     const order = shuffle(na.o.map((_, k) => k));
-    return { ...st, say: "", q: na.q, explain: na.explain || st.explain, options: order.map(k => na.o[k][0]), plain: order.map(k => na.o[k][1]),
+    return { ...st, say: "", title: "", q: na.q, explain: na.explain || st.explain, options: order.map(k => na.o[k][0]), plain: order.map(k => na.o[k][1]),
              correct: order.indexOf(0), mistakes: {}, noaudioUsed: true, orig: st };
   }
-  return { ...st, say: "", q: na.q, a: na.a, show: na.show, format: na.format || st.format, explain: na.explain || st.explain,
+  return { ...st, say: "", title: "", q: na.q, a: na.a, show: na.show, format: na.format || st.format, explain: na.explain || st.explain,
            mistakes: {}, noaudioUsed: true, orig: st };
 }
 function useNoAudio() {

@@ -39,6 +39,7 @@ lessons:
     kind: phonetics
     title: Гласные и ударение
     goal: прочитать слово и найти в нём ударение
+    version: 2
     vocab:
       - "🏠 la casa [ка́са] — дом"
       - "🚕 el taxi [та́кси] — такси"
@@ -47,27 +48,39 @@ lessons:
       - "☕ el café [кафэ́] — кофе; кафе"
       - "🏨 el hotel [отэ́ль] — гостиница, отель"
       - "🎵 la música [му́сика] — музыка"
+    # Карта экранов: docs/site_slide_maps/00_start.md
     blocks:
       - "Хорошая новость: испанские слова читаются так же, как пишутся. Выучите несколько правил — и сможете прочитать любое слово."
-      - |
-        Гласных всего пять: `a` `e` `i` `o` `u`. Самое главное: **гласные всегда звучат чётко**, даже без ударения. По-русски мы пишем «молоко», а говорим «малако́», но в испанском так не бывает: `o` всегда читается как «о», а `a` — как «а». Буква `e` звучит как русское «э»: café [кафэ́], hotel [отэ́ль].
+      - text:
+          id: vowels
+          text: |
+            Гласных всего пять: `a` `e` `i` `o` `u`. Самое главное: **гласные всегда звучат чётко**, даже без ударения. По-русски мы пишем «молоко», а говорим «малако́», но в испанском так не бывает: `o` всегда читается как «о», а `a` — как «а». Буква `e` звучит как русское «э»: café [кафэ́], hotel [отэ́ль].
       - learn: [la casa, el taxi, sí, "no"]
+      - note: "Маленькие слова **el** и **la** перед словом называются артиклями. Они показывают род слова: **el** ставится перед словами мужского рода (_el taxi_), а **la** — перед словами женского рода (_la casa_). Поэтому учите каждое новое слово сразу вместе с артиклем."
       - choose:
           title: Что вы услышали?
+          rule: vowels
+          skill: vowels
           items:
             - say: "la casa"
               options: "la casa | la case"
               explain: "Безударная `a` звучит чётко, как «а»: [ка́са]."
+              noaudio: {q: "Какое слово читается [ла ка́са]?", options: "la casa | la case"}
             - say: "el taxi"
               options: "el taxi | el texi | el toxi"
+              noaudio: {q: "Какое слово читается [эль та́кси]?", options: "el taxi | el texi | el toxi"}
       - header: Где ударение?
-      - rule: |
-          1. Если слово заканчивается на гласную или на согласные `n` и `s`, то ударение падает на **предпоследний** слог: **ca**sa, **ta**xi, **ho**la, **Car**men, **Car**los.
-          2. Если слово заканчивается на любую другую согласную, то ударение падает на **последний** слог: ho**tel**, Ma**drid**, Isa**bel**.
-          3. Если над гласной стоит значок ´, то ударение падает именно туда, даже когда первые два правила говорят иначе: ca**fé**, **mú**sica, An**drés**.
+      - rule:
+          id: stress
+          text: |
+            1. Если слово заканчивается на гласную или на согласные `n` и `s`, то ударение падает на **предпоследний** слог: **ca**sa, **ta**xi, **ho**la, **Car**men, **Car**los.
+            2. Если слово заканчивается на любую другую согласную, то ударение падает на **последний** слог: ho**tel**, Ma**drid**, Isa**bel**.
+            3. Если над гласной стоит значок ´, то ударение падает именно туда, даже когда первые два правила говорят иначе: ca**fé**, **mú**sica, An**drés**.
       - learn: [el café, el hotel, la música]
       - choose:
           title: Где ударение?
+          rule: stress
+          skill: stress
           items:
             - q: "hotel"
               options: "ho-TEL | HO-tel"
@@ -82,6 +95,7 @@ lessons:
               options: "ma-DRID | MA-drid"
               explain: "Слово заканчивается на `d`, поэтому ударение на последнем слоге."
       - compare:
+          id: si_mark
           style: small
           title: Значок ´ меняет смысл
           cards:
@@ -91,9 +105,9 @@ lessons:
               say: false
               label: если
           note: "Поэтому **sí** со значком означает «да», а `si` без значка — «если»."
-      - note: "Маленькие слова **el** и **la** перед существительными называются артиклями. Они показывают род слова: **el** ставится перед словами мужского рода (el café, el hotel, el taxi), а **la** — перед словами женского рода (la casa, la música). Поэтому учите каждое новое слово сразу вместе с артиклем."
       - match:
           title: Соедините пары
+          rule: none
           pairs:
             - "la casa — дом"
             - "el café — кофе"
@@ -107,21 +121,32 @@ lessons:
           items:
             - say: "la casa"
               a: "la casa | casa"
+              rule: vowels
+              skill: vowels
+              noaudio: {q: "Напишите по-испански слово, которое читается [ла ка́са].", a: "la casa | casa"}
             - say: "la música"
               a: "la música | música"
+              rule: stress
+              skill: stress
               explain: "Ударение падает на `ú`, хотя слово кончается на гласную, поэтому над `ú` нужен значок: música."
+              noaudio: {q: "Напишите по-испански слово, которое читается [ла му́сика].", a: "la música | música"}
     quiz:
-      - q: Где ударение в слове «hotel»?
-        options: "ho-TEL | HO-tel"
-        explain: "Слово заканчивается на согласную `l`, а не на `n` или `s`, поэтому ударение падает на последний слог."
-      - q: Где ударение в слове «música»?
-        options: "MÚ-si-ca | mu-SI-ca | mu-si-CA"
-        explain: "Значок ´ всегда показывает, на какой слог падает ударение. Здесь он стоит над буквой `ú`."
+      - q: Где ударение в имени «Isabel»?
+        options: "i-sa-BEL | i-SA-bel"
+        explain: "Имя заканчивается на согласную `l`, а не на `n` или `s`, поэтому ударение падает на последний слог."
+        skill: stress
+        rule: stress
+      - q: Где ударение в имени «Pablo»?
+        options: "PA-blo | pa-BLO"
+        explain: "Имя заканчивается на гласную, поэтому ударение падает на предпоследний слог."
+        skill: stress
+        rule: stress
 
   - id: consonants1
     kind: phonetics
     title: "Согласные: `h`, `j`, `g`, `qu`, `ll`, `ñ`"
     goal: прочитать слова с буквами h, j, g, qu, ll и ñ
+    version: 2
     vocab:
       - "🍖 el jamón [хамо́н] — хамон (вяленый окорок)"
       - "🧀 el queso [кэ́со] — сыр"
@@ -133,6 +158,7 @@ lessons:
     blocks:
       - "Большинство испанских согласных читается почти так же, как в русском языке. Разберём первую половину исключений."
       - table:
+          id: hjg
           rows:
             - ["`h`", "никогда не читается, как будто её нет: **hola** [о́ла], **hotel** [отэ́ль], **Hugo** [у́го]"]
             - ["`j`", "читается как русское «х»: **jamón** [хамо́н], **Juan** [хуа́н], **Javier** [хабье́р]"]
@@ -140,6 +166,8 @@ lessons:
       - learn: [el jamón]
       - choose:
           title: Буквы и звуки
+          rule: hjg
+          skill: spell_hjg
           items:
             - q: "Какая буква никогда не читается?"
               options: "`h` | `j` | `g`"
@@ -148,31 +176,45 @@ lessons:
               q: "Как пишется слово, которое вы услышали?"
               options: "el jamón | el hamón | el gamón"
               explain: "Звук «х» перед `a` пишется буквой `j`. Буква `h` не читается, а `g` перед `a` читается как «г»."
+              noaudio: {q: "Как пишется слово, которое читается [эль хамо́н]?", options: "el jamón | el hamón | el gamón"}
       - table:
+          id: gu_qu
           rows:
             - ["`gu` + `e`, `i`", "читается как «г», а буква `u` при этом не читается: **guitarra** [гита́рра], **Miguel** [мигэ́ль]"]
             - ["`qu` + `e`, `i`", "читается как «к», и буква `u` здесь тоже не читается: **queso** [кэ́со], **Raquel** [ракэ́ль]"]
       - learn: [el queso, la guitarra]
       - choose:
           title: Как пишется слово, которое вы услышали?
+          rule: gu_qu
+          skill: spell_hjg
           items:
             - say: "el queso"
               options: "el queso | el cueso | el keso"
               explain: "«Кэ» пишется `que`: буква `u` здесь не читается."
+              noaudio: {q: "Как пишется слово, которое читается [эль кэ́со]?", options: "el queso | el cueso | el keso"}
             - say: "la guitarra"
               options: "la guitarra | la gitarra | la jitarra"
               explain: "«Ги» пишется `gui`: без `u` сочетание `gi` читалось бы как «хи»."
+              noaudio: {q: "Как пишется слово, которое читается [ла гита́рра]?", options: "la guitarra | la gitarra | la jitarra"}
       - table:
+          id: ll_n
           rows:
             - ["`ll`", "читается как «й»: **paella** [паэ́йя], **tortilla** [торти́йя], **Sevilla** [сэби́йя], **Mallorca** [майо́рка]"]
             - ["`ñ`", "читается как «нь»: **España** [эспа́нья], **mañana** [манья́на]"]
       - learn: [la paella, la tortilla, España, mañana]
       - choose:
           title: Как пишется слово, которое вы услышали?
+          rule: ll_n
+          skill: spell_ll_n
           items:
             - say: "España"
               options: "España | Espana | Espanya"
               explain: "Звук «нь» — это одна буква `ñ`."
+              noaudio: {q: "Как пишется слово, которое читается [эспа́нья]?", options: "España | Espana | Espanya"}
+            - say: "la paella"
+              options: "la paella | la paeya | la paela"
+              explain: "Звук «й» здесь пишется двумя буквами `ll`."
+              noaudio: {q: "Как пишется слово, которое читается [ла паэ́йя]?", options: "la paella | la paeya | la paela"}
       - match:
           title: Соедините пары
           pairs:
@@ -188,17 +230,26 @@ lessons:
             - say: "mañana"
               a: "mañana"
               explain: "«Нь» — это буква `ñ`: mañana."
+              rule: ll_n
+              skill: spell_ll_n
+              noaudio: {q: "Напишите по-испански слово, которое читается [манья́на].", a: "mañana"}
             - say: "el jamón"
               a: "el jamón | jamón"
+              rule: hjg
+              skill: spell_hjg
+              noaudio: {q: "Напишите по-испански слово, которое читается [эль хамо́н].", a: "el jamón | jamón"}
     quiz:
-      - q: Какая буква в испанском никогда не читается?
-        options: "`h` | `j` | `ñ`"
-        explain: "Буква `h` никогда не читается, поэтому hola читается [о́ла], а hotel читается [отэ́ль]."
+      - q: В каком слове буква `u` не читается?
+        options: "queso | música | Hugo"
+        explain: "В сочетании `que` буква `u` не читается: queso [кэ́со]. В música [му́сика] и Hugo [у́го] она читается."
+        skill: spell_hjg
+        rule: gu_qu
 
   - id: consonants2
     kind: phonetics
     title: "Согласные: `c`, `z`, `ch`, `r`, `v`"
     goal: прочитать слова с буквами c, z, ch, r и v
+    version: 2
     vocab:
       - "🙏 gracias [гра́θиас] — спасибо"
       - "🍺 la cerveza [θэрбэ́θа] — пиво"
@@ -209,6 +260,7 @@ lessons:
     blocks:
       - "Разберём вторую половину исключений — и после этого вы сможете прочитать любое испанское слово."
       - table:
+          id: c_z
           rows:
             - ["`c` + `e`, `i` и `z`", "читаются как межзубный звук, похожий на английское `th` в слове `think`: **gracias** [гра́θиас], **cerveza** [θэрбэ́θа], **plaza** [пла́θа], **Barcelona** [барθэло́на]"]
             - ["`c` + `a`, `o`, `u`", "читается как «к»: **casa** [ка́са], **café** [кафэ́], **música** [му́сика]"]
@@ -219,20 +271,27 @@ lessons:
       - learn: [gracias, la cerveza, la plaza, el chocolate]
       - choose:
           title: Как пишется слово, которое вы услышали?
+          rule: c_z
+          skill: spell_czr
           items:
             - say: "gracias"
               options: "gracias | grasias | gracas"
               explain: "Межзубный звук перед `i` пишется буквой `c`; буква `s` читается как обычное «с»."
+              noaudio: {q: "Как пишется слово, которое читается [гра́θиас]?", options: "gracias | grasias | gracas"}
             - say: "el chocolate"
               options: "el chocolate | el cocolate | el socolate"
               explain: "«Ч» пишется `ch`, а «к» перед `o` пишется `c`."
+              noaudio: {q: "Как пишется слово, которое читается [эль чокола́тэ]?", options: "el chocolate | el cocolate | el socolate"}
       - table:
+          id: r_v
           rows:
             - ["`r` и `rr`", "одна `r` в середине слова — одно короткое касание языком: **Sara** [са́ра], **Mario** [ма́рио], **Carmen** [ка́рмэн]. А двойная `rr` и `r` в начале слова — раскатистое «рр»: **perro** [пэ́рро], **guitarra** [гита́рра], **Rosa** [ро́са]"]
             - ["`v` и `b`", "обе буквы читаются примерно как русское «б»: **vino** [би́но], **cerveza** [θэрбэ́θа], **Valencia** [бале́нθиа], **Bilbao** [бильба́о]"]
       - learn: [el perro, el vino]
       - choose:
           title: Буквы и звуки
+          rule: r_v
+          skill: spell_czr
           items:
             - q: "В каком имени звучит раскатистое «рр»?"
               options: "Rosa | Sara | Mario"
@@ -251,17 +310,23 @@ lessons:
       - write:
           title: Послушайте и напишите
           format: слово по-испански
+          rule: c_z
+          skill: spell_czr
           items:
             - say: "el chocolate"
               a: "el chocolate | chocolate"
+              noaudio: {q: "Напишите по-испански слово, которое читается [эль чокола́тэ].", a: "el chocolate | chocolate"}
             - say: "la plaza"
               a: "la plaza | plaza"
               explain: "Межзубный звук перед `a` пишется буквой `z`: перед `a` буква `c` читалась бы как «к»."
+              noaudio: {q: "Напишите по-испански слово, которое читается [ла пла́θа].", a: "la plaza | plaza"}
 
   - id: quiz
     kind: quiz
     title: Читаем по-испански
     goal: прочитать и понять первые двадцать слов
+    version: 2
+    check: soft
     blocks:
       - match:
           title: Соедините пары
@@ -275,26 +340,35 @@ lessons:
       - write:
           title: Послушайте и напишите
           format: слово по-испански
+          skill: spell_czr
           items:
-            - say: "la guitarra"
-              a: "la guitarra | guitarra"
-              explain: "«Ги» пишется `gui`, раскатистое «рр» — `rr`."
+            - say: "la cerveza"
+              a: "la cerveza | cerveza"
+              explain: "Межзубный звук пишется `c` перед `e` и `z` перед `a`, а «б» здесь — буква `v`."
+              noaudio: {q: "Напишите по-испански слово, которое читается [ла θэрбэ́θа].", a: "la cerveza | cerveza"}
             - say: "el queso"
               a: "el queso | queso"
+              skill: spell_hjg
               explain: "«Кэ» пишется `que`."
+              noaudio: {q: "Напишите по-испански слово, которое читается [эль кэ́со].", a: "el queso | queso"}
     quiz:
       - q: Как пишется слово, которое звучит [гита́рра]?
         options: "guitarra | gitarra | jitarra"
         explain: "В сочетаниях `gue` и `gui` буква `u` не читается, поэтому мы говорим [гита́рра]."
+        skill: spell_hjg
       - q: Как пишется слово, которое звучит [хамо́н]?
         options: "jamón | hamón | gamón"
         explain: "Буква `j` читается как русское «х», поэтому jamón звучит как [хамо́н]."
-      - q: Где ударение в слове «café»?
-        options: "ca-FÉ | CA-fé"
-        explain: "Значок ударения ´ стоит над буквой `é`, поэтому ударение падает на последний слог."
+        skill: spell_hjg
+      - q: Где ударение в слове «Madrid»?
+        options: "ma-DRID | MA-drid"
+        explain: "Слово заканчивается на согласную `d` — не на гласную и не на `n` или `s`, поэтому ударение падает на последний слог."
+        skill: stress
       - q: В каком слове есть звук «нь»?
         options: "mañana | música | casa"
         explain: "Буква `ñ` читается как «нь», поэтому mañana звучит как [манья́на]."
+        skill: spell_ll_n
       - q: Что значит «sí»?
         options: "да | нет | если"
         explain: "Со значком ударения sí означает «да», а `si` без значка означает «если»."
+        skill: stress
