@@ -97,7 +97,7 @@ def test_learn_portions_cover_all_words_once(tmp_path):
 
 def test_task_structure_checks(tmp_path):
     course = _course(tmp_path, [{"id": "l", "kind": "practice", "blocks": [
-        {"choose": {"items": [{"q": "a", "options": "sí"}, {"q": "b", "options": "sí | Sí"}]}},
+        {"choose": {"items": [{"q": "a", "options": "sí"}, {"q": "b", "options": "sí | sí"}]}},
         {"match": ["sí — да", "sí — нет"]},
         {"sort": {"a": ["sí"], "b": []}},
         {"build": [{"es": "sí no", "ru": "x", "alt": ["no café"]}]},
