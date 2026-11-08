@@ -207,7 +207,7 @@ def _strict_issues(lesson: Lesson) -> list[str]:
     if lesson.scripted and not any(b.type == "recap" for b in lesson.blocks):
         asked = _asked_texts(lesson)
         for item in lesson.vocab:
-            if item.srs and not _covered(item.es, asked):
+            if item.srs and not _covered(item, asked):
                 out.append(f"слово «{item.es}» не проверяется ни одним заданием: добавьте задание или блок recap")
     return out
 
@@ -218,7 +218,8 @@ def _asked_texts(lesson: Lesson) -> list[str]:
     for block in lesson.blocks:
         d = block.data
         if block.type == "choose":
-            out += [t for it in d["items"] for t in (it["q"], it["options"][0], it["say"])]
+            # реплика собеседника тоже проверяет слово: чтобы ответить на «¿Quién es?», его надо понять
+            out += [t for it in d["items"] for t in (it["q"], it["options"][0], it["say"], *(line[1] for line in it["lines"]))]
         elif block.type == "write":
             out += [t for it in d["items"] for t in (it["q"], *it["answers"], it["say"])]
         elif block.type == "match":
@@ -231,9 +232,11 @@ def _asked_texts(lesson: Lesson) -> list[str]:
     return [f" {_key(t)} " for t in out if t]
 
 
-def _covered(es: str, asked: list[str]) -> bool:
-    core = _key(re.sub(r"^(?:el/la|el|la|los|las|un|una)\s+", "", es, flags=re.I).split("/")[0])
-    return bool(core) and any(f" {core} " in t for t in asked)
+def _covered(item, asked: list[str]) -> bool:
+    """Слово проверяется, если задание спрашивает его само или (у глагола) его форму: soy, eres, es — это ser."""
+    core = _key(re.sub(r"^(?:el/la|el|la|los|las|un|una)\s+", "", item.es, flags=re.I).split("/")[0])
+    forms = {core} | ({_key(f) for f in item.base_forms()} if item.pos == "verb" else set())
+    return any(f and any(f" {f} " in t for t in asked) for f in forms)
 
 
 def _screens(lesson: Lesson) -> list[list]:

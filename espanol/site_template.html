@@ -445,7 +445,7 @@ main { padding-block: 16px 110px; }
 .wwhy { background: var(--sun-soft); border-radius: 12px; padding: 10px 12px; font-weight: 700; font-size: 15px; }
 .match { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
 .mcol { display: grid; gap: 10px; align-content: start; }
-.mt { min-height: 50px; padding: 10px 8px; border-radius: 12px; border: 2px solid var(--line); background: var(--surface); font-weight: 700; font-size: 16px; line-height: 1.25; box-shadow: 0 2px 0 var(--line); overflow-wrap: anywhere; }
+.mt { min-height: 50px; padding: 10px 8px; border-radius: 12px; border: 2px solid var(--line); background: var(--surface); font-weight: 700; font-size: 16px; line-height: 1.25; box-shadow: 0 2px 0 var(--line); overflow-wrap: break-word; hyphens: auto; }
 .mt[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
 .mt.ok { border-color: var(--good); background: var(--good-soft); color: var(--good); box-shadow: none; cursor: default; }
 .mt.bad { border-color: var(--bad); background: var(--bad-soft); animation: shake .3s; }
@@ -1594,7 +1594,7 @@ const isListen = st => !!st.say && ["mc", "write"].includes(st.type) || st.type 
 function askedTexts(steps) {
   const out = new Set(), add = t => { const k = norm(String(t ?? "").replace(/<[^>]*>/g, " ")); if (k) out.add(k); };
   for (const st of steps) {
-    if (st.type === "mc" && st.plain) { add(st.plain[st.correct]); add(st.q); }
+    if (st.type === "mc" && st.plain) { add(st.plain[st.correct]); add(st.q); (st.lines || []).forEach(l => add(l[3])); }
     if (st.type === "write") { (st.a || []).forEach(add); add(st.q); }
     if (st.type === "match") st.pairs.forEach(p => { add(p[0]); add(p[1]); });
     if (st.type === "sort") st.groups.forEach(g => g[1].forEach(x => add(x[0])));
@@ -2674,7 +2674,7 @@ function stepBody(st) {
     }
     case "build": {
       const s = S.state;
-      return `<div class="prompt">${kickerOf(st, "Соберите фразу")}<div class="q" style="font-size:19px">${esc(st.ru)}</div></div>
+      return `<div class="prompt">${srcPanel(st)}${kickerOf(st, "Соберите фразу")}<div class="q" style="font-size:19px">${esc(st.ru)}</div></div>
         <div class="answer-line">${(s.cands?.[0] || tokens(st)).slice(0, s.n).map(w => `<span class="tok">${esc(w)}</span>`).join("")}</div>
         <div class="bank">${s.tiles.map((t, k) => `<button class="tok ${s.used[k] ? "used" : ""} ${s.flash === k ? "bad" : ""} ${s.hint === k ? "hint" : ""}" data-pick="${k}" ${s.result || s.used[k] ? "disabled" : ""}>${esc(t)}</button>`).join("")}</div>`;
     }
@@ -2704,12 +2704,12 @@ function stepBody(st) {
         const p = st.pairs[k], ok = s.done.includes(k), sel = s.sel?.side === side && s.sel.k === k, bad = s.bad && s.bad[side] === k;
         return `<button class="mt${ok ? " ok" : ""}${bad ? " bad" : ""}" data-m="${side}:${k}" aria-pressed="${sel}" ${ok || s.result ? "disabled" : ""}>${ok ? "✓ " : bad ? "✗ " : ""}${esc(p[side === "l" ? 0 : 1])}</button>`;
       };
-      return `<div class="prompt">${kickerOf(st, "Соедините пары")}</div>
+      return `<div class="prompt">${srcPanel(st)}${kickerOf(st, "Соедините пары")}</div>
         <div class="match"><div class="mcol">${s.left.map(k => cell("l", k)).join("")}</div><div class="mcol">${s.right.map(k => cell("r", k)).join("")}</div></div>`;
     }
     case "sort": {
       const s = S.state, cur = s.order[s.k];
-      return `<div class="prompt">${kickerOf(st, "Распределите по группам")}</div>
+      return `<div class="prompt">${srcPanel(st)}${kickerOf(st, "Распределите по группам")}</div>
         ${cur && !s.result ? `<div class="scard"><span>${esc(cur[0][0])}</span>${cur[0][1] && canSay(cur[0][1]) ? playBtn(cur[0][1]) : ""}</div><div class="scount" role="status">${s.k + 1} из ${s.order.length}${s.flash != null ? " · ✗ не в эту группу" : ""}</div>` : ""}
         <div class="sgroups">${st.groups.map(([name], g) => `<button class="sg${s.flash === g ? " bad" : ""}${s.hint === g ? " hint" : ""}" data-sg="${g}" ${s.result ? "disabled" : ""}>
           <b>${name}${s.hint === g ? " 👈" : ""}</b><span class="sg-items">${s.placed[g].map(x => `<i>${esc(x)}</i>`).join("")}</span></button>`).join("")}</div>`;
