@@ -190,7 +190,8 @@ def test_scenario_audio(site):
                 for it in b["items"]:
                     for es in [it["es"], *it["alt"]]:
                         want.add(clean(es))
-                        want |= {tok for tok in es.split(" ") if any(ch.isalpha() for ch in tok)}
+                        want |= {tok for tok in es.split(" ") if spanish(tok)}
+    assert not [k for k in texts if not _re.search("[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]", k.rpartition("|")[2])]   # русское не записываем
     missing = sorted(want - set(texts))
     assert not missing, missing[:10]
     assert "@" in next(k for k in texts if k.startswith("@"))   # реплики-контекст — голосом персонажа

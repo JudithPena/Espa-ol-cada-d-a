@@ -97,7 +97,8 @@ def audio_texts(data: dict) -> dict[str, tuple[str, str]]:
 
     def add(text, voice=None, key=None):
         text = _clean(text)
-        if text and any(ch.isalpha() for ch in text):
+        # Только то, в чём есть латиница: русская плитка «пиво» из «¿Cómo se dice «пиво»…?» испанским голосом не читается.
+        if text and any("a" <= ch.lower() <= "z" or ch in "áéíóúüñÁÉÍÓÚÜÑ" for ch in text):
             out.setdefault(key or text, (text, voice or _voice(text)))
 
     def cards(items):

@@ -2344,7 +2344,8 @@ function buildPick(k) {
   const fit = cands.filter(c => tileKey(c[s.n]) === tileKey(s.tiles[k]));
   if (fit.length) {
     const raw = fit[0][s.n];
-    s.cands = fit; s.used[k] = true; s.n++; s.here = 0; s.hint = null; s.flash = null; say(raw);
+    s.cands = fit; s.used[k] = true; s.n++; s.here = 0; s.hint = null; s.flash = null;
+    if (/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]/.test(raw)) say(raw);   // русскую плитку «пиво» испанским голосом не читаем
     if (s.n >= fit[0].length) return answer(s.err === 0, st, { requeue: false });
   } else {
     s.err++; s.miss++; s.here++; s.flash = k;
