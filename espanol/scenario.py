@@ -235,7 +235,7 @@ def _asked_texts(lesson: Lesson) -> list[str]:
 def _covered(item, asked: list[str]) -> bool:
     """Слово проверяется, если задание спрашивает его само или (у глагола) его форму: soy, eres, es — это ser."""
     core = _key(re.sub(r"^(?:el/la|el|la|los|las|un|una)\s+", "", item.es, flags=re.I).split("/")[0])
-    forms = {core} | ({_key(f) for f in item.base_forms()} if item.pos == "verb" else set())
+    forms = {core} | ({_key(f) for f in item.base_forms()} if item.pos == "verb" else set()) | {_key(f) for f in item.extra_forms}
     if re.search(r"\.\.\.|…", item.es):   # фраза с пропуском: «¿Cómo se dice... en español?» — все её части
         parts = [_key(p) for p in re.split(r"\.\.\.|…", item.es) if _key(p)]
         if any(all(f" {p} " in t for p in parts) for t in asked):

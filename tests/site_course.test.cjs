@@ -506,6 +506,34 @@ test('приёмка 1–7 на реальных уроках темы 01 и 02'
   assert.deepEqual(J(run, 'SFX'), [true]);
 });
 
+test('приёмка 8 на реальных уроках: numeros/dictado без звука не засчитывается пустым, с альтернативой — «без звука»', () => {
+  for (const id of ['numeros/dictado', 'hora/escucha']) {
+    const run = context(site);   // нет записей и испанского голоса
+    const i = idx(run, id);
+    run(`startLesson(${i})`);
+    const listen = run('S.steps.filter(isListen).length');
+    assert.ok(listen >= 5, `${id}: задания на слух на месте (${listen})`);
+    assert.equal(run('audioOK(S.steps.find(isListen))'), false);
+    // Ученик ничего не слышит и уходит из каждого задания «на потом»: не 100 %, урок не засчитан.
+    run('S.steps = S.steps.map(s => isListen(s) ? {type: "deferred", orig: s} : s); finish()');
+    assert.equal(run('S.graded'), 0, id);
+    assert.equal(run(`!!P.done[${JSON.stringify(id)}]`), false, `${id}: пустой урок не засчитан`);
+    if (id === 'hora/escucha' && run(`(LESSONS[${i}].version || 1) < 2`)) continue;   // тема 15 ещё не перестроена
+    // «Нет возможности слушать»: у каждого задания — письменная альтернатива, урок засчитан «без звука».
+    run(`startLesson(${i}); S.noAudio = true`);
+    for (let k = 0; k < 40 && run('S.kind') !== 'result'; k++) {
+      run('enterStep(); playerView()');
+      const t = run('S.steps[S.at].type');
+      assert.notEqual(t, 'deferred', `${id}: задание без альтернативы`);
+      if (t === 'write') run('S.state.value = S.steps[S.at].a[0]; writeCheck(); next()');
+      else if (t === 'mc') run('S.state.pick = S.steps[S.at].correct; answer(true, S.steps[S.at]); next()');
+      else run('next()');
+    }
+    assert.equal(run(`!!P.done[${JSON.stringify(id)}]`), true, id);
+    assert.equal(run(`P.ver[${JSON.stringify(id)}].noaudio`), listen, `${id}: пометка «без звука»`);
+  }
+});
+
 // Приёмка 13: у каждого перестроенного урока есть карта слайдов (docs/site_slide_maps), и её сигнатура совпадает
 // с шагами, которые строит движок (node tools/site_steps.cjs <урок> --done).
 test('приёмка 13: slide maps match what the engine builds', () => {
