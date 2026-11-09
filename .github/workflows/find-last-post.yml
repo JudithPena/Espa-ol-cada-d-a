@@ -1,0 +1,28 @@
+name: Найти последний пост канала
+
+# Одноразовая служебная проверка: печатает номера последних постов канала (для правки поста). Ничего не публикует.
+on:
+  workflow_dispatch:
+    inputs:
+      start:
+        description: "С какого номера искать"
+        default: "190"
+
+permissions:
+  contents: read
+
+jobs:
+  find:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install -q requests
+      - name: Найти
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python tools/find_last_post.py "${{ inputs.start }}"
