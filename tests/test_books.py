@@ -469,7 +469,7 @@ def test_book_icon_is_optional_and_validated(tmp_path):
         load_books(tmp_path)
 
 
-def test_pobre_ana_skips_words_of_the_site_a0_course():
+def test_a1_books_skip_words_of_the_site_a0_course():
     """Порог A1: слова, пройденные в темах A0 сайта, в разбор не попадают."""
     import re
     from espanol.course import load_course
@@ -484,5 +484,11 @@ def test_pobre_ana_skips_words_of_the_site_a0_course():
                 for word in lesson.vocab or []:
                     a0 |= {key(part) for part in word.es.split(' / ')}
     assert {'él', 'once', 'también', 'familia', 'llamarse'} <= a0
-    terms = [n['term'] for b in _ana()['chapters'][0]['blocks'] for n in b['notes'] if isinstance(n, dict)]
-    assert not [t for t in terms if key(t) in a0]
+    # Слова A0 остаются только с необычным значением в контексте (estudiar — «разобрать запись»,
+    # el señor — «хозяин дома»).
+    unusual = {'estudiar', 'el señor'}
+    for book in load_books():
+        if book['vocabulary_min_level'] != 'A1':
+            continue
+        terms = [n['term'] for c in book['chapters'] for b in c['blocks'] for n in b['notes'] if isinstance(n, dict)]
+        assert not [t for t in terms if key(t) in a0 and t not in unusual], book['id']
