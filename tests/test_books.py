@@ -240,9 +240,9 @@ def _story():
     return next(b for b in load_books() if b['id'] == 'los-tres-cerditos')
 
 
-def test_tres_cerditos_is_a1_story_without_chapters():
+def test_tres_cerditos_is_a2_story_without_chapters():
     book = _story()
-    assert (book['kind'], book['level'], book['vocabulary_min_level']) == ('story', 'A1', 'A1')
+    assert (book['kind'], book['level'], book['vocabulary_min_level']) == ('story', 'A2', 'A2')
     assert book['title'] == 'Los tres cerditos y el Lobo'
     assert book['chapters'] == []
     assert book['story']['status'] == 'published' and book['story']['icon'] == '🐷'
@@ -296,7 +296,7 @@ def test_tres_cerditos_vocabulary_marks_and_pronouns():
                 for mark in note[lang]:
                     assert found(block[lang], mark), (block['title'], lang, mark)
     assert len(terms) == len(set(terms))
-    # A1 threshold: basic but useful words are explained, not only rare ones.
+    # A2 threshold: useful words from A2 up are explained, not only rare ones.
     assert {'el cerdito', 'la paja', 'la madera', 'el ladrillo', 'soplar', 'derribar', 'venirse abajo',
             'esconderse', 'estar a salvo', 'en un santiamén', 'temer a (alguien / algo)', 'el bosque',
             'regañar a (alguien) por (algo)', 'volver a (infinitivo)', 'ponerse a (infinitivo)'} <= set(terms)
@@ -348,7 +348,10 @@ def test_tres_cerditos_illustrations_follow_the_plot():
 def test_tres_cerditos_vocabulary_has_no_random_word_chains():
     terms = {n['term'] for b in _story()['story']['blocks'] for n in b['notes'] if isinstance(n, dict)}
     assert not {'irse por el mundo', 'conseguir fortuna', 'más (adjetivo) que antes', 'el mayor de (un grupo)'} & terms
-    assert {'irse', 'el mundo', 'conseguir (algo)', 'la fortuna', 'antes', 'mayor'} <= terms
+    assert {'irse', 'conseguir (algo)', 'la fortuna'} <= terms
+    # A2 threshold: plain A1 words are not listed.
+    assert not {'el hermano', 'el mundo', 'jugar', 'cantar', 'el árbol', 'correr', 'antes', 'mayor',
+                'el viento', 'el invierno', 'la vida', 'gustar (algo) a (alguien)'} & terms
 
 
 def test_book_images_are_validated(tmp_path):

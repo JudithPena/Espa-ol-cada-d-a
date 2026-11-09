@@ -254,19 +254,19 @@ test('story without chapters opens straight from its card and shows no chapter l
   const meta = JSON.parse(fs.readFileSync('content/books/los-tres-cerditos/book.json', 'utf8'));
   const cat = {esc:ctx.esc, plural:(n,one,few,many) => n === 1 ? one : n < 5 ? few : many,
     bookText:ctx.bookText, bookOriginal:ctx.bookOriginal, bookMarks:ctx.bookMarks, bookNote:ctx.bookNote, bookPronouns:ctx.bookPronouns, bookExercises:() => '',
-    view:{bookLevel:'A1'}, COURSE:{books:[{...meta, chapters:[], story}]}};
+    view:{bookLevel:'A2'}, COURSE:{books:[{...meta, chapters:[], story}]}};
   vm.createContext(cat); vm.runInContext(catalogSource + viewCode, cat);
   const card = cat.bookLevelView();
   assert.match(card, /data-book-id="los-tres-cerditos"/); assert.match(card, /рассказ/); assert.match(card, /🐷/);
   assert.doesNotMatch(card, /глав/);
-  cat.location = {hash:'#books/A1/los-tres-cerditos'}; assert.equal(cat.bookSync(), true);
+  cat.location = {hash:'#books/A2/los-tres-cerditos'}; assert.equal(cat.bookSync(), true);
   assert.equal(cat.view.tab, 'book'); assert.equal(cat.view.bookChapter, null);
   const html = cat.bookView();
   assert.doesNotMatch(html, /Глава/); assert.match(html, /data-book-nav="level"/); assert.match(html, /Los tres cerditos y el Lobo · Cuento popular/);
   assert.equal((html.match(/class="vseg book-block"/g) || []).length, story.blocks.length);
   assert.equal((html.match(/<details class="book-pronouns">/g) || []).length, story.blocks.length);
   assert.equal((html.match(/class="book-figure"/g) || []).length, 5);
-  assert.equal(cat.bookHash(), '#books/A1/los-tres-cerditos');
+  assert.equal(cat.bookHash(), '#books/A2/los-tres-cerditos');
 });
 
 test('story vocabulary renders every selected form', () => {
