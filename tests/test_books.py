@@ -49,3 +49,15 @@ def test_pronoun_distinctions_in_first_chapter():
     assert 'безличную' in entry('Si se la comparaba')['explanation']
     assert 'заменяет le' in entry('Explicárselo')['explanation']
     assert 'не заменяет le' in entry('Se lo pasó por los ojos')['explanation']
+
+
+def test_book_vocabulary_keeps_required_government_without_extra_conjunction():
+    book = next(b for b in load_books() if b['title'] == 'Harry Potter y la piedra filosofal')
+    entries = [n for block in book['blocks'] for n in block['notes'] if isinstance(n, dict)]
+    terms = {n['term'] for n in entries}
+    assert 'fingir' in terms and 'fingir que' not in terms
+    fingir = next(n for n in entries if n['term'] == 'fingir')
+    assert fingir['es'] == ['fingía'] and 'que' in fingir['explanation']
+    assert 'darse cuenta de (algo)' in terms
+    assert 'referirse a (alguien / algo)' in terms
+    assert 'juntarse con (alguien)' in terms
