@@ -536,6 +536,40 @@ def test_pobre_ana_sixth_chapter_contains_the_complete_source_in_order():
     assert {'saber + infinitivo', 'venir (de)', 'enseñar a (alguien) a + infinitivo', 'regresar a (un lugar)'} <= terms
 
 
+def test_pobre_ana_last_chapters_contain_the_complete_source_in_order():
+    import hashlib
+    import re
+    book = _ana()
+    assert [c['number'] for c in book['chapters']] == list(range(1, 10))  # вся книга, 9 глав
+    expected = {
+        7: ('👋', 397, '58e35cc4d04422d5240d4bd56ca2df38947548cd0ba3f7f06816eafb676a4db9',
+            'Mañana Ana regresa a California.', 'Está triste también porque no está en México.'),
+        8: ('✉️', 473, 'cdbf77f144e5881304e57c18d94e9c77f6e345697b5246e10aede62e9b149c1f',
+            'Ana se sube al carro de la familia', 'Con mucho cariño, Ana'),
+        9: ('📦', 318, '82239968fdeb01150ed4f114f91cd891aa6afd671739f2000e5f9409a59c95af',
+            'Ana mira todo con admiración.', 'Ana sonríe porque la vida es perfecta.'),
+    }
+    earlier = set()
+    for chapter in book['chapters']:
+        terms = {n['term'] for b in chapter['blocks'] for n in b['notes'] if isinstance(n, dict)}
+        if chapter['number'] in expected:
+            icon, words, digest, start, end = expected[chapter['number']]
+            n = chapter['number']
+            assert (chapter['id'], chapter['order'], chapter['title'], chapter['icon']) == (str(n), n, '', icon)
+            original = re.sub(r'\s+', ' ', ' '.join(b['es'] for b in chapter['blocks'])).strip()
+            assert len(original.split()) == words
+            assert hashlib.sha256(original.encode()).hexdigest() == digest
+            assert original.startswith(start) and original.endswith(end)
+            assert all(len(b['es'].split()) >= 60 for b in chapter['blocks'])
+            for block in chapter['blocks']:
+                assert block['es'].count('\n\n') == block['ru'].count('\n\n'), block['title']
+            assert not terms & earlier, n
+        earlier |= terms
+    text7 = ' '.join(b['es'] for b in book['chapters'][6]['blocks'])
+    assert 'California es bonita' in text7 and 'Los Ángeles' in text7 and '\n—Ana, tú eres' in text7
+    assert "Levi's" in ' '.join(b['es'] for b in book['chapters'][8]['blocks'])
+
+
 def test_pobre_ana_highlights_exist_and_never_overlap():
     import re
     word = re.compile(r'\w')
