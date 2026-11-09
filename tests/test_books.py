@@ -8,7 +8,15 @@ def test_book_chapters_have_complete_readable_blocks():
         assert book['title'] and book['author'] and book['chapter']
         assert book['blocks']
         for block in book['blocks']:
-            assert all(block[key].strip() for key in ('title', 'es', 'ru', 'pronouns'))
+            assert all(block[key].strip() for key in ('title', 'es', 'ru'))
+            pronouns = block.get('pronouns')
+            if isinstance(pronouns, str):
+                assert pronouns.strip()
+            else:
+                assert pronouns
+                for item in pronouns:
+                    assert all(item[key].strip() for key in ('es', 'translation', 'explanation'))
+                    assert item['es'].casefold() in block['es'].casefold()
             assert block['notes']
             for note in block['notes']:
                 if isinstance(note, str):
@@ -30,3 +38,14 @@ def test_first_book_includes_descriptive_b1_vocabulary():
                          ('el taladro', 'taladros', 'дрели')]:
         assert es in entries[term]['es'] and es in first['es']
         assert ru in entries[term]['ru'] and ru in first['ru']
+
+
+def test_pronoun_distinctions_in_first_chapter():
+    book = next(b for b in load_books() if b['title'] == 'Harry Potter y la piedra filosofal')
+    def entry(block, form):
+        return next(x for x in book['blocks'][block - 1]['pronouns'] if x['es'] == form)
+    assert 'пассивной' in entry(2, 'Se supiera')['explanation']
+    assert 'пассивной' in entry(13, 'Se descubría')['explanation']
+    assert 'безличную' in entry(25, 'Si se la comparaba')['explanation']
+    assert 'заменяет le' in entry(23, 'Explicárselo')['explanation']
+    assert 'не заменяет le' in entry(23, 'Se lo pasó por los ojos')['explanation']

@@ -30,3 +30,14 @@ test('chapter vocabulary marks all appear in the rendered source and translation
     }
   }
 });
+test('pronoun entries render separately and escape all untrusted fields', () => {
+  const html = ctx.bookPronouns([{es: '<se>', translation: '<перевод>', base: '<base>', explanation: '<script>'},
+                                {es: 'lo', translation: 'его', explanation: 'прямое дополнение'}]);
+  assert.equal((html.match(/class="book-pronoun-item"/g) || []).length, 2);
+  for (const unsafe of ['<se>', '<перевод>', '<base>', '<script>']) assert.ok(!html.includes(unsafe));
+  assert.match(html, /<strong lang="es">&lt;se&gt;<\/strong>/);
+});
+test('legacy string pronoun explanations remain safely readable', () => {
+  assert.equal(ctx.bookPronouns('lo — <слово>'), '<p>lo — &lt;слово&gt;</p>');
+  assert.equal(ctx.bookPronouns(null), '');
+});

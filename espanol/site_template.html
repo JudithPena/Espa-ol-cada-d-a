@@ -85,6 +85,13 @@ h2 + .btn.wide, h2 + .muted { margin-top: 10px; display: flex; }
 .book-block { line-height: 1.65; }
 .book-block p { white-space: pre-line; }
 .book-block ul { list-style: disc; padding-left: 1.3em; }
+.book-pronouns summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; list-style: none; }
+.book-pronouns summary::-webkit-details-marker { display: none; }
+.book-pronouns summary::after { content: '›'; flex: none; font-size: 22px; line-height: 1; transform: rotate(90deg); }
+.book-pronouns[open] summary::after { transform: rotate(-90deg); }
+.book-pronoun-list { margin-top: 10px; }
+.book-pronoun-item + .book-pronoun-item { border-top: 1px solid var(--line); margin-top: 10px; padding-top: 10px; }
+.book-pronoun-item p { margin: 4px 0 0; overflow-wrap: anywhere; }
 .vseg .nt { font-size: 14px; color: var(--muted); }
 .es { font-weight: 700; }
 
@@ -2492,11 +2499,16 @@ function bookMarks(block, lang) {
 function bookNote(note) {
   return typeof note === "string" ? esc(note) : `<strong>${esc(note.term)}</strong> — ${esc(note.explanation)}`;
 }
+function bookPronouns(pronouns) {
+  if (typeof pronouns === "string") return `<p>${esc(pronouns)}</p>`;
+  if (!Array.isArray(pronouns)) return "";
+  return `<div class="book-pronoun-list">${pronouns.map(item => `<div class="book-pronoun-item"><strong lang="es">${esc(item.es)}</strong>${item.translation ? `<p>${esc(item.translation)}</p>` : ""}${item.base ? `<p>Базовая конструкция: ${esc(item.base)}</p>` : ""}${item.explanation ? `<p>${esc(item.explanation)}</p>` : ""}</div>`).join("")}</div>`;
+}
 function bookView() {
   const b = (COURSE.books || [])[view.book];
   if (!b) { view.tab = "books"; return booksView(); }
   return `<button class="btn ghost sm back" data-tab="books">← Все книги</button><h2>Разбор текста</h2><p>${esc(b.title)} · ${esc(b.chapter)}</p>
-    ${b.blocks.map(block => `<section class="vseg book-block"><h3>${esc(block.title)}</h3><p lang="es">${bookText(block.es, bookMarks(block, "es"))}</p><details><summary>Перевод</summary><p>${bookText(block.ru, bookMarks(block, "ru"))}</p></details><h4>Разбор</h4><ul>${block.notes.map(note => `<li>${bookNote(note)}</li>`).join("")}</ul>${block.pronouns ? `<h4>Мини-разбор местоимений</h4><p>${esc(block.pronouns)}</p>` : ""}</section>`).join("")}`;
+    ${b.blocks.map(block => `<section class="vseg book-block"><h3>${esc(block.title)}</h3><p lang="es">${bookText(block.es, bookMarks(block, "es"))}</p><details><summary>Перевод</summary><p>${bookText(block.ru, bookMarks(block, "ru"))}</p></details><h4>Разбор</h4><ul>${block.notes.map(note => `<li>${bookNote(note)}</li>`).join("")}</ul>${block.pronouns && (!Array.isArray(block.pronouns) || block.pronouns.length) ? `<details class="book-pronouns"><summary>Мини-разбор местоимений</summary>${bookPronouns(block.pronouns)}</details>` : ""}</section>`).join("")}`;
 }
 
 function courseView() {
