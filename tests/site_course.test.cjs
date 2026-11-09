@@ -374,8 +374,8 @@ test('приёмка 10: control checks — under 80 % is not a pass and shows w
   assert.equal(run('P.ctl["u/c"].best'), 70);
   const res = run('resultView()');
   assert.match(res, /Нужно повторить/);
-  assert.match(res, /Результат 70 % — нужно 80 %/);
-  assert.match(res, /спасибо — 67 %/);
+  assert.match(res, /Результат 70&nbsp;% — нужно 80&nbsp;%/);   // неразрывный пробел: «%» не отрывается от числа
+  assert.match(res, /спасибо — 67&nbsp;%/);
   assert.match(res, /Пройти ещё раз/);
   assert.match(run('view.level = "A0"; courseView()'), /Откроется после итога/);
   // Подсказки и показанные ответы не дают сдать: 0,25 и 0.

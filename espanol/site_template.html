@@ -2863,11 +2863,11 @@ function resultView() {
     <p class="muted">Здесь нечего было проверить без звука: задания на слух отложены. Пройдите урок, когда звук заработает.</p>${again}${home}</div>`;
   const control = r.check && lesson;
   const topicsHTML = control && r.topics.length ? `<div class="panel topics"><b>По темам</b><ul>${r.topics.map(t =>
-    `<li class="${t.score >= PASS ? "ok" : t.score < 0.6 ? "weak" : "mid"}"><span>${t.score >= PASS ? "✓" : "↻"} ${esc(t.title)} — ${Math.round(t.score * 100)} %</span>${t.score < PASS && t.li >= 0 ? `<button class="btn ghost sm" data-lesson="${t.li}" data-free>Урок ${LESSONS[t.li].n}</button>` : ""}</li>`).join("")}</ul></div>` : "";
+    `<li class="${t.score >= PASS ? "ok" : t.score < 0.6 ? "weak" : "mid"}"><span>${t.score >= PASS ? "✓" : "↻"} ${esc(t.title)} — ${Math.round(t.score * 100)}&nbsp;%</span>${t.score < PASS && t.li >= 0 ? `<button class="btn ghost sm" data-lesson="${t.li}" data-free>Урок ${LESSONS[t.li].n}</button>` : ""}</li>`).join("")}</ul></div>` : "";
   const failed = control && r.score < PASS;   // как в finish(): по точному баллу, а не по округлённым процентам
   const title = !lesson ? "Повторение закончено!" : failed ? "Нужно повторить" : r.check === "control" ? `${esc(L.title)}: сдано!` : `Урок ${L.n} пройден!`;
-  const lead = failed ? `<p class="verdict">Результат ${pct} % — нужно ${PASS * 100} %. ${r.check === "control" ? "Следующий урок откроется, когда итог будет сдан." : "Урок засчитан, но эти темы стоит повторить."}</p>`
-    : control ? `<p class="verdict">Результат ${pct} % (нужно ${PASS * 100} %).</p>` : "";
+  const lead = failed ? `<p class="verdict">Результат ${pct}&nbsp;% — нужно ${PASS * 100}&nbsp;%. ${r.check === "control" ? "Следующий урок откроется, когда итог будет сдан." : "Урок засчитан, но эти темы стоит повторить."}</p>`
+    : control ? `<p class="verdict">Результат ${pct}&nbsp;% (нужно ${PASS * 100}&nbsp;%).</p>` : "";
   return `<div class="wrap result${failed ? " retry" : ""}">
     <span class="medal">${failed ? "💪" : r.stars === 3 ? "🏆" : r.stars === 2 ? "🎉" : "💪"}</span>
     <h2>${title}</h2>${lead}

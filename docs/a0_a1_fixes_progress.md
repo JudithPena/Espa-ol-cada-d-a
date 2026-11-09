@@ -29,7 +29,7 @@
 
 | № | Тема | Статус | Карта | Коммит |
 |---|---|---|---|---|
-| 00 | Старт | готово: 4 урока `version: 2`, noaudio у 15 заданий на слух, навыки vowels/stress/spell_* | [00_start.md](site_slide_maps/00_start.md) | (см. git log «тема 00») |
+| 00 | Старт | готово: 4 урока `version: 2`, noaudio у 17 заданий на слух, навыки vowels/stress/spell_* | [00_start.md](site_slide_maps/00_start.md) | (см. git log «тема 00») |
 | 01 | Приветствия | готово: 6 уроков `version: 2`; диалог-первый урок «Утро в офисе», вопросы к «Утром»/«Вечером» по `source`, кофе с `mistakes`, тест темы — сценарий без случайных вопросов | [01_saludos.md](site_slide_maps/01_saludos.md) | «тема 01» |
 | 02 | Знакомство | готово: 5 уроков `version: 2`; «Как тебя зовут?» с разговора и мини-миссией «Познакомьтесь», вопросы к `party`/`hotel`/`neighbour`/`class`, тест темы — сценарий | [02_presentarse.md](site_slide_maps/02_presentarse.md) | «тема 02» |
 | 03 | Язык занятий | готово: 5 уроков `version: 2`; практикум с задания, миссия с именем ученика, вопрос на ¿Cómo se dice…?, тест темы — сценарий | [03_en_clase.md](site_slide_maps/03_en_clase.md) | «тема 03» |
