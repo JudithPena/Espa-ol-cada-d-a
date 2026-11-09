@@ -82,6 +82,9 @@ h2 + .btn.wide, h2 + .muted { margin-top: 10px; display: flex; }
 .vseg details { background: var(--sunken); border-radius: 10px; padding: 8px 12px; }
 .vseg summary { cursor: pointer; font-weight: 700; color: var(--accent); }
 .vseg ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 15px; }
+.book-block { line-height: 1.65; }
+.book-block p { white-space: pre-line; }
+.book-block ul { list-style: disc; padding-left: 1.3em; }
 .vseg .nt { font-size: 14px; color: var(--muted); }
 .es { font-weight: 700; }
 
@@ -2238,7 +2241,7 @@ function topBar() {
 function tabsBar() {
   const due = dueWords().length;
   const t = (id, ico, label, badge = "") => `<button class="tab" data-tab="${id}" ${view.tab === id ? 'aria-current="page"' : ""}><span class="ico">${ico}</span>${label}${badge}</button>`;
-  const homeTab = `<button class="tab" data-tab="home" ${["home", "grammar", "videos", "video"].includes(view.tab) ? 'aria-current="page"' : ""}><span class="ico">🏠</span>Главная</button>`;
+  const homeTab = `<button class="tab" data-tab="home" ${["home", "grammar", "videos", "video", "books", "book"].includes(view.tab) ? 'aria-current="page"' : ""}><span class="ico">🏠</span>Главная</button>`;
   return `<nav class="tabs" aria-label="Разделы"><div class="wrap">
     ${homeTab}${t("course", "🗺️", "Курс")}${t("review", "🔁", "Повторить", due ? `<span class="badge">${due > 99 ? "99+" : due}</span>` : "")}
     ${t("words", "📚", "Слова")}${t("stats", "📈", "Прогресс")}
@@ -2267,6 +2270,7 @@ function homeView() {
   html += `<h2 class="sech">Ещё</h2><div class="menu">
     <button class="mcard" data-tab="grammar"><span class="mi">📐</span><span><b>Грамматика</b><small>${(COURSE.grammar || []).length} ${plural((COURSE.grammar || []).length, "урок", "урока", "уроков")}</small></span><span aria-hidden="true">›</span></button>
     ${COURSE.videos.length ? `<button class="mcard" data-tab="videos"><span class="mi">🎬</span><span><b>Разбор видео</b><small>${COURSE.videos.length} ${plural(COURSE.videos.length, "разбор", "разбора", "разборов")}: фразы, слова и перевод</small></span><span aria-hidden="true">›</span></button>` : ""}
+    ${(COURSE.books || []).length ? `<button class="mcard" data-tab="books"><span class="mi">📚</span><span><b>Разбор книг</b><small>Книги, перевод и объяснения</small></span><span aria-hidden="true">›</span></button>` : ""}
   </div>`;
   return html;
 }
@@ -2452,6 +2456,24 @@ function videoView() {
       ${s.notes.map(n => `<div class="nt">${n}</div>`).join("")}
       <details><summary>Перевод</summary><div>${s.ru}</div></details>
     </section>`).join("")}`;
+}
+
+function booksView() {
+  return `<button class="btn ghost sm back" data-tab="home">← Главная</button><h2>📚 Разбор книг</h2>
+    <div class="menu">${(COURSE.books || []).map((b, i) => `<button class="mcard" data-book="${i}"><span class="mi">📖</span><span><b>${esc(b.title)}</b><small>${esc(b.author)} · ${esc(b.chapter)}</small></span><span aria-hidden="true">›</span></button>`).join("")}</div>`;
+}
+function bookText(text, marks = []) {
+  // Текст и подсветка экранируются отдельно: данные книги не являются HTML.
+  const mark = marks.find(m => m && text.includes(m));
+  if (!mark) return esc(text);
+  const at = text.indexOf(mark);
+  return esc(text.slice(0, at)) + "<strong>" + esc(mark) + "</strong>" + esc(text.slice(at + mark.length));
+}
+function bookView() {
+  const b = (COURSE.books || [])[view.book];
+  if (!b) { view.tab = "books"; return booksView(); }
+  return `<button class="btn ghost sm back" data-tab="books">← Все книги</button><h2>Разбор текста</h2><p>${esc(b.title)} · ${esc(b.chapter)}</p>
+    ${b.blocks.map(block => `<section class="vseg book-block"><h3>${esc(block.title)}</h3><p lang="es">${bookText(block.es, block.marks?.es)}</p><h4>Перевод</h4><p>${bookText(block.ru, block.marks?.ru)}</p><h4>Разбор</h4><ul>${block.notes.map(note => `<li>${esc(note)}</li>`).join("")}</ul>${block.pronouns ? `<h4>Мини-разбор местоимений</h4><p>${esc(block.pronouns)}</p>` : ""}</section>`).join("")}`;
 }
 
 function courseView() {
@@ -2914,7 +2936,7 @@ function renderView() {
     if (S.state?.result) wrapWords($(".pfoot .fb"));
     return;
   }
-  const body = { home: homeView, course: courseView, grammar: grammarView, videos: videosView, video: videoView, review: reviewView, words: wordsView, stats: statsView }[view.tab]();
+  const body = { home: homeView, course: courseView, grammar: grammarView, videos: videosView, video: videoView, books: booksView, book: bookView, review: reviewView, words: wordsView, stats: statsView }[view.tab]();
   app.innerHTML = `${topBar()}<main><div class="wrap">${body}</div></main>${tabsBar()}`;
   mountLogin();
 }
@@ -3097,6 +3119,7 @@ document.addEventListener("click", e => {
     box.classList.toggle("hide-tr"); return;
   }
   if (d.level) { view.level = d.level; view.tab = "course"; render(); window.scrollTo(0, 0); return; }
+  if (d.book != null) { view.book = +d.book; view.tab = "book"; render(); window.scrollTo(0, 0); return; }
   if (d.video) { view.video = d.video; view.tab = "video"; render(); window.scrollTo(0, 0); return; }
   if (d.tab) { if (d.tab === "course") view.level = null; if (d.tab === "grammar") view.grammar = null; view.tab = d.tab; view.confirmReset = false; render(); window.scrollTo(0, 0); return; }
   if (d.lesson != null) {

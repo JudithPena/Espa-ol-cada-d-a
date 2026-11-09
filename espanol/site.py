@@ -812,6 +812,18 @@ def video_data(video) -> dict:
     }
 
 
+
+def load_books() -> list[dict]:
+    """На сайт попадают только законченные разборы; черновики остаются локальными."""
+    directory = Path(__file__).resolve().parent.parent / "content" / "books"
+    books = []
+    for path in sorted(directory.glob("*.json")):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        if data.get("complete") is True:
+            books.append(data)
+    return books
+
+
 def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None = None,
               videos: list | None = None, preview: bool = False) -> dict:
     """preview — тестовая версия сайта: в шапке метка «тест»."""
@@ -840,6 +852,7 @@ def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None
                   for u in course.units if units is None or u.number in units],
         "lessons": lessons,
         "videos": [video_data(v) for v in videos or []],
+        "books": load_books(),
         "grammar": load_grammar(),
         "forms": word_forms(course),
         "phrases": word_phrases(course),
