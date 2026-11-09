@@ -21,7 +21,7 @@ test('structured notes and legacy marks coexist', () => {
   assert.deepEqual(Array.from(ctx.bookMarks({marks:{es:['gato']}, notes:['legacy', {es:['perro'], ru:['собака']}]}, 'es')), ['gato','perro']);
 });
 test('chapter vocabulary marks all appear in the rendered source and translation', () => {
-  const book = JSON.parse(fs.readFileSync('content/books/harry_potter_01.json', 'utf8'));
+  const book = JSON.parse(fs.readFileSync('content/books/harry-potter-piedra/chapters/001.json', 'utf8'));
   assert.equal(book.blocks.length, 32);
   for (const block of book.blocks) for (const lang of ['es', 'ru']) {
     const html = ctx.bookText(block[lang], ctx.bookMarks(block, lang));
@@ -45,11 +45,31 @@ test('legacy string pronoun explanations remain safely readable', () => {
 
 test('each book block has its own closed pronoun disclosure without an exclusive group', () => {
   const viewCode = source.slice(source.indexOf('function bookView()'), source.indexOf('function courseView()'));
-  const book = JSON.parse(fs.readFileSync('content/books/harry_potter_01.json', 'utf8'));
-  ctx.COURSE = {books: [book]}; ctx.view = {book: 0};
+  const book = JSON.parse(fs.readFileSync('content/books/harry-potter-piedra/chapters/001.json', 'utf8'));
+  ctx.COURSE = {books: [{id: 'hp', title: 'Harry', chapters: [book]}]}; ctx.view = {book: 'hp', bookChapter: book.id}; ctx.bookById = id => ctx.COURSE.books.find(b => b.id === id);
   vm.runInContext(viewCode, ctx);
   const html = ctx.bookView();
   const tags = html.match(/<details class="book-pronouns"[^>]*>/g) || [];
   assert.equal(tags.length, book.blocks.length);
   for (const tag of tags) { assert.doesNotMatch(tag, /\b(?:name|open)\s*(?:=|>|\s)/); }
+});
+
+test('catalog groups books by level and chapters by book, including empty levels', () => {
+  const catalogSource = source.slice(source.indexOf('function booksView()'), source.indexOf('function bookText('));
+  const chapters = [{id:'1', number:1, title:'Первый'}, {id:'2', number:2, title:'Второй'}];
+  const cat = {esc:ctx.esc, plural: (n,one,few,many) => n === 1 ? one : n < 5 ? few : many,
+    view:{bookLevel:'B2', book:'first'}, COURSE:{books:[
+      {id:'first',title:'Книга',author:'Автор',level:'B2',vocabulary_min_level:'B1',chapters},
+      {id:'second',title:'Другая',author:'Автор',level:'B2',vocabulary_min_level:'B2',chapters:[]},
+      {id:'third',title:'Лёгкая',author:'Автор',level:'A1',vocabulary_min_level:'A1',chapters:[]} ]}};
+  vm.createContext(cat); vm.runInContext(catalogSource, cat);
+  assert.equal((cat.booksView().match(/data-book-level=/g) || []).length, 6);
+  assert.equal((cat.bookLevelView().match(/data-book-id=/g) || []).length, 2);
+  assert.equal((cat.bookChaptersView().match(/data-book-chapter=/g) || []).length, 2);
+  cat.view.bookLevel='A1'; assert.equal((cat.bookLevelView().match(/data-book-id=/g) || []).length, 1);
+  cat.view.bookLevel='C2'; assert.match(cat.bookLevelView(), /На этом уровне пока нет книг/);
+  cat.location = {hash:'#books/B2/first/2'}; assert.equal(cat.bookSync(), true);
+  assert.equal(cat.view.tab, 'book'); assert.equal(cat.view.bookChapter, '2');
+  cat.location.hash = '#books/B2/first/draft'; cat.bookSync();
+  assert.equal(cat.view.tab, 'book-chapters');
 });

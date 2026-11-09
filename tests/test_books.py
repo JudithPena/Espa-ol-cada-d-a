@@ -5,9 +5,9 @@ def test_book_chapters_have_complete_readable_blocks():
     books = load_books()
     assert books
     for book in books:
-        assert book['title'] and book['author'] and book['chapter']
-        assert book['blocks']
-        for block in book['blocks']:
+        assert book['title'] and book['author'] and book['id']
+        assert book['level'] and book['vocabulary_min_level']
+        for block in (block for chapter in book['chapters'] for block in chapter['blocks']):
             assert all(block[key].strip() for key in ('title', 'es', 'ru'))
             pronouns = block.get('pronouns')
             if isinstance(pronouns, str):
@@ -31,7 +31,7 @@ def test_book_chapters_have_complete_readable_blocks():
 
 def test_first_book_includes_descriptive_b1_vocabulary():
     book = next(b for b in load_books() if b['title'] == 'Harry Potter y la piedra filosofal')
-    first = book['blocks'][0]
+    first = book['chapters'][0]['blocks'][0]
     entries = {n['term']: n for n in first['notes'] if isinstance(n, dict)}
     for term, es, ru in [('corpulento', 'corpulento', 'крупный'),
                          ('rollizo', 'rollizo', 'полный'),
@@ -43,7 +43,7 @@ def test_first_book_includes_descriptive_b1_vocabulary():
 def test_pronoun_distinctions_in_first_chapter():
     book = next(b for b in load_books() if b['title'] == 'Harry Potter y la piedra filosofal')
     def entry(form):
-        return next(x for block in book['blocks'] for x in block['pronouns'] if x['es'] == form)
+        return next(x for chapter in book['chapters'] for block in chapter['blocks'] for x in block['pronouns'] if x['es'] == form)
     assert 'пассивной' in entry('Se supiera')['explanation']
     assert 'пассивной' in entry('Se descubría')['explanation']
     assert 'безличную' in entry('Si se la comparaba')['explanation']
@@ -53,7 +53,7 @@ def test_pronoun_distinctions_in_first_chapter():
 
 def test_book_vocabulary_keeps_required_government_without_extra_conjunction():
     book = next(b for b in load_books() if b['title'] == 'Harry Potter y la piedra filosofal')
-    entries = [n for block in book['blocks'] for n in block['notes'] if isinstance(n, dict)]
+    entries = [n for chapter in book['chapters'] for block in chapter['blocks'] for n in block['notes'] if isinstance(n, dict)]
     terms = {n['term'] for n in entries}
     assert 'fingir' in terms and 'fingir que' not in terms
     fingir = next(n for n in entries if n['term'] == 'fingir')
@@ -61,3 +61,53 @@ def test_book_vocabulary_keeps_required_government_without_extra_conjunction():
     assert 'darse cuenta de (algo)' in terms
     assert 'referirse a (alguien / algo)' in terms
     assert 'juntarse con (alguien)' in terms
+
+
+def test_catalog_groups_chapters_and_preserves_independent_levels(tmp_path):
+    import json
+    def write(path, value):
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(value), encoding='utf-8')
+    def book(folder, ident, level, threshold):
+        write(tmp_path / folder / 'book.json', {'id': ident, 'title': ident, 'author': 'Autor',
+              'level': level, 'vocabulary_min_level': threshold})
+    def chapter(folder, ident, number, order, status):
+        write(tmp_path / folder / 'chapters' / (ident + '.json'),
+              {'id': ident, 'number': number, 'order': order, 'status': status,
+               'title': ident, 'blocks': [{'title': 'example'}]})
+    book('first', 'first', 'B2', 'B1')
+    chapter('first', 'two', 2, 2, 'published')
+    chapter('first', 'one', 1, 1, 'published')
+    chapter('first', 'three', 3, 3, 'draft')
+    book('same', 'same', 'B2', 'B2'); chapter('same', 'one', 1, 1, 'published')
+    book('other', 'other', 'A1', 'A1'); chapter('other', 'one', 1, 1, 'published')
+    books = load_books(tmp_path)
+    assert len(books) == 3
+    assert sum(b['level'] == 'B2' for b in books) == 2
+    first = next(b for b in books if b['id'] == 'first')
+    assert [c['id'] for c in first['chapters']] == ['one', 'two']
+    assert (first['level'], first['vocabulary_min_level']) == ('B2', 'B1')
+    assert next(b for b in books if b['id'] == 'other')['vocabulary_min_level'] == 'A1'
+
+
+def test_harry_level_and_vocabulary_threshold_are_independent():
+    book = next(b for b in load_books() if b['id'] == 'harry-potter-piedra')
+    assert book['level'] == 'B2'
+    assert book['vocabulary_min_level'] == 'B1'
+    assert [(c['number'], c['title']) for c in book['chapters']] == [(1, 'El niño que vivió')]
+
+
+def test_local_cover_is_packaged_and_cannot_escape_book_folder(tmp_path):
+    import json
+    import pytest
+    root = tmp_path / 'book'; root.mkdir()
+    metadata = {'id': 'book', 'title': 'Book', 'author': 'Author', 'level': 'A1',
+                'vocabulary_min_level': 'A1', 'cover': 'cover.png'}
+    (root / 'cover.png').write_bytes(b'example')
+    (root / 'book.json').write_text(json.dumps(metadata))
+    assert load_books(tmp_path)[0]['cover'] == 'data:image/png;base64,ZXhhbXBsZQ=='
+    metadata['cover'] = '../outside.png'
+    (tmp_path / 'outside.png').write_bytes(b'example')
+    (root / 'book.json').write_text(json.dumps(metadata))
+    with pytest.raises(ValueError, match='обложке'):
+        load_books(tmp_path)

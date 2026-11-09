@@ -92,6 +92,7 @@ h2 + .btn.wide, h2 + .muted { margin-top: 10px; display: flex; }
 .book-pronoun-list { margin-top: 10px; }
 .book-pronoun-item + .book-pronoun-item { border-top: 1px solid var(--line); margin-top: 10px; padding-top: 10px; }
 .book-pronoun-item p { margin: 4px 0 0; overflow-wrap: anywhere; }
+.book-cover { width: 48px; height: 64px; object-fit: cover; border-radius: 6px; flex: none; }
 .vseg .nt { font-size: 14px; color: var(--muted); }
 .es { font-weight: 700; }
 
@@ -2248,7 +2249,7 @@ function topBar() {
 function tabsBar() {
   const due = dueWords().length;
   const t = (id, ico, label, badge = "") => `<button class="tab" data-tab="${id}" ${view.tab === id ? 'aria-current="page"' : ""}><span class="ico">${ico}</span>${label}${badge}</button>`;
-  const homeTab = `<button class="tab" data-tab="home" ${["home", "grammar", "videos", "video", "books", "book"].includes(view.tab) ? 'aria-current="page"' : ""}><span class="ico">🏠</span>Главная</button>`;
+  const homeTab = `<button class="tab" data-tab="home" ${["home", "grammar", "videos", "video", "books", "book-level", "book-chapters", "book"].includes(view.tab) ? 'aria-current="page"' : ""}><span class="ico">🏠</span>Главная</button>`;
   return `<nav class="tabs" aria-label="Разделы"><div class="wrap">
     ${homeTab}${t("course", "🗺️", "Курс")}${t("review", "🔁", "Повторить", due ? `<span class="badge">${due > 99 ? "99+" : due}</span>` : "")}
     ${t("words", "📚", "Слова")}${t("stats", "📈", "Прогресс")}
@@ -2277,7 +2278,7 @@ function homeView() {
   html += `<h2 class="sech">Ещё</h2><div class="menu">
     <button class="mcard" data-tab="grammar"><span class="mi">📐</span><span><b>Грамматика</b><small>${(COURSE.grammar || []).length} ${plural((COURSE.grammar || []).length, "урок", "урока", "уроков")}</small></span><span aria-hidden="true">›</span></button>
     ${COURSE.videos.length ? `<button class="mcard" data-tab="videos"><span class="mi">🎬</span><span><b>Разбор видео</b><small>${COURSE.videos.length} ${plural(COURSE.videos.length, "разбор", "разбора", "разборов")}: фразы, слова и перевод</small></span><span aria-hidden="true">›</span></button>` : ""}
-    ${(COURSE.books || []).length ? `<button class="mcard" data-tab="books"><span class="mi">📚</span><span><b>Разбор книг</b><small>Книги, перевод и объяснения</small></span><span aria-hidden="true">›</span></button>` : ""}
+    <button class="mcard" data-tab="books"><span class="mi">📚</span><span><b>Разбор книг</b><small>Книги, перевод и объяснения</small></span><span aria-hidden="true">›</span></button>
   </div>`;
   return html;
 }
@@ -2466,8 +2467,38 @@ function videoView() {
 }
 
 function booksView() {
-  return `<button class="btn ghost sm back" data-tab="home">← Главная</button><h2>📚 Разбор книг</h2>
-    <div class="menu">${(COURSE.books || []).map((b, i) => `<button class="mcard" data-book="${i}"><span class="mi">📖</span><span><b>${esc(b.title)}</b><small>${esc(b.author)} · ${esc(b.chapter)}</small></span><span aria-hidden="true">›</span></button>`).join("")}</div>`;
+  return `<button class="btn ghost sm back" data-tab="home">← Главная</button><h2>📚 Разбор книг</h2><p class="muted">Выберите уровень книги</p>
+    <div class="levels">${BOOK_LEVELS.map(level => { const n = (COURSE.books || []).filter(b => b.level === level).length; return `<button class="lvl" data-book-level="${level}"><b>${level}</b><small>${n} ${plural(n, "книга", "книги", "книг")}</small></button>`; }).join("")}</div>`;
+}
+const BOOK_LEVELS = ["A1", "A2", "B1", "B2", "C1", "C2"];
+const bookById = id => (COURSE.books || []).find(b => b.id === id);
+function bookLevelView() {
+  const books = (COURSE.books || []).filter(b => b.level === view.bookLevel);
+  return `<button class="btn ghost sm back" data-book-nav="levels">← Все уровни</button><h2>Книги · ${esc(view.bookLevel)}</h2>${books.length ? `<div class="menu">${books.map(b => `<button class="mcard" data-book-id="${esc(b.id)}">${b.cover ? `<img class="book-cover" src="${esc(b.cover)}" alt="">` : '<span class="mi">📖</span>'}<span><b>${esc(b.title)}</b><small>${esc(b.author)} · ${b.chapters.length} ${plural(b.chapters.length, "глава", "главы", "глав")}</small></span><span aria-hidden="true">›</span></button>`).join("")}</div>` : '<p class="muted">На этом уровне пока нет книг.</p>'}`;
+}
+function bookChaptersView() {
+  const b = bookById(view.book);
+  if (!b) return booksView();
+  return `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(b.level)}</button><h2>${esc(b.title)}</h2><p class="muted">${esc(b.author)}</p><h3>Главы</h3>${b.chapters.length ? `<div class="menu">${b.chapters.map(c => `<button class="mcard" data-book-chapter="${esc(c.id)}"><span class="mi">📖</span><span><b>Глава ${c.number}. ${esc(c.title)}</b></span><span aria-hidden="true">›</span></button>`).join("")}</div>` : '<p class="muted">Опубликованных глав пока нет.</p>'}`;
+}
+function bookGo(level = null, book = null, chapter = null) {
+  const parts = ["books", level, book, chapter].filter(x => x != null).map(encodeURIComponent);
+  history.pushState({bookRoute: true}, "", "#" + parts.join("/"));
+  bookSync(); render(); window.scrollTo(0, 0);
+}
+function bookSync() {
+  const hash = typeof location === "undefined" ? "" : (location.hash || "");
+  if (hash !== "#books" && !hash.startsWith("#books/")) return false;
+  let parts;
+  try { parts = hash.slice(1).split("/").map(decodeURIComponent); } catch (_) { parts = ["books"]; }
+  const level = parts[1], b = bookById(parts[2]);
+  view.tab = "books"; view.bookLevel = null; view.book = null; view.bookChapter = null;
+  if (!BOOK_LEVELS.includes(level)) return true;
+  view.bookLevel = level; view.tab = "book-level";
+  if (!b || b.level !== level) return true;
+  view.book = b.id; view.tab = "book-chapters";
+  if (b.chapters.some(c => c.id === parts[3])) { view.bookChapter = parts[3]; view.tab = "book"; }
+  return true;
 }
 function bookText(text, marks = []) {
   // Совпадения ищутся в исходном тексте; каждый фрагмент экранируется до вставки.
@@ -2505,10 +2536,10 @@ function bookPronouns(pronouns) {
   return `<div class="book-pronoun-list">${pronouns.map(item => `<div class="book-pronoun-item"><strong lang="es">${esc(item.es)}</strong>${item.translation ? `<p>${esc(item.translation)}</p>` : ""}${item.base ? `<p>Базовая конструкция: ${esc(item.base)}</p>` : ""}${item.explanation ? `<p>${esc(item.explanation)}</p>` : ""}</div>`).join("")}</div>`;
 }
 function bookView() {
-  const b = (COURSE.books || [])[view.book];
-  if (!b) { view.tab = "books"; return booksView(); }
-  return `<button class="btn ghost sm back" data-tab="books">← Все книги</button><h2>Разбор текста</h2><p>${esc(b.title)} · ${esc(b.chapter)}</p>
-    ${b.blocks.map(block => `<section class="vseg book-block"><h3>${esc(block.title)}</h3><p lang="es">${bookText(block.es, bookMarks(block, "es"))}</p><details><summary>Перевод</summary><p>${bookText(block.ru, bookMarks(block, "ru"))}</p></details><h4>Разбор</h4><ul>${block.notes.map(note => `<li>${bookNote(note)}</li>`).join("")}</ul>${block.pronouns && (!Array.isArray(block.pronouns) || block.pronouns.length) ? `<details class="book-pronouns"><summary>Мини-разбор местоимений</summary>${bookPronouns(block.pronouns)}</details>` : ""}</section>`).join("")}`;
+  const b = bookById(view.book), chapter = b?.chapters.find(c => c.id === view.bookChapter);
+  if (!chapter) return b ? bookChaptersView() : booksView();
+  return `<button class="btn ghost sm back" data-book-nav="chapters">← Главы книги</button><h2>Разбор текста</h2><p>${esc(b.title)} · Глава ${chapter.number}. ${esc(chapter.title)}</p>
+    ${chapter.blocks.map(block => `<section class="vseg book-block"><h3>${esc(block.title)}</h3><p lang="es">${bookText(block.es, bookMarks(block, "es"))}</p><details><summary>Перевод</summary><p>${bookText(block.ru, bookMarks(block, "ru"))}</p></details><h4>Разбор</h4><ul>${block.notes.map(note => `<li>${bookNote(note)}</li>`).join("")}</ul>${block.pronouns && (!Array.isArray(block.pronouns) || block.pronouns.length) ? `<details class="book-pronouns"><summary>Мини-разбор местоимений</summary>${bookPronouns(block.pronouns)}</details>` : ""}</section>`).join("")}`;
 }
 
 function courseView() {
@@ -2971,7 +3002,7 @@ function renderView() {
     if (S.state?.result) wrapWords($(".pfoot .fb"));
     return;
   }
-  const body = { home: homeView, course: courseView, grammar: grammarView, videos: videosView, video: videoView, books: booksView, book: bookView, review: reviewView, words: wordsView, stats: statsView }[view.tab]();
+  const body = { home: homeView, course: courseView, grammar: grammarView, videos: videosView, video: videoView, books: booksView, "book-level": bookLevelView, "book-chapters": bookChaptersView, book: bookView, review: reviewView, words: wordsView, stats: statsView }[view.tab]();
   app.innerHTML = `${topBar()}<main><div class="wrap">${body}</div></main>${tabsBar()}`;
   mountLogin();
 }
@@ -3154,9 +3185,14 @@ document.addEventListener("click", e => {
     box.classList.toggle("hide-tr"); return;
   }
   if (d.level) { view.level = d.level; view.tab = "course"; render(); window.scrollTo(0, 0); return; }
-  if (d.book != null) { view.book = +d.book; view.tab = "book"; render(); window.scrollTo(0, 0); return; }
+  if (d.bookLevel) return bookGo(d.bookLevel);
+  if (d.bookId) return bookGo(view.bookLevel, d.bookId);
+  if (d.bookChapter) return bookGo(view.bookLevel, view.book, d.bookChapter);
+  if (d.bookNav === "levels") return bookGo();
+  if (d.bookNav === "level") return bookGo(view.bookLevel);
+  if (d.bookNav === "chapters") return bookGo(view.bookLevel, view.book);
   if (d.video) { view.video = d.video; view.tab = "video"; render(); window.scrollTo(0, 0); return; }
-  if (d.tab) { if (d.tab === "course") view.level = null; if (d.tab === "grammar") view.grammar = null; view.tab = d.tab; view.confirmReset = false; render(); window.scrollTo(0, 0); return; }
+  if (d.tab) { if (d.tab === "books") return bookGo(); const hash = typeof location === "undefined" ? "" : (location.hash || ""); if (hash === "#books" || hash.startsWith("#books/")) history.pushState({}, "", location.pathname + location.search); if (d.tab === "course") view.level = null; if (d.tab === "grammar") view.grammar = null; view.tab = d.tab; view.confirmReset = false; render(); window.scrollTo(0, 0); return; }
   if (d.lesson != null) {
     const i = +d.lesson;
     if (unitClosed(i)) return toast("Эта тема скоро откроется");
@@ -3262,5 +3298,12 @@ document.addEventListener("toggle", e => {
   if (G && e.target.classList?.contains("gplay-family")) { G.treeOpen = e.target.open; gSave(); }
   if (S?.state && e.target.matches?.("details[data-src]")) S.state.srcOpen = e.target.open;   // источник открыт — так и останется после ответа
 }, true);
+window.addEventListener("popstate", () => {
+  // Не прерываем начатый урок или грамматическое упражнение при движении по истории.
+  if (S || G) return;
+  if (bookSync()) { render(); window.scrollTo(0, 0); }
+  else if (["books", "book-level", "book-chapters", "book"].includes(view.tab)) { view.tab = "home"; render(); window.scrollTo(0, 0); }
+});
+bookSync();
 render();
 </script>

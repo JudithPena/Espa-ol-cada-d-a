@@ -813,14 +813,48 @@ def video_data(video) -> dict:
 
 
 
-def load_books() -> list[dict]:
-    """На сайт попадают только законченные разборы; черновики остаются локальными."""
-    directory = Path(__file__).resolve().parent.parent / "content" / "books"
-    books = []
-    for path in sorted(directory.glob("*.json")):
-        data = json.loads(path.read_text(encoding="utf-8"))
-        if data.get("complete") is True:
-            books.append(data)
+BOOK_LEVELS = ("A1", "A2", "B1", "B2", "C1", "C2")
+
+
+def load_books(directory: Path | None = None) -> list[dict]:
+    """Одна папка на книгу, отдельные файлы глав; черновики не попадают на сайт."""
+    directory = Path(directory) if directory is not None else Path(__file__).resolve().parent.parent / "content" / "books"
+    books, ids = [], set()
+    for path in sorted(directory.glob("*/book.json")):
+        meta = json.loads(path.read_text(encoding="utf-8"))
+        book_id = meta.get("id")
+        if not isinstance(book_id, str) or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", book_id) or book_id in ids:
+            raise ValueError(f"{path}: некорректный или повторный id книги")
+        ids.add(book_id)
+        if meta.get("level") not in BOOK_LEVELS or meta.get("vocabulary_min_level") not in BOOK_LEVELS:
+            raise ValueError(f"{path}: укажите уровень книги и отдельный порог лексики")
+        if not all(isinstance(meta.get(k), str) and meta[k].strip() for k in ("title", "author")):
+            raise ValueError(f"{path}: укажите название и автора")
+        cover = meta.get("cover")
+        if cover and not isinstance(cover, str):
+            raise ValueError(f"{path}: обложка должна быть ссылкой или именем файла")
+        if cover and not re.match(r"^https?://", cover, re.I):
+            image = (path.parent / cover).resolve()
+            types = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".webp": "image/webp"}
+            if not image.is_relative_to(path.parent.resolve()) or image.suffix.lower() not in types or not image.is_file():
+                raise ValueError(f"{path}: неверный путь к обложке")
+            cover = f"data:{types[image.suffix.lower()]};base64," + base64.b64encode(image.read_bytes()).decode("ascii")
+        chapters, chapter_ids, orders, numbers = [], set(), set(), set()
+        for chapter_path in sorted((path.parent / "chapters").glob("*.json")):
+            chapter = json.loads(chapter_path.read_text(encoding="utf-8"))
+            chapter_id, number, order = chapter.get("id"), chapter.get("number"), chapter.get("order")
+            if not isinstance(chapter_id, str) or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", chapter_id) or chapter_id in chapter_ids:
+                raise ValueError(f"{chapter_path}: некорректный или повторный id главы")
+            if type(number) is not int or number < 1 or type(order) is not int or order < 1 or number in numbers or order in orders:
+                raise ValueError(f"{chapter_path}: некорректный или повторный номер или порядок главы")
+            if chapter.get("status") not in ("draft", "published") or not isinstance(chapter.get("title"), str) or not chapter["title"].strip():
+                raise ValueError(f"{chapter_path}: укажите статус и название главы")
+            chapter_ids.add(chapter_id); numbers.add(number); orders.add(order)
+            if chapter["status"] == "published":
+                if not isinstance(chapter.get("blocks"), list) or not chapter["blocks"]:
+                    raise ValueError(f"{chapter_path}: опубликованная глава пуста")
+                chapters.append(chapter)
+        books.append({**meta, "cover": cover, "chapters": sorted(chapters, key=lambda c: c["order"])})
     return books
 
 
