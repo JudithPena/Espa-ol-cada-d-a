@@ -411,6 +411,30 @@ def test_pobre_ana_first_chapter_contains_the_complete_source_in_order():
     assert 'restaurante.\nEl papá le responde:\n—No tengo' in blocks[1]['es']
 
 
+def test_pobre_ana_second_chapter_contains_the_complete_source_in_order():
+    import hashlib
+    import re
+    chapter = _ana()['chapters'][1]
+    assert (chapter['id'], chapter['number'], chapter['order'], chapter['title']) == ('2', 2, 2, '')
+    assert chapter['icon'] == '📒' and chapter['status'] == 'published'
+    blocks = chapter['blocks']
+    original = re.sub(r'\s+', ' ', ' '.join(b['es'] for b in blocks)).strip()
+    # «Capítulo dos» (printed pp. 6–9): running heads and page numbers removed, hyphenation joined.
+    assert len(original.split()) == 575
+    assert hashlib.sha256(original.encode()).hexdigest() == '0ecd2ab3b1b7aa19fa74fdc72e71378c0b8c27042767664495e9f0ec870da835'
+    assert original.startswith('Un día Ana se levanta a las siete de la mañana.')
+    assert original.endswith('Ana, no hay problema. Puedes ir a México.')
+    assert len(blocks) == 5 and all(len(b['es'].split()) >= 60 for b in blocks)
+    for block in blocks:
+        assert block['es'].count('\n\n') == block['ru'].count('\n\n'), block['title']
+        for lang in ('es', 'ru'):
+            assert not re.search(r'(?m)^[ \t]*[—–][^\n]*\n[ \t]*\n[ \t]*[—–]', block[lang])
+    terms = {n['term'] for b in blocks for n in b['notes'] if isinstance(n, dict)}
+    assert {'levantarse', 'enojarse', 'gustar (a alguien)', 'ver a (alguien)', 'poder + infinitivo',
+            'ir a + infinitivo', 'costar', 'para mí'} <= terms
+    assert not terms & {'el libro', 'la escuela', 'el hermano', 'la profesora', 'el estudiante', 'vivir'}
+
+
 def test_pobre_ana_highlights_exist_and_never_overlap():
     import re
     word = re.compile(r'\w')
@@ -423,8 +447,8 @@ def test_pobre_ana_highlights_exist_and_never_overlap():
                 out.append((at, end))
             at = text.find(mark, at + 1)
         return out
-    terms = []
-    for block in _ana()['chapters'][0]['blocks']:
+    terms, chapter_terms = [], []
+    for block in [b for ch in _ana()['chapters'] for b in ch['blocks']]:
         for lang in ('es', 'ru'):
             taken = []
             for note in block['notes']:
@@ -443,7 +467,9 @@ def test_pobre_ana_highlights_exist_and_never_overlap():
         terms += [n['term'] for n in block['notes'] if isinstance(n, dict)]
         for item in block['pronouns']:
             assert item['es'] in block['es'] and item['explanation'].strip()
-    assert len(terms) == len(set(terms))
+    for ch in _ana()['chapters']:
+        chapter_terms = [n['term'] for b in ch['blocks'] for n in b['notes'] if isinstance(n, dict)]
+        assert len(chapter_terms) == len(set(chapter_terms)), ch['number']
     assert {'el problema', 'asistir a (un lugar)', 'no + presente de subjuntivo',
             'reírse de (algo / alguien)', 'pobre (перед существительным)', 'el carro', 'ir en (transporte)',
             'estar triste', 'sacar notas', 'pedir (algo) a (alguien)', 'economizar'} <= set(terms)
