@@ -903,6 +903,11 @@ def load_books(directory: Path | None = None) -> list[dict]:
             if not image.is_relative_to(path.parent.resolve()) or image.suffix.lower() not in types or not image.is_file():
                 raise ValueError(f"{path}: неверный путь к обложке")
             cover = f"data:{types[image.suffix.lower()]};base64," + base64.b64encode(image.read_bytes()).decode("ascii")
+        icon = meta.get("icon")
+        if icon is not None and (not isinstance(icon, str) or not icon.strip() or len(icon) > 16):
+            raise ValueError(f"{path}: иконка книги должна быть коротким символом")
+        if icon:
+            meta["icon"] = icon.strip()
         kind = meta.get("kind", "book")
         if kind not in ("book", "story"):
             raise ValueError(f"{path}: kind — book или story")

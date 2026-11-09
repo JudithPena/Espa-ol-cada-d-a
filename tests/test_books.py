@@ -13,7 +13,8 @@ def test_book_chapters_have_complete_readable_blocks():
             if isinstance(pronouns, str):
                 assert pronouns.strip()
             else:
-                assert pronouns
+                # Пустой список — в блоке нет конструкций с местоимениями, спойлер не показывается.
+                assert isinstance(pronouns, list)
                 for item in pronouns:
                     assert all(item[key].strip() for key in ('es', 'translation', 'explanation'))
                     assert item['es'].casefold() in block['es'].casefold()
@@ -373,3 +374,96 @@ def test_book_images_are_validated(tmp_path):
         story(bad)
         with pytest.raises(ValueError):
             load_books(tmp_path)
+
+
+def _ana():
+    return next(b for b in load_books() if b['id'] == 'pobre-ana')
+
+
+def test_pobre_ana_metadata_and_first_chapter():
+    book = _ana()
+    assert (book['title'], book['author'], book['level'], book['vocabulary_min_level']) == ('Pobre Ana', 'Blaine Ray', 'A1', 'A1')
+    assert book['icon'] == '🎒' and book.get('kind', 'book') == 'book'
+    assert [b['id'] for b in load_books() if b['level'] == 'A1'].count('pobre-ana') == 1
+    chapter = book['chapters'][0]
+    assert (chapter['id'], chapter['number'], chapter['order'], chapter['title']) == ('1', 1, 1, '')
+    assert chapter['icon'] == '👕' and chapter['status'] == 'published'
+
+
+def test_pobre_ana_first_chapter_contains_the_complete_source_in_order():
+    import hashlib
+    import re
+    blocks = _ana()['chapters'][0]['blocks']
+    original = re.sub(r'\s+', ' ', ' '.join(b['es'] for b in blocks)).strip()
+    # «Capítulo uno» from the supplied PDF (printed pp. 1–5): running heads, page numbers and
+    # ornaments removed, hyphenated words and the page breaks inside sentences joined.
+    assert len(original.split()) == 731
+    assert hashlib.sha256(original.encode()).hexdigest() == '78b9504c6f85c0306f114b0bd62e377d245915298b33693f6d9de73e9ad14a25'
+    assert original.startswith('Ana es una chica con problemas.')
+    assert original.endswith('no comen mucha carne porque quieren economizar.')
+    assert 'El trabaja en un hospital' in original  # авторское написание без знака ударения
+    assert len(blocks) == 7 and all(len(b['es'].split()) >= 60 for b in blocks)
+    for block in blocks:
+        assert block['es'].count('\n\n') == block['ru'].count('\n\n'), block['title']
+        for lang in ('es', 'ru'):
+            assert not re.search(r'(?m)^[ \t]*[—–][^\n]*\n[ \t]*\n[ \t]*[—–]', block[lang])
+    assert 'le grita:\n—¡Ana, levanta' in blocks[1]['es'] and 'на неё:\n— Ана, подними' in blocks[1]['ru']
+    assert 'restaurante.\nEl papá le responde:\n—No tengo' in blocks[1]['es']
+
+
+def test_pobre_ana_highlights_exist_and_never_overlap():
+    import re
+    word = re.compile(r'\w')
+    def spans(text, mark):
+        out, at = [], text.find(mark)
+        while at != -1:
+            end = at + len(mark)
+            if not ((word.match(mark[0]) and at and word.match(text[at - 1]))
+                    or (word.match(mark[-1]) and end < len(text) and word.match(text[end]))):
+                out.append((at, end))
+            at = text.find(mark, at + 1)
+        return out
+    terms = []
+    for block in _ana()['chapters'][0]['blocks']:
+        for lang in ('es', 'ru'):
+            taken = []
+            for note in block['notes']:
+                if isinstance(note, str):
+                    continue
+                for mark in note[lang]:
+                    found = spans(block[lang], mark)
+                    chosen = note.get('occurrences', {}).get(lang, {}).get(mark)
+                    if chosen is not None:
+                        assert max(chosen) < len(found), (note['term'], mark)
+                        found = [found[i] for i in chosen]
+                    assert found, (block['title'], lang, mark)
+                    for at, end in found:
+                        assert all(end <= a or b <= at for a, b in taken), (block['title'], lang, mark)
+                        taken.append((at, end))
+        terms += [n['term'] for n in block['notes'] if isinstance(n, dict)]
+        for item in block['pronouns']:
+            assert item['es'] in block['es'] and item['explanation'].strip()
+    assert len(terms) == len(set(terms))
+    assert {'el problema', 'tener (número) años', 'llamarse', 'asistir a (un lugar)', 'no + presente de subjuntivo',
+            'reírse de (algo / alguien)', 'pobre (перед существительным)', 'el carro', 'ir en (transporte)',
+            'estar triste', 'sacar notas', 'pedir (algo) a (alguien)', 'economizar'} <= set(terms)
+    blocks = _ana()['chapters'][0]['blocks']
+    pronouns = {p['es']: p for block in blocks for p in block['pronouns']}
+    assert 'el libro' in pronouns['no lo encuentra']['explanation']
+    assert 'дублирует' in pronouns['Ana le dice a su papá']['explanation']
+    assert blocks[-1]['pronouns'] == []
+
+
+def test_book_icon_is_optional_and_validated(tmp_path):
+    import json
+    import pytest
+    folder = tmp_path / 'libro'
+    (folder / 'chapters').mkdir(parents=True)
+    meta = {'id': 'libro', 'title': 'Libro', 'author': 'Autor', 'level': 'A1', 'vocabulary_min_level': 'A1'}
+    (folder / 'book.json').write_text(json.dumps(meta), encoding='utf-8')
+    assert 'icon' not in load_books(tmp_path)[0]
+    (folder / 'book.json').write_text(json.dumps({**meta, 'icon': ' 🎒 '}), encoding='utf-8')
+    assert load_books(tmp_path)[0]['icon'] == '🎒'
+    (folder / 'book.json').write_text(json.dumps({**meta, 'icon': ''}), encoding='utf-8')
+    with pytest.raises(ValueError, match='иконка книги'):
+        load_books(tmp_path)
