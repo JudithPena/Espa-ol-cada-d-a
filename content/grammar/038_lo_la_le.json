@@ -1,0 +1,1500 @@
+{
+  "id": "038_lo_la_le",
+  "number": 38,
+  "title": "Lo, la, le",
+  "subtitle": "Кого, кому или целую мысль: выбираем местоимение",
+  "level": "A2",
+  "sections": [
+    {
+      "title": "Вижу её, но даю ей: это разные роли",
+      "presentation": "comparison",
+      "paragraphs": [
+        "Сравни: **`Veo a Ana → La veo`** — вижу Ану → вижу её. Но **`Doy un libro a Ana → Le doy un libro`** — даю Ане книгу → даю ей книгу. В первом предложении Ана — та, **кого видят**. Во втором — та, **кому дают книгу**. Предлог a встречается в обоих случаях и сам по себе не подсказывает местоимение.",
+        "Когда заменяем того, кого видят, любят, зовут, или вещь, которую ищут и покупают, используем **lo, la, los, las**. Выбираем форму по испанскому роду и числу: `el lápiz → lo`, `la pluma → la`, `las gafas → las`. Пол говорящего на этот выбор не влияет."
+      ],
+      "schemes": [
+        {
+          "label": "Ана — та, кого видят",
+          "from": "Veo a Ana.",
+          "to": "La veo.",
+          "note": "Прямое дополнение: заменяем саму Ану."
+        },
+        {
+          "label": "Ана — получатель книги",
+          "from": "Doy un libro a Ana.",
+          "to": "Le doy un libro.",
+          "note": "Косвенное дополнение: книгу не заменяем."
+        }
+      ],
+      "check": {
+        "id": "check-1",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "Necesito el diccionario. ___ necesito.",
+            "answers": [
+              "Lo"
+            ],
+            "explain": "Diccionario — вещь мужского рода. Le не заменяет предмет.",
+            "context": "Мне нужен словарь.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "Le",
+              "Lo",
+              "La"
+            ]
+          },
+          {
+            "prompt": "Veo a Julia. ___ veo.",
+            "answers": [
+              "La"
+            ],
+            "explain": "Заменяем саму Юлию, а не получателя подарка.",
+            "context": "Вижу Юлию; рассказываешь о ней в третьем лице.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "Le",
+              "Lo",
+              "La"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Получатель: le и les подходят и мужчине, и женщине",
+      "presentation": "examples",
+      "paragraphs": [
+        "Если **говорим, дарим, одалживаем или покупаем что-то человеку**, называем получателя через **le** для одного и **les** для нескольких: `Le digo la verdad a Juan`, `Le digo la verdad a Ana`, `Les compro un regalo a mis padres`. Не выбираем la только потому, что получательница — женщина.",
+        "С `doler` — «болеть» — называем того, кто испытывает боль: **`A Elena le duele la cabeza`** — у Елены болит голова. `¿Qué le pasa a Elsa?` — что с Эльсой? Здесь тоже le. Это не предмет, который видят или покупают.",
+        "Если заменяем ещё и вещь, перед **lo, la, los, las** используем **se** вместо le/les: `Le presto la chaqueta → Se la presto`. La относится к куртке, se — к получателю. Смешивать формы в le la не нужно."
+      ],
+      "dialogues": [
+        {
+          "title": "Подарки",
+          "lines": [
+            [
+              "¿Qué le has regalado a Pedro?",
+              "Что ты подарил Педро?"
+            ],
+            [
+              "Le he regalado una cartera.",
+              "Я подарил ему бумажник."
+            ],
+            [
+              "¿Y a María?",
+              "А Марии?"
+            ],
+            [
+              "Le he regalado unos pendientes.",
+              "Я подарил ей серьги."
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-2",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "A mi hermana ___ he regalado un libro.",
+            "answers": [
+              "le"
+            ],
+            "explain": "Сестра — получательница; её род не требует la.",
+            "context": "Я подарил сестре книгу.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "la",
+              "lo",
+              "le"
+            ]
+          },
+          {
+            "prompt": "Les he dejado el coche. → ___ he dejado.",
+            "answers": [
+              "Se lo"
+            ],
+            "explain": "Les превращается в se перед lo; coche — lo.",
+            "context": "Я одолжил им машину.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "Les lo",
+              "Se los",
+              "Se lo"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Когда le вместо lo тоже правильно",
+      "presentation": "examples",
+      "paragraphs": [
+        "О мужчине можно услышать **`Lo veo` и `Le veo`**. О людях мужского грамматического рода — **`Los veo` и `Les veo`**. Современная норма допускает эти личные варианты; такое употребление называется **leísmo**. Основные формы, с которых удобно начинать, — lo и los. Их допустимые альтернативы в заданиях тоже засчитываются.",
+        "При вежливом обращении **usted / ustedes** le/les встречаются также с женщинами: `Señora, le agradezco su llamada; le espero mañana` — сеньора, благодарю Вас за звонок; жду Вас завтра. В рассказе о женщине обычная форма — **la**: `A Julia la veo todos los días`. На вещи это разрешение не переносим: **`El diccionario lo necesito`**, не le necesito.",
+        "И наоборот: когда человек именно получатель, нужны **le / les**. `A María le he dado un libro` — правильно; la he dado un libro в этой модели не подходит. Сначала определяем роль, потом форму."
+      ],
+      "examples": [
+        [
+          "A mi padre lo he llamado. / A mi padre le he llamado.",
+          "Я позвонил отцу: оба личных варианта допустимы."
+        ],
+        [
+          "A Ana le he prestado dinero.",
+          "Я одолжил Ане деньги: получательница — le."
+        ]
+      ],
+      "notes": [
+        "Варианты зависят от региона и ситуации. Жёлтое пояснение в упражнениях с личным le(s) означает, что ответ засчитан; потерянной попытки нет."
+      ],
+      "check": {
+        "id": "check-3",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "Какая пара допустима, если говорим о мужчине Педро?",
+            "answers": [
+              "Lo veo / Le veo"
+            ],
+            "explain": "О мужчине le вместо lo допускается современной нормой. Для вещей такое le не подходит.",
+            "context": "Сравни формы в одной ситуации.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "Lo veo / Le veo",
+              "La veo / Le veo",
+              "Lo veo / La veo"
+            ]
+          },
+          {
+            "prompt": "A mis hermanas ___ he comprado flores.",
+            "answers": [
+              "les"
+            ],
+            "explain": "Сёстры получают цветы: les, независимо от их пола.",
+            "context": "Заменяем только получательниц.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "las",
+              "les",
+              "los"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Lo может заменить целую мысль",
+      "presentation": "comparison",
+      "paragraphs": [
+        "Иногда речь не об отдельном предмете, а о **сообщении или ситуации целиком**. `¿Sabes que Ana se casa? —Sí, lo sé` — ты знаешь, что Ана выходит замуж? — Да, знаю. **Lo заменяет «то, что Ана выходит замуж»**, а не саму Ану. Поэтому не выбираем la по её имени или по слову noticia.",
+        "Точно так же: `No lo sabía` — я этого не знал; `No lo entiendo` — я этого не понимаю; `¡Cuánto lo siento!` — как мне жаль! Если сообщение говорят кому-то, могут понадобиться оба местоимения: **`Se lo he dicho a Juan`** — я сказал это Хуану.",
+        "После **ser** и **parecer** lo может заменять уже названный признак. `¿Es verdad que Ana es escritora? —Claro que lo es` — правда, что Ана писательница? — Конечно. `Lo es` здесь означает «является писательницей». Форма lo не меняется на la или las по роду и числу людей."
+      ],
+      "wordGroups": [
+        {
+          "title": "Конкретное слово",
+          "words": [
+            [
+              "La noticia: no la entiendo.",
+              "Не понимаю эту новость. La заменяет название noticia."
+            ]
+          ]
+        },
+        {
+          "title": "Содержание сообщения",
+          "words": [
+            [
+              "Ana se va: no lo entiendo.",
+              "Ана уезжает: не понимаю этого. Lo заменяет ситуацию."
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-4",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "¿Sabes que Marta se muda? —Sí, ___ sé.",
+            "answers": [
+              "lo"
+            ],
+            "explain": "Lo заменяет всё сообщение о переезде, а не Марту.",
+            "context": "Ты знаешь, что Марта переезжает?",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "la",
+              "le",
+              "lo"
+            ]
+          },
+          {
+            "prompt": "¿Son médicas Ana y Julia? —Sí, ___ son.",
+            "answers": [
+              "lo"
+            ],
+            "explain": "Lo заменяет признак «быть врачами»; не согласуется с женщинами.",
+            "context": "Ана и Юлия — врачи?",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "las",
+              "lo",
+              "les"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "38.1a",
+      "title": "38.1a · Кого видят и что ищут",
+      "theorySections": [
+        0
+      ],
+      "questions": [
+        {
+          "prompt": "¿Quieres este libro? —No, no ___ quiero. Gracias.",
+          "answers": [
+            "lo"
+          ],
+          "explain": "Libro — предмет мужского рода: lo.",
+          "context": "Ты отказываешься от книги.",
+          "sourceRef": "38.1.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "options": [
+            "le",
+            "lo",
+            "la"
+          ]
+        },
+        {
+          "prompt": "¿Me dejas el lápiz? —No puedo. ___ necesito.",
+          "answers": [
+            "lo"
+          ],
+          "explain": "Lápiz — мужской род: lo. Для вещи le не подходит.",
+          "context": "Не можешь одолжить карандаш: он тебе нужен.",
+          "sourceRef": "38.1.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "options": [
+            "le",
+            "lo",
+            "la"
+          ]
+        },
+        {
+          "prompt": "¿Quieres a Ana? —Sí, ___ quiero.",
+          "answers": [
+            "la"
+          ],
+          "explain": "Ана — женщина, которую любят: la. Это рассказ о ней, не обращение на usted.",
+          "context": "Собеседник спрашивает, любишь ли ты Ану.",
+          "sourceRef": "38.1.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "options": [
+            "le",
+            "lo",
+            "la"
+          ]
+        },
+        {
+          "prompt": "¿Ha visto usted mis gafas? —No, no ___ he visto.",
+          "answers": [
+            "las"
+          ],
+          "explain": "Gafas — вещь женского рода во множественном числе: las. Usted на род очков не влияет.",
+          "context": "Отвечаешь, что не видел очки.",
+          "sourceRef": "38.1.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿Ha visto usted mis gafas? —No, no ",
+            " he visto."
+          ],
+          "gapWordCounts": [
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "¿Han visto ustedes a mis padres? —No, no ___ hemos visto.",
+          "answers": [
+            "los",
+            "les"
+          ],
+          "explain": "Los заменяет родителей, смешанную группу. Se без другого местоимения здесь не заменяет их.",
+          "context": "Вы отвечаете о родителях собеседника.",
+          "sourceRef": "38.1.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿Han visto ustedes a mis padres? —No, no ",
+            " hemos visto."
+          ],
+          "gapWordCounts": [
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          },
+          "answerWarnings": {
+            "les": {
+              "preferred": "los",
+              "message": "Ответ засчитан: это допустимый вариант.",
+              "explanation": "Личный les для людей мужского грамматического рода, в том числе смешанной группы, допускается. Основная модель здесь — los.",
+              "source": "https://www.rae.es/dpd/le%C3%ADsmo"
+            }
+          }
+        },
+        {
+          "prompt": "¿Has visto a mis hermanas? —Sí, ___ he visto.",
+          "answers": [
+            "las"
+          ],
+          "explain": "Две сестры — las; les здесь не получательницы.",
+          "context": "Говоришь о сёстрах в третьем лице.",
+          "sourceRef": "38.1.9",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿Has visto a mis hermanas? —Sí, ",
+            " he visto."
+          ],
+          "gapWordCounts": [
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "Inés, ___ llaman por teléfono.",
+          "answers": [
+            "la",
+            "le"
+          ],
+          "explain": "Inés — та, кого зовут: la. При вежливом обращении допустимо и le.",
+          "context": "Говоришь Инес о звонке для неё; обращаешься на usted.",
+          "sourceRef": "38.1.10",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "Inés, ",
+            " llaman por teléfono."
+          ],
+          "gapWordCounts": [
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          },
+          "answerWarnings": {
+            "le": {
+              "preferred": "la",
+              "message": "Ответ засчитан: это допустимый вариант.",
+              "explanation": "Это прямое вежливое обращение к женщине на usted: leísmo de cortesía допускает le. Основная форма прямого дополнения — la.",
+              "source": "https://www.rae.es/dpd/le%C3%ADsmo"
+            }
+          }
+        },
+        {
+          "prompt": "¿Quiere ver a Andrés? —No, no quiero ___.",
+          "answers": [
+            "verlo",
+            "verle"
+          ],
+          "explain": "Andrés — мужчина: ver + lo = verlo. Основа ver уже дана, выбираем местоимение и пишем слитно.",
+          "context": "Основа: ver — видеть. Впиши ver с присоединённым местоимением.",
+          "sourceRef": "38.1.11",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "inputFormat": {
+            "instruction": "Впиши ver с коротким местоимением одним словом, без остальной реплики.",
+            "placeholder": "Ver + местоимение"
+          },
+          "answerWarnings": {
+            "verle": {
+              "preferred": "verlo",
+              "message": "Ответ засчитан: это допустимый вариант.",
+              "explanation": "Личный le при отсылке к мужчине допустим; основная форма — verlo.",
+              "source": "https://www.rae.es/dpd/le%C3%ADsmo"
+            }
+          }
+        },
+        {
+          "prompt": "Ayer ___ vi en el parque, Elisa.",
+          "answers": [
+            "la",
+            "le"
+          ],
+          "explain": "Ты видел Элису: la. При обращении на usted допустимо и вежливое le.",
+          "context": "Обращаешься к Элисе на usted: вчера видел её в парке.",
+          "sourceRef": "38.1.14",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "Ayer ",
+            " vi en el parque, Elisa."
+          ],
+          "gapWordCounts": [
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          },
+          "answerWarnings": {
+            "le": {
+              "preferred": "la",
+              "message": "Ответ засчитан: это допустимый вариант.",
+              "explanation": "Это прямое вежливое обращение к женщине на usted: leísmo de cortesía допускает le. Основная форма прямого дополнения — la.",
+              "source": "https://www.rae.es/dpd/le%C3%ADsmo"
+            }
+          }
+        }
+      ],
+      "preview": {
+        "source": "Busco la llave. No ___ encuentro.",
+        "sentenceParts": [
+          "Busco la llave. No ",
+          " encuentro."
+        ],
+        "answer": "la",
+        "targetPrefix": "",
+        "translation": "Ищу ключ. Не нахожу его."
+      },
+      "instruction": "Определи прямой объект. Сначала выбери, затем впиши форму самостоятельно.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+        "placeholder": "Местоимение"
+      }
+    },
+    {
+      "id": "38.1b",
+      "title": "38.1b · Кому дают, говорят и одалживают",
+      "theorySections": [
+        1
+      ],
+      "questions": [
+        {
+          "prompt": "¿___ has regalado tu chaqueta roja a Luisa? —No, no ___ ___ he regalado. ___ ___ he prestado.",
+          "answers": [
+            "le se la se la"
+          ],
+          "explain": "Luisa — получательница: le. Перед la оно становится se; la — куртка.",
+          "context": "Подарил Луисе красную куртку? — Нет, одолжил.",
+          "sourceRef": "38.1.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿",
+            " has regalado tu chaqueta roja a Luisa? —No, no ",
+            " ",
+            " he regalado. ",
+            " ",
+            " he prestado."
+          ],
+          "gapWordCounts": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "___ he prestado cien euros a Ivana.",
+          "answers": [
+            "le"
+          ],
+          "explain": "Ивана — получательница денег: le, а не la.",
+          "context": "Я одолжил Иване сто евро.",
+          "sourceRef": "38.1.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "",
+            " he prestado cien euros a Ivana."
+          ],
+          "gapWordCounts": [
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "¿___ has dejado el coche a tus hermanos? —No, no ___ ___ he dejado.",
+          "answers": [
+            "les se lo"
+          ],
+          "explain": "Братьям: les; перед lo → se. Coche — lo, одна машина.",
+          "context": "Ты одолжил машину братьям? — Нет.",
+          "sourceRef": "38.1.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿",
+            " has dejado el coche a tus hermanos? —No, no ",
+            " ",
+            " he dejado."
+          ],
+          "gapWordCounts": [
+            1,
+            1,
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "___ he comprado una televisión a mis padres.",
+          "answers": [
+            "les"
+          ],
+          "explain": "Родители — несколько получателей: les. Телевизор пока назван полностью.",
+          "context": "Я купил родителям телевизор.",
+          "sourceRef": "38.1.12",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "",
+            " he comprado una televisión a mis padres."
+          ],
+          "gapWordCounts": [
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "___ dije a Juana que no tengo dinero.",
+          "answers": [
+            "le"
+          ],
+          "explain": "Хуана — та, кому сказали: le. Женский род не меняет le на la.",
+          "context": "Я сказал Хуане, что у меня нет денег.",
+          "sourceRef": "38.1.13",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "",
+            " dije a Juana que no tengo dinero."
+          ],
+          "gapWordCounts": [
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "¿Qué ___ pasa a Elsa? —___ duele la cabeza.",
+          "answers": [
+            "le le"
+          ],
+          "explain": "В обеих частях речь об Эльсе: le pasa, le duele.",
+          "context": "Что с Эльсой? — У неё болит голова.",
+          "sourceRef": "38.1.15",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿Qué ",
+            " pasa a Elsa? —",
+            " duele la cabeza."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        }
+      ],
+      "preview": {
+        "source": "A Ana ___ doy una llave.",
+        "sentenceParts": [
+          "A Ana ",
+          " doy una llave."
+        ],
+        "answer": "le",
+        "targetPrefix": "",
+        "translation": "Я даю Ане ключ."
+      },
+      "instruction": "Впиши местоимения. В длинной реплике каждое поле заменяет один элемент.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+        "placeholder": "Местоимение"
+      }
+    },
+    {
+      "id": "38.2",
+      "title": "38.2 · Различи роли в разговоре",
+      "theorySections": [
+        0,
+        1,
+        2
+      ],
+      "questions": [
+        {
+          "prompt": "¿Has visto a Juana? —Sí, ___ he visto.",
+          "answers": [
+            "la"
+          ],
+          "explain": "Хуана — та, кого видели: la.",
+          "context": "Ты видел Хуану?",
+          "sourceRef": "38.2.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿Has visto a Juana? —Sí, ",
+            " he visto."
+          ],
+          "gapWordCounts": [
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "___ he regalado unos bombones a Sarita.",
+          "answers": [
+            "le"
+          ],
+          "explain": "Сарита получает конфеты: le, независимо от рода получательницы.",
+          "context": "Я подарил Сарите конфеты.",
+          "sourceRef": "38.2.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "",
+            " he regalado unos bombones a Sarita."
+          ],
+          "gapWordCounts": [
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "¿Has llamado a tu padre, Héctor? —Sí, ___ he llamado.",
+          "answers": [
+            "lo",
+            "le"
+          ],
+          "explain": "Заменяем отца как прямое дополнение llamar: lo; личный le тоже допустим.",
+          "context": "Ты позвонил отцу, Эктор?",
+          "sourceRef": "38.2.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿Has llamado a tu padre, Héctor? —Sí, ",
+            " he llamado."
+          ],
+          "gapWordCounts": [
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          },
+          "answerWarnings": {
+            "le": {
+              "preferred": "lo",
+              "message": "Ответ засчитан: это допустимый вариант.",
+              "explanation": "О мужчине в роли прямого дополнения допускается личный le; lo остаётся основной моделью.",
+              "source": "https://www.rae.es/dpd/le%C3%ADsmo"
+            }
+          }
+        },
+        {
+          "prompt": "¿Qué ___ has dicho a la profesora?",
+          "answers": [
+            "le"
+          ],
+          "explain": "Преподавательница — адресат слов: le.",
+          "context": "Что ты сказал преподавательнице?",
+          "sourceRef": "38.2.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿Qué ",
+            " has dicho a la profesora?"
+          ],
+          "gapWordCounts": [
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "¿___ has regalado tus discos a Enrique? —Sí, ___ ___ he regalado.",
+          "answers": [
+            "le se los"
+          ],
+          "explain": "Сначала le — Энрике. Затем se вместо le перед los; los — пластинки.",
+          "context": "Подарил свои пластинки Энрике?",
+          "sourceRef": "38.2.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿",
+            " has regalado tus discos a Enrique? —Sí, ",
+            " ",
+            " he regalado."
+          ],
+          "gapWordCounts": [
+            1,
+            1,
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "¿Has visto a Concha? —No, hoy no ___ he visto.",
+          "answers": [
+            "la"
+          ],
+          "explain": "Конча — женщина в третьем лице: la.",
+          "context": "Ты видел Кончу?",
+          "sourceRef": "38.2.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿Has visto a Concha? —No, hoy no ",
+            " he visto."
+          ],
+          "gapWordCounts": [
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "A Pili ___ duelen las muelas.",
+          "answers": [
+            "le"
+          ],
+          "explain": "Пили испытывает боль: le. Множественное muelas определяет duelen, а не форму le.",
+          "context": "У Пили болят зубы.",
+          "sourceRef": "38.2.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "A Pili ",
+            " duelen las muelas."
+          ],
+          "gapWordCounts": [
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "¿Qué ___ has comprado a tus padres? —A mi padre ___ he comprado un libro y a mi madre ___ he comprado un pañuelo.",
+          "answers": [
+            "les le le"
+          ],
+          "explain": "Сначала оба родителя — les. Затем каждый отдельно — le, и отец, и мать.",
+          "context": "Что ты купил родителям?",
+          "sourceRef": "38.2.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿Qué ",
+            " has comprado a tus padres? —A mi padre ",
+            " he comprado un libro y a mi madre ",
+            " he comprado un pañuelo."
+          ],
+          "gapWordCounts": [
+            1,
+            1,
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        }
+      ],
+      "preview": {
+        "source": "¿Has visto el coche? —Sí, ___ he visto.",
+        "sentenceParts": [
+          "¿Has visto el coche? —Sí, ",
+          " he visto."
+        ],
+        "answer": "lo",
+        "targetPrefix": "",
+        "translation": "Ты видел машину? — Да, видел."
+      },
+      "instruction": "Выбери форму по роли в каждой реплике, затем впиши её.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+        "placeholder": "Местоимение"
+      }
+    },
+    {
+      "id": "38.3",
+      "title": "38.3 · Предмет или целая мысль",
+      "theorySections": [
+        3
+      ],
+      "questions": [
+        {
+          "prompt": "¿___ has dicho a Juan que necesito el coche? —Sí, ___ ___ he dicho, pero dice que él también ___ necesita.",
+          "answers": [
+            "le se lo lo"
+          ],
+          "explain": "Хуану — le / se; первая lo заменяет сообщение, последняя — coche.",
+          "context": "Говоришь Хуану, что тебе нужна машина.",
+          "sourceRef": "38.3.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿",
+            " has dicho a Juan que necesito el coche? —Sí, ",
+            " ",
+            " he dicho, pero dice que él también ",
+            " necesita."
+          ],
+          "gapWordCounts": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "¿Sabes que me voy a Colombia? —No, no ___ sabía.",
+          "answers": [
+            "lo"
+          ],
+          "explain": "Lo заменяет всю информацию о поездке, не человека и не Колумбию.",
+          "context": "Собеседник сообщает о поездке.",
+          "sourceRef": "38.3.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿Sabes que me voy a Colombia? —No, no ",
+            " sabía."
+          ],
+          "gapWordCounts": [
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "¿Es verdad que Ángela tiene mucho dinero? —___ es, pero no ___ parece.",
+          "answers": [
+            "lo lo"
+          ],
+          "explain": "Lo заменяет утверждение о деньгах: lo es, no lo parece.",
+          "context": "Это правда, но так не кажется.",
+          "sourceRef": "38.3.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿Es verdad que Ángela tiene mucho dinero? —",
+            " es, pero no ",
+            " parece."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "¿Sabe papá que necesito dinero? —___ sabe, pero dice que ___ ___ pidas luego.",
+          "answers": [
+            "lo se lo"
+          ],
+          "explain": "Lo sabe — знает сообщение. Просьба адресована папе: se вместо le перед lo; lo заменяет dinero.",
+          "context": "Папа знает, что тебе нужны деньги; просить их нужно позже.",
+          "sourceRef": "38.3.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿Sabe papá que necesito dinero? —",
+            " sabe, pero dice que ",
+            " ",
+            " pidas luego."
+          ],
+          "gapWordCounts": [
+            1,
+            1,
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "No ___ entiendo. ___ he ofrecido ayuda a Teresa, pero no ___ ha aceptado.",
+          "answers": [
+            "lo le la"
+          ],
+          "explain": "Первое lo — непонятная ситуация; le — адресат помощи Тереса; la — помощь, ayuda.",
+          "context": "Ты не понимаешь, почему Тереса не приняла помощь.",
+          "sourceRef": "38.3.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "No ",
+            " entiendo. ",
+            " he ofrecido ayuda a Teresa, pero no ",
+            " ha aceptado."
+          ],
+          "gapWordCounts": [
+            1,
+            1,
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "¿De verdad que Ana es escritora? —Claro que ___ es, pero no ___ sabe nadie.",
+          "answers": [
+            "lo lo"
+          ],
+          "explain": "Lo es заменяет признак «писательница». Lo sabe — знает этот факт. Род Аны форму не меняет.",
+          "context": "Ана писательница, но об этом никто не знает.",
+          "sourceRef": "38.3.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿De verdad que Ana es escritora? —Claro que ",
+            " es, pero no ",
+            " sabe nadie."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "Juan y Lola se han casado. —Ya sabía que ___ harían. Él ___ quiere mucho.",
+          "answers": [
+            "lo la"
+          ],
+          "explain": "Lo harían — сделают это (поженятся). La quiere — он любит Лолу.",
+          "context": "Хуан и Лола поженились.",
+          "sourceRef": "38.3.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "Juan y Lola se han casado. —Ya sabía que ",
+            " harían. Él ",
+            " quiere mucho."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "Se ha muerto Momo. —¡Cuánto ___ siento! Yo ___ quería mucho.",
+          "answers": [
+            "lo lo"
+          ],
+          "explain": "Первое lo — сожаление о событии. Второе lo заменяет Момо, кота мужского рода.",
+          "context": "Момо — кот. Он умер; собеседник сожалеет.",
+          "sourceRef": "38.3.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "Se ha muerto Momo. —¡Cuánto ",
+            " siento! Yo ",
+            " quería mucho."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "Esta noticia no ___ entiendo.",
+          "answers": [
+            "la"
+          ],
+          "explain": "Заменяется конкретное название noticia, поэтому la.",
+          "context": "Впиши местоимение вместо la noticia.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "Esta noticia no ",
+            " entiendo."
+          ],
+          "gapWordCounts": [
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "Me has explicado por qué te vas, pero no ___ entiendo.",
+          "answers": [
+            "lo"
+          ],
+          "explain": "Lo заменяет причину или объяснение в целом.",
+          "context": "Не понимаешь объяснение собеседника, а не его самого.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "Me has explicado por qué te vas, pero no ",
+            " entiendo."
+          ],
+          "gapWordCounts": [
+            1
+          ],
+          "inputFormat": {
+            "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+            "placeholder": "Местоимение"
+          }
+        }
+      ],
+      "preview": {
+        "source": "¿Sabes que Ana viene? —Sí, ___ sé.",
+        "sentenceParts": [
+          "¿Sabes que Ana viene? —Sí, ",
+          " sé."
+        ],
+        "answer": "lo",
+        "targetPrefix": "",
+        "translation": "Ты знаешь, что Ана придёт? — Да, знаю."
+      },
+      "instruction": "Прочитай обе реплики. Определи, заменяет форма человека, предмет или целое сообщение.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши одно короткое местоимение в каждый пропуск. Остальные слова уже написаны.",
+        "placeholder": "Местоимение"
+      }
+    }
+  ],
+  "summary": {
+    "heads": [
+      "Что заменяем",
+      "Форма",
+      "Пример"
+    ],
+    "rows": [
+      [
+        "Прямой объект",
+        "lo / la / los / las",
+        "La veo. / Lo necesito."
+      ],
+      [
+        "Получателя или адресата",
+        "le / les",
+        "Le doy un libro a Ana."
+      ],
+      [
+        "Получателя перед lo/la…",
+        "se",
+        "Se la he prestado."
+      ],
+      [
+        "Всё сообщение или признак",
+        "lo",
+        "Lo sé. / Lo es."
+      ],
+      [
+        "Мужчину как прямой объект",
+        "lo и допустимое le",
+        "Lo veo. / Le veo."
+      ]
+    ]
+  },
+  "learningOrder": [
+    "section:0",
+    "exercise:38.1a",
+    "section:1",
+    "exercise:38.1b",
+    "section:2",
+    "exercise:38.2",
+    "section:3",
+    "exercise:38.3",
+    "summary"
+  ]
+}

@@ -1,0 +1,1178 @@
+{
+  "id": "036_me_han_regalado",
+  "number": 36,
+  "title": "Me han regalado un reloj",
+  "subtitle": "Кому дарят, пишут и задают вопросы",
+  "level": "A2",
+  "sections": [
+    {
+      "title": "Подарок и получатель: что заменяет me, te, le",
+      "presentation": "paradigm",
+      "paragraphs": [
+        "В `Luis le regala un reloj a Chus` часы — подарок, а Chus — получатель. **Косвенное дополнение** называет получателя или того, кому адресовано действие. `Le` заменяет получателя, а не часы. Не определяй роль только по русскому вопросу «кого?»: в испанском `preguntar a Ana` — спросить Ану, но **`le pregunto`**.",
+        "**`Le` — ему, ей или Вам (usted); `les` — им или вам (ustedes)**. Род получателя не меняет форму: `Le doy flores a Ana`, `Le doy flores a Luis`. Число подарков тоже не влияет: один получатель — le. Косвенное дополнение может обозначать животное или вещь: `Le doy comida al gato` — даю коту еду; `Le cambio las ruedas al coche` — меняю машине колёса."
+      ],
+      "table": {
+        "heads": [
+          "Кому",
+          "Форма",
+          "Пример"
+        ],
+        "compactForms": true,
+        "rows": [
+          [
+            "мне / тебе",
+            "me / te",
+            "Me escribe. / Te escribe."
+          ],
+          [
+            "ему / ей / Вам",
+            "le",
+            "Le escribo a ella."
+          ],
+          [
+            "нам",
+            "nos",
+            "Nos escribe."
+          ],
+          [
+            "вам (vosotros/as)",
+            "os",
+            "Os escribo."
+          ],
+          [
+            "им / вам (ustedes)",
+            "les",
+            "Les escribo a ellas."
+          ]
+        ]
+      },
+      "schemes": [
+        {
+          "label": "Не повторяем получателя",
+          "from": "Luis ha regalado un reloj a Chus.",
+          "to": "Luis le ha regalado un reloj.",
+          "note": "Un reloj остаётся: это сам подарок."
+        }
+      ],
+      "check": {
+        "id": "check-1",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "Doy dos libros a Ana. ___ doy dos libros.",
+            "answers": [
+              "Le"
+            ],
+            "explain": "Получатель один: le. Два — число книг, а не адресатов.",
+            "context": "Вставь короткое местоимение.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "Les",
+              "Le",
+              "La"
+            ]
+          },
+          {
+            "prompt": "Escribo a mis hermanas. ___ escribo.",
+            "answers": [
+              "Les"
+            ],
+            "explain": "Две получательницы: les. Женский род не требует las.",
+            "context": "Пишу сёстрам.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "Las",
+              "Le",
+              "Les"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Ответ меняет точку зрения, но не порядок слов",
+      "presentation": "comparison",
+      "paragraphs": [
+        "Перед личной формой ставим **местоимение + глагол**: `Me escribe`. При отрицании: **`No me escribe`**. В `Me han regalado un reloj` местоимение стоит перед **han**, а не между han и regalado. Здесь han regalado значит «подарили»; спряжение в заданиях дано.",
+        "Отвечает другой человек: **`¿Qué te han dicho? —No me han dicho nada`** — что тебе сказали? — Мне ничего не сказали. Если тебя спрашивают на usted, в ответе всё равно me. Если о вашей группе спрашивают на vosotros или ustedes, вы отвечаете nos. О третьем лице le/les не меняется."
+      ],
+      "dialogues": [
+        {
+          "title": "Разговор после встречи",
+          "lines": [
+            [
+              "¿Qué os ha preguntado Leonor?",
+              "Что Леонор у вас спросила?"
+            ],
+            [
+              "Nos ha preguntado dónde vivimos.",
+              "Она спросила нас, где мы живём."
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-2",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "¿Qué le han dicho a usted? —No ___ han dicho nada.",
+            "answers": [
+              "me"
+            ],
+            "explain": "Отвечаешь о себе: me, даже если вопрос был на usted.",
+            "context": "Ответь за себя.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "le",
+              "te",
+              "me"
+            ]
+          },
+          {
+            "prompt": "«Нам ничего не дали».",
+            "answers": [
+              "No nos han dado nada"
+            ],
+            "explain": "No → nos → han dado → nada.",
+            "context": "Выбери порядок слов.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "No han nos dado nada",
+              "Nos no han dado nada",
+              "No nos han dado nada"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Уточняем, кому именно: a mí, a ti, a él",
+      "presentation": "examples",
+      "paragraphs": [
+        "`Le dije` может означать «я сказал ему, ей или Вам». Добавь **`a él`, `a ella`, `a usted`**, чтобы уточнить адресата. Для противопоставления: **`A mí no me ha dado nada`** — мне он ничего не дал, хотя другим, возможно, дал.",
+        "С **`a mí / a ti / a él / a ella / a usted / a nosotros(as) / a vosotros(as) / a ellos(as) / a ustedes`** короткое местоимение сохраняем: `A ti te escribo`, а не просто `A ti escribo`. `Mí` пишется с ударением, `ti` — без него.",
+        "С именем получателя короткую форму тоже обычно добавляют, даже при первом упоминании: **`Le he regalado una cartera a Pedro`**, **`Les he comprado bombones a mis hermanas`**. Не превращаем «обычно» в «всегда»: с именем после глагола удвоение может быть необязательным. В `A Juana le regalo un collar` получатель вынесен вперёд; короткое le сохраняем."
+      ],
+      "examples": [
+        [
+          "Le dije a usted que no era verdad.",
+          "Я сказал Вам, что это неправда."
+        ],
+        [
+          "A nosotros no nos dijo nada.",
+          "Нам он ничего не сказал."
+        ]
+      ],
+      "check": {
+        "id": "check-3",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "A mí no ___ ha dado nada.",
+            "answers": [
+              "me"
+            ],
+            "explain": "A mí уточняет получателя; короткое me обязательно.",
+            "context": "Вставь пропущенное слово.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "le",
+              "me",
+              "te"
+            ]
+          },
+          {
+            "prompt": "Les he comprado flores a Ana y Eva. Что обозначает les?",
+            "answers": [
+              "Ana y Eva"
+            ],
+            "explain": "Les — две получательницы; flores — сами цветы.",
+            "context": "Различи получателя и подарок.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "flores",
+              "того, кто купил",
+              "Ana y Eva"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "36.1",
+      "title": "36.1 · Кому достался подарок",
+      "theorySections": [
+        0
+      ],
+      "questions": [
+        {
+          "prompt": "¿Qué ___ ha regalado?",
+          "answers": [
+            "te"
+          ],
+          "explain": "Ты обращаешься к одной подруге на tú: te — «тебе».",
+          "context": "Спрашиваешь подругу на ты, что ей подарили.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "___ ha regalado un pañuelo.",
+          "answers": [
+            "me"
+          ],
+          "explain": "Отвечаешь о себе: me — «мне». Платок остаётся un pañuelo.",
+          "context": "Отвечаешь о своём платке.",
+          "sourceRef": "36.1.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "___ ha regalado unos libros.",
+          "answers": [
+            "nos"
+          ],
+          "explain": "Двое отвечают о себе вместе: nos — «нам». Количество книг не определяет местоимение получателя.",
+          "context": "Двое мужчин говорят о полученных книгах.",
+          "sourceRef": "36.1.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "___ ha regalado una bufanda.",
+          "answers": [
+            "le"
+          ],
+          "explain": "Получатель — один друг: le — «ему». La заменяло бы саму вещь женского рода, а не получателя.",
+          "context": "Показываешь на друга: шарф подарили ему.",
+          "sourceRef": "36.1.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿Qué ___ ha regalado a usted?",
+          "answers": [
+            "le"
+          ],
+          "explain": "Один адресат на usted: le. Les понадобилось бы для нескольких адресатов на ustedes.",
+          "context": "Спрашиваешь одного человека на usted.",
+          "sourceRef": "36.1.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "___ ha regalado perfume.",
+          "answers": [
+            "os"
+          ],
+          "explain": "Ты говоришь двум подругам на vosotras: os — «вам». Если бы они отвечали о себе, было бы nos.",
+          "context": "Обращаешься к двум подругам на vosotras: духи подарили им.",
+          "sourceRef": "36.1.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿Qué ___ ha regalado?",
+          "answers": [
+            "os"
+          ],
+          "explain": "Ты спрашиваешь пару на vosotros: os — «вам». В ответе они скажут nos — «нам».",
+          "context": "Спрашиваешь пару на vosotros, что им подарили.",
+          "sourceRef": "36.1.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "___ ha regalado un paraguas.",
+          "answers": [
+            "le"
+          ],
+          "explain": "Получательница одна: le — «ей». Род и число подарков не меняют le.",
+          "context": "Рассказываешь о подруге: зонт подарили ей.",
+          "sourceRef": "36.1.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        }
+      ],
+      "preview": {
+        "source": "Ana ___ regala flores a su madre.",
+        "sentenceParts": [
+          "Ana ",
+          " regala flores a su madre."
+        ],
+        "answer": "le",
+        "targetPrefix": "",
+        "translation": "Ана дарит маме цветы."
+      },
+      "instruction": "В каждой сцене назван получатель. Впиши только короткое местоимение.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши одно короткое местоимение.",
+        "placeholder": "Местоимение"
+      }
+    },
+    {
+      "id": "36.2",
+      "title": "36.2 · Ответь собеседнику",
+      "theorySections": [
+        1
+      ],
+      "questions": [
+        {
+          "prompt": "Ответь: «Ничего».",
+          "answers": [
+            "no me han dicho nada"
+          ],
+          "explain": "В ответе me: Ты отвечаешь за себя. Порядок: no → me → han dicho → nada.",
+          "context": "Ты отвечаешь за себя. Форма глагола: han dicho.",
+          "sourceRef": "36.2.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "¿Qué te han dicho?",
+            ""
+          ],
+          "inputFormat": {
+            "instruction": "Напиши отрицательную реплику целиком: no + местоимение + данная форма глагола + nada.",
+            "placeholder": "Отрицательный ответ"
+          },
+          "interaction": "build",
+          "tiles": [
+            "nada",
+            "dicho",
+            "han",
+            "me",
+            "no"
+          ]
+        },
+        {
+          "prompt": "Ответь: «Ничего».",
+          "answers": [
+            "no me ha dicho nada"
+          ],
+          "explain": "В ответе me: Ты отвечаешь за себя на вопрос с usted. Порядок: no → me → ha dicho → nada.",
+          "context": "Ты отвечаешь за себя на вопрос с usted. Форма глагола: ha dicho.",
+          "sourceRef": "36.2.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "¿Qué le ha dicho a usted?",
+            ""
+          ],
+          "inputFormat": {
+            "instruction": "Напиши отрицательную реплику целиком: no + местоимение + данная форма глагола + nada.",
+            "placeholder": "Отрицательный ответ"
+          }
+        },
+        {
+          "prompt": "Ответь: «Ничего».",
+          "answers": [
+            "no nos ha dado nada"
+          ],
+          "explain": "В ответе nos: Вы — смешанная группа; отвечаете вместе. Порядок: no → nos → ha dado → nada.",
+          "context": "Вы — смешанная группа; отвечаете вместе. Форма глагола: ha dado.",
+          "sourceRef": "36.2.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "¿Qué os ha dado?",
+            ""
+          ],
+          "inputFormat": {
+            "instruction": "Напиши отрицательную реплику целиком: no + местоимение + данная форма глагола + nada.",
+            "placeholder": "Отрицательный ответ"
+          },
+          "interaction": "build",
+          "tiles": [
+            "nada",
+            "dado",
+            "ha",
+            "nos",
+            "no"
+          ]
+        },
+        {
+          "prompt": "Ответь: «Ничего».",
+          "answers": [
+            "no le han preguntado nada"
+          ],
+          "explain": "В ответе le: Отвечаешь о Сусане. Порядок: no → le → han preguntado → nada.",
+          "context": "Отвечаешь о Сусане. Форма глагола: han preguntado.",
+          "sourceRef": "36.2.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "¿Qué le han preguntado a Susana?",
+            ""
+          ],
+          "inputFormat": {
+            "instruction": "Напиши отрицательную реплику целиком: no + местоимение + данная форма глагола + nada.",
+            "placeholder": "Отрицательный ответ"
+          }
+        },
+        {
+          "prompt": "Ответь: «Ничего».",
+          "answers": [
+            "no te ha dicho nada"
+          ],
+          "explain": "В ответе te: Собеседник спрашивает о себе; отвечаешь ему на tú. Порядок: no → te → ha dicho → nada.",
+          "context": "Собеседник спрашивает о себе; отвечаешь ему на tú. Форма глагола: ha dicho.",
+          "sourceRef": "36.2.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "¿Qué me ha dicho?",
+            ""
+          ],
+          "inputFormat": {
+            "instruction": "Напиши отрицательную реплику целиком: no + местоимение + данная форма глагола + nada.",
+            "placeholder": "Отрицательный ответ"
+          },
+          "interaction": "build",
+          "tiles": [
+            "nada",
+            "dicho",
+            "ha",
+            "te",
+            "no"
+          ]
+        },
+        {
+          "prompt": "Ответь: «Ничего».",
+          "answers": [
+            "no os han preguntado nada"
+          ],
+          "explain": "В ответе os: Друзья спрашивают о себе; отвечаешь им на vosotros. Порядок: no → os → han preguntado → nada.",
+          "context": "Друзья спрашивают о себе; отвечаешь им на vosotros. Форма глагола: han preguntado.",
+          "sourceRef": "36.2.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "¿Qué nos han preguntado?",
+            ""
+          ],
+          "inputFormat": {
+            "instruction": "Напиши отрицательную реплику целиком: no + местоимение + данная форма глагола + nada.",
+            "placeholder": "Отрицательный ответ"
+          }
+        },
+        {
+          "prompt": "Ответь: «Ничего».",
+          "answers": [
+            "no me ha vendido nada"
+          ],
+          "explain": "В ответе me: Ты отвечаешь за себя. Порядок: no → me → ha vendido → nada.",
+          "context": "Ты отвечаешь за себя. Форма глагола: ha vendido.",
+          "sourceRef": "36.2.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "¿Qué te ha vendido?",
+            ""
+          ],
+          "inputFormat": {
+            "instruction": "Напиши отрицательную реплику целиком: no + местоимение + данная форма глагола + nada.",
+            "placeholder": "Отрицательный ответ"
+          }
+        },
+        {
+          "prompt": "Ответь: «Ничего».",
+          "answers": [
+            "no nos han dado nada"
+          ],
+          "explain": "В ответе nos: Вы отвечаете вместе, в группе есть мужчины. Порядок: no → nos → han dado → nada.",
+          "context": "Вы отвечаете вместе, в группе есть мужчины. Форма глагола: han dado.",
+          "sourceRef": "36.2.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "¿Qué les han dado a ustedes?",
+            ""
+          ],
+          "inputFormat": {
+            "instruction": "Напиши отрицательную реплику целиком: no + местоимение + данная форма глагола + nada.",
+            "placeholder": "Отрицательный ответ"
+          },
+          "interaction": "build",
+          "tiles": [
+            "nada",
+            "dado",
+            "han",
+            "nos",
+            "no"
+          ]
+        },
+        {
+          "prompt": "Ответь: «Ничего».",
+          "answers": [
+            "no le han preguntado nada"
+          ],
+          "explain": "В ответе le: Отвечаешь об Альберто. Порядок: no → le → han preguntado → nada.",
+          "context": "Отвечаешь об Альберто. Форма глагола: han preguntado.",
+          "sourceRef": "36.2.9",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "¿Qué le han preguntado a Alberto?",
+            ""
+          ],
+          "inputFormat": {
+            "instruction": "Напиши отрицательную реплику целиком: no + местоимение + данная форма глагола + nada.",
+            "placeholder": "Отрицательный ответ"
+          }
+        },
+        {
+          "prompt": "Ответь: «Ничего».",
+          "answers": [
+            "no les han regalado nada"
+          ],
+          "explain": "В ответе les: Отвечаешь о своих дочерях. Порядок: no → les → han regalado → nada.",
+          "context": "Отвечаешь о своих дочерях. Форма глагола: han regalado.",
+          "sourceRef": "36.2.10",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "¿Qué les han regalado a tus hijas?",
+            ""
+          ],
+          "inputFormat": {
+            "instruction": "Напиши отрицательную реплику целиком: no + местоимение + данная форма глагола + nada.",
+            "placeholder": "Отрицательный ответ"
+          }
+        },
+        {
+          "prompt": "Исправь порядок слов.",
+          "answers": [
+            "no me han dicho nada"
+          ],
+          "explain": "No стоит перед местоимением, местоимение — перед вспомогательным глаголом.",
+          "context": "Смысл и все слова сохрани.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "No han me dicho nada.",
+            ""
+          ],
+          "interaction": "build",
+          "tiles": [
+            "nada",
+            "dicho",
+            "han",
+            "me",
+            "no"
+          ],
+          "inputFormat": {
+            "instruction": "Собери исправленное предложение.",
+            "placeholder": "Предложение"
+          }
+        },
+        {
+          "prompt": "Исправь порядок слов.",
+          "answers": [
+            "no le ha preguntado nada"
+          ],
+          "explain": "No стоит перед местоимением, местоимение — перед вспомогательным глаголом.",
+          "context": "Смысл и все слова сохрани.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "Le no ha preguntado nada.",
+            ""
+          ],
+          "interaction": "build",
+          "tiles": [
+            "nada",
+            "preguntado",
+            "ha",
+            "le",
+            "no"
+          ],
+          "inputFormat": {
+            "instruction": "Собери исправленное предложение.",
+            "placeholder": "Предложение"
+          }
+        }
+      ],
+      "preview": {
+        "source": "No ___.",
+        "sentenceParts": [
+          "No ",
+          "."
+        ],
+        "answer": "te ha dicho nada",
+        "targetPrefix": "",
+        "translation": "Он тебе ничего не сказал."
+      },
+      "instruction": "Отвечай от указанного лица. Форма глагола уже дана; сохрани её.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши только пропущенную часть словами. Остальную фразу не повторяй.",
+        "placeholder": "Число словами"
+      }
+    },
+    {
+      "id": "36.3",
+      "title": "36.3 · Кому именно",
+      "theorySections": [
+        2
+      ],
+      "questions": [
+        {
+          "prompt": "¿Te dijo algo Luis? —A ___ no ___ dijo nada.",
+          "answers": [
+            "mí me"
+          ],
+          "explain": "Уточнение с a не отменяет короткую форму. Ты отвечаешь за себя.",
+          "context": "Ты отвечаешь за себя.",
+          "sourceRef": "36.3.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿Te dijo algo Luis? —A ",
+            " no ",
+            " dijo nada."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "accentSensitive": true,
+          "inputFormat": {
+            "instruction": "В первом пропуске напиши ударную форму после a, во втором — короткое местоимение.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "¿___ dijo algo a ustedes? —A nosotros no ___ dijo nada.",
+          "answers": [
+            "les nos"
+          ],
+          "explain": "Уточнение с a не отменяет короткую форму. Ты спрашиваешь смешанную группу на ustedes; группа отвечает.",
+          "context": "Ты спрашиваешь смешанную группу на ustedes; группа отвечает.",
+          "sourceRef": "36.3.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿",
+            " dijo algo a ustedes? —A nosotros no ",
+            " dijo nada."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "accentSensitive": true,
+          "inputFormat": {
+            "instruction": "Заполни каждый пропуск одним коротким местоимением. Вопрос и ответ произносят разные люди.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "¿___ dijo algo a Marcela? —A ella no ___ dijo nada.",
+          "answers": [
+            "le le"
+          ],
+          "explain": "Уточнение с a не отменяет короткую форму. Оба говорят о Марселе.",
+          "context": "Оба говорят о Марселе.",
+          "sourceRef": "36.3.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿",
+            " dijo algo a Marcela? —A ella no ",
+            " dijo nada."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "accentSensitive": true,
+          "inputFormat": {
+            "instruction": "Заполни каждый пропуск одним коротким местоимением. Вопрос и ответ произносят разные люди.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "¿Os ha preguntado algo Lola? —A nosotros no ___ ha preguntado nada.",
+          "answers": [
+            "nos"
+          ],
+          "explain": "Уточнение с a не отменяет короткую форму. Вы — смешанная группа и отвечаете вместе.",
+          "context": "Вы — смешанная группа и отвечаете вместе.",
+          "sourceRef": "36.3.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿Os ha preguntado algo Lola? —A nosotros no ",
+            " ha preguntado nada."
+          ],
+          "gapWordCounts": [
+            1
+          ],
+          "accentSensitive": true,
+          "inputFormat": {
+            "instruction": "Заполни каждый пропуск одним коротким местоимением. Вопрос и ответ произносят разные люди.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "¿___ ha preguntado algo a Tomás? —A él no ___ ha preguntado nada.",
+          "answers": [
+            "le le"
+          ],
+          "explain": "Уточнение с a не отменяет короткую форму. Оба говорят о Томасе.",
+          "context": "Оба говорят о Томасе.",
+          "sourceRef": "36.3.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿",
+            " ha preguntado algo a Tomás? —A él no ",
+            " ha preguntado nada."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "accentSensitive": true,
+          "inputFormat": {
+            "instruction": "Заполни каждый пропуск одним коротким местоимением. Вопрос и ответ произносят разные люди.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "¿___ ha preguntado algo a usted? —A mí no ___ ha preguntado nada.",
+          "answers": [
+            "le me"
+          ],
+          "explain": "Уточнение с a не отменяет короткую форму. Ты спрашиваешь одного человека на usted; отвечает он сам.",
+          "context": "Ты спрашиваешь одного человека на usted; отвечает он сам.",
+          "sourceRef": "36.3.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿",
+            " ha preguntado algo a usted? —A mí no ",
+            " ha preguntado nada."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "accentSensitive": true,
+          "inputFormat": {
+            "instruction": "Заполни каждый пропуск одним коротким местоимением. Вопрос и ответ произносят разные люди.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "¿Me ha comprado algo Yvonne? —A ti no ___ ha comprado nada.",
+          "answers": [
+            "te"
+          ],
+          "explain": "Уточнение с a не отменяет короткую форму. Собеседник спрашивает о себе; ты отвечаешь ему на tú.",
+          "context": "Собеседник спрашивает о себе; ты отвечаешь ему на tú.",
+          "sourceRef": "36.3.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿Me ha comprado algo Yvonne? —A ti no ",
+            " ha comprado nada."
+          ],
+          "gapWordCounts": [
+            1
+          ],
+          "accentSensitive": true,
+          "inputFormat": {
+            "instruction": "Заполни каждый пропуск одним коротким местоимением. Вопрос и ответ произносят разные люди.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "¿___ ha comprado algo a nosotros? —A vosotros no ___ ha comprado nada.",
+          "answers": [
+            "nos os"
+          ],
+          "explain": "Уточнение с a не отменяет короткую форму. Смешанная группа спрашивает о себе; ты обращаешься к ней на vosotros.",
+          "context": "Смешанная группа спрашивает о себе; ты обращаешься к ней на vosotros.",
+          "sourceRef": "36.3.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿",
+            " ha comprado algo a nosotros? —A vosotros no ",
+            " ha comprado nada."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "accentSensitive": true,
+          "inputFormat": {
+            "instruction": "Заполни каждый пропуск одним коротким местоимением. Вопрос и ответ произносят разные люди.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "¿___ ha comprado algo a su hermano? —A él no ___ ha comprado nada.",
+          "answers": [
+            "le le"
+          ],
+          "explain": "Уточнение с a не отменяет короткую форму. Оба говорят о его брате.",
+          "context": "Оба говорят о его брате.",
+          "sourceRef": "36.3.9",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "¿",
+            " ha comprado algo a su hermano? —A él no ",
+            " ha comprado nada."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "accentSensitive": true,
+          "inputFormat": {
+            "instruction": "Заполни каждый пропуск одним коротким местоимением. Вопрос и ответ произносят разные люди.",
+            "placeholder": "Местоимение"
+          }
+        }
+      ],
+      "preview": {
+        "source": "A ti no ___ han dicho nada.",
+        "sentenceParts": [
+          "A ti no ",
+          " han dicho nada."
+        ],
+        "answer": "te",
+        "targetPrefix": "",
+        "translation": "Именно тебе ничего не сказали."
+      },
+      "instruction": "Заполни пропуски в репликах. Согласуй короткое местоимение с уточнением получателя и учитывай, кто отвечает.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши только пропущенную часть словами. Остальную фразу не повторяй.",
+        "placeholder": "Число словами"
+      }
+    }
+  ],
+  "learningOrder": [
+    "section:0",
+    "exercise:36.1",
+    "section:1",
+    "exercise:36.2",
+    "section:2",
+    "exercise:36.3",
+    "summary"
+  ],
+  "summary": {
+    "heads": [
+      "Задача",
+      "Модель"
+    ],
+    "rows": [
+      [
+        "Получатель, не подарок",
+        "Le regalo un reloj a Ana."
+      ],
+      [
+        "Род не влияет, число влияет",
+        "a él/ella → le; a ellos/ellas → les"
+      ],
+      [
+        "Перед глаголом и haber",
+        "No me han dicho nada."
+      ],
+      [
+        "Ответ от другого лица",
+        "¿Qué os ha dado? —No nos ha dado nada."
+      ],
+      [
+        "Уточнение сохраняет короткую форму",
+        "A mí no me ha dado nada."
+      ]
+    ]
+  }
+}

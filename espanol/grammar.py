@@ -101,6 +101,10 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
                     if item['shuffleOptions'] is False and (not isinstance(item.get('optionOrderReason'), str) or not item['optionOrderReason'].strip()):
                         raise ValueError(f"{path}: fixed option order requires optionOrderReason")
             for q in group["questions"]:
+                if 'feedbackAnswers' in q and (not isinstance(q['feedbackAnswers'], list) or not q['feedbackAnswers']
+                        or any(a not in q.get('answers', []) for a in q['feedbackAnswers'])
+                        or len(set(q['feedbackAnswers'])) != len(q['feedbackAnswers'])):
+                    raise ValueError(f"{path}: feedbackAnswers must list distinct accepted answers")
                 if 'inputChars' in q and (not isinstance(q['inputChars'], list) or not q['inputChars']
                         or len(set(q['inputChars'])) != len(q['inputChars'])
                         or any(c not in ['á', 'é', 'í', 'ó', 'ú', 'ü', 'ñ'] for c in q['inputChars'])):
