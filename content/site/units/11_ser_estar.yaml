@@ -12,6 +12,7 @@ lessons:
     kind: vocab
     title: Как вы себя чувствуете?
     goal: рассказать, как вы себя чувствуете сегодня
+    version: 2
     vocab:
       - "📅 hoy [ой] — сегодня :: Hoy estoy bien. — Сегодня у меня всё хорошо."
       - "😴 cansado/a [канса́до, канса́да] — уставший"
@@ -26,15 +27,21 @@ lessons:
       - learn: [hoy, cansado/a, contento/a, triste]
       - choose:
           title: "¿Cómo estás?"
+          skill: estar_state
           items:
             - q: "😴 Вы не спали всю ночь."
               options: "Estoy cansado. | Estoy contento. | Estoy triste."
+            - q: "😢 Ваш лучший друг уехал в другую страну."
+              options: "Estoy triste. | Estoy contento. | Estoy cansado."
             - q: "😃 У вас отличная новость."
               options: "Estoy contento. | Estoy cansado. | Estoy triste."
-      - tip: "Это прилагательные, поэтому они согласуются: _Pablo está cansado_, _Ana está cansada_, _Estamos cansados_. **triste** по родам не меняется: _Pablo está triste_, _Ana está triste_."
+      - tip:
+          id: agree
+          text: "Это прилагательные, поэтому они согласуются: _Pablo está cansado_, _Ana está cansada_, _Estamos cansados_. **triste** по родам не меняется: _Pablo está triste_, _Ana está triste_."
       - learn: [nervioso/a, enfermo/a, ocupado/a, aburrido/a]
       - match:
           title: Соедините пары
+          rule: none
           pairs:
             - "nervioso — взволнованный"
             - "enfermo — больной"
@@ -45,14 +52,19 @@ lessons:
           title: Traduce
           format: фраза по-испански
           items:
-            - "Я (женщина) сегодня устала. => Hoy estoy cansada | Estoy cansada hoy"
+            - q: "Я (женщина) сегодня устала."
+              a: "Hoy estoy cansada | Estoy cansada hoy"
+              mistakes: {"hoy soy cansada": "Состояние сейчас — **estar**: Hoy estoy cansada.", "hoy estoy cansado": "Говорит женщина — cansad**a**."}
             - "Моя сестра болеет. => Mi hermana está enferma"
             - "Мы очень заняты. => Estamos muy ocupados | Estamos muy ocupadas"
+          rule: agree
+          skill: estar_state
 
   - id: gramatica
     kind: grammar
     title: Ser или estar?
     goal: выбрать ser или estar
+    version: 2
     vocab:
       - "⏰ ahora [ао́ра] — сейчас :: Ahora estoy en casa. — Сейчас я дома."
       - "♾ siempre [сьэ́мпрэ] — всегда"
@@ -65,6 +77,7 @@ lessons:
             - "Ana es médica. — Ана — врач."
             - "Ana está en el hospital. — Ана в больнице."
       - compare:
+          id: ser_estar
           cards:
             - head: SER
               say: false
@@ -80,6 +93,7 @@ lessons:
               ex: ["Estoy en Madrid.", "Pablo está cansado.", "¿Estás triste?"]
       - sort:
           title: "Ser или estar?"
+          skill: ser_estar
           groups:
             "ser": [médica, alto, de Kiev, simpática]
             "estar": [cansado, en Madrid, enfermo, contenta]
@@ -92,6 +106,7 @@ lessons:
             - "Mi abuelo siempre es muy serio, pero ahora está contento. — Мой дедушка всегда очень серьёзный, но сейчас доволен."
       - choose:
           title: "¿Ser o estar?"
+          skill: ser_estar
           items:
             - q: "Hoy Pablo ___ aburrido: no hay tele en casa."
               options: "está | es"
@@ -101,7 +116,9 @@ lessons:
               explain: "Siempre — постоянная черта характера: es."
       - write:
           title: "¿Ser o estar?"
-          format: форма ser или estar
+          format: одна форма — ser или estar
+          rule: ser_estar
+          skill: ser_estar
           items:
             - "Yo ___ de Ucrania. => soy"
             - "Ahora (yo) ___ en la oficina. => estoy"
@@ -114,6 +131,7 @@ lessons:
     kind: dialogue
     title: ¿Qué te pasa?
     goal: спросить, что случилось, и объяснить причину
+    version: 2
     vocab:
       - "❓ ¿Qué te pasa? [кэ тэ па́са] — что с тобой? что случилось?"
       - "❓ ¿Por qué? [пор кэ] — почему?"
@@ -123,6 +141,7 @@ lessons:
     blocks:
       - learn: ["¿Qué te pasa?", "¿Por qué?", porque]
       - compare:
+          id: porque
           cards:
             - head: ¿por qué?
               label: «почему?» — раздельно и с ударением
@@ -134,6 +153,7 @@ lessons:
               ex: ["Porque estoy muy cansado."]
       - choose:
           title: Por qué или porque?
+          skill: porque
           items:
             - q: "Как спросить «Почему ты грустный?»"
               options: "¿Por qué estás triste? | ¿Porque estás triste? | ¿Qué estás triste?"
@@ -141,6 +161,7 @@ lessons:
               options: "Porque | Por qué | Qué"
       - learn: [el jefe / la jefa, ¡Qué bien!]
       - dialogue:
+          id: pablo
           lines:
             - "Ana: Hola, Pablo. ¿Qué tal? | Привет, Пабло. Как дела?"
             - "Pablo: Regular. | Так себе."
@@ -158,20 +179,37 @@ lessons:
           text: "**¡Vaya!** — «вот как», «ну и ну»: так говорят, услышав неожиданную или неприятную новость. _Estoy enfermo. — ¡Vaya!_"
       - choose:
           title: Responde
+          source: pablo
+          rule: none
           items:
             - q: "¿Cómo está Pablo?"
               options: "Está cansado. | Está enfermo. | Está contento."
             - q: "¿Por qué está cansado?"
               options: "Porque trabaja mucho. | Porque está enfermo. | Porque tiene un piso nuevo."
+              explain: "Pablo: Porque trabajo mucho. Y mi jefe es muy antipático."
+              skill: porque
+            - q: "¿Cómo es el jefe de Pablo?"
+              options: "Es muy antipático. | Es muy simpático. | Está cansado."
+              explain: "Pablo: Y mi jefe es muy antipático."
+              skill: ser_estar
             - q: "¿Por qué está contenta Ana?"
               options: "Porque tiene un piso nuevo. | Porque su jefe es simpático. | Porque está en Sevilla."
       - choose:
           title: Что ответить?
+          free: true
+          rule: none
           items:
+            - lines: ["Ana: ¿Qué te pasa?"]
+              q: "Вы заболели."
+              options: "Estoy enfermo. | Estoy contento. | ¡Qué bien!"
+              explain: "¿Qué te pasa? — «что с тобой?»: отвечают, что случилось."
             - lines: ["Ana: ¡Tengo un piso nuevo!"]
               options: "¡Qué bien! | ¿Qué te pasa? | Porque."
       - build:
           title: Соберите фразу
+          free: true
+          rule: porque
+          skill: porque
           items:
             - es: "Estoy cansado porque trabajo mucho."
               ru: "Я устал, потому что много работаю."
@@ -182,11 +220,12 @@ lessons:
     kind: practice
     title: Ser и estar на практике
     goal: рассказать о себе и о других с ser и estar
+    version: 2
     blocks:
-      - "Для каждой фразы спросите себя: это кто и какой по сути (**ser**) или где и в каком состоянии сейчас (**estar**)?"
       - write:
           title: "¿Ser o estar?"
-          format: форма ser или estar
+          format: одна форма — ser или estar
+          skill: ser_estar
           items:
             - "Madrid ___ en España. => está"
             - "Lucía ___ española, de Sevilla. => es"
@@ -195,29 +234,40 @@ lessons:
             - "Vosotros ___ muy divertidos. => sois"
       - write:
           title: Исправьте ошибку
-          format: правильная фраза
+          format: исправленная фраза целиком
+          skill: ser_estar
           items:
             - "`Soy` cansado. => Estoy cansado"
             - "Mi padre `está` ingeniero. => Mi padre es ingeniero"
             - "¿Dónde `es` el baño? => ¿Dónde está el baño?"
       - mission:
+          id: call
           title: Звонок маме
           text: "Вы — Лусия. Вы в Барселоне по работе и очень устали: работы много. Ваш новый начальник — очень приятный человек. Звонит мама."
       - choose:
+          source: call
+          skill: estar_location
           items:
             - lines: ["Madre: Hola, Lucía. ¿Dónde estás?"]
               options: "Estoy en Barcelona. | Soy en Barcelona. | Es en Barcelona."
       - write:
+          source: call
+          skill: [estar_state, porque]
           items:
             - q: "Madre: ¿Cómo estás? — Ответьте: вы устали, потому что много работаете."
               a: "Estoy cansada porque trabajo mucho | Estoy muy cansada porque trabajo mucho"
+              mistakes: {"estoy cansado porque trabajo mucho": "Вы — Лусия: cansad**a**.", "soy cansada porque trabajo mucho": "Состояние — **estar**: estoy cansada.", "estoy cansada por qué trabajo mucho": "«Потому что» — **porque**, слитно и без ударения."}
               format: ответ по-испански
       - choose:
+          source: call
+          skill: ser_estar
           items:
             - lines: ["Madre: ¿Y cómo es tu jefe?"]
               options: "Es muy simpático. | Está muy simpático. | Estoy muy simpática."
               explain: "Характер — ser: es simpático."
       - build:
+          free: true
+          skill: ser_estar
           items:
             - es: "Somos de Kiev, pero ahora estamos en Barcelona."
               ru: "Скажите о себе и коллеге: «Мы из Киева, но сейчас мы в Барселоне»."
@@ -226,25 +276,42 @@ lessons:
   - id: quiz
     kind: quiz
     title: Ser и estar
+    goal: рассказать о самочувствии, выбрать ser или estar и объяснить причину
+    version: 2
+    check: soft
     blocks:
       - "Это тест по теме «Состояния. Ser и estar»."
       - cando:
           - "рассказать о своём самочувствии и настроении: Estoy cansado. Estoy contenta. Estoy enfermo."
           - "выбрать между ser и estar"
           - "спросить ¿Por qué? и ответить Porque..."
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "contento — довольный"
+            - "enfermo — больной"
+            - "ocupado — занятой"
+            - "ahora — сейчас"
+            - "siempre — всегда"
     quiz:
       - q: "Hoy ___ muy cansada."
         options: "estoy | soy | es"
         explain: "Здесь говорится о том, как человек себя чувствует сейчас, поэтому нужен глагол estar: Hoy estoy muy cansada."
+        skill: estar_state
       - q: "Mi madre ___ profesora."
         options: "es | está | estoy"
         explain: "Профессию называют с глаголом ser, поэтому правильно сказать: Mi madre es profesora."
+        skill: ser_estar
       - q: "¿Dónde ___ la universidad?"
         options: "está | es | hay"
         explain: "Если вы спрашиваете, где находится известное место или вещь, то нужен глагол estar: ¿Dónde está...?"
+        skill: ser_estar
       - q: Как сказать «почему»?
         options: "¿Por qué? | ¿Porque? | ¿Qué?"
         explain: "Вопрос «почему?» пишется в два слова и с ударением: ¿Por qué? А porque без ударения значит «потому что»."
+        skill: porque
       - q: "Pablo ___ alto y moreno."
         options: "es | está | están"
         explain: "Внешность — это постоянное качество человека, поэтому её описывают с глаголом ser: Pablo es alto y moreno."
+        skill: ser_estar

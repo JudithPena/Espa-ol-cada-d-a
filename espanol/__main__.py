@@ -117,6 +117,9 @@ def cmd_validate(args, settings) -> int:
     from .scenario import channel_issues, check as check_scenarios
     problems += [f"Сайт: {issue}" for issue in check_scenarios(site, site_lexicon)]
     problems += [str(issue) for issue in channel_issues(course)]
+    from .scenario import screen_warnings
+    for w in screen_warnings(site):
+        print("⚠️ Сайт:", w)
     for p in problems:
         print("❌", p)
     words = len(course.items)

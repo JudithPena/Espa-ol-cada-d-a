@@ -12,6 +12,8 @@ lessons:
     kind: vocab
     title: Как тебя зовут?
     goal: представиться, спросить имя и ответить «очень приятно»
+    version: 2
+    # Карта экранов: docs/site_slide_maps/02_presentarse.md
     vocab:
       - "🏷 me llamo... [мэ лья́мо] — меня зовут... :: Hola, me llamo Ana. — Привет, меня зовут Ана."
       - "❓ ¿Cómo te llamas? [ко́мо тэ лья́мас] — как тебя зовут? :: Hola, ¿cómo te llamas? — Привет, как тебя зовут?"
@@ -22,6 +24,7 @@ lessons:
     blocks:
       - "Пабло и Ана знакомятся на вечеринке."
       - dialogue:
+          id: party
           title: Как это звучит в жизни
           lines:
             - "Pablo: Hola, me llamo Pablo. ¿Y tú? | Привет, меня зовут Пабло. А тебя?"
@@ -29,6 +32,7 @@ lessons:
             - "Pablo: Mucho gusto, Ana. | Очень приятно, Ана."
       - learn: [me llamo..., "¿Cómo te llamas?", "¿Cómo se llama usted?"]
       - compare:
+          id: ask_name
           title: Как спросить имя
           cards:
             - head: ¿Cómo te llamas?
@@ -43,22 +47,34 @@ lessons:
               ex: ["Perdón, ¿cómo se llama usted? — Извините, как вас зовут?"]
       - choose:
           title: Как спросить?
+          free: true
+          skill: me_llamo
           items:
             - q: "Вы знакомитесь с пожилой сеньорой."
               options: "¿Cómo se llama usted? | ¿Cómo te llamas? | ¿Cómo está usted?"
               explain: "С сеньорой говорят на «вы»: ¿Cómo se llama usted? А ¿Cómo está usted? — это «как вы поживаете?»."
+            - q: "Вы знакомитесь с ровесником на вечеринке."
+              options: "¿Cómo te llamas? | ¿Cómo se llama usted? | ¿Cómo estás?"
+              explain: "С ровесником говорят на «ты»: ¿Cómo te llamas? А ¿Cómo estás? — это «как ты?»."
             - lines: ["Ana: Hola, ¿cómo te llamas?"]
               q: "Вас зовут Пабло."
               options: "Me llamo Pablo. | Te llamas Pablo. | ¿Cómo te llamas?"
               explain: "О себе говорят me llamo — «меня зовут». Te llamas — «тебя зовут»."
       - write:
           title: Представьтесь
-          format: фраза по-испански
+          format: «меня зовут…» по-испански
+          free: true
+          skill: me_llamo
+          rule: none
           items:
             - q: "Вас зовут Лусия. Представьтесь."
               a: "Me llamo Lucía | Hola, me llamo Lucía"
+              mistakes:
+                "te llamas lucía": "Te llamas — «тебя зовут». О себе говорят **me llamo**: Me llamo Lucía."
+                "se llama lucía": "Se llama — «её (его) зовут». О себе говорят **me llamo**: Me llamo Lucía."
       - learn: [encantado/a, mucho gusto, igualmente]
       - compare:
+          id: encantado
           title: «Очень приятно»
           lead: Окончание слова encantado зависит от того, **кто говорит**.
           cards:
@@ -77,6 +93,8 @@ lessons:
           note: "Ответить на знакомство можно словом **igualmente** — «взаимно»: _Igualmente, Pablo._"
       - choose:
           title: Что ответить?
+          free: true
+          skill: encantado
           items:
             - lines: ["Pablo: Hola, me llamo Pablo."]
               q: "Вы — Ана."
@@ -88,13 +106,34 @@ lessons:
               explain: "На «очень приятно» отвечают igualmente — «взаимно». Пабло мог бы сказать и encantado, но не encantada."
       - build:
           title: Соберите фразу
+          free: true
+          skill: me_llamo
+          rule: none
           items:
             - "Hola, me llamo Ana. ¿Y tú? — Привет, меня зовут Ана. А тебя?"
+      - mission:
+          id: meet
+          title: Познакомьтесь на вечеринке
+          text: "Вы — Пабло. На вечеринке к вам подходит Ана и представляется. Представьтесь в ответ и скажите, что вам очень приятно."
+      - write:
+          source: meet
+          skill: encantado
+          format: две короткие фразы
+          items:
+            - q: "Ana: Hola, me llamo Ana. ¿Y tú? — Ответьте: вас зовут Пабло, вам очень приятно."
+              a: "Me llamo Pablo. Encantado | Hola, me llamo Pablo. Encantado | Me llamo Pablo. Mucho gusto | Hola, me llamo Pablo. Mucho gusto | Hola, Ana. Me llamo Pablo. Encantado | Hola, Ana. Me llamo Pablo. Mucho gusto | Encantado. Me llamo Pablo | Me llamo Pablo. Encantado, Ana | Me llamo Pablo. Mucho gusto, Ana"
+              explain: "О себе — me llamo; Пабло — мужчина, поэтому encantado. Mucho gusto подходит всем."
+              mistakes:
+                "me llamo pablo encantada": "Пабло — мужчина и говорит о себе, поэтому **encantado**. Encantada сказала бы женщина."
+                "hola me llamo pablo encantada": "Пабло — мужчина и говорит о себе, поэтому **encantado**. Encantada сказала бы женщина."
+                "me llamo pablo": "Имя есть — добавьте «очень приятно»: **encantado** или **mucho gusto**."
+                "hola me llamo pablo": "Имя есть — добавьте «очень приятно»: **encantado** или **mucho gusto**."
 
   - id: grammar
     kind: grammar
     title: "Я, ты, он, она: глагол ser"
     goal: сказать, кто есть кто, — soy, eres, es
+    version: 2
     vocab:
       - "🙋 yo [йо] — я"
       - "👨 él [эль] — он"
@@ -112,9 +151,11 @@ lessons:
             - "Ella es Lucía. — Она Лусия."
             - "Usted es el señor García. — Вы сеньор Гарсия."
       - learn: [yo, él, ella, ser]
-      - rule: |
-          В русском глагол «быть» в настоящем времени пропускают: «я Ана». А в испанском глагол **ser** нужен всегда: _Soy Ana_ — «Я Ана», _Es Lucía_ — «Это Лусия».
-          У каждого лица своя форма: «я» — **soy**, «ты» — **eres**, «он», «она» и вежливое «вы» — **es**.
+      - rule:
+          id: ser
+          text: |
+            В русском глагол «быть» в настоящем времени пропускают: «я Ана». А в испанском глагол **ser** нужен всегда: _Soy Ana_ — «Я Ана», _Es Lucía_ — «Это Лусия».
+            У каждого лица своя форма: «я» — **soy**, «ты» — **eres**, «он», «она» и вежливое «вы» — **es**.
       - table:
           title: "ser — быть"
           rows:
@@ -123,7 +164,8 @@ lessons:
             - ["él / ella / usted", "**es**"]
       - write:
           title: Вставьте форму ser
-          format: форма глагола
+          format: одна форма глагола ser
+          skill: ser_forms
           items:
             - "Yo ___ Pablo. => soy"
             - "¿Tú ___ Ana? => eres"
@@ -132,6 +174,7 @@ lessons:
               a: es
               explain: "С usted глагол стоит в той же форме, что с él и ella: es."
       - compare:
+          id: el_el
           style: small
           title: Значок меняет смысл
           cards:
@@ -143,6 +186,7 @@ lessons:
           note: "_Él es Carlos_ — «Он Карлос», а _el café_, _el señor García_ — артикль. Так же **sí** — «да», а `si` — «если»."
       - choose:
           title: él или el?
+          skill: accent_meaning
           items:
             - q: "___ es Carlos. — Он Карлос."
               options: "Él | El"
@@ -150,6 +194,7 @@ lessons:
               options: "el | él"
       - learn: [llamarse, "¿Quién es?"]
       - table:
+          id: llamarse
           title: "llamarse — зваться (букв. «называть себя»)"
           rows:
             - ["yo", "**me llamo**"]
@@ -168,6 +213,8 @@ lessons:
             **Yo** и **tú** оставляют, когда хотят подчеркнуть разницу между людьми: _Yo soy Ana, ¿y tú?_ — «Я Ана, а ты?»
       - choose:
           title: Вставьте слово
+          rule: llamarse
+          skill: me_llamo
           items:
             - q: "¿Cómo ___ llamas?"
               options: "te | se | me"
@@ -179,13 +226,18 @@ lessons:
               q: "Ана показывает на фото Карлоса."
               options: "Es Carlos. | Soy Carlos. | Eres Carlos."
               explain: "О другом человеке говорят es: Es Carlos — «Это Карлос». Soy Carlos сказал бы сам Карлос."
+              skill: ser_forms
+              rule: ser
+
   - id: dialogue
     kind: dialogue
     title: На вечеринке
     goal: понять разговор при знакомстве и ответить собеседнику
+    version: 2
     blocks:
-      - "В этих диалогах только знакомые слова."
+      - "Пабло на вечеринке знакомится с Аной, а потом знакомит её со своей подругой."
       - dialogue:
+          id: party
           lines:
             - "Pablo: ¡Hola! Me llamo Pablo. ¿Y tú? ¿Cómo te llamas? | Привет! Меня зовут Пабло. А тебя? Как тебя зовут?"
             - "Ana: Hola, Pablo. Me llamo Ana. | Привет, Пабло. Меня зовут Ана."
@@ -197,13 +249,17 @@ lessons:
             - "Lucía: Igualmente, Ana. | Взаимно, Ана."
       - choose:
           title: Поняли?
+          source: party
           items:
             - q: "Почему Пабло говорит encantado, а Ана — encantada?"
               options: "Пабло — мужчина, Ана — женщина. | Ана говорит на «вы». | Пабло старше Аны."
               explain: "Окончание зависит от того, кто говорит: мужчина — encantado, женщина — encantada."
+              skill: encantado
             - q: "Кто такая Лусия?"
               options: "подруга, которую Пабло знакомит с Аной | сестра Аны | администратор гостиницы"
+              explain: "Ana: ¿Quién es ella? — Pablo: Es Lucía. ¡Lucía! — Пабло знакомит Ану со своей подругой."
       - dialogue:
+          id: hotel
           title: В гостинице
           lines:
             - "Recepcionista: Buenas noches. ¿Cómo se llama usted? | Добрый вечер. Как вас зовут?"
@@ -211,24 +267,35 @@ lessons:
             - "Recepcionista: Muchas gracias, señor López. ¡Buenas noches! | Большое спасибо, сеньор Лопес. Доброй ночи!"
       - choose:
           title: Поняли?
+          source: hotel
           items:
             - q: "Почему администратор говорит ¿Cómo se llama usted?, а не ¿Cómo te llamas?"
               options: "Ситуация официальная, поэтому на «вы». | Карлос — его старый друг. | Он не расслышал имя."
+              explain: "В гостинице с незнакомым гостем говорят на «вы»: ¿Cómo se llama usted?"
+              skill: tu_usted
       - mission:
+          id: neighbour
           title: Новая соседка
           text: "Вы — Лусия. В подъезде с вами знакомится новая соседка. Ответьте ей."
       - choose:
+          source: neighbour
           items:
             - lines: ["Ana: ¡Hola! Me llamo Ana. ¿Y tú?"]
               options: "Me llamo Lucía. | Se llama Lucía. | ¿Cómo te llamas?"
               explain: "О себе — me llamo. Se llama — «её (его) зовут»."
+              skill: me_llamo
             - lines: ["Ana: Encantada, Lucía."]
               options: "Igualmente, Ana. | Encantado, Ana. | De nada, Ana."
               explain: "Лусия — женщина, поэтому не encantado; лучший ответ — igualmente."
+              skill: encantado
             - lines: ["Ana: ¿Y él? ¿Quién es?"]
               q: "Рядом с вами Пабло."
               options: "Es Pablo. | Soy Pablo. | Eres Pablo."
+              explain: "О другом человеке — es: Es Pablo. Soy Pablo сказал бы сам Пабло."
+              skill: ser_forms
       - build:
+          free: true
+          skill: tu_usted
           items:
             - es: "Perdón, ¿cómo se llama usted?"
               ru: "К вам подошёл пожилой сосед. Спросите, как его зовут: «Извините, как вас зовут?»"
@@ -238,9 +305,11 @@ lessons:
     kind: listening
     title: Кто есть кто?
     goal: понять на слух, кого как зовут
+    version: 2
     blocks:
-      - "Сначала послушайте разговор два-три раза. Текст спрятан: откройте его, только когда захотите себя проверить."
+      - "Сначала послушайте разговор два-три раза: текста пока нет. В заданиях его можно открыть как подсказку."
       - dialogue:
+          id: class
           hidden: true
           lines:
             - "Profesora: Buenos días. Me llamo Elena. ¿Y usted? ¿Cómo se llama? | Доброе утро. Меня зовут Елена. А вас? Как вас зовут?"
@@ -251,6 +320,7 @@ lessons:
             - "Profesora: Igualmente, Olga. | Взаимно, Ольга."
       - match:
           title: Кто есть кто?
+          source: class
           pairs:
             - "Elena — преподавательница"
             - "Iván — ученик"
@@ -258,19 +328,31 @@ lessons:
     quiz:
       - q: Как зовут преподавательницу?
         options: "Elena | Olga | Ana"
+        source: class
+        skill: me_llamo
         explain: "Преподавательница говорит о себе Me llamo Elena, то есть «Меня зовут Елена». А Olga — это имя ученицы."
       - q: Как Иван отвечает на вопрос «¿Quién es?»
         options: "Es Olga. | Soy Olga. | Me llamo Iván."
+        source: class
+        skill: ser_forms
         explain: "Иван говорит о другом человеке, поэтому он отвечает Es Olga, то есть «Это Ольга». А Soy Olga сказала бы о себе сама Ольга."
       - q: Что говорит Ольга при знакомстве?
         options: "Mucho gusto. | Igualmente. | Encantado."
+        explain: "Olga: Hola. Sí, soy Olga. Mucho gusto. — Ольга говорит mucho gusto. Igualmente отвечает ей преподавательница."
+        source: class
+        skill: encantado
       - q: Почему преподавательница говорит «encantada», а не «encantado»?
         options: "Она женщина | Она говорит с женщиной | Это вежливая форма"
+        source: class
+        skill: encantado
         explain: "Окончание зависит от того, кто говорит. Елена говорит о себе, а она женщина, поэтому говорит encantada. Мужчина сказал бы encantado."
 
   - id: quiz
     kind: quiz
     title: Знакомство
+    goal: представиться, спросить имя на «ты» и на «вы» и сказать, кто есть кто
+    version: 2
+    check: soft
     blocks:
       - "Это тест по теме «Знакомство»."
       - cando:
@@ -278,19 +360,33 @@ lessons:
           - "спросить имя на «ты» и на «вы»"
           - "ответить на знакомство: Encantado, Mucho gusto, Igualmente"
           - "сказать, кто это: ¿Quién es? — Es..."
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "¿Cómo te llamas? — как тебя зовут?"
+            - "igualmente — взаимно"
+            - "¿Quién es? — кто это?"
+            - "mucho gusto — очень приятно"
+            - "él — он"
     quiz:
       - q: Как сказать «Меня зовут Ана»?
         options: "Me llamo Ana. | Soy llamo Ana. | Me llamas Ana."
         explain: "«Меня зовут» по-испански будет me llamo, то есть дословно «я называю себя». Глагол soy здесь не нужен, а llamas относится к «ты»."
+        skill: me_llamo
       - q: "Tú ___ Pablo."
         options: "eres | soy | es"
         explain: "С tú глагол ser имеет форму eres: Tú eres Pablo. Форма soy нужна для yo, а форма es нужна для él, ella и usted."
+        skill: ser_forms
       - q: "Ella ___ Lucía."
         options: "es | eres | soy"
         explain: "С ella, так же как с él и usted, глагол ser имеет форму es: Ella es Lucía, Él es Carlos."
+        skill: ser_forms
       - q: Что скажет женщина при знакомстве?
         options: "Encantada. | Encantado. | Igualmente, señor."
         explain: "Окончание зависит от того, кто говорит. Женщина скажет encantada, а мужчина скажет encantado."
+        skill: encantado
       - q: Как вежливо спросить имя?
         options: "¿Cómo se llama usted? | ¿Cómo te llamas? | ¿Quién eres?"
         explain: "Вопрос ¿Cómo se llama usted? задают на «вы». А ¿Cómo te llamas? и ¿Quién eres? звучат на «ты»."
+        skill: tu_usted

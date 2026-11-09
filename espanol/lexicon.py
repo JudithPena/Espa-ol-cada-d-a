@@ -134,16 +134,27 @@ def lesson_texts(lesson: Lesson, include_unit_title: bool = False) -> list[tuple
     return [(w, t) for w, t in out if t]
 
 
+def _mistake_notes(it) -> list[str]:
+    return list(((it.get("meta") or {}).get("mistakes") or {}).values())
+
+
 def _choose_texts(d) -> list[str]:
     out = [d["title"]]
     for it in d["items"]:
-        out += [it["q"], it["options"][0] if it["options"] else "", it["explain"], it["say"]]
+        out += [it["q"], it["options"][0] if it["options"] else "", it["explain"], it["say"], *_mistake_notes(it)]
         out += [t for line in it["lines"] for t in line]
+        if na := it.get("noaudio"):
+            out += [na["q"], na["options"][0], na["explain"]]
     return out
 
 
 def _write_texts(d) -> list[str]:
-    return [d["title"]] + [t for it in d["items"] for t in (it["q"], *it["answers"], it["explain"], it["say"])]
+    out = [d["title"]]
+    for it in d["items"]:
+        out += [it["q"], *it["answers"], it["explain"], it["say"], *_mistake_notes(it)]
+        if na := it.get("noaudio"):
+            out += [na["q"], *na["answers"], na["explain"]]
+    return out
 
 
 # Тексты блоков сценария урока сайта, которые видит ученик (кроме неверных вариантов — см. lesson_distractors).
@@ -155,6 +166,8 @@ SCENARIO_TEXTS = {
     "build": lambda d: [d["title"]] + [t for it in d["items"] for t in (it["es"], it["ru"], *it["alt"])],
     "mission": lambda d: [d["title"], d["text"]],
     "more": lambda d: [d["title"], d["text"]],
+    "recap": lambda d: [d["title"], d["phrase"]],
+    "review": lambda d: [d["title"]],
 }
 
 
@@ -167,6 +180,12 @@ def lesson_distractors(lesson: Lesson) -> list[tuple[str, str]]:
             out += [(f"блок choose, неверный вариант", o) for it in block.data["items"] for o in it["options"][1:]]
         elif block.type == "build":
             out += [(f"блок build, лишняя плитка", x) for it in block.data["items"] for x in it["extra"]]
+        if block.type in ("choose", "write"):
+            # ожидаемые ошибки ученика («el cafe por favor») пишутся нарочно неверно, как неверные варианты
+            out += [(f"блок {block.type}, ожидаемая ошибка", k) for it in block.data["items"]
+                    for k in ((it.get("meta") or {}).get("mistakes") or {})]
+            out += [(f"блок choose, неверный вариант без звука", o) for it in block.data["items"]
+                    if block.type == "choose" and it.get("noaudio") for o in it["noaudio"]["options"][1:]]
     return out
 
 

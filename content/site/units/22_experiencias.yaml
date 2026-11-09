@@ -12,6 +12,7 @@ lessons:
     kind: grammar
     title: "He comido: прошедшее время"
     goal: рассказать, что вы сделали сегодня — he comido, he visto
+    version: 2
     unlocks: [participle]
     vocab:
       - "🔧 haber [абэ́р] — вспомогательный глагол (иметь)"
@@ -20,19 +21,20 @@ lessons:
       - "✅ ya [йа] — уже :: Ya he comido. — Я уже поел."
       - "⏳ todavía no [тодаби́а но] — ещё не :: Todavía no he comido. — Я ещё не ел."
     blocks:
+      - learn: [haber, esta mañana, esta semana]
       - "Первое прошедшее время! Из каких двух слов состоит глагол в каждой фразе?"
       - examples:
           items:
             - "Hoy he trabajado mucho. — Сегодня я много работал."
             - "¿Has comido? — Ты поел?"
             - "Esta semana hemos visto dos películas. — На этой неделе мы посмотрели два фильма."
-      - learn: [haber, esta mañana, esta semana]
       - conjugation:
           verb: haber
           ru: вспомогательный глагол
           highlight: false
           forms: [he, has, ha, hemos, habéis, han]
       - compare:
+          id: perfect
           title: haber + причастие
           lead: 'Сначала **haber** в нужной форме, за ним причастие. Причастие не меняется ни по лицам, ни по роду: _he comido, has comido, hemos comido_.'
           cards:
@@ -50,18 +52,28 @@ lessons:
       - write:
           title: Образуйте причастие
           format: причастие
+          rule: perfect
+          skill: participle
           items:
             - "trabajar => trabajado"
-            - "comer => comido"
-            - "vivir => vivido"
+            - {q: "comer", a: "comido", mistakes: {"comado": "-er → **-ido**: comido."}}
+            - {q: "vivir", a: "vivido", mistakes: {"vivado": "-ir → **-ido**: vivido."}}
       - write:
           title: haber + причастие
           format: haber + причастие
+          rule: perfect
+          skill: perfect
           items:
-            - "Hoy (yo) ___ (estudiar) mucho. => he estudiado"
-            - "Esta semana nosotros ___ (comer) en casa. => hemos comido"
+            - q: "Hoy (yo) ___ (estudiar) mucho."
+              a: "he estudiado"
+              mistakes: {"ha estudiado": "ha — «он, она». «Я» — **he** estudiado.", "estudiado": "Нужен и haber: **he** estudiado."}
+            - q: "Esta semana nosotros ___ (comer) en casa."
+              a: "hemos comido"
+              mistakes: {"hemos comiendo": "Нужно причастие: hemos **comido**."}
+            - "Esta mañana (yo) ___ (desayunar) en un bar. => he desayunado"
       - header: Неправильные причастия
       - table:
+          id: irregular
           title: Неправильные причастия
           rows:
             - ["hacer", "**hecho**"]
@@ -73,37 +85,45 @@ lessons:
       - write:
           title: Образуйте причастие
           format: причастие
+          skill: participle
           items:
-            - "hacer => hecho"
-            - "ver => visto"
-            - "escribir => escrito"
-            - "volver => vuelto"
+            - {q: "hacer", a: "hecho", mistakes: {"hacido": "hacer — неправильное: **hecho**."}}
+            - {q: "ver", a: "visto", mistakes: {"vido": "ver — неправильное: **visto**."}}
+            - {q: "escribir", a: "escrito", mistakes: {"escribido": "escribir — неправильное: **escrito**."}}
+            - {q: "volver", a: "vuelto", mistakes: {"volvido": "volver — неправильное: **vuelto**."}}
       - learn: [ya, todavía no]
-      - note: "Между **haber** и причастием ничего не ставят: **no**, **ya**, **todavía no** и возвратные местоимения — перед **haber**: _Ya he hecho la tarea._ _Todavía no hemos visto la película._ _Hoy me he levantado a las siete._"
+      - note:
+          id: nada_entre
+          text: "Между **haber** и причастием ничего не ставят: **no**, **ya**, **todavía no** и возвратные местоимения — перед **haber**: _Ya he hecho la tarea._ _Todavía no hemos visto la película._ _Hoy me he levantado a las siete._"
       - more:
           title: 🌎 А в Латинской Америке?
           text: "Даже о сегодняшнем там чаще говорят другим прошедшим временем, которое изучают на A2: вместо _Hoy he trabajado mucho_ — `Hoy trabajé mucho`. Но время с **haber** там тоже все понимают."
 
       - choose:
           title: Как сказать?
+          skill: perfect
           items:
             - q: "Я ещё не ел."
               options: "Todavía no he comido. | He todavía no comido. | No he todavía comido."
+            - q: "Мы уже видели этот фильм."
+              options: "Ya hemos visto esta película. | Hemos ya visto esta película. | Ya hemos vido esta película."
             - q: "Сегодня я встал в семь."
               options: "Hoy me he levantado a las siete. | Hoy he me levantado a las siete. | Hoy he levantado me a las siete."
   - id: experiencia
     kind: grammar
     title: ¿Has estado en España?
     goal: спросить о жизненном опыте и ответить — «да, два раза», «нет, никогда»
+    version: 2
     vocab:
       - "❓ alguna vez [алгу́на бэθ] — когда-нибудь :: ¿Has estado alguna vez en España? — Ты когда-нибудь был в Испании?"
       - "🔁 una vez / muchas veces [у́на бэθ, му́час бэ́θэс] — один раз / много раз"
       - "😋 probar [проба́р] — пробовать :: ¿Has probado la paella? — Ты пробовал паэлью?"
       - "🌊 el mar [мар] — море"
     blocks:
-      - "Как спросить «Ты когда-нибудь…?» и ответить «да, два раза» или «нет, никогда»?"
       - learn: [alguna vez, una vez / muchas veces]
+      - "Как спросить «Ты когда-нибудь…?» и ответить «да, два раза» или «нет, никогда»?"
       - compare:
+          id: alguna_vez
           cards:
             - head: ¿… alguna vez…?
               label: вопрос об опыте
@@ -118,36 +138,53 @@ lessons:
               tone: rose
               ex: ["No, nunca.", "Nunca he estado en Cancún."]
       - learn: [probar, el mar]
-      - note: "«Я был в…» о поездках — **he estado en**, с **estar**: _He estado en Madrid._ _Carmen ha estado en París._"
+      - note:
+          id: he_estado
+          text: "«Я был в…» о поездках — **he estado en**, с **estar**: _He estado en Madrid._ _Carmen ha estado en París._"
       - choose:
           title: Как сказать?
+          skill: experience
           items:
             - q: "Я был в Мадриде."
               options: "He estado en Madrid. | He sido en Madrid. | Estoy en Madrid."
             - lines: ["Diego: ¿Has probado alguna vez la paella?"]
               q: "Вы пробовали её много раз."
               options: "Sí, muchas veces. | Sí, mucho veces. | No, nunca."
+              rule: alguna_vez
       - write:
           title: Traduce
           format: фраза по-испански
+          rule: alguna_vez
+          skill: experience
           items:
-            - "Я никогда не пробовал паэлью. => Nunca he probado la paella | No he probado nunca la paella"
-            - "Мы видели этот фильм три раза. => Hemos visto la película tres veces | Hemos visto esta película tres veces"
+            - q: "Я никогда не пробовал паэлью."
+              a: "Nunca he probado la paella | No he probado nunca la paella"
+              mistakes: {"no he nunca probado la paella": "Между haber и причастием ничего не ставят: **nunca he probado**."}
+            - q: "Мы видели этот фильм три раза."
+              a: "Hemos visto la película tres veces | Hemos visto esta película tres veces"
+              mistakes: {"hemos visto la película tres vez": "Много раз — **veces**: tres veces.", "hemos vido la película tres veces": "ver — неправильное: **visto**."}
       - mission:
+          id: interview
           title: Интервью о путешествиях
           text: "Ана пишет статью о путешествиях и расспрашивает вас. Вы были в Испании один раз, пробовали хамон много раз, а море никогда не видели."
       - choose:
+          source: interview
+          skill: experience
           items:
             - lines: ["Ana: ¿Has estado alguna vez en España?"]
               options: "Sí, una vez. | Sí, muchas veces. | No, nunca."
             - lines: ["Ana: ¿Has probado el jamón?"]
               options: "Sí, muchas veces. | No, nunca. | Sí, una vez."
       - write:
+          source: interview
+          skill: experience
           items:
             - q: "Ana: ¿Has visto el mar?"
               a: "No, nunca | No, nunca he visto el mar | Nunca he visto el mar | No, nunca lo he visto"
               format: ответ по-испански
       - build:
+          source: interview
+          skill: perfect
           items:
             - es: "Este año he estudiado mucho español."
               ru: "Ana: ¿Y el español? — «В этом году я много занимался испанским»."
@@ -157,13 +194,15 @@ lessons:
     kind: reading
     title: Мой год с испанским
     goal: понять текст о том, чему научился человек, и что он собирается делать
+    version: 2
     vocab:
       - "🥇 primer [примэ́р] — первый (перед сущ. м. р.) :: mi primer año — мой первый год"
       - "💡 entender [энтэндэ́р] — понимать (`e → ie`) :: Ya entiendo mucho. — Я уже многое понимаю."
     blocks:
-      - "Этот текст — про вас. Всё, о чём в нём говорится, вы уже умеете."
       - learn: [primer, entender]
+      - "Этот текст — про вас. Всё, о чём в нём говорится, вы уже умеете."
       - reading:
+          id: my_year
           title: Mi primer año con el español
           text: |
             Este año he aprendido mucho. He estudiado español casi todos los días: he leído textos, he escuchado música en español y he hecho muchas tareas.
@@ -186,13 +225,19 @@ lessons:
           text: "**preguntar** — «спрашивать», спрягается как hablar: _Quiero preguntar dónde está el museo._ **entender** — «понимать», `e` → `ie`, как querer: _¿Me entiendes?_ Вы знаете его по фразе _No entiendo_."
       - choose:
           title: Responde
+          source: my_year
+          rule: none
           items:
+            - q: "¿Es su primer año con el español?"
+              options: "Sí, es su primer año. | No, es su segundo año. | No, estudia español en la universidad."
             - q: "¿Qué puede hacer ya?"
               options: "Pedir un café, comprar ropa, preguntar dónde está la estación. | Hablar muy bien y entender todo. | Nada: todavía no entiende."
             - q: "¿Qué va a hacer el año que viene?"
               options: "Va a viajar a España. | Va a estudiar inglés. | Va a vivir en México."
       - sort:
           title: Уже сделал или только собирается?
+          source: my_year
+          rule: none
           groups:
             "✅ ya ha…": [estudiado español, leído textos, escuchado música]
             "🔜 va a…": [viajar a España, probar las tapas]
@@ -200,26 +245,45 @@ lessons:
     quiz:
       - q: ¿Habla muy bien español?
         options: "Todavía no, pero entiende mucho. | Sí, habla muy bien. | No entiende nada."
+        source: my_year
       - q: ¿Adónde va a viajar el año que viene?
         options: "a España | a México | a Argentina"
+        source: my_year
 
   - id: quiz
     kind: quiz
     title: Прошедшее время
+    goal: рассказать, что вы сделали сегодня, спросить об опыте и образовать причастия
+    version: 2
+    check: soft
     blocks:
-      - "Это тест по теме «Что вы сделали сегодня?». Проверьте, как вы запомнили глагол **haber** и причастия, в том числе неправильные."
+      - "Это тест по теме «Что вы сделали сегодня?»."
       - cando:
           - "рассказать, что вы сделали сегодня: _He trabajado, he comido, he visto una película..._"
           - "спросить о жизненном опыте и ответить: _¿Has estado alguna vez en Sevilla? Sí, dos veces. No, nunca._"
           - "образовывать причастия, в том числе неправильные: hecho, visto, escrito, vuelto, abierto"
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "esta semana — на этой неделе"
+            - "ya — уже"
+            - "probar — пробовать"
+            - "el mar — море"
+            - "entender — понимать"
     quiz:
       - q: "Hoy ___ mucho. (я работал)"
         options: "he trabajado | ha trabajado | he trabajando"
+        skill: perfect
       - q: Причастие от «hacer»
         options: "hecho | hacido | hacedo"
+        skill: participle
       - q: "¿___ visto la película? (ты)"
         options: "Has | Ha | He"
+        skill: perfect
       - q: Как сказать «Я никогда не был в Мексике»?
         options: "Nunca he estado en México. | Nunca estoy en México. | Nunca he sido México."
+        skill: experience
       - q: "Todavía no ___ (yo, comer)."
         options: "he comido | he comiendo | como"
+        skill: perfect

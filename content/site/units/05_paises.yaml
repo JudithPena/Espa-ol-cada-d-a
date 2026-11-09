@@ -12,6 +12,7 @@ lessons:
     kind: vocab
     title: ¿De dónde eres?
     goal: спросить, откуда человек, и ответить
+    version: 2
     vocab:
       - "🌍 ¿De dónde eres? [дэ до́ндэ э́рэс] — откуда ты? :: ¿De dónde eres, Iván? — Откуда ты, Иван?"
       - "📍 soy de... [сой дэ] — я из... :: Soy de España. — Я из Испании."
@@ -24,12 +25,14 @@ lessons:
       - "Откуда вы? Этот вопрос задают почти в любом знакомстве — сразу после имени."
       - learn: ["¿De dónde eres?", soy de..., Ucrania]
       - examples:
+          id: de_donde
           items:
             - "¿De dónde eres? — Откуда ты?"
             - "Soy de Ucrania. ¿Y tú? — Я из Украины. А ты?"
             - "¿De dónde es usted? — Откуда вы?"
       - choose:
           title: Что ответить?
+          skill: de_donde
           items:
             - lines: ["Pablo: ¿De dónde eres?"]
               q: "Вы из Украины."
@@ -39,19 +42,33 @@ lessons:
       - tip: "**México** пишется через `x`, но читается [мэ́хико]: это старое написание звука «х», оно сохранилось в названии страны."
       - choose:
           title: Послушайте и выберите
+          rule: none
+          skill: de_donde
           items:
             - say: "Soy de Colombia."
               options: "Я из Колумбии. | Я из Мексики. | Я из Аргентины."
+              noaudio: {q: "Что значит «Soy de Colombia»?", options: "Я из Колумбии. | Я из Мексики. | Я из Аргентины."}
             - say: "Carlos es de Argentina."
               options: "Карлос из Аргентины. | Карлос из Франции. | Карлос из Колумбии."
+              noaudio: {q: "Что значит «Carlos es de Argentina»?", options: "Карлос из Аргентины. | Карлос из Франции. | Карлос из Колумбии."}
       - write:
           title: Traduce
           format: фраза по-испански
+          rule: de_donde
+          skill: de_donde
           items:
-            - "Я из Мексики. => Soy de México"
-            - "Ана из Франции. => Ana es de Francia"
+            - q: "Я из Мексики."
+              a: "Soy de México | Yo soy de México"
+              mistakes:
+                "es de mexico": "Es de — «он (она) из». О себе — **soy de**: Soy de México."
+            - q: "Ана из Франции."
+              a: "Ana es de Francia"
+              mistakes:
+                "ana soy de francia": "Soy de — «я из». Об Ане — **es de**: Ana es de Francia."
       - build:
           title: Соберите фразу
+          rule: de_donde
+          skill: de_donde
           items:
             - es: "¿De dónde es usted, señora?"
               ru: "Откуда вы, сеньора?"
@@ -61,6 +78,7 @@ lessons:
     kind: vocab
     title: Ещё страны
     goal: назвать ещё пять стран и сказать «я тоже»
+    version: 2
     vocab:
       - "🇩🇪 Alemania [алема́нья] — Германия"
       - "🇮🇹 Italia [ита́лья] — Италия"
@@ -80,6 +98,7 @@ lessons:
             - "China — Китай"
       - choose:
           title: Responde
+          skill: de_donde
           items:
             - lines: ["Marco: Hola, soy Marco. Soy de Italia."]
               q: "¿De dónde es Marco?"
@@ -89,16 +108,20 @@ lessons:
               q: "¿De dónde es Tom?"
               options: "Es de Inglaterra. | Es de Estados Unidos. | Es de Alemania."
       - learn: [también]
-      - tip: "Если у вас так же, как у собеседника, ответьте коротко: **yo también** — «я тоже». О другом человеке — **también** после имени: _Carlos es de México. — Ana también._"
+      - tip:
+          id: tambien
+          text: "Если у вас так же, как у собеседника, ответьте коротко: **yo también** — «я тоже». О другом человеке — **también** после имени: _Carlos es de México. — Ana también._"
       - choose:
           title: Что ответить?
+          skill: tambien
           items:
             - lines: ["Ana: Soy de Ucrania. ¿Y tú?"]
               q: "Вы тоже из Украины."
               options: "Yo también. | Tú también. | Soy también."
       - write:
           title: Закончите фразу
-          format: слово по-испански
+          format: одно слово по-испански
+          skill: tambien
           items:
             - q: "Marco es de Italia y Clara ___. (Клара тоже из Италии)"
               a: "también"
@@ -107,6 +130,7 @@ lessons:
     kind: grammar
     title: "Национальности: ucraniano — ucraniana"
     goal: назвать национальность мужчины и женщины
+    version: 2
     vocab:
       - "🇺🇦 ucraniano/a [укранья́но, укранья́на] — украинец / украинка :: Iván es ucraniano. Olga es ucraniana. — Иван украинец. Ольга украинка."
       - "🇲🇽 mexicano/a [мэхика́но] — мексиканец / мексиканка"
@@ -127,6 +151,7 @@ lessons:
             - "Olga es ucraniana. — Ольга украинка."
       - learn: [ucraniano/a, mexicano/a, argentino/a, colombiano/a]
       - compare:
+          id: o_a
           cards:
             - head: -o → -a
               say: false
@@ -139,23 +164,34 @@ lessons:
           text: "Официально жителей США называют `estadounidense`, но в разговоре чаще говорят **americano** и **americana**: _Él es americano._ _Ella es americana._"
       - write:
           title: Закончите фразу
-          format: национальность
+          format: национальность, одно слово
+          skill: nationality
           items:
+            - "Irina es de Ucrania. Es ___ => ucraniana"
             - "Ana es de México. Es ___ => mexicana"
             - "Diego es de Argentina. Es ___ => argentino"
             - "Sofía es de Colombia. Es ___ => colombiana"
       - learn: [italiano/a, americano/a, chino/a]
+      - note:
+          id: capitals
+          text: "Национальности пишутся **с маленькой буквы**, а страны — с большой: _Soy ucraniana, de Ucrania._ _Diego es argentino, de Argentina._"
       - choose:
           title: Выберите форму
+          rule: o_a
+          skill: nationality
           items:
             - q: "Li es de China. Es ___."
               options: "chino | china | China"
               explain: "Ли — мужчина: chino. China с большой буквы — страна."
             - q: "Clara es de Italia. Es ___."
               options: "italiana | italiano | Italia"
-      - header: Если на конце согласная
+            - q: "Tom es de Estados Unidos. Es ___."
+              options: "americano | americana | Estados Unidos"
+              explain: "Том — мужчина: americano. Estados Unidos — название страны."
       - learn: [español/a, francés/a, alemán/a, inglés/a]
+      - header: Если на конце согласная
       - compare:
+          id: plus_a
           cards:
             - head: + -a
               say: false
@@ -170,8 +206,9 @@ lessons:
               ex: ["Pierre es francés. — Пьер француз.", "Marie es francesa. — Мари француженка."]
       - write:
           title: Закончите фразу
-          format: национальность
+          format: национальность, одно слово
           accents: strict
+          skill: nationality
           items:
             - "Carmen es de España. Es ___ => española"
             - q: "Marie es de Francia. Es ___"
@@ -181,13 +218,13 @@ lessons:
               a: alemán
               explain: "Ударение на последнем слоге, слово кончается на `n` — значок нужен: alemán."
             - "Emma es de Inglaterra. Es ___ => inglesa"
-      - note: "Национальности пишутся **с маленькой буквы**, а страны — с большой: _Soy ucraniana, de Ucrania._ _Diego es argentino, de Argentina._"
     allow: [Marie, Hans, Emma]
 
   - id: idiomas
     kind: grammar
     title: ¿Hablas español?
     goal: сказать, на каких языках вы говорите
+    version: 2
     vocab:
       - "🗣 hablar [абла́р] — говорить, разговаривать {forms: hablo hablas habla} :: Hablo español. — Я говорю по-испански."
       - "🇪🇸 el español [эспаньо́ль] — испанский язык"
@@ -203,9 +240,11 @@ lessons:
             - "¿Hablas inglés? — Ты говоришь по-английски?"
             - "Pierre habla francés. — Пьер говорит по-французски."
       - learn: [hablar, el español, el ucraniano, el inglés]
-      - rule: |
-          1. Язык называется как национальность в мужском роде, с артиклем **el**: **el español, el ucraniano, el inglés, el francés**. _Pablo es español_ — «Пабло испанец», а _el español_ — «испанский язык».
-          2. Сразу после **hablar** артикль не нужен: _Hablo español._ _¿Hablas inglés?_ _Li habla chino._
+      - rule:
+          id: hablar
+          text: |
+            1. Язык называется как национальность в мужском роде, с артиклем **el**: **el español, el ucraniano, el inglés, el francés**. _Pablo es español_ — «Пабло испанец», а _el español_ — «испанский язык».
+            2. Сразу после **hablar** артикль не нужен: _Hablo español._ _¿Hablas inglés?_ _Li habla chino._
       - table:
           title: "hablar — говорить"
           rows:
@@ -214,6 +253,7 @@ lessons:
             - ["él / ella / usted", "habl**a**"]
       - choose:
           title: Как сказать?
+          skill: hablar_lang
           items:
             - q: "Я говорю по-украински."
               options: "Hablo ucraniano. | Hablo ucraniana. | Hablo Ucrania."
@@ -221,14 +261,25 @@ lessons:
       - write:
           title: Traduce
           format: фраза по-испански
+          skill: hablar_lang
           items:
-            - "Я говорю по-испански. => Hablo español"
-            - "Ты говоришь по-английски? => ¿Hablas inglés? | Hablas inglés"
-            - "Пьер говорит по-французски. => Pierre habla francés"
+            - q: "Я говорю по-испански."
+              a: "Hablo español | Yo hablo español"
+              mistakes:
+                "hablo el español": "Сразу после hablar артикль не нужен: **hablo español**."
+                "hablo espanol": "Почти: в слове español есть буква `ñ`."
+            - "Ты говоришь по-английски? => ¿Hablas inglés? | Hablas inglés | ¿Tú hablas inglés?"
+            - q: "Пьер говорит по-французски."
+              a: "Pierre habla francés"
+              mistakes:
+                "pierre habla el francés": "Сразу после hablar артикль не нужен: **habla francés**."
       - learn: [un poco, pero, e]
-      - note: "Союз **y** значит «и». Если следующее слово начинается на звук «и», то вместо **y** говорят **e**: _español e inglés_, _francés e italiano_. Перед другими звуками остаётся **y**: _inglés y español_."
+      - note:
+          id: y_e
+          text: "Союз **y** значит «и». Если следующее слово начинается на звук «и», то вместо **y** говорят **e**: _español e inglés_, _francés e italiano_. Перед другими звуками остаётся **y**: _inglés y español_."
       - choose:
           title: y или e?
+          skill: y_e
           items:
             - q: "Hablo español ___ inglés."
               options: "e | y"
@@ -239,11 +290,18 @@ lessons:
       - write:
           title: Traduce
           format: фраза по-испански
+          rule: hablar
+          skill: hablar_lang
           items:
             - "Да, немного. => Sí, un poco"
-            - "Я не говорю по-китайски. => No hablo chino"
+            - q: "Я не говорю по-китайски."
+              a: "No hablo chino | Yo no hablo chino"
+              mistakes:
+                "no hablo china": "Язык — как национальность в мужском роде: **chino**. China — страна или китаянка."
       - build:
           title: Соберите фразу
+          rule: hablar
+          skill: hablar_lang
           items:
             - "Hablo inglés, pero no hablo francés. — Я говорю по-английски, но не по-французски."
 
@@ -251,6 +309,7 @@ lessons:
     kind: reading
     title: Друзья со всего мира
     goal: понять короткий текст о людях — откуда они, где живут, на каких языках говорят
+    version: 2
     vocab:
       - "🏠 vivir [биби́р] — жить {forms: vivo vives vive}"
       - "📍 en [эн] — в, на :: Vivo en Madrid. — Я живу в Мадриде."
@@ -260,11 +319,13 @@ lessons:
       - learn: [vivir, en, "¿Dónde vives?", el amigo / la amiga]
       - choose:
           title: Что ответить?
+          skill: vivir_en
           items:
             - lines: ["Ana: ¿Dónde vives?"]
               options: "Vivo en Madrid. | Soy de Madrid. | Hablo Madrid."
               explain: "Где живёте — vivo en. Soy de — откуда вы."
       - reading:
+          id: amigos
           title: Mis amigos
           text: |
             Hola. Me llamo Iván. Soy ucraniano, de Kiev, pero vivo en Madrid. Hablo ucraniano, inglés y un poco de español.
@@ -278,30 +339,48 @@ lessons:
             Мою подругу зовут Софья. Она аргентинка, из Буэнос-Айреса. Софья говорит по-испански и по-итальянски.
 
             Мой друг Пьер — француз. Он тоже живёт в Мадриде. Говорит по-французски, по-испански и немного по-украински. Молодец, Пьер!
+      - note: "**Mis amigos** значит «мои друзья» — это множественное число от **mi amigo**. Множественное число мы разберём совсем скоро."
       - choose:
           title: Responde
+          source: amigos
+          rule: none
           items:
             - q: "¿Dónde vive Iván?"
               options: "Vive en Madrid. | Vive en Kiev. | Vive en Buenos Aires."
+              explain: "Soy ucraniano, de Kiev, pero vivo en Madrid. — Иван из Киева, но живёт в Мадриде."
+              skill: vivir_en
             - q: "¿Sofía es mexicana?"
               options: "No, es argentina. | Sí, es mexicana. | No, es francesa."
+              explain: "Es argentina, de Buenos Aires. — Софья аргентинка."
+              skill: nationality
             - q: "¿Pierre habla ucraniano?"
               options: "Sí, un poco. | No, no habla ucraniano. | Sí, muy bien."
-      - note: "**Mis amigos** значит «мои друзья» — это множественное число от **mi amigo**. Множественное число мы разберём совсем скоро."
+              explain: "Habla francés, español y un poco de ucraniano. — Пьер немного говорит по-украински."
+              skill: hablar_lang
+            - q: "Sofía es ___ de Iván."
+              options: "amiga | amigo | ucraniana"
+              explain: "Mi amiga se llama Sofía. — Софья подруга Ивана: о женщине — amiga."
     forms: [mis, amigos]
     quiz:
       - q: ¿De dónde es Sofía?
         options: "De Argentina. | De Francia. | De Ucrania."
+        source: amigos
+        skill: de_donde
       - q: ¿Dónde vive Pierre?
         options: "En Madrid. | En Kiev. | En Buenos Aires."
+        explain: "Él también vive en Madrid. — Пьер тоже живёт в Мадриде."
+        source: amigos
+        skill: vivir_en
 
   - id: dialogo
     kind: dialogue
     title: В языковой школе
     goal: рассказать о себе — откуда вы, где живёте, на каких языках говорите
+    version: 2
     blocks:
-      - "В диалоге только знакомые слова."
+      - "Пабло и Ирина знакомятся в языковой школе в Мадриде."
       - dialogue:
+          id: school
           lines:
             - "Pablo: ¡Hola! Me llamo Pablo. ¿Cómo te llamas? | Привет! Меня зовут Пабло. Как тебя зовут?"
             - "Irina: Hola, Pablo. Me llamo Irina. | Привет, Пабло. Меня зовут Ирина."
@@ -316,27 +395,43 @@ lessons:
             - "Pablo: ¡Yo también! | Я тоже!"
       - choose:
           title: Responde
+          source: school
           items:
             - q: "¿Pablo es español?"
               options: "No, es mexicano. | Sí, es español. | No, es argentino."
+              explain: "Pablo: Yo soy mexicano. — Пабло мексиканец."
+              skill: nationality
             - q: "¿Qué habla Irina?"
               options: "Inglés y un poco de español. | Español e italiano. | Francés e inglés."
+              explain: "Irina: Sí, hablo inglés y un poco de español."
+              skill: hablar_lang
             - q: "¿Dónde vive Pablo?"
               options: "En Madrid. | En Leópolis. | En México."
+              explain: "Irina: Vivo en Madrid. ¿Y tú? — Pablo: ¡Yo también! — Пабло тоже живёт в Мадриде."
+              skill: vivir_en
       - mission:
+          id: exchange
           title: Анкета языкового обмена
           text: "Вы — Марко, итальянец. Живёте в Мадриде, говорите по-итальянски и немного по-испански. Ирина хочет найти партнёра для языкового обмена и задаёт вам вопросы."
       - choose:
+          source: exchange
+          skill: nationality
           items:
             - lines: ["Irina: ¿De dónde eres, Marco?"]
               options: "Soy de Italia. | Soy italiana. | Es de Italia."
               explain: "Марко — мужчина: soy de Italia или soy italiano. Italiana — о женщине."
       - write:
+          source: exchange
+          skill: vivir_en
           items:
             - q: "Irina: ¿Dónde vives?"
-              a: "Vivo en Madrid | En Madrid"
+              a: "Vivo en Madrid | En Madrid | Yo vivo en Madrid"
               format: ответ по-испански
+              mistakes:
+                "soy de madrid": "Soy de — «я из». Где вы живёте — **vivo en** Madrid."
       - build:
+          free: true
+          skill: hablar_lang
           items:
             - es: "Hablo italiano y un poco de español."
               ru: "Irina: ¿Hablas español? — Ответьте: «Я говорю по-итальянски и немного по-испански»."
@@ -345,6 +440,9 @@ lessons:
   - id: quiz
     kind: quiz
     title: Страны и языки
+    goal: сказать, откуда вы, назвать национальность и рассказать о языках
+    version: 2
+    check: soft
     blocks:
       - "Это тест по теме «Страны, национальности, языки». Проверьте, что вы запомнили."
       - cando:
@@ -352,31 +450,47 @@ lessons:
           - "назвать национальность: ucraniano / ucraniana, español / española"
           - "рассказать о языках: Hablo ucraniano y un poco de español"
           - "сказать, где живёте: Vivo en..."
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "¿De dónde eres? — откуда ты?"
+            - "también — тоже"
+            - "Italia — Италия"
+            - "pero — но"
+            - "un poco — немного"
     quiz:
       - q: "Olga es de Ucrania. Es ___"
         options: "ucraniana | ucraniano | Ucrania"
         explain: "Ольга — женщина, поэтому нужна форма женского рода: ucraniana. А Ucrania — это название страны."
+        skill: nationality
       - q: "Pierre es de Francia. Es ___"
         options: "francés | francesa | Francia"
         explain: "Пьер — мужчина, поэтому нужна форма мужского рода: francés. А форму francesa используют, когда говорят о женщине."
+        skill: nationality
       - q: Как сказать «Я говорю по-испански и по-английски»?
         options: "Hablo español e inglés. | Hablo español y inglés. | Habla español e inglés."
         explain: "Слово inglés начинается на звук «и», поэтому перед ним вместо y говорят e: español e inglés."
+        skill: y_e
       - q: "¿Dónde vives?"
         options: "Vivo en Madrid. | Soy de Madrid. | Hablo Madrid."
         explain: "Вопрос значит «Где ты живёшь?», поэтому отвечают vivo en и называют город. А soy de говорят, когда отвечают, откуда вы."
+        skill: vivir_en
       - q: Какое слово пишется с большой буквы?
         options: "Alemania | alemán | alemana"
         explain: "Названия стран пишутся с большой буквы: Alemania. А национальности и языки пишутся с маленькой: alemán, alemana."
+        skill: nationality
 
   - id: repaso
     kind: review
     title: Большое повторение
     goal: проверить себя по темам 1–5 — приветствия, знакомство, числа, страны
+    version: 2
     blocks:
       - "Позади пять тем — больше сотни слов и фраз. Сегодня новых слов нет, только повторение."
       - match:
           title: Соедините пары
+          rule: none
           pairs:
             - "buenas noches — доброй ночи"
             - "¿Cómo te llamas? — как тебя зовут?"
@@ -385,26 +499,45 @@ lessons:
             - "Alemania — Германия"
       - choose:
           title: Что ответить?
+          rule: none
           items:
             - lines: ["Señor García: Buenas tardes. ¿Cómo está usted?"]
               options: "Bien, gracias. ¿Y usted? | Bien, gracias. ¿Y tú? | Me llamo Pablo."
+              skill: tu_usted
             - lines: ["Profesora: ¿Cuántos años tienes?"]
               q: "Вам двенадцать лет."
               options: "Tengo doce años. | Soy doce años. | Tengo dos años."
+              skill: tener_age
             - q: "Собеседник говорит слишком быстро."
               options: "Más despacio, por favor. | Otra vez, por favor. | De nada."
+              skill: ask_in_class
       - choose:
           title: Послушайте и выберите
+          skill: de_donde
+          rule: none
           items:
             - say: "Soy de Argentina, pero vivo en España."
               options: "Я из Аргентины, но живу в Испании. | Я из Испании, но живу в Аргентине. | Я из Аргентины и живу в Аргентине."
+              noaudio: {q: "Что значит «Soy de Argentina, pero vivo en España»?", options: "Я из Аргентины, но живу в Испании. | Я из Испании, но живу в Аргентине. | Я из Аргентины и живу в Аргентине."}
       - write:
           title: Напишите по-испански
           format: фраза по-испански
+          rule: none
           items:
-            - "Ana es de Italia. Es ___ => italiana"
-            - "Меня зовут Иван, я из Украины. => Me llamo Iván y soy de Ucrania | Me llamo Iván, soy de Ucrania | Me llamo Iván. Soy de Ucrania"
+            - q: "Ana es de Italia. Es ___"
+              a: "italiana"
+              format: национальность, одно слово
+              skill: nationality
+            - q: "Меня зовут Иван, я из Украины."
+              a: "Me llamo Iván y soy de Ucrania | Me llamo Iván, soy de Ucrania | Me llamo Iván. Soy de Ucrania | Soy Iván, de Ucrania"
+              skill: de_donde
       - build:
           title: Соберите фразу
+          skill: ask_in_class
+          rule: none
           items:
             - "¿Cómo se dice «спасибо» en español? — Как сказать «спасибо» по-испански?"
+      - review:
+          title: Повторим то, что пора
+          skills: [greeting_time, tu_usted, me_llamo, ser_forms, numbers, tener_age, class_words]
+          n: 3

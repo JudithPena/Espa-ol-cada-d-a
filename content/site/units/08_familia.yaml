@@ -12,6 +12,7 @@ lessons:
     kind: vocab
     title: Моя семья
     goal: назвать родственников и сказать, кто у вас есть
+    version: 2
     vocab:
       - "👨‍👩‍👧 la familia [фами́лья] — семья"
       - "👨 el padre [па́дрэ] — отец"
@@ -33,6 +34,7 @@ lessons:
       - tip: "В слове **hijo** буква `h` не читается, как в **h**ola и **h**otel, а `j` читается как «х»: hi**j**o [и́хо], hi**j**a [и́ха]."
       - match:
           title: Соедините пары
+          rule: none
           pairs:
             - "el padre — отец"
             - "la madre — мать"
@@ -40,30 +42,43 @@ lessons:
             - "el hijo — сын"
             - "la familia — семья"
       - learn: [los padres, "¿Tienes hermanos?"]
-      - rule: |
-          Если в группе есть и мужчины, и женщины, то всю группу называют словом мужского рода во множественном числе:
-          1. **los padres** — «отец и мать», то есть «родители»: _Mis padres viven en Madrid._
-          2. **los hermanos** — «братья», а также «брат и сестра»: _Tengo dos hermanos, Carlos y Marta._
-          3. **los hijos** — «сыновья», а также «сын и дочь», «дети»: _Isabel tiene tres hijos: dos hijas y un hijo._
-          Если в группе только женщины — женский род: _mis hermanas_, _las hijas de Ana_.
+      - rule:
+          id: group
+          text: |
+            Если в группе есть и мужчины, и женщины, то всю группу называют словом мужского рода во множественном числе:
+            1. **los padres** — «отец и мать», то есть «родители»: _Mis padres viven en Madrid._
+            2. **los hermanos** — «братья», а также «брат и сестра»: _Tengo dos hermanos, Carlos y Marta._
+            3. **los hijos** — «сыновья», а также «сын и дочь», «дети»: _Isabel tiene tres hijos: dos hijas y un hijo._
+            Если в группе только женщины — женский род: _mis hermanas_, _las hijas de Ana_.
       - choose:
           title: Traduce
+          skill: family_plural
           items:
             - q: "Tengo dos hermanos, Carlos y Marta."
               options: "У меня брат и сестра, Карлос и Марта. | У меня два брата, Карлос и Марта. | У меня две сестры, Карлос и Марта."
               explain: "Marta — женщина, значит hermanos здесь «брат и сестра»."
+            - lines: ["Ana: ¿Tienes hermanos?"]
+              q: "У вас есть брат Карлос и сестра Марта."
+              options: "Sí, tengo dos hermanos. | No, no tengo hermanos. | Sí, tengo dos hermanas."
+              explain: "Брат и сестра вместе — hermanos: tengo dos hermanos."
             - q: "Los padres de Ana son médicos."
               options: "Родители Аны — врачи. | Отцы Аны — врачи. | Братья Аны — врачи."
       - write:
           title: Traduce
-          format: фраза по-испански
+          format: фраза с tener по-испански
+          rule: none
+          skill: tener_have
           items:
-            - "У меня есть брат. => Tengo un hermano"
-            - "У тебя есть дети? => ¿Tienes hijos? | Tienes hijos"
+            - q: "У меня есть брат."
+              a: "Tengo un hermano | Yo tengo un hermano"
+              mistakes: {"tengo una hermano": "Hermano — мужского рода: **un** hermano.", "tengo hermano": "Нужен артикль: tengo **un** hermano.", "hay un hermano": "«У меня есть» — **tengo**: Tengo un hermano. Hay говорят о предметах, которые где-то лежат."}
+            - "У тебя есть дети? => ¿Tienes hijos? | Tienes hijos | ¿Tú tienes hijos?"
       - learn: [el abuelo / la abuela, el tío / la tía, el primo / la prima]
       - write:
           title: "¿Quién es?"
           format: mi + слово
+          rule: none
+          skill: family
           items:
             - "el padre de mi padre => mi abuelo"
             - "la hermana de mi madre => mi tía"
@@ -72,18 +87,24 @@ lessons:
       - note: "**la mujer** — и «женщина», и «жена». О чьей-то семье — «жена»: _mi mujer_, _la mujer de Carlos_. В остальных случаях — «женщина»: _La mujer de la foto es mi madre._"
       - choose:
           title: Traduce
+          skill: family
           items:
             - q: "La mujer de Carlos es médica."
               options: "Жена Карлоса — врач. | Мама Карлоса — врач. | Сестра Карлоса — врач."
+            - q: "Ana y su marido viven en Madrid."
+              options: "Ана и её муж живут в Мадриде. | Ана и её брат живут в Мадриде. | Ана и её отец живут в Мадриде."
             - q: "¿Tienes novia?"
               options: "У тебя есть девушка? | У тебя есть жена? | У тебя есть сестра?"
             - say: "Mi abuela tiene un gato."
               options: "У моей бабушки есть кот. | У моего дедушки есть кот. | У моей бабушки есть собака."
+              rule: none
+              noaudio: {q: "Что значит «Mi abuela tiene un gato»?", options: "У моей бабушки есть кот. | У моего дедушки есть кот. | У моей бабушки есть собака."}
 
   - id: posesivos
     kind: grammar
     title: "Мой, твой, наш. Глагол tener"
     goal: сказать «мой, твой, наш» и «у нас есть»
+    version: 2
     vocab:
       - "🏠 nuestro/a [нуэ́стро, нуэ́стра] — наш, наша"
       - "🏡 vuestro/a [буэ́стро, буэ́стра] — ваш, ваша (группе, неформально)"
@@ -95,18 +116,24 @@ lessons:
             - "mi hermano — mis hermanos — мой брат — мои братья"
             - "tu casa — tus casas — твой дом — твои дома"
             - "su hijo — sus hijos — его (её, ваш) сын — его (её, ваши) сыновья"
-      - rule: "**mi, tu, su** по родам не меняются, но во множественном числе получают **-s**: _mi hermano, mi hermana_, но _mis hermanos_; _tu casa_, но _tus casas_."
+      - rule:
+          id: mis
+          text: "**mi, tu, su** по родам не меняются, но во множественном числе получают **-s**: _mi hermano, mi hermana_, но _mis hermanos_; _tu casa_, но _tus casas_."
       - write:
           title: Мой или мои?
           format: одно слово
+          skill: possessives
           items:
             - "(yo) ___ hermanos => mis"
             - "(tú) ___ padres => tus"
             - "(yo) ___ familia => mi"
       - learn: [nuestro/a, vuestro/a]
-      - rule: "**nuestro** и **vuestro** меняются и по роду, и по числу — у каждого четыре формы: _nuestro padre, nuestra madre, nuestros hijos, nuestras hijas_; _vuestro gato, vuestra casa, vuestros abuelos_."
+      - rule:
+          id: nuestro
+          text: "**nuestro** и **vuestro** меняются и по роду, и по числу — у каждого четыре формы: _nuestro padre, nuestra madre, nuestros hijos, nuestras hijas_; _vuestro gato, vuestra casa, vuestros abuelos_."
       - choose:
           title: Выберите форму
+          skill: possessives
           items:
             - q: "___ casa está en Sevilla. (наш)"
               options: "Nuestra | Nuestro | Nuestros"
@@ -116,12 +143,15 @@ lessons:
       - write:
           title: Наш или ваш?
           format: одно слово
+          rule: nuestro
+          skill: possessives
           items:
             - "(nosotros) ___ casa => nuestra"
             - "(vosotros) ___ perro => vuestro"
       - note: "**su** (и **sus**) — «его», «её», «их», а также «ваш» при **usted** и **ustedes**. Кого имеют в виду, понятно из контекста: _Ana y su marido_ — «Ана и её муж», _Señora López, ¿cómo se llama su hijo?_ — «как зовут вашего сына?»."
       - choose:
           title: Выберите слово
+          skill: possessives
           items:
             - q: "Ana y ___ marido. (её)"
               options: "su | sus | tu"
@@ -137,7 +167,8 @@ lessons:
             - "¿Tenéis hijos? — У вас есть дети?"
       - write:
           title: Вставьте форму tener
-          format: форма глагола
+          format: одна форма глагола tener
+          skill: tener_forms
           items:
             - "Nosotros ___ dos hijos. => tenemos"
             - "¿Ellos ___ un gato? => tienen"
@@ -147,6 +178,7 @@ lessons:
     kind: reading
     title: La familia de Pablo
     goal: понять рассказ о семье и ответить на вопросы
+    version: 2
     vocab:
       - "⬆️ mayor [майо́р] — старший; пожилой {pos: adj}"
       - "⬇️ pequeño/a [пэкэ́ньо, пэкэ́нья] — маленький; младший"
@@ -154,10 +186,12 @@ lessons:
       - learn: [mayor, pequeño/a]
       - choose:
           title: Traduce
+          skill: family
           items:
             - q: "Mi hermana mayor se llama Carmen."
               options: "Мою старшую сестру зовут Кармен. | Мою младшую сестру зовут Кармен. | Мою маленькую дочь зовут Кармен."
       - reading:
+          id: pablo
           title: Mi familia
           text: |
             Hola. Me llamo Pablo. Tengo diecisiete años y estudio en la escuela.
@@ -181,6 +215,7 @@ lessons:
             Моя тётя Елена живёт в Аргентине. Её муж — аргентинец. У них двое детей — мои двоюродные брат и сестра Диего и София.
       - choose:
           title: Responde
+          source: pablo
           items:
             - q: "¿Qué es el padre de Pablo?"
               options: "Es ingeniero. | Es profesor. | Es médico."
@@ -188,25 +223,37 @@ lessons:
               options: "En Sevilla. | En Argentina. | En Madrid."
             - q: "¿Diego y Sofía son hermanos de Pablo?"
               options: "No, son sus primos. | Sí, son sus hermanos. | No, son sus tíos."
+              explain: "Tienen dos hijos: mis primos Diego y Sofía. — Диего и Софья — двоюродные брат и сестра Пабло."
+              skill: family
+            - q: "¿Quién es Luis?"
+              options: "El hermano pequeño de Pablo. | El hermano mayor de Pablo. | El primo de Pablo."
+              explain: "Mi hermano pequeño se llama Luis. Tiene doce años."
+              skill: family
             - q: "¿Cuántos años tiene Carmen?"
               options: "Tiene veinte años. | Tiene doce años. | Tiene diecisiete años."
     allow: [Rufo]
     quiz:
       - q: ¿Cuántos años tiene Luis?
         options: "doce | veinte | diecisiete"
+        source: pablo
+        skill: tener_age
       - q: ¿Quién tiene un perro?
         options: "el abuelo de Pablo | Pablo | la tía Elena"
+        explain: "Mi abuelo tiene un perro, Rufo. ¡Y nosotros tenemos un gato!"
+        source: pablo
 
   - id: dialogo
     kind: dialogue
     title: ¿Quién es?
     goal: показать семейное фото и рассказать, кто есть кто
+    version: 2
     vocab:
       - "👀 mira [ми́ра] — смотри, посмотри"
     blocks:
-      - "Лусия и Пабло смотрят семейные фотографии."
       - learn: [mira]
+      - "Лусия и Пабло смотрят семейные фотографии."
       - dialogue:
+          id: photos
           lines:
             - "Pablo: Mira, Lucía: es mi familia. | Смотри, Лусия: это моя семья."
             - "Lucía: ¿Quién es? ¿Es tu padre? | Кто это? Твой отец?"
@@ -220,14 +267,21 @@ lessons:
             - "Lucía: ¡Pablo! | Пабло!"
       - choose:
           title: Responde
+          source: photos
           items:
             - q: "¿Quién es Rufo?"
               options: "El perro del abuelo de Pablo. | El gato de Pablo. | El primo de Lucía."
             - q: "¿Lucía tiene hermanos?"
               options: "No, pero tiene cuatro primos. | Sí, tiene cuatro hermanos. | Sí, tiene una hermana."
-      - note: "После **de** артикль **el** сливается с ним в одно слово **del**: _el perro del abuelo_, _la casa del profesor_. С **la** слияния нет: _la casa de la abuela_."
+              explain: "Lucía: No, no tengo hermanos. Pero tengo cuatro primos."
+              skill: family
+      - note:
+          id: del
+          text: "После **de** артикль **el** сливается с ним в одно слово **del**: _el perro del abuelo_, _la casa del profesor_. С **la** слияния нет: _la casa de la abuela_."
       - choose:
           title: del или de la?
+          free: true
+          skill: del
           items:
             - q: "el perro ___ abuelo"
               options: "del | de el | de la"
@@ -236,12 +290,17 @@ lessons:
               options: "de la | del | de el"
       - choose:
           title: Что ответить?
+          free: true
+          rule: none
+          skill: tener_have
           items:
             - lines: ["Lucía: ¿Tienes hermanos?"]
               q: "У вас есть сестра Марта."
               options: "Sí, tengo una hermana, Marta. | Sí, tienes una hermana, Marta. | Sí, es mi hermano Marta."
       - build:
           title: Соберите фразу
+          free: true
+          skill: del
           items:
             - es: "Mira, es la casa de mi abuela."
               ru: "Смотри, это дом моей бабушки."
@@ -253,9 +312,11 @@ lessons:
     kind: listening
     title: Семья Ольги
     goal: понять на слух рассказ о семье
+    version: 2
     blocks:
-      - "Послушайте рассказ Ольги два раза. Текст спрятан: откройте его, когда ответите на вопросы."
+      - "Послушайте рассказ Ольги два раза: текста пока нет. В заданиях его можно открыть как подсказку."
       - dialogue:
+          id: olga
           hidden: true
           lines:
             - "Olga: Hola, me llamo Olga. Soy ucraniana, de Odesa, pero vivo en Valencia. | Привет, меня зовут Ольга. Я украинка, из Одессы, но живу в Валенсии."
@@ -264,104 +325,161 @@ lessons:
             - "Olga: Mis padres viven en Odesa. Mi madre es profesora y mi padre es ingeniero. | Мои родители живут в Одессы. Мама учительница, папа инженер."
       - choose:
           title: Responde
+          source: olga
           items:
             - q: "¿Dónde vive Olga?"
               options: "En Valencia. | En Odesa. | En Kiev."
               explain: "Soy ucraniana, de Odesa, pero vivo en Valencia — родом из Одессы, а живёт в Валенсии."
             - q: "¿Qué es Sergio?"
               options: "Es médico. | Es ingeniero. | Es profesor."
+              explain: "Mi marido se llama Sergio. Es médico y trabaja en un hospital."
+              skill: profession
     quiz:
       - q: ¿Cómo se llama el marido de Olga?
+        source: olga
         options: "Sergio | Iván | Antonio"
       - q: ¿Cuántos hijos tienen Olga y Sergio?
+        source: olga
         options: "dos | tres | uno"
       - q: ¿Cuántos años tiene Natalia?
+        source: olga
         options: "cinco | ocho | quince"
       - q: ¿Dónde viven los padres de Olga?
+        source: olga
         options: "En Odesa. | En Valencia. | En Kiev."
 
   - id: quiz
     kind: quiz
     title: Семья
+    goal: назвать членов семьи, сказать «мой, наш» и рассказать о своей семье
+    version: 2
+    check: soft
     blocks:
       - "Сегодня у нас тест по теме «Семья»."
       - cando:
           - "назвать членов семьи"
           - "сказать «мой, твой, его, наш, ваш»: mi, tu, su, nuestro, vuestro"
           - "спросить ¿Tienes hermanos? и рассказать о своей семье"
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "el abuelo — дедушка"
+            - "la tía — тётя"
+            - "el hijo — сын"
+            - "el marido — муж"
+            - "mayor — старший"
     quiz:
       - q: Что значит «los padres»?
         options: "родители | отцы | братья"
         explain: "Мужской род во множественном числе называет всю группу, поэтому los padres обычно значит «отец и мать», то есть «родители»."
+        skill: family_plural
       - q: "___ abuelos viven en Sevilla. (мои)"
         options: "Mis | Mi | Nuestro"
         explain: "Слово abuelos стоит во множественном числе, поэтому «мои» тоже ставится во множественное число: mis abuelos."
+        skill: possessives
       - q: "Nosotros ___ un gato."
         options: "tenemos | tienen | tengo"
         explain: "Для nosotros у глагола tener форма tenemos: Nosotros tenemos un gato."
+        skill: tener_forms
       - q: Кто такая «la prima»?
         options: "двоюродная сестра | тётя | бабушка"
         explain: "La prima значит «двоюродная сестра». А «тётя» по-испански будет la tía, и «бабушка» будет la abuela."
+        skill: family
       - q: "___ casa está en Sevilla. (наш)"
         options: "Nuestra | Nuestro | Nuestros"
         explain: "Слово casa женского рода, поэтому «наш» тоже ставится в женский род: nuestra casa."
+        skill: possessives
 
   - id: repaso
     kind: review
     title: Итоги уровня A0
     goal: применить всё из A0 в четырёх жизненных ситуациях
+    version: 2
+    # Контроль уровня A0 (docs/a0_a1_fixes_plan.md, раздел 4): порог 80 %, ошибки не переспрашиваются,
+    # у каждого задания — навык: по ним экран результата показывает сильные и слабые темы.
+    check: control
     blocks:
-      - "🎉 **Уровень A0 позади!** Прежде чем идти дальше, проверьте себя в четырёх ситуациях. Всё в них — из пройденных тем, нового нет."
+      - "🎉 **Уровень A0 позади!** Прежде чем идти дальше, проверьте себя в четырёх ситуациях. Всё в них — из пройденных тем, нового нет. Чтобы открыть уровень A1, нужно 80 %."
       - mission:
+          id: colleague
           title: Новая коллега
           text: "Вы — Пабло, инженер из Мадрида. В офис пришла новая коллега. Познакомьтесь с ней."
       - choose:
+          source: colleague
           items:
             - lines: ["Ana: ¡Buenos días! Me llamo Ana. ¿Y tú?"]
               options: "Me llamo Pablo. Encantado. | Me llamo Pablo. Encantada. | Se llama Pablo. De nada."
               explain: "Пабло — мужчина: encantado."
+              skill: [me_llamo, encantado]
             - lines: ["Ana: ¿De dónde eres?"]
               options: "Soy de Madrid. ¿Y tú? | Es de Madrid. ¿Y tú? | Soy Madrid. ¿Y tú?"
+              explain: "О себе — soy de: «я из»."
+              skill: de_donde
             - lines: ["Ana: ¿A qué te dedicas?"]
               options: "Soy ingeniero. | Soy un ingeniero. | Es ingeniero."
+              explain: "После ser профессию называют без артикля: Soy ingeniero."
+              skill: profession
       - mission:
+          id: photo
           title: Фото на телефоне
           text: "Ана показывает вам фото своей семьи и спрашивает о вашей. У вас есть сестра Марта, ей пятнадцать лет."
       - choose:
+          source: photo
           items:
             - say: "Mira, es mi familia: mi padre, mi madre y mis dos hermanos."
               q: "Кто на фото у Аны?"
               options: "отец, мать и двое братьев (или брат и сестра) | отец, мать и две сестры | дедушка, бабушка и двое детей"
+              explain: "Mis dos hermanos — «два брата» или «брат и сестра»: смешанную группу называют мужским родом."
+              skill: [family, family_plural]
+              noaudio: {q: "«Mira, es mi familia: mi padre, mi madre y mis dos hermanos.» Кто на фото у Аны?", options: "отец, мать и двое братьев (или брат и сестра) | отец, мать и две сестры | дедушка, бабушка и двое детей"}
             - lines: ["Ana: ¿Tienes hermanos?"]
               options: "Sí, tengo una hermana. | Sí, tienes una hermana. | Sí, tengo un hermana."
+              explain: "О себе — tengo; hermana — женского рода: una hermana."
+              skill: tener_have
       - write:
+          source: photo
+          skill: tener_age
           items:
             - q: "Ana: ¿Cuántos años tiene tu hermana? — Ответьте: «Ей пятнадцать лет»."
               a: "Tiene quince años | Mi hermana tiene quince años"
-              format: фраза по-испански
+              format: фраза о возрасте по-испански
+              mistakes: {"tengo quince años": "Tengo — «мне». О сестре — **tiene**: Tiene quince años.", "es quince años": "Возраст «имеют»: **tiene** quince años."}
       - mission:
+          id: bag
           title: Что в рюкзаке?
-          text: "Вы помогаете Ане найти ключи. Ответьте ей."
+          text: "Вы помогаете Ане найти ключи. На столе — книга и два мобильных, в рюкзаке — ключи. Ответьте ей."
       - choose:
+          source: bag
+          skill: hay
           items:
             - lines: ["Ana: ¿Qué hay en la mesa?"]
-              q: "На столе книга и два мобильных."
               options: "Hay un libro y dos móviles. | Es un libro y dos móviles. | Hay el libro y los móviles."
+              explain: "Что где есть — hay, и после hay — un, а не el."
       - write:
+          source: bag
+          skill: hay
           items:
             - q: "Ana: ¿Y en la mochila? — Скажите: «В рюкзаке — ключи»."
               a: "En la mochila hay unas llaves | Hay unas llaves | En la mochila hay llaves | Hay llaves en la mochila | Hay unas llaves en la mochila"
-              format: фраза по-испански
+              format: фраза с hay по-испански
+              mistakes: {"en la mochila hay las llaves": "После hay не ставят el, la, los, las: hay **unas** llaves.", "en la mochila son unas llaves": "Что где есть — **hay**: En la mochila hay unas llaves."}
       - mission:
+          id: phone
           title: Номер телефона
-          text: "Ана диктует свой номер. Запишите его, а потом назовите свой."
+          text: "Ана диктует свой номер. Запишите его, а потом назовите свой: шесть, пять, ноль, один, два…"
       - write:
+          source: phone
+          skill: [numbers_ear, phone]
           items:
             - say: "seis, cuatro, ocho, dos, cero, siete, uno, nueve, tres"
               q: "Запишите номер Аны цифрами."
               a: "648207193 | 648 207 193 | 6 4 8 2 0 7 1 9 3"
               format: цифры
+              noaudio: {q: "Ана пишет номер словами: seis, cuatro, ocho, dos, cero, siete, uno, nueve, tres. Запишите его цифрами.", a: "648207193 | 648 207 193 | 6 4 8 2 0 7 1 9 3"}
       - build:
+          source: phone
+          skill: [phone, mi_tu_su]
           items:
             - es: "Mi número es seis, cinco, cero, uno, dos."
               ru: "Продиктуйте: «Мой номер — шесть, пять, ноль, один, два…»"

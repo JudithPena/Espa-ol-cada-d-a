@@ -12,6 +12,7 @@ lessons:
     kind: vocab
     title: Комнаты
     goal: назвать комнаты в квартире
+    version: 2
     vocab:
       - "🏢 el piso [пи́со] — квартира; этаж"
       - "🚪 la habitación [абитаθьо́н] — комната; спальня"
@@ -29,12 +30,14 @@ lessons:
       - learn: [el piso, la habitación, el dormitorio, grande]
       - choose:
           title: Traduce
+          skill: home_words
           items:
             - q: "El piso tiene tres habitaciones."
               options: "В квартире три комнаты. | В квартире три этажа. | В доме три квартиры."
       - learn: [el salón, la cocina, el baño, el balcón]
       - choose:
           title: "¿Qué es?"
+          skill: home_words
           items:
             - img: el baño
               options: "el baño | la cocina | el salón"
@@ -48,13 +51,15 @@ lessons:
           items:
             - "большая гостиная => un salón grande | el salón grande"
             - "Моя спальня маленькая. => Mi dormitorio es pequeño | Mi habitación es pequeña"
-            - "У нас нет балкона. => No tenemos balcón"
+            - "У нас нет балкона. => No tenemos balcón | Nosotros no tenemos balcón | No hay balcón"
+          skill: home_words
     forms: [departamento, apartamento, cuarto]
 
   - id: vocab2
     kind: vocab
     title: Мебель и техника
     goal: назвать мебель и сказать, что есть в комнате
+    version: 2
     vocab:
       - "🛏 la cama [ка́ма] — кровать"
       - "🛋 el sofá [софа́] — диван"
@@ -67,6 +72,7 @@ lessons:
       - learn: [la cama, el sofá, el armario, la estantería]
       - choose:
           title: "¿Qué es?"
+          skill: home_words
           items:
             - img: el armario
               options: "el armario | la estantería | la cama"
@@ -75,6 +81,7 @@ lessons:
       - learn: [la nevera, la tele, la ducha]
       - choose:
           title: "¿Qué hay en...?"
+          skill: hay
           items:
             - q: "¿Qué hay en la cocina?"
               options: "Hay una nevera. | Hay una ducha. | Hay una cama."
@@ -93,8 +100,10 @@ lessons:
           format: фраза по-испански
           items:
             - "В спальне кровать и шкаф. => En el dormitorio hay una cama y un armario | Hay una cama y un armario en el dormitorio"
+          skill: hay
       - build:
           title: Соберите фразу
+          skill: hay
           items:
             - es: "En el salón hay un sofá y una tele."
               ru: "В гостиной диван и телевизор."
@@ -105,6 +114,7 @@ lessons:
     kind: grammar
     title: "¿Dónde está? Глагол estar"
     goal: спросить и сказать, где что находится
+    version: 2
     vocab:
       - "📍 estar [эста́р] — находиться; быть (где-то)"
       - "❓ ¿Dónde está...? [до́ндэ эста́] — где находится...? :: ¿Dónde está el baño? — Где туалет?"
@@ -118,20 +128,24 @@ lessons:
             - "¿Dónde está el libro? Está en la mesa. — Где книга? На столе."
             - "¿Dónde estás? Estoy en la cocina. — Где ты? Я на кухне."
       - learn: [estar, "¿Dónde está...?"]
-      - rule: "Где кто-то или что-то находится — всегда глагол **estar**: о людях (_Estoy en casa_), о предметах (_El sofá está en el salón_), о городах (_Málaga está en Andalucía_)."
+      - rule:
+          id: estar
+          text: "Где кто-то или что-то находится — всегда глагол **estar**: о людях (_Estoy en casa_), о предметах (_El sofá está en el salón_), о городах (_Málaga está en Andalucía_)."
       - conjugation:
           verb: estar
           ru: находиться
           forms: [estoy, estás, está, estamos, estáis, están]
       - write:
           title: Вставьте форму estar
-          format: форма глагола
+          format: одна форма глагола estar
+          skill: estar_location
           items:
             - "Nosotros ___ en casa. => estamos"
             - "¿Dónde ___ (tú)? => estás"
             - "Mis padres ___ en Sevilla. => están"
       - learn: [encima de, debajo de, al lado de]
       - table:
+          id: where
           title: Где?
           rows:
             - ["**en**", "«в» или «на»: _en la mesa_, _en la cocina_"]
@@ -141,6 +155,7 @@ lessons:
       - note: "**de** + **el** = **del**: _debajo del sofá_, _al lado del armario_. С **la** слияния нет: _al lado de la puerta_."
       - choose:
           title: Где?
+          skill: prepositions
           items:
             - img: debajo de
               q: "¿Dónde está el gato?"
@@ -151,17 +166,21 @@ lessons:
       - write:
           title: Responde
           format: фраза по-испански
+          skill: [estar_location, prepositions]
           items:
             - q: "🐱 под 🛏 — ¿Dónde está el gato?"
               a: "Está debajo de la cama | Debajo de la cama | El gato está debajo de la cama"
+              mistakes: {"es debajo de la cama": "Где кто-то находится — **está**: Está debajo de la cama.", "hay debajo de la cama": "Где находится известный кот — **está**: Está debajo de la cama."}
             - q: "📕 на 🛋 — ¿Dónde está el libro?"
               a: "Está encima del sofá | Encima del sofá | El libro está encima del sofá"
+              mistakes: {"está encima de el sofá": "de + el сливаются: encima **del** sofá.", "encima de el sofá": "de + el сливаются: encima **del** sofá."}
               explain: "de + el = del: encima del sofá."
 
   - id: preposiciones
     kind: grammar
     title: Перед, за, между
     goal: описать, где стоят вещи — перед, за, между, близко, далеко
+    version: 2
     vocab:
       - "▶️ delante de [дэла́нтэ дэ] — перед"
       - "◀️ detrás de [дэтра́с дэ] — за, позади"
@@ -169,10 +188,14 @@ lessons:
       - "🤏 cerca de [θэ́рка дэ] — близко от, недалеко"
       - "🛫 lejos de [лэ́хос дэ] — далеко от"
     blocks:
-      - "Ещё пять слов про «где». Четыре из них — с **de**, а после **entre** **de** не ставится: _entre la puerta y la ventana_."
+      - text:
+          id: prep_de
+          text: "Ещё пять слов про «где». Четыре из них — с **de**, а после **entre** **de** не ставится: _entre la puerta y la ventana_."
       - learn: [delante de, detrás de, entre]
       - choose:
           title: Где?
+          rule: prep_de
+          skill: prepositions
           items:
             - img: detrás de
               q: "¿Dónde está el gato?"
@@ -183,24 +206,34 @@ lessons:
       - learn: [cerca de, lejos de]
       - choose:
           title: Выберите
+          rule: prep_de
+          skill: prepositions
           items:
             - q: "Kiev está ___ Madrid."
               options: "lejos de | cerca de | entre"
             - say: "Mi casa está cerca de la universidad."
               options: "Мой дом недалеко от университета. | Мой дом далеко от университета. | Мой дом рядом со школой."
+              noaudio: {q: "Что значит «Mi casa está cerca de la universidad»?", options: "Мой дом недалеко от университета. | Мой дом далеко от университета. | Мой дом рядом со школой."}
       - write:
           title: Traduce
           format: фраза по-испански
           items:
-            - "Кот за диваном. => El gato está detrás del sofá"
+            - q: "Кот за диваном."
+              a: "El gato está detrás del sofá | Está detrás del sofá"
+              mistakes: {"el gato está detrás de el sofá": "de + el сливаются: detrás **del** sofá.", "el gato es detrás del sofá": "Где кто-то находится — **está**."}
             - "Стул перед окном. => La silla está delante de la ventana"
-            - "Ванная между кухней и спальней. => El baño está entre la cocina y el dormitorio"
+            - q: "Ванная между кухней и спальней."
+              a: "El baño está entre la cocina y el dormitorio | Está entre la cocina y el dormitorio"
+              mistakes: {"el baño está entre de la cocina y el dormitorio": "После **entre** de не ставят: entre la cocina y el dormitorio."}
+          rule: prep_de
+          skill: prepositions
     forms: [mí]
 
   - id: hay_esta
     kind: grammar
     title: Hay или está?
     goal: выбрать hay или está
+    version: 2
     vocab:
       - "📌 aquí [аки́] — здесь, тут"
       - "👉 allí [айи́] — там"
@@ -210,8 +243,8 @@ lessons:
           items:
             - "En el salón hay un sofá. — В гостиной есть диван."
             - "El sofá está al lado de la ventana. — Диван (стоит) у окна."
-      - learn: [aquí, allí]
       - compare:
+          id: hay_esta
           cards:
             - head: hay
               label: «есть» — новое
@@ -225,7 +258,8 @@ lessons:
               ex: ["La cama está en el dormitorio.", "Mis llaves están en la mochila."]
       - write:
           title: "¿Hay o está?"
-          format: hay, está или están
+          format: одно слово — hay, está или están
+          skill: hay_esta
           items:
             - "En mi casa ___ dos baños. => hay"
             - "El baño ___ al lado del dormitorio. => está"
@@ -233,8 +267,11 @@ lessons:
             - "En la mesa ___ unas gafas. => hay"
             - "¿___ una nevera en la cocina? => hay"
             - "La nevera ___ en la cocina. => está"
+      - learn: [aquí, allí]
       - choose:
           title: Что ответить?
+          rule: hay_esta
+          skill: hay_esta
           items:
             - lines: ["Ana: Perdón, ¿hay un baño aquí?"]
               q: "Туалет — вон там."
@@ -245,6 +282,7 @@ lessons:
     kind: reading
     title: Mi piso
     goal: понять описание квартиры и описать свою
+    version: 2
     vocab:
       - "✨ nuevo/a [нуэ́бо, нуэ́ба] — новый"
       - "🏚 viejo/a [бьэ́хо, бьэ́ха] — старый"
@@ -256,6 +294,7 @@ lessons:
       - learn: [nuevo/a, viejo/a, bonito/a, cómodo/a]
       - match:
           title: Соедините пары
+          rule: none
           pairs:
             - "nuevo — новый"
             - "viejo — старый"
@@ -269,6 +308,7 @@ lessons:
               options: "Cuántas | Cuántos"
               explain: "Silla женского рода — cuántas."
       - reading:
+          id: sara
           title: Mi piso
           text: |
             Me llamo Sara y vivo en un piso pequeño en el centro de Madrid. El piso es viejo, pero muy bonito.
@@ -291,6 +331,8 @@ lessons:
           text: "**todo el día** — «весь день»: _Trabajo todo el día._ _Mi gato está en la ventana todo el día._"
       - choose:
           title: Responde
+          source: sara
+          rule: none
           items:
             - q: "¿Dónde está el piso de Sara?"
               options: "En el centro de Madrid. | Lejos de Madrid. | En Sevilla."
@@ -298,37 +340,46 @@ lessons:
               options: "Pequeño y viejo, pero muy bonito. | Grande y nuevo. | Pequeño y nuevo, pero no es bonito."
             - q: "¿Dónde está la tele?"
               options: "Delante del sofá. | Detrás del sofá. | En la cocina."
+              skill: prepositions
+            - q: "¿Cuántas habitaciones tiene el piso?"
+              options: "dos | tres | una"
+              explain: "Tiene dos habitaciones: mi dormitorio y un salón."
+            - q: "¿Qué es nuevo en la cocina?"
+              options: "la nevera | la mesa | la ventana"
+              explain: "La cocina es pequeña, pero tiene una nevera nueva."
       - mission:
+          id: diego
           title: Диего в гостях
           text: "Ваш друг Диего впервые пришёл к вам. Квартира у вас небольшая: две комнаты, кухня, ванная рядом с кухней, балкона нет. Ответьте на его вопросы."
       - choose:
+          source: diego
+          skill: hay_esta
           items:
             - lines: ["Diego: ¿Cuántas habitaciones hay?"]
               options: "Hay dos habitaciones. | Están dos habitaciones. | Es dos habitaciones."
             - lines: ["Diego: ¿Dónde está el baño?"]
               options: "Está al lado de la cocina. | Hay al lado de la cocina. | Es al lado de la cocina."
       - write:
+          free: true
+          skill: hay
           items:
             - q: "Diego: ¿Tienes balcón? — Ответьте: «Нет, балкона нет»."
               a: "No, no tengo balcón | No, no hay balcón | No tengo balcón | No hay balcón"
               format: ответ по-испански
     forms: [todo]
-    quiz:
-      - q: ¿Cuántas habitaciones tiene el piso?
-        options: "dos | tres | una"
-      - q: ¿Qué es nuevo en la cocina?
-        options: "la nevera | la mesa | la ventana"
 
   - id: escucha
     kind: listening
     title: ¿Dónde están mis llaves?
     goal: понять на слух, где лежат вещи
+    version: 2
     vocab:
       - "👩‍👦 mamá / papá [мама́, папа́] — мама / папа"
     blocks:
-      - "Пабло опаздывает и не может найти ключи. Послушайте его разговор с мамой."
       - learn: [mamá / papá]
+      - "Пабло опаздывает и не может найти ключи. Послушайте его разговор с мамой."
       - dialogue:
+          id: keys
           hidden: true
           voices: {Madre: f}
           lines:
@@ -341,39 +392,63 @@ lessons:
             - "Pablo: ¡Sí! Están aquí, debajo del sofá. Y el gato también está aquí. | Да! Вот они, под диваном. И кот тоже здесь."
       - choose:
           title: Поняли?
+          source: keys
           items:
+            - q: "С кем говорит Пабло?"
+              options: "su mamá | su papá | su hermana"
+              explain: "Pablo: Mamá, ¿dónde están mis llaves? — Пабло говорит с мамой."
             - q: "Что ищет Пабло?"
               options: "ключи | очки | кота"
     quiz:
       - q: ¿Dónde están las llaves de Pablo?
+        source: keys
         options: "debajo del sofá | en la mochila | en la mesa"
       - q: ¿Qué hay en la mesa del salón?
+        source: keys
         options: "un libro y unas gafas | las llaves | el gato"
       - q: ¿Las gafas son de Pablo?
+        source: keys
         options: "No, son de su madre. | Sí, son de Pablo. | No, son de su padre."
 
   - id: quiz
     kind: quiz
     title: Мой дом
+    goal: назвать комнаты и мебель, сказать, где что находится, и выбрать hay или está
+    version: 2
+    check: soft
     blocks:
       - "Сегодня у нас тест по теме «Мой дом»."
       - cando:
           - "назвать комнаты и мебель"
           - "сказать, где что находится: está encima de, debajo de, al lado de..."
           - "выбрать между hay и está"
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "la cocina — кухня"
+            - "el armario — шкаф"
+            - "al lado de — рядом с"
+            - "cerca de — близко от"
+            - "cómodo — удобный"
     quiz:
       - q: "¿Dónde ___ mis gafas?"
         options: "están | hay | son"
         explain: "Мы спрашиваем, где находятся очки, поэтому нужен глагол estar. Слово gafas стоит во множественном числе, значит, нужна форма están."
+        skill: hay_esta
       - q: "En la cocina ___ una nevera."
         options: "hay | está | es"
         explain: "Мы сообщаем, что на кухне есть холодильник, то есть даём новую информацию, поэтому нужно hay."
+        skill: hay_esta
       - q: "El gato está debajo ___ sofá."
         options: "del | de el | de la"
         explain: "Предлог de и артикль el всегда сливаются в одно слово del, поэтому правильно сказать debajo del sofá."
+        skill: del
       - q: "Nosotros ___ en casa."
         options: "estamos | somos | estáis"
         explain: "Когда говорят, где кто находится, используют глагол estar. Для nosotros у него форма estamos."
+        skill: estar_location
       - q: Как сказать «между»?
         options: "entre | detrás de | encima de"
         explain: "Entre значит «между», и после него предлог de не ставится: entre la cama y el armario. А detrás de значит «за», encima de значит «на»."
+        skill: prepositions

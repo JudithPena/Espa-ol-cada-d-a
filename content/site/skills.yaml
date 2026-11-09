@@ -1,0 +1,154 @@
+# Навыки-конструкции основного курса на сайте (docs/site_lessons_guide.md, раздел «Ссылки задания»).
+# Тег ставится заданиям (skill: тег). По нему страница повторяет конструкцию по интервалам
+# («Повторить» → «Фразы и конструкции») и показывает сильные и слабые темы в итогах A0 и A1.
+#   title  — как навык называется ученику;
+#   lesson — id урока, где навык вводится (повторяется только после этого урока).
+# Теги добавляются по мере перестройки тем (docs/a0_a1_fixes_progress.md).
+
+# Тема 00 — чтение
+vowels: {title: "чёткие гласные", lesson: start/vowels}
+stress: {title: "ударение и значок ´", lesson: start/vowels}
+spell_hjg: {title: "буквы h, j, g, gu, qu", lesson: start/consonants1}
+spell_ll_n: {title: "буквы ll и ñ", lesson: start/consonants1}
+spell_czr: {title: "буквы c, z, ch, r, v", lesson: start/consonants2}
+
+# Тема 01 — приветствия
+greeting_time: {title: "приветствие по времени суток", lesson: saludos/vocab1}
+farewell: {title: "попрощаться: adiós, hasta luego, hasta mañana", lesson: saludos/vocab1}
+how_are_you: {title: "«как дела?» и ответ", lesson: saludos/vocab2}
+tu_usted: {title: "ты или вы: tú / usted", lesson: saludos/grammar}
+marks: {title: "знаки ¿? и ¡!", lesson: saludos/grammar}
+polite: {title: "спасибо, пожалуйста, извините", lesson: saludos/dialogue}
+accent_meaning: {title: "значок ´ меняет смысл: sí / si, él / el", lesson: start/vowels}
+
+# Тема 02 — знакомство
+me_llamo: {title: "представиться и спросить имя", lesson: presentarse/vocab}
+encantado: {title: "«очень приятно» и ответ на знакомство", lesson: presentarse/vocab}
+ser_forms: {title: "глагол ser: soy, eres, es", lesson: presentarse/grammar}
+
+# Тема 03 — язык занятий
+class_commands: {title: "команды на уроке: escucha, lee, escribe…", lesson: en_clase/vocab1}
+class_words: {title: "слова урока: la pregunta, la respuesta…", lesson: en_clase/vocab2}
+ask_in_class: {title: "не понимаю, ещё раз, что значит, как сказать", lesson: en_clase/dialogue}
+
+# Тема 04 — числа
+numbers: {title: "числа 0–20 словом", lesson: numeros/vocab1}
+numbers_ear: {title: "числа на слух", lesson: numeros/vocab1}
+tener_age: {title: "возраст: tengo … años", lesson: numeros/edad}
+mi_tu_su: {title: "mi, tu, su — мой, твой, ваш", lesson: numeros/telefono}
+phone: {title: "номер телефона", lesson: numeros/telefono}
+
+# Тема 05 — страны, национальности, языки
+de_donde: {title: "откуда вы: soy de / es de", lesson: paises/vocab1}
+tambien: {title: "«я тоже»: yo también", lesson: paises/vocab2}
+nationality: {title: "национальность в мужском и женском роде", lesson: paises/nacionalidad}
+hablar_lang: {title: "на каком языке говорите: hablo español", lesson: paises/idiomas}
+y_e: {title: "y или e", lesson: paises/idiomas}
+vivir_en: {title: "где живёте: vivo en…", lesson: paises/lectura}
+
+# Тема 06 — вещи
+que_es_esto: {title: "¿Qué es esto? — Es un…", lesson: cosas/vocab1}
+gender: {title: "род слова: el / la, un / una", lesson: cosas/genero}
+el_vs_un: {title: "un или el: новый или уже известный предмет", lesson: cosas/genero}
+plural: {title: "множественное число: -s, -es, los / las", lesson: cosas/plural}
+hay: {title: "hay — что где есть", lesson: cosas/plural}
+
+# Тема 07 — профессии
+profession: {title: "профессия без артикля, мужской и женский род", lesson: trabajo/vocab1}
+trabajar_en: {title: "где работаете или учитесь: trabajo en…", lesson: trabajo/vocab2}
+pronouns_plural: {title: "мы, вы, они: nosotros, vosotros, ustedes", lesson: trabajo/presente}
+present_ar: {title: "глаголы на -ar во всех лицах", lesson: trabajo/presente}
+
+# Тема 08 — семья
+family: {title: "члены семьи", lesson: familia/vocab1}
+family_plural: {title: "los padres, los hermanos — смешанная группа", lesson: familia/vocab1}
+tener_have: {title: "tener — «у меня есть»", lesson: familia/vocab1}
+possessives: {title: "мой, твой, наш: mi / mis, nuestro…", lesson: familia/posesivos}
+tener_forms: {title: "глагол tener во всех лицах", lesson: familia/posesivos}
+del: {title: "de + el = del", lesson: familia/dialogo}
+
+# Тема 09 — описание людей
+adj_gender: {title: "прилагательное о мужчине и о женщине", lesson: descripcion/vocab1}
+adj_agreement: {title: "четыре формы прилагательного и цвета", lesson: descripcion/concordancia}
+como_es: {title: "¿Cómo es? и ¿Cómo está?", lesson: descripcion/concordancia}
+appearance: {title: "глаза и волосы: tener los ojos…", lesson: descripcion/ojos}
+
+# Тема 10 — дом
+home_words: {title: "комнаты и мебель", lesson: casa/vocab1}
+estar_location: {title: "estar — где кто находится", lesson: casa/estar}
+prepositions: {title: "предлоги места: encima de, debajo de…", lesson: casa/estar}
+hay_esta: {title: "hay или está / están", lesson: casa/hay_esta}
+
+# Тема 11 — состояния
+estar_state: {title: "estar + состояние: estoy cansado", lesson: ser_estar/vocab}
+ser_estar: {title: "ser или estar", lesson: ser_estar/gramatica}
+porque: {title: "¿por qué? и porque", lesson: ser_estar/dialogo}
+
+# Тема 12 — город
+city_places: {title: "места в городе", lesson: ciudad/vocab1}
+ir_a: {title: "ir + a / al: куда вы идёте", lesson: ciudad/ir}
+transport: {title: "транспорт: en metro, a pie", lesson: ciudad/transporte}
+directions: {title: "спросить и объяснить дорогу", lesson: ciudad/direcciones}
+
+# Тема 13 — еда
+food: {title: "еда и напитки", lesson: comida/bebidas}
+present_er_ir: {title: "глаголы на -er и -ir: como, vivimos", lesson: comida/er_ir}
+bueno_bien: {title: "bueno или bien", lesson: comida/comidas}
+order_food: {title: "заказать в кафе: para mí, quiero, la cuenta", lesson: comida/bar}
+
+# Тема 14 — нравится
+hobbies: {title: "хобби и свободное время", lesson: gustos/vocab1}
+gustar: {title: "me gusta или me gustan", lesson: gustos/gustar}
+gustar_pron: {title: "me, te, le… gusta; a Ana le gusta", lesson: gustos/gustar}
+agree: {title: "a mí también, a mí tampoco, a mí sí / no", lesson: gustos/tambien}
+encanta: {title: "me encanta, no me gusta nada", lesson: gustos/tambien}
+
+# Тема 15 — время
+days: {title: "дни недели: el lunes, los lunes", lesson: hora/dias}
+time: {title: "который час: es la una, son las… y / menos", lesson: hora/hora}
+time_ear: {title: "время на слух", lesson: hora/hora}
+a_que_hora: {title: "¿A qué hora? — a las… de la mañana", lesson: hora/a_que_hora}
+opening_hours: {title: "часы работы: abre, cierra, abierto, cerrado", lesson: hora/horarios}
+
+# Тема 16 — распорядок дня
+daily_routine: {title: "распорядок дня: me levanto, salgo de casa", lesson: rutina/manana}
+reflexive: {title: "возвратные глаголы: me, te, se, nos, os", lesson: rutina/reflexivos}
+stem_change: {title: "чередование в корне: quiero, puedo, pido", lesson: rutina/irregulares}
+sequence: {title: "primero, luego, antes de, a veces, nunca", lesson: rutina/orden}
+
+# Тема 17 — покупки
+clothes: {title: "одежда", lesson: compras/ropa1}
+big_numbers: {title: "числа до тысячи: cuarenta y cinco, quinientos", lesson: compras/numeros}
+demonstratives: {title: "este, ese, aquel", lesson: compras/demostrativos}
+prices: {title: "¿Cuánto cuesta? — cuesta / cuestan, caro, barato", lesson: compras/precios}
+shopping: {title: "в магазине: talla, me queda, me lo llevo", lesson: compras/tienda}
+
+# Тема 18 — погода и даты
+weather: {title: "погода: hace calor, llueve, nieva", lesson: tiempo/clima}
+seasons: {title: "времена года: en verano / el verano", lesson: tiempo/estaciones}
+dates: {title: "месяцы и даты: el cinco de mayo, en septiembre", lesson: tiempo/meses1}
+muy_mucho: {title: "muy или mucho", lesson: tiempo/muy_mucho}
+
+# Тема 19 — планы
+future_time: {title: "когда: esta noche, la semana que viene, el próximo lunes", lesson: planes/cuando}
+ir_a_inf: {title: "voy a + инфинитив", lesson: planes/ir_a}
+personal_a: {title: "a перед человеком: visito a mis abuelos", lesson: planes/ir_a}
+tener_que: {title: "tengo que / hay que", lesson: planes/tener_que}
+invite: {title: "пригласить, согласиться, отказаться", lesson: planes/invitacion}
+
+# Тема 20 — здоровье
+body: {title: "части тела; la mano", lesson: salud/cuerpo}
+doler: {title: "me duele / me duelen", lesson: salud/doler}
+tener_states: {title: "tengo hambre, frío, fiebre; mucha hambre", lesson: salud/tener}
+doctor: {title: "у врача: ¿Qué le pasa?, desde el lunes", lesson: salud/medico}
+
+# Тема 21 — прямо сейчас
+gerund: {title: "герундий: hablando, comiendo, leyendo, durmiendo", lesson: ahora/gerundio}
+estar_gerund: {title: "estar + герундий: estoy hablando", lesson: ahora/gerundio}
+now_habit: {title: "привычка или сейчас: trabajo / estoy trabajando", lesson: ahora/gerundio}
+phone_call: {title: "по телефону: ¿Diga?, soy…, luego te llamo", lesson: ahora/llamada}
+
+# Тема 22 — что вы сделали сегодня
+participle: {title: "причастия: hablado, comido, hecho, visto", lesson: experiencias/perfecto}
+perfect: {title: "he comido: haber + причастие, ya, todavía no", lesson: experiencias/perfecto}
+experience: {title: "¿alguna vez?, una vez, nunca, he estado en", lesson: experiencias/experiencia}

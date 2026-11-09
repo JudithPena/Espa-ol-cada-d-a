@@ -445,7 +445,7 @@ main { padding-block: 16px 110px; }
 .wwhy { background: var(--sun-soft); border-radius: 12px; padding: 10px 12px; font-weight: 700; font-size: 15px; }
 .match { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
 .mcol { display: grid; gap: 10px; align-content: start; }
-.mt { min-height: 50px; padding: 10px 8px; border-radius: 12px; border: 2px solid var(--line); background: var(--surface); font-weight: 700; font-size: 16px; line-height: 1.25; box-shadow: 0 2px 0 var(--line); overflow-wrap: anywhere; }
+.mt { min-height: 50px; padding: 10px 8px; border-radius: 12px; border: 2px solid var(--line); background: var(--surface); font-weight: 700; font-size: 16px; line-height: 1.25; box-shadow: 0 2px 0 var(--line); overflow-wrap: break-word; hyphens: auto; }
 .mt[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
 .mt.ok { border-color: var(--good); background: var(--good-soft); color: var(--good); box-shadow: none; cursor: default; }
 .mt.bad { border-color: var(--bad); background: var(--bad-soft); animation: shake .3s; }
@@ -485,6 +485,39 @@ main { padding-block: 16px 110px; }
 
 /* итог урока */
 .result { text-align: center; display: grid; gap: 18px; justify-items: center; padding-top: 24px; }
+/* Доводка A0–A1: шапка с целью, источник в задании, звук, итог задания и итоги контроля */
+.ptop .wrap.pctx { display: block; }
+.pctx .pgoal { display: block; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pfoot.shown { background: var(--sunken); border-color: transparent; }
+.pfoot.shown .fb h3 { color: var(--ink); }
+.fb .fix { display: block; font-size: 13px; font-weight: 700; color: var(--muted); }
+.wfield.almost { border-color: var(--sun); background: var(--sun-soft); }
+.srcbox { display: grid; gap: 8px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+.srcbox > .btn { justify-self: start; }
+.srcbox details.src summary { cursor: pointer; font-weight: 800; font-size: 14px; color: var(--accent); min-height: 36px; display: flex; align-items: center; }
+.srcbox details.src[open] { max-height: 36vh; overflow-y: auto; }
+.srcbox .dlg { margin-top: 6px; }
+.srcbox p { margin: 6px 0; }
+.linkbtn { background: none; border: 0; padding: 6px 4px; font: inherit; font-size: 14px; font-weight: 700; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; min-height: 36px; }
+.listen.off { background: var(--sunken); border-radius: var(--r); padding: 12px; text-align: center; }
+.listen.off p { margin: 0 0 8px; font-weight: 700; }
+.whint { background: var(--accent-soft); border-radius: 12px; padding: 8px 12px; font-weight: 700; font-size: 15px; overflow-wrap: anywhere; }
+.whint .mask { font-family: ui-monospace, Menlo, Consolas, monospace; letter-spacing: 2px; }
+.step .t .upd { display: block; color: var(--accent); font-size: 12px; font-weight: 700; }
+.result .verdict { margin: 0; font-weight: 700; font-size: 17px; }
+.result.retry h2 { color: var(--ink); }
+.panel.topics, .panel.noaudio { width: 100%; text-align: left; display: grid; gap: 8px; }
+.panel.topics ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.panel.topics li { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; padding: 8px 10px; border-radius: 10px; background: var(--good-soft); }
+.panel.topics li.mid { background: var(--sun-soft); }
+.panel.topics li.weak { background: var(--bad-soft); }
+@media (min-width: 900px) {
+  /* На ПК источник — боковой панелью рядом с вопросом, раскрыт сразу */
+  .pbody .wrap:has(> .prompt > .srcbox) { max-width: 1040px; }
+  .prompt:has(> .srcbox) { display: grid; grid-template-columns: minmax(0, 1fr) 360px; column-gap: 18px; align-items: start; }
+  .prompt:has(> .srcbox) > .srcbox { grid-column: 2; grid-row: 1 / span 6; position: sticky; top: 8px; }
+  .prompt:has(> .srcbox) > :not(.srcbox) { grid-column: 1; }
+}
 .result .medal { font-size: 64px; }
 .result .stars-big { font-size: 34px; color: var(--sun); letter-spacing: 4px; }
 .result .cells { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; width: 100%; }
@@ -947,7 +980,9 @@ const words = n => `${n} ${plural(n, "слово", "слова", "слов")}`;
 
 /* ================================================================ прогресс (в браузере ученика) */
 const KEY = "espanol-cada-dia.v1";
-const fresh = () => ({ done: {}, grammar: {}, grammarRead: {}, xp: 0, days: {}, streak: { n: 0, best: 0, last: "" }, words: {}, goal: 30, openAll: false, sound: true });
+// done — пройденные уроки (любой версии: открывают следующий урок, звёзды, опыт); ver — пройденная версия содержания
+// урока (запись без неё — версия 1); skills — повторение конструкций; ctl — попытки итогов A0 и A1.
+const fresh = () => ({ done: {}, ver: {}, skills: {}, ctl: {}, grammar: {}, grammarRead: {}, xp: 0, days: {}, streak: { n: 0, best: 0, last: "" }, words: {}, goal: 30, openAll: false, sound: true });
 let P = fresh();
 try { P = Object.assign(fresh(), JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) { /* без хранилища — прогресс только до перезагрузки */ }
 const saveLocal = () => { try { localStorage.setItem(KEY, JSON.stringify(P)); } catch (e) {} };
@@ -984,6 +1019,11 @@ function mergeProgress(a, b) {
   }
   out.days = { ...(b.days || {}) };
   for (const [d, v] of Object.entries(a.days || {})) out.days[d] = Math.max(v, out.days[d] || 0);
+  // Версии уроков, навыки и попытки итогов: из двух записей берём «бо́льшую», поэтому повтор ничего не меняет.
+  const better = (x, y, cmp) => { const o = { ...(y || {}) }; for (const [k, v] of Object.entries(x || {})) if (!o[k] || cmp(v, o[k]) >= 0) o[k] = v; return o; };
+  out.ver = better(a.ver, b.ver, (x, y) => (x.v || 0) - (y.v || 0) || (x.stars || 0) - (y.stars || 0) || String(x.at || "").localeCompare(String(y.at || "")));
+  out.skills = better(a.skills, b.skills, (x, y) => (x.n || 0) - (y.n || 0) || (x.due || 0) - (y.due || 0));
+  out.ctl = better(a.ctl, b.ctl, (x, y) => (x.n || 0) - (y.n || 0) || (x.best || 0) - (y.best || 0));
   const sa = a.streak || {}, sb = b.streak || {}, newer = (sa.last || "") >= (sb.last || "") ? sa : sb;
   out.streak = { n: newer.n || 0, last: newer.last || "", best: Math.max(sa.best || 0, sb.best || 0, newer.n || 0) };
   return out;
@@ -1066,6 +1106,11 @@ LESSONS.forEach((L, i) => L.words.forEach(w => { if (!WORDS.has(w.es)) WORDS.set
 const FORMS = COURSE.forms || {};   // форма слова → слово курса: «tengo» → «tener»
 
 const isDone = i => !!P.done[LESSONS[i].id];
+// Версия содержания: прохождение старой версии (запись без ver — версия 1) не подтверждает новые цели урока.
+// Уроки, отмеченные «Я учусь в канале», на сайте не проходили — у них ни одна версия не подтверждена.
+const verOf = i => { const L = LESSONS[i], d = P.done[L.id]; return P.ver?.[L.id]?.v || (d && !d.joined ? 1 : 0); };
+const isCurrent = i => isDone(i) && verOf(i) >= (LESSONS[i].version || 1);
+const isOutdated = i => isDone(i) && !P.done[LESSONS[i].id].joined && !isCurrent(i);
 // Темы, которые ещё прорабатываются, на основном сайте закрыты для всех (site_open_units в course.yaml).
 const unitClosed = i => !COURSE.preview && Array.isArray(COURSE.openUnits) && !COURSE.openUnits.includes(LESSONS[i]?.unit);
 const isOpen = i => !unitClosed(i) && (COURSE.preview || P.openAll || i === 0 || isDone(i - 1) || isDone(i));
@@ -1133,10 +1178,28 @@ function playNext() {
   const next = audioQueue.shift();
   if (!next) return;
   player = player || new Audio();
-  player.onended = playNext; player.onerror = null;
+  player.onended = playNext;
+  // Запись не загрузилась: испанский голос телефона, если он есть; иначе задание на слух покажет «Запись не
+  // загрузилась» и «Попробовать снова» (ошибка ученика это не ошибка).
+  player.onerror = () => { player.onerror = null; if (!speakText(next.text, next.slow)) audioTrouble(next.text, "fail"); playNext(); };
   player.src = `a/${next.id}.mp3`;
   setRate(next.slow ? 0.7 : 1);
-  player.play()?.catch?.(() => {});
+  player.play()?.catch?.(err => { if (err?.name === "NotAllowedError") audioTrouble(next.text, "blocked"); });
+}
+// Звук задания на слух не включился: статус на экране задания (только если это его фраза и ответа ещё нет).
+function audioTrouble(text, kind) {
+  const st = S?.steps?.[S.at];
+  if (!st || !S.state || S.state.result || clean(listenText(st)) !== clean(text)) return;
+  if (S.state.audio === kind) return;
+  S.state.audio = kind; render();
+}
+function speakText(text, slow = false) {
+  if (!SPEECH || !TTS.voice && (pickVoice(), !TTS.voice)) return false;
+  try {
+    const u = new SpeechSynthesisUtterance(clean(text));
+    u.lang = "es-ES"; u.voice = TTS.voice; u.rate = slow ? 0.6 : 0.9;
+    speechSynthesis.speak(u); return true;
+  } catch (e) { return false; }
 }
 // Одна запись с концом и ошибкой: так играют реплики диалога. Нет записи или она не загрузилась —
 // испанский голос телефона, если он есть; иначе onfail.
@@ -1167,7 +1230,7 @@ function say(text, { slow = false, queue = false, pitch = 1, voice = null } = {}
   if (!queue) stopSpeech();
   const id = audioId(text, voice);
   if (id) {
-    audioQueue.push({ id, slow });
+    audioQueue.push({ id, slow, text });
     if (!queue || !player || player.paused || player.ended) playNext();
     return;
   }
@@ -1216,10 +1279,13 @@ function dlgPanelHTML(blocks) {
     <span class="dlg-speed" role="group" aria-label="Скорость">${[[1, "1×"], [0.75, "0,75×"]].map(([r, t]) =>
       `<button data-dlg-rate="${r}" aria-pressed="${dlgRate() === r}">${t}</button>`).join("")}</span>` : ""}
     <button class="dlg-tr" data-dlg-tr aria-pressed="false">${blocks.some(b => b.hidden) ? "Показать текст" : "Перевод"}</button>
+    ${blocks.some(b => b.hidden) && S && !S.noAudio ? `<button class="linkbtn" data-noaudio>Нет возможности слушать</button>` : ""}
   </div>`;
 }
 // Экран объяснения: общая панель — перед первым диалогом, он же выбран.
 function theoryHTML(blocks) {
+  // «Нет возможности слушать» на экране слухового диалога: текст открыт, задания к нему пойдут «без звука».
+  if (S?.noAudio) blocks = blocks.map(b => b.t === "dialogue" && b.hidden ? { ...b, hidden: false } : b);
   const dl = blocks.filter(b => b.t === "dialogue");
   let first = true;
   return `<div class="theory${dl.length > 1 ? " multi" : ""}">${blocks.map(b =>
@@ -1344,9 +1410,9 @@ function dlgAutoplay() {
   clearTimeout(dlgAutoTimer);
   const st = S?.steps?.[S.at];
   if (!st || st.type !== "theory" || P.autoDlg === false || !dlgBoxes().length) return;
-  S.dlgAuto = S.dlgAuto || new Set();
-  if (S.dlgAuto.has(S.at)) return;
-  S.dlgAuto.add(S.at);
+  S.dlgAuto = S.dlgAuto || new Set();   // по самому шагу, а не номеру: повтор вопроса сдвигает номера шагов
+  if (S.dlgAuto.has(st)) return;
+  S.dlgAuto.add(st);
   const at = S.at, first = dlgBoxes()[0];
   dlgAutoTimer = setTimeout(() => {
     if (S?.at === at && first.isConnected && !DLG.box) dlgStart(first, true);
@@ -1453,7 +1519,7 @@ function theoryScreens(L) {
   const flush = () => { if (cur.length) screens.push(cur); cur = []; weight = 0; };
   const onlyHeader = () => cur.length && cur.every(b => b.t === "header");
   L.blocks.forEach((b, k) => {
-    if (b.t === "exercise" || STEP_BLOCKS.has(b.t)) { flush(); screens.push({ ex: b }); return; }
+    if (b.t === "exercise" || STEP_BLOCKS.has(b.t)) { flush(); screens.push({ ex: b, k }); return; }
     const w = visLen(b);
     if (b.join && cur.length) { cur.push(b); weight += w; return; }   // «join: true» в уроке сайта — тот же экран
     // Короткое вступление («Прочитайте диалог вслух…») остаётся на одном экране с диалогом.
@@ -1469,12 +1535,24 @@ function theoryScreens(L) {
   flush();
   return screens;
 }
+// Экраны перестроенного урока (version ≥ 2) задаёт автор по карте слайдов: объяснения, примеры и картинки, которые
+// идут подряд между заданиями, — один экран; новый экран — с блока «slide: new» и с миссии. По объёму текста не режем.
+function authoredScreens(L) {
+  const screens = []; let cur = [];
+  const flush = () => { if (cur.length) screens.push(cur); cur = []; };
+  L.blocks.forEach((b, k) => {
+    if (b.t === "exercise" || STEP_BLOCKS.has(b.t)) { flush(); screens.push({ ex: b, k }); return; }
+    if (b.slide === "new" || b.t === "mission") flush();
+    cur.push(b);
+  });
+  flush();
+  return screens;
+}
 
 /* ================================================================ сценарий урока (уроки сайта с блоками learn…) */
 // Урок со сценарием показывает блоки в том порядке, в каком их поставил автор: порция слов → пример →
 // задания → ещё слова → диалог → миссия. Урок без learn идёт прежним путём (startLesson ниже).
-const STEP_BLOCKS = new Set(["learn", "choose", "write", "match", "sort", "build"]);
-const RULE_BLOCKS = new Set(["rule", "compare", "table", "tip", "note", "list", "text", "examples", "conjugation", "more"]);
+const STEP_BLOCKS = new Set(["learn", "choose", "write", "match", "sort", "build", "recap", "review"]);
 const ARTS = new Set(["el", "la", "los", "las", "un", "una", "unos", "unas"]);
 // Слова, где знак ударения меняет смысл: без него ответ неверен, а не «почти» (tú «ты» — tu «твой»).
 const ACCENT_MEANING = new Set(["sí", "tú", "él", "mí", "té", "sé", "dé", "más", "aún", "qué", "quién", "quiénes", "cuál", "cuáles",
@@ -1485,26 +1563,39 @@ const wNorm = s => String(s ?? "").normalize("NFC").toLowerCase().replace(/[¿¡
 const wFlat = s => s.replace(/[áéíóú]/g, c => ACUTE[c]);   // только ударения: ñ и ü остаются собой
 const wordCore = es => norm(es.replace(/^(?:el\/la|el|la|los|las|un|una)\s+/i, "").replace(/\s*\/.*$/, ""));
 
-function chooseStep(b, it) {
+// Ссылки задания (их разрешает сборка, espanol/site.py): src — блок-источник урока (диалог, текст, миссия),
+// rule — блоки объяснения для «📖 Повторить правило», skill — навыки; li — урок, к которому они относятся.
+const refsOf = (x, li, b) => ({ li, src: x.src, free: !!x.free, rule: x.rule || [], skill: x.skill || [], ctx: !!b.ctx && x.src == null && !x.free });
+function chooseStep(b, it, li) {
   const order = shuffle(it.o.map((_, k) => k));
   return { type: "mc", mode: "choose", title: b.title, q: it.q, html: true, say: it.say, lines: it.lines, cast: it.cast, img: it.img,
-           options: order.map(k => it.o[k][0]), plain: order.map(k => it.o[k][1]), correct: order.indexOf(0), explain: it.explain };
+           options: order.map(k => it.o[k][0]), plain: order.map(k => it.o[k][1]), correct: order.indexOf(0), explain: it.explain,
+           mistakes: it.mistakes || {}, noaudio: it.noaudio, key: `${LESSONS[li]?.id}|${norm(it.q || it.say || it.o[0][1])}`, ...refsOf(it, li, b) };
 }
-// Задание на слух без записи и без испанского голоса в телефоне ответить нельзя — такое пропускаем.
-const audible = it => !it.say || canSay(it.say);
-function blockSteps(b) {
-  if (b.t === "choose") return b.items.filter(audible).map(it => chooseStep(b, it));
-  if (b.t === "write") return b.items.filter(audible).map(it => ({ type: "write", title: b.title, accents: b.accents, chars: b.chars, ...it }));
-  if (b.t === "match") return [{ type: "match", title: b.title, pairs: b.pairs }];
-  if (b.t === "sort") return [{ type: "sort", title: b.title, groups: b.groups }];
-  if (b.t === "build") return b.items.map(it => ({ type: "build", title: b.title, es: it.es, ru: it.ru, alt: it.alt, extra: it.extra }));
+// Задание на слух не выкидываем, даже если звука нет: страница покажет статус, «Попробовать снова» и
+// «Нет возможности слушать» (альтернатива noaudio или задание откладывается до звука).
+function writeStep(b, it, li) {
+  return { type: "write", title: b.title, accents: b.accents, chars: b.chars, ...it, mistakes: it.mistakes || {},
+           key: `${LESSONS[li]?.id}|${norm(it.q || it.say || it.a[0])}`, ...refsOf(it, li, b) };
+}
+function blockSteps(b, li) {
+  if (b.t === "choose") return b.items.map(it => chooseStep(b, it, li));
+  if (b.t === "write") return b.items.map(it => writeStep(b, it, li));
+  if (b.t === "match") return [{ type: "match", title: b.title, pairs: b.pairs, key: `${LESSONS[li]?.id}|${norm(b.pairs[0][0])}`, ...refsOf(b, li, b) }];
+  if (b.t === "sort") return [{ type: "sort", title: b.title, groups: b.groups, key: `${LESSONS[li]?.id}|${norm(b.groups[0][0])}`, ...refsOf(b, li, b) }];
+  if (b.t === "build") return b.items.map(it => ({ type: "build", title: b.title, es: it.es, ru: it.ru, alt: it.alt, extra: it.extra,
+           key: `${LESSONS[li]?.id}|${norm(it.es)}`, ...refsOf(it, li, b) }));
   return [];
 }
+// Задание к источнику (диалогу, тексту, миссии своего урока): без него не ответить, поэтому оно не уходит
+// ни в конец урока, ни в повторение. У ещё не перестроенных уроков — прежняя метка ctx.
+const isCtx = st => st.src != null || !!st.ctx;
+const isListen = st => !!st.say && ["mc", "write"].includes(st.type) || st.type === "mf";
 // Тексты заданий, которые урок уже спросил: слово, которое в них есть, второй раз в конце урока не задаём.
 function askedTexts(steps) {
   const out = new Set(), add = t => { const k = norm(String(t ?? "").replace(/<[^>]*>/g, " ")); if (k) out.add(k); };
   for (const st of steps) {
-    if (st.type === "mc" && st.plain) { add(st.plain[st.correct]); add(st.q); }
+    if (st.type === "mc" && st.plain) { add(st.plain[st.correct]); add(st.q); (st.lines || []).forEach(l => add(l[3])); }
     if (st.type === "write") { (st.a || []).forEach(add); add(st.q); }
     if (st.type === "match") st.pairs.forEach(p => { add(p[0]); add(p[1]); });
     if (st.type === "sort") st.groups.forEach(g => g[1].forEach(x => add(x[0])));
@@ -1512,35 +1603,89 @@ function askedTexts(steps) {
   }
   return out;
 }
-// Задания из уже пройденных уроков со сценарием: «🔁 Вспомним» в начале урока и «Повторить фразы».
-function recallPool(upto) {
+/* ================================================================ повторение конструкций (навыки) */
+// Навык — устойчивая конструкция («un / una», «hay», «tú / usted»): тег skill у заданий, реестр — COURSE.skills
+// (content/site/skills.yaml). Слова повторяются по-прежнему (P.words), навыки — отдельно (P.skills[тег]):
+// s — ступень, due — день следующего повтора, ok / err — ответы с первой попытки и ошибки, n — занятий, seen — недавние задания.
+const SKILLS = COURSE.skills || {};
+const SKILL_INTERVALS = [1, 3, 7, 14, 30, 60];
+const skillLesson = tag => LESSONS.findIndex(L => L.id === SKILLS[tag]?.lesson);
+// Самостоятельные задания пройденных уроков с навыками (без источника): из них собирается повторение.
+function skillPool(upto = LESSONS.length) {
   const out = [];
-  for (let k = upto - 1; k >= 0; k--) {
+  for (let k = 0; k < upto; k++) {
     const L = LESSONS[k];
     if (!L.scripted || !P.done[L.id]) continue;
     L.blocks.forEach(b => {
-      if (b.ctx) return;   // вопрос к диалогу, тексту или миссии своего урока — без них не ответить
-      if (b.t === "choose") b.items.filter(audible).forEach(it => out.push({ li: k, make: () => chooseStep(b, it) }));
-      if (b.t === "write") b.items.filter(audible).forEach(it => out.push({ li: k, make: () => ({ type: "write", title: b.title, accents: b.accents, chars: b.chars, ...it }) }));
+      const made = ["choose", "write", "match", "sort", "build"].includes(b.t) ? blockSteps(b, k) : [];
+      made.forEach(st => { if (!isCtx(st) && !st.mission) st.skill.forEach(tag => SKILLS[tag] && out.push({ tag, li: k, key: st.key, step: st })); });
     });
   }
   return out;
 }
-function recallSteps(i, n = 2) {
-  const pool = recallPool(i);
-  if (!pool.length) return [];
-  // Одно задание из недавних уроков, одно — из давних: так повторение растянуто во времени.
-  const lis = [...new Set(pool.map(x => x.li))], recent = new Set(lis.slice(0, 3));
-  const pick = [...shuffle(pool.filter(x => recent.has(x.li))).slice(0, 1), ...shuffle(pool.filter(x => !recent.has(x.li))).slice(0, n - 1)];
-  if (pick.length < n) pick.push(...shuffle(pool.filter(x => !pick.includes(x))).slice(0, n - pick.length));
-  return pick.map(x => ({ ...x.make(), recall: true }));
+const skillDue = tag => { const r = P.skills[tag]; return !r || r.due <= dayNum(); };
+// Задания для повторения: навыки, которым пора, — не больше perTag на навык; недавно показанные — в последнюю очередь.
+function pickSkillSteps(tags, n, perTag = 2, upto = LESSONS.length) {
+  const pool = skillPool(upto), out = [], used = new Set();
+  for (let round = 0; round < perTag && out.length < n; round++) {
+    for (const tag of tags) {
+      if (out.length >= n) break;
+      const seen = P.skills[tag]?.seen || [];
+      const cand = shuffle(pool.filter(x => x.tag === tag && !used.has(x.key))).sort((a, b) => seen.includes(a.key) - seen.includes(b.key));
+      if (!cand.length) continue;
+      used.add(cand[0].key);
+      const fresh = cand[0].step.type === "mc" ? { ...cand[0].step, ...reshuffle(cand[0].step) } : { ...cand[0].step };
+      out.push({ ...fresh, review: true, reviewTag: tag });
+    }
+  }
+  return out;
 }
+function reshuffle(st) {
+  const order = shuffle(st.options.map((_, k) => k));
+  return { options: order.map(k => st.options[k]), plain: st.plain && order.map(k => st.plain[k]), correct: order.indexOf(st.correct) };
+}
+// Навыки, которым пора повториться (уже начатые и пройденные уроками), — сначала самые просроченные.
+function dueSkills() {
+  const pool = new Set(skillPool().map(x => x.tag));
+  return Object.keys(SKILLS).filter(tag => P.skills[tag] && pool.has(tag) && P.skills[tag].due <= dayNum())
+    .sort((a, b) => P.skills[a].due - P.skills[b].due);
+}
+// Блок review в уроке: запланированное автором повторение навыков прошлых уроков (только самостоятельные задания).
+function reviewSteps(i, b) {
+  const tags = b.skills.filter(tag => SKILLS[tag] && skillLesson(tag) >= 0 && skillLesson(tag) < i && skillDue(tag));
+  return pickSkillSteps(tags, b.n, 1, i).map(st => ({ ...st, title: b.title || st.title }));
+}
+// После занятия: одно обновление на навык — по доле баллов его заданий (первые попытки, без повторов).
+const OUTCOME_SCORE = { first: 1, fixed: 0.5, helped: 0.25, revealed: 0, bad: 0 };
+function updateSkills(outcomes) {
+  const by = {};
+  for (const o of outcomes) for (const tag of o.skill || []) if (SKILLS[tag]) (by[tag] = by[tag] || []).push(o);
+  const today = dayNum();
+  for (const [tag, list] of Object.entries(by)) {
+    const r = P.skills[tag] || { s: 0, due: today, ok: 0, err: 0, n: 0, seen: [] };
+    const share = list.reduce((a, o) => a + OUTCOME_SCORE[o.outcome], 0) / list.length;
+    r.ok += list.filter(o => o.outcome === "first").length;
+    r.err += list.filter(o => o.outcome === "bad" || o.outcome === "revealed").length;
+    let gap;
+    if (share >= 0.8) { gap = SKILL_INTERVALS[Math.min(r.s, SKILL_INTERVALS.length - 1)]; r.s = Math.min(r.s + 1, SKILL_INTERVALS.length); }
+    else if (share >= 0.5) gap = Math.max(1, Math.round(SKILL_INTERVALS[Math.min(r.s, SKILL_INTERVALS.length - 1)] / 2));
+    else { r.s = Math.max(0, r.s - 1); gap = 1; }
+    if (r.err / Math.max(1, r.ok + r.err) > 0.4) gap = Math.min(gap, 7);   // трудный навык — не реже раза в неделю
+    r.due = today + gap; r.n++; r.last = dayStr();
+    r.seen = [...new Set([...list.map(o => o.key).filter(Boolean), ...(r.seen || [])])].slice(0, 6);
+    P.skills[tag] = r;
+  }
+}
+// «Повторить» → «Фразы и конструкции»: до 10 заданий, не больше двух на навык.
 function startPhraseReview() {
-  const steps = shuffle(recallPool(LESSONS.length)).slice(0, 10).map(x => ({ ...x.make(), recall: true }));
+  let tags = dueSkills();
+  if (!tags.length) tags = Object.keys(P.skills).filter(t => SKILLS[t]).sort((a, b) =>
+    (P.skills[b].err / Math.max(1, P.skills[b].ok + P.skills[b].err)) - (P.skills[a].err / Math.max(1, P.skills[a].ok + P.skills[a].err))).slice(0, 5);
+  const steps = pickSkillSteps(tags, 10, 2);
   if (!steps.length) return toast("Пока нечего повторять");
   balance(steps);
-  S = { kind: "review", pool: knownPool(LESSONS.length), steps, at: 0, firstTry: 0, graded: 0, seen: new Set(), state: null };
-  render();
+  S = newSession({ kind: "review", pool: knownPool(LESSONS.length), steps });
+  render(); enterStep();
 }
 // Верный вариант не стоит на одной и той же позиции три вопроса подряд.
 function balance(steps) {
@@ -1555,47 +1700,67 @@ function balance(steps) {
   }
   return steps;
 }
-// В конце урока: по вопросу на слова, которых не касались задания, «Мастер фраз» на слух и тест урока.
-function scriptPractice(i, steps) {
-  const L = LESSONS[i], pool = knownPool(i), asked = askedTexts(steps), out = [];
+// Вопросы на слова урока, которых не коснулись задания, и «Мастер фраз»: в перестроенном уроке — блок recap
+// там, где его поставил автор; в ещё не перестроенном — в конце урока, как раньше.
+function wordChecks(i, asked) {
+  const L = LESSONS[i], pool = knownPool(i), out = [];
   const covered = w => { const core = wordCore(w.es); return !!core && [...asked].some(t => ` ${t} `.includes(` ${core} `)); };
-  L.words.filter(w => w.srs && !covered(w)).forEach((w, k) => { const q = wordQuestion(w, pool, k % 2 ? "prod" : "rec"); if (q) out.push(q); });
-  const phrase = shuffle(L.sentences.filter(([es]) => !asked.has(norm(es))))[0];
-  if (phrase && canSay(phrase[0])) out.push({ type: "mf", es: phrase[0], ru: phrase[1] });
-  const quiz = L.quiz.map(q => {
-    const order = q.shuffle ? shuffle(q.options.map((_, k) => k)) : q.options.map((_, k) => k);
-    return { type: "mc", mode: "quiz", q: q.q, options: order.map(k => q.options[k]), correct: order.indexOf(q.correct), explain: q.explain };
-  });
-  return shuffle(out).concat(quiz);
+  L.words.filter(w => w.srs && !covered(w)).forEach((w, k) => { const q = wordQuestion(w, pool, k % 2 ? "prod" : "rec"); if (q) out.push({ ...q, li: i }); });
+  return out;
 }
-// Длина текста экрана без разметки: короткая вводная (ситуация в одну-две фразы) стоит на первом экране урока.
-const textLen = blocks => blocks.map(b => String(b.html || "").replace(/<[^>]*>/g, "")).join("").length;
+const quizSteps = (L, i) => L.quiz.map(q => {
+  const order = q.shuffle ? shuffle(q.options.map((_, k) => k)) : q.options.map((_, k) => k);
+  return { type: "mc", mode: "quiz", q: q.q, options: order.map(k => q.options[k]), correct: order.indexOf(q.correct), explain: q.explain,
+           li: i, src: q.src, free: !!q.free, rule: q.rule || [], skill: q.skill || [], key: `${L.id}|${norm(q.q)}` };
+});
+function scriptPractice(i, steps) {
+  const L = LESSONS[i], asked = askedTexts(steps), out = wordChecks(i, asked);
+  const phrase = shuffle(L.sentences.filter(([es]) => !asked.has(norm(es))))[0];
+  if (phrase && canSay(phrase[0])) out.push({ type: "mf", es: phrase[0], ru: phrase[1], li: i });
+  return shuffle(out).concat(quizSteps(L, i));
+}
+function recapSteps(i, b, asked) {
+  const L = LESSONS[i], out = b.words ? wordChecks(i, asked) : [];
+  if (b.phrase) {
+    const ru = L.sentences.find(([es]) => es === b.phrase)?.[1] || "";
+    out.push({ type: "mf", es: b.phrase, ru, li: i, title: b.title });
+  }
+  return out;
+}
+// Новое занятие: счётчики результата. outcomes — исходы первых попыток (для итога, контроля и навыков).
+function newSession(props) {
+  return { at: 0, firstTry: 0, graded: 0, fixed: 0, seen: new Set(), state: null, outcomes: [], deferred: 0, noAudioUsed: 0, noAudio: false, ...props };
+}
+// Урок со сценарием открывается сразу полезным шагом: без титульного слайда и без случайных «Вспомним».
+// Уровень, тема, название и цель — в шапке плеера. Повторение прошлого — только блоком review, где его поставил автор.
 function startScript(i) {
-  const L = LESSONS[i], pool = knownPool(i), screens = theoryScreens(L);
-  const lead = screens.length && Array.isArray(screens[0]) && screens[0].every(b => b.t === "text") && textLen(screens[0]) < 320 ? screens.shift() : [];
-  const steps = [{ type: "intro", lead }];
+  const L = LESSONS[i], pool = knownPool(i), authored = (L.version || 1) >= 2;
+  const screens = authored ? authoredScreens(L) : theoryScreens(L);
+  const steps = [];
   // Слова без порции (из вводного урока сайта) — в начале, как раньше.
   const placed = new Set(L.blocks.filter(b => b.t === "learn").flatMap(b => b.words));
   L.words.filter(w => !placed.has(w.es)).forEach(w => steps.push({ type: "word", word: w }));
-  steps.push(...recallSteps(i));
-  let ref = -1, mission = "";
+  // Слова, которые спрашивают задания урока: recap проверяет только остальные.
+  const asked = askedTexts(L.blocks.flatMap(b => ["choose", "write", "match", "sort", "build"].includes(b.t) ? blockSteps(b, i) : []).concat(quizSteps(L, i)));
+  let mission = "";
   for (const sc of screens) {
     if (Array.isArray(sc)) {
       steps.push({ type: "theory", blocks: sc });
-      if (sc.some(b => RULE_BLOCKS.has(b.t))) ref = steps.length - 1;
       const m = sc.find(b => b.t === "mission");
       if (m) mission = m.title || "Миссия";
       continue;
     }
     const b = sc.ex;
     if (b.t === "learn") { b.words.forEach(es => { const w = L.words.find(x => x.es === es); if (w) steps.push({ type: "word", word: w }); }); continue; }
-    const made = b.t === "exercise" ? exerciseSteps(L, pool, b).slice(0, 6) : blockSteps(b);
-    made.forEach(st => { st.ref = ref; if (mission) st.mission = mission; });
+    if (b.t === "recap") { steps.push(...recapSteps(i, b, asked)); continue; }
+    if (b.t === "review") { steps.push(...reviewSteps(i, b)); continue; }
+    const made = b.t === "exercise" ? exerciseSteps(L, pool, b).slice(0, 6) : blockSteps(b, i);
+    made.forEach(st => { if (mission) st.mission = mission; });
     steps.push(...made);
   }
-  steps.push(...scriptPractice(i, steps));
-  S = { kind: "lesson", li: i, pool, steps: balance(steps), at: 0, firstTry: 0, graded: 0, seen: new Set(), state: null };
-  render();
+  steps.push(...(authored ? quizSteps(L, i) : scriptPractice(i, steps)));
+  S = newSession({ kind: "lesson", li: i, pool, steps: balance(steps), check: L.check || "" });
+  render(); enterStep();
 }
 
 // Ввод ответа: точное совпадение — верно; без значка ударения — «почти» (засчитывается), кроме слов,
@@ -1604,17 +1769,64 @@ function accentChangesMeaning(answer, typed) {
   const a = wNorm(answer).split(" "), t = wNorm(typed).split(" ");
   return a.some((w, k) => w !== t[k] && wFlat(w) === wFlat(t[k] || "") && (ACCENT_MEANING.has(w) || ACCENT_MEANING.has(t[k])));
 }
+// Почему ответ неверен. Сначала — авторская карта ожидаемых ошибок (mistakes: «el cafe por favor» → пояснение),
+// потом разбор по ближайшему допустимому ответу: ударение, ñ, артикль (с ударением вместе), та же основа в другой
+// форме (FORMS), порядок слов, опечатка в одну букву, лишнее или недостающее слово. Причину называем, только
+// если она определена надёжно; иначе — честное «Пока не так» и подсказка по шагам.
+const INDEF = new Set(["un", "una", "unos", "unas"]), DEF = new Set(["el", "la", "los", "las"]);
+function lev(a, b) {
+  const d = [...Array(b.length + 1).keys()];
+  for (let i = 1; i <= a.length; i++) { let prev = d[0]; d[0] = i;
+    for (let j = 1; j <= b.length; j++) { const t = d[j]; d[j] = Math.min(d[j] + 1, d[j - 1] + 1, prev + (a[i - 1] === b[j - 1] ? 0 : 1)); prev = t; } }
+  return d[b.length];
+}
+const flatW = w => wFlat(w);
+function nearestAnswer(st, got) {
+  const gw = got.split(" ");
+  const cost = x => { const aw = wNorm(x).split(" "); return lev(aw.map(flatW).join(" "), gw.map(flatW).join(" ")) + Math.abs(aw.length - gw.length); };
+  return st.a.slice().sort((x, y) => cost(x) - cost(y))[0];
+}
+function articleWhy(aw, gw) {
+  const want = aw[0], had = gw[0], many = /s$/.test(want);
+  if (INDEF.has(want) && DEF.has(had)) return `Здесь нужен неопределённый артикль (${many ? "unos, unas" : "un, una"}), а не ${had}.`;
+  if (DEF.has(want) && INDEF.has(had)) return `Здесь нужен определённый артикль (${many ? "los, las" : "el, la"}), а не ${had}.`;
+  return "Слово верное, а артикль другой: проверьте род и число слова.";
+}
+const whyHTML = w => w && typeof w === "object" ? w.html : esc(w || "");
 function writeWhy(st, typed) {
-  const got = wNorm(typed), a = wNorm(st.a[0]), aw = a.split(" "), gw = got.split(" ");
+  const got = wNorm(typed), gw = got.split(" ");
+  for (const [k, msg] of Object.entries(st.mistakes || {})) if (wFlat(wNorm(k)) === wFlat(got)) return { html: msg };
   if (st.a.some(x => accentChangesMeaning(x, typed) && wFlat(wNorm(x)) === wFlat(got))) return "Здесь знак ударения меняет смысл слова.";
   if (st.a.some(x => wFlat(wNorm(x)) === wFlat(got))) return "Проверьте знак ударения: где он нужен, а где нет.";
   if (st.a.some(x => wFlat(wNorm(x)).replace(/ñ/g, "n") === wFlat(got).replace(/ñ/g, "n"))) return "Посмотрите на букву ñ: n и ñ — разные буквы.";
-  if (ARTS.has(aw[0]) && ARTS.has(gw[0]) && aw.slice(1).join(" ") === gw.slice(1).join(" ")) return "Слово верное, а артикль другой.";
-  if (ARTS.has(aw[0]) && aw.slice(1).join(" ") === got) return "Нужен артикль: напишите слово вместе с артиклем.";
-  if (ARTS.has(gw[0]) && !ARTS.has(aw[0]) && gw.slice(1).join(" ") === a) return "Здесь артикль не нужен.";
+  const best = nearestAnswer(st, got), a = wNorm(best), aw = a.split(" ");
+  const same = (x, y) => x.map(flatW).join(" ") === y.map(flatW).join(" ");
+  const accentToo = (x, y) => x.join(" ") !== y.join(" ") ? " И проверьте знак ударения." : "";
+  if (aw.length === gw.length && ARTS.has(aw[0]) && ARTS.has(gw[0]) && aw[0] !== gw[0] && same(aw.slice(1), gw.slice(1)))
+    return articleWhy(aw, gw) + accentToo(aw.slice(1), gw.slice(1));
+  if (ARTS.has(aw[0]) && same(aw.slice(1), gw)) return "Нужен артикль: напишите слово вместе с артиклем." + accentToo(aw.slice(1), gw);
+  if (ARTS.has(gw[0]) && !ARTS.has(aw[0]) && same(gw.slice(1), aw)) return "Здесь артикль не нужен." + accentToo(gw.slice(1), aw);
   if (/\d/.test(a)) return st.say ? "Пока не так. Послушайте ещё раз." : "Пока не так.";
-  if (gw.length < aw.length) return "Не хватает слова.";
-  if (gw.length > aw.length) return "Есть лишнее слово.";
+  if (aw.length === gw.length) {
+    const diff = aw.map((w, k) => flatW(w) !== flatW(gw[k]) ? k : -1).filter(k => k >= 0);
+    if (diff.length === 1) {
+      const k = diff[0], lemma = FORMS[aw[k]], typedLemma = FORMS[gw[k]];
+      if (lemma && lemma === typedLemma) {
+        const pos = WORDS.get(lemma)?.pos;
+        return pos === "verb" ? "Слово верное, но нужна другая форма глагола: посмотрите, кто действует."
+          : pos === "adj" ? "Слово верное, но нужна другая форма: проверьте род и число."
+          : "Слово верное, но нужна другая форма слова.";
+      }
+      if (gw[k].length >= 4 && lev(flatW(aw[k]), flatW(gw[k])) === 1) return `Почти: проверьте, как пишется слово «${gw[k]}».`;
+    }
+    if ([...aw].map(flatW).sort().join(" ") === [...gw].map(flatW).sort().join(" ")) return "Все слова верные, но порядок другой.";
+  }
+  // Число слов называем, только если ни один допустимый ответ не совпадает по длине с ответом ученика.
+  const lens = st.a.map(x => wNorm(x).split(" ").length);
+  if (!lens.includes(gw.length)) {
+    if (gw.length < Math.min(...lens)) return "Не хватает слова.";
+    if (gw.length > Math.max(...lens)) return "Есть лишнее слово.";
+  }
   return "Пока не так.";
 }
 function writeResult(st, typed) {
@@ -1633,15 +1845,29 @@ function writeCheck() {
   const r = writeResult(st, s.value);
   s.tries = (s.tries || 0) + 1;
   if (r.ok) { s.almost = !!r.almost; s.match = r.match; return answer(s.tries === 1, st, { solved: true, requeue: false }); }
-  if (s.tries < 2) { s.why = r.why; s.flash = true; render(); sfx(false); focusWrite(); return; }
   s.why = r.why;
+  if (s.tries < 2) { s.flash = true; render(); sfx(false); focusWrite(); return; }
   answer(false, st);
 }
 function writeGive() {
   const st = S.steps[S.at], s = S.state;
   if (s.result) return;
   s.gave = true;
-  answer(false, st);
+  answer(false, st, { revealed: true });
+}
+// Подсказка по шагам, не сразу ответ: 1 — сколько слов и букв, 2 — первые буквы слов; дальше — «Показать ответ».
+function writeHint() {
+  const st = S.steps[S.at], s = S.state;
+  if (s.result) return;
+  if ((s.helps || 0) >= 2) return writeGive();
+  s.helps = (s.helps || 0) + 1;
+  render(); focusWrite();
+}
+function writeHintHTML(st, s) {
+  if (!s.helps) return "";
+  const words = String(st.a[0]).split(" ");
+  const mask = w => w.replace(/[\p{L}\d]/gu, (c, k) => s.helps >= 2 && k === w.search(/[\p{L}\d]/u) ? c : "_");
+  return `<div class="whint" role="status">💡 ${s.helps === 1 ? `${words.length} ${plural(words.length, "слово", "слова", "слов")}: ` : ""}<span class="mask">${esc(words.map(mask).join(" "))}</span></div>`;
 }
 function focusWrite() { const f = $("#wans"); if (f && !matchMedia("(pointer: coarse)").matches) f.focus({ preventScroll: true }); }
 function wInsert(ch) {
@@ -1664,10 +1890,10 @@ function matchPick(side, k) {
   const other = s.sel; s.sel = null;
   if (other.k === k) {
     s.done.push(k); if (text) say(text);
-    if (s.done.length === st.pairs.length) return answer(s.err === 0, st, { requeue: false });
+    if (s.done.length === st.pairs.length) return answer(s.err === 0, st, { requeue: false, solved: true });
     return render();
   }
-  s.err++; s.bad = side === "l" ? { l: k, r: other.k } : { l: other.k, r: k };
+  s.err++; s.miss = (s.miss || 0) + 1; s.bad = side === "l" ? { l: k, r: other.k } : { l: other.k, r: k };
   render(); sfx(false);
 }
 // Группы: одна карточка за раз; нажатие на группу кладёт её туда. После двух ошибок подсвечивается верная группа.
@@ -1678,10 +1904,11 @@ function sortPick(g) {
   if (g === want) {
     s.placed[g].push(item[0]); s.k++; s.here = 0; s.flash = null; s.hint = null;
     if (item[1]) say(item[1]);
-    if (s.k >= s.order.length) return answer(s.err === 0, st, { requeue: false });
+    if (s.k >= s.order.length) return answer(s.err === 0, st, { requeue: false, solved: true, helped: s.helps > 0 });
     return render();
   }
-  s.err++; s.here++; s.flash = g; if (s.here >= 2) s.hint = want;
+  s.err++; s.miss++; s.here++; s.flash = g;
+  if (s.here >= 2 && s.hint == null) { s.hint = want; s.helps++; }   // после двух промахов группа подсвечена — это подсказка
   render(); sfx(false);
 }
 // Правая колонка пар не совпадает с левой ни в одной строке, иначе пары видны без чтения
@@ -1691,13 +1918,103 @@ function matchOrder(n) {
   for (let i = n - 1; i > 0; i--) { const j = Math.floor(Math.random() * i); [r[i], r[j]] = [r[j], r[i]]; }
   return r;
 }
-const ruleOf = st => S.kind === "lesson" && st.ref >= 0 ? S.steps[st.ref] : null;
+// «📖 Повторить правило» — объяснение, к которому привязано задание (rule: блоки своего урока). Нет привязки —
+// нет кнопки: ближайший экран теории может быть совсем о другом. Работает и в повторении (урок задания — st.li).
+const ruleOf = st => (st.rule || []).map(k => LESSONS[st.li]?.blocks[k]).filter(b => b && !["dialogue", "reading", "mission"].includes(b.t));
 const ruleHTML = st => {
-  const ref = ruleOf(st);
-  if (!ref) return "";
-  const blocks = ref.blocks.filter(b => b.t !== "dialogue" && b.t !== "reading" && b.t !== "mission");
+  const blocks = ruleOf(st);
   return blocks.length ? `<details class="why"><summary>📖 Повторить правило</summary><div class="theory">${blocks.map(blockHTML).join("")}</div></details>` : "";
 };
+// Источник задания (диалог, текст или условие миссии) прямо в задании: «Слушать ещё раз» и «Показать диалог».
+// Повторное прослушивание ошибкой не считается. Текст скрытого (слухового) диалога до ответа — только явная
+// подсказка: задание засчитывается «с подсказкой». Перевод — после ответа. Открытие не сбрасывает ответ (S.state).
+const srcOf = st => st.src != null ? LESSONS[st.li]?.blocks[st.src] : null;
+function srcPanel(st) {
+  const b = srcOf(st);
+  if (!b) return "";
+  const s = S.state, done = !!s.result;
+  const hidden = b.t === "dialogue" && b.hidden && !done && !s.peek && !S.noAudio;
+  const what = b.t === "dialogue" ? "диалог" : b.t === "reading" ? "текст" : "условие миссии";
+  const audible = !S.noAudio && (b.t === "dialogue" ? b.lines.some(l => canSay(l[3], b.cast?.[l[0]]?.v)) : b.t === "reading" && canSay(b.say));
+  const open = s.srcOpen ?? (b.t === "mission" || WIDE?.matches);
+  const body = b.t === "dialogue" ? dialogueHTML({ ...b, hidden }, false)
+    : b.t === "reading" ? `<div class="reading hide-tr"><div class="text">${b.html}</div>${b.tr && done ? `<div class="tr">${b.tr}</div>` : ""}</div>`
+    : `<p>${b.html}</p>`;
+  return `<aside class="srcbox" aria-label="Источник задания">
+    ${audible ? `<button class="btn ghost sm" data-src-play>▶ Слушать ещё раз</button>` : ""}
+    <details class="src" data-src${open ? " open" : ""}><summary>${b.t === "mission" ? "🎯" : "📖"} Показать ${what}${b.title ? ` «${b.title}»` : ""}</summary>
+      ${hidden ? `<p class="muted">Текст спрятан: сначала послушайте. Открыть его можно как подсказку.</p><button class="btn ghost sm" data-src-peek>Показать текст (подсказка)</button>` : ""}
+      ${body}
+      ${done && b.t === "dialogue" ? `<button class="btn ghost sm" data-src-tr aria-pressed="false">Перевод</button>` : ""}
+    </details></aside>`;
+}
+const WIDE = matchMedia?.("(min-width: 900px)");
+
+/* ================================================================ звук в заданиях на слух */
+// Задание на слух нельзя засчитать, если его нельзя послушать. Нет записи и испанского голоса, запись не загрузилась
+// или браузер не дал включить звук — понятный статус, «Попробовать снова» и «Нет возможности слушать»: явная
+// альтернатива автора (noaudio) или задание откладывается до звука и не оценивается. Урок, пройденный так, — «без звука».
+const listenText = st => st.type === "mf" ? st.es : st.say;
+const audioOK = st => S.noAudio || st.noaudioUsed || (canSay(listenText(st)) && !["fail", "none"].includes(S.state?.audio));
+function listenHTML(text) {
+  const st = S.steps[S.at], s = S.state || {};
+  if (!audioOK(st)) {
+    const why = s.audio === "fail" ? "Запись не загрузилась. Проверьте интернет."
+      : s.audio === "none" || !canSay(text) ? "Звука нет: записи этой фразы нет, и в телефоне нет испанского голоса." : "";
+    return `<div class="listen off" role="status"><p>🔇 ${why}</p><div class="two">
+      <button class="btn ghost" data-audio-retry>Попробовать снова</button><button class="btn ghost" data-noaudio>Нет возможности слушать</button></div></div>`;
+  }
+  return `<div class="listen"><div class="row2">${playBtn(text, "big")}${slowBtn(text)}</div>
+    ${s.audio === "blocked" ? `<p class="muted">Браузер не дал включить звук сам — нажмите ▶.</p>` : ""}
+    ${s.result ? "" : `<button class="linkbtn" data-noaudio>Нет возможности слушать</button>`}</div>`;
+}
+// Альтернатива заданию на слух: вопрос автора без звука (та же цель письменно) или «отложено до звука».
+function altStep(st) {
+  const na = st.noaudio;
+  if (st.type === "mf") return st.ru ? { ...st, noaudioUsed: true, orig: st } : { type: "deferred", orig: st };
+  if (!na) return { type: "deferred", orig: st };
+  if (st.type === "mc") {
+    const order = shuffle(na.o.map((_, k) => k));
+    return { ...st, say: "", title: "", q: na.q, explain: na.explain || st.explain, options: order.map(k => na.o[k][0]), plain: order.map(k => na.o[k][1]),
+             correct: order.indexOf(0), mistakes: {}, noaudioUsed: true, orig: st };
+  }
+  return { ...st, say: "", title: "", q: na.q, a: na.a, show: na.show, format: na.format || st.format, explain: na.explain || st.explain,
+           mistakes: {}, noaudioUsed: true, orig: st };
+}
+function useNoAudio() {
+  S.noAudio = true; stopSpeech();
+  const st = S.steps[S.at];
+  if (isListen(st) && !st.noaudioUsed) { S.steps[S.at] = altStep(st); S.state = null; }
+  render();
+}
+function audioBack() {   // «Звук снова есть»: текущее задание — снова на слух
+  S.noAudio = false;
+  const st = S.steps[S.at];
+  if (st.orig) { S.steps[S.at] = st.orig; S.state = null; }
+  render(); enterStep();
+}
+function retryAudio() {
+  const st = S.steps[S.at], text = listenText(st);
+  pickVoice(); player = null; S.state.audio = null;
+  if (!canSay(text)) { S.state.audio = "none"; render(); return toast("Звука по-прежнему нет"); }
+  render();
+  playClip(text, { onfail: () => { if (S?.steps[S.at] === st) { S.state.audio = "fail"; render(); } },
+                   onblock: () => { if (S?.steps[S.at] === st) { S.state.audio = "blocked"; render(); } } });
+}
+// Звук задания при входе на шаг: с записью — через плеер с проверкой ошибки загрузки.
+function sayStep(text) {
+  const st = S.steps[S.at];
+  if (!canSay(text)) return;
+  playClip(text, { onfail: () => { if (S?.steps[S.at] === st && S.state && !S.state.result) { S.state.audio = "fail"; render(); } },
+                   onblock: () => { if (S?.steps[S.at] === st && S.state) { S.state.audio = "blocked"; render(); } } });
+}
+function srcPlay() {
+  const st = S.steps[S.at], b = srcOf(st);
+  if (!b) return;
+  if (b.t === "reading") return say(b.say);
+  const box = document.querySelector(".srcbox .dlg[data-dlg]");
+  if (box) dlgStart(box);
+}
 function chatHTML(st) {
   const names = [...new Set(st.lines.map(l => l[0]))];
   return `<div class="mini-dlg">${st.lines.map(([who, es, ru, sp]) => {
@@ -1706,7 +2023,7 @@ function chatHTML(st) {
     return `<div class="msg t${n % 4}${n % 2 ? " r" : ""}">${avaHTML(c.a)}<span class="who">${esc(who)}</span><div class="bubble"><span class="es">${es}</span>${play}</div></div>`;
   }).join("")}<div class="msg gap${names.length % 2 ? " r" : ""}"><span class="ava" aria-hidden="true">${AVA_ICON}</span><span class="who">Вы</span><div class="bubble">…</div></div></div>`;
 }
-const kickerOf = (st, fallback) => `<span class="kicker">${st.recall ? "🔁 Вспомним · " : st.mission ? `🎯 ${st.mission} · ` : ""}${st.title || fallback}</span>`;
+const kickerOf = (st, fallback) => `<span class="kicker">${st.noaudioUsed ? "🔇 Без звука · " : ""}${st.review ? `🔁 Повторим${SKILLS[st.reviewTag] ? ": " + esc(SKILLS[st.reviewTag].title) : ""} · ` : st.mission ? `🎯 ${st.mission} · ` : ""}${st.title || fallback}</span>`;
 const wordPic = es => { const w = WORDS.get(es); return w?.img ? `<img class="qpic" src="${w.img}" alt="">` : ""; };
 
 let S = null;   // текущее занятие
@@ -1723,9 +2040,14 @@ function startLesson(i) {
   const pool = knownPool(i);
   screens.forEach(sc => Array.isArray(sc) ? learn.push({ type: "theory", blocks: sc }) : learn.push(...exerciseSteps(L, pool, sc.ex).slice(0, 6)));
   const asked = new Set(learn.filter(s => s.type === "mc" && s.plain).map(s => norm(s.plain[s.correct])));
-  const practice = practiceFor(i, asked);   // задания сразу после объяснения, без заставки
-  S = { kind: "lesson", li: i, pool: knownPool(i), steps: learn.concat(practice), at: 0, firstTry: 0, graded: 0, seen: new Set(), state: null };
-  render();
+  const practice = practiceFor(i, asked).map(st => st.mode === "quiz" ? { ...st, ...quizRefs(L, i, st) } : st);   // задания сразу после объяснения, без заставки
+  S = newSession({ kind: "lesson", li: i, pool: knownPool(i), steps: learn.concat(practice), check: L.check || "" });
+  render(); enterStep();
+}
+// Вопрос теста прежнего пути (уроки quiz): навык и источник — по тексту вопроса из данных урока.
+function quizRefs(L, i, st) {
+  const q = L.quiz.find(x => x.q === st.q);
+  return q ? { li: i, src: q.src, free: !!q.free, rule: q.rule || [], skill: q.skill || [], key: `${L.id}|${norm(q.q)}` } : { li: i };
 }
 function startReview(list) {
   const pool = knownPool(LESSONS.length);
@@ -1734,15 +2056,16 @@ function startReview(list) {
     return wordQuestion(w, pool, st >= 2 ? (Math.random() < .3 ? "listen" : "prod") : "rec");
   }).filter(Boolean);
   if (!steps.length) return toast("Пока нечего повторять");
-  S = { kind: "review", pool, steps, at: 0, firstTry: 0, graded: 0, seen: new Set(), state: null };
-  render();
+  S = newSession({ kind: "review", pool, steps });
+  render(); enterStep();
 }
 
 const isGraded = st => ["mc", "build", "mf", "write", "match", "sort"].includes(st.type);
 const NEXT_MODE = { rec: "prod", prod: "listen", listen: "rec" };
 
-// Ошибка возвращается в конце урока в другом виде, как в Busuu: «Что значит» → «Как по-испански»
+// Самостоятельная ошибка возвращается в конце урока в другом виде, как в Busuu: «Что значит» → «Как по-испански»
 // → на слух; у викторины перемешиваются варианты. Повтор в счёт «с первой попытки» не идёт.
+// Вопрос к источнику в конец урока не уходит: он повторяется сразу после своей группы, с открытым источником.
 function retryOf(st) {
   if (st.word && NEXT_MODE[st.mode]) {
     const q = wordQuestion(st.word, S.pool, NEXT_MODE[st.mode]);
@@ -1755,16 +2078,41 @@ function retryOf(st) {
   }
   return { ...st, retry: true };
 }
-function answer(ok, st, { requeue = true, solved = ok } = {}) {
-  S.state.result = solved ? "good" : "bad";
+// Итог задания — то, что ученик в итоге сделал, а не первая ошибка:
+//   good     — решил сам (в том числе исправив свою ошибку: зелёный, звук успеха, пометка «Исправлена 1 ошибка»);
+//   helped   — решил с подсказкой (плитка, первые буквы, текст скрытого аудио): жёлтый;
+//   revealed — ответ показала система: не засчитано как самостоятельное;
+//   bad      — ошибка.
+// ok — с первой попытки, без ошибок и подсказок: «с первой попытки» и звёзды считаются отдельно.
+// Исход первой попытки (first / fixed / helped / revealed / bad) идёт в итог контроля и в повторение навыков.
+function answer(ok, st, { requeue = true, solved = ok, helped = false, revealed = false } = {}) {
+  const s = S.state;
+  helped = helped || !!s.peek || !!s.helps;
+  s.result = revealed ? "revealed" : solved ? (helped ? "helped" : "good") : "bad";
+  if (ok && helped) ok = false;
+  const outcome = ok ? "first" : s.result === "good" ? "fixed" : s.result;
   if (!st.retry && !S.seen.has(st)) {
-    S.seen.add(st); S.graded++; if (ok) S.firstTry++;
-    if (st.word) grade(st.word.es, ok);           // расписание повторения меняем сразу
+    S.seen.add(st); S.graded++; if (ok) S.firstTry++; if (outcome === "fixed") S.fixed++;
+    if (st.noaudioUsed || (S.noAudio && srcOf(st)?.hidden)) S.noAudioUsed++;
+    if (S.noAudio && srcOf(st)?.hidden) st.noaudioUsed = true;   // скрытый диалог прочитан, а не услышан
+    S.outcomes.push({ outcome, skill: st.skill || [], key: st.key, ctx: isCtx(st), title: st.title, noaudio: !!st.noaudioUsed });
+    if (st.word) grade(st.word.es, ok);           // расписание повторения слов меняем сразу
   }
-  if (!ok && requeue && !st.retry) S.steps.push(retryOf(st));   // ошибка возвращается один раз, не по кругу
-  if (solved) say(solvedSay(st));
+  s.requeued = "";
+  // Контроль — проверка, ошибки в нём не переспрашиваются; в тренировке ошибка возвращается один раз, не по кругу.
+  if (!ok && !["good", "helped"].includes(s.result) && requeue && !st.retry && S.check !== "control") {
+    const again = retryOf(st);
+    if (isCtx(st)) {
+      let at = S.at + 1;   // сразу после своей группы вопросов к тому же источнику
+      // (повторы уже ошибочных вопросов этой группы — тоже её часть: порядок повторов совпадает с порядком вопросов)
+      while (at < S.steps.length && isCtx(S.steps[at]) && S.steps[at].src === st.src && S.steps[at].li === st.li) at++;
+      S.steps.splice(at, 0, { ...again, srcOpen: true });
+      s.requeued = "near";
+    } else { S.steps.push(again); s.requeued = "end"; }
+  }
+  if (s.result === "good" || s.result === "helped") say(solvedSay(st));
   render();
-  sfx(ok ? (S.state.almost ? "almost" : true) : solved ? "almost" : false);
+  sfx(s.result === "good" ? (s.almost ? "almost" : true) : s.result === "helped" ? "almost" : s.result === "revealed" ? null : false);
   // Автор просил без автоперехода: и после верного ответа — «Продолжить» и пояснение (пример, «На заметку»).
 }
 // Что прозвучит после верного ответа: собранная фраза, слово, введённый ответ или испанский вариант.
@@ -1780,7 +2128,7 @@ let autoTimer = null;
 /* ================================================================ звуки (Web Audio, без файлов) */
 let audioCtx = null;
 function sfx(ok) {
-  if (!P.sound) return;
+  if (!P.sound || ok === null) return;   // null — ответ показан системой: без звука успеха и без звука ошибки
   try {
     audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
     if (audioCtx.state === "suspended") audioCtx.resume().catch(() => {});
@@ -1802,7 +2150,7 @@ function sfx(ok) {
 // Назад — к ближайшему экрану с объяснением (слово, теория): уже отвеченные вопросы не пересдаём.
 function prevIndex() {
   if (!S || S.kind === "result") return -1;
-  for (let k = S.at - 1; k >= 0; k--) if (!isGraded(S.steps[k]) && S.steps[k].type !== "task") return k;
+  for (let k = S.at - 1; k >= 0; k--) if (!isGraded(S.steps[k]) && !["task", "deferred"].includes(S.steps[k].type)) return k;
   return -1;
 }
 function prev() {
@@ -1817,27 +2165,63 @@ function next() {
   clearTimeout(autoTimer);
   S.at++; S.state = null;
   if (S.at >= S.steps.length) return finish();
-  render();
+  render(); enterStep();
+}
+// Вход на шаг (и первый шаг урока тоже): звук карточки или задания на слух. «Нет возможности слушать» —
+// задание на слух сразу заменяется альтернативой, и звук не включается.
+function enterStep() {
+  if (!S || S.kind === "result") return;
   const st = S.steps[S.at];
+  if (!st) return;
+  if (S.noAudio) { if (isListen(st) && !st.noaudioUsed) useNoAudio(); return; }
+  if (!S.state) render();
   if (st.type === "word") say(st.word.say);
-  if (st.type === "mc" && (st.mode === "listen" || st.mode === "rec" || st.mode === "choose")) say(st.say);
-  if (st.type === "write" && st.say) say(st.say);
-  if (st.type === "mf") say(st.es);
+  if (st.type === "mc" && (st.mode === "listen" || st.mode === "rec")) say(st.say);
+  if (st.type === "mc" && st.mode === "choose" && st.say) sayStep(st.say);
+  if (st.type === "write" && st.say) sayStep(st.say);
+  if (st.type === "mf") sayStep(st.es);
+}
+// Итог занятия. Ноль оценённых заданий — не 100 %, а «не засчитано» (например, урок только на слух без звука).
+// Контроль (check: control — итоги A0 и A1; soft — тесты тем): балл 1 / 0,5 / 0,25 / 0 за первую попытку
+// (с первого раза / исправил сам / с подсказкой / показан ответ или ошибка), порог PASS. Не сдан control — урок
+// не засчитан, следующий закрыт с объяснением; не сдан soft — честная оценка, но дальше пускаем.
+const PASS = 0.8;
+const scoreOf = outcomes => outcomes.length ? outcomes.reduce((a, o) => a + OUTCOME_SCORE[o.outcome], 0) / outcomes.length : 0;
+function topics(outcomes) {
+  const by = {};
+  for (const o of outcomes) for (const tag of o.skill?.length ? o.skill : ["_"]) (by[tag] = by[tag] || []).push(o);
+  return Object.entries(by).filter(([tag]) => tag !== "_" && SKILLS[tag]).map(([tag, list]) => ({ tag, title: SKILLS[tag].title, score: scoreOf(list), li: skillLesson(tag) }))
+    .sort((a, b) => a.score - b.score);
 }
 function finish() {
-  const acc = S.graded ? S.firstTry / S.graded : 1;
-  const stars = acc >= .9 ? 3 : acc >= .7 ? 2 : 1;
-  let xp, learned = [];
+  const n = S.outcomes.length, acc = n ? S.firstTry / n : 0, score = scoreOf(S.outcomes);
+  const noaudio = S.noAudioUsed + S.steps.filter(x => x.type === "deferred").length;
+  let xp = 0, learned = [], stars = acc >= .9 ? 3 : acc >= .7 ? 2 : 1, passed = n > 0;
   if (S.kind === "lesson") {
-    const L = LESSONS[S.li], prev = P.done[L.id];
-    xp = (prev ? 5 : 10) + S.firstTry * 2;
-    P.done[L.id] = { stars: Math.max(stars, prev?.stars || 0), acc: Math.round(acc * 100), at: dayStr() };
-    L.words.filter(w => w.srs).forEach(w => { if (!P.words[w.es]) { P.words[w.es] = { s: 0, due: dayNum() + INTERVALS[0] }; learned.push(w); } });
-  } else {
+    const L = LESSONS[S.li], prev = P.done[L.id], check = S.check;
+    if (check) {
+      stars = score >= .9 ? 3 : score >= PASS ? 2 : 1;
+      const c = P.ctl[L.id] || { n: 0, best: 0 };
+      P.ctl[L.id] = { n: c.n + 1, best: Math.max(c.best || 0, Math.round(score * 100)), last: Math.round(score * 100), at: dayStr() };
+      if (check === "control") passed = passed && score >= PASS;
+    }
+    if (passed) {
+      const v = L.version || 1, pv = P.ver[L.id], fresh = !prev || prev.joined || !isCurrent(S.li);
+      xp = (fresh ? 10 : 5) + S.firstTry * 2;
+      P.done[L.id] = { stars: Math.max(stars, prev?.joined ? 0 : prev?.stars || 0), acc: Math.round(acc * 100), at: dayStr() };
+      const keepFull = pv && pv.v === v && !pv.noaudio;   // уже пройден со звуком — пометка «без звука» не нужна
+      P.ver[L.id] = { v, stars: Math.max(stars, pv && pv.v === v ? pv.stars || 0 : 0), acc: Math.round(acc * 100), at: dayStr(),
+                      ...(noaudio && !keepFull ? { noaudio } : {}) };
+      L.words.filter(w => w.srs).forEach(w => { if (!P.words[w.es]) { P.words[w.es] = { s: 0, due: dayNum() + INTERVALS[0] }; learned.push(w); } });
+    } else if (n) xp = 5 + S.firstTry;   // попытка итога: опыт за работу, но урок не засчитан
+  } else if (n) {
     xp = 5 + S.firstTry * 2;
   }
-  addXP(xp); save();
-  S = { kind: "result", from: S.kind, li: S.li, xp, acc, stars, learned };
+  updateSkills(S.outcomes.filter(o => !o.noaudio));
+  if (xp) addXP(xp);
+  save();
+  S = { kind: "result", from: S.kind, li: S.li, xp, acc, stars, learned, passed, graded: n, score, check: S.check, noaudio,
+        topics: topics(S.outcomes), fixed: S.fixed };
   render();
 }
 
@@ -2084,6 +2468,9 @@ function courseView() {
   </section>`;
   if (!doneN && !P.joined) html += `<button class="btn ghost wide" style="margin-top:12px" data-join>Я уже учусь в канале</button>`;
   if (due) html += `<div class="notice">🔁 Пора повторить ${words(due)}<button class="btn" data-review="due">Повторить</button></div>`;
+  // Обновлённые уроки: старое прохождение сохранено, но новые цели подтверждаются только новой версией.
+  const old = LESSONS.map((_, i) => i).filter(i => levelOf(i) === lv && isOutdated(i));
+  if (old.length) html += `<div class="notice">🆕 ${plural(old.length, "Обновлён", "Обновлены", "Обновлено")} ${old.length} ${plural(old.length, "урок", "урока", "уроков")}: пройдите новую версию<button class="btn" data-lesson="${old[0]}">Урок ${LESSONS[old[0]].n}</button></div>`;
   for (const U of COURSE.units) {
     const idx = LESSONS.map((L, i) => L.unit === U.number ? i : -1).filter(i => i >= 0);
     if (!idx.length || U.level !== lv) continue;
@@ -2097,8 +2484,13 @@ function courseView() {
         const L = LESSONS[i], d = P.done[L.id], open = isOpen(i), cur = i === ci && !d;
         const cls = d ? "done" : cur ? "current" : open ? "open" : "locked";
         const right = d ? `<span class="stars" aria-label="${d.stars} из 3">${"★".repeat(d.stars)}${"☆".repeat(3 - d.stars)}</span>` : cur ? `<span class="go">Начать</span>` : open ? "" : "🔒";
+        const prevL = LESSONS[i - 1], gate = !d && !open && prevL?.check === "control" && !P.done[prevL.id];
+        const note = isOutdated(i) ? `<small class="upd">🆕 Урок обновлён — пройти новую версию</small>`
+          : d && P.ver[L.id]?.noaudio ? `<small class="upd">🔇 Пройден без звука — аудирование не подтверждено</small>`
+          : gate ? `<small class="upd">🔒 Откроется после итога «${esc(prevL.title)}»: нужно ${PASS * 100} %</small>`
+          : L.check === "control" && !d && P.ctl[L.id] ? `<small class="upd">Лучший результат ${P.ctl[L.id].best} %, нужно ${PASS * 100} %</small>` : "";
         return `<li><button class="step ${cls}" data-lesson="${i}"><span class="node">${d ? "✓" : L.emoji}</span>
-          <span class="t"><b>${L.n}. ${esc(L.title)}</b><small>${rowNote(L)}</small></span>${right}</button></li>`;
+          <span class="t"><b>${L.n}. ${esc(L.title)}</b><small>${rowNote(L)}</small>${note}</span>${right}</button></li>`;
       }).join("")}</ol></section>`;
   }
   return html;
@@ -2119,12 +2511,21 @@ function reviewView() {
       ${weak.length >= 3 ? `<button class="btn ghost wide" data-review="weak">Потренировать трудные</button>` : ""}
       <button class="btn ghost wide" data-review="all">Случайные 15 из всех выученных</button>
     </section>
-    ${recallPool(LESSONS.length).length >= 4 ? `<section class="panel"><h2>Фразы и конструкции</h2>
-      <span class="muted">Задания из пройденных уроков: артикли, формы, ответы в разговоре.</span>
-      <button class="btn ghost wide" data-review="phrases">Повторить 10 заданий</button></section>` : ""}
+    ${phrasePanel()}
     ${COURSE.bot ? `<section class="panel"><h2>В Telegram</h2><span>Те же слова можно повторять с ботом <a href="https://t.me/${esc(COURSE.bot)}" target="_blank" rel="noopener">@${esc(COURSE.bot)}</a>: он сам напомнит в среду и субботу.</span></section>` : ""}`;
 }
 
+// «Фразы и конструкции»: повторение навыков по интервалам (P.skills), а не случайные задания.
+function phrasePanel() {
+  const started = Object.keys(P.skills).filter(t => SKILLS[t]);
+  if (!started.length) return "";
+  const due = dueSkills();
+  const next = started.map(t => P.skills[t].due).filter(d => d > dayNum()).sort((a, b) => a - b)[0];
+  return `<section class="panel"><h2>Фразы и конструкции</h2>
+    <span class="muted">${due.length ? `Пора повторить: ${due.slice(0, 4).map(t => esc(SKILLS[t].title)).join(", ")}${due.length > 4 ? ` и ещё ${due.length - 4}` : ""}.`
+      : next ? `Сегодня всё повторено. Следующее: ${new Date(numDay(next)).toLocaleDateString("ru", { day: "numeric", month: "long" })}.` : ""}</span>
+    <button class="btn ${due.length ? "" : "ghost "}wide" data-review="phrases">${due.length ? "Повторить конструкции" : "Потренировать трудные"}</button></section>`;
+}
 function wordsView() {
   const list = [...WORDS.values()].filter(w => P.words[w.es]);
   if (!list.length) return `<section class="panel"><div class="empty"><span class="e">📚</span><b>Словарь пока пуст</b><span>Слова попадают сюда после урока.</span></div></section>`;
@@ -2139,21 +2540,24 @@ function wordsView() {
     }).join("") || `<li><span></span><span class="muted">Ничего не нашлось</span></li>`}</ul></section>`;
 }
 
+// Только цели, подтверждённые прохождением текущей версии урока; уроки старой версии — отдельной строкой.
 function skillsPanel() {
-  const units = COURSE.units.map(U => [U, LESSONS.filter(L => L.unit === U.number && L.goal && P.done[L.id])]).filter(([, ls]) => ls.length);
-  if (!units.length) return "";
+  const units = COURSE.units.map(U => [U, LESSONS.map((L, i) => i).filter(i => LESSONS[i].unit === U.number && LESSONS[i].goal && isCurrent(i))]).filter(([, ls]) => ls.length);
+  const old = LESSONS.filter((_, i) => isOutdated(i) && LESSONS[i].goal).length;
+  if (!units.length && !old) return "";
   return `<section class="panel"><h2>Что вы уже умеете</h2><div class="skills">${units.map(([U, ls]) =>
-    `<div><b>Тема ${U.number}. ${esc(U.title)}</b><ul>${ls.map(L => `<li>✓ ${esc(L.goal)}</li>`).join("")}</ul></div>`).join("")}</div></section>`;
+    `<div><b>Тема ${U.number}. ${esc(U.title)}</b><ul>${ls.map(i => `<li>✓ ${esc(LESSONS[i].goal)}${P.ver[LESSONS[i].id]?.noaudio ? ` <small class="muted">(без звука — пройти со звуком)</small>` : ""}</li>`).join("")}</ul></div>`).join("")}</div>
+    ${old ? `<span class="muted">Ещё ${old} ${plural(old, "урок обновлён", "урока обновлены", "уроков обновлены")}: эти умения подтвердятся после новой версии.</span>` : ""}</section>`;
 }
 function statsView() {
   const doneN = LESSONS.filter((_, i) => isDone(i)).length, learned = Object.keys(P.words).length;
-  const strong = Object.values(P.words).filter(s => s.s >= 3).length;
+  const strong = Object.values(P.words).filter(s => s.s >= 3).length, current = LESSONS.filter((_, i) => isCurrent(i)).length;
   const days = [...Array(7)].map((_, k) => numDay(dayNum() - 6 + k));
   const max = Math.max(P.goal, ...days.map(d => P.days[d] || 0));
   const wd = d => new Date(d + "T12:00:00").toLocaleDateString("ru", { weekday: "short" });
   return `<section class="panel"><h2>Ваш прогресс</h2>
     <div class="stats">
-      <div class="stat"><b>${doneN}<small class="muted" style="font-size:14px"> / ${LESSONS.length}</small></b><span>уроков пройдено</span></div>
+      <div class="stat"><b>${doneN}<small class="muted" style="font-size:14px"> / ${LESSONS.length}</small></b><span>уроков пройдено${current < doneN ? `, из них в новой версии ${current}` : ""}</span></div>
       <div class="stat"><b>${learned}</b><span>слов в повторении</span></div>
       <div class="stat"><b>${strong}</b><span>слов закреплено</span></div>
       <div class="stat"><b>${streakNow()} 🔥</b><span>дней подряд, рекорд ${P.streak.best || 0}</span></div>
@@ -2250,15 +2654,16 @@ function stepBody(st) {
     case "mc": {
       const s = S.state, locked = s.result ? "locked" : "";
       let prompt;
-      if (st.mode === "quiz") prompt = `<span class="kicker">Тест</span><div class="q" style="font-family:var(--body);font-weight:700;font-size:20px">${esc(st.q)}</div>`;
+      if (st.mode === "quiz") prompt = `${srcPanel(st)}<span class="kicker">Тест</span><div class="q" style="font-family:var(--body);font-weight:700;font-size:20px">${esc(st.q)}</div>`;
       else if (st.mode === "ex") prompt = `<span class="kicker">${st.title || "Упражнение"}</span><div class="q" style="font-family:var(--body);font-weight:700;font-size:20px">${st.q}</div>`;
       else if (st.mode === "rec") prompt = `<span class="kicker">Что значит</span><div class="q"><span>${esc(st.word.emoji)} ${esc(st.word.es)}</span>${playBtn(st.say)}</div>`;
       else if (st.mode === "prod") prompt = `<span class="kicker">Как по-испански</span><div class="q">${esc(st.word.ru)}</div>`;
-      else if (st.mode === "choose") prompt = `${kickerOf(st, st.say ? "Послушайте и выберите" : st.lines?.length ? "Что ответить?" : "Выберите ответ")}
+      else if (st.mode === "choose") prompt = `${srcPanel(st)}${kickerOf(st, st.say ? "Послушайте и выберите" : st.lines?.length ? "Что ответить?" : "Выберите ответ")}
         ${st.img ? wordPic(st.img) : ""}${st.q && st.lines?.length ? `<div class="q qtext">${st.q}</div>` : ""}${st.lines?.length ? chatHTML(st) : ""}
-        ${st.say ? `<div class="listen"><div class="row2">${playBtn(st.say, "big")}${slowBtn(st.say)}</div></div>` : ""}
+        ${st.say ? listenHTML(st.say) : ""}
         ${st.q && !st.lines?.length ? `<div class="q qtext">${st.q}</div>` : ""}`;
       else prompt = `<span class="kicker">Послушайте и выберите</span><div class="listen"><div class="row2">${playBtn(st.say, "big")}${slowBtn(st.say)}</div></div>`;
+      if (st.mode === "choose" && st.say && !audioOK(st) && !s.result) return `<div class="prompt">${prompt}</div>`;   // без звука варианты не показываем: угадывать нечего
       const long = (st.plain || st.options).some(o => o.length > 24);
       return `<div class="prompt">${prompt}</div>
         <div class="opts ${long ? "" : "grid2"} ${locked}" role="group">${st.options.map((o, k) => {
@@ -2270,42 +2675,49 @@ function stepBody(st) {
     }
     case "build": {
       const s = S.state;
-      return `<div class="prompt">${kickerOf(st, "Соберите фразу")}<div class="q" style="font-size:19px">${esc(st.ru)}</div></div>
+      return `<div class="prompt">${srcPanel(st)}${kickerOf(st, "Соберите фразу")}<div class="q" style="font-size:19px">${esc(st.ru)}</div></div>
         <div class="answer-line">${(s.cands?.[0] || tokens(st)).slice(0, s.n).map(w => `<span class="tok">${esc(w)}</span>`).join("")}</div>
         <div class="bank">${s.tiles.map((t, k) => `<button class="tok ${s.used[k] ? "used" : ""} ${s.flash === k ? "bad" : ""} ${s.hint === k ? "hint" : ""}" data-pick="${k}" ${s.result || s.used[k] ? "disabled" : ""}>${esc(t)}</button>`).join("")}</div>`;
     }
     case "mf":
-      return `<div class="prompt"><span class="kicker">Мастер фраз</span></div>
-        <div class="listen"><div class="row2">${playBtn(st.es, "big")}${slowBtn(st.es)}</div></div>
+      if (!st.noaudioUsed && !audioOK(st) && !S.state.result) return `<div class="prompt"><span class="kicker">Мастер фраз</span>${listenHTML(st.es)}</div>`;
+      return `<div class="prompt"><span class="kicker">${st.noaudioUsed ? "🔇 Без звука · " : ""}Мастер фраз</span>${st.noaudioUsed ? `<div class="q qtext">Соберите по-испански: ${esc(st.ru)}</div>` : ""}</div>
+        ${st.noaudioUsed ? "" : `<div class="listen"><div class="row2">${playBtn(st.es, "big")}${slowBtn(st.es)}</div></div>`}
         ${mfSlots(st, S.state)}
         ${S.state.result ? "" : `<input class="field letter" id="letter" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Первая буква слова" aria-label="Первая буква следующего слова">`}`;
     case "write": {
-      const s = S.state, done = !!s.result, cls = done ? (s.result === "good" ? "right" : "wrong") : s.flash ? "wrong" : "";
+      const s = S.state, done = !!s.result, cls = done ? (s.result === "good" ? "right" : s.result === "helped" ? "almost" : "wrong") : s.flash ? "wrong" : "";
       const chars = ["á", "é", "í", "ó", "ú", "ü", "ñ"];
-      return `<div class="prompt">${kickerOf(st, st.say ? "Послушайте и напишите" : "Напишите")}${st.img ? wordPic(st.img) : ""}
-          ${st.say ? `<div class="listen"><div class="row2">${playBtn(st.say, "big")}${slowBtn(st.say)}</div></div>` : ""}
-          ${st.q ? `<div class="q qtext">${st.q}</div>` : ""}</div>
+      const head = `${srcPanel(st)}${kickerOf(st, st.say ? "Послушайте и напишите" : "Напишите")}${st.img ? wordPic(st.img) : ""}
+          ${st.say ? listenHTML(st.say) : ""}
+          ${st.q ? `<div class="q qtext">${st.q}</div>` : ""}`;
+      if (st.say && !audioOK(st) && !done) return `<div class="prompt">${head}</div>`;
+      return `<div class="prompt">${head}</div>
         <div class="wbox"><input class="field wfield ${cls}" id="wans" type="text" value="${esc(s.value || "")}" ${done ? "disabled" : ""}
             autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" lang="es" enterkeyhint="done"
             placeholder="${esc(st.format || "Ответ")}" aria-label="${esc(st.format || "Ответ")}">
           ${done || !st.chars ? "" : `<div class="chars" role="group" aria-label="Испанские буквы">${chars.map(c => `<button type="button" data-wchar="${c}" aria-label="Вставить ${c}">${c}</button>`).join("")}</div>`}
-          ${s.why && !done ? `<div class="wwhy" role="status">${esc(s.why)} Попробуйте ещё раз.</div>` : ""}</div>`;
+          ${s.why && !done ? `<div class="wwhy" role="status">${whyHTML(s.why)} Попробуйте ещё раз.</div>${ruleHTML(st)}` : ""}
+          ${done ? "" : writeHintHTML(st, s)}</div>`;
     }
     case "match": {
       const s = S.state, cell = (side, k) => {
         const p = st.pairs[k], ok = s.done.includes(k), sel = s.sel?.side === side && s.sel.k === k, bad = s.bad && s.bad[side] === k;
         return `<button class="mt${ok ? " ok" : ""}${bad ? " bad" : ""}" data-m="${side}:${k}" aria-pressed="${sel}" ${ok || s.result ? "disabled" : ""}>${ok ? "✓ " : bad ? "✗ " : ""}${esc(p[side === "l" ? 0 : 1])}</button>`;
       };
-      return `<div class="prompt">${kickerOf(st, "Соедините пары")}</div>
+      return `<div class="prompt">${srcPanel(st)}${kickerOf(st, "Соедините пары")}</div>
         <div class="match"><div class="mcol">${s.left.map(k => cell("l", k)).join("")}</div><div class="mcol">${s.right.map(k => cell("r", k)).join("")}</div></div>`;
     }
     case "sort": {
       const s = S.state, cur = s.order[s.k];
-      return `<div class="prompt">${kickerOf(st, "Распределите по группам")}</div>
+      return `<div class="prompt">${srcPanel(st)}${kickerOf(st, "Распределите по группам")}</div>
         ${cur && !s.result ? `<div class="scard"><span>${esc(cur[0][0])}</span>${cur[0][1] && canSay(cur[0][1]) ? playBtn(cur[0][1]) : ""}</div><div class="scount" role="status">${s.k + 1} из ${s.order.length}${s.flash != null ? " · ✗ не в эту группу" : ""}</div>` : ""}
         <div class="sgroups">${st.groups.map(([name], g) => `<button class="sg${s.flash === g ? " bad" : ""}${s.hint === g ? " hint" : ""}" data-sg="${g}" ${s.result ? "disabled" : ""}>
           <b>${name}${s.hint === g ? " 👈" : ""}</b><span class="sg-items">${s.placed[g].map(x => `<i>${esc(x)}</i>`).join("")}</span></button>`).join("")}</div>`;
     }
+    case "deferred":
+      return `<div class="prompt"><span class="kicker">🔇 Без звука</span><div class="q qtext">Это задание проверяет понимание на слух. Оно отложено до звука и в итог урока не входит.</div></div>
+        <button class="btn ghost wide" data-audio-on>🔊 Звук снова есть</button>`;
     case "task":
       return `<div class="prompt"><span class="kicker">${st.title ? st.title : "Упражнение"}</span><div class="q" style="font-family:var(--body);font-weight:700;font-size:20px">${st.q}</div></div>
         ${st.a ? `<div class="box"><span class="lbl">Ответ</span><span class="spoiler" tabindex="0">${st.a}</span></div>` : ""}`;
@@ -2328,8 +2740,8 @@ function mfLetter(ch) {
   const st = S.steps[S.at], s = S.state, t = tokens(st);
   if (s.result || !ch.trim()) return;
   if (deaccent(ch.toLowerCase()) === firstLetter(t[s.n])) { s.n++; s.here = 0; s.flash = false; s.hint = false; mfSkip(st, s); }
-  else { s.err++; s.miss++; s.here++; s.flash = true; if (s.here >= 2) s.hint = true; }
-  if (s.n >= t.length) return answer(s.err === 0, st, { requeue: false });
+  else { s.err++; s.miss++; s.here++; s.flash = true; if (s.here >= 2 && !s.hint) { s.hint = true; s.helps++; } }
+  if (s.n >= t.length) return answer(s.err === 0, st, { requeue: false, solved: true, helped: s.helps > 0 });
   $(".mf").outerHTML = mfSlots(st, s);
 }
 // Плитка сравнивается без регистра и знаков по краям: «En» и «en», «mesa.» и «mesa» — одна плитка.
@@ -2350,55 +2762,65 @@ function buildPick(k) {
     const raw = fit[0][s.n];
     s.cands = fit; s.used[k] = true; s.n++; s.here = 0; s.hint = null; s.flash = null;
     if (/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]/.test(raw)) say(raw);   // русскую плитку «пиво» испанским голосом не читаем
-    if (s.n >= fit[0].length) return answer(s.err === 0, st, { requeue: false });
+    if (s.n >= fit[0].length) return answer(s.err === 0, st, { requeue: false, solved: true, helped: s.helps > 0 });
   } else {
     s.err++; s.miss++; s.here++; s.flash = k;
-    if (s.here >= 2) s.hint = s.tiles.findIndex((w, j) => tileKey(w) === tileKey(want) && !s.used[j]);
+    if (s.here >= 2 && s.hint == null) { s.hint = s.tiles.findIndex((w, j) => tileKey(w) === tileKey(want) && !s.used[j]); s.helps++; }
   }
   render();
 }
-// Итог «Соберите фразу» и «Мастера фраз»: что именно пошло не так — не то слово (буква) или подсказка.
-function buildVerdict(st, s) {
+// Нейтральная пометка к итогу задания: сколько ошибок ученик исправил сам и сколько было подсказок.
+function fixNote(st, s) {
   const parts = [];
-  if (s.miss) parts.push(`${st.type === "build" ? "не то слово" : "не та буква"} — ${s.miss} ${plural(s.miss, "раз", "раза", "раз")}`);
-  if (s.helps) parts.push(`подсказки — ${s.helps}`);
-  const t = parts.join(", ");
-  return `Почти! ${t.charAt(0).toUpperCase()}${t.slice(1)}`;
+  const miss = st.type === "write" ? (s.tries > 1 ? 1 : 0) : s.miss || 0;
+  if (miss) parts.push(`${st.type === "mf" ? "исправлено букв" : "исправлено ошибок"}: ${miss}`);
+  if (s.helps) parts.push(`подсказок: ${s.helps}`);
+  if (s.peek) parts.push("текст открыт как подсказка");
+  return parts.length ? `<span class="fix">${parts.join(" · ").replace(/^./, c => c.toUpperCase())}</span>` : "";
 }
 function hint() {
   const st = S.steps[S.at], s = S.state;
   s.err++; s.helps++;
   if (st.type === "build") { s.hint = s.tiles.findIndex((w, j) => tileKey(w) === tileKey((s.cands || [tokens(st)])[0][s.n]) && !s.used[j]); return render(); }
-  s.n++; s.here = 0; s.flash = false; s.hint = false; mfSkip(st, s);   // мастер фраз: открыть слово
-  if (s.n >= tokens(st).length) return answer(false, st, { requeue: false });
+  s.n++; s.opened = (s.opened || 0) + 1; s.here = 0; s.flash = false; s.hint = false; mfSkip(st, s);   // мастер фраз: открыть слово
+  // Все слова открыла система — ответ показан; иначе фраза собрана с подсказкой.
+  const words = tokens(st).filter(firstLetter).length;
+  if (s.n >= tokens(st).length) return answer(false, st, { requeue: false, solved: true, helped: true, revealed: s.opened >= words });
   $(".mf").outerHTML = mfSlots(st, s); $("#letter")?.focus();
 }
 
 function stepFoot(st) {
   const s = S.state;
   if (s.result) {
-    const good = s.result === "good";
+    const good = s.result === "good", helped = s.result === "helped", shown = s.result === "revealed";
+    const solved = good || helped;
     let right = "";
-    if (st.type === "mc" && !good && !st.html) right = `<span class="ans">Верно: ${esc(st.options[st.correct])}</span>`;
-    if (st.type === "mc" && !good && st.html) right = `<span class="ans">Верно: ${st.options[st.correct]}</span>`;
+    if (st.type === "mc" && !solved) right = `<span class="ans">Верно: ${st.html ? st.options[st.correct] : esc(st.options[st.correct])}</span>`;
     if (["build", "mf"].includes(st.type)) right = `<span class="ans">${esc(st.type === "build" ? (s.cands?.[0] || tokens(st)).join(" ") : st.es)}</span><span class="ex">${esc(st.ru)}</span>`;
-    if (st.type === "write" && (!good || s.almost)) right = `<span class="ans">${good ? "Правильно" : "Верно"}: ${good ? esc(s.match) : st.show}</span>${!good && s.why && !s.gave ? `<span class="ex">${esc(s.why)}</span>` : ""}`;
+    if (st.type === "write" && (!good || s.almost)) right = `<span class="ans">${solved ? "Правильно" : "Верно"}: ${solved ? esc(s.match) : st.show}</span>${!solved && s.why && !s.gave ? `<span class="ex">${whyHTML(s.why)}</span>` : ""}`;
+    if (st.type === "mc" && !solved && s.pick != null && st.mistakes?.[st.plain?.[s.pick]]) right += `<span class="ex">${st.mistakes[st.plain[s.pick]]}</span>`;
     const ex = st.explain ? `<span class="ex">${st.explain}</span>` : "";
     const praise = ["Отлично!", "Верно!", "¡Muy bien!", "¡Perfecto!"][Math.floor(Math.random() * 4)];
     const title = good ? (s.almost ? "Почти! Не хватает знака ударения" : st.type === "write" && s.tries > 1 ? "Верно со второй попытки" : praise)
-      : ["build", "mf"].includes(st.type) ? buildVerdict(st, s)
-      : ["match", "sort"].includes(st.type) ? `Готово! Ошибок — ${s.err}`
-      : st.retry ? "Ошибка" : "Ошибка, это задание вернётся";
+      : helped ? "Готово с подсказкой"
+      : shown ? "Ответ показан"
+      : "Ошибка";
+    const again = s.requeued === "near" ? `<span class="ex">Посмотрите ${srcOf(st)?.t === "reading" ? "текст" : "диалог"} ещё раз — вопрос повторится сразу.</span>`
+      : s.requeued === "end" ? `<span class="ex">Это задание вернётся в конце урока.</span>` : "";
     const rule = !good || (st.type === "write" && s.tries > 1) ? ruleHTML(st) : "";
-    return `<div class="pfoot ${good ? "good" : "bad"}"><div class="wrap">
-      <div class="fb"><h3>${title}</h3>${right}${ex}${rule}</div>
-      <button class="btn wide ${good ? "good" : "bad"}" data-next>Продолжить</button></div></div>`;
+    const cls = good ? "good" : helped ? "almost" : shown ? "shown" : "bad";
+    return `<div class="pfoot ${cls}"><div class="wrap">
+      <div class="fb"><h3>${title}</h3>${solved ? fixNote(st, s) : ""}${right}${ex}${again}${rule}</div>
+      <button class="btn wide ${good ? "good" : solved ? "" : shown ? "" : "bad"}" data-next>Продолжить</button></div></div>`;
   }
   if (st.type === "build" || st.type === "mf") {
     return `<div class="pfoot"><div class="wrap"><button class="btn ghost wide" data-hint>${st.type === "mf" ? "Не знаю — открыть слово" : "Подсказка"}</button></div></div>`;
   }
-  if (st.type === "write") return `<div class="pfoot"><div class="wrap"><div class="two">
-      <button class="btn ghost" data-wgive>Показать ответ</button><button class="btn" data-primary ${wNorm(s.value) ? "" : "disabled"}>Проверить</button></div></div></div>`;
+  if (st.type === "write") {
+    if (st.say && !audioOK(st)) return "";
+    return `<div class="pfoot"><div class="wrap"><div class="two">
+      <button class="btn ghost" data-whint>${(s.helps || 0) >= 2 ? "Показать ответ" : "Подсказка"}</button><button class="btn" data-primary ${wNorm(s.value) ? "" : "disabled"}>Проверить</button></div></div></div>`;
+  }
   if (st.type === "match" || st.type === "sort") return "";
   let label = "Дальше", dis = "";
   if (st.type === "intro") label = "Начать";
@@ -2417,9 +2839,11 @@ function playerView() {
     if (st.type === "match") Object.assign(S.state, { left: shuffle(st.pairs.map((_, k) => k)), done: [], sel: null, bad: null });
     if (st.type === "match") S.state.right = matchOrder(st.pairs.length).map(k => S.state.left[k]);
     if (st.type === "sort") Object.assign(S.state, { order: shuffle(st.groups.flatMap(([, items], g) => items.map(it => [it, g]))), k: 0, placed: st.groups.map(() => []) });
+    if (st.srcOpen) S.state.srcOpen = true;   // повтор вопроса к источнику — с открытым источником
   }
   const L = S.kind === "lesson" ? LESSONS[S.li] : null;
-  const ctx = L ? `${esc(levelOf(S.li) || "")} · Тема ${L.unit} · ${esc(L.title)}` : "Повторение";
+  // Шапка вместо титульного слайда: уровень, тема, номер и название урока, цель — одной-двумя строками.
+  const ctx = L ? `${esc(levelOf(S.li) || "")} · Тема ${L.unit} · Урок ${L.n} · ${esc(L.title)}${L.goal ? `<span class="pgoal">🎯 ${esc(L.goal)}</span>` : ""}` : "Повторение";
   const total = S.steps.length, pct = Math.round(S.at / total * 100);
   return `<div class="player">
     <div class="ptop"><div class="wrap"><button class="x" data-quit aria-label="Выйти из урока">×</button>${prevIndex() >= 0 ? '<button class="x prev" data-prev aria-label="Назад">←</button>' : ""}<div class="bar"><i style="width:${pct}%"></i></div><span class="pcount">${S.at + 1}/${total}</span></div>
@@ -2430,17 +2854,33 @@ function playerView() {
 }
 
 function resultView() {
-  const r = S, L = r.li != null ? LESSONS[r.li] : null;
-  const nextI = r.from === "lesson" && r.li + 1 < LESSONS.length ? r.li + 1 : null;
-  return `<div class="wrap result">
-    <span class="medal">${r.stars === 3 ? "🏆" : r.stars === 2 ? "🎉" : "💪"}</span>
-    <h2>${r.from === "lesson" ? `Урок ${L.n} пройден!` : "Повторение закончено!"}</h2>
-    <span class="stars-big" aria-label="${r.stars} из 3">${"★".repeat(r.stars)}${"☆".repeat(3 - r.stars)}</span>
+  const r = S, L = r.li != null ? LESSONS[r.li] : null, lesson = r.from === "lesson";
+  const nextI = lesson && r.passed && r.li + 1 < LESSONS.length ? r.li + 1 : null;
+  const pct = Math.round(r.score * 100);
+  const again = lesson ? `<button class="btn ${r.passed ? "ghost " : ""}wide" data-lesson="${r.li}" data-free>Пройти ещё раз</button>` : "";
+  const home = `<button class="btn ghost wide" data-home>На карту курса</button>`;
+  // Ничего не оценено (все задания на слух отложены): урок не засчитан, это не ошибка ученика.
+  if (!r.graded) return `<div class="wrap result"><span class="medal">🔇</span><h2>${lesson ? "Урок не засчитан" : "Повторение не засчитано"}</h2>
+    <p class="muted">Здесь нечего было проверить без звука: задания на слух отложены. Пройдите урок, когда звук заработает.</p>${again}${home}</div>`;
+  const control = r.check && lesson;
+  const topicsHTML = control && r.topics.length ? `<div class="panel topics"><b>По темам</b><ul>${r.topics.map(t =>
+    `<li class="${t.score >= PASS ? "ok" : t.score < 0.6 ? "weak" : "mid"}"><span>${t.score >= PASS ? "✓" : "↻"} ${esc(t.title)} — ${Math.round(t.score * 100)}&nbsp;%</span>${t.score < PASS && t.li >= 0 ? `<button class="btn ghost sm" data-lesson="${t.li}" data-free>Урок ${LESSONS[t.li].n}</button>` : ""}</li>`).join("")}</ul></div>` : "";
+  const failed = control && r.score < PASS;   // как в finish(): по точному баллу, а не по округлённым процентам
+  const title = !lesson ? "Повторение закончено!" : failed ? "Нужно повторить" : r.check === "control" ? `${esc(L.title)}: сдано!` : `Урок ${L.n} пройден!`;
+  const lead = failed ? `<p class="verdict">Результат ${pct}&nbsp;% — нужно ${PASS * 100}&nbsp;%. ${r.check === "control" ? "Следующий урок откроется, когда итог будет сдан." : "Урок засчитан, но эти темы стоит повторить."}</p>`
+    : control ? `<p class="verdict">Результат ${pct}&nbsp;% (нужно ${PASS * 100}&nbsp;%).</p>` : "";
+  return `<div class="wrap result${failed ? " retry" : ""}">
+    <span class="medal">${failed ? "💪" : r.stars === 3 ? "🏆" : r.stars === 2 ? "🎉" : "💪"}</span>
+    <h2>${title}</h2>${lead}
+    ${failed ? "" : `<span class="stars-big" aria-label="${r.stars} из 3">${"★".repeat(r.stars)}${"☆".repeat(3 - r.stars)}</span>`}
     <div class="cells"><div class="cell"><b>+${r.xp}</b><span>опыта</span></div><div class="cell"><b>${Math.round(r.acc * 100)}%</b><span>с первой попытки</span></div><div class="cell"><b>${streakNow()} 🔥</b><span>дней подряд</span></div></div>
-    ${L?.goal && r.from === "lesson" ? `<div class="panel goal"><b>✅ Теперь вы можете</b><span>${esc(L.goal)}</span>${L.blocks.filter(b => b.t === "mission").map(b => `<span>🎯 Миссия «${b.title}» выполнена</span>`).join("")}</div>` : ""}
+    ${r.noaudio && lesson && r.passed ? `<div class="panel noaudio"><b>🔇 Пройдено без звука</b><span class="muted">Задания на слух не проверены: пройдите урок со звуком, чтобы подтвердить аудирование.</span></div>` : ""}
+    ${topicsHTML}
+    ${L?.goal && lesson && r.passed && !failed ? `<div class="panel goal"><b>✅ Теперь вы можете</b><span>${esc(L.goal)}</span>${L.blocks.filter(b => b.t === "mission").map(b => `<span>🎯 Миссия «${b.title}» выполнена</span>`).join("")}</div>` : ""}
     ${r.learned.length ? `<div class="panel learned"><b>Новые слова в повторении</b><span class="muted">${r.learned.map(w => esc(w.es)).join(", ")}</span></div>` : ""}
+    ${failed ? again : ""}
     ${nextI != null ? `<button class="btn wide" data-lesson="${nextI}">Следующий урок: ${esc(LESSONS[nextI].title)}</button>` : ""}
-    <button class="btn ghost wide" data-home>На карту курса</button>
+    ${home}
   </div>`;
 }
 
@@ -2685,7 +3125,15 @@ document.addEventListener("click", e => {
   }
   if (!S || S.kind === "result") return;
   if ("prev" in d) return prev();
+  if ("noaudio" in d) return useNoAudio();
+  if ("audioOn" in d) return audioBack();
+  if ("audioRetry" in d) return retryAudio();
+  if ("srcPlay" in d) return srcPlay();
   const st = S.steps[S.at], s = S.state;
+  if ("srcPeek" in d && s && !s.result) { s.peek = true; s.srcOpen = true; return render(); }
+  if ("srcTr" in d) { const box = el.closest(".srcbox")?.querySelector(".dlg"); const on = el.getAttribute("aria-pressed") !== "true";
+    el.setAttribute("aria-pressed", on); box?.classList.toggle("hide-tr", !on); return; }
+  if ("whint" in d && s && !s.result) return writeHint();
   if (d.opt != null && !s.result) { s.pick = +d.opt; return answer(s.pick === st.correct, st); }
   if (d.pick != null && !s.result) return buildPick(+d.pick);
   if (d.m && !s.result) { const [side, k] = d.m.split(":"); return matchPick(side, +k); }
@@ -2754,6 +3202,7 @@ document.addEventListener("keydown", e => {
 
 document.addEventListener("toggle", e => {
   if (G && e.target.classList?.contains("gplay-family")) { G.treeOpen = e.target.open; gSave(); }
+  if (S?.state && e.target.matches?.("details[data-src]")) S.state.srcOpen = e.target.open;   // источник открыт — так и останется после ответа
 }, true);
 render();
 </script>

@@ -12,6 +12,7 @@ lessons:
     kind: vocab
     title: Одежда
     goal: назвать одежду и описать её цвет
+    version: 2
     vocab:
       - "👚 la ropa [ро́па] — одежда"
       - "👔 la camisa [ками́са] — рубашка"
@@ -28,10 +29,10 @@ lessons:
       - "🩶 gris [грис] — серый {pos: adj}"
       - "📏 la talla [та́йя] — размер (одежды)"
     blocks:
-      - "Тема — покупки. Начнём с одежды и сразу описываем вещи цветами."
       - learn: [la ropa, la camisa, la camiseta, los pantalones, la falda]
       - choose:
           title: Traduce
+          skill: clothes
           items:
             - q: "Llevo una camiseta blanca."
               options: "На мне белая футболка. | На мне белая рубашка. | На мне белая юбка."
@@ -44,33 +45,56 @@ lessons:
             - "los zapatos — туфли"
             - "la chaqueta — куртка"
             - "el abrigo — пальто"
-      - rule: |
-          1. Цвет ставится **после** названия одежды: _una camiseta amarilla_, _un vestido azul_.
-          2. Цвет согласуется с вещью в роде и числе: _una falda blanca_, _unos zapatos marrones_, _unas camisetas negras_. Цвета на `-e` или согласную по родам не меняются: _un vestido verde_, _una falda verde_.
+      - rule:
+          id: color_after
+          text: |
+            1. Цвет ставится **после** названия одежды: _una camiseta amarilla_, _un vestido azul_.
+            2. Цвет согласуется с вещью в роде и числе: _una falda blanca_, _unos zapatos marrones_, _unas camisetas negras_. Цвета на `-e` или согласную по родам не меняются: _un vestido verde_, _una falda verde_.
       - more:
           title: 🌎 А в Латинской Америке?
-          text: "Свитер там — **el suéter**, джинсы — **los jeans**, куртка в Мексике — **la chamarra**, в Аргентине — **la campera**."
+          text: "Свитер там — **el suéter**, куртка в Мексике — **la chamarra**, в Аргентине — **la campera**."
       - choose:
           title: Выберите
+          skill: adj_agreement
           items:
             - q: "Ana lleva una falda ___. (красную)"
               options: "roja | rojo | rojas"
       - learn: [los vaqueros, las zapatillas, gris, la talla]
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "la ropa — одежда"
+            - "los vaqueros — джинсы"
+            - "las zapatillas — кроссовки"
+            - "la talla — размер"
+            - "la camiseta — футболка"
       - write:
           title: Traduce
           format: вещь и цвет по-испански
+          rule: color_after
+          skill: [clothes, adj_agreement]
           items:
-            - "белая рубашка => una camisa blanca | la camisa blanca"
-            - "синие брюки => unos pantalones azules | los pantalones azules"
+            - q: "белая рубашка"
+              a: "una camisa blanca | la camisa blanca"
+              mistakes: {"una camisa blanco": "camisa — женского рода: una camisa **blanca**.", "una blanca camisa": "Цвет ставится после вещи: una camisa **blanca**."}
+            - q: "синие брюки"
+              a: "unos pantalones azules | los pantalones azules"
+              mistakes: {"unos pantalones azul": "Брюки — во множественном: **azules**.", "los pantalones azul": "Брюки — во множественном: **azules**."}
             - "чёрное платье => un vestido negro | el vestido negro"
-            - "серая куртка => una chaqueta gris | la chaqueta gris"
-            - "белые кроссовки => unas zapatillas blancas | las zapatillas blancas"
+            - q: "серая куртка"
+              a: "una chaqueta gris | la chaqueta gris"
+              mistakes: {"una chaqueta grisa": "gris по родам не меняется: una chaqueta **gris**."}
+            - q: "белые кроссовки"
+              a: "unas zapatillas blancas | las zapatillas blancas"
+              mistakes: {"unas zapatillas blancos": "zapatillas — женского рода: **blancas**."}
     forms: [suéter, chamarra, campera, jeans]
 
   - id: numeros
     kind: vocab
     title: Числа до 100
     goal: назвать возраст и цену до ста и понять их на слух
+    version: 2
     vocab:
       - "3️⃣0️⃣ treinta [трэ́йнта] — тридцать {pos: num}"
       - "4️⃣0️⃣ cuarenta [куарэ́нта] — сорок {pos: num}"
@@ -82,50 +106,70 @@ lessons:
       - "💯 cien [θьен] — сто {pos: num}"
     forms: [veintiuno, veintidós, veintitrés, veinticuatro, veinticinco, veintiséis, veintisiete, veintiocho, veintinueve]
     blocks:
-      - "Почти все десятки заканчиваются на `-enta`: cuarenta, cincuenta, sesenta. Кроме 20 и 30: veinte и treinta."
+      - text:
+          id: enta
+          text: "Почти все десятки заканчиваются на `-enta`: cuarenta, cincuenta, sesenta. Кроме 20 и 30: veinte и treinta."
       - learn: [treinta, cuarenta, cincuenta, sesenta]
       - choose:
           title: Послушайте и выберите
+          rule: enta
+          skill: numbers_ear
           items:
             - say: "cincuenta"
               options: "50 | 15 | 5"
+              noaudio: {q: "Какое это число: cincuenta?", options: "50 | 15 | 5"}
             - say: "cuarenta"
               options: "40 | 14 | 4"
+              noaudio: {q: "Какое это число: cuarenta?", options: "40 | 14 | 4"}
       - learn: [setenta, ochenta, noventa, cien]
-      - rule: |
-          1. 21–29 — одним словом: veintiuno, veintidós, veintitrés… veintinueve.
-          2. 31–99 — три слова, десятки и единицы соединяет **y**: treinta **y** uno, cuarenta **y** cinco.
-          3. 100 — **cien**: _cien euros_, _cien años_.
+      - rule:
+          id: tens_y
+          text: |
+            1. 21–29 — одним словом: veintiuno, veintidós, veintitrés… veintinueve.
+            2. 31–99 — три слова, десятки и единицы соединяет **y**: treinta **y** uno, cuarenta **y** cinco.
+            3. 100 — **cien**: _cien euros_, _cien años_.
       - write:
           title: Напишите словами
           format: число словами
+          skill: big_numbers
           items:
-            - "45 => cuarenta y cinco"
-            - "27 => veintisiete"
+            - q: "45"
+              a: "cuarenta y cinco"
+              mistakes: {"cuarentaicinco": "31–99 — три слова: cuarenta **y** cinco.", "cuarenta cinco": "Десятки и единицы соединяет **y**: cuarenta y cinco."}
+            - q: "27"
+              a: "veintisiete"
+              mistakes: {"veinte y siete": "21–29 — одним словом: **veintisiete**."}
+            - "31 => treinta y uno"
             - "63 => sesenta y tres"
             - "99 => noventa y nueve"
+            - "100 => cien"
       - write:
           title: Послушайте и запишите цифрами
           format: число цифрами
+          skill: numbers_ear
           items:
             - say: "setenta y dos"
               a: "72"
+              noaudio: {q: "Запишите цифрами: setenta y dos", a: "72"}
             - say: "ochenta y cinco"
               a: "85"
+              noaudio: {q: "Запишите цифрами: ochenta y cinco", a: "85"}
 
   - id: demostrativos
     kind: grammar
     title: "Este, ese, aquel"
     goal: показать на вещь — этот, тот, вон тот
+    version: 2
     vocab:
       - "👇 este/esta [э́стэ, э́ста] — этот, эта (рядом со мной) {pos: adj, pl: estos estas}"
       - "👉 ese/esa [э́сэ, э́са] — этот, тот (рядом с вами) {pos: adj, pl: esos esas}"
       - "🔭 aquel/aquella [акэ́ль, акэ́йя] — тот, та (далеко) {pos: adj, pl: aquellos aquellas}"
       - "📍 ahí [аи́] — там (рядом с вами)"
     blocks:
-      - "В магазине всё время показывают на вещи. Чем отличаются три слова?"
       - learn: [este/esta, ese/esa, aquel/aquella, ahí]
+      - "В магазине всё время показывают на вещи. Чем отличаются три слова?"
       - compare:
+          id: este_ese
           cards:
             - head: este / esta
               label: рядом со мной — aquí
@@ -146,14 +190,27 @@ lessons:
       - write:
           title: Вставьте слово
           format: este, ese, aquel… в нужной форме
+          rule: este_ese
+          skill: demonstratives
           items:
             - "___ camiseta (рядом со мной) => esta"
-            - "___ zapatos (рядом со мной) => estos"
+            - q: "___ zapatos (рядом со мной)"
+              a: "estos"
+              mistakes: {"estes": "Мужской род во множественном — **estos**."}
             - "___ chaqueta (у тебя) => esa"
             - "___ vaqueros (у тебя) => esos"
             - "___ vestido (далеко) => aquel"
       - choose:
+          title: Выберите
+          rule: este_ese
+          skill: demonstratives
+          items:
+            - q: "«esa falda» — где юбка?"
+              options: "ahí — рядом с вами | aquí — рядом со мной | allí — далеко"
+      - choose:
           title: Что ответить?
+          rule: este_ese
+          skill: demonstratives
           items:
             - lines: ["Dependienta: ¿Qué camisa quiere?"]
               q: "Вы показываете на рубашку далеко, на витрине."
@@ -164,6 +221,7 @@ lessons:
     kind: grammar
     title: ¿Cuánto cuesta?
     goal: спросить цену и понять ответ на слух
+    version: 2
     vocab:
       - "💶 ¿Cuánto cuesta...? [куа́нто куэ́ста] — сколько стоит...? :: ¿Cuánto cuesta esta camiseta? — Сколько стоит эта футболка?"
       - "💰 costar [коста́р] — стоить"
@@ -174,21 +232,28 @@ lessons:
       - "🔢 mil [миль] — тысяча {pos: num}"
     forms: [ciento, doscientos, doscientas, trescientos, cuatrocientos, quinientos, seiscientos, setecientos, ochocientos, novecientos]
     blocks:
-      - "Одна вещь — **cuesta**, несколько — **cuestan**: **costar** меняет `o` на `ue`, как **poder**."
       - learn: ["¿Cuánto cuesta...?", costar, el precio]
+      - text:
+          id: cuesta
+          text: "Одна вещь — **cuesta**, несколько — **cuestan**: **costar** меняет `o` на `ue`, как **poder**."
       - choose:
           title: Выберите
+          skill: prices
           items:
             - q: "¿Cuánto ___ estos zapatos?"
               options: "cuestan | cuesta | costan"
+            - q: "Как спросить «Сколько стоит этот свитер?»"
+              options: "¿Cuánto cuesta este jersey? | ¿Cuánto cuestan este jersey? | ¿Cuánto cuesta esto jersey?"
       - learn: [caro/a, barato/a]
       - choose:
           title: Выберите
+          skill: [prices, adj_agreement]
           items:
             - q: "Estos zapatos son muy ___. (дорогие)"
               options: "caros | caras | baratos"
       - learn: [el céntimo, mil]
       - table:
+          id: hundreds
           title: Сотни
           rows:
             - ["101", "ciento uno"]
@@ -201,31 +266,54 @@ lessons:
             - ["800", "ochocientos"]
             - ["900", "**novecientos**"]
             - ["1000", "mil"]
-      - rule: |
-          1. Ровно сто — **cien**; если дальше есть число — **ciento**: _ciento uno_, _ciento veinte_.
-          2. Остальные сотни: число + `-cientos`: _doscientos_, _trescientos_.
-          3. Выделенные сотни — не по правилу: **quinientos**, **setecientos**, **novecientos**.
+      - rule:
+          id: cientos
+          text: |
+            1. Ровно сто — **cien**; если дальше есть число — **ciento**: _ciento uno_, _ciento veinte_.
+            2. Остальные сотни: число + `-cientos`: _doscientos_, _trescientos_.
+            3. Выделенные сотни — не по правилу: **quinientos**, **setecientos**, **novecientos**.
       - write:
           title: Напишите словами
           format: число словами
+          skill: big_numbers
           items:
-            - "500 => quinientos"
-            - "150 => ciento cincuenta"
-            - "700 => setecientos"
+            - q: "500"
+              a: "quinientos"
+              mistakes: {"cincocientos": "500 — не по правилу: **quinientos**."}
+            - q: "150"
+              a: "ciento cincuenta"
+              mistakes: {"cien cincuenta": "Если после ста есть число — **ciento**: ciento cincuenta."}
+            - q: "700"
+              a: "setecientos"
+              mistakes: {"sietecientos": "700 — не по правилу: **setecientos**."}
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "el precio — цена"
+            - "caro — дорогой"
+            - "barato — дешёвый"
+            - "el céntimo — цент"
+            - "mil — тысяча"
       - choose:
           title: Послушайте и выберите
+          skill: [numbers_ear, prices]
           items:
             - say: "Cuesta ciento cincuenta euros."
               options: "150 € | 115 € | 105 €"
+              noaudio: {q: "Сколько стоит: «Cuesta ciento cincuenta euros»?", options: "150 € | 115 € | 105 €"}
             - say: "Cuestan setenta y cinco euros."
               options: "75 € | 65 € | 57 €"
+              noaudio: {q: "Сколько стоят: «Cuestan setenta y cinco euros»?", options: "75 € | 65 € | 57 €"}
             - say: "Un euro con ochenta."
               options: "1,80 € | 1,08 € | 8,10 €"
+              noaudio: {q: "Сколько это: «Un euro con ochenta»?", options: "1,80 € | 1,08 € | 8,10 €"}
 
   - id: tienda
     kind: dialogue
     title: В магазине одежды
     goal: купить вещь — спросить размер, примерить, заплатить
+    version: 2
     vocab:
       - "🪞 probarse [проба́рсэ] — примерять :: ¿Puedo probarme esta camisa? — Можно примерить эту рубашку?"
       - "🚪 el probador [пробадо́р] — примерочная"
@@ -235,15 +323,19 @@ lessons:
       - "💳 pagar [пага́р] — платить"
       - "💳 la tarjeta [тархэ́та] — карта (банковская)"
     blocks:
-      - "Этот диалог — готовый сценарий для любого магазина."
       - learn: [probarse, el probador, claro]
       - choose:
           title: Traduce
+          skill: shopping
           items:
             - q: "¿Puedo probarme esta camisa?"
               options: "Можно примерить эту рубашку? | Можно купить эту рубашку? | Где примерочная?"
+            - q: "Sí, claro."
+              options: "Да, конечно. | Нет, спасибо. | Да, пожалуйста."
       - learn: [me queda bien / me queda grande, me lo llevo / me la llevo, pagar, la tarjeta]
+      - "Этот диалог — готовый сценарий для любого магазина."
       - dialogue:
+          id: clara
           lines:
             - "Dependienta: Hola, buenas tardes. ¿Qué busca? | Здравствуйте. Что вы ищете?"
             - "Clara: Busco una camiseta blanca. | Ищу белую футболку."
@@ -259,34 +351,56 @@ lessons:
             - "Dependienta: Doce euros con noventa. | Двенадцать девяносто."
             - "Clara: ¡Qué barata! Me la llevo. ¿Puedo pagar con tarjeta? | Какая дешёвая! Беру. Можно заплатить картой?"
             - "Dependienta: Sí, claro. | Да, конечно."
-      - note: "**me la llevo** — «беру её»: о вещи женского рода (_la camiseta_). О вещи мужского рода — **me lo llevo** (_el jersey_)."
+      - note:
+          id: lo_la
+          text: "**me la llevo** — «беру её»: о вещи женского рода (_la camiseta_). О вещи мужского рода — **me lo llevo** (_el jersey_)."
+      - choose:
+          title: Responde
+          source: clara
+          rule: none
+          items:
+            - q: "¿Dónde está el probador?"
+              options: "Allí. | Aquí. | No hay probador."
+            - q: "¿Cuánto cuesta la camiseta de Clara?"
+              options: "Doce euros con noventa. | Treinta y ocho euros. | Treinta y seis euros."
       - choose:
           title: Выберите
+          free: true
+          rule: lo_la
+          skill: shopping
           items:
             - q: "Вы берёте свитер (el jersey)."
               options: "Me lo llevo. | Me la llevo. | Me llevo."
-            - q: "¿Cuánto cuesta la camiseta de Clara?"
-              options: "Doce euros con noventa. | Treinta y ocho euros. | Treinta y seis euros."
       - mission:
+          id: jacket
           title: Покупаем куртку
           text: "Вы в магазине в Мадриде. Вам нужна серая куртка, ваш размер — сороковой. Первая куртка велика, вторая сидит хорошо. Платите картой."
       - choose:
+          source: jacket
+          skill: shopping
           items:
             - lines: ["Dependienta: Hola. ¿Qué busca?"]
               options: "Busco una chaqueta gris. | Busco un chaqueta gris. | Busco una chaqueta grisa."
             - lines: ["Dependienta: ¿Qué talla tiene?"]
               options: "La cuarenta. | Cuarenta euros. | Tengo cuarenta años."
       - write:
+          source: jacket
+          skill: shopping
           items:
             - q: "Dependienta: ¿Qué tal? — Скажите, что куртка вам немного велика."
               a: "Me queda un poco grande | Me queda grande"
               format: фраза по-испански
       - choose:
+          source: jacket
+          skill: numbers_ear
           items:
             - say: "Esta cuesta cincuenta y nueve euros."
               q: "Сколько стоит вторая куртка?"
               options: "59 € | 95 € | 69 €"
+              noaudio: {q: "Сколько стоит вторая куртка: «Esta cuesta cincuenta y nueve euros»?", options: "59 € | 95 € | 69 €"}
       - build:
+          source: jacket
+          skill: shopping
           items:
             - es: "Me la llevo. ¿Puedo pagar con tarjeta?"
               ru: "Скажите: «Беру. Можно заплатить картой?»"
@@ -295,6 +409,9 @@ lessons:
   - id: quiz
     kind: quiz
     title: Покупки
+    goal: назвать одежду, понять цены, показать на вещь и купить её
+    version: 2
+    check: soft
     blocks:
       - "Тест по теме «Покупки»."
       - cando:
@@ -302,14 +419,28 @@ lessons:
           - "считать до тысячи и понимать цены"
           - "показать на вещь: este, ese, aquel"
           - "купить вещь: спросить размер, примерить, заплатить"
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "la falda — юбка"
+            - "el abrigo — пальто"
+            - "barato — дешёвый"
+            - "mil — тысяча"
+            - "la tarjeta — карта"
     quiz:
       - q: "¿Cuánto ___ estos zapatos?"
         options: "cuestan | cuesta | costan"
+        skill: prices
       - q: Как сказать «эта рубашка» (у меня в руках)?
         options: "esta camisa | esa camisa | este camisa"
+        skill: demonstratives
       - q: Как будет 500?
         options: "quinientos | cincocientos | cincuenta"
+        skill: big_numbers
       - q: Что значит «Me queda grande»?
         options: "мне велико | мне нравится | я беру"
+        skill: shopping
       - q: "Mi padre tiene ___ años. (47)"
         options: "cuarenta y siete | cuatro y siete | cuarentaisiete"
+        skill: big_numbers

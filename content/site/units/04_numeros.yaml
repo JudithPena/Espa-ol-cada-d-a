@@ -12,6 +12,7 @@ lessons:
     kind: vocab
     title: Числа от 0 до 5
     goal: считать от 0 до 5 и узнавать эти числа на слух
+    version: 2
     vocab:
       - "0️⃣ cero [θэ́ро] — ноль {pos: num}"
       - "1️⃣ uno [у́но] — один {pos: num}"
@@ -25,15 +26,20 @@ lessons:
       - tip: "Зацепки для памяти: **uno** — как карточная игра UNO, **dos** и **tres** похожи на «два» и «три», **cero** — как «зеро» в рулетке."
       - choose:
           title: Послушайте и выберите
+          rule: none
+          skill: numbers_ear
           items:
             - say: "tres"
               options: "3 | 2 | 0"
+              noaudio: {q: "Какое это число: «tres»?", options: "3 | 2 | 0"}
             - say: "dos"
               options: "2 | 3 | 1"
+              noaudio: {q: "Какое это число: «dos»?", options: "2 | 3 | 1"}
       - learn: [cuatro, cinco]
       - tip: "**Cuatro** напоминает «квартет» — четыре музыканта. А фразу _un café_ вы уже знаете: перед словом мужского рода **uno** сокращается до **un** — _un café_, _un vino_, _un taxi_."
       - match:
           title: Соедините пары
+          rule: none
           pairs:
             - "cero — 0"
             - "uno — 1"
@@ -44,16 +50,25 @@ lessons:
       - write:
           title: Напишите словом
           format: число словом
+          rule: none
+          skill: numbers
           items:
-            - "5 => cinco"
-            - "0 => cero"
-            - "4 => cuatro"
+            - q: "5"
+              a: cinco
+              mistakes: {sinco: "Звук «θ» перед `i` пишется буквой `c`: cinco.", zinco: "Звук «θ» перед `i` пишется буквой `c`: cinco."}
+            - q: "0"
+              a: cero
+              mistakes: {zero: "По-испански — **cero**: перед `e` звук «θ» пишется буквой `c`."}
+            - q: "4"
+              a: cuatro
+              mistakes: {quatro: "«Куа» пишется `cua`: cuatro."}
             - "uno, dos, ___, cuatro, cinco => tres"
 
   - id: vocab2
     kind: vocab
     title: Числа от 6 до 10
     goal: считать до десяти и складывать числа по-испански
+    version: 2
     vocab:
       - "6️⃣ seis [сэйс] — шесть {pos: num}"
       - "7️⃣ siete [сьэ́тэ] — семь {pos: num}"
@@ -65,18 +80,24 @@ lessons:
       - tip: "**Seis** и **siete** похожи на «шесть» и «семь». **Ocho** — как «окт-» в «октаве» (восемь нот), **nueve** — как «нояб-» в «ноябре» (когда-то девятый месяц), **diez** — как «дек-» в «декаде» (десять дней)."
       - choose:
           title: Послушайте и выберите
+          rule: none
+          skill: numbers_ear
           items:
             - say: "siete"
               options: "7 | 6 | 10"
+              noaudio: {q: "Какое это число: «siete»?", options: "7 | 6 | 10"}
             - say: "nueve"
               options: "9 | 2 | 10"
+              noaudio: {q: "Какое это число: «nueve»?", options: "9 | 2 | 10"}
             - say: "seis"
               options: "6 | 7 | 3"
+              noaudio: {q: "Какое это число: «seis»?", options: "6 | 7 | 3"}
       - header: Посчитайте
       - "Когда считают, слово **y** означает «плюс»: _dos y tres_ — «два плюс три», _seis y uno_ — «шесть плюс один»."
       - write:
           title: Responde
           format: число словом
+          skill: numbers
           items:
             - "dos y tres => cinco"
             - "cuatro y cuatro => ocho"
@@ -87,6 +108,7 @@ lessons:
     kind: grammar
     title: ¿Cuántos años tienes?
     goal: спросить, сколько человеку лет, и сказать свой возраст
+    version: 2
     vocab:
       - "🤲 tener [тэнэ́р] — иметь {forms: tengo tienes tiene}"
       - "📆 el año [а́ньо] — год {forms: años}"
@@ -99,9 +121,11 @@ lessons:
             - "¿Cuántos años tienes? — Сколько тебе лет?"
             - "El perro tiene cinco años. — Собаке пять лет."
       - learn: [tener, el año, "¿Cuántos años tienes?"]
-      - rule: |
-          В испанском возраст «имеют»: **Tengo diez años** дословно значит «Я имею десять лет». Для этого нужен глагол **tener** — «иметь».
-          Форма зависит от лица, как у **ser**: «я» — **tengo**, «ты» — **tienes**, «он», «она», «вы» — **tiene**: _Pablo tiene siete años_, _¿Cuántos años tiene usted?_
+      - rule:
+          id: tener
+          text: |
+            В испанском возраст «имеют»: **Tengo diez años** дословно значит «Я имею десять лет». Для этого нужен глагол **tener** — «иметь».
+            Форма зависит от лица, как у **ser**: «я» — **tengo**, «ты» — **tienes**, «он», «она», «вы» — **tiene**: _Pablo tiene siete años_, _¿Cuántos años tiene usted?_
       - table:
           title: "tener — иметь"
           rows:
@@ -111,6 +135,8 @@ lessons:
       - note: "**Años** — «годы», множественное число от **año**. Пишите всегда `ñ`: с простой `n` получится совсем другое слово. _El año_, _diez años_, _¿Cuántos años tienes?_"
       - choose:
           title: Что ответить?
+          rule: tener
+          skill: tener_age
           items:
             - lines: ["Profesora: ¿Cuántos años tienes?"]
               q: "Вам девять лет, вы на уроке в школе."
@@ -118,14 +144,22 @@ lessons:
               explain: "О себе — tengo. Возраст «имеют», поэтому не soy."
       - write:
           title: Traduce
-          format: фраза по-испански
+          format: фраза о возрасте по-испански
+          rule: tener
+          skill: tener_age
           items:
             - q: "Мне семь лет."
-              a: "Tengo siete años"
+              a: "Tengo siete años | Yo tengo siete años"
+              mistakes:
+                "soy siete años": "Возраст по-испански «имеют»: **tengo** siete años, а не soy."
+                "tengo siete": "Не хватает слова **años** — «лет»: tengo siete años."
             - q: "Ей девять лет."
               a: "Tiene nueve años | Ella tiene nueve años"
+              mistakes:
+                "es nueve años": "Возраст по-испански «имеют»: **tiene** nueve años, а не es."
       - build:
           title: Соберите фразу
+          skill: tener_age
           items:
             - "¿Cuántos años tiene usted? — Сколько вам лет?"
             - "El perro tiene tres años. — Собаке три года."
@@ -134,6 +168,7 @@ lessons:
     kind: vocab
     title: Числа от 11 до 15 и 20
     goal: считать до пятнадцати и сказать «двадцать»
+    version: 2
     vocab:
       - "1️⃣1️⃣ once [о́нθэ] — одиннадцать {pos: num}"
       - "1️⃣2️⃣ doce [до́θэ] — двенадцать {pos: num}"
@@ -146,33 +181,41 @@ lessons:
       - learn: [once, doce, trece, catorce, quince]
       - choose:
           title: Послушайте и выберите
+          rule: none
+          skill: numbers_ear
           items:
             - say: "catorce"
               options: "14 | 4 | 13"
+              noaudio: {q: "Какое это число: «catorce»?", options: "14 | 4 | 13"}
               explain: "Catorce — 14, а cuatro — 4. Числа от 11 до 15 кончаются на -ce."
             - say: "quince"
               options: "15 | 5 | 12"
+              noaudio: {q: "Какое это число: «quince»?", options: "15 | 5 | 12"}
             - say: "doce"
               options: "12 | 2 | 11"
+              noaudio: {q: "Какое это число: «doce»?", options: "12 | 2 | 11"}
       - learn: [veinte]
       - write:
           title: Responde
           format: число словом
+          skill: numbers
           items:
             - "diez y cinco => quince"
             - "diez y uno => once"
             - "diez y diez => veinte"
       - write:
           title: Traduce
-          format: фраза по-испански
+          format: фраза о возрасте по-испански
+          skill: tener_age
           items:
-            - "Мне двадцать лет. => Tengo veinte años"
+            - "Мне двадцать лет. => Tengo veinte años | Yo tengo veinte años"
             - "Ему тринадцать лет. => Tiene trece años | Él tiene trece años"
 
   - id: dieci
     kind: grammar
     title: "16–19: «десять и шесть»"
     goal: сказать числа от 16 до 19
+    version: 2
     vocab:
       - "1️⃣6️⃣ dieciséis [дьэθисэ́йс] — шестнадцать {pos: num}"
       - "1️⃣7️⃣ diecisiete [дьэθисьэ́тэ] — семнадцать {pos: num}"
@@ -187,14 +230,17 @@ lessons:
             - ["17", "diez y siete → **diecisiete**"]
             - ["18", "diez y ocho → **dieciocho**"]
             - ["19", "diez y nueve → **diecinueve**"]
-      - rule: |
-          1. Всё число пишется одним словом, а `y` превращается в `i`: diec**i**séis, diec**i**ocho.
-          2. Буква `z` слова diez меняется на `c`: die**c**isiete, die**c**inueve.
-          3. У **dieciséis** есть значок ударения: слово заканчивается на `s`, а ударение — на последнем слоге: dieci**séis**.
+      - rule:
+          id: dieci
+          text: |
+            1. Всё число пишется одним словом, а `y` превращается в `i`: diec**i**séis, diec**i**ocho.
+            2. Буква `z` слова diez меняется на `c`: die**c**isiete, die**c**inueve.
+            3. У **dieciséis** есть значок ударения: слово заканчивается на `s`, а ударение — на последнем слоге: dieci**séis**.
       - write:
           title: Напишите словом
           format: число словом
           accents: strict
+          skill: numbers
           items:
             - "17 => diecisiete"
             - "19 => diecinueve"
@@ -203,6 +249,7 @@ lessons:
               explain: "Ударение на последнем слоге, а слово кончается на `s` — поэтому значок: dieciséis."
       - choose:
           title: Responde
+          skill: numbers
           items:
             - q: "nueve y nueve"
               options: "dieciocho | diecinueve | dieciséis"
@@ -210,11 +257,14 @@ lessons:
               options: "veinte | diecinueve | doce"
             - say: "diecisiete"
               options: "17 | 16 | 7"
+              skill: numbers_ear
+              noaudio: {q: "Какое это число: «diecisiete»?", options: "17 | 16 | 7"}
 
   - id: telefono
     kind: dialogue
     title: Номер телефона
     goal: продиктовать номер телефона и понять его на слух
+    version: 2
     vocab:
       - "🔢 el número [ну́мэро] — номер; число"
       - "📞 el teléfono [тэлэ́фоно] — телефон"
@@ -226,6 +276,7 @@ lessons:
       - "В Испании номер телефона — девять цифр. Часто его читают по одной цифре: _seis, cinco, cero, dos..._"
       - learn: [el número, el teléfono, "¿Cuál es...?"]
       - dialogue:
+          id: gym
           title: В спортзале
           lines:
             - "Recepcionista: Buenas tardes. ¿Cómo se llama usted? | Добрый день. Как вас зовут?"
@@ -239,19 +290,29 @@ lessons:
             - "Recepcionista: Muchas gracias, señora Torres. | Большое спасибо, сеньора Торрес."
       - choose:
           title: Responde
+          source: gym
           items:
             - q: "¿Cuántos años tiene Ana?"
               options: "Tiene veinte años. | Tiene doce años. | Tiene quince años."
+              explain: "Ana: Tengo veinte años. — Ане двадцать лет."
+              skill: tener_age
             - q: "¿Cuál es el número de teléfono de Ana?"
               options: "650 281 973 | 650 281 937 | 560 281 973"
+              explain: "Ana: Seis, cinco, cero, dos, ocho, uno, nueve, siete, tres. — 650 281 973."
+              skill: phone
             - q: "Почему администратор говорит «Más despacio, por favor»?"
               options: "Ана диктует слишком быстро. | Ана не назвала имя. | Ана говорит на «ты»."
+              explain: "Más despacio — «помедленнее»: Ана продиктовала номер слишком быстро."
       - learn: [mi, tu, su]
-      - tip: |
-          **tu** без значка — «твой»: _tu número_, _tu teléfono_. А **tú** со значком — «ты»: _¿Y tú?_ Это как пара **el** и **él**.
-          **su** — «его», «её» и вежливое «ваш»: _su número_ — «его номер», «её номер» или «ваш номер». Поэтому администратор спрашивает Ану на «вы»: _¿Cuál es su número de teléfono?_
+      - tip:
+          id: mi_tu_su
+          text: |
+            **tu** без значка — «твой»: _tu número_, _tu teléfono_. А **tú** со значком — «ты»: _¿Y tú?_ Это как пара **el** и **él**.
+            **su** — «его», «её» и вежливое «ваш»: _su número_ — «его номер», «её номер» или «ваш номер». Поэтому администратор спрашивает Ану на «вы»: _¿Cuál es su número de teléfono?_
       - choose:
           title: Как спросить?
+          free: true
+          skill: mi_tu_su
           items:
             - q: "Спросите номер телефона у друга."
               options: "¿Cuál es tu número de teléfono? | ¿Cuál es su número de teléfono? | ¿Cuál es mi número de teléfono?"
@@ -259,82 +320,124 @@ lessons:
             - q: "Как правильно: «твой номер»?"
               options: "tu número | tú número"
               explain: "Tu без значка — «твой», tú со значком — «ты»."
+              skill: accent_meaning
       - write:
           title: Послушайте и запишите цифрами
           format: цифры
+          free: true
+          rule: none
+          skill: numbers_ear
           items:
             - say: "seis, dos, nueve"
               a: "629 | 6 2 9"
+              noaudio: {q: "Запишите цифрами: seis, dos, nueve", a: "629 | 6 2 9"}
             - say: "cero, uno, ocho"
               a: "018 | 0 1 8"
+              noaudio: {q: "Запишите цифрами: cero, uno, ocho", a: "018 | 0 1 8"}
       - mission:
+          id: school
           title: Запись в языковую школу
-          text: "Вы записываетесь в языковую школу. Администратор задаёт вопросы — ответьте ей."
+          text: "Вы записываетесь в языковую школу. Вам восемнадцать лет, ваш номер начинается на 650. Администратор задаёт вопросы — ответьте ей."
       - choose:
+          source: school
           items:
             - lines: ["Recepcionista: ¿Cuántos años tiene?"]
               q: "Вам восемнадцать лет."
               options: "Tengo dieciocho años. | Tiene dieciocho años. | Soy dieciocho años."
+              explain: "О себе — tengo; возраст «имеют», поэтому не soy."
+              skill: tener_age
             - lines: ["Recepcionista: ¿Cuál es su número de teléfono?"]
               q: "Ваш номер начинается на 650."
               options: "Mi número es seis, cinco, cero... | Su número es seis, cinco, cero... | Tu número es seis, cinco, cero..."
               explain: "О своём номере говорят mi número — «мой номер»."
+              skill: mi_tu_su
       - write:
+          source: school
+          skill: phone
           items:
             - q: "Начните диктовать номер: «Мой номер — шесть, пять, ноль…»"
-              a: "Mi número es seis, cinco, cero"
+              a: "Mi número es seis, cinco, cero | Mi número de teléfono es seis, cinco, cero"
               format: фраза по-испански
+              mistakes:
+                "tu número es seis cinco cero": "Tu número — «твой номер». О своём номере говорят **mi** número."
+                "su número es seis cinco cero": "Su número — «ваш номер». О своём номере говорят **mi** número."
 
   - id: dictado
     kind: listening
     title: Диктант чисел
     goal: понимать числа на слух
+    version: 2
+    # Диктант начинается сразу заданием. Без звука — альтернатива: число словами (урок «без звука»).
     blocks:
-      - "Послушайте и запишите числа цифрами. Повторите урок через пару дней — числа будут даваться легче."
       - write:
           title: Послушайте и запишите цифрами
           format: число цифрами
+          skill: numbers_ear
           items:
             - say: "siete"
               a: "7"
+              noaudio: {q: "Запишите цифрами: siete", a: "7"}
             - say: "doce"
               a: "12"
+              noaudio: {q: "Запишите цифрами: doce", a: "12"}
             - say: "quince"
               a: "15"
+              noaudio: {q: "Запишите цифрами: quince", a: "15"}
               explain: "Quince — 15, а cinco — 5."
             - say: "diecinueve"
               a: "19"
+              noaudio: {q: "Запишите цифрами: diecinueve", a: "19"}
             - say: "catorce"
               a: "14"
+              noaudio: {q: "Запишите цифрами: catorce", a: "14"}
               explain: "Catorce — 14, а cuatro — 4."
       - choose:
           title: Какой номер вы услышали?
+          skill: [numbers_ear, phone]
           items:
             - say: "seis, dos, nueve, cero, uno, ocho, tres, cuatro, cinco"
               options: "629 018 345 | 629 018 354 | 692 018 345"
+              noaudio: {q: "Какой номер записан словами: seis, dos, nueve, cero, uno, ocho, tres, cuatro, cinco?", options: "629 018 345 | 629 018 354 | 692 018 345"}
 
   - id: quiz
     kind: quiz
     title: Числа и возраст
+    goal: считать до двадцати, сказать возраст и продиктовать номер телефона
+    version: 2
+    check: soft
     blocks:
       - "Это тест по теме «Числа и возраст»."
       - cando:
           - "считать от 0 до 20"
           - "спросить и сказать возраст: ¿Cuántos años tienes? — Tengo... años."
           - "спросить и продиктовать номер телефона"
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "veinte — 20"
+            - "once — 11"
+            - "el año — год"
+            - "el teléfono — телефон"
+            - "mi — мой"
     quiz:
       - q: Какое это число — «catorce»?
         options: "14 | 4 | 40"
         explain: "Catorce значит 14. А 4 по-испански будет cuatro."
+        skill: numbers
       - q: "¿Cuántos años tienes?"
         options: "Tengo veinte años. | Soy veinte años. | Tienes veinte años."
         explain: "В испанском возраст «имеют», поэтому о себе говорят Tengo veinte años, то есть дословно «Я имею двадцать лет». Глагол soy здесь не подходит."
+        skill: tener_age
       - q: "siete y ocho = ?"
         options: "quince | trece | diecisiete"
         explain: "Siete y ocho значит «семь плюс восемь», а это пятнадцать, то есть quince."
+        skill: numbers
       - q: Как сказать «твой номер»?
         options: "tu número | tú número | su número"
         explain: "Слово tu без значка значит «твой», а tú со значком значит «ты». А su значит «его», «её» или «ваш»."
+        skill: mi_tu_su
       - q: Как правильно пишется 16?
         options: "dieciséis | diez y seis | dieceseis"
         explain: "Числа от 16 до 19 пишутся одним словом, а у dieciséis есть значок ударения над `é`."
+        skill: numbers

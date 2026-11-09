@@ -68,14 +68,24 @@ BLOCK_TYPES = {
     "build",     # соберите фразу из плиток; alt — другие допустимые порядки, extra — лишние плитки
     "mission",   # итоговая ситуация: экран-сцена, за ним задания миссии
     "more",      # «Почему? / Подробнее»: свёрнутое пояснение на экране предыдущего блока
+    "recap",     # проверка слов урока, которых не коснулись задания (и «Мастер фраз»), там, где решил автор
+    "review",    # запланированное повторение навыков прошлых уроков (content/site/skills.yaml)
 }
 
 # Блоки, которых в уроках канала быть не может (validate проверяет content/units).
-SITE_ONLY_BLOCKS = {"compare", "learn", "choose", "write", "match", "sort", "build", "mission", "more"}
+SITE_ONLY_BLOCKS = {"compare", "learn", "choose", "write", "match", "sort", "build", "mission", "more", "recap", "review"}
 # Задания сценария, которые проверяет страница (у каждого — правильный ответ).
 GRADED_BLOCKS = {"choose", "write", "match", "sort", "build"}
 # Блоки, с которыми урок идёт по сценарию (Lesson.scripted).
 SCRIPT_BLOCKS = GRADED_BLOCKS | {"learn", "mission"}
+# Источники контекста: задание после них проверяет понимание (source) или самостоятельное (free).
+SOURCE_BLOCKS = {"dialogue", "reading", "mission"}
+# Объяснения, на которые может ссылаться «📖 Повторить правило» (rule: id).
+RULE_TARGETS = {"rule", "tip", "note", "text", "compare", "table", "list", "examples", "conjugation", "more"}
+# Служебные поля блока урока сайта (docs/site_lessons_guide.md): id блока, граница экрана, источник,
+# правило и навык задания. В уроках канала их нет, рендер канала их не видит (Block.meta).
+META_KEYS = ("id", "slide", "source", "free", "rule", "skill")
+CHECKS = ("", "control", "soft")
 
 DEFAULT_SETTINGS: dict[str, Any] = {
     "srs": {
@@ -159,6 +169,7 @@ class VocabItem:
 class Block:
     type: str
     data: Any
+    meta: dict = field(default_factory=dict)   # сайт: id, slide, source, free, rule, skill (META_KEYS)
 
 
 @dataclass
@@ -168,6 +179,7 @@ class QuizItem:
     correct: int
     explain: str = ""
     shuffle: bool = True
+    meta: dict = field(default_factory=dict)   # сайт: source, free, skill, rule
 
 
 @dataclass
@@ -189,6 +201,8 @@ class Lesson:
     unit: "Unit" = field(repr=False)
     index: int = 0
     goal: str = ""   # сайт: микроцель урока — наблюдаемое действие («здоровается утром, днём и вечером»)
+    version: int = 1  # сайт: версия содержания урока; прохождение старой версии не подтверждает новую
+    check: str = ""   # сайт: control — итог уровня с порогом, soft — тест темы с честной оценкой
 
     @property
     def scripted(self) -> bool:
@@ -235,6 +249,8 @@ class Course:
     meta_words: set[str]
     settings: dict[str, Any]
     bot: str = ""  # бот для повторений (без @): ссылка «Повторить слова» в конце уроков
+    # Сайт: навыки-конструкции для повторения и итогов (content/site/skills.yaml): тег → {title, lesson}.
+    skills: dict[str, dict] = field(default_factory=dict)
 
     @property
     def items(self) -> list[VocabItem]:
@@ -399,12 +415,48 @@ def parse_block(raw: Any, where: str) -> Block:
     if btype not in BLOCK_TYPES:
         raise ContentError(f"{where}: неизвестный тип блока {btype!r}")
     w = f"{where}, блок {btype}"
+    meta: dict = {}
+    if isinstance(value, dict):
+        meta = _meta(value, w)
+        value = {k: v for k, v in value.items() if k not in META_KEYS}
+    block = _parse_block(btype, value, w)
+    block.meta = {**block.meta, **meta}
+    return block
+
+
+def _meta(spec: dict, where: str) -> dict:
+    """Служебные поля блока или вопроса сайта: id, slide: new, source: id, free: true, rule: id | none, skill."""
+    meta = {k: spec[k] for k in META_KEYS if k in spec and spec[k] not in (None, "")}
+    for k in ("id", "source", "rule"):
+        if k in meta:
+            meta[k] = str(meta[k]).strip()
+    if "slide" in meta and meta["slide"] != "new":
+        raise ContentError(f"{where}: slide может быть только new")
+    if "free" in meta:
+        meta["free"] = bool(meta["free"])
+    if "skill" in meta:
+        meta["skill"] = [str(x).strip() for x in _items(meta["skill"]) if str(x).strip()]
+    if meta.get("source") and meta.get("free"):
+        raise ContentError(f"{where}: у задания либо source, либо free")
+    return meta
+
+
+def _parse_block(btype: str, value: Any, w: str) -> Block:
 
     if btype in ("text", "rule", "tip", "note", "latam", "culture", "task", "header"):
+        if isinstance(value, dict):   # сайт: {text: …, id: …, join: true}
+            if "text" not in value:
+                raise ContentError(f"{w}: нужен ключ text")
+            block = Block(btype, str(value["text"]).strip())
+            if value.get("join"):
+                block.meta["join"] = True
+            return block
         return Block(btype, str(value).strip())
     if btype == "words":
         return Block(btype, None)
     if btype in ("cando", "list"):
+        if isinstance(value, dict):   # сайт: {items: […], id: …}
+            value = value.get("items")
         return Block(btype, [_text(v) for v in _items(value)])
     if btype == "examples":
         spec = value if isinstance(value, dict) else {"items": value}
@@ -502,9 +554,50 @@ def _line(raw: Any, where: str) -> tuple[str, str, str]:
     return speaker.strip(), es.strip(), ru.strip()
 
 
+def _item_meta(it: dict, where: str) -> dict:
+    """Поля вопроса задания: source/free/rule/skill (как у блока), mistakes — пояснения к ожидаемым ошибкам."""
+    meta = _meta(it, where)
+    mistakes = it.get("mistakes") or {}
+    if not isinstance(mistakes, dict):
+        raise ContentError(f"{where}: mistakes — словарь «ошибка: пояснение»")
+    meta["mistakes"] = {str(k).strip(): _text(v) for k, v in mistakes.items()}
+    return meta
+
+
+def _noaudio(raw: Any, btype: str, where: str) -> dict | None:
+    """Альтернатива заданию на слух, если ученику нечем слушать: та же цель письменно.
+    choose: {q, options, explain}; write: {q, a, explain, format}."""
+    if raw in (None, "", {}):
+        return None
+    if not isinstance(raw, dict) or not str(raw.get("q") or "").strip():
+        raise ContentError(f"{where}: noaudio — словарь с q")
+    out = {"q": str(raw["q"]).strip(), "explain": str(raw.get("explain") or "").strip()}
+    if btype == "choose":
+        out["options"] = _options(raw.get("options"))
+        if len(out["options"]) < 2:
+            raise ContentError(f"{where}: у noaudio нужны options (первый — верный)")
+    else:
+        out["answers"] = _alts(raw.get("a"))
+        out["format"] = str(raw.get("format") or "").strip()
+        if not out["answers"]:
+            raise ContentError(f"{where}: у noaudio нужен a")
+    return out
+
+
 def _scenario_block(btype: str, value: Any, w: str) -> Block:
-    """Блоки сценария урока сайта (learn, choose, write, match, sort, build, mission, more)."""
+    """Блоки сценария урока сайта (learn, choose, write, match, sort, build, mission, more, recap, review)."""
     spec = value if isinstance(value, dict) else None
+    if btype == "recap":
+        spec = spec or {}
+        return Block(btype, {"title": str(spec.get("title") or "").strip(), "words": spec.get("words", True) is not False,
+                             "phrase": str(spec.get("phrase") or "").strip()})
+    if btype == "review":
+        if spec is None or not _items(spec.get("skills")):
+            raise ContentError(f"{w}: нужен список skills")
+        n = int(spec.get("n") or 2)
+        if not 1 <= n <= 3:
+            raise ContentError(f"{w}: n — от 1 до 3 (повторение не должно раздувать урок)")
+        return Block(btype, {"title": str(spec.get("title") or "").strip(), "skills": [str(x).strip() for x in _items(spec["skills"])], "n": n})
     if btype == "learn":
         words = [str(v).strip() for v in _items(value)]
         if not words:
@@ -531,6 +624,7 @@ def _scenario_block(btype: str, value: Any, w: str) -> Block:
                 "q": str(it.get("q") or "").strip(), "options": _options(it["options"]),
                 "explain": str(it.get("explain") or "").strip(), "say": str(it.get("say") or "").strip(),
                 "lines": [_line(x, w) for x in _items(it.get("lines"))], "img": str(it.get("img") or "").strip(),
+                "meta": _item_meta(it, w), "noaudio": _noaudio(it.get("noaudio"), "choose", w),
             })
         return Block(btype, {**head, "items": items})
     if btype == "write":
@@ -539,11 +633,13 @@ def _scenario_block(btype: str, value: Any, w: str) -> Block:
             if isinstance(it, dict):
                 q, answers = str(it.get("q") or "").strip(), _alts(it.get("a"))
                 extra = {k: str(it.get(k) or "").strip() for k in ("explain", "say", "format", "img")}
+                extra["meta"], extra["noaudio"] = _item_meta(it, w), _noaudio(it.get("noaudio"), "write", w)
             else:
                 q, found, a = str(it).partition(" => ")
                 if not found:
                     raise ContentError(f"{w}: строка ввода — «вопрос => ответ | другой ответ»: {it!r}")
-                q, answers, extra = q.strip(), _alts(a), {"explain": "", "say": "", "format": "", "img": ""}
+                q, answers = q.strip(), _alts(a)
+                extra = {"explain": "", "say": "", "format": "", "img": "", "meta": {"mistakes": {}}, "noaudio": None}
             items.append({"q": q, "answers": answers, **extra})
         accents = str(spec.get("accents") or "soft")
         if accents not in ("soft", "strict"):
@@ -567,9 +663,10 @@ def _scenario_block(btype: str, value: Any, w: str) -> Block:
             if isinstance(it, dict):
                 es, ru = str(it["es"]).strip(), str(it.get("ru") or "").strip()
                 alt, extra = _alts(it.get("alt")), [str(x).strip() for x in _items(it.get("extra"))]
+                meta = _meta(it, w)
             else:
-                (es, ru), alt, extra = split_pair(it, w), [], []
-            items.append({"es": es, "ru": ru, "alt": alt, "extra": extra})
+                (es, ru), alt, extra, meta = split_pair(it, w), [], [], {}
+            items.append({"es": es, "ru": ru, "alt": alt, "extra": extra, "meta": meta})
         return Block(btype, {**head, "items": items})
     raise ContentError(f"{w}: не обработан")  # pragma: no cover
 
@@ -593,6 +690,7 @@ def parse_quiz(raw: Any, where: str) -> QuizItem:
         correct=correct,
         explain=str(raw.get("explain") or "").strip(),
         shuffle=shuffle,
+        meta=_meta(raw, where),
     )
 
 
@@ -624,10 +722,30 @@ def parse_lesson(raw: dict, unit: Unit, where: str) -> Lesson:
         level=str(raw.get("level") or unit.level),
         unit=unit,
         goal=str(raw.get("goal") or "").strip(),
+        version=int(raw.get("version") or 1),
+        check=str(raw.get("check") or "").strip(),
     )
+    if lesson.check not in CHECKS:
+        raise ContentError(f"{where}: check — control или soft")
+    if lesson.version < 1:
+        raise ContentError(f"{where}: version — целое число от 1")
     for item in lesson.vocab:
         item.lesson = lesson
     return lesson
+
+
+def load_skills(content_dir: Path) -> dict[str, dict]:
+    """Реестр навыков сайта: тег → название, урок, где навык вводится (id урока), и объяснение (id блока)."""
+    path = Path(content_dir) / "skills.yaml"
+    if not path.exists():
+        return {}
+    raw = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    out = {}
+    for tag, spec in raw.items():
+        if not isinstance(spec, dict) or not spec.get("title") or not spec.get("lesson"):
+            raise ContentError(f"skills.yaml: у навыка {tag} нужны title и lesson")
+        out[str(tag)] = {"title": _text(spec["title"]), "lesson": str(spec["lesson"]), "rule": str(spec.get("rule") or "")}
+    return out
 
 
 def load_course(content_dir: str | Path) -> Course:
@@ -689,4 +807,5 @@ def load_course(content_dir: str | Path) -> Course:
         meta_words={str(w).lower() for w in meta.get("meta_words", []) or []},
         settings=settings,
         bot=str(meta.get("bot", "") or "").lstrip("@"),
+        skills=load_skills(content_dir),
     )
