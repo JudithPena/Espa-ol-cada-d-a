@@ -644,6 +644,8 @@ const G_UNIT_ICONS = {
   '037_se_lo_he_dado': '📨',
   '038_lo_la_le': '🪞',
   '039_amame_damelo': '✍️',
+  '040_me_ducho_nos_queremos': '🚿',
+  '041_para_mi_contigo': '🤝',
 };
 function gUnitComplete(unit) {
   const routes=gRoutes(unit);
