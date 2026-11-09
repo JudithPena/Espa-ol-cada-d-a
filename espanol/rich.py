@@ -89,13 +89,15 @@ class RichRenderer:
         unit = lesson.unit
         if self.images:
             media.append(RichMedia("cover", "photo", draw=lambda: cards.cover(
-                f"{strip_tags(self.r._label('lesson', lesson))} {lesson.number} · {lesson.level} · "
-                f"{strip_tags(self.r._label('unit', lesson))} {unit.number}",
+                f"{strip_tags(self.r._label('lesson', lesson))} {lesson.number} · {lesson.level}"
+                + ("" if lesson.cover_subtitle else
+                   f" · {strip_tags(self.r._label('unit', lesson))} {unit.number}"),
                 plain(lesson.title), plain(lesson.cover_subtitle or unit.title), lesson.kind_emoji)))
             out.append('<figure><img src="tg://photo?id=cover"/></figure>')
+        theme = ("" if lesson.cover_subtitle else
+                 f" · {self.r._label('unit', lesson)} {unit.number}. {to_html(unit.title)}")
         out.append(f"<p>🇪🇸 <b>{self.r._label('lesson', lesson)} {lesson.number}</b> · "
-                   f"{escape(lesson.level)} · {self.r._label('unit', lesson)} {unit.number}. "
-                   f"{to_html(unit.title)}</p>")
+                   f"{escape(lesson.level)}{theme}</p>")
         out.append(f"<h2>{lesson.kind_emoji} {self.r.kind_label(lesson)} · {to_html(lesson.title)}</h2>")
         if unit.goals and unit.lessons[0] is lesson:
             out.append("<h3>🎯 В этой теме вы научитесь:</h3>"
