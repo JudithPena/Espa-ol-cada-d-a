@@ -203,6 +203,7 @@ class Lesson:
     goal: str = ""   # сайт: микроцель урока — наблюдаемое действие («здоровается утром, днём и вечером»)
     version: int = 1  # сайт: версия содержания урока; прохождение старой версии не подтверждает новую
     check: str = ""   # сайт: control — итог уровня с порогом, soft — тест темы с честной оценкой
+    cover_subtitle: str = ""  # канал: подпись на обложке вместо названия темы (итоги уровня относятся ко всему уровню)
 
     @property
     def scripted(self) -> bool:
@@ -724,6 +725,7 @@ def parse_lesson(raw: dict, unit: Unit, where: str) -> Lesson:
         goal=str(raw.get("goal") or "").strip(),
         version=int(raw.get("version") or 1),
         check=str(raw.get("check") or "").strip(),
+        cover_subtitle=str(raw.get("cover_subtitle") or "").strip(),
     )
     if lesson.check not in CHECKS:
         raise ContentError(f"{where}: check — control или soft")

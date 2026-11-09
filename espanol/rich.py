@@ -91,7 +91,7 @@ class RichRenderer:
             media.append(RichMedia("cover", "photo", draw=lambda: cards.cover(
                 f"{strip_tags(self.r._label('lesson', lesson))} {lesson.number} · {lesson.level} · "
                 f"{strip_tags(self.r._label('unit', lesson))} {unit.number}",
-                plain(lesson.title), plain(unit.title), lesson.kind_emoji)))
+                plain(lesson.title), plain(lesson.cover_subtitle or unit.title), lesson.kind_emoji)))
             out.append('<figure><img src="tg://photo?id=cover"/></figure>')
         out.append(f"<p>🇪🇸 <b>{self.r._label('lesson', lesson)} {lesson.number}</b> · "
                    f"{escape(lesson.level)} · {self.r._label('unit', lesson)} {unit.number}. "
