@@ -1,0 +1,1025 @@
+{
+  "id": "031_cual_que",
+  "number": 31,
+  "title": "¿Cuál? ¿Qué?",
+  "subtitle": "Как спросить, что это и какой именно",
+  "level": "A2",
+  "sections": [
+    {
+      "title": "Который из нескольких: cuál и cuáles",
+      "presentation": "paradigm",
+      "paragraphs": [
+        "Если выбираешь **одного человека или один предмет из нескольких**, спрашивай `¿Cuál…?`: перед тобой две ручки — `¿Cuál prefieres?` — какую ты предпочитаешь? Если нужно назвать несколько, используй `¿Cuáles…?`: `¿Cuáles son tus deportes preferidos?` — какие виды спорта у тебя любимые?",
+        "Чтобы прямо назвать группу, добавь **`de` — «из»**: `¿Cuál de estos libros quieres?` — какую из этих книг ты хочешь? `¿Cuáles de tus amigos vienen?` — кто из твоих друзей придёт? Смотрим на количество выбираемых людей, а не на число всех друзей.",
+        "После `de` можно поставить `estos libros`, `tus hermanos`, `los dos diccionarios` или местоимение: **`¿Cuál de vosotros habla ruso?`** — кто из вас говорит по-русски? Форма `cuál` не меняется по роду: `cuál libro` и `cuál ciudad` в тех вариантах речи, где так говорят.",
+        "Если нужен ещё один предлог, он идёт в начало: **`¿Por cuál de estas ciudades pasa el río?`** — через какой из этих городов проходит река? Вопросительные `cuál / cuáles` пишем со знаком ударения."
+      ],
+      "table": {
+        "heads": [
+          "Что выбираем",
+          "Начало вопроса"
+        ],
+        "compactForms": true,
+        "rows": [
+          [
+            "Одного / один предмет",
+            "cuál"
+          ],
+          [
+            "Нескольких / несколько предметов",
+            "cuáles"
+          ],
+          [
+            "Одного из группы",
+            "cuál de tus amigos"
+          ],
+          [
+            "Нескольких из группы",
+            "cuáles de tus amigos"
+          ]
+        ]
+      },
+      "check": {
+        "id": "check-1",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "¿___ de estas mochilas son tuyas?",
+            "answers": [
+              "Cuáles"
+            ],
+            "explain": "Спрашиваем о нескольких рюкзаках: cuáles. De уже написано.",
+            "context": "Какие из этих рюкзаков твои?",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "Cuál",
+              "Cuáles",
+              "Qué"
+            ]
+          },
+          {
+            "prompt": "¿Cuál ___ los dos libros prefieres?",
+            "answers": [
+              "de"
+            ],
+            "explain": "Выбираем один из двух: cuál de los dos libros.",
+            "context": "Какую из двух книг ты предпочитаешь?",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "en",
+              "que",
+              "de"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Что это такое или какой именно: вопросы с ser",
+      "presentation": "comparison",
+      "paragraphs": [
+        "Если хочешь **узнать значение или объяснение**, спроси **`¿Qué es…?`**: `¿Qué es un OVNI?` — что такое НЛО? Ответ объясняет понятие, а не выбирает один объект.",
+        "Если хочешь **узнать название, имя или конкретный вариант**, обычно нужен **`¿Cuál es…?`**: `¿Cuál es tu apellido?` — какая у тебя фамилия? `¿Cuál es tu bebida preferida?` — какой напиток твой любимый? Необязательно держать варианты перед глазами: выбор может быть понятен из смысла.",
+        "В открытом вопросе без готового списка спрашиваем **`¿Qué quieres estudiar?`** — что ты хочешь изучать? Если варианты уже названы, возможны оба вопроса: `¿Qué prefieres, té o café?` и `¿Cuál prefieres, té o café?` — что ты предпочитаешь, чай или кофе? Не объявляем один из этих вариантов ошибкой."
+      ],
+      "dialogues": [
+        {
+          "title": "Объясни понятие",
+          "lines": [
+            [
+              "¿Qué es un OVNI?",
+              "Что такое НЛО?"
+            ],
+            [
+              "Un objeto volante no identificado.",
+              "Неопознанный летающий объект."
+            ]
+          ]
+        },
+        {
+          "title": "Назови свой выбор",
+          "lines": [
+            [
+              "¿Cuál es tu bebida preferida?",
+              "Какой напиток твой любимый?"
+            ],
+            [
+              "El té.",
+              "Чай."
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-2",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "¿___ es un poncho? —Una prenda de vestir.",
+            "answers": [
+              "Qué"
+            ],
+            "explain": "Просим объяснить понятие poncho, поэтому qué es, не cuál es.",
+            "context": "Что такое пончо? — Предмет одежды.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "Cuál",
+              "Qué",
+              "Quién"
+            ]
+          },
+          {
+            "prompt": "¿___ es tu apellido? —García.",
+            "answers": [
+              "Cuál"
+            ],
+            "explain": "Просим назвать фамилию: cuál es tu apellido. Не спрашиваем определение слова apellido.",
+            "context": "Как у тебя фамилия? — Гарсия.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "Qué",
+              "Quién",
+              "Cuál"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Перед названием: qué ciudad, qué médico",
+      "presentation": "examples",
+      "paragraphs": [
+        "Когда **название написано сразу после вопросительного слова**, в Испании обычно выбирают `qué`: `¿Qué libro quieres?` — какую книгу ты хочешь? `¿En qué ciudad vive Ana?` — в каком городе живёт Ана? Здесь `qué` одинаково с единственным и множественным числом.",
+        "Так можно спросить и о конкретном человеке: **`¿Qué médico te ha visto?`** — какой врач тебя осмотрел? Вопрос `¿Quién te ha visto?` — кто тебя осмотрел? — обходится без названия профессии.",
+        "Перед названием **`cuál / cuáles` тоже допустимы**, особенно в Америке: `¿Cuál libro quieres?`. Это не ошибка. В примерах для Испании используем `qué libro`; при самостоятельном вводе корректный вариант с `cuál` тоже засчитывается.",
+        "Сравни две конструкции: **`¿En qué ciudad…?`** — в каком городе? Но **`¿En cuál de estas ciudades…?`** — в каком из этих городов? Перед `estas ciudades` нужно связать выбор с группой через `de`. Уже написанный предлог `en` второй раз не добавляем."
+      ],
+      "wordGroups": [
+        {
+          "title": "📖 Название стоит сразу после вопроса",
+          "words": [
+            [
+              "¿Qué libro prefieres?",
+              "Какую книгу ты предпочитаешь?"
+            ],
+            [
+              "¿Qué libros prefieres?",
+              "Какие книги ты предпочитаешь?"
+            ]
+          ]
+        },
+        {
+          "title": "📚 Выбор из названной группы",
+          "words": [
+            [
+              "¿Cuál de estos libros prefieres?",
+              "Какую из этих книг ты предпочитаешь?"
+            ],
+            [
+              "¿Cuáles de estos libros prefieres?",
+              "Какие из этих книг ты предпочитаешь?"
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-3",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "¿En ___ de estas ciudades está el museo?",
+            "answers": [
+              "cuál"
+            ],
+            "explain": "Выбираем один город из группы: en cuál de estas ciudades. De уже написано.",
+            "context": "В каком из этих городов находится музей?",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "qué",
+              "cuáles",
+              "cuál"
+            ]
+          },
+          {
+            "prompt": "Выбери обычный для Испании вопрос «Какой врач тебя осмотрел?»",
+            "answers": [
+              "¿Qué médico te ha visto?"
+            ],
+            "explain": "Перед названием médico в Испании обычно qué. Кто осмотрел без названия профессии — quién.",
+            "context": "Используй название médico в самом вопросе.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "¿Quién médico te ha visto?",
+              "¿Qué médico te ha visto?",
+              "¿Qué de médico te ha visto?"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "31.1",
+      "title": "31.1 · Выбери одного или нескольких",
+      "theorySections": [
+        0
+      ],
+      "questions": [
+        {
+          "prompt": "¿___ esos chicos es el hijo de Guillermo?",
+          "answers": [
+            "Cuál de"
+          ],
+          "explain": "Один сын из группы chicos: cuál de.",
+          "context": "Кто из этих ребят — сын Гильермо? Используй форму cuál.",
+          "sourceRef": "31.1.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ es tu bebida preferida?",
+          "answers": [
+            "Cuál"
+          ],
+          "explain": "Просим назвать один любимый напиток: cuál es.",
+          "context": "Какой напиток твой любимый?",
+          "sourceRef": "31.1.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ tus padres nació en Panamá?",
+          "answers": [
+            "Cuál de"
+          ],
+          "explain": "Один из двух родителей: cuál de; nació в единственном числе.",
+          "context": "Кто из твоих родителей родился в Панаме? Выбираем одного.",
+          "sourceRef": "31.1.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ tus hermanos nacieron en Ecuador?",
+          "answers": [
+            "Cuáles de"
+          ],
+          "explain": "Выбираем нескольких из группы: cuáles de; nacieron во множественном числе.",
+          "context": "Кто из твоих братьев и сестёр родился в Эквадоре? Спрашиваем о нескольких.",
+          "sourceRef": "31.1.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ ustedes ha estado en la Patagonia?",
+          "answers": [
+            "Cuál de"
+          ],
+          "explain": "Местоимение ustedes называет группу, но выбираем одного: cuál de.",
+          "context": "Кто из вас бывал в Патагонии? В этом вопросе выбираем одного.",
+          "sourceRef": "31.1.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ los dos diccionarios prefieres?",
+          "answers": [
+            "Cuál de"
+          ],
+          "explain": "Один словарь из двух: cuál de.",
+          "context": "Какой из двух словарей ты предпочитаешь? Нужно выбрать один.",
+          "sourceRef": "31.1.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ es la montaña más alta del mundo?",
+          "answers": [
+            "Cuál"
+          ],
+          "explain": "Ищем конкретную гору, а не определение слова montaña: cuál.",
+          "context": "Как называется самая высокая гора мира? Впиши вопросительное, не название горы.",
+          "sourceRef": "31.1.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ son las cinco ciudades más pobladas de América?",
+          "answers": [
+            "Cuáles"
+          ],
+          "explain": "Спрашиваем о пяти городах: cuáles son.",
+          "context": "Какие пять городов Америки самые населённые? Впиши вопросительное, не названия городов.",
+          "sourceRef": "31.1.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        }
+      ],
+      "preview": {
+        "source": "¿___ estos coches es tuyo?",
+        "sentenceParts": [
+          "¿",
+          " estos coches es tuyo?"
+        ],
+        "answer": "Cuál de",
+        "targetPrefix": "",
+        "translation": "Какая из этих машин твоя?"
+      },
+      "instruction": "В этом упражнении используй cuál, cuáles, cuál de или cuáles de. Обрати внимание, сколько людей или предметов нужно выбрать.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши только форму cuál и, если нужно, de. Название группы уже написано.",
+        "placeholder": "Cuál / cuáles, при необходимости с de"
+      }
+    },
+    {
+      "id": "31.2",
+      "title": "31.2 · Дополни вопрос в разговоре",
+      "theorySections": [
+        0,
+        1
+      ],
+      "questions": [
+        {
+          "prompt": "¿___ tus hermanos trabaja en Aerolíneas? —Jaime.",
+          "answers": [
+            "Cuál de",
+            "Quién de"
+          ],
+          "explain": "Выбираем одного брата из группы: cuál de. О человеке можно также quién de.",
+          "context": "Кто из твоих братьев работает в авиакомпании? — Хайме.",
+          "sourceRef": "31.2.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ es tu comida preferida? —El pescado.",
+          "answers": [
+            "Cuál"
+          ],
+          "explain": "Просим назвать любимую еду, а не объяснить понятие: cuál es.",
+          "context": "Какая еда твоя любимая? — Рыба.",
+          "sourceRef": "31.2.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ son tus deportes preferidos? —El baloncesto y el tenis.",
+          "answers": [
+            "Cuáles"
+          ],
+          "explain": "Несколько любимых видов спорта: cuáles son.",
+          "context": "Какие виды спорта у тебя любимые? — Баскетбол и теннис.",
+          "sourceRef": "31.2.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ deportes practicas? —Tenis y natación.",
+          "answers": [
+            "Qué",
+            "Cuáles"
+          ],
+          "explain": "Перед deportes в Испании обычно qué. Cuáles deportes тоже нормативно, особенно в Америке.",
+          "context": "Какими видами спорта ты занимаешься? — Теннисом и плаванием.",
+          "sourceRef": "31.2.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ quieres estudiar? —Aún no lo sé.",
+          "answers": [
+            "Qué"
+          ],
+          "explain": "Открытый вопрос о предмете изучения: qué.",
+          "context": "Что ты хочешь изучать? — Пока не знаю. Списка вариантов в разговоре нет.",
+          "sourceRef": "31.2.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ es tu película preferida? —Casablanca.",
+          "answers": [
+            "Cuál"
+          ],
+          "explain": "Просим назвать любимый фильм: cuál es.",
+          "context": "Какой фильм твой любимый? — «Касабланка».",
+          "sourceRef": "31.2.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ tus hermanas vive en Rosario? —Cecilia.",
+          "answers": [
+            "Cuál de",
+            "Quién de"
+          ],
+          "explain": "Одна из сестёр: cuál de; о человеке возможно и quién de.",
+          "context": "Кто из твоих сестёр живёт в Росарио? — Сесилия.",
+          "sourceRef": "31.2.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿En ___ ciudad de México vive María? —En Tijuana.",
+          "answers": [
+            "qué",
+            "cuál"
+          ],
+          "explain": "Название ciudad идёт сразу после вопроса: qué; cuál тоже нормативно, особенно в Америке.",
+          "context": "В каком городе Мексики живёт Мария? — В Тихуане.",
+          "sourceRef": "31.2.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿Con ___ líneas aéreas va a viajar Sol? —Con Iberia.",
+          "answers": [
+            "qué",
+            "cuáles"
+          ],
+          "explain": "Перед líneas aéreas обычно qué; cuáles тоже допустимо. Предлог con уже написан.",
+          "context": "Какой авиакомпанией полетит Соль? — Iberia.",
+          "sourceRef": "31.2.9",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ son nuestras habitaciones? —Las tres de la derecha.",
+          "answers": [
+            "Cuáles"
+          ],
+          "explain": "Нужно указать несколько комнат: cuáles.",
+          "context": "Какие комнаты наши? — Три справа.",
+          "sourceRef": "31.2.10",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿En ___ trabaja Mariano? —Es cocinero.",
+          "answers": [
+            "qué"
+          ],
+          "explain": "En qué trabaja спрашивает о работе, а не выбирает один из уже названных предметов.",
+          "context": "Кем работает Мариано? — Он повар.",
+          "sourceRef": "31.2.11",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ prefieres, té o café? —Té.",
+          "answers": [
+            "Qué",
+            "Cuál"
+          ],
+          "explain": "Альтернативы названы прямо: qué prefieres и cuál prefieres здесь оба подходят.",
+          "context": "Что ты предпочитаешь, чай или кофе? — Чай.",
+          "sourceRef": "31.2.12",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        }
+      ],
+      "preview": {
+        "source": "¿___ es un diccionario?",
+        "sentenceParts": [
+          "¿",
+          " es un diccionario?"
+        ],
+        "answer": "Qué",
+        "targetPrefix": "",
+        "translation": "Что такое словарь?"
+      },
+      "instruction": "Прочитай ответ: он помогает понять, нужно объяснение, имя или выбор. Вставляй только начало вопроса.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши вопросительное слово; добавь de только перед уже названной группой. Остальное не повторяй.",
+        "placeholder": "Вопросительное сочетание"
+      }
+    },
+    {
+      "id": "31.3",
+      "title": "31.3 · Задай вопрос ведущего викторины",
+      "theorySections": [
+        2
+      ],
+      "questions": [
+        {
+          "prompt": "¿___ es la ciudad más antigua de América Latina?",
+          "answers": [
+            "Cuál"
+          ],
+          "explain": "Конкретное название города: cuál es, не определение города.",
+          "context": "Просим назвать конкретный город в вопросе викторины. Ответ по географии вводить не нужно.",
+          "sourceRef": "31.3.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ es un huaino?",
+          "answers": [
+            "Qué"
+          ],
+          "explain": "Определение понятия huaino запрашиваем через qué es.",
+          "context": "Спроси, что такое уайно — объяснение слова, а не имя человека.",
+          "sourceRef": "31.3.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿En ___ ciudad española está el Museo del Prado?",
+          "answers": [
+            "qué",
+            "cuál"
+          ],
+          "explain": "Название ciudad стоит сразу после вопроса: qué; cuál допустимо в региональной норме.",
+          "context": "Спроси, в каком испанском городе находится музей Прадо.",
+          "sourceRef": "31.3.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ es la capital de Colombia?",
+          "answers": [
+            "Cuál"
+          ],
+          "explain": "Нужна конкретная столица: cuál es.",
+          "context": "Спроси название столицы Колумбии. Сам ответ вводить не нужно.",
+          "sourceRef": "31.3.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ escribió Trilce?",
+          "answers": [
+            "Quién"
+          ],
+          "explain": "Спрашиваем о человеке-авторе: quién.",
+          "context": "Trilce — название произведения. Спроси, кто его написал.",
+          "sourceRef": "31.3.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ río atraviesa Santiago de Chile?",
+          "answers": [
+            "Qué",
+            "Cuál"
+          ],
+          "explain": "Перед названием río в Испании обычно qué; cuál тоже нормативно.",
+          "context": "Спроси, какая река протекает через Сантьяго.",
+          "sourceRef": "31.3.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿Entre ___ países está el lago Titicaca?",
+          "answers": [
+            "qué",
+            "cuáles"
+          ],
+          "explain": "Перед países: qué или нормативное cuáles. Entre уже написано.",
+          "context": "Спроси, между какими странами находится озеро Титикака.",
+          "sourceRef": "31.3.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿En ___ estas ciudades está la Sagrada Familia: Barcelona, Sevilla o Valladolid?",
+          "answers": [
+            "cuál de"
+          ],
+          "explain": "Перед estas ciudades выбираем из группы: en cuál de estas ciudades.",
+          "context": "Спроси, в каком из трёх названных городов находится Саграда-Фамилия.",
+          "sourceRef": "31.3.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___?",
+          "answers": [
+            "Quiénes construyeron Machu Picchu"
+          ],
+          "explain": "Construyeron — множественное число; спрашиваем о строителях: quiénes.",
+          "context": "Собери вопрос: «Кто построил Мачу-Пикчу?» Спрашиваем о людях, глагол уже дан во множественном числе.",
+          "sourceRef": "31.3.9",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "Quiénes",
+            "construyeron",
+            "Machu",
+            "Picchu",
+            "Qué"
+          ],
+          "inputFormat": {
+            "instruction": "Собери весь вопрос между знаками ¿ и ?. Не все слова нужны.",
+            "placeholder": "Вопрос без знаков"
+          }
+        },
+        {
+          "prompt": "¿En ___ país suramericano está el volcán de esta historia?",
+          "answers": [
+            "qué",
+            "cuál"
+          ],
+          "explain": "Название país идёт сразу после вопроса: qué; cuál тоже допустимо.",
+          "context": "Спроси, в какой стране Южной Америки расположен вулкан из условного рассказа.",
+          "sourceRef": "31.3.10",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ es la ciudad más poblada de América Latina?",
+          "answers": [
+            "Cuál"
+          ],
+          "explain": "Ищем конкретное название: cuál es.",
+          "context": "Спроси название города. Знать актуальный рейтинг населения для задания не нужно.",
+          "sourceRef": "31.3.11",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___?",
+          "answers": [
+            "Qué es un poncho"
+          ],
+          "explain": "Просим объяснить понятие: qué es un poncho, не cuál es.",
+          "context": "Собери вопрос: «Что такое пончо?»",
+          "sourceRef": "31.3.12",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "Qué",
+            "es",
+            "un",
+            "poncho",
+            "Cuál"
+          ],
+          "inputFormat": {
+            "instruction": "Собери весь вопрос между знаками ¿ и ?. Не все слова нужны.",
+            "placeholder": "Вопрос без знаков"
+          }
+        }
+      ],
+      "preview": {
+        "source": "¿En ___ estas calles está el hotel?",
+        "sentenceParts": [
+          "¿En ",
+          " estas calles está el hotel?"
+        ],
+        "answer": "cuál de",
+        "targetPrefix": "",
+        "translation": "На какой из этих улиц находится отель?"
+      },
+      "instruction": "Здесь проверяется построение вопроса, а не знание ответов викторины. Названия уже написаны; в двух заданиях собери весь вопрос.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши только вопросительное слово или сочетание с de. Уже написанный предлог не повторяй.",
+        "placeholder": "Вопросительное сочетание"
+      }
+    }
+  ],
+  "learningOrder": [
+    "section:0",
+    "exercise:31.1",
+    "section:1",
+    "exercise:31.2",
+    "section:2",
+    "exercise:31.3",
+    "summary"
+  ],
+  "summary": {
+    "wordGroups": [
+      {
+        "title": "Объяснение или название",
+        "words": [
+          [
+            "¿Qué es un poncho?",
+            "Что такое пончо?"
+          ],
+          [
+            "¿Cuál es tu apellido?",
+            "Как у тебя фамилия?"
+          ]
+        ]
+      },
+      {
+        "title": "Выбор и число",
+        "words": [
+          [
+            "cuál de tus amigos",
+            "один из твоих друзей"
+          ],
+          [
+            "cuáles de tus amigos",
+            "несколько из твоих друзей"
+          ]
+        ]
+      },
+      {
+        "title": "Перед названием",
+        "words": [
+          [
+            "qué ciudad / qué libros",
+            "обычная форма в Испании"
+          ],
+          [
+            "cuál ciudad / cuáles libros",
+            "нормативный вариант, чаще в Америке"
+          ],
+          [
+            "en cuál de estas ciudades",
+            "в каком из этих городов"
+          ]
+        ]
+      }
+    ]
+  }
+}

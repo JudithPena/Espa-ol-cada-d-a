@@ -58,4 +58,4 @@ def test_unit29_covers_all_source_positions_and_licenses_modern_variants():
             assert f['instruction'] and f['placeholder']
             assert f.get('example') not in q['answers']
             assert ''.join(q['inputChars']) == 'áéíóúüñ'
-    assert [u['number'] for u in load_grammar()] == list(range(1,30))
+    assert [u['number'] for u in load_grammar() if u['number'] <= 29] == list(range(1,30))

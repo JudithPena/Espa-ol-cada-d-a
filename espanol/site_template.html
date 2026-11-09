@@ -795,6 +795,7 @@ html.grammar-playing, html.grammar-playing body { overflow: hidden; }
 .gpick-hint { align-self: center; justify-self: center; text-align: center; font-size: 14px; }
 .gplayer .fb { max-height: 24dvh; overflow-y: auto; }
 .gquestion-work, .ganswer-area, .gfamily-work { display: grid; gap: 14px; align-content: start; }
+.gquestion-work, .ganswer-area { grid-template-columns: minmax(0,1fr); min-width: 0; }
 .gquestion-picture { width: min(100%, 260px); max-height: 30dvh; object-fit: contain; height: auto; aspect-ratio: 1; border-radius: 16px; justify-self: center; }
 .gplayer .opt { min-height: 52px; padding: 11px 14px; font-size: 17px; }
 .gwho { display: flex; align-items: center; gap: 10px; color: var(--accent); }
@@ -915,7 +916,7 @@ html.grammar-playing, html.grammar-playing body { overflow: hidden; }
 .pfoot.almost .fb h3 { color: var(--ink); }
 .gaccent-hint { margin: 6px 0; line-height: 1.6; }
 .gmissing-accent { background: var(--sun); color: #18203d; padding: 1px 3px; border-radius: 3px; text-decoration: underline; text-underline-offset: 4px; }
-.ggap-control { display: inline-flex; flex-direction: column; vertical-align: middle; max-width: 100%; width: 280px; }
+.ggap-control { display: inline-block; vertical-align: middle; max-width: 100%; }
 .ggap-control .gaccents { line-height: 1.4; }
 .gaccents button { touch-action: manipulation; min-width: 40px; min-height: 40px; }
 .gplayer .ptop .gcontext { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 12px; padding-block: 2px 10px; border-bottom: 1px solid var(--line); }
@@ -2724,7 +2725,13 @@ document.addEventListener("input", e => {
   }
 });
 document.addEventListener("focusout", () => { if(G) setTimeout(gSyncViewport,0); });
-document.addEventListener("focusin", e => { if(G) { gSyncViewport(); setTimeout(gSyncViewport,0); } if(G && e.target.dataset?.ggap != null) G.gapIndex = +e.target.dataset.ggap; });
+document.addEventListener("focusin", e => {
+  if(G && e.target.dataset?.ggap != null) {
+    G.gapIndex = +e.target.dataset.ggap;
+    e.target.closest?.('.gfill-sentence')?.querySelectorAll('[data-gchar]').forEach(button=>button.dataset.gfield=e.target.id);
+  }
+  if(G) { gSyncViewport(); setTimeout(gSyncViewport,0); }
+});
 document.addEventListener("keydown", e => {
   if (document.querySelector('#g-art-modal[open]')) return;
   if (e.key === "Escape") closeSheet();

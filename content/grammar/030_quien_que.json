@@ -1,0 +1,1224 @@
+{
+  "id": "030_quien_que",
+  "number": 30,
+  "title": "¿Quién? ¿Qué?",
+  "subtitle": "Как спросить: кто, что и какой",
+  "level": "A2",
+  "sections": [
+    {
+      "title": "Кто это или что это: quién и qué",
+      "presentation": "comparison",
+      "paragraphs": [
+        "Если хочешь узнать, **кто этот человек или кто совершил действие**, спрашивай `¿Quién…?`: `¿Quién vive aquí?` — кто здесь живёт? Когда говорим о нескольких людях, используем `¿Quiénes…?`: `¿Quiénes son los ganadores?` — кто победители? Род не меняет эти формы.",
+        "Если спрашиваешь **о вещи или действии**, используй `¿Qué…?`: `¿Qué tienes en la mano?` — что у тебя в руке? `¿Qué hacéis?` — что вы делаете? Слово `qué` не меняется во множественном числе.",
+        "Перед названием `qué` означает **«какой / какие»**: `¿Qué queso prefieres?` — какой сыр ты предпочитаешь? `¿Qué animales viven en el agua?` — какие животные живут в воде? Название может обозначать и человека: `¿Qué profesor te ayuda?` — какой преподаватель тебе помогает?",
+        "Вопросительные **`quién`, `quiénes`, `qué` пишем со знаком ударения**. Сравни: `¿Quién llama?` — кто звонит? Но `la chica que llama` — девушка, которая звонит: здесь `que` соединяет мысли, а не задаёт вопрос."
+      ],
+      "dialogues": [
+        {
+          "title": "О человеке",
+          "lines": [
+            [
+              "¿Quién vive en esa casa?",
+              "Кто живёт в этом доме?"
+            ],
+            [
+              "Una actriz.",
+              "Одна актриса."
+            ]
+          ]
+        },
+        {
+          "title": "О заказе",
+          "lines": [
+            [
+              "¿Qué va a tomar?",
+              "Что будете пить?"
+            ],
+            [
+              "Un café, por favor.",
+              "Кофе, пожалуйста."
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-1",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "¿___ son los ganadores?",
+            "answers": [
+              "Quiénes"
+            ],
+            "explain": "Спрашиваем о нескольких победителях: quiénes. Qué не спрашивает, кто эти люди.",
+            "context": "Кто победители?",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "Quién",
+              "Qué",
+              "Quiénes"
+            ]
+          },
+          {
+            "prompt": "¿___ libros le gustan a Teresa?",
+            "answers": [
+              "Qué"
+            ],
+            "explain": "Перед названием libros спрашиваем qué libros — какие книги. Qué не меняется по числу.",
+            "context": "Какие книги нравятся Тересе?",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "Qué",
+              "Quiénes",
+              "Quién"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "С кем, кому, из чего: предлог перед вопросом",
+      "presentation": "paradigm",
+      "paragraphs": [
+        "Если в ответе нужен предлог, обычно он нужен и в вопросе: **`con Ana → ¿Con quién…?`**, **`de madera → ¿De qué…?`**. Ставим предлог перед вопросительным словом, а не оставляем его в конце.",
+        "**`¿De quién es…?` — чья это вещь**, а **`¿De qué está hecho…?` — из чего она сделана**. В первом случае ищем владельца, во втором — материал. Сам предлог `de` одинаковый, смысл уточняет остальная фраза.",
+        "Когда человек — тот, кого видят или любят, нужен **`a quién`**: `¿A quién viste?` — кого ты видел? Но если человек сам выполняет действие, начинаем с `quién`: `¿Quién te vio?` — кто тебя видел?",
+        "Можно спросить `¿Con quién fuiste?` или `¿Con quiénes fuiste?` — с кем ты ездил? Если заранее не знаем, один был спутник или несколько, число вопроса зависит от того, об одном или о нескольких хотим спросить."
+      ],
+      "table": {
+        "heads": [
+          "О чём спрашиваем",
+          "Вопросительное сочетание"
+        ],
+        "compactForms": true,
+        "rows": [
+          [
+            "Кого? Кому?",
+            "a quién / a quiénes"
+          ],
+          [
+            "С кем? С чем?",
+            "con quién / con qué"
+          ],
+          [
+            "Чей? Из чего?",
+            "de quién / de qué"
+          ],
+          [
+            "Для кого?",
+            "para quién / para quiénes"
+          ]
+        ]
+      },
+      "check": {
+        "id": "check-2",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "¿___ es esta mochila? —De Ana.",
+            "answers": [
+              "De quién"
+            ],
+            "explain": "В ответе назван владелец: de Ana. Поэтому de quién, а не de qué.",
+            "context": "Чей это рюкзак?",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "De qué",
+              "A quién",
+              "De quién"
+            ]
+          },
+          {
+            "prompt": "¿___ has abierto la puerta? —Con una llave.",
+            "answers": [
+              "Con qué"
+            ],
+            "explain": "Спрашиваем об инструменте: con una llave → con qué.",
+            "context": "Чем ты открыл дверь?",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "Qué con",
+              "Con qué",
+              "Con quién"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Кто действует и о чём спрашиваем: порядок слов",
+      "presentation": "comparison",
+      "paragraphs": [
+        "Начинай обычный вопрос с **вопросительного слова вместе с его предлогом**, затем ставь глагол: `¿Con quién está bailando Eloísa?` — с кем танцует Элоиса? Связку `con quién` не разрываем.",
+        "Если `quién` сам обозначает того, кто действует, **отдельное имя после глагола не нужно**: `¿Quién está escribiendo una novela?` — кто пишет роман? То же с событием: `¿Qué pasó anoche?` — что случилось вчера вечером?",
+        "Если спрашиваем о том, что делает уже названный человек, в нейтральном вопросе **имя обычно идёт после глагола**: `¿Qué quiere María?` — чего хочет Мария? Сравни с `¿Quién quiere a María?` — кто любит Марию? Вторая фраза спрашивает о другом человеке, а Мария — тот, кого любят.",
+        "В упражнениях собираем этот обычный порядок. Это не запрет любых других порядков в живой речи: акцент на имени или контекст могут менять расположение слов. Здесь вопросительное сочетание идёт первым, имя — после глагола."
+      ],
+      "wordGroups": [
+        {
+          "title": "❓ Спрашиваем о желании Марии",
+          "words": [
+            [
+              "¿Qué quiere María?",
+              "Чего хочет Мария?"
+            ]
+          ]
+        },
+        {
+          "title": "👤 Спрашиваем, кто любит Марию",
+          "words": [
+            [
+              "¿Quién quiere a María?",
+              "Кто любит Марию?"
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-3",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "Чего хочет Мария?",
+            "answers": [
+              "¿Qué quiere María?"
+            ],
+            "explain": "Спрашиваем о желании: qué; María — тот, кто хочет.",
+            "context": "Выбери вопрос по смыслу.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "¿Quién quiere a María?",
+              "¿Qué quiere María?",
+              "¿A quién quiere María?"
+            ]
+          },
+          {
+            "prompt": "С кем танцует Элоиса?",
+            "answers": [
+              "¿Con quién está bailando Eloísa?"
+            ],
+            "explain": "Предлог con идёт перед quién. Сам вопрос — о спутнике Элоисы.",
+            "context": "Выбери нейтральный вопрос, сохранив предлог.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "¿Quién está bailando Eloísa con?",
+              "¿Con qué está bailando Eloísa?",
+              "¿Con quién está bailando Eloísa?"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "30.2a",
+      "title": "30.2a · Спроси о человеке, вещи или действии",
+      "theorySections": [
+        0
+      ],
+      "questions": [
+        {
+          "prompt": "¿___ te ha regalado ese collar?",
+          "answers": [
+            "Quién"
+          ],
+          "explain": "Спрашиваем, кто подарил; глагол ha regalado в единственном числе: quién.",
+          "context": "Кто подарил тебе это ожерелье?",
+          "sourceRef": "30.2.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ miel tomas normalmente?",
+          "answers": [
+            "Qué"
+          ],
+          "explain": "Перед названием miel нужен qué — какой мёд.",
+          "context": "Какой мёд ты обычно ешь?",
+          "sourceRef": "30.2.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ estás haciendo?",
+          "answers": [
+            "Qué"
+          ],
+          "explain": "Вопрос о действии, а не о человеке: qué.",
+          "context": "Что ты делаешь?",
+          "sourceRef": "30.2.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ van a jugar en el equipo esta semana?",
+          "answers": [
+            "Quiénes"
+          ],
+          "explain": "Van — множественное число; спрашиваем о нескольких игроках: quiénes.",
+          "context": "Кто будет играть в команде на этой неделе?",
+          "sourceRef": "30.2.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ libros le gustan a Teresa?",
+          "answers": [
+            "Qué"
+          ],
+          "explain": "Qué перед libros не меняется во множественном числе.",
+          "context": "Какие книги нравятся Тересе?",
+          "sourceRef": "30.2.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ visteis anoche en la tele?",
+          "answers": [
+            "Qué"
+          ],
+          "explain": "Спрашиваем о передаче или фильме: qué, не о человеке.",
+          "context": "Что вы вчера смотрели по телевизору?",
+          "sourceRef": "30.2.10",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿___ quería Julián?",
+          "answers": [
+            "Qué"
+          ],
+          "explain": "Спрашиваем о желании Хулиана, без предлога a: qué.",
+          "context": "Чего хотел Хулиан?",
+          "sourceRef": "30.2.11",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        }
+      ],
+      "preview": {
+        "source": "¿___ necesitas?",
+        "sentenceParts": [
+          "¿",
+          " necesitas?"
+        ],
+        "answer": "Qué",
+        "targetPrefix": "",
+        "translation": "Что тебе нужно?"
+      },
+      "instruction": "Дополни вопрос: quién, quiénes или qué. Перевод показывает, о чём спрашиваем.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши только вопросительное слово, без остальной фразы.",
+        "placeholder": "Вопросительное слово"
+      }
+    },
+    {
+      "id": "30.2b",
+      "title": "30.2b · Выбери слово после предлога",
+      "theorySections": [
+        1
+      ],
+      "questions": [
+        {
+          "prompt": "¿De ___ es esta pluma?",
+          "answers": [
+            "quién",
+            "quiénes"
+          ],
+          "explain": "De quién / de quiénes — вопрос о принадлежности; de qué спрашивало бы о материале.",
+          "context": "Чьё это перо? Спрашиваем о владельце или владельцах.",
+          "sourceRef": "30.2.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿Con ___ fuiste a Bolivia?",
+          "answers": [
+            "quién",
+            "quiénes"
+          ],
+          "explain": "Con quién — об одном спутнике, con quiénes — о нескольких. Оба вопроса подходят этому контексту.",
+          "context": "С кем ты ездил в Боливию? Число спутников пока неизвестно.",
+          "sourceRef": "30.2.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿Con ___ has abierto el paquete?",
+          "answers": [
+            "qué"
+          ],
+          "explain": "Спрашиваем об инструменте, поэтому con qué. Предлог уже написан.",
+          "context": "Чем ты открыл посылку?",
+          "sourceRef": "30.2.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿A ___ visteis anoche en la fiesta?",
+          "answers": [
+            "quién",
+            "quiénes"
+          ],
+          "explain": "A quién / a quiénes — о людях, которых видели. Число visteis относится к тем, кто видел, а не к гостям.",
+          "context": "Кого вы видели вчера на вечеринке? Можно спросить об одном или нескольких гостях.",
+          "sourceRef": "30.2.9",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        }
+      ],
+      "preview": {
+        "source": "¿Con ___ trabajas?",
+        "sentenceParts": [
+          "¿Con ",
+          " trabajas?"
+        ],
+        "answer": "quién",
+        "targetPrefix": "",
+        "translation": "С кем ты работаешь?"
+      },
+      "instruction": "Предлог уже написан. Вставь подходящее вопросительное слово.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши только quién, quiénes или qué. Предлог не повторяй.",
+        "placeholder": "Слово после предлога"
+      }
+    },
+    {
+      "id": "30.3",
+      "title": "30.3 · Задай вопрос к ответу",
+      "theorySections": [
+        0,
+        1
+      ],
+      "questions": [
+        {
+          "prompt": "¿___ estuviste ayer?",
+          "answers": [
+            "Con quién"
+          ],
+          "explain": "Con Águeda → con quién: нужен предлог con.",
+          "context": "Вчера я был с Агедой. Спроси, с кем.",
+          "sourceRef": "30.3.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "Ayer estuve ",
+            "con Águeda",
+            "."
+          ],
+          "sourceLabel": "Спроси о выделенной части"
+        },
+        {
+          "prompt": "¿___ está hecha esa silla?",
+          "answers": [
+            "De qué"
+          ],
+          "explain": "De cuerda → de qué: спрашиваем о материале.",
+          "context": "Этот стул сделан из верёвки. Спроси о материале.",
+          "sourceRef": "30.3.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "Esa silla está hecha ",
+            "de cuerda",
+            "."
+          ],
+          "sourceLabel": "Спроси о выделенной части"
+        },
+        {
+          "prompt": "¿___ pan coméis?",
+          "answers": [
+            "Qué"
+          ],
+          "explain": "Перед названием pan ставим qué; de из ответа описывает сорт хлеба, его не переносим.",
+          "context": "Обычно мы едим тостовый хлеб. Спроси, какой хлеб.",
+          "sourceRef": "30.3.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "Normalmente comemos con pan ",
+            "de molde",
+            "."
+          ],
+          "sourceLabel": "Спроси о выделенной части"
+        },
+        {
+          "prompt": "¿___ quiere comprarse Alfonso?",
+          "answers": [
+            "Qué"
+          ],
+          "explain": "Спрашиваем о вещи: qué.",
+          "context": "Альфонсо хочет купить диск. Спроси, что.",
+          "sourceRef": "30.3.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "Alfonso quiere comprarse ",
+            "un CD",
+            "."
+          ],
+          "sourceLabel": "Спроси о выделенной части"
+        },
+        {
+          "prompt": "¿___ son esas gafas?",
+          "answers": [
+            "De quién"
+          ],
+          "explain": "De Pablo → de quién: вопрос о владельце.",
+          "context": "Эти очки Пабло. Спроси, чьи они.",
+          "sourceRef": "30.3.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "Estas gafas son ",
+            "de Pablo",
+            "."
+          ],
+          "sourceLabel": "Спроси о выделенной части"
+        },
+        {
+          "prompt": "¿___ está trabajando Georgina?",
+          "answers": [
+            "Con quién"
+          ],
+          "explain": "Con su madre → con quién; речь об одном человеке.",
+          "context": "Хеорхина работает с матерью. Спроси, с кем.",
+          "sourceRef": "30.3.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "Georgina está trabajando ",
+            "con su madre",
+            "."
+          ],
+          "sourceLabel": "Спроси о выделенной части"
+        },
+        {
+          "prompt": "¿___ han ganado?",
+          "answers": [
+            "Quiénes"
+          ],
+          "explain": "Два победителя и глагол han ganado: quiénes.",
+          "context": "Победили Эдуардо и Мариса. Спроси, кто победил.",
+          "sourceRef": "30.3.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "Han ganado ",
+            "Eduardo y Marisa",
+            "."
+          ],
+          "sourceLabel": "Спроси о выделенной части"
+        },
+        {
+          "prompt": "¿___ están haciendo esos chicos?",
+          "answers": [
+            "Qué"
+          ],
+          "explain": "Вопрос о действии: qué están haciendo.",
+          "context": "Эти ребята танцуют. Спроси, что они делают.",
+          "sourceRef": "30.3.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "Esos chicos están ",
+            "bailando",
+            "."
+          ],
+          "sourceLabel": "Спроси о выделенной части"
+        },
+        {
+          "prompt": "¿___ no quiere Belinda?",
+          "answers": [
+            "A quién"
+          ],
+          "explain": "При вопросе о том, кого любят, сохраняем личный предлог a: a quién.",
+          "context": "Белинда не любит Ариэля. Спроси, кого.",
+          "sourceRef": "30.3.9",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "Belinda no quiere ",
+            "a Ariel",
+            "."
+          ],
+          "sourceLabel": "Спроси о выделенной части"
+        },
+        {
+          "prompt": "¿___ son esas flores?",
+          "answers": [
+            "Para quién"
+          ],
+          "explain": "Para mi abuela → para quién.",
+          "context": "Цветы для моей бабушки. Спроси, для кого.",
+          "sourceRef": "30.3.10",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "Estas flores son ",
+            "para mi abuela",
+            "."
+          ],
+          "sourceLabel": "Спроси о выделенной части"
+        },
+        {
+          "prompt": "¿___ te han regalado?",
+          "answers": [
+            "Qué"
+          ],
+          "explain": "Спрашиваем о подарке, не о дарителе: qué.",
+          "context": "Мне подарили конфеты. Спроси, что подарили.",
+          "sourceRef": "30.3.11",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "Me han regalado ",
+            "unos bombones",
+            "."
+          ],
+          "sourceLabel": "Спроси о выделенной части"
+        }
+      ],
+      "preview": {
+        "source": "¿___ es el regalo?",
+        "sentenceParts": [
+          "¿",
+          " es el regalo?"
+        ],
+        "answer": "Para quién",
+        "targetPrefix": "",
+        "translation": "Для кого подарок?"
+      },
+      "instruction": "Прочитай ответ. Спроси о выделенных словах, дополнив только начало вопроса.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши вопросительное слово вместе с нужным предлогом. Глагол уже написан.",
+        "placeholder": "Начало вопроса"
+      }
+    },
+    {
+      "id": "30.1",
+      "title": "30.1 · Собери вопрос",
+      "theorySections": [
+        2
+      ],
+      "questions": [
+        {
+          "prompt": "¿___?",
+          "answers": [
+            "Qué tiene Julián en la mano",
+            "Qué tiene en la mano Julián"
+          ],
+          "explain": "Qué спрашивает о предмете, Julián идёт после tiene.",
+          "context": "Что у Хулиана в руке?",
+          "sourceRef": "30.1.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "Qué",
+            "tiene",
+            "Julián",
+            "en",
+            "la",
+            "mano"
+          ],
+          "answerHint": "Что у Хулиана в руке"
+        },
+        {
+          "prompt": "¿___?",
+          "answers": [
+            "Con quién está bailando Eloísa"
+          ],
+          "explain": "Con quién идёт целиком перед está bailando.",
+          "context": "С кем танцует Элоиса?",
+          "sourceRef": "30.1.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "Con",
+            "quién",
+            "está",
+            "bailando",
+            "Eloísa"
+          ],
+          "answerHint": "С кем танцует Элоиса"
+        },
+        {
+          "prompt": "¿___?",
+          "answers": [
+            "Para quién es ese anillo"
+          ],
+          "explain": "Предлог para ставим перед quién; затем es ese anillo.",
+          "context": "Для кого это кольцо?",
+          "sourceRef": "30.1.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "Para",
+            "quién",
+            "es",
+            "ese",
+            "anillo"
+          ],
+          "answerHint": "Для кого это кольцо"
+        },
+        {
+          "prompt": "¿___?",
+          "answers": [
+            "Qué pasó anoche"
+          ],
+          "explain": "Qué — само неизвестное событие; после него pasó.",
+          "context": "Что случилось вчера вечером?",
+          "sourceRef": "30.1.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "Qué",
+            "pasó",
+            "anoche"
+          ],
+          "answerHint": "Что случилось вчера вечером"
+        },
+        {
+          "prompt": "¿___?",
+          "answers": [
+            "De quién es esa bolsa"
+          ],
+          "explain": "О владельце спрашиваем de quién.",
+          "context": "Чья эта сумка?",
+          "sourceRef": "30.1.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "De",
+            "quién",
+            "es",
+            "esa",
+            "bolsa"
+          ],
+          "answerHint": "Чья эта сумка"
+        },
+        {
+          "prompt": "¿___?",
+          "answers": [
+            "Qué te han regalado tus padres"
+          ],
+          "explain": "Qué — подарок; родители tus padres стоят после te han regalado.",
+          "context": "Что тебе подарили родители?",
+          "sourceRef": "30.1.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "Qué",
+            "te",
+            "han",
+            "regalado",
+            "tus",
+            "padres"
+          ],
+          "answerHint": "Что тебе подарили родители"
+        },
+        {
+          "prompt": "¿___?",
+          "answers": [
+            "Con qué has abierto la puerta"
+          ],
+          "explain": "Con qué — вопрос об инструменте, дальше has abierto la puerta.",
+          "context": "Чем ты открыл дверь?",
+          "sourceRef": "30.1.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "Con",
+            "qué",
+            "has",
+            "abierto",
+            "la",
+            "puerta"
+          ],
+          "answerHint": "Чем ты открыл дверь"
+        },
+        {
+          "prompt": "¿___?",
+          "answers": [
+            "Quién está escribiendo una novela"
+          ],
+          "explain": "Quién — тот, кто пишет, отдельное имя здесь не нужно.",
+          "context": "Кто пишет роман?",
+          "sourceRef": "30.1.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "Quién",
+            "está",
+            "escribiendo",
+            "una",
+            "novela"
+          ],
+          "answerHint": "Кто пишет роман"
+        },
+        {
+          "prompt": "¿___?",
+          "answers": [
+            "Qué quiere María"
+          ],
+          "explain": "María выполняет действие quiere, а qué — её желание.",
+          "context": "Чего хочет Мария?",
+          "sourceRef": "30.1.9",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "Qué",
+            "quiere",
+            "María"
+          ],
+          "answerHint": "Чего хочет Мария"
+        },
+        {
+          "prompt": "¿___?",
+          "answers": [
+            "Quién quiere a María"
+          ],
+          "explain": "Quién выполняет действие, a María — тот, кого любят.",
+          "context": "Кто любит Марию?",
+          "sourceRef": "30.1.10",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "Quién",
+            "quiere",
+            "a",
+            "María"
+          ],
+          "answerHint": "Кто любит Марию"
+        },
+        {
+          "prompt": "¿___?",
+          "answers": [
+            "De qué es la sopa"
+          ],
+          "explain": "О составе спрашиваем de qué, а не de quién.",
+          "context": "Из чего суп?",
+          "sourceRef": "30.1.11",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "De",
+            "qué",
+            "es",
+            "la",
+            "sopa"
+          ],
+          "answerHint": "Из чего суп"
+        },
+        {
+          "prompt": "¿___ vive aquí?",
+          "answers": [
+            "Quién"
+          ],
+          "explain": "Для прямого вопроса нужно quién со знаком ударения; quien без него — относительная форма.",
+          "context": "Исправь выделенное слово в прямом вопросе.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "¿",
+            "Quien",
+            " vive aquí?"
+          ],
+          "sourceLabel": "Исправь вопрос",
+          "inputFormat": {
+            "instruction": "Впиши только исправленное слово.",
+            "placeholder": "Исправленное слово"
+          }
+        }
+      ],
+      "preview": {
+        "source": "¿___?",
+        "sentenceParts": [
+          "¿",
+          "?"
+        ],
+        "answer": "Con quién baila Ana",
+        "targetPrefix": "",
+        "translation": "С кем танцует Ана?"
+      },
+      "instruction": "Начни с вопросительного сочетания. Собери нейтральный вопрос: глагол перед названным человеком. В конце исправь одно слово.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Собери весь вопрос между знаками ¿ и ?. Сами знаки уже написаны.",
+        "placeholder": "Вопрос без знаков"
+      }
+    }
+  ],
+  "learningOrder": [
+    "section:0",
+    "exercise:30.2a",
+    "section:1",
+    "exercise:30.2b",
+    "exercise:30.3",
+    "section:2",
+    "exercise:30.1",
+    "summary"
+  ],
+  "summary": {
+    "wordGroups": [
+      {
+        "title": "Кто? Что? Какой?",
+        "words": [
+          [
+            "quién / quiénes",
+            "один человек / несколько людей"
+          ],
+          [
+            "qué haces / qué libros",
+            "действие / какие книги"
+          ]
+        ]
+      },
+      {
+        "title": "Сохраняем предлог",
+        "words": [
+          [
+            "con quién / con qué",
+            "с кем / чем"
+          ],
+          [
+            "de quién / de qué",
+            "чей / из чего"
+          ],
+          [
+            "a quién / para quién",
+            "кого, кому / для кого"
+          ]
+        ]
+      },
+      {
+        "title": "Не перепутай смысл",
+        "words": [
+          [
+            "¿Qué quiere María?",
+            "Чего хочет Мария?"
+          ],
+          [
+            "¿Quién quiere a María?",
+            "Кто любит Марию?"
+          ]
+        ]
+      }
+    ]
+  }
+}
