@@ -398,10 +398,10 @@ def test_pobre_ana_first_chapter_contains_the_complete_source_in_order():
     # «Capítulo uno» from the supplied PDF (printed pp. 1–5): running heads, page numbers and
     # ornaments removed, hyphenated words and the page breaks inside sentences joined.
     assert len(original.split()) == 731
-    assert hashlib.sha256(original.encode()).hexdigest() == '78b9504c6f85c0306f114b0bd62e377d245915298b33693f6d9de73e9ad14a25'
+    assert hashlib.sha256(original.encode()).hexdigest() == '78002239f50c7e0339cc81ab46fbb431d886169288eb08581139f540868b31d7'
     assert original.startswith('Ana es una chica con problemas.')
     assert original.endswith('no comen mucha carne porque quieren economizar.')
-    assert 'El trabaja en un hospital' in original  # авторское написание без знака ударения
+    assert 'Él trabaja en un hospital' in original  # опечатка книги (El) исправлена
     assert len(blocks) == 7 and all(len(b['es'].split()) >= 60 for b in blocks)
     for block in blocks:
         assert block['es'].count('\n\n') == block['ru'].count('\n\n'), block['title']
@@ -421,9 +421,10 @@ def test_pobre_ana_second_chapter_contains_the_complete_source_in_order():
     original = re.sub(r'\s+', ' ', ' '.join(b['es'] for b in blocks)).strip()
     # «Capítulo dos» (printed pp. 6–9): running heads and page numbers removed, hyphenation joined.
     assert len(original.split()) == 575
-    assert hashlib.sha256(original.encode()).hexdigest() == '0ecd2ab3b1b7aa19fa74fdc72e71378c0b8c27042767664495e9f0ec870da835'
+    assert hashlib.sha256(original.encode()).hexdigest() == 'c9cfc084d6a9b3157c6261a5d07fbbacac0336ba894a46be3f69a175a165085a'
     assert original.startswith('Un día Ana se levanta a las siete de la mañana.')
     assert original.endswith('Ana, no hay problema. Puedes ir a México.')
+    assert 'Él le dice:' in original and 'El le dice' not in original  # опечатка книги исправлена
     assert len(blocks) == 5 and all(len(b['es'].split()) >= 60 for b in blocks)
     for block in blocks:
         assert block['es'].count('\n\n') == block['ru'].count('\n\n'), block['title']
@@ -445,9 +446,10 @@ def test_pobre_ana_third_chapter_contains_the_complete_source_in_order():
     original = re.sub(r'\s+', ' ', ' '.join(b['es'] for b in blocks)).strip()
     # «Capítulo tres» (printed pp. 10–18): running heads and page numbers removed, hyphenation joined.
     assert len(original.split()) == 1171
-    assert hashlib.sha256(original.encode()).hexdigest() == 'cdb81436433ee4719aa133498257c522d671ada8903cddb80db7e79ce554b662'
+    assert hashlib.sha256(original.encode()).hexdigest() == '4aaa9afacf3957b264e76e9026599cc677103495f774fa950668986060ba22df'
     assert original.startswith('Tres meses más tarde Ana está emocionada')
     assert original.endswith('A Ana le gusta su familia nueva. Le gusta México.')
+    assert 'Los Ángeles' in original and 'Los Angeles' not in original and '¡Oh, no!' in original
     assert len(blocks) == 11 and all(len(b['es'].split()) >= 60 for b in blocks)
     for block in blocks:
         assert block['es'].count('\n\n') == block['ru'].count('\n\n'), block['title']
