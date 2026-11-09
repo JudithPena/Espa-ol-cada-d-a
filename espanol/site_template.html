@@ -2498,9 +2498,11 @@ function booksView() {
 }
 const BOOK_LEVELS = ["A1", "A2", "B1", "B2", "C1", "C2"];
 const bookById = id => (COURSE.books || []).find(b => b.id === id);
+// Открытый текст: рассказ целиком или выбранная глава книги.
+const bookCurrentText = () => { const b = bookById(view.book); return b?.story || b?.chapters.find(c => c.id === view.bookChapter); };
 function bookLevelView() {
   const books = (COURSE.books || []).filter(b => b.level === view.bookLevel);
-  return `<button class="btn ghost sm back" data-book-nav="levels">← Все уровни</button><h2>Книги · ${esc(view.bookLevel)}</h2>${books.length ? `<div class="menu">${books.map(b => `<button class="mcard" data-book-id="${esc(b.id)}">${b.cover ? `<img class="book-cover" src="${esc(b.cover)}" alt="">` : '<span class="mi">📖</span>'}<span><b>${esc(b.title)}</b><small>${esc(b.author)} · ${b.chapters.length} ${plural(b.chapters.length, "глава", "главы", "глав")}</small></span><span aria-hidden="true">›</span></button>`).join("")}</div>` : '<p class="muted">На этом уровне пока нет книг.</p>'}`;
+  return `<button class="btn ghost sm back" data-book-nav="levels">← Все уровни</button><h2>Книги · ${esc(view.bookLevel)}</h2>${books.length ? `<div class="menu">${books.map(b => `<button class="mcard" data-book-id="${esc(b.id)}">${b.cover ? `<img class="book-cover" src="${esc(b.cover)}" alt="">` : `<span class="mi" aria-hidden="true">${esc(b.story?.icon || "📖")}</span>`}<span><b>${esc(b.title)}</b><small>${esc(b.author)} · ${b.story ? "рассказ" : `${b.chapters.length} ${plural(b.chapters.length, "глава", "главы", "глав")}`}</small></span><span aria-hidden="true">›</span></button>`).join("")}</div>` : '<p class="muted">На этом уровне пока нет книг.</p>'}`;
 }
 function bookChapterLabel(chapter) {
   const raw = typeof chapter.title === "string" ? chapter.title.trim() : "";
@@ -2513,23 +2515,34 @@ function bookChaptersView() {
   if (!b) return booksView();
   return `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(b.level)}</button><h2>${esc(b.title)}</h2><p class="muted">${esc(b.author)}</p><h3>Главы</h3>${b.chapters.length ? `<div class="menu">${b.chapters.map(c => `<button class="mcard book-chapter-card" data-book-chapter="${esc(c.id)}"><span class="mi" aria-hidden="true">${esc(c.icon || "📖")}</span><span class="book-chapter-label"><b>${esc(bookChapterLabel(c))}</b></span><span class="book-chapter-arrow" aria-hidden="true">›</span></button>`).join("")}</div>` : '<p class="muted">Опубликованных глав пока нет.</p>'}`;
 }
+// Переход по разделу книг: меняет экран, а запись в историю (адрес #books/…) делает navSync() в render().
 function bookGo(level = null, book = null, chapter = null) {
-  const parts = ["books", level, book, chapter].filter(x => x != null).map(encodeURIComponent);
-  history.pushState({bookRoute: true}, "", "#" + parts.join("/"));
-  bookSync(); render(); window.scrollTo(0, 0);
+  bookRoute(["books", level, book, chapter]); render(); window.scrollTo(0, 0);
 }
+function bookRoute(parts) {
+  const level = parts[1], b = bookById(parts[2]);
+  view.tab = "books"; view.bookLevel = null; view.book = null; view.bookChapter = null;
+  if (!BOOK_LEVELS.includes(level)) return;
+  view.bookLevel = level; view.tab = "book-level";
+  if (!b || b.level !== level) return;
+  view.book = b.id;
+  // Рассказ без глав открывается сразу текстом.
+  if (b.story) { view.tab = "book"; return; }
+  view.tab = "book-chapters";
+  if (b.chapters.some(c => c.id === parts[3])) { view.bookChapter = parts[3]; view.tab = "book"; }
+}
+const BOOK_TABS = ["books", "book-level", "book-chapters", "book"];
+function bookHash() {
+  if (!BOOK_TABS.includes(view.tab)) return "";
+  return "#" + ["books", view.bookLevel, view.book, view.bookChapter].filter(x => x != null).map(encodeURIComponent).join("/");
+}
+// Адрес #books/… (ссылка или «Назад» к записи книг) → экран книг; false — адрес не про книги.
 function bookSync() {
   const hash = typeof location === "undefined" ? "" : (location.hash || "");
   if (hash !== "#books" && !hash.startsWith("#books/")) return false;
   let parts;
   try { parts = hash.slice(1).split("/").map(decodeURIComponent); } catch (_) { parts = ["books"]; }
-  const level = parts[1], b = bookById(parts[2]);
-  view.tab = "books"; view.bookLevel = null; view.book = null; view.bookChapter = null;
-  if (!BOOK_LEVELS.includes(level)) return true;
-  view.bookLevel = level; view.tab = "book-level";
-  if (!b || b.level !== level) return true;
-  view.book = b.id; view.tab = "book-chapters";
-  if (b.chapters.some(c => c.id === parts[3])) { view.bookChapter = parts[3]; view.tab = "book"; }
+  bookRoute(parts);
   return true;
 }
 function bookText(text, marks = []) {
@@ -2594,11 +2607,14 @@ function bookSetPanel(name, focus = false) {
   });
 }
 function bookView() {
-  const b = bookById(view.book), chapter = b?.chapters.find(c => c.id === view.bookChapter);
+  const b = bookById(view.book), chapter = b?.story || b?.chapters.find(c => c.id === view.bookChapter);
   if (!chapter) return b ? bookChaptersView() : booksView();
   const hasExercises = Boolean(chapter.exercises?.length);
   const total = (chapter.exercises || []).flatMap(ex => ex.questions).filter(q => q.kind !== "reflection").length;
-  return `<div data-book-chapter-view><button class="btn ghost sm back" data-book-nav="chapters">← Главы книги</button><h2>Разбор текста</h2><p>${esc(b.title)} · ${esc(bookChapterLabel(chapter))}</p>
+  // Рассказ без глав: назад — к книгам уровня, в шапке только название и автор.
+  const head = b.story ? `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(b.level)}</button><h2>Разбор текста</h2><p>${esc(b.title)} · ${esc(b.author)}</p>`
+    : `<button class="btn ghost sm back" data-book-nav="chapters">← Главы книги</button><h2>Разбор текста</h2><p>${esc(b.title)} · ${esc(bookChapterLabel(chapter))}</p>`;
+  return `<div data-book-chapter-view>${head}
     ${hasExercises ? `<div class="book-tabs" role="tablist" aria-label="Содержание главы"><button type="button" class="btn ghost" id="book-tab-analysis" role="tab" aria-controls="book-panel-analysis" aria-selected="true" data-book-panel-tab="analysis">Разбор</button><button type="button" class="btn ghost" id="book-tab-exercises" role="tab" aria-controls="book-panel-exercises" aria-selected="false" tabindex="-1" data-book-panel-tab="exercises">Упражнения</button></div>` : ""}
     <div class="book-panel" data-book-panel="analysis" ${hasExercises ? 'id="book-panel-analysis" role="tabpanel" aria-labelledby="book-tab-analysis" tabindex="0"' : ""}>${chapter.blocks.map(block => `<section class="vseg book-block"><h3>${esc(block.title)}</h3><p lang="es">${bookText(block.es, bookMarks(block, "es"))}</p><details><summary>Перевод</summary><p>${bookText(block.ru, bookMarks(block, "ru"))}</p></details><h4>Разбор</h4><ul>${block.notes.map(note => `<li>${bookNote(note)}</li>`).join("")}</ul>${block.pronouns && (!Array.isArray(block.pronouns) || block.pronouns.length) ? `<details class="book-pronouns"><summary>Мини-разбор местоимений</summary>${bookPronouns(block.pronouns)}</details>` : ""}</section>`).join("")}</div>
     ${hasExercises ? `<div class="book-panel" data-book-panel="exercises" id="book-panel-exercises" role="tabpanel" aria-labelledby="book-tab-exercises" tabindex="0" hidden>${total ? `<p data-book-progress role="status" aria-live="polite">Выполнено: 0 из ${total}</p>` : ""}${bookExercises(chapter)}</div>` : ""}</div>`;
@@ -3047,24 +3063,27 @@ function render() {
 /* ---------------- «Назад» браузера: сайт одностраничный, переходы между разделами пишем в history.
    Адрес экрана — вкладка, уровень, юнит грамматики, видео и режим (урок / плеер грамматики); слайды урока
    адрес не меняют. В уроке и в плеере «Назад» — предыдущий слайд, с первого слайда — туда, откуда урок открыли.
-   URL не меняем, только history.state. */
+   URL меняется только в разделе книг (#books/уровень/книга/глава), остальное — в history.state. */
 let navCur = null, navRestoring = false, navSkipPop = false;
 function navKey() {
-  return { tab: view.tab, level: view.level || null, grammar: view.grammar || null, video: view.video || null, mode: G ? "grammar" : S ? "lesson" : "" };
+  return { tab: view.tab, level: view.level || null, grammar: view.grammar || null, video: view.video || null,
+    bookLevel: view.bookLevel || null, book: view.book || null, bookChapter: view.bookChapter || null, mode: G ? "grammar" : S ? "lesson" : "" };
 }
-const navSame = (a, b) => !!a && !!b && ["tab", "level", "grammar", "video", "mode"].every(k => (a[k] || null) === (b[k] || null));
+const NAV_KEYS = ["tab", "level", "grammar", "video", "bookLevel", "book", "bookChapter", "mode"];
+const navSame = (a, b) => !!a && !!b && NAV_KEYS.every(k => (a[k] || null) === (b[k] || null));
+const navUrl = () => location.pathname + location.search + bookHash();
 function navSync() {
   const key = navKey();
   try {
-    if (!navCur || navRestoring) { navCur = { ...key, back: navRestoring ? navCur?.back || null : null }; history.replaceState(navCur, ""); return; }
+    if (!navCur || navRestoring) { navCur = { ...key, back: navRestoring ? navCur?.back || null : null }; history.replaceState(navCur, "", navUrl()); return; }
     if (navSame(key, navCur)) return;
     if (navCur.mode && !key.mode) {
       // Вышли из урока кнопкой: вернулись туда же, откуда открыли, — шаг назад по истории, иначе запись урока заменяем.
       if (navSame(key, navCur.back)) { navSkipPop = true; navCur = navCur.back; history.back(); return; }
-      navCur = { ...key, back: null }; history.replaceState(navCur, ""); return;
+      navCur = { ...key, back: null }; history.replaceState(navCur, "", navUrl()); return;
     }
     const back = key.mode && !navCur.mode ? navCur : key.mode ? navCur.back : null;
-    navCur = { ...key, back: back && { ...back, back: null } }; history.pushState(navCur, "");
+    navCur = { ...key, back: back && { ...back, back: null } }; history.pushState(navCur, "", navUrl());
   } catch (e) { /* history недоступна (предпросмотр во фрейме) — сайт работает и без неё */ }
 }
 // Шаг «Назад» внутри урока или плеера: остаёмся в нём, запись урока ставим обратно.
@@ -3079,7 +3098,11 @@ window.addEventListener("popstate", e => {
   if (S) { clearTimeout(autoTimer); stopSpeech(); S = null; }
   if (G) { gSave(); G = null; }
   if (st.mode) { navCur = st; history.back(); return; }   // запись урока, в который уже не вернуться (вперёд после выхода)
-  view.tab = st.tab || "home"; view.level = st.level || null; view.grammar = st.grammar || null; view.video = st.video || null;
+  if (!bookSync()) {
+    view.tab = BOOK_TABS.includes(st.tab) ? "home" : st.tab || "home";
+    view.level = st.level || null; view.grammar = st.grammar || null; view.video = st.video || null;
+    view.bookLevel = view.book = view.bookChapter = null;
+  }
   view.confirmReset = false;
   navCur = st; navRestoring = true;
   try { render(); } finally { navRestoring = false; }
@@ -3234,7 +3257,7 @@ document.addEventListener("click", e => {
   const d = el.dataset;
   if ("bookSaveReflection" in d) {
     const box = el.closest("[data-book-exercise]");
-    const chapter = bookById(view.book)?.chapters.find(c => c.id === view.bookChapter);
+    const chapter = bookCurrentText();
     const ex = chapter?.exercises?.find(x => x.id === box?.dataset.bookExercise);
     if (!chapter || !ex) return;
     try {
@@ -3260,7 +3283,7 @@ document.addEventListener("click", e => {
   if ("bookCheck" in d) {
     const box = el.closest("[data-book-exercise]");
     const chosen = box.querySelector('[data-book-choice][aria-pressed="true"]');
-    const chapter = bookById(view.book)?.chapters.find(c => c.id === view.bookChapter);
+    const chapter = bookCurrentText();
     const ex = chapter?.exercises?.find(x => x.id === box?.dataset.bookExercise);
     const q = ex?.questions[Number(box?.dataset.bookQuestion)];
     if (!q || !chosen || box.dataset.bookCorrect === "true") return;
@@ -3348,7 +3371,7 @@ document.addEventListener("click", e => {
   if (d.bookNav === "level") return bookGo(view.bookLevel);
   if (d.bookNav === "chapters") return bookGo(view.bookLevel, view.book);
   if (d.video) { view.video = d.video; view.tab = "video"; render(); window.scrollTo(0, 0); return; }
-  if (d.tab) { if (d.tab === "books") return bookGo(); const hash = typeof location === "undefined" ? "" : (location.hash || ""); if (hash === "#books" || hash.startsWith("#books/")) history.pushState({}, "", location.pathname + location.search); if (d.tab === "course") view.level = null; if (d.tab === "grammar") view.grammar = null; view.tab = d.tab; view.confirmReset = false; render(); window.scrollTo(0, 0); return; }
+  if (d.tab) { if (d.tab === "books") return bookGo(); if (d.tab === "course") view.level = null; if (d.tab === "grammar") view.grammar = null; view.tab = d.tab; view.confirmReset = false; render(); window.scrollTo(0, 0); return; }
   if (d.lesson != null) {
     const i = +d.lesson;
     if (unitClosed(i)) return toast("Эта тема скоро откроется");
@@ -3460,12 +3483,6 @@ document.addEventListener("toggle", e => {
   if (G && e.target.classList?.contains("gplay-family")) { G.treeOpen = e.target.open; gSave(); }
   if (S?.state && e.target.matches?.("details[data-src]")) S.state.srcOpen = e.target.open;   // источник открыт — так и останется после ответа
 }, true);
-window.addEventListener("popstate", () => {
-  // Не прерываем начатый урок или грамматическое упражнение при движении по истории.
-  if (S || G) return;
-  if (bookSync()) { render(); window.scrollTo(0, 0); }
-  else if (["books", "book-level", "book-chapters", "book"].includes(view.tab)) { view.tab = "home"; render(); window.scrollTo(0, 0); }
-});
 bookSync();
 render();
 </script>

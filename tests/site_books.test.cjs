@@ -246,3 +246,33 @@ test('book text preserves single dialogue line breaks and real paragraph breaks'
   assert.doesNotMatch(html,/–¿Y…\? –pregunta Lola\.\n\n–Que/);
   assert.match(html,/\n\nLola cierra la puerta/);
 });
+
+test('story without chapters opens straight from its card and shows no chapter label', () => {
+  const catalogSource = source.slice(source.indexOf('function booksView()'), source.indexOf('function bookText('));
+  const viewCode = source.slice(source.indexOf('function bookView()'), source.indexOf('function courseView()'));
+  const story = JSON.parse(fs.readFileSync('content/books/los-tres-cerditos/story.json', 'utf8'));
+  const meta = JSON.parse(fs.readFileSync('content/books/los-tres-cerditos/book.json', 'utf8'));
+  const cat = {esc:ctx.esc, plural:(n,one,few,many) => n === 1 ? one : n < 5 ? few : many,
+    bookText:ctx.bookText, bookMarks:ctx.bookMarks, bookNote:ctx.bookNote, bookPronouns:ctx.bookPronouns, bookExercises:() => '',
+    view:{bookLevel:'A1'}, COURSE:{books:[{...meta, chapters:[], story}]}};
+  vm.createContext(cat); vm.runInContext(catalogSource + viewCode, cat);
+  const card = cat.bookLevelView();
+  assert.match(card, /data-book-id="los-tres-cerditos"/); assert.match(card, /рассказ/); assert.match(card, /🐷/);
+  assert.doesNotMatch(card, /глав/);
+  cat.location = {hash:'#books/A1/los-tres-cerditos'}; assert.equal(cat.bookSync(), true);
+  assert.equal(cat.view.tab, 'book'); assert.equal(cat.view.bookChapter, null);
+  const html = cat.bookView();
+  assert.doesNotMatch(html, /Глава/); assert.match(html, /data-book-nav="level"/); assert.match(html, /Los tres cerditos y el Lobo · Cuento popular/);
+  assert.equal((html.match(/class="vseg book-block"/g) || []).length, story.blocks.length);
+  assert.equal((html.match(/<details class="book-pronouns">/g) || []).length, story.blocks.length);
+  assert.equal(cat.bookHash(), '#books/A1/los-tres-cerditos');
+});
+
+test('story vocabulary renders every selected form', () => {
+  const story = JSON.parse(fs.readFileSync('content/books/los-tres-cerditos/story.json', 'utf8'));
+  for (const block of story.blocks) for (const lang of ['es','ru']) {
+    const html = ctx.bookText(block[lang], ctx.bookMarks(block, lang));
+    for (const note of block.notes) if (typeof note !== 'string') for (const mark of note[lang])
+      assert.ok(html.includes(`<strong>${ctx.esc(mark)}</strong>`), `${block.title} ${lang}: ${mark}`);
+  }
+});

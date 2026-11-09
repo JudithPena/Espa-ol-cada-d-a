@@ -234,3 +234,101 @@ def test_harry_second_chapter_vocabulary_pronouns_and_compact_dialogues():
     for block in chapter['blocks']:
         for lang in ('es', 'ru'):
             assert not re.search(r'(?m)^[ \t]*—[^\n]*\n[ \t]*\n[ \t]*—', block[lang])
+
+
+def _story():
+    return next(b for b in load_books() if b['id'] == 'los-tres-cerditos')
+
+
+def test_tres_cerditos_is_a1_story_without_chapters():
+    book = _story()
+    assert (book['kind'], book['level'], book['vocabulary_min_level']) == ('story', 'A1', 'A1')
+    assert book['title'] == 'Los tres cerditos y el Lobo'
+    assert book['chapters'] == []
+    assert book['story']['status'] == 'published' and book['story']['icon'] == '🐷'
+    assert 'title' not in book['story'] and 'number' not in book['story']
+
+
+def test_tres_cerditos_contains_the_complete_supplied_source_in_order():
+    import hashlib
+    import re
+    blocks = _story()['story']['blocks']
+    original = re.sub(r'\s+', ' ', ' '.join(b['es'] for b in blocks)).strip()
+    # Canonical text extracted from the supplied PDF (3 pages): site links and the
+    # title removed, wrapped lines and the page break inside the wolf's threat joined.
+    assert len(original.split()) == 594
+    assert hashlib.sha256(original.encode()).hexdigest() == '3b8527840a6953adc3e5e9cc87227144721bb9ae8491d2f61126858ab7c9bcda'
+    assert original.startswith('Había una vez tres cerditos')
+    assert original.endswith('al Lobo Feroz, al Lobo Feroz!')
+    assert len(blocks) == 5
+    assert all(len(b['es'].split()) >= 60 for b in blocks)
+    assert 'Pues si no me abrís... ¡Soplaré' in blocks[2]['es']
+
+
+def test_tres_cerditos_dialogue_is_compact_and_paragraphs_are_real():
+    import re
+    blocks = _story()['story']['blocks']
+    for block in blocks:
+        for lang in ('es', 'ru'):
+            assert not re.search(r'(?m)^[ \t]*[-—–][^\n]*\n[ \t]*\n[ \t]*[-—–]', block[lang]), (block['title'], lang)
+    assert '- ¡Cerdito, ábreme la puerta!\n- No, no, no, no te voy a abrir.\n- Pues si no me abres' in blocks[1]['es']
+    assert '— Поросёнок, открой мне дверь!\n— Нет, нет, нет, не открою.\n— Ну, раз ты мне не откроешь' in blocks[1]['ru']
+    assert blocks[0]['es'].count('\n\n') == 1 and blocks[0]['ru'].count('\n\n') == 1
+    assert '\n\nSe deslizó hacia abajo' in blocks[3]['es'] and '\n\nОн соскользнул вниз' in blocks[3]['ru']
+
+
+def test_tres_cerditos_vocabulary_marks_and_pronouns():
+    import re
+    blocks = _story()['story']['blocks']
+    def found(text, mark):
+        return any(not (re.match(r'\w', mark[0]) and m.start() and re.match(r'\w', text[m.start() - 1]))
+                   and not (re.match(r'\w', mark[-1]) and m.end() < len(text) and re.match(r'\w', text[m.end()]))
+                   for m in re.finditer(re.escape(mark), text))
+    terms = []
+    for block in blocks:
+        for note in block['notes']:
+            if isinstance(note, str):
+                continue
+            terms.append(note['term'])
+            assert note['explanation'].strip()
+            for lang in ('es', 'ru'):
+                assert note[lang], (note['term'], lang)
+                for mark in note[lang]:
+                    assert found(block[lang], mark), (block['title'], lang, mark)
+    assert len(terms) == len(set(terms))
+    # A1 threshold: basic but useful words are explained, not only rare ones.
+    assert {'el cerdito', 'la paja', 'la madera', 'el ladrillo', 'soplar', 'derribar', 'venirse abajo',
+            'esconderse', 'estar a salvo', 'en un santiamén', 'temer a (alguien / algo)', 'el bosque',
+            'regañar a (alguien) por (algo)', 'volver a (infinitivo)', 'ponerse a (infinitivo)'} <= set(terms)
+    pronouns = {p['es']: p for block in blocks for p in block['pronouns']}
+    assert 'Пассивно-безличное se' in pronouns['se puede sujetar']['explanation']
+    assert 'a sus hermanos' in pronouns['El más grande les dijo a sus hermanos']['explanation']
+    assert 'la casita de ladrillos' in pronouns['no conseguía derribarla']['explanation']
+    assert 'волк' in pronouns['Los cerditos no lo volvieron a ver']['explanation']
+    assert 'не местоимение-дополнение' in pronouns['La mía será de paja']['explanation']
+
+
+def test_story_loader_requires_story_file_and_rejects_chapters(tmp_path):
+    import json
+    import pytest
+    folder = tmp_path / 'cuento'
+    folder.mkdir()
+    meta = {'id': 'cuento', 'kind': 'story', 'title': 'Cuento', 'author': 'Autor', 'level': 'A1', 'vocabulary_min_level': 'A1'}
+    (folder / 'book.json').write_text(json.dumps(meta), encoding='utf-8')
+    with pytest.raises(ValueError):
+        load_books(tmp_path)
+    (folder / 'story.json').write_text(json.dumps({'status': 'published', 'blocks': []}), encoding='utf-8')
+    with pytest.raises(ValueError):
+        load_books(tmp_path)
+    (folder / 'story.json').write_text(json.dumps({'status': 'draft', 'blocks': []}), encoding='utf-8')
+    assert load_books(tmp_path) == []
+    (folder / 'story.json').write_text(json.dumps({'status': 'published', 'blocks': [{'title': 'x'}]}), encoding='utf-8')
+    [story] = load_books(tmp_path)
+    assert story['chapters'] == [] and story['story']['icon'] == '📖'
+    (folder / 'chapters').mkdir()
+    with pytest.raises(ValueError):
+        load_books(tmp_path)
+    (folder / 'chapters').rmdir()
+    (folder / 'book.json').write_text(json.dumps({**meta, 'kind': 'poem'}), encoding='utf-8')
+    with pytest.raises(ValueError):
+        load_books(tmp_path)

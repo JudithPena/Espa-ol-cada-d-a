@@ -816,6 +816,40 @@ def video_data(video) -> dict:
 BOOK_LEVELS = ("A1", "A2", "B1", "B2", "C1", "C2")
 
 
+def _check_book_text(text: dict, path: Path) -> None:
+    """Опубликованная глава или рассказ: непустые блоки и корректные задания."""
+    if not isinstance(text.get("blocks"), list) or not text["blocks"]:
+        raise ValueError(f"{path}: опубликованная глава пуста")
+    exercise_ids = set()
+    exercises = text.get("exercises", [])
+    if not isinstance(exercises, list):
+        raise ValueError(f"{path}: задания должны быть списком")
+    for exercise in exercises:
+        if not isinstance(exercise, dict):
+            raise ValueError(f"{path}: неверный формат задания")
+        ex_id = exercise.get("id")
+        if (not isinstance(ex_id, str) or not ex_id or ex_id in exercise_ids
+                or not isinstance(exercise.get("instruction"), str) or not exercise["instruction"].strip()):
+            raise ValueError(f"{path}: неверный id или инструкция задания")
+        exercise_ids.add(ex_id)
+        if not isinstance(exercise.get("questions"), list) or not exercise["questions"]:
+            raise ValueError(f"{path}: в задании нет вопросов")
+        for question in exercise["questions"]:
+            if not isinstance(question, dict):
+                raise ValueError(f"{path}: неверный формат вопроса")
+            if question.get("kind") == "reflection":
+                if not isinstance(question.get("prompt"), str) or not question["prompt"].strip():
+                    raise ValueError(f"{path}: неверный вопрос для размышления")
+                continue
+            options, answer = question.get("options"), question.get("answer")
+            answers = answer if isinstance(answer, list) else [answer]
+            if (not isinstance(question.get("prompt"), str) or not question["prompt"].strip()
+                    or not isinstance(options, list) or len(options) < 2
+                    or not all(isinstance(v, str) and v.strip() for v in options)
+                    or not answers or not all(type(a) is int and 0 <= a < len(options) for a in answers)):
+                raise ValueError(f"{path}: неверный вопрос или ответ")
+
+
 def load_books(directory: Path | None = None) -> list[dict]:
     """Одна папка на книгу, отдельные файлы глав; черновики не попадают на сайт."""
     directory = Path(directory) if directory is not None else Path(__file__).resolve().parent.parent / "content" / "books"
@@ -839,6 +873,26 @@ def load_books(directory: Path | None = None) -> list[dict]:
             if not image.is_relative_to(path.parent.resolve()) or image.suffix.lower() not in types or not image.is_file():
                 raise ValueError(f"{path}: неверный путь к обложке")
             cover = f"data:{types[image.suffix.lower()]};base64," + base64.b64encode(image.read_bytes()).decode("ascii")
+        kind = meta.get("kind", "book")
+        if kind not in ("book", "story"):
+            raise ValueError(f"{path}: kind — book или story")
+        if kind == "story":
+            # Рассказ без глав: весь текст в story.json, на сайте открывается сразу из карточки.
+            story_path = path.parent / "story.json"
+            if (path.parent / "chapters").exists() or not story_path.is_file():
+                raise ValueError(f"{path}: у рассказа нет папки chapters, текст — в story.json")
+            story = json.loads(story_path.read_text(encoding="utf-8"))
+            if story.get("status") not in ("draft", "published"):
+                raise ValueError(f"{story_path}: неверный статус рассказа")
+            icon = story.get("icon", "📖")
+            if not isinstance(icon, str) or not icon.strip() or len(icon) > 16:
+                raise ValueError(f"{story_path}: иконка рассказа должна быть коротким символом")
+            story["icon"] = icon.strip()
+            if story["status"] != "published":
+                continue
+            _check_book_text(story, story_path)
+            books.append({**meta, "kind": "story", "cover": cover, "chapters": [], "story": story})
+            continue
         chapters, chapter_ids, orders, numbers = [], set(), set(), set()
         for chapter_path in sorted((path.parent / "chapters").glob("*.json")):
             chapter = json.loads(chapter_path.read_text(encoding="utf-8"))
@@ -860,36 +914,7 @@ def load_books(directory: Path | None = None) -> list[dict]:
             chapter["icon"] = icon.strip()
             chapter_ids.add(chapter_id); numbers.add(number); orders.add(order)
             if chapter["status"] == "published":
-                if not isinstance(chapter.get("blocks"), list) or not chapter["blocks"]:
-                    raise ValueError(f"{chapter_path}: опубликованная глава пуста")
-                exercise_ids = set()
-                exercises = chapter.get("exercises", [])
-                if not isinstance(exercises, list):
-                    raise ValueError(f"{chapter_path}: задания должны быть списком")
-                for exercise in exercises:
-                    if not isinstance(exercise, dict):
-                        raise ValueError(f"{chapter_path}: неверный формат задания")
-                    ex_id = exercise.get("id")
-                    if (not isinstance(ex_id, str) or not ex_id or ex_id in exercise_ids
-                            or not isinstance(exercise.get("instruction"), str) or not exercise["instruction"].strip()):
-                        raise ValueError(f"{chapter_path}: неверный id или инструкция задания")
-                    exercise_ids.add(ex_id)
-                    if not isinstance(exercise.get("questions"), list) or not exercise["questions"]:
-                        raise ValueError(f"{chapter_path}: в задании нет вопросов")
-                    for question in exercise["questions"]:
-                        if not isinstance(question, dict):
-                            raise ValueError(f"{chapter_path}: неверный формат вопроса")
-                        if question.get("kind") == "reflection":
-                            if not isinstance(question.get("prompt"), str) or not question["prompt"].strip():
-                                raise ValueError(f"{chapter_path}: неверный вопрос для размышления")
-                            continue
-                        options, answer = question.get("options"), question.get("answer")
-                        answers = answer if isinstance(answer, list) else [answer]
-                        if (not isinstance(question.get("prompt"), str) or not question["prompt"].strip()
-                                or not isinstance(options, list) or len(options) < 2
-                                or not all(isinstance(v, str) and v.strip() for v in options)
-                                or not answers or not all(type(a) is int and 0 <= a < len(options) for a in answers)):
-                            raise ValueError(f"{chapter_path}: неверный вопрос или ответ")
+                _check_book_text(chapter, chapter_path)
                 chapters.append(chapter)
         books.append({**meta, "cover": cover, "chapters": sorted(chapters, key=lambda c: c["order"])})
     return books
