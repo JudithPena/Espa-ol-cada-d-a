@@ -94,7 +94,7 @@ def test_harry_level_and_vocabulary_threshold_are_independent():
     book = next(b for b in load_books() if b['id'] == 'harry-potter-piedra')
     assert book['level'] == 'B2'
     assert book['vocabulary_min_level'] == 'B1'
-    assert [(c['number'], c['title']) for c in book['chapters']] == [(1, 'El niño que vivió')]
+    assert [(c['number'], c['title']) for c in book['chapters']] == [(1, 'El niño que vivió'), (2, 'El vidrio que se desvaneció')]
 
 
 def test_local_cover_is_packaged_and_cannot_escape_book_folder(tmp_path):
@@ -194,3 +194,43 @@ def test_harry_dialogue_preserves_real_paragraphs_and_joins_page_continuations()
     assert '\n\n' in blocks[0]['es'] and '\n\n' in blocks[0]['ru']
     assert '\n\n—Bueno' in blocks[29]['es']
     assert '\n\n— Ну вот' in blocks[29]['ru']
+
+
+def test_harry_second_chapter_contains_the_complete_supplied_source_in_order():
+    import hashlib
+    import re
+    book = next(b for b in load_books() if b['id'] == 'harry-potter-piedra')
+    chapter = next(c for c in book['chapters'] if c['number'] == 2)
+    assert (chapter['id'], chapter['order'], chapter['title']) == ('2', 2, 'El vidrio que se desvaneció')
+    assert chapter['icon'] == '🎂'
+    original = re.sub(r'\s+', ' ', ' '.join(b['es'] for b in chapter['blocks'])).strip()
+    # Canonical text independently extracted from the supplied PDF, printed pp. 12–20.
+    # Page counters/headings removed, wrapped lines and discretionary hyphenation joined.
+    assert len(original.split()) == 3527
+    assert hashlib.sha256(original.encode()).hexdigest() == 'dd5be8eee949baadd9ba6780de96e3113a4aaf890b4ec3c9f8279f535ecb375b'
+    assert original.startswith('Habían pasado aproximadamente diez años')
+    assert original.endswith('estar en contra de la banda de Dudley.')
+    assert len(chapter['blocks']) == 26
+    assert all(len(b['es'].split()) >= 60 for b in chapter['blocks'])
+    # Longer scenes stay whole: the guardianship discussion, the motorcycle dispute,
+    # and the final recollections/contrast with school each form one coherent episode.
+    assert max(len(b['es'].split()) for b in chapter['blocks']) <= 220
+
+
+def test_harry_second_chapter_vocabulary_pronouns_and_compact_dialogues():
+    import re
+    chapter = next(c for b in load_books() if b['id'] == 'harry-potter-piedra' for c in b['chapters'] if c['number'] == 2)
+    entries = {n['term'] for block in chapter['blocks'] for n in block['notes'] if isinstance(n, dict)}
+    assert {'el latón', 'la repisa', 'enjuto', 'huesudo', 'la filmadora', 'el envoltorio',
+            'la manzana', 'el sollozo', 'el flequillo', 'remendado', 'encogerse', 'el nudillo',
+            'el espécimen', 'el cubículo', 'conmocionado', 'la quemadura', 'estrafalario'} <= entries
+    pronouns = {p['es']:p for block in chapter['blocks'] for p in block['pronouns']}
+    assert 'не заменяет le' in pronouns['se los puso']['explanation']
+    assert 'заменённое перед lo' in pronouns['pasárselo por la cabeza']['explanation']
+    assert 'не замена les' in pronouns['se los había llevado']['explanation']
+    assert 'Пассивное se' in pronouns['se debía observar']['explanation']
+    assert 'Безличное se' in pronouns['si se quería vivir']['explanation']
+    assert 'dormidos' in pronouns['Hasta que lo estuvieran']['explanation']
+    for block in chapter['blocks']:
+        for lang in ('es', 'ru'):
+            assert not re.search(r'(?m)^[ \t]*—[^\n]*\n[ \t]*\n[ \t]*—', block[lang])
