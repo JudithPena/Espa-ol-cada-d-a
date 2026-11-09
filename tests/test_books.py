@@ -164,3 +164,33 @@ def test_existing_chapters_have_persisted_thematic_icons_and_original_titles():
     assert len({c['icon'] for c in lola['chapters']}) == 19
     harry = next(b for b in books if b['id'] == 'harry-potter-piedra')
     assert harry['chapters'][0]['title'] == 'El niño que vivió'
+
+
+def test_lola_dialogue_turns_are_compact_in_both_languages():
+    import re
+    lola = next(b for b in load_books() if b['id'] == 'lola-lago-nota-falsa')
+    for chapter in lola['chapters']:
+        for block in chapter['blocks']:
+            for lang in ('es', 'ru'):
+                # An actual change of scene may deserve a paragraph; none of Lola's
+                # reviewed adjacent turns here has one. Narration boundaries remain legal.
+                assert not re.search(r'(?m)^[ \t]*[—–][^\n]*\n[ \t]*\n[ \t]*[—–]', block[lang]), (chapter['number'], block['title'], lang)
+    first = lola['chapters'][0]['blocks']
+    assert '–¿Y…? –pregunta Lola.\n–Que va a venir' in first[3]['es']
+    assert '— И?.. — спрашивает Лола.\n— Говорит, придёт' in first[3]['ru']
+    assert '\n\nLola tiene una agencia' in first[0]['es']
+    assert '\n\nУ Лолы есть агентство' in first[0]['ru']
+    assert '\n\nPaco y Miguel son' in first[2]['es']
+    assert '\n\nПако и Мигель — замечательные' in first[2]['ru']
+
+
+def test_harry_dialogue_preserves_real_paragraphs_and_joins_page_continuations():
+    blocks = next(b for b in load_books() if b['id'] == 'harry-potter-piedra')['chapters'][0]['blocks']
+    assert '\n\n' not in blocks[19]['es']  # Continuous lemon-sweet conversation.
+    assert '\n\n' not in blocks[19]['ru']
+    assert 'Voldemort apareció' in blocks[22]['es']
+    assert 'Sus tíos podrán' in blocks[24]['es']
+    # Independent description and the later farewell still have their own paragraphs.
+    assert '\n\n' in blocks[0]['es'] and '\n\n' in blocks[0]['ru']
+    assert '\n\n—Bueno' in blocks[29]['es']
+    assert '\n\n— Ну вот' in blocks[29]['ru']

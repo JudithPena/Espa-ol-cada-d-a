@@ -235,3 +235,14 @@ test('chapter cards use stable individual icons and escape labels and icon text'
   assert.match(html, /aria-hidden="true">📖<\/span>/);
   assert.doesNotMatch(html, /Sin título|<img>|<svg>|Глава 3\./);
 });
+
+test('book text preserves single dialogue line breaks and real paragraph breaks', () => {
+  const text = 'Un párrafo.\n\n— ¿Dónde estás?\n— Estoy aquí.\nDice, sonriendo.\n— Entonces ven conmigo.\n\nOtra escena.';
+  assert.equal(ctx.bookText(text,['aquí']), text.replace('aquí','<strong>aquí</strong>'));
+  assert.match(source,/\.book-block p\s*\{[^}]*white-space:\s*pre-line/);
+  const chapter = JSON.parse(fs.readFileSync('content/books/lola-lago-nota-falsa/chapters/001.json','utf8'));
+  const html = ctx.bookText(chapter.blocks[3].es,ctx.bookMarks(chapter.blocks[3],'es'));
+  assert.match(html,/–¿Y…\? –pregunta Lola\.\n–Que/);
+  assert.doesNotMatch(html,/–¿Y…\? –pregunta Lola\.\n\n–Que/);
+  assert.match(html,/\n\nLola cierra la puerta/);
+});
