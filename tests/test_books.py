@@ -435,6 +435,31 @@ def test_pobre_ana_second_chapter_contains_the_complete_source_in_order():
     assert not terms & {'el libro', 'la escuela', 'el hermano', 'la profesora', 'el estudiante', 'vivir'}
 
 
+def test_pobre_ana_third_chapter_contains_the_complete_source_in_order():
+    import hashlib
+    import re
+    chapter = _ana()['chapters'][2]
+    assert (chapter['id'], chapter['number'], chapter['order'], chapter['title']) == ('3', 3, 3, '')
+    assert chapter['icon'] == '✈️' and chapter['status'] == 'published'
+    blocks = chapter['blocks']
+    original = re.sub(r'\s+', ' ', ' '.join(b['es'] for b in blocks)).strip()
+    # «Capítulo tres» (printed pp. 10–18): running heads and page numbers removed, hyphenation joined.
+    assert len(original.split()) == 1171
+    assert hashlib.sha256(original.encode()).hexdigest() == 'cdb81436433ee4719aa133498257c522d671ada8903cddb80db7e79ce554b662'
+    assert original.startswith('Tres meses más tarde Ana está emocionada')
+    assert original.endswith('A Ana le gusta su familia nueva. Le gusta México.')
+    assert len(blocks) == 11 and all(len(b['es'].split()) >= 60 for b in blocks)
+    for block in blocks:
+        assert block['es'].count('\n\n') == block['ru'].count('\n\n'), block['title']
+        for lang in ('es', 'ru'):
+            assert not re.search(r'(?m)^[ \t]*[—–][^\n]*\n[ \t]*\n[ \t]*[—–]', block[lang])
+    terms = {n['term'] for b in blocks for n in b['notes'] if isinstance(n, dict)}
+    earlier = {n['term'] for ch in _ana()['chapters'][:2] for b in ch['blocks'] for n in b['notes'] if isinstance(n, dict)}
+    assert not terms & earlier  # слова прошлых глав заново не разбираем
+    assert {'irse (a un lugar)', 'tener miedo', 'comprender', 'el agua', 'dormir', 'tocar a la puerta'} <= terms
+    assert not terms & {'el taxi', 'gracias', 'adiós', 'el novio', 'el hijo / la hija', 'pequeño'}
+
+
 def test_pobre_ana_highlights_exist_and_never_overlap():
     import re
     word = re.compile(r'\w')
