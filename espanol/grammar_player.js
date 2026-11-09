@@ -638,6 +638,8 @@ const G_UNIT_ICONS = {
   '031_cual_que': '🎯',
   '032_cuando_donde': '⏱️',
   '033_exclamativos': '❗',
+  '034_yo_tu_el': '🗣️',
+  '035_te_amo': '💞',
 };
 function gUnitComplete(unit) {
   const routes=gRoutes(unit);

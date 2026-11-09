@@ -1,0 +1,1758 @@
+{
+  "id": "035_te_amo",
+  "number": 35,
+  "title": "Te amo",
+  "subtitle": "Меня, тебя, его: не повторяем известные слова",
+  "level": "A2",
+  "sections": [
+    {
+      "title": "Вижу его: заменяем известного человека или предмет",
+      "presentation": "comparison",
+      "paragraphs": [
+        "Если имя или предмет уже назвали, не обязательно повторять его: **`Lola ama a Carlos → Lola lo ama`** — Лола любит Карлоса → Лола его любит. **`No encuentro el pan → No lo encuentro`** — не нахожу хлеб → не нахожу его. Слово lo заменяет того, кого любят, или то, что ищут, а не того, кто действует.",
+        "Это **прямое дополнение**: в этих примерах оно отвечает на вопросы «кого?» или «что?». **`Lo` — его, `la` — её, `los` — их мужского рода, `las` — их женского рода**. Форму выбираем по человеку или предмету, который заменяем: `la foto → la`, `los libros → los`.",
+        "Для смешанной группы людей используем **`los`**: `Veo a Almudena y a Luis → Los veo` — вижу Альмудену и Луиса → вижу их. Если речь только о женщинах, нужно `las`. Пол того, кто смотрит, на этот выбор не влияет."
+      ],
+      "schemes": [
+        {
+          "label": "Заменяем то, что ищем",
+          "from": "No encuentro el pan.",
+          "to": "No lo encuentro.",
+          "fromLabel": "Называем предмет",
+          "toLabel": "Не повторяем pan",
+          "note": "Хлеб — el pan, поэтому lo."
+        },
+        {
+          "label": "Заменяем тех, кого видим",
+          "from": "Veo a Julia y a Ana.",
+          "to": "Las veo.",
+          "fromLabel": "Называем женщин",
+          "toLabel": "Не повторяем имена",
+          "note": "Две женщины → las. Предлог a перед именами не делает их теми, кто смотрит."
+        }
+      ],
+      "notes": [
+        "В некоторых регионах о мужчине говорят также le veo, о людях мужского грамматического рода — les veo. Эти варианты допускает современная норма. Основные формы, подходящие во всех регионах, — lo / los. Для вещей такое le / les не подходит: el libro → lo, не le."
+      ],
+      "check": {
+        "id": "check-1",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "Busco las llaves. No ___ encuentro.",
+            "answers": [
+              "las"
+            ],
+            "explain": "Llaves — женский род, множественное число: las. Форма относится к ключам.",
+            "context": "Ищу ключи. Не нахожу их.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "la",
+              "los",
+              "las"
+            ]
+          },
+          {
+            "prompt": "Ana ve a Pedro. ¿Quién mira y a quién ve?",
+            "answers": [
+              "Ana смотрит, Pedro — тот, кого она видит"
+            ],
+            "explain": "В Ana lo ve слово Ana называет действующего, lo заменяет Педро.",
+            "context": "Различи того, кто смотрит, и того, кого видят.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "Pedro смотрит, Ana — та, кого он видит",
+              "Ana смотрит, Pedro — тот, кого она видит",
+              "Оба обязательно смотрят друг на друга"
+            ]
+          }
+        ]
+      },
+      "illustration": {
+        "image": "art/035/bread.webp",
+        "alt": "Женщина ищет хлеб в пустой корзине; за её спиной мужчина держит хлеб.",
+        "examples": [
+          [
+            "¿Dónde está el pan? No lo encuentro.",
+            "Где хлеб? Я его не нахожу."
+          ]
+        ],
+        "captionExamples": true
+      }
+    },
+    {
+      "title": "Меня, тебя, нас и вас: смотрим на участника разговора",
+      "presentation": "paradigm",
+      "paragraphs": [
+        "Чтобы сказать **«меня»**, используй `me`, **«тебя» — `te`**, **«нас» — `nos`**. Эти формы не меняются по роду: `Ana me conoce` — Ана меня знает; `Luis te conoce` — Луис тебя знает. Выбираем по тому, **кого знают**, а не по тому, кто знает.",
+        "В ответе меняется точка зрения: **`¿Me recuerdas? —Sí, te recuerdo`** — ты меня помнишь? — Да, я тебя помню. В вопросе человек называет себя me, а собеседник в ответе называет этого же человека te.",
+        "При обращении к группе на **`vosotros / vosotras`** нужно **`os`** — вас. При **`usted / ustedes`** используем **`lo / la / los / las`**, учитывая род и число адресатов: `Señora, la conozco` — сеньора, я Вас знаю; `Señoras, las conozco` — сеньоры, я вас знаю.",
+        "С вежливым usted(es) можно также услышать **`le / les`**, в том числе при обращении к женщине: `Señora, le conozco`. Это допустимый вариант вежливого обращения. В обычном рассказе о женщине основной вариант — `la conozco`. При обращении на vos, как и на tú, для «тебя» используют **`te`**."
+      ],
+      "table": {
+        "heads": [
+          "Кого?",
+          "Короткая форма",
+          "Пример"
+        ],
+        "compactForms": true,
+        "rows": [
+          [
+            "меня / нас",
+            "me / nos",
+            "Me ve. / Nos ve."
+          ],
+          [
+            "тебя (tú, vos)",
+            "te",
+            "Te conozco."
+          ],
+          [
+            "вас (vosotros/as)",
+            "os",
+            "Os conozco."
+          ],
+          [
+            "его / её; Вас (usted)",
+            "lo / la",
+            "Lo conozco. / La conozco."
+          ],
+          [
+            "их; вас (ustedes)",
+            "los / las",
+            "Los conozco. / Las conozco."
+          ]
+        ]
+      },
+      "dialogues": [
+        {
+          "title": "Встреча старых знакомых",
+          "lines": [
+            [
+              "¿Me recuerdas?",
+              "Ты меня помнишь?"
+            ],
+            [
+              "Sí, te recuerdo.",
+              "Да, я тебя помню."
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-2",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "Говорят две женщины: «El profesor ___ conoce».",
+            "answers": [
+              "nos"
+            ],
+            "explain": "Женщины говорят «нас»: nos. Las означало бы «их», других женщин.",
+            "context": "Преподаватель нас знает.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "las",
+              "nos",
+              "os"
+            ]
+          },
+          {
+            "prompt": "¿Me recuerdas? —Sí, ___ recuerdo.",
+            "answers": [
+              "te"
+            ],
+            "explain": "В ответе называем собеседника: te recuerdo — я тебя помню.",
+            "context": "Собеседники обращаются друг к другу на ты.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "me",
+              "lo",
+              "te"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Не вижу его: местоимение ставим перед глаголом",
+      "presentation": "comparison",
+      "paragraphs": [
+        "В обычном предложении с личной формой глагола короткое местоимение стоит **перед глаголом**: `Lo veo` — вижу его, `Te conozco` — знаю тебя. Если есть отрицание, сначала **`no`**, затем местоимение: **`No la veo`** — не вижу её.",
+        "Если действие выражено двумя словами с **`haber`**, ставим местоимение перед первым: **`Lo he comprado`** — я это купил; **`No las he visto`** — я их не видел. Не разрываем `he comprado` местоимением: не `he lo comprado`.",
+        "В диалоге ответ даёт другой человек, поэтому меняется и форма глагола: `¿Has visto la foto? —Sí, la he visto`. Вопрос «ты видел?», ответ «я видел». В заданиях форма глагола будет рядом: сосредоточься на местоимении и его месте.",
+        "Здесь работаем с личными формами глагола и сочетаниями с haber. С инфинитивом, герундием и повелительными формами место местоимения может быть другим — эти конструкции разберём отдельно."
+      ],
+      "wordGroups": [
+        {
+          "title": "✅ Утверждение",
+          "words": [
+            [
+              "Lo veo.",
+              "Я его вижу."
+            ],
+            [
+              "La he comprado.",
+              "Я её купил."
+            ]
+          ]
+        },
+        {
+          "title": "🚫 Отрицание",
+          "words": [
+            [
+              "No lo veo.",
+              "Я его не вижу."
+            ],
+            [
+              "No la he comprado.",
+              "Я её не купил."
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-3",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "El periódico: «Я его не купил».",
+            "answers": [
+              "No lo he comprado."
+            ],
+            "explain": "No → lo → he comprado. Местоимение перед he, а не между he и comprado.",
+            "context": "Выбери правильный порядок слов.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "No he lo comprado.",
+              "No lo he comprado.",
+              "Lo no he comprado."
+            ]
+          },
+          {
+            "prompt": "Вставь «нас»: Elena ___ conoce.",
+            "answers": [
+              "nos"
+            ],
+            "explain": "Elena знает нас: nos conoce. Nosotros — «мы», а не «нас».",
+            "context": "Мы — те, кого знает Елена.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "nosotros",
+              "os",
+              "nos"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Меня, а не его: добавляем a mí, a ti, a él",
+      "presentation": "comparison",
+      "paragraphs": [
+        "Если нужно **уточнить человека или противопоставить его другому**, добавь `a mí`, `a ti`, `a él / ella`, `a nosotros / nosotras`, `a vosotros / vosotras`, `a ustedes / ellos / ellas`: `Las vi a ellas` — я видел именно их, а не вас. Эти сочетания употребляем, когда говорим о людях.",
+        "Длинное сочетание **не заменяет короткое местоимение**: **`A mí no me conoce`** — меня он не знает; **`No lo ama a él`** — она не любит его. Если говорим `a mí`, короткое **`me` остаётся**. То же правило действует с te, lo, la, nos, os, los, las.",
+        "Сочетание можно поставить перед глаголом или после: **`A nosotros no nos ven`** и **`No nos ven a nosotros`** — нас они не видят. В первом случае особенно выделяем «нас».",
+        "Сравни роль: **`yo` — я**, а **`a mí` — меня**; **`tú` — ты**, а **`a ti` — тебя**. Пишем `mí` со знаком ударения, но **`ti` без него**. В `a él` знак у él сохраняется."
+      ],
+      "schemes": [
+        {
+          "label": "Подчёркиваем, кого не знают",
+          "from": "No me conoce.",
+          "to": "A mí no me conoce.",
+          "fromLabel": "Меня не знает",
+          "toLabel": "Именно меня не знает",
+          "note": "Добавили a mí, но me оставили."
+        }
+      ],
+      "dialogues": [
+        {
+          "title": "Любовь невзаимна",
+          "lines": [
+            [
+              "Ramón ama a María.",
+              "Рамон любит Марию."
+            ],
+            [
+              "Pero María no lo ama a él.",
+              "Но Мария его не любит."
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-4",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "A mí no ___ conocen.",
+            "answers": [
+              "me"
+            ],
+            "explain": "После выделенного a mí сохраняем me: a mí no me conocen.",
+            "context": "Меня они не знают.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "yo",
+              "me",
+              "te"
+            ]
+          },
+          {
+            "prompt": "No te veo a ___.",
+            "answers": [
+              "ti"
+            ],
+            "explain": "После a для «тебя» нужно ti, без знака ударения. Tú — форма «ты».",
+            "context": "Я не вижу именно тебя.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "options": [
+              "tú",
+              "tí",
+              "ti"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "35.1",
+      "title": "35.1 · Не повторяй имя или предмет",
+      "theorySections": [
+        0
+      ],
+      "questions": [
+        {
+          "prompt": "¿Dónde está Andrés? No ___ veo.",
+          "answers": [
+            "lo",
+            "le"
+          ],
+          "explain": "Андрес — мужчина, один человек: lo.",
+          "context": "Я не вижу Андреса.",
+          "sourceRef": "35.1.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "answerWarnings": {
+            "le": {
+              "preferred": "lo",
+              "message": "Ответ засчитан. Это допустимый региональный вариант для людей мужского грамматического рода.",
+              "explanation": "Основной образец этого урока: lo. Вариант не является грамматической ошибкой; употребление зависит от региона и обращения.",
+              "source": "https://www.rae.es/dpd/le%C3%ADsmo"
+            }
+          }
+        },
+        {
+          "prompt": "¿Dónde están las cucharas? No ___ encuentro.",
+          "answers": [
+            "las"
+          ],
+          "explain": "Cucharas — женский род, множественное число: las.",
+          "context": "Я не нахожу ложки.",
+          "sourceRef": "35.1.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿Dónde están tus amigos? No ___ veo.",
+          "answers": [
+            "los",
+            "les"
+          ],
+          "explain": "Amigos — мужской род, множественное число: los.",
+          "context": "Я не вижу твоих друзей-мужчин.",
+          "sourceRef": "35.1.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "answerWarnings": {
+            "les": {
+              "preferred": "los",
+              "message": "Ответ засчитан. Это допустимый региональный вариант для людей мужского грамматического рода.",
+              "explanation": "Основной образец этого урока: los. Вариант не является грамматической ошибкой; употребление зависит от региона и обращения.",
+              "source": "https://www.rae.es/dpd/le%C3%ADsmo"
+            }
+          }
+        },
+        {
+          "prompt": "¿Dónde está el teléfono? No ___ encuentro.",
+          "answers": [
+            "lo"
+          ],
+          "explain": "Teléfono — мужской род, единственное число: lo. Le для предмета здесь не подходит.",
+          "context": "Я не нахожу телефон.",
+          "sourceRef": "35.1.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "lo",
+            "la"
+          ],
+          "inputFormat": {
+            "instruction": "Выбери слово для пропуска. Остальная фраза уже дана.",
+            "placeholder": "Местоимение"
+          }
+        },
+        {
+          "prompt": "¿Dónde está Julia? No ___ veo.",
+          "answers": [
+            "la"
+          ],
+          "explain": "Юлия — женщина, один человек: la. Это рассказ о ней, а не вежливое обращение.",
+          "context": "Я не вижу Юлию.",
+          "sourceRef": "35.1.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿Dónde están tus padres? No ___ veo.",
+          "answers": [
+            "los",
+            "les"
+          ],
+          "explain": "Padres — родители, грамматический мужской род, множественное число: los.",
+          "context": "Я не вижу твоих родителей.",
+          "sourceRef": "35.1.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "answerWarnings": {
+            "les": {
+              "preferred": "los",
+              "message": "Ответ засчитан. Это допустимый региональный вариант для людей мужского грамматического рода.",
+              "explanation": "Основной образец этого урока: los. Вариант не является грамматической ошибкой; употребление зависит от региона и обращения.",
+              "source": "https://www.rae.es/dpd/le%C3%ADsmo"
+            }
+          }
+        },
+        {
+          "prompt": "¿Dónde está la entrada? No ___ encuentro.",
+          "answers": [
+            "la"
+          ],
+          "explain": "Entrada — билет, женский род, единственное число: la.",
+          "context": "Я не нахожу билет.",
+          "sourceRef": "35.1.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "¿Dónde están las naranjas? No ___ veo.",
+          "answers": [
+            "las"
+          ],
+          "explain": "Naranjas — женский род, множественное число: las.",
+          "context": "Я не вижу апельсины.",
+          "sourceRef": "35.1.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "las",
+            "los"
+          ],
+          "inputFormat": {
+            "instruction": "Выбери слово для пропуска. Остальная фраза уже дана.",
+            "placeholder": "Местоимение"
+          }
+        }
+      ],
+      "preview": {
+        "source": "No ___ encuentro.",
+        "sentenceParts": [
+          "No ",
+          " encuentro."
+        ],
+        "answer": "la",
+        "targetPrefix": "",
+        "translation": "Не нахожу её: речь о сумке — la bolsa."
+      },
+      "instruction": "Дополни ответ: выбери форму по тому, кого видим или что ищем. В двух заданиях вставь нужное слово из банка.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши только короткое местоимение, без a и без глагола.",
+        "placeholder": "Местоимение"
+      }
+    },
+    {
+      "id": "35.2",
+      "title": "35.2 · Кого знают: меня, тебя или вас",
+      "theorySections": [
+        1
+      ],
+      "questions": [
+        {
+          "prompt": "Yo ___ conozco.",
+          "answers": [
+            "te"
+          ],
+          "explain": "К собеседнику на tú: te conozco — я тебя знаю.",
+          "context": "Ты говоришь человеку или группе: «Tú eres amigo de Ana.»",
+          "sourceRef": "35.2.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Продолжение реплики",
+            "items": [
+              [
+                "Кому говоришь",
+                "Tú eres amigo de Ana."
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Yo ___ conozco.",
+          "answers": [
+            "los",
+            "les"
+          ],
+          "explain": "К родителям на ustedes: los conozco.",
+          "context": "Ты говоришь человеку или группе: «Ustedes son los padres de Jesús.»",
+          "sourceRef": "35.2.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Продолжение реплики",
+            "items": [
+              [
+                "Кому говоришь",
+                "Ustedes son los padres de Jesús."
+              ]
+            ]
+          },
+          "answerWarnings": {
+            "les": {
+              "preferred": "los",
+              "message": "Ответ засчитан. Это допустимое le / les при вежливом обращении.",
+              "explanation": "Основной образец этого урока: los. Вариант не является грамматической ошибкой; употребление зависит от региона и обращения.",
+              "source": "https://www.rae.es/dpd/le%C3%ADsmo"
+            }
+          }
+        },
+        {
+          "prompt": "Yo ___ conozco.",
+          "answers": [
+            "os"
+          ],
+          "explain": "К группе на vosotros: os conozco. Не los, потому что обращение именно vosotros.",
+          "context": "Ты говоришь человеку или группе: «Vosotros sois compañeros de Ramón.»",
+          "sourceRef": "35.2.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Продолжение реплики",
+            "items": [
+              [
+                "Кому говоришь",
+                "Vosotros sois compañeros de Ramón."
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Yo ___ conozco.",
+          "answers": [
+            "la",
+            "le"
+          ],
+          "explain": "К одной женщине на usted: la conozco.",
+          "context": "Ты говоришь человеку или группе: «Usted es la madre de Rosario.»",
+          "sourceRef": "35.2.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Продолжение реплики",
+            "items": [
+              [
+                "Кому говоришь",
+                "Usted es la madre de Rosario."
+              ]
+            ]
+          },
+          "answerWarnings": {
+            "le": {
+              "preferred": "la",
+              "message": "Ответ засчитан. Это допустимое le / les при вежливом обращении.",
+              "explanation": "Основной образец этого урока: la. Вариант не является грамматической ошибкой; употребление зависит от региона и обращения.",
+              "source": "https://www.rae.es/dpd/le%C3%ADsmo"
+            }
+          }
+        },
+        {
+          "prompt": "Yo ___ conozco.",
+          "answers": [
+            "las",
+            "les"
+          ],
+          "explain": "К нескольким женщинам на ustedes: las conozco.",
+          "context": "Ты говоришь человеку или группе: «Ustedes son las tías de Pepe.»",
+          "sourceRef": "35.2.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Продолжение реплики",
+            "items": [
+              [
+                "Кому говоришь",
+                "Ustedes son las tías de Pepe."
+              ]
+            ]
+          },
+          "answerWarnings": {
+            "les": {
+              "preferred": "las",
+              "message": "Ответ засчитан. Это допустимое le / les при вежливом обращении.",
+              "explanation": "Основной образец этого урока: las. Вариант не является грамматической ошибкой; употребление зависит от региона и обращения.",
+              "source": "https://www.rae.es/dpd/le%C3%ADsmo"
+            }
+          }
+        },
+        {
+          "prompt": "Yo ___ conozco.",
+          "answers": [
+            "os"
+          ],
+          "explain": "К подругам на vosotras: os conozco. Женский род не меняет os.",
+          "context": "Ты говоришь человеку или группе: «Vosotras sois amigas de Raquel.»",
+          "sourceRef": "35.2.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Продолжение реплики",
+            "items": [
+              [
+                "Кому говоришь",
+                "Vosotras sois amigas de Raquel."
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Yo ___ conozco.",
+          "answers": [
+            "lo",
+            "le"
+          ],
+          "explain": "К одному мужчине на usted: lo conozco.",
+          "context": "Ты говоришь человеку или группе: «Usted es el padre de Pedro.»",
+          "sourceRef": "35.2.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Продолжение реплики",
+            "items": [
+              [
+                "Кому говоришь",
+                "Usted es el padre de Pedro."
+              ]
+            ]
+          },
+          "answerWarnings": {
+            "le": {
+              "preferred": "lo",
+              "message": "Ответ засчитан. Это допустимое le / les при вежливом обращении.",
+              "explanation": "Основной образец этого урока: lo. Вариант не является грамматической ошибкой; употребление зависит от региона и обращения.",
+              "source": "https://www.rae.es/dpd/le%C3%ADsmo"
+            }
+          }
+        },
+        {
+          "prompt": "Yo ___ conozco.",
+          "answers": [
+            "te"
+          ],
+          "explain": "К одному собеседнику на tú: te conozco.",
+          "context": "Ты говоришь человеку или группе: «Tú vives en la calle Arenal.»",
+          "sourceRef": "35.2.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Продолжение реплики",
+            "items": [
+              [
+                "Кому говоришь",
+                "Tú vives en la calle Arenal."
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Ana ___ conoce.",
+          "answers": [
+            "me"
+          ],
+          "explain": "Говорящий говорит «меня»: me conoce. Пол говорящего не меняет me.",
+          "context": "Ты говоришь об Ане: «Она меня знает». Пишем только пропуск.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "prompt": "Elena ___ conoce.",
+          "answers": [
+            "nos"
+          ],
+          "explain": "Говорят двое друзей о себе: nos — нас. Ellos/los означало бы других людей.",
+          "context": "Ты и твой друг говорите: «Елена нас знает». Пишем только пропуск.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        }
+      ],
+      "preview": {
+        "source": "Yo ___ conozco.",
+        "sentenceParts": [
+          "Yo ",
+          " conozco."
+        ],
+        "answer": "te",
+        "targetPrefix": "",
+        "translation": "Я тебя знаю. Обращение к одному человеку на ты."
+      },
+      "instruction": "Посмотри, к кому обращаются или о ком говорят. Дополни фразу одним коротким местоимением.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши только местоимение. Глагол conozco уже написан.",
+        "placeholder": "Короткое местоимение"
+      }
+    },
+    {
+      "id": "35.3",
+      "title": "35.3 · Ответь за собеседника",
+      "theorySections": [
+        1,
+        2
+      ],
+      "questions": [
+        {
+          "prompt": "Sí, ___.",
+          "answers": [
+            "lo amo",
+            "le amo"
+          ],
+          "explain": "Luis — мужчина; lo перед amo. В ответе говорим от первого лица.",
+          "context": "Я люблю Луиса.",
+          "sourceRef": "35.3.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "¿Amas a Luis?",
+            ""
+          ],
+          "sourceLabel": "Вопрос собеседника",
+          "facts": {
+            "label": "Форма глагола для ответа",
+            "items": [
+              [
+                "Уже готова",
+                "amo"
+              ]
+            ]
+          },
+          "inputFormat": {
+            "instruction": "Впиши пропущенную часть ответа: местоимение и данную форму глагола. В отрицательном ответе добавь no.",
+            "placeholder": "Пропущенная часть"
+          },
+          "answerWarnings": {
+            "le amo": {
+              "preferred": "lo amo",
+              "message": "Ответ засчитан. Это допустимый региональный вариант для людей мужского грамматического рода.",
+              "explanation": "Основной образец этого урока: lo amo. Вариант не является грамматической ошибкой; употребление зависит от региона и обращения.",
+              "source": "https://www.rae.es/dpd/le%C3%ADsmo"
+            }
+          }
+        },
+        {
+          "prompt": "No, ___.",
+          "answers": [
+            "no la quiero"
+          ],
+          "explain": "Фото — la foto: no + la + quiero.",
+          "context": "Мне не нужна эта фотография.",
+          "sourceRef": "35.3.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "¿Quieres esta foto?",
+            ""
+          ],
+          "sourceLabel": "Вопрос собеседника",
+          "facts": {
+            "label": "Форма глагола для ответа",
+            "items": [
+              [
+                "Уже готова",
+                "quiero"
+              ]
+            ]
+          },
+          "inputFormat": {
+            "instruction": "Собери пропущенную часть ответа. Если отрицаешь, начни с no.",
+            "placeholder": "Пропущенная часть"
+          },
+          "interaction": "build",
+          "tiles": [
+            "no",
+            "la",
+            "quiero"
+          ]
+        },
+        {
+          "prompt": "No, ___.",
+          "answers": [
+            "no lo he comprado"
+          ],
+          "explain": "El periódico → lo; порядок no lo he comprado.",
+          "context": "Я не купил газету.",
+          "sourceRef": "35.3.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "¿Has comprado el periódico?",
+            ""
+          ],
+          "sourceLabel": "Вопрос собеседника",
+          "facts": {
+            "label": "Форма глагола для ответа",
+            "items": [
+              [
+                "Уже готова",
+                "he comprado"
+              ]
+            ]
+          },
+          "inputFormat": {
+            "instruction": "Собери пропущенную часть ответа. Если отрицаешь, начни с no.",
+            "placeholder": "Пропущенная часть"
+          },
+          "interaction": "build",
+          "tiles": [
+            "no",
+            "lo",
+            "he",
+            "comprado"
+          ]
+        },
+        {
+          "prompt": "Sí, ___ mucho.",
+          "answers": [
+            "os quiero"
+          ],
+          "explain": "Дети говорят о себе nos, мама называет их os. Форма quiero — «я люблю».",
+          "context": "Мама отвечает детям в Мадриде, обращаясь к ним на vosotros: «Я вас очень люблю».",
+          "sourceRef": "35.3.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "¿Nos quieres, mamá?",
+            ""
+          ],
+          "sourceLabel": "Вопрос собеседника",
+          "facts": {
+            "label": "Форма глагола для ответа",
+            "items": [
+              [
+                "Уже готова",
+                "quiero"
+              ]
+            ]
+          },
+          "inputFormat": {
+            "instruction": "Впиши пропущенную часть ответа: местоимение и данную форму глагола. В отрицательном ответе добавь no.",
+            "placeholder": "Пропущенная часть"
+          }
+        },
+        {
+          "prompt": "No, ___.",
+          "answers": [
+            "no las he visto"
+          ],
+          "explain": "Zapatillas — женский род, множественное число: no las he visto.",
+          "context": "Я не видел твои кроссовки.",
+          "sourceRef": "35.3.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "¿Has visto mis zapatillas?",
+            ""
+          ],
+          "sourceLabel": "Вопрос собеседника",
+          "facts": {
+            "label": "Форма глагола для ответа",
+            "items": [
+              [
+                "Уже готова",
+                "he visto"
+              ]
+            ]
+          },
+          "inputFormat": {
+            "instruction": "Собери пропущенную часть ответа. Если отрицаешь, начни с no.",
+            "placeholder": "Пропущенная часть"
+          },
+          "interaction": "build",
+          "tiles": [
+            "no",
+            "las",
+            "he",
+            "visto"
+          ]
+        },
+        {
+          "prompt": "Sí, ___. Tú eres Julián.",
+          "answers": [
+            "te recuerdo"
+          ],
+          "explain": "Спрашивающий назвал себя me, собеседник отвечает te — тебя.",
+          "context": "Я тебя помню. Собеседники обращаются друг к другу на tú.",
+          "sourceRef": "35.3.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "¿Me recuerdas?",
+            ""
+          ],
+          "sourceLabel": "Вопрос собеседника",
+          "facts": {
+            "label": "Форма глагола для ответа",
+            "items": [
+              [
+                "Уже готова",
+                "recuerdo"
+              ]
+            ]
+          },
+          "inputFormat": {
+            "instruction": "Собери пропущенную часть ответа. Если отрицаешь, начни с no.",
+            "placeholder": "Пропущенная часть"
+          },
+          "interaction": "build",
+          "tiles": [
+            "te",
+            "recuerdo"
+          ]
+        },
+        {
+          "prompt": "Sí, ___ mucho.",
+          "answers": [
+            "los veo",
+            "les veo"
+          ],
+          "explain": "Мужчина и женщина вместе → los; veo — «я вижу».",
+          "context": "Я часто вижу Пепе и Луису.",
+          "sourceRef": "35.3.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "¿Ves mucho a Pepe y a Luisa?",
+            ""
+          ],
+          "sourceLabel": "Вопрос собеседника",
+          "facts": {
+            "label": "Форма глагола для ответа",
+            "items": [
+              [
+                "Уже готова",
+                "veo"
+              ]
+            ]
+          },
+          "inputFormat": {
+            "instruction": "Впиши пропущенную часть ответа: местоимение и данную форму глагола. В отрицательном ответе добавь no.",
+            "placeholder": "Пропущенная часть"
+          },
+          "answerWarnings": {
+            "les veo": {
+              "preferred": "los veo",
+              "message": "Ответ засчитан. Это допустимый региональный вариант для людей мужского грамматического рода.",
+              "explanation": "Основной образец этого урока: los veo. Вариант не является грамматической ошибкой; употребление зависит от региона и обращения.",
+              "source": "https://www.rae.es/dpd/le%C3%ADsmo"
+            }
+          }
+        },
+        {
+          "prompt": "No, ___.",
+          "answers": [
+            "no me quiere"
+          ],
+          "explain": "Вопрос: любит ли она тебя? Ответ о себе: no me quiere. Действует Елена, поэтому quiere.",
+          "context": "Елена меня не любит.",
+          "sourceRef": "35.3.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "¿Te quiere Elena?",
+            ""
+          ],
+          "sourceLabel": "Вопрос собеседника",
+          "facts": {
+            "label": "Форма глагола для ответа",
+            "items": [
+              [
+                "Уже готова",
+                "quiere"
+              ]
+            ]
+          },
+          "inputFormat": {
+            "instruction": "Впиши пропущенную часть ответа: местоимение и данную форму глагола. В отрицательном ответе добавь no.",
+            "placeholder": "Пропущенная часть"
+          }
+        },
+        {
+          "prompt": "No, ___.",
+          "answers": [
+            "no los conozco",
+            "no les conozco"
+          ],
+          "explain": "Супруги — смешанная группа: los. Отрицание перед местоимением.",
+          "context": "Я не знаю супругов Пардо.",
+          "sourceRef": "35.3.9",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "¿Conoces a los Sres. Pardo?",
+            ""
+          ],
+          "sourceLabel": "Вопрос собеседника",
+          "facts": {
+            "label": "Форма глагола для ответа",
+            "items": [
+              [
+                "Уже готова",
+                "conozco"
+              ]
+            ]
+          },
+          "inputFormat": {
+            "instruction": "Впиши пропущенную часть ответа: местоимение и данную форму глагола. В отрицательном ответе добавь no.",
+            "placeholder": "Пропущенная часть"
+          },
+          "answerWarnings": {
+            "no les conozco": {
+              "preferred": "no los conozco",
+              "message": "Ответ засчитан. Это допустимый региональный вариант для людей мужского грамматического рода.",
+              "explanation": "Основной образец этого урока: no los conozco. Вариант не является грамматической ошибкой; употребление зависит от региона и обращения.",
+              "source": "https://www.rae.es/dpd/le%C3%ADsmo"
+            }
+          }
+        },
+        {
+          "prompt": "Sí, ___ bien.",
+          "answers": [
+            "me conocen"
+          ],
+          "explain": "Вопрос te conocen — знают тебя? Ответ me conocen — знают меня. Действуют работники магазина.",
+          "context": "В этом магазине меня хорошо знают.",
+          "sourceRef": "35.3.10",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "¿Te conocen en esta tienda?",
+            ""
+          ],
+          "sourceLabel": "Вопрос собеседника",
+          "facts": {
+            "label": "Форма глагола для ответа",
+            "items": [
+              [
+                "Уже готова",
+                "conocen"
+              ]
+            ]
+          },
+          "inputFormat": {
+            "instruction": "Впиши пропущенную часть ответа: местоимение и данную форму глагола. В отрицательном ответе добавь no.",
+            "placeholder": "Пропущенная часть"
+          }
+        },
+        {
+          "prompt": "___ .",
+          "answers": [
+            "No lo veo"
+          ],
+          "explain": "No стоит перед lo, а lo перед veo: No lo veo.",
+          "context": "Исправь порядок слов. Речь о телефоне.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "Lo no veo.",
+            ""
+          ],
+          "sourceLabel": "Фраза с ошибкой",
+          "interaction": "build",
+          "tiles": [
+            "veo",
+            "lo",
+            "No"
+          ],
+          "inputFormat": {
+            "instruction": "Собери всю исправленную фразу без точки.",
+            "placeholder": "Исправленная фраза"
+          }
+        },
+        {
+          "prompt": "___ .",
+          "answers": [
+            "No la he comprado"
+          ],
+          "explain": "Местоимение la перед вспомогательным he; no перед местоимением.",
+          "context": "Исправь порядок слов. Речь о фотографии.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceParts": [
+            "",
+            "No he la comprado.",
+            ""
+          ],
+          "sourceLabel": "Фраза с ошибкой",
+          "interaction": "build",
+          "tiles": [
+            "comprado",
+            "la",
+            "No",
+            "he"
+          ],
+          "inputFormat": {
+            "instruction": "Собери всю исправленную фразу без точки.",
+            "placeholder": "Исправленная фраза"
+          }
+        }
+      ],
+      "preview": {
+        "source": "—¿Has visto la carta? —No, ___.",
+        "sentenceParts": [
+          "—¿Has visto la carta? —No, ",
+          "."
+        ],
+        "answer": "no la he visto",
+        "targetPrefix": "",
+        "translation": "Ты видел письмо? — Нет, я его не видел."
+      },
+      "instruction": "Прочитай вопрос и ответь от лица другого человека. Форма глагола дана рядом. В конце исправь порядок слов.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши только пропущенную часть реплики.",
+        "placeholder": "Часть ответа"
+      }
+    },
+    {
+      "id": "35.4",
+      "title": "35.4 · Уточни: меня, нас или их",
+      "theorySections": [
+        3
+      ],
+      "questions": [
+        {
+          "prompt": "___",
+          "answers": [
+            "me a mí"
+          ],
+          "explain": "Me — меня, a mí подчёркивает того же человека. Mi без ударения означало бы «мой».",
+          "context": "Я знаю эту девушку, но она меня не знает.",
+          "sourceRef": "35.4.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "Yo conozco a esa chica, pero ella no ",
+            " conoce ",
+            "."
+          ],
+          "gapWordCounts": [
+            1,
+            2
+          ],
+          "inputFormat": {
+            "instruction": "В первый пропуск впиши короткое местоимение, во второй — a и уточнение человека.",
+            "placeholder": "Местоимение / a + человек"
+          }
+        },
+        {
+          "prompt": "___",
+          "answers": [
+            "nos a nosotros"
+          ],
+          "explain": "Говорящий входит в смешанную группу: nos и a nosotros. Длинное уточнение не заменяет nos.",
+          "context": "Мы с подругой видим Роберто, но он нас не видит. Говорит мужчина.",
+          "sourceRef": "35.4.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "Desde aquí vemos a Roberto, pero él no ",
+            " ve ",
+            "."
+          ],
+          "gapWordCounts": [
+            1,
+            2
+          ],
+          "inputFormat": {
+            "instruction": "В первый пропуск впиши короткое местоимение, во второй — a и уточнение человека.",
+            "placeholder": "Местоимение / a + человек"
+          }
+        },
+        {
+          "prompt": "___",
+          "answers": [
+            "la a ella"
+          ],
+          "explain": "Кого не любит Альфредо? Тересу: la, a ella.",
+          "context": "Тереса любит Альфредо, но он её не любит.",
+          "sourceRef": "35.4.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "Teresa quiere a Alfredo, pero él no ",
+            " quiere ",
+            "."
+          ],
+          "gapWordCounts": [
+            1,
+            2
+          ],
+          "inputFormat": {
+            "instruction": "В первый пропуск впиши короткое местоимение, во второй — a и уточнение человека.",
+            "placeholder": "Местоимение / a + человек"
+          }
+        },
+        {
+          "prompt": "___",
+          "answers": [
+            "las a ellas"
+          ],
+          "explain": "Третьи лица, несколько женщин: las и a ellas. Это не обращение на usted(es).",
+          "context": "Эти женщины меня знают, но я их не знаю.",
+          "sourceRef": "35.4.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "Esas señoras me conocen, pero yo no ",
+            " conozco ",
+            "."
+          ],
+          "gapWordCounts": [
+            1,
+            2
+          ],
+          "inputFormat": {
+            "instruction": "В первый пропуск впиши короткое местоимение, во второй — a и уточнение человека.",
+            "placeholder": "Местоимение / a + человек"
+          }
+        },
+        {
+          "prompt": "___",
+          "answers": [
+            "los a ustedes",
+            "les a ustedes"
+          ],
+          "explain": "Смешанная группа адресатов ustedes: los; a ustedes уточняет, кого не знают.",
+          "context": "Вы меня знаете, но я вас не знаю. Обращение к мужчине и женщине на ustedes.",
+          "sourceRef": "35.4.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "Ustedes me conocen, pero yo no ",
+            " conozco ",
+            "."
+          ],
+          "gapWordCounts": [
+            1,
+            2
+          ],
+          "inputFormat": {
+            "instruction": "В первый пропуск впиши короткое местоимение, во второй — a и уточнение человека.",
+            "placeholder": "Местоимение / a + человек"
+          },
+          "answerWarnings": {
+            "les a ustedes": {
+              "preferred": "los a ustedes",
+              "message": "Ответ засчитан. Это допустимое le / les при вежливом обращении.",
+              "explanation": "Основной образец этого урока: los a ustedes. Вариант не является грамматической ошибкой; употребление зависит от региона и обращения.",
+              "source": "https://www.rae.es/dpd/le%C3%ADsmo"
+            }
+          }
+        },
+        {
+          "prompt": "___",
+          "answers": [
+            "los a ellos",
+            "les a ellos"
+          ],
+          "explain": "Юноши — los, a ellos. Мигель действует, а юноши — те, кого он не знает.",
+          "context": "Эти юноши знают Мигеля, но Мигель их не знает.",
+          "sourceRef": "35.4.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "gapParts": [
+            "Esos chicos conocen a Miguel, pero Miguel no ",
+            " conoce ",
+            "."
+          ],
+          "gapWordCounts": [
+            1,
+            2
+          ],
+          "inputFormat": {
+            "instruction": "В первый пропуск впиши короткое местоимение, во второй — a и уточнение человека.",
+            "placeholder": "Местоимение / a + человек"
+          },
+          "answerWarnings": {
+            "les a ellos": {
+              "preferred": "los a ellos",
+              "message": "Ответ засчитан. Это допустимый региональный вариант для людей мужского грамматического рода.",
+              "explanation": "Основной образец этого урока: los a ellos. Вариант не является грамматической ошибкой; употребление зависит от региона и обращения.",
+              "source": "https://www.rae.es/dpd/le%C3%ADsmo"
+            }
+          }
+        },
+        {
+          "prompt": "A mí no ___ conoce.",
+          "answers": [
+            "me"
+          ],
+          "explain": "С a mí нужно и me: A mí no me conoce. Одного длинного сочетания недостаточно.",
+          "context": "Исправь пропуск короткого местоимения: «Именно меня он не знает».",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "inputFormat": {
+            "instruction": "Добавь только одно короткое местоимение.",
+            "placeholder": "Короткое местоимение"
+          }
+        }
+      ],
+      "preview": {
+        "source": "No ___.",
+        "sentenceParts": [
+          "No ",
+          "."
+        ],
+        "answer": "te veo a ti",
+        "targetPrefix": "",
+        "translation": "Я не вижу именно тебя."
+      },
+      "instruction": "Сохрани оба местоимения: короткое перед глаголом и уточнение с a после него. В каждой реплике ясно сказано, о ком речь.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Заполни оба пропуска: короткая форма, затем a + человек.",
+        "placeholder": "Местоимения"
+      }
+    }
+  ],
+  "learningOrder": [
+    "section:0",
+    "exercise:35.1",
+    "section:1",
+    "exercise:35.2",
+    "section:2",
+    "exercise:35.3",
+    "section:3",
+    "exercise:35.4",
+    "summary"
+  ],
+  "summary": {
+    "wordGroups": [
+      {
+        "title": "👀 Кого или что заменяем",
+        "words": [
+          [
+            "me / te / nos / os",
+            "меня / тебя / нас / вас (vosotros/as)"
+          ],
+          [
+            "lo / la / los / las",
+            "его / её / их; также адресаты usted(es)"
+          ],
+          [
+            "Las veo.",
+            "Я вижу их — женщин, а не «они видят»"
+          ]
+        ]
+      },
+      {
+        "title": "📍 Место в предложении",
+        "words": [
+          [
+            "No la veo.",
+            "no → местоимение → глагол"
+          ],
+          [
+            "No lo he comprado.",
+            "Местоимение перед he, не внутри he comprado"
+          ]
+        ]
+      },
+      {
+        "title": "💬 Уточняем человека",
+        "words": [
+          [
+            "A mí no me conoce.",
+            "A mí добавляем, me сохраняем"
+          ],
+          [
+            "No nos ven a nosotros.",
+            "Смешанная группа с говорящим: nos / a nosotros"
+          ],
+          [
+            "le / les с людьми",
+            "Нормативные региональные формы и вежливое обращение; для вещей используем lo/la/los/las"
+          ]
+        ]
+      }
+    ]
+  }
+}

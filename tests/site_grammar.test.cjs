@@ -27,6 +27,47 @@ function context(grammar = [unit], storage = new Map(), handlers = {}) {
 function unlockUntil(run, route) {
  run(`(() => { const u=COURSE.grammar[0]; for(const r of gRoutes(u).slice(0,gRoutes(u).indexOf(${JSON.stringify(route)}))) { const g=r.startsWith('section:')?u.sections[+r.split(':')[1]].check:u.exercises.find(g=>r==='exercise:'+g.id); if(g)P.grammar[grammarKey(u,g)]={correct:0,total:g.questions.length}; else P.grammarRead[u.id+'/'+r]=true; } })()`);
 }
+
+test('personal-pronoun units finish every question and preserve failed attempts at the related theory',()=>{
+ const files=fs.readdirSync('content/grammar').filter(f=>/^03[45]_.*\.json$/.test(f));
+ for(const file of files){
+  const u=JSON.parse(fs.readFileSync('content/grammar/'+file,'utf8'));const run=context([u]);
+  run(`gStart(COURSE.grammar[0].id,'all');`);let turns=0;
+  while(!run('G.ended')&&turns++<200)run(`var s=G.steps[G.at];if(s.type==='question'){var g=gGroups(gUnit()).find(g=>g.id===s.group);gResponse(s).value=g.questions[s.qi].answers[0];gCheck();}gMove(1);`);
+  assert.ok(turns<200);assert.equal(run('gUnitComplete(gUnit())'),true);
+  for(const g of [...u.sections.map(s=>s.check),...u.exercises])for(const q of g.questions)for(const a of q.answers)
+   assert.equal(run(`grammarResult(${JSON.stringify(q)},${JSON.stringify(a)}).good`),true,u.number+'/'+a);
+  for(const g of u.exercises){
+   const storage=new Map();let r=context([u],storage);unlockUntil(r,'exercise:'+g.id);
+   r(`save();gStart(COURSE.grammar[0].id,'exercise:${g.id}');gMove(1);gResponse(G.steps[G.at]).value='borrador';gSave();`);
+   r=context([u],storage);r(`gStart(COURSE.grammar[0].id,'all',true);`);assert.equal(r('gResponse(G.steps[G.at]).value'),'borrador');
+   r(`var best=JSON.stringify(P.grammar);for(let i=0;i<3;i++){gResponse(G.steps[G.at]).value='incorrecto';gCheck();if(!G.recovery)gMove(1);}`);
+   assert.equal(r('JSON.stringify(P.grammar)'),r('best'));
+   r=context([u],storage);r(`gStart(COURSE.grammar[0].id,'all',true);`);assert.ok(r('G.recovery'));r('gReviewTheory();');
+   assert.ok(r('gPlayerView()').includes(u.sections[g.theorySections[0]].title));
+   for(let i=1;i<g.theorySections.length;i++)r('gMove(1);');r('gRepeatExercise();');
+   assert.equal(r(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id==='${g.id}')).errors`),0);
+  }
+ }
+});
+
+test('unit 34 checks speaker inclusion, address, accents and contrast',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/034_yo_tu_el.json','utf8'));const run=context([u]);
+ for(const [ref,a,status] of [['34.1.2','nosotras','wrong'],['34.1.2','nosotros','correct'],['34.1.3','él','wrong'],['34.1.6','nosotros','wrong'],['34.1.8','tu','wrong'],['34.1.8','tú','correct'],['34.3.2','Ella el','wrong'],['34.3.2','Ella él','correct'],['34.3.3','Es argentino','wrong'],['34.4.1','ti','wrong'],['34.4.1','tú','correct'],['34.4.5','Yo ellas','wrong']])
+  assert.equal(run(`grammarResult(COURSE.grammar[0].exercises.flatMap(g=>g.questions).find(q=>q.sourceRef===${JSON.stringify(ref)}),${JSON.stringify(a)},{},true).status`),status,ref+'/'+a);
+});
+
+test('unit 35 checks roles, placement, doubling, semantic accents and normative leismo',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/035_te_amo.json','utf8'));const run=context([u]);
+ for(const [ref,a,status] of [['35.1.1','lo','correct'],['35.1.1','le','almost'],['35.1.3','les','almost'],['35.1.4','le','wrong'],['35.1.5','le','wrong'],['35.1.6','les','almost'],['35.2.3','los','wrong'],['35.2.3','os','correct'],['35.2.4','le','almost'],['35.2.5','les','almost'],['35.2.6','las','wrong'],['35.3.3','no he lo comprado','wrong'],['35.3.3','no le he comprado','wrong'],['35.3.4','nos quiero','wrong'],['35.3.6','te recuerdo','correct'],['35.3.8','no te quiero','wrong'],['35.3.8','no me quiere','correct'],['35.3.10','te conocen','wrong'],['35.3.10','me conocen','correct'],['35.4.1','me a mi','wrong'],['35.4.1','a mí','wrong'],['35.4.1','me a mí','correct'],['35.4.2','nos a nosotras','wrong'],['35.4.2','nos a nosotros','correct'],['35.4.4','les a ellas','wrong'],['35.4.5','les a ustedes','almost'],['35.4.6','les a ellos','almost']])
+  assert.equal(run(`grammarResult(COURSE.grammar[0].exercises.flatMap(g=>g.questions).find(q=>q.sourceRef===${JSON.stringify(ref)}),${JSON.stringify(a)},{},true).status`),status,ref+'/'+a);
+ // A normative warning uses yellow feedback and does not consume one of the three lives.
+ const storage=new Map();const r=context([u],storage);unlockUntil(r,'exercise:35.1');
+ r(`gStart(COURSE.grammar[0].id,'exercise:35.1');gMove(1);gResponse(G.steps[G.at]).value='le';gCheck();`);
+ assert.equal(r(`gAttempt(gUnit(),gUnit().exercises[0]).errors`),0);
+ assert.equal(r(`gResponse(G.steps[G.at]).checked`),true);
+ assert.ok(r('gPlayerView()').includes('Ответ засчитан.'));
+});
 test('unit 28 accepts normative relatives and rejects pronoun duplication and semantic accents',()=>{
  const u=JSON.parse(fs.readFileSync('content/grammar/028_relativos_que.json','utf8'));const run=context([u]);
  for(const [ref,a,status] of [['28.1.1','quien','correct'],['28.1.1','que','correct'],['28.1.3','quien','wrong'],['28.1.5','que','correct'],['28.1.8','que','wrong'],['28.1.10','que','correct'],['28.2.7','con quien','wrong'],['28.2.7','con quienes','correct'],['28.3.1','que conoci en el parque','almost'],['28.3.1','que lo conocí en el parque','wrong'],['28.3.8','con quien','wrong'],['28.4.2','el que','wrong'],['28.4.2','lo que','correct'],['28.4.5','lo qué','wrong']])
@@ -720,7 +761,7 @@ test('the group-name mini-check keeps errors and repeats them without losing liv
 test('every mini-check in all 17 units renders choices and completes by clicking',()=>{
  const units=fs.readdirSync('content/grammar').filter(f=>f.endsWith('.json')).sort()
   .map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
- assert.equal(units.length,33);
+ assert.equal(units.length,35);
  for(const unit of units){
   const run=context([unit]);
   for(const [index,section] of unit.sections.entries()){
@@ -870,7 +911,7 @@ test('all typing screens show a persistent format and example without changing g
   })())`));
   typed+=result.typed;legacy+=result.legacy;
  }
- assert.equal(typed,822);assert.equal(legacy,95);
+ assert.equal(typed,872);assert.equal(legacy,105);
 });
 
 test('quantity answers accept digits or words while the field explains the quantity format', () => {
@@ -930,7 +971,7 @@ test('the size-based life limit stops every exercise in all 17 units, without cr
   assert.equal(run(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id===${JSON.stringify(group.id)})).errors`),limit);
   count++;
  }
- assert.equal(count,124);
+ assert.equal(count,133);
 });
 
 test('exit, route restart, whole-unit restart and reload preserve the failed or active attempt', () => {
@@ -1267,7 +1308,7 @@ test('grammar list gives each theme a distinct icon and marks only fully complet
  const run=context(units);
  run('view.grammar=null;');
  const icons=run('COURSE.grammar.map(u=>G_UNIT_ICONS[u.id])');
- assert.ok(icons.every(Boolean));assert.equal(new Set(icons).size,33);
+ assert.ok(icons.every(Boolean));assert.equal(new Set(icons).size,35);
  assert.ok(!run('grammarView()').includes('gcompleted-badge'));
  // Completing the exercises alone leaves mini-checks and theory unfinished.
  run(`const doneUnit=COURSE.grammar[0];for(const g of doneUnit.exercises)P.grammar[grammarKey(doneUnit,g)]={correct:0,total:g.questions.length};`);
@@ -1278,7 +1319,7 @@ test('grammar list gives each theme a distinct icon and marks only fully complet
  assert.equal(run('gUnitComplete(COURSE.grammar[0])'),true);
  const html=run('grammarView()');
  assert.equal((html.match(/gcompleted-badge/g)||[]).length,1);
- assert.ok(html.includes('Пройдено тем: 1 из 33'));
+ assert.ok(html.includes('Пройдено тем: 1 из 35'));
  assert.match(html,/class="mcard gcomplete" data-grammar="001_el_hijo_la_hija"/);
  assert.match(html,/class="mcard " data-grammar="002_el_libro_la_mesa"/);
  run('delete P.grammarRead[COURSE.grammar[0].id+"/summary"];');
@@ -1629,7 +1670,7 @@ test('multi-answer audit keeps regional, contextual and equally valid choices gr
    }
   }
  }
- assert.equal(questions,1528);assert.equal(alternatives,202);assert.equal(warnings,6);
+ assert.equal(questions,1609);assert.equal(alternatives,214);assert.equal(warnings,18);
 });
 
 test('yellow mini-check choices still have no lives and complete normally',()=>{
@@ -1667,7 +1708,7 @@ test('all 17 completion screens derive the next lesson from course order and pre
    assert.ok(html.includes('Все уроки раздела пройдены!'));assert.ok(!html.includes('data-gnext-unit'));
    handlers.click({target:{closest:s=>s==='button, .spoiler, [data-say], [data-line]'?{dataset:{grammarList:''}}:null,classList:{contains:()=>false}}});
    assert.equal(run('G'),null);assert.equal(run('view.grammar'),null);assert.equal(run('view.tab'),'grammar');
-   assert.equal((run('grammarView()').match(/data-grammar="/g)||[]).length,33);
+   assert.equal((run('grammarView()').match(/data-grammar="/g)||[]).length,35);
   }
   assert.equal(run('JSON.stringify(P)'),before);
  }
@@ -1798,7 +1839,7 @@ test('all grammar choice sets receive valid, balanced attempt orders without cha
    assert.deepEqual(result,{},`${u.number}/${g.id}: ${JSON.stringify(result)}`);
   }
  }
- assert.equal(standard,611);assert.equal(guided,9);
+ assert.equal(standard,632);assert.equal(guided,9);
  assert.equal(run('JSON.stringify(COURSE.grammar)'),before);
 });
 

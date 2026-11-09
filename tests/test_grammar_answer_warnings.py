@@ -11,8 +11,12 @@ def test_warning_scope_is_explicit_and_preserves_feminine_and_plural_contexts():
     marked = [(u['number'], g['id'], i, q) for u in units
               for g in [*[s['check'] for s in u['sections'] if s.get('check')], *u['exercises']]
               for i, q in enumerate(g['questions']) if q.get('answerWarnings')]
-    assert [(n, gid, i) for n, gid, i, _ in marked] == [
+    assert [(n, gid, i) for n, gid, i, _ in marked if n < 35] == [
         (1, '1.1', 6), (1, '1.2', 1), (4, '4.1', 11), (4, '4.3', 2), (4, '4.4', 3), (21, '21.2', 0)]
+    assert [(gid, i) for n, gid, i, _ in marked if n == 35] == [
+        ('35.1',0),('35.1',2),('35.1',5),
+        ('35.2',1),('35.2',3),('35.2',4),('35.2',6),
+        ('35.3',0),('35.3',6),('35.3',8),('35.4',4),('35.4',5)]
     for _, _, _, q in marked:
         for value, warning in q['answerWarnings'].items():
             assert value in q['answers']
