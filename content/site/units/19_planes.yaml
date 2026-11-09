@@ -12,6 +12,7 @@ lessons:
     kind: vocab
     title: Сегодня вечером, на следующей неделе
     goal: сказать, когда — сегодня вечером, послезавтра, на следующей неделе
+    version: 2
     vocab:
       - "📝 el plan [план] — план :: ¿Tienes planes para el sábado? — У тебя есть планы на субботу?"
       - "🌙 esta noche [э́ста но́чэ] — сегодня вечером"
@@ -24,6 +25,7 @@ lessons:
       - learn: [el plan, esta noche, pasado mañana]
       - choose:
           title: Traduce
+          skill: future_time
           items:
             - q: "Pasado mañana es sábado."
               options: "Послезавтра суббота. | Завтра суббота. | Сегодня суббота."
@@ -36,15 +38,21 @@ lessons:
             - "la semana que viene — на следующей неделе"
             - "el año que viene — в следующем году"
             - "el próximo lunes — в следующий понедельник"
-      - note: "**para** — «для» или «на»: _planes para el sábado_ — «планы на субботу». Вы знаете его по _para mí_ — «для меня»."
       - write:
           title: Traduce
-          format: по-испански
+          format: когда — по-испански, без предлога
+          skill: future_time
           items:
-            - "в следующую пятницу => el próximo viernes"
+            - q: "в следующую пятницу"
+              a: "el próximo viernes | el viernes próximo"
+              mistakes: {"en el próximo viernes": "Предлог не нужен: **el próximo viernes**.", "el próxima viernes": "viernes — мужского рода: el **próximo** viernes."}
             - "сегодня вечером => esta noche"
+      - note:
+          id: para
+          text: "**para** — «для» или «на»: _planes para el sábado_ — «планы на субботу». Вы знаете его по _para mí_ — «для меня»."
       - build:
           title: Соберите фразу
+          skill: future_time
           items:
             - es: "¿Qué planes tienes para el fin de semana?"
               ru: "Какие у тебя планы на выходные?"
@@ -54,6 +62,7 @@ lessons:
     kind: grammar
     title: "Voy a + инфинитив: ближайшее будущее"
     goal: рассказать о планах — voy a + инфинитив
+    version: 2
     vocab:
       - "🏛 visitar [бисита́р] — посещать, навещать"
       - "🛋 descansar [дэсканса́р] — отдыхать"
@@ -66,6 +75,7 @@ lessons:
             - "Esta noche voy a ver una película. — Сегодня вечером я буду смотреть фильм."
             - "¿Qué vas a hacer el sábado? — Что ты будешь делать в субботу?"
       - compare:
+          id: ir_a_inf
           cards:
             - head: ir + a + инфинитив
               say: false
@@ -75,44 +85,65 @@ lessons:
               ex: ["Voy a trabajar.", "Hoy va a nevar.", "En agosto vamos a ir a Málaga."]
       - choose:
           title: Как сказать?
+          skill: ir_a_inf
           items:
             - q: "Я буду готовить."
               options: "Voy a cocinar. | Voy cocinar. | Voy de cocinar."
+      - write:
+          title: Вставьте ir + a
+          format: форма ir + a
+          skill: ir_a_inf
+          items:
+            - q: "(yo) ___ estudiar."
+              a: "voy a"
+              mistakes: {"voy": "После ir нужно **a**: voy a estudiar."}
+            - "¿Qué ___ hacer (tú) esta noche? => vas a"
+            - "Mañana ___ llover. => va a"
+            - q: "Ellos ___ ver una película."
+              a: "van a"
+              mistakes: {"vamos a": "vamos — «мы». Они — **van a**."}
       - learn: [visitar, descansar, la fiesta, quedar]
-      - note: "Если после глагола стоит **человек**, перед ним ставят **a**: _Visito **a** mis abuelos._ _Quiero ver **a** Ana._ Перед местом или вещью — нет: _Visito el museo._"
+      - note:
+          id: personal_a
+          text: "Если после глагола стоит **человек**, перед ним ставят **a**: _Visito **a** mis abuelos._ _Quiero ver **a** Ana._ Перед местом или вещью — нет: _Visito el museo._"
       - choose:
           title: Выберите
+          skill: personal_a
           items:
             - q: "Я навещаю бабушку и дедушку."
               options: "Visito a mis abuelos. | Visito mis abuelos. | Visito de mis abuelos."
             - q: "Мы посещаем музей."
               options: "Visitamos el museo. | Visitamos al museo. | Visitamos a museo."
       - write:
-          title: Вставьте ir + a
-          format: форма ir + a
-          items:
-            - "(yo) ___ estudiar. => voy a"
-            - "¿Qué ___ hacer (tú) esta noche? => vas a"
-            - "Mañana ___ llover. => va a"
-            - "Ellos ___ quedar con sus amigos. => van a"
-      - write:
           title: Traduce
           format: фраза по-испански
+          rule: ir_a_inf
+          skill: ir_a_inf
           items:
-            - "Завтра я буду отдыхать. => Mañana voy a descansar"
-            - "Мы собираемся путешествовать. => Vamos a viajar"
+            - q: "Завтра я буду отдыхать."
+              a: "Mañana voy a descansar | Voy a descansar mañana"
+              mistakes: {"mañana voy descansar": "После ir нужно **a**: voy a descansar."}
+            - q: "Мы собираемся путешествовать."
+              a: "Vamos a viajar"
+              mistakes: {"vamos viajar": "После ir нужно **a**: vamos a viajar."}
+            - q: "В субботу я встречаюсь с друзьями. (quedar)"
+              a: "El sábado voy a quedar con mis amigos | El sábado quedo con mis amigos | Voy a quedar con mis amigos el sábado"
+            - q: "Мы пойдём на вечеринку."
+              a: "Vamos a ir a la fiesta | Vamos a la fiesta"
 
   - id: tener_que
     kind: grammar
     title: "Tengo que: что нужно сделать"
     goal: сказать, что нужно сделать, — tengo que, hay que
+    version: 2
     vocab:
-      - "❗ tener que [тэнэ́р кэ] — быть должным, нужно (кому-то) :: Tengo que trabajar. — Мне нужно работать."
+      - "❗ tener que [тэнэ́р кэ] — быть должным, нужно (кому-то) {forms: tengo tienes tiene tenemos tienen} :: Tengo que trabajar. — Мне нужно работать."
       - "📌 hay que [ай кэ] — нужно, надо (всем, вообще) :: Hay que comprar pan. — Нужно купить хлеб."
       - "🛒 comprar [компра́р] — покупать"
     blocks:
       - learn: [tener que, hay que, comprar]
       - compare:
+          id: tener_hay
           cards:
             - head: tener que
               label: нужно конкретному человеку
@@ -126,6 +157,7 @@ lessons:
               ex: ["Hay que beber mucha agua.", "Hay que cerrar la ventana."]
       - choose:
           title: Как сказать?
+          skill: tener_que
           items:
             - q: "Ане нужно сходить в банк."
               options: "Ana tiene que ir al banco. | Ana hay que ir al banco. | Ana tiene ir al banco."
@@ -134,12 +166,20 @@ lessons:
       - write:
           title: Traduce
           format: фраза по-испански
+          skill: tener_que
           items:
-            - "Нам нужно купить хлеб. => Tenemos que comprar pan"
-            - "Мне нужно позвонить маме. (llamar a mi madre) => Tengo que llamar a mi madre"
-      - rule: "После **quiero**, **puedo**, **prefiero** инфинитив идёт без **que**: _Quiero descansar._ _Hoy no puedo ir._"
+            - q: "Нам нужно купить хлеб."
+              a: "Tenemos que comprar pan"
+              mistakes: {"hay que comprar pan": "Нужно конкретно нам — **tenemos que**.", "tenemos comprar pan": "После tener нужно **que**: tenemos que comprar."}
+            - q: "Мне нужно позвонить маме. (llamar a mi madre)"
+              a: "Tengo que llamar a mi madre"
+              mistakes: {"tengo que llamar mi madre": "Перед человеком — **a**: llamar a mi madre."}
+      - rule:
+          id: sin_que
+          text: "После **quiero**, **puedo**, **prefiero** инфинитив идёт без **que**: _Quiero descansar._ _Hoy no puedo ir._"
       - choose:
           title: Выберите
+          skill: tener_que
           items:
             - q: "Hoy no puedo ___."
               options: "ir | que ir | a ir"
@@ -148,6 +188,7 @@ lessons:
     kind: dialogue
     title: Пойдём в кино?
     goal: пригласить, согласиться и вежливо отказаться
+    version: 2
     vocab:
       - "😔 lo siento [ло сьэ́нто] — мне жаль, извини"
       - "🔁 otro día [о́тро ди́а] — в другой раз"
@@ -158,6 +199,7 @@ lessons:
       - learn: [lo siento, otro día]
       - choose:
           title: Что ответить?
+          skill: invite
           items:
             - lines: ["Pablo: ¿Quieres ir al cine esta noche?"]
               q: "Вы не можете: нужно заниматься."
@@ -165,16 +207,19 @@ lessons:
       - learn: ["¡Genial!", "¿Quedamos...?", "¡Perfecto!"]
       - sort:
           title: Согласие или отказ?
+          skill: invite
           groups:
             "✅ да": ["¡Genial!", "¡Perfecto!", "Sí, claro."]
             "❌ нет": ["Lo siento, no puedo.", "Otro día."]
       - dialogue:
+          id: no_puedo
           title: Отказ
           lines:
             - "Pablo: Hola, Lucía. ¿Quieres ir al cine esta noche? | Привет, Лусия. Хочешь пойти в кино сегодня вечером?"
             - "Lucía: Lo siento, esta noche no puedo. Tengo que estudiar. | Извини, сегодня вечером не могу. Мне нужно заниматься."
             - "Pablo: Vale, otro día. | Ладно, в другой раз."
       - dialogue:
+          id: genial
           title: Согласие
           lines:
             - "Pablo: ¿Y el sábado? ¿Qué vas a hacer? | А в субботу? Что будешь делать?"
@@ -188,17 +233,24 @@ lessons:
           items:
             - q: "¿Por qué Lucía no puede ir al cine esta noche?"
               options: "Porque tiene que estudiar. | Porque está enferma. | Porque no le gusta el cine."
+              source: no_puedo
             - q: "¿Dónde quedan?"
               options: "Delante del cine, a las siete. | En casa de Lucía, a las siete. | Delante del cine, a las ocho."
+              source: genial
       - mission:
+          id: beach
           title: Приглашение на выходные
           text: "Вы хотите позвать Диего на пляж в воскресенье. Встретиться можно в десять перед вокзалом."
       - build:
+          source: beach
+          skill: invite
           items:
             - es: "¿Quieres ir a la playa el domingo?"
               ru: "Пригласите Диего: «Хочешь пойти на пляж в воскресенье?»"
               extra: [vas]
       - choose:
+          source: beach
+          skill: invite
           items:
             - lines: ["Diego: ¡Genial! ¿A qué hora quedamos?"]
               options: "¿Quedamos a las diez delante de la estación? | ¿Quedamos a las diez en la estación de tren mañana? | Lo siento, no puedo."
@@ -208,14 +260,16 @@ lessons:
     kind: reading
     title: Планы на лето
     goal: понять письмо о планах на отпуск
+    version: 2
     vocab:
       - "🧳 el viaje [бья́хэ] — путешествие, поездка"
       - "🏝 las vacaciones [бакаθьо́нэс] — отпуск, каникулы"
       - "🤝 conocer [коноθэ́р] — знакомиться; знать (людей, места)"
     blocks:
-      - "Ирина пишет подруге о своих планах на отпуск."
       - learn: [el viaje, las vacaciones, conocer]
+      - "Ирина пишет подруге о своих планах на отпуск."
       - reading:
+          id: irina
           title: ¡Nos vamos de viaje!
           text: |
             ¡Hola, Ana! ¿Qué tal?
@@ -244,15 +298,23 @@ lessons:
           text: "**la noticia** — «новость», **de verdad** — «настоящий» (_una paella de verdad_), **un beso** — «поцелуй»: так испанцы заканчивают письма друзьям, как мы пишем «целую»."
       - choose:
           title: Responde
+          source: irina
+          rule: none
           items:
             - q: "¿Cuándo va a viajar Irina a España?"
               options: "En agosto. | En julio. | En mayo."
-            - q: "¿Con quién va a viajar?"
+            - q: "¿Dónde va a estar Irina en las vacaciones?"
+              options: "En España. | En casa. | En Kiev."
+            - q: "¿Con quién va de viaje?"
               options: "Con su novio. | Con Ana. | Con su familia."
             - q: "¿Por qué van a ir a Valencia?"
               options: "Porque su novio quiere comer una paella. | Porque quieren ver el Prado. | Porque la familia de Ana vive allí."
+            - q: "¿A quién quiere conocer Irina?"
+              options: "A la familia de Ana. | A su novio. | A sus abuelos."
       - sort:
           title: Что где?
+          source: irina
+          rule: none
           groups:
             "Madrid": [el museo del Prado, el parque del Retiro]
             "Valencia": [una paella de verdad]
@@ -260,29 +322,48 @@ lessons:
     quiz:
       - q: ¿Cuántas semanas van a estar en España?
         options: "dos | una | tres"
+        source: irina
       - q: ¿Qué van a hacer después de Valencia?
         options: "descansar en la playa | visitar Madrid | comer en Valencia"
+        source: irina
 
   - id: quiz
     kind: quiz
     title: Планы
+    goal: рассказать о планах, сказать, что нужно сделать, пригласить и ответить
+    version: 2
+    check: soft
     blocks:
-      - "Пришло время проверить себя: это тест по теме «Планы»."
+      - "Это тест по теме «Планы»."
       - cando:
           - "рассказать о планах: voy a + инфинитив"
           - "сказать, что нужно сделать: tengo que, hay que"
           - "пригласить, согласиться и отказаться"
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "esta noche — сегодня вечером"
+            - "descansar — отдыхать"
+            - "comprar — покупать"
+            - "lo siento — мне жаль"
+            - "las vacaciones — отпуск"
     quiz:
       - q: "Mañana ___ visitar a mis abuelos."
         options: "voy a | voy | voy de"
         explain: "О планах говорят по схеме ir + a + инфинитив, и предлог a пропускать нельзя: voy a visitar, vamos a comer."
+        skill: ir_a_inf
       - q: "¿Qué ___ hacer el sábado? (ты)"
         options: "vas a | va a | vas"
         explain: "Вопрос обращён к «ты», поэтому нужна форма vas, а после неё обязательно идёт a: vas a hacer."
+        skill: ir_a_inf
       - q: Как сказать «Мне нужно работать»?
         options: "Tengo que trabajar. | Hay que trabajo. | Tengo trabajar."
         explain: "Если что-то нужно сделать конкретному человеку, говорят tener que + инфинитив: tengo que trabajar, tienes que estudiar."
+        skill: tener_que
       - q: Как вежливо отказаться?
         options: "Lo siento, no puedo. | ¡Genial! | ¡Perfecto!"
+        skill: invite
       - q: Что значит «la semana que viene»?
         options: "на следующей неделе | на этой неделе | на прошлой неделе"
+        skill: future_time
