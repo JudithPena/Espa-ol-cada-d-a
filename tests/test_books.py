@@ -42,10 +42,10 @@ def test_first_book_includes_descriptive_b1_vocabulary():
 
 def test_pronoun_distinctions_in_first_chapter():
     book = next(b for b in load_books() if b['title'] == 'Harry Potter y la piedra filosofal')
-    def entry(block, form):
-        return next(x for x in book['blocks'][block - 1]['pronouns'] if x['es'] == form)
-    assert 'пассивной' in entry(2, 'Se supiera')['explanation']
-    assert 'пассивной' in entry(13, 'Se descubría')['explanation']
-    assert 'безличную' in entry(25, 'Si se la comparaba')['explanation']
-    assert 'заменяет le' in entry(23, 'Explicárselo')['explanation']
-    assert 'не заменяет le' in entry(23, 'Se lo pasó por los ojos')['explanation']
+    def entry(form):
+        return next(x for block in book['blocks'] for x in block['pronouns'] if x['es'] == form)
+    assert 'пассивной' in entry('Se supiera')['explanation']
+    assert 'пассивной' in entry('Se descubría')['explanation']
+    assert 'безличную' in entry('Si se la comparaba')['explanation']
+    assert 'заменяет le' in entry('Explicárselo')['explanation']
+    assert 'не заменяет le' in entry('Se lo pasó por los ojos')['explanation']

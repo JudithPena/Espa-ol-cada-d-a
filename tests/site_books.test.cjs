@@ -22,7 +22,7 @@ test('structured notes and legacy marks coexist', () => {
 });
 test('chapter vocabulary marks all appear in the rendered source and translation', () => {
   const book = JSON.parse(fs.readFileSync('content/books/harry_potter_01.json', 'utf8'));
-  assert.equal(book.blocks.length, 29);
+  assert.equal(book.blocks.length, 32);
   for (const block of book.blocks) for (const lang of ['es', 'ru']) {
     const html = ctx.bookText(block[lang], ctx.bookMarks(block, lang));
     for (const note of block.notes) if (typeof note !== 'string') {
@@ -40,4 +40,16 @@ test('pronoun entries render separately and escape all untrusted fields', () => 
 test('legacy string pronoun explanations remain safely readable', () => {
   assert.equal(ctx.bookPronouns('lo — <слово>'), '<p>lo — &lt;слово&gt;</p>');
   assert.equal(ctx.bookPronouns(null), '');
+});
+
+
+test('each book block has its own closed pronoun disclosure without an exclusive group', () => {
+  const viewCode = source.slice(source.indexOf('function bookView()'), source.indexOf('function courseView()'));
+  const book = JSON.parse(fs.readFileSync('content/books/harry_potter_01.json', 'utf8'));
+  ctx.COURSE = {books: [book]}; ctx.view = {book: 0};
+  vm.runInContext(viewCode, ctx);
+  const html = ctx.bookView();
+  const tags = html.match(/<details class="book-pronouns"[^>]*>/g) || [];
+  assert.equal(tags.length, book.blocks.length);
+  for (const tag of tags) { assert.doesNotMatch(tag, /\b(?:name|open)\s*(?:=|>|\s)/); }
 });
