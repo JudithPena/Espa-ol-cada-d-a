@@ -19,3 +19,14 @@ def test_book_chapters_have_complete_readable_blocks():
                     assert note[lang] and all(mark in block[lang] for mark in note[lang])
             for lang in ('es', 'ru'):
                 assert all(mark in block[lang] for mark in block.get('marks', {}).get(lang, []))
+
+
+def test_first_book_includes_descriptive_b1_vocabulary():
+    book = next(b for b in load_books() if b['title'] == 'Harry Potter y la piedra filosofal')
+    first = book['blocks'][0]
+    entries = {n['term']: n for n in first['notes'] if isinstance(n, dict)}
+    for term, es, ru in [('corpulento', 'corpulento', 'крупный'),
+                         ('rollizo', 'rollizo', 'полный'),
+                         ('el taladro', 'taladros', 'дрели')]:
+        assert es in entries[term]['es'] and es in first['es']
+        assert ru in entries[term]['ru'] and ru in first['ru']
