@@ -190,3 +190,24 @@ test('a separated preposition belongs only to the selected occurrence', () => {
     'Hablan en casa. <strong>Confían</strong> el uno <strong>en</strong> el otro.');
   assert.equal(ctx.bookText('<en> en', [{text:'en',occurrences:[1]}]),'&lt;en&gt; <strong>en</strong>');
 });
+
+test('chapters with exercises open on analysis and keep both panels mounted', () => {
+  const viewCode = source.slice(source.indexOf('function bookView()'), source.indexOf('function courseView()'));
+  const chapter = JSON.parse(fs.readFileSync('content/books/lola-lago-nota-falsa/chapters/001.json','utf8'));
+  ctx.COURSE = {books:[{id:'lola',title:'Book',chapters:[chapter]}]};
+  ctx.view = {book:'lola',bookChapter:chapter.id};
+  ctx.bookById = id=>ctx.COURSE.books.find(b=>b.id===id);
+  vm.runInContext(viewCode,ctx);
+  const html = ctx.bookView();
+  assert.match(html,/role="tablist"/);
+  assert.match(html,/aria-selected="true" data-book-panel-tab="analysis"/);
+  assert.match(html,/aria-selected="false" tabindex="-1" data-book-panel-tab="exercises"/);
+  assert.match(html,/id="book-panel-exercises"[^>]* hidden>/);
+  assert.match(html,/data-book-progress[^>]*>Выполнено: 0 из 4/);
+  assert.match(html,/data-book-check disabled/);
+  assert.match(html,/data-book-choice-status/);
+  chapter.exercises = [];
+  const empty = ctx.bookView();
+  assert.doesNotMatch(empty,/role="tablist"|id="book-panel-exercises"|data-book-check/);
+  assert.match(empty,/class="vseg book-block"/);
+});
