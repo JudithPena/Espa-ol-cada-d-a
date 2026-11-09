@@ -253,6 +253,15 @@ function gReviewMove(delta) {
   attempt.reviewAt=Math.max(0,Math.min(gTheorySections(unit,group).length-1,(attempt.reviewAt||0)+delta));
   gStoreAttempt(unit,group,attempt); gSave(); render();
 }
+// «Назад» браузера в плеере: есть ли предыдущий шаг (иначе выход к разделам урока).
+function gCanBack() {
+  if(!G) return false;
+  if(G.recovery) {
+    const unit=gUnit(), group=gGroups(unit).find(g=>g.id===G.recovery), attempt=group && gAttempt(unit,group);
+    return attempt?.status==='review' && (attempt.reviewAt||0)>0;
+  }
+  return !G.ended && G.at>0;
+}
 function gRepeatExercise() {
   const unit=gUnit(), group=gGroups(unit).find(g=>g.id===G.recovery), attempt=group && gAttempt(unit,group);
   if(attempt?.status!=='review' || attempt.reviewAt!==gTheorySections(unit,group).length-1) return;

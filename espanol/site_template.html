@@ -3040,9 +3040,51 @@ const app = $("#app");
 // Перерисовка убрала диалог с экрана (следующий слайд, другая вкладка) — его озвучка останавливается.
 function render() {
   renderView();
+  navSync();
   if (DLG.box && !DLG.box.isConnected) stopSpeech();
   dlgAutoplay();
 }
+/* ---------------- «Назад» браузера: сайт одностраничный, переходы между разделами пишем в history.
+   Адрес экрана — вкладка, уровень, юнит грамматики, видео и режим (урок / плеер грамматики); слайды урока
+   адрес не меняют. В уроке и в плеере «Назад» — предыдущий слайд, с первого слайда — туда, откуда урок открыли.
+   URL не меняем, только history.state. */
+let navCur = null, navRestoring = false, navSkipPop = false;
+function navKey() {
+  return { tab: view.tab, level: view.level || null, grammar: view.grammar || null, video: view.video || null, mode: G ? "grammar" : S ? "lesson" : "" };
+}
+const navSame = (a, b) => !!a && !!b && ["tab", "level", "grammar", "video", "mode"].every(k => (a[k] || null) === (b[k] || null));
+function navSync() {
+  const key = navKey();
+  try {
+    if (!navCur || navRestoring) { navCur = { ...key, back: navRestoring ? navCur?.back || null : null }; history.replaceState(navCur, ""); return; }
+    if (navSame(key, navCur)) return;
+    if (navCur.mode && !key.mode) {
+      // Вышли из урока кнопкой: вернулись туда же, откуда открыли, — шаг назад по истории, иначе запись урока заменяем.
+      if (navSame(key, navCur.back)) { navSkipPop = true; navCur = navCur.back; history.back(); return; }
+      navCur = { ...key, back: null }; history.replaceState(navCur, ""); return;
+    }
+    const back = key.mode && !navCur.mode ? navCur : key.mode ? navCur.back : null;
+    navCur = { ...key, back: back && { ...back, back: null } }; history.pushState(navCur, "");
+  } catch (e) { /* history недоступна (предпросмотр во фрейме) — сайт работает и без неё */ }
+}
+// Шаг «Назад» внутри урока или плеера: остаёмся в нём, запись урока ставим обратно.
+function navStay(fn) { fn(); try { history.pushState(navCur, ""); } catch (e) {} }
+window.addEventListener("popstate", e => {
+  if (navSkipPop) { navSkipPop = false; return; }
+  const st = e.state || { tab: "home" };
+  closeSheet();
+  document.querySelector("#g-art-modal[open]")?.close();
+  if (S && S.kind !== "result" && prevIndex() >= 0) return navStay(prev);
+  if (gCanBack()) return navStay(() => gMove(-1));
+  if (S) { clearTimeout(autoTimer); stopSpeech(); S = null; }
+  if (G) { gSave(); G = null; }
+  if (st.mode) { navCur = st; history.back(); return; }   // запись урока, в который уже не вернуться (вперёд после выхода)
+  view.tab = st.tab || "home"; view.level = st.level || null; view.grammar = st.grammar || null; view.video = st.video || null;
+  view.confirmReset = false;
+  navCur = st; navRestoring = true;
+  try { render(); } finally { navRestoring = false; }
+  window.scrollTo(0, 0);
+});
 function renderView() {
   document.documentElement.classList.toggle("grammar-playing", !!G);
   if (G) {
