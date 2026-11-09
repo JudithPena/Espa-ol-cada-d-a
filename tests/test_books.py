@@ -462,6 +462,29 @@ def test_pobre_ana_third_chapter_contains_the_complete_source_in_order():
     assert not terms & {'el taxi', 'gracias', 'adiós', 'el novio', 'el hijo / la hija', 'pequeño'}
 
 
+def test_pobre_ana_fourth_chapter_contains_the_complete_source_in_order():
+    import hashlib
+    import re
+    chapter = _ana()['chapters'][3]
+    assert (chapter['id'], chapter['number'], chapter['order'], chapter['title']) == ('4', 4, 4, '')
+    assert chapter['icon'] == '🌮' and chapter['status'] == 'published'
+    blocks = chapter['blocks']
+    original = re.sub(r'\s+', ' ', ' '.join(b['es'] for b in blocks)).strip()
+    # «Capítulo cuatro» (printed pp. 19–21).
+    assert len(original.split()) == 417
+    assert hashlib.sha256(original.encode()).hexdigest() == '93720f13c2657977b95d5964fe2fd85230f706e00a2c107730a36fa56abbe79f'
+    assert original.startswith('A las nueve de la mañana Ana se despierta.')
+    assert original.endswith('En la noche está muy cansada y duerme muy bien.')
+    assert len(blocks) == 4 and all(len(b['es'].split()) >= 60 for b in blocks)
+    for block in blocks:
+        assert block['es'].count('\n\n') == block['ru'].count('\n\n'), block['title']
+    terms = {n['term'] for b in blocks for n in b['notes'] if isinstance(n, dict)}
+    earlier = {n['term'] for ch in _ana()['chapters'][:3] for b in ch['blocks'] for n in b['notes'] if isinstance(n, dict)}
+    assert not terms & earlier
+    assert {'despertarse', 'estar + gerundio', 'prender', 'el radio', 'en la noche', 'oír'} <= terms
+    assert 'la tortilla' not in terms  # слово A0; мексиканское значение — в пометке
+
+
 def test_pobre_ana_highlights_exist_and_never_overlap():
     import re
     word = re.compile(r'\w')
