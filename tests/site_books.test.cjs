@@ -98,3 +98,59 @@ test('book exercises render escaped questions and selectable options', () => {
   assert.equal((html.match(/data-book-choice=/g) || []).length, 2);
   assert.equal(ctx.bookExercises({}), '');
 });
+
+test('precise book highlights keep independent neighbours and variable arguments separate', () => {
+  const render = (es, notes) => ctx.bookText(es, ctx.bookMarks({notes}, 'es'));
+  assert.equal(render('fabricaba taladros con un bigote inmenso', [
+    {term:'fabricar',es:['fabricaba']},{term:'el taladro',es:['taladros']},
+    {term:'el bigote',es:['bigote']},{term:'inmenso',es:['inmenso']}
+  ]), '<strong>fabricaba</strong> <strong>taladros</strong> con un <strong>bigote</strong> <strong>inmenso</strong>');
+  assert.equal(render('se dio cuenta de su error', [{term:'darse cuenta de (algo)',es:['se dio cuenta de']}]),
+    '<strong>se dio cuenta de</strong> su error');
+  assert.equal(render('no estaban para tales tonterías', [{term:'no estar para (algo)',es:['no estaban para']}]),
+    '<strong>no estaban para</strong> tales tonterías');
+  assert.equal(render('volvió a gritar. Al llegar a casa', [{term:'volver a (infinitivo)',es:['volvió a']},{term:'al + infinitivo',es:['Al llegar']}]),
+    '<strong>volvió a</strong> gritar. <strong>Al llegar</strong> a casa');
+  assert.equal(render('taladros y taladros; taladrosos', [{term:'el taladro',es:['taladros']}]),
+    '<strong>taladros</strong> y <strong>taladros</strong>; taladrosos');
+  assert.equal(render('apartó los taladros de su mente', [{term:'apartar (algo) de la mente',es:['apartó','de su mente']}]),
+    '<strong>apartó</strong> los taladros <strong>de su mente</strong>');
+});
+
+test('Harry chapter annotations exist independently without duplicates or overlapping spans', () => {
+  const chapter = JSON.parse(fs.readFileSync('content/books/harry-potter-piedra/chapters/001.json','utf8'));
+  const word = c => c != null && /[\p{L}\p{M}\p{Nd}_]/u.test(c);
+  for (const block of chapter.blocks) for (const lang of ['es','ru']) {
+    assert.deepEqual(block.marks?.[lang] || [], [], 'Vocabulary must belong to a lexical note');
+    const spans = [];
+    for (const [unit, note] of block.notes.entries()) {
+      if (typeof note === 'string') continue;
+      assert.equal(new Set(note[lang]).size, note[lang].length, `${block.title}: duplicate annotation`);
+      for (const mark of note[lang]) {
+        let found = false;
+        for (let at = block[lang].indexOf(mark); at !== -1; at = block[lang].indexOf(mark,at+1)) {
+          const end = at+mark.length;
+          if (word(mark[0]) && at && word(block[lang][at-1]) || word(mark.at(-1)) && word(block[lang][end])) continue;
+          found = true; spans.push({at,end,unit,mark});
+        }
+        assert.ok(found, `${block.title}: ${lang} missing ${note.term}: ${mark}`);
+      }
+    }
+    spans.sort((a,b)=>a.at-b.at || b.end-a.end);
+    for (let i=1;i<spans.length;i++) assert.ok(spans[i].at >= spans[i-1].end,
+      `${block.title}: ${lang} conflicting notes ${JSON.stringify(spans.slice(i-1,i+1))}`);
+  }
+});
+
+test('Harry vocabulary retains reviewed minimal boundaries for the actual reading', () => {
+  const {blocks} = JSON.parse(fs.readFileSync('content/books/harry-potter-piedra/chapters/001.json','utf8'));
+  const first = blocks[0], note = term => first.notes.find(n=>n.term===term);
+  assert.deepEqual(note('no estar para (algo)').es,['no estaban para']);
+  assert.deepEqual(note('estar orgulloso de (algo / alguien)').es,['estaban orgullosos de']);
+  assert.deepEqual(note('el doble de').es,['el doble de']);
+  const html = ctx.bookText(first.es,ctx.bookMarks(first,'es'));
+  assert.match(html, /<strong>fabricaba<\/strong> <strong>taladros<\/strong>/);
+  assert.match(html, /<strong>bigote<\/strong> <strong>inmenso<\/strong>/);
+  assert.match(html, /<strong>no estaban para<\/strong> tales tonterías/);
+  assert.doesNotMatch(html, /<strong>[^<]*tales tonterías/);
+});
