@@ -6,6 +6,7 @@ const source = fs.readFileSync('espanol/site_template.html', 'utf8');
 const code = source.slice(source.indexOf('function bookText('), source.indexOf('function bookView()'));
 const ctx = { esc: s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;'})[c]) };
 vm.createContext(ctx); vm.runInContext(code, ctx);
+vm.runInContext(source.slice(source.indexOf("function bookChapterLabel("), source.indexOf("function bookChaptersView(")), ctx);
 test('all whole-word occurrences and multiple marks are highlighted', () => {
   assert.equal(ctx.bookText('gato, gato y gatos; corazón.', ['gato','corazón']), '<strong>gato</strong>, <strong>gato</strong> y gatos; <strong>corazón</strong>.');
   assert.equal(ctx.bookText('vacaciones¹ y casas2', ['vacaciones', 'casas']), '<strong>vacaciones</strong>¹ y casas2');
@@ -210,4 +211,27 @@ test('chapters with exercises open on analysis and keep both panels mounted', ()
   const empty = ctx.bookView();
   assert.doesNotMatch(empty,/role="tablist"|id="book-panel-exercises"|data-book-check/);
   assert.match(empty,/class="vseg book-block"/);
+});
+
+test('chapter labels omit missing titles and technical placeholders without inventing names', () => {
+  for (const title of [undefined, null, '', '  ', 'Sin título', 'sin titulo', ' UNTITLED ', 'Без названия', 'No title', '—'])
+    assert.equal(ctx.bookChapterLabel({number:3,title}), 'Глава 3');
+  assert.equal(ctx.bookChapterLabel({number:1,title:'El niño que vivió'}),'Глава 1. El niño que vivió');
+});
+
+test('chapter cards use stable individual icons and escape labels and icon text', () => {
+  const catalog = source.slice(source.indexOf('function booksView()'),source.indexOf('function bookText('));
+  const context = {esc:ctx.esc, view:{book:'test'}, COURSE:{books:[{id:'test',title:'Test',author:'Author',level:'A1',chapters:[
+    {id:'one',number:1,title:'Sin título',icon:'☀️'},
+    {id:'two',number:2,title:'<img>',icon:'<svg>'},
+    {id:'three',number:3,title:''}
+  ]}]}};
+  vm.createContext(context); vm.runInContext(catalog,context);
+  const html = context.bookChaptersView();
+  assert.match(html, /aria-hidden="true">☀️<\/span>/);
+  assert.match(html, />Глава 1<\/b>/);
+  assert.match(html, />Глава 2\. &lt;img&gt;<\/b>/);
+  assert.match(html, /aria-hidden="true">&lt;svg&gt;<\/span>/);
+  assert.match(html, /aria-hidden="true">📖<\/span>/);
+  assert.doesNotMatch(html, /Sin título|<img>|<svg>|Глава 3\./);
 });

@@ -113,6 +113,11 @@ h2 + .btn.wide, h2 + .muted { margin-top: 10px; display: flex; }
 .book-feedback[data-result="correct"] { color: #15522e; }
 .book-feedback[data-result="incorrect"] { color: #85202b; }
 
+.mcard.book-chapter-card { grid-template-columns: 40px minmax(0, 1fr) 40px; gap: 10px; min-height: 76px; }
+.book-chapter-card .mi { text-align: center; font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; font-size: 30px; }
+.book-chapter-label { min-width: 0; text-align: center; overflow-wrap: anywhere; }
+.book-chapter-arrow { text-align: right; font-size: 24px; }
+.book-chapter-card:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 .book-cover { width: 48px; height: 64px; object-fit: cover; border-radius: 6px; flex: none; }
 .vseg .nt { font-size: 14px; color: var(--muted); }
 .es { font-weight: 700; }
@@ -2497,10 +2502,16 @@ function bookLevelView() {
   const books = (COURSE.books || []).filter(b => b.level === view.bookLevel);
   return `<button class="btn ghost sm back" data-book-nav="levels">← Все уровни</button><h2>Книги · ${esc(view.bookLevel)}</h2>${books.length ? `<div class="menu">${books.map(b => `<button class="mcard" data-book-id="${esc(b.id)}">${b.cover ? `<img class="book-cover" src="${esc(b.cover)}" alt="">` : '<span class="mi">📖</span>'}<span><b>${esc(b.title)}</b><small>${esc(b.author)} · ${b.chapters.length} ${plural(b.chapters.length, "глава", "главы", "глав")}</small></span><span aria-hidden="true">›</span></button>`).join("")}</div>` : '<p class="muted">На этом уровне пока нет книг.</p>'}`;
 }
+function bookChapterLabel(chapter) {
+  const raw = typeof chapter.title === "string" ? chapter.title.trim() : "";
+  const placeholder = /^(?:sin t[ií]tulo|sin nombre|untitled|no title|без названия|без заголовка|нет названия|n\/a|none|null|[-—])\.?$/i.test(raw);
+  const title = placeholder ? "" : raw;
+  return `Глава ${chapter.number}${title ? `. ${title}` : ""}`;
+}
 function bookChaptersView() {
   const b = bookById(view.book);
   if (!b) return booksView();
-  return `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(b.level)}</button><h2>${esc(b.title)}</h2><p class="muted">${esc(b.author)}</p><h3>Главы</h3>${b.chapters.length ? `<div class="menu">${b.chapters.map(c => `<button class="mcard" data-book-chapter="${esc(c.id)}"><span class="mi">📖</span><span><b>Глава ${c.number}. ${esc(c.title)}</b></span><span aria-hidden="true">›</span></button>`).join("")}</div>` : '<p class="muted">Опубликованных глав пока нет.</p>'}`;
+  return `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(b.level)}</button><h2>${esc(b.title)}</h2><p class="muted">${esc(b.author)}</p><h3>Главы</h3>${b.chapters.length ? `<div class="menu">${b.chapters.map(c => `<button class="mcard book-chapter-card" data-book-chapter="${esc(c.id)}"><span class="mi" aria-hidden="true">${esc(c.icon || "📖")}</span><span class="book-chapter-label"><b>${esc(bookChapterLabel(c))}</b></span><span class="book-chapter-arrow" aria-hidden="true">›</span></button>`).join("")}</div>` : '<p class="muted">Опубликованных глав пока нет.</p>'}`;
 }
 function bookGo(level = null, book = null, chapter = null) {
   const parts = ["books", level, book, chapter].filter(x => x != null).map(encodeURIComponent);
@@ -2587,7 +2598,7 @@ function bookView() {
   if (!chapter) return b ? bookChaptersView() : booksView();
   const hasExercises = Boolean(chapter.exercises?.length);
   const total = (chapter.exercises || []).flatMap(ex => ex.questions).filter(q => q.kind !== "reflection").length;
-  return `<div data-book-chapter-view><button class="btn ghost sm back" data-book-nav="chapters">← Главы книги</button><h2>Разбор текста</h2><p>${esc(b.title)} · Глава ${chapter.number}. ${esc(chapter.title)}</p>
+  return `<div data-book-chapter-view><button class="btn ghost sm back" data-book-nav="chapters">← Главы книги</button><h2>Разбор текста</h2><p>${esc(b.title)} · ${esc(bookChapterLabel(chapter))}</p>
     ${hasExercises ? `<div class="book-tabs" role="tablist" aria-label="Содержание главы"><button type="button" class="btn ghost" id="book-tab-analysis" role="tab" aria-controls="book-panel-analysis" aria-selected="true" data-book-panel-tab="analysis">Разбор</button><button type="button" class="btn ghost" id="book-tab-exercises" role="tab" aria-controls="book-panel-exercises" aria-selected="false" tabindex="-1" data-book-panel-tab="exercises">Упражнения</button></div>` : ""}
     <div class="book-panel" data-book-panel="analysis" ${hasExercises ? 'id="book-panel-analysis" role="tabpanel" aria-labelledby="book-tab-analysis" tabindex="0"' : ""}>${chapter.blocks.map(block => `<section class="vseg book-block"><h3>${esc(block.title)}</h3><p lang="es">${bookText(block.es, bookMarks(block, "es"))}</p><details><summary>Перевод</summary><p>${bookText(block.ru, bookMarks(block, "ru"))}</p></details><h4>Разбор</h4><ul>${block.notes.map(note => `<li>${bookNote(note)}</li>`).join("")}</ul>${block.pronouns && (!Array.isArray(block.pronouns) || block.pronouns.length) ? `<details class="book-pronouns"><summary>Мини-разбор местоимений</summary>${bookPronouns(block.pronouns)}</details>` : ""}</section>`).join("")}</div>
     ${hasExercises ? `<div class="book-panel" data-book-panel="exercises" id="book-panel-exercises" role="tabpanel" aria-labelledby="book-tab-exercises" tabindex="0" hidden>${total ? `<p data-book-progress role="status" aria-live="polite">Выполнено: 0 из ${total}</p>` : ""}${bookExercises(chapter)}</div>` : ""}</div>`;

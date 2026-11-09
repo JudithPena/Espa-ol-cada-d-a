@@ -126,3 +126,41 @@ def test_exercise_validation_accepts_alternative_answers_and_rejects_invalid(tmp
     path.write_text(json.dumps(chapter))
     with pytest.raises(ValueError, match='вопрос или ответ'):
         load_books(tmp_path)
+
+
+def test_chapter_titles_may_be_absent_and_legacy_placeholders_are_hidden(tmp_path):
+    import json
+    root = tmp_path / 'book'
+    (root / 'chapters').mkdir(parents=True)
+    (root / 'book.json').write_text(json.dumps({'id': 'book', 'title': 'Book', 'author': 'Author',
+                                              'level': 'A1', 'vocabulary_min_level': 'A1'}))
+    titles = [None, '', 'Sin título', 'UNTITLED', 'Без названия', 'El niño que vivió']
+    for number, title in enumerate(titles, 1):
+        chapter = {'id': str(number), 'number': number, 'order': number, 'status': 'published',
+                   'blocks': [{'title': 'example'}]}
+        if number != 1:
+            chapter['title'] = title
+        (root / 'chapters' / f'{number}.json').write_text(json.dumps(chapter))
+    chapters = load_books(tmp_path)[0]['chapters']
+    assert [c['title'] for c in chapters] == ['', '', '', '', '', 'El niño que vivió']
+    assert all(c['icon'] == '📖' for c in chapters)  # Unknown, legacy content has a neutral fallback.
+    chapter['icon'] = []
+    (root / 'chapters' / '6.json').write_text(json.dumps(chapter))
+    import pytest
+    with pytest.raises(ValueError, match='иконка главы'):
+        load_books(tmp_path)
+
+
+def test_existing_chapters_have_persisted_thematic_icons_and_original_titles():
+    import json
+    from pathlib import Path
+    for path in Path('content/books').glob('*/chapters/*.json'):
+        chapter = json.loads(path.read_text())
+        assert isinstance(chapter.get('icon'), str) and chapter['icon'].strip(), path
+    books = load_books()
+    lola = next(b for b in books if b['id'] == 'lola-lago-nota-falsa')
+    assert len(lola['chapters']) == 19
+    assert all(c['title'] == '' for c in lola['chapters'])
+    assert len({c['icon'] for c in lola['chapters']}) == 19
+    harry = next(b for b in books if b['id'] == 'harry-potter-piedra')
+    assert harry['chapters'][0]['title'] == 'El niño que vivió'

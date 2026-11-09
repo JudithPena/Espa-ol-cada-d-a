@@ -847,8 +847,17 @@ def load_books(directory: Path | None = None) -> list[dict]:
                 raise ValueError(f"{chapter_path}: некорректный или повторный id главы")
             if type(number) is not int or number < 1 or type(order) is not int or order < 1 or number in numbers or order in orders:
                 raise ValueError(f"{chapter_path}: некорректный или повторный номер или порядок главы")
-            if chapter.get("status") not in ("draft", "published") or not isinstance(chapter.get("title"), str) or not chapter["title"].strip():
-                raise ValueError(f"{chapter_path}: укажите статус и название главы")
+            title = chapter.get("title")
+            if chapter.get("status") not in ("draft", "published") or (title is not None and not isinstance(title, str)):
+                raise ValueError(f"{chapter_path}: неверный статус или название главы")
+            title = (title or "").strip()
+            if re.fullmatch(r"(?:sin t[ií]tulo|sin nombre|untitled|no title|без названия|без заголовка|нет названия|n/a|none|null|[-—])\.?", title, re.I):
+                title = ""
+            chapter["title"] = title
+            icon = chapter.get("icon", "📖")
+            if not isinstance(icon, str) or not icon.strip() or len(icon) > 16:
+                raise ValueError(f"{chapter_path}: иконка главы должна быть коротким символом")
+            chapter["icon"] = icon.strip()
             chapter_ids.add(chapter_id); numbers.add(number); orders.add(order)
             if chapter["status"] == "published":
                 if not isinstance(chapter.get("blocks"), list) or not chapter["blocks"]:
