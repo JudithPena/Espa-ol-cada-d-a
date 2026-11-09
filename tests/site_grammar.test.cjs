@@ -802,7 +802,7 @@ test('the group-name mini-check keeps errors and repeats them without losing liv
 test('every mini-check in all 17 units renders choices and completes by clicking',()=>{
  const units=fs.readdirSync('content/grammar').filter(f=>f.endsWith('.json')).sort()
   .map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
- assert.equal(units.length,41);
+ assert.equal(units.length,45);
  for(const unit of units){
   const run=context([unit]);
   for(const [index,section] of unit.sections.entries()){
@@ -952,7 +952,7 @@ test('all typing screens show a persistent format and example without changing g
   })())`));
   typed+=result.typed;legacy+=result.legacy;
  }
- assert.equal(typed,1033);assert.equal(legacy,134);
+ assert.equal(typed,1134);assert.equal(legacy,149);
 });
 
 test('quantity answers accept digits or words while the field explains the quantity format', () => {
@@ -1012,7 +1012,7 @@ test('the size-based life limit stops every exercise in all 17 units, without cr
   assert.equal(run(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id===${JSON.stringify(group.id)})).errors`),limit);
   count++;
  }
- assert.equal(count,156);
+ assert.equal(count,171);
 });
 
 test('exit, route restart, whole-unit restart and reload preserve the failed or active attempt', () => {
@@ -1349,7 +1349,7 @@ test('grammar list gives each theme a distinct icon and marks only fully complet
  const run=context(units);
  run('view.grammar=null;');
  const icons=run('COURSE.grammar.map(u=>G_UNIT_ICONS[u.id])');
- assert.ok(icons.every(Boolean));assert.equal(new Set(icons).size,41);
+ assert.ok(icons.every(Boolean));assert.equal(new Set(icons).size,45);
  assert.ok(!run('grammarView()').includes('gcompleted-badge'));
  // Completing the exercises alone leaves mini-checks and theory unfinished.
  run(`const doneUnit=COURSE.grammar[0];for(const g of doneUnit.exercises)P.grammar[grammarKey(doneUnit,g)]={correct:0,total:g.questions.length};`);
@@ -1360,7 +1360,7 @@ test('grammar list gives each theme a distinct icon and marks only fully complet
  assert.equal(run('gUnitComplete(COURSE.grammar[0])'),true);
  const html=run('grammarView()');
  assert.equal((html.match(/gcompleted-badge/g)||[]).length,1);
- assert.ok(html.includes('Пройдено тем: 1 из 41'));
+ assert.ok(html.includes('Пройдено тем: 1 из 45'));
  assert.match(html,/class="mcard gcomplete" data-grammar="001_el_hijo_la_hija"/);
  assert.match(html,/class="mcard " data-grammar="002_el_libro_la_mesa"/);
  run('delete P.grammarRead[COURSE.grammar[0].id+"/summary"];');
@@ -1711,7 +1711,7 @@ test('multi-answer audit keeps regional, contextual and equally valid choices gr
    }
   }
  }
- assert.equal(questions,1861);assert.equal(alternatives,270);assert.equal(warnings,25);
+ assert.equal(questions,2020);assert.equal(alternatives,313);assert.equal(warnings,25);
 });
 
 test('yellow mini-check choices still have no lives and complete normally',()=>{
@@ -1749,7 +1749,7 @@ test('all 17 completion screens derive the next lesson from course order and pre
    assert.ok(html.includes('Все уроки раздела пройдены!'));assert.ok(!html.includes('data-gnext-unit'));
    handlers.click({target:{closest:s=>s==='button, .spoiler, [data-say], [data-line]'?{dataset:{grammarList:''}}:null,classList:{contains:()=>false}}});
    assert.equal(run('G'),null);assert.equal(run('view.grammar'),null);assert.equal(run('view.tab'),'grammar');
-   assert.equal((run('grammarView()').match(/data-grammar="/g)||[]).length,41);
+   assert.equal((run('grammarView()').match(/data-grammar="/g)||[]).length,45);
   }
   assert.equal(run('JSON.stringify(P)'),before);
  }
@@ -1880,7 +1880,7 @@ test('all grammar choice sets receive valid, balanced attempt orders without cha
    assert.deepEqual(result,{},`${u.number}/${g.id}: ${JSON.stringify(result)}`);
   }
  }
- assert.equal(standard,694);assert.equal(guided,9);
+ assert.equal(standard,737);assert.equal(guided,9);
  assert.equal(run('JSON.stringify(COURSE.grammar)'),before);
 });
 
@@ -2398,7 +2398,7 @@ test('numeral lessons fully complete all formats and retain failures across relo
  }
 });
 test('new pronoun lessons complete every answer and preserve failed attempts across reload',()=>{
- const files=fs.readdirSync('content/grammar').filter(f=>/^(03[789]|04[01])_.*\.json$/.test(f)).sort();
+ const files=fs.readdirSync('content/grammar').filter(f=>/^(03[789]|04[0-5])_.*\.json$/.test(f)).sort();
  for(const file of files){
   const u=JSON.parse(fs.readFileSync('content/grammar/'+file,'utf8'));const run=context([u]);
   run(`gStart(COURSE.grammar[0].id,'all');`);let turns=0;
@@ -2467,4 +2467,31 @@ test('unit 41 checks fused con, semantic accents and subject versus prepositiona
  unlockUntil(run,'exercise:41.3');run(`gStart(COURSE.grammar[0].id,'exercise:41.3');gMove(1);`);
  run(`G.at=G.steps.findIndex(s=>s.type==='question'&&s.qi===5);gResponse(G.steps[G.at]).value='Sebastian se sienta delante de mí';gCheck();`);
  assert.equal(run('gResponse(G.steps[G.at]).status'),'almost');assert.equal(run('gAttempt(gUnit(),gUnit().exercises[2]).errors'),0);
+});
+
+test('unit 42 checks person shifts, identification, time and material',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/042_soy_eres_es.json','utf8'));const run=context([u]);
+ for(const [ref,a,status] of [['42.1.1','sois somos','correct'],['42.1.1','son son','wrong'],['42.1.2','es soy','correct'],['42.1.2','es es','wrong'],['42.1.4','sois somos','wrong'],['42.2.5','es son','correct'],['42.2.5','son es','wrong'],['42.2.8','son son','wrong'],['42.3.3','Esa mesa es de cristal.','correct'],['42.3.3','Esa mesa es cristal','wrong'],['42.3.1','Elsa y Tomas son chilenos','almost'],['42.3.8','Ustedes no sois muy altos','wrong']])
+  assert.equal(run(`grammarResult(COURSE.grammar[0].exercises.flatMap(g=>g.questions).find(q=>q.sourceRef===${JSON.stringify(ref)}),${JSON.stringify(a)},{},true).status`),status,ref+'/'+a);
+});
+
+test('unit 43 checks presence, geographical location, agreement and meaningful accents',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/043_estoy_estas_esta.json','utf8'));const run=context([u]);
+ for(const [ref,a,status] of [['43.1.2','estáis estamos','correct'],['43.1.2','estais estamos','almost'],['43.1.3','estas estoy','wrong'],['43.4.4','esta esta','wrong'],['43.4.5','están están','correct'],['43.4.5','estan estan','almost'],['43.3.1','está abierto','wrong'],['43.3.3','están sucios','correct'],['43.3.3','está sucio','wrong'],['43.2.5','Estoy aburrida','correct'],['43.2.5','Estoy aburrido','wrong'],['43.4.1','está estoy','correct'],['43.4.1','está está','wrong'],['43.4.3','estás estoy estoy','correct']])
+  assert.equal(run(`grammarResult(COURSE.grammar[0].exercises.flatMap(g=>g.questions).find(q=>q.sourceRef===${JSON.stringify(ref)}),${JSON.stringify(a)},{},true).status`),status,ref+'/'+a);
+});
+
+test('unit 44 distinguishes event and document and accepts real ser/estar alternatives',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/044_ser_estar.json','utf8'));const run=context([u]);
+ for(const [ref,a,status] of [['44.1.5','es','wrong'],['44.1.6','son','correct'],['44.1.6','están','correct'],['44.2.2','es','correct'],['44.2.2','está','correct'],['44.2.6','es','wrong'],['44.3.5','es','correct'],['44.3.5','está','wrong'],['44.3.8','El examen está encima de la mesa','correct'],['44.3.8','El examen es encima de la mesa','wrong'],['44.3.9','está','wrong'],['44.3.10','está','correct'],['44.4.1','Eres','wrong'],['44.4.2','es','wrong'],['44.4.4','Estoy malo','correct'],['44.4.4','Soy malo','wrong'],['44.4.5','es','correct'],['44.4.6','está','correct'],['44.4.7','son','correct']])
+  assert.equal(run(`grammarResult(COURSE.grammar[0].exercises.flatMap(g=>g.questions).find(q=>q.sourceRef===${JSON.stringify(ref)}),${JSON.stringify(a)},{},true).status`),status,ref+'/'+a);
+});
+
+test('unit 45 checks table-derived negation, person, hunger and non-interchangeable ñ',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/045_tengo_tienes_tiene.json','utf8'));const run=context([u]);
+ for(const [ref,a,status] of [['45.1.1','tiene tienen tengo','correct'],['45.1.1','tienen tienen tengo','wrong'],['45.1.2','tiene tiene no tenemos','correct'],['45.1.2','tiene tiene tenemos','wrong'],['45.1.4','no tengo tengo','correct'],['45.1.4','tengo tengo','wrong'],['45.1.5','tiene tenemos','correct'],['45.2.2','Tenemos hambre','correct'],['45.2.2','Tenemos hambres','wrong'],['45.2.4','Tengo','correct'],['45.2.5','Tienes fiebre tengo gripe','correct'],['45.2.5','Tiene fiebre tiene gripe','wrong'],['45.2.7','Teneis frio','almost'],['45.3.1','Tiene usted sueno','wrong'],['45.3.3','Nosotras no tenemos coche','correct'],['45.3.6','Tiene usted una casa grande','correct'],['45.3.7','Vosotras tenéis muchos amigos','correct'],['45.3.8','Ustedes tienen un perro','correct']])
+  assert.equal(run(`grammarResult(COURSE.grammar[0].exercises.flatMap(g=>g.questions).find(q=>q.sourceRef===${JSON.stringify(ref)}),${JSON.stringify(a)},{},true).status`),status,ref+'/'+a);
+ const g=u.exercises[0];unlockUntil(run,'exercise:'+g.id);run(`gStart(COURSE.grammar[0].id,'exercise:${g.id}');gMove(1);`);
+ run(`G.at=G.steps.findIndex(s=>s.type==='question'&&s.qi===3);gResponse(G.steps[G.at]).value='Teneis muchos amigos';gCheck();`);
+ assert.equal(run('gResponse(G.steps[G.at]).status'),'almost');assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),0);
 });

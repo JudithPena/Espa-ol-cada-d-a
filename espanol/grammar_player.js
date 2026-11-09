@@ -646,6 +646,10 @@ const G_UNIT_ICONS = {
   '039_amame_damelo': '✍️',
   '040_me_ducho_nos_queremos': '🚿',
   '041_para_mi_contigo': '🤝',
+  '045_tengo_tienes_tiene': '👜',
+  '044_ser_estar': '🎭',
+  '043_estoy_estas_esta': '🌡️',
+  '042_soy_eres_es': '🪪',
 };
 function gUnitComplete(unit) {
   const routes=gRoutes(unit);

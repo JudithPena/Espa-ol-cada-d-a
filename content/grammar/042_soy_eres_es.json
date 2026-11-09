@@ -1,0 +1,1460 @@
+{
+  "id": "042_soy_eres_es",
+  "number": 42,
+  "title": "Soy, eres, es",
+  "subtitle": "Глагол ser в настоящем времени",
+  "level": "A1",
+  "sections": [
+    {
+      "title": "Кто это? Выбираем форму ser",
+      "paragraphs": [
+        "Если хочешь сказать, **кто ты или что перед тобой**, нужен глагол **ser**: `Soy Ana` — я Ана; `Es un sombrero` — это шляпа. В русском «есть» обычно не произносим, а в испанском форму глагола сохраняем.",
+        "Форма зависит от того, **о ком говорим**. `Soy` — о себе, `eres` — о собеседнике на tú. Для одного человека на usted нужна `es`, для нескольких на ustedes — `son`. С vosotros/vosotras используем `sois`.",
+        "Местоимение часто можно не писать: `Soy de Perú` — я из Перу. Но в ответе **`Soy yo` — «это я»** форма согласуется с yo, хотя местоимение стоит после глагола. Вопрос `¿Quién es Liz?` — «кто Лиз?» — Лиз отвечает `Soy yo`."
+      ],
+      "check": {
+        "id": "check-1",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "¿Quién es Ana? Ана отвечает:",
+            "answers": [
+              "Soy yo."
+            ],
+            "explain": "Ана называет себя: soy, потому что yo.",
+            "context": "Отвечает сама Ана.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "learningAction": "распознавание",
+            "options": [
+              "Es yo.",
+              "Soy yo.",
+              "Soy ella."
+            ]
+          },
+          {
+            "prompt": "Señoras, ¿___ ustedes de Quito?",
+            "answers": [
+              "son"
+            ],
+            "explain": "Ustedes требует son, даже при обращении к собеседницам.",
+            "context": "Обращение к нескольким женщинам на ustedes.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "learningAction": "распознавание",
+            "options": [
+              "sois",
+              "somos",
+              "son"
+            ]
+          }
+        ]
+      },
+      "presentation": "paradigm",
+      "table": {
+        "heads": [
+          "Кто",
+          "Ser"
+        ],
+        "compactForms": true,
+        "rows": [
+          [
+            "yo",
+            "soy"
+          ],
+          [
+            "tú",
+            "eres"
+          ],
+          [
+            "él / ella / usted",
+            "es"
+          ],
+          [
+            "nosotros / nosotras",
+            "somos"
+          ],
+          [
+            "vosotros / vosotras",
+            "sois"
+          ],
+          [
+            "ellos / ellas / ustedes",
+            "son"
+          ]
+        ]
+      },
+      "dialogues": [
+        {
+          "title": "Знакомство",
+          "lines": [
+            [
+              "¿De dónde eres?",
+              "Откуда ты?"
+            ],
+            [
+              "Soy peruana. Soy de Lima.",
+              "Я перуанка. Я из Лимы."
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Профессия, родство и качества",
+      "paragraphs": [
+        "С **ser** называем **профессию, национальность, убеждения и отношения между людьми**: `Soy estudiante` — я студент; `Somos peruanos` — мы перуанцы; `Somos musulmanes` — мы мусульмане; `Ana y Luis son amigos` — Ана и Луис друзья.",
+        "Когда просто называем профессию, обычно говорим **без un/una**: `Es médica` — она врач. А `Es una médica excelente` — она отличный врач: здесь уже есть оценка. Ser не означает «навсегда»: профессию можно сменить.",
+        "Чтобы описать, **какой человек или предмет**, тоже используем ser: `Diana es inteligente` — Диана умная; `El coche es rojo` — машина красная. Прилагательное согласуется с тем, кого описываем: `Ella es alta`, `Ellas son altas`.",
+        "Для отрицания ставим **no перед глаголом**: `No somos hermanos` — мы не братья; `Estos libros no son interesantes` — эти книги неинтересные."
+      ],
+      "check": {
+        "id": "check-2",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "Как сказать, что две девушки — сёстры?",
+            "answers": [
+              "Son hermanas."
+            ],
+            "explain": "Они — ellas, поэтому son. Родство называем без un/una.",
+            "context": "О двух других людях.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "learningAction": "распознавание",
+            "options": [
+              "Son hermanas.",
+              "Somos hermanas.",
+              "Es hermanas."
+            ]
+          },
+          {
+            "prompt": "Выбери обычный ответ о профессии: ¿A qué te dedicas?",
+            "answers": [
+              "Soy enfermero."
+            ],
+            "explain": "Говорящий называет свою профессию: soy enfermero.",
+            "context": "Отвечает мужчина-медбрат.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "learningAction": "распознавание",
+            "options": [
+              "Es enfermero.",
+              "Soy un enfermeros.",
+              "Soy enfermero."
+            ]
+          }
+        ]
+      },
+      "presentation": "comparison",
+      "wordGroups": [
+        {
+          "title": "Кем работает?",
+          "words": [
+            [
+              "Es médica.",
+              "Она врач."
+            ]
+          ]
+        },
+        {
+          "title": "Откуда родом?",
+          "words": [
+            [
+              "Es peruana.",
+              "Она перуанка."
+            ]
+          ]
+        },
+        {
+          "title": "Кем приходится?",
+          "words": [
+            [
+              "Es mi prima.",
+              "Она моя двоюродная сестра."
+            ]
+          ]
+        },
+        {
+          "title": "Какая?",
+          "words": [
+            [
+              "Es muy amable.",
+              "Она очень любезная."
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Ser de: откуда, из чего и чей",
+      "paragraphs": [
+        "После **ser de** можно назвать **место происхождения**: `Somos de Santander` — мы из Сантандера. Не путай это с национальностью: `Somos españoles` — мы испанцы, здесь de не нужно.",
+        "Эта же связка помогает сказать, **из чего сделана вещь**: `La silla es de plástico` — стул из пластика; или **кому она принадлежит**: `El coche es de Eduardo` — машина Эдуардо. Значение становится понятным из слова после de.",
+        "В вопросе **`¿De quién es este libro?`** спрашивают «чья эта книга?». В ответе можно сказать `Es de Marta`. Если книг несколько: `¿De quién son estos libros? — Son de Marta`."
+      ],
+      "check": {
+        "id": "check-3",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "¿De quién es la chaqueta? —Es de Laura. Что мы узнали?",
+            "answers": [
+              "Кому принадлежит куртка."
+            ],
+            "explain": "De Laura называет владелицу, а не материал или происхождение.",
+            "context": "Куртка Лауры.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "learningAction": "распознавание",
+            "options": [
+              "Из чего сделана куртка.",
+              "Кому принадлежит куртка.",
+              "Где сейчас куртка."
+            ]
+          },
+          {
+            "prompt": "Как сказать «Мы аргентинцы»?",
+            "answers": [
+              "Somos argentinos."
+            ],
+            "explain": "Перед названием национальности de не ставим; de нужно перед местом: de Argentina.",
+            "context": "Говорящий включает себя в группу.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "learningAction": "распознавание",
+            "options": [
+              "Somos de argentinos.",
+              "Son argentinos.",
+              "Somos argentinos."
+            ]
+          }
+        ]
+      },
+      "presentation": "examples",
+      "examples": [
+        [
+          "Es de Perú.",
+          "Он / она из Перу."
+        ],
+        [
+          "Es de cristal.",
+          "Это из стекла."
+        ],
+        [
+          "Es de Marta.",
+          "Это Марты."
+        ]
+      ]
+    },
+    {
+      "title": "Время, цена, количество и события",
+      "paragraphs": [
+        "Чтобы назвать время, говорим **`Es la una` — час**, но **`Son las dos` — два часа**. В вопросе остаётся `¿Qué hora es?` — который час? Дни и даты тоже называем с ser: `Hoy es martes` — сегодня вторник.",
+        "Когда считаем людей вместе с собой, используем **somos**: `En mi clase somos veintidós` — в моём классе нас двадцать два. При обращении к группе на vosotros: `¿Cuántos sois?` — сколько вас?",
+        "В магазине вопрос `¿Cuánto es?` — «сколько с меня?» — может получить ответ **`Son veinticinco euros`** — двадцать пять евро. Здесь называем сумму, а не описываем предмет.",
+        "Если говорим, **где или когда проходит событие**, нужен ser: `La fiesta es en mi casa` — вечеринка у меня дома; `El partido es a las diez` — матч в десять. Даже если речь о завтрашнем событии, в расписании можно использовать настоящее время."
+      ],
+      "check": {
+        "id": "check-4",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "Выбери ответ: ¿Qué hora es?",
+            "answers": [
+              "Es la una."
+            ],
+            "explain": "При la una используем es; начиная с las dos — son.",
+            "context": "Сейчас 13:00.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "learningAction": "распознавание",
+            "options": [
+              "Son la una.",
+              "Es la una.",
+              "Es las una."
+            ]
+          },
+          {
+            "prompt": "Где проходит концерт? El concierto ___ en el teatro.",
+            "answers": [
+              "es"
+            ],
+            "explain": "Говорим о месте проведения события: es en el teatro.",
+            "context": "Один концерт.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "learningAction": "распознавание",
+            "options": [
+              "son",
+              "eres",
+              "es"
+            ]
+          }
+        ]
+      },
+      "presentation": "comparison",
+      "wordGroups": [
+        {
+          "title": "Один час",
+          "words": [
+            [
+              "Es la una.",
+              "Сейчас час."
+            ]
+          ]
+        },
+        {
+          "title": "Два часа и дальше",
+          "words": [
+            [
+              "Son las dos.",
+              "Сейчас два часа."
+            ]
+          ]
+        }
+      ],
+      "dialogues": [
+        {
+          "title": "У кассы",
+          "lines": [
+            [
+              "¿Cuánto es?",
+              "Сколько с меня?"
+            ],
+            [
+              "Son veinticinco euros.",
+              "Двадцать пять евро."
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "42.1",
+      "title": "42.1 · Представься и ответь собеседнику",
+      "theorySections": [
+        0
+      ],
+      "questions": [
+        {
+          "prompt": "¿De dónde ___? —___ mexicanos.",
+          "answers": [
+            "sois somos"
+          ],
+          "explain": "Вопрос к vosotros: sois. Двое отвечают о себе: somos.",
+          "context": "Ана обращается к двум друзьям на vosotros; они отвечают вместе.",
+          "sourceRef": "42.1.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "смена говорящего",
+          "inputFormat": {
+            "instruction": "Заполни каждый пропуск одной формой глагола. Фразу целиком писать не нужно.",
+            "placeholder": "Одна форма в каждом пропуске"
+          },
+          "gapParts": [
+            "¿De dónde ",
+            "? —",
+            " mexicanos."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ]
+        },
+        {
+          "prompt": "¿Quién ___ Liz? —___ yo.",
+          "answers": [
+            "es soy"
+          ],
+          "explain": "Вопрос о Лиз: es; Лиз отвечает о себе: soy yo.",
+          "context": "Отвечает сама Лиз.",
+          "sourceRef": "42.1.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "смена говорящего",
+          "inputFormat": {
+            "instruction": "Заполни каждый пропуск одной формой глагола. Фразу целиком писать не нужно.",
+            "placeholder": "Одна форма в каждом пропуске"
+          },
+          "gapParts": [
+            "¿Quién ",
+            " Liz? —",
+            " yo."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ]
+        },
+        {
+          "prompt": "___ hermanas.",
+          "answers": [
+            "Somos"
+          ],
+          "explain": "Две сестры говорят о себе: nosotras somos.",
+          "context": "Говорят две сестры: «Мы сёстры».",
+          "sourceRef": "42.1.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "воспроизведение",
+          "inputFormat": {
+            "instruction": "Впиши только пропущенную форму глагола. Остальные слова уже написаны.",
+            "placeholder": "Форма глагола"
+          }
+        },
+        {
+          "prompt": "¿___ ustedes médicos? —No, ___ enfermeros.",
+          "answers": [
+            "son somos"
+          ],
+          "explain": "Ustedes — son, ответ от лица обоих — somos.",
+          "context": "Вежливый вопрос двум мужчинам и их общий ответ.",
+          "sourceRef": "42.1.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "смена говорящего",
+          "inputFormat": {
+            "instruction": "Заполни каждый пропуск одной формой глагола. Фразу целиком писать не нужно.",
+            "placeholder": "Одна форма в каждом пропуске"
+          },
+          "gapParts": [
+            "¿",
+            " ustedes médicos? —No, ",
+            " enfermeros."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ]
+        },
+        {
+          "prompt": "¿De dónde ___? —___ de Barcelona.",
+          "answers": [
+            "eres soy"
+          ],
+          "explain": "Вопрос одному другу на tú: eres. Он отвечает о себе: soy.",
+          "context": "Два друга разговаривают на tú.",
+          "sourceRef": "42.1.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "смена говорящего",
+          "inputFormat": {
+            "instruction": "Заполни каждый пропуск одной формой глагола. Фразу целиком писать не нужно.",
+            "placeholder": "Одна форма в каждом пропуске"
+          },
+          "gapParts": [
+            "¿De dónde ",
+            "? —",
+            " de Barcelona."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ]
+        },
+        {
+          "prompt": "¿De dónde ___ tú? —___ de Quito.",
+          "answers": [
+            "eres soy"
+          ],
+          "explain": "Tú eres; ответ от лица собеседника — soy.",
+          "context": "Вопрос на tú и ответ о себе.",
+          "sourceRef": "42.2.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "смена говорящего",
+          "inputFormat": {
+            "instruction": "Заполни каждый пропуск одной формой глагола. Фразу целиком писать не нужно.",
+            "placeholder": "Одна форма в каждом пропуске"
+          },
+          "gapParts": [
+            "¿De dónde ",
+            " tú? —",
+            " de Quito."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ]
+        },
+        {
+          "prompt": "¿De dónde ___ tus padres? —___ de Guayaquil.",
+          "answers": [
+            "son son"
+          ],
+          "explain": "Родители — они, и в вопросе, и в ответе форма son.",
+          "context": "Ты рассказываешь о своих родителях.",
+          "sourceRef": "42.2.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "смена говорящего",
+          "inputFormat": {
+            "instruction": "Заполни каждый пропуск одной формой глагола. Фразу целиком писать не нужно.",
+            "placeholder": "Одна форма в каждом пропуске"
+          },
+          "gapParts": [
+            "¿De dónde ",
+            " tus padres? —",
+            " de Guayaquil."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ]
+        },
+        {
+          "prompt": "Тебя спрашивают: ¿Eres profesor? Ответь: «Нет, я студент».",
+          "answers": [
+            "No, soy estudiante",
+            "No, soy estudiante."
+          ],
+          "explain": "Отрицаем профессию profesor, затем называем свою: soy estudiante.",
+          "context": "Начни с No, затем soy.",
+          "sourceRef": "42.2.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "самостоятельный ответ",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "No, soy estudiante"
+          ]
+        }
+      ],
+      "preview": {
+        "source": "¿Quién es Ana? —___.",
+        "sentenceParts": [
+          "¿Quién es Ana? —",
+          "."
+        ],
+        "answer": "Soy yo",
+        "targetPrefix": "",
+        "translation": "Кто Ана? — Это я."
+      },
+      "instruction": "Прочитай, кто говорит. Заполни пропуски или напиши указанную реплику.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши только пропущенную форму глагола. Остальные слова уже написаны.",
+        "placeholder": "Форма глагола"
+      }
+    },
+    {
+      "id": "42.2",
+      "title": "42.2 · Расскажи о людях",
+      "theorySections": [
+        1
+      ],
+      "questions": [
+        {
+          "prompt": "Составь фразу: Elsa y Tomás / chilenos.",
+          "answers": [
+            "Elsa y Tomás son chilenos",
+            "Elsa y Tomás son chilenos."
+          ],
+          "explain": "Два человека — ellos: son. Chilenos — «чилийцы», форма множественного числа.",
+          "context": "Начни с Elsa y Tomás.",
+          "sourceRef": "42.3.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Elsa y Tomás son chilenos"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "son",
+            "y",
+            "Tomás",
+            "chilenos",
+            "Elsa"
+          ]
+        },
+        {
+          "prompt": "Скажи собеседнику вежливо: Usted / muy amable.",
+          "answers": [
+            "Usted es muy amable",
+            "Usted es muy amable."
+          ],
+          "explain": "При usted нужна es, хотя обращаемся к собеседнику.",
+          "context": "Сохрани Usted в начале.",
+          "sourceRef": "42.3.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Usted es muy amable"
+          ]
+        },
+        {
+          "prompt": "Составь отрицание: Mi hermano y yo / no / morenos.",
+          "answers": [
+            "Mi hermano y yo no somos morenos",
+            "Mi hermano y yo no somos morenos."
+          ],
+          "explain": "Говорящий входит в группу: somos. No ставим перед глаголом.",
+          "context": "Начни с Mi hermano y yo.",
+          "sourceRef": "42.3.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Mi hermano y yo no somos morenos"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "no",
+            "yo",
+            "y",
+            "Mi",
+            "somos",
+            "morenos",
+            "hermano"
+          ]
+        },
+        {
+          "prompt": "Обратись к друзьям: Vosotros / muy alegres.",
+          "answers": [
+            "Vosotros sois muy alegres",
+            "Vosotros sois muy alegres."
+          ],
+          "explain": "Для vosotros нужна sois, прилагательное уже во множественном числе.",
+          "context": "Начни с Vosotros.",
+          "sourceRef": "42.3.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Vosotros sois muy alegres"
+          ]
+        },
+        {
+          "prompt": "Составь отрицание: Ustedes / no / muy altos.",
+          "answers": [
+            "Ustedes no son muy altos",
+            "Ustedes no son muy altos."
+          ],
+          "explain": "При ustedes используем son; no перед глаголом.",
+          "context": "Начни с Ustedes.",
+          "sourceRef": "42.3.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Ustedes no son muy altos"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "no",
+            "son",
+            "Ustedes",
+            "muy",
+            "altos"
+          ]
+        },
+        {
+          "prompt": "¿___ Rosa y tú hermanos? —No, ___ primos.",
+          "answers": [
+            "sois somos"
+          ],
+          "explain": "Rosa y tú — vosotros, ответ от лица пары — nosotros.",
+          "context": "Обращение в Испании на vosotros; отвечает участник пары.",
+          "sourceRef": "42.2.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "смена говорящего",
+          "inputFormat": {
+            "instruction": "Заполни каждый пропуск одной формой глагола. Фразу целиком писать не нужно.",
+            "placeholder": "Одна форма в каждом пропуске"
+          },
+          "gapParts": [
+            "¿",
+            " Rosa y tú hermanos? —No, ",
+            " primos."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ]
+        },
+        {
+          "prompt": "«Lucía es médica». О чём эта фраза?",
+          "answers": [
+            "О профессии Лусии."
+          ],
+          "explain": "Médica называет профессию; es не сообщает, как Лусия чувствует себя сейчас.",
+          "context": "Различи смысл фразы.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "объяснение различия",
+          "options": [
+            "О самочувствии Лусии.",
+            "О профессии Лусии.",
+            "О том, где Лусия сейчас."
+          ]
+        },
+        {
+          "prompt": "Исправь только глагол: Mis amigas es peruanas.",
+          "answers": [
+            "Mis amigas son peruanas",
+            "Mis amigas son peruanas."
+          ],
+          "explain": "Mis amigas — они; нужна форма son.",
+          "context": "Напиши всю исправленную фразу.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "исправление ошибки",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Mis amigas son peruanas"
+          ]
+        }
+      ],
+      "preview": {
+        "source": "Mis amigos ___ médicos.",
+        "sentenceParts": [
+          "Mis amigos ",
+          " médicos."
+        ],
+        "answer": "son",
+        "targetPrefix": "",
+        "translation": "Мои друзья врачи."
+      },
+      "instruction": "Составь фразу по условию. Отрицание no должно стоять перед ser.",
+      "inlineAnswer": false,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши только пропущенную форму глагола. Остальные слова уже написаны.",
+        "placeholder": "Форма глагола"
+      }
+    },
+    {
+      "id": "42.3",
+      "title": "42.3 · Скажи, откуда, из чего и чей",
+      "theorySections": [
+        2
+      ],
+      "questions": [
+        {
+          "prompt": "Назови материал: Esa mesa / de cristal.",
+          "answers": [
+            "Esa mesa es de cristal",
+            "Esa mesa es de cristal."
+          ],
+          "explain": "Один стол — es; материал называем через de cristal.",
+          "context": "Сохрани Esa mesa в начале.",
+          "sourceRef": "42.3.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Esa mesa es de cristal"
+          ]
+        },
+        {
+          "prompt": "Составь отрицание: Esos pantalones / no / de lana.",
+          "answers": [
+            "Esos pantalones no son de lana",
+            "Esos pantalones no son de lana."
+          ],
+          "explain": "Pantalones во множественном числе: son. No перед глаголом, de перед материалом.",
+          "context": "Начни с Esos pantalones.",
+          "sourceRef": "42.3.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Esos pantalones no son de lana"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "son",
+            "lana",
+            "no",
+            "de",
+            "pantalones",
+            "Esos"
+          ]
+        },
+        {
+          "prompt": "Назови владельца: Ese libro / de Marta.",
+          "answers": [
+            "Ese libro es de Marta",
+            "Ese libro es de Marta."
+          ],
+          "explain": "Одна книга — es; de Marta показывает, чья она.",
+          "context": "Начни с Ese libro.",
+          "sourceRef": "42.3.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Ese libro es de Marta"
+          ]
+        },
+        {
+          "prompt": "¿De quién ___ estos libros? —___ de la profesora.",
+          "answers": [
+            "son son"
+          ],
+          "explain": "Эти книги — множественное число; и в вопросе, и в ответе son.",
+          "context": "Книги принадлежат преподавательнице.",
+          "sourceRef": "42.2.10",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "смена говорящего",
+          "inputFormat": {
+            "instruction": "Заполни каждый пропуск одной формой глагола. Фразу целиком писать не нужно.",
+            "placeholder": "Одна форма в каждом пропуске"
+          },
+          "gapParts": [
+            "¿De quién ",
+            " estos libros? —",
+            " de la profesora."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ]
+        },
+        {
+          "prompt": "Выбери вопрос к ответу «Es de plástico».",
+          "answers": [
+            "¿De qué es la silla?"
+          ],
+          "explain": "Ответ называет материал: de qué. De quién спрашивает владельца.",
+          "context": "Ты узнал, из чего сделан стул.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "сопоставление вопроса и ответа",
+          "options": [
+            "¿De quién es la silla?",
+            "¿Quién es la silla?",
+            "¿De qué es la silla?"
+          ]
+        },
+        {
+          "prompt": "Somos ___ Argentina.",
+          "answers": [
+            "de"
+          ],
+          "explain": "Перед местом происхождения нужно de; форма somos уже написана.",
+          "context": "Мы из Аргентины.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "выбор конструкции",
+          "inputFormat": {
+            "instruction": "Впиши один пропущенный предлог.",
+            "placeholder": "Один предлог"
+          }
+        }
+      ],
+      "preview": {
+        "source": "La silla es ___.",
+        "sentenceParts": [
+          "La silla es ",
+          "."
+        ],
+        "answer": "de plástico",
+        "targetPrefix": "",
+        "translation": "Стул из пластика."
+      },
+      "instruction": "Различай происхождение, материал и владельца. Формат каждого ответа указан под заданием.",
+      "inlineAnswer": false,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши только пропущенную форму глагола. Остальные слова уже написаны.",
+        "placeholder": "Форма глагола"
+      }
+    },
+    {
+      "id": "42.4",
+      "title": "42.4 · Время, люди и планы",
+      "theorySections": [
+        3
+      ],
+      "questions": [
+        {
+          "prompt": "—¿Cuánto es? —___ veinticinco euros.",
+          "answers": [
+            "Son"
+          ],
+          "explain": "При назывании суммы с euros используем son.",
+          "context": "Кассир сообщает сумму покупки.",
+          "sourceRef": "42.1.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "воспроизведение",
+          "inputFormat": {
+            "instruction": "Впиши только пропущенную форму глагола. Остальные слова уже написаны.",
+            "placeholder": "Форма глагола"
+          }
+        },
+        {
+          "prompt": "¿Cuántos ___ en tu familia? —___ cuatro.",
+          "answers": [
+            "sois somos"
+          ],
+          "explain": "Спрашивают группу на vosotros: sois; отвечают о своей семье: somos.",
+          "context": "Говорящий спрашивает собеседника о всей его семье на vosotros.",
+          "sourceRef": "42.2.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "смена говорящего",
+          "inputFormat": {
+            "instruction": "Заполни каждый пропуск одной формой глагола. Фразу целиком писать не нужно.",
+            "placeholder": "Одна форма в каждом пропуске"
+          },
+          "gapParts": [
+            "¿Cuántos ",
+            " en tu familia? —",
+            " cuatro."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ]
+        },
+        {
+          "prompt": "¿Qué hora ___? —___ las tres.",
+          "answers": [
+            "es son"
+          ],
+          "explain": "Вопрос qué hora es; ответ las tres требует son.",
+          "context": "Сейчас 15:00.",
+          "sourceRef": "42.2.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "смена говорящего",
+          "inputFormat": {
+            "instruction": "Заполни каждый пропуск одной формой глагола. Фразу целиком писать не нужно.",
+            "placeholder": "Одна форма в каждом пропуске"
+          },
+          "gapParts": [
+            "¿Qué hora ",
+            "? —",
+            " las tres."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ]
+        },
+        {
+          "prompt": "¿Qué día ___ hoy? —___ jueves.",
+          "answers": [
+            "es es"
+          ],
+          "explain": "День недели называем с es в единственном числе.",
+          "context": "Сегодня четверг.",
+          "sourceRef": "42.2.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "смена говорящего",
+          "inputFormat": {
+            "instruction": "Заполни каждый пропуск одной формой глагола. Фразу целиком писать не нужно.",
+            "placeholder": "Одна форма в каждом пропуске"
+          },
+          "gapParts": [
+            "¿Qué día ",
+            " hoy? —",
+            " jueves."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ]
+        },
+        {
+          "prompt": "¿A qué hora ___ la clase? —___ a las ocho.",
+          "answers": [
+            "es es"
+          ],
+          "explain": "Один урок как событие: es. Число ocho относится ко времени, не меняет глагол.",
+          "context": "Урок начинается в восемь.",
+          "sourceRef": "42.2.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "смена говорящего",
+          "inputFormat": {
+            "instruction": "Заполни каждый пропуск одной формой глагола. Фразу целиком писать не нужно.",
+            "placeholder": "Одна форма в каждом пропуске"
+          },
+          "gapParts": [
+            "¿A qué hora ",
+            " la clase? —",
+            " a las ocho."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ]
+        },
+        {
+          "prompt": "¿Cuántos ___ en clase? —___ doce.",
+          "answers": [
+            "sois somos"
+          ],
+          "explain": "Вопрос к ученикам на vosotros: sois; ученики считают себя: somos.",
+          "context": "В классе двенадцать учеников.",
+          "sourceRef": "42.2.9",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "смена говорящего",
+          "inputFormat": {
+            "instruction": "Заполни каждый пропуск одной формой глагола. Фразу целиком писать не нужно.",
+            "placeholder": "Одна форма в каждом пропуске"
+          },
+          "gapParts": [
+            "¿Cuántos ",
+            " en clase? —",
+            " doce."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ]
+        },
+        {
+          "prompt": "Исправь фразу о времени: Son la una.",
+          "answers": [
+            "Es la una",
+            "Es la una."
+          ],
+          "explain": "Один час — es la una. Son используем с las dos и дальше.",
+          "context": "Напиши всю фразу.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "исправление ошибки",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Es la una"
+          ]
+        },
+        {
+          "prompt": "Ответь на ¿Dónde es la fiesta?: «Вечеринка у меня дома».",
+          "answers": [
+            "La fiesta es en mi casa",
+            "La fiesta es en mi casa."
+          ],
+          "explain": "Ser называет место проведения события.",
+          "context": "Начни с La fiesta.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "самостоятельный ответ",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "La fiesta es en mi casa"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "es",
+            "casa",
+            "La",
+            "en",
+            "fiesta",
+            "mi"
+          ]
+        }
+      ],
+      "preview": {
+        "source": "El partido ___ a las diez.",
+        "sentenceParts": [
+          "El partido ",
+          " a las diez."
+        ],
+        "answer": "es",
+        "targetPrefix": "",
+        "translation": "Матч в десять."
+      },
+      "instruction": "Дополни разговор. Смотри, что называют: время, сумму, число людей или событие.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Впиши только пропущенную форму глагола. Остальные слова уже написаны.",
+        "placeholder": "Форма глагола"
+      }
+    }
+  ],
+  "summary": {
+    "heads": [
+      "Что говорим",
+      "Пример"
+    ],
+    "rows": [
+      [
+        "Кто это",
+        "Soy yo. Es Ana."
+      ],
+      [
+        "Профессия, национальность",
+        "Es médica. Somos peruanos."
+      ],
+      [
+        "Родство и качество",
+        "Son hermanas. Es amable."
+      ],
+      [
+        "Откуда, из чего, чей",
+        "Es de Lima / de cristal / de Marta."
+      ],
+      [
+        "Который час",
+        "Es la una. Son las dos."
+      ],
+      [
+        "Сколько нас",
+        "Somos cuatro."
+      ],
+      [
+        "Сколько с меня",
+        "Son veinticinco euros."
+      ],
+      [
+        "Где и когда событие",
+        "La fiesta es en casa, a las ocho."
+      ]
+    ]
+  },
+  "learningOrder": [
+    "section:0",
+    "exercise:42.1",
+    "section:1",
+    "exercise:42.2",
+    "section:2",
+    "exercise:42.3",
+    "section:3",
+    "exercise:42.4",
+    "summary"
+  ]
+}
