@@ -43,7 +43,7 @@
 | 11 | Ser и estar | готово: 5 уроков `version: 2`; практикум без вступления-пояснения, ввод к общему правилу ser/estar, вопросы к разговору `pablo`, миссия `call` | [11_ser_estar.md](site_slide_maps/11_ser_estar.md) | «тема 11» |
 | 12 | Город | готово: 7 уроков `version: 2`; слова, проверявшиеся только автодобавкой, — парами и вопросами урока; вопросы к разговору `tom`, миссия `street`, текст `barrio`; «Повторение 9–12» с `review` | [12_ciudad.md](site_slide_maps/12_ciudad.md) | «тема 12» |
 | 13 | Еда | готово: 7 уроков `version: 2`; заметки jugo и banana / papa перенесены к своим словам, дубль заметки о времени обеда убран, вступление `bar` — на экране разговора; правила `agua`, `con_de`, `er`, `er_ir`, `comer`, `bueno_bien`; слова из автодобавок — парами и вопросами; разговор `bar`, миссия `breakfast`, текст `spain` | [13_comida.md](site_slide_maps/13_comida.md) | «тема 13» |
-| 14 | Мне нравится | — | | |
+| 14 | Мне нравится | готово: 7 уроков `version: 2`; вступления `tambien`, `dialogo`, `lectura` убраны с отдельных экранов (вопрос — убран, строки — на экран разговора и текста); «Juego ___ fútbol» вынесен из вопросов к разговору; правила `regular`, `ver`, `gusta_gustan`, `le_gusta`, `a_ana`, `tambien`, `scale`, `jugar_al`; слова из автодобавок — вопросами и вводом; разговор `lucia`, миссия `exchange`, текст `marta` | [14_gustos.md](site_slide_maps/14_gustos.md) | «тема 14» |
 | 15 | Время | — | | |
 | 16 | Мой день | — | | |
 | 17 | Покупки | — | | |
@@ -75,9 +75,9 @@
 
 ## Последний юнит
 
-- **13 Еда:** validate ✅, pytest 277, node 25/25, Playwright: 7 уроков на 320/390/430, с ошибками, без звука.
+- **14 Мне нравится:** validate ✅, pytest 277, node 25/25, Playwright: 7 уроков на 320/390/430, с ошибками, без звука.
 
 ## Следующий шаг
 
-Тема 14 «Мне нравится»: карты `docs/site_slide_maps/14_gustos.md`, правка `14_gustos.yaml` (хобби, gustar: me gusta /
-me gustan, a mí también / a mí tampoco); навыки — по содержанию темы.
+Тема 15 «Который час?»: карты `docs/site_slide_maps/15_hora.md`, правка `15_hora.yaml`; у `hora/escucha` — альтернатива
+без звука (`noaudio`), после `version: 2` её проверит тест приёмки 8 (снять пропуск в `tests/site_course.test.cjs`).
