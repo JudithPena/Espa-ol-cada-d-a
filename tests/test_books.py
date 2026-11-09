@@ -332,3 +332,41 @@ def test_story_loader_requires_story_file_and_rejects_chapters(tmp_path):
     (folder / 'book.json').write_text(json.dumps({**meta, 'kind': 'poem'}), encoding='utf-8')
     with pytest.raises(ValueError):
         load_books(tmp_path)
+
+
+def test_tres_cerditos_illustrations_follow_the_plot():
+    blocks = _story()['story']['blocks']
+    placed = [(i, im.get('before')) for i, b in enumerate(blocks) for im in b.get('images', [])]
+    assert placed == [(0, None), (0, '- La mía será de paja'), (1, 'Y sopló con todas sus fuerzas'),
+                      (2, 'La madera crujió'), (3, 'Y se puso a soplar tan fuerte')]
+    for block in blocks:
+        for image in block.get('images', []):
+            assert image['src'].startswith('data:image/webp;base64,') and 'file' not in image
+            assert image['alt'].strip()
+
+
+def test_tres_cerditos_vocabulary_has_no_random_word_chains():
+    terms = {n['term'] for b in _story()['story']['blocks'] for n in b['notes'] if isinstance(n, dict)}
+    assert not {'irse por el mundo', 'conseguir fortuna', 'más (adjetivo) que antes', 'el mayor de (un grupo)'} & terms
+    assert {'irse', 'el mundo', 'conseguir (algo)', 'la fortuna', 'antes', 'mayor'} <= terms
+
+
+def test_book_images_are_validated(tmp_path):
+    import json
+    import pytest
+    folder = tmp_path / 'cuento'
+    (folder / 'images').mkdir(parents=True)
+    (folder / 'images' / 'a.webp').write_bytes(b'RIFF')
+    (folder / 'book.json').write_text(json.dumps({'id': 'cuento', 'kind': 'story', 'title': 'C', 'author': 'A',
+                                                  'level': 'A1', 'vocabulary_min_level': 'A1'}), encoding='utf-8')
+    def story(image):
+        (folder / 'story.json').write_text(json.dumps({'status': 'published', 'blocks': [
+            {'title': 't', 'es': 'Uno.\nDos.', 'images': [image]}]}), encoding='utf-8')
+    story({'file': 'images/a.webp', 'alt': 'x', 'before': 'Dos.'})
+    assert load_books(tmp_path)[0]['story']['blocks'][0]['images'][0]['src'].startswith('data:image/webp;base64,')
+    for bad in ({'file': 'images/a.webp', 'alt': ''}, {'file': '../a.webp', 'alt': 'x'},
+                {'file': 'images/a.webp', 'alt': 'x', 'before': 'Tres'},
+                {'file': 'images/a.webp', 'alt': 'x', 'before': 'os.'}):
+        story(bad)
+        with pytest.raises(ValueError):
+            load_books(tmp_path)

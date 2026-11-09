@@ -84,6 +84,8 @@ h2 + .btn.wide, h2 + .muted { margin-top: 10px; display: flex; }
 .vseg ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 15px; }
 .book-block { line-height: 1.65; }
 .book-block p { white-space: pre-line; }
+.book-figure { margin: 14px 0; }
+.book-figure img { display: block; max-width: 100%; height: auto; margin: 0 auto; border-radius: 12px; }
 .book-block ul { list-style: disc; padding-left: 1.3em; }
 .book-pronouns summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; list-style: none; }
 .book-pronouns summary::-webkit-details-marker { display: none; }
@@ -2575,6 +2577,18 @@ function bookText(text, marks = []) {
   }
   return html + esc(text.slice(cursor));
 }
+// Оригинал блока с иллюстрациями: без before — перед текстом, с before — перед этой строкой.
+// Место отмечается служебным символом, чтобы выделения и их номера считались по всему тексту.
+function bookOriginal(block) {
+  const CUT = "\u0001", text = String(block.es ?? ""), images = Array.isArray(block.images) ? block.images : [];
+  const figure = im => `<figure class="book-figure"><img src="${esc(im.src)}" alt="${esc(im.alt || "")}" loading="lazy"></figure>`;
+  const placed = images.map(im => ({im, at: im.before ? text.indexOf(im.before) : -1})).filter(x => x.at > 0).sort((a, b) => a.at - b.at);
+  let marked = text;
+  for (const {at} of [...placed].reverse()) marked = marked.slice(0, at).replace(/\n+$/, "") + CUT + marked.slice(at);
+  const parts = bookText(marked, bookMarks(block, "es")).split(CUT);
+  return images.filter(im => !(placed.some(x => x.im === im))).map(figure).join("")
+    + parts.map((part, i) => (i ? figure(placed[i - 1].im) : "") + `<p lang="es">${part}</p>`).join("");
+}
 function bookMarks(block, lang) {
   return [...(block.marks?.[lang] || []), ...block.notes.flatMap(n => typeof n === "object" && n ? (n[lang] || []).map(text => n.occurrences?.[lang]?.[text] ? {text, occurrences: n.occurrences[lang][text]} : text) : [])];
 }
@@ -2616,7 +2630,7 @@ function bookView() {
     : `<button class="btn ghost sm back" data-book-nav="chapters">← Главы книги</button><h2>Разбор текста</h2><p>${esc(b.title)} · ${esc(bookChapterLabel(chapter))}</p>`;
   return `<div data-book-chapter-view>${head}
     ${hasExercises ? `<div class="book-tabs" role="tablist" aria-label="Содержание главы"><button type="button" class="btn ghost" id="book-tab-analysis" role="tab" aria-controls="book-panel-analysis" aria-selected="true" data-book-panel-tab="analysis">Разбор</button><button type="button" class="btn ghost" id="book-tab-exercises" role="tab" aria-controls="book-panel-exercises" aria-selected="false" tabindex="-1" data-book-panel-tab="exercises">Упражнения</button></div>` : ""}
-    <div class="book-panel" data-book-panel="analysis" ${hasExercises ? 'id="book-panel-analysis" role="tabpanel" aria-labelledby="book-tab-analysis" tabindex="0"' : ""}>${chapter.blocks.map(block => `<section class="vseg book-block"><h3>${esc(block.title)}</h3><p lang="es">${bookText(block.es, bookMarks(block, "es"))}</p><details><summary>Перевод</summary><p>${bookText(block.ru, bookMarks(block, "ru"))}</p></details><h4>Разбор</h4><ul>${block.notes.map(note => `<li>${bookNote(note)}</li>`).join("")}</ul>${block.pronouns && (!Array.isArray(block.pronouns) || block.pronouns.length) ? `<details class="book-pronouns"><summary>Мини-разбор местоимений</summary>${bookPronouns(block.pronouns)}</details>` : ""}</section>`).join("")}</div>
+    <div class="book-panel" data-book-panel="analysis" ${hasExercises ? 'id="book-panel-analysis" role="tabpanel" aria-labelledby="book-tab-analysis" tabindex="0"' : ""}>${chapter.blocks.map(block => `<section class="vseg book-block"><h3>${esc(block.title)}</h3>${bookOriginal(block)}<details><summary>Перевод</summary><p>${bookText(block.ru, bookMarks(block, "ru"))}</p></details><h4>Разбор</h4><ul>${block.notes.map(note => `<li>${bookNote(note)}</li>`).join("")}</ul>${block.pronouns && (!Array.isArray(block.pronouns) || block.pronouns.length) ? `<details class="book-pronouns"><summary>Мини-разбор местоимений</summary>${bookPronouns(block.pronouns)}</details>` : ""}</section>`).join("")}</div>
     ${hasExercises ? `<div class="book-panel" data-book-panel="exercises" id="book-panel-exercises" role="tabpanel" aria-labelledby="book-tab-exercises" tabindex="0" hidden>${total ? `<p data-book-progress role="status" aria-live="polite">Выполнено: 0 из ${total}</p>` : ""}${bookExercises(chapter)}</div>` : ""}</div>`;
 }
 

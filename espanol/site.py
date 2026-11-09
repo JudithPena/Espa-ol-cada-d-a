@@ -850,6 +850,36 @@ def _check_book_text(text: dict, path: Path) -> None:
                 raise ValueError(f"{path}: неверный вопрос или ответ")
 
 
+BOOK_IMAGE_TYPES = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".webp": "image/webp"}
+
+
+def _embed_book_images(text: dict, folder: Path, path: Path) -> None:
+    """Иллюстрации блока: файл из папки книги, подпись alt и место — перед строкой оригинала `before`
+    (без него — перед текстом). Файл встраивается в страницу как data:, на сайт уходит `src`."""
+    for block in text.get("blocks", []):
+        images = block.get("images", [])
+        if not isinstance(images, list):
+            raise ValueError(f"{path}: images должен быть списком")
+        for image in images:
+            file, alt, before = image.get("file"), image.get("alt"), image.get("before")
+            if not isinstance(file, str) or not isinstance(alt, str) or not alt.strip():
+                raise ValueError(f"{path}: у картинки нужны file и alt")
+            source = (folder / file).resolve()
+            if (not source.is_relative_to(folder.resolve()) or source.suffix.lower() not in BOOK_IMAGE_TYPES
+                    or not source.is_file()):
+                raise ValueError(f"{path}: неверный путь к картинке {file}")
+            if before is not None:
+                es = block.get("es", "")
+                if not isinstance(before, str) or not before or es.count(before) != 1:
+                    raise ValueError(f"{path}: место картинки {file} должно один раз встречаться в оригинале")
+                at = es.index(before)
+                if at == 0 or es[at - 1] != "\n":
+                    raise ValueError(f"{path}: картинка {file} ставится только перед началом строки")
+            image["src"] = (f"data:{BOOK_IMAGE_TYPES[source.suffix.lower()]};base64,"
+                            + base64.b64encode(source.read_bytes()).decode("ascii"))
+            del image["file"]
+
+
 def load_books(directory: Path | None = None) -> list[dict]:
     """Одна папка на книгу, отдельные файлы глав; черновики не попадают на сайт."""
     directory = Path(directory) if directory is not None else Path(__file__).resolve().parent.parent / "content" / "books"
@@ -891,6 +921,7 @@ def load_books(directory: Path | None = None) -> list[dict]:
             if story["status"] != "published":
                 continue
             _check_book_text(story, story_path)
+            _embed_book_images(story, path.parent, story_path)
             books.append({**meta, "kind": "story", "cover": cover, "chapters": [], "story": story})
             continue
         chapters, chapter_ids, orders, numbers = [], set(), set(), set()
@@ -915,6 +946,7 @@ def load_books(directory: Path | None = None) -> list[dict]:
             chapter_ids.add(chapter_id); numbers.add(number); orders.add(order)
             if chapter["status"] == "published":
                 _check_book_text(chapter, chapter_path)
+                _embed_book_images(chapter, path.parent, chapter_path)
                 chapters.append(chapter)
         books.append({**meta, "cover": cover, "chapters": sorted(chapters, key=lambda c: c["order"])})
     return books

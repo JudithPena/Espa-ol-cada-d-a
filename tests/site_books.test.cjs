@@ -253,7 +253,7 @@ test('story without chapters opens straight from its card and shows no chapter l
   const story = JSON.parse(fs.readFileSync('content/books/los-tres-cerditos/story.json', 'utf8'));
   const meta = JSON.parse(fs.readFileSync('content/books/los-tres-cerditos/book.json', 'utf8'));
   const cat = {esc:ctx.esc, plural:(n,one,few,many) => n === 1 ? one : n < 5 ? few : many,
-    bookText:ctx.bookText, bookMarks:ctx.bookMarks, bookNote:ctx.bookNote, bookPronouns:ctx.bookPronouns, bookExercises:() => '',
+    bookText:ctx.bookText, bookOriginal:ctx.bookOriginal, bookMarks:ctx.bookMarks, bookNote:ctx.bookNote, bookPronouns:ctx.bookPronouns, bookExercises:() => '',
     view:{bookLevel:'A1'}, COURSE:{books:[{...meta, chapters:[], story}]}};
   vm.createContext(cat); vm.runInContext(catalogSource + viewCode, cat);
   const card = cat.bookLevelView();
@@ -265,6 +265,7 @@ test('story without chapters opens straight from its card and shows no chapter l
   assert.doesNotMatch(html, /Глава/); assert.match(html, /data-book-nav="level"/); assert.match(html, /Los tres cerditos y el Lobo · Cuento popular/);
   assert.equal((html.match(/class="vseg book-block"/g) || []).length, story.blocks.length);
   assert.equal((html.match(/<details class="book-pronouns">/g) || []).length, story.blocks.length);
+  assert.equal((html.match(/class="book-figure"/g) || []).length, 5);
   assert.equal(cat.bookHash(), '#books/A1/los-tres-cerditos');
 });
 
@@ -275,4 +276,14 @@ test('story vocabulary renders every selected form', () => {
     for (const note of block.notes) if (typeof note !== 'string') for (const mark of note[lang])
       assert.ok(html.includes(`<strong>${ctx.esc(mark)}</strong>`), `${block.title} ${lang}: ${mark}`);
   }
+});
+
+test('block illustrations are placed before their line and keep highlights intact', () => {
+  const block = {es: 'Había **una** vez.\n\nYa vez.\nY sopló.', notes: [{term:'vez', es:['vez'], ru:[]}],
+    images: [{src:'data:image/webp;base64,AA', alt:'<top>'}, {src:'data:image/webp;base64,BB', alt:'sopla', before:'Y sopló.'}]};
+  const html = ctx.bookOriginal(block);
+  assert.ok(html.startsWith('<figure class="book-figure"><img src="data:image/webp;base64,AA" alt="&lt;top&gt;"'));
+  assert.match(html, /Ya <strong>vez<\/strong>\.<\/p><figure class="book-figure"><img src="data:image\/webp;base64,BB" alt="sopla" loading="lazy"><\/figure><p lang="es">Y sopló\.<\/p>$/);
+  assert.equal((html.match(/<strong>vez<\/strong>/g) || []).length, 2);
+  assert.equal(ctx.bookOriginal({es:'Texto', notes:[]}), '<p lang="es">Texto</p>');
 });

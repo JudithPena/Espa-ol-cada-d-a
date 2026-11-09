@@ -5,7 +5,7 @@
     {
       "title": "Братья строят себе дома",
       "es": "Había una vez tres cerditos que eran hermanos y se fueron por el mundo a conseguir fortuna. El más grande les dijo a sus hermanos que sería bueno que se pusieran a construir sus propias casas para estar protegidos. A los otros dos les pareció una buena idea, y se pusieron manos a la obra, cada uno construyó su casita.\n\n- La mía será de paja - dijo el más pequeño-, la paja es blanda y se puede sujetar con facilidad. Terminaré muy pronto y podré ir a jugar.\nEl hermano mediano decidió que su casa sería de madera:\n- Puedo encontrar un montón de madera por los alrededores - explicó a sus hermanos, - Construiré mi casa en un santiamén con todos estos troncos y me iré también a jugar.",
-      "ru": "Жили-были три поросёнка, три родных брата, и отправились они по свету за удачей. Самый большой сказал братьям, что хорошо бы им взяться строить собственные дома, чтобы быть под защитой. Двум другим эта мысль понравилась, и они принялись за работу: каждый построил свой домик.\n\n— Мой будет из соломы, — сказал самый маленький. — Солома мягкая, и её легко скрепить. Я закончу очень быстро и смогу пойти играть.\nСредний брат решил, что его дом будет деревянным:\n— Я могу найти в округе кучу дерева, — объяснил он братьям. — Построю свой дом в два счёта из всех этих брёвен и тоже уйду играть.",
+      "ru": "Жили-были три поросёнка, три родных брата, и отправились они по свету добывать удачу. Самый большой сказал братьям, что хорошо бы им взяться строить собственные дома, чтобы быть под защитой. Двум другим эта мысль понравилась, и они принялись за работу: каждый построил свой домик.\n\n— Мой будет из соломы, — сказал самый маленький. — Солома мягкая, и её легко скрепить. Я закончу очень быстро и смогу пойти играть.\nСредний брат решил, что его дом будет деревянным:\n— Я могу найти в округе кучу дерева, — объяснил он братьям. — Построю свой дом в два счёта из всех этих брёвен и тоже уйду играть.",
       "notes": [
         {
           "term": "había una vez",
@@ -41,23 +41,45 @@
           ]
         },
         {
-          "term": "irse por el mundo",
-          "explanation": "отправиться странствовать по свету.",
+          "term": "irse",
+          "explanation": "уйти, отправиться; se fueron — «отправились», me iré — «я уйду». Irse a (infinitivo) — уйти, чтобы что-то делать.",
           "es": [
-            "se fueron por el mundo"
+            "se fueron",
+            "me iré"
           ],
           "ru": [
-            "отправились они по свету"
+            "отправились",
+            "уйду"
           ]
         },
         {
-          "term": "conseguir fortuna",
-          "explanation": "добиться удачи, разбогатеть; в сказках чаще говорят buscar fortuna — искать счастья. Conseguir — добиться, получить.",
+          "term": "el mundo",
+          "explanation": "мир, свет; por el mundo — по свету.",
           "es": [
-            "conseguir fortuna"
+            "mundo"
           ],
           "ru": [
-            "за удачей"
+            "свету"
+          ]
+        },
+        {
+          "term": "conseguir (algo)",
+          "explanation": "добиться, получить, добыть.",
+          "es": [
+            "conseguir"
+          ],
+          "ru": [
+            "добывать"
+          ]
+        },
+        {
+          "term": "la fortuna",
+          "explanation": "удача; также богатство. В сказках обычно говорят buscar fortuna — искать счастья.",
+          "es": [
+            "fortuna"
+          ],
+          "ru": [
+            "удачу"
           ]
         },
         {
@@ -329,16 +351,6 @@
             "брёвен"
           ]
         },
-        {
-          "term": "irse",
-          "explanation": "уйти, отправиться; me iré — «я уйду». Irse a (infinitivo) — уйти, чтобы что-то делать.",
-          "es": [
-            "me iré"
-          ],
-          "ru": [
-            "уйду"
-          ]
-        },
         "Будущее время (futuro simple) в этом блоке: será, terminaré, construiré, iré — к инфинитиву добавляются окончания -é, -ás, -á… У некоторых глаголов основа неправильная: poder → podré."
       ],
       "pronouns": [
@@ -388,6 +400,17 @@
           "translation": "и тоже уйду играть",
           "base": "irse",
           "explanation": "Me — часть местоименного глагола irse в форме первого лица: говорит средний брат. Отдельно «себя» не переводится."
+        }
+      ],
+      "images": [
+        {
+          "file": "images/01-planes.webp",
+          "alt": "Три поросёнка в лесу мечтают о домах: из соломы, из кирпича и из досок."
+        },
+        {
+          "file": "images/02-casa-de-paja.webp",
+          "alt": "Младший поросёнок отдыхает у готового соломенного домика, а двое братьев несут брёвна.",
+          "before": "- La mía será de paja"
         }
       ]
     },
@@ -742,6 +765,13 @@
           "base": "venirse abajo",
           "explanation": "Se — часть устойчивого выражения venirse abajo («рухнуть»), отдельно не переводится. Подлежащее — la casita de paja."
         }
+      ],
+      "images": [
+        {
+          "file": "images/03-lobo-sopla-paja.webp",
+          "alt": "Волк дует на соломенный домик, и солома разлетается.",
+          "before": "Y sopló con todas sus fuerzas"
+        }
       ]
     },
     {
@@ -770,16 +800,16 @@
           ]
         },
         {
-          "term": "más (adjetivo) que antes",
-          "explanation": "сильнее, чем раньше; сравнение с более ранним моментом.",
+          "term": "antes",
+          "explanation": "раньше, прежде.",
           "es": [
-            "más",
-            "que antes"
+            "antes"
           ],
           "ru": [
-            "сильнее прежнего"
+            "прежнего"
           ]
         },
+        "Más enfurecido que antes — «злее, чем раньше»: más + прилагательное + que — обычное сравнение «более…, чем…».",
         {
           "term": "sentirse (adjetivo)",
           "explanation": "чувствовать себя каким-либо: sentirse engañado — почувствовать себя обманутым.",
@@ -939,6 +969,13 @@
           "translation": "побежали прятаться",
           "base": "refugiarse en (un lugar)",
           "explanation": "Se — часть местоименного глагола refugiarse; прикреплено к инфинитиву и относится к двум поросятам."
+        }
+      ],
+      "images": [
+        {
+          "file": "images/04-casa-de-madera.webp",
+          "alt": "Волк сдувает деревянный дом: доски летят, два поросёнка убегают.",
+          "before": "La madera crujió"
         }
       ]
     },
@@ -1238,6 +1275,13 @@
           "base": "volver a ver (a alguien)",
           "explanation": "Lo — прямое дополнение мужского рода: волк. Подлежащее — los cerditos. Местоимение стоит перед всей конструкцией volver a ver; можно сказать и no volvieron a verlo."
         }
+      ],
+      "images": [
+        {
+          "file": "images/05-casa-de-ladrillo.webp",
+          "alt": "Волк изо всех сил дует на кирпичный домик.",
+          "before": "Y se puso a soplar tan fuerte"
+        }
       ]
     },
     {
@@ -1245,16 +1289,7 @@
       "es": "El mayor de ellos regañó a los otros dos por haber sido tan perezosos y poner en peligro sus propias vidas, y si algún día vais por el bosque y veis tres cerdos, sabréis que son los Tres Cerditos porque les gusta cantar:\n- ¡Quién teme al Lobo Feroz, al Lobo, al Lobo!\n- ¡Quién teme al Lobo Feroz, al Lobo Feroz!",
       "ru": "Старший из них отругал двух других за то, что они были такими ленивыми и подвергли опасности собственную жизнь. А если однажды вы пойдёте по лесу и увидите трёх свиней, то поймёте, что это Три Поросёнка, потому что они любят петь:\n— Кто боится Злого Волка, Волка, Волка!\n— Кто боится Злого Волка, Злого Волка!",
       "notes": [
-        {
-          "term": "el mayor de (un grupo)",
-          "explanation": "старший из.",
-          "es": [
-            "El mayor de"
-          ],
-          "ru": [
-            "Старший из"
-          ]
-        },
+        "El mayor de ellos — «старший из них»: mayor (старший) уже встречался выше, а de здесь значит «из» — часть группы.",
         {
           "term": "regañar a (alguien) por (algo)",
           "explanation": "отругать, отчитать кого-либо за что-либо.",
