@@ -92,6 +92,13 @@ h2 + .btn.wide, h2 + .muted { margin-top: 10px; display: flex; }
 .book-pronoun-list { margin-top: 10px; }
 .book-pronoun-item + .book-pronoun-item { border-top: 1px solid var(--line); margin-top: 10px; padding-top: 10px; }
 .book-pronoun-item p { margin: 4px 0 0; overflow-wrap: anywhere; }
+.book-exercise { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; margin-top: 12px; padding: 16px; }
+.book-question { border: 0; padding: 0; margin: 16px 0; min-width: 0; }
+.book-question legend { font-weight: 700; margin-bottom: 8px; }
+.book-reflection { box-sizing: border-box; width: 100%; min-height: 110px; padding: 10px; margin: 8px 0; border: 1px solid var(--line); border-radius: 10px; font: inherit; resize: vertical; }
+.book-choices { display: grid; gap: 8px; }
+.book-choices button { text-align: left; white-space: normal; }
+.book-feedback { min-height: 1.5em; margin-top: 6px; color: var(--muted); }
 .book-cover { width: 48px; height: 64px; object-fit: cover; border-radius: 6px; flex: none; }
 .vseg .nt { font-size: 14px; color: var(--muted); }
 .es { font-weight: 700; }
@@ -2503,7 +2510,8 @@ function bookSync() {
 function bookText(text, marks = []) {
   // Совпадения ищутся в исходном тексте; каждый фрагмент экранируется до вставки.
   text = String(text ?? "");
-  const word = c => c != null && /[\p{L}\p{M}\p{N}_]/u.test(c);
+  // Надстрочные номера примечаний (¹, ²…) не являются частью слова.
+  const word = c => c != null && /[\p{L}\p{M}\p{Nd}_]/u.test(c);
   const candidates = [];
   for (const mark of new Set(marks || [])) {
     if (typeof mark !== "string" || !mark) continue;
@@ -2535,11 +2543,21 @@ function bookPronouns(pronouns) {
   if (!Array.isArray(pronouns)) return "";
   return `<div class="book-pronoun-list">${pronouns.map(item => `<div class="book-pronoun-item"><strong lang="es">${esc(item.es)}</strong>${item.translation ? `<p>${esc(item.translation)}</p>` : ""}${item.base ? `<p>Базовая конструкция: ${esc(item.base)}</p>` : ""}${item.explanation ? `<p>${esc(item.explanation)}</p>` : ""}</div>`).join("")}</div>`;
 }
+function bookReflectionKey(chapter, exercise, index) {
+  return `book-reflection:${view.book}:${chapter.id}:${exercise.id}:${index}`;
+}
+function bookReflectionValue(key) {
+  try { return localStorage.getItem(key) || ""; } catch { return ""; }
+}
+function bookExercises(chapter) {
+  if (!chapter.exercises?.length) return "";
+  return `<h3>Задания из книги</h3>${chapter.exercises.map(ex => `<section class="book-exercise"><p lang="es">${esc(ex.instruction)}</p>${ex.questions.map((q, i) => q.kind === "reflection" ? `<fieldset class="book-question" data-book-exercise="${esc(ex.id)}" data-book-question="${i}"><legend lang="es">${esc(q.prompt)}</legend><p class="muted">Поделитесь своей версией: здесь нет единственного правильного ответа.</p><textarea class="book-reflection" aria-label="Ваш ответ" lang="es">${esc(bookReflectionValue(bookReflectionKey(chapter, ex, i)))}</textarea><button class="btn ghost" type="button" data-book-save-reflection>Сохранить ответ</button><div class="book-feedback" role="status" aria-live="polite"></div></fieldset>` : `<fieldset class="book-question" data-book-exercise="${esc(ex.id)}" data-book-question="${i}"><legend lang="es">${esc(q.prompt)}</legend><div class="book-choices">${q.options.map((option, j) => `<button class="btn ghost" type="button" data-book-choice="${j}" aria-pressed="false" lang="es">${esc(option)}</button>`).join("")}</div><div class="book-feedback" role="status" aria-live="polite"></div></fieldset>`).join("")}</section>`).join("")}`;
+}
 function bookView() {
   const b = bookById(view.book), chapter = b?.chapters.find(c => c.id === view.bookChapter);
   if (!chapter) return b ? bookChaptersView() : booksView();
   return `<button class="btn ghost sm back" data-book-nav="chapters">← Главы книги</button><h2>Разбор текста</h2><p>${esc(b.title)} · Глава ${chapter.number}. ${esc(chapter.title)}</p>
-    ${chapter.blocks.map(block => `<section class="vseg book-block"><h3>${esc(block.title)}</h3><p lang="es">${bookText(block.es, bookMarks(block, "es"))}</p><details><summary>Перевод</summary><p>${bookText(block.ru, bookMarks(block, "ru"))}</p></details><h4>Разбор</h4><ul>${block.notes.map(note => `<li>${bookNote(note)}</li>`).join("")}</ul>${block.pronouns && (!Array.isArray(block.pronouns) || block.pronouns.length) ? `<details class="book-pronouns"><summary>Мини-разбор местоимений</summary>${bookPronouns(block.pronouns)}</details>` : ""}</section>`).join("")}`;
+    ${chapter.blocks.map(block => `<section class="vseg book-block"><h3>${esc(block.title)}</h3><p lang="es">${bookText(block.es, bookMarks(block, "es"))}</p><details><summary>Перевод</summary><p>${bookText(block.ru, bookMarks(block, "ru"))}</p></details><h4>Разбор</h4><ul>${block.notes.map(note => `<li>${bookNote(note)}</li>`).join("")}</ul>${block.pronouns && (!Array.isArray(block.pronouns) || block.pronouns.length) ? `<details class="book-pronouns"><summary>Мини-разбор местоимений</summary>${bookPronouns(block.pronouns)}</details>` : ""}</section>`).join("")}${bookExercises(chapter)}`;
 }
 
 function courseView() {
@@ -3128,6 +3146,30 @@ document.addEventListener("click", e => {
   const el = e.target.closest("button, .spoiler, [data-say], [data-line]");
   if (!el) return;
   const d = el.dataset;
+  if ("bookSaveReflection" in d) {
+    const box = el.closest("[data-book-exercise]");
+    const chapter = bookById(view.book)?.chapters.find(c => c.id === view.bookChapter);
+    const ex = chapter?.exercises?.find(x => x.id === box?.dataset.bookExercise);
+    if (!chapter || !ex) return;
+    try {
+      localStorage.setItem(bookReflectionKey(chapter, ex, Number(box.dataset.bookQuestion)), box.querySelector("textarea").value);
+      box.querySelector(".book-feedback").textContent = "Ответ сохранён на этом устройстве.";
+    } catch { box.querySelector(".book-feedback").textContent = "Не удалось сохранить ответ на этом устройстве."; }
+    return;
+  }
+  if (d.bookChoice != null) {
+    const box = el.closest("[data-book-exercise]");
+    const chapter = bookById(view.book)?.chapters.find(c => c.id === view.bookChapter);
+    const ex = chapter?.exercises?.find(x => x.id === box?.dataset.bookExercise);
+    const q = ex?.questions[Number(box?.dataset.bookQuestion)];
+    if (!q) return;
+    const correct = Array.isArray(q.answer) ? q.answer.includes(Number(d.bookChoice)) : Number(d.bookChoice) === q.answer;
+    box.querySelector(".book-feedback").textContent = correct ? (q.explanation || "Верно!") : "Попробуйте ещё раз.";
+    box.querySelectorAll("button").forEach(button => button.setAttribute("aria-pressed", "false"));
+    el.setAttribute("aria-pressed", "true");
+    if (correct) box.querySelectorAll("button").forEach(button => { button.disabled = true; });
+    return;
+  }
   if ("gmain" in d) { gSave(); G = null; view.tab = "home"; render(); window.scrollTo(0,0); return; }
   if (d.gnextUnit) return gStartNextUnit(d.gnextUnit);
   if (d.gstart) return gStart(G?.unit || view.grammar, d.gstart);

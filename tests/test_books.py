@@ -111,3 +111,18 @@ def test_local_cover_is_packaged_and_cannot_escape_book_folder(tmp_path):
     (root / 'book.json').write_text(json.dumps(metadata))
     with pytest.raises(ValueError, match='обложке'):
         load_books(tmp_path)
+
+
+def test_exercise_validation_accepts_alternative_answers_and_rejects_invalid(tmp_path):
+    import json
+    import pytest
+    root = tmp_path / 'book'; (root / 'chapters').mkdir(parents=True)
+    (root / 'book.json').write_text(json.dumps({'id':'book','title':'Book','author':'Author','level':'A1','vocabulary_min_level':'A1'}))
+    chapter = {'id':'1','number':1,'order':1,'title':'One','status':'published','blocks':[{'title':'text'}],
+               'exercises':[{'id':'ex','instruction':'Completa','questions':[{'prompt':'¿Cuál?', 'options':['3','4','5'], 'answer':[0,1]}]}]}
+    path = root / 'chapters' / '1.json'
+    path.write_text(json.dumps(chapter)); assert load_books(tmp_path)[0]['chapters'][0]['exercises'][0]['questions'][0]['answer'] == [0,1]
+    chapter['exercises'][0]['questions'][0]['answer'] = [3]
+    path.write_text(json.dumps(chapter))
+    with pytest.raises(ValueError, match='вопрос или ответ'):
+        load_books(tmp_path)

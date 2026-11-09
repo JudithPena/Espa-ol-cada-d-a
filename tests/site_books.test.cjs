@@ -8,6 +8,7 @@ const ctx = { esc: s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;', '
 vm.createContext(ctx); vm.runInContext(code, ctx);
 test('all whole-word occurrences and multiple marks are highlighted', () => {
   assert.equal(ctx.bookText('gato, gato y gatos; corazón.', ['gato','corazón']), '<strong>gato</strong>, <strong>gato</strong> y gatos; <strong>corazón</strong>.');
+  assert.equal(ctx.bookText('vacaciones¹ y casas2', ['vacaciones', 'casas']), '<strong>vacaciones</strong>¹ y casas2');
 });
 test('overlaps choose the longest at a given position and remain unnested', () => {
   assert.equal(ctx.bookText('se dio cuenta de algo', ['se dio', 'se dio cuenta de', 'cuenta']), '<strong>se dio cuenta de</strong> algo');
@@ -72,4 +73,28 @@ test('catalog groups books by level and chapters by book, including empty levels
   assert.equal(cat.view.tab, 'book'); assert.equal(cat.view.bookChapter, '2');
   cat.location.hash = '#books/B2/first/draft'; cat.bookSync();
   assert.equal(cat.view.tab, 'book-chapters');
+});
+
+test('published book vocabulary renders every selected form', () => {
+  for (const folder of fs.readdirSync('content/books', {withFileTypes:true}).filter(x => x.isDirectory())) {
+    const dir = `content/books/${folder.name}/chapters`;
+    if (!fs.existsSync(dir)) continue;
+    for (const file of fs.readdirSync(dir).filter(x => x.endsWith('.json'))) {
+      const chapter = JSON.parse(fs.readFileSync(`${dir}/${file}`, 'utf8'));
+      if (chapter.status !== 'published') continue;
+      for (const block of chapter.blocks) for (const lang of ['es','ru']) {
+        const html = ctx.bookText(block[lang], ctx.bookMarks(block, lang));
+        for (const note of block.notes) if (typeof note !== 'string') for (const mark of note[lang])
+          assert.ok(html.includes(`<strong>${ctx.esc(mark)}</strong>`), `${folder.name}/${file}: ${block.title} ${lang}: ${mark}`);
+      }
+    }
+  }
+});
+
+test('book exercises render escaped questions and selectable options', () => {
+  const html = ctx.bookExercises({exercises:[{id:'test', instruction:'<instruction>', questions:[{prompt:'¿<qué>?', options:['<uno>','dos'],answer:0}]}]});
+  assert.match(html, /&lt;instruction&gt;/); assert.match(html, /&lt;uno&gt;/);
+  assert.doesNotMatch(html, /<instruction>|<uno>/);
+  assert.equal((html.match(/data-book-choice=/g) || []).length, 2);
+  assert.equal(ctx.bookExercises({}), '');
 });
