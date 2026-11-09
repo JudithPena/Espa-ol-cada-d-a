@@ -511,6 +511,31 @@ def test_pobre_ana_fifth_chapter_contains_the_complete_source_in_order():
     assert {'conocer a (alguien)', 'el gusto es mío', 'Uds. (ustedes)', 'la papa', 'dormirse'} <= terms
 
 
+def test_pobre_ana_sixth_chapter_contains_the_complete_source_in_order():
+    import hashlib
+    import re
+    chapter = _ana()['chapters'][5]
+    assert (chapter['id'], chapter['number'], chapter['order'], chapter['title']) == ('6', 6, 6, '')
+    assert chapter['icon'] == '💃' and chapter['status'] == 'published'
+    blocks = chapter['blocks']
+    original = re.sub(r'\s+', ' ', ' '.join(b['es'] for b in blocks)).strip()
+    # «Capítulo seis» (printed pp. 26–29); casa de Ricardo → casa de Patricia исправлено и отмечено.
+    assert len(original.split()) == 491
+    assert hashlib.sha256(original.encode()).hexdigest() == '8091d9a9e89220f8f230c21956e696cfa3e60d69fb2ad904aa7909777758fcf7'
+    assert original.startswith('Una noche hay un baile.')
+    assert original.endswith('También está triste porque pronto regresa a California.')
+    assert 'Los tres andan a la casa de Patricia.' in original
+    assert len(blocks) == 5 and all(len(b['es'].split()) >= 60 for b in blocks)
+    for block in blocks:
+        assert block['es'].count('\n\n') == block['ru'].count('\n\n'), block['title']
+        for lang in ('es', 'ru'):
+            assert not re.search(r'(?m)^[ \t]*[—–][^\n]*\n[ \t]*\n[ \t]*[—–]', block[lang])
+    terms = {n['term'] for b in blocks for n in b['notes'] if isinstance(n, dict)}
+    earlier = {n['term'] for ch in _ana()['chapters'][:5] for b in ch['blocks'] for n in b['notes'] if isinstance(n, dict)}
+    assert not terms & earlier
+    assert {'saber + infinitivo', 'venir (de)', 'enseñar a (alguien) a + infinitivo', 'regresar a (un lugar)'} <= terms
+
+
 def test_pobre_ana_highlights_exist_and_never_overlap():
     import re
     word = re.compile(r'\w')
