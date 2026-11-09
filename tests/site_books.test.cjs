@@ -117,22 +117,31 @@ test('precise book highlights keep independent neighbours and variable arguments
     '<strong>apartó</strong> los taladros <strong>de su mente</strong>');
 });
 
-test('Harry chapter annotations exist independently without duplicates or overlapping spans', () => {
-  const chapter = JSON.parse(fs.readFileSync('content/books/harry-potter-piedra/chapters/001.json','utf8'));
+test('all published book annotations exist without duplicates or overlapping spans', () => {
+  const chapters = fs.readdirSync('content/books', {withFileTypes:true}).filter(x=>x.isDirectory()).flatMap(folder=>{
+    const dir = `content/books/${folder.name}/chapters`;
+    return fs.existsSync(dir) ? fs.readdirSync(dir).filter(x=>x.endsWith('.json')).map(file=>JSON.parse(fs.readFileSync(`${dir}/${file}`,'utf8'))).filter(c=>c.status==='published') : [];
+  });
   const word = c => c != null && /[\p{L}\p{M}\p{Nd}_]/u.test(c);
-  for (const block of chapter.blocks) for (const lang of ['es','ru']) {
+  for (const chapter of chapters) for (const block of chapter.blocks) for (const lang of ['es','ru']) {
     assert.deepEqual(block.marks?.[lang] || [], [], 'Vocabulary must belong to a lexical note');
     const spans = [];
     for (const [unit, note] of block.notes.entries()) {
       if (typeof note === 'string') continue;
       assert.equal(new Set(note[lang]).size, note[lang].length, `${block.title}: duplicate annotation`);
       for (const mark of note[lang]) {
-        let found = false;
+        let found = false, occurrence = 0;
+        const selected = note.occurrences?.[lang]?.[mark];
+        const seen = [];
         for (let at = block[lang].indexOf(mark); at !== -1; at = block[lang].indexOf(mark,at+1)) {
           const end = at+mark.length;
           if (word(mark[0]) && at && word(block[lang][at-1]) || word(mark.at(-1)) && word(block[lang][end])) continue;
+          const index = occurrence++;
+          if (selected && !selected.includes(index)) continue;
+          seen.push(index);
           found = true; spans.push({at,end,unit,mark});
         }
+        if (selected) assert.deepEqual([...new Set(selected)].sort((a,b)=>a-b),seen, `${block.title}: invalid occurrence selection`);
         assert.ok(found, `${block.title}: ${lang} missing ${note.term}: ${mark}`);
       }
     }
@@ -153,4 +162,31 @@ test('Harry vocabulary retains reviewed minimal boundaries for the actual readin
   assert.match(html, /<strong>bigote<\/strong> <strong>inmenso<\/strong>/);
   assert.match(html, /<strong>no estaban para<\/strong> tales tonterías/);
   assert.doesNotMatch(html, /<strong>[^<]*tales tonterías/);
+});
+
+test('Lola doler and dormir highlight only the studied verb forms', () => {
+  for (const file of ['001','004','013']) {
+    const {blocks} = JSON.parse(fs.readFileSync(`content/books/lola-lago-nota-falsa/chapters/${file}.json`,'utf8'));
+    for (const block of blocks) for (const note of block.notes.filter(n=>n.term==='doler')) {
+      assert.deepEqual(note.es,['duele']);
+      assert.deepEqual(note.ru,['болит']);
+      const html = ctx.bookText(block.es,ctx.bookMarks(block,'es'));
+      assert.match(html, /<strong>duele<\/strong>/);
+      assert.doesNotMatch(html, /<strong>[^<]*duele[^<]*muela<\/strong>/);
+    }
+  }
+  const {blocks} = JSON.parse(fs.readFileSync('content/books/lola-lago-nota-falsa/chapters/001.json','utf8'));
+  assert.deepEqual(blocks[0].notes.find(n=>n.term==='dormir').es,['ha dormido']);
+  const html = ctx.bookText(blocks[0].es,ctx.bookMarks(blocks[0],'es'));
+  assert.match(html, /Le <strong>duele<\/strong> una muela/);
+  assert.match(html, /<strong>ha dormido<\/strong> muy mal/);
+});
+
+test('a separated preposition belongs only to the selected occurrence', () => {
+  const block = {es:'Hablan en casa. Confían el uno en el otro.', notes:[
+    {term:'confiar en (alguien)',es:['Confían','en'],occurrences:{es:{en:[1]}}}
+  ]};
+  assert.equal(ctx.bookText(block.es,ctx.bookMarks(block,'es')),
+    'Hablan en casa. <strong>Confían</strong> el uno <strong>en</strong> el otro.');
+  assert.equal(ctx.bookText('<en> en', [{text:'en',occurrences:[1]}]),'&lt;en&gt; <strong>en</strong>');
 });

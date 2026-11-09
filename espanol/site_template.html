@@ -2513,12 +2513,17 @@ function bookText(text, marks = []) {
   // Надстрочные номера примечаний (¹, ²…) не являются частью слова.
   const word = c => c != null && /[\p{L}\p{M}\p{Nd}_]/u.test(c);
   const candidates = [];
-  for (const mark of new Set(marks || [])) {
+  for (const spec of marks || []) {
+    const mark = typeof spec === "string" ? spec : spec?.text;
+    const selected = typeof spec === "object" ? spec.occurrences : null;
     if (typeof mark !== "string" || !mark) continue;
+    let occurrence = 0;
     for (let at = text.indexOf(mark); at !== -1; at = text.indexOf(mark, at + 1)) {
       const end = at + mark.length;
       if ((word(mark[0]) && at > 0 && word(text[at - 1])) ||
           (word(mark[mark.length - 1]) && end < text.length && word(text[end]))) continue;
+      const index = occurrence++;
+      if (selected && !selected.includes(index)) continue;
       candidates.push({at, end});
     }
   }
@@ -2533,7 +2538,7 @@ function bookText(text, marks = []) {
   return html + esc(text.slice(cursor));
 }
 function bookMarks(block, lang) {
-  return [...(block.marks?.[lang] || []), ...block.notes.flatMap(n => typeof n === "object" && n ? (n[lang] || []) : [])];
+  return [...(block.marks?.[lang] || []), ...block.notes.flatMap(n => typeof n === "object" && n ? (n[lang] || []).map(text => n.occurrences?.[lang]?.[text] ? {text, occurrences: n.occurrences[lang][text]} : text) : [])];
 }
 function bookNote(note) {
   return typeof note === "string" ? esc(note) : `<strong>${esc(note.term)}</strong> — ${esc(note.explanation)}`;
