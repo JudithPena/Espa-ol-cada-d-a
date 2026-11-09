@@ -444,7 +444,7 @@ def test_pobre_ana_highlights_exist_and_never_overlap():
         for item in block['pronouns']:
             assert item['es'] in block['es'] and item['explanation'].strip()
     assert len(terms) == len(set(terms))
-    assert {'el problema', 'tener (número) años', 'llamarse', 'asistir a (un lugar)', 'no + presente de subjuntivo',
+    assert {'el problema', 'asistir a (un lugar)', 'no + presente de subjuntivo',
             'reírse de (algo / alguien)', 'pobre (перед существительным)', 'el carro', 'ir en (transporte)',
             'estar triste', 'sacar notas', 'pedir (algo) a (alguien)', 'economizar'} <= set(terms)
     blocks = _ana()['chapters'][0]['blocks']
@@ -467,3 +467,22 @@ def test_book_icon_is_optional_and_validated(tmp_path):
     (folder / 'book.json').write_text(json.dumps({**meta, 'icon': ''}), encoding='utf-8')
     with pytest.raises(ValueError, match='иконка книги'):
         load_books(tmp_path)
+
+
+def test_pobre_ana_skips_words_of_the_site_a0_course():
+    """Порог A1: слова, пройденные в темах A0 сайта, в разбор не попадают."""
+    import re
+    from espanol.course import load_course
+    def key(text):
+        text = re.sub(r'\(.*?\)|[¿?¡!.…]', ' ', text.lower())
+        text = re.sub(r'^(el|la|los|las|un|una)\s+|/a\b', '', text.strip())
+        return re.sub(r'\s+', ' ', text).strip()
+    a0 = set()
+    for unit in load_course('content/site').units:
+        if unit.level == 'A0':
+            for lesson in unit.lessons:
+                for word in lesson.vocab or []:
+                    a0 |= {key(part) for part in word.es.split(' / ')}
+    assert {'él', 'once', 'también', 'familia', 'llamarse'} <= a0
+    terms = [n['term'] for b in _ana()['chapters'][0]['blocks'] for n in b['notes'] if isinstance(n, dict)]
+    assert not [t for t in terms if key(t) in a0]
