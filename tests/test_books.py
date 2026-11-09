@@ -485,6 +485,32 @@ def test_pobre_ana_fourth_chapter_contains_the_complete_source_in_order():
     assert 'la tortilla' not in terms  # слово A0; мексиканское значение — в пометке
 
 
+def test_pobre_ana_fifth_chapter_contains_the_complete_source_in_order():
+    import hashlib
+    import re
+    chapter = _ana()['chapters'][4]
+    assert (chapter['id'], chapter['number'], chapter['order'], chapter['title']) == ('5', 5, 5, '')
+    assert chapter['icon'] == '🏫' and chapter['status'] == 'published'
+    blocks = chapter['blocks']
+    original = re.sub(r'\s+', ' ', ' '.join(b['es'] for b in blocks)).strip()
+    # «Capítulo cinco» (printed pp. 22–25); опечатки книги исправлены и отмечены в разборе.
+    assert len(original.split()) == 523
+    assert hashlib.sha256(original.encode()).hexdigest() == '65eaba736db88cd2b5f39a600f28dfbcd8c29ff6988c19fe0e64412a9b9e32a0'
+    assert original.startswith('Ana se despierta el próximo día y va sola al gimnasio.')
+    assert original.endswith('En la noche Ana se duerme.')
+    for fixed in ('—le dice Ana—. El gusto es mío.', 'todos los tipos de música', 'papas… muchas cosas', 'Los Ángeles'):
+        assert fixed in original
+    assert len(blocks) == 5 and all(len(b['es'].split()) >= 60 for b in blocks)
+    for block in blocks:
+        assert block['es'].count('\n\n') == block['ru'].count('\n\n'), block['title']
+        for lang in ('es', 'ru'):
+            assert not re.search(r'(?m)^[ \t]*[—–][^\n]*\n[ \t]*\n[ \t]*[—–]', block[lang])
+    terms = {n['term'] for b in blocks for n in b['notes'] if isinstance(n, dict)}
+    earlier = {n['term'] for ch in _ana()['chapters'][:4] for b in ch['blocks'] for n in b['notes'] if isinstance(n, dict)}
+    assert not terms & earlier
+    assert {'conocer a (alguien)', 'el gusto es mío', 'Uds. (ustedes)', 'la papa', 'dormirse'} <= terms
+
+
 def test_pobre_ana_highlights_exist_and_never_overlap():
     import re
     word = re.compile(r'\w')
