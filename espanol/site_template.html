@@ -2463,17 +2463,40 @@ function booksView() {
     <div class="menu">${(COURSE.books || []).map((b, i) => `<button class="mcard" data-book="${i}"><span class="mi">📖</span><span><b>${esc(b.title)}</b><small>${esc(b.author)} · ${esc(b.chapter)}</small></span><span aria-hidden="true">›</span></button>`).join("")}</div>`;
 }
 function bookText(text, marks = []) {
-  // Текст и подсветка экранируются отдельно: данные книги не являются HTML.
-  const mark = marks.find(m => m && text.includes(m));
-  if (!mark) return esc(text);
-  const at = text.indexOf(mark);
-  return esc(text.slice(0, at)) + "<strong>" + esc(mark) + "</strong>" + esc(text.slice(at + mark.length));
+  // Совпадения ищутся в исходном тексте; каждый фрагмент экранируется до вставки.
+  text = String(text ?? "");
+  const word = c => c != null && /[\p{L}\p{M}\p{N}_]/u.test(c);
+  const candidates = [];
+  for (const mark of new Set(marks || [])) {
+    if (typeof mark !== "string" || !mark) continue;
+    for (let at = text.indexOf(mark); at !== -1; at = text.indexOf(mark, at + 1)) {
+      const end = at + mark.length;
+      if ((word(mark[0]) && at > 0 && word(text[at - 1])) ||
+          (word(mark[mark.length - 1]) && end < text.length && word(text[end]))) continue;
+      candidates.push({at, end});
+    }
+  }
+  // На одном месте побеждает более длинное выделение; пересекающиеся не вкладываются.
+  candidates.sort((a, b) => a.at - b.at || b.end - a.end);
+  let html = "", cursor = 0;
+  for (const {at, end} of candidates) {
+    if (at < cursor) continue;
+    html += esc(text.slice(cursor, at)) + "<strong>" + esc(text.slice(at, end)) + "</strong>";
+    cursor = end;
+  }
+  return html + esc(text.slice(cursor));
+}
+function bookMarks(block, lang) {
+  return [...(block.marks?.[lang] || []), ...block.notes.flatMap(n => typeof n === "object" && n ? (n[lang] || []) : [])];
+}
+function bookNote(note) {
+  return typeof note === "string" ? esc(note) : `<strong>${esc(note.term)}</strong> — ${esc(note.explanation)}`;
 }
 function bookView() {
   const b = (COURSE.books || [])[view.book];
   if (!b) { view.tab = "books"; return booksView(); }
   return `<button class="btn ghost sm back" data-tab="books">← Все книги</button><h2>Разбор текста</h2><p>${esc(b.title)} · ${esc(b.chapter)}</p>
-    ${b.blocks.map(block => `<section class="vseg book-block"><h3>${esc(block.title)}</h3><p lang="es">${bookText(block.es, block.marks?.es)}</p><h4>Перевод</h4><p>${bookText(block.ru, block.marks?.ru)}</p><h4>Разбор</h4><ul>${block.notes.map(note => `<li>${esc(note)}</li>`).join("")}</ul>${block.pronouns ? `<h4>Мини-разбор местоимений</h4><p>${esc(block.pronouns)}</p>` : ""}</section>`).join("")}`;
+    ${b.blocks.map(block => `<section class="vseg book-block"><h3>${esc(block.title)}</h3><p lang="es">${bookText(block.es, bookMarks(block, "es"))}</p><h4>Перевод</h4><p>${bookText(block.ru, bookMarks(block, "ru"))}</p><h4>Разбор</h4><ul>${block.notes.map(note => `<li>${bookNote(note)}</li>`).join("")}</ul>${block.pronouns ? `<h4>Мини-разбор местоимений</h4><p>${esc(block.pronouns)}</p>` : ""}</section>`).join("")}`;
 }
 
 function courseView() {
