@@ -46,7 +46,7 @@
 | 14 | Мне нравится | готово: 7 уроков `version: 2`; вступления `tambien`, `dialogo`, `lectura` убраны с отдельных экранов (вопрос — убран, строки — на экран разговора и текста); «Juego ___ fútbol» вынесен из вопросов к разговору; правила `regular`, `ver`, `gusta_gustan`, `le_gusta`, `a_ana`, `tambien`, `scale`, `jugar_al`; слова из автодобавок — вопросами и вводом; разговор `lucia`, миссия `exchange`, текст `marta` | [14_gustos.md](site_slide_maps/14_gustos.md) | «тема 14» |
 | 15 | Время | готово: 6 уроков `version: 2`; `hora/escucha` начинается заданием, у всех пяти заданий на слух — альтернатива «запишите цифрами» (тест приёмки 8 теперь проверяет и его); заметка о сиесте — на экране разговора; правила `el_los`, `es_son`, `y_menos`, `a_las`, `empieza`, `de_por`; слова из автодобавок — вопросами; разговор `museo`, миссия `library` | [15_hora.md](site_slide_maps/15_hora.md) | «тема 15» |
 | 16 | Мой день | готово: 8 уроков `version: 2`; в `reflexivos` и `irregulares` слова и таблицы переставлены так, чтобы ввод шёл сразу после своей таблицы и правила; строка «Прочитайте…» убрана; ввод «После работы» принимает и «Después del trabajo»; правила `me_self`, `reflexive`, `lavar`, `e_ie`, `boot`, `antes_de`, `nunca`; текст `carlos`, миссия `ana_day`; «Повторение 13–16» с `review` | [16_rutina.md](site_slide_maps/16_rutina.md) | «тема 16» |
-| 17 | Покупки | — | | |
+| 17 | Покупки | готово: 6 уроков `version: 2`; вступления убраны с отдельных экранов (ropa1 — убрано, demostrativos и tienda — на экран правила и разговора); правило cuesta / cuestan перенесено к заданию; «Me lo llevo» вынесен из вопросов к разговору; правила `color_after`, `enta`, `tens_y`, `este_ese`, `cuesta`, `hundreds`, `cientos`, `lo_la`; слова из автодобавок — парами и вопросами; разговор `clara`, миссия `jacket` | [17_compras.md](site_slide_maps/17_compras.md) | «тема 17» |
 | 18 | Погода | — | | |
 | 19 | Планы | — | | |
 | 20 | Здоровье | — | | |
@@ -75,8 +75,8 @@
 
 ## Последний юнит
 
-- **16 Мой день:** validate ✅, pytest 277, node 25/25, Playwright: 8 уроков на 320/390/430, с ошибками, без звука.
+- **17 Покупки:** validate ✅, pytest 277, node 25/25, Playwright: 6 уроков на 320/390/430, с ошибками, без звука.
 
 ## Следующий шаг
 
-Тема 17 «Покупки и одежда»: карты `docs/site_slide_maps/17_compras.md`, правка `17_compras.yaml`.
+Тема 18 «Погода и даты»: карты `docs/site_slide_maps/18_tiempo.md`, правка `18_tiempo.yaml`.
