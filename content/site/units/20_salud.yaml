@@ -12,6 +12,7 @@ lessons:
     kind: vocab
     title: Тело
     goal: назвать части тела
+    version: 2
     vocab:
       - "🧍 el cuerpo [куэ́рпо] — тело"
       - "🗣 la cabeza [кабэ́θа] — голова"
@@ -22,14 +23,18 @@ lessons:
       - "🔙 la espalda [эспа́льда] — спина"
       - "🫃 el estómago [эсто́маго] — желудок, живот"
     blocks:
-      - "Показывайте на себе каждую часть тела и называйте её вслух — так слова запоминаются гораздо быстрее."
       - learn: [el cuerpo, la cabeza, el brazo, la mano]
-      - rule: "**la mano** женского рода, хотя кончается на `-o`: _la mano derecha_, _las manos pequeñas_. Обратный случай вы знаете: _el día_, _el mapa_."
+      - rule:
+          id: mano
+          text: "**la mano** женского рода, хотя кончается на `-o`: _la mano derecha_, _las manos pequeñas_. Обратный случай вы знаете: _el día_, _el mapa_."
       - choose:
           title: El или la?
+          skill: body
           items:
             - q: "___ mano"
               options: "la | el"
+            - q: "___ día"
+              options: "el | la"
       - learn: [la pierna, el pie, la espalda, el estómago]
       - match:
           title: Соедините пары
@@ -39,26 +44,35 @@ lessons:
             - "la pierna — нога"
             - "la espalda — спина"
             - "el estómago — живот"
+            - "el cuerpo — тело"
       - write:
           title: Traduce
-          format: по-испански
+          format: фраза по-испански
+          rule: none
+          skill: body
           items:
-            - "две руки и две ноги (ступни) => dos manos y dos pies"
-            - "Я мою руки. => Me lavo las manos"
+            - q: "две руки и две ноги (ступни)"
+              a: "dos manos y dos pies"
+              mistakes: {"dos manos y dos pie": "pie во множественном — **pies**."}
+            - q: "Я мою руки."
+              a: "Me lavo las manos"
+              mistakes: {"me lavo mis manos": "С частями тела — артикль, а не mi: me lavo **las** manos.", "lavo las manos": "Руки моют себе — нужно **me**: me lavo las manos."}
 
   - id: doler
     kind: grammar
     title: Me duele la cabeza
     goal: сказать, что болит
+    version: 2
     vocab:
       - "🤕 doler [долэ́р] — болеть :: Me duele la cabeza. — У меня болит голова."
       - "❓ ¿Qué te duele? [кэ тэ дуэ́лэ] — что у тебя болит?"
       - "🗣 la garganta [гарга́нта] — горло"
       - "🦷 la muela [муэ́ла] — коренной зуб :: Me duelen las muelas. — У меня болят зубы."
     blocks:
-      - "**doler** («болеть») устроен как **gustar**: _me gusta_ — одно, _me gustan_ — много. Так и здесь."
       - learn: [doler, "¿Qué te duele?"]
+      - "**doler** («болеть») устроен как **gustar**: _me gusta_ — одно, _me gustan_ — много. Так и здесь."
       - compare:
+          id: duele
           cards:
             - head: me duele
               label: болит одно
@@ -72,31 +86,47 @@ lessons:
       - write:
           title: "¿Duele o duelen?"
           format: duele или duelen
+          rule: duele
+          skill: doler
           items:
             - "Me ___ el estómago. => duele"
-            - "Me ___ las piernas. => duelen"
+            - {q: "Me ___ las piernas.", a: "duelen", mistakes: {"duele": "Ног две — **duelen**."}}
             - "¿Te ___ la cabeza? => duele"
-            - "A Ana le ___ los ojos. => duelen"
+            - {q: "A Ana le ___ los ojos.", a: "duelen", mistakes: {"duele": "Глаза — во множественном: **duelen**."}}
       - learn: [la garganta, la muela]
-      - rule: "С частями тела ставят артикль, а не «мой»: _Me duele **la** cabeza_, а не `Me duele mi cabeza`. _Me lavo **las** manos._"
+      - rule:
+          id: articulo
+          text: "С частями тела ставят артикль, а не «мой»: _Me duele **la** cabeza_, а не `Me duele mi cabeza`. _Me lavo **las** manos._"
       - choose:
           title: Как сказать?
+          skill: doler
           items:
             - q: "У меня болит горло."
               options: "Me duele la garganta. | Me duele mi garganta. | Tengo duele la garganta."
             - q: "A mi madre ___ duelen las piernas."
               options: "le | la | me"
+              rule: duele
+            - lines: ["Ana: ¿Qué te duele?"]
+              q: "У вас болит голова."
+              options: "Me duele la cabeza. | Me duelen la cabeza. | Te duele la cabeza."
+              rule: duele
       - write:
           title: Traduce
           format: фраза по-испански
+          skill: doler
           items:
-            - "У меня болят зубы. => Me duelen las muelas"
-            - "У него болит спина. => Le duele la espalda | A él le duele la espalda"
+            - q: "У меня болят зубы."
+              a: "Me duelen las muelas"
+              mistakes: {"me duele las muelas": "Зубов несколько — **duelen**.", "me duelen mis muelas": "С частями тела — артикль: **las** muelas."}
+            - q: "У него болит спина."
+              a: "Le duele la espalda | A él le duele la espalda"
+              mistakes: {"le duele su espalda": "С частями тела — артикль: **la** espalda."}
 
   - id: tener
     kind: grammar
     title: "Tengo hambre, tengo frío"
     goal: описать самочувствие — хочу есть, мне холодно, температура
+    version: 2
     vocab:
       - "🍽 tener hambre [тэнэ́р а́мбрэ] — хотеть есть"
       - "🥤 tener sed [тэнэ́р сэд] — хотеть пить"
@@ -107,27 +137,58 @@ lessons:
       - "🤧 el resfriado [рэсфрья́до] — простуда"
       - "🧒 el niño / la niña [ни́ньо, ни́нья] — ребёнок; мальчик / девочка"
     blocks:
-      - "По-русски «мне холодно», «я хочу есть», а испанцы говорят «я **имею** холод», «я **имею** голод»."
       - learn: [tener hambre, tener sed, tener sueño, tener frío / tener calor]
+      - text:
+          id: tengo_hambre
+          text: "По-русски «мне холодно», «я хочу есть», а испанцы говорят «я **имею** холод», «я **имею** голод»."
       - choose:
           title: Что вы скажете?
+          skill: tener_states
           items:
             - q: "Вы весь день на жаре без воды."
               options: "Tengo sed. | Estoy sed. | Quiero sed."
             - q: "Уже час ночи, глаза закрываются."
               options: "Tengo sueño. | Tengo hambre. | Estoy sueño."
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "tener hambre — хотеть есть"
+            - "tener sed — хотеть пить"
+            - "tener sueño — хотеть спать"
+            - "tener frío — мёрзнуть"
+            - "tener calor — быть жарко"
       - learn: [tener fiebre, tener miedo, el resfriado, el niño / la niña]
-      - rule: "После **tener** — существительное, поэтому «очень» — **mucho/mucha**, а не muy: _Tengo **mucho** frío._ **hambre, sed, fiebre** женского рода: _Tengo **mucha** hambre._ Чего боитесь — **tener miedo de**: _Tengo miedo de los gatos._"
+      - match:
+          title: Соедините пары
+          pairs:
+            - "tener fiebre — температурить"
+            - "tener miedo — бояться"
+            - "el resfriado — простуда"
+            - "el niño — ребёнок"
+      - rule:
+          id: mucha_hambre
+          text: "После **tener** — существительное, поэтому «очень» — **mucho/mucha**, а не muy: _Tengo **mucho** frío._ **hambre, sed, fiebre** женского рода: _Tengo **mucha** hambre._ Чего боитесь — **tener miedo de**: _Tengo miedo de los gatos._"
       - write:
           title: Traduce
           format: фраза по-испански
+          skill: tener_states
           items:
-            - "Я очень хочу есть. => Tengo mucha hambre"
-            - "Мне очень холодно. => Tengo mucho frío"
-            - "Он боится собак. => Tiene miedo de los perros"
-      - note: "Погода — **hace frío**: _En invierno hace frío._ Холодно лично вам — **tengo frío**: _Ana tiene frío._"
+            - q: "Я очень хочу есть."
+              a: "Tengo mucha hambre"
+              mistakes: {"tengo mucho hambre": "hambre — женского рода: **mucha** hambre.", "tengo muy hambre": "После tener — существительное, поэтому **mucha**: tengo mucha hambre."}
+            - q: "Мне очень холодно."
+              a: "Tengo mucho frío"
+              mistakes: {"tengo muy frío": "После tener — существительное, поэтому **mucho**: tengo mucho frío."}
+            - q: "Он боится собак."
+              a: "Tiene miedo de los perros"
+              mistakes: {"tiene miedo los perros": "Чего боятся — через **de**: tiene miedo de los perros."}
+      - note:
+          id: hace_tengo
+          text: "Погода — **hace frío**: _En invierno hace frío._ Холодно лично вам — **tengo frío**: _Ana tiene frío._"
       - choose:
           title: Выберите
+          skill: tener_states
           items:
             - q: "En invierno ___ mucho frío."
               options: "hace | tengo | es"
@@ -138,6 +199,7 @@ lessons:
     kind: dialogue
     title: У врача
     goal: объяснить врачу, что болит, и понять его совет
+    version: 2
     vocab:
       - "🩺 ¿Qué le pasa? [кэ лэ па́са] — что с вами? (вежливо)"
       - "📅 ¿Desde cuándo? [дэ́сдэ куа́ндо] — с каких пор? :: Desde el lunes. — С понедельника."
@@ -146,15 +208,17 @@ lessons:
       - "📄 la receta [рэθэ́та] — рецепт"
       - "🍀 ¡Que te mejores! / ¡Que se mejore! [кэ тэ мэхо́рэс, кэ сэ мэхо́рэ] — выздоравливай! / выздоравливайте!"
     blocks:
-      - "Серхио заболел и пришёл к врачу. Такой разговор может пригодиться в поездке."
       - learn: ["¿Qué le pasa?", "¿Desde cuándo?"]
       - choose:
           title: Что ответить?
+          skill: doctor
           items:
             - lines: ["Médica: ¿Desde cuándo?"]
               options: "Desde el lunes. | El lunes que viene. | A las nueve."
       - learn: [la pastilla, tome, la receta, ¡Que te mejores! / ¡Que se mejore!]
+      - "Серхио заболел и пришёл к врачу."
       - dialogue:
+          id: sergio
           lines:
             - "Médica: Buenos días. ¿Qué le pasa? | Добрый день. Что с вами?"
             - "Sergio: Me duele mucho la garganta y tengo fiebre. | У меня сильно болит горло и температура."
@@ -170,31 +234,41 @@ lessons:
       - more:
           title: tres veces al día
           text: "**vez** — «раз»: _una vez_, _dos veces_ (`z` → `c`, как lápiz — lápices). _tres veces al día_ — «три раза в день», _dos veces a la semana_ — «два раза в неделю»."
-      - culture: "Испанскую аптеку легко найти по светящемуся **зелёному кресту**. Многие лекарства продают только по рецепту — **la receta**."
       - choose:
           title: Responde
+          source: sergio
+          rule: none
           items:
             - q: "¿Qué le duele a Sergio?"
               options: "La garganta y un poco la cabeza. | El estómago. | La espalda y las piernas."
             - q: "¿Puede ir a trabajar?"
               options: "No, tiene que descansar. | Sí, pero tiene que tomar pastillas. | Sí, el lunes."
       - mission:
+          id: consulta
           title: На приёме
           text: "С понедельника у вас болит горло и температура. Вы у врача."
+      - culture: "Испанскую аптеку легко найти по светящемуся **зелёному кресту**. Многие лекарства продают только по рецепту — **la receta**."
       - choose:
+          source: consulta
+          skill: [doctor, doler]
           items:
             - lines: ["Médica: Buenos días. ¿Qué le pasa?"]
               options: "Me duele la garganta y tengo fiebre. | Me duelen la garganta y estoy fiebre. | Tengo duele la garganta."
       - write:
+          source: consulta
+          skill: doctor
           items:
             - q: "Médica: ¿Desde cuándo?"
               a: "Desde el lunes"
               format: ответ по-испански
       - choose:
+          source: consulta
+          skill: doctor
           items:
             - say: "Tome una pastilla tres veces al día."
               q: "Как принимать таблетки?"
               options: "по одной три раза в день | по три один раз в день | одну в день"
+              noaudio: {q: "Как принимать таблетки: «Tome una pastilla tres veces al día»?", options: "по одной три раза в день | по три один раз в день | одну в день"}
             - lines: ["Médica: Aquí tiene la receta. ¡Que se mejore!"]
               options: "Muchas gracias. | ¡Que te mejores! | De nada."
     forms: [vez]
@@ -202,39 +276,58 @@ lessons:
   - id: quiz
     kind: quiz
     title: Здоровье
+    goal: назвать части тела, сказать, что болит, описать самочувствие и объясниться у врача
+    version: 2
+    check: soft
     blocks:
-      - "Пришло время проверить себя: это тест по теме «Здоровье»."
+      - "Это тест по теме «Здоровье»."
       - cando:
           - "назвать части тела"
           - "сказать, что болит: me duele, me duelen"
           - "описать самочувствие: tengo hambre, frío, fiebre"
           - "объясниться у врача"
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "la cabeza — голова"
+            - "la espalda — спина"
+            - "tener sueño — хотеть спать"
+            - "la pastilla — таблетка"
+            - "el niño — ребёнок"
     quiz:
       - q: "Me ___ los pies."
         options: "duelen | duele | duelo"
         explain: "Слово pies стоит во множественном числе, поэтому нужна форма duelen: me duelen los pies, но me duele la cabeza."
+        skill: doler
       - q: Как сказать «Я хочу пить»?
         options: "Tengo sed. | Estoy sed. | Quiero sed."
         explain: "О самочувствии испанцы говорят с глаголом tener: tengo sed, tengo hambre, tengo sueño."
+        skill: tener_states
       - q: "___ mano (артикль)"
         options: "la | el"
         answer: 0
         explain: "Слово mano женского рода, хотя оно заканчивается на -o, поэтому правильно говорить la mano и las manos."
+        skill: body
       - q: Как сказать «У меня болит голова»?
         options: "Me duele la cabeza. | Me duele mi cabeza. | Tengo duele la cabeza."
         explain: "С частями тела испанцы ставят артикль, а не слово mi, поэтому правильно говорить me duele la cabeza."
+        skill: doler
       - q: "Hoy ___ mucho frío y yo ___ frío."
         options: "hace / tengo | tengo / hace | es / estoy"
         explain: "Когда холодно на улице, говорят hace frío, а когда холодно лично вам, говорят tengo frío."
+        skill: tener_states
 
   - id: repaso
     kind: review
     title: Повторение
     goal: проверить себя по темам 17–20 — покупки, погода, планы, здоровье
+    version: 2
     blocks:
       - "Перед последними темами курса — пауза: задания по темам 17–20."
       - match:
           title: Соедините пары
+          rule: none
           pairs:
             - "la chaqueta — куртка"
             - "barato — дешёвый"
@@ -243,23 +336,41 @@ lessons:
             - "la garganta — горло"
       - choose:
           title: Выберите
+          rule: none
           items:
             - q: "¿Cuánto ___ estos zapatos?"
               options: "cuestan | cuesta | costan"
+              skill: prices
             - say: "Mañana va a llover y hace mucho frío."
               options: "Завтра будет дождь, и очень холодно. | Завтра будет снег, и очень жарко. | Сегодня дождь, а завтра холодно."
+              noaudio: {q: "Что значит «Mañana va a llover y hace mucho frío»?", options: "Завтра будет дождь, и очень холодно. | Завтра будет снег, и очень жарко. | Сегодня дождь, а завтра холодно."}
+              skill: weather
             - lines: ["Diego: ¿Vamos a la playa el sábado?"]
               q: "Вы не можете: нужно работать."
               options: "Lo siento, no puedo. Tengo que trabajar. | ¡Genial! Tengo que trabajar. | Hay que trabajar, ¡perfecto!"
+              skill: invite
       - write:
           title: Напишите по-испански
           format: фраза по-испански
+          rule: none
           items:
-            - "У меня болит голова. => Me duele la cabeza"
-            - "Мой день рождения — двадцатого мая. => Mi cumpleaños es el veinte de mayo"
+            - q: "У меня болит голова."
+              a: "Me duele la cabeza"
+              skill: doler
+              mistakes: {"me duele mi cabeza": "С частями тела — артикль: me duele **la** cabeza."}
+            - q: "Мой день рождения — двадцатого мая."
+              a: "Mi cumpleaños es el veinte de mayo"
+              skill: dates
+              mistakes: {"mi cumpleaños es en veinte de mayo": "С числом — **el**: el veinte de mayo; en — только с месяцем."}
       - build:
           title: Соберите фразу
+          rule: none
+          skill: [demonstratives, shopping]
           items:
             - es: "Esta camiseta me queda muy bien."
               ru: "Эта футболка (у меня в руках) мне очень идёт."
               extra: [este]
+      - review:
+          title: Повторим то, что пора
+          skills: [clothes, big_numbers, demonstratives, prices, shopping, weather, seasons, dates, muy_mucho, future_time, ir_a_inf, personal_a, tener_que, invite]
+          n: 3
