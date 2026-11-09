@@ -533,11 +533,12 @@ test('приёмка 8 на реальных уроках: numeros/dictado и ho
   }
 });
 
-test('приёмка 10 на реальных итогах: familia/repaso (и final/examen после темы 23) — контроль с порогом и слабыми темами', () => {
+test('приёмка 10 на реальных итогах: familia/repaso и final/examen — контроль с порогом и слабыми темами', () => {
   for (const id of ['familia/repaso', 'final/examen']) {
     const run = context(site);
     const i = idx(run, id);
-    if (run(`LESSONS[${i}].check`) !== 'control') { assert.ok(id === 'final/examen', `${id}: нет check: control`); continue; }
+    assert.equal(run(`LESSONS[${i}].check`), 'control', `${id}: нет check: control`);
+    assert.equal(run(`LESSONS[${i}].scripted`), true, `${id}: итог открывается сразу заданием, без титульного слайда`);
     run(`P.openAll = false; LESSONS.slice(0, ${i}).forEach(L => { P.done[L.id] = {stars: 3}; }); startLesson(${i})`);
     const graded = J(run, 'S.steps.filter(isGraded)');
     assert.ok(graded.length >= 8, `${id}: оцениваемых заданий ${graded.length}`);
