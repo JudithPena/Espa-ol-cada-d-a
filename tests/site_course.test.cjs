@@ -506,7 +506,7 @@ test('приёмка 1–7 на реальных уроках темы 01 и 02'
   assert.deepEqual(J(run, 'SFX'), [true]);
 });
 
-test('приёмка 8 на реальных уроках: numeros/dictado без звука не засчитывается пустым, с альтернативой — «без звука»', () => {
+test('приёмка 8 на реальных уроках: numeros/dictado и hora/escucha без звука не засчитываются пустыми, с альтернативой — «без звука»', () => {
   for (const id of ['numeros/dictado', 'hora/escucha']) {
     const run = context(site);   // нет записей и испанского голоса
     const i = idx(run, id);
@@ -518,7 +518,6 @@ test('приёмка 8 на реальных уроках: numeros/dictado бе�
     run('S.steps = S.steps.map(s => isListen(s) ? {type: "deferred", orig: s} : s); finish()');
     assert.equal(run('S.graded'), 0, id);
     assert.equal(run(`!!P.done[${JSON.stringify(id)}]`), false, `${id}: пустой урок не засчитан`);
-    if (id === 'hora/escucha' && run(`(LESSONS[${i}].version || 1) < 2`)) continue;   // тема 15 ещё не перестроена
     // «Нет возможности слушать»: у каждого задания — письменная альтернатива, урок засчитан «без звука».
     run(`startLesson(${i}); S.noAudio = true`);
     for (let k = 0; k < 40 && run('S.kind') !== 'result'; k++) {

@@ -12,6 +12,7 @@ lessons:
     kind: vocab
     title: Дни недели
     goal: назвать дни недели и сказать «в понедельник» и «по понедельникам»
+    version: 2
     vocab:
       - "1️⃣ el lunes [лу́нэс] — понедельник"
       - "2️⃣ el martes [ма́ртэс] — вторник"
@@ -26,6 +27,7 @@ lessons:
       - learn: [el lunes, el martes, el miércoles, el jueves]
       - choose:
           title: Выберите
+          skill: days
           items:
             - q: "Какой день идёт после miércoles?"
               options: "jueves | martes | lunes"
@@ -38,7 +40,9 @@ lessons:
             - "el viernes — пятница"
             - "el sábado — суббота"
             - "el domingo — воскресенье"
+            - "la semana — неделя"
       - compare:
+          id: el_los
           cards:
             - head: el lunes
               label: в (этот) понедельник
@@ -51,23 +55,35 @@ lessons:
           note: "Предлог не нужен: _el lunes_, а не `en el lunes`. Дни на `-s` во множественном не меняются: _los martes_; а _sábado_ и _domingo_ получают `-s`: _los sábados_, _los domingos_."
       - choose:
           title: Выберите
+          skill: days
           items:
             - q: "Каждую субботу я езжу в горы."
               options: "Los sábados voy a la montaña. | El sábado voy a la montaña. | En sábado voy a la montaña."
             - say: "El domingo comemos con mis padres."
               options: "В воскресенье мы обедаем с родителями. | По воскресеньям мы ужинаем с родителями. | В субботу мы обедаем с родителями."
+              noaudio: {q: "Что значит «El domingo comemos con mis padres»?", options: "В воскресенье мы обедаем с родителями. | По воскресеньям мы ужинаем с родителями. | В субботу мы обедаем с родителями."}
       - write:
           title: Traduce
-          format: по-испански
+          format: день недели с артиклем
+          skill: days
           items:
-            - "в среду => el miércoles"
-            - "по воскресеньям => los domingos"
-            - "Сегодня понедельник. => Hoy es lunes"
+            - q: "в среду"
+              a: "el miércoles"
+              mistakes: {"en el miércoles": "Предлог не нужен: **el miércoles**."}
+            - q: "по воскресеньям"
+              a: "los domingos"
+              mistakes: {"los domingo": "domingo во множественном получает -s: **los domingos**.", "el domingo": "el domingo — «в это воскресенье». По воскресеньям — **los domingos**."}
+            - q: "Сегодня понедельник."
+              a: "Hoy es lunes"
+              format: фраза по-испански
+              rule: none
+              mistakes: {"hoy es el lunes": "После **hoy es** день называют без артикля: Hoy es lunes."}
 
   - id: hora
     kind: grammar
     title: ¿Qué hora es?
     goal: сказать и понять на слух, который час
+    version: 2
     vocab:
       - "🕐 ¿Qué hora es? [кэ о́ра эс] — который час?"
       - "⏱ la hora [о́ра] — час; время (на часах)"
@@ -83,14 +99,20 @@ lessons:
             - "Es la una. — Час."
             - "Son las dos. — Два часа."
       - learn: ["¿Qué hora es?", la hora, en punto]
-      - rule: "Час — один, поэтому **Es la una**. Все остальные часы — множественное число: **Son las…**: _Son las dos_, _Son las diez en punto_."
+      - rule:
+          id: es_son
+          text: "Час — один, поэтому **Es la una**. Все остальные часы — множественное число: **Son las…**: _Son las dos_, _Son las diez en punto_."
       - choose:
           title: "¿Qué hora es?"
+          skill: time
           items:
             - q: "1:00"
               options: "Es la una. | Son las una. | Es una."
+            - q: "Как спросить «Который час?»"
+              options: "¿Qué hora es? | ¿Qué es la hora? | ¿Cómo es la hora?"
       - learn: [y media, y cuarto, menos cuarto, menos]
       - compare:
+          id: y_menos
           cards:
             - head: y
               say: false
@@ -105,25 +127,35 @@ lessons:
       - write:
           title: "¿Qué hora es?"
           format: время словами
+          skill: time
           items:
-            - "7:00 => Son las siete | Son las siete en punto"
-            - "1:30 => Es la una y media"
+            - {q: "7:00", a: "Son las siete | Son las siete en punto", rule: es_son}
+            - q: "1:30"
+              a: "Es la una y media"
+              rule: es_son
+              mistakes: {"son las una y media": "Час один — **Es la una** y media."}
             - "10:15 => Son las diez y cuarto"
             - q: "5:45"
               a: "Son las seis menos cuarto"
               explain: "После половины минуты вычитают из следующего часа: шесть без четверти."
-            - "3:50 => Son las cuatro menos diez"
+              mistakes: {"son las cinco menos cuarto": "Cinco menos cuarto — это 4:45. Для 5:45 вычитаем из шести: **Son las seis menos cuarto**."}
+            - q: "3:50"
+              a: "Son las cuatro menos diez"
+              mistakes: {"son las tres menos diez": "Tres menos diez — это 2:50. Для 3:50 вычитаем из четырёх: **Son las cuatro menos diez**."}
       - choose:
           title: Послушайте и выберите
+          skill: time_ear
           items:
             - say: "Son las nueve menos cuarto."
               options: "8:45 | 9:15 | 9:45"
+              noaudio: {q: "Который час: «Son las nueve menos cuarto»?", options: "8:45 | 9:15 | 9:45"}
               explain: "Nueve menos cuarto — без четверти девять, то есть 8:45."
 
   - id: a_que_hora
     kind: grammar
     title: ¿A qué hora...?
     goal: сказать, во сколько что-то начинается и заканчивается
+    version: 2
     vocab:
       - "❓ ¿A qué hora...? [а кэ о́ра] — во сколько...? :: ¿A qué hora comes? — Во сколько ты обедаешь?"
       - "📚 la clase [кла́сэ] — урок, занятие"
@@ -139,15 +171,22 @@ lessons:
             - "¿A qué hora comes? Como a las dos. — Во сколько ты обедаешь? В два."
             - "La clase empieza a las nueve y termina a las once. — Урок начинается в девять и заканчивается в одиннадцать."
       - learn: ["¿A qué hora...?", la clase, empezar, terminar]
-      - rule: "«Во сколько?» — **a** + время: _Como **a la una**._ _La clase empieza **a las dos**._"
-      - note: "**empezar** меняет гласную в корне: _La clase empieza_, _Las clases empiezan_. Почему — разберём в следующей теме."
+      - rule:
+          id: a_las
+          text: "«Во сколько?» — **a** + время: _Como **a la una**._ _La clase empieza **a las dos**._"
+      - note:
+          id: empieza
+          text: "**empezar** меняет гласную в корне: _La clase empieza_, _Las clases empiezan_. Почему — разберём в следующей теме."
       - choose:
           title: Выберите
+          rule: a_las
+          skill: a_que_hora
           items:
             - q: "La clase empieza ___ las nueve."
               options: "a | en | de"
       - learn: [por la mañana, por la tarde, por la noche]
       - compare:
+          id: de_por
           cards:
             - head: a las siete de la mañana
               label: точное время + часть суток
@@ -159,7 +198,12 @@ lessons:
               ex: ["Por la tarde voy al parque."]
       - choose:
           title: Выберите
+          skill: a_que_hora
           items:
+            - q: "☀️ 10:00 — ¿por la mañana, por la tarde o por la noche?"
+              options: "Por la mañana. | Por la tarde. | Por la noche."
+            - q: "🌙 23:00 — ¿por la mañana, por la tarde o por la noche?"
+              options: "Por la noche. | Por la tarde. | Por la mañana."
             - q: "Ceno a las nueve ___ noche."
               options: "de la | por la | en la"
             - q: "___ la mañana trabajo y por la tarde estudio."
@@ -167,11 +211,19 @@ lessons:
       - write:
           title: Traduce
           format: фраза по-испански
+          skill: a_que_hora
           items:
-            - "Я завтракаю в семь утра. => Desayuno a las siete de la mañana"
-            - "Занятие заканчивается в час. => La clase termina a la una"
+            - q: "Я завтракаю в семь утра."
+              a: "Desayuno a las siete de la mañana"
+              mistakes: {"desayuno a las siete por la mañana": "С точным временем — **de la mañana**: a las siete de la mañana."}
+            - q: "Занятие заканчивается в час."
+              a: "La clase termina a la una"
+              rule: a_las
+              mistakes: {"la clase termina a las una": "Час один: **a la una**."}
       - build:
           title: Соберите фразу
+          rule: a_las
+          skill: a_que_hora
           items:
             - es: "¿A qué hora empieza la película?"
               ru: "Во сколько начинается фильм?"
@@ -181,6 +233,7 @@ lessons:
     kind: dialogue
     title: Часы работы
     goal: узнать часы работы и понять ответ
+    version: 2
     vocab:
       - "🔒 cerrar [θэрра́р] — закрывать(ся) {forms: cierra cierran}"
       - "🟢 abierto/a [абьэ́рто, абьэ́рта] — открытый, открыто"
@@ -191,6 +244,7 @@ lessons:
       - learn: [cerrar, abierto/a, cerrado/a]
       - choose:
           title: Выберите
+          skill: opening_hours
           items:
             - q: "Los lunes el museo está ___. (закрыт)"
               options: "cerrado | abierto | cierra"
@@ -199,6 +253,7 @@ lessons:
       - learn: [todos los días, de... a...]
       - "Уго звонит в музей. Как он спрашивает о часах работы?"
       - dialogue:
+          id: museo
           lines:
             - "Hugo: Buenos días. ¿A qué hora abre el museo? | Доброе утро. Во сколько открывается музей?"
             - "Recepcionista: Abre a las diez de la mañana. | Открывается в десять утра."
@@ -212,26 +267,36 @@ lessons:
       - culture: "Во многих испанских городах магазины закрываются на обед примерно с 14 до 17 часов — это время **la siesta**. Зато вечером работают до 21–22 часов."
       - choose:
           title: Responde
+          source: museo
           items:
             - q: "¿A qué hora abre el museo?"
               options: "A las diez de la mañana. | A las ocho de la tarde. | A las doce."
+            - q: "¿Abre el museo todos los días?"
+              options: "No, de martes a domingo. | Sí, todos los días. | Sí, de lunes a domingo."
             - q: "¿Qué día está cerrado?"
               options: "El lunes. | El martes. | El domingo."
       - mission:
+          id: library
           title: Библиотека в субботу
           text: "Вы хотите позаниматься в библиотеке в выходные. Позвоните и узнайте часы работы."
       - choose:
+          source: library
+          skill: opening_hours
           items:
             - lines: ["Recepcionista: Los sábados abre a las nueve y media y cierra a las dos."]
               q: "Когда библиотека работает в субботу?"
               options: "с 9:30 до 14:00 | с 9:30 до 2 часов ночи | с 10:30 до 14:00"
       - write:
+          source: library
+          skill: opening_hours
           items:
             - q: "Спросите: «А в воскресенье она открыта?»"
               a: "¿Y el domingo está abierta? | ¿Está abierta el domingo? | ¿Y el domingo? ¿Está abierta? | ¿Abre el domingo? | ¿Y el domingo abre?"
               format: вопрос по-испански
               explain: "La biblioteca женского рода — abierta."
+              mistakes: {"¿y el domingo está abierto?": "La biblioteca — женского рода: **abierta**.", "¿está abierto el domingo?": "La biblioteca — женского рода: **abierta**."}
       - choose:
+          source: library
           items:
             - lines: ["Recepcionista: No, los domingos está cerrada."]
               options: "Vale, gracias. ¡Hasta el sábado! | ¡Qué bien! Voy el domingo. | De nada."
@@ -241,42 +306,65 @@ lessons:
     kind: listening
     title: Который час?
     goal: понимать время на слух
+    version: 2
     blocks:
-      - "Послушайте и запишите время цифрами."
       - write:
           title: Послушайте и запишите
           format: время цифрами, например 7:30
+          skill: time_ear
           items:
             - say: "Son las tres y media."
               a: "3:30 | 15:30"
+              noaudio: {q: "Запишите цифрами: Son las tres y media.", a: "3:30 | 15:30"}
             - say: "Es la una y cuarto."
               a: "1:15 | 13:15"
+              noaudio: {q: "Запишите цифрами: Es la una y cuarto.", a: "1:15 | 13:15"}
             - say: "Son las nueve menos cuarto."
               a: "8:45 | 20:45"
+              noaudio: {q: "Запишите цифрами: Son las nueve menos cuarto.", a: "8:45 | 20:45"}
               explain: "Nueve menos cuarto — без четверти девять: 8:45."
             - say: "Son las once en punto."
               a: "11:00 | 23:00 | 11"
+              noaudio: {q: "Запишите цифрами: Son las once en punto.", a: "11:00 | 23:00 | 11"}
             - say: "Son las siete menos diez."
               a: "6:50 | 18:50"
+              noaudio: {q: "Запишите цифрами: Son las siete menos diez.", a: "6:50 | 18:50"}
               explain: "Siete menos diez — без десяти семь: 6:50."
 
   - id: quiz
     kind: quiz
     title: Время и дни недели
+    goal: назвать дни недели, сказать, который час, и договориться о времени
+    version: 2
+    check: soft
     blocks:
       - "Тест по теме «Время и дни недели»."
       - cando:
           - "назвать дни недели и сказать «в понедельник», «по понедельникам»"
           - "сказать, который час: Son las tres y media"
           - "спросить и сказать, во сколько: ¿A qué hora...? — A las..."
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "el jueves — четверг"
+            - "la semana — неделя"
+            - "en punto — ровно"
+            - "terminar — заканчивать(ся)"
+            - "cerrado — закрыто"
     quiz:
       - q: Как сказать «1:00»?
         options: "Es la una. | Son las una. | Es una."
+        skill: time
       - q: "10:45 — ..."
         options: "Son las once menos cuarto. | Son las diez y cuarto. | Son las diez menos cuarto."
+        skill: time
       - q: Как сказать «по субботам»?
         options: "los sábados | el sábado | en sábado"
+        skill: days
       - q: "La clase empieza ___ las nueve."
         options: "a | en | de"
+        skill: a_que_hora
       - q: Какой день идёт после «miércoles»?
         options: "jueves | martes | viernes"
+        skill: days
