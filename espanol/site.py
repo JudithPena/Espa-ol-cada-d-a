@@ -881,7 +881,7 @@ def _embed_book_images(text: dict, folder: Path, path: Path) -> None:
 
 
 def load_books(directory: Path | None = None) -> list[dict]:
-    """Одна папка на книгу, отдельные файлы глав; черновики не попадают на сайт."""
+    """Отдельные файлы глав; в оглавлении черновика видны только метаданные."""
     directory = Path(directory) if directory is not None else Path(__file__).resolve().parent.parent / "content" / "books"
     books, ids, series_numbers = [], set(), set()
     for path in sorted(directory.glob("*/book.json")):
@@ -941,7 +941,7 @@ def load_books(directory: Path | None = None) -> list[dict]:
             _embed_book_images(story, path.parent, story_path)
             books.append({**meta, "kind": "story", "cover": cover, "chapters": [], "story": story})
             continue
-        chapters, chapter_ids, orders, numbers = [], set(), set(), set()
+        chapters, chapter_catalog, chapter_ids, orders, numbers = [], [], set(), set(), set()
         for chapter_path in sorted((path.parent / "chapters").glob("*.json")):
             chapter = json.loads(chapter_path.read_text(encoding="utf-8"))
             chapter_id, number, order = chapter.get("id"), chapter.get("number"), chapter.get("order")
@@ -961,11 +961,15 @@ def load_books(directory: Path | None = None) -> list[dict]:
                 raise ValueError(f"{chapter_path}: иконка главы должна быть коротким символом")
             chapter["icon"] = icon.strip()
             chapter_ids.add(chapter_id); numbers.add(number); orders.add(order)
+            # Оглавление показывает объём книги, но не публикует незавершённый разбор.
+            chapter_catalog.append({key: chapter[key] for key in
+                                    ("id", "number", "order", "title", "icon", "status")})
             if chapter["status"] == "published":
                 _check_book_text(chapter, chapter_path)
                 _embed_book_images(chapter, path.parent, chapter_path)
                 chapters.append(chapter)
-        books.append({**meta, "cover": cover, "chapters": sorted(chapters, key=lambda c: c["order"])})
+        books.append({**meta, "cover": cover, "chapters": sorted(chapters, key=lambda c: c["order"]),
+                      "chapter_catalog": sorted(chapter_catalog, key=lambda c: c["order"])})
     return sorted(books, key=lambda book: ((book.get("series") or {}).get("id", book["id"]),
                                           (book.get("series") or {}).get("number", 0)))
 

@@ -330,3 +330,45 @@ test('block illustrations are placed before their line and keep highlights intac
   assert.equal((html.match(/<strong>vez<\/strong>/g) || []).length, 2);
   assert.equal(ctx.bookOriginal({es:'Texto', notes:[]}), '<p lang="es">Texto</p>');
 });
+
+test('complete contents show unavailable chapters but route only to published analysis', () => {
+  const catalogSource = source.slice(source.indexOf('function booksView()'), source.indexOf('function bookText('));
+  const dir = 'content/books/harry-potter-piedra/chapters';
+  const raw = fs.readdirSync(dir).filter(f => f.endsWith('.json')).map(f => JSON.parse(fs.readFileSync(`${dir}/${f}`, 'utf8')));
+  const meta = JSON.parse(fs.readFileSync('content/books/harry-potter-piedra/book.json', 'utf8'));
+  const book = {...meta, chapters:raw.filter(c => c.status === 'published'), chapter_catalog:raw};
+  const cat = {esc:ctx.esc, plural:(n,one,few,many) => n === 1 ? one : n < 5 ? few : many,
+    view:{bookLevel:'B2',book:book.id}, COURSE:{books:[book]}};
+  vm.createContext(cat); vm.runInContext(catalogSource, cat);
+  assert.match(cat.bookLevelView(), /17 глав/);
+  const html = cat.bookChaptersView();
+  assert.equal((html.match(/class="mcard book-chapter-card"/g) || []).length, 17);
+  assert.equal((html.match(/data-book-chapter=/g) || []).length, 2);
+  assert.equal((html.match(/ disabled>/g) || []).length, 15);
+  assert.equal((html.match(/>Скоро</g) || []).length, 15);
+  assert.match(html, /Доступно 2 из 17 глав/);
+  assert.match(html, /Глава 6\. El viaje desde el andén nueve y tres cuartos/);
+  assert.match(html, /class="book-cover-large"/);
+  assert.ok(html.includes(`src="${meta.cover}"`));
+  cat.location = {hash:`#books/B2/${book.id}/3`}; cat.bookSync();
+  assert.equal(cat.view.tab, 'book-chapters'); assert.equal(cat.view.bookChapter, null);
+  assert.equal(cat.bookHash(), `#books/B2/${book.id}`);
+  cat.location.hash = `#books/B2/${book.id}/1`; cat.bookSync();
+  assert.equal(cat.view.tab, 'book'); assert.equal(cat.view.bookChapter, '1');
+  // Finishing a chapter unlocks the same entry and stable route.
+  book.chapters.push(raw.find(c => c.id === '3'));
+  cat.location.hash = `#books/B2/${book.id}/3`; cat.bookSync();
+  assert.equal(cat.view.tab, 'book'); assert.equal(cat.view.bookChapter, '3');
+  assert.equal((cat.bookChaptersView().match(/ disabled>/g) || []).length, 14);
+});
+
+test('unavailable titles and large cover attributes remain escaped', () => {
+  const catalogSource = source.slice(source.indexOf('function booksView()'), source.indexOf('function bookText('));
+  const cat = {esc:ctx.esc, view:{book:'test'}, COURSE:{books:[{id:'test',title:'<Title>',author:'<Author>',
+    level:'B2', cover:'cover" onerror="bad', chapters:[], chapter_catalog:[{id:'1',number:1,title:'<script>',icon:'<img>',status:'draft'}]}]}};
+  vm.createContext(cat); vm.runInContext(catalogSource, cat);
+  const html = cat.bookChaptersView();
+  for (const text of ['<Title>', '<Author>', '<script>', '<img>']) assert.ok(!html.includes(text));
+  assert.match(html, /cover&amp;|cover&quot;/);
+  assert.doesNotMatch(html, /data-book-chapter=/);
+});

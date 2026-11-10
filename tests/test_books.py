@@ -218,6 +218,10 @@ def test_catalog_groups_chapters_and_preserves_independent_levels(tmp_path):
     assert sum(b['level'] == 'B2' for b in books) == 2
     first = next(b for b in books if b['id'] == 'first')
     assert [c['id'] for c in first['chapters']] == ['one', 'two']
+    assert [c['id'] for c in first['chapter_catalog']] == ['one', 'two', 'three']
+    assert first['chapter_catalog'][-1]['status'] == 'draft'
+    assert all(set(c) == {'id', 'number', 'order', 'title', 'icon', 'status'} for c in first['chapter_catalog'])
+    assert 'example' not in str(first['chapter_catalog'])
     assert (first['level'], first['vocabulary_min_level']) == ('B2', 'B1')
     assert next(b for b in books if b['id'] == 'other')['vocabulary_min_level'] == 'A1'
 
@@ -227,6 +231,35 @@ def test_harry_level_and_vocabulary_threshold_are_independent():
     assert book['level'] == 'B2'
     assert book['vocabulary_min_level'] == 'B1'
     assert [(c['number'], c['title']) for c in book['chapters']] == [(1, 'El niño que vivió'), (2, 'El vidrio que se desvaneció')]
+    catalog = book['chapter_catalog']
+    assert [c['number'] for c in catalog] == list(range(1, 18))
+    assert [c['order'] for c in catalog] == list(range(1, 18))
+    assert [c['status'] for c in catalog] == ['published'] * 2 + ['draft'] * 15
+    assert catalog[5]['title'] == 'El viaje desde el andén nueve y tres cuartos'
+    assert catalog[13]['title'] == 'Norberto, el ridgeback noruego'
+    assert catalog[-1]['title'] == 'El hombre con dos caras'
+
+
+def test_draft_chapter_contents_do_not_leak_into_the_site(tmp_path):
+    import json
+    folder = tmp_path / 'book'
+    (folder / 'chapters').mkdir(parents=True)
+    (folder / 'book.json').write_text(json.dumps({'id': 'book', 'title': 'Book', 'author': 'Author',
+        'level': 'B2', 'vocabulary_min_level': 'B1'}), encoding='utf-8')
+    path = folder / 'chapters' / '1.json'
+    draft = {'id': '1', 'number': 1, 'order': 1, 'title': 'First', 'status': 'draft',
+             'blocks': [{'es': 'PRIVATE DRAFT'}], 'exercises': [{'prompt': 'PRIVATE EXERCISE'}]}
+    path.write_text(json.dumps(draft), encoding='utf-8')
+    book = load_books(tmp_path)[0]
+    assert book['chapters'] == []
+    assert len(book['chapter_catalog']) == 1
+    assert 'PRIVATE' not in json.dumps(book)
+    draft['status'] = 'published'
+    draft['blocks'] = []
+    path.write_text(json.dumps(draft), encoding='utf-8')
+    import pytest
+    with pytest.raises(ValueError):
+        load_books(tmp_path)
 
 
 def test_local_cover_is_packaged_and_cannot_escape_book_folder(tmp_path):
