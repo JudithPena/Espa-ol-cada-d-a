@@ -46,13 +46,15 @@ test('all practice groups keep the last failed question and its individual analy
   r(`var g=gGroups(gUnit()).find(g=>g.id===G.recovery),a=gAttempt(gUnit(),g),q=g.questions[a.lastError.qi];`);
   assert.equal(r('a.status'),'failed');assert.equal(r('a.lastError.value'),'ошибка 2');
   const html=r('gPlayerView()');assert.ok(html.includes('ошибка 2'));
+  for(let i=0;i<3;i++)assert.ok(html.includes('ошибка '+i));
+  assert.ok(!html.includes('Можно спокойно прочитать'));
   assert.ok(html.includes(r('esc(q.explain)')));assert.ok(html.includes('data-greview-theory>Вернуться к теории'));
   assert.ok(!html.includes('data-gnext'));assert.ok(!html.includes('data-gcheck'));
   for(const answer of r('(q.feedbackAnswers||q.answers).map(a=>esc(gOptionLabel(q,a)))'))assert.ok(html.includes(answer));
   const at=r('G.at');r('gMove(1);gMove(-1);gCheck();gRepeatExercise();');assert.equal(r('G.at'),at);
   assert.equal(r('a.status'),'failed');
   r=context([u],storage);r(`gStart(COURSE.grammar[0].id,'all',true);`);
-  assert.ok(r('gPlayerView()').includes('ошибка 2'));
+  for(let i=0;i<3;i++)assert.ok(r('gPlayerView()').includes('ошибка '+i));
   assert.equal(r(`gAttempt(gUnit(),gGroups(gUnit()).find(g=>g.id===G.recovery)).status`),'failed');
   r('gReviewTheory();');assert.ok(r('gPlayerView()').includes(u.sections[g.theorySections[0]].title));
   for(let i=1;i<g.theorySections.length;i++)r('gReviewMove(1);');
@@ -1103,7 +1105,7 @@ test('three lives stop every exercise in all 45 units, without credit or a Next 
   }
   assert.equal(run(`G.recovery`),group.id);
   assert.equal(run(`!!P.grammar[${JSON.stringify(u.id+'/'+group.id)}]`),false);
-  assert.ok(run('gPlayerView()').includes('Разберём последнюю ошибку'));
+  assert.ok(run('gPlayerView()').includes('Разбор ошибок'));
   assert.ok(!run('gPlayerView()').includes('data-gnext'));
   const before=run('G.at');run('gMove(1);gMove(-1);gCheck();gRepeatExercise();');
   assert.equal(run('G.at'),before);
@@ -2635,4 +2637,30 @@ test('new hay exercises count correction errors toward the same three-error atte
    assert.ok(r('G.recovery'));assert.ok(r('gPlayerView()').includes('third error'));
   }
  }
+});
+
+
+test('terminal analysis retains the last correction fields rather than the first wrong fields',()=>{
+ const u=JSON.parse(JSON.stringify(unit17)),g=u.exercises.find(g=>g.questions.some(q=>q.guidedGaps));g.limitedAttempt=true;
+ const qi=g.questions.findIndex(q=>q.guidedGaps),r=context([u]);unlockUntil(r,'exercise:'+g.id);
+ r(`gStart(COURSE.grammar[0].id,${JSON.stringify('exercise:'+g.id)});gMove(1);
+   var g=gUnit().exercises.find(g=>g.id===${JSON.stringify(g.id)}),a=gAttempt(gUnit(),g);
+   a.responses[${qi}]={value:'first mistake',checked:true,good:false,slotValues:['primero'],correction:{value:'last mistake',checked:true,good:false,slotValues:['último']}};
+   a.errors=3;a.status='failed';a.lastError={qi:${qi},value:'last mistake'};G.recovery=g.id;gStoreAttempt(gUnit(),g,a);`);
+ const html=r('gPlayerView()');assert.ok(html.includes('último'));assert.ok(!html.includes('primero'));assert.ok(html.includes('last mistake'));
+});
+
+
+test('failed review preserves every different correction submitted for the same question',()=>{
+ const u=JSON.parse(JSON.stringify(unit17)),g=u.exercises[0];g.limitedAttempt=true;
+ const storage=new Map();let r=context([u],storage);unlockUntil(r,'exercise:'+g.id);
+ r(`gStart(COURSE.grammar[0].id,${JSON.stringify('exercise:'+g.id)});gMove(1);`);
+ for(let i=0;i<g.questions.length;i++)r(`gResponse(G.steps[G.at]).value=${JSON.stringify(i===0?'first wrong':g.questions[i].answers[0])};gCheck();gMove(1);`);
+ r(`gResponse(G.steps[G.at]).value='second wrong';gCheck();gMove(1);gResponse(G.steps[G.at]).value='third wrong';gCheck();`);
+ for(const answer of ['first wrong','second wrong','third wrong'])assert.ok(r('gPlayerView()').includes(answer));
+ assert.equal(r('gAttemptErrors(gAttempt(gUnit(),gUnit().exercises[0])).length'),3);
+ r=context([u],storage);r(`gStart(COURSE.grammar[0].id,'all',true);`);
+ for(const answer of ['first wrong','second wrong','third wrong'])assert.ok(r('gPlayerView()').includes(answer));
+ r('gReviewTheory();');for(let i=1;i<g.theorySections.length;i++)r('gReviewMove(1);');r('gRepeatExercise();');
+ assert.equal(r('gAttemptErrors(gAttempt(gUnit(),gUnit().exercises[0])).length'),0);
 });

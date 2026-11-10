@@ -314,7 +314,9 @@ function gRecoveryView(unit) {
   const qi=Number.isInteger(last?.qi) && group.questions[last.qi] ? last.qi
     : Object.keys(attempt.responses || {}).map(Number).filter(i=>group.questions[i] && attempt.responses[i]?.checked && !attempt.responses[i].good).at(-1);
   if(qi===undefined) return `<div class="player gplayer"><div class="pbody"><div class="wrap"><h2>Попытка завершена</h2><p>Сохранённый ответ недоступен. Повтори правило и начни заново.</p></div></div><div class="pfoot"><button class="btn" data-greview-theory>Вернуться к теории</button></div></div>`;
-  const response={...attempt.responses[qi],value:last?.qi===qi ? last.value : attempt.responses[qi].value,checked:true,good:false};
+  const original=attempt.responses[qi], correction=original?.correction;
+  const saved=correction?.checked && last?.qi===qi && correction.value===last.value ? correction : original;
+  const response={...saved,value:last?.qi===qi ? last.value : saved.value,checked:true,good:false};
   return gPlayerView({group,attempt,qi,response});
 }
 const gUnit = () => (COURSE.grammar || []).find(u => u.id === G?.unit);
@@ -431,12 +433,29 @@ function gResponse(step) {
   }
   return current;
 }
+function gAttemptErrors(attempt) {
+  if(Array.isArray(attempt.errorHistory)) return attempt.errorHistory;
+  const errors=[];
+  for(const [qi,response] of Object.entries(attempt.responses || {})) {
+    if(response.checked && !response.good) errors.push({qi:Number(qi),value:response.value});
+    if(response.correction?.checked && !response.correction.good) errors.push({qi:Number(qi),value:response.correction.value});
+  }
+  const last=attempt.lastError;
+  if(last && !errors.some(e=>e.qi===last.qi && e.value===last.value)) errors.push(last);
+  return errors;
+}
+function gRecordError(attempt,qi,value) {
+  attempt.errors++;
+  attempt.lastError={qi,value};
+  attempt.errorHistory.push({qi,value});
+}
 function gCheck() {
   if(!G || G.ended || G.recovery) return;
   const step = G.steps[G.at], response = gResponse(step);
   if (!response || response.checked || !response.value.trim()) return;
   const unit = gUnit(), group = gGroups(unit).find(g => g.id === step.group);
   const attempt=gAttempt(unit,group);
+  attempt.errorHistory ||= gAttemptErrors(attempt);
   const assessment=grammarResult(group.questions[step.qi],response.value,group,gQuestionMode(group.questions[step.qi],response)==='input');
   if(step.correction) {
     if(!['correcting','passed'].includes(attempt.status)) return;
@@ -444,7 +463,7 @@ function gCheck() {
     response.checked=true; Object.assign(response,assessment);
     attempt.responses[step.qi].correction=response;
     if(group.limitedAttempt && !response.good) {
-      attempt.errors++; attempt.lastError={qi:step.qi,value:response.value};
+      gRecordError(attempt,step.qi,response.value);
       if(gOutOfLives(group,attempt.errors)) { attempt.status='failed'; G.recovery=group.id; }
     }
     if(group.questions.every((_,i)=>attempt.responses[i]?.good || attempt.responses[i]?.correction?.good)) {
@@ -461,7 +480,7 @@ function gCheck() {
   response.checked = true;
   Object.assign(response,assessment);
   attempt.responses[step.qi]=response;
-  if(!response.good) { attempt.errors++; attempt.lastError={qi:step.qi,value:response.value}; }
+  if(!response.good) { gRecordError(attempt,step.qi,response.value); }
   if(gOutOfLives(group,attempt.errors)) { attempt.status='failed'; G.recovery=group.id; }
   else if(group.questions.every((_,i)=>attempt.responses[i]?.checked)) attempt.status=attempt.errors?'correcting':'passed';
   G.responses[group.id]=attempt.responses;
@@ -820,9 +839,12 @@ function gPicture(q) {
   if (q.pictureCount) return `<div class="gcount-picture" role="img" aria-label="${esc(q.imageAlt)}" data-picture-count="${q.pictureCount}">${Array.from({length:q.pictureCount},() => `<img src="${esc(q.image)}" alt="" width="384" height="384">`).join("")}</div>`;
   return `<img class="gquestion-picture" src="${esc(q.image)}" alt="${esc(q.imageAlt)}" width="384" height="384">`;
 }
-function gFailureAnalysis(q,response,unit,group) {
-  const answers=[...new Set((q.feedbackAnswers || q.answers).map(a=>gOptionLabel(q,a)))];
-  return `<section class="gerror-analysis" aria-labelledby="g-error-title"><h3 id="g-error-title" role="status">Жизни закончились. Разберём последнюю ошибку</h3><p>Три ошибки в упражнении. Можно спокойно прочитать разбор, затем вернуться к правилу.</p><h4>Твой ответ</h4><p class="gerror-entered" lang="es">${esc(gOptionLabel(q,response.value))}</p><h4>${answers.length>1?'Правильные варианты':'Правильный ответ'}</h4><ul class="gerror-answers">${answers.map(a=>`<li lang="es">${esc(a)}</li>`).join('')}</ul><h4>Почему ответ не подходит и какое правило применяем</h4><p>${esc(grammarFeedbackExplanation(q,response))}</p><p class="muted">Вернёмся к правилу «${esc(unit.sections[gTheorySections(unit,group)[0]].title)}».</p></section>`;
+function gFailureAnalysis(attempt,unit,group) {
+  const errors=gAttemptErrors(attempt).filter(e=>group.questions[e.qi]);
+  return `<section class="gerror-analysis" aria-labelledby="g-error-title"><h3 id="g-error-title" role="status">Разбор ошибок</h3>${errors.map((error,i)=>{
+    const q=group.questions[error.qi], answers=[...new Set((q.feedbackAnswers || q.answers).map(a=>gOptionLabel(q,a)))];
+    return `<article class="gerror-item"><h4>Ошибка ${i+1} · Вопрос ${error.qi+1}</h4>${q.context?`<p>${esc(q.context)}</p>`:''}<p lang="es">${esc(q.prompt)}</p><h4>Твой ответ</h4><p class="gerror-entered" lang="es">${esc(gOptionLabel(q,error.value))}</p><h4>${answers.length>1?'Правильные варианты':'Правильный ответ'}</h4><ul class="gerror-answers">${answers.map(a=>`<li lang="es">${esc(a)}</li>`).join('')}</ul><h4>Почему ответ не подходит</h4><p>${esc(grammarFeedbackExplanation(q,{...error,good:false,status:'wrong'}))}</p></article>`;
+  }).join('')}</section>`;
 }
 function gPlayerView(failure=null) {
   const unit = gUnit();
@@ -867,6 +889,6 @@ function gPlayerView(failure=null) {
   const checked = response?.checked;
   const feedback = checked && !failure ? `<div class="fb"><div class="gfeedback-head"><h3 role="status">${esc(grammarFeedbackTitle(response))}</h3><button class="btn ghost sm" data-gfeedback-toggle aria-expanded="${!response.feedbackHidden}" aria-controls="g-feedback-details" aria-label="${response.feedbackHidden?'Показать разбор ответа':'Свернуть разбор ответа'}">${response.feedbackHidden?'Показать':'Свернуть ×'}</button></div><div id="g-feedback-details" ${response.feedbackHidden?'hidden':''}>${!step.correction && gHasLives(group) && !response.good && attempt?.errors===gErrorLimit(group)-1 ? '<p class="glast-chance">Осталась последняя попытка. После следующей ошибки покажем разбор и предложим повторить правило.</p>' : ''}${response.good || deferAnswer ? "" : `<span class="ans">Верный ответ: ${esc(response.slotValues ? group.questions[step.qi].answers[0] : (group.questions[step.qi].feedbackAnswers || group.questions[step.qi].answers).map(a=>gOptionLabel(group.questions[step.qi],a)).join(" / "))}</span>`}${deferAnswer ? "" : grammarAccentHint(response)}<span class="ex">${esc(deferAnswer ? (group.questions[step.qi].retryHint || "Проверь форму слова и того, о ком говорится в предложении.") : grammarFeedbackExplanation(group.questions[step.qi],response))}</span></div></div>` : "";
   return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><div class="bar" role="progressbar" aria-label="Прогресс урока" aria-valuemin="0" aria-valuemax="${G.steps.length}" aria-valuenow="${progressAt}"><i style="width:${Math.round(progressAt / G.steps.length * 100)}%"></i></div>${step.correction && !group?.limitedAttempt ? '<span class="muted">Жизни не тратятся</span>' : attempt ? gHearts(attempt, group) : ''}</div>${gContext(unit,step,step.type!=="question")}</div>
-    <div class="pbody"><div class="wrap">${step.type==="question"?`<span class="kicker">${esc(kicker)}</span><h2 id="g-title" tabindex="-1">${esc(title)}</h2>`:""}${content}${failure ? gFailureAnalysis(group.questions[step.qi],response,unit,group) : ""}</div></div>
+    <div class="pbody"><div class="wrap">${step.type==="question"?`<span class="kicker">${esc(kicker)}</span><h2 id="g-title" tabindex="-1">${esc(title)}</h2>`:""}${content}${failure ? gFailureAnalysis(attempt,unit,group) : ""}</div></div>
     <div class="pfoot ${checked ? response.status==='almost'?'almost':response.good ? "good" : "bad" : ""}"><div class="wrap">${feedback}${failure ? '<div class="gplayer-actions"><button class="btn wide" data-greview-theory>Вернуться к теории</button></div>' : `<div class="gplayer-actions">${step.type==='question' && !checked ? '<button class="btn ghost ghide-keyboard" data-ghide-keyboard>Скрыть клавиатуру ↓</button>' : ''}<button class="btn ghost" data-gback${G.at ? "" : ' aria-label="Назад к разделам урока"'}>← Назад</button>${step.type === "question" && !checked ? gQuestionMode(group.questions[step.qi],response)==='choice' ? '<span class="muted gpick-hint">Нажми на вариант ответа</span>' : `<button class="btn" data-gcheck ${response.value.trim() ? "" : "disabled"}>Проверить</button>` : `<button class="btn" data-gnext>${step.correction && checked && !response.good ? "Попробовать ещё раз" : !step.correction && attempt?.status==='correcting' ? "К ошибкам →" : G.at===G.steps.length-1 && step.type==='question' && gNextRoute(unit,G.route)==='summary' ? "Что запомнить →" : G.at === G.steps.length - 1 ? "Завершить" : step.type === "intro" ? "Начать" : "Далее →"}</button>`}</div>`}</div></div></div>`;
 }
