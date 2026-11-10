@@ -59,6 +59,56 @@ def test_vacaciones_complete_source_order_and_learning_progress():
     assert book['chapters'][-1]['blocks'][-1]['es'].endswith('–No me llames «nena».')
 
 
+def test_lola_series_levels_illustrations_and_all_original_exercise_groups():
+    books = {b['id']: b for b in load_books()}
+    vacaciones = books['lola-lago-vacaciones-al-sol']
+    nota = books['lola-lago-nota-falsa']
+    assert [(b['series']['number'], b['level'], b['vocabulary_min_level']) for b in (vacaciones, nota)] == [
+        (1, 'A1', 'A1'), (2, 'A2', 'A1')]
+    for book, chapters in ((vacaciones, [8, 15, 21]), (nota, [2, 9, 17])):
+        assert [c['number'] for c in book['chapters'] if any(b.get('images') for b in c['blocks'])] == chapters
+        assert sum(len(b.get('images', [])) for c in book['chapters'] for b in c['blocks']) == 3
+    exercises = [(c['number'], e) for c in vacaciones['chapters'] for e in c.get('exercises', [])]
+    assert [(n, len(e['questions'])) for n, e in exercises] == [
+        (2, 6), (3, 9), (5, 7), (8, 3), (9, 12), (12, 9),
+        (14, 7), (14, 6), (14, 1), (15, 2), (17, 8), (18, 5), (19, 6), (23, 6)]
+    assert {p for _, e in exercises for p in e['source']['pdf_pages']} == set(range(40, 47))
+    assert all(n == max(e['source']['chapters']) for n, e in exercises)
+    questions = [q for _, e in exercises for q in e['questions']]
+    assert sum(q.get('kind') == 'reflection' for q in questions) == 10
+    for q in questions:
+        if q.get('kind') != 'reflection':
+            assert len(q['options']) == len(set(q['options']))
+    ambiguous = vacaciones['chapters'][2]['exercises'][0]['questions'][6]
+    assert ambiguous['options'][ambiguous['answer']] == 'No se dice en el texto'
+    beach = vacaciones['chapters'][17]['exercises'][0]['questions'][4]
+    assert beach['options'][beach['answer']] == 'No se dice en el texto'
+
+
+def test_book_series_rejects_invalid_and_duplicate_numbers(tmp_path):
+    import json
+    import pytest
+    base = {'id':'first','title':'First','author':'Author','level':'A1','vocabulary_min_level':'A1',
+            'series':{'id':'lola','title':'Lola Lago','number':1}}
+    first = tmp_path / 'first'; first.mkdir()
+    path = first / 'book.json'
+    for invalid in (0, -1, True, '1', None):
+        base['series']['number'] = invalid
+        path.write_text(json.dumps(base), encoding='utf-8')
+        with pytest.raises(ValueError, match='у серии'):
+            load_books(tmp_path)
+    base['series']['number'] = 2
+    path.write_text(json.dumps(base), encoding='utf-8')
+    second = tmp_path / 'second'; second.mkdir()
+    base['id'] = 'second'; base['series']['number'] = 1
+    (second / 'book.json').write_text(json.dumps(base), encoding='utf-8')
+    assert [b['id'] for b in load_books(tmp_path)] == ['second', 'first']
+    base['series']['number'] = 2
+    (second / 'book.json').write_text(json.dumps(base), encoding='utf-8')
+    with pytest.raises(ValueError, match='повторный номер'):
+        load_books(tmp_path)
+
+
 def test_book_chapters_have_complete_readable_blocks():
     books = load_books()
     assert books

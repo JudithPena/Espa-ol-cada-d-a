@@ -668,5 +668,95 @@
         }
       ]
     }
+  ],
+  "exercises": [
+    {
+      "id": "pdf-16-17",
+      "instruction": "Capítulos 16 y 17. Reconstruye el orden del resumen: elige la acción de cada paso.",
+      "questions": [
+        {
+          "prompt": "Paso 1. ¿Qué noticia inicia esta parte de la investigación?",
+          "options": [
+            "Paco y Miguel se esconden en la escalera.",
+            "A la oficina de Lola llegan tres faxes con ofertas de casas.",
+            "Alarcón enseña los documentos a la policía."
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "Paso 2. Después de recibir las ofertas, ¿con quién hablan?",
+          "options": [
+            "Con el inspector de Hacienda.",
+            "Con el notario Pijuán en Tossa.",
+            "Con Manolo Vallés, que conoce las constructoras de la Costa Brava."
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "Paso 3. ¿Qué descubren gracias a esa conversación?",
+          "options": [
+            "«Bravainmo» es una empresa bastante sospechosa.",
+            "Las tres constructoras son conocidas y serias.",
+            "Nilsson trabaja para «Conssol»."
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "Paso 4. ¿Qué hacen los socios de Lola el lunes?",
+          "options": [
+            "Esperan a Alarcón en el hotel Cap Roig.",
+            "Se citan en Madrid con los de «Bravainmo».",
+            "Van a recoger a Nilsson al aeropuerto."
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "Paso 5. ¿Qué hacen al llegar a las oficinas de «Bravainmo»?",
+          "options": [
+            "Encuentran a Jimmy escribiendo una nota.",
+            "Ven a Alarcón salir con la policía.",
+            "Hablan con Alarcón."
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "Paso 6. ¿Qué dice Alarcón durante la conversación?",
+          "options": [
+            "Que tiene unas casas fantásticas.",
+            "Que no tiene ninguna casa en venta.",
+            "Que ya ha devuelto el dinero a Nilsson."
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "Paso 7. ¿Qué acuerdan antes de salir de la oficina?",
+          "options": [
+            "Una cena en el restaurante de Elisa esa misma noche.",
+            "Una cita en un hotel de Playa de Aro con el cliente, los abogados y Alarcón.",
+            "Una visita a la agencia de Lola con el inspector de Hacienda."
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "Paso 8. ¿Qué hacen Paco y Miguel después de salir?",
+          "options": [
+            "Se van inmediatamente al aeropuerto.",
+            "Vuelven a casa para dormir.",
+            "Se esconden en la escalera."
+          ],
+          "answer": 2
+        }
+      ],
+      "source": {
+        "pdf_pages": [
+          44
+        ],
+        "chapters": [
+          16,
+          17
+        ],
+        "instruction": "¿Puedes organizar por orden el resumen de estos capítulos?"
+      }
+    }
   ]
 }

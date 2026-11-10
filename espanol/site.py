@@ -883,7 +883,7 @@ def _embed_book_images(text: dict, folder: Path, path: Path) -> None:
 def load_books(directory: Path | None = None) -> list[dict]:
     """Одна папка на книгу, отдельные файлы глав; черновики не попадают на сайт."""
     directory = Path(directory) if directory is not None else Path(__file__).resolve().parent.parent / "content" / "books"
-    books, ids = [], set()
+    books, ids, series_numbers = [], set(), set()
     for path in sorted(directory.glob("*/book.json")):
         meta = json.loads(path.read_text(encoding="utf-8"))
         book_id = meta.get("id")
@@ -894,6 +894,18 @@ def load_books(directory: Path | None = None) -> list[dict]:
             raise ValueError(f"{path}: укажите уровень книги и отдельный порог лексики")
         if not all(isinstance(meta.get(k), str) and meta[k].strip() for k in ("title", "author")):
             raise ValueError(f"{path}: укажите название и автора")
+        series = meta.get("series")
+        if series is not None:
+            if (not isinstance(series, dict)
+                    or not isinstance(series.get("id"), str)
+                    or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", series["id"])
+                    or not isinstance(series.get("title"), str) or not series["title"].strip()
+                    or type(series.get("number")) is not int or series["number"] < 1):
+                raise ValueError(f"{path}: у серии нужны id, название и положительный номер книги")
+            series_key = (series["id"], series["number"])
+            if series_key in series_numbers:
+                raise ValueError(f"{path}: повторный номер книги внутри серии")
+            series_numbers.add(series_key)
         cover = meta.get("cover")
         if cover and not isinstance(cover, str):
             raise ValueError(f"{path}: обложка должна быть ссылкой или именем файла")
@@ -954,7 +966,8 @@ def load_books(directory: Path | None = None) -> list[dict]:
                 _embed_book_images(chapter, path.parent, chapter_path)
                 chapters.append(chapter)
         books.append({**meta, "cover": cover, "chapters": sorted(chapters, key=lambda c: c["order"])})
-    return books
+    return sorted(books, key=lambda book: ((book.get("series") or {}).get("id", book["id"]),
+                                          (book.get("series") or {}).get("number", 0)))
 
 
 def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None = None,

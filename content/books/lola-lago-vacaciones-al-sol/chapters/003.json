@@ -521,5 +521,104 @@
         }
       ]
     }
+  ],
+  "exercises": [
+    {
+      "id": "pdf-3",
+      "instruction": "Capítulo 3. Marca Verdad, Mentira o No se dice en el texto.",
+      "questions": [
+        {
+          "prompt": "Paco y Miguel han desayunado en un bar.",
+          "options": [
+            "Verdad",
+            "Mentira",
+            "No se dice en el texto"
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "Lola sigue de mal humor.",
+          "options": [
+            "Verdad",
+            "Mentira",
+            "No se dice en el texto"
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "A Lola le gusta que le llamen «nena».",
+          "options": [
+            "Verdad",
+            "Mentira",
+            "No se dice en el texto"
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "La agencia no paga los impuestos.",
+          "options": [
+            "Verdad",
+            "Mentira",
+            "No se dice en el texto"
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "Tienen muchos clientes.",
+          "options": [
+            "Verdad",
+            "Mentira",
+            "No se dice en el texto"
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "Paco ha conocido a una chica holandesa.",
+          "options": [
+            "Verdad",
+            "Mentira",
+            "No se dice en el texto"
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "Paco es gordito pero muy atractivo.",
+          "options": [
+            "Verdad",
+            "Mentira",
+            "No se dice en el texto"
+          ],
+          "answer": 2,
+          "explanation": "Текст говорит, что Пако полноватый, лысоватый и имеет успех у женщин благодаря приятному характеру; прямой оценки «очень привлекательный» нет."
+        },
+        {
+          "prompt": "En la agencia no tienen mucho trabajo.",
+          "options": [
+            "Verdad",
+            "Mentira",
+            "No se dice en el texto"
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "Paco va a hablar más tarde con Lola.",
+          "options": [
+            "Verdad",
+            "Mentira",
+            "No se dice en el texto"
+          ],
+          "answer": 0
+        }
+      ],
+      "source": {
+        "pdf_pages": [
+          40
+        ],
+        "chapters": [
+          3
+        ],
+        "instruction": "¿Verdad o mentira?"
+      }
+    }
   ]
 }

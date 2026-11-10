@@ -655,5 +655,51 @@
         }
       ]
     }
+  ],
+  "exercises": [
+    {
+      "id": "pdf-6-8",
+      "instruction": "Capítulos 6, 7 y 8. Completa las tres partes que faltan en el resumen.",
+      "questions": [
+        {
+          "prompt": "Lola llega al aeropuerto y conoce a Magnus Nilsson. Antes de viajar en autobús, ¿qué ocurre?",
+          "options": [
+            "Lola pierde su pasaporte y no puede embarcar.",
+            "Se cancelan los vuelos por una huelga de controladores.",
+            "Nilsson compra un coche para ir a Barcelona."
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "Llegan a Barcelona y Lola toma un taxi para ir al hotel. Antes de bajar al bar, ¿qué hace?",
+          "options": [
+            "Va directamente a Tossa para ver a Elisa.",
+            "Va a la policía para denunciar una estafa.",
+            "Pide una habitación, se da un baño y se pone un vestido nuevo."
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "Lola baja al bar a tomar algo. Antes de ir a cenar juntos, ¿qué sucede?",
+          "options": [
+            "Nilsson entra en el bar y propone ir a cenar.",
+            "Elisa llega con Ingvar para recogerla.",
+            "Paco la llama para anunciar un cliente nuevo."
+          ],
+          "answer": 0
+        }
+      ],
+      "source": {
+        "pdf_pages": [
+          41
+        ],
+        "chapters": [
+          6,
+          7,
+          8
+        ],
+        "instruction": "En este resumen de los capítulos faltan algunas piezas importantes. Complétalo."
+      }
+    }
   ]
 }

@@ -210,5 +210,137 @@
         }
       ]
     }
+  ],
+  "exercises": [
+    {
+      "id": "pdf-13-14-personajes",
+      "instruction": "Capítulos 13 y 14. Describe a los personajes: quiénes son y qué sabes de ellos hasta este momento.",
+      "questions": [
+        {
+          "kind": "reflection",
+          "prompt": "Max: ¿quién es y qué sabes de él hasta el capítulo 14?"
+        },
+        {
+          "kind": "reflection",
+          "prompt": "Lola: ¿quién es, cómo es y qué está haciendo?"
+        },
+        {
+          "kind": "reflection",
+          "prompt": "Ingvar: ¿quién es y qué sabes de su vida?"
+        },
+        {
+          "kind": "reflection",
+          "prompt": "Margarita: ¿quién es y cómo es?"
+        },
+        {
+          "kind": "reflection",
+          "prompt": "Elisa: ¿quién es y qué sabes de su relación con Lola?"
+        },
+        {
+          "kind": "reflection",
+          "prompt": "Paco: ¿quién es, cómo es y qué le gusta?"
+        },
+        {
+          "kind": "reflection",
+          "prompt": "Nilsson: ¿quién es y por qué necesita ayuda?"
+        }
+      ],
+      "source": {
+        "pdf_pages": [
+          43
+        ],
+        "chapters": [
+          13,
+          14
+        ],
+        "instruction": "A. Trata de recordar todo lo que sabes de estos personajes hasta este capítulo. Quiénes son, cómo son, etc."
+      }
+    },
+    {
+      "id": "pdf-13-14-plan",
+      "instruction": "Capítulos 13 y 14. ¿Forma parte del plan de Lola hasta este momento? Elige Sí o No.",
+      "questions": [
+        {
+          "prompt": "Poner un anuncio en el periódico.",
+          "options": [
+            "No.",
+            "Sí."
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "Esperar un par de días.",
+          "options": [
+            "Sí.",
+            "No."
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "Hablar otra vez con la policía.",
+          "options": [
+            "Sí.",
+            "No."
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "Visitar la oficina donde Nilsson firmó el contrato.",
+          "options": [
+            "Sí.",
+            "No."
+          ],
+          "answer": 0,
+          "explanation": "Лола поручила Пако проверить мадридский адрес в главе 11; в главе 13 он сообщает, что конторы больше нет."
+        },
+        {
+          "prompt": "Buscar la oficina de Fincabrava en Tossa.",
+          "options": [
+            "Sí.",
+            "No."
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "Ir a Madrid para investigar.",
+          "options": [
+            "No.",
+            "Sí."
+          ],
+          "answer": 0,
+          "explanation": "Лола остаётся на Коста-Браве и связывается с партнёрами, которые уже находятся в Мадриде."
+        }
+      ],
+      "source": {
+        "pdf_pages": [
+          43
+        ],
+        "chapters": [
+          13,
+          14
+        ],
+        "instruction": "B. ¿Cuáles de estas cosas forman parte del plan de Lola?"
+      }
+    },
+    {
+      "id": "pdf-13-14-tu-plan",
+      "instruction": "Capítulos 13 y 14. Propón tu propia idea.",
+      "questions": [
+        {
+          "kind": "reflection",
+          "prompt": "¿Qué crees que tiene que hacer Lola ahora? Explica tu propuesta sin usar información de capítulos posteriores."
+        }
+      ],
+      "source": {
+        "pdf_pages": [
+          43
+        ],
+        "chapters": [
+          13,
+          14
+        ],
+        "instruction": "C. ¿Y tú? ¿Qué crees que tiene que hacer?"
+      }
+    }
   ]
 }

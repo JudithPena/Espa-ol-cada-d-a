@@ -224,7 +224,7 @@ test('reading parts are numbered in order independently of author chapter number
   const chapter = JSON.parse(fs.readFileSync('content/books/lola-lago-vacaciones-al-sol/chapters/001.json', 'utf8'));
   const context = {esc:ctx.esc, view:{book:'vacaciones',bookChapter:'1'},
     bookById:() => ({title:'Lola Lago - Vacaciones al sol',chapters:[chapter]}),
-    bookChapterLabel:ctx.bookChapterLabel, bookOriginal:ctx.bookOriginal, bookText:ctx.bookText,
+    bookChapterLabel:ctx.bookChapterLabel, bookTitle:ctx.bookTitle, bookOriginal:ctx.bookOriginal, bookText:ctx.bookText,
     bookMarks:ctx.bookMarks, bookNote:ctx.bookNote, bookPronouns:ctx.bookPronouns};
   vm.createContext(context); vm.runInContext(viewCode, context);
   const html = context.bookView();
@@ -254,6 +254,26 @@ test('chapter cards use stable individual icons and escape labels and icon text'
   assert.match(html, /aria-hidden="true">&lt;svg&gt;<\/span>/);
   assert.match(html, /aria-hidden="true">📖<\/span>/);
   assert.doesNotMatch(html, /Sin título|<img>|<svg>|Глава 3\./);
+});
+
+test('series numbers appear in titles without changing unnumbered books', () => {
+  assert.equal(ctx.bookTitle({title:'Vacaciones al sol',series:{number:1}}), '1. Vacaciones al sol');
+  assert.equal(ctx.bookTitle({title:'Una nota falsa',series:{number:2}}), '2. Una nota falsa');
+  assert.equal(ctx.bookTitle({title:'Other book'}), 'Other book');
+  const catalog = source.slice(source.indexOf('function booksView()'), source.indexOf('function bookText('));
+  const context = {esc:ctx.esc, view:{bookLevel:'A2',book:'nota'},
+    COURSE:{books:[{id:'nota',title:'Una nota falsa',author:'Author',level:'A2',chapters:[{id:'7',number:7,title:''}],
+      series:{id:'lola',title:'Lola Lago, detective',number:2}}]},
+    plural:(n,one)=>one};
+  vm.createContext(context); vm.runInContext(catalog,context);
+  assert.match(context.bookLevelView(), />2\. Una nota falsa<\/b>/);
+  assert.match(context.bookLevelView(), /Lola Lago, detective/);
+  assert.match(context.bookChaptersView(), /<h2>2\. Una nota falsa<\/h2>/);
+  context.bookRoute(['books','A1','nota','7']);
+  assert.equal(context.view.tab,'book');
+  assert.equal(context.view.bookLevel,'A2');
+  assert.equal(context.view.bookChapter,'7');
+  assert.equal(context.bookHash(),'#books/A2/nota/7');
 });
 
 test('book text preserves single dialogue line breaks and real paragraph breaks', () => {

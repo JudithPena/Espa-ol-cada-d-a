@@ -290,5 +290,86 @@
         }
       ]
     }
+  ],
+  "exercises": [
+    {
+      "id": "pdf-4-5",
+      "instruction": "Capítulos 4 y 5. Elige la descripción correcta de cada personaje.",
+      "questions": [
+        {
+          "prompt": "¿Quién es Paco?",
+          "options": [
+            "Uno de los socios de Lola.",
+            "El novio de Margarita.",
+            "El marido de Elisa."
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "¿Quién es Miguel?",
+          "options": [
+            "Un cantante.",
+            "El otro socio de Lola.",
+            "El hijo de Elisa."
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "¿Quién es Elisa?",
+          "options": [
+            "La secretaria de la agencia.",
+            "Una inspectora de Hacienda.",
+            "Una amiga de Lola."
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "¿Quién es Feliciano?",
+          "options": [
+            "Un chico que trabaja en la agencia.",
+            "Un socio que acaba de comprar un restaurante.",
+            "Un cantante famoso."
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "¿Quién es Margarita?",
+          "options": [
+            "La directora de la agencia.",
+            "La secretaria.",
+            "La mujer de Paco."
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "¿Quién es Sánchez?",
+          "options": [
+            "Un cantante catalán.",
+            "El otro socio de Lola.",
+            "Un cliente."
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "¿Quién es Joan Manuel Serrat?",
+          "options": [
+            "Un cantante.",
+            "El novio de Margarita.",
+            "El inspector de Hacienda."
+          ],
+          "answer": 0
+        }
+      ],
+      "source": {
+        "pdf_pages": [
+          41
+        ],
+        "chapters": [
+          4,
+          5
+        ],
+        "instruction": "¿Ya sabes quiénes son estos personajes? Une con flechas."
+      }
+    }
   ]
 }

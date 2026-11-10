@@ -2511,7 +2511,7 @@ const bookById = id => (COURSE.books || []).find(b => b.id === id);
 const bookCurrentText = () => { const b = bookById(view.book); return b?.story || b?.chapters.find(c => c.id === view.bookChapter); };
 function bookLevelView() {
   const books = (COURSE.books || []).filter(b => b.level === view.bookLevel);
-  return `<button class="btn ghost sm back" data-book-nav="levels">← Все уровни</button><h2>Книги · ${esc(view.bookLevel)}</h2>${books.length ? `<div class="menu">${books.map(b => `<button class="mcard" data-book-id="${esc(b.id)}">${b.cover ? `<img class="book-cover" src="${esc(b.cover)}" alt="">` : `<span class="mi" aria-hidden="true">${esc(b.story?.icon || b.icon || "📖")}</span>`}<span><b>${esc(b.title)}</b><small>${esc(b.author)} · ${b.story ? "рассказ" : `${b.chapters.length} ${plural(b.chapters.length, "глава", "главы", "глав")}`}</small></span><span aria-hidden="true">›</span></button>`).join("")}</div>` : '<p class="muted">На этом уровне пока нет книг.</p>'}`;
+  return `<button class="btn ghost sm back" data-book-nav="levels">← Все уровни</button><h2>Книги · ${esc(view.bookLevel)}</h2>${books.length ? `<div class="menu">${books.map(b => `<button class="mcard" data-book-id="${esc(b.id)}">${b.cover ? `<img class="book-cover" src="${esc(b.cover)}" alt="">` : `<span class="mi" aria-hidden="true">${esc(b.story?.icon || b.icon || "📖")}</span>`}<span><b>${esc(bookTitle(b))}</b><small>${b.series ? esc(b.series.title) + " · " : ""}${esc(b.author)} · ${b.story ? "рассказ" : `${b.chapters.length} ${plural(b.chapters.length, "глава", "главы", "глав")}`}</small></span><span aria-hidden="true">›</span></button>`).join("")}</div>` : '<p class="muted">На этом уровне пока нет книг.</p>'}`;
 }
 function bookChapterLabel(chapter) {
   const raw = typeof chapter.title === "string" ? chapter.title.trim() : "";
@@ -2519,10 +2519,13 @@ function bookChapterLabel(chapter) {
   const title = placeholder ? "" : raw;
   return `Глава ${chapter.number}${title ? `. ${title}` : ""}`;
 }
+function bookTitle(book) {
+  return `${book.series ? `${book.series.number}. ` : ""}${book.title}`;
+}
 function bookChaptersView() {
   const b = bookById(view.book);
   if (!b) return booksView();
-  return `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(b.level)}</button><h2>${esc(b.title)}</h2><p class="muted">${esc(b.author)}</p><h3>Главы</h3>${b.chapters.length ? `<div class="menu">${b.chapters.map(c => `<button class="mcard book-chapter-card" data-book-chapter="${esc(c.id)}"><span class="mi" aria-hidden="true">${esc(c.icon || "📖")}</span><span class="book-chapter-label"><b>${esc(bookChapterLabel(c))}</b></span><span class="book-chapter-arrow" aria-hidden="true">›</span></button>`).join("")}</div>` : '<p class="muted">Опубликованных глав пока нет.</p>'}`;
+  return `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(b.level)}</button><h2>${esc(bookTitle(b))}</h2><p class="muted">${b.series ? esc(b.series.title) + " · " : ""}${esc(b.author)}</p><h3>Главы</h3>${b.chapters.length ? `<div class="menu">${b.chapters.map(c => `<button class="mcard book-chapter-card" data-book-chapter="${esc(c.id)}"><span class="mi" aria-hidden="true">${esc(c.icon || "📖")}</span><span class="book-chapter-label"><b>${esc(bookChapterLabel(c))}</b></span><span class="book-chapter-arrow" aria-hidden="true">›</span></button>`).join("")}</div>` : '<p class="muted">Опубликованных глав пока нет.</p>'}`;
 }
 // Переход по разделу книг: меняет экран, а запись в историю (адрес #books/…) делает navSync() в render().
 function bookGo(level = null, book = null, chapter = null) {
@@ -2533,7 +2536,9 @@ function bookRoute(parts) {
   view.tab = "books"; view.bookLevel = null; view.book = null; view.bookChapter = null;
   if (!BOOK_LEVELS.includes(level)) return;
   view.bookLevel = level; view.tab = "book-level";
-  if (!b || b.level !== level) return;
+  if (!b) return;
+  // При изменении уровня книги старые ссылки продолжают открывать ту же главу.
+  view.bookLevel = b.level;
   view.book = b.id;
   // Рассказ без глав открывается сразу текстом.
   if (b.story) { view.tab = "book"; return; }
@@ -2633,8 +2638,8 @@ function bookView() {
   const hasExercises = Boolean(chapter.exercises?.length);
   const total = (chapter.exercises || []).flatMap(ex => ex.questions).filter(q => q.kind !== "reflection").length;
   // Рассказ без глав: назад — к книгам уровня, в шапке только название и автор.
-  const head = b.story ? `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(b.level)}</button><h2>Разбор текста</h2><p>${esc(b.title)} · ${esc(b.author)}</p>`
-    : `<button class="btn ghost sm back" data-book-nav="chapters">← Главы книги</button><h2>Разбор текста</h2><p>${esc(b.title)} · ${esc(bookChapterLabel(chapter))}</p>`;
+  const head = b.story ? `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(b.level)}</button><h2>Разбор текста</h2><p>${esc(bookTitle(b))} · ${esc(b.author)}</p>`
+    : `<button class="btn ghost sm back" data-book-nav="chapters">← Главы книги</button><h2>Разбор текста</h2><p>${esc(bookTitle(b))} · ${esc(bookChapterLabel(chapter))}</p>`;
   return `<div data-book-chapter-view>${head}
     ${hasExercises ? `<div class="book-tabs" role="tablist" aria-label="Содержание главы"><button type="button" class="btn ghost" id="book-tab-analysis" role="tab" aria-controls="book-panel-analysis" aria-selected="true" data-book-panel-tab="analysis">Разбор</button><button type="button" class="btn ghost" id="book-tab-exercises" role="tab" aria-controls="book-panel-exercises" aria-selected="false" tabindex="-1" data-book-panel-tab="exercises">Упражнения</button></div>` : ""}
     <div class="book-panel" data-book-panel="analysis" ${hasExercises ? 'id="book-panel-analysis" role="tabpanel" aria-labelledby="book-tab-analysis" tabindex="0"' : ""}>${chapter.blocks.map((block, index) => `<section class="vseg book-block"><h3><span class="book-part">Часть ${index + 1} из ${chapter.blocks.length}</span>${esc(block.title)}</h3>${bookOriginal(block)}<details><summary>Перевод</summary><p>${bookText(block.ru, bookMarks(block, "ru"))}</p></details><h4>Разбор</h4><ul>${block.notes.map(note => `<li>${bookNote(note)}</li>`).join("")}</ul>${block.pronouns && (!Array.isArray(block.pronouns) || block.pronouns.length) ? `<details class="book-pronouns"><summary>Мини-разбор местоимений</summary>${bookPronouns(block.pronouns)}</details>` : ""}</section>`).join("")}</div>

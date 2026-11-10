@@ -275,5 +275,105 @@
         }
       ]
     }
+  ],
+  "exercises": [
+    {
+      "id": "pdf-10-12",
+      "instruction": "Capítulos 10, 11 y 12. Elige la información correcta o corrige la frase.",
+      "questions": [
+        {
+          "prompt": "El restaurante de Elisa…",
+          "options": [
+            "está cerrado.",
+            "es muy bonito.",
+            "es enorme y moderno."
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "«Está en la parte nueva del pueblo». Corrige la frase.",
+          "options": [
+            "Está lejos del mar, en Madrid.",
+            "Está dentro del aeropuerto.",
+            "Está en la parte antigua del pueblo."
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "Nilsson es…",
+          "options": [
+            "un cliente de Lola.",
+            "el hermano de Elisa.",
+            "el marido de Lola."
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "«Elisa no conoce a nadie que trabaje en negocios inmobiliarios». ¿Cuál es la información correcta?",
+          "options": [
+            "No conoce a nadie de la Costa Brava.",
+            "Conoce a Manolo Vallés, que trabaja en negocios inmobiliarios.",
+            "Sólo conoce al falso notario."
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "«Ingvar es guitarrista». ¿Qué instrumento toca?",
+          "options": [
+            "El violín.",
+            "La batería.",
+            "El piano."
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "«Elisa y su familia no están contentos en Tossa». ¿Qué dice Elisa?",
+          "options": [
+            "Están muy contentos de estar allí, aunque hay algunos problemas.",
+            "Quieren vender el restaurante y volver al día siguiente.",
+            "Max no ha podido hacer nada desde que llegó."
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "¿Dónde se queda a comer Max?",
+          "options": [
+            "En el aeropuerto.",
+            "En la escuela.",
+            "En la agencia de Lola."
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "«Ca l’Elisa no tiene muchos clientes». ¿Cómo es el restaurante?",
+          "options": [
+            "Nunca hay nadie porque la comida es mala.",
+            "Sólo tiene dos clientes: Lola y Nilsson.",
+            "Se come muy bien y hay siempre mucha gente."
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "¿Le gusta la paella a Lola?",
+          "options": [
+            "Sí, le gusta mucho.",
+            "No, no la soporta.",
+            "Nunca la ha probado."
+          ],
+          "answer": 0
+        }
+      ],
+      "source": {
+        "pdf_pages": [
+          42
+        ],
+        "chapters": [
+          10,
+          11,
+          12
+        ],
+        "instruction": "Corrige las informaciones que no son correctas."
+      }
+    }
   ]
 }

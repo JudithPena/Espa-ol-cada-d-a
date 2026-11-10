@@ -77,5 +77,71 @@
         }
       ]
     }
+  ],
+  "exercises": [
+    {
+      "id": "pdf-17-18",
+      "instruction": "Capítulos 17 y 18. Marca Verdad, Mentira o No se dice en el texto.",
+      "questions": [
+        {
+          "prompt": "El vendedor de casas tiene varios pasaportes.",
+          "options": [
+            "Verdad",
+            "Mentira",
+            "No se dice en el texto"
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "Paco y Miguel salen corriendo del despacho porque alguien entra.",
+          "options": [
+            "Verdad",
+            "Mentira",
+            "No se dice en el texto"
+          ],
+          "answer": 1,
+          "explanation": "Они остаются в офисе и прячутся за мебелью."
+        },
+        {
+          "prompt": "El hombre coge un paquete con cocaína y deja una nota escrita.",
+          "options": [
+            "Verdad",
+            "Mentira",
+            "No se dice en el texto"
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "En la nota pone que quieren asesinar a Lola.",
+          "options": [
+            "Verdad",
+            "Mentira",
+            "No se dice en el texto"
+          ],
+          "answer": 0,
+          "explanation": "Записка угрожающе намекает на несчастный случай в море; Пако и Мигель понимают, что Лолу хотят убить."
+        },
+        {
+          "prompt": "Lola y Nilsson van juntos a la playa.",
+          "options": [
+            "Verdad",
+            "Mentira",
+            "No se dice en el texto"
+          ],
+          "answer": 2,
+          "explanation": "В главе 18 они вместе гуляют; о совместном походе на пляж текст не говорит. Не используем сведения ещё не прочитанных глав."
+        }
+      ],
+      "source": {
+        "pdf_pages": [
+          44
+        ],
+        "chapters": [
+          17,
+          18
+        ],
+        "instruction": "¿Verdad o mentira?"
+      }
+    }
   ]
 }
