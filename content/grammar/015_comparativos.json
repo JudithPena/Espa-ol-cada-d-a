@@ -1071,7 +1071,8 @@
             "fuerte",
             "tú",
             "como"
-          ]
+          ],
+          "retryHint": "Проверь направление сравнения. После que нужна форма местоимения, которой называют собеседника."
         },
         {
           "prompt": "Soy ___.",
@@ -1098,39 +1099,43 @@
             "más alto como vosotras",
             "más alto que vosotras"
           ],
-          "interaction": "gap-choice"
+          "interaction": "gap-choice",
+          "retryHint": "Прилагательное описывает мужчину, а местоимение после que — двух женщин, к которым он обращается."
         },
         {
           "prompt": "Sois ___.",
           "answers": [
-            "menores que nosotras",
             "más jóvenes que nosotras",
-            "menos viejos que nosotras"
+            "menores que nosotras"
           ],
-          "explain": "О мальчиках: menores. Говорящая сравнивает их с собой и другой женщиной: que nosotras.",
-          "context": "Взрослая женщина говорит мальчикам: «Вы младше нас».",
+          "explain": "Sois относится к мальчикам: más jóvenes — «моложе», во множественном числе. «Нас» — это две говорящие женщины, поэтому que nosotras. Menores que nosotras тоже означает «младше нас».",
+          "context": "Две взрослые женщины говорят мальчикам: «Вы моложе нас».",
           "facts": {
-            "label": "Возраст · viejo",
+            "label": "Возраст · joven — молодой",
             "items": [
               [
                 "Вы · мальчики",
-                "младше"
+                "моложе"
               ],
               [
-                "Мы · женщины",
+                "Мы · две взрослые женщины",
                 "старше"
               ]
             ]
           },
           "interaction": "build",
           "tiles": [
+            "nosotros",
             "más",
+            "joven",
+            "que",
             "nosotras",
             "menores",
-            "que",
+            "jóvenes",
             "como",
             "menos"
-          ]
+          ],
+          "retryHint": "Сравнивают возраст мальчиков с возрастом двух говорящих женщин. Проверь форму множественного числа и местоимение для «мы»."
         },
         {
           "prompt": "Eres ___.",
@@ -1162,7 +1167,8 @@
             "yo",
             "como",
             "rápida"
-          ]
+          ],
+          "retryHint": "Прилагательное описывает мужчину. Местоимение после que относится к говорящей женщине, а не к собеседнику."
         }
       ],
       "inputFormat": {
@@ -1172,7 +1178,9 @@
       },
       "theorySections": [
         5
-      ]
+      ],
+      "revision": 2,
+      "deferAnswerFeedback": true
     },
     {
       "id": "15.4",

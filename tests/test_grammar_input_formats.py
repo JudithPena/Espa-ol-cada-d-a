@@ -32,3 +32,15 @@ def test_rejects_incomplete_format_guidance(tmp_path, format):
     (tmp_path/'001.json').write_text(json.dumps(fixture),encoding='utf8')
     with pytest.raises(ValueError, match='input format'):
         load_grammar(tmp_path)
+
+
+@pytest.mark.parametrize('flag,hint,message', [('yes', 'Подсказка', 'must be boolean'),
+                                             (True, '', 'requires a retry hint')])
+def test_deferred_feedback_requires_a_boolean_and_a_useful_hint(tmp_path, flag, hint, message):
+    fixture = {'id': 'fixture', 'sections': [], 'exercises': [{
+        'id': 'a', 'deferAnswerFeedback': flag, 'questions': [{
+            'prompt': '___', 'answers': ['casa'], 'options': ['casa', 'coche'],
+            'explain': 'Дом.', 'retryHint': hint}]}]}
+    (tmp_path/'001.json').write_text(json.dumps(fixture), encoding='utf8')
+    with pytest.raises(ValueError, match=message):
+        load_grammar(tmp_path)

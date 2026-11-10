@@ -89,7 +89,7 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
                     for key in ('instruction', 'placeholder')
                 ) or 'example' in format and (not isinstance(format['example'], str) or not format['example'].strip())):
                     raise ValueError(f"{path}: input format requires instruction, placeholder and a nonempty example when supplied")
-            for key in ('allowNoArticle', 'articleContractions'):
+            for key in ('allowNoArticle', 'articleContractions', 'deferAnswerFeedback'):
                 if key in group and type(group[key]) is not bool:
                     raise ValueError(f"{path}: {key} must be boolean")
             for item in [group] + group['questions']:
@@ -101,6 +101,8 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
                     if item['shuffleOptions'] is False and (not isinstance(item.get('optionOrderReason'), str) or not item['optionOrderReason'].strip()):
                         raise ValueError(f"{path}: fixed option order requires optionOrderReason")
             for q in group["questions"]:
+                if group.get('deferAnswerFeedback') and (not isinstance(q.get('retryHint'), str) or not q['retryHint'].strip()):
+                    raise ValueError(f"{path}: deferred answer feedback requires a retry hint")
                 if 'feedbackAnswers' in q and (not isinstance(q['feedbackAnswers'], list) or not q['feedbackAnswers']
                         or any(a not in q.get('answers', []) for a in q['feedbackAnswers'])
                         or len(set(q['feedbackAnswers'])) != len(q['feedbackAnswers'])):

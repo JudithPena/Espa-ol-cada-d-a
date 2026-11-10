@@ -46,6 +46,52 @@ test('15.2 compares disk capacity using the taught adjective and an explicit com
  assert.equal(run('G.ended'),true);
 });
 
+test('15.3 compares boys with two speaking women and builds both natural age comparisons',()=>{
+ const g=unit15.exercises[2],q=g.questions[2];
+ assert.match(q.context,/Две взрослые женщины говорят мальчикам/);
+ assert.deepEqual(q.answers,['más jóvenes que nosotras','menores que nosotras']);
+ assert.match(q.facts.label,/joven/);assert.ok(!q.facts.label.includes('viejo'));
+ for(const answer of q.answers){
+  const r=context([unit15]);unlockUntil(r,'exercise:15.3');
+  r(`gStart(COURSE.grammar[0].id,'exercise:15.3');gMove(1);document.querySelector=()=>null;`);
+  for(let i=0;i<4;i++){
+   const a=i===2?answer:g.questions[i].answers[0];
+   r(`var s=G.steps[G.at],q=gUnit().exercises[2].questions[s.qi];
+    if(q.tiles)for(const word of ${JSON.stringify(a)}.split(' '))gBuild('add',q.tiles.findIndex((t,i)=>t===word&&!gResponse(s).chosen?.includes(i)));
+    else gResponse(s).value=${JSON.stringify(a)};gCheck();`);
+   assert.equal(r('gResponse(G.steps[G.at]).good'),true);r('gMove(1);');
+  }
+  assert.equal(r('G.ended'),true);
+ }
+ const r=context([unit15]);
+ for(const a of ['menos viejos que nosotras','más joven que nosotras','más jóvenes que nosotros','menor que nosotras'])
+  assert.equal(r(`grammarResult(${JSON.stringify(q)},${JSON.stringify(a)}).status`),'wrong');
+});
+
+test('15.3 hides model answers, explanation and correct-choice highlighting while lives remain, including after reload',()=>{
+ const storage=new Map();let r=context([unit15],storage);unlockUntil(r,'exercise:15.3');
+ r(`save();gStart(COURSE.grammar[0].id,'exercise:15.3');gMove(1);gResponse(G.steps[G.at]).value='wrong';gCheck();`);
+ for(let error=1;error<=2;error++){
+  if(error===2)r(`gMove(1);gPickValue('menos alto que vosotras');`);
+  assert.equal(r(`gAttempt(gUnit(),gUnit().exercises[2]).errors`),error);
+  const html=r('gPlayerView()');
+  assert.ok(!html.includes('Верный ответ:'));assert.ok(!/class="opt (right|almost)/.test(html));
+  assert.ok(!html.includes(unit15.exercises[2].questions[error-1].explain));
+  assert.ok(html.includes(unit15.exercises[2].questions[error-1].retryHint));
+  r=context([unit15],storage);r(`gStart(COURSE.grammar[0].id,'all',true);`);
+  assert.ok(!r('gPlayerView()').includes('Верный ответ:'));
+ }
+ r(`gMove(1);gResponse(G.steps[G.at]).value='más jóvenes que nosotros';gCheck();`);
+ assert.equal(r(`gAttempt(gUnit(),gUnit().exercises[2]).errors`),3);
+ assert.equal(r('G.recovery'),'15.3');assert.ok(r('gPlayerView()').includes('Повторить теорию'));
+ r('gReviewTheory();');assert.ok(r('gPlayerView()').includes('Чем я, чем ты: que yo, que tú'));
+ r('gRepeatExercise();');assert.equal(r(`gAttempt(gUnit(),gUnit().exercises[2]).errors`),0);
+ // Other exercises keep their established feedback.
+ const other=context([unit15]);unlockUntil(other,'exercise:15.1');
+ other(`gStart(COURSE.grammar[0].id,'exercise:15.1');gMove(1);gResponse(G.steps[G.at]).value='wrong';gCheck();`);
+ assert.ok(other('gPlayerView()').includes('Верный ответ:'));
+});
+
 test('unit 36 completes every answer, resumes drafts and reviews its own theory after three errors',()=>{
  const u=JSON.parse(fs.readFileSync('content/grammar/036_me_han_regalado.json','utf8'));
  const run=context([u]);run(`gStart(COURSE.grammar[0].id,'all');`);let turns=0;
