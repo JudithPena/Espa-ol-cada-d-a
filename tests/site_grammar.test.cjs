@@ -28,6 +28,40 @@ function unlockUntil(run, route) {
  run(`(() => { const u=COURSE.grammar[0]; for(const r of gRoutes(u).slice(0,gRoutes(u).indexOf(${JSON.stringify(route)}))) { const g=r.startsWith('section:')?u.sections[+r.split(':')[1]].check:u.exercises.find(g=>r==='exercise:'+g.id); if(g)P.grammar[grammarKey(u,g)]={correct:0,total:g.questions.length}; else P.grammarRead[u.id+'/'+r]=true; } })()`);
 }
 
+test('all practice groups keep the last failed question and its individual analysis until explicit theory review',()=>{
+ const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
+ let checked=0;
+ for(const u of units)for(const g of u.exercises){
+  const storage=new Map();let r=context([u],storage);unlockUntil(r,'exercise:'+g.id);
+  r(`save();gStart(COURSE.grammar[0].id,${JSON.stringify('exercise:'+g.id)});gMove(1);`);
+  for(let i=0;i<3;i++){
+   r(`var s=G.steps[G.at];gResponse(s).value=${JSON.stringify('ошибка '+i)};gCheck();`);
+   const html=r('gPlayerView()');
+   if(i<2){
+    assert.ok(!html.includes('Верный ответ:'));assert.ok(!html.includes('gerror-analysis'));
+    assert.equal(r(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id===${JSON.stringify(g.id)})).status`),'active');
+    r('gMove(1);');
+   }
+  }
+  r(`var g=gGroups(gUnit()).find(g=>g.id===G.recovery),a=gAttempt(gUnit(),g),q=g.questions[a.lastError.qi];`);
+  assert.equal(r('a.status'),'failed');assert.equal(r('a.lastError.value'),'ошибка 2');
+  const html=r('gPlayerView()');assert.ok(html.includes('ошибка 2'));
+  assert.ok(html.includes(r('esc(q.explain)')));assert.ok(html.includes('data-greview-theory>Вернуться к теории'));
+  assert.ok(!html.includes('data-gnext'));assert.ok(!html.includes('data-gcheck'));
+  for(const answer of r('(q.feedbackAnswers||q.answers).map(a=>esc(gOptionLabel(q,a)))'))assert.ok(html.includes(answer));
+  const at=r('G.at');r('gMove(1);gMove(-1);gCheck();gRepeatExercise();');assert.equal(r('G.at'),at);
+  assert.equal(r('a.status'),'failed');
+  r=context([u],storage);r(`gStart(COURSE.grammar[0].id,'all',true);`);
+  assert.ok(r('gPlayerView()').includes('ошибка 2'));
+  assert.equal(r(`gAttempt(gUnit(),gGroups(gUnit()).find(g=>g.id===G.recovery)).status`),'failed');
+  r('gReviewTheory();');assert.ok(r('gPlayerView()').includes(u.sections[g.theorySections[0]].title));
+  for(let i=1;i<g.theorySections.length;i++)r('gReviewMove(1);');
+  r('gRepeatExercise();');assert.equal(r(`gAttempt(gUnit(),gGroups(gUnit()).find(g=>g.id===${JSON.stringify(g.id)})).errors`),0);
+  checked++;
+ }
+ assert.equal(checked,fs.readdirSync('content/grammar').filter(f=>/^\d.*\.json$/.test(f)).reduce((n,f)=>n+JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')).exercises.length,0));
+});
+
 test('15.2 compares disk capacity using the taught adjective and an explicit comparison target',()=>{
  const q=unit15.exercises[1].questions[7],run=context([unit15]);
  assert.ok(q.prompt.includes('que la capacidad de los discos Misima'));
@@ -83,13 +117,13 @@ test('15.3 hides model answers, explanation and correct-choice highlighting whil
  }
  r(`gMove(1);gResponse(G.steps[G.at]).value='más jóvenes que nosotros';gCheck();`);
  assert.equal(r(`gAttempt(gUnit(),gUnit().exercises[2]).errors`),3);
- assert.equal(r('G.recovery'),'15.3');assert.ok(r('gPlayerView()').includes('Повторить теорию'));
+ assert.equal(r('G.recovery'),'15.3');assert.ok(r('gPlayerView()').includes('Вернуться к теории'));
  r('gReviewTheory();');assert.ok(r('gPlayerView()').includes('Чем я, чем ты: que yo, que tú'));
  r('gRepeatExercise();');assert.equal(r(`gAttempt(gUnit(),gUnit().exercises[2]).errors`),0);
- // Other exercises keep their established feedback.
+ // The same no-spoiler policy now applies to every practice group.
  const other=context([unit15]);unlockUntil(other,'exercise:15.1');
  other(`gStart(COURSE.grammar[0].id,'exercise:15.1');gMove(1);gResponse(G.steps[G.at]).value='wrong';gCheck();`);
- assert.ok(other('gPlayerView()').includes('Верный ответ:'));
+ assert.ok(!other('gPlayerView()').includes('Верный ответ:'));
 });
 
 test('unit 36 completes every answer, resumes drafts and reviews its own theory after three errors',()=>{
@@ -804,7 +838,7 @@ test('an old hotel choice resumes as editable input without losing checked answe
  run(`gResponse(G.steps[G.at]).value='hotels';gCheck();`);
  assert.equal(run('gResponse(G.steps[G.at]).good'),false);
  assert.equal(run('G.at'),8);
- assert.ok(run('gPlayerView()').includes('После -l добавляем -es'));
+ assert.ok(!run('gPlayerView()').includes('После -l добавляем -es'));assert.ok(!run('gPlayerView()').includes('Верный ответ:'));
  run('gSave();G=null;gStart(COURSE.grammar[0].id,"all",true);');
  assert.equal(run('gResponse(G.steps[G.at]).checked'),true);
  assert.equal(run('G.responses["3.1"][1].good'),true);
@@ -866,7 +900,7 @@ test('the group-name mini-check keeps errors and repeats them without losing liv
 test('every mini-check in all 17 units renders choices and completes by clicking',()=>{
  const units=fs.readdirSync('content/grammar').filter(f=>f.endsWith('.json')).sort()
   .map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
- assert.equal(units.length,45);
+ assert.equal(units.length,47);
  for(const unit of units){
   const run=context([unit]);
   for(const [index,section] of unit.sections.entries()){
@@ -1016,7 +1050,7 @@ test('all typing screens show a persistent format and example without changing g
   })())`));
   typed+=result.typed;legacy+=result.legacy;
  }
- assert.equal(typed,1134);assert.equal(legacy,149);
+ assert.equal(typed,1195);assert.equal(legacy,158);
 });
 
 test('quantity answers accept digits or words while the field explains the quantity format', () => {
@@ -1048,11 +1082,11 @@ test('format overrides work in textareas, and article-free answers stay article-
  assert.ok(gender('grammarForm(COURSE.grammar[0],COURSE.grammar[0].exercises[1])').includes('без артикля: la уже написано'));
 });
 
-test('the size-based life limit stops every exercise in all 17 units, without credit or a Next button', () => {
+test('three lives stop every exercise in all 45 units, without credit or a Next button', () => {
  const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
  let count=0;
  for(const u of units) for(const group of u.exercises) {
-  const limit=Math.max(3,Math.ceil(group.questions.length/5));
+  const limit=3;
   const run=context([u]);unlockUntil(run,'exercise:'+group.id);
   run(`gStart(COURSE.grammar[0].id,${JSON.stringify('exercise:'+group.id)});gMove(1);`);
   assert.ok(run('gPlayerView()').includes(`Осталось попыток: ${limit} из ${limit}`));
@@ -1069,14 +1103,14 @@ test('the size-based life limit stops every exercise in all 17 units, without cr
   }
   assert.equal(run(`G.recovery`),group.id);
   assert.equal(run(`!!P.grammar[${JSON.stringify(u.id+'/'+group.id)}]`),false);
-  assert.ok(run('gPlayerView()').includes('Пока не получилось. Давай повторим правило!'));
+  assert.ok(run('gPlayerView()').includes('Разберём последнюю ошибку'));
   assert.ok(!run('gPlayerView()').includes('data-gnext'));
   const before=run('G.at');run('gMove(1);gMove(-1);gCheck();gRepeatExercise();');
   assert.equal(run('G.at'),before);
   assert.equal(run(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id===${JSON.stringify(group.id)})).errors`),limit);
   count++;
  }
- assert.equal(count,171);
+ assert.equal(count,179);
 });
 
 test('exit, route restart, whole-unit restart and reload preserve the failed or active attempt', () => {
@@ -1089,7 +1123,7 @@ test('exit, route restart, whole-unit restart and reload preserve the failed or 
  assert.equal(run('gResponse(G.steps[G.at]).checked'),true);
  run('gMove(1);gMove(1);gResponse(G.steps[G.at]).value="wrong";gCheck();gExit();G=null;gStart(COURSE.grammar[0].id,"all",true);');
  assert.equal(run('G.recovery'),'3.2');
- assert.ok(run('gPlayerView()').includes('Повторить теорию'));
+ assert.ok(run('gPlayerView()').includes('Вернуться к теории'));
  run('gExit();gStart(COURSE.grammar[0].id,"all");G.at=G.steps.findIndex(s=>s.group==="3.2");gPlayerView();');
  assert.equal(run('G.recovery'),'3.2');
  assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).errors'),3);
@@ -1191,11 +1225,11 @@ test('actual bank and guided-gap submissions use the same error counter; incompl
  assert.equal(gaps('gAttempt(gUnit(),gUnit().exercises[2]).errors'),1);
 });
 
-test('the older form path also stops at the size-based limit without granting progress', () => {
+test('the older form path also stops at the three-error limit without granting progress', () => {
  const run=context([unit3]);unlockUntil(run,'exercise:3.1');
  run('gSubmitGrammarForm(COURSE.grammar[0],COURSE.grammar[0].exercises[0],COURSE.grammar[0].exercises[0].questions.map(()=>"wrong"));');
  assert.equal(run('G.recovery'),'3.1');
- assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),4);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),3);
  assert.equal(run('!!P.grammar[gUnit().id+"/3.1"]'),false);
 });
 
@@ -1212,8 +1246,8 @@ test('review and retry in a full-unit run return to the exercise and then its ne
 });
 
 
-test('life counts round up per five questions with a minimum of three',()=>{
- for(const [size,limit] of [[3,3],[15,3],[16,4],[20,4],[21,5],[25,5],[26,6]]){
+test('every practice size has exactly three lives',()=>{
+ for(const [size,limit] of [[3,3],[15,3],[16,3],[20,3],[21,3],[25,3],[26,3]]){
   const u=structuredClone(unit3),g=u.exercises[0];
   g.questions=Array.from({length:size},()=>structuredClone(g.questions[0]));
   const run=context([u]);unlockUntil(run,'exercise:'+g.id);
@@ -1232,26 +1266,23 @@ test('life counts round up per five questions with a minimum of three',()=>{
  }
 });
 
-test('an old failed long exercise gains lives on reload without losing its mistakes',()=>{
+test('an old failed long exercise stays failed on reload and keeps its last answer',()=>{
  const storage=new Map();let run=context([unit3],storage);unlockUntil(run,'exercise:3.1');
  run(`gStart(COURSE.grammar[0].id,'exercise:3.1');gMove(1);
-  for(let i=0;i<3;i++){gResponse(G.steps[G.at]).value='wrong';gCheck();if(i<2)gMove(1);}
-  var old=gAttempt(gUnit(),gUnit().exercises[0]);delete old.limit;old.status='failed';
-  gStoreAttempt(gUnit(),gUnit().exercises[0],old);G.recovery='3.1';
-  store.set(G_SESSION_KEY,JSON.stringify(G));G=null;`);
- run=context([unit3],storage);unlockUntil(run,'exercise:3.1');
- run(`gStart(COURSE.grammar[0].id,'all',true);`);
- assert.ok(!run('G.recovery'));
- assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),3);
- assert.ok(run('gPlayerView()').includes('Осталось попыток: 1 из 4'));
- run(`gMove(1);gResponse(G.steps[G.at]).value='wrong';gCheck();`);
+  for(let i=0;i<3;i++){gResponse(G.steps[G.at]).value='wrong'+i;gCheck();if(i<2)gMove(1);}
+  var old=gAttempt(gUnit(),gUnit().exercises[0]);old.limit=4;delete old.lastError;
+  gStoreAttempt(gUnit(),gUnit().exercises[0],old);gSave();`);
+ run=context([unit3],storage);run(`gStart(COURSE.grammar[0].id,'all',true);`);
  assert.equal(run('G.recovery'),'3.1');
- assert.ok(run('gPlayerView()').includes('Лимит ошибок исчерпан (4)'));
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),3);
+ assert.ok(run('gPlayerView()').includes('Осталось попыток: 0 из 3'));
+ assert.ok(run('gPlayerView()').includes('wrong2'));
 });
 
-test('every exercise automatically repeats mistakes, without lives, credit or score inflation',()=>{
+test('legacy exercises repeat mistakes without lives, credit or score inflation',()=>{
  const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
  for(const u of units)for(const group of u.exercises){
+  if(group.limitedAttempt)continue; // New limited groups have dedicated cumulative-error regressions.
   const run=context([u]);unlockUntil(run,'exercise:'+group.id);
   run(`gStart(COURSE.grammar[0].id,${JSON.stringify('exercise:'+group.id)});gMove(1);`);
   for(let i=0;i<group.questions.length;i++){
@@ -1348,10 +1379,10 @@ test('grammar viewport follows the visible keyboard area and the keyboard can be
  assert.equal(run('viewportPlayer.style.top'),'0px');
 });
 
-test('all mini-checks allow every first answer to be wrong, then require corrections without hearts',()=>{
+test('legacy mini-checks allow first errors and require corrections without hearts',()=>{
  const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
  for(const u of units)for(const [i,section] of u.sections.entries()){
-  if(!section.check)continue;
+  if(!section.check || section.check.limitedAttempt)continue;
   const run=context([u]);unlockUntil(run,'section:'+i);
   run(`gStart(COURSE.grammar[0].id,'section:${i}');gMove(1);`);
   for(let j=0;j<section.check.questions.length;j++){
@@ -1413,7 +1444,7 @@ test('grammar list gives each theme a distinct icon and marks only fully complet
  const run=context(units);
  run('view.grammar=null;');
  const icons=run('COURSE.grammar.map(u=>G_UNIT_ICONS[u.id])');
- assert.ok(icons.every(Boolean));assert.equal(new Set(icons).size,45);
+ assert.ok(icons.every(Boolean));assert.equal(new Set(icons).size,47);
  assert.ok(!run('grammarView()').includes('gcompleted-badge'));
  // Completing the exercises alone leaves mini-checks and theory unfinished.
  run(`const doneUnit=COURSE.grammar[0];for(const g of doneUnit.exercises)P.grammar[grammarKey(doneUnit,g)]={correct:0,total:g.questions.length};`);
@@ -1424,7 +1455,7 @@ test('grammar list gives each theme a distinct icon and marks only fully complet
  assert.equal(run('gUnitComplete(COURSE.grammar[0])'),true);
  const html=run('grammarView()');
  assert.equal((html.match(/gcompleted-badge/g)||[]).length,1);
- assert.ok(html.includes('Пройдено тем: 1 из 45'));
+ assert.ok(html.includes('Пройдено тем: 1 из 47'));
  assert.match(html,/class="mcard gcomplete" data-grammar="001_el_hijo_la_hija"/);
  assert.match(html,/class="mcard " data-grammar="002_el_libro_la_mesa"/);
  run('delete P.grammarRead[COURSE.grammar[0].id+"/summary"];');
@@ -1737,8 +1768,8 @@ test('yellow correction is accepted without another retry or error and keeps the
  run(`gStart(COURSE.grammar[0].id,'exercise:4.3');gMove(1);gPick(2);`);
  const wrong=run('gPlayerView()');assert.ok(wrong.includes('pfoot bad'));
  assert.equal((wrong.match(/class="opt wrong"/g)||[]).length,1);
- assert.equal((wrong.match(/class="opt right"/g)||[]).length,1);
- assert.equal((wrong.match(/class="opt almost"/g)||[]).length,1);
+ assert.equal((wrong.match(/class="opt right"/g)||[]).length,0);
+ assert.equal((wrong.match(/class="opt almost"/g)||[]).length,0);
  run('gMove(1);gPick(1);');
  assert.equal(run('gResponse(G.steps[G.at]).status'),'almost');
  assert.equal(run('gAttempt(gUnit(),gUnit().exercises.find(g=>g.id==="4.3")).status'),'passed');
@@ -1775,7 +1806,7 @@ test('multi-answer audit keeps regional, contextual and equally valid choices gr
    }
   }
  }
- assert.equal(questions,2020);assert.equal(alternatives,312);assert.equal(warnings,25);
+ assert.equal(questions,2117);assert.equal(alternatives,349);assert.equal(warnings,25);
 });
 
 test('yellow mini-check choices still have no lives and complete normally',()=>{
@@ -1813,7 +1844,7 @@ test('all 17 completion screens derive the next lesson from course order and pre
    assert.ok(html.includes('Все уроки раздела пройдены!'));assert.ok(!html.includes('data-gnext-unit'));
    handlers.click({target:{closest:s=>s==='button, .spoiler, [data-say], [data-line]'?{dataset:{grammarList:''}}:null,classList:{contains:()=>false}}});
    assert.equal(run('G'),null);assert.equal(run('view.grammar'),null);assert.equal(run('view.tab'),'grammar');
-   assert.equal((run('grammarView()').match(/data-grammar="/g)||[]).length,45);
+   assert.equal((run('grammarView()').match(/data-grammar="/g)||[]).length,47);
   }
   assert.equal(run('JSON.stringify(P)'),before);
  }
@@ -1944,7 +1975,7 @@ test('all grammar choice sets receive valid, balanced attempt orders without cha
    assert.deepEqual(result,{},`${u.number}/${g.id}: ${JSON.stringify(result)}`);
   }
  }
- assert.equal(standard,737);assert.equal(guided,9);
+ assert.equal(standard,764);assert.equal(guided,9);
  assert.equal(run('JSON.stringify(COURSE.grammar)'),before);
 });
 
@@ -2462,7 +2493,7 @@ test('numeral lessons fully complete all formats and retain failures across relo
  }
 });
 test('new pronoun lessons complete every answer and preserve failed attempts across reload',()=>{
- const files=fs.readdirSync('content/grammar').filter(f=>/^(03[789]|04[0-5])_.*\.json$/.test(f)).sort();
+ const files=fs.readdirSync('content/grammar').filter(f=>/^(03[789]|04[0-7])_.*\.json$/.test(f)).sort();
  for(const file of files){
   const u=JSON.parse(fs.readFileSync('content/grammar/'+file,'utf8'));const run=context([u]);
   run(`gStart(COURSE.grammar[0].id,'all');`);let turns=0;
@@ -2514,8 +2545,8 @@ test('unit 39 distinguishes joining, two legal positions, accent omissions and t
 });
 test('unit 39 shows meaningful answer alternatives once and retains old feedback when unspecified',()=>{
  const u=JSON.parse(fs.readFileSync('content/grammar/039_amame_damelo.json','utf8'));const run=context([u]);
- unlockUntil(run,'exercise:39.4');run(`gStart(COURSE.grammar[0].id,'exercise:39.4');gMove(1);gResponse(G.steps[G.at]).value='wrong';gCheck();`);
- const html=run('gPlayerView()');assert.ok(html.includes('Верный ответ: Pásame la sal</span>'));assert.ok(!html.includes('Pásame la sal / Pásame la sal.'));
+ unlockUntil(run,'exercise:39.4');run(`gStart(COURSE.grammar[0].id,'exercise:39.4');gMove(1);for(let i=0;i<3;i++){gResponse(G.steps[G.at]).value='wrong';gCheck();if(i<2)gMove(1);}`);
+ const q=u.exercises[3].questions[2],html=run('gPlayerView()');assert.ok(html.includes(q.feedbackAnswers[0]));assert.ok(html.includes('Правильный ответ'));assert.ok(!html.match(/<li lang="es">[^<]* \/ [^<]*<\/li>/));
 });
 
 test('unit 40 checks reflexive roles, reciprocal person, omission and semantic accents',()=>{
@@ -2558,4 +2589,50 @@ test('unit 45 checks table-derived negation, person, hunger and non-interchangea
  const g=u.exercises[0];unlockUntil(run,'exercise:'+g.id);run(`gStart(COURSE.grammar[0].id,'exercise:${g.id}');gMove(1);`);
  run(`G.at=G.steps.findIndex(s=>s.type==='question'&&s.qi===3);gResponse(G.steps[G.at]).value='Teneis muchos amigos';gCheck();`);
  assert.equal(run('gResponse(G.steps[G.at]).status'),'almost');assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),0);
+});
+
+
+test('unit 46 distinguishes absence, quantity and short pronouns',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/046_hay.json','utf8'));const run=context([u]);
+ for(const [ref,a,status] of [['46.1.4','Hay cuatro sillas','correct'],['46.1.4','Han cuatro sillas','wrong'],['46.2.3','No hay ningún hospital','correct'],['46.2.3','Hay un hospital','wrong'],['46.2.8','ningún','wrong'],['46.2.8','ninguno','correct'],['46.3.2','No hay agua','correct'],['46.3.7','pocas','correct'],['46.3.7','poco','wrong'],['46.4.1','hay un buzón Hay uno','correct'],['46.4.1','hay un buzon Hay uno','almost'],['46.4.1','hay un buzón Hay un','wrong'],['46.4.7','Hay una cafetería hay una','correct']])
+  assert.equal(run(`grammarResult(COURSE.grammar[0].exercises.flatMap(g=>g.questions).find(q=>q.sourceRef===${JSON.stringify(ref)}),${JSON.stringify(a)},{},true).status`),status,ref+'/'+a);
+});
+
+
+test('unit 47 tracks known referents, possession, mass nouns and number',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/047_hay_estar.json','utf8'));const run=context([u]);
+ for(const [ref,a,status] of [['47.1.1','Hay Está','correct'],['47.1.1','Hay hay','wrong'],['47.1.3','Hay está','correct'],['47.1.3','Hay están','wrong'],['47.1.4','Hay hay','correct'],['47.2.1','¿Dónde hay una farmacia?','correct'],['47.2.1','Dónde está una farmacia','wrong'],['47.2.7','Dónde está el Banco de Galicia','correct'],['47.2.7','Dónde hay el Banco de Galicia','wrong'],['47.2.8','Dónde están los cines Luna','correct'],['47.2.8','Donde estan los cines Luna','wrong'],['47.2.8','Dónde estan los cines Luna','almost'],['47.3.8','Hay hay Está','correct'],['47.3.8','Hay hay Están','wrong'],['47.3.13','Hay Están','correct'],['47.3.16','Dónde están mis llaves','correct'],['47.3.16','Dónde hay mis llaves','wrong'],['47.3.17','hay Están','correct']])
+  assert.equal(run(`grammarResult(COURSE.grammar[0].exercises.flatMap(g=>g.questions).find(q=>q.sourceRef===${JSON.stringify(ref)}),${JSON.stringify(a)},{},true).status`),status,ref+'/'+a);
+ const all=fs.readdirSync('content/grammar').filter(f=>/^04[67]_.*\.json$/.test(f)).map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));const r=context(all);
+ assert.equal(r('gNextUnit(COURSE.grammar[0]).number'),47);assert.ok(r('gFinalView(COURSE.grammar[0],[],0)').includes(all[1].title));
+});
+
+
+
+test('new hay mini-checks have three cumulative errors and precise recovery without changing earlier mini-checks',()=>{
+ for(const n of [46,47]){
+  const file=fs.readdirSync('content/grammar').find(f=>f.startsWith('0'+n+'_'));const u=JSON.parse(fs.readFileSync('content/grammar/'+file,'utf8'));
+  for(let si=0;si<u.sections.length;si++){
+   const g=u.sections[si].check,storage=new Map();let r=context([u],storage);unlockUntil(r,'section:'+si);r(`save();gStart(COURSE.grammar[0].id,'section:${si}');gMove(1);`);
+   for(let i=1;i<=3;i++){r(`gResponse(G.steps[G.at]).value='incorrecto';gCheck();`);assert.equal(r(`gAttempt(gUnit(),gGroups(gUnit()).find(g=>g.id==='${g.id}')).errors`),i);if(i<3)r('gMove(1);');}
+   assert.ok(r('G.recovery'));r=context([u],storage);r(`gStart(COURSE.grammar[0].id,'all',true);gReviewTheory();`);
+   assert.ok(r('gPlayerView()').includes(u.sections[si].title));r('gRepeatExercise();');
+   assert.equal(r(`gAttempt(gUnit(),gGroups(gUnit()).find(g=>g.id==='${g.id}')).errors`),0);
+  }
+ }
+ const r=context([unit]);assert.equal(r("gErrorLimit(COURSE.grammar[0].sections[0].check)"),null);
+});
+
+
+test('new hay exercises count correction errors toward the same three-error attempt',()=>{
+ for(const n of [46,47]){
+  const file=fs.readdirSync('content/grammar').find(f=>f.startsWith('0'+n+'_'));const u=JSON.parse(fs.readFileSync('content/grammar/'+file,'utf8'));
+  for(const g of u.exercises){
+   const r=context([u]);unlockUntil(r,'exercise:'+g.id);r(`gStart(COURSE.grammar[0].id,'exercise:${g.id}');gMove(1);`);
+   for(let i=0;i<g.questions.length;i++)r(`gResponse(G.steps[G.at]).value=${JSON.stringify(i<2?'incorrecto':g.questions[i].answers[0])};gCheck();gMove(1);`);
+   assert.ok(r('G.steps[G.at].correction'));r(`gResponse(G.steps[G.at]).value='third error';gCheck();`);
+   assert.equal(r(`gAttempt(gUnit(),gGroups(gUnit()).find(g=>g.id==='${g.id}')).errors`),3);
+   assert.ok(r('G.recovery'));assert.ok(r('gPlayerView()').includes('third error'));
+  }
+ }
 });

@@ -89,7 +89,7 @@ def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
                     for key in ('instruction', 'placeholder')
                 ) or 'example' in format and (not isinstance(format['example'], str) or not format['example'].strip())):
                     raise ValueError(f"{path}: input format requires instruction, placeholder and a nonempty example when supplied")
-            for key in ('allowNoArticle', 'articleContractions', 'deferAnswerFeedback'):
+            for key in ('allowNoArticle', 'articleContractions', 'deferAnswerFeedback', 'limitedAttempt'):
                 if key in group and type(group[key]) is not bool:
                     raise ValueError(f"{path}: {key} must be boolean")
             for item in [group] + group['questions']:
