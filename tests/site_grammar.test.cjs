@@ -28,6 +28,24 @@ function unlockUntil(run, route) {
  run(`(() => { const u=COURSE.grammar[0]; for(const r of gRoutes(u).slice(0,gRoutes(u).indexOf(${JSON.stringify(route)}))) { const g=r.startsWith('section:')?u.sections[+r.split(':')[1]].check:u.exercises.find(g=>r==='exercise:'+g.id); if(g)P.grammar[grammarKey(u,g)]={correct:0,total:g.questions.length}; else P.grammarRead[u.id+'/'+r]=true; } })()`);
 }
 
+test('15.2 compares disk capacity using the taught adjective and an explicit comparison target',()=>{
+ const q=unit15.exercises[1].questions[7],run=context([unit15]);
+ assert.ok(q.prompt.includes('que la capacidad de los discos Misima'));
+ for(const a of ['más pequeña','  MÁS PEQUEÑA  '])assert.equal(run(`grammarResult(${JSON.stringify(q)},${JSON.stringify(a)}).good`),true);
+ for(const a of ['menos','menor','más pequeño','menos pequeña','mas pequeña','menor que la de los discos Misima'])
+  assert.equal(run(`grammarResult(${JSON.stringify(q)},${JSON.stringify(a)}).status`),'wrong');
+ unlockUntil(run,'exercise:15.2');
+ run(`gStart(COURSE.grammar[0].id,'exercise:15.2');gMove(1);document.querySelector=()=>null;`);
+ for(let i=0;i<9;i++){
+  run(`var s=G.steps[G.at],q=gUnit().exercises[1].questions[s.qi],r=gResponse(s);
+   for(const word of q.answers[0].split(' '))gBuild('add',q.tiles.findIndex((t,i)=>t===word&&!r.chosen?.includes(i)));
+   gCheck();`);
+  assert.equal(run('r.good'),true);
+  run('gMove(1);');
+ }
+ assert.equal(run('G.ended'),true);
+});
+
 test('unit 36 completes every answer, resumes drafts and reviews its own theory after three errors',()=>{
  const u=JSON.parse(fs.readFileSync('content/grammar/036_me_han_regalado.json','utf8'));
  const run=context([u]);run(`gStart(COURSE.grammar[0].id,'all');`);let turns=0;
@@ -1711,7 +1729,7 @@ test('multi-answer audit keeps regional, contextual and equally valid choices gr
    }
   }
  }
- assert.equal(questions,2020);assert.equal(alternatives,313);assert.equal(warnings,25);
+ assert.equal(questions,2020);assert.equal(alternatives,312);assert.equal(warnings,25);
 });
 
 test('yellow mini-check choices still have no lives and complete normally',()=>{
