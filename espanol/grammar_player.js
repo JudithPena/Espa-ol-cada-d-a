@@ -314,7 +314,9 @@ function gRecoveryView(unit) {
   const qi=Number.isInteger(last?.qi) && group.questions[last.qi] ? last.qi
     : Object.keys(attempt.responses || {}).map(Number).filter(i=>group.questions[i] && attempt.responses[i]?.checked && !attempt.responses[i].good).at(-1);
   if(qi===undefined) return `<div class="player gplayer"><div class="pbody"><div class="wrap"><h2>Попытка завершена</h2><p>Сохранённый ответ недоступен. Повтори правило и начни заново.</p></div></div><div class="pfoot"><button class="btn" data-greview-theory>Вернуться к теории</button></div></div>`;
-  const response={...attempt.responses[qi],value:last?.qi===qi ? last.value : attempt.responses[qi].value,checked:true,good:false};
+  const original=attempt.responses[qi], correction=original?.correction;
+  const saved=correction?.checked && last?.qi===qi && correction.value===last.value ? correction : original;
+  const response={...saved,value:last?.qi===qi ? last.value : saved.value,checked:true,good:false};
   return gPlayerView({group,attempt,qi,response});
 }
 const gUnit = () => (COURSE.grammar || []).find(u => u.id === G?.unit);

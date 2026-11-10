@@ -2636,3 +2636,14 @@ test('new hay exercises count correction errors toward the same three-error atte
   }
  }
 });
+
+
+test('terminal analysis retains the last correction fields rather than the first wrong fields',()=>{
+ const u=JSON.parse(JSON.stringify(unit17)),g=u.exercises.find(g=>g.questions.some(q=>q.guidedGaps));g.limitedAttempt=true;
+ const qi=g.questions.findIndex(q=>q.guidedGaps),r=context([u]);unlockUntil(r,'exercise:'+g.id);
+ r(`gStart(COURSE.grammar[0].id,${JSON.stringify('exercise:'+g.id)});gMove(1);
+   var g=gUnit().exercises.find(g=>g.id===${JSON.stringify(g.id)}),a=gAttempt(gUnit(),g);
+   a.responses[${qi}]={value:'first mistake',checked:true,good:false,slotValues:['primero'],correction:{value:'last mistake',checked:true,good:false,slotValues:['último']}};
+   a.errors=3;a.status='failed';a.lastError={qi:${qi},value:'last mistake'};G.recovery=g.id;gStoreAttempt(gUnit(),g,a);`);
+ const html=r('gPlayerView()');assert.ok(html.includes('último'));assert.ok(!html.includes('primero'));assert.ok(html.includes('last mistake'));
+});
