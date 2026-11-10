@@ -1,6 +1,34 @@
 from espanol.site import load_books
 
 
+def test_vacaciones_first_chapter_matches_supplied_pdf_and_catalog():
+    import hashlib
+    import re
+
+    books = [b for b in load_books() if b['id'] == 'lola-lago-vacaciones-al-sol']
+    assert len(books) == 1
+    book = books[0]
+    assert book['title'] == 'Lola Lago - Vacaciones al sol'
+    assert (book['level'], book['vocabulary_min_level']) == ('A1', 'A1')
+    assert len(book['chapters']) == 1
+    chapter = book['chapters'][0]
+    assert (chapter['id'], chapter['number'], chapter['order'], chapter['title']) == ('1', 1, 1, '')
+    # Hash of the entire first chapter, independently extracted from PDF page 3.
+    # Only whitespace and the presentation of footnote numerals are normalized.
+    original = ' '.join(b['es'] for b in chapter['blocks']).replace('¹', '1').replace('²', '2')
+    original = re.sub(r'\s+', ' ', original).strip()
+    assert hashlib.sha256(original.encode()).hexdigest() == 'b5ab6727ae69fbdcb8abd4ce82fbe021d942a496ff563cc677351ede8e8a8a2e'
+    terms = [n['term'] for b in chapter['blocks'] for n in b['notes']]
+    assert len(terms) == len(set(terms))
+    # Elementary A0 course words are deliberately not re-taught.
+    assert not {'la oficina', 'la mujer', 'pequeño', 'el amigo', 'la mesa', 'el año', 'la palabra', 'muy', 'pero'} & set(terms)
+    assert chapter['blocks'][0]['pronouns'] == chapter['blocks'][2]['pronouns'] == []
+    assert 'pasiva refleja' in chapter['blocks'][1]['pronouns'][0]['explanation']
+    for block in chapter['blocks']:
+        for lang in ('es', 'ru'):
+            assert not re.search(r'(?m)^[–—][^\n]*\n\n[–—]', block[lang])
+
+
 def test_book_chapters_have_complete_readable_blocks():
     books = load_books()
     assert books

@@ -219,6 +219,26 @@ test('chapter labels omit missing titles and technical placeholders without inve
   assert.equal(ctx.bookChapterLabel({number:1,title:'El niño que vivió'}),'Глава 1. El niño que vivió');
 });
 
+test('reading parts are numbered in order independently of author chapter numbers', () => {
+  const viewCode = source.slice(source.indexOf('function bookView()'), source.indexOf('function courseView()'));
+  const chapter = JSON.parse(fs.readFileSync('content/books/lola-lago-vacaciones-al-sol/chapters/001.json', 'utf8'));
+  const context = {esc:ctx.esc, view:{book:'vacaciones',bookChapter:'1'},
+    bookById:() => ({title:'Lola Lago - Vacaciones al sol',chapters:[chapter]}),
+    bookChapterLabel:ctx.bookChapterLabel, bookOriginal:ctx.bookOriginal, bookText:ctx.bookText,
+    bookMarks:ctx.bookMarks, bookNote:ctx.bookNote, bookPronouns:ctx.bookPronouns};
+  vm.createContext(context); vm.runInContext(viewCode, context);
+  const html = context.bookView();
+  assert.deepEqual([...html.matchAll(/class="book-part">([^<]+)<\/span>/g)].map(m=>m[1]),
+    ['Часть 1 из 3', 'Часть 2 из 3', 'Часть 3 из 3']);
+  assert.match(html, /Lola Lago - Vacaciones al sol · Глава 1<\/p>/);
+  assert.doesNotMatch(html, /role="tablist"|Sin título|Untitled/);
+  assert.equal((html.match(/<summary>Перевод<\/summary>/g) || []).length, 3);
+  assert.equal((html.match(/<details class="book-pronouns">/g) || []).length, 1);
+  chapter.number = 2;
+  assert.match(context.bookView(), /Глава 2<\/p>/);
+  assert.match(context.bookView(), /Часть 1 из 3/);
+});
+
 test('chapter cards use stable individual icons and escape labels and icon text', () => {
   const catalog = source.slice(source.indexOf('function booksView()'),source.indexOf('function bookText('));
   const context = {esc:ctx.esc, view:{book:'test'}, COURSE:{books:[{id:'test',title:'Test',author:'Author',level:'A1',chapters:[

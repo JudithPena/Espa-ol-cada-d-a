@@ -84,6 +84,7 @@ h2 + .btn.wide, h2 + .muted { margin-top: 10px; display: flex; }
 .vseg ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 15px; }
 .book-block { line-height: 1.65; }
 .book-block p { white-space: pre-line; }
+.book-part { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
 .book-figure { margin: 14px 0; }
 .book-figure img { display: block; max-width: 100%; height: auto; margin: 0 auto; border-radius: 12px; }
 .book-block ul { list-style: disc; padding-left: 1.3em; }
@@ -2636,7 +2637,7 @@ function bookView() {
     : `<button class="btn ghost sm back" data-book-nav="chapters">← Главы книги</button><h2>Разбор текста</h2><p>${esc(b.title)} · ${esc(bookChapterLabel(chapter))}</p>`;
   return `<div data-book-chapter-view>${head}
     ${hasExercises ? `<div class="book-tabs" role="tablist" aria-label="Содержание главы"><button type="button" class="btn ghost" id="book-tab-analysis" role="tab" aria-controls="book-panel-analysis" aria-selected="true" data-book-panel-tab="analysis">Разбор</button><button type="button" class="btn ghost" id="book-tab-exercises" role="tab" aria-controls="book-panel-exercises" aria-selected="false" tabindex="-1" data-book-panel-tab="exercises">Упражнения</button></div>` : ""}
-    <div class="book-panel" data-book-panel="analysis" ${hasExercises ? 'id="book-panel-analysis" role="tabpanel" aria-labelledby="book-tab-analysis" tabindex="0"' : ""}>${chapter.blocks.map(block => `<section class="vseg book-block"><h3>${esc(block.title)}</h3>${bookOriginal(block)}<details><summary>Перевод</summary><p>${bookText(block.ru, bookMarks(block, "ru"))}</p></details><h4>Разбор</h4><ul>${block.notes.map(note => `<li>${bookNote(note)}</li>`).join("")}</ul>${block.pronouns && (!Array.isArray(block.pronouns) || block.pronouns.length) ? `<details class="book-pronouns"><summary>Мини-разбор местоимений</summary>${bookPronouns(block.pronouns)}</details>` : ""}</section>`).join("")}</div>
+    <div class="book-panel" data-book-panel="analysis" ${hasExercises ? 'id="book-panel-analysis" role="tabpanel" aria-labelledby="book-tab-analysis" tabindex="0"' : ""}>${chapter.blocks.map((block, index) => `<section class="vseg book-block"><h3><span class="book-part">Часть ${index + 1} из ${chapter.blocks.length}</span>${esc(block.title)}</h3>${bookOriginal(block)}<details><summary>Перевод</summary><p>${bookText(block.ru, bookMarks(block, "ru"))}</p></details><h4>Разбор</h4><ul>${block.notes.map(note => `<li>${bookNote(note)}</li>`).join("")}</ul>${block.pronouns && (!Array.isArray(block.pronouns) || block.pronouns.length) ? `<details class="book-pronouns"><summary>Мини-разбор местоимений</summary>${bookPronouns(block.pronouns)}</details>` : ""}</section>`).join("")}</div>
     ${hasExercises ? `<div class="book-panel" data-book-panel="exercises" id="book-panel-exercises" role="tabpanel" aria-labelledby="book-tab-exercises" tabindex="0" hidden>${total ? `<p data-book-progress role="status" aria-live="polite">Выполнено: 0 из ${total}</p>` : ""}${bookExercises(chapter)}</div>` : ""}</div>`;
 }
 
