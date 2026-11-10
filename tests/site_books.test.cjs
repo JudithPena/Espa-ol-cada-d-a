@@ -297,7 +297,10 @@ test('story without chapters opens straight from its card and shows no chapter l
     view:{bookLevel:'A2'}, COURSE:{books:[{...meta, chapters:[], story}]}};
   vm.createContext(cat); vm.runInContext(catalogSource + viewCode, cat);
   const card = cat.bookLevelView();
-  assert.match(card, /data-book-id="los-tres-cerditos"/); assert.match(card, /рассказ/); assert.match(card, /🐷/);
+  assert.match(card, /data-book-id="los-tres-cerditos"/); assert.match(card, /рассказ/);
+  assert.match(card, /class="book-cover"/); assert.ok(card.includes(`src="${meta.cover}"`));
+  cat.COURSE.books[0].cover = null;
+  assert.match(cat.bookLevelView(), /🐷/);
   assert.doesNotMatch(card, /глав/);
   cat.location = {hash:'#books/A2/los-tres-cerditos'}; assert.equal(cat.bookSync(), true);
   assert.equal(cat.view.tab, 'book'); assert.equal(cat.view.bookChapter, null);

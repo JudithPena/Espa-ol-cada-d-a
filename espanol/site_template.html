@@ -121,7 +121,10 @@ h2 + .btn.wide, h2 + .muted { margin-top: 10px; display: flex; }
 .book-chapter-label { min-width: 0; text-align: center; overflow-wrap: anywhere; }
 .book-chapter-arrow { text-align: right; font-size: 24px; }
 .book-chapter-card:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-.book-cover { width: 48px; height: 64px; object-fit: cover; border-radius: 6px; flex: none; }
+.mcard.book-card { grid-template-columns: 80px minmax(0, 1fr) 18px; }
+.book-card > span { min-width: 0; }
+.book-card small { display: block; margin-top: 6px; line-height: 1.45; }
+.book-cover { width: 80px; height: 120px; object-fit: contain; border-radius: 6px; flex: none; box-shadow: 0 3px 10px #15244318; }
 .vseg .nt { font-size: 14px; color: var(--muted); }
 .es { font-weight: 700; }
 
@@ -2512,7 +2515,7 @@ const bookById = id => (COURSE.books || []).find(b => b.id === id);
 const bookCurrentText = () => { const b = bookById(view.book); return b?.story || b?.chapters.find(c => c.id === view.bookChapter); };
 function bookLevelView() {
   const books = (COURSE.books || []).filter(b => b.level === view.bookLevel);
-  return `<button class="btn ghost sm back" data-book-nav="levels">← Все уровни</button><h2>Книги · ${esc(view.bookLevel)}</h2>${books.length ? `<div class="menu">${books.map(b => `<button class="mcard" data-book-id="${esc(b.id)}">${b.cover ? `<img class="book-cover" src="${esc(b.cover)}" alt="">` : `<span class="mi" aria-hidden="true">${esc(b.story?.icon || b.icon || "📖")}</span>`}<span><b>${esc(bookTitle(b))}</b><small>${b.series ? esc(b.series.title) + " · " : ""}${esc(b.author)} · ${b.story ? "рассказ" : `${b.chapters.length} ${plural(b.chapters.length, "глава", "главы", "глав")}`}</small></span><span aria-hidden="true">›</span></button>`).join("")}</div>` : '<p class="muted">На этом уровне пока нет книг.</p>'}`;
+  return `<button class="btn ghost sm back" data-book-nav="levels">← Все уровни</button><h2>Книги · ${esc(view.bookLevel)}</h2>${books.length ? `<div class="menu">${books.map(b => `<button class="mcard book-card" data-book-id="${esc(b.id)}">${b.cover ? `<img class="book-cover" src="${esc(b.cover)}" alt="">` : `<span class="mi" aria-hidden="true">${esc(b.story?.icon || b.icon || "📖")}</span>`}<span><b>${esc(bookTitle(b))}</b><small>${b.series ? esc(b.series.title) + " · " : ""}${esc(b.author)} · ${b.story ? "рассказ" : `${b.chapters.length} ${plural(b.chapters.length, "глава", "главы", "глав")}`}</small></span><span aria-hidden="true">›</span></button>`).join("")}</div>` : '<p class="muted">На этом уровне пока нет книг.</p>'}`;
 }
 function bookChapterLabel(chapter) {
   const raw = typeof chapter.title === "string" ? chapter.title.trim() : "";

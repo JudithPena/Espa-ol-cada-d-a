@@ -109,6 +109,29 @@ def test_book_series_rejects_invalid_and_duplicate_numbers(tmp_path):
         load_books(tmp_path)
 
 
+def test_library_covers_are_distinct_and_lola_titles_use_the_same_format():
+    import hashlib
+    import json
+    from pathlib import Path
+    from PIL import Image
+
+    digests = set()
+    for metadata_path in Path('content/books').glob('*/book.json'):
+        book = json.loads(metadata_path.read_text(encoding='utf-8'))
+        cover = metadata_path.parent / book['cover']
+        assert cover.is_file(), metadata_path
+        with Image.open(cover) as image:
+            assert image.width >= 768 and image.height >= 1152
+            assert image.width * 3 == image.height * 2
+            image.verify()
+        digest = hashlib.sha256(cover.read_bytes()).digest()
+        assert digest not in digests, metadata_path
+        digests.add(digest)
+        if book.get('series', {}).get('id') == 'lola-lago-detective':
+            assert book['title'].startswith('Lola Lago - ')
+            assert book['title'].count('Lola Lago') == 1
+
+
 def test_book_chapters_have_complete_readable_blocks():
     books = load_books()
     assert books
