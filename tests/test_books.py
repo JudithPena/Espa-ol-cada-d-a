@@ -10,7 +10,7 @@ def test_vacaciones_first_chapter_matches_supplied_pdf_and_catalog():
     book = books[0]
     assert book['title'] == 'Lola Lago - Vacaciones al sol'
     assert (book['level'], book['vocabulary_min_level']) == ('A1', 'A1')
-    assert len(book['chapters']) == 1
+    assert len(book['chapters']) == 23
     chapter = book['chapters'][0]
     assert (chapter['id'], chapter['number'], chapter['order'], chapter['title']) == ('1', 1, 1, '')
     # Hash of the entire first chapter, independently extracted from PDF page 3.
@@ -27,6 +27,36 @@ def test_vacaciones_first_chapter_matches_supplied_pdf_and_catalog():
     for block in chapter['blocks']:
         for lang in ('es', 'ru'):
             assert not re.search(r'(?m)^[–—][^\n]*\n\n[–—]', block[lang])
+
+
+def test_vacaciones_complete_source_order_and_learning_progress():
+    import hashlib
+    import json
+    import re
+    import unicodedata
+    from pathlib import Path
+
+    book = next(b for b in load_books() if b['id'] == 'lola-lago-vacaciones-al-sol')
+    signatures = json.loads(Path('tests/data/vacaciones_source_signatures.json').read_text(encoding='utf-8'))
+    assert [c['number'] for c in book['chapters']] == list(range(1, 24))
+    assert [c['order'] for c in book['chapters']] == list(range(1, 24))
+    assert all(c['title'] == '' for c in book['chapters'])
+    assert len({c['icon'] for c in book['chapters']}) == 23
+    learned = set()
+    for chapter in book['chapters']:
+        source = ' '.join(b['es'] for b in chapter['blocks'])
+        source = re.sub(r'\s+', ' ', unicodedata.normalize('NFKC', source)).strip()
+        assert hashlib.sha256(source.encode()).hexdigest() == signatures[chapter['id']]['sha256']
+        for block in chapter['blocks']:
+            for note in block['notes']:
+                if isinstance(note, dict):
+                    assert note['term'] not in learned, (chapter['number'], note['term'])
+                    learned.add(note['term'])
+            for lang in ('es', 'ru'):
+                assert not re.search(r'(?m)^[–—][^\n]*\n\n[–—]', block[lang])
+    assert {'la oficina', 'la mesa', 'el médico', 'el abogado', 'trabajar', 'estudiar', 'el año'}.isdisjoint(learned)
+    assert sum(len(b.get('images', [])) for c in book['chapters'] for b in c['blocks']) == 3
+    assert book['chapters'][-1]['blocks'][-1]['es'].endswith('–No me llames «nena».')
 
 
 def test_book_chapters_have_complete_readable_blocks():
@@ -676,8 +706,14 @@ def test_a1_books_skip_words_of_the_site_a0_course():
     # Слова A0 остаются только с необычным значением в контексте (estudiar — «разобрать запись»,
     # el señor — «хозяин дома»).
     unusual = {'estudiar', 'el señor'}
+    # The guide also allows a familiar A0 word in an unfamiliar function.
+    # These specific entries teach emphasis, approximate numbers and a vocative,
+    # rather than re-teaching sí, unos or mujer in their elementary meanings.
+    unusual_by_book = {'lola-lago-vacaciones-al-sol': {
+        'sí (усилительное)', 'unos (приблизительное количество)', 'mujer (обращение)'}}
     for book in load_books():
         if book['vocabulary_min_level'] != 'A1':
             continue
         terms = [n['term'] for c in book['chapters'] for b in c['blocks'] for n in b['notes'] if isinstance(n, dict)]
-        assert not [t for t in terms if key(t) in a0 and t not in unusual], book['id']
+        permitted = unusual | unusual_by_book.get(book['id'], set())
+        assert not [t for t in terms if key(t) in a0 and t not in permitted], book['id']
