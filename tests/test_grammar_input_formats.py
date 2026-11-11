@@ -21,7 +21,7 @@ def test_all_typing_questions_have_complete_format_guidance():
                     legacy += 1
                 else:
                     typed += 1
-    assert (typed, legacy) == (1200, 158)  # Fable stages 4–5: unit 5 now has 16 typed instead of 20
+    assert (typed, legacy) == (1186, 160)  # Fable stage 6: unit 13 now has 17 typed and 2 build
 
 
 @pytest.mark.parametrize('format', [{}, {'instruction':'Впиши слово'}, 'слово',

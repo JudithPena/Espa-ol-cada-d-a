@@ -749,7 +749,7 @@ test('new article questions leave nouns written and the clock/distance aids rend
  assert.equal(unit12.exercises[2].questions.some(q=>q.distance),false);
  run(`gStart(${JSON.stringify(unit13.id)});G.at=G.steps.findIndex(s=>s.group==='13.1'&&s.type==='question');`);
  const html=run('gPlayerView()');
- assert.ok(html.includes('Vivo en un piso '));
+ assert.ok(html.includes('En mi habitación tengo una mesa '));
  assert.equal((html.match(/id="g-answer"/g)||[]).length,1);
  assert.ok(html.includes('clues')&&html.includes('pequeño'));
 });
@@ -1052,7 +1052,7 @@ test('all typing screens show a persistent format and example without changing g
   })())`));
   typed+=result.typed;legacy+=result.legacy;
  }
- assert.equal(typed,1200);assert.equal(legacy,158); // Fable 5: unit 5 has 16 typed questions
+ assert.equal(typed,1186);assert.equal(legacy,160); // Fable 6: 14 fewer typed, 2 added builds
 });
 
 test('quantity answers accept digits or words while the field explains the quantity format', () => {
@@ -1803,7 +1803,7 @@ test('multi-answer audit keeps regional, contextual and equally valid choices gr
    }
   }
  }
- assert.equal(questions,2084);assert.equal(alternatives,356);assert.equal(warnings,25); // Fable 5: unit 5 now has 44 questions
+ assert.equal(questions,2083);assert.equal(alternatives,356);assert.equal(warnings,25); // Fable 6: unit 13 49→48
 });
 
 test('yellow mini-check choices preserve all three lives and complete normally',()=>{
@@ -1981,7 +1981,7 @@ test('all grammar choice sets receive valid, balanced attempt orders without cha
    assert.deepEqual(result,{},`${u.number}/${g.id}: ${JSON.stringify(result)}`);
   }
  }
- assert.equal(standard,726);assert.equal(guided,9); // Fable 5: +1 meaningful choice compared to old unit 5
+ assert.equal(standard,737);assert.equal(guided,9); // Fable 6: 11 more choice questions in unit 13
  assert.equal(run('JSON.stringify(COURSE.grammar)'),before);
 });
 

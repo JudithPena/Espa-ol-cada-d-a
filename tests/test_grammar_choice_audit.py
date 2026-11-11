@@ -23,6 +23,9 @@ def test_audit_covers_all_units_and_offers_every_accepted_choice():
         elif unit['number'] == 5:
             # Stage 5 editorial replacement has its own up-to-date tests.
             assert record['reviewed'] == 47 and total == 44
+        elif unit['number'] == 13:
+            # Historical Nov 8 audit counted 49; Stage 6 now has 48.
+            assert record['reviewed'] == 49 and total == 48
         else:
             assert total == record['reviewed']
         for group in groups(unit):
