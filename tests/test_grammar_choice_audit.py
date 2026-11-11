@@ -29,6 +29,9 @@ def test_audit_covers_all_units_and_offers_every_accepted_choice():
         elif unit['number'] == 2:
             # Fable stage 8 supersedes the dated 73-question choice audit.
             assert record['reviewed'] == 73 and total == 57
+        elif unit['number'] == 14:
+            # Stage 9 replaces the historical 46-question nationality baseline.
+            assert record['reviewed'] == 46 and total == 45
         elif unit['number'] == 8:
             # Stage 7 supersedes the 68-question historical choice audit.
             assert record['reviewed'] == 68 and total == 58
