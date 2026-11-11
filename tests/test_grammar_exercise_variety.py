@@ -60,12 +60,13 @@ def test_variety_audit_covers_every_group_and_exercises_require_different_answer
             # replaces restrictions on the unrendered source-array positions.
             if g in u['exercises']:
                 assert len({q['answers'][0] for q in g['questions']}) > 1
-    # Interleaving keeps all eight nationality models while removing the rigid three-question cycle.
+    # Fable stage 9 replaces the mechanical 24-row cycle with three actions.
     qs = units[13]['exercises'][0]['questions']
-    assert len(set(q['clues'][0][0] for q in qs)) == 8
-    assert set(Counter(q['clues'][0][0] for q in qs).values()) == {3}
-    assert len(set(q['clues'][0][0] for q in qs[:3])) == 3
-    assert not all(q['prompt'] == ['Ella es ___.', 'Ellos son ___.', 'Ellas son ___.'][i % 3] for i, q in enumerate(qs))
+    assert len(qs) == 15
+    assert Counter(q['interaction'] for q in qs) == {'input': 10, 'gap-choice': 2, 'choice': 3}
+    assert len({q['prompt'] for q in qs}) == 15
+    assert any(set(q['answers']) == {'iraníes', 'iranís'} for q in qs)
+    assert any('vietnamito' in q['prompt'] for q in qs)
 
 
 @pytest.mark.parametrize('revision', [0, -1, True, '2', None])
