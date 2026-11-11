@@ -48,6 +48,12 @@ def load_grammar(directory: Path = GRAMMAR, *, schema_check: bool | None = None)
     units = []
     for path in sorted(directory.glob("[0-9]*.json")):
         unit = json.loads(path.read_text(encoding="utf-8"))
+        # Validate raw JSON before dereferencing nested fields or embedding art.
+        if validator is not None:
+            issues = breaking_findings(structure_unit(unit, path.name, validator))
+            if issues:
+                problem = issues[0]
+                raise ValueError(f"{path}: {problem.rule}: {problem.message}")
         if 'revision' in unit and (type(unit['revision']) is not int or unit['revision'] < 1):
             raise ValueError(f"{path}: revision must be a positive integer")
         if any(u["id"] == unit["id"] for u in units):
@@ -192,10 +198,5 @@ def load_grammar(directory: Path = GRAMMAR, *, schema_check: bool | None = None)
             family = group.get("family")
             if family and family.get("portraits"):
                 family["portraits"] = {name: _image_uri(directory, image) for name, image in family["portraits"].items()}
-        if validator is not None:
-            issues = breaking_findings(structure_unit(unit, path.name, validator))
-            if issues:
-                problem = issues[0]
-                raise ValueError(f"{path}: {problem.rule}: {problem.message}")
         units.append(unit)
     return units
