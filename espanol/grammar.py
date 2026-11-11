@@ -33,10 +33,27 @@ def write_theory_illustrations(units: list[dict], output: Path) -> None:
             art["image"] = relative
 
 
-def load_grammar(directory: Path = GRAMMAR) -> list[dict]:
+def load_grammar(directory: Path = GRAMMAR, *, schema_check: bool | None = None) -> list[dict]:
+    """Load grammar. Official course is always schema checked before publication.
+
+    Minimal temporary fixtures retain the historical validation contract unless
+    callers explicitly request schema_check=True (used by schema regression tests).
+    """
+    from .grammar_quality import schema_validator, structure_unit, breaking_findings
+
+    directory = Path(directory)
+    if schema_check is None:
+        schema_check = directory.resolve() == GRAMMAR.resolve()
+    validator = schema_validator() if schema_check else None
     units = []
-    for path in sorted(directory.glob("*.json")):
+    for path in sorted(directory.glob("[0-9]*.json")):
         unit = json.loads(path.read_text(encoding="utf-8"))
+        # Validate raw JSON before dereferencing nested fields or embedding art.
+        if validator is not None:
+            issues = breaking_findings(structure_unit(unit, path.name, validator))
+            if issues:
+                problem = issues[0]
+                raise ValueError(f"{path}: {problem.rule}: {problem.message}")
         if 'revision' in unit and (type(unit['revision']) is not int or unit['revision'] < 1):
             raise ValueError(f"{path}: revision must be a positive integer")
         if any(u["id"] == unit["id"] for u in units):

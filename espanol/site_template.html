@@ -733,6 +733,10 @@ main { padding-block: 16px 110px; }
 .gguided-slot.is-active { border-style: solid; box-shadow: 0 0 0 3px var(--accent-soft); }
 .gguided-slot small { position: absolute; right: 3px; top: -6px; font: 10px var(--body); color: var(--accent); background: var(--surface); padding: 0 2px; }
 .gguided-slot:disabled { opacity: 1; cursor: default; }
+.gguided-slot.is-incorrect, .ggap-input.ggap-incorrect { border: 2px solid var(--bad); background: var(--bad-soft); }
+.gwrong-fields { margin: 8px 0; padding-left: 22px; }
+.gplayer-actions { flex-wrap: wrap; }
+@media(max-width:600px) { .gplayer-actions .btn { min-height: 44px; } }
 .gguided-options { padding: 16px; border-radius: 16px; background: var(--accent-soft); }
 .gguided-options p { margin: 0 0 10px; font-size: 14px; }
 .gguided-options [aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
@@ -891,6 +895,9 @@ html.grammar-playing, html.grammar-playing body { overflow: hidden; }
 @media (max-width: 600px) { .gintro { padding: 20px; gap: 20px; } .gintro.has-visual { grid-template-columns: 1fr; } .gintro-art { max-width: 280px; justify-self: center; } .gintro-copy p { font-size: 17px; } .gintro-demo { padding: 18px; } }
 .gplayer .ginput { font-size: 19px; }
 .gplayer-actions { display: grid; grid-template-columns: auto 1fr; gap: 12px; }
+.gplayer-actions.greview-actions { display: flex; flex-wrap: wrap; }
+.gplayer-actions.greview-actions .btn { flex: 1 1 180px; min-width: 0; white-space: normal; }
+@media (max-width: 600px) { .gplayer-actions.greview-actions .btn { flex-basis: 100%; } }
 .gpick-hint { align-self: center; justify-self: center; text-align: center; font-size: 14px; }
 .gplayer .fb { max-height: 24dvh; overflow-y: auto; }
 .gquestion-work, .ganswer-area, .gfamily-work { display: grid; gap: 14px; align-content: start; }
@@ -3384,6 +3391,7 @@ document.addEventListener("click", e => {
   if ("gresume" in d) return gStart(view.grammar, "all", true);
   if ("gexit" in d) return gExit();
   if ("greviewTheory" in d) return gReviewTheory();
+  if ("greviewMistake" in d) return gReturnToMistake();
   if ("greviewBack" in d) return gReviewMove(-1);
   if ("greviewNext" in d) return gReviewMove(1);
   if ("grepeatExercise" in d) return gRepeatExercise();

@@ -14,6 +14,19 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt pytest
+      - name: Схема данных и методический линтер грамматики
+        run: |
+          python tools/grammar_schema_docs.py --check
+          python -m espanol grammar-lint --report /tmp/grammar-lint-summary.md --json-out /tmp/grammar-lint-findings.json
+      - name: Архив диагностик грамматического линтера
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grammar-linter-diagnostics
+          path: |
+            /tmp/grammar-lint-summary.md
+            /tmp/grammar-lint-findings.json
+          if-no-files-found: warn
       - name: Проверка словаря и лимитов Telegram
         run: python -m espanol validate
       - name: Тесты
@@ -21,6 +34,8 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: "22"
+      - name: Новые проверки политики трёх жизней
+        run: node --test tests/site_grammar_policy.test.cjs
       - name: Плеер грамматики и распределение вариантов ответа
         run: node --test tests/site_grammar.test.cjs
       - name: Уроки основного курса на сайте (сценарии, проверка ответов)
@@ -29,3 +44,64 @@ jobs:
         run: |
           python -m espanol bot-data --no-audio
           node --test bot/test/*.test.js
+
+  grammar-browser-pr34:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/fix/grammar-three-lives-review-20261111'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install site and real Chromium test dependencies
+        run: |
+          python -m pip install -r requirements.txt playwright
+          python -m playwright install --with-deps chromium
+      - name: Build the actual grammar website
+        run: python -m espanol site
+      - name: Run Chromium at 320, 390, 768, and 1280px
+        run: python tests/grammar_pr34_browser.py
+      - name: Keep screenshots and JSON evidence in Actions
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grammar-pr34-chromium-screenshots
+          path: docs/grammar_pr34_browser/
+          if-no-files-found: warn
+      - name: Save screenshots and results to the current PR branch
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, 'Capture corrected PR34 screenshots')
+        continue-on-error: true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/grammar_pr34_browser/
+          if ! git diff --cached --quiet; then
+            git commit -m "test(grammar): archive PR 34 Chromium visual evidence [skip ci]"
+            git push origin HEAD:fix/grammar-three-lives-review-20261111
+          fi
+
+  grammar-immediate-feedback-browser:
+    if: github.event_name == 'pull_request' && (github.head_ref == 'fix/grammar-immediate-feedback-20261111' || github.head_ref == 'audit/grammar-schema-linter-20261111')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install dependencies and real Playwright Chromium
+        run: |
+          python -m pip install -r requirements.txt playwright
+          python -m playwright install --with-deps chromium
+      - name: Build local website without deploying
+        run: python -m espanol site
+      - name: Chromium regression (320, 390, 768, 1280px; 1, 7, 15, 38, 45)
+        run: python tests/grammar_immediate_feedback_browser.py
+      - name: Archive screenshots and machine results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grammar-immediate-feedback-browser
+          path: docs/grammar_immediate_feedback_browser/
+          if-no-files-found: warn
