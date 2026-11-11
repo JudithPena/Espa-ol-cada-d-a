@@ -341,6 +341,36 @@ def cmd_carta(args, settings) -> int:
     return 0
 
 
+def cmd_grammar_lint(args, settings) -> int:
+    """Schema errors block the build; pedagogical diagnostics never block by default."""
+    import json
+    from pathlib import Path
+    from .grammar_quality import inspect_directory, summarize, markdown_report, count_content, breaking_findings
+
+    directory = Path(args.directory) if args.directory else None
+    options = {int(args.unit)} if args.unit else None
+    findings = inspect_directory(directory, options) if directory else inspect_directory(only=options)
+    numbers, questions = count_content(directory, options) if directory else count_content(only=options)
+    summary = summarize(findings)
+    print(f"Грамматика: {numbers} юнитов · {questions} вопросов · "
+          f"ERROR {summary['totals']['ERROR']} / WARNING {summary['totals']['WARNING']} / INFO {summary['totals']['INFO']}")
+    print(f"Блокирующих новых ошибок: {summary['newErrors']}; документированных старых: {summary['baselineErrors']}")
+    for rule, quantity in list(summary['byRule'].items())[:12]:
+        print(f"  {rule}: {quantity}")
+    for issue in breaking_findings(findings)[:20]:
+        print(f"ERROR {issue.file} {issue.group or '-'} #{issue.question or '-'}: {issue.message} — {issue.recommendation}")
+    if args.json_out:
+        target=Path(args.json_out)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(json.dumps({'summary':summary,'findings':[f.to_dict() for f in findings]},
+                                     ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    if args.report:
+        target=Path(args.report)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(markdown_report(findings,numbers,questions),encoding='utf-8')
+    return 1 if breaking_findings(findings) or args.strict_warnings and any(f.severity=='WARNING' and not f.baseline for f in findings) else 0
+
+
 def cmd_run(args, settings) -> int:
     from .scheduler import parse_times, run_forever
 
@@ -357,6 +387,13 @@ def main(argv: list[str] | None = None) -> int:
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("validate", help="проверить курс")
     sub.add_parser("stats", help="статистика курса")
+    p = sub.add_parser("grammar-lint", help="проверить структуру и методическое качество грамматических юнитов")
+    p.add_argument("unit", nargs="?", help="номер одного юнита (по умолчанию все)")
+    p.add_argument("--directory", help="каталог грамматических JSON для независимой проверки")
+    p.add_argument("--json-out", metavar="FILE", help="машинный JSON со всеми находками")
+    p.add_argument("--report", metavar="FILE", help="краткая сводка Markdown")
+    p.add_argument("--strict-warnings", action="store_true", help="для автора нового юнита: считать необоснованные WARNING причиной ненулевого кода")
+
     p = sub.add_parser("preview", help="показать урок")
     p.add_argument("ref", help="номер урока (вводный — 0), id или video:N — разбор видео")
     p.add_argument("--html", action="store_true", help="показать HTML вместо текста")
