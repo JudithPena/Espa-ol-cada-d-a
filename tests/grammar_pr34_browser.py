@@ -78,7 +78,7 @@ def check_layout(page, label):
     if layout["footTop"] is not None and layout["bodyBottom"] is not None:
         assert_true(layout["bodyBottom"]<=layout["footTop"]+3, f"{label}: body/footer overlap {layout}")
     if layout["feedbackHeight"] > layout["feedbackClient"]+3:
-        scroll=page.evaluate("""() => { const f=document.querySelector('.pfoot .fb'); f.scrollTop=f.scrollHeight; return f.scrollTop; }""")
+        scroll=page.evaluate("""() => { const f=document.querySelector('.pfoot .fb'); const before=f.scrollTop; f.scrollTop=f.scrollHeight; const end=f.scrollTop; f.scrollTop=before; return end; }""")
         assert_true(scroll>0, f"{label}: error details not scrollable")
     return layout
 
