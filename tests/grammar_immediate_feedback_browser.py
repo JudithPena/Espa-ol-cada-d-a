@@ -17,6 +17,11 @@ CASES = (
     (5, "exercise:5.1", "choice"),
     (5, "exercise:5.2", "input"),
     (5, "exercise:5.3", "choice"),
+    (2,"section:0","choice"), (2,"section:1","choice"),
+    (2,"section:2","choice"), (2,"section:3","choice"),
+    (2,"section:4","choice"), (2,"section:5","choice"),
+    (2,"section:6","choice"), (2,"exercise:2.1","choice"),
+    (2,"exercise:2.2","input"), (2,"exercise:2.3","input"),
     (8, "section:0", "choice"),
     (8, "section:1", "choice"),
     (8, "section:2", "choice"),
@@ -56,6 +61,19 @@ SUCCESS8 = (
     ("exercise:8.4", 7, "de El"),
     ("exercise:8.4", 9, "de La"),
 )
+SUCCESS2 = (
+    ("exercise:2.1",3,"el","correct"), ("exercise:2.1",14,"el teléfono","correct"),
+    ("exercise:2.2",5,"la","correct"), ("exercise:2.2",6,"el","correct"),
+    ("exercise:2.2",9,"la perra","correct"),
+    ("section:5",1,"la gorila","correct"), ("section:5",1,"el gorila hembra","correct"),
+    ("exercise:2.3",0,"el árbol","correct"), ("exercise:2.3",0,"el arbol","almost"),
+    ("exercise:2.3",0,"la árbol","wrong"), ("exercise:2.3",1,"el tren","correct"),
+    ("exercise:2.3",2,"el diccionario","correct"), ("exercise:2.3",3,"la mariposa","correct"),
+    ("exercise:2.3",4,"el gorila","correct"), ("exercise:2.3",4,"la gorila","correct"),
+    ("exercise:2.3",5,"la llave","correct"), ("exercise:2.3",6,"el hospital","correct"),
+    ("exercise:2.3",7,"el tenedor","correct"), ("exercise:2.3",8,"el pez","correct"),
+    ("exercise:2.3",9,"la nariz","correct"),
+)
 OUT = Path("docs/grammar_immediate_feedback_browser")
 SHOTS = OUT / "screenshots"
 SHOTS.mkdir(parents=True, exist_ok=True)
@@ -63,8 +81,9 @@ ORIGIN = "http://127.0.0.1:8765/index.html"
 REPORT = {"browser": "Chromium via Playwright", "widths": WIDTHS, "cases": [], "failures": [],
           "limitations": ["Android/iOS native IME not available in Linux Chromium; 520px-height viewport emulates keyboard obstruction, not a real mobile keyboard."]}
 
-PREPARE = r"""({number,route,qi=0}) => {
+PREPARE = r"""async ({number,route,qi=0}) => {
   const u=COURSE.grammar.find(u=>u.number===number);
+  if(u?._data && (!u.exercises?.[0]?.questions || !u.sections?.[0]?.check?.questions)) await dataLoad(u._data);
   if(!u) throw Error('Unit '+number+' not found');
   P.grammar ||= {}; P.grammarRead ||= {};
   const routes=gRoutes(u), idx=routes.indexOf(route);
@@ -348,8 +367,9 @@ def run_unit08_correct_case(browser, width, route, qi, answer):
             # A two-word draft must survive page reload before submitting.
             page.reload(wait_until="domcontentloaded")
             page.wait_for_function("typeof gStart==='function' && Array.isArray(COURSE.grammar)",timeout=30000)
-            page.evaluate("""() => {
+            page.evaluate("""async () => {
               const u=COURSE.grammar.find(u=>u.number===8);
+              await dataLoad(u._data);
               gStart(u.id,'all',true);
             }""")
             restored=page.evaluate("""() => ({value:gResponse(G.steps[G.at]).value,group:G.steps[G.at].group,qi:G.steps[G.at].qi})""")
@@ -383,6 +403,93 @@ def run_unit08_correct_case(browser, width, route, qi, answer):
         context.close()
 
 
+
+def run_unit02_correct_case(browser,width,route,qi,answer,expected):
+    context=browser.new_context(viewport={"width":width,"height":820},
+                                is_mobile=width<=390,has_touch=width<=390,
+                                device_scale_factor=1)
+    page=context.new_page(); errors=[]
+    page.on("pageerror",lambda e:errors.append(str(e)))
+    item={"unit":2,"width":width,"route":route,"qi":qi,
+          "answer":answer,"expected":expected,"screenshots":[]}
+    try:
+        page.goto(ORIGIN,wait_until="domcontentloaded",timeout=45000)
+        page.evaluate("localStorage.clear()");page.reload(wait_until="domcontentloaded")
+        page.wait_for_function("typeof gStart==='function' && Array.isArray(COURSE.grammar) && COURSE.grammar.length>0",timeout=30000)
+        page.evaluate(PREPARE,{"number":2,"route":route,"qi":qi})
+        assert_true(page.evaluate("gUnit().number")==2,"Unit 2 navigation lost")
+        active=page.evaluate("""() => ({group:G.steps[G.at].group,qi:G.steps[G.at].qi})""")
+        assert_true(active=={"group":("check-f" if route=="section:5" else route.split(":")[1]),"qi":qi},"Wrong question route: "+str(active))
+        item["before"]=check_layout(page,"unit2 before "+route)
+        q=page.evaluate(QUESTION)
+        if route=="exercise:2.3":
+            image=page.locator("img.gquestion-picture")
+            assert_true(image.count()==1,"Unit 2 illustration missing")
+            info=image.evaluate("""e=>({ready:e.complete&&e.naturalWidth>0&&e.naturalHeight>0,alt:e.alt})""")
+            assert_true(info["ready"] and info["alt"],"Unit 2 broken illustration: "+str(info))
+            item["picture"]=info
+            vocab=page.locator("details.gvocab")
+            assert_true(vocab.count()==1 and vocab.get_attribute("open") is None,
+                        "Unit 2 vocabulary must be collapsed until requested")
+        if q["mode"]=="choice":
+            page.evaluate("""a=>{const el=[...document.querySelectorAll('[data-gvalue]')].find(x=>x.dataset.gvalue===a);
+                if(!el)throw Error('Missing answer button '+a);el.click();}""",answer)
+        else:
+            assert_true(q["mode"]=="input","Expected real input control")
+            field=page.locator("#g-answer")
+            assert_true(field.count()==1,"Input not rendered")
+            if route=="exercise:2.3" and qi==0 and answer=="el árbol" and width==390:
+                field.fill("el ")
+                panel=page.locator('[data-gchar="á"]')
+                assert_true(panel.count()==1,"Spanish accent button absent")
+                panel.click()
+                assert_true(field.input_value()=="el á","Spanish keyboard insertion failed")
+            if route=="exercise:2.3" and qi==1 and width==390:
+                field.fill("el tre");page.reload(wait_until="domcontentloaded")
+                page.wait_for_function("typeof gStart==='function' && Array.isArray(COURSE.grammar)",timeout=30000)
+                page.evaluate("""async () => {const u=COURSE.grammar.find(x=>x.number===2);await dataLoad(u._data);gStart(u.id,'all',true);}""")
+                stored=page.evaluate("""() => ({group:G.steps[G.at].group,qi:G.steps[G.at].qi,value:gResponse(G.steps[G.at]).value})""")
+                assert_true(stored=={"group":"2.3","qi":1,"value":"el tre"},
+                            "Draft not restored: "+str(stored))
+                item["draft"]=stored;field=page.locator("#g-answer")
+            field.fill(answer)
+            assert_true(field.input_value()==answer,"Input truncated")
+            submit=page.locator("[data-gcheck]")
+            assert_true(submit.count()==1 and submit.is_enabled(),"Submit not accessible")
+            submit.click()
+        state=page.evaluate("""() => {
+            const s=G.steps[G.at],g=gGroups(gUnit()).find(g=>g.id===s.group),
+                  a=gAttempt(gUnit(),g),r=gResponse(s);
+            return {status:r.status,good:r.good,checked:r.checked,errors:a.errors,feedback:gPlayerView()};
+        }""")
+        assert_true(state["status"]==expected and state["checked"],
+                    "Wrong status for "+answer+": "+str(state["status"]))
+        if expected=="wrong":
+            assert_true(state["good"] is False and state["errors"]==1
+                        and "Верный ответ:" in state["feedback"] and "Почему:" in state["feedback"],
+                        "Wrong article did not show red feedback and explanation")
+        else:
+            assert_true(state["good"] is True and state["errors"]==0,
+                        "Correct/alternative answer cost a life")
+            if expected=="almost":
+                assert_true(page.locator(".pfoot.almost").count()==1,
+                            "Omitted accent was not shown as yellow")
+        item["after"]=check_layout(page,"unit2 after "+route)
+        if width==390 and (route=="section:5" or
+                          route=="exercise:2.3" and qi in (0,1,4,7)):
+            name=f"stage8_{route.replace(':','_').replace('.','_')}_{qi}_{expected}_{answer.replace(' ','_')}"
+            item["screenshots"].append(picture(page,width,2,name))
+        assert_true(not errors,"Unit 2 JavaScript errors "+str(errors))
+        item["status"]="passed"
+    except Exception as e:
+        item["status"]="failed";item["error"]=repr(e)
+        REPORT["failures"].append({"unit":2,"width":width,"route":route,"qi":qi,"answer":answer,"error":repr(e)})
+        try:item["screenshots"].append(picture(page,width,2,f"stage8_{qi}_FAILED"))
+        except Exception:pass
+    finally:
+        REPORT["cases"].append(item);context.close()
+
+
 def main():
     proc=subprocess.Popen([sys.executable,"-m","http.server","8765","--directory","site"],
                           stdout=subprocess.DEVNULL,stderr=subprocess.STDOUT)
@@ -396,6 +503,9 @@ def main():
                     number,route,mode,*extra=case
                     run_case(browser,width,number,route,mode,extra[0] if extra else 0)
                     print(f"{width}px / unit {number}: {REPORT['cases'][-1]['status']}",flush=True)
+                for route,qi,answer,status in SUCCESS2:
+                    run_unit02_correct_case(browser,width,route,qi,answer,status)
+                    print(f"{width}px / unit 2 accepted {route} #{qi}: {REPORT['cases'][-1]['status']}",flush=True)
                 for route,qi,answer in SUCCESS8:
                     run_unit08_correct_case(browser,width,route,qi,answer)
                     print(f"{width}px / unit 8 accepted {route} #{qi}: {REPORT['cases'][-1]['status']}",flush=True)

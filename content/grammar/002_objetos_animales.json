@@ -8,8 +8,8 @@
     {
       "title": "Род существительных",
       "paragraphs": [
-        "У названий предметов в испанском тоже есть **мужской или женский род**. Он может отличаться от русского: `el libro` — книга, но испанское слово мужского рода; `la mesa` — стол, но испанское слово женского рода.",
-        "Запоминай существительное **вместе с артиклем**. У названий предметов обычно нет пар мужского и женского рода."
+        "В испанском у существительного есть **грамматический род**. Он не обязательно совпадает с русским: **`el libro`** — книга (мужской род), **`la mesa`** — стол (женский род).",
+        "Называя знакомый предмет, используй **`el`** перед существительным мужского рода и **`la`** перед существительным женского рода. Запоминай **артикль вместе со словом**; предметы обычно не образуют пар `-o/-a`, как имена людей."
       ],
       "wordGroups": [
         {
@@ -57,53 +57,60 @@
       "check": {
         "id": "check-a",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "Выбери короткий ответ о роде предмета. Русский род не подсказывает испанский.",
         "questions": [
           {
-            "prompt": "___ libro",
+            "prompt": "Какая подпись правильно называет книгу?",
             "answers": [
-              "el"
+              "el libro"
             ],
-            "explain": "el libro — книга. В испанском libro — слово мужского рода, хотя русский перевод женского рода.",
-            "translation": "книга",
+            "explain": "`Libro` мужского рода: `el libro`. Русский перевод «книга» не определяет испанский артикль.",
+            "context": "В русском книга — женского рода; в испанском вспоминаем род слова libro.",
             "options": [
-              "el",
-              "la"
-            ]
-          },
-          {
-            "prompt": "___ mesa",
-            "answers": [
-              "la"
+              "la libro",
+              "el libro",
+              "la mesa"
             ],
-            "explain": "la mesa — стол. В испанском mesa — слово женского рода, хотя русский перевод мужского рода.",
-            "translation": "стол",
-            "options": [
-              "el",
-              "la"
-            ]
+            "interaction": "choice"
           },
           {
             "prompt": "___ silla",
             "answers": [
               "la"
             ],
-            "explain": "la silla — стул. Учи название сразу с артиклем: la silla.",
-            "translation": "стул",
+            "explain": "`Silla` — женский род, поэтому `la silla`; русский род слова «стул» здесь не помогает.",
+            "context": "Выбираешь артикль к слову «стул».",
             "options": [
               "el",
               "la"
-            ]
+            ],
+            "interaction": "gap-choice",
+            "translation": "стул"
+          },
+          {
+            "prompt": "Почему правильно «la mesa», если «стол» по-русски мужского рода?",
+            "answers": [
+              "Род слова mesa определяет испанский артикль."
+            ],
+            "explain": "`Mesa` — существительное женского рода, поэтому `la mesa`; род русского слова «стол» на это не влияет.",
+            "context": "Сравни перевод слова и испанский артикль.",
+            "options": [
+              "Род слова mesa определяет испанский артикль.",
+              "Артикль зависит от русского перевода.",
+              "Артикль зависит от размера стола."
+            ],
+            "interaction": "choice"
           }
-        ]
+        ],
+        "revision": 2
       },
       "presentation": "examples"
     },
     {
       "title": "Слова с окончанием -o: обычно мужской род",
       "paragraphs": [
-        "Существительные, оканчивающиеся на **`-o`, обычно мужского рода**.",
-        "Есть исключения: некоторые слова с окончанием `-o` — женского рода. Запоминай их с артиклем `la`; они собраны во второй группе."
+        "Окончание **`-o` чаще** встречается у слов мужского рода (`el vaso`), но не гарантирует его.",
+        "Запомни исключения **`la mano`** и сокращения **`la foto`** (от `la fotografía`) и **`la moto`** (от `la motocicleta`): исходный женский род сохраняется."
       ],
       "wordGroups": [
         {
@@ -162,71 +169,66 @@
         }
       ],
       "notes": [
-        "Foto получилось из длинного слова fotografía, а moto — из motocicleta. Слова стали короче, но la осталось: la foto, la moto.",
-        "Если будешь в Испании, услышишь la radio — радиоприёмник. В некоторых странах Америки говорят и el radio: это тоже правильно. Здесь используем вариант Испании."
+        "Сравни `el vaso` и `la mano`: обе формы на `-o`, а артикли разные. Не переименовывай предмет, заменяя `-o` на `-a`.",
+        "В Испании о радиоприёмнике обычно говорят `la radio`; в некоторых странах Америки допустимо `el radio`. Это региональные формы. В самостоятельных заданиях здесь используем слова с однозначным артиклем."
       ],
       "check": {
         "id": "check-b",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "Проверь обычное окончание -o и исключения, не меняя самих названий.",
         "questions": [
           {
-            "prompt": "___ vaso",
+            "prompt": "___ teléfono",
             "answers": [
               "el"
             ],
-            "explain": "el vaso — стакан. Vaso оканчивается на -o и мужского рода.",
-            "translation": "стакан",
+            "explain": "`Teléfono` обычно мужского рода: `el teléfono`. Окончание `-o` помогает, но не гарантирует род.",
+            "context": "Слово «телефон» оканчивается на -o.",
             "options": [
               "el",
               "la"
-            ]
+            ],
+            "interaction": "gap-choice",
+            "translation": "телефон"
           },
           {
             "prompt": "___ mano",
             "answers": [
               "la"
             ],
-            "explain": "la mano — кисть руки. Mano — исключение: женский род, несмотря на окончание -o.",
-            "translation": "кисть руки",
+            "explain": "`Mano` — женского рода, несмотря на `-o`: `la mano`. Выучи это исключение с артиклем.",
+            "context": "Тебе нужно назвать кисть руки.",
             "options": [
               "el",
-              "la"
-            ]
-          },
-          {
-            "prompt": "___ foto",
-            "answers": [
               "la"
             ],
-            "explain": "la foto — фотография. Foto сохраняет женский род полного слова fotografía.",
-            "translation": "фотография",
-            "options": [
-              "el",
-              "la"
-            ]
+            "interaction": "gap-choice",
+            "translation": "кисть руки"
           },
           {
             "prompt": "___ moto",
             "answers": [
               "la"
             ],
-            "explain": "la moto — мотоцикл. Moto сохраняет женский род полного слова motocicleta.",
-            "translation": "мотоцикл",
+            "explain": "`Moto` — сокращение от женского `motocicleta`, поэтому `la moto`. Окончание `-o` не меняет род.",
+            "context": "Название мотоцикла сократили от `motocicleta`.",
             "options": [
               "el",
               "la"
-            ]
+            ],
+            "interaction": "gap-choice",
+            "translation": "мотоцикл"
           }
-        ]
+        ],
+        "revision": 2
       },
       "presentation": "examples"
     },
     {
       "title": "Слова с окончанием -a: обычно женский род",
       "paragraphs": [
-        "Существительные, оканчивающиеся на **`-a`, обычно женского рода**.",
-        "Есть исключения мужского рода. Окончание — только подсказка: исключения нужно запомнить вместе с артиклем."
+        "Окончание **`-a` часто** указывает на женский род: `la mesa`, `la caja`.",
+        "Есть слова мужского рода на `-a`: **`el día`**, **`el mapa`**, **`el problema`**, **`el idioma`**. Запоминай их с артиклем, а не придумывай правило для любого `-ma`."
       ],
       "wordGroups": [
         {
@@ -293,71 +295,66 @@
         }
       ],
       "notes": [
-        "В Испании говорят el pijama, а во многих странах Америки — la pijama или la piyama. Поэтому другой артикль не обязательно ошибка: это может быть вариант другой страны.",
-        "Сравни: la cama — кровать, но el idioma — язык и el problema — проблема. Все три слова оканчиваются на -ma, а род разный. Запоминай их с артиклями."
+        "Сравни `la cama` (кровать) и `el problema` (проблема). Одинаковое окончание `-ma` **не делает все слова мужского рода**.",
+        "В Испании обычно говорят `el pijama`. В некоторых странах Америки допускают также `la pijama` или `la piyama`. Это региональные варианты; в самостоятельных заданиях урока используем слова без такой вариативности."
       ],
       "check": {
         "id": "check-c",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "Выбери артикль или причину, почему окончание -a может обмануть.",
         "questions": [
           {
             "prompt": "___ ventana",
             "answers": [
               "la"
             ],
-            "explain": "la ventana — окно. Ventana оканчивается на -a и женского рода.",
-            "translation": "окно",
+            "explain": "`Ventana` — женский род; обычно `-a` помогает выбрать `la`: `la ventana`.",
+            "context": "Нужно подписать окно.",
             "options": [
-              "el",
-              "la"
-            ]
-          },
-          {
-            "prompt": "___ problema",
-            "answers": [
+              "la",
               "el"
             ],
-            "explain": "el problema — проблема. Problema — исключение: мужской род.",
-            "translation": "проблема",
-            "options": [
-              "el",
-              "la"
-            ]
+            "interaction": "gap-choice",
+            "translation": "окно"
           },
           {
             "prompt": "___ día",
             "answers": [
               "el"
             ],
-            "explain": "el día — день. Día — слово мужского рода, несмотря на окончание -a.",
-            "translation": "день",
+            "explain": "`Día` мужского рода, хотя оканчивается на `-a`: `el día`. Это слово лучше запомнить с артиклем.",
+            "context": "Нужно назвать день.",
             "options": [
               "el",
-              "la"
-            ]
-          },
-          {
-            "prompt": "___ cama",
-            "answers": [
               "la"
             ],
-            "explain": "la cama — кровать. Cama — слово женского рода. Окончание -ma само по себе не определяет род.",
-            "translation": "кровать",
+            "interaction": "gap-choice",
+            "translation": "день"
+          },
+          {
+            "prompt": "Почему «la cama», но «el idioma»?",
+            "answers": [
+              "По одному окончанию -ma род определить нельзя."
+            ],
+            "explain": "`Cama` — женский род, `idioma` — мужской. Окончание `-ma` само по себе не определяет род; эти слова учат с артиклем.",
+            "context": "Сравни два знакомых слова с одинаковыми последними буквами.",
             "options": [
-              "el",
-              "la"
-            ]
+              "Все слова на -ma имеют мужской род.",
+              "По одному окончанию -ma род определить нельзя.",
+              "У слова cama нет грамматического рода."
+            ],
+            "interaction": "choice"
           }
-        ]
+        ],
+        "revision": 2
       },
       "presentation": "examples"
     },
     {
       "title": "Род слов, оканчивающихся на -e или согласную",
       "paragraphs": [
-        "Если слово оканчивается на **`-e` или согласную**, по последней букве часто нельзя понять его род. Учи такое слово с артиклем: `el` или `la`.",
-        "**Дни недели — мужского рода.** Отдельно запомни названия зонта и дня рождения в последней группе."
+        "Когда слово заканчивается на **`-e` или согласную**, по последней букве часто нельзя уверенно определить род: `el cine` — кинотеатр, но `la leche` — молоко.",
+        "Артикль запоминаем вместе с названием. **Дни недели** мужского рода: `el lunes`, `el viernes`; `el paraguas` и `el cumpleaños` тоже запоминаем целиком."
       ],
       "wordGroups": [
         {
@@ -464,57 +461,52 @@
       "check": {
         "id": "check-d",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "Проверь слова, у которых род нельзя надёжно угадать по последней букве.",
         "questions": [
-          {
-            "prompt": "___ leche",
-            "answers": [
-              "la"
-            ],
-            "explain": "la leche — молоко. Leche — слово женского рода. Запомни его вместе с артиклем.",
-            "translation": "молоко",
-            "options": [
-              "el",
-              "la"
-            ]
-          },
           {
             "prompt": "___ hotel",
             "answers": [
               "el"
             ],
-            "explain": "el hotel — отель. Hotel — слово мужского рода.",
-            "translation": "отель",
+            "explain": "`Hotel` — слово мужского рода: `el hotel`. Окончание на согласную не даёт общего правила для всех слов.",
+            "context": "Называешь гостиницу.",
             "options": [
-              "el",
-              "la"
-            ]
-          },
-          {
-            "prompt": "___ viernes",
-            "answers": [
+              "la",
               "el"
             ],
-            "explain": "el viernes — пятница. Названия дней недели мужского рода.",
-            "translation": "пятница",
-            "options": [
-              "el",
-              "la"
-            ]
+            "interaction": "gap-choice",
+            "translation": "отель"
           },
           {
             "prompt": "___ luz",
             "answers": [
               "la"
             ],
-            "explain": "la luz — свет. Luz — слово женского рода.",
-            "translation": "свет",
+            "explain": "`Luz` — женский род: `la luz`. У слов на согласную артикль важно запомнить отдельно.",
+            "context": "Называешь свет.",
             "options": [
               "el",
               "la"
-            ]
+            ],
+            "interaction": "gap-choice",
+            "translation": "свет"
+          },
+          {
+            "prompt": "Какое утверждение о словах на -e правильное?",
+            "answers": [
+              "По окончанию -e род часто нельзя определить."
+            ],
+            "explain": "`El cine` мужского рода, а `la leche` женского. Конечная `-e` не определяет для них общий род.",
+            "context": "Вспомни контраст `el cine` и `la leche`.",
+            "options": [
+              "Любое слово на -e женского рода.",
+              "По окончанию -e род часто нельзя определить.",
+              "Любое слово на -e мужского рода."
+            ],
+            "interaction": "choice"
           }
-        ]
+        ],
+        "revision": 2
       },
       "notes": [],
       "presentation": "examples"
@@ -522,8 +514,8 @@
     {
       "title": "Как узнать женский род по окончанию",
       "paragraphs": [
-        "Существительные с окончаниями **`-ción`, `-sión`, `-dad`, `-tad` обычно женского рода**.",
-        "Важно всё окончание: `avión` оканчивается на `-ón`, а не на `-ción`. Это слово мужского рода: `el avión`."
+        "Окончания **`-ción`, `-sión`, `-dad`, `-tad`** обычно подсказывают женский род: `la canción`, `la televisión`, `la ciudad`, `la libertad`.",
+        "Смотри на окончание **целиком**. `El avión` оканчивается на `-ón`, а не `-ción`; правило о `-ción` на него не распространяется."
       ],
       "wordGroups": [
         {
@@ -580,70 +572,61 @@
       "check": {
         "id": "check-e",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "Выбери артикль и проверь, какое окончание действительно действует.",
         "questions": [
           {
             "prompt": "___ habitación",
             "answers": [
               "la"
             ],
-            "explain": "la habitación — комната. Суффикс -ción подсказывает женский род.",
-            "translation": "комната",
-            "options": [
-              "el",
-              "la"
-            ]
-          },
-          {
-            "prompt": "Какое слово мужского рода?",
-            "answers": [
-              "el avión"
-            ],
-            "explain": "Avión оканчивается на -ón, а не на -ción. Поэтому правило о словах на -ción к нему не относится: el avión.",
-            "translation": "выражение",
-            "options": [
-              "la canción",
-              "el avión",
-              "la expresión"
-            ],
-            "context": "Проверь окончание целиком."
-          },
-          {
-            "prompt": "___ universidad",
-            "answers": [
-              "la"
-            ],
-            "explain": "la universidad — университет. Окончание -dad подсказывает женский род.",
-            "translation": "университет",
+            "explain": "`Habitación` женского рода; целое окончание `-ción` помогает выбрать `la`.",
+            "context": "Называешь комнату.",
             "options": [
               "la",
               "el"
-            ]
+            ],
+            "interaction": "gap-choice",
+            "translation": "комната"
           },
           {
-            "prompt": "Почему перед libertad стоит la?",
+            "prompt": "Почему «el avión», хотя «la canción»?",
             "answers": [
-              "Libertad оканчивается на -tad и имеет женский род."
+              "Avión оканчивается на -ón, а canción — на -ción."
             ],
-            "explain": "Окончание -tad помогает узнать женский род: la libertad. Не все слова на согласную женского рода.",
-            "translation": "свобода",
+            "explain": "`Avión` не имеет суффикса `-ción`: `el avión`, но `la canción`. Не переноси подсказку на каждое слово с `-ón`.",
+            "context": "Важно посмотреть не только на последние две буквы.",
             "options": [
-              "Любое слово на согласную — женского рода.",
-              "Libertad оканчивается на -tad и имеет женский род.",
-              "Род всегда совпадает с русским переводом."
+              "У обоих слов одно и то же окончание.",
+              "Avión оканчивается на -ón, а canción — на -ción.",
+              "Все слова на -ón женского рода."
             ],
-            "context": "Выбери объяснение."
+            "interaction": "choice"
+          },
+          {
+            "prompt": "___ amistad",
+            "answers": [
+              "la"
+            ],
+            "explain": "`Amistad` имеет женский род и окончание `-tad`: `la amistad`.",
+            "context": "Называешь дружбу.",
+            "options": [
+              "el",
+              "la"
+            ],
+            "interaction": "gap-choice",
+            "translation": "дружба"
           }
         ],
-        "revision": 2
+        "revision": 3
       },
       "presentation": "examples"
     },
     {
       "title": "Род названия и пол животного",
       "paragraphs": [
-        "Некоторые названия животных имеют **один грамматический род независимо от пола**. `La jirafa` может обозначать и самца, и самку жирафа.",
-        "Чтобы уточнить пол, добавляем **`macho` — самец или `hembra` — самка**: `la jirafa macho`, `la jirafa hembra`. Артикль `la` сохраняется."
+        "У некоторых животных одно название вида имеет **постоянный грамматический род**, независимо от того, самец перед нами или самка: `la jirafa` (жираф любого пола), `el tiburón` (акула любого пола).",
+        "Пол можно уточнить словами **`macho`** — самец и **`hembra`** — самка: `la jirafa macho`, `la serpiente hembra`, `el tiburón hembra`. При этом артикль согласуется со **словом**, а не с полом.",
+        "`Gorila` допускает особый вариант: обычно `el gorila` как название вида и `el gorila hembra` о самке, но допустимо и **`la gorila`**. Без сведений о поле изображённой гориллы название может иметь оба артикля."
       ],
       "wordGroups": [
         {
@@ -686,59 +669,67 @@
         }
       ],
       "notes": [
-        "Gorila — другой случай: можно сказать el gorila о самце и la gorila о самке. Вариант el gorila hembra тоже возможен."
+        "Не путай три вещи: грамматический род названия, биологический пол животного и слово `macho/hembra`, которым мы уточняем пол.",
+        "Для `gorila` RAE допускает как `el gorila hembra`, так и `la gorila`. На изображении без подсказки о поле принимаем оба варианта."
       ],
       "check": {
         "id": "check-f",
         "title": "Мини-проверка",
-        "instruction": "Выбери подходящий вариант. Если верных несколько, достаточно одного.",
+        "instruction": "Выбери подпись для животного; иногда допустимы два грамматически правильных варианта.",
         "questions": [
           {
-            "prompt": "Самец жирафа — это…",
+            "prompt": "Как сказать «жираф-самец»?",
             "answers": [
               "la jirafa macho"
             ],
-            "explain": "У слова jirafa постоянный женский род. Пол уточняем словом macho.",
+            "explain": "Название вида `jirafa` грамматически женского рода даже о самце: `la jirafa macho`.",
+            "context": "Пол — мужской, но название `jirafa` остаётся женского рода.",
             "options": [
               "la jirafa hembra",
-              "el jirafa macho",
-              "la jirafa macho"
-            ]
+              "la jirafa macho",
+              "el jirafa macho"
+            ],
+            "interaction": "choice"
           },
           {
             "prompt": "Самка гориллы — это…",
             "answers": [
-              "el gorila hembra",
-              "la gorila"
+              "la gorila",
+              "el gorila hembra"
             ],
-            "explain": "Можно сказать la gorila или el gorila hembra. В современном словаре gorila допускает мужской и женский род; hembra тоже позволяет уточнить пол.",
+            "explain": "RAE допускает `la gorila` и `el gorila hembra` для самки. `El gorila macho` называет самца, а не самку.",
+            "context": "Достаточно выбрать один из двух допустимых вариантов.",
             "options": [
               "el gorila macho",
-              "el gorila hembra",
-              "la gorila"
-            ]
+              "la gorila",
+              "el gorila hembra"
+            ],
+            "interaction": "choice"
           },
           {
             "prompt": "___ pez",
             "answers": [
               "el"
             ],
-            "explain": "el pez — рыба. Род слова pez не зависит от пола животного.",
-            "translation": "рыба",
+            "explain": "`Pez` — слово мужского рода независимо от пола: `el pez`; если нужно, пол уточняют словами `macho/hembra`.",
+            "context": "Название вида рыбы без указания пола.",
             "options": [
-              "el",
-              "la"
-            ]
+              "la",
+              "el"
+            ],
+            "interaction": "gap-choice",
+            "translation": "рыба"
           }
-        ]
+        ],
+        "revision": 2
       },
       "presentation": "examples"
     },
     {
       "title": "Названия самца и самки",
       "paragraphs": [
-        "У некоторых животных есть **отдельные названия самца и самки**.",
-        "Названия самца и самки могут отличаться окончанием или быть разными словами. Оба способа показаны в отдельных схемах."
+        "У других животных, наоборот, **меняется форма названия**: `el gato → la gata`, `el león → la leona`, `el perro → la perra`.",
+        "Иногда **слова полностью разные**: `el caballo → la yegua`, `el toro → la vaca`, `el gallo → la gallina`. Выбирай по смыслу: требуется ли самец, самка или просто название вида."
       ],
       "schemes": [
         {
@@ -789,50 +780,57 @@
         }
       ],
       "notes": [
-        "Если пол животного не важен, можно сказать el gato о коте или кошке, el perro — о собаке. Если хотим уточнить пол, выбираем gato/gata или perro/perra."
+        "Если пол не указан, `el gato` и `el perro` могут обозначать животное вообще. Если речь о конкретной самке, используй `la gata` или `la perra`."
       ],
       "check": {
         "id": "check-g",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "Проверь, требуется ли изменение окончания или другое слово. Выбери полную форму с артиклем.",
         "questions": [
           {
-            "prompt": "El león → ___",
+            "prompt": "Как назвать самку льва?",
             "answers": [
               "la leona"
             ],
-            "explain": "Самец — el león, самка — la leona.",
+            "explain": "`La leona` — название самки льва: `el león → la leona`. Это изменение формы слова.",
+            "context": "Вспомни изученную пару к слову `león`.",
             "options": [
               "la leona",
               "la león",
               "el león"
-            ]
-          },
-          {
-            "prompt": "Как называется самка лошади?",
-            "answers": [
-              "la yegua"
             ],
-            "explain": "У этой пары разные слова: el caballo — конь, la yegua — кобыла.",
-            "options": [
-              "el caballo",
-              "la yegua",
-              "la caballo"
-            ]
+            "interaction": "choice"
           },
           {
-            "prompt": "La vaca → ___",
+            "prompt": "Как назвать самку петуха?",
+            "answers": [
+              "la gallina"
+            ],
+            "explain": "`El gallo → la gallina`: это пара разных форм, которую нужно запомнить целиком.",
+            "context": "Для этой пары меняется не только последняя буква.",
+            "options": [
+              "el gallina",
+              "la gallo",
+              "la gallina"
+            ],
+            "interaction": "choice"
+          },
+          {
+            "prompt": "Как назвать самца коровы?",
             "answers": [
               "el toro"
             ],
-            "explain": "Самка — la vaca, самец — el toro.",
+            "explain": "Самец — `el toro`, самка — `la vaca`. Нельзя получить название быка простой заменой окончания в `vaca`.",
+            "context": "У этих животных используются разные слова для полов.",
             "options": [
               "el vaco",
               "el toro",
               "la toro"
-            ]
+            ],
+            "interaction": "choice"
           }
-        ]
+        ],
+        "revision": 2
       },
       "presentation": "comparison"
     }
@@ -950,463 +948,255 @@
   "exercises": [
     {
       "id": "2.1",
-      "title": "2.1 · Распредели слова: el или la",
-      "instruction": "В первых заданиях выбери артикль, затем вспоминай и вписывай его самостоятельно. Для radio используй вариант Испании.",
+      "title": "2.1 · Род предметов: выбери, объясни, назови",
+      "instruction": "Сначала выбери артикль, затем впиши его или целую подпись. В вопросах «почему?» выбери объяснение; если просим два слова, напиши артикль и название предмета.",
       "introGroups": [
         {
-          "title": "el · мужской род",
+          "title": "Как записывать ответ",
           "words": [
             [
-              "el cine",
-              "кинотеатр"
-            ]
-          ],
-          "label": "",
-          "exception": false
-        },
-        {
-          "title": "la · женский род",
-          "words": [
+              "el teléfono",
+              "телефон"
+            ],
             [
-              "la atención",
-              "внимание"
+              "la silla",
+              "стул"
             ]
           ],
-          "label": "",
+          "label": "Это пример формата. Слова ниже будут другими.",
           "exception": false
         }
       ],
       "questions": [
         {
-          "prompt": "___ atención",
-          "answers": [
-            "la"
-          ],
-          "explain": "la atención — внимание. Суффикс -ción подсказывает женский род.",
-          "translation": "внимание",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "___ cama",
-          "answers": [
-            "la"
-          ],
-          "explain": "la cama — кровать. Cama — женского рода. Не все слова на -ma мужского рода.",
-          "translation": "кровать",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "___ casa",
-          "answers": [
-            "la"
-          ],
-          "explain": "la casa — дом. Слово на -a женского рода.",
-          "translation": "дом",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "___ cine",
-          "answers": [
-            "el"
-          ],
-          "explain": "el cine — кинотеатр. Род слова cine нужно запомнить: мужской.",
-          "translation": "кинотеатр",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "___ ciudad",
-          "answers": [
-            "la"
-          ],
-          "explain": "la ciudad — город. Окончание -dad подсказывает женский род.",
-          "translation": "город",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
-        },
-        {
           "prompt": "___ cuaderno",
           "answers": [
             "el"
           ],
-          "explain": "el cuaderno — тетрадь. Слово на -o мужского рода.",
-          "translation": "тетрадь",
+          "explain": "`Cuaderno` — мужской род, обычно окончание `-o` подсказывает `el`: `el cuaderno`.",
+          "context": "Ты подписываешь тетрадь. Выбери артикль.",
+          "options": [
+            "la",
+            "el"
+          ],
+          "interaction": "gap-choice",
+          "translation": "тетрадь"
+        },
+        {
+          "prompt": "___ caja",
+          "answers": [
+            "la"
+          ],
+          "explain": "`Caja` — женский род: `la caja`. Окончание `-a` помогает, хотя есть исключения.",
+          "context": "Нужно подписать коробку.",
           "options": [
             "el",
             "la"
           ],
-          "interaction": "gap-choice"
+          "interaction": "gap-choice",
+          "translation": "коробка"
         },
         {
-          "prompt": "___ cumpleaños",
+          "prompt": "Почему говорят «la foto», несмотря на окончание -o?",
           "answers": [
-            "el"
+            "Foto — сокращение от женского слова fotografía."
           ],
-          "explain": "el cumpleaños — день рождения. Это сложное слово мужского рода. Конечная -s не мешает ему обозначать один день рождения.",
-          "translation": "день рождения",
+          "explain": "`Foto` образовано от `fotografía` и сохраняет его женский род. Поэтому `la foto`, хотя слово заканчивается на `-o`.",
+          "context": "Объясни исключение, а не выбирай форму наугад.",
           "options": [
-            "el",
-            "la"
+            "Все названия фотографий всегда мужского рода.",
+            "Foto — сокращение от женского слова fotografía.",
+            "Артикль зависит от того, кто сделал фотографию."
           ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "___ día",
-          "answers": [
-            "el"
-          ],
-          "explain": "el día — день. Исключение среди слов на -a: мужской род.",
-          "translation": "день",
-          "options": [
-            "el",
-            "la"
-          ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "___ expresión",
-          "answers": [
-            "la"
-          ],
-          "explain": "la expresión — выражение. Суффикс -sión подсказывает женский род.",
-          "translation": "выражение",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ foto",
-          "answers": [
-            "la"
-          ],
-          "explain": "la foto — фотография. Сокращение от fotografía сохраняет женский род.",
-          "translation": "фотография",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ habitación",
-          "answers": [
-            "la"
-          ],
-          "explain": "la habitación — комната. Суффикс -ción подсказывает женский род.",
-          "translation": "комната",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ hotel",
-          "answers": [
-            "el"
-          ],
-          "explain": "el hotel — отель. Род этого слова нужно запомнить: мужской.",
-          "translation": "отель",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ idioma",
-          "answers": [
-            "el"
-          ],
-          "explain": "el idioma — язык. Исключение среди слов на -a: мужской род.",
-          "translation": "язык",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ lámpara",
-          "answers": [
-            "la"
-          ],
-          "explain": "la lámpara — лампа. Слово на -a женского рода.",
-          "translation": "лампа",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ lápiz",
-          "answers": [
-            "el"
-          ],
-          "explain": "el lápiz — карандаш. Род этого слова нужно запомнить: мужской.",
-          "translation": "карандаш",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ leche",
-          "answers": [
-            "la"
-          ],
-          "explain": "la leche — молоко. Род этого слова нужно запомнить: женский.",
-          "translation": "молоко",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ libro",
-          "answers": [
-            "el"
-          ],
-          "explain": "el libro — книга. Слово на -o мужского рода.",
-          "translation": "книга",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ luz",
-          "answers": [
-            "la"
-          ],
-          "explain": "la luz — свет. Род этого слова нужно запомнить: женский.",
-          "translation": "свет",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ mano",
-          "answers": [
-            "la"
-          ],
-          "explain": "la mano — кисть руки. Исключение среди слов на -o: женский род.",
-          "translation": "кисть руки",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ minuto",
-          "answers": [
-            "el"
-          ],
-          "explain": "el minuto — минута. Слово на -o мужского рода.",
-          "translation": "минута",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ museo",
-          "answers": [
-            "el"
-          ],
-          "explain": "el museo — музей. Слово на -o мужского рода.",
-          "translation": "музей",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ noche",
-          "answers": [
-            "la"
-          ],
-          "explain": "la noche — ночь. Род этого слова нужно запомнить: женский.",
-          "translation": "ночь",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ página",
-          "answers": [
-            "la"
-          ],
-          "explain": "la página — страница. Слово на -a женского рода.",
-          "translation": "страница",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ planeta",
-          "answers": [
-            "el"
-          ],
-          "explain": "el planeta — планета. Исключение среди слов на -a: мужской род.",
-          "translation": "планета",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
+          "interaction": "choice"
         },
         {
           "prompt": "___ problema",
           "answers": [
             "el"
           ],
-          "explain": "el problema — проблема. Исключение среди слов на -a: мужской род.",
-          "translation": "проблема",
+          "explain": "`Problema` — мужского рода несмотря на `-a`: `el problema`. Окончание `-ma` не делает любой предмет мужским.",
+          "context": "Ты подписываешь слово «проблема» на учебной карточке.",
           "interaction": "article-input",
           "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
+            "instruction": "Впиши только определённый артикль: el или la.",
+            "placeholder": "el или la"
+          },
+          "translation": "проблема"
         },
         {
-          "prompt": "___ radio",
+          "prompt": "Исправь неправильную подпись «el mano».",
+          "answers": [
+            "la mano"
+          ],
+          "explain": "`Mano` имеет женский род и не меняет форму: верно `la mano`, а `el mano` — ошибка. Множественный артикль `las` здесь также не подходит.",
+          "context": "Ученик написал артикль к слову «кисть руки» неверно.",
+          "options": [
+            "el mano",
+            "la mano",
+            "la manos"
+          ],
+          "interaction": "choice"
+        },
+        {
+          "prompt": "___ noche",
           "answers": [
             "la"
           ],
-          "explain": "В Испании радиоприёмник — la radio. В некоторых странах Америки говорят и el radio: это тоже правильно.",
-          "translation": "радиоприёмник в Испании",
+          "explain": "`Noche` — женский род: `la noche`. По последней `-e` этого нельзя предсказать, форму нужно запомнить.",
+          "context": "Назови ночь с определённым артиклем.",
           "interaction": "article-input",
           "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
+            "instruction": "Впиши только определённый артикль: el или la.",
+            "placeholder": "el или la"
+          },
+          "translation": "ночь"
         },
         {
-          "prompt": "___ teatro",
+          "prompt": "Почему верны оба сочетания: «la cama» и «el problema»?",
+          "answers": [
+            "Окончание -ma не гарантирует один род."
+          ],
+          "explain": "`Cama` — женского рода, `problema` — мужского. Одного окончания `-ma` недостаточно для надёжного выбора артикля.",
+          "context": "Сравни два слова с одинаковыми буквами на конце.",
+          "options": [
+            "Любое слово на -ma мужского рода.",
+            "Слова на -ma всегда женского рода.",
+            "Окончание -ma не гарантирует один род."
+          ],
+          "interaction": "choice"
+        },
+        {
+          "prompt": "___ cine",
           "answers": [
             "el"
           ],
-          "explain": "el teatro — театр. Слово на -o мужского рода.",
-          "translation": "театр",
+          "explain": "`Cine` — мужского рода: `el cine`. Для слов на `-e` нельзя опираться только на последний звук.",
+          "context": "Назови кинотеатр с артиклем. В вступительном примере этого слова нет.",
           "interaction": "article-input",
           "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
+            "instruction": "Впиши только определённый артикль: el или la.",
+            "placeholder": "el или la"
+          },
+          "translation": "кинотеатр"
         },
         {
-          "prompt": "___ teléfono",
-          "answers": [
-            "el"
-          ],
-          "explain": "el teléfono — телефон. Слово на -o мужского рода.",
-          "translation": "телефон",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ universidad",
+          "prompt": "___ canción",
           "answers": [
             "la"
           ],
-          "explain": "la universidad — университет. Окончание -dad подсказывает женский род.",
-          "translation": "университет",
+          "explain": "`Canción` оканчивается на `-ción`, что обычно указывает на женский род: `la canción`.",
+          "context": "Подписываешь название песни по-испански.",
           "interaction": "article-input",
           "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
+            "instruction": "Впиши только определённый артикль: el или la.",
+            "placeholder": "el или la"
+          },
+          "translation": "песня"
         },
         {
-          "prompt": "___ vaso",
+          "prompt": "Почему говорят «el avión», но «la habitación»?",
           "answers": [
-            "el"
+            "У habitación -ción, а у avión только -ón."
           ],
-          "explain": "el vaso — стакан. Слово на -o мужского рода.",
-          "translation": "стакан",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
+          "explain": "`Habitación` оканчивается на `-ción` и женского рода, но `avión` только на `-ón` и мужского рода.",
+          "context": "Смотри на окончания целиком.",
+          "options": [
+            "У habitación -ción, а у avión только -ón.",
+            "Любое слово на -ón имеет женский род.",
+            "У этих слов артикль зависит от русского перевода."
+          ],
+          "interaction": "choice"
         },
         {
-          "prompt": "___ ventana",
+          "prompt": "___ moto",
           "answers": [
             "la"
           ],
-          "explain": "la ventana — окно. Слово на -a женского рода.",
-          "translation": "окно",
+          "explain": "`Moto` — сокращение от `motocicleta`; женский род сохраняется: `la moto`. Окончание `-o` не делает его мужским.",
+          "context": "Вспомни название мотоцикла без кнопок.",
           "interaction": "article-input",
           "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
+            "instruction": "Впиши только определённый артикль: el или la.",
+            "placeholder": "el или la"
+          },
+          "translation": "мотоцикл"
+        },
+        {
+          "prompt": "___ idioma",
+          "answers": [
+            "el"
+          ],
+          "explain": "`Idioma` мужского рода: `el idioma`. Окончание `-a` не гарантирует женский род.",
+          "context": "Впиши только артикль к слову «язык».",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только определённый артикль: el или la.",
+            "placeholder": "el или la"
+          },
+          "translation": "язык"
+        },
+        {
+          "prompt": "Почему «el lápiz», но «la luz», хотя оба слова на согласную?",
+          "answers": [
+            "Род этих слов нужно запомнить вместе с артиклем."
+          ],
+          "explain": "`Lápiz` — мужского рода, `luz` — женского. Согласная в конце не гарантирует один род: `el lápiz / la luz`.",
+          "context": "Сравни два предмета с разными артиклями.",
+          "options": [
+            "Любое слово на согласную мужского рода.",
+            "Род этих слов нужно запомнить вместе с артиклем.",
+            "Русский перевод всегда определяет испанский род."
+          ],
+          "interaction": "choice"
         },
         {
           "prompt": "___ viernes",
           "answers": [
             "el"
           ],
-          "explain": "el viernes — пятница. Названия дней недели мужского рода.",
-          "translation": "пятница",
+          "explain": "`Viernes` — мужского рода, как названия дней недели: `el viernes`.",
+          "context": "Назови день недели с артиклем.",
           "interaction": "article-input",
           "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
+            "instruction": "Впиши только определённый артикль: el или la.",
+            "placeholder": "el или la"
+          },
+          "translation": "пятница"
+        },
+        {
+          "prompt": "На картинке телефон. Напиши полную подпись на испанском.",
+          "answers": [
+            "el teléfono"
+          ],
+          "explain": "`El teléfono` — правильная подпись: `teléfono` мужского рода и требует `el`. Нужно написать оба слова.",
+          "context": "Предмет назван по-русски; по-испански впиши артикль и слово, а не только артикль.",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Впиши два слова: определённый артикль и существительное.",
+            "placeholder": "Артикль + существительное"
+          },
+          "translation": "телефон"
         }
       ],
-      "inputLabel": "Выбор ответа",
+      "inputLabel": "Артикль / название предмета",
       "theorySections": [
         0,
         1,
         2,
         3,
         4
-      ]
+      ],
+      "inputFormat": {
+        "instruction": "Впиши только артикль el или la, если не указано иное.",
+        "placeholder": "el или la"
+      },
+      "revision": 2
     },
     {
       "id": "2.2",
-      "title": "2.2 · Животные: самец и самка",
-      "instruction": "Впиши название самца или самки без артикля: el или la уже написано.",
+      "title": "2.2 · Как назвать самца, самку и вид животного",
+      "instruction": "В каждой ситуации уточни, нужен ли один артикль, одно название животного или полная подпись. Артикль зависит от слова, не обязательно от пола животного.",
       "preview": {
         "source": "el conejo",
         "targetPrefix": "la",
@@ -1419,65 +1209,172 @@
           "answers": [
             "gata"
           ],
-          "explain": "В слове gato заменяем -o на -a: gata.",
+          "explain": "Для самки кота меняем форму `gato → gata`: `el gato / la gata`.",
+          "context": "Нужна самка кошачьего животного; артикль уже написан.",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Впиши одно название животного без артикля — артикль уже дан.",
+            "placeholder": "Одно слово без артикля"
+          },
           "translation": "кот → кошка"
-        },
-        {
-          "prompt": "la yegua → el ___",
-          "answers": [
-            "caballo"
-          ],
-          "explain": "У этой пары разные слова: el caballo — la yegua.",
-          "translation": "кобыла → конь"
-        },
-        {
-          "prompt": "el gallo → la ___",
-          "answers": [
-            "gallina"
-          ],
-          "explain": "Запомни особую пару: el gallo — la gallina.",
-          "translation": "петух → курица"
         },
         {
           "prompt": "la perra → el ___",
           "answers": [
             "perro"
           ],
-          "explain": "Мужская форма оканчивается на -o: el perro.",
+          "explain": "`La perra` — самка, `el perro` — самец. Меняется окончание, а не всё слово.",
+          "context": "Нужна форма названия самца собаки; `el` уже дан.",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Впиши одно название животного без артикля — артикль уже дан.",
+            "placeholder": "Одно слово без артикля"
+          },
           "translation": "самка собаки → пёс"
         },
         {
-          "prompt": "el león → la ___",
+          "prompt": "el caballo → la ___",
           "answers": [
-            "leona"
+            "yegua"
           ],
-          "explain": "К león добавляем -a: leona. В готовой женской форме знак ударения не нужен.",
-          "translation": "лев → львица"
+          "explain": "`Caballo` и `yegua` — разные слова для самца и самки: `el caballo / la yegua`.",
+          "context": "Нужно название самки лошади; одно слово без артикля.",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Впиши одно название животного без артикля — артикль уже дан.",
+            "placeholder": "Одно слово без артикля"
+          },
+          "translation": "конь → кобыла"
         },
         {
-          "prompt": "la vaca → el ___",
+          "prompt": "el toro → la ___",
           "answers": [
-            "toro"
+            "vaca"
           ],
-          "explain": "У этой пары разные слова: el toro — la vaca.",
-          "translation": "корова → бык"
+          "explain": "`Toro` — бык, `vaca` — корова: это пара разных слов, не изменение одной буквы.",
+          "context": "Восстанови название самки быка; `la` уже есть.",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Впиши одно название животного без артикля — артикль уже дан.",
+            "placeholder": "Одно слово без артикля"
+          },
+          "translation": "бык → корова"
+        },
+        {
+          "prompt": "la leona → el ___",
+          "answers": [
+            "león"
+          ],
+          "explain": "`La leona` — львица, `el león` — лев. У мужской формы есть ударение `ó`.",
+          "context": "Вспомни название самца льва, не переписывай артикль.",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Впиши одно название животного без артикля — артикль уже дан.",
+            "placeholder": "Одно слово без артикля"
+          },
+          "translation": "львица → лев"
+        },
+        {
+          "prompt": "Это самец змеи: ___ serpiente macho.",
+          "answers": [
+            "la"
+          ],
+          "explain": "`Serpiente` — существительное женского рода независимо от пола; поэтому `la serpiente macho`.",
+          "context": "Пол уточнён словом macho; выбирай род названия serpiente.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только определённый артикль: el или la.",
+            "placeholder": "el или la"
+          },
+          "translation": "самец змеи"
+        },
+        {
+          "prompt": "Это самка акулы: ___ tiburón hembra.",
+          "answers": [
+            "el"
+          ],
+          "explain": "`Tiburón` — грамматически мужской род: `el tiburón hembra`, когда речь о самке акулы.",
+          "context": "Слово tiburón имеет постоянный мужской род, несмотря на пол.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Впиши только определённый артикль: el или la.",
+            "placeholder": "el или la"
+          },
+          "translation": "самка акулы"
+        },
+        {
+          "prompt": "Почему «la jirafa macho» — правильная подпись для самца жирафа?",
+          "answers": [
+            "Род слова jirafa не меняется при уточнении пола."
+          ],
+          "explain": "`Jirafa` — название вида с постоянным женским родом, а `macho` уточняет пол: `la jirafa macho`.",
+          "context": "Не путай грамматический род вида и пол конкретного животного.",
+          "options": [
+            "Артикль la здесь обозначает самку.",
+            "Род слова jirafa не меняется при уточнении пола.",
+            "Слово macho всегда требует артикля el."
+          ],
+          "interaction": "choice"
+        },
+        {
+          "prompt": "Как можно подписать фотографию гориллы, если её пол неизвестен?",
+          "answers": [
+            "el gorila",
+            "la gorila"
+          ],
+          "explain": "Для названия `gorila` RAE допускает `el gorila` и `la gorila`. Когда пол неизвестен, обе формы приемлемы как подписи; `gorilo` не является обычной нормативной формой.",
+          "context": "Изображение не позволяет определить, самец это или самка.",
+          "options": [
+            "el gorila",
+            "la gorila",
+            "el gorilo"
+          ],
+          "interaction": "choice"
+        },
+        {
+          "prompt": "На фото самка собаки. Напиши полное название с артиклем.",
+          "answers": [
+            "la perra"
+          ],
+          "explain": "`La perra` — полная подпись для самки собаки. Здесь род и пол совпадают, но это не общее правило для всех животных.",
+          "context": "Пол задан; напиши ровно два слова без стрелок и подсказок.",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Впиши два слова: определённый артикль и существительное.",
+            "placeholder": "Артикль + существительное"
+          },
+          "translation": "собака (самка)"
+        },
+        {
+          "prompt": "Как правильно назвать самку акулы?",
+          "answers": [
+            "el tiburón hembra"
+          ],
+          "explain": "`El tiburón hembra` — название вида с постоянным мужским артиклем и уточнением пола; менять его на `la` нельзя.",
+          "context": "Нужно точно уточнить пол животного.",
+          "options": [
+            "el tiburón hembra",
+            "la tiburón hembra",
+            "el tiburona"
+          ],
+          "interaction": "choice"
         }
       ],
-      "inputLabel": "Короткий ввод",
+      "inputLabel": "Название / артикль / объяснение",
       "inputFormat": {
-        "instruction": "Впиши только название животного без артикля: el или la уже написано.",
-        "example": "coneja",
-        "placeholder": "Слово без артикля"
+        "instruction": "Впиши одно название животного без артикля, если артикль уже написан.",
+        "placeholder": "Одно слово без артикля"
       },
       "theorySections": [
         5,
         6
-      ]
+      ],
+      "revision": 2
     },
     {
       "id": "2.3",
-      "title": "2.3 · Что на картинке?",
-      "instruction": "Назови изображённый предмет или животное с определённым артиклем el или la.",
+      "title": "2.3 · Назови изображение самостоятельно",
+      "instruction": "Посмотри на рисунок и впиши два слова: определённый артикль (el или la) + одно существительное. Словарь можно раскрыть по необходимости — он скрыт, пока ты его не откроешь.",
       "pictureTitle": "Напиши название с артиклем",
       "vocabulary": {
         "heads": [
@@ -1529,110 +1426,122 @@
       },
       "questions": [
         {
-          "prompt": "№ 1",
+          "prompt": "Изображение № 1: назови предмет или животное с артиклем.",
           "answers": [
             "el árbol"
           ],
-          "explain": "el árbol — дерево. Árbol — слово мужского рода.",
+          "explain": "`Árbol` — мужского рода: `el árbol`. Ударение обязательно в нормативной записи; без знака по действующей мягкой политике выдаётся жёлтое предупреждение.",
           "image": "art/002/01-arbol.webp",
-          "imageAlt": "Иллюстрация: дерево"
+          "imageAlt": "Иллюстрация: дерево",
+          "context": "Посмотри на изображение. Напиши полную подпись из двух слов.",
+          "interaction": "input"
         },
         {
-          "prompt": "№ 2",
+          "prompt": "Изображение № 2: назови предмет или животное с артиклем.",
           "answers": [
             "el tren"
           ],
-          "explain": "el tren — поезд. Tren — слово мужского рода.",
+          "explain": "На рисунке поезд: `el tren`. `Tren` — мужской род; нужно вспомнить и название, и артикль, а не выбрать один из готовых вариантов.",
           "image": "art/002/02-tren.webp",
           "imageAlt": "Иллюстрация: поезд",
-          "options": [
-            "el tren",
-            "la tren"
-          ]
+          "context": "Посмотри на изображение. Напиши полную подпись из двух слов.",
+          "interaction": "input"
         },
         {
-          "prompt": "№ 3",
+          "prompt": "Изображение № 3: назови предмет или животное с артиклем.",
           "answers": [
             "el diccionario"
           ],
-          "explain": "el diccionario — словарь. Diccionario оканчивается на -o и мужского рода.",
+          "explain": "`El diccionario` — словарь: слово мужского рода, несмотря на русский перевод. Пишем полную подпись с `el`.",
           "image": "art/002/03-diccionario.webp",
-          "imageAlt": "Иллюстрация: словарь"
+          "imageAlt": "Иллюстрация: словарь",
+          "context": "Посмотри на изображение. Напиши полную подпись из двух слов.",
+          "interaction": "input"
         },
         {
-          "prompt": "№ 4",
+          "prompt": "Изображение № 4: назови предмет или животное с артиклем.",
           "answers": [
             "la mariposa"
           ],
-          "explain": "la mariposa — бабочка. У слова mariposa постоянный женский род.",
+          "explain": "`La mariposa` — бабочка: слово женского рода, ответ состоит из двух слов.",
           "image": "art/002/04-mariposa.webp",
-          "imageAlt": "Иллюстрация: бабочка"
+          "imageAlt": "Иллюстрация: бабочка",
+          "context": "Посмотри на изображение. Напиши полную подпись из двух слов.",
+          "interaction": "input"
         },
         {
-          "prompt": "№ 5",
+          "prompt": "Изображение № 5: назови предмет или животное с артиклем.",
           "answers": [
             "el gorila",
             "la gorila"
           ],
-          "explain": "El gorila — название вида или самца; la gorila — самка. Оба варианта допустимы, поскольку пол животного на картинке не указан.",
+          "explain": "`Gorila` может употребляться как `el gorila` (обычное название вида) и `la gorila` (допустимое указание на самку). Пол на рисунке не обозначен, поэтому обе подписи засчитываются (RAE, informe §11).",
           "image": "art/002/05-gorila.webp",
-          "imageAlt": "Иллюстрация: горилла"
+          "imageAlt": "Горилла: пол на рисунке не обозначен",
+          "context": "Посмотри на изображение. Напиши полную подпись из двух слов.",
+          "interaction": "input"
         },
         {
-          "prompt": "№ 6",
+          "prompt": "Изображение № 6: назови предмет или животное с артиклем.",
           "answers": [
             "la llave"
           ],
-          "explain": "la llave — ключ. Llave оканчивается на -e; его женский род нужно запомнить.",
+          "explain": "`La llave` — ключ. Это женский род, хотя последняя буква `-e` сама по себе ничего не решает.",
           "image": "art/002/06-llave.webp",
-          "imageAlt": "Иллюстрация: ключ"
+          "imageAlt": "Иллюстрация: ключ",
+          "context": "Посмотри на изображение. Напиши полную подпись из двух слов.",
+          "interaction": "input"
         },
         {
-          "prompt": "№ 7",
+          "prompt": "Изображение № 7: назови предмет или животное с артиклем.",
           "answers": [
             "el hospital"
           ],
-          "explain": "el hospital — больница. Hospital — слово мужского рода.",
+          "explain": "`El hospital` — больница. В испанском `hospital` мужского рода; русский перевод не определяет артикль.",
           "image": "art/002/07-hospital.webp",
-          "imageAlt": "Иллюстрация: больница"
+          "imageAlt": "Иллюстрация: больница",
+          "context": "Посмотри на изображение. Напиши полную подпись из двух слов.",
+          "interaction": "input"
         },
         {
-          "prompt": "№ 8",
+          "prompt": "Изображение № 8: назови предмет или животное с артиклем.",
           "answers": [
             "el tenedor"
           ],
-          "explain": "el tenedor — вилка. Tenedor — слово мужского рода.",
+          "explain": "`El tenedor` — вилка. `Tenedor` мужского рода, хотя русское слово «вилка» женского рода.",
           "image": "art/002/08-tenedor.webp",
           "imageAlt": "Иллюстрация: вилка",
-          "options": [
-            "el tenedor",
-            "la tenedor"
-          ]
+          "context": "Посмотри на изображение. Напиши полную подпись из двух слов.",
+          "interaction": "input"
         },
         {
-          "prompt": "№ 9",
+          "prompt": "Изображение № 9: назови предмет или животное с артиклем.",
           "answers": [
             "el pez"
           ],
-          "explain": "el pez — рыба. У слова pez постоянный мужской род.",
+          "explain": "`El pez` — рыба: название вида грамматически мужского рода независимо от пола.",
           "image": "art/002/09-pez.webp",
-          "imageAlt": "Иллюстрация: рыба"
+          "imageAlt": "Иллюстрация: рыба",
+          "context": "Посмотри на изображение. Напиши полную подпись из двух слов.",
+          "interaction": "input"
         },
         {
-          "prompt": "№ 10",
+          "prompt": "Изображение № 10: назови предмет или животное с артиклем.",
           "answers": [
             "la nariz"
           ],
-          "explain": "la nariz — нос. Nariz — слово женского рода.",
+          "explain": "`La nariz` — нос. Слово женского рода, хотя по согласной `-z` род не угадывается.",
           "image": "art/002/10-nariz.webp",
-          "imageAlt": "Иллюстрация: нос"
+          "imageAlt": "Иллюстрация: нос",
+          "context": "Посмотри на изображение. Напиши полную подпись из двух слов.",
+          "interaction": "input"
         }
       ],
-      "inputLabel": "Короткий ввод · Выбор ответа",
+      "inputLabel": "Полная подпись (артикль + существительное)",
       "inputFormat": {
-        "instruction": "Напиши название предмета или животного с определённым артиклем el или la. Количество указывать не нужно.",
+        "instruction": "Впиши два слова: определённый артикль и одно существительное.",
         "example": "el coche",
-        "placeholder": "Артикль и название"
+        "placeholder": "Артикль + существительное"
       },
       "theorySections": [
         0,
@@ -1642,7 +1551,8 @@
         4,
         5,
         6
-      ]
+      ],
+      "revision": 2
     }
   ],
   "learningOrder": [
@@ -1657,5 +1567,6 @@
     "exercise:2.2",
     "exercise:2.3",
     "summary"
-  ]
+  ],
+  "revision": 2
 }

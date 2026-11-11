@@ -40,13 +40,13 @@ def test_reject_answer_missing_from_options(tmp_path):
 def test_second_unit_covers_pages_and_current_norm():
     first, unit = load_grammar()[:2]
     assert unit['id'] == '002_el_libro_la_mesa'
-    assert [len(g['questions']) for g in unit['exercises']] == [32, 6, 10]
+    assert [len(g['questions']) for g in unit['exercises']] == [15, 11, 10]
     assert len(unit['sections']) == 7
     assert all(s.get('check') for s in unit['sections'])
     classification = unit['exercises'][0]['questions']
-    assert len({q['prompt'] for q in classification}) == 32
-    assert next(q for q in classification if q['prompt'] == '___ radio')['translation'] == 'радиоприёмник в Испании'
-    assert next(q for q in classification if q['prompt'] == '___ mano')['answers'] == ['la']
+    assert len({q['prompt'] for q in classification}) == 15
+    assert 'el radio' in ' '.join(unit['sections'][1]['notes'])
+    assert any(q['answers'] == ['la mano'] for q in classification)
     assert next(q for q in classification if q['prompt'] == '___ problema')['answers'] == ['el']
     animals = unit['sections'][-2]
     fixed = [w[0] for g in animals['wordGroups'] for w in g['words']]
@@ -56,7 +56,7 @@ def test_second_unit_covers_pages_and_current_norm():
     assert all(q['image'].startswith('data:image/webp;base64,') and q['imageAlt'] for q in pictures)
     assert pictures[4]['answers'] == ['el gorila', 'la gorila']
     assert pictures[-1]['answers'] == ['la nariz']
-    assert unit['exercises'][1]['questions'][1]['answers'] == ['caballo']
+    assert unit['exercises'][1]['questions'][2]['answers'] == ['yegua']
     assert first['id'] != unit['id']
 
 
