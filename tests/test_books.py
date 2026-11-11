@@ -26,7 +26,7 @@ def test_book_reading_views_do_not_show_redundant_analysis_heading():
 
     template = Path("espanol/site_template.html").read_text(encoding="utf-8")
     assert '<h2>Разбор текста</h2>' not in template
-    assert 'function bookTextView()' in template
+    assert 'function bookView()' in template
     assert 'data-book-nav="chapters"' in template
     assert 'data-book-nav="level"' in template
     assert 'esc(bookTitle(b))' in template
