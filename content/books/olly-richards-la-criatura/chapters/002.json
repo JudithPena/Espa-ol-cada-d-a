@@ -3,11 +3,860 @@
   "number": 2,
   "order": 2,
   "title": "La búsqueda",
-  "icon": "📖",
-  "status": "draft",
-  "blocks": [],
+  "icon": "🔎",
+  "status": "published",
+  "blocks": [
+    {
+      "title": "Следы таинственного существа",
+      "es": "–¿Has visto eso, Silvia?\n–¡Sí! ¿Qué era eso?\n–¡No lo sé! Pero era una criatura muy grande y fea.\n–¡Sí! Muy grande y muy fea.\n–¡Vamos a por ella!\n–¿Estás bromeando? ¡Claro que no!\n–¡Vamos! Estamos aquí para explorar. ¡Vamos a seguirla!\n–¡Ay, Jorge! No sé yo…\nJorge y Silvia salieron de la casa vieja de madera y siguieron las huellas de la criatura en el bosque.\n–Hay muchos árboles y distintos caminos –dijo Jorge–, tenemos que separarnos.\n–¡Estás loco, Jorge! ¿Separarnos? ¡Hay una criatura muy fea y grande suelta y no sabemos lo que es!\n–Lo sé, Silvia. Pero si podemos fotografiarla, quizás salgamos en las noticias.\n–¿Qué más da?\n–Yo quiero salir en las noticias.\n–Qué tonto eres a veces, Jorge. En fin, vamos a separarnos.",
+      "ru": "— Ты это видела, Сильвия?\n— Да! Что это было?\n— Не знаю! Но это было какое-то огромное и уродливое существо.\n— Да! Очень большое и очень страшное.\n— Давай за ним!\n— Ты шутишь? Конечно, нет!\n— Давай! Мы ведь здесь, чтобы исследовать окрестности. Пойдём по его следу!\n— Ох, Хорхе! Даже не знаю…\nХорхе и Сильвия вышли из старого деревянного дома и пошли по следам существа в лесу.\n— Здесь много деревьев и разных тропинок, — сказал Хорхе, — нам придётся разделиться.\n— Ты с ума сошёл, Хорхе! Разделиться? Тут на свободе разгуливает огромное уродливое существо, а мы даже не знаем, что это!\n— Знаю, Сильвия. Но если нам удастся его сфотографировать, возможно, мы попадём в новости.\n— Ну и что с того?\n— А я хочу попасть в новости.\n— Иногда ты такой глупый, Хорхе. Ладно, давай разделимся.",
+      "notes": [
+        {
+          "term": "ir a por (algo / alguien)",
+          "es": [
+            "Vamos a por"
+          ],
+          "ru": [
+            "Давай за"
+          ],
+          "explanation": "пойти за кем-либо или чем-либо; a por — обычная разговорная конструкция Испании. В этой реплике «пойдём искать и преследовать существо»."
+        },
+        {
+          "term": "seguir a (alguien / algo)",
+          "es": [
+            "seguirla"
+          ],
+          "ru": [
+            "по его следу"
+          ],
+          "explanation": "следовать за кем-либо, преследовать; la в seguirla заменяет criatura. Не путать с seguir + gerundio — продолжать действие."
+        },
+        {
+          "term": "separarse",
+          "es": [
+            "separarnos"
+          ],
+          "ru": [
+            "разделиться",
+            "разделимся"
+          ],
+          "explanation": "разделиться, разойтись в разные стороны; здесь речь о поисках по отдельности."
+        },
+        {
+          "term": "estar suelto",
+          "es": [
+            "suelta"
+          ],
+          "ru": [
+            "на свободе"
+          ],
+          "explanation": "быть на свободе, не быть пойманным или привязанным; suelta согласуется с criatura."
+        },
+        {
+          "term": "fotografiar",
+          "es": [
+            "fotografiarla"
+          ],
+          "ru": [
+            "сфотографировать"
+          ],
+          "explanation": "сделать фотографию; la здесь заменяет criatura."
+        },
+        {
+          "term": "salir en las noticias",
+          "es": [
+            "salgamos en las noticias",
+            "salir en las noticias"
+          ],
+          "ru": [
+            "попадём в новости"
+          ],
+          "explanation": "попасть в новости; salgamos — presente de subjuntivo после quizás. La noticia — новость."
+        },
+        {
+          "term": "¿Qué más da?",
+          "es": [
+            "¿Qué más da?"
+          ],
+          "ru": [
+            "Ну и что с того?"
+          ],
+          "explanation": "разговорное «какая разница?», «ну и что?», выражает безразличие говорящего."
+        },
+        {
+          "term": "en fin",
+          "es": [
+            "En fin"
+          ],
+          "ru": [
+            "Ладно"
+          ],
+          "explanation": "разговорная связка «ну что ж», «ладно», «в общем»; здесь означает вынужденное согласие."
+        },
+        {
+          "term": "tonto",
+          "es": [
+            "tonto"
+          ],
+          "ru": [
+            "глупый"
+          ],
+          "explanation": "глупый, бестолковый; может звучать и как шутливый упрёк, и как оскорбление в зависимости от тона."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "¡Vamos a seguirla!",
+          "translation": "Пойдём за существом!",
+          "base": "seguir a (alguien / algo)",
+          "explanation": "la = criatura; прямое дополнение женского рода, прикреплённое к инфинитиву seguir."
+        }
+      ]
+    },
+    {
+      "title": "Дорога к густой роще",
+      "es": "Dos horas después, Silvia y Jorge todavía andaban por el bosque, en busca de la criatura. Pero no la habían encontrado.\nSilvia no creía que la criatura fuese real. Quizás ella y Jorge se lo habían imaginado.\nEn cambio, Jorge seguía diciendo que era una criatura real.\n–¡Vamos, Silvia! Quizás es un animal raro que vive en estos bosques. ¡Quizás no ha sido fotografiado antes! ¡Seguro que aparecemos en las noticias!\nY así, los dos siguieron caminando.\nEstaba oscureciendo, y la criatura seguía sin aparecer. De repente, Jorge vio una arboleda espesa. Le dijo a Silvia que esperara. Quería ver si la criatura estaba dentro. Mientras entraba en la arboleda, le sonrió y le dijo adiós con la mano.",
+      "ru": "Два часа спустя Сильвия и Хорхе всё ещё бродили по лесу в поисках существа, но так его и не нашли.\nСильвия не верила, что существо было настоящим. Возможно, ей и Хорхе оно просто привиделось.\nХорхе же, напротив, продолжал твердить, что существо было настоящим.\n— Ну же, Сильвия! Может, это редкое животное, которое живёт в этих лесах. Вдруг его раньше никто не фотографировал! Уверен, мы попадём в новости!\nИ они оба продолжили идти.\nСмеркалось, а существо всё не появлялось. Вдруг Хорхе увидел густую рощу. Он сказал Сильвии подождать: хотел проверить, не прячется ли существо внутри. Заходя в рощу, он улыбнулся ей и помахал на прощание рукой.",
+      "notes": [
+        {
+          "term": "en busca de (algo / alguien)",
+          "es": [
+            "en busca de"
+          ],
+          "ru": [
+            "в поисках"
+          ],
+          "explanation": "в поисках кого-либо или чего-либо; устойчивое сочетание с предлогом de."
+        },
+        {
+          "term": "imaginarse (algo)",
+          "es": [
+            "se lo habían imaginado"
+          ],
+          "ru": [
+            "привиделось"
+          ],
+          "explanation": "вообразить, представить себе; se = Сильвия и Хорхе, lo = увиденное существо. Habían imaginado — предпрошедшее время."
+        },
+        {
+          "term": "en cambio",
+          "es": [
+            "En cambio"
+          ],
+          "ru": [
+            "напротив"
+          ],
+          "explanation": "«напротив», «зато», «однако» при противопоставлении двух мнений; не равно простому «изменить»."
+        },
+        {
+          "term": "raro",
+          "es": [
+            "raro"
+          ],
+          "ru": [
+            "редкое"
+          ],
+          "explanation": "редкий, необычный; в отношении животного здесь «редкий, малоизвестный», а не «странный» в отрицательном смысле."
+        },
+        {
+          "term": "ser fotografiado",
+          "es": [
+            "ha sido fotografiado"
+          ],
+          "ru": [
+            "никто не фотографировал"
+          ],
+          "explanation": "быть сфотографированным; пассивная конструкция ser + participio. Здесь отрицание: его ещё никто не фотографировал."
+        },
+        {
+          "term": "oscurecer",
+          "es": [
+            "Estaba oscureciendo"
+          ],
+          "ru": [
+            "Смеркалось"
+          ],
+          "explanation": "темнеть, смеркаться; estar + gerundio подчёркивает развивавшийся процесс."
+        },
+        {
+          "term": "seguir sin + infinitivo",
+          "es": [
+            "seguía sin aparecer"
+          ],
+          "ru": [
+            "всё не появлялось"
+          ],
+          "explanation": "по-прежнему не делать чего-либо; después de seguir sin ставится инфинитив."
+        },
+        {
+          "term": "la arboleda",
+          "es": [
+            "arboleda"
+          ],
+          "ru": [
+            "рощу"
+          ],
+          "explanation": "роща, группа деревьев; в этой сцене густая роща, куда входит Хорхе."
+        },
+        {
+          "term": "espeso",
+          "es": [
+            "espesa"
+          ],
+          "ru": [
+            "густую"
+          ],
+          "explanation": "густой, плотный; о лесе, роще, волосах или тумане."
+        },
+        {
+          "term": "sonreír a (alguien)",
+          "es": [
+            "le sonrió"
+          ],
+          "ru": [
+            "улыбнулся ей"
+          ],
+          "explanation": "улыбнуться кому-либо; le указывает на Сильвию."
+        },
+        {
+          "term": "decir adiós con la mano",
+          "es": [
+            "le dijo adiós con la mano"
+          ],
+          "ru": [
+            "помахал на прощание рукой"
+          ],
+          "explanation": "попрощаться, помахав рукой; дословно «сказать прощай рукой»."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "se lo habían imaginado",
+          "translation": "им это привиделось",
+          "base": "imaginarse (algo)",
+          "explanation": "se относится к Сильвии и Хорхе как участникам воображаемого восприятия; lo заменяет увиденное существо/случай. Habían imaginado — предпрошедшее."
+        },
+        {
+          "es": "le sonrió",
+          "translation": "он улыбнулся ей",
+          "base": "sonreír a (alguien)",
+          "explanation": "le = Сильвии (адресат улыбки); подлежащее — Хорхе."
+        }
+      ]
+    },
+    {
+      "title": "Хорхе исчезает",
+      "es": "Silvia esperó a Jorge. ¡Pero no salía!\nEsperó varios minutos. Jorge no aparecía. Luego esperó casi una hora. ¡Jorge seguía sin aparecer!\nMiró su teléfono móvil. No había cobertura. No podía pedir ayuda. Y en ese momento, tenía miedo de entrar en la arboleda. ¡Pero no podía dejar a Jorge allí! Entonces pensó. ¡Tal vez él regresó a la casa! ¡Esto debe ser todo una broma!\nRegresó a la casa vieja. Jorge no estaba allí.\nDecidió esperar. Había una cama vieja en la habitación principal. Se sentó y tomó una galleta. Se la comió e intentó pensar. ¿Qué podría hacer ella? Mientras pensaba, sintió sueño. Había sido un día largo. «Tal vez debería seguir esperando a Jorge…» Fue su último pensamiento antes de quedarse dormida.",
+      "ru": "Сильвия ждала Хорхе. Но он не выходил!\nПрошло несколько минут. Хорхе не появлялся. Затем прошло почти целый час. Хорхе всё ещё не было!\nОна посмотрела на мобильный телефон. Сети не было. Позвать на помощь она не могла. И в тот момент ей было страшно заходить в рощу. Но ведь нельзя было бросить Хорхе там! Тогда она подумала: «А может, он вернулся к дому? Наверняка всё это просто шутка!»\nОна вернулась к старому дому. Хорхе там не было.\nСильвия решила подождать. В главной комнате стояла старая кровать. Она села и достала печенье. Съела его и попыталась собраться с мыслями. Что ей делать? Пока она думала, её начало клонить в сон. День выдался долгим. «Возможно, мне стоит ещё подождать Хорхе…» — это была её последняя мысль перед тем, как она уснула.",
+      "notes": [
+        {
+          "term": "la cobertura",
+          "es": [
+            "cobertura"
+          ],
+          "ru": [
+            "Сети"
+          ],
+          "explanation": "покрытие мобильной связи, приём сигнала; no había cobertura — телефон не ловил сеть."
+        },
+        {
+          "term": "pedir ayuda",
+          "es": [
+            "pedir ayuda"
+          ],
+          "ru": [
+            "Позвать на помощь"
+          ],
+          "explanation": "просить о помощи; pedir относится к обращению за помощью, а не к физическому «взять»."
+        },
+        {
+          "term": "dejar a (alguien) en un lugar",
+          "es": [
+            "dejar a Jorge allí"
+          ],
+          "ru": [
+            "бросить Хорхе там"
+          ],
+          "explanation": "оставить человека в каком-либо месте; здесь «бросить Хорхе одного в лесу»."
+        },
+        {
+          "term": "tal vez",
+          "es": [
+            "Tal vez"
+          ],
+          "ru": [
+            "А может"
+          ],
+          "explanation": "может быть, возможно; при оценке предположения может сопровождаться indicativo или subjuntivo."
+        },
+        {
+          "term": "deber de / deber + infinitivo (догадка)",
+          "es": [
+            "debe ser"
+          ],
+          "ru": [
+            "Наверняка"
+          ],
+          "explanation": "deber + infinitivo здесь выражает уверенное предположение «должно быть»; это не приказ и не обязанность."
+        },
+        {
+          "term": "la galleta",
+          "es": [
+            "galleta"
+          ],
+          "ru": [
+            "печенье"
+          ],
+          "explanation": "печенье; una galleta — одно печенье, тогда как galletas может обозначать печенье вообще."
+        },
+        {
+          "term": "sentir sueño",
+          "es": [
+            "sintió sueño"
+          ],
+          "ru": [
+            "её начало клонить в сон"
+          ],
+          "explanation": "почувствовать сонливость; более частый разговорный вариант — tener sueño."
+        },
+        {
+          "term": "quedarse dormido/-a",
+          "es": [
+            "quedarse dormida"
+          ],
+          "ru": [
+            "она уснула"
+          ],
+          "explanation": "заснуть, погрузиться в сон (результат); dormida согласуется с Silvia."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Se la comió",
+          "translation": "она его съела",
+          "base": "comerse (algo)",
+          "explanation": "se отмечает завершённость съедения; la = una galleta (печенье), прямое дополнение женского рода, не Хорхе."
+        }
+      ]
+    },
+    {
+      "title": "Утро в незнакомом городке",
+      "es": "Silvia se despertó al día siguiente. Jorge no estaba. Empezó a preocuparse mucho por él, así que decidió salir de la casa y salir del bosque. Anduvo mucho, bajó por el camino por donde habían venido el día anterior y llegó a un pueblo.\nEl pueblo estaba muy animado. Todas las familias salían a trabajar, los niños jugaban y corrían para ir a clase, los coches arrancaban y olía a desayuno. Silvia intentó llamar otra vez por su móvil. Seguía sin haber cobertura.\nSe acercó al restaurante más cercano.\nEntró y vio que había mucha gente desayunando. Había gente de todas las edades. Familias enteras, familias jóvenes y grupos de ancianos. De repente, ella no sabía qué decir, ni tampoco qué preguntar. ¡Era una situación tan extraña!\nSe acercó al camarero del restaurante y le dijo:",
+      "ru": "На следующее утро Сильвия проснулась. Хорхе по-прежнему не было. Она сильно за него забеспокоилась и поэтому решила выйти из дома и выбраться из леса. Долго шла, спустилась по той дороге, по которой они пришли накануне, и добралась до городка.\nВ городке царило оживление. Семьи отправлялись на работу, дети играли и бежали на занятия, машины заводились, а в воздухе пахло завтраком. Сильвия снова попыталась позвонить с мобильного. Связи всё ещё не было.\nОна подошла к ближайшему ресторану.\nЗайдя внутрь, она увидела множество завтракающих. Там были люди всех возрастов: семьи в полном составе, молодые семьи и компании пожилых людей. Вдруг она растерялась: не знала ни что сказать, ни что спросить. Такая странная ситуация!\nОна подошла к официанту и сказала:",
+      "notes": [
+        {
+          "term": "al día siguiente",
+          "es": [
+            "al día siguiente"
+          ],
+          "ru": [
+            "На следующее утро"
+          ],
+          "explanation": "на следующий день; перевод «утро» передаёт контекст пробуждения."
+        },
+        {
+          "term": "preocuparse por (alguien / algo)",
+          "es": [
+            "preocuparse mucho por él"
+          ],
+          "ru": [
+            "за него забеспокоилась"
+          ],
+          "explanation": "переживать, тревожиться о ком-либо; обязательное управление por."
+        },
+        {
+          "term": "animado (о месте)",
+          "es": [
+            "animado"
+          ],
+          "ru": [
+            "оживление"
+          ],
+          "explanation": "оживлённый, многолюдный; о городке с движением, людьми и шумом."
+        },
+        {
+          "term": "arrancar (о машине)",
+          "es": [
+            "arrancaban"
+          ],
+          "ru": [
+            "заводились"
+          ],
+          "explanation": "заводиться, начинать движение; здесь о двигателях автомобилей."
+        },
+        {
+          "term": "oler a (algo)",
+          "es": [
+            "olía a"
+          ],
+          "ru": [
+            "пахло"
+          ],
+          "explanation": "пахнуть чем-либо; предлог a обязателен: olía a desayuno — пахло завтраком."
+        },
+        {
+          "term": "de todas las edades",
+          "es": [
+            "de todas las edades"
+          ],
+          "ru": [
+            "всех возрастов"
+          ],
+          "explanation": "всех возрастных групп; устойчивое определение к gente."
+        },
+        {
+          "term": "el anciano / la anciana",
+          "es": [
+            "ancianos"
+          ],
+          "ru": [
+            "пожилых людей"
+          ],
+          "explanation": "пожилой человек; нейтральное обозначение возраста, но тон зависит от контекста."
+        },
+        {
+          "term": "ni tampoco",
+          "es": [
+            "ni tampoco"
+          ],
+          "ru": [
+            "ни"
+          ],
+          "explanation": "и также не, и даже не; усиление отрицательного перечисления после no sabía."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "se despertó",
+          "translation": "она проснулась",
+          "base": "despertarse",
+          "explanation": "se — часть местоименного глагола despertarse; подлежащее Silvia. Не обозначает другого участника."
+        }
+      ]
+    },
+    {
+      "title": "Звонки без ответа",
+      "es": "–Hola, señor.\n–¡Hola, jovencita! ¿Qué desea?\n–¿Puedo usar el teléfono del restaurante?\n–Por supuesto que puede. Está en esa pared de allí.\n–Gracias, ¿desea algo más?\n–No, muchas gracias, señor.\nSilvia se acercó al teléfono y marcó el número de Jorge. Quizás el problema era su móvil, pero no. El teléfono no dio ninguna señal. Se puso a pensar y decidió: llamaría a casa de Jorge.\nEl teléfono sonó una vez, dos veces, tres veces. El contestador automático saltó rápidamente. ¿Por qué nadie respondía?\nSilvia no sabía qué estaba pasando. Jorge vivía con su hermano. Su hermano trabajaba en casa. Normalmente estaba en casa por las mañanas. Hoy no estaba. Llamó por segunda vez, pero no respondió nadie. Dejó un mensaje preguntando: «¿Dónde estás, Jorge?»",
+      "ru": "— Здравствуйте, сеньор.\n— Здравствуйте, девушка! Что желаете?\n— Можно воспользоваться телефоном ресторана?\n— Конечно, можно. Он вон на той стене.\n— Спасибо, вам ещё что-нибудь нужно?\n— Нет, большое спасибо, сеньор.\nСильвия подошла к телефону и набрала номер Хорхе. Может, дело было в её мобильном телефоне? Но нет. В трубке не было даже гудка. Она задумалась и решила позвонить Хорхе домой.\nТелефон звонил раз, другой, третий. Почти сразу включился автоответчик. Почему никто не брал трубку?\nСильвия не понимала, что происходит. Хорхе жил с братом. Его брат работал дома и обычно по утрам бывал там. Но сегодня его не оказалось. Она позвонила ещё раз — снова никто не ответил. Тогда она оставила сообщение с вопросом: «Где ты, Хорхе?»",
+      "notes": [
+        {
+          "term": "jovencito/-a",
+          "es": [
+            "jovencita"
+          ],
+          "ru": [
+            "девушка"
+          ],
+          "explanation": "молодой человек, девушка; уменьшительная форма, здесь дружелюбное обращение официанта."
+        },
+        {
+          "term": "por supuesto",
+          "es": [
+            "Por supuesto"
+          ],
+          "ru": [
+            "Конечно"
+          ],
+          "explanation": "конечно, разумеется; уверенный утвердительный ответ."
+        },
+        {
+          "term": "marcar un número",
+          "es": [
+            "marcó el número"
+          ],
+          "ru": [
+            "набрала номер"
+          ],
+          "explanation": "набрать телефонный номер; marcar — не «пометить», а набрать цифры на телефоне."
+        },
+        {
+          "term": "no dar ninguna señal",
+          "es": [
+            "no dio ninguna señal"
+          ],
+          "ru": [
+            "не было даже гудка"
+          ],
+          "explanation": "не подавать никакого сигнала; здесь телефон не соединяет и не отвечает."
+        },
+        {
+          "term": "el contestador automático",
+          "es": [
+            "El contestador automático"
+          ],
+          "ru": [
+            "автоответчик"
+          ],
+          "explanation": "телефонный автоответчик, который воспроизводит приглашение оставить сообщение."
+        },
+        {
+          "term": "saltar (об устройстве)",
+          "es": [
+            "saltó"
+          ],
+          "ru": [
+            "включился"
+          ],
+          "explanation": "в разговорной речи об автоответчике: включиться, сработать автоматически."
+        },
+        {
+          "term": "dejar un mensaje",
+          "es": [
+            "Dejó un mensaje"
+          ],
+          "ru": [
+            "оставила сообщение"
+          ],
+          "explanation": "оставить сообщение, в том числе на автоответчике."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Se puso a pensar",
+          "translation": "она задумалась",
+          "base": "ponerse a + infinitivo",
+          "explanation": "se — часть глагола ponerse; a pensar = начало действия, «принялась думать»."
+        }
+      ]
+    },
+    {
+      "title": "Поездка на такси",
+      "es": "Entonces Silvia salió del restaurante y se sentó en un banco de la calle. Allí, se puso a pensar otra vez. Silvia era una mujer muy inteligente. No se ponía nerviosa cuando había un problema. Pensaba detenidamente.\nSe levantó del banco y decidió: iría directamente a casa de Jorge. Quizás él tampoco había encontrado nada y había vuelto a su casa.\nVolvió corriendo al restaurante y llamó a un taxi. Por fin llegó el taxi. El conductor empezó a hablar mientras se dirigían a casa de Jorge.\n–¿Cómo te llamas? –dijo el taxista.\n–Silvia, me llamo Silvia.\n–¿Y qué haces, Silvia? ¿Vas a desayunar?\n–No, voy a visitar a un amigo a su casa.\n–¡Vaya! ¡Qué envidia! ¡Yo tengo que trabajar todo el día!",
+      "ru": "Затем Сильвия вышла из ресторана и села на скамейку у дороги. Там она снова задумалась. Сильвия была очень умной женщиной. При возникновении проблем она не теряла самообладания, а тщательно всё обдумывала.\nОна встала со скамейки и решила ехать прямо домой к Хорхе. Возможно, он тоже ничего не нашёл и вернулся к себе.\nОна бегом вернулась в ресторан и вызвала такси. Наконец такси приехало. По дороге к дому Хорхе водитель завёл разговор.\n— Как тебя зовут? — спросил таксист.\n— Сильвия, меня зовут Сильвия.\n— А чем ты занимаешься, Сильвия? Едешь завтракать?\n— Нет, еду в гости к другу.\n— Ого! Вот завидую! А мне приходится работать целый день!",
+      "notes": [
+        {
+          "term": "ponerse nervioso/-a",
+          "es": [
+            "se ponía nerviosa"
+          ],
+          "ru": [
+            "теряла самообладания"
+          ],
+          "explanation": "начать нервничать, разволноваться; отрицание подчёркивает спокойствие Сильвии."
+        },
+        {
+          "term": "detenidamente",
+          "es": [
+            "detenidamente"
+          ],
+          "ru": [
+            "тщательно"
+          ],
+          "explanation": "внимательно, не торопясь; pensar detenidamente — хорошенько обдумать."
+        },
+        {
+          "term": "llamar a un taxi",
+          "es": [
+            "llamó a un taxi"
+          ],
+          "ru": [
+            "вызвала такси"
+          ],
+          "explanation": "вызвать такси (не обязательно звонить непосредственно водителю)."
+        },
+        {
+          "term": "el conductor / la conductora",
+          "es": [
+            "El conductor"
+          ],
+          "ru": [
+            "водитель"
+          ],
+          "explanation": "водитель транспортного средства; taxista обозначает именно таксиста."
+        },
+        {
+          "term": "¡Vaya!",
+          "es": [
+            "¡Vaya!"
+          ],
+          "ru": [
+            "Ого!"
+          ],
+          "explanation": "междометие удивления: «ну надо же!», «вот это да!»; тон зависит от ситуации."
+        },
+        {
+          "term": "¡Qué envidia!",
+          "es": [
+            "¡Qué envidia!"
+          ],
+          "ru": [
+            "Вот завидую!"
+          ],
+          "explanation": "«Как завидно!», «вот везёт!»; в данном случае таксист завидует выходному Сильвии."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "No se ponía nerviosa",
+          "translation": "она не нервничала",
+          "base": "ponerse nervioso/-a",
+          "explanation": "se обозначает переход к состоянию, aquí «не теряла самообладания»; nerviosa согласуется с Silvia."
+        }
+      ]
+    },
+    {
+      "title": "Дом Хорхе и новые подозрения",
+      "es": "Silvia no dijo nada más. El taxista era un hombre muy amable y hablador, pero ella no quería hablar. Solo quería encontrar a Jorge. No creía que hubiese ninguna criatura extraña en el bosque, pero quería saber dónde estaba su amigo.\n–Ya estamos, Silvia. Son 9,50 €.\n–Tome, quédese con la vuelta.\n–¡Gracias! ¡Que tengas un buen día!\n–Usted también.\nSilvia se bajó del taxi y anduvo hasta la casa de Jorge. La casa era muy grande y bonita. Tenía dos pisos, jardín y garaje propios. Estaba ubicada en un barrio muy hermoso y tranquilo, con casas grandes y tiendas que vendían fruta, pan y muchas otras cosas. El coche de Jorge estaba delante de la casa. ¿Estaría Jorge dentro? ¿Habría llamado a su familia?\n–No lo entiendo. Si Jorge hubiese cogido el coche para volver a su casa, ¿por qué no tengo ningún mensaje en el móvil?",
+      "ru": "Сильвия больше ничего не сказала. Таксист был очень добрым и разговорчивым человеком, но ей не хотелось разговаривать. Она хотела лишь найти Хорхе. Она не верила, что в лесу было какое-то странное существо, однако хотела узнать, где её друг.\n— Приехали, Сильвия. С вас 9 евро 50 центов.\n— Вот, сдачу оставьте себе.\n— Спасибо! Хорошего тебе дня!\n— И вам тоже.\nСильвия вышла из такси и дошла до дома Хорхе. Дом был очень большим и красивым: два этажа, собственный сад и гараж. Он находился в очень красивом и спокойном районе с большими домами и магазинами, где продавались фрукты, хлеб и многое другое. Машина Хорхе стояла перед домом. Может, Хорхе внутри? Неужели он позвонил родным?\n— Не понимаю. Если Хорхе взял машину, чтобы вернуться домой, почему у меня нет ни одного сообщения на телефоне?",
+      "notes": [
+        {
+          "term": "hablador/-a",
+          "es": [
+            "hablador"
+          ],
+          "ru": [
+            "разговорчивым"
+          ],
+          "explanation": "разговорчивый, любящий поболтать; о человеке, который много говорит."
+        },
+        {
+          "term": "no creer que + subjuntivo",
+          "es": [
+            "No creía que hubiese"
+          ],
+          "ru": [
+            "Она не верила, что"
+          ],
+          "explanation": "при отрицании убеждения обычно используется subjuntivo: hubiese — imperfecto de subjuntivo от haber."
+        },
+        {
+          "term": "quedarse con la vuelta",
+          "es": [
+            "quédese con la vuelta"
+          ],
+          "ru": [
+            "сдачу оставьте себе"
+          ],
+          "explanation": "оставить себе сдачу; вежливое quédese — повелительная форма usted."
+        },
+        {
+          "term": "bajarse de (un vehículo)",
+          "es": [
+            "se bajó del taxi"
+          ],
+          "ru": [
+            "вышла из такси"
+          ],
+          "explanation": "выйти из транспорта; управление de: bajarse del taxi."
+        },
+        {
+          "term": "estar ubicado/-a",
+          "es": [
+            "Estaba ubicada"
+          ],
+          "ru": [
+            "Он находился"
+          ],
+          "explanation": "быть расположенным, находиться; ubicado согласуется с la casa."
+        },
+        {
+          "term": "el barrio",
+          "es": [
+            "barrio"
+          ],
+          "ru": [
+            "районе"
+          ],
+          "explanation": "район города, квартал; в тексте — спокойный жилой район."
+        },
+        {
+          "term": "condicional de conjetura",
+          "es": [
+            "¿Estaría Jorge dentro?"
+          ],
+          "ru": [
+            "Может, Хорхе внутри?"
+          ],
+          "explanation": "условное время для догадки о прошлом: «может, Хорхе тогда находился внутри?»."
+        },
+        {
+          "term": "si + pluscuamperfecto de subjuntivo",
+          "es": [
+            "Si Jorge hubiese cogido el coche"
+          ],
+          "ru": [
+            "Если Хорхе взял машину"
+          ],
+          "explanation": "нереальное или сомнительное предположение о прошлом: si + hubiese cogido. Вопрос дальше выражен indicativo, потому что героиня рассуждает вслух."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "se bajó del taxi",
+          "translation": "она вышла из такси",
+          "base": "bajarse de (un vehículo)",
+          "explanation": "se входит в местоименный глагол bajarse; речь о Сильвии, которая выходит из такси."
+        }
+      ]
+    },
+    {
+      "title": "Никого нет — и свет в доме",
+      "es": "Silvia llamó a la puerta tres veces, pero nadie contestó.\nPreocupada, fue hacia la casa de sus dos mejores amigas, Claudia y Verónica. Sus amigas tampoco estaban en casa. Intentó llamarlas. Sus móviles estaban apagados. Algo raro estaba pasando y no podía entenderlo. Sus amigas habían desaparecido.\nSilvia no sabía qué hacer. No quería llamar a la policía. Sabía que Jorge estaba bien porque su coche estaba en casa. No tenía amigos cerca a quienes pedir ayuda. Decidió seguir con su búsqueda. ¡Ella misma tendría que encontrar a Jorge!\nPocos minutos después, cogió otro taxi y volvió al lago. Encontró un camino corto para llegar al bosque, cerca de la casa vieja de madera. Esta vez había algo diferente: ¡había luz dentro de la casa!",
+      "ru": "Сильвия трижды постучала в дверь, но никто не ответил.\nОбеспокоенная, она направилась к дому двух своих лучших подруг, Клаудии и Вероники. Подруг дома тоже не было. Она попыталась им позвонить. Их телефоны были выключены. Происходило что-то странное, и она не могла этого понять. Подруги исчезли.\nСильвия не знала, что делать. В полицию обращаться ей не хотелось. Она считала, что Хорхе в порядке, раз его машина стояла возле дома. Рядом не было друзей, у которых можно попросить помощи. Она решила продолжить поиски. Ей самой придётся найти Хорхе!\nЧерез несколько минут она взяла другое такси и вернулась к озеру. Нашла короткую дорогу в лес, неподалёку от старого деревянного дома. На этот раз кое-что изменилось: внутри дома горел свет!",
+      "notes": [
+        {
+          "term": "contestar (alguien)",
+          "es": [
+            "nadie contestó"
+          ],
+          "ru": [
+            "никто не ответил"
+          ],
+          "explanation": "ответить на звонок, стук или вопрос; в контексте — никто не открыл дверь и не отозвался."
+        },
+        {
+          "term": "estar apagado/-a (о телефоне)",
+          "es": [
+            "estaban apagados"
+          ],
+          "ru": [
+            "были выключены"
+          ],
+          "explanation": "быть выключенным; о телефоне apagado — неработающий, отключённый."
+        },
+        {
+          "term": "desaparecer",
+          "es": [
+            "habían desaparecido"
+          ],
+          "ru": [
+            "исчезли"
+          ],
+          "explanation": "исчезнуть; habían desaparecido — pluscuamperfecto, действие произошло раньше рассказанного момента."
+        },
+        {
+          "term": "la búsqueda",
+          "es": [
+            "búsqueda"
+          ],
+          "ru": [
+            "поиски"
+          ],
+          "explanation": "поиск; seguir con su búsqueda — продолжить поиски."
+        },
+        {
+          "term": "uno mismo / una misma",
+          "es": [
+            "Ella misma"
+          ],
+          "ru": [
+            "Ей самой"
+          ],
+          "explanation": "сам, сама; misma усиливает подлежащее: именно ей, без чужой помощи."
+        },
+        {
+          "term": "tener que + infinitivo в condicional",
+          "es": [
+            "tendría que encontrar"
+          ],
+          "ru": [
+            "придётся найти"
+          ],
+          "explanation": "модальное значение необходимости в условном времени: «ей пришлось бы / предстояло найти»."
+        },
+        {
+          "term": "esta vez",
+          "es": [
+            "Esta vez"
+          ],
+          "ru": [
+            "На этот раз"
+          ],
+          "explanation": "на этот раз, теперь иначе; указывает на отличие от предыдущего посещения дома."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Intentó llamarlas",
+          "translation": "пыталась им позвонить",
+          "base": "llamar a (alguien)",
+          "explanation": "las = Клаудия и Вероника, прямое дополнение во множественном числе; прикреплено к инфинитиву llamar."
+        },
+        {
+          "es": "no podía entenderlo",
+          "translation": "не могла этого понять",
+          "base": "entender (algo)",
+          "explanation": "lo = всё странное происходящее, прямое дополнение; отрицание относится к podía."
+        }
+      ]
+    }
+  ],
   "source": {
     "file": "Short Stories in Spanish for Beginners — Olly Richards (1).pdf",
     "heading_page": 45
-  }
+  },
+  "exercises": [
+    {
+      "id": "chapter-2-comprehension",
+      "instruction": "Seleccione una única respuesta para cada pregunta.",
+      "source": {
+        "file": "Short Stories in Spanish for Beginners — Olly Richards (1).pdf",
+        "pdf_pages": [
+          45,
+          46,
+          47,
+          48,
+          49,
+          50
+        ],
+        "chapters": [
+          2
+        ],
+        "answer_key_page": 190,
+        "instruction": "Seleccione una única respuesta para cada pregunta."
+      },
+      "questions": [
+        {
+          "prompt": "Silvia cree que la criatura ___.",
+          "options": [
+            "es una broma",
+            "no es real",
+            "es Jorge",
+            "es real, pero no está segura"
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "Jorge se encuentra con ___.",
+          "options": [
+            "un edificio de piedra",
+            "un puente",
+            "un coche",
+            "una arboleda"
+          ],
+          "answer": 3
+        },
+        {
+          "prompt": "Silvia duerme en ___.",
+          "options": [
+            "el bosque",
+            "la barca del lago",
+            "la cama de la casa",
+            "el pueblo"
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "Al despertarse, Silvia ___.",
+          "options": [
+            "va caminando a un pueblo",
+            "va caminando hacia una arboleda",
+            "llama a los padres de Jorge",
+            "llama a sus padres"
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "Al volver al lago, Silvia ve ___.",
+          "options": [
+            "la casa quemada",
+            "luz en la casa",
+            "a la criatura en la casa",
+            "a Jorge en la casa"
+          ],
+          "answer": 1
+        }
+      ]
+    }
+  ]
 }
