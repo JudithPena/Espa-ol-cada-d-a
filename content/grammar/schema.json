@@ -306,6 +306,22 @@
         },
         "optionOrderReason": {
           "type": "string"
+        },
+        "accentPolicy": {
+          "type": "string",
+          "enum": [
+            "strict",
+            "soft",
+            "contextual"
+          ],
+          "description": "Строгая, мягкая либо подтверждённая контрастами политика ударений; без поля работает прежняя совместимая проверка."
+        },
+        "accentContrasts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/accentContrast"
+          },
+          "minItems": 1
         }
       },
       "additionalProperties": false,
@@ -516,6 +532,43 @@
         },
         "retryHint": {
           "type": "string"
+        },
+        "accentPolicy": {
+          "type": "string",
+          "enum": [
+            "strict",
+            "soft",
+            "contextual"
+          ],
+          "description": "Строгая, мягкая либо подтверждённая контрастами политика ударений; без поля работает прежняя совместимая проверка."
+        },
+        "accentContrasts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/accentContrast"
+          },
+          "minItems": 1
+        },
+        "normalize": {
+          "type": "string",
+          "enum": [
+            "phrase"
+          ],
+          "description": "Игнорировать только внешние ¿¡ и .!? при проверке полного письменного ответа."
+        },
+        "gapAnswers": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "minItems": 1,
+          "description": "Допустимые слова по каждому пропуску для адресного объяснения; итоговый ответ всё равно проверяется по answers."
         }
       },
       "additionalProperties": false,
@@ -1044,6 +1097,30 @@
           ]
         }
       ]
+    },
+    "accentContrast": {
+      "type": "object",
+      "properties": {
+        "expected": {
+          "type": "string",
+          "minLength": 1
+        },
+        "entered": {
+          "type": "string",
+          "minLength": 1
+        },
+        "explanation": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "expected",
+        "entered",
+        "explanation"
+      ],
+      "additionalProperties": false,
+      "description": "Подтверждённая в контексте пара разных грамматических значений."
     }
   },
   "$ref": "#/$defs/unit"
