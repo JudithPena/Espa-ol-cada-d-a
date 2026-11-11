@@ -182,7 +182,7 @@ def test_olly_collection_has_one_parent_and_complete_contents():
     assert [len(b['chapter_catalog']) for b in books] == [4, 3, 3, 3, 3, 3, 3, 3]
     for book in books:
         expected = ([1, 2, 3, 4] if book['id'] == 'olly-richards-la-paella-loca' else
-                    [1, 2, 3] if book['id'] in {'olly-richards-la-criatura', 'olly-richards-el-caballero', 'olly-richards-el-reloj'} else [1])
+                    [1, 2, 3] if book['id'] in {'olly-richards-la-criatura', 'olly-richards-el-caballero', 'olly-richards-el-reloj', 'olly-richards-el-cofre'} else [1])
         assert [c['number'] for c in book['chapters']] == expected
         assert [c['status'] for c in book['chapter_catalog']] == (
             ['published'] * len(expected) + ['draft'] * (len(book['chapter_catalog']) - len(expected)))
@@ -194,6 +194,67 @@ def test_olly_collection_has_one_parent_and_complete_contents():
     assert sum(len(b.get('images', [])) for book in books for chapter in book['chapters']
                for b in chapter['blocks']) == 7
     assert sum(len(book.get('pending_illustrations', [])) for book in books) == 1
+
+
+def test_el_cofre_complete_chapters_source_and_publisher_quizzes():
+    """Fifth anthology story: all source, original quiz answers and linked vocabulary."""
+    import hashlib
+    import re
+
+    book = next(b for b in load_books() if b['id'] == 'olly-richards-el-cofre')
+    assert book['vocabulary_min_level'] == 'A2'
+    assert [c['title'] for c in book['chapters']] == ['Madrid', 'Mallorca', 'Bilbao']
+    assert [c['status'] for c in book['chapters']] == ['published'] * 3
+    assert [len(c['blocks']) for c in book['chapters'][1:]] == [9, 11]
+    expected = [
+        (2, 1009, '3071433c393ee24a145840a40c08419cb122026836c0647fad37e28977c938bc',
+         57, 43, [0, 0, 1, 0, 0], 108, list(range(108, 115))),
+        (3, 1341, 'd43cc9187ec36d8bddc8f5761c77cc3a43a436517b61ed5f59cf9ae10d6308e5',
+         62, 56, [2, 2, 3, 1, 1], 115, list(range(115, 123))),
+    ]
+    learned = {n['term'].casefold() for b in book['chapters'][0]['blocks']
+               for n in b['notes'] if isinstance(n, dict) and n.get('term')}
+    for chapter, (number, word_count, digest, note_count, pronoun_count,
+                  answers, heading_page, pages) in zip(book['chapters'][1:], expected):
+        original = re.sub(r'\s+', ' ', ' '.join(b['es'] for b in chapter['blocks'])).strip()
+        assert len(original.split()) == word_count
+        assert hashlib.sha256(original.encode('utf-8')).hexdigest() == digest
+        assert chapter['number'] == number and chapter['source']['heading_page'] == heading_page
+        assert all(60 <= len(b['es'].split()) <= 190 and b['ru'] for b in chapter['blocks'])
+        assert sum(len(b['pronouns']) for b in chapter['blocks']) == pronoun_count
+        notes = [n for b in chapter['blocks'] for n in b['notes']]
+        assert len(notes) == note_count
+        terms = {n['term'].casefold() for n in notes}
+        assert len(terms) == note_count
+        assert terms.isdisjoint(learned)
+        learned.update(terms)
+        for block in chapter['blocks']:
+            for note in block['notes']:
+                assert note['term'] and note['explanation']
+                for lang in ('es', 'ru'):
+                    assert note[lang], note['term']
+                    for marker in note[lang]:
+                        assert re.search(r'(?<!\w)' + re.escape(marker) + r'(?!\w)',
+                                         block[lang], re.I), (
+                            number, block['title'], note['term'], lang, marker)
+            for pronoun in block['pronouns']:
+                assert pronoun['es'] and pronoun['translation'] and pronoun['explanation']
+                assert pronoun['base'] and pronoun['es'] in block['es']
+        assert len(chapter['exercises']) == 1
+        ex = chapter['exercises'][0]
+        assert ex['source']['pdf_pages'] == pages
+        assert ex['source']['answer_key_page'] == 190
+        assert ex['source']['chapters'] == [number]
+        assert [len(q['options']) for q in ex['questions']] == [4] * 5
+        assert [q['answer'] for q in ex['questions']] == answers
+    corrections = book['chapters'][2]['source']['editorial_corrections']
+    assert {(fix['pdf_page'], fix['printed'], fix['edited']) for fix in corrections} == {
+        (116, '–Ah, no –Arturo dijo Arturo. Me llamo Arturo –continuó–.',
+         '–Ah, no –dijo Arturo–. Me llamo Arturo –continuó–.'),
+        (118, 'Ilamaban', 'llamaban'),
+    }
+    # Distinct semantic units already covered in chapter 1 are not repeated as new notes.
+    assert not {'el cofre', 'el collar', 'recordar', 'a través de', 'con recelo'} & learned
 
 def test_el_reloj_complete_chapters_source_notes_pronouns_and_quizzes():
     """Fourth anthology story: strict source fidelity, teaching data, and complete printed quizzes."""
