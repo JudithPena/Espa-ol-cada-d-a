@@ -51,7 +51,7 @@ test('incorrect answers do not leak, failed card stays visible, theory and retry
       run('gMove(1)');
     }
   }
-  assert.equal(run('G.recovery'),null);
+  assert.ok(!run('G.recovery'));
   assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).status'),'failed');
   assert.equal(run('G.steps[G.at].type'),'question');
   assert.ok(run('gPlayerView()').includes('data-greview-theory'));
