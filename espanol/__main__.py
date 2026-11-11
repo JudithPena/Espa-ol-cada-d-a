@@ -351,6 +351,9 @@ def cmd_grammar_lint(args, settings) -> int:
     options = {int(args.unit)} if args.unit else None
     findings = inspect_directory(directory, options) if directory else inspect_directory(only=options)
     numbers, questions = count_content(directory, options) if directory else count_content(only=options)
+    if numbers == 0 and not findings:
+        print("ERROR: В указанном каталоге или для выбранного номера нет грамматических юнитов.")
+        return 2
     summary = summarize(findings)
     print(f"Грамматика: {numbers} юнитов · {questions} вопросов · "
           f"ERROR {summary['totals']['ERROR']} / WARNING {summary['totals']['WARNING']} / INFO {summary['totals']['INFO']}")
