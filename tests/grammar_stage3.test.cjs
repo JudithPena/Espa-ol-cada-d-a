@@ -136,3 +136,26 @@ test('warning variants remain accepted, and errors receive tailored feedback',()
     ','+JSON.stringify(wrong)+')');
   assert.match(message,/прошедшее время/);
 });
+
+test('all real unit 34–45 alternatives are accepted without changing source answers',()=>{
+  const filenames=fs.readdirSync('content/grammar').filter(name=>/^0(?:3[4-9]|4[0-5])_.*\\.json$/.test(name));
+  assert.equal(filenames.length,12);
+  let answers=0,questions=0;
+  for(const filename of filenames){
+    const u=JSON.parse(fs.readFileSync('content/grammar/'+filename,'utf8'));
+    for(const group of [...u.sections.map(s=>s.check),...u.exercises]){
+      for(const q of group.questions){
+        questions++;
+        for(const accepted of q.answers){
+          const r=grade(q,accepted,group);
+          assert.equal(r.good,true,u.number+'/'+group.id+'/'+q.prompt+'/'+accepted);
+          assert.ok(['correct','almost'].includes(r.status));
+          answers++;
+        }
+        assert.equal(grade(q,'__nunca_es_una_respuesta_valida__',group).status,'wrong');
+      }
+    }
+  }
+  assert.ok(questions>350);
+  assert.ok(answers>=questions);
+});
