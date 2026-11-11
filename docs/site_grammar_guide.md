@@ -1,3 +1,5 @@
+> **Автоматическое качество грамматики:** формат полей — [docs/grammar_fields.md](grammar_fields.md), схема — `content/grammar/schema.json`; команды и правила — [docs/grammar_lint_guide.md](grammar_lint_guide.md). Перед публикацией нового юнита — `python -m espanol grammar-lint NN`, а `python -m espanol validate` проверяет загрузчик. Содержательные WARNING не блокируют CI, но требуют ручной проверки. Никаких изменений механики трёх жизней или ударений этим дополнением не предусмотрено.
+
 # Интерактивная грамматика сайта
 
 ## Юниты 46–47 · Наличие и местонахождение
