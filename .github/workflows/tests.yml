@@ -21,6 +21,7 @@ jobs:
           python -m espanol grammar-lint 5
           python -m espanol grammar-lint 13
           python -m espanol grammar-lint 8
+          python -m espanol grammar-lint 2
       - name: Архив диагностик грамматического линтера
         if: always()
         uses: actions/upload-artifact@v4
@@ -94,7 +95,7 @@ jobs:
           fi
 
   grammar-immediate-feedback-browser:
-    if: github.event_name == 'pull_request' && (github.head_ref == 'fix/grammar-immediate-feedback-20261111' || github.head_ref == 'audit/grammar-schema-linter-20261111' || github.head_ref == 'audit/fable-stage3-recovered-20261111' || github.head_ref == 'audit/fable-stage4-unit07-20261111' || github.head_ref == 'audit/fable-stage5-unit05-20261111' || github.head_ref == 'audit/fable-stage6-unit13-20261111' || github.head_ref == 'audit/fable-stage7-unit08-20261111')
+    if: github.event_name == 'pull_request' && (github.head_ref == 'fix/grammar-immediate-feedback-20261111' || github.head_ref == 'audit/grammar-schema-linter-20261111' || github.head_ref == 'audit/fable-stage3-recovered-20261111' || github.head_ref == 'audit/fable-stage4-unit07-20261111' || github.head_ref == 'audit/fable-stage5-unit05-20261111' || github.head_ref == 'audit/fable-stage6-unit13-20261111' || github.head_ref == 'audit/fable-stage7-unit08-20261111' || github.head_ref == 'audit/fable-stage8-unit02-20261111')
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
