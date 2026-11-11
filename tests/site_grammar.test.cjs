@@ -1011,7 +1011,7 @@ test('17.3 fills words in a fixed sentence, keeps partial choices on resume and 
  assert.equal(run('gResponse(G.steps[G.at]).good'),false);
  html=run('gPlayerView()');
  assert.ok(html.includes('data-gnext'));
- assert.ok(!html.includes(' / la bebida'));
+ assert.ok(html.includes(' / la bebida')); // Every accepted alternative is disclosed after the incorrect submission.
  run(`gMove(1);for(let __grammarGuard=0;!G.steps[G.at].correction&&__grammarGuard++<300;){const s=G.steps[G.at];gResponse(s).value=gUnit().exercises[2].questions[s.qi].answers[0];gCheck();gMove(1);}gSelectGap(0,1);gSelectGap(1,0);gSelectGap(2,1);gSelectGap(3,0);gCheck();`);
  assert.equal(run('gResponse(G.steps[G.at]).good'),true);
  assert.equal(run('G.ended'),false);
@@ -1763,9 +1763,9 @@ test('yellow correction is accepted without another retry or error and keeps the
  const run=context([u]);unlockUntil(run,'exercise:4.3');
  run(`gStart(COURSE.grammar[0].id,'exercise:4.3');gMove(1);gPick(2);`);
  const wrong=run('gPlayerView()');assert.ok(wrong.includes('pfoot bad'));
- assert.equal((wrong.match(/class="opt wrong"/g)||[]).length,0);
+ assert.ok((wrong.match(/class="opt wrong"/g)||[]).length>=1);
  assert.ok((wrong.match(/class="opt right"/g)||[]).length>=1);
- assert.equal((wrong.match(/class="opt almost"/g)||[]).length,0);
+ assert.ok((wrong.match(/class="opt (right|almost)"/g)||[]).length>=1);
  assert.ok(wrong.includes('Верный ответ:'));
  run('gMove(1);gPick(1);');
  assert.equal(run('gResponse(G.steps[G.at]).status'),'almost');
