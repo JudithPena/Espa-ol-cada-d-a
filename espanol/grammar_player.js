@@ -904,7 +904,8 @@ function gFailureAnalysis(attempt,unit,group) {
   const errors=gAttemptErrors(attempt).filter(e=>group.questions[e.qi]);
   return `<section class="gerror-analysis" aria-labelledby="g-error-title"><h3 id="g-error-title" role="status">Разбор ошибок</h3>${errors.map((error,i)=>{
     const q=group.questions[error.qi], answers=[...new Set(q.answers.map(a=>gOptionLabel(q,a)))];
-    return `<article class="gerror-item"><h4>Ошибка ${i+1} · Вопрос ${error.qi+1}</h4>${q.context?`<p>${esc(q.context)}</p>`:''}<p lang="es">${esc(q.prompt)}</p><h4>Твой ответ</h4><p class="gerror-entered" lang="es">${esc(gOptionLabel(q,error.value))}</p><h4>${answers.length>1?'Правильные варианты':'Правильный ответ'}</h4><ul class="gerror-answers">${answers.map(a=>`<li lang="es">${esc(a)}</li>`).join('')}</ul><h4>Почему ответ не подходит</h4><p>${esc(grammarFeedbackExplanation(q,{...error,good:false,status:'wrong'}))}</p></article>`;
+    const assessment=grammarResult(q,error.value,group,gQuestionMode(q,{value:error.value})==='input');
+    return `<article class="gerror-item"><h4>Ошибка ${i+1} · Вопрос ${error.qi+1}</h4>${q.context?`<p>${esc(q.context)}</p>`:''}<p lang="es">${esc(q.prompt)}</p><h4>Твой ответ</h4><p class="gerror-entered" lang="es">${esc(gOptionLabel(q,error.value))}</p><h4>${answers.length>1?'Правильные варианты':'Правильный ответ'}</h4><ul class="gerror-answers">${answers.map(a=>`<li lang="es">${esc(a)}</li>`).join('')}</ul><h4>Почему ответ не подходит</h4><p>${esc(grammarFeedbackExplanation(q,assessment))}</p></article>`;
   }).join('')}</section>`;
 }
 function gPlayerView(failure=null) {
