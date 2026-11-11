@@ -132,3 +132,27 @@ def test_summary_groups_and_human_report_remain_readable():
     assert report.count('Причина:')==10
     assert len(report)<30000
     assert all(f.to_dict()['fingerprint'] for f in findings)
+
+def test_schema_error_precedes_legacy_field_dereference(tmp_path):
+    _,unit=fixture(1)
+    del unit['sections']
+    (tmp_path/'001_missing_sections.json').write_text(json.dumps(unit,ensure_ascii=False),encoding='utf-8')
+    with pytest.raises(ValueError,match='SCHEMA'):
+        load_grammar(tmp_path,schema_check=True)
+
+
+def test_invalid_json_reports_error_without_counting_traceback(tmp_path,capsys):
+    from types import SimpleNamespace
+    from espanol.__main__ import cmd_grammar_lint
+    (tmp_path/'001_invalid.json').write_text('{ not json',encoding='utf-8')
+    args=SimpleNamespace(directory=str(tmp_path),unit=None,json_out=None,report=None,strict_warnings=False)
+    assert cmd_grammar_lint(args,None)==1
+    assert 'JSON_PARSE' in capsys.readouterr().out
+
+
+def test_unknown_requested_unit_cannot_silently_pass_lint(capsys):
+    from types import SimpleNamespace
+    from espanol.__main__ import cmd_grammar_lint
+    args=SimpleNamespace(directory=None,unit='99999',json_out=None,report=None,strict_warnings=False)
+    assert cmd_grammar_lint(args,None)==2
+    assert 'нет грамматических юнитов' in capsys.readouterr().out
