@@ -1,0 +1,16 @@
+name: Grammar stage-3 source snapshot (temporary)
+on:
+  push:
+    branches: [audit/grammar-contextual-accents-20261111]
+jobs:
+  snapshot:
+    if: contains(github.event.head_commit.message, 'snapshot grammar stage3')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pack exact base files for local tests
+        run: tar -czf /tmp/stage3_source.tar.gz espanol content/grammar tests docs/grammar_audit docs/site_grammar_guide.md docs/grammar_fields.md docs/grammar_lint_guide.md AGENTS.md CLAUDE.md requirements.txt pyproject.toml .github/workflows/tests.yml
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage3-source
+          path: /tmp/stage3_source.tar.gz
