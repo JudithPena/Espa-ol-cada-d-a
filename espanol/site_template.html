@@ -706,6 +706,10 @@ main { padding-block: 16px 110px; }
 .gguided-slot.is-active { border-style: solid; box-shadow: 0 0 0 3px var(--accent-soft); }
 .gguided-slot small { position: absolute; right: 3px; top: -6px; font: 10px var(--body); color: var(--accent); background: var(--surface); padding: 0 2px; }
 .gguided-slot:disabled { opacity: 1; cursor: default; }
+.gguided-slot.is-incorrect, .ggap-input.ggap-incorrect { border: 2px solid var(--bad); background: var(--bad-soft); }
+.gwrong-fields { margin: 8px 0; padding-left: 22px; }
+.gplayer-actions { flex-wrap: wrap; }
+@media(max-width:600px) { .gplayer-actions .btn { min-height: 44px; } }
 .gguided-options { padding: 16px; border-radius: 16px; background: var(--accent-soft); }
 .gguided-options p { margin: 0 0 10px; font-size: 14px; }
 .gguided-options [aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
