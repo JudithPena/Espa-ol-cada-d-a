@@ -121,11 +121,14 @@ lessons:
           format: две короткие фразы
           items:
             - q: "Ana: Hola, me llamo Ana. ¿Y tú? — Ответьте: вас зовут Пабло, вам очень приятно."
-              a: "Me llamo Pablo. Encantado | Hola, me llamo Pablo. Encantado | Me llamo Pablo. Mucho gusto | Hola, me llamo Pablo. Mucho gusto | Hola, Ana. Me llamo Pablo. Encantado | Hola, Ana. Me llamo Pablo. Mucho gusto | Encantado. Me llamo Pablo | Me llamo Pablo. Encantado, Ana | Me llamo Pablo. Mucho gusto, Ana"
+              a: "Me llamo Pablo. Encantado | Hola, me llamo Pablo. Encantado | Me llamo Pablo. Mucho gusto | Hola, me llamo Pablo. Mucho gusto | Hola, Ana. Me llamo Pablo. Encantado | Hola, Ana. Me llamo Pablo. Mucho gusto | Encantado. Me llamo Pablo | Me llamo Pablo. Encantado, Ana | Me llamo Pablo. Mucho gusto, Ana | Encantado, Ana. Me llamo Pablo | Mucho gusto. Me llamo Pablo | Mucho gusto, Ana. Me llamo Pablo | Hola, me llamo Pablo. Encantado, Ana | Hola, me llamo Pablo. Mucho gusto, Ana | Hola, Ana. Encantado. Me llamo Pablo | Hola, Ana. Mucho gusto. Me llamo Pablo"
               explain: "О себе — me llamo; Пабло — мужчина, поэтому encantado. Mucho gusto подходит всем."
               mistakes:
                 "me llamo pablo encantada": "Пабло — мужчина и говорит о себе, поэтому **encantado**. Encantada сказала бы женщина."
                 "hola me llamo pablo encantada": "Пабло — мужчина и говорит о себе, поэтому **encantado**. Encantada сказала бы женщина."
+                "me llamo pablo encantada ana": "Пабло — мужчина и говорит о себе, поэтому **encantado**. Encantada сказала бы женщина."
+                "encantada me llamo pablo": "Пабло — мужчина и говорит о себе, поэтому **encantado**. Encantada сказала бы женщина."
+                "encantada ana me llamo pablo": "Пабло — мужчина и говорит о себе, поэтому **encantado**. Encantada сказала бы женщина."
                 "me llamo pablo": "Имя есть — добавьте «очень приятно»: **encantado** или **mucho gusto**."
                 "hola me llamo pablo": "Имя есть — добавьте «очень приятно»: **encantado** или **mucho gusto**."
 
@@ -133,7 +136,7 @@ lessons:
     kind: grammar
     title: "Я, ты, он, она: глагол ser"
     goal: сказать, кто есть кто, — soy, eres, es
-    version: 2
+    version: 3
     vocab:
       - "🙋 yo [йо] — я"
       - "👨 él [эль] — он"
@@ -228,12 +231,25 @@ lessons:
               explain: "О другом человеке говорят es: Es Carlos — «Это Карлос». Soy Carlos сказал бы сам Карлос."
               skill: ser_forms
               rule: ser
+      - write:
+          title: Скажите, как её зовут
+          format: короткая фраза
+          rule: llamarse
+          skill: me_llamo
+          items:
+            - q: "Её зовут Лусия."
+              a: "Se llama Lucía | Ella se llama Lucía"
+              explain: "«Он», «она», «вы» — se llama: Se llama Lucía."
+              mistakes:
+                "me llamo lucía": "Me llamo — «меня зовут». О другом человеке — **se llama**: Se llama Lucía."
+                "te llamas lucía": "Te llamas — «тебя зовут». О другом человеке — **se llama**: Se llama Lucía."
+                "es lucía": "Es Lucía — «это Лусия». «Её зовут» — **se llama** Lucía."
 
   - id: dialogue
     kind: dialogue
     title: На вечеринке
     goal: понять разговор при знакомстве и ответить собеседнику
-    version: 2
+    version: 3
     blocks:
       - "Пабло на вечеринке знакомится с Аной, а потом знакомит её со своей подругой."
       - dialogue:
@@ -255,9 +271,10 @@ lessons:
               options: "Пабло — мужчина, Ана — женщина. | Ана говорит на «вы». | Пабло старше Аны."
               explain: "Окончание зависит от того, кто говорит: мужчина — encantado, женщина — encantada."
               skill: encantado
-            - q: "Кто такая Лусия?"
-              options: "подруга, которую Пабло знакомит с Аной | сестра Аны | администратор гостиницы"
-              explain: "Ana: ¿Quién es ella? — Pablo: Es Lucía. ¡Lucía! — Пабло знакомит Ану со своей подругой."
+            - q: "Что Ана спрашивает о Лусии?"
+              options: "¿Quién es ella? | ¿Cómo se llama usted? | ¿Cómo te llamas?"
+              explain: "Ana: Perdón, ¿quién es ella? — «Извини, а кто она?» Пабло отвечает: Es Lucía."
+              skill: ser_forms
       - dialogue:
           id: hotel
           title: В гостинице
@@ -305,32 +322,36 @@ lessons:
     kind: listening
     title: Кто есть кто?
     goal: понять на слух, кого как зовут
-    version: 2
+    version: 3
     blocks:
-      - "Сначала послушайте разговор два-три раза: текста пока нет. В заданиях его можно открыть как подсказку."
+      - "Первое занятие в языковой школе. Преподавательница Елена знакомится с новыми учениками. Послушайте разговор два-три раза: текста пока нет. В заданиях его можно открыть как подсказку."
       - dialogue:
           id: class
           hidden: true
           lines:
-            - "Profesora: Buenos días. Me llamo Elena. ¿Y usted? ¿Cómo se llama? | Доброе утро. Меня зовут Елена. А вас? Как вас зовут?"
+            - "Profesora: Buenos días. Me llamo Elena. ¿Y tú? ¿Cómo te llamas? | Доброе утро. Меня зовут Елена. А тебя? Как тебя зовут?"
             - "Iván: Me llamo Iván. | Меня зовут Иван."
             - "Profesora: Encantada, Iván. ¿Y ella? ¿Quién es? | Очень приятно, Иван. А она? Кто это?"
             - "Iván: Es Olga. | Это Ольга."
             - "Olga: Hola. Sí, soy Olga. Mucho gusto. | Здравствуйте. Да, я Ольга. Очень приятно."
             - "Profesora: Igualmente, Olga. | Взаимно, Ольга."
-      - match:
-          title: Кто есть кто?
+      - choose:
+          title: Кто это сказал?
           source: class
-          pairs:
-            - "Elena — преподавательница"
-            - "Iván — ученик"
-            - "Olga — ученица"
+          skill: encantado
+          items:
+            - q: "Кто говорит «Encantada»?"
+              options: "Elena | Olga | Iván"
+              explain: "Elena: Encantada, Iván. — так преподавательница отвечает Ивану."
+            - q: "Кто говорит «Mucho gusto»?"
+              options: "Olga | Elena | Iván"
+              explain: "Olga: Sí, soy Olga. Mucho gusto."
     quiz:
-      - q: Как зовут преподавательницу?
-        options: "Elena | Olga | Ana"
+      - q: Кто представляет Ольгу?
+        options: "Iván | Elena | Ana"
         source: class
-        skill: me_llamo
-        explain: "Преподавательница говорит о себе Me llamo Elena, то есть «Меня зовут Елена». А Olga — это имя ученицы."
+        skill: ser_forms
+        explain: "Iván: Es Olga. — Ольгу называет Иван, сама она говорит позже."
       - q: Как Иван отвечает на вопрос «¿Quién es?»
         options: "Es Olga. | Soy Olga. | Me llamo Iván."
         source: class
@@ -382,8 +403,8 @@ lessons:
         options: "es | eres | soy"
         explain: "С ella, так же как с él и usted, глагол ser имеет форму es: Ella es Lucía, Él es Carlos."
         skill: ser_forms
-      - q: Что скажет женщина при знакомстве?
-        options: "Encantada. | Encantado. | Igualmente, señor."
+      - q: "Ана знакомится с Пабло. Как она скажет „очень приятно“?"
+        options: "Encantada. | Encantado."
         explain: "Окончание зависит от того, кто говорит. Женщина скажет encantada, а мужчина скажет encantado."
         skill: encantado
       - q: Как вежливо спросить имя?

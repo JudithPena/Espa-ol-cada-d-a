@@ -616,6 +616,87 @@ test('тема 01: старое прохождение «Утро в офисе�
   assert.match(run('view.level = "A0"; courseView()'), /Урок обновлён — пройти новую версию/);
 });
 
+// ТЗ №2 темы 02 (U02-01 … U02-06): вопросы без опоры на невидимые подписи, допустимые ответы — на шагах из 02_presentarse.yaml.
+test('тема 02: вопросы к разговорам по репликам, ответы миссии meet, ввод se llama, тест без двух верных вариантов', () => {
+  const run = context(site, new Map(), {audio: {}});
+  run('say = () => {}');
+  const steps = id => { run(`startLesson(${idx(run, id)})`); return J(run, 'S.steps'); };
+  const res = (st, typed) => J(run, `writeResult(${JSON.stringify(st)}, ${JSON.stringify(typed)})`);
+  const plainQ = st => String(st.q || '').replace(/<[^>]+>/g, '');
+  const lesson = () => J(run, 'LESSONS[S.li]');
+  const opts = st => st.plain || st.options;   // у вопросов quiz варианты — в options
+
+  // U02-05: миссия meet — «очень приятно» до и после имени; encantada и пропущенное «очень приятно» — подсказки.
+  const meet = steps('presentarse/vocab').find(s => s.type === 'write' && /Ответьте: вас зовут Пабло/.test(plainQ(s)));
+  for (const ok of ['Encantado, Ana. Me llamo Pablo', 'Mucho gusto. Me llamo Pablo', 'Mucho gusto, Ana. Me llamo Pablo',
+    'Hola, me llamo Pablo. Encantado, Ana', 'Hola, me llamo Pablo. Mucho gusto, Ana', 'Hola, Ana. Encantado. Me llamo Pablo',
+    'Hola, Ana. Mucho gusto. Me llamo Pablo', 'Me llamo Pablo. Encantado'])
+    assert.equal(res(meet, ok).ok, true, ok);
+  assert.equal(meet.a.length, 16);
+  for (const bad of ['Encantada. Me llamo Pablo', 'Me llamo Pablo. Encantada, Ana', 'Encantada, Ana. Me llamo Pablo'])
+    assert.match(res(meet, bad).why.html, /поэтому <b>encantado<\/b>/, bad);
+  assert.match(res(meet, 'Me llamo Pablo').why.html, /добавьте «очень приятно»/);
+
+  // U02-06: se llama — ввод в конце урока grammar, со своими подсказками.
+  const g = steps('presentarse/grammar');
+  const sl = g.find(s => s.type === 'write' && plainQ(s) === 'Её зовут Лусия.');
+  assert.ok(sl && g.indexOf(sl) === g.length - 1, 'ввод se llama — последнее задание урока');
+  for (const ok of ['Se llama Lucía', 'Ella se llama Lucía']) assert.equal(res(sl, ok).ok, true, ok);
+  assert.match(res(sl, 'Es Lucía').why.html, /«это Лусия».*<b>se llama<\/b>/);
+  assert.match(res(sl, 'Me llamo Lucía').why.html, /«меня зовут»/);
+  assert.match(res(sl, 'Te llamas Lucía').why.html, /«тебя зовут»/);
+
+  // U02-01, U02-02: в listening роли не спрашиваются, Елена на «ты», «Кто это сказал?» по звучащим репликам.
+  const l = steps('presentarse/listening'), L = lesson();
+  const cls = L.blocks.find(b => b.t === 'dialogue' && b.id === 'class');
+  assert.match(cls.lines[0][1], /¿Cómo te llamas\?/);
+  assert.doesNotMatch(cls.lines[0][1], /usted/);
+  assert.ok(!l.some(s => s.type === 'match'), 'пар «Кто есть кто?» больше нет');
+  const answers = JSON.stringify(l.map(s => opts(s) || s.pairs || []));
+  assert.doesNotMatch(answers, /преподавательница — |ученик|ученица/);
+  assert.ok(!l.some(s => /Как зовут преподавательницу/.test(plainQ(s))));
+  const spoken = cls.lines.map(l => l[1]).join(' ');
+  const who = (q, name, line) => {
+    const st = l.find(s => s.type === 'mc' && plainQ(s) === q);
+    assert.ok(st, q);
+    assert.equal(opts(st)[st.correct], name, q);
+    assert.equal(L.blocks[st.src].id, 'class', `${q}: source class`);
+    assert.ok(spoken.includes(line), `${q}: «${line}» звучит в разговоре`);
+  };
+  who('Кто говорит «Encantada»?', 'Elena', 'Encantada, Iván.');
+  who('Кто говорит «Mucho gusto»?', 'Olga', 'Mucho gusto.');
+  who('Кто представляет Ольгу?', 'Iván', 'Es Olga.');
+
+  // U02-03: вопрос к party — по реплике Аны, а не по русскому вступлению.
+  const d = steps('presentarse/dialogue'), D = lesson();
+  assert.ok(!d.some(s => /Кто такая Лусия/.test(plainQ(s))));
+  const ana = d.find(s => s.type === 'mc' && plainQ(s) === 'Что Ана спрашивает о Лусии?');
+  assert.equal(ana.plain[ana.correct], '¿Quién es ella?');
+  assert.equal(D.blocks[ana.src].id, 'party');
+  assert.match(D.blocks[ana.src].lines.map(l => l[1]).join(' '), /¿quién es ella\?/);
+
+  // U02-04: в тесте один верный вариант «очень приятно» для Аны.
+  const q = steps('presentarse/quiz').find(s => s.type === 'mc' && /очень приятно/.test(plainQ(s)));
+  assert.deepEqual([...opts(q)].sort(), ['Encantada.', 'Encantado.']);
+  assert.equal(opts(q)[q.correct], 'Encantada.');
+});
+
+test('тема 02: старое прохождение listening, dialogue и grammar (версия 2) сохраняется, но просит пройти версию 3', () => {
+  const ids = ['presentarse/grammar', 'presentarse/dialogue', 'presentarse/listening'];
+  const done = Object.fromEntries(ids.map(id => [id, {stars: 3, acc: 100, at: '2026-11-09'}]));
+  const ver = Object.fromEntries(ids.map(id => [id, {v: 2}]));
+  const run = context(site, new Map([['espanol-cada-dia.v1', JSON.stringify({done, ver, xp: 60})]]));
+  for (const id of ids) {
+    const i = idx(run, id);
+    assert.equal(run(`LESSONS[${i}].version`), 3, id);
+    assert.equal(run(`isDone(${i}) && isOutdated(${i})`), true, id);
+    assert.equal(run(`P.done[${JSON.stringify(id)}].stars`), 3, id);
+  }
+  assert.equal(run(`isCurrent(${idx(run, 'presentarse/vocab')})`), false, 'vocab не пройден — и не отмечен');
+  assert.equal(run('P.xp'), 60);
+  assert.match(run('view.level = "A0"; courseView()'), /Урок обновлён — пройти новую версию/);
+});
+
 test('приёмка 8 на реальных уроках: numeros/dictado и hora/escucha без звука не засчитываются пустыми, с альтернативой — «без звука»', () => {
   for (const id of ['numeros/dictado', 'hora/escucha']) {
     const run = context(site);   // нет записей и испанского голоса
