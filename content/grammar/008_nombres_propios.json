@@ -818,414 +818,217 @@
     },
     {
       "id": "8.3",
-      "title": "8.3 · Города, страны, реки",
-      "instruction": "В первых заданиях выбери или впиши артикль, затем вспоминай его самостоятельно. Если артикль не нужен, нажми «Без артикля». Для некоторых названий допустимы оба варианта.",
+      "title": "8.3 · Географические названия: четыре случая",
+      "instruction": "Различай обычные названия, встроенный артикль, географический объект и страны с двумя нормативными формами.",
       "questions": [
         {
-          "prompt": "___ Habana es la capital de Cuba.",
+          "prompt": "Какое предложение правильно называет город Гавана?",
           "answers": [
-            "La"
+            "Mi hermana vive en La Habana."
           ],
-          "explain": "La — часть названия La Habana.",
           "options": [
-            "El",
-            "Los",
-            "Без артикля",
-            "La"
+            "Mi hermana vive en La Habana.",
+            "Mi hermana vive en Habana.",
+            "Mi hermana vive en el Habana."
           ],
+          "context": "Сестра рассказывает, в каком городе живёт.",
+          "explain": "Название города — `La Habana`: `La` является обязательной частью имени даже внутри предложения.",
           "sourceRef": "8.3.1",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "choice"
         },
         {
-          "prompt": "La Habana es la capital de ___ Cuba.",
+          "prompt": "Mis amigos viven en ___ Madrid.",
           "answers": [
             "Без артикля"
           ],
-          "explain": "Cuba обычно употребляется без артикля.",
-          "options": [
-            "Без артикля",
-            "las",
-            "la",
-            "los",
-            "el"
-          ],
+          "context": "Друзья рассказывают о городе, где учатся.",
+          "explain": "Название `Madrid` в обычном контексте употребляется без артикля: `viven en Madrid`. Здесь правильное действие — кнопка «Без артикля».",
           "sourceRef": "8.3.1",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "article-input"
         },
         {
-          "prompt": "___ India está en Asia.",
+          "prompt": "Ana trabaja en ___ Francia.",
           "answers": [
-            "la",
             "Без артикля"
           ],
-          "explain": "Допустимы la India и India.",
-          "sourceRef": "8.3.2",
-          "context": "Дополни предложение."
-        },
-        {
-          "prompt": "India está en ___ Asia.",
-          "answers": [
-            "Без артикля",
-            "el"
-          ],
-          "explain": "Название Asia обычно используют без артикля, но el Asia тоже допустимо.",
-          "sourceRef": "8.3.2",
-          "context": "Дополни предложение."
-        },
-        {
-          "prompt": "___ islas Galápagos están en Ecuador.",
-          "answers": [
-            "las"
-          ],
-          "explain": "Группа островов: las islas Galápagos.",
           "options": [
             "Без артикля",
-            "los",
-            "las",
             "la",
             "el"
           ],
-          "sourceRef": "8.3.3",
-          "context": "Дополни предложение.",
+          "context": "Ана сообщает, в какой стране работает.",
+          "explain": "В нейтральной фразе название страны `Francia` не требует артикля: `trabaja en Francia`.",
+          "sourceRef": "8.3.10",
           "interaction": "gap-choice"
         },
         {
-          "prompt": "Las islas Galápagos están en ___ Ecuador.",
+          "prompt": "La familia pasa un mes en ___ Ángeles.",
           "answers": [
-            "Без артикля",
-            "el"
+            "Los"
           ],
-          "explain": "Допустимы Ecuador и el Ecuador.",
-          "sourceRef": "8.3.3",
-          "context": "Дополни предложение."
+          "context": "Семья живёт месяц в Лос-Анджелесе.",
+          "explain": "`Los` — обязательная часть собственного названия города `Los Ángeles`, которую сохраняем и после предлога `en`.",
+          "sourceRef": "8.3.5",
+          "interaction": "article-input"
         },
         {
-          "prompt": "___ Salvador está entre Guatemala y Honduras.",
+          "prompt": "Mi tío vive en ___ Salvador.",
           "answers": [
             "El"
           ],
-          "explain": "El — часть названия El Salvador.",
           "options": [
-            "La",
             "El",
             "Без артикля",
-            "Los"
-          ],
-          "sourceRef": "8.3.4",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "El Salvador está entre ___ Guatemala y Honduras.",
-          "answers": [
-            "Без артикля"
-          ],
-          "explain": "Guatemala обычно без артикля.",
-          "options": [
-            "el",
-            "la",
-            "los",
-            "las",
-            "Без артикля"
-          ],
-          "sourceRef": "8.3.4",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "El Salvador está entre Guatemala y ___ Honduras.",
-          "answers": [
-            "Без артикля"
-          ],
-          "explain": "Honduras обычно без артикля.",
-          "options": [
-            "la",
-            "el",
-            "los",
-            "las",
-            "Без артикля"
-          ],
-          "sourceRef": "8.3.4",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "___ Ángeles está en California.",
-          "answers": [
-            "Los"
-          ],
-          "explain": "Los — часть названия Los Ángeles.",
-          "options": [
-            "Los",
-            "Без артикля",
-            "El",
             "La"
           ],
-          "sourceRef": "8.3.5",
-          "context": "Дополни предложение.",
+          "context": "Дядя рассказывает о своей стране.",
+          "explain": "Собственное имя страны — `El Salvador`. `El` не отбрасывают даже в середине фразы: `vive en El Salvador`.",
+          "sourceRef": "8.3.4",
           "interaction": "gap-choice"
         },
         {
-          "prompt": "Los Ángeles está en ___ California.",
+          "prompt": "En esta foto vemos ___ lago Titicaca.",
           "answers": [
-            "Без артикля"
+            "el"
           ],
-          "explain": "California обычно без артикля.",
+          "context": "Ты показываешь другу снимок озера.",
+          "explain": "`Lago` — нарицательное существительное мужского рода, поэтому пишем `el lago Titicaca`. Здесь `el` не является частью имени `Titicaca`.",
+          "sourceRef": "8.3.6",
+          "interaction": "article-input"
+        },
+        {
+          "prompt": "Почему в названии «el lago Titicaca» стоит el?",
+          "answers": [
+            "Артикль согласуется со словом lago."
+          ],
           "options": [
-            "las",
+            "Артикль согласуется со словом lago.",
+            "El входит в имя Titicaca.",
+            "Все страны с названием на -a требуют el."
+          ],
+          "context": "Разбирают подпись под фотографией озера.",
+          "explain": "Нужен обычный определённый артикль перед мужским существительным `lago`. С `El Salvador` ситуация иная: там `El` часть имени.",
+          "sourceRef": "8.3.6",
+          "interaction": "choice"
+        },
+        {
+          "prompt": "Mi abuelo vive en ___ Perú.",
+          "answers": [
             "Без артикля",
-            "la",
-            "el",
+            "el"
+          ],
+          "context": "Дедушка живёт в Перу.",
+          "explain": "Оба варианта нормативны: `vive en Perú` и `vive en el Perú`. `El` здесь не часть имени и пишется со строчной буквы в середине фразы.",
+          "sourceRef": "8.3.6",
+          "interaction": "article-input"
+        },
+        {
+          "prompt": "En el atlas están ___ Pirineos.",
+          "answers": [
             "los"
           ],
-          "sourceRef": "8.3.5",
-          "context": "Дополни предложение.",
+          "options": [
+            "los",
+            "las",
+            "Без артикля"
+          ],
+          "context": "Ты показываешь другу горную цепь на карте.",
+          "explain": "Название горной цепи обычно употребляется с артиклем мужского рода множественного числа: `los Pirineos`.",
+          "sourceRef": "8.3.12",
           "interaction": "gap-choice"
         },
         {
-          "prompt": "___ lago Titicaca está entre Perú y Bolivia.",
+          "prompt": "La guía trabaja en ___ India.",
           "answers": [
-            "el"
-          ],
-          "explain": "Артикль относится к слову lago.",
-          "sourceRef": "8.3.6",
-          "context": "Дополни предложение.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "El lago Titicaca está entre ___ Perú y Bolivia.",
-          "answers": [
-            "Без артикля",
-            "el"
-          ],
-          "explain": "Допустимы Perú и el Perú.",
-          "sourceRef": "8.3.6",
-          "context": "Дополни предложение.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "El lago Titicaca está entre Perú y ___ Bolivia.",
-          "answers": [
+            "la",
             "Без артикля"
           ],
-          "explain": "Bolivia обычно без артикля.",
-          "sourceRef": "8.3.6",
-          "context": "Дополни предложение.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
+          "context": "Гид сообщает страну работы.",
+          "explain": "Можно сказать `trabaja en la India` (рекомендуемый вариант) или `trabaja en India`. Оба допустимы; `la` — необязательный артикль со строчной буквы.",
+          "sourceRef": "8.3.2",
+          "interaction": "article-input"
         },
         {
-          "prompt": "___ Amazonas es un río de América del Sur.",
+          "prompt": "Почему оба предложения «Vivo en India» и «Vivo en la India» допустимы?",
           "answers": [
-            "el"
+            "Артикль la с India необязателен."
           ],
-          "explain": "С названием реки используем el Amazonas.",
-          "sourceRef": "8.3.7",
-          "context": "Дополни предложение.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
+          "options": [
+            "Артикль la с India необязателен.",
+            "La входит в собственное имя, как в La Habana.",
+            "С названиями стран всегда пишется el."
+          ],
+          "context": "Ты сравниваешь два сообщения путешественников.",
+          "explain": "`India` допускает обе формы, хотя `la India` обычно предпочтительнее. В имени `La Habana` артикль, напротив, обязателен.",
+          "sourceRef": "extra",
+          "interaction": "choice"
         },
         {
-          "prompt": "El Amazonas es un río de ___ América del Sur.",
-          "answers": [
-            "Без артикля"
-          ],
-          "explain": "Название континента — без артикля.",
-          "sourceRef": "8.3.7",
-          "context": "Дополни предложение.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ Jamaica está en el mar Caribe.",
-          "answers": [
-            "Без артикля"
-          ],
-          "explain": "Название острова Jamaica обычно без артикля.",
-          "sourceRef": "8.3.8",
-          "context": "Дополни предложение.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "Jamaica está en ___ mar Caribe.",
-          "answers": [
-            "el"
-          ],
-          "explain": "Артикль относится к слову mar: el mar Caribe.",
-          "sourceRef": "8.3.8",
-          "context": "Дополни предложение.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ Puerto Rico está en las Antillas.",
-          "answers": [
-            "Без артикля"
-          ],
-          "explain": "Puerto Rico обычно без артикля.",
-          "sourceRef": "8.3.9",
-          "context": "Дополни предложение.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "Puerto Rico está en ___ islas Antillas.",
-          "answers": [
-            "las"
-          ],
-          "explain": "Группа островов: las islas Antillas.",
-          "sourceRef": "8.3.9",
-          "context": "Дополни предложение.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ Francia está en Europa.",
-          "answers": [
-            "Без артикля"
-          ],
-          "explain": "Francia обычно без артикля.",
-          "sourceRef": "8.3.10",
-          "context": "Дополни предложение.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "Francia está en ___ Europa.",
-          "answers": [
-            "Без артикля"
-          ],
-          "explain": "Europa обычно без артикля.",
-          "sourceRef": "8.3.10",
-          "context": "Дополни предложение.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ Pampa es una provincia de Argentina.",
-          "answers": [
-            "La"
-          ],
-          "explain": "La — часть названия провинции La Pampa.",
-          "sourceRef": "8.3.11",
-          "context": "Дополни предложение.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "La Pampa es una provincia de ___ Argentina.",
+          "prompt": "Mi amiga nació en ___ Argentina.",
           "answers": [
             "Без артикля",
             "la"
           ],
-          "explain": "Употребляются Argentina и la Argentina; оба варианта допустимы.",
+          "context": "Подруга рассказывает, в какой стране родилась.",
+          "explain": "В нейтральном контексте допустимы `nació en Argentina` и `nació en la Argentina`. Это вариативный обычный артикль, а не часть имени.",
           "sourceRef": "8.3.11",
-          "context": "Дополни предложение.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
+          "interaction": "article-input"
         },
         {
-          "prompt": "___ Pirineos están entre España y Francia.",
+          "prompt": "En el mapa vemos ___ Amazonas.",
           "answers": [
-            "los"
+            "el"
           ],
-          "explain": "Название горной цепи: los Pirineos.",
-          "sourceRef": "8.3.12",
-          "context": "Дополни предложение.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "Los Pirineos están entre ___ España y Francia.",
-          "answers": [
+          "options": [
+            "el",
+            "la",
             "Без артикля"
           ],
-          "explain": "España обычно без артикля.",
-          "sourceRef": "8.3.12",
-          "context": "Дополни предложение.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
+          "context": "Смотришь на реку Амазонку в атласе.",
+          "explain": "Реку называют `el Amazonas`; это обычное употребление артикля с географическим объектом, не обязательное начало имени города.",
+          "sourceRef": "8.3.7",
+          "interaction": "gap-choice"
         },
         {
-          "prompt": "Los Pirineos están entre España y ___ Francia.",
+          "prompt": "Mi amiga vive en ___ Ecuador.",
           "answers": [
-            "Без артикля"
+            "Без артикля",
+            "el"
           ],
-          "explain": "Francia обычно без артикля.",
-          "sourceRef": "8.3.12",
-          "context": "Дополни предложение.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
+          "context": "Подруга рассказывает, где живёт.",
+          "explain": "Оба варианта нормативны: `vive en Ecuador` и `vive en el Ecuador`. Артикль со строчной буквы факультативен, не часть названия страны.",
+          "sourceRef": "8.3.3",
+          "interaction": "article-input"
+        },
+        {
+          "prompt": "¿Как правильно подписать знакомый контраст?",
+          "answers": [
+            "Madrid — без артикля; La Habana — с артиклем как частью имени."
+          ],
+          "options": [
+            "Madrid — без артикля; La Habana — с артиклем как частью имени.",
+            "Madrid — с обязательным El; Habana — без La.",
+            "Madrid и Habana всегда употребляются с la."
+          ],
+          "context": "Сравни обычное название и имя города со встроенным артиклем.",
+          "explain": "`Madrid` обычно используется без артикля, но в `La Habana` начальное `La` неотделимо от собственного имени; это разные грамматические ситуации.",
+          "sourceRef": "extra",
+          "interaction": "choice"
         }
       ],
       "preview": {
-        "source": "___ Habana está en Cuba.",
+        "source": "Mi amiga nació en ___ Argentina.",
         "sentenceParts": [
-          "",
-          " Habana está en Cuba."
+          "Mi amiga nació en ",
+          " Argentina."
         ],
-        "answer": "La",
-        "translation": "Гавана находится на Кубе.",
-        "targetPrefix": "",
-        "tip": ""
+        "answer": "Без артикля",
+        "translation": "Подруга родилась в Аргентине: оба варианта допустимы.",
+        "targetPrefix": ""
       },
-      "inputLabel": "Выбор ответа · Короткий ввод",
+      "inputLabel": "Топонимы · Решение · Артикль / ∅",
       "inputFormat": {
-        "instruction": "Впиши только определённый артикль, если он нужен. Если артикля нет, введи ∅ или дефис (-). Название не повторяй.",
-        "example": "el (как в el río) / ∅",
+        "instruction": "Впиши только артикль el, la, los, las или нажми «Без артикля». Само название не повторяй.",
         "placeholder": "Артикль или ∅"
       },
       "theorySections": [
@@ -1236,222 +1039,205 @@
     },
     {
       "id": "8.4",
-      "title": "8.4 · Имена и адреса в разговоре",
-      "instruction": "Выбери артикль или «∅».",
+      "title": "8.4 · Al/del или a El/de El?",
+      "instruction": "Сравни обычный артикль с артиклем в собственном имени. Вписывай один или два слова по инструкции конкретного поля.",
       "questions": [
         {
-          "prompt": "Estamos en ___ museo del Prado.",
+          "prompt": "Как сказать, что идёшь в обычный музей?",
           "answers": [
-            "el"
+            "Voy al museo."
           ],
-          "explain": "Артикль относится к слову museo.",
           "options": [
-            "el",
-            "Без артикля",
-            "la"
+            "Voy al museo.",
+            "Voy a el museo.",
+            "Voy a la museo."
           ],
+          "context": "Собираешься на выставку.",
+          "explain": "С обычным существительным `museo` (мужской род) пишется `al`: предлог `a` и артикль `el` сливаются.",
           "sourceRef": "8.4.1",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "choice"
         },
         {
-          "prompt": "___ Felipe estudia en la Universidad de Alcalá.",
+          "prompt": "Después de clase voy ___ museo.",
           "answers": [
-            "Без артикля"
+            "al"
           ],
-          "explain": "Перед обычным именем Felipe артикля нет.",
-          "options": [
-            "el",
-            "la",
-            "Без артикля"
-          ],
-          "sourceRef": "8.4.2",
-          "context": "Дополни фразу в нейтральной речи, без разговорного артикля перед именем.",
-          "interaction": "gap-choice"
+          "context": "После урока ты идёшь в музей.",
+          "explain": "`Museo` — обычное существительное. `a + el` обязательно образует одно слово `al`: `voy al museo`.",
+          "sourceRef": "8.4.1",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Впиши ровно одно слово — слитную форму предлога с артиклем.",
+            "placeholder": "Одно слово"
+          }
         },
         {
-          "prompt": "Felipe estudia en ___ Universidad de Alcalá.",
+          "prompt": "Как сказать, что вернулся из музея?",
           "answers": [
-            "la"
+            "Vengo del museo."
           ],
-          "explain": "Universidad — женский род.",
           "options": [
-            "Без артикля",
-            "el",
-            "la"
+            "Vengo del museo.",
+            "Vengo de El museo.",
+            "Vengo del El museo."
           ],
-          "sourceRef": "8.4.2",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "context": "Ты возвращаешься с экскурсии.",
+          "explain": "Перед обычным существительным `museo` пишется `del`: предлог `de` сливается с обычным артиклем `el`.",
+          "sourceRef": "extra",
+          "interaction": "choice"
         },
         {
-          "prompt": "___ doctora Sonia trabaja en el Hospital Doce de Octubre.",
+          "prompt": "Mi hermana vuelve ___ museo.",
           "answers": [
-            "la"
+            "del"
           ],
-          "explain": "Говорим о докторе Соне.",
-          "options": [
-            "la",
-            "Без артикля",
-            "el"
-          ],
-          "sourceRef": "8.4.3",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "context": "Сестра возвращается из музея.",
+          "explain": "С существительным `museo` после предлога `de` нужна слитная форма `del`: `vuelve del museo`.",
+          "sourceRef": "extra",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Впиши ровно одно слово — слитную форму предлога с артиклем.",
+            "placeholder": "Одно слово"
+          }
         },
         {
-          "prompt": "La doctora Sonia trabaja en ___ Hospital Doce de Octubre.",
+          "prompt": "Какое сообщение о поездке в Сальвадор написано правильно?",
           "answers": [
-            "el"
+            "Viajo a El Salvador."
           ],
-          "explain": "Hospital — мужской род.",
           "options": [
-            "la",
-            "el",
-            "Без артикля"
+            "Viajo a El Salvador.",
+            "Viajo al Salvador.",
+            "Viajo a Salvador."
           ],
-          "sourceRef": "8.4.3",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Jorge vive en ___ Paz.",
-          "answers": [
-            "La"
-          ],
-          "explain": "La — часть названия La Paz.",
-          "options": [
-            "La",
-            "El",
-            "Без артикля"
-          ],
-          "sourceRef": "8.4.4",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "___ Cairo está en Egipto.",
-          "answers": [
-            "El"
-          ],
-          "explain": "El — часть названия El Cairo.",
-          "options": [
-            "Без артикля",
-            "La",
-            "El"
-          ],
-          "sourceRef": "8.4.5",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "El Cairo está en ___ Egipto.",
-          "answers": [
-            "Без артикля"
-          ],
-          "explain": "Egipto обычно без артикля.",
-          "options": [
-            "la",
-            "Без артикля",
-            "el"
-          ],
-          "sourceRef": "8.4.5",
-          "context": "Дополни фразу в нейтральной речи, без разговорного артикля перед именем.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "___ Pancho vive en Monterrey.",
-          "answers": [
-            "Без артикля"
-          ],
-          "explain": "Перед обычным именем Pancho артикля нет.",
-          "options": [
-            "el",
-            "la",
-            "Без артикля"
-          ],
-          "sourceRef": "8.4.6",
-          "context": "Дополни фразу в нейтральной речи, без разговорного артикля перед именем.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Pancho vive en ___ Monterrey.",
-          "answers": [
-            "Без артикля"
-          ],
-          "explain": "Название города Monterrey — без артикля.",
-          "options": [
-            "Без артикля",
-            "el",
-            "la"
-          ],
-          "sourceRef": "8.4.6",
-          "context": "Дополни фразу в нейтральной речи, без разговорного артикля перед именем.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Este queso es de ___ Mancha.",
-          "answers": [
-            "la"
-          ],
-          "explain": "Перед названием области la Mancha артикль пишется с маленькой буквы.",
-          "options": [
-            "la",
-            "el",
-            "Без артикля"
-          ],
+          "context": "Ты пишешь знакомому о поездке.",
+          "explain": "`El` входит в название страны `El Salvador` и пишется с большой буквы; с предлогом `a` не сокращается: `a El Salvador`.",
           "sourceRef": "8.4.7",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "choice"
         },
         {
-          "prompt": "___ cine Cartago está en la calle Buenos Aires.",
+          "prompt": "Mañana viajo ___ Salvador.",
           "answers": [
-            "el"
+            "a El"
           ],
-          "explain": "Cine — мужской род.",
-          "options": [
-            "la",
-            "el",
-            "Без артикля"
-          ],
-          "sourceRef": "8.4.8",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "context": "Ты рассказываешь о завтрашней поездке.",
+          "explain": "В названии `El Salvador` начальное `El` — часть имени. После `a` нужно **два слова**: `a El Salvador`, не `al Salvador`.",
+          "sourceRef": "extra",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Впиши ровно два слова: предлог и первую часть собственного названия; остальное уже написано.",
+            "placeholder": "Два слова через пробел"
+          }
         },
         {
-          "prompt": "El cine Cartago está en ___ calle Buenos Aires.",
+          "prompt": "Как исправить «Mi amigo viene del Cairo»?",
           "answers": [
-            "la"
+            "Mi amigo viene de El Cairo."
           ],
-          "explain": "Calle — женский род.",
           "options": [
-            "Без артикля",
-            "la",
-            "el"
+            "Mi amigo viene de El Cairo.",
+            "Mi amigo viene de Cairo.",
+            "Mi amigo viene del El Cairo."
           ],
+          "context": "Друг написал сообщение из поездки.",
+          "explain": "Название `El Cairo` содержит `El`; после `de` сокращения нет. Пишем `de El Cairo`, два слова.",
+          "sourceRef": "extra",
+          "interaction": "choice"
+        },
+        {
+          "prompt": "Mi amigo viene ___ Cairo.",
+          "answers": [
+            "de El"
+          ],
+          "context": "Друг возвращается из Каира.",
+          "explain": "`El` входит в имя `El Cairo`, поэтому после `de` остаются два отдельных слова: `de El Cairo`, а не `del Cairo`.",
+          "sourceRef": "extra",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Впиши ровно два слова: предлог и первую часть собственного названия; остальное уже написано.",
+            "placeholder": "Два слова через пробел"
+          }
+        },
+        {
+          "prompt": "Как правильно сказать, что вы возвращаетесь из Гаваны?",
+          "answers": [
+            "Volvemos de La Habana."
+          ],
+          "options": [
+            "Volvemos de La Habana.",
+            "Volvemos del Habana.",
+            "Volvemos de Habana."
+          ],
+          "context": "Вы только что вернулись из поездки.",
+          "explain": "`La` — обязательная часть названия города `La Habana`, поэтому после предлога `de` остаётся `de La Habana` без слияния.",
+          "sourceRef": "extra",
+          "interaction": "choice"
+        },
+        {
+          "prompt": "Volvemos ___ Habana.",
+          "answers": [
+            "de La"
+          ],
+          "context": "Ты рассказываешь друзьям, откуда приехал.",
+          "explain": "Название города — `La Habana`, и его первая часть сохраняется: `de La Habana`. Нужно два слова `de La`.",
+          "sourceRef": "extra",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Впиши ровно два слова: предлог и первую часть собственного названия; остальное уже написано.",
+            "placeholder": "Два слова через пробел"
+          }
+        },
+        {
+          "prompt": "Какое противопоставление записано грамматически верно?",
+          "answers": [
+            "del museo / de El Cairo"
+          ],
+          "options": [
+            "del museo / de El Cairo",
+            "de El museo / del Cairo",
+            "de el museo / de Cairo"
+          ],
+          "context": "Сравни обычное учреждение и собственное имя города.",
+          "explain": "`De + el museo` обязательно сокращается до `del museo`; в названии `El Cairo` артикль не сокращается с `de`.",
+          "sourceRef": "extra",
+          "interaction": "choice"
+        },
+        {
+          "prompt": "Как написать сообщение о встрече на улице?",
+          "answers": [
+            "Nos vemos en la calle Mayor."
+          ],
+          "options": [
+            "Nos vemos en la calle Mayor.",
+            "Nos vemos en Calle Mayor, 5.",
+            "Nos vemos en el calle Mayor."
+          ],
+          "context": "Друг спрашивает название улицы, не номер дома.",
+          "explain": "В связной речи говорим `en la calle Mayor`. На адресной строке возможно `Calle Mayor, 5`, но это не форма ответа на вопрос.",
           "sourceRef": "8.4.8",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "interaction": "choice"
         }
       ],
       "preview": {
-        "source": "Jorge vive en ___ Paz.",
+        "source": "Mañana viajo ___ Salvador.",
         "sentenceParts": [
-          "Jorge vive en ",
-          " Paz."
+          "Mañana viajo ",
+          " Salvador."
         ],
-        "answer": "La",
-        "translation": "Хорхе живёт в Ла-Пасе.",
-        "targetPrefix": "",
-        "tip": ""
+        "answer": "a El",
+        "translation": "Завтра я еду в Сальвадор.",
+        "targetPrefix": ""
       },
-      "inputLabel": "Выбор ответа",
+      "inputLabel": "Предлог + артикль · Реплики · Два слова",
       "theorySections": [
         3
       ],
-      "allowNoArticle": true,
-      "revision": 2
+      "allowNoArticle": false,
+      "revision": 2,
+      "inputFormat": {
+        "instruction": "Впиши форму предлога с артиклем. Если нужно, оба слова через пробел. Остальное предложение не переписывай.",
+        "placeholder": "Одно или два слова"
+      }
     }
   ],
   "learningOrder": [
