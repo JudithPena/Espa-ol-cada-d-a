@@ -310,10 +310,16 @@ def run_unit08_correct_case(browser, width, route, qi, answer):
         page.reload(wait_until="domcontentloaded")
         page.wait_for_function("typeof gStart==='function' && Array.isArray(COURSE.grammar) && COURSE.grammar.length>0",timeout=30000)
         page.evaluate(PREPARE,{"number":8,"route":route,"qi":qi})
-        html=page.locator(".gplayer").inner_text()
-        assert_true("El señor Alonso" in html, f"u8 {route}: unit header missing")
-        if route.startswith("exercise:"):
-            assert_true(route.split(":")[1] in html, f"u8 {route}: group name missing")
+        # The site-level lesson header lives outside .gplayer; assert the actual
+        # rendered exercise route and capture the visible heading for manual review.
+        item["visible_headings"]=page.locator("h1,h2,h3,.gplayer .ptitle").all_inner_texts()[:12]
+        active=page.evaluate("""() => ({
+          unit:gUnit().number, group:G.steps[G.at].group, qi:G.steps[G.at].qi,
+          title:gUnit().title
+        })""")
+        assert_true(active=={"unit":8,"group":route.split(":")[1],"qi":qi,
+                             "title":"El señor Alonso, la calle Mayor"},
+                    f"u8 {route}: wrong active lesson or exercise {active}")
         item["initial_layout"]=check_layout(page,"unit8 correct "+route)
         assert_true(page.evaluate("gQuestionMode(gGroups(gUnit()).find(g=>g.id===G.steps[G.at].group).questions[G.steps[G.at].qi],gResponse(G.steps[G.at]))")=="input",
                     f"u8 {route} #{qi}: intended input control missing")
