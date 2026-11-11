@@ -55,7 +55,14 @@ def test_inconsistent_accent_rules_are_blocked(mode,pairs,issue):
 
 
 def test_unrelated_external_grammar_directory_does_not_inherit_site_policy(tmp_path):
-    first=next(GRAMMAR.glob("001_*.json"))
-    (tmp_path/"001_fixture.json").write_bytes(first.read_bytes())
+    minimal={
+        "id":"test_external",
+        "number":1,
+        "title":"Fixture",
+        "sections":[],
+        "exercises":[{"id":"fixture.1","title":"Test","instruction":"Answer",
+                      "questions":[{"prompt":"¿Qué es?","answers":["casa"],"explain":"Sustantivo."}]}]
+    }
+    (tmp_path/"001_fixture.json").write_text(json.dumps(minimal,ensure_ascii=False),encoding="utf8")
     [unit]=load_grammar(tmp_path)
     assert "accentPolicy" not in unit["exercises"][0]["questions"][0]
