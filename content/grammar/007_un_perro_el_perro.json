@@ -69,7 +69,7 @@
             "context": "Первая фраза уже представила животное."
           },
           {
-            "prompt": "He comprado una lámpara. ___ lámpara es blanca.",
+            "prompt": "Tengo una lámpara. ___ lámpara es blanca.",
             "answers": [
               "la"
             ],
@@ -295,7 +295,7 @@
       "instruction": "Читай небольшую историю о фильме. Выбирай или вводи артикль: предмет только появляется или уже известен? В каждом вопросе есть достаточный испанский контекст.",
       "questions": [
         {
-          "prompt": "He visto ___ película de aventuras.",
+          "prompt": "Veo ___ película de aventuras.",
           "answers": [
             "una"
           ],
@@ -319,7 +319,7 @@
             "la"
           ],
           "sourceRef": "extra",
-          "context": "Перед этим собеседник сказал: «He visto una película de aventuras».",
+          "context": "Перед этим собеседник сказал: «Veo una película de aventuras».",
           "interaction": "gap-choice"
         },
         {
@@ -626,18 +626,18 @@
           }
         },
         {
-          "prompt": "Paco es ___ nombre español.",
+          "prompt": "¿Qué frase pide una galleta cualquiera?",
           "answers": [
-            "un"
+            "Quiero una galleta."
           ],
-          "explain": "`Paco` — один из многих испанских имён, поэтому `un nombre español`. `El` называл бы конкретное, уже выделенное имя.",
+          "explain": "Обе фразы грамматически правильны, но `una galleta` означает любое печенье из коробки; `la galleta` отсылало бы к определённому, уже знакомому печенью.",
           "options": [
-            "el",
-            "un"
+            "Quiero una galleta.",
+            "Quiero la galleta."
           ],
           "sourceRef": "extra",
-          "context": "Объясняем человеку, что означает слово Paco.",
-          "interaction": "gap-choice"
+          "context": "Гостю предлагают печенье из коробки. Он ещё не выбрал конкретное.",
+          "interaction": "choice"
         },
         {
           "prompt": "— ¿Quieres ___ taza de café? — Sí, gracias.",
@@ -691,14 +691,14 @@
           }
         },
         {
-          "prompt": "He comprado ___ peras para la merienda.",
+          "prompt": "Compro ___ peras para la merienda.",
           "answers": [
             "unas",
             "Без артикля"
           ],
           "explain": "`Unas peras` подчёркивает некоторое количество груш; `peras` без артикля тоже нормально: количество не выделено. `Las peras` предполагало бы уже известные собеседнику груши.",
           "sourceRef": "extra",
-          "context": "О покупке говорят впервые, каких-либо ранее обсуждавшихся груш нет.",
+          "context": "Покупку обсуждают впервые: эти груши ранее не упоминались.",
           "interaction": "article-input",
           "inputFormat": {
             "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
@@ -791,14 +791,14 @@
           }
         },
         {
-          "prompt": "Me han regalado ___ bombones.",
+          "prompt": "Tengo ___ bombones para los invitados.",
           "answers": [
             "unos",
             "Без артикля"
           ],
-          "explain": "`Unos bombones` сообщает о некотором количестве конфет; `bombones` без артикля тоже естественно, если количество не важно. Это не два разных правила «верно/неверно».",
+          "explain": "`Unos bombones` подчёркивает некоторое количество конфет, `bombones` без артикля сообщает об их наличии. Оба варианта уместны, когда ещё не говорили о конкретных конфетах.",
           "sourceRef": "extra",
-          "context": "Рассказываем о подарке впервые, число конфет неизвестно.",
+          "context": "Дома есть конфеты для гостей; важнее их наличие, чем количество.",
           "interaction": "article-input",
           "inputFormat": {
             "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
@@ -820,18 +820,18 @@
           "interaction": "gap-choice"
         },
         {
-          "prompt": "Quiero ___ vaso de agua, por favor.",
+          "prompt": "¿Qué frase habla de los perros en general?",
           "answers": [
-            "un"
+            "Me gustan los perros."
           ],
-          "explain": "Просим один стакан (`un vaso`) воды; `el vaso` относился бы к определённому стакану. Перед `agua` здесь стоит существительное `vaso`.",
+          "explain": "Обе фразы корректны, но `los perros` обозначает собак как вид. `Unos perros` выделяет лишь некоторую группу собак; это было бы другое значение.",
+          "options": [
+            "Me gustan unos perros.",
+            "Me gustan los perros."
+          ],
           "sourceRef": "extra",
-          "context": "Гость просит пить, конкретного стакана ещё нет.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
-            "placeholder": "Артикль"
-          }
+          "context": "Человек рассказывает, какие животные ему нравятся вообще.",
+          "interaction": "choice"
         },
         {
           "prompt": "Cuando estudio, bebo ___ agua.",
