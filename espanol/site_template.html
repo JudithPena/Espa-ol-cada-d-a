@@ -129,6 +129,14 @@ h2 + .btn.wide, h2 + .muted { margin-top: 10px; display: flex; }
 .book-overview p { margin: 10px 0 0; }
 .book-overview .muted { display: block; }
 .book-availability { font-weight: 600; color: var(--accent); }
+.book-series { margin: 20px 0; }
+.book-series-list { display: grid; gap: 8px; margin-top: 12px; }
+.book-series-item { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); text-align: left; font: inherit; }
+button.book-series-item { cursor: pointer; }
+button.book-series-item:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.book-series-item span { min-width: 0; overflow-wrap: anywhere; }
+.book-series-item small { flex: none; color: var(--accent); font-weight: 700; }
+.book-series-item[aria-current="page"] { background: var(--accent-soft); border-color: var(--accent); }
 .mcard.book-card { grid-template-columns: 80px minmax(0, 1fr) 18px; }
 .book-card > span { min-width: 0; }
 .book-card small { display: block; margin-top: 6px; line-height: 1.45; }
@@ -2534,12 +2542,21 @@ function bookChapterLabel(chapter) {
 function bookTitle(book) {
   return `${book.series ? `${book.series.number}. ` : ""}${book.title}`;
 }
+function bookSeriesView(book) {
+  if (!book.series) return "";
+  const siblings = (COURSE.books || []).filter(b => b.series?.id === book.series.id).sort((a, b) => a.series.number - b.series.number);
+  if (siblings.length < 2) return "";
+  const collection = book.series.id === "olly-richards-short-stories-beginners";
+  return `<details class="book-series"><summary>${collection ? "Все рассказы сборника" : "Книги этой серии"} (${siblings.length})</summary><div class="book-series-list">${siblings.map(b => b.id === book.id
+    ? `<div class="book-series-item" aria-current="page"><span>${esc(bookTitle(b))}</span><small>${esc(b.level)}</small></div>`
+    : `<button type="button" class="book-series-item" data-book-id="${esc(b.id)}"><span>${esc(bookTitle(b))}</span><small>${esc(b.level)}</small></button>`).join("")}</div></details>`;
+}
 function bookChaptersView() {
   const b = bookById(view.book);
   if (!b) return booksView();
   const catalog = b.chapter_catalog || b.chapters;
   const available = new Set(b.chapters.map(c => c.id));
-  return `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(b.level)}</button><section class="book-overview">${b.cover ? `<img class="book-cover-large" src="${esc(b.cover)}" alt="">` : ""}<h2>${esc(bookTitle(b))}</h2><p class="muted">${b.series ? esc(b.series.title) + " · " : ""}${esc(b.author)}</p>${catalog.length ? `<p class="book-availability">Доступно ${b.chapters.length} из ${catalog.length} глав</p>` : ""}</section><h3>Главы</h3>${catalog.length ? `<div class="menu">${catalog.map(c => { const ready = available.has(c.id); return `<button class="mcard book-chapter-card" ${ready ? `data-book-chapter="${esc(c.id)}"` : 'disabled'}><span class="mi" aria-hidden="true">${esc(c.icon || "📖")}</span><span class="book-chapter-label"><b>${esc(bookChapterLabel(c))}</b>${ready ? "" : '<small class="book-chapter-soon">Скоро</small>'}</span><span class="book-chapter-arrow" aria-hidden="true">${ready ? "›" : ""}</span></button>`; }).join("")}</div>` : '<p class="muted">Опубликованных глав пока нет.</p>'}`;
+  return `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(b.level)}</button><section class="book-overview">${b.cover ? `<img class="book-cover-large" src="${esc(b.cover)}" alt="">` : ""}<h2>${esc(bookTitle(b))}</h2><p class="muted">${b.series ? esc(b.series.title) + " · " : ""}${esc(b.author)}</p>${catalog.length ? `<p class="book-availability">Доступно ${b.chapters.length} из ${catalog.length} глав</p>` : ""}</section>${bookSeriesView(b)}<h3>Главы</h3>${catalog.length ? `<div class="menu">${catalog.map(c => { const ready = available.has(c.id); return `<button class="mcard book-chapter-card" ${ready ? `data-book-chapter="${esc(c.id)}"` : 'disabled'}><span class="mi" aria-hidden="true">${esc(c.icon || "📖")}</span><span class="book-chapter-label"><b>${esc(bookChapterLabel(c))}</b>${ready ? "" : '<small class="book-chapter-soon">Скоро</small>'}</span><span class="book-chapter-arrow" aria-hidden="true">${ready ? "›" : ""}</span></button>`; }).join("")}</div>` : '<p class="muted">Опубликованных глав пока нет.</p>'}`;
 }
 // Переход по разделу книг: меняет экран, а запись в историю (адрес #books/…) делает navSync() в render().
 function bookGo(level = null, book = null, chapter = null) {

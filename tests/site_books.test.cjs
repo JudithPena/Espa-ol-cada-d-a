@@ -372,3 +372,20 @@ test('unavailable titles and large cover attributes remain escaped', () => {
   assert.match(html, /cover&amp;|cover&quot;/);
   assert.doesNotMatch(html, /data-book-chapter=/);
 });
+
+test('anthology links keep story order and navigate across library levels', () => {
+  const catalogSource = source.slice(source.indexOf('function booksView()'), source.indexOf('function bookText('));
+  const meta = fs.readdirSync('content/books').filter(id => id.startsWith('olly-richards-')).map(id => JSON.parse(fs.readFileSync(`content/books/${id}/book.json`, 'utf8'))).sort((a,b) => a.series.number-b.series.number);
+  const cat = {esc:ctx.esc,view:{bookLevel:'A2',book:meta[0].id},COURSE:{books:meta.map(b => ({...b,chapters:[]}))}};
+  vm.createContext(cat);vm.runInContext(catalogSource,cat);
+  const html=cat.bookSeriesView(meta[0]);
+  assert.match(html,/Все рассказы сборника \(8\)/);
+  assert.equal((html.match(/data-book-id=/g)||[]).length,7);
+  assert.match(html,/aria-current="page"/);
+  assert.equal((html.match(/<small>A2<\/small>/g)||[]).length,2);
+  assert.equal((html.match(/<small>B1<\/small>/g)||[]).length,6);
+  for(let i=1;i<meta.length;i++)assert.ok(html.indexOf(ctx.esc(meta[i-1].title))<html.indexOf(ctx.esc(meta[i].title)));
+  cat.bookRoute(['books','A2',meta[2].id]);
+  assert.equal(cat.view.bookLevel,'B1');assert.equal(cat.view.book,meta[2].id);
+  assert.equal(cat.bookHash(),`#books/B1/${meta[2].id}`);
+});

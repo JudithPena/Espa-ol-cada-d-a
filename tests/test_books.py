@@ -132,6 +132,24 @@ def test_library_covers_are_distinct_and_lola_titles_use_the_same_format():
             assert book['title'].count('Lola Lago') == 1
 
 
+def test_olly_collection_keeps_independent_levels_and_complete_contents():
+    books = [b for b in load_books() if b.get('series', {}).get('id') == 'olly-richards-short-stories-beginners']
+    assert [b['series']['number'] for b in books] == list(range(1, 9))
+    assert [b['level'] for b in books] == ['A2'] * 2 + ['B1'] * 6
+    assert all(b['vocabulary_min_level'] == 'A2' for b in books)
+    assert [len(b['chapter_catalog']) for b in books] == [4, 3, 3, 3, 3, 3, 3, 3]
+    for book in books:
+        assert [c['number'] for c in book['chapters']] == [1]
+        assert [c['status'] for c in book['chapter_catalog']] == ['published'] + ['draft'] * (len(book['chapter_catalog']) - 1)
+        assert all(c['title'].strip() for c in book['chapter_catalog'])
+        chapter = book['chapters'][0]
+        assert len(chapter['exercises']) == 1
+        assert len(chapter['exercises'][0]['questions']) == 5
+        assert all(block['es'] and block['ru'] and block['notes'] for block in chapter['blocks'])
+    assert sum(len(b.get('images', [])) for book in books for b in book['chapters'][0]['blocks']) == 6
+    assert sum(len(book.get('pending_illustrations', [])) for book in books) == 2
+
+
 def test_book_chapters_have_complete_readable_blocks():
     books = load_books()
     assert books
