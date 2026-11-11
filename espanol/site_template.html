@@ -2448,6 +2448,8 @@ function grammarResult(q,value,group={},manual=!q.options&&!q.tiles&&!q.guidedGa
   const wrong={status:'wrong',good:false};
   if(!manual)return wrong;
   const policy=grammarAccentPolicy(q,group);
+  // Preserve the original strictness of unannotated lessons that teach written accents.
+  if(policy==='legacy' && /ударени|тильд|acento|tilde/i.test([q.prompt,group.title,group.instruction].join(' ')))return wrong;
   for(const answer of q.answers) {
     const expected=grammarComparisonValue(q,answer);
     const missing=grammarMissingAccents(expected,entered);
