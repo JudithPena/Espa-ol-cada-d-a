@@ -96,3 +96,62 @@ test('wrong correction costs a life instead of permitting unlimited copying',()=
  assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).status'),'failed');
  assert.ok(run('gPlayerView()').includes('Верный ответ:'));
 });
+
+test('PR #34: units 1, 7, 15, 38 and 45 retain question-specific explanations after the third error',()=>{
+  const cases=[
+    ['001_genero.json','exercise:1.2'],
+    ['007_un_perro_el_perro.json','exercise:7.3'],
+    ['015_comparativos.json','exercise:15.2'],
+    ['038_lo_la_le.json','exercise:38.1b'],
+    ['045_tengo_tienes_tiene.json','exercise:45.2']
+  ];
+  for(const [file,route] of cases){
+    const u=JSON.parse(fs.readFileSync('content/grammar/'+file,'utf8'));
+    const run=context([u]);
+    unlockUntil(run,route);
+    run('gStart(COURSE.grammar[0].id,'+JSON.stringify(route)+');gMove(1);');
+    const question=run('gGroups(gUnit()).find(g=>g.id===G.steps[G.at].group).questions[G.steps[G.at].qi]');
+    for(let i=1;i<=3;i++){
+      run('gResponse(G.steps[G.at]).value="incorrecto";gCheck();');
+      const html=run('gPlayerView()');
+      assert.equal(html.includes('Верный ответ:'),i===3,file+' life '+i);
+      if(i===3){
+        assert.ok(html.includes(question.explain.replaceAll('&','&amp;').replaceAll('<','&lt;')),file+' explanation');
+        assert.equal(run('gAttempt(gUnit(),gGroups(gUnit()).find(g=>g.id===G.steps[G.at].group)).status'),'failed');
+      } else run('gMove(1)');
+    }
+    const before=run('G.responses[G.steps[G.at].group][G.steps[G.at].qi].value');
+    const progress=run('JSON.stringify(P.grammar)');
+    run('gReviewTheory()');
+    assert.ok(run('gPlayerView()').includes('data-greview-mistake'),file);
+    assert.equal(run('gCanBack()'),true,file);
+    run('gReturnToMistake()');
+    assert.equal(run('G.recovery'),null,file);
+    assert.equal(run('G.responses[G.steps[G.at].group][G.steps[G.at].qi].value'),before,file);
+    assert.ok(run('gPlayerView()').includes('Верный ответ:'),file);
+    run('gRepeatExercise()');
+    assert.equal(run('gAttempt(gUnit(),gGroups(gUnit()).find(g=>g.id===G.steps[G.at].group)).errors'),0,file);
+    assert.equal(run('JSON.stringify(P.grammar)'),progress,file);
+  }
+});
+
+test('PR #34: accepted alternatives in actual multi-blank tasks do not produce false error highlights',()=>{
+  const u38=JSON.parse(fs.readFileSync('content/grammar/038_lo_la_le.json','utf8'));
+  const u45=JSON.parse(fs.readFileSync('content/grammar/045_tengo_tienes_tiene.json','utf8'));
+  const run=context([u38,u45]);
+  const q38=u38.exercises.flatMap(g=>g.questions).find(q=>q.sourceRef==='38.1.5');
+  const a38=q38.answers[0].split(' ');
+  const r38=run('gGapMistakes('+JSON.stringify(q38)+','+JSON.stringify({value:'le se lo se la',gapValues:['le','se','lo','se','la'],checked:true,good:false})+')');
+  assert.deepEqual(JSON.parse(JSON.stringify(r38.wrong)),[false,false,true,false,false]);
+  const q45=u45.exercises.flatMap(g=>g.questions).find(q=>q.sourceRef==='45.1.1');
+  const r45=run('gGapMistakes('+JSON.stringify(q45)+','+JSON.stringify({value:'tiene tiene tengo',gapValues:['tiene','tiene','tengo'],checked:true,good:false})+')');
+  assert.deepEqual(JSON.parse(JSON.stringify(r45.wrong)),[false,true,false]);
+  assert.ok(a38.length===5);
+});
+
+test('PR #34: outdated hardcoded unit counts are absent from both agent instructions',()=>{
+  for(const name of ['AGENTS.md','content/grammar/AGENTS.md']){
+    const text=fs.readFileSync(name,'utf8');
+    assert.doesNotMatch(text,/\\b(?:17|45)\\s+юнит/i,name);
+  }
+});
