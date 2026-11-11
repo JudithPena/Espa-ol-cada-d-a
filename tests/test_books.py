@@ -253,7 +253,9 @@ def test_el_reloj_complete_chapters_source_notes_pronouns_and_quizzes():
     assert 'Los ingleses se estaban acercando' in ch2
     assert any('нестыковка' in note['explanation']
                for block in book['chapters'][1]['blocks'] for note in block['notes'])
-    assert not {'moreno', 'el reloj', 'el siglo', 'la leyenda'} & learned
+    introduced = {note['term'] for chapter in book['chapters'][1:]
+                  for block in chapter['blocks'] for note in block['notes']}
+    assert not {'moreno', 'el reloj', 'el siglo', 'la leyenda'} & introduced
 
 
 def test_el_caballero_finished_chapters_source_notes_and_exercises():
