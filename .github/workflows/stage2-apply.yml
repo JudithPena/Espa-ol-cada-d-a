@@ -1,0 +1,48 @@
+name: Apply grammar stage 2 after tests (temporary)
+on:
+  push:
+    branches:
+      - audit/grammar-schema-linter-20261111
+jobs:
+  apply-reviewed-patch:
+    if: contains(github.event.head_commit.message, 'prepare stage2 apply')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify the prepared patch applies without changing existing unit JSONs
+        run: |
+          base64 -d tools/grammar_stage2_patch.gz.b64 | gzip -d > /tmp/grammar-stage2.patch
+          git apply --check /tmp/grammar-stage2.patch
+          if grep -qE '^\+\+\+ b/content/grammar/[0-9].*\.json$' /tmp/grammar-stage2.patch; then
+            echo "Unit content changes are forbidden" >&2
+            exit 1
+          fi
+          git apply /tmp/grammar-stage2.patch
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt pytest
+      - name: Validate all unit data with the existing loader and schema
+        run: python -m espanol grammar-lint --json-out /tmp/grammar-lint.json --report /tmp/grammar-lint.md
+      - name: Regression tests
+        run: |
+          python -m espanol validate
+          python -m pytest -q
+          node --test tests/site_grammar_policy.test.cjs tests/site_grammar.test.cjs tests/site_course.test.cjs
+      - name: Commit validated changes only to the audit branch
+        run: |
+          rm -f tools/grammar_stage2_patch.gz.b64 .github/workflows/grammar-audit-source-export.yml .github/workflows/stage2-apply.yml
+          git add -A
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "feat(grammar): add formal data schema, pedagogical lint and CI checks"
+          git push origin HEAD:audit/grammar-schema-linter-20261111
