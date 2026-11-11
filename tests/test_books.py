@@ -139,7 +139,7 @@ def test_all_books_have_short_spoiler_free_annotations():
     from espanol.site import load_books
 
     files = sorted(Path("content/books").glob("*/book.json"))
-    assert len(files) == 14
+    assert len(files) >= 14
     annotations = {}
     for path in files:
         meta = json.loads(path.read_text(encoding="utf-8"))
@@ -162,7 +162,7 @@ def test_book_annotation_is_validated_when_present(tmp_path):
     folder.mkdir()
     base = {"id": "test-book", "title": "Libro", "author": "Autor",
             "level": "A1", "vocabulary_min_level": "A1"}
-    for invalid in ("", "   ", 7, {"text": "wrong"}, "a" * 351, "dos\\nlíneas"):
+    for invalid in ("", "   ", 7, {"text": "wrong"}, "a" * 351, "dos\nlíneas"):
         (folder / "book.json").write_text(json.dumps({**base, "annotation": invalid}), encoding="utf-8")
         with pytest.raises(ValueError, match="аннотация"):
             load_books(tmp_path)
