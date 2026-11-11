@@ -183,6 +183,56 @@ def test_la_paella_loca_complete_chapters_notes_and_source_keys():
     assert image_blocks[0][1]['images'][0]['before'] == 'Cuando salgo del hotel'
 
 
+
+def test_olly_a2_vocabulary_avoids_words_taught_in_course_a0_and_a1():
+    """Аудит 11.11.2026: не возвращаем уже изученные значения в словарные notes.
+
+    Список выверен по vocab в content/site/units 00–23 и по контексту книги.
+    Не блокируем новые значения, грамматические конструкции и идиомы.
+    """
+    books = {b['id']: b for b in load_books()}
+    removed = {
+        'olly-richards-la-paella-loca': {
+            1: {'vestirse', 'despertarse', 'ducharse'},
+            2: {'tímido', 'costar', 'la camisa', 'pasear', 'el camarero'},
+            3: {'pedir', 'entre'},
+            4: {'la llave'},
+        },
+        'olly-richards-la-criatura': {
+            1: {'nublado', 'quedar', 'comer algo'},
+        },
+        'olly-richards-el-cofre': {
+            1: {'levantarse'},
+        },
+        'olly-richards-la-capsula': {
+            1: {'terminar'},
+        },
+    }
+    for book_id, chapters in removed.items():
+        book = books[book_id]
+        assert book['vocabulary_min_level'] == 'A2'
+        for chapter in book['chapters']:
+            if chapter['number'] not in chapters:
+                continue
+            terms = {note['term'] for block in chapter['blocks']
+                     for note in block['notes'] if isinstance(note, dict)}
+            assert terms.isdisjoint(chapters[chapter['number']]), (book_id, chapter['number'])
+
+    # Эти совпадения с A0/A1 намеренно сохранены из-за нового значения или управления.
+    kept = {
+        ('olly-richards-la-paella-loca', 2): 'encantado de (infinitivo)',
+        ('olly-richards-la-paella-loca', 3): 'el trabajador',
+        ('olly-richards-tierras-desconocidas', 1): 'el jefe',
+        ('olly-richards-la-capsula', 1): 'quedar',
+    }
+    for (book_id, number), term in kept.items():
+        chapter = next(c for c in books[book_id]['chapters'] if c['number'] == number)
+        terms = {n['term'] for block in chapter['blocks']
+                 for n in block['notes'] if isinstance(n, dict)}
+        assert term in terms
+
+
+
 def test_book_chapters_have_complete_readable_blocks():
     books = load_books()
     assert books
