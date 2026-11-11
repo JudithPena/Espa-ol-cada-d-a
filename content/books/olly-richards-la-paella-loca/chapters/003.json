@@ -3,11 +3,667 @@
   "number": 3,
   "order": 3,
   "title": "La carretera",
-  "icon": "📖",
-  "status": "draft",
-  "blocks": [],
+  "icon": "🚚",
+  "status": "published",
+  "blocks": [
+    {
+      "title": "Грузовик «La Paella Loca» возле отеля",
+      "es": "Me despierto y me ducho. Me visto. Pido el desayuno en la habitación y me lo como con tranquilidad. Salgo de mi habitación y veo la hora en un reloj del pasillo. Son las diez de la mañana. Antes de salir del hotel, me pregunto si mi madre ha hablado con Julia. Mi hermana es una persona muy nerviosa. Espero que esté bien.\n\nCuando salgo del hotel, veo en la calle a dos trabajadores llevando cajas a un camión. En el camión hay un dibujo con el nombre de la compañía. Me echo a reír muy alto, como en el restaurante. Pero me doy cuenta pronto y me callo para que nadie me oiga. El dibujo del camión es de la compañía “La Paella Loca”.",
+      "ru": "Я просыпаюсь и принимаю душ. Одеваюсь. Заказываю завтрак в номер и неспешно ем. Выхожу из номера и смотрю на часы в коридоре. Десять утра. Перед выходом из гостиницы размышляю, поговорила ли мама с Хулией. Моя сестра очень тревожная. Надеюсь, что у неё всё хорошо.\n\nКогда я выхожу из отеля, то вижу двух рабочих: они грузят коробки в грузовик. На грузовике рисунок с названием компании. Я разражаюсь громким смехом, как в ресторане. Но быстро спохватываюсь и замолкаю, чтобы никто меня не услышал. На грузовике нарисован логотип компании «Безумная паэлья».",
+      "notes": [
+        {
+          "term": "pedir",
+          "es": [
+            "Pido"
+          ],
+          "ru": [
+            "Заказываю"
+          ],
+          "explanation": "заказывать или просить о чём-либо."
+        },
+        {
+          "term": "con tranquilidad",
+          "es": [
+            "con tranquilidad"
+          ],
+          "ru": [
+            "неспешно"
+          ],
+          "explanation": "спокойно, не торопясь."
+        },
+        {
+          "term": "echarse a + infinitivo",
+          "es": [
+            "Me echo a reír"
+          ],
+          "ru": [
+            "Я разражаюсь громким смехом"
+          ],
+          "explanation": "внезапно начать делать что-либо: echarse a reír — рассмеяться."
+        },
+        {
+          "term": "darse cuenta",
+          "es": [
+            "me doy cuenta"
+          ],
+          "ru": [
+            "спохватываюсь"
+          ],
+          "explanation": "осознавать, замечать; здесь спохватиться вовремя."
+        },
+        {
+          "term": "callarse",
+          "es": [
+            "me callo"
+          ],
+          "ru": [
+            "замолкаю"
+          ],
+          "explanation": "замолчать, перестать говорить."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "me lo como con tranquilidad",
+          "translation": "неспешно ем",
+          "base": "comerse (algo)",
+          "explanation": "me — часть comerse; lo заменяет завтрак, прямое дополнение."
+        },
+        {
+          "es": "me doy cuenta pronto",
+          "translation": "быстро спохватываюсь",
+          "base": "darse cuenta (de algo)",
+          "explanation": "me часть darse cuenta, не отдельный объект."
+        }
+      ],
+      "images": [
+        {
+          "file": "images/01.webp",
+          "alt": "Даниэль видит грузовик с эмблемой ресторана «La Paella Loca» возле отеля",
+          "before": "Cuando salgo del hotel"
+        }
+      ]
+    },
+    {
+      "title": "Разговор с перевозчиком",
+      "es": "Me acerco a uno de los trabajadores para hablar con él.\n–Hola –me dice.\n–Buenos días, señor –le respondo.\n–¿Qué desea?\n–¿Trabaja usted en un restaurante en Barcelona?\n–No, yo trabajo de transportista.\n–¿Conoce usted el restaurante?\n–Sí, cada semana llevamos arroz para las paellas, pero no trabajo allí.\nEl transportista entra en el camión y yo me quedo pensando. ¿Cómo puedo volver a Barcelona? Necesito una solución. Tengo que volver al apartamento de Armando. Julia me está esperando. ¡Tengo una idea!",
+      "ru": "Я подхожу к одному из рабочих, чтобы поговорить с ним.\n— Привет, — говорит он мне.\n— Доброе утро, сеньор, — отвечаю.\n— Что желаете?\n— Вы работаете в ресторане в Барселоне?\n— Нет, я работаю перевозчиком.\n— Вы знаете этот ресторан?\n— Да, каждую неделю мы возим рис для паэльи, но я там не работаю.\nПеревозчик забирается в грузовик, а я остаюсь размышлять. Как мне вернуться в Барселону? Мне нужно решение. Я должен вернуться в квартиру Армандо. Хулия ждёт меня. Придумал!",
+      "notes": [
+        {
+          "term": "el trabajador",
+          "es": [
+            "trabajadores"
+          ],
+          "ru": [
+            "рабочих"
+          ],
+          "explanation": "работник, сотрудник."
+        },
+        {
+          "term": "el transportista",
+          "es": [
+            "transportista"
+          ],
+          "ru": [
+            "перевозчиком"
+          ],
+          "explanation": "человек, занимающийся грузоперевозками."
+        },
+        {
+          "term": "llevar",
+          "es": [
+            "llevamos"
+          ],
+          "ru": [
+            "возим"
+          ],
+          "explanation": "возить, доставлять что-либо."
+        },
+        {
+          "term": "quedarse pensando",
+          "es": [
+            "me quedo pensando"
+          ],
+          "ru": [
+            "остаюсь размышлять"
+          ],
+          "explanation": "задуматься, продолжать размышлять."
+        },
+        {
+          "term": "la solución",
+          "es": [
+            "solución"
+          ],
+          "ru": [
+            "решение"
+          ],
+          "explanation": "решение проблемы."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Me acerco a uno de los trabajadores",
+          "translation": "Я подхожу к одному из рабочих",
+          "base": "acercarse a (alguien)",
+          "explanation": "me — часть acercarse, субъект Даниэль."
+        },
+        {
+          "es": "Julia me está esperando",
+          "translation": "Хулия ждёт меня",
+          "base": "esperar a (alguien)",
+          "explanation": "me — Даниэль, прямое дополнение."
+        }
+      ]
+    },
+    {
+      "title": "Даниэлю разрешают ехать среди коробок",
+      "es": "–¡Señor, disculpe! –le digo al transportista.\n–Dime, jovencito.\n–¿Podría usted llevarme hasta Barcelona?\n–¿Ahora?\n–Sí.\nEl transportista duda, hasta que finalmente me responde.\n–Vale, puedes entrar en la parte trasera del camión, entre las cajas de arroz. Pero no se lo digas a nadie.\n–¡Gracias!\n–De nada, chico. Rápido, por favor. Tenemos que salir ya. ¡No quiero llegar tarde!",
+      "ru": "— Сеньор, простите! — обращаюсь я к перевозчику.\n— Говори, молодой человек.\n— Не могли бы вы подвезти меня до Барселоны?\n— Сейчас?\n— Да.\nПеревозчик колеблется, но в конце концов отвечает мне:\n— Ладно, можешь залезть в кузов грузовика, между коробками с рисом. Только никому об этом не говори.\n— Спасибо!\n— Не за что, парень. Только быстро, пожалуйста. Нам уже пора выезжать. Не хочу опоздать!",
+      "notes": [
+        {
+          "term": "¿Podría + infinitivo?",
+          "es": [
+            "¿Podría usted llevarme"
+          ],
+          "ru": [
+            "Не могли бы вы подвезти меня"
+          ],
+          "explanation": "вежливая просьба с condicional."
+        },
+        {
+          "term": "dudar",
+          "es": [
+            "duda"
+          ],
+          "ru": [
+            "колеблется"
+          ],
+          "explanation": "сомневаться, медлить с решением."
+        },
+        {
+          "term": "la parte trasera",
+          "es": [
+            "parte trasera"
+          ],
+          "ru": [
+            "кузов"
+          ],
+          "explanation": "задняя часть автомобиля; здесь грузовое отделение."
+        },
+        {
+          "term": "entre",
+          "es": [
+            "entre"
+          ],
+          "ru": [
+            "между"
+          ],
+          "explanation": "местоположение между предметами."
+        },
+        {
+          "term": "llegar tarde",
+          "es": [
+            "llegar tarde"
+          ],
+          "ru": [
+            "опоздать"
+          ],
+          "explanation": "прибыть поздно, опоздать."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "llevarme hasta Barcelona",
+          "translation": "подвезти меня до Барселоны",
+          "base": "llevar a (alguien)",
+          "explanation": "me — Даниэль, прикреплено к инфинитиву llevar."
+        },
+        {
+          "es": "no se lo digas a nadie",
+          "translation": "никому об этом не говори",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "se = a nadie (никому), lo = факт тайной поездки; se употреблено вместо le перед lo."
+        }
+      ]
+    },
+    {
+      "title": "Неизвестный пассажир в кузове",
+      "es": "Entro en la parte trasera del camión y me siento entre dos cajas de arroz. El camión arranca y sale rumbo a Barcelona. No veo nada. Solo oigo el motor del camión y los coches en la carretera. ¡Algo se mueve! Entre las cajas de arroz hay una persona.\n–¿Hola? –digo.\nSilencio.\n–¿Hay alguien ahí?\nSilencio otra vez. Pero yo sé que hay una persona entre las cajas. Me levanto y ando hasta allí. ¡Qué sorpresa! ¡Es un hombre mayor! Me recuerda a mi abuelo.\n–¿Quién es usted, señor?\n–¡Déjame en paz, chico!\n–¿Qué hace aquí?\n–Viajo hacia Barcelona.\n–¿Sabe el transportista que está usted aquí?\n–No lo sabe. Entré en el camión mientras tú hablabas con él.",
+      "ru": "Я залезаю в заднюю часть грузовика и сажусь между двумя коробками с рисом. Грузовик заводится и выезжает в направлении Барселоны. Я ничего не вижу. Только слышу двигатель грузовика и машины на дороге. Вдруг что-то шевелится! Среди коробок с рисом находится человек.\n— Эй, есть кто? — говорю я.\nТишина.\n— Здесь кто-нибудь есть?\nСнова тишина. Но я знаю, что между коробками кто-то есть. Встаю и подхожу. Вот это сюрприз! Это пожилой мужчина! Он напоминает мне дедушку.\n— Кто вы такой, сеньор?\n— Оставь меня в покое, парень!\n— Что вы тут делаете?\n— Еду в Барселону.\n— Перевозчик знает, что вы здесь?\n— Нет, не знает. Я залез в грузовик, пока ты с ним разговаривал.",
+      "notes": [
+        {
+          "term": "arrancar",
+          "es": [
+            "arranca"
+          ],
+          "ru": [
+            "заводится"
+          ],
+          "explanation": "заводиться, начинать движение; о машине."
+        },
+        {
+          "term": "el motor",
+          "es": [
+            "motor"
+          ],
+          "ru": [
+            "двигатель"
+          ],
+          "explanation": "мотор, двигатель."
+        },
+        {
+          "term": "moverse",
+          "es": [
+            "se mueve"
+          ],
+          "ru": [
+            "шевелится"
+          ],
+          "explanation": "двигаться; здесь о незнакомом пассажире."
+        },
+        {
+          "term": "¿Hay alguien ahí?",
+          "es": [
+            "¿Hay alguien ahí?"
+          ],
+          "ru": [
+            "Здесь кто-нибудь есть?"
+          ],
+          "explanation": "вопрос о присутствии человека."
+        },
+        {
+          "term": "recordar a (alguien)",
+          "es": [
+            "Me recuerda a mi abuelo"
+          ],
+          "ru": [
+            "Он напоминает мне дедушку"
+          ],
+          "explanation": "напоминать кого-либо внешностью или поведением."
+        },
+        {
+          "term": "¡Déjame en paz!",
+          "es": [
+            "¡Déjame en paz"
+          ],
+          "ru": [
+            "Оставь меня в покое"
+          ],
+          "explanation": "устойчивая просьба не беспокоить."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "me siento entre dos cajas",
+          "translation": "сажусь между двумя коробками",
+          "base": "sentarse",
+          "explanation": "me = Даниэль, усаживается сам."
+        },
+        {
+          "es": "¡Déjame en paz, chico!",
+          "translation": "Оставь меня в покое, парень!",
+          "base": "dejar en paz a (alguien)",
+          "explanation": "me — пожилой мужчина, требует, чтобы Даниэль оставил его в покое."
+        },
+        {
+          "es": "No lo sabe",
+          "translation": "Нет, не знает",
+          "base": "saber (algo)",
+          "explanation": "lo заменяет факт присутствия постороннего в кузове."
+        }
+      ]
+    },
+    {
+      "title": "Водитель едва не обнаруживает незнакомца",
+      "es": "El transportista detiene el camión y se baja. El hombre mayor me mira preocupado.\n–¿Por qué ha parado?\n–No lo sé.\nSe oye ruido en la puerta trasera del camión.\n–¡Tengo que esconderme! –dice el hombre.\nEl transportista entra en el camión y me ve solo a mí. El hombre mayor está escondido entre las cajas.\n–¿Qué pasa aquí? –me pregunta.\n–No pasa nada.\n–¿Con quién hablabas?\n–¿Yo? Con nadie. Estoy solo aquí. ¿No lo ve?\n–Aún no hemos llegado, chico. No hagas ruido. No quiero problemas.\n–Entendido.",
+      "ru": "Перевозчик останавливает грузовик и выходит. Пожилой мужчина обеспокоенно смотрит на меня.\n— Почему он остановился?\n— Не знаю.\nУ задней двери грузовика слышится шум.\n— Мне нужно спрятаться! — говорит мужчина.\nПеревозчик залезает в грузовик и видит только меня. Пожилой мужчина прячется между коробками.\n— Что здесь происходит? — спрашивает он меня.\n— Ничего.\n— С кем ты разговаривал?\n— Я? Ни с кем. Я ведь здесь один. Разве не видите?\n— Мы ещё не приехали, парень. Не шуми. Не хочу неприятностей.\n— Понял.",
+      "notes": [
+        {
+          "term": "detener",
+          "es": [
+            "detiene"
+          ],
+          "ru": [
+            "останавливает"
+          ],
+          "explanation": "останавливать движение."
+        },
+        {
+          "term": "esconderse",
+          "es": [
+            "esconderme"
+          ],
+          "ru": [
+            "спрятаться"
+          ],
+          "explanation": "прятаться, скрываться."
+        },
+        {
+          "term": "estar escondido",
+          "es": [
+            "está escondido"
+          ],
+          "ru": [
+            "прячется"
+          ],
+          "explanation": "быть спрятанным; состояние."
+        },
+        {
+          "term": "hacer ruido",
+          "es": [
+            "hagas ruido"
+          ],
+          "ru": [
+            "Не шуми"
+          ],
+          "explanation": "шуметь; отрицательное повеление с subjuntivo."
+        },
+        {
+          "term": "aún no",
+          "es": [
+            "Aún no"
+          ],
+          "ru": [
+            "ещё не"
+          ],
+          "explanation": "показывает, что действие пока не завершилось."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "me ve solo a mí",
+          "translation": "видит только меня",
+          "base": "ver a (alguien)",
+          "explanation": "me и усиление a mí обозначают Даниэля, прямое дополнение."
+        },
+        {
+          "es": "Tengo que esconderme",
+          "translation": "Мне нужно спрятаться",
+          "base": "tener que + infinitivo",
+          "explanation": "me — пожилой мужчина; прикреплено к infinitivo esconderse."
+        },
+        {
+          "es": "me pregunta",
+          "translation": "спрашивает он меня",
+          "base": "preguntar a (alguien)",
+          "explanation": "me — Даниэль, к нему обращается водитель."
+        }
+      ]
+    },
+    {
+      "title": "Попутчик собирается рассказать историю",
+      "es": "El transportista cierra la puerta trasera del camión y vuelve al volante. En ese momento, el hombre mayor sale de entre las cajas y me mira con cara sonriente.\n–¡Menos mal! ¡No me ha visto! –me dice.\n–Dígame, señor. ¿Por qué viaja usted de Badalona a Barcelona?\n–¿Quieres saberlo?\n–Sí, por supuesto.\n–Te contaré una pequeña historia.\n–Adelante, por favor.\nEl hombre mayor me cuenta su historia:",
+      "ru": "Перевозчик закрывает заднюю дверь грузовика и возвращается за руль. В этот момент пожилой мужчина выбирается из-за коробок и смотрит на меня с улыбкой.\n— Слава богу! Он меня не увидел! — говорит он мне.\n— Скажите, сеньор. Почему вы едете из Бадалоны в Барселону?\n— Хочешь знать?\n— Да, конечно.\n— Расскажу тебе небольшую историю.\n— Прошу вас, продолжайте.\nПожилой мужчина рассказывает мне свою историю:",
+      "notes": [
+        {
+          "term": "el volante",
+          "es": [
+            "volante"
+          ],
+          "ru": [
+            "руль"
+          ],
+          "explanation": "рулевое колесо автомобиля."
+        },
+        {
+          "term": "¡Menos mal!",
+          "es": [
+            "¡Menos mal!"
+          ],
+          "ru": [
+            "Слава богу!"
+          ],
+          "explanation": "выражает облегчение, когда неприятности удалось избежать."
+        },
+        {
+          "term": "con cara sonriente",
+          "es": [
+            "con cara sonriente"
+          ],
+          "ru": [
+            "с улыбкой"
+          ],
+          "explanation": "улыбаясь; буквально «с улыбающимся лицом»."
+        },
+        {
+          "term": "por supuesto",
+          "es": [
+            "por supuesto"
+          ],
+          "ru": [
+            "конечно"
+          ],
+          "explanation": "разумеется, несомненно."
+        },
+        {
+          "term": "adelante",
+          "es": [
+            "Adelante"
+          ],
+          "ru": [
+            "продолжайте"
+          ],
+          "explanation": "«давайте», «вперёд»; приглашение говорить."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "No me ha visto",
+          "translation": "Он меня не увидел",
+          "base": "ver a (alguien)",
+          "explanation": "me — старик, которого не заметил водитель."
+        },
+        {
+          "es": "Te contaré una pequeña historia",
+          "translation": "Расскажу тебе небольшую историю",
+          "base": "contar (algo) a (alguien)",
+          "explanation": "te — Даниэль, адресат будущего рассказа."
+        },
+        {
+          "es": "me cuenta su historia",
+          "translation": "рассказывает мне свою историю",
+          "base": "contar (algo) a (alguien)",
+          "explanation": "me — Даниэль, слушатель."
+        }
+      ]
+    },
+    {
+      "title": "Пожилой мужчина ищет сына",
+      "es": "–Yo tengo un hijo. No lo conozco. Hace muchos años, su madre y yo estuvimos juntos, pero yo me fui a trabajar a otro país. Hace poco tiempo me enteré de dónde están.\n–¿En Barcelona?\n–Eso es.\n–¿Qué edad tiene su hijo, señor?\n–Tiene 24 años.\n–¡La misma que yo!\nEl hombre viejo ríe.\n–¡Qué curioso!\n–Sí que lo es.",
+      "ru": "— У меня есть сын. Я его не знаю. Много лет назад мы с его матерью были вместе, но я уехал работать в другую страну. Недавно я узнал, где они находятся.\n— В Барселоне?\n— Именно.\n— А сколько лет вашему сыну, сеньор?\n— Ему 24 года.\n— Как и мне!\nПожилой мужчина смеётся.\n— Как любопытно!\n— И правда.",
+      "notes": [
+        {
+          "term": "hace muchos años",
+          "es": [
+            "Hace muchos años"
+          ],
+          "ru": [
+            "Много лет назад"
+          ],
+          "explanation": "временная конструкция hace + период."
+        },
+        {
+          "term": "enterarse de (algo)",
+          "es": [
+            "me enteré de dónde están"
+          ],
+          "ru": [
+            "я узнал, где они находятся"
+          ],
+          "explanation": "узнать новость, выяснить обстоятельства. В книге напечатано «de donde están» без обязательного ударения в косвенном вопросе."
+        },
+        {
+          "term": "hace poco tiempo",
+          "es": [
+            "Hace poco tiempo"
+          ],
+          "ru": [
+            "Недавно"
+          ],
+          "explanation": "недавно, совсем недавно."
+        },
+        {
+          "term": "¡Qué curioso!",
+          "es": [
+            "¡Qué curioso!"
+          ],
+          "ru": [
+            "Как любопытно!"
+          ],
+          "explanation": "реакция на удивительное совпадение."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "No lo conozco",
+          "translation": "Я его не знаю",
+          "base": "conocer a (alguien)",
+          "explanation": "lo — сына пожилого мужчины, прямое дополнение."
+        },
+        {
+          "es": "me fui a trabajar a otro país",
+          "translation": "я уехал работать в другую страну",
+          "base": "irse a (un lugar)",
+          "explanation": "me часть irse — уехать; подлежащее — отец мальчика."
+        },
+        {
+          "es": "me enteré de dónde están",
+          "translation": "я узнал, где они находятся",
+          "base": "enterarse de (algo)",
+          "explanation": "me часть enterarse, выражает получение новой информации."
+        }
+      ]
+    },
+    {
+      "title": "Имя сына раскрывает удивительное совпадение",
+      "es": "Después de unos minutos de silencio, me levanto para estirar las piernas y le pregunto al hombre:\n–¿Cómo se llama su hijo?\n–Se llama Armando. Vive en un apartamento alquilado en Barcelona. Vive cerca del restaurante La Paella Loca. Por eso viajo en este camión.\n¡La Paella Loca! El hombre del camión es el padre de mi amigo Armando. ¡No me lo puedo creer!",
+      "ru": "Спустя несколько минут молчания я поднимаюсь, чтобы размять ноги, и спрашиваю у мужчины:\n— Как зовут вашего сына?\n— Его зовут Армандо. Он живёт в съёмной квартире в Барселоне. Рядом с рестораном «Безумная паэлья». Поэтому я и еду в этом грузовике.\n\n«Безумная паэлья»! Мужчина из грузовика — отец моего друга Армандо. Поверить не могу!",
+      "notes": [
+        {
+          "term": "estirar las piernas",
+          "es": [
+            "estirar las piernas"
+          ],
+          "ru": [
+            "размять ноги"
+          ],
+          "explanation": "выпрямить ноги после долгого сидения."
+        },
+        {
+          "term": "alquilado",
+          "es": [
+            "alquilado"
+          ],
+          "ru": [
+            "съёмной"
+          ],
+          "explanation": "арендованный; квартира, жильё."
+        },
+        {
+          "term": "por eso",
+          "es": [
+            "Por eso"
+          ],
+          "ru": [
+            "Поэтому"
+          ],
+          "explanation": "указывает на следствие или причину."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "me levanto",
+          "translation": "я поднимаюсь",
+          "base": "levantarse",
+          "explanation": "me — часть levantarse, действие совершает Даниэль."
+        },
+        {
+          "es": "Se llama Armando",
+          "translation": "Его зовут Армандо",
+          "base": "llamarse",
+          "explanation": "se часть llamarse; обозначает имя сына, а не возвратное называние себя."
+        },
+        {
+          "es": "No me lo puedo creer",
+          "translation": "Поверить не могу",
+          "base": "no poder creerse (algo)",
+          "explanation": "lo заменяет неожиданную новость об отцовстве Армандо; me относится к Даниэлю."
+        }
+      ]
+    }
+  ],
   "source": {
     "file": "Short Stories in Spanish for Beginners — Olly Richards (1).pdf",
     "heading_page": 26
-  }
+  },
+  "exercises": [
+    {
+      "id": "chapter-3-comprehension",
+      "instruction": "Seleccione una única respuesta para cada pregunta.",
+      "source": {
+        "file": "Short Stories in Spanish for Beginners — Olly Richards (1).pdf",
+        "pdf_pages": [
+          30,
+          31
+        ],
+        "chapters": [
+          3
+        ],
+        "answer_key_page": 190,
+        "instruction": "Seleccione una única respuesta para cada pregunta."
+      },
+      "questions": [
+        {
+          "prompt": "Daniel sale de su habitación a las ___.",
+          "options": [
+            "10:15",
+            "10:00",
+            "11:00",
+            "12:15"
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "El transportista del camión ___.",
+          "options": [
+            "trabaja en el hotel",
+            "trabaja en el restaurante La Paella Loca",
+            "trabaja solo de transportista",
+            "trabaja para otro restaurante"
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "Dentro del camión, Daniel se encuentra a ___.",
+          "options": [
+            "un hombre joven",
+            "una mujer joven",
+            "un transportista diferente",
+            "un hombre mayor"
+          ],
+          "answer": 3
+        },
+        {
+          "prompt": "La persona del camión viaja porque ___.",
+          "options": [
+            "quiere trabajar en La Paella Loca",
+            "quiere trabajar de transportista",
+            "va a visitar a su padre",
+            "va a visitar a su hijo"
+          ],
+          "answer": 3
+        },
+        {
+          "prompt": "El hijo del hombre se llama ___.",
+          "options": [
+            "Daniel",
+            "Armando",
+            "Julia",
+            "Arthur"
+          ],
+          "answer": 1
+        }
+      ]
+    }
+  ]
 }

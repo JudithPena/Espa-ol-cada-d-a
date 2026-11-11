@@ -3,11 +3,771 @@
   "number": 2,
   "order": 2,
   "title": "España",
-  "icon": "📖",
-  "status": "draft",
-  "blocks": [],
+  "icon": "🚌",
+  "status": "published",
+  "blocks": [
+    {
+      "title": "Встреча с другом и знакомство с Хулией",
+      "es": "El avión aterriza en Barcelona y mi amigo nos espera a la salida del aeropuerto. Me da un fuerte abrazo.\n–¡Hola, Daniel! ¡Qué alegría que estés aquí!\n–¡Hola, Armando! ¡Me alegro de verte!\nMi amigo Armando mira a mi hermana Julia con curiosidad.\n–Armando, te presento a mi hermana Julia.\nArmando se acerca a Julia y la saluda.\n–Hola Julia. ¡Encantado de conocerte!\nMi hermana es tímida. Siempre es tímida cuando conoce a gente nueva.\n–Hola… Armando.\n–Tu hermana es muy tímida, ¿verdad? –me dice Armando con cara sonriente.\n–Sí que lo es, pero es muy simpática.",
+      "ru": "Самолёт приземляется в Барселоне, и мой друг ждёт нас у выхода из аэропорта. Он крепко меня обнимает.\n— Привет, Даниэль! Как я рад, что ты здесь!\n— Привет, Армандо! Рад тебя видеть!\nМой друг Армандо с любопытством смотрит на мою сестру Хулию.\n— Армандо, познакомься, это моя сестра Хулия.\nАрмандо подходит к Хулии и здоровается с ней.\n— Привет, Хулия! Очень приятно познакомиться!\nМоя сестра стеснительная. Она всегда робеет, когда знакомится с новыми людьми.\n— Привет… Армандо.\n— Твоя сестра очень застенчивая, правда? — говорит мне Армандо с улыбкой.\n— Да, это так, но она очень милая.",
+      "notes": [
+        {
+          "term": "aterrizar",
+          "es": [
+            "aterriza"
+          ],
+          "ru": [
+            "приземляется"
+          ],
+          "explanation": "приземляться; о самолёте."
+        },
+        {
+          "term": "dar un abrazo a (alguien)",
+          "es": [
+            "da un fuerte abrazo"
+          ],
+          "ru": [
+            "крепко меня обнимает"
+          ],
+          "explanation": "обнять кого-либо; буквально «дать объятие»."
+        },
+        {
+          "term": "alegrarse de (infinitivo)",
+          "es": [
+            "Me alegro de verte"
+          ],
+          "ru": [
+            "Рад тебя видеть"
+          ],
+          "explanation": "радоваться; de перед инфинитивом."
+        },
+        {
+          "term": "con curiosidad",
+          "es": [
+            "con curiosidad"
+          ],
+          "ru": [
+            "с любопытством"
+          ],
+          "explanation": "с интересом."
+        },
+        {
+          "term": "tímido",
+          "es": [
+            "tímida"
+          ],
+          "ru": [
+            "стеснительная"
+          ],
+          "explanation": "застенчивый."
+        },
+        {
+          "term": "encantado de (infinitivo)",
+          "es": [
+            "Encantado de conocerte"
+          ],
+          "ru": [
+            "Очень приятно познакомиться"
+          ],
+          "explanation": "стандартная формула при знакомстве."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "la saluda",
+          "translation": "здоровается с ней",
+          "base": "saludar a (alguien)",
+          "explanation": "la заменяет Хулию, прямое дополнение женского рода."
+        },
+        {
+          "es": "Sí que lo es",
+          "translation": "Да, это так",
+          "base": "ser + adjetivo",
+          "explanation": "lo заменяет качество muy tímida, а не человека."
+        }
+      ]
+    },
+    {
+      "title": "Жара в Барселоне и два ресторана",
+      "es": "Minutos después, viajamos en taxi hacia el apartamento de Armando. El taxi cuesta 40,50 € desde el aeropuerto hasta el centro de Barcelona. Es junio y hace mucho calor. El clima de España siempre es muy caluroso en la zona del Mediterráneo.\n\nLlegamos al apartamento a la hora de comer. Armando nos ayuda con las mochilas. Mi hermana y yo tenemos mucha hambre.\n–Armando, tenemos mucha hambre. ¿Dónde podemos comer?\n–Hay dos restaurantes cerca de aquí.\n–¿Qué comida sirven?\n–En uno de los restaurantes, La Paella Loca, sirven paellas muy ricas y en el otro hay pescado fresco y delicioso.\n–Julia, ¿quieres ir a comer paella? –le pregunto a mi hermana.\n–Claro, Daniel. Tengo mucha hambre.",
+      "ru": "Через несколько минут мы едем на такси к квартире Армандо. Поездка из аэропорта в центр Барселоны стоит 40,50 евро. Сейчас июнь, и очень жарко. В средиземноморской части Испании климат всегда очень жаркий.\n\nМы приезжаем в квартиру к обеду. Армандо помогает нам с рюкзаками. Мы с сестрой очень голодны.\n— Армандо, мы ужасно голодны. Где можно поесть?\n— Недалеко отсюда есть два ресторана.\n— Что там подают?\n— В одном из них, «Безумная паэлья», готовят очень вкусную паэлью, а в другом подают свежую и превосходную рыбу.\n— Хулия, хочешь пойти поесть паэльи? — спрашиваю я сестру.\n— Конечно, Даниэль. Я очень голодна.",
+      "notes": [
+        {
+          "term": "costar",
+          "es": [
+            "cuesta"
+          ],
+          "ru": [
+            "стоит"
+          ],
+          "explanation": "стоить; цена поездки."
+        },
+        {
+          "term": "caluroso",
+          "es": [
+            "caluroso"
+          ],
+          "ru": [
+            "жаркий"
+          ],
+          "explanation": "жаркий, знойный; об особенностях климата."
+        },
+        {
+          "term": "a la hora de (algo)",
+          "es": [
+            "a la hora de comer"
+          ],
+          "ru": [
+            "к обеду"
+          ],
+          "explanation": "во время, к моменту."
+        },
+        {
+          "term": "servir",
+          "es": [
+            "sirven"
+          ],
+          "ru": [
+            "подают"
+          ],
+          "explanation": "подавать блюда в ресторане."
+        },
+        {
+          "term": "rico",
+          "es": [
+            "ricas"
+          ],
+          "ru": [
+            "вкусную"
+          ],
+          "explanation": "о еде: вкусный; не «богатый»."
+        },
+        {
+          "term": "fresco",
+          "es": [
+            "fresco"
+          ],
+          "ru": [
+            "свежую"
+          ],
+          "explanation": "свежий, о продуктах."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Armando nos ayuda con las mochilas",
+          "translation": "Армандо помогает нам с рюкзаками",
+          "base": "ayudar a (alguien) con (algo)",
+          "explanation": "nos = Даниэль и Хулия."
+        },
+        {
+          "es": "le pregunto a mi hermana",
+          "translation": "спрашиваю я сестру",
+          "base": "preguntar a (alguien)",
+          "explanation": "le = Хулии; a mi hermana уточняет адресата."
+        }
+      ]
+    },
+    {
+      "title": "Где находится «La Paella Loca»?",
+      "es": "Mi amigo Armando se queda en el apartamento. Tiene que ir a una clase. Julia y yo vamos hacia el restaurante de paellas.\n–Hummm…, ¿qué autobús lleva al restaurante de paellas? –le pregunto a Julia.\n–No lo sé. Tenemos que preguntar a alguien.\n–Mira allí, el señor de la camisa blanca. Vamos a preguntarle.\nNos acercamos al señor de la camisa blanca y le saludamos. Él nos responde amablemente.\n–¡Hola, chicos! ¿En qué os puedo ayudar?\n–¿Cómo podemos ir al restaurante La Paella Loca?\n–¡Eso es fácil! Aquí mismo para el autobús 35. Ese autobús os lleva directamente a la calle de La Paella Loca, aunque hay un problema.\n–¿Qué problema hay?\n–Ese autobús normalmente va muy lleno.",
+      "ru": "Мой друг Армандо остаётся в квартире: ему нужно идти на занятие. Мы с Хулией отправляемся к ресторану с паэльей.\n— Хм… Какой автобус идёт к ресторану с паэльей? — спрашиваю я Хулию.\n— Не знаю. Нужно кого-нибудь спросить.\n— Смотри, вон тот мужчина в белой рубашке. Давай спросим у него.\nМы подходим к мужчине в белой рубашке и здороваемся. Он любезно нам отвечает:\n— Привет, ребята! Чем могу вам помочь?\n— Как добраться до ресторана «Безумная паэлья»?\n— Это просто! Автобус номер 35 останавливается прямо здесь. Он довезёт вас прямо до улицы, где находится «Безумная паэлья», правда, есть одна проблема.\n— Какая проблема?\n— Обычно этот автобус сильно переполнен.",
+      "notes": [
+        {
+          "term": "quedarse",
+          "es": [
+            "se queda"
+          ],
+          "ru": [
+            "остаётся"
+          ],
+          "explanation": "оставаться; местоименный глагол."
+        },
+        {
+          "term": "la camisa",
+          "es": [
+            "camisa"
+          ],
+          "ru": [
+            "рубашке"
+          ],
+          "explanation": "рубашка."
+        },
+        {
+          "term": "amablemente",
+          "es": [
+            "amablemente"
+          ],
+          "ru": [
+            "любезно"
+          ],
+          "explanation": "вежливо, доброжелательно."
+        },
+        {
+          "term": "parar",
+          "es": [
+            "para"
+          ],
+          "ru": [
+            "останавливается"
+          ],
+          "explanation": "о транспортной остановке."
+        },
+        {
+          "term": "directamente",
+          "es": [
+            "directamente"
+          ],
+          "ru": [
+            "прямо"
+          ],
+          "explanation": "напрямую, без пересадок."
+        },
+        {
+          "term": "aunque",
+          "es": [
+            "aunque"
+          ],
+          "ru": [
+            "правда"
+          ],
+          "explanation": "хотя; здесь вводит оговорку."
+        },
+        {
+          "term": "ir lleno",
+          "es": [
+            "va muy lleno"
+          ],
+          "ru": [
+            "сильно переполнен"
+          ],
+          "explanation": "о транспорте: быть полным пассажиров."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Vamos a preguntarle",
+          "translation": "Давай спросим у него",
+          "base": "preguntar a (alguien)",
+          "explanation": "le — незнакомому мужчине; прикреплено к инфинитиву."
+        },
+        {
+          "es": "¿En qué os puedo ayudar?",
+          "translation": "Чем могу вам помочь?",
+          "base": "ayudar a (alguien)",
+          "explanation": "os = обоим путешественникам, испанское vosotros."
+        },
+        {
+          "es": "Ese autobús os lleva directamente",
+          "translation": "Он довезёт вас прямо",
+          "base": "llevar a (alguien) a (un lugar)",
+          "explanation": "os — Даниэль и Хулия, прямое дополнение."
+        }
+      ]
+    },
+    {
+      "title": "Хулия предлагает разделиться",
+      "es": "Julia y yo hablamos sobre el autobús para ir al restaurante. Ella parece preocupada.\n–Daniel, el restaurante de paellas puede estar bien, pero quizás podemos comer en el restaurante de pescado. No quiero ir en un autobús lleno de gente.\n–Tengo una idea, Julia. Yo tomo el autobús 35 para ir al restaurante La Paella Loca. Tú puedes ir andando al restaurante donde sirven pescado.\n–¿Por qué quieres hacer eso?\n–Porque así podemos comparar los dos restaurantes.\n–Vale. ¡Buena idea! ¡Te llamo por el móvil!",
+      "ru": "Мы с Хулией обсуждаем автобус, на котором можно добраться до ресторана. Она кажется обеспокоенной.\n— Даниэль, ресторан с паэльей, возможно, и хороший, но, может, поедим в рыбном ресторане? Я не хочу ехать в автобусе, набитом людьми.\n— У меня есть идея, Хулия. Я сяду на автобус номер 35 и поеду в «Безумную паэлью». А ты можешь дойти пешком до ресторана, где подают рыбу.\n— Зачем тебе это?\n— Так мы сможем сравнить два ресторана.\n— Ладно. Отличная идея! Я тебе позвоню на мобильный!",
+      "notes": [
+        {
+          "term": "parecer",
+          "es": [
+            "parece"
+          ],
+          "ru": [
+            "кажется"
+          ],
+          "explanation": "казаться, производить впечатление."
+        },
+        {
+          "term": "preocupado",
+          "es": [
+            "preocupada"
+          ],
+          "ru": [
+            "обеспокоенной"
+          ],
+          "explanation": "волнующийся, тревожащийся."
+        },
+        {
+          "term": "quizás",
+          "es": [
+            "quizás"
+          ],
+          "ru": [
+            "может"
+          ],
+          "explanation": "возможно; выражает предположение."
+        },
+        {
+          "term": "ir andando",
+          "es": [
+            "ir andando"
+          ],
+          "ru": [
+            "дойти пешком"
+          ],
+          "explanation": "двигаться пешком; ir + gerundio."
+        },
+        {
+          "term": "comparar",
+          "es": [
+            "comparar"
+          ],
+          "ru": [
+            "сравнить"
+          ],
+          "explanation": "сопоставлять несколько вариантов."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "¡Te llamo por el móvil!",
+          "translation": "Я тебе позвоню на мобильный!",
+          "base": "llamar a (alguien)",
+          "explanation": "te — Даниэлю, адресату звонка Хулии."
+        }
+      ]
+    },
+    {
+      "title": "Нежданная конечная остановка",
+      "es": "Tomo el siguiente autobús. Estoy muy cansado, así que me duermo pronto. Me despierto un poco más tarde. El autobús está parado y no hay nadie en él salvo el conductor.\n–Disculpe –le digo al conductor–, ¿dónde estamos?\n–Hemos llegado a Badalona.\n–¿Cómo? ¿Estamos en Badalona? ¡Oh, no! ¿Cómo es posible?\nSaco el móvil del bolsillo e intento llamar a mi hermana. ¡Vaya! Mi móvil no tiene batería. ¡No puedo encenderlo! Salgo del autobús. Estoy en Badalona. ¡Badalona está muy lejos! No me lo puedo creer. Me he dormido en el autobús y me ha llevado hasta Badalona. ¿Qué hago ahora?",
+      "ru": "Я сажусь на следующий автобус. Я так устал, что быстро засыпаю. Спустя какое-то время просыпаюсь. Автобус стоит, и в нём никого нет, кроме водителя.\n— Простите, — говорю я водителю, — где мы?\n— Мы приехали в Бадалону.\n— Что? Мы в Бадалоне? О нет! Как такое возможно?\n\nЯ достаю телефон из кармана и пытаюсь позвонить сестре. Вот беда! Телефон разрядился. Я не могу его включить! Выхожу из автобуса. Я в Бадалоне. А это очень далеко! Поверить не могу. Я заснул в автобусе и доехал на нём до Бадалоны. Что же теперь делать?",
+      "notes": [
+        {
+          "term": "dormirse",
+          "es": [
+            "me duermo"
+          ],
+          "ru": [
+            "засыпаю"
+          ],
+          "explanation": "заснуть; форма с возвратным местоимением."
+        },
+        {
+          "term": "salvo",
+          "es": [
+            "salvo"
+          ],
+          "ru": [
+            "кроме"
+          ],
+          "explanation": "за исключением."
+        },
+        {
+          "term": "el conductor",
+          "es": [
+            "conductor"
+          ],
+          "ru": [
+            "водителя"
+          ],
+          "explanation": "водитель автобуса."
+        },
+        {
+          "term": "sacar",
+          "es": [
+            "Saco"
+          ],
+          "ru": [
+            "достаю"
+          ],
+          "explanation": "вынуть, достать."
+        },
+        {
+          "term": "no tener batería",
+          "es": [
+            "no tiene batería"
+          ],
+          "ru": [
+            "разрядился"
+          ],
+          "explanation": "буквально «не иметь заряда батареи»."
+        },
+        {
+          "term": "encender",
+          "es": [
+            "encenderlo"
+          ],
+          "ru": [
+            "включить"
+          ],
+          "explanation": "включать устройство; lo = мобильный телефон."
+        },
+        {
+          "term": "No me lo puedo creer",
+          "es": [
+            "No me lo puedo creer"
+          ],
+          "ru": [
+            "Поверить не могу"
+          ],
+          "explanation": "восклицание удивления."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "me duermo",
+          "translation": "засыпаю",
+          "base": "dormirse",
+          "explanation": "me часть dormirse: Даниэль засыпает."
+        },
+        {
+          "es": "No puedo encenderlo",
+          "translation": "Я не могу его включить",
+          "base": "encender (algo)",
+          "explanation": "lo = телефон, прямое дополнение после инфинитива."
+        },
+        {
+          "es": "No me lo puedo creer",
+          "translation": "Поверить не могу",
+          "base": "creerse (algo)",
+          "explanation": "me — рассказчику, lo — весь факт того, что он оказался в Бадалоне."
+        }
+      ]
+    },
+    {
+      "title": "Телефонная будка и забытый номер",
+      "es": "Paseo por las calles de Badalona. Busco una cabina telefónica. Le pregunto a una señora:\n–Disculpe, señora. ¿Dónde puedo encontrar una cabina telefónica?\n–A la vuelta de la esquina tiene usted una, jovencito.\n–Muchas gracias. Que tenga un buen día.\n–De nada. Buenas tardes.\nSon las cinco de la tarde y mi hermana no sabe dónde estoy. ¡Seguro que está muy preocupada! Entro en la cabina telefónica. ¡Oh, no! ¡No recuerdo el número de teléfono de Julia! ¿Qué voy a hacer? ¡Tengo teléfono, pero no tengo su número! Voy a buscar un restaurante. Tengo mucha hambre. Luego pienso qué voy a hacer.",
+      "ru": "Я брожу по улицам Бадалоны. Ищу телефонную будку. Спрашиваю у одной женщины:\n— Простите, сеньора. Где можно найти телефонную будку?\n— За углом есть одна, молодой человек.\n— Большое спасибо. Хорошего вам дня!\n— Не за что. Добрый вечер.\n\nПять часов вечера, а сестра не знает, где я. Она наверняка очень волнуется! Захожу в телефонную будку. О нет! Я не помню номер Хулии! Что же мне делать? У меня есть телефон, но нет её номера! Пойду поищу ресторан. Я очень голоден. А потом решу, что делать дальше.",
+      "notes": [
+        {
+          "term": "pasear",
+          "es": [
+            "Paseo"
+          ],
+          "ru": [
+            "брожу"
+          ],
+          "explanation": "гулять; ходить по улицам."
+        },
+        {
+          "term": "la cabina telefónica",
+          "es": [
+            "cabina telefónica"
+          ],
+          "ru": [
+            "телефонную будку"
+          ],
+          "explanation": "общественный телефон в кабинке."
+        },
+        {
+          "term": "a la vuelta de la esquina",
+          "es": [
+            "A la vuelta de la esquina"
+          ],
+          "ru": [
+            "За углом"
+          ],
+          "explanation": "устойчивое обозначение ближайшего поворота."
+        },
+        {
+          "term": "recordar",
+          "es": [
+            "recuerdo"
+          ],
+          "ru": [
+            "помню"
+          ],
+          "explanation": "помнить, вспоминать."
+        },
+        {
+          "term": "seguro que",
+          "es": [
+            "Seguro que"
+          ],
+          "ru": [
+            "наверняка"
+          ],
+          "explanation": "высокая уверенность."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Le pregunto a una señora",
+          "translation": "Спрашиваю у одной женщины",
+          "base": "preguntar a (alguien)",
+          "explanation": "le — этой женщине, косвенное дополнение."
+        }
+      ]
+    },
+    {
+      "title": "Ироничный ужин с паэльей",
+      "es": "Entro en un restaurante barato y el camarero se acerca.\n–¡Buenas tardes!\n–¡Buenas tardes!\n–¿Qué desea?\n–Miro rápidamente la carta:\n–Me gustaría… ¿Paella? –le digo al camarero en español.\n–¿Disculpe? No le he entendido bien, joven.\nMe empiezo a reír muy alto y me mira mucha gente en el restaurante. No me importa. Señalo la palabra paella en la carta. El camarero me entiende. Finalmente puedo comer.",
+      "ru": "Я захожу в недорогой ресторан, и ко мне подходит официант.\n— Добрый вечер!\n— Добрый вечер!\n— Что желаете?\n— Я быстро смотрю меню:\n— Я хотел бы… паэлью? — говорю официанту по-испански.\n— Простите? Я вас не совсем понял, молодой человек.\nЯ начинаю очень громко смеяться, и многие люди в ресторане смотрят на меня. Но мне всё равно. Я указываю в меню на слово «паэлья». Официант меня понимает. Наконец-то я могу поесть.",
+      "notes": [
+        {
+          "term": "el camarero",
+          "es": [
+            "camarero"
+          ],
+          "ru": [
+            "официант"
+          ],
+          "explanation": "официант в ресторане."
+        },
+        {
+          "term": "la carta",
+          "es": [
+            "carta"
+          ],
+          "ru": [
+            "меню"
+          ],
+          "explanation": "в ресторане carta означает меню."
+        },
+        {
+          "term": "me gustaría",
+          "es": [
+            "Me gustaría"
+          ],
+          "ru": [
+            "Я хотел бы"
+          ],
+          "explanation": "вежливая форма просьбы/заказа."
+        },
+        {
+          "term": "señalar",
+          "es": [
+            "Señalo"
+          ],
+          "ru": [
+            "указываю"
+          ],
+          "explanation": "показывать жестом."
+        },
+        {
+          "term": "no importar",
+          "es": [
+            "No me importa"
+          ],
+          "ru": [
+            "мне всё равно"
+          ],
+          "explanation": "не иметь значения."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "el camarero se acerca",
+          "translation": "ко мне подходит официант",
+          "base": "acercarse a (alguien)",
+          "explanation": "se относится к официанту и является частью acercarse."
+        },
+        {
+          "es": "No le he entendido bien",
+          "translation": "Я вас не совсем понял",
+          "base": "entender a (alguien)",
+          "explanation": "le относится к Даниэлю, вежливый объект при обращении."
+        },
+        {
+          "es": "El camarero me entiende",
+          "translation": "Официант меня понимает",
+          "base": "entender a (alguien)",
+          "explanation": "me — Даниэль, прямое дополнение."
+        }
+      ]
+    },
+    {
+      "title": "Решение позвонить домой",
+      "es": "Al acabar de comer, siento vergüenza. No debería haberme reído tan alto, pero es una situación extraña. Queríamos comer paella y aquí estoy, comiendo paella en Badalona y mi hermana no sabe dónde estoy. ¡Es tan irónico! ¿Qué puedo hacer ahora? No tengo el número de mi hermana… ¡Ya sé! ¡Voy a llamar a Londres!\n\nVuelvo a la cabina telefónica y marco el número de teléfono de nuestra casa en Londres. Suena cuatro veces y por fin, responde mi madre.",
+      "ru": "Закончив есть, я чувствую стыд. Мне не стоило так громко смеяться, но ситуация и правда странная. Мы хотели поесть паэльи, а в итоге я сижу и ем паэлью в Бадалоне, а сестра даже не знает, где я. Какая ирония! Что теперь делать? У меня нет номера сестры… Знаю! Позвоню в Лондон!\n\nЯ возвращаюсь в телефонную будку и набираю номер нашего дома в Лондоне. Гудки проходят четыре раза, и наконец трубку берёт моя мама.",
+      "notes": [
+        {
+          "term": "al + infinitivo",
+          "es": [
+            "Al acabar"
+          ],
+          "ru": [
+            "Закончив"
+          ],
+          "explanation": "действие, происходящее после или во время другого."
+        },
+        {
+          "term": "sentir vergüenza",
+          "es": [
+            "siento vergüenza"
+          ],
+          "ru": [
+            "чувствую стыд"
+          ],
+          "explanation": "испытывать стыд или неловкость."
+        },
+        {
+          "term": "debería haber + participio",
+          "es": [
+            "debería haberme reído"
+          ],
+          "ru": [
+            "Мне не стоило так громко смеяться"
+          ],
+          "explanation": "сожаление о совершённом действии."
+        },
+        {
+          "term": "marcar un número",
+          "es": [
+            "marco"
+          ],
+          "ru": [
+            "набираю"
+          ],
+          "explanation": "набирать номер телефона."
+        },
+        {
+          "term": "por fin",
+          "es": [
+            "por fin"
+          ],
+          "ru": [
+            "наконец"
+          ],
+          "explanation": "наконец-то, после ожидания."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "debería haberme reído",
+          "translation": "Мне не стоило так громко смеяться",
+          "base": "deber + haberse reído",
+          "explanation": "me — часть reírse в конструкции с перфектным инфинитивом."
+        }
+      ]
+    },
+    {
+      "title": "Разговор с матерью и ночёвка в отеле",
+      "es": "–¡Hola, cariño! ¿Cómo estás? ¿Qué tal en Barcelona?\n–Hola, mamá. Tengo un problema.\n–¿Qué pasa, hijo? ¿Ha pasado algo malo?\n–No es eso, mamá. Por favor, llama a Julia y dile que estoy en Badalona y que no tengo batería en el móvil.\n–¡En Badalona! ¿Qué haces tú en Badalona?\n–Es una larga historia, mamá.\nDecido ir a dormir a un hotel. Puedo regresar a Barcelona mañana. Encuentro un hotel, pago la estancia de una noche y entro en mi habitación. Me desvisto y me acuesto. Apago la luz y me duermo. ¡Menudo día de locos!",
+      "ru": "— Привет, дорогой! Как дела? Как там Барселона?\n— Привет, мама. У меня проблема.\n— Что случилось, сынок? Что-то плохое произошло?\n— Нет, не то, мама. Пожалуйста, позвони Хулии и скажи ей, что я в Бадалоне и что у меня разрядился мобильный.\n— В Бадалоне?! Что ты делаешь в Бадалоне?\n— Это долгая история, мама.\n\nЯ решаю переночевать в гостинице. Завтра смогу вернуться в Барселону. Нахожу отель, оплачиваю одну ночь и захожу в номер. Раздеваюсь и ложусь спать. Выключаю свет и засыпаю. Вот уж безумный денёк!",
+      "notes": [
+        {
+          "term": "la estancia",
+          "es": [
+            "estancia"
+          ],
+          "ru": [
+            "одну ночь"
+          ],
+          "explanation": "проживание; здесь оплата за ночь."
+        },
+        {
+          "term": "desvestirse",
+          "es": [
+            "Me desvisto"
+          ],
+          "ru": [
+            "Раздеваюсь"
+          ],
+          "explanation": "снимать одежду, возвратный глагол."
+        },
+        {
+          "term": "apagar la luz",
+          "es": [
+            "Apago la luz"
+          ],
+          "ru": [
+            "Выключаю свет"
+          ],
+          "explanation": "гасить, выключать свет."
+        },
+        {
+          "term": "¡Menudo día de locos!",
+          "es": [
+            "¡Menudo día de locos!"
+          ],
+          "ru": [
+            "Вот уж безумный денёк!"
+          ],
+          "explanation": "разговорное эмоциональное восклицание."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "dile que estoy en Badalona",
+          "translation": "скажи ей, что я в Бадалоне",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "le — Хулии, местоимение при повелительной форме di."
+        },
+        {
+          "es": "Me desvisto",
+          "translation": "Раздеваюсь",
+          "base": "desvestirse",
+          "explanation": "me = Даниэль, снимает одежду с себя."
+        }
+      ]
+    }
+  ],
   "source": {
     "file": "Short Stories in Spanish for Beginners — Olly Richards (1).pdf",
     "heading_page": 20
-  }
+  },
+  "exercises": [
+    {
+      "id": "chapter-2-comprehension",
+      "instruction": "Seleccione una única respuesta para cada pregunta.",
+      "source": {
+        "file": "Short Stories in Spanish for Beginners — Olly Richards (1).pdf",
+        "pdf_pages": [
+          24,
+          25
+        ],
+        "chapters": [
+          2
+        ],
+        "answer_key_page": 190,
+        "instruction": "Seleccione una única respuesta para cada pregunta."
+      },
+      "questions": [
+        {
+          "prompt": "Armando es ___.",
+          "options": [
+            "un trabajador del aeropuerto",
+            "un amigo de los padres de Julia y Daniel",
+            "un amigo de Julia",
+            "un amigo de Daniel"
+          ],
+          "answer": 3
+        },
+        {
+          "prompt": "En Barcelona ___.",
+          "options": [
+            "hace frío",
+            "hace calor",
+            "no hace ni frío ni calor",
+            "no se sabe si hace frío o calor"
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "Después del aeropuerto, los tres jóvenes van hacia ___.",
+          "options": [
+            "un restaurante",
+            "el apartamento de Armando",
+            "el apartamento de Daniel",
+            "Badalona"
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "Daniel no puede llamar a su hermana porque ___.",
+          "options": [
+            "no tiene batería en el móvil",
+            "no tiene dinero",
+            "no encuentra una cabina telefónica",
+            "olvidó su móvil"
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "Daniel duerme por la noche ___.",
+          "options": [
+            "en un hotel de Barcelona",
+            "en el autobús",
+            "en un hotel de Badalona",
+            "en un hostal"
+          ],
+          "answer": 2
+        }
+      ]
+    }
+  ]
 }

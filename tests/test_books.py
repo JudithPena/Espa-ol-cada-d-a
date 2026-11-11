@@ -145,15 +145,42 @@ def test_olly_collection_has_one_parent_and_complete_contents():
     assert all(b['vocabulary_min_level'] == 'A2' for b in books)
     assert [len(b['chapter_catalog']) for b in books] == [4, 3, 3, 3, 3, 3, 3, 3]
     for book in books:
-        assert [c['number'] for c in book['chapters']] == [1]
-        assert [c['status'] for c in book['chapter_catalog']] == ['published'] + ['draft'] * (len(book['chapter_catalog']) - 1)
+        expected = [1, 2, 3, 4] if book['id'] == 'olly-richards-la-paella-loca' else [1]
+        assert [c['number'] for c in book['chapters']] == expected
+        assert [c['status'] for c in book['chapter_catalog']] == (
+            ['published'] * len(expected) + ['draft'] * (len(book['chapter_catalog']) - len(expected)))
         assert all(c['title'].strip() for c in book['chapter_catalog'])
-        chapter = book['chapters'][0]
-        assert len(chapter['exercises']) == 1
-        assert len(chapter['exercises'][0]['questions']) == 5
-        assert all(block['es'] and block['ru'] and block['notes'] for block in chapter['blocks'])
-    assert sum(len(b.get('images', [])) for book in books for b in book['chapters'][0]['blocks']) == 6
-    assert sum(len(book.get('pending_illustrations', [])) for book in books) == 2
+        for chapter in book['chapters']:
+            assert len(chapter['exercises']) == 1
+            assert len(chapter['exercises'][0]['questions']) == 5
+            assert all(block['es'] and block['ru'] and block['notes'] for block in chapter['blocks'])
+    assert sum(len(b.get('images', [])) for book in books for chapter in book['chapters']
+               for b in chapter['blocks']) == 7
+    assert sum(len(book.get('pending_illustrations', [])) for book in books) == 1
+
+def test_la_paella_loca_complete_chapters_notes_and_source_keys():
+    book = next(b for b in load_books() if b['id'] == 'olly-richards-la-paella-loca')
+    assert [chapter['title'] for chapter in book['chapters']] == [
+        'El avión', 'España', 'La carretera', 'El regreso']
+    assert [len(chapter['blocks']) for chapter in book['chapters']] == [6, 9, 8, 7]
+    assert sum(len(chapter['exercises'][0]['questions']) for chapter in book['chapters']) == 20
+    for chapter, answers in zip(book['chapters'][1:], (
+            [3, 1, 1, 0, 2], [1, 2, 3, 3, 1], [2, 3, 0, 2, 0])):
+        assert [q['answer'] for q in chapter['exercises'][0]['questions']] == answers
+    learned = set()
+    for chapter in book['chapters']:
+        for block in chapter['blocks']:
+            assert 45 <= len(block['es'].split()) <= 150
+            for language in ('es', 'ru'):
+                assert not __import__('re').search(r'(?m)^[–—][^\n]*\n\n[–—]', block[language])
+            for note in block['notes']:
+                assert note['term'] not in learned, (chapter['number'], note['term'])
+                learned.add(note['term'])
+    image_blocks = [(chapter['number'], block) for chapter in book['chapters']
+                    for block in chapter['blocks'] if block.get('images')]
+    assert len(image_blocks) == 1
+    assert image_blocks[0][0] == 3
+    assert image_blocks[0][1]['images'][0]['before'] == 'Cuando salgo del hotel'
 
 
 def test_book_chapters_have_complete_readable_blocks():
