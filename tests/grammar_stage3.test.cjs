@@ -82,6 +82,11 @@ test('only written framing punctuation is ignored when explicitly enabled',()=>{
   }
   assert.equal(grade(q,'Teneis frío').status,'wrong');
   assert.equal(grade({...q,normalize:undefined},'Tenéis frío').status,'wrong');
+  const phone={...meta('¿Teléfono azul?'),normalize:'phrase',accentPolicy:'soft'};
+  const missing=grade(phone,'Telefono azul');
+  assert.equal(missing.status,'almost');
+  const hint=run('grammarAccentHint('+JSON.stringify(missing)+')');
+  assert.match(hint,/<mark class="gmissing-accent">é<\\/mark>/);
 });
 test('real contextual policy catalog points to matching intact lesson positions',()=>{
   for(const [unitId,groups] of Object.entries(catalog)){
