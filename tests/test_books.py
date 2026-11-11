@@ -182,7 +182,7 @@ def test_olly_collection_has_one_parent_and_complete_contents():
     assert [len(b['chapter_catalog']) for b in books] == [4, 3, 3, 3, 3, 3, 3, 3]
     for book in books:
         expected = ([1, 2, 3, 4] if book['id'] == 'olly-richards-la-paella-loca' else
-                    [1, 2, 3] if book['id'] in {'olly-richards-la-criatura', 'olly-richards-el-caballero', 'olly-richards-el-reloj', 'olly-richards-el-cofre'} else [1])
+                    [1, 2, 3] if book['id'] in {'olly-richards-la-criatura', 'olly-richards-el-caballero', 'olly-richards-el-reloj', 'olly-richards-el-cofre', 'olly-richards-tierras-desconocidas'} else [1])
         assert [c['number'] for c in book['chapters']] == expected
         assert [c['status'] for c in book['chapter_catalog']] == (
             ['published'] * len(expected) + ['draft'] * (len(book['chapter_catalog']) - len(expected)))
@@ -192,8 +192,80 @@ def test_olly_collection_has_one_parent_and_complete_contents():
             assert len(chapter['exercises'][0]['questions']) == 5
             assert all(block['es'] and block['ru'] and block['notes'] for block in chapter['blocks'])
     assert sum(len(b.get('images', [])) for book in books for chapter in book['chapters']
-               for b in chapter['blocks']) == 7
-    assert sum(len(book.get('pending_illustrations', [])) for book in books) == 1
+               for b in chapter['blocks']) == 8
+    assert sum(len(book.get('pending_illustrations', [])) for book in books) == 0
+
+
+def test_tierras_desconocidas_completed_source_links_and_publisher_quizzes():
+    """Sixth collection story: complete source, independent blocks, marked vocabulary and printed quizzes."""
+    import hashlib
+    import re
+
+    book = next(b for b in load_books() if b['id'] == 'olly-richards-tierras-desconocidas')
+    assert book['vocabulary_min_level'] == 'A2'
+    assert [c['title'] for c in book['chapters']] == ['Los exploradores', 'El mar', 'La decisión']
+    assert [c['status'] for c in book['chapters']] == ['published'] * 3
+    assert [len(c['blocks']) for c in book['chapters']] == [6, 11, 9]
+    assert not book.get('pending_illustrations')
+    expected = [
+        (2, 1194, '539607eb5b2a1a45b5e4924b3fc25178f564bc1ae00bc37951811cfe3db0a392',
+         79, 43, [2, 1, 3, 0, 3], 129, list(range(129, 136))),
+        (3, 1164, '6fab6d79feeede3e086139be954a05217be421093452a897bf42d90a487db525',
+         66, 55, [2, 2, 2, 2, 1], 136, list(range(136, 143))),
+    ]
+    learned = {n['term'].casefold() for b in book['chapters'][0]['blocks']
+               for n in b['notes'] if isinstance(n, dict)}
+    for chapter, (number, words, digest, n_notes, n_pronouns, answers, heading, pages) in zip(
+            book['chapters'][1:], expected):
+        assert chapter['number'] == number and chapter['source']['heading_page'] == heading
+        spanish = re.sub(r'\s+', ' ', ' '.join(b['es'] for b in chapter['blocks'])).strip()
+        assert len(spanish.split()) == words
+        assert hashlib.sha256(spanish.encode('utf-8')).hexdigest() == digest
+        assert all(60 <= len(b['es'].split()) <= 175 and b['ru'] for b in chapter['blocks'])
+        assert sum(len(b['pronouns']) for b in chapter['blocks']) == n_pronouns
+        notes = [n for b in chapter['blocks'] for n in b['notes']]
+        assert len(notes) == n_notes
+        terms = {n['term'].casefold() for n in notes}
+        assert len(terms) == n_notes
+        assert not terms.intersection(learned), (number, terms.intersection(learned))
+        learned.update(terms)
+        for block in chapter['blocks']:
+            for lang in ('es', 'ru'):
+                spans = []
+                for note in block['notes']:
+                    assert note['term'] and note['explanation'] and note[lang]
+                    for mark in note[lang]:
+                        matches = list(re.finditer(r'(?<!\w)' + re.escape(mark) + r'(?!\w)', block[lang], re.I))
+                        assert matches, (number, block['title'], lang, note['term'], mark)
+                        for m in matches:
+                            assert all(m.end() <= a or m.start() >= b for a, b in spans), (
+                                'Overlapping notes', number, block['title'], lang, mark)
+                            spans.append((m.start(), m.end()))
+            for pronoun in block['pronouns']:
+                assert pronoun['es'] in block['es'], (number, block['title'], pronoun['es'])
+                assert all(pronoun.get(k) for k in ('base', 'translation', 'explanation'))
+        assert len(chapter['exercises']) == 1
+        ex = chapter['exercises'][0]
+        assert ex['source']['pdf_pages'] == pages
+        assert ex['source']['answer_key_page'] == 190 and ex['source']['chapters'] == [number]
+        assert len(ex['questions']) == 5
+        assert [len(q['options']) for q in ex['questions']] == [4] * 5
+        assert [q['answer'] for q in ex['questions']] == answers
+    ch2, ch3 = book['chapters'][1:]
+    illustrations = [(i, img) for i, block in enumerate(ch2['blocks'])
+                     for img in block.get('images', [])]
+    assert len(illustrations) == 1 and illustrations[0][0] == 3
+    assert illustrations[0][1]['src'].startswith('data:image/webp;base64,')
+    assert 'El mar' == ch2['title'] and 'La decisión' == ch3['title']
+    assert not any(block.get('images') for block in ch3['blocks'])
+    assert {(fix['printed'], fix['edited']) for fix in ch2['source']['editorial_corrections']} == {
+        ('–dijo Neils.', '–dijo Niels.'),
+        ('el padre de Neils', 'el padre de Niels'),
+    }
+    assert len(ch3['source']['editorial_corrections']) == 3
+    # Important inner-source numerical inconsistency: 14 voyagers, 13 accounted for.
+    assert any('нестыковка' in p['explanation']
+               for block in ch3['blocks'] for p in block['pronouns'])
 
 
 def test_el_cofre_complete_chapters_source_and_publisher_quizzes():
