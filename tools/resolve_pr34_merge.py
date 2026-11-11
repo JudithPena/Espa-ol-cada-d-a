@@ -79,9 +79,15 @@ def main():
     t=replace_once(t,
       "gMove(1);gMove(-1);gCheck();gRepeatExercise();",
       "gMove(1);gMove(-1);gCheck();")
-    t=t.replace(
-      "for(const answer of ['first wrong','second wrong','third wrong'])assert.ok(r('gPlayerView()').includes(answer));",
-      "console.log('HISTORY-CORRECTION:',r('JSON.stringify(gAttemptErrors(gAttempt(gUnit(),gUnit().exercises[0])))')); for(const answer of ['first wrong','second wrong','third wrong'])assert.ok(r('gPlayerView()').includes(answer),answer);",1)
+    # The reload fixture must persist the explicitly unlocked route before
+    # constructing a new JS context; otherwise it lacks saved progress.
+    key="test('failed review preserves every different correction submitted for the same question',()=>{"
+    if t.count(key)!=1: raise RuntimeError('Could not locate correction-history regression')
+    before,after=t.split(key,1)
+    start="r(`gStart(COURSE.grammar[0].id,"
+    if start not in after: raise RuntimeError('Could not locate correction-history start')
+    after=after.replace(start,"r(`save();gStart(COURSE.grammar[0].id,",1)
+    t=before+key+after
     TEST.write_text(t)
     PLAYER.write_text(p)
     subprocess.check_call(["git","add",str(PLAYER),str(TEST)])
