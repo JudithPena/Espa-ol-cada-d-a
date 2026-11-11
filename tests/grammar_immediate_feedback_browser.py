@@ -11,6 +11,8 @@ from playwright.sync_api import sync_playwright
 WIDTHS = (320, 390, 768, 1280)
 CASES = (
     (1, "exercise:1.1", "choice"),
+    (7, "exercise:7.1", "choice"),
+    (7, "exercise:7.2", "choice"),
     (7, "exercise:7.3", "input"),
     (15, "exercise:15.2", "build"),
     (38, "exercise:38.1b", "gaps"),

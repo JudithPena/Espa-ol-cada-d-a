@@ -8,8 +8,8 @@
     {
       "title": "Говорим о предмете впервые или ещё раз",
       "paragraphs": [
-        "Впервые называя предмет, часто используем **`un / una`**.",
-        "При повторном упоминании предмета используем **`el / la`**: собеседник уже знает, о каком предмете речь. На рисунке — история одной собаки, ниже — ещё две пары примеров."
+        "В разговоре новый предмет обычно вводим с **`un / una`**: `Tengo un perro` — у меня есть собака. Собеседник ещё не знает, о какой собаке речь.",
+        "Когда продолжаем говорить **о той же собаке**, выбираем **`el / la`**: `El perro duerme`. Не считай это механическим правилом «первый раз — un, второй — el»: важно, известен ли предмет собеседнику."
       ],
       "wordGroups": [
         {
@@ -42,33 +42,46 @@
       "check": {
         "id": "check-a",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "Выбери артикль по испанскому контексту. Обрати внимание, о предмете уже говорили или нет.",
         "questions": [
           {
-            "prompt": "Tengo ___ gato. El gato es negro.",
+            "prompt": "— ¿Tienes mascota? — Sí, tengo ___ gato.",
             "answers": [
               "un"
             ],
-            "explain": "В первой фразе впервые сообщаем о коте. Затем говорим о нём el gato.",
             "options": [
               "un",
               "el"
             ],
-            "context": "Дополни предложение."
+            "explain": "Кота называют впервые; «el» указывал бы на уже известного собеседнику кота.",
+            "context": "Разговор о домашних животных только начинается."
           },
           {
-            "prompt": "He visto una película. ___ película es divertida.",
+            "prompt": "Tengo un gato. ___ gato se llama Coco.",
+            "answers": [
+              "el"
+            ],
+            "options": [
+              "el",
+              "un"
+            ],
+            "explain": "Второе предложение рассказывает о том же коте, поэтому `el gato`. `Un gato` вводил бы другого или ещё не названного.",
+            "context": "Первая фраза уже представила животное."
+          },
+          {
+            "prompt": "Tengo una lámpara. ___ lámpara es blanca.",
             "answers": [
               "la"
             ],
-            "explain": "Фильм уже назван: la película.",
             "options": [
               "una",
               "la"
             ],
-            "context": "Дополни предложение."
+            "explain": "После `una lámpara` собеседник понимает, какая именно лампа имеется в виду: `la lámpara`.",
+            "context": "Продолжи рассказ о покупке."
           }
-        ]
+        ],
+        "revision": 2
       },
       "illustration": {
         "image": "art/theory-004-014/007a.webp",
@@ -89,8 +102,9 @@
     {
       "title": "Когда понятно, о каком предмете речь",
       "paragraphs": [
-        "Если предмет понятен из ситуации, **определённый артикль возможен сразу**. Например, речь может идти о кухне нашего дома.",
-        "Сравни: **`Trabajo en un hotel`** — работаю в одном отеле; **`El hotel de Ana está en el centro`** — отель Аны в центре. Уточнение `de Ana` показывает, какой отель имеется в виду."
+        "**`El / la` возможен даже при первом упоминании**, если из ситуации уже ясно, какой предмет имеется в виду: `Estoy en la cocina de nuestra casa`. Знакомого предмета не обязательно сначала называть с `un`.",
+        "Сравни: **`Trabajo en un hotel`** — не сообщаем, в каком отеле; **`El hotel de Ana está en el centro`** — говорим о знакомом собеседнику отеле Аны. Само уточнение через `de` не всегда гарантирует единственность: учитывай всю ситуацию.",
+        "Когда говорим, кем или чем является человек или предмет, **`un / una`** может относить его к классу: `Paco es un nombre español`. А у единственной столицы государства употребляем `la`: `Lima es la capital de Perú`."
       ],
       "wordGroups": [
         {
@@ -123,33 +137,46 @@
       "check": {
         "id": "check-b",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "Выбери, нужен ли артикль для нового или уже определённого предмета.",
         "questions": [
           {
-            "prompt": "La moto de Pedro está aquí. ___ moto es roja.",
+            "prompt": "En esta casa hay una sola cocina. Luis está en ___ cocina.",
             "answers": [
               "la"
             ],
-            "explain": "Говорим о мотоцикле Педро, который уже назван.",
             "options": [
-              "una",
-              "la"
+              "la",
+              "una"
             ],
-            "context": "Дополни предложение."
+            "explain": "В доме одна кухня, и речь о ней: `la cocina`. `Una` представляло бы неустановленную кухню.",
+            "context": "Кухня уже определена домом и ситуацией."
           },
           {
-            "prompt": "Trabajo en ___ hospital. Todavía no te he dicho en cuál.",
+            "prompt": "El padre de Marta tiene un solo coche. ___ coche es rojo.",
             "answers": [
-              "un"
+              "el"
             ],
-            "explain": "Пока не уточняем, в какой именно больнице.",
             "options": [
               "un",
               "el"
             ],
-            "context": "Дополни предложение."
+            "explain": "Это единственный автомобиль отца Марты, уже названный в первой фразе.",
+            "context": "Речь продолжается о машине отца."
+          },
+          {
+            "prompt": "— ¿Dónde trabajas? — En ___ biblioteca. No sabes cuál.",
+            "answers": [
+              "una"
+            ],
+            "options": [
+              "la",
+              "una"
+            ],
+            "explain": "Собеседник не знает, о какой библиотеке речь; `una` представляет её впервые. `La` потребовало бы известного места.",
+            "context": "Собеседник ещё не знает название и местоположение библиотеки."
           }
-        ]
+        ],
+        "revision": 2
       },
       "illustration": {
         "image": "art/theory-004-014/007b.webp",
@@ -166,8 +193,9 @@
     {
       "title": "Отдельные предметы и обобщение",
       "paragraphs": [
-        "**`Unos / unas` обозначают отдельные предметы:** `Me han regalado unos bombones` — мне подарили несколько конфет.",
-        "Когда говорим **не об отдельных предметах, а обо всей группе вообще**, обычно используем **`el`, `la`, `los`, `las`**. Сравни в примерах покупку определённых вещей и отношение к таким вещам вообще."
+        "**`Unos / unas`** могут обозначать некоторое количество отдельных предметов: `He comprado unas peras` — купил несколько груш. **`Los / las`** часто обозначают целый вид: `Me gustan las peras` — мне нравятся груши вообще. Например, `Tengo unos bombones para los invitados` — у меня есть несколько конфет для гостей.",
+        "В неопределённом множественном числе **артикль можно опустить**: `He comprado peras` — купил груши, без акцента на количестве. И `He comprado unas peras`, и `He comprado peras` грамматически возможны; в первом случае заметнее «несколько». Это повторение правила из юнита 5.",
+        "С неисчисляемыми словами сравни привычку и отношение: `Bebo agua` — пью воду; `Me gusta el agua` — люблю воду вообще. Перед ударным `a` у существительного женского рода ставим **`el agua`** (правило юнита 6)."
       ],
       "wordGroups": [
         {
@@ -200,34 +228,48 @@
       "check": {
         "id": "check-c",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "Выбери форму, которая соответствует смыслу реплики. Если верны два варианта, можно выбрать любой из них.",
         "questions": [
           {
-            "prompt": "Me gusta ___ chocolate.",
+            "prompt": "Me gusta ___ café.",
             "answers": [
               "el"
             ],
-            "explain": "Речь о шоколаде вообще: el chocolate.",
             "options": [
               "el",
               "un"
             ],
-            "context": "Дополни предложение."
+            "explain": "Здесь говорится о кофе как напитке вообще: `el café`. `Un café` означало бы одну порцию, а не весь вид.",
+            "context": "Человек описывает свои вкусы."
           },
           {
-            "prompt": "He comprado ___ margaritas para ti.",
+            "prompt": "— ¿Qué quieres tomar? — ___ café, por favor.",
             "answers": [
-              "unas"
+              "un"
             ],
-            "explain": "Куплены отдельные цветы: unas margaritas.",
             "options": [
-              "las",
+              "un",
+              "el"
+            ],
+            "explain": "В кафе заказывают одну чашку: `un café`. `El café` относился бы к уже известному конкретному кофе.",
+            "context": "Заказ ещё не выбран."
+          },
+          {
+            "prompt": "— ¿Qué compras normalmente? — Compro ___ frutas.",
+            "answers": [
+              "Без артикля",
               "unas"
             ],
-            "translation": "Я купил тебе несколько ромашек.",
-            "context": "Цветы упоминаются впервые; пока не уточняем, какие именно."
+            "options": [
+              "Без артикля",
+              "unas",
+              "las"
+            ],
+            "explain": "И `compro frutas`, и `compro unas frutas` допустимы. Без артикля — обычная покупка фруктов; `unas` добавляет оттенок некоторого количества. `Las` отсылало бы к конкретным, уже известным фруктам.",
+            "context": "Говорят о привычных покупках вообще, не о заранее известных фруктах."
           }
-        ]
+        ],
+        "revision": 2
       },
       "illustration": {
         "image": "art/theory-004-014/007c.webp",
@@ -249,1166 +291,418 @@
   "exercises": [
     {
       "id": "7.1",
-      "title": "7.1 · Продолжи историю",
-      "instruction": "Выбери артикль. Предыдущие фразы помогут понять, о чём уже говорили. ∅ — ничего не вставляем.",
+      "title": "7.1 · Следи за предметом в истории",
+      "instruction": "Читай небольшую историю о фильме. Выбирай или вводи артикль: предмет только появляется или уже известен? В каждом вопросе есть достаточный испанский контекст.",
       "questions": [
         {
-          "prompt": "He visto ___ película preciosa.",
+          "prompt": "Veo ___ película de aventuras.",
           "answers": [
             "una"
           ],
-          "explain": "Первое упоминание: una película.",
+          "explain": "Это первое сообщение о фильме: `una película`. `La` предполагало бы фильм, который собеседник уже может определить.",
           "options": [
-            "Без артикля",
             "una",
             "la"
           ],
-          "sourceRef": "7.1.1",
-          "context": "История «Фильм»: дополни фразу.",
+          "sourceRef": "extra",
+          "context": "Два друга только начинают разговор о кино.",
           "interaction": "gap-choice"
         },
         {
-          "prompt": "Es ___ comedia.",
+          "prompt": "___ película es muy divertida.",
           "answers": [
-            "una"
+            "la"
           ],
-          "explain": "Называем жанр: это комедия.",
+          "explain": "В реплике `He visto una película de aventuras` фильм уже введён. Теперь говорится о том же самом: `la película`.",
           "options": [
-            "Без артикля",
             "una",
             "la"
           ],
-          "sourceRef": "7.1.2",
-          "context": "История «Фильм»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "He visto una película preciosa.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "___ actores son fabulosos.",
-          "answers": [
-            "los"
-          ],
-          "explain": "Это актёры уже упомянутого фильма.",
-          "options": [
-            "Без артикля",
-            "unos",
-            "los"
-          ],
-          "sourceRef": "7.1.3",
-          "context": "История «Фильм»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "He visto una película preciosa. Es una comedia.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "___ película es sobre un médico.",
-          "answers": [
-            "la"
-          ],
-          "explain": "О фильме уже рассказали.",
-          "options": [
-            "Без артикля",
-            "la",
-            "una"
-          ],
-          "sourceRef": "7.1.4",
-          "context": "История «Фильм»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "Es una comedia. Los actores son fabulosos.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "La película es sobre ___ médico.",
-          "answers": [
-            "un"
-          ],
-          "explain": "Впервые представляем врача.",
-          "options": [
-            "un",
-            "Без артикля",
-            "el"
-          ],
-          "sourceRef": "7.1.5",
-          "context": "История «Фильм»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "Es una comedia. Los actores son fabulosos.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "El médico se enamora de ___ paciente.",
-          "answers": [
-            "una"
-          ],
-          "explain": "Впервые представляем пациентку.",
-          "options": [
-            "una",
-            "la",
-            "Без артикля"
-          ],
-          "sourceRef": "7.1.6",
-          "context": "История «Фильм»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "Los actores son fabulosos. La película es sobre un médico.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "___ médico no sabe cómo decírselo a la paciente.",
-          "answers": [
-            "el"
-          ],
-          "explain": "Это тот же врач, герой фильма.",
-          "options": [
-            "el",
-            "Без артикля",
-            "un"
-          ],
-          "sourceRef": "7.1.7",
-          "context": "История «Фильм»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "La película es sobre un médico. El médico se enamora de una paciente.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "El médico no sabe cómo decírselo a ___ paciente.",
-          "answers": [
-            "la"
-          ],
-          "explain": "Это уже названная пациентка.",
-          "options": [
-            "una",
-            "la",
-            "Без артикля"
-          ],
-          "sourceRef": "7.1.8",
-          "context": "История «Фильм»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "La película es sobre un médico. El médico se enamora de una paciente.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "La paciente tiene ___ hijo.",
-          "answers": [
-            "un"
-          ],
-          "explain": "О сыне пациентки сообщаем впервые.",
-          "options": [
-            "el",
-            "Без артикля",
-            "un"
-          ],
-          "sourceRef": "7.1.9",
-          "context": "История «Фильм»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "El médico se enamora de una paciente. El médico no sabe cómo decírselo a la paciente.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "La paciente tiene un hijo y ___ médico tiene una hija.",
-          "answers": [
-            "el"
-          ],
-          "explain": "Продолжаем о том же враче: el médico.",
-          "options": [
-            "un",
-            "el",
-            "Без артикля"
-          ],
-          "sourceRef": "7.1.10",
-          "context": "История «Фильм»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "El médico no sabe cómo decírselo a la paciente. La paciente tiene un hijo.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "El médico tiene ___ hija.",
-          "answers": [
-            "una"
-          ],
-          "explain": "О дочери врача сообщаем впервые.",
-          "options": [
-            "una",
-            "la",
-            "Без артикля"
-          ],
-          "sourceRef": "7.1.11",
-          "context": "История «Фильм»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "El médico no sabe cómo decírselo a la paciente. La paciente tiene un hijo.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "___ hijo de la paciente y la hija del médico se conocen.",
-          "answers": [
-            "el"
-          ],
-          "explain": "Сын пациентки уже назван.",
-          "options": [
-            "un",
-            "el",
-            "Без артикля"
-          ],
-          "sourceRef": "7.1.12",
-          "context": "История «Фильм»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "La paciente tiene un hijo y el médico tiene una hija. El médico tiene una hija.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "El hijo de ___ paciente y la hija del médico se conocen.",
-          "answers": [
-            "la"
-          ],
-          "explain": "Это уже названная пациентка.",
-          "options": [
-            "Без артикля",
-            "una",
-            "la"
-          ],
-          "sourceRef": "7.1.13",
-          "context": "История «Фильм»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "La paciente tiene un hijo y el médico tiene una hija. El médico tiene una hija.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "El hijo de la paciente y ___ hija del médico se conocen.",
-          "answers": [
-            "la"
-          ],
-          "explain": "Дочь врача уже названа.",
-          "options": [
-            "Без артикля",
-            "la",
-            "una"
-          ],
-          "sourceRef": "7.1.14",
-          "context": "История «Фильм»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "La paciente tiene un hijo y el médico tiene una hija. El médico tiene una hija.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "El hijo de la paciente y la hija ___ médico se conocen.",
-          "answers": [
-            "del"
-          ],
-          "explain": "De + el médico соединяем в del médico.",
-          "options": [
-            "del",
-            "los",
-            "las",
-            "al",
-            "el",
-            "la"
-          ],
-          "sourceRef": "7.1.15",
-          "context": "История «Фильм»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "La paciente tiene un hijo y el médico tiene una hija. El médico tiene una hija.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "___ día dan una fiesta.",
-          "answers": [
-            "un"
-          ],
-          "explain": "Один день в истории, впервые о нём говорим.",
-          "options": [
-            "un",
-            "Без артикля",
-            "el"
-          ],
-          "sourceRef": "7.1.16",
-          "context": "История «Фильм»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "El médico tiene una hija. El hijo de la paciente y la hija del médico se conocen.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "Un día dan ___ fiesta.",
-          "answers": [
-            "una"
-          ],
-          "explain": "Впервые сообщаем о вечеринке.",
-          "options": [
-            "la",
-            "una",
-            "Без артикля"
-          ],
-          "sourceRef": "7.1.17",
-          "context": "История «Фильм»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "El médico tiene una hija. El hijo de la paciente y la hija del médico se conocen.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "Invitan a sus padres a ___ fiesta.",
-          "answers": [
-            "la"
-          ],
-          "explain": "Приглашают на вечеринку, о которой только что рассказали.",
-          "options": [
-            "una",
-            "Без артикля",
-            "la"
-          ],
-          "sourceRef": "7.1.18",
-          "context": "История «Фильм»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "El hijo de la paciente y la hija del médico se conocen. Un día dan una fiesta.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "___ película acaba con una boda.",
-          "answers": [
-            "la"
-          ],
-          "explain": "Продолжаем говорить о том же фильме.",
-          "options": [
-            "la",
-            "Без артикля",
-            "una"
-          ],
-          "sourceRef": "7.1.19",
-          "context": "История «Фильм»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "Un día dan una fiesta. Invitan a sus padres a la fiesta.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "La película acaba con ___ boda de los padres.",
-          "answers": [
-            "la"
-          ],
-          "explain": "Конкретная свадьба родителей героев.",
-          "options": [
-            "una",
-            "Без артикля",
-            "la"
-          ],
-          "sourceRef": "7.1.20",
-          "context": "История «Фильм»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "Invitan a sus padres a la fiesta. La película acaba con una boda.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "La película acaba con la boda de ___ padres.",
-          "answers": [
-            "los"
-          ],
-          "explain": "Родители героев уже известны.",
-          "options": [
-            "los",
-            "unos",
-            "Без артикля"
-          ],
-          "sourceRef": "7.1.21",
-          "context": "История «Фильм»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "Invitan a sus padres a la fiesta. La película acaba con una boda.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "Es ___ cuadro precioso.",
-          "answers": [
-            "un"
-          ],
-          "explain": "Впервые описываем картину.",
-          "options": [
-            "el",
-            "un",
-            "Без артикля"
-          ],
-          "sourceRef": "7.1.22",
-          "context": "История «Картина»: дополни фразу.",
+          "sourceRef": "extra",
+          "context": "Перед этим собеседник сказал: «Veo una película de aventuras».",
           "interaction": "gap-choice"
         },
         {
-          "prompt": "Se ve a ___ hombre y a una mujer en un jardín.",
+          "prompt": "En la película aparece ___ perro.",
           "answers": [
             "un"
           ],
-          "explain": "Впервые представляем мужчину.",
+          "explain": "Собаку в истории фильма ещё не представляли. `Un perro` вводит нового персонажа, `el perro` обозначал бы уже известного.",
           "options": [
-            "Без артикля",
-            "un",
-            "el"
+            "el",
+            "un"
           ],
-          "sourceRef": "7.1.23",
-          "context": "История «Картина»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "Es un cuadro precioso.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
+          "sourceRef": "extra",
+          "context": "Знакомимся с новым героем фильма.",
+          "interaction": "gap-choice"
         },
         {
-          "prompt": "Se ve a un hombre y a ___ mujer en un jardín.",
+          "prompt": "___ perro corre por el jardín.",
+          "answers": [
+            "el"
+          ],
+          "explain": "В фильме уже появился `un perro`. Теперь это тот же пёс: `el perro`, а не какой-то новый.",
+          "sourceRef": "extra",
+          "context": "Ранее: «En la película aparece un perro».",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
+            "placeholder": "Артикль"
+          }
+        },
+        {
+          "prompt": "En el jardín hay ___ llave.",
           "answers": [
             "una"
           ],
-          "explain": "Впервые представляем женщину.",
+          "explain": "Ключ появляется в рассказе впервые. `Una llave` — один пока не известный предмет; `la llave` подразумевало бы конкретный знакомый ключ.",
           "options": [
-            "Без артикля",
             "la",
             "una"
           ],
-          "sourceRef": "7.1.24",
-          "context": "История «Картина»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "Es un cuadro precioso.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
+          "sourceRef": "extra",
+          "context": "До этого рассказали только о собаке и саде.",
+          "interaction": "gap-choice"
         },
         {
-          "prompt": "Se ve a un hombre y a una mujer en ___ jardín.",
-          "answers": [
-            "un"
-          ],
-          "explain": "Впервые описываем сад на картине.",
-          "options": [
-            "el",
-            "un",
-            "Без артикля"
-          ],
-          "sourceRef": "7.1.25",
-          "context": "История «Картина»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "Es un cuadro precioso.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "___ hombre está leyendo un libro.",
-          "answers": [
-            "el"
-          ],
-          "explain": "Мужчина уже назван в описании.",
-          "options": [
-            "el",
-            "Без артикля",
-            "un"
-          ],
-          "sourceRef": "7.1.26",
-          "context": "История «Картина»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "Es un cuadro precioso. Se ve a un hombre y a una mujer en un jardín.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "El hombre está leyendo ___ libro.",
-          "answers": [
-            "un"
-          ],
-          "explain": "Книгу упоминаем впервые.",
-          "options": [
-            "el",
-            "Без артикля",
-            "un"
-          ],
-          "sourceRef": "7.1.27",
-          "context": "История «Картина»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "Es un cuadro precioso. Se ve a un hombre y a una mujer en un jardín.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "___ mujer está tumbada debajo de un árbol.",
+          "prompt": "___ llave abre una puerta.",
           "answers": [
             "la"
           ],
-          "explain": "Женщина уже названа.",
+          "explain": "Ранее появилась `una llave`; сейчас продолжаем именно о ней: `la llave`.",
+          "sourceRef": "extra",
+          "context": "Ранее: «En el jardín hay una llave».",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
+            "placeholder": "Артикль"
+          }
+        },
+        {
+          "prompt": "Detrás de la puerta hay ___ mujer.",
+          "answers": [
+            "una"
+          ],
+          "explain": "Женщина ещё не упоминалась. `Una mujer` вводит нового человека, `la mujer` отсылало бы к уже известной.",
           "options": [
             "una",
-            "Без артикля",
             "la"
           ],
-          "sourceRef": "7.1.28",
-          "context": "История «Картина»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "Se ve a un hombre y a una mujer en un jardín. El hombre está leyendo un libro.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "La mujer está tumbada debajo de ___ árbol.",
-          "answers": [
-            "un"
-          ],
-          "explain": "Дерево описываем впервые.",
-          "options": [
-            "Без артикля",
-            "un",
-            "el"
-          ],
-          "sourceRef": "7.1.29",
-          "context": "История «Картина»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "Se ve a un hombre y a una mujer en un jardín. El hombre está leyendo un libro.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "En ___ ramas del árbol hay unos pájaros.",
-          "answers": [
-            "las"
-          ],
-          "explain": "Это ветви уже названного дерева.",
-          "options": [
-            "Без артикля",
-            "unas",
-            "las"
-          ],
-          "sourceRef": "7.1.30",
-          "context": "История «Картина»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "El hombre está leyendo un libro. La mujer está tumbada debajo de un árbol.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "En las ramas ___ árbol hay unos pájaros.",
-          "answers": [
-            "del"
-          ],
-          "explain": "Это то же дерево: de + el = del.",
-          "options": [
-            "al",
-            "del",
-            "las",
-            "la",
-            "los",
-            "el"
-          ],
-          "sourceRef": "7.1.31",
-          "context": "История «Картина»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "El hombre está leyendo un libro. La mujer está tumbada debajo de un árbol.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "En las ramas del árbol hay ___ pájaros de muchos colores.",
-          "answers": [
-            "unos"
-          ],
-          "explain": "Птицы появляются в описании впервые.",
-          "options": [
-            "unos",
-            "los"
-          ],
-          "sourceRef": "7.1.32",
-          "context": "История «Картина»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "La mujer está tumbada debajo de un árbol. En las ramas del árbol hay unos pájaros.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "___ pájaros tienen las alas extendidas.",
-          "answers": [
-            "los"
-          ],
-          "explain": "Это птицы, о которых только что рассказали.",
-          "options": [
-            "Без артикля",
-            "unos",
-            "los"
-          ],
-          "sourceRef": "7.1.33",
-          "context": "История «Картина»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "En las ramas del árbol hay unos pájaros. En las ramas del árbol hay unos pájaros de muchos colores.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "Los pájaros tienen ___ alas extendidas.",
-          "answers": [
-            "las"
-          ],
-          "explain": "Говорим о крыльях этих птиц; alas — женский род, множественное число.",
-          "options": [
-            "las",
-            "Без артикля",
-            "unas"
-          ],
-          "sourceRef": "7.1.34",
-          "context": "История «Картина»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "En las ramas del árbol hay unos pájaros. En las ramas del árbol hay unos pájaros de muchos colores.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "Mis hijos tienen ___ perro y un gato.",
-          "answers": [
-            "un"
-          ],
-          "explain": "Собаку упоминаем впервые.",
-          "options": [
-            "un",
-            "Без артикля",
-            "el"
-          ],
-          "sourceRef": "7.1.35",
-          "context": "История «Питомцы»: дополни фразу.",
+          "sourceRef": "extra",
+          "context": "За дверью впервые появляется человек.",
           "interaction": "gap-choice"
         },
         {
-          "prompt": "Mis hijos tienen un perro y ___ gato.",
+          "prompt": "___ mujer mira al perro.",
           "answers": [
-            "un"
+            "la"
           ],
-          "explain": "Кота тоже упоминаем впервые.",
+          "explain": "Это та самая женщина, о которой только что сообщили: `la mujer`.",
+          "sourceRef": "extra",
+          "context": "Ранее: «Detrás de la puerta hay una mujer».",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
+            "placeholder": "Артикль"
+          }
+        },
+        {
+          "prompt": "Al final, ___ perro vuelve a casa.",
+          "answers": [
+            "el"
+          ],
+          "explain": "Собака уже действовала в истории, и это её возвращение: `el perro`. `Un perro` звучало бы как появление ещё одного пса.",
           "options": [
-            "Без артикля",
-            "el",
-            "un"
+            "un",
+            "el"
           ],
-          "sourceRef": "7.1.36",
-          "context": "История «Питомцы»: дополни фразу.",
+          "sourceRef": "extra",
+          "context": "Ранее: «En la película aparece un perro».",
           "interaction": "gap-choice"
         },
         {
-          "prompt": "___ perro duerme en el jardín.",
+          "prompt": "La mujer tiene ___ mapa.",
           "answers": [
-            "el"
-          ],
-          "explain": "Собака уже названа.",
-          "options": [
-            "el",
-            "Без артикля",
             "un"
           ],
-          "sourceRef": "7.1.37",
-          "context": "История «Питомцы»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "Mis hijos tienen un perro y un gato.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
+          "explain": "Карта ещё не появлялась в рассказе. Неопределённый `un mapa` вводит её в историю.",
+          "sourceRef": "extra",
+          "context": "Ранее упоминались женщина, собака, ключ и дверь, но не карта.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
+            "placeholder": "Артикль"
+          }
         },
         {
-          "prompt": "El perro duerme en ___ jardín.",
+          "prompt": "___ mapa muestra una isla.",
           "answers": [
             "el"
           ],
-          "explain": "Имеется в виду сад их дома.",
-          "options": [
-            "el",
-            "Без артикля",
-            "un"
-          ],
-          "sourceRef": "7.1.38",
-          "context": "История «Питомцы»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "Mis hijos tienen un perro y un gato.",
-            ""
-          ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
-        },
-        {
-          "prompt": "___ gato duerme dentro de casa.",
-          "answers": [
-            "el"
-          ],
-          "explain": "Это уже названный кот.",
+          "explain": "После `La mujer tiene un mapa` карта уже известна, поэтому `el mapa`.",
           "options": [
             "un",
-            "Без артикля",
             "el"
           ],
-          "sourceRef": "7.1.39",
-          "context": "История «Питомцы»: дополни фразу.",
-          "sourceParts": [
-            "",
-            "Mis hijos tienen un perro y un gato. El perro duerme en el jardín.",
-            ""
+          "sourceRef": "extra",
+          "context": "Ранее: «La mujer tiene un mapa».",
+          "interaction": "gap-choice"
+        },
+        {
+          "prompt": "La mujer escribe ___ carta.",
+          "answers": [
+            "una"
           ],
-          "interaction": "gap-choice",
-          "sourceLabel": "Предыдущие реплики"
+          "explain": "Письмо здесь новое, о нём ещё не рассказывали: `una carta`. `La carta` подразумевало бы определённое письмо.",
+          "sourceRef": "extra",
+          "context": "В истории до сих пор не упоминали писем.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
+            "placeholder": "Артикль"
+          }
         }
       ],
       "preview": {
-        "source": "Tengo un perro. ___ perro es negro.",
+        "source": "Tengo un gato. ___ gato duerme.",
         "sentenceParts": [
-          "Tengo un perro. ",
-          " perro es negro."
+          "Tengo un gato. ",
+          " gato duerme."
         ],
         "answer": "el",
-        "translation": "У меня есть собака. Эта собака чёрная.",
+        "translation": "У меня есть кот. Этот кот спит.",
         "targetPrefix": "",
         "tip": ""
       },
-      "inputLabel": "Выбор ответа",
+      "inputLabel": "Выбор или ввод артикля",
       "theorySections": [
         0
-      ]
+      ],
+      "revision": 2
     },
     {
       "id": "7.2",
-      "title": "7.2 · Какой предмет имеется в виду?",
-      "instruction": "Выбери артикль по смыслу ситуации. ∅ — ничего не вставляем.",
+      "title": "7.2 · Новый предмет или известный?",
+      "instruction": "Реши, известен ли предмет из ситуации, или речь идёт о любом представителе группы. Где нет кнопок — введи только артикль.",
       "questions": [
         {
-          "prompt": "Chihuahua es ___ ciudad de México.",
+          "prompt": "Marta trabaja en ___ hotel. Todavía no ha dicho en cuál.",
           "answers": [
-            "una"
+            "un"
           ],
-          "explain": "Относим город к группе: una ciudad.",
+          "explain": "Слушатель пока не знает отель: `un hotel`. Артикль `el` означал бы уже определённый собеседниками отель.",
           "options": [
-            "una",
-            "Без артикля",
-            "la"
+            "el",
+            "un"
           ],
-          "sourceRef": "7.2.1",
-          "context": "Дополни предложение.",
+          "sourceRef": "extra",
+          "context": "Марта только начинает рассказывать о работе.",
           "interaction": "gap-choice"
         },
         {
-          "prompt": "He visto ___ película de acción.",
-          "answers": [
-            "una"
-          ],
-          "explain": "Впервые сообщаем о фильме.",
-          "options": [
-            "Без артикля",
-            "la",
-            "una"
-          ],
-          "sourceRef": "7.2.2",
-          "context": "Впервые расскажи о каком-то боевике; собеседник ещё не знает о нём.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "He visto una película de acción. ___ personaje principal era un detective.",
+          "prompt": "El padre de Marta tiene un solo hotel. Marta trabaja en ___ hotel de su padre.",
           "answers": [
             "el"
           ],
-          "explain": "Говорим о главном герое только что названного фильма.",
+          "explain": "Отец владеет одним отелем; в данной ситуации он определён: `el hotel`. Неопределённый `un` намекал бы, что отелей у него несколько.",
           "options": [
-            "el",
             "un",
-            "Без артикля"
+            "el"
           ],
-          "sourceRef": "7.2.2",
-          "context": "Дополни предложение.",
+          "sourceRef": "extra",
+          "context": "Оба собеседника знают, что у отца Марты только один отель.",
           "interaction": "gap-choice"
         },
         {
-          "prompt": "El personaje principal era ___ detective.",
-          "answers": [
-            "un"
-          ],
-          "explain": "Впервые представляем героя: un detective.",
-          "options": [
-            "Без артикля",
-            "el",
-            "un"
-          ],
-          "sourceRef": "7.2.2",
-          "context": "Представь героя: «Это один из детективов». Выбери неопределённый артикль.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "¿Has visto ___ nueva película de este director?",
+          "prompt": "— ¿Dónde está Ana? — En ___ cocina de nuestra casa.",
           "answers": [
             "la"
           ],
-          "explain": "Собеседники знают, о какой новой картине режиссёра говорят.",
+          "explain": "Речь о кухне в их доме: `la cocina`. Предмет понятен из ситуации без предварительного `una cocina`.",
           "options": [
-            "la",
             "una",
-            "Без артикля"
+            "la"
           ],
-          "sourceRef": "7.2.3",
-          "context": "Оба собеседника знают, о какой новой картине режиссёра идёт речь.",
+          "sourceRef": "extra",
+          "context": "Собеседники находятся дома.",
           "interaction": "gap-choice"
         },
         {
-          "prompt": "Soy enfermero y trabajo en ___ hospital.",
+          "prompt": "Quiero ___ libro de aventuras. Cualquiera.",
           "answers": [
             "un"
           ],
-          "explain": "Пока не уточняем, в какой больнице.",
-          "options": [
-            "Без артикля",
-            "el",
-            "un"
-          ],
-          "sourceRef": "7.2.4",
-          "context": "Пока не говори, в какой именно больнице работаешь.",
-          "interaction": "gap-choice"
+          "explain": "`Cualquiera` значит «любой». Нужно `un libro`: конкретная книга ещё не выбрана. `El libro` предполагало бы определённое издание.",
+          "sourceRef": "extra",
+          "context": "Покупатель выбирает книгу, пока не знает какую.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
+            "placeholder": "Артикль"
+          }
         },
         {
-          "prompt": "Estoy leyendo ___ libro sobre un rey.",
-          "answers": [
-            "un"
-          ],
-          "explain": "Впервые сообщаем о книге.",
-          "options": [
-            "el",
-            "un",
-            "Без артикля"
-          ],
-          "sourceRef": "7.2.5",
-          "context": "Впервые расскажи о какой-то книге; её ещё не обсуждали.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "El libro cuenta la vida de ___ rey de un país imaginario.",
+          "prompt": "— ¿Has visto ___ libro de la mesa? — Sí, está allí.",
           "answers": [
             "el"
           ],
-          "explain": "Конкретный король страны, о которой идёт речь в книге.",
+          "explain": "Книгу определяет место: `el libro de la mesa`. Речь о видимом и понятном предмете, а не о любой книге.",
           "options": [
-            "Без артикля",
-            "un",
-            "el"
+            "el",
+            "un"
           ],
-          "sourceRef": "7.2.5",
-          "context": "Речь о том самом короле, которого только что упомянули.",
+          "sourceRef": "extra",
+          "context": "На столе лежит одна книга.",
           "interaction": "gap-choice"
         },
         {
-          "prompt": "¿Qué es eso? ¿Es ___ televisión portátil?",
+          "prompt": "Pablo tiene dos hermanas. ___ hermana vive en Sevilla y la otra en Cádiz.",
           "answers": [
             "una"
           ],
-          "explain": "Определяем, что это за предмет.",
-          "options": [
-            "la",
-            "una",
-            "Без артикля"
-          ],
-          "sourceRef": "7.2.6",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "explain": "Сестёр две. `Una hermana` выделяет одну из двух, а `la otra` — вторую. `La hermana` не указывает, какую из двух имеют в виду.",
+          "sourceRef": "extra",
+          "context": "Пабло описывает, где живут обе его сестры.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
+            "placeholder": "Артикль"
+          }
         },
         {
-          "prompt": "¿Quién es ___ primer ministro de ese país?",
-          "answers": [
-            "el"
-          ],
-          "explain": "Спрашиваем о конкретной должности в данной стране.",
-          "options": [
-            "un",
-            "el",
-            "Без артикля"
-          ],
-          "sourceRef": "7.2.7",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Carmen trabaja en ___ hotel. Todavía no te he dicho en cuál.",
-          "answers": [
-            "un"
-          ],
-          "explain": "Отель пока не уточняется.",
-          "options": [
-            "un",
-            "el",
-            "Без артикля"
-          ],
-          "sourceRef": "7.2.8",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "___ novia de Arturo se llama Ana.",
+          "prompt": "___ capital de Perú es Lima.",
           "answers": [
             "la"
           ],
-          "explain": "Уточнение de Arturo показывает, о ком речь.",
+          "explain": "У Перу одна столица — Лима. Здесь определённый артикль `la`, даже если это первое упоминание столицы.",
           "options": [
             "una",
-            "la",
-            "Без артикля"
+            "la"
           ],
-          "sourceRef": "7.2.9",
-          "context": "Дополни предложение.",
+          "sourceRef": "extra",
+          "context": "Говорим об официальной столице государства.",
           "interaction": "gap-choice"
+        },
+        {
+          "prompt": "— ¿Qué es eso? — Es ___ radio pequeña.",
+          "answers": [
+            "una"
+          ],
+          "explain": "Называем вид предмета: `una radio` («радиоприёмник»). `La` ожидало бы конкретное, уже известное радио.",
+          "sourceRef": "extra",
+          "context": "Собеседник впервые видит предмет.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
+            "placeholder": "Артикль"
+          }
+        },
+        {
+          "prompt": "Vivo en ___ centro de Sevilla.",
+          "answers": [
+            "el"
+          ],
+          "explain": "Говорим о географическом центре конкретного города: `el centro de Sevilla`, а не о каком-то центре-учреждении.",
+          "sourceRef": "extra",
+          "context": "Человек уточняет район города, где он живёт.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
+            "placeholder": "Артикль"
+          }
         },
         {
           "prompt": "___ Sol es una estrella.",
           "answers": [
             "el"
           ],
-          "explain": "Говорим о нашем Солнце.",
-          "options": [
-            "un",
-            "Без артикля",
-            "el"
-          ],
-          "sourceRef": "7.2.10",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "explain": "В нашей системе Солнце единственно и известно обоим: `el Sol`. `Un sol` относился бы к какому-либо солнцу, а не к нашему.",
+          "sourceRef": "extra",
+          "context": "Говорим о Солнце нашей системы.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
+            "placeholder": "Артикль"
+          }
         },
         {
-          "prompt": "El Sol es ___ estrella.",
+          "prompt": "¿Qué frase pide una galleta cualquiera?",
+          "answers": [
+            "Quiero una galleta."
+          ],
+          "explain": "Обе фразы грамматически правильны, но `una galleta` означает любое печенье из коробки; `la galleta` отсылало бы к определённому, уже знакомому печенью.",
+          "options": [
+            "Quiero una galleta.",
+            "Quiero la galleta."
+          ],
+          "sourceRef": "extra",
+          "context": "Гостю предлагают печенье из коробки. Он ещё не выбрал конкретное.",
+          "interaction": "choice"
+        },
+        {
+          "prompt": "— ¿Quieres ___ taza de café? — Sí, gracias.",
           "answers": [
             "una"
           ],
-          "explain": "Относим Солнце к группе звёзд.",
-          "options": [
-            "una",
-            "la",
-            "Без артикля"
-          ],
-          "sourceRef": "7.2.10",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Paco es ___ nombre español.",
-          "answers": [
-            "un"
-          ],
-          "explain": "Называем один из испанских вариантов имени.",
-          "options": [
-            "Без артикля",
-            "un",
-            "el"
-          ],
-          "sourceRef": "7.2.11",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "¿Dónde está Carlos? Está en ___ cocina de nuestra casa.",
-          "answers": [
-            "la"
-          ],
-          "explain": "Кухня известного дома понятна собеседникам.",
-          "options": [
-            "Без артикля",
-            "la",
-            "una"
-          ],
-          "sourceRef": "7.2.12",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Vivo en ___ centro de Lima.",
-          "answers": [
-            "el"
-          ],
-          "explain": "Уточняется центр конкретного города.",
-          "options": [
-            "el",
-            "Без артикля",
-            "un"
-          ],
-          "sourceRef": "7.2.13",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "___ moto de Pedro es azul.",
-          "answers": [
-            "la"
-          ],
-          "explain": "Говорим о конкретном мотоцикле Педро.",
-          "options": [
-            "la",
-            "una",
-            "Без артикля"
-          ],
-          "sourceRef": "7.2.14",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "___ Luna gira alrededor de la Tierra.",
-          "answers": [
-            "la"
-          ],
-          "explain": "Говорим о нашей Луне.",
-          "options": [
-            "Без артикля",
-            "la",
-            "una"
-          ],
-          "sourceRef": "7.2.15",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "La Luna gira alrededor de ___ Tierra.",
-          "answers": [
-            "la"
-          ],
-          "explain": "Здесь Tierra — наша планета.",
-          "options": [
-            "una",
-            "Без артикля",
-            "la"
-          ],
-          "sourceRef": "7.2.15",
-          "context": "Дополни предложение.",
-          "interaction": "gap-choice"
+          "explain": "Предлагают одну ещё не выбранную чашку: `una taza`. `La taza` указывало бы на определённую чашку.",
+          "sourceRef": "extra",
+          "context": "Хозяин впервые предлагает гостю кофе.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
+            "placeholder": "Артикль"
+          }
         }
       ],
       "preview": {
-        "source": "La moto de Pedro está aquí. ___ moto es azul.",
+        "source": "Mi hermano tiene un coche. ___ coche es rojo.",
         "sentenceParts": [
-          "La moto de Pedro está aquí. ",
-          " moto es azul."
+          "Mi hermano tiene un coche. ",
+          " coche es rojo."
         ],
-        "answer": "la",
-        "translation": "Мотоцикл Педро здесь. Он синий.",
+        "answer": "el",
+        "translation": "У моего брата есть машина. Эта машина красная.",
         "targetPrefix": "",
         "tip": ""
       },
-      "inputLabel": "Выбор ответа",
+      "inputLabel": "Выбор или ввод артикля",
       "theorySections": [
         1
-      ]
+      ],
+      "revision": 2
     },
     {
       "id": "7.3",
-      "title": "7.3 · Несколько или вообще?",
-      "instruction": "Впиши артикль по смыслу: отдельные предметы или весь вид. Если артикль не нужен, нажми «Без артикля».",
+      "title": "7.3 · Отдельные вещи или целый вид?",
+      "instruction": "Впиши артикль по смыслу. В некоторых репликах можно не ставить артикль — используй кнопку «Без артикля». Если два решения нормативны, оба засчитываются.",
       "questions": [
         {
-          "prompt": "Me han regalado ___ bombones.",
+          "prompt": "¿Te gustan ___ peras?",
           "answers": [
-            "unos"
+            "las"
           ],
-          "explain": "Подарили несколько отдельных конфет.",
-          "translation": "Мне подарили несколько конфет.",
-          "sourceRef": "7.3.1",
-          "context": "Сообщи о подаренных конфетах впервые; какие именно — пока не уточняем.",
+          "explain": "Вопрос о грушах как о виде фруктов, а не о нескольких отдельных грушах: `las peras`.",
+          "sourceRef": "extra",
+          "context": "Разговор о любимых фруктах.",
           "interaction": "article-input",
           "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
+            "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
+            "placeholder": "Артикль"
+          }
+        },
+        {
+          "prompt": "Compro ___ peras para la merienda.",
+          "answers": [
+            "unas",
+            "Без артикля"
+          ],
+          "explain": "`Unas peras` подчёркивает некоторое количество груш; `peras` без артикля тоже нормально: количество не выделено. `Las peras` предполагало бы уже известные собеседнику груши.",
+          "sourceRef": "extra",
+          "context": "Покупку обсуждают впервые: эти груши ранее не упоминались.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
+            "placeholder": "Артикль"
           }
         },
         {
@@ -1416,153 +710,161 @@
           "answers": [
             "el"
           ],
-          "explain": "Речь о шоколаде вообще.",
-          "translation": "Мне не нравится шоколад вообще.",
-          "sourceRef": "7.3.2",
-          "context": "Дополни предложение.",
+          "explain": "Речь о шоколаде вообще: `el chocolate`. `Un chocolate` обозначал бы одну порцию или отдельный вид шоколада.",
+          "sourceRef": "extra",
+          "context": "Человек сообщает о своих вкусах.",
           "interaction": "article-input",
           "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
+            "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
+            "placeholder": "Артикль"
           }
         },
         {
-          "prompt": "___ piña, por favor.",
+          "prompt": "— ¿Qué deseas? — ___ chocolate caliente, por favor.",
           "answers": [
-            "una"
+            "un"
           ],
-          "explain": "Просим один ананас.",
-          "translation": "Один ананас, пожалуйста.",
-          "sourceRef": "7.3.3",
-          "context": "Попроси один любой ананас, не выбирая конкретный.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
+          "explain": "В кафе `un chocolate caliente` — одна порция горячего шоколада. `El` потребовало бы конкретного, заранее известного напитка.",
+          "options": [
+            "un",
+            "el"
+          ],
+          "sourceRef": "extra",
+          "context": "Посетитель впервые делает заказ.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "___ piña es mi fruta preferida.",
           "answers": [
             "la"
           ],
-          "explain": "Говорим о виде фруктов вообще.",
-          "translation": "Ананас — мой любимый фрукт.",
-          "sourceRef": "7.3.4",
-          "context": "Дополни предложение.",
+          "explain": "Это оценка ананаса как вида фруктов: `la piña`. `Una piña` относилась бы к одному плоду.",
+          "sourceRef": "extra",
+          "context": "Человек называет любимый вид фруктов.",
           "interaction": "article-input",
           "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
+            "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
+            "placeholder": "Артикль"
           }
+        },
+        {
+          "prompt": "— ¿Qué fruta quieres? — ___ piña, por favor.",
+          "answers": [
+            "una"
+          ],
+          "explain": "Просят один любой ананас: `una piña`. `La piña` указывало бы на определённый выбранный плод.",
+          "options": [
+            "la",
+            "una"
+          ],
+          "sourceRef": "extra",
+          "context": "Продавец предлагает разные ананасы, покупатель ещё не выбрал конкретный.",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Me encantan ___ cuadros de Dalí.",
           "answers": [
             "los"
           ],
-          "explain": "Говорим о картинах Дали в целом.",
-          "translation": "Мне очень нравятся картины Дали.",
-          "sourceRef": "7.3.5",
-          "context": "Скажи, что любишь картины Дали вообще.",
+          "explain": "Говорим о творчестве Дали в целом: `los cuadros de Dalí`. `Unos` выделило бы только некоторые картины.",
+          "sourceRef": "extra",
+          "context": "Человек восхищается картинами Дали в целом.",
           "interaction": "article-input",
           "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
+            "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
+            "placeholder": "Артикль"
           }
         },
         {
-          "prompt": "¿Te gustan ___ peras?",
+          "prompt": "— ¿Qué compras normalmente? — Compro ___ manzanas.",
           "answers": [
-            "las"
-          ],
-          "explain": "Спрашиваем о грушах вообще.",
-          "translation": "Тебе нравятся груши?",
-          "sourceRef": "7.3.6",
-          "context": "Спроси, нравятся ли человеку груши вообще.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "Me he comprado ___ vaqueros.",
-          "answers": [
-            "unos"
-          ],
-          "explain": "Куплены одни джинсы, впервые о них говорим.",
-          "translation": "Я купил себе джинсы.",
-          "sourceRef": "7.3.7",
-          "context": "Впервые сообщи о покупке джинсов, не уточняя, каких именно.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "Te he comprado ___ margaritas.",
-          "answers": [
+            "Без артикля",
             "unas"
           ],
-          "explain": "Речь о нескольких купленных цветах.",
-          "translation": "Я купил тебе несколько ромашек.",
-          "sourceRef": "7.3.8",
-          "context": "Впервые сообщи о купленных цветах, не уточняя, каких именно.",
+          "explain": "`Compro manzanas` говорит о привычных покупках без уточнения количества; `compro unas manzanas` тоже возможно, если подразумевается несколько яблок. Оба ответа нормативны.",
+          "sourceRef": "extra",
+          "context": "Разговор о том, что покупают в магазине обычно, не о конкретной корзине.",
           "interaction": "article-input",
           "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
+            "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
+            "placeholder": "Артикль"
           }
         },
         {
-          "prompt": "Quiero comprarme ___ pantalones cortos.",
+          "prompt": "Tengo ___ bombones para los invitados.",
           "answers": [
-            "unos"
+            "unos",
+            "Без артикля"
           ],
-          "explain": "Нужны какие-то шорты, конкретную пару ещё не выбрали.",
-          "translation": "Хочу купить себе шорты.",
-          "sourceRef": "7.3.9",
-          "context": "Нужны какие-нибудь шорты; конкретная пара ещё не выбрана.",
+          "explain": "`Unos bombones` подчёркивает некоторое количество конфет, `bombones` без артикля сообщает об их наличии. Оба варианта уместны, когда ещё не говорили о конкретных конфетах.",
+          "sourceRef": "extra",
+          "context": "Дома есть конфеты для гостей; важнее их наличие, чем количество.",
           "interaction": "article-input",
           "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
+            "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
+            "placeholder": "Артикль"
           }
         },
         {
-          "prompt": "Me encanta ___ agua.",
+          "prompt": "___ perros son animales inteligentes.",
           "answers": [
-            "el"
+            "los"
           ],
-          "explain": "Речь о воде вообще; перед agua ставим el.",
-          "translation": "Я очень люблю воду.",
-          "sourceRef": "7.3.10",
-          "context": "Дополни предложение.",
+          "explain": "Это утверждение о виде собак в целом: `los perros`. `Unos perros` выделило бы лишь часть собак.",
+          "options": [
+            "unos",
+            "los"
+          ],
+          "sourceRef": "extra",
+          "context": "Высказывают общее наблюдение о животных.",
+          "interaction": "gap-choice"
+        },
+        {
+          "prompt": "¿Qué frase habla de los perros en general?",
+          "answers": [
+            "Me gustan los perros."
+          ],
+          "explain": "Обе фразы корректны, но `los perros` обозначает собак как вид. `Unos perros` выделяет лишь некоторую группу собак; это было бы другое значение.",
+          "options": [
+            "Me gustan unos perros.",
+            "Me gustan los perros."
+          ],
+          "sourceRef": "extra",
+          "context": "Человек рассказывает, какие животные ему нравятся вообще.",
+          "interaction": "choice"
+        },
+        {
+          "prompt": "Cuando estudio, bebo ___ agua.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "`Bebo agua` описывает привычку пить воду без конкретной бутылки или порции. `El agua` отсылало бы к определённой воде; `un agua` обычно означало бы порцию.",
+          "sourceRef": "extra",
+          "context": "Говорим о привычке: не о конкретной бутылке или порции воды.",
           "interaction": "article-input",
           "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
+            "instruction": "Введи только артикль; предложение не переписывай. Если доступна кнопка «Без артикля», её можно использовать.",
+            "placeholder": "Артикль"
           }
         }
       ],
       "preview": {
-        "source": "Me gusta ___ chocolate.",
+        "source": "¿Te gustan ___ uvas?",
         "sentenceParts": [
-          "Me gusta ",
-          " chocolate."
+          "¿Te gustan ",
+          " uvas?"
         ],
-        "answer": "el",
-        "translation": "Мне нравится шоколад вообще.",
+        "answer": "las",
+        "translation": "Тебе нравятся виноградные ягоды вообще?",
         "targetPrefix": "",
         "tip": ""
       },
-      "inputLabel": "Выбор ответа",
+      "inputLabel": "Ввод артикля или «Без артикля»",
       "theorySections": [
         2
       ],
-      "allowNoArticle": true
+      "allowNoArticle": true,
+      "revision": 2
     }
   ],
   "learningOrder": [
@@ -1611,22 +913,31 @@
         ]
       },
       {
-        "title": "Несколько предметов или все вообще?",
+        "title": "Несколько вещей, целый вид или без артикля",
         "words": [
           [
             "He comprado unas peras",
-            "Я купил несколько груш"
+            "Я купил несколько груш (подчёркиваем некоторое количество)"
           ],
           [
-            "Quiero unos pantalones",
-            "Хочу брюки"
+            "He comprado peras",
+            "Я купил груши (количество не выделяем)"
           ],
           [
             "Me gustan las peras",
-            "Мне нравятся груши"
+            "Мне нравятся груши вообще"
+          ],
+          [
+            "Bebo agua",
+            "Я пью воду (без конкретной порции)"
+          ],
+          [
+            "Me gusta el agua",
+            "Мне нравится вода вообще"
           ]
         ]
       }
     ]
-  }
+  },
+  "revision": 2
 }

@@ -87,7 +87,7 @@ jobs:
           fi
 
   grammar-immediate-feedback-browser:
-    if: github.event_name == 'pull_request' && (github.head_ref == 'fix/grammar-immediate-feedback-20261111' || github.head_ref == 'audit/grammar-schema-linter-20261111' || github.head_ref == 'audit/fable-stage3-recovered-20261111')
+    if: github.event_name == 'pull_request' && (github.head_ref == 'fix/grammar-immediate-feedback-20261111' || github.head_ref == 'audit/grammar-schema-linter-20261111' || github.head_ref == 'audit/fable-stage3-recovered-20261111' || github.head_ref == 'audit/fable-stage4-unit07-20261111')
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
