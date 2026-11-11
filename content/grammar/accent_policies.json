@@ -108,6 +108,36 @@
             "entered": "estais",
             "explanation": "В форме «estáis» обязательно ударение над á: это изучаемая форма estar для vosotros/vosotras."
           }
+        ],
+        "gapAnswers": [
+          [
+            "estáis"
+          ],
+          [
+            "estamos"
+          ]
+        ]
+      },
+      "2": {
+        "answer": "estás estoy",
+        "gapAnswers": [
+          [
+            "estás"
+          ],
+          [
+            "estoy"
+          ]
+        ]
+      },
+      "3": {
+        "answer": "está está",
+        "gapAnswers": [
+          [
+            "está"
+          ],
+          [
+            "está"
+          ]
         ]
       },
       "4": {
@@ -119,7 +149,19 @@
             "entered": "estan",
             "explanation": "В форме «están» обязательно ударение над á: это изучаемая форма estar для ellos/ellas/ustedes."
           }
+        ],
+        "gapAnswers": [
+          [
+            "están"
+          ],
+          [
+            "están"
+          ]
         ]
+      },
+      "5": {
+        "answer": "Madrid está en España",
+        "normalize": "phrase"
       }
     },
     "43.2": {
@@ -134,6 +176,10 @@
           }
         ]
       },
+      "4": {
+        "answer": "Estoy aburrida",
+        "normalize": "phrase"
+      },
       "7": {
         "answer": "estáis",
         "accentPolicy": "contextual",
@@ -147,6 +193,14 @@
       }
     },
     "43.3": {
+      "0": {
+        "answer": "está abierta",
+        "normalize": "phrase"
+      },
+      "1": {
+        "answer": "está cerrada",
+        "normalize": "phrase"
+      },
       "2": {
         "answer": "están sucios",
         "accentPolicy": "contextual",
@@ -156,7 +210,16 @@
             "entered": "estan",
             "explanation": "В форме «están» обязательно ударение над á: это изучаемая форма estar для ellos/ellas/ustedes."
           }
-        ]
+        ],
+        "normalize": "phrase"
+      },
+      "3": {
+        "answer": "está nublado",
+        "normalize": "phrase"
+      },
+      "4": {
+        "answer": "está apagada",
+        "normalize": "phrase"
       },
       "5": {
         "answer": "están limpios",
@@ -167,7 +230,50 @@
             "entered": "estan",
             "explanation": "В форме «están» обязательно ударение над á: это изучаемая форма estar для ellos/ellas/ustedes."
           }
+        ],
+        "normalize": "phrase"
+      }
+    },
+    "43.4": {
+      "0": {
+        "answer": "está estoy",
+        "gapAnswers": [
+          [
+            "está"
+          ],
+          [
+            "estoy"
+          ]
         ]
+      },
+      "1": {
+        "answer": "está está",
+        "gapAnswers": [
+          [
+            "está"
+          ],
+          [
+            "está"
+          ]
+        ]
+      },
+      "2": {
+        "answer": "estás estoy estoy",
+        "gapAnswers": [
+          [
+            "estás"
+          ],
+          [
+            "estoy"
+          ],
+          [
+            "estoy"
+          ]
+        ]
+      },
+      "5": {
+        "answer": "No, no estoy enfadado",
+        "normalize": "phrase"
       }
     }
   },
@@ -182,7 +288,8 @@
             "entered": "estan",
             "explanation": "В форме «están» ударение над á обязательно: здесь проверяется форма estar для множественного числа."
           }
-        ]
+        ],
+        "normalize": "phrase"
       }
     },
     "44.2": {
@@ -232,10 +339,28 @@
           }
         ]
       }
+    },
+    "44.3": {
+      "3": {
+        "answer": "Estoy malo",
+        "normalize": "phrase"
+      },
+      "9": {
+        "answer": "Ya estoy bueno; he vuelto al trabajo",
+        "normalize": "phrase"
+      }
     }
   },
   "045_tengo_tienes_tiene": {
     "45.1": {
+      "0": {
+        "answer": "Tienes dinero",
+        "normalize": "phrase"
+      },
+      "2": {
+        "answer": "Tiene usted una casa grande",
+        "normalize": "phrase"
+      },
       "3": {
         "answer": "Tenéis muchos amigos",
         "accentPolicy": "contextual",
@@ -245,10 +370,42 @@
             "entered": "teneis",
             "explanation": "«tenéis» — форма tener для vosotros/vosotras, и ударение над é обязательно."
           }
-        ]
+        ],
+        "normalize": "phrase"
+      },
+      "4": {
+        "answer": "Tienen ustedes perro",
+        "normalize": "phrase"
+      },
+      "6": {
+        "answer": "Mi casa no tiene ascensor",
+        "normalize": "phrase"
+      },
+      "7": {
+        "answer": "Nosotros tenemos un jardín",
+        "normalize": "phrase"
       }
     },
     "45.3": {
+      "0": {
+        "answer": "Tengo sed",
+        "normalize": "phrase"
+      },
+      "1": {
+        "answer": "Tenemos hambre",
+        "normalize": "phrase"
+      },
+      "4": {
+        "answer": "Tienes fiebre tengo gripe",
+        "gapAnswers": [
+          [
+            "Tienes fiebre"
+          ],
+          [
+            "tengo gripe"
+          ]
+        ]
+      },
       "6": {
         "answer": "Tenéis frío",
         "accentPolicy": "contextual",
@@ -258,7 +415,1160 @@
             "entered": "teneis",
             "explanation": "«tenéis» — форма tener для vosotros/vosotras, и ударение над é обязательно."
           }
+        ],
+        "normalize": "phrase"
+      },
+      "7": {
+        "answer": "Tiene usted sueño",
+        "normalize": "phrase"
+      },
+      "8": {
+        "answer": "Tengo sed",
+        "normalize": "phrase"
+      }
+    },
+    "45.2": {
+      "0": {
+        "answer": "tiene tienen tengo",
+        "gapAnswers": [
+          [
+            "tiene"
+          ],
+          [
+            "tienen"
+          ],
+          [
+            "tengo"
+          ]
         ]
+      },
+      "1": {
+        "answer": "tiene tiene no tenemos",
+        "gapAnswers": [
+          [
+            "tiene"
+          ],
+          [
+            "tiene"
+          ],
+          [
+            "no tenemos"
+          ]
+        ]
+      },
+      "2": {
+        "answer": "tienen no tenemos",
+        "gapAnswers": [
+          [
+            "tienen"
+          ],
+          [
+            "no tenemos"
+          ]
+        ]
+      },
+      "3": {
+        "answer": "no tengo tengo",
+        "gapAnswers": [
+          [
+            "no tengo"
+          ],
+          [
+            "tengo"
+          ]
+        ]
+      },
+      "4": {
+        "answer": "tiene tenemos",
+        "gapAnswers": [
+          [
+            "tiene"
+          ],
+          [
+            "tenemos"
+          ]
+        ]
+      },
+      "5": {
+        "answer": "Tienen ustedes hijos",
+        "normalize": "phrase"
+      },
+      "7": {
+        "answer": "Tengo veintitrés años",
+        "normalize": "phrase"
+      }
+    }
+  },
+  "034_yo_tu_el": {
+    "34.3": {
+      "0": {
+        "answer": "yo Ella yo",
+        "gapAnswers": [
+          [
+            "yo"
+          ],
+          [
+            "Ella"
+          ],
+          [
+            "yo"
+          ]
+        ]
+      },
+      "1": {
+        "answer": "Ella él",
+        "gapAnswers": [
+          [
+            "Ella"
+          ],
+          [
+            "él"
+          ]
+        ]
+      },
+      "3": {
+        "answer": "yo Ella yo",
+        "gapAnswers": [
+          [
+            "yo"
+          ],
+          [
+            "Ella"
+          ],
+          [
+            "yo"
+          ]
+        ]
+      },
+      "4": {
+        "answer": "Ella él",
+        "gapAnswers": [
+          [
+            "Ella"
+          ],
+          [
+            "él"
+          ]
+        ]
+      }
+    },
+    "34.4b": {
+      "1": {
+        "answer": "Yo vosotros",
+        "gapAnswers": [
+          [
+            "Yo"
+          ],
+          [
+            "vosotros"
+          ]
+        ]
+      }
+    }
+  },
+  "035_te_amo": {
+    "35.4": {
+      "0": {
+        "answer": "me a mí",
+        "gapAnswers": [
+          [
+            "me"
+          ],
+          [
+            "a mí"
+          ]
+        ]
+      },
+      "1": {
+        "answer": "nos a nosotros",
+        "gapAnswers": [
+          [
+            "nos"
+          ],
+          [
+            "a nosotros"
+          ]
+        ]
+      },
+      "2": {
+        "answer": "la a ella",
+        "gapAnswers": [
+          [
+            "la"
+          ],
+          [
+            "a ella"
+          ]
+        ]
+      },
+      "3": {
+        "answer": "las a ellas",
+        "gapAnswers": [
+          [
+            "las"
+          ],
+          [
+            "a ellas"
+          ]
+        ]
+      },
+      "4": {
+        "answer": "los a ustedes",
+        "gapAnswers": [
+          [
+            "los",
+            "les"
+          ],
+          [
+            "a ustedes"
+          ]
+        ]
+      },
+      "5": {
+        "answer": "los a ellos",
+        "gapAnswers": [
+          [
+            "los",
+            "les"
+          ],
+          [
+            "a ellos"
+          ]
+        ]
+      }
+    }
+  },
+  "036_me_han_regalado": {
+    "36.3": {
+      "0": {
+        "answer": "mí me",
+        "gapAnswers": [
+          [
+            "mí"
+          ],
+          [
+            "me"
+          ]
+        ]
+      },
+      "1": {
+        "answer": "les nos",
+        "gapAnswers": [
+          [
+            "les"
+          ],
+          [
+            "nos"
+          ]
+        ]
+      },
+      "2": {
+        "answer": "le le",
+        "gapAnswers": [
+          [
+            "le"
+          ],
+          [
+            "le"
+          ]
+        ]
+      },
+      "3": {
+        "answer": "nos",
+        "gapAnswers": [
+          [
+            "nos"
+          ]
+        ]
+      },
+      "4": {
+        "answer": "le le",
+        "gapAnswers": [
+          [
+            "le"
+          ],
+          [
+            "le"
+          ]
+        ]
+      },
+      "5": {
+        "answer": "le me",
+        "gapAnswers": [
+          [
+            "le"
+          ],
+          [
+            "me"
+          ]
+        ]
+      },
+      "6": {
+        "answer": "te",
+        "gapAnswers": [
+          [
+            "te"
+          ]
+        ]
+      },
+      "7": {
+        "answer": "nos os",
+        "gapAnswers": [
+          [
+            "nos"
+          ],
+          [
+            "os"
+          ]
+        ]
+      },
+      "8": {
+        "answer": "le le",
+        "gapAnswers": [
+          [
+            "le"
+          ],
+          [
+            "le"
+          ]
+        ]
+      }
+    }
+  },
+  "037_se_lo_he_dado": {
+    "37.1": {
+      "0": {
+        "answer": "me los",
+        "gapAnswers": [
+          [
+            "me"
+          ],
+          [
+            "los"
+          ]
+        ]
+      },
+      "1": {
+        "answer": "se lo",
+        "gapAnswers": [
+          [
+            "se"
+          ],
+          [
+            "lo"
+          ]
+        ]
+      },
+      "2": {
+        "answer": "nos lo",
+        "gapAnswers": [
+          [
+            "nos"
+          ],
+          [
+            "lo"
+          ]
+        ]
+      },
+      "3": {
+        "answer": "te las",
+        "gapAnswers": [
+          [
+            "te"
+          ],
+          [
+            "las"
+          ]
+        ]
+      },
+      "4": {
+        "answer": "me la",
+        "gapAnswers": [
+          [
+            "me"
+          ],
+          [
+            "la"
+          ]
+        ]
+      },
+      "5": {
+        "answer": "nos lo",
+        "gapAnswers": [
+          [
+            "nos"
+          ],
+          [
+            "lo"
+          ]
+        ]
+      }
+    },
+    "37.3": {
+      "0": {
+        "answer": "se lo",
+        "gapAnswers": [
+          [
+            "se"
+          ],
+          [
+            "lo"
+          ]
+        ]
+      },
+      "1": {
+        "answer": "me la",
+        "gapAnswers": [
+          [
+            "me"
+          ],
+          [
+            "la"
+          ]
+        ]
+      },
+      "2": {
+        "answer": "se lo",
+        "gapAnswers": [
+          [
+            "se"
+          ],
+          [
+            "lo"
+          ]
+        ]
+      },
+      "3": {
+        "answer": "nos la",
+        "gapAnswers": [
+          [
+            "nos"
+          ],
+          [
+            "la"
+          ]
+        ]
+      },
+      "4": {
+        "answer": "se las",
+        "gapAnswers": [
+          [
+            "se"
+          ],
+          [
+            "las"
+          ]
+        ]
+      },
+      "5": {
+        "answer": "se lo",
+        "gapAnswers": [
+          [
+            "se"
+          ],
+          [
+            "lo"
+          ]
+        ]
+      },
+      "6": {
+        "answer": "se los",
+        "gapAnswers": [
+          [
+            "se"
+          ],
+          [
+            "los"
+          ]
+        ]
+      },
+      "7": {
+        "answer": "te lo",
+        "gapAnswers": [
+          [
+            "te"
+          ],
+          [
+            "lo"
+          ]
+        ]
+      },
+      "8": {
+        "answer": "me la",
+        "gapAnswers": [
+          [
+            "me"
+          ],
+          [
+            "la"
+          ]
+        ]
+      },
+      "9": {
+        "answer": "os los",
+        "gapAnswers": [
+          [
+            "os"
+          ],
+          [
+            "los"
+          ]
+        ]
+      }
+    }
+  },
+  "038_lo_la_le": {
+    "38.1a": {
+      "3": {
+        "answer": "las",
+        "gapAnswers": [
+          [
+            "las"
+          ]
+        ]
+      },
+      "4": {
+        "answer": "los",
+        "gapAnswers": [
+          [
+            "los",
+            "les"
+          ]
+        ]
+      },
+      "5": {
+        "answer": "las",
+        "gapAnswers": [
+          [
+            "las"
+          ]
+        ]
+      },
+      "6": {
+        "answer": "la",
+        "gapAnswers": [
+          [
+            "la",
+            "le"
+          ]
+        ]
+      },
+      "8": {
+        "answer": "la",
+        "gapAnswers": [
+          [
+            "la",
+            "le"
+          ]
+        ]
+      }
+    },
+    "38.1b": {
+      "0": {
+        "answer": "le se la se la",
+        "gapAnswers": [
+          [
+            "le"
+          ],
+          [
+            "se"
+          ],
+          [
+            "la"
+          ],
+          [
+            "se"
+          ],
+          [
+            "la"
+          ]
+        ]
+      },
+      "1": {
+        "answer": "le",
+        "gapAnswers": [
+          [
+            "le"
+          ]
+        ]
+      },
+      "2": {
+        "answer": "les se lo",
+        "gapAnswers": [
+          [
+            "les"
+          ],
+          [
+            "se"
+          ],
+          [
+            "lo"
+          ]
+        ]
+      },
+      "3": {
+        "answer": "les",
+        "gapAnswers": [
+          [
+            "les"
+          ]
+        ]
+      },
+      "4": {
+        "answer": "le",
+        "gapAnswers": [
+          [
+            "le"
+          ]
+        ]
+      },
+      "5": {
+        "answer": "le le",
+        "gapAnswers": [
+          [
+            "le"
+          ],
+          [
+            "le"
+          ]
+        ]
+      }
+    },
+    "38.2": {
+      "0": {
+        "answer": "la",
+        "gapAnswers": [
+          [
+            "la"
+          ]
+        ]
+      },
+      "1": {
+        "answer": "le",
+        "gapAnswers": [
+          [
+            "le"
+          ]
+        ]
+      },
+      "2": {
+        "answer": "lo",
+        "gapAnswers": [
+          [
+            "lo",
+            "le"
+          ]
+        ]
+      },
+      "3": {
+        "answer": "le",
+        "gapAnswers": [
+          [
+            "le"
+          ]
+        ]
+      },
+      "4": {
+        "answer": "le se los",
+        "gapAnswers": [
+          [
+            "le"
+          ],
+          [
+            "se"
+          ],
+          [
+            "los"
+          ]
+        ]
+      },
+      "5": {
+        "answer": "la",
+        "gapAnswers": [
+          [
+            "la"
+          ]
+        ]
+      },
+      "6": {
+        "answer": "le",
+        "gapAnswers": [
+          [
+            "le"
+          ]
+        ]
+      },
+      "7": {
+        "answer": "les le le",
+        "gapAnswers": [
+          [
+            "les"
+          ],
+          [
+            "le"
+          ],
+          [
+            "le"
+          ]
+        ]
+      }
+    },
+    "38.3": {
+      "0": {
+        "answer": "le se lo lo",
+        "gapAnswers": [
+          [
+            "le"
+          ],
+          [
+            "se"
+          ],
+          [
+            "lo"
+          ],
+          [
+            "lo"
+          ]
+        ]
+      },
+      "1": {
+        "answer": "lo",
+        "gapAnswers": [
+          [
+            "lo"
+          ]
+        ]
+      },
+      "2": {
+        "answer": "lo lo",
+        "gapAnswers": [
+          [
+            "lo"
+          ],
+          [
+            "lo"
+          ]
+        ]
+      },
+      "3": {
+        "answer": "lo se lo",
+        "gapAnswers": [
+          [
+            "lo"
+          ],
+          [
+            "se"
+          ],
+          [
+            "lo"
+          ]
+        ]
+      },
+      "4": {
+        "answer": "lo le la",
+        "gapAnswers": [
+          [
+            "lo"
+          ],
+          [
+            "le"
+          ],
+          [
+            "la"
+          ]
+        ]
+      },
+      "5": {
+        "answer": "lo lo",
+        "gapAnswers": [
+          [
+            "lo"
+          ],
+          [
+            "lo"
+          ]
+        ]
+      },
+      "6": {
+        "answer": "lo la",
+        "gapAnswers": [
+          [
+            "lo"
+          ],
+          [
+            "la"
+          ]
+        ]
+      },
+      "7": {
+        "answer": "lo lo",
+        "gapAnswers": [
+          [
+            "lo"
+          ],
+          [
+            "lo"
+          ]
+        ]
+      },
+      "8": {
+        "answer": "la",
+        "gapAnswers": [
+          [
+            "la"
+          ]
+        ]
+      },
+      "9": {
+        "answer": "lo",
+        "gapAnswers": [
+          [
+            "lo"
+          ]
+        ]
+      }
+    }
+  },
+  "039_amame_damelo": {
+    "39.3": {
+      "1": {
+        "answer": "Estoy acabándola",
+        "normalize": "phrase"
+      },
+      "2": {
+        "answer": "Están preguntándole",
+        "normalize": "phrase"
+      },
+      "4": {
+        "answer": "Están haciéndosela",
+        "normalize": "phrase"
+      },
+      "5": {
+        "answer": "Está lavándoselo",
+        "normalize": "phrase"
+      },
+      "6": {
+        "answer": "Está hablándole",
+        "normalize": "phrase"
+      },
+      "7": {
+        "answer": "Está arreglándola",
+        "normalize": "phrase"
+      },
+      "8": {
+        "answer": "Se lo estoy dando",
+        "normalize": "phrase"
+      }
+    },
+    "39.4": {
+      "0": {
+        "answer": "Pásame la sal",
+        "normalize": "phrase"
+      },
+      "1": {
+        "answer": "La directora quiere vernos",
+        "normalize": "phrase"
+      },
+      "2": {
+        "answer": "No tengo pan. He olvidado comprarlo",
+        "normalize": "phrase"
+      },
+      "3": {
+        "answer": "¿Puedes ayudarme?",
+        "normalize": "phrase"
+      },
+      "4": {
+        "answer": "Pregúntaselo a Julio",
+        "normalize": "phrase"
+      },
+      "5": {
+        "answer": "¿Quién lo está haciendo?",
+        "normalize": "phrase"
+      },
+      "6": {
+        "answer": "Me gustaría decírselo a Sandra",
+        "normalize": "phrase"
+      },
+      "7": {
+        "answer": "Pásame la pelota",
+        "normalize": "phrase"
+      }
+    }
+  },
+  "040_me_ducho_nos_queremos": {
+    "40.1a": {
+      "3": {
+        "answer": "No te mires tanto al espejo, Saúl",
+        "normalize": "phrase"
+      },
+      "7": {
+        "answer": "Ana se ducha",
+        "normalize": "phrase"
+      }
+    },
+    "40.1b": {
+      "4": {
+        "answer": "Cuándo te lavas el pelo, Sonia",
+        "normalize": "phrase"
+      }
+    },
+    "40.2": {
+      "2": {
+        "answer": "Roque y Julio no se hablan",
+        "normalize": "phrase"
+      },
+      "4": {
+        "answer": "Sofía y Lina se escriben",
+        "normalize": "phrase"
+      },
+      "5": {
+        "answer": "Andrés y yo nos conocemos muy bien",
+        "normalize": "phrase"
+      },
+      "7": {
+        "answer": "Mi mujer y yo nos hacemos un regalo en Navidad",
+        "normalize": "phrase"
+      },
+      "8": {
+        "answer": "Tus amigos y tú os veis los domingos",
+        "normalize": "phrase"
+      }
+    },
+    "40.3": {
+      "2": {
+        "answer": "Conozco muy bien a mis hijos",
+        "normalize": "phrase"
+      },
+      "7": {
+        "answer": "Raúl y Teresa no se hablan",
+        "normalize": "phrase"
+      },
+      "9": {
+        "answer": "María y Alfredo se ven todos los días",
+        "normalize": "phrase"
+      }
+    }
+  },
+  "041_para_mi_contigo": {
+    "41.1a": {
+      "3": {
+        "answer": "Es para nosotros",
+        "normalize": "phrase"
+      },
+      "5": {
+        "answer": "Para mí",
+        "normalize": "phrase"
+      }
+    },
+    "41.2": {
+      "5": {
+        "answer": "Antonio quiere hablar contigo",
+        "normalize": "phrase"
+      }
+    },
+    "41.3": {
+      "3": {
+        "answer": "Luisa se sienta entre Jorge y yo",
+        "normalize": "phrase"
+      },
+      "5": {
+        "answer": "Sebastián se sienta delante de mí",
+        "normalize": "phrase"
+      },
+      "9": {
+        "answer": "Incluso tú puedes hacerlo",
+        "normalize": "phrase"
+      }
+    },
+    "41.4": {
+      "4": {
+        "answer": "Esto es para mí",
+        "normalize": "phrase"
+      },
+      "5": {
+        "answer": "Ven conmigo, por favor. Necesito ayuda",
+        "normalize": "phrase"
+      }
+    }
+  },
+  "042_soy_eres_es": {
+    "42.1": {
+      "0": {
+        "answer": "sois somos",
+        "gapAnswers": [
+          [
+            "sois"
+          ],
+          [
+            "somos"
+          ]
+        ]
+      },
+      "1": {
+        "answer": "es soy",
+        "gapAnswers": [
+          [
+            "es"
+          ],
+          [
+            "soy"
+          ]
+        ]
+      },
+      "3": {
+        "answer": "son somos",
+        "gapAnswers": [
+          [
+            "son"
+          ],
+          [
+            "somos"
+          ]
+        ]
+      },
+      "4": {
+        "answer": "eres soy",
+        "gapAnswers": [
+          [
+            "eres"
+          ],
+          [
+            "soy"
+          ]
+        ]
+      },
+      "5": {
+        "answer": "eres soy",
+        "gapAnswers": [
+          [
+            "eres"
+          ],
+          [
+            "soy"
+          ]
+        ]
+      },
+      "6": {
+        "answer": "son son",
+        "gapAnswers": [
+          [
+            "son"
+          ],
+          [
+            "son"
+          ]
+        ]
+      },
+      "7": {
+        "answer": "No, soy estudiante",
+        "normalize": "phrase"
+      }
+    },
+    "42.2": {
+      "1": {
+        "answer": "Usted es muy amable",
+        "normalize": "phrase"
+      },
+      "3": {
+        "answer": "Vosotros sois muy alegres",
+        "normalize": "phrase"
+      },
+      "5": {
+        "answer": "sois somos",
+        "gapAnswers": [
+          [
+            "sois"
+          ],
+          [
+            "somos"
+          ]
+        ]
+      },
+      "7": {
+        "answer": "Mis amigas son peruanas",
+        "normalize": "phrase"
+      }
+    },
+    "42.3": {
+      "0": {
+        "answer": "Esa mesa es de cristal",
+        "normalize": "phrase"
+      },
+      "2": {
+        "answer": "Ese libro es de Marta",
+        "normalize": "phrase"
+      },
+      "3": {
+        "answer": "son son",
+        "gapAnswers": [
+          [
+            "son"
+          ],
+          [
+            "son"
+          ]
+        ]
+      }
+    },
+    "42.4": {
+      "1": {
+        "answer": "sois somos",
+        "gapAnswers": [
+          [
+            "sois"
+          ],
+          [
+            "somos"
+          ]
+        ]
+      },
+      "2": {
+        "answer": "es son",
+        "gapAnswers": [
+          [
+            "es"
+          ],
+          [
+            "son"
+          ]
+        ]
+      },
+      "3": {
+        "answer": "es es",
+        "gapAnswers": [
+          [
+            "es"
+          ],
+          [
+            "es"
+          ]
+        ]
+      },
+      "4": {
+        "answer": "es es",
+        "gapAnswers": [
+          [
+            "es"
+          ],
+          [
+            "es"
+          ]
+        ]
+      },
+      "5": {
+        "answer": "sois somos",
+        "gapAnswers": [
+          [
+            "sois"
+          ],
+          [
+            "somos"
+          ]
+        ]
+      },
+      "6": {
+        "answer": "Es la una",
+        "normalize": "phrase"
       }
     }
   }
