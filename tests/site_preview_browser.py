@@ -112,6 +112,7 @@ def main():
                 page.goto(url + book_hash)
                 page.wait_for_selector('[data-book-chapter]')
                 assert page.url.endswith(book_hash)
+                assert page.locator('.book-availability').count() == 0
                 chapter = book['chapters'][0]
                 chapter_hash = book_hash + '/' + chapter['id']
                 for direct_hash, selector in ((book_hash, '[data-book-chapter]'), (chapter_hash, '.book-block')):
@@ -123,11 +124,26 @@ def main():
                 page.goto(url + chapter_hash)
                 page.wait_for_selector('.book-block')
                 assert page.url.endswith(chapter_hash)
+                assert page.get_by_role('heading', name='Разбор текста', exact=True).count() == 0
                 assert page.locator('[data-book-jump]').count() > 0
                 page.locator('[data-book-nav="chapters"]').first.click()
                 page.wait_for_selector('[data-book-chapter]')
                 page.go_back();page.wait_for_selector('.book-block')
                 page.go_forward();page.wait_for_selector('[data-book-chapter]')
+                # Preserve the latest approved book cover and removal of obsolete labels.
+                story = page.evaluate('COURSE.books.find(b=>b.id==="el-hombre-que-veia-demasiado")')
+                assert story, 'Current story missing from the independently loaded catalog'
+                page.goto(url + '#books/' + story['level'] + '/' + story['id'])
+                page.wait_for_selector('.book-block', timeout=60000)
+                assert page.get_by_role('heading', name='Разбор текста', exact=True).count() == 0
+                assert page.locator('.book-availability').count() == 0
+                cover_sha = hashlib.sha256(Path('content/books/el-hombre-que-veia-demasiado/cover-generated.webp').read_bytes()).hexdigest()
+                assert story['cover'] == 'i/' + cover_sha + '.webp'
+                page.wait_for_function('''() => {
+                  const img=document.querySelector('.book-cover-large');return img && img.complete && img.naturalWidth>0;
+                }''', timeout=30000)
+                dimensions=page.locator('.book-cover-large').evaluate('(img)=>({width:img.naturalWidth,height:img.naturalHeight})')
+                assert 1.45 < dimensions['height']/dimensions['width'] < 1.55
                 # Fail only one previously unopened JSON and then retry on the actual preview.
                 other = book['chapters'][1]
                 target = '**/' + other['_data']['url']
@@ -147,7 +163,7 @@ def main():
                 report['widths'].append({'width':width,'status':'passed','old_to_new_progress':'identical',
                     'root_cache_control':response.headers.get('cache-control'),'audio_keys':audio_count,
                     'lessons':lessons,'dialogue':dialogue,'grammar':page.evaluate('COURSE.grammar[0].id'),
-                    'book_url':url+book_hash,'chapter_url':url+chapter_hash,'fresh_direct_links':'passed','retry':'passed','offline_cached_json':'passed','errors':errors})
+                    'approved_story_cover':{'id':story['id'],'sha256':cover_sha,'dimensions':dimensions,'removed_labels':'absent'},'book_url':url+book_hash,'chapter_url':url+chapter_hash,'fresh_direct_links':'passed','retry':'passed','offline_cached_json':'passed','errors':errors})
                 context.close()
             browser.close()
     finally:

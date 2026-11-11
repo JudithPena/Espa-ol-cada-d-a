@@ -1,6 +1,39 @@
 from espanol.site import load_books
 
 
+def test_books_hide_chapter_availability_badges_but_keep_chapter_navigation():
+    """No 'Доступно X из Y глав' badge on books, member stories or collections."""
+    from pathlib import Path
+
+    template = Path("espanol/site_template.html").read_text(encoding="utf-8")
+    assert 'book-availability' not in template
+    assert 'Доступно ' not in template
+    assert 'function bookCollectionView(book)' in template
+    assert 'function bookChaptersView()' in template
+    # Book and anthology lists, their full chapter catalogs and unpublished
+    # chapter labels remain intact, only the redundant availability counter goes.
+    assert 'bookCardsView(members)' in template
+    assert 'const catalog = b.chapter_catalog || b.chapters;' in template
+    assert 'book-chapter-soon' in template
+    assert 'data-book-chapter=' in template
+    assert 'book-annotation' in template
+
+
+
+def test_book_reading_views_do_not_show_redundant_analysis_heading():
+    """Both standalone stories and chapter views omit the heading, not the navigation."""
+    from pathlib import Path
+
+    template = Path("espanol/site_template.html").read_text(encoding="utf-8")
+    assert '<h2>Разбор текста</h2>' not in template
+    assert 'function bookView()' in template
+    assert 'data-book-nav="chapters"' in template
+    assert 'data-book-nav="level"' in template
+    assert 'esc(bookTitle(b))' in template
+    assert 'esc(bookChapterLabel(chapter))' in template
+    assert 'book-annotation' in template
+
+
 def test_vacaciones_first_chapter_matches_supplied_pdf_and_catalog():
     import hashlib
     import re

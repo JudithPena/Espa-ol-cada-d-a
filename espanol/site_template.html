@@ -145,7 +145,6 @@ h2 + .btn.wide, h2 + .muted { margin-top: 10px; display: flex; }
   .book-intro:has(.book-cover-large) { grid-template-columns: minmax(0, 220px) minmax(0, 1fr); justify-items: stretch; gap: 24px; text-align: left; }
   .book-intro:has(.book-cover-large) .book-cover-large { width: 100%; }
 }
-.book-availability { font-weight: 600; color: var(--accent); }
 .book-series { margin: 20px 0; }
 .book-series-list { display: grid; gap: 8px; margin-top: 12px; }
 .book-series-item { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); text-align: left; font: inherit; }
@@ -2637,9 +2636,7 @@ function bookLevelView() {
 }
 function bookCollectionView(book) {
   const members = book.books.map(bookById).filter(Boolean);
-  const total = members.reduce((n, b) => n + (b.chapter_catalog || b.chapters).length, 0);
-  const ready = members.reduce((n, b) => n + b.chapters.length, 0);
-  return `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(book.level)}</button><section class="book-overview"><div class="book-intro">${book.cover ? `<img class="book-cover-large" src="${esc(book.cover)}" alt="">` : ""}<div class="book-intro-copy"><h2>${esc(book.title)}</h2><p class="muted">${esc(book.author)} · ${esc(book.level)}</p>${book.annotation ? `<p class="book-annotation">${esc(book.annotation)}</p>` : ""}<p class="book-availability">${members.length} рассказов · Доступно ${ready} из ${total} глав</p></div></div></section><h3>Рассказы сборника</h3>${bookCardsView(members)}`;
+  return `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(book.level)}</button><section class="book-overview"><div class="book-intro">${book.cover ? `<img class="book-cover-large" src="${esc(book.cover)}" alt="">` : ""}<div class="book-intro-copy"><h2>${esc(book.title)}</h2><p class="muted">${esc(book.author)} · ${esc(book.level)}</p>${book.annotation ? `<p class="book-annotation">${esc(book.annotation)}</p>` : ""}</div></div></section><h3>Рассказы сборника</h3>${bookCardsView(members)}`;
 }
 function bookChapterLabel(chapter) {
   const raw = typeof chapter.title === "string" ? chapter.title.trim() : "";
@@ -2665,7 +2662,7 @@ function bookChaptersView() {
   if (b.kind === "collection") return bookCollectionView(b);
   const catalog = b.chapter_catalog || b.chapters;
   const available = new Set(b.chapters.map(c => c.id));
-  return `${b.collection ? `<button class="btn ghost sm back" data-book-id="${esc(b.collection)}">← Рассказы сборника</button>` : `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(b.level)}</button>`}<section class="book-overview"><div class="book-intro">${b.cover ? `<img class="book-cover-large" src="${esc(b.cover)}" alt="">` : ""}<div class="book-intro-copy"><h2>${esc(bookTitle(b))}</h2><p class="muted">${b.series ? esc(b.series.title) + " · " : ""}${esc(b.author)}</p>${b.annotation ? `<p class="book-annotation">${esc(b.annotation)}</p>` : ""}${catalog.length ? `<p class="book-availability">Доступно ${b.chapters.length} из ${catalog.length} глав</p>` : ""}</div></div></section>${bookSeriesView(b)}<h3>Главы</h3>${catalog.length ? `<div class="menu">${catalog.map(c => { const ready = available.has(c.id); return `<button class="mcard book-chapter-card" ${ready ? `data-book-chapter="${esc(c.id)}"` : 'disabled'}><span class="mi" aria-hidden="true">${esc(c.icon || "📖")}</span><span class="book-chapter-label"><b>${esc(bookChapterLabel(c))}</b>${ready ? "" : '<small class="book-chapter-soon">Скоро</small>'}</span><span class="book-chapter-arrow" aria-hidden="true">${ready ? "›" : ""}</span></button>`; }).join("")}</div>` : '<p class="muted">Опубликованных глав пока нет.</p>'}`;
+  return `${b.collection ? `<button class="btn ghost sm back" data-book-id="${esc(b.collection)}">← Рассказы сборника</button>` : `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(b.level)}</button>`}<section class="book-overview"><div class="book-intro">${b.cover ? `<img class="book-cover-large" src="${esc(b.cover)}" alt="">` : ""}<div class="book-intro-copy"><h2>${esc(bookTitle(b))}</h2><p class="muted">${b.series ? esc(b.series.title) + " · " : ""}${esc(b.author)}</p>${b.annotation ? `<p class="book-annotation">${esc(b.annotation)}</p>` : ""}</div></div></section>${bookSeriesView(b)}<h3>Главы</h3>${catalog.length ? `<div class="menu">${catalog.map(c => { const ready = available.has(c.id); return `<button class="mcard book-chapter-card" ${ready ? `data-book-chapter="${esc(c.id)}"` : 'disabled'}><span class="mi" aria-hidden="true">${esc(c.icon || "📖")}</span><span class="book-chapter-label"><b>${esc(bookChapterLabel(c))}</b>${ready ? "" : '<small class="book-chapter-soon">Скоро</small>'}</span><span class="book-chapter-arrow" aria-hidden="true">${ready ? "›" : ""}</span></button>`; }).join("")}</div>` : '<p class="muted">Опубликованных глав пока нет.</p>'}`;
 }
 // Переход по разделу книг: меняет экран, а запись в историю (адрес #books/…) делает navSync() в render().
 function bookGo(level = null, book = null, chapter = null) {
@@ -2859,8 +2856,8 @@ function bookView() {
   const hasExercises = Boolean(chapter.exercises?.length);
   const total = (chapter.exercises || []).flatMap(ex => ex.questions).filter(q => q.kind !== "reflection").length;
   // Рассказ без глав: назад — к книгам уровня, в шапке только название и автор.
-  const head = b.story ? `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(b.level)}</button><section class="book-overview"><div class="book-intro">${b.cover ? `<img class="book-cover-large" src="${esc(b.cover)}" alt="">` : ""}<div class="book-intro-copy"><h2>Разбор текста</h2><p>${esc(bookTitle(b))} · ${esc(b.author)}</p>${b.annotation ? `<p class="book-annotation">${esc(b.annotation)}</p>` : ""}</div></div></section>`
-    : `<button class="btn ghost sm back" data-book-nav="chapters">← Главы книги</button><h2>Разбор текста</h2><p>${esc(bookTitle(b))} · ${esc(bookChapterLabel(chapter))}</p>`;
+  const head = b.story ? `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(b.level)}</button><section class="book-overview"><div class="book-intro">${b.cover ? `<img class="book-cover-large" src="${esc(b.cover)}" alt="">` : ""}<div class="book-intro-copy"><p>${esc(bookTitle(b))} · ${esc(b.author)}</p>${b.annotation ? `<p class="book-annotation">${esc(b.annotation)}</p>` : ""}</div></div></section>`
+    : `<button class="btn ghost sm back" data-book-nav="chapters">← Главы книги</button><p>${esc(bookTitle(b))} · ${esc(bookChapterLabel(chapter))}</p>`;
   return `<div data-book-chapter-view>${head}
     ${hasExercises ? `<div class="book-tabs" role="tablist" aria-label="Содержание главы"><button type="button" class="btn ghost" id="book-tab-analysis" role="tab" aria-controls="book-panel-analysis" aria-selected="true" data-book-panel-tab="analysis">Разбор</button><button type="button" class="btn ghost" id="book-tab-exercises" role="tab" aria-controls="book-panel-exercises" aria-selected="false" tabindex="-1" data-book-panel-tab="exercises">Упражнения</button></div>` : ""}
     <div class="book-panel" data-book-panel="analysis" ${hasExercises ? 'id="book-panel-analysis" role="tabpanel" aria-labelledby="book-tab-analysis" tabindex="0"' : ""}>${chapter.blocks.map((block, index) => {
