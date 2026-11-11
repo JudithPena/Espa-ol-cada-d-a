@@ -3,11 +3,1561 @@
   "number": 3,
   "order": 3,
   "title": "La verdad",
-  "icon": "📖",
-  "status": "draft",
-  "blocks": [],
+  "icon": "🕊️",
+  "status": "published",
+  "blocks": [
+    {
+      "title": "Дочь вражеского императора",
+      "es": "Aldin miró a Maha. No se lo podía creer. ¡Era la hija del emperador lunario! ¡La niña podría crear un caos en el mundo! ¡Más luchas! ¿Y todo porque se sentía sola? ¿Porque pensaba que el emperador terrario entendía sus problemas? ¿Qué había hecho esta niña?\n\nEntonces Aldin se dio cuenta de algo muy importante. No era responsabilidad de la niña. Ella no sabía lo que había hecho. Ella solo sabía que estaba triste. Y un hombre llamado Valior la había ayudado. Él era el problema. ¡El emperador! ¡De todos ellos! ¿Cómo era posible? ¿Estaba intentando causar más guerras? Aldin tenía que averiguarlo.\n\nAldin salió de la casa de Kira. Montó en el vehículo y fue hasta el centro de la ciudad. Allí, entró en el gran palacio. Necesitaba hablar con el emperador. Caminó hacia su despacho. De repente, un guardia de seguridad lo detuvo.",
+      "ru": "Альдин посмотрел на Маху. Он не мог в это поверить. Перед ним была дочь императора лунариев! Девочка могла вызвать хаос во всём мире — новые сражения! И всё потому, что чувствовала себя одинокой? Потому что думала, будто император террариев понимает её проблемы? Что же она натворила?\n\nИ тут Альдин осознал нечто очень важное. Девочка не несла ответственности за случившееся. Она не понимала, что сделала: только знала, что ей грустно и что человек по имени Валиор ей помог. Проблемой был он сам. Император! Их общий правитель! Как такое возможно? Неужели он пытался развязать новые войны? Альдин должен был это выяснить.\n\nОн вышел из дома Киры, сел в автомобиль и отправился в центр города. Там вошёл в огромный дворец. Ему необходимо было поговорить с императором. Он направился к его кабинету, но внезапно охранник его остановил.",
+      "notes": [
+        {
+          "term": "no poder creérselo",
+          "es": [
+            "No se lo podía creer"
+          ],
+          "ru": [
+            "не мог в это поверить"
+          ],
+          "explanation": "не верить случившемуся; no + poder + creérselo, где lo = новость о происхождении Махи."
+        },
+        {
+          "term": "crear un caos",
+          "es": [
+            "crear un caos"
+          ],
+          "ru": [
+            "вызвать хаос"
+          ],
+          "explanation": "привести к хаосу, смятению, беспорядку."
+        },
+        {
+          "term": "la responsabilidad",
+          "es": [
+            "responsabilidad"
+          ],
+          "ru": [
+            "ответственности"
+          ],
+          "explanation": "ответственность, обязанность отвечать за последствия."
+        },
+        {
+          "term": "darse cuenta de (algo)",
+          "es": [
+            "se dio cuenta de"
+          ],
+          "ru": [
+            "осознал"
+          ],
+          "explanation": "осознать, понять; de вводит предмет осознания."
+        },
+        {
+          "term": "causar (algo)",
+          "es": [
+            "causar más guerras"
+          ],
+          "ru": [
+            "развязать новые войны"
+          ],
+          "explanation": "причинять, вызывать; здесь становиться причиной новых войн."
+        },
+        {
+          "term": "el despacho",
+          "es": [
+            "despacho"
+          ],
+          "ru": [
+            "кабинету"
+          ],
+          "explanation": "кабинет, служебный офис; также означать отправку/выдачу."
+        },
+        {
+          "term": "el palacio",
+          "es": [
+            "palacio"
+          ],
+          "ru": [
+            "дворец"
+          ],
+          "explanation": "дворец, официальная резиденция правителя."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "No se lo podía creer",
+          "translation": "не мог в это поверить",
+          "base": "no poder creérselo",
+          "explanation": "se = Альдин (форма creérselo), lo = неожиданное известие: Маха — дочь лунарийского императора."
+        },
+        {
+          "es": "se sentía sola",
+          "translation": "она чувствовала себя одинокой",
+          "base": "sentirse + adjetivo",
+          "explanation": "se = Маха, испытывающая одиночество."
+        },
+        {
+          "es": "se dio cuenta de algo muy importante",
+          "translation": "он осознал нечто важное",
+          "base": "darse cuenta de (algo)",
+          "explanation": "se = Альдин, который меняет своё понимание событий; de вводит содержание."
+        },
+        {
+          "es": "lo que había hecho",
+          "translation": "то, что она сделала",
+          "base": "lo que + verbo",
+          "explanation": "lo que — нейтральное относительное выражение «то, что», о действиях Махи."
+        },
+        {
+          "es": "Valior la había ayudado",
+          "translation": "Валиор ей помог",
+          "base": "ayudar a (alguien)",
+          "explanation": "la = девочка Маха, прямое дополнение; había ayudado — плюсквамперфект."
+        },
+        {
+          "es": "lo detuvo",
+          "translation": "его остановил",
+          "base": "detener a (alguien)",
+          "explanation": "lo = Альдин, прямое дополнение; подлежащее guardia de seguridad."
+        }
+      ]
+    },
+    {
+      "title": "Альдин прорывается к Валиору",
+      "es": "–La entrada aquí te está prohibida –dijo el guardia.\n\nAldin se sorprendió. Necesitaba hablar con el emperador Valior.\n\n–¿Prohibida? ¡Soy ministro! ¡Sabes quién soy!\n\n–Son órdenes del emperador.\n\nAldin se preguntó qué podía hacer a continuación. Tenía que hablar con el emperador Valior, pero ahora el emperador le estaba prohibiendo la entrada. El emperador siempre decía que Aldin era muy listo, pero no muy fuerte. Era el momento de demostrar quién era.\n\nSin pensarlo más, Aldin cogió el rifle del guardia y le golpeó en la cabeza. El guardia cayó al suelo. Aldin entró al despacho. El emperador estaba sentado en su silla. Otros guardias intentaron detener a Aldin, pero el emperador dijo:\n\n–Ya basta, dejad que Aldin hable.\n\nLos guardias dudaron. No confiaban en Aldin.\n\n–¡Ya me habéis oído! ¡Salid de mi despacho! –les gritó Valior a los guardias.",
+      "ru": "— Тебе запрещено сюда входить, — сказал охранник.\n\nАльдин удивился. Ему обязательно нужно было поговорить с императором Валиором.\n\n— Запрещено? Я министр! Ты знаешь, кто я такой!\n\n— Таков приказ императора.\n\nАльдин задумался, что делать дальше. Он должен поговорить с Валиором, но император не пускал его внутрь. Валиор всегда говорил, что Альдин очень умный, но не слишком сильный. Настало время показать, на что он способен.\n\nНе раздумывая, Альдин схватил винтовку охранника и ударил его по голове. Охранник упал на пол. Альдин вошёл в кабинет. Император сидел в кресле. Другие стражники попытались задержать Альдина, но император произнёс:\n\n— Довольно. Пусть Альдин говорит.\n\nСтражники колебались: они ему не доверяли.\n\n— Вы меня слышали! Вон из моего кабинета! — крикнул Валиор стражникам.",
+      "notes": [
+        {
+          "term": "la orden",
+          "es": [
+            "órdenes"
+          ],
+          "ru": [
+            "приказ"
+          ],
+          "explanation": "распоряжение, приказ; здесь órdenes — множественное число."
+        },
+        {
+          "term": "preguntarse",
+          "es": [
+            "se preguntó"
+          ],
+          "ru": [
+            "задумался"
+          ],
+          "explanation": "задаваться вопросом, размышлять; не просто спрашивать другого."
+        },
+        {
+          "term": "a continuación",
+          "es": [
+            "a continuación"
+          ],
+          "ru": [
+            "дальше"
+          ],
+          "explanation": "затем, следующим шагом."
+        },
+        {
+          "term": "prohibir la entrada a (alguien)",
+          "es": [
+            "le estaba prohibiendo la entrada"
+          ],
+          "ru": [
+            "не пускал его внутрь"
+          ],
+          "explanation": "запрещать кому-то вход; le — Альдину, la entrada — прямое дополнение."
+        },
+        {
+          "term": "demostrar",
+          "es": [
+            "demostrar quién era"
+          ],
+          "ru": [
+            "показать, на что он способен"
+          ],
+          "explanation": "доказывать, демонстрировать; в тексте показать свою решимость."
+        },
+        {
+          "term": "sin pensarlo más",
+          "es": [
+            "Sin pensarlo más"
+          ],
+          "ru": [
+            "Не раздумывая"
+          ],
+          "explanation": "больше не раздумывая, решительно."
+        },
+        {
+          "term": "el rifle",
+          "es": [
+            "rifle"
+          ],
+          "ru": [
+            "винтовку"
+          ],
+          "explanation": "винтовка, ружьё."
+        },
+        {
+          "term": "golpear",
+          "es": [
+            "golpeó"
+          ],
+          "ru": [
+            "ударил"
+          ],
+          "explanation": "ударить, нанести удар."
+        },
+        {
+          "term": "dudar",
+          "es": [
+            "dudaron"
+          ],
+          "ru": [
+            "колебались"
+          ],
+          "explanation": "сомневаться, колебаться перед решением."
+        },
+        {
+          "term": "¡ya me habéis oído!",
+          "es": [
+            "¡Ya me habéis oído!"
+          ],
+          "ru": [
+            "Вы меня слышали!"
+          ],
+          "explanation": "эмоциональная команда «вы меня слышали», pretérito perfecto с vosotros."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "te está prohibida",
+          "translation": "тебе запрещено",
+          "base": "estar prohibido a (alguien)",
+          "explanation": "te = Альдин, кому запрещён вход; грамматическое подлежащее la entrada."
+        },
+        {
+          "es": "Aldin se sorprendió",
+          "translation": "Альдин удивился",
+          "base": "sorprenderse",
+          "explanation": "se = Альдин, эмоциональная реакция."
+        },
+        {
+          "es": "Aldin se preguntó",
+          "translation": "Альдин задумался",
+          "base": "preguntarse",
+          "explanation": "se = Альдин, задаёт вопрос самому себе, не обращается к стражнику."
+        },
+        {
+          "es": "le estaba prohibiendo la entrada",
+          "translation": "не пускал его внутрь",
+          "base": "prohibir (algo) a (alguien)",
+          "explanation": "le = Альдин, кому запрещают, la entrada — что запрещено."
+        },
+        {
+          "es": "le golpeó en la cabeza",
+          "translation": "ударил его по голове",
+          "base": "golpear a (alguien)",
+          "explanation": "le = охранник (тот, кому пришёлся удар); при ударе по части тела le можно понимать как косвенное дополнение затронутого лица, а не автоматически как leísmo."
+        },
+        {
+          "es": "dejad que Aldin hable",
+          "translation": "позвольте Альдину говорить",
+          "base": "dejar que + subjuntivo",
+          "explanation": "Строго в оригинале написано «dejad que Aldin hable»: dad/dejad — vosotros; que + subjuntivo."
+        },
+        {
+          "es": "les gritó Valior a los guardias",
+          "translation": "Валиор крикнул стражникам",
+          "base": "gritar (algo) a (alguien)",
+          "explanation": "les = стражникам (косвенное), дублируется оборотом a los guardias."
+        },
+        {
+          "es": "¡Ya me habéis oído!",
+          "translation": "вы меня слышали",
+          "base": "oír a (alguien)",
+          "explanation": "me = Валиор, говорящий; habéis — perfecto с vosotros, обращение к стражникам."
+        }
+      ]
+    },
+    {
+      "title": "Разговор без притворства",
+      "es": "Los guardias salieron de su despacho. El despacho era una habitación muy grande, muy lujosa. Se veía toda la capital porque era un piso muy alto. Estaba amaneciendo. Parecía que el emperador no había dormido.\n\n–Aldin, ¿qué quieres? –suspiró.\n\n–¿Por qué no sé nada sobre la niña?\n\n–¿Qué niña?\n\n–Emperador, no soy estúpido.\n\nValior dejó de fingir.\n\n–Está bien. Estoy harto de fingir. Dime qué quieres saber.\n\n–¿Por qué está la hija del emperador lunario en la capital? ¿Por qué lo hiciste? ¡Nuestra política no es usar niños!\n\nValior se volvió hacia Aldin. Gritó:\n\n–¡No es nuestra política perder guerras!\n\nAldin miró a Valior. Después le preguntó en voz baja.\n\n–¿Y por qué no me lo dijiste?\n\n–No te lo he dicho por una sola razón.",
+      "ru": "Стражники вышли из его кабинета. Это была огромная роскошная комната. Из окон было видно всю столицу, ведь кабинет находился на очень высоком этаже. Рассветало. Казалось, император не спал всю ночь.\n\n— Альдин, чего тебе нужно? — вздохнул он.\n\n— Почему я ничего не знаю о девочке?\n\n— Какой девочке?\n\n— Император, я не идиот.\n\nВалиор перестал притворяться.\n\n— Ладно. Мне надоело притворяться. Скажи, что ты хочешь знать.\n\n— Почему дочь императора лунариев находится в столице? Зачем ты это сделал? Мы не используем детей в своей политике!\n\nВалиор повернулся к Альдину и закричал:\n\n— А проигрывать войны у нас тоже не принято!\n\nАльдин посмотрел на Валиора, а затем тихо спросил:\n\n— И почему ты мне об этом не сказал?\n\n— Я тебе не сказал только по одной причине.",
+      "notes": [
+        {
+          "term": "lujoso",
+          "es": [
+            "lujosa"
+          ],
+          "ru": [
+            "роскошная"
+          ],
+          "explanation": "роскошный, богатый."
+        },
+        {
+          "term": "amanecer",
+          "es": [
+            "Estaba amaneciendo"
+          ],
+          "ru": [
+            "Рассветало"
+          ],
+          "explanation": "рассветать; estar + gerundio подчёркивает процесс."
+        },
+        {
+          "term": "dejar de + infinitivo",
+          "es": [
+            "dejó de fingir"
+          ],
+          "ru": [
+            "перестал притворяться"
+          ],
+          "explanation": "перестать что-либо делать; dejar de + инфинитив."
+        },
+        {
+          "term": "estar harto de + infinitivo",
+          "es": [
+            "Estoy harto de fingir"
+          ],
+          "ru": [
+            "Мне надоело притворяться"
+          ],
+          "explanation": "быть сытым по горло чем-либо, сильно устать от этого."
+        },
+        {
+          "term": "estúpido",
+          "es": [
+            "estúpido"
+          ],
+          "ru": [
+            "идиот"
+          ],
+          "explanation": "глупый, тупой; эмоционально окрашенное слово."
+        },
+        {
+          "term": "la política (государственный курс)",
+          "es": [
+            "política"
+          ],
+          "ru": [
+            "политике"
+          ],
+          "explanation": "политика, принятый государственный курс; не только партийная борьба."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Valior dejó de fingir",
+          "translation": "Валиор перестал притворяться",
+          "base": "dejar de + infinitivo",
+          "explanation": "возвратного se нет; подлежащее Валиор, он прекращает притворство."
+        },
+        {
+          "es": "Estoy harto de fingir",
+          "translation": "мне надоело притворяться",
+          "base": "estar harto de + infinitivo",
+          "explanation": "Валиор устал от собственной притворной речи; местоимения дополнения нет."
+        },
+        {
+          "es": "Dime qué quieres saber",
+          "translation": "скажи, что ты хочешь знать",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "me = Валиор, получатель ответа; di — повелительное наклонение, tú = Альдин."
+        },
+        {
+          "es": "Valior se volvió hacia Aldin",
+          "translation": "Валиор повернулся к Альдину",
+          "base": "volverse hacia (alguien)",
+          "explanation": "se = Валиор, он поворачивается к собеседнику."
+        },
+        {
+          "es": "¿Por qué lo hiciste?",
+          "translation": "зачем ты это сделал",
+          "base": "hacer (algo)",
+          "explanation": "lo = замысел Валиора с Махой; субъект hiciste — император Валиор."
+        },
+        {
+          "es": "¿Y por qué no me lo dijiste?",
+          "translation": "почему ты мне этого не сказал",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "me = Альдин (кому), lo = план похищения/помощи Махе (что)."
+        },
+        {
+          "es": "No te lo he dicho",
+          "translation": "я тебе этого не сказал",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "te = Альдин, lo = сведения о плане; he dicho — correcto perfecto от decir, не he dije."
+        }
+      ]
+    },
+    {
+      "title": "Что известно лунариям",
+      "es": "–¿Qué razón?\n\n–No aprobarías este tipo de misiones.\n\nAldin estaba de acuerdo. Por supuesto que no querría que una niña estuviera involucrada en la guerra. No era correcto.\n\n–¿Qué vas a hacer con Maha? –preguntó Aldin.\n\n–¿Con Maha? ¡Vamos a cuidarla! Solo es una niña –respondió el emperador.\n\n–No me refería a eso. Me refiero a qué va a ocurrir cuando los lunarios averigüen todo esto. ¿Le harán daño?\n\n–Buena pregunta–dijo el emperador con calma.\n\nAldin miró al emperador. El emperador empezó a hablar de nuevo.\n\n–Los lunarios ya saben que Maha se ha ido, que se ha escapado de casa –continuó–. Saben que su nave ha salido del planeta, pero no saben dónde está la nave, ni saben que unos espías terrarios la ayudaron a salir del planeta. Ya ves, no saben nada.",
+      "ru": "— По какой?\n\n— Ты бы не одобрил такую операцию.\n\nАльдин был с этим согласен. Разумеется, он не хотел бы, чтобы ребёнка втягивали в войну. Это было неправильно.\n\n— Что ты собираешься делать с Махой? — спросил Альдин.\n\n— С Махой? Мы будем о ней заботиться! Она всего лишь ребёнок, — ответил император.\n\n— Я не это имел в виду. Я спрашиваю, что произойдёт, когда лунарии обо всём узнают. Они ей навредят?\n\n— Хороший вопрос, — спокойно ответил император.\n\nАльдин посмотрел на него, и тот продолжил:\n\n— Лунарии уже знают, что Маха ушла, что сбежала из дома. Знают, что её корабль покинул планету, но не знают, где он находится. И не знают, что террарийские шпионы помогли ей покинуть планету. Видишь, они ничего не знают.",
+      "notes": [
+        {
+          "term": "aprobar",
+          "es": [
+            "aprobarías"
+          ],
+          "ru": [
+            "одобрил"
+          ],
+          "explanation": "одобрять; aprobarías — условное наклонение, «ты бы одобрил»."
+        },
+        {
+          "term": "involucrar a (alguien) en (algo)",
+          "es": [
+            "estuviera involucrada en la guerra"
+          ],
+          "ru": [
+            "втягивали в войну"
+          ],
+          "explanation": "вовлекать в дело/конфликт; вовлечённый человек может быть не инициатором."
+        },
+        {
+          "term": "estar de acuerdo",
+          "es": [
+            "estaba de acuerdo"
+          ],
+          "ru": [
+            "был с этим согласен"
+          ],
+          "explanation": "быть согласным; estar de acuerdo con alguien/en algo."
+        },
+        {
+          "term": "ayudar a + infinitivo",
+          "es": [
+            "la ayudaron a salir"
+          ],
+          "ru": [
+            "помогли ей покинуть"
+          ],
+          "explanation": "помогать кому-то сделать что-либо; a + инфинитив после ayudar."
+        },
+        {
+          "term": "salir del planeta",
+          "es": [
+            "ha salido del planeta"
+          ],
+          "ru": [
+            "покинул планету"
+          ],
+          "explanation": "выйти/отбыть с планеты; в данном контексте о космическом корабле."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "no querría que una niña estuviera involucrada",
+          "translation": "не хотел бы, чтобы ребёнка втягивали",
+          "base": "querer que + subjuntivo",
+          "explanation": "que estuviera в imperfecto de subjuntivo после условного querría."
+        },
+        {
+          "es": "¿Qué vas a hacer con Maha?",
+          "translation": "что ты собираешься делать с Махой",
+          "base": "hacer (algo) con (alguien)",
+          "explanation": "tú = Валиор; предмет вопроса — будущая судьба Махи."
+        },
+        {
+          "es": "¡Vamos a cuidarla!",
+          "translation": "мы будем о ней заботиться",
+          "base": "cuidar a (alguien)",
+          "explanation": "la = Маха, прямое дополнение; суффикс при инфинитиве cuidar."
+        },
+        {
+          "es": "No me refería a eso",
+          "translation": "я не это имел в виду",
+          "base": "referirse a (algo)",
+          "explanation": "me = Альдин (форма referirse), a eso = ответ об уходе за Махой."
+        },
+        {
+          "es": "Me refiero a qué va a ocurrir",
+          "translation": "я имею в виду, что произойдёт",
+          "base": "referirse a (algo)",
+          "explanation": "me = Альдин, говорящий; a qué va a ocurrir — уточнение смысла вопроса."
+        },
+        {
+          "es": "¿Le harán daño?",
+          "translation": "они ей навредят",
+          "base": "hacer daño a (alguien)",
+          "explanation": "le = Маха (кому могут причинить вред); подлежащее подразумеваемое los lunarios."
+        },
+        {
+          "es": "se ha escapado de casa",
+          "translation": "она сбежала из дома",
+          "base": "escaparse de casa",
+          "explanation": "se = Маха, часть escaparse; perfecto указывает на уже совершённый побег."
+        },
+        {
+          "es": "la ayudaron a salir del planeta",
+          "translation": "помогли ей покинуть планету",
+          "base": "ayudar a (alguien) a + infinitivo",
+          "explanation": "la = Маха, прямое дополнение; действующие лица — terrarios espías."
+        }
+      ]
+    },
+    {
+      "title": "Жестокий расчёт Валиора",
+      "es": "Miró a Aldin con cuidado. El emperador quería evaluar cómo se sentía Aldin.\n\n–¿Y si se enteran de que tú la ayudaste?\n\n–No se pueden enterar. Los espías no lo contarán. Nadie lo sabe aquí… excepto tú.\n\nAldin se paró a pensar, y después continuó.\n\n–¿Pero por qué? –preguntó.\n\nAldin no podía entender la forma de pensar del emperador. ¿Por qué involucrar a una niña pequeña? ¿Por qué separarla de sus padres?\n\n–Por ser quienes son sus padres –respondió Valior.\n\nEl emperador miró a Aldin como si fuera estúpido.\n\n–¿Entiendes los beneficios? Tenemos a la hija del emperador en nuestro planeta. Podemos usarla para las negociaciones. Para tener más poder. Para cualquier cosa, en realidad.\n\nValior se quedó callado por un momento. Esperaba alguna reacción de Aldin, pero su cara no mostraba nada. El emperador continuó.\n\n–¿Lo entiendes ahora? Podemos usarla para obtener lo que queramos. Tenemos al emperador de los lunarios en nuestras manos. ¡Y todo porque su estúpida hija pequeña se sentía ignorada!",
+      "ru": "Валиор внимательно посмотрел на Альдина. Он хотел оценить, что тот чувствует.\n\n— А если они узнают, что ты ей помог? — спросил Альдин.\n\n— Они не могут узнать. Шпионы никому об этом не расскажут. Здесь никто не знает… кроме тебя.\n\nАльдин остановился, чтобы подумать, и продолжил:\n\n— Но зачем?\n\nОн не мог понять ход мыслей императора. Зачем втягивать маленькую девочку? Зачем разлучать её с родителями?\n\n— Из-за того, кто её родители, — ответил Валиор.\n\nИмператор посмотрел на Альдина так, будто тот был глупцом.\n\n— Ты понимаешь, какую выгоду это сулит? Дочь императора находится на нашей планете. Мы можем использовать её для переговоров, для усиления своей власти, да для чего угодно.\n\nВалиор ненадолго замолчал, ожидая реакции Альдина. Но его лицо ничего не выражало, и император продолжил:\n\n— Теперь понимаешь? Мы можем использовать её, чтобы получить всё, что захотим. Император лунариев теперь у нас в руках. И всё потому, что его глупенькая дочка чувствовала себя обделённой вниманием!",
+      "notes": [
+        {
+          "term": "evaluar",
+          "es": [
+            "evaluar"
+          ],
+          "ru": [
+            "оценить"
+          ],
+          "explanation": "оценивать ситуацию, состояние, способности или результаты."
+        },
+        {
+          "term": "enterarse de (algo)",
+          "es": [
+            "se enteran de"
+          ],
+          "ru": [
+            "узнают"
+          ],
+          "explanation": "узнать о факте, получить сведения; местоименный глагол с de."
+        },
+        {
+          "term": "excepto",
+          "es": [
+            "excepto tú"
+          ],
+          "ru": [
+            "кроме тебя"
+          ],
+          "explanation": "кроме, за исключением."
+        },
+        {
+          "term": "separar a (alguien) de (alguien)",
+          "es": [
+            "separarla de sus padres"
+          ],
+          "ru": [
+            "разлучать её с родителями"
+          ],
+          "explanation": "разлучать людей; la = Маху, de обозначает, с кем разлучают."
+        },
+        {
+          "term": "el beneficio",
+          "es": [
+            "beneficios"
+          ],
+          "ru": [
+            "выгоду"
+          ],
+          "explanation": "выгода, польза; также прибыль бизнеса."
+        },
+        {
+          "term": "la negociación",
+          "es": [
+            "negociaciones"
+          ],
+          "ru": [
+            "переговоров"
+          ],
+          "explanation": "переговоры, обсуждение условий."
+        },
+        {
+          "term": "la reacción",
+          "es": [
+            "reacción"
+          ],
+          "ru": [
+            "реакции"
+          ],
+          "explanation": "реакция, ответное чувство или действие."
+        },
+        {
+          "term": "estar en manos de (alguien)",
+          "es": [
+            "en nuestras manos"
+          ],
+          "ru": [
+            "у нас в руках"
+          ],
+          "explanation": "быть под чьим-либо контролем."
+        },
+        {
+          "term": "obtener",
+          "es": [
+            "obtener"
+          ],
+          "ru": [
+            "получить"
+          ],
+          "explanation": "получать, добиваться чего-либо; формальный синоним conseguir."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "cómo se sentía Aldin",
+          "translation": "что чувствует Альдин",
+          "base": "sentirse",
+          "explanation": "se = Альдин, его эмоциональное состояние."
+        },
+        {
+          "es": "¿Y si se enteran de que tú la ayudaste?",
+          "translation": "а если они узнают, что ты ей помог",
+          "base": "enterarse de / ayudar a",
+          "explanation": "se = лунарии, которые узнают секрет; la = Маха, которой помог Валиор."
+        },
+        {
+          "es": "No se pueden enterar",
+          "translation": "они не могут узнать",
+          "base": "enterarse de (algo)",
+          "explanation": "se = лунарии, часть enterarse, а не неопределённые «люди вообще»."
+        },
+        {
+          "es": "Los espías no lo contarán",
+          "translation": "шпионы об этом не расскажут",
+          "base": "contar (algo)",
+          "explanation": "lo = секрет о доставке Махи; подлежащее los espías."
+        },
+        {
+          "es": "se paró a pensar",
+          "translation": "он остановился, чтобы подумать",
+          "base": "pararse a + infinitivo",
+          "explanation": "se = Альдин; parar(se) a + инфинитив означает остановиться и заняться обдумыванием."
+        },
+        {
+          "es": "separarla de sus padres",
+          "translation": "разлучить её с родителями",
+          "base": "separar a (alguien) de (alguien)",
+          "explanation": "la = Маха, прямое дополнение; её разлучили бы с родителями."
+        },
+        {
+          "es": "Podemos usarla para las negociaciones",
+          "translation": "мы можем использовать её для переговоров",
+          "base": "usar a (alguien)",
+          "explanation": "la = Маха, которую император рассматривает как средство давления."
+        },
+        {
+          "es": "su cara no mostraba nada",
+          "translation": "его лицо ничего не выражало",
+          "base": "mostrar (algo)",
+          "explanation": "su = лицо Альдина, не императора; тот ожидал реакции собеседника."
+        },
+        {
+          "es": "¿Lo entiendes ahora?",
+          "translation": "теперь понимаешь",
+          "base": "entender (algo)",
+          "explanation": "lo = замысел использовать Маху как политический рычаг; обращение к Альдину."
+        },
+        {
+          "es": "su estúpida hija pequeña se sentía ignorada",
+          "translation": "его глупенькая дочка чувствовала себя обделённой вниманием",
+          "base": "sentirse + participio",
+          "explanation": "su = дочь лунарийского императора, se = Маха."
+        }
+      ]
+    },
+    {
+      "title": "Альдин теряет доверие к императору",
+      "es": "Valior soltó una carcajada. Era una carcajada que te dejaba el corazón frío. Aldin miró con cuidado al emperador. Allí estaba un hombre que era su líder. El hombre en el que Aldin siempre había confiado. El hombre que era tan importante para Aldin. Pero ahora lo único que Aldin sentía era asco. Valior estaba usando a una niña para conseguir lo que quería. No estaba bien.\n\nAldin sonrió y dijo:\n\n–Lo entiendo muy claramente ahora, emperador. Tal y como desees.\n\nSe dio la vuelta y salió del despacho del emperador. Caminó deprisa por las calles de la capital. No le gustaba lo que estaba sucediendo. No le gustaba nada, pero no podía mostrarlo. Si el emperador sabía que estaba en contra de él, le matarían. Había solo una persona a la que Aldin podía pedir ayuda. Una persona que lo entendería todo. Tenía que hablar con ella.",
+      "ru": "Валиор расхохотался. От этого смеха кровь стыла в жилах. Альдин внимательно посмотрел на императора. Перед ним стоял человек, который был его вождём, которому он всегда доверял и который так много для него значил. Но теперь Альдин испытывал только отвращение. Валиор использовал девочку ради собственных целей. Это было неправильно.\n\nАльдин улыбнулся и сказал:\n\n— Теперь я всё прекрасно понял, император. Как пожелаешь.\n\nОн развернулся и вышел из императорского кабинета. Быстрым шагом пошёл по улицам столицы. Ему совсем не нравилось происходящее, но показывать это было нельзя. Если император узнает, что Альдин против него, его убьют. Был лишь один человек, у которого он мог попросить помощи, — тот, кто всё поймёт. Альдин должен был поговорить с ней.",
+      "notes": [
+        {
+          "term": "soltar una carcajada",
+          "es": [
+            "soltó una carcajada"
+          ],
+          "ru": [
+            "расхохотался"
+          ],
+          "explanation": "разразиться громким смехом; soltar = выпустить."
+        },
+        {
+          "term": "dejar el corazón frío",
+          "es": [
+            "te dejaba el corazón frío"
+          ],
+          "ru": [
+            "кровь стыла в жилах"
+          ],
+          "explanation": "образное выражение о пугающем смехе, от которого становится холодно."
+        },
+        {
+          "term": "el asco",
+          "es": [
+            "asco"
+          ],
+          "ru": [
+            "отвращение"
+          ],
+          "explanation": "отвращение, брезгливость."
+        },
+        {
+          "term": "tal y como + verbo",
+          "es": [
+            "Tal y como desees"
+          ],
+          "ru": [
+            "Как пожелаешь"
+          ],
+          "explanation": "именно так, как; desees — presente de subjuntivo."
+        },
+        {
+          "term": "estar en contra de (alguien)",
+          "es": [
+            "estaba en contra de él"
+          ],
+          "ru": [
+            "против него"
+          ],
+          "explanation": "выступать против кого-либо, не поддерживать."
+        },
+        {
+          "term": "mostrar",
+          "es": [
+            "mostrarlo"
+          ],
+          "ru": [
+            "показывать это"
+          ],
+          "explanation": "показывать, проявлять эмоцию или отношение; lo = недовольство."
+        },
+        {
+          "term": "pedir ayuda a (alguien)",
+          "es": [
+            "pedir ayuda"
+          ],
+          "ru": [
+            "попросить помощи"
+          ],
+          "explanation": "просить помощи у кого-то; a + одушевлённое дополнение."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "te dejaba el corazón frío",
+          "translation": "у тебя холодело сердце",
+          "base": "dejar a (alguien) + adjetivo",
+          "explanation": "te = обобщённый читатель («у любого от этого станет холодно»), а не конкретный персонаж."
+        },
+        {
+          "es": "El hombre en el que Aldin siempre había confiado",
+          "translation": "человек, которому Альдин всегда доверял",
+          "base": "confiar en (alguien)",
+          "explanation": "en el que — относительное сочетание, отсылает к hombre = Валиору; en сохраняется от confiar en."
+        },
+        {
+          "es": "lo único que Aldin sentía era asco",
+          "translation": "единственное, что Альдин испытывал, — отвращение",
+          "base": "lo único que",
+          "explanation": "lo — нейтральный артикль: «единственное, что», не «его»."
+        },
+        {
+          "es": "Lo entiendo muy claramente ahora",
+          "translation": "теперь всё ясно",
+          "base": "entender (algo)",
+          "explanation": "lo = истинные мотивы Валиора, не его личность."
+        },
+        {
+          "es": "Se dio la vuelta",
+          "translation": "он развернулся",
+          "base": "darse la vuelta",
+          "explanation": "se = Альдин, который уходит после разговора."
+        },
+        {
+          "es": "No le gustaba lo que estaba sucediendo",
+          "translation": "ему не нравилось происходящее",
+          "base": "gustar (algo) a (alguien)",
+          "explanation": "le = Альдин; подлежащее всё происходящее, поэтому gustaba в ед. числе."
+        },
+        {
+          "es": "no podía mostrarlo",
+          "translation": "не мог этого показать",
+          "base": "mostrar (algo)",
+          "explanation": "lo = недовольство и отвращение Альдина, которые он скрывал."
+        },
+        {
+          "es": "le matarían",
+          "translation": "его убьют",
+          "base": "matar a (alguien)",
+          "explanation": "le = Альдин, прямое дополнение-мужчина; это leísmo masculino в тексте, в нейтральной норме возможно lo matarían."
+        },
+        {
+          "es": "lo entendería todo",
+          "translation": "всё поймёт",
+          "base": "entender (algo)",
+          "explanation": "lo = всю ситуацию, а не конкретного человека; субъект — Кира."
+        },
+        {
+          "es": "hablar con ella",
+          "translation": "поговорить с ней",
+          "base": "hablar con (alguien)",
+          "explanation": "ella = Кира, единственная доверенная помощница, о которой думает Альдин."
+        }
+      ]
+    },
+    {
+      "title": "Срочное возвращение на ферму",
+      "es": "Subió a un vehículo del gobierno y empezó a conducir. Condujo tan deprisa como pudo. Fue hacia la granja de Kira. Allí, llamó a la puerta.\n\n–¡Kira! ¿Estás aquí?\n\nKira abrió la puerta.\n\n–Sí, aquí estoy, Aldin. ¿Qué necesitas?\n\n–Está todavía aquí la niña –preguntó Aldin.\n\n–¿Por qué? Sí, está aquí. Todavía no la han llevado a la capital.\n\n–Bien –respondió Aldin.\n\n–Pero un vehículo llegará dentro de poco –añadió ella.\n\n–¡Vaya! Tenemos menos tiempo del que pensaba. Tenemos que darnos prisa –dijo nervioso–. Llévame a donde está ella.",
+      "ru": "Он сел в правительственный автомобиль и поехал так быстро, как мог. Направился на ферму Киры и постучал в дверь.\n\n— Кира! Ты здесь?\n\nКира открыла.\n\n— Да, я здесь, Альдин. Что тебе нужно?\n\n— Девочка ещё здесь? — спросил Альдин.\n\n— Почему спрашиваешь? Да, здесь. Её ещё не увезли в столицу.\n\n— Хорошо, — ответил Альдин.\n\n— Но скоро за ней приедет машина, — добавила Кира.\n\n— Вот как! У нас меньше времени, чем я думал. Нужно торопиться, — нервно сказал он. — Отведи меня к ней.",
+      "notes": [
+        {
+          "term": "tan + adverbio + como pudo",
+          "es": [
+            "tan deprisa como pudo"
+          ],
+          "ru": [
+            "так быстро, как мог"
+          ],
+          "explanation": "максимальная интенсивность с tan… como; здесь ехать настолько быстро, насколько возможно."
+        },
+        {
+          "term": "dentro de poco",
+          "es": [
+            "dentro de poco"
+          ],
+          "ru": [
+            "скоро"
+          ],
+          "explanation": "через короткое время; dentro de + срок."
+        },
+        {
+          "term": "darse prisa",
+          "es": [
+            "darnos prisa"
+          ],
+          "ru": [
+            "торопиться"
+          ],
+          "explanation": "спешить, поторопиться; носитель действия обозначен местоимением nos."
+        },
+        {
+          "term": "llevar a (alguien) a donde (algo)",
+          "es": [
+            "Llévame a donde está ella"
+          ],
+          "ru": [
+            "Отведи меня к ней"
+          ],
+          "explanation": "отвести человека туда, где кто-то находится; llévame — повелительное наклонение + me."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "¿Estás aquí?",
+          "translation": "ты здесь",
+          "base": "estar (en lugar)",
+          "explanation": "tú = Кира, к которой обращается Альдин."
+        },
+        {
+          "es": "la han llevado a la capital",
+          "translation": "её увезли в столицу",
+          "base": "llevar a (alguien) a (lugar)",
+          "explanation": "la = Маха, прямое дополнение; неназванные исполнители ещё не увезли её."
+        },
+        {
+          "es": "Tenemos que darnos prisa",
+          "translation": "нам нужно поторопиться",
+          "base": "darse prisa",
+          "explanation": "nos в darnos — Альдин и Кира; местоимение относится к тем, кто должен действовать."
+        },
+        {
+          "es": "Llévame a donde está ella",
+          "translation": "отведи меня туда, где она",
+          "base": "llevar a (alguien)",
+          "explanation": "me = Альдин, кого Кира должна отвести; ella = девочка Маха."
+        }
+      ]
+    },
+    {
+      "title": "План вывезти Маху с Земли",
+      "es": "Entraron en la habitación. Aldin miró a la niña. Estaba descansando en silencio.\n\n–Nos tenemos que ir –dijo él.\n\n–¿Ir? ¿Adónde? –preguntó Maha sin entender lo que estaba pasando.\n\nAldin miró a su alrededor. No había nadie más en la habitación.\n\n–¿Dónde están los guardias?\n\n–Se han ido a desayunar.\n\n–Bien –dijo Aldin de nuevo. Y después añadió:\n\n–Es nuestra oportunidad, Kira.\n\n–¿Nuestra oportunidad? –respondió Kira–. ¿De qué?\n\n–De llevarnos a Maha de aquí –dijo él.\n\nKira miró alrededor de la habitación. Después se sentó y miró a Maha. La niña parecía confiada por primera vez.\n\n–¿Quieres llevar a Maha a la ciudad?\n\n–No, quiero sacarla del planeta.\n\n–¿Qué? –respondió Kira–. ¿Por qué?\n\n–Maha solo está confusa. Es una niña pequeña confusa y solitaria. Valior la trajo aquí y quiere usarla. Quiere usar a Maha para someter al emperador lunario.",
+      "ru": "Они вошли в комнату. Альдин посмотрел на девочку. Она тихо отдыхала.\n\n— Нам нужно уходить, — сказал он.\n\n— Уходить? Куда? — спросила Маха, не понимая происходящего.\n\nАльдин огляделся. Больше никого в комнате не было.\n\n— Где стражники?\n\n— Ушли завтракать.\n\n— Хорошо, — снова сказал Альдин и добавил:\n\n— Вот наш шанс, Кира.\n\n— Наш шанс? На что? — переспросила Кира.\n\n— Забрать отсюда Маху, — ответил он.\n\nКира оглядела комнату, затем села и посмотрела на Маху. Девочка впервые выглядела спокойной и доверчивой.\n\n— Ты хочешь отвезти Маху в город?\n\n— Нет, я хочу вывезти её с планеты.\n\n— Что? — удивилась Кира. — Зачем?\n\n— Маха просто растеряна. Она маленькая, растерянная и одинокая девочка. Валиор привёз её сюда и хочет использовать. Он хочет использовать Маху, чтобы подчинить себе императора лунариев.",
+      "notes": [
+        {
+          "term": "llevarse a (alguien) de (un lugar)",
+          "es": [
+            "llevarnos a Maha de aquí"
+          ],
+          "ru": [
+            "Забрать отсюда Маху"
+          ],
+          "explanation": "увести/забрать кого-либо с собой, из какого-то места; nos относится к группе говорящего."
+        },
+        {
+          "term": "por primera vez",
+          "es": [
+            "por primera vez"
+          ],
+          "ru": [
+            "впервые"
+          ],
+          "explanation": "в первый раз; здесь впервые девочка выглядит доверчивой."
+        },
+        {
+          "term": "sacar a (alguien) de (un lugar)",
+          "es": [
+            "sacarla del planeta"
+          ],
+          "ru": [
+            "вывезти её с планеты"
+          ],
+          "explanation": "вывести, вывезти или вытащить кого-либо из места."
+        },
+        {
+          "term": "someter a (alguien)",
+          "es": [
+            "someter al emperador lunario"
+          ],
+          "ru": [
+            "подчинить себе императора лунариев"
+          ],
+          "explanation": "подчинить кого-либо своей власти, заставить повиноваться."
+        },
+        {
+          "term": "solitario",
+          "es": [
+            "solitaria"
+          ],
+          "ru": [
+            "одинокая"
+          ],
+          "explanation": "одинокий, без близкого общества."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Nos tenemos que ir",
+          "translation": "нам нужно уходить",
+          "base": "irse",
+          "explanation": "nos = Альдин и предполагаемые спутники; можно также tenemos que irnos."
+        },
+        {
+          "es": "sin entender lo que estaba pasando",
+          "translation": "не понимая происходящего",
+          "base": "lo que + verbo",
+          "explanation": "lo que — нейтральная относительная конструкция «то, что»; Маха не понимает ситуацию."
+        },
+        {
+          "es": "Se han ido a desayunar",
+          "translation": "они ушли завтракать",
+          "base": "irse",
+          "explanation": "se = стражники; действие совершено, поэтому perfecto."
+        },
+        {
+          "es": "llevarnos a Maha de aquí",
+          "translation": "забрать отсюда Маху",
+          "base": "llevarse a (alguien)",
+          "explanation": "nos в llevarnos = Альдин и Кира как группа, которые уведут девочку с собой; Maha — прямое дополнение."
+        },
+        {
+          "es": "quiero sacarla del planeta",
+          "translation": "я хочу вывезти её с планеты",
+          "base": "sacar a (alguien) de (lugar)",
+          "explanation": "la = Маха; суффикс при sacar после quiero."
+        },
+        {
+          "es": "Valior la trajo aquí y quiere usarla",
+          "translation": "Валиор привёз её сюда и хочет использовать",
+          "base": "traer / usar a (alguien)",
+          "explanation": "оба la = Маха; подлежащее Valior, а не Aldin."
+        },
+        {
+          "es": "someter al emperador lunario",
+          "translation": "подчинить императора лунариев",
+          "base": "someter a (alguien)",
+          "explanation": "дополнение al emperador lunario; кого пытаются подчинить — её отца, не Маху."
+        }
+      ]
+    },
+    {
+      "title": "Кира принимает решение",
+      "es": "Aldin le explicó a Kira los planes del emperador Valior. Kira no se lo podía creer.\n\n–¿Entiendes? –dijo Aldin–. No quiero que hagan daño a Maha. Tenemos que llevarla de vuelta con sus padres.\n\n–¿Nosotros?\n\n–Nosotros. Tenemos que llevarla al planeta lunario. Tenemos que devolverla a sus padres. No puedo hacerlo solo, Kira. Necesito tu ayuda.\n\nKira pensó por un momento. Miró a la niña pequeña. Después miró por la ventana de la granja. Finalmente, miró a Aldin y dijo:\n\n–¿Qué tengo que perder?",
+      "ru": "Альдин объяснил Кире планы императора Валиора. Кира не могла в это поверить.\n\n— Понимаешь? — сказал Альдин. — Я не хочу, чтобы Махе причинили вред. Мы должны отвезти её обратно к родителям.\n\n— Мы?\n\n— Мы. Нужно отвезти её на Лунарию. Вернуть её родителям. Я не справлюсь один, Кира. Мне нужна твоя помощь.\n\nКира ненадолго задумалась. Посмотрела на девочку, потом в окно своей фермы. Наконец взглянула на Альдина и сказала:\n\n— А что мне терять?",
+      "notes": [
+        {
+          "term": "llevar de vuelta a (alguien)",
+          "es": [
+            "llevarla de vuelta con sus padres"
+          ],
+          "ru": [
+            "отвезти её обратно к родителям"
+          ],
+          "explanation": "возвращать человека туда, где он был; llevar de vuelta."
+        },
+        {
+          "term": "devolver a (alguien) a (alguien)",
+          "es": [
+            "devolverla a sus padres"
+          ],
+          "ru": [
+            "Вернуть её родителям"
+          ],
+          "explanation": "вернуть человека родным; двойное управление с a."
+        },
+        {
+          "term": "hacer (algo) solo",
+          "es": [
+            "hacerlo solo"
+          ],
+          "ru": [
+            "не справлюсь один"
+          ],
+          "explanation": "делать что-либо одному, без помощи; solo — один, без акцента."
+        },
+        {
+          "term": "¿qué tengo que perder?",
+          "es": [
+            "¿Qué tengo que perder?"
+          ],
+          "ru": [
+            "А что мне терять?"
+          ],
+          "explanation": "риторический вопрос о том, что риска почти нет."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Aldin le explicó a Kira los planes",
+          "translation": "Альдин объяснил Кире планы",
+          "base": "explicar (algo) a (alguien)",
+          "explanation": "le = Кире, косвенное дополнение, дублируется a Kira; los planes — что объясняет."
+        },
+        {
+          "es": "Kira no se lo podía creer",
+          "translation": "Кира не могла в это поверить",
+          "base": "no poder creérselo",
+          "explanation": "se = Кира (в creérselo), lo = планы Валиора."
+        },
+        {
+          "es": "No quiero que hagan daño a Maha",
+          "translation": "не хочу, чтобы Махе причинили вред",
+          "base": "querer que + subjuntivo",
+          "explanation": "hagan в subjuntivo, потому что нежелательное действие пока лишь возможное; Maha — пострадавшая."
+        },
+        {
+          "es": "Tenemos que llevarla de vuelta con sus padres",
+          "translation": "нужно вернуть её родителям",
+          "base": "llevar a (alguien) de vuelta",
+          "explanation": "la = Маха; sus = её родители, включая лунарийского императора."
+        },
+        {
+          "es": "Tenemos que devolverla a sus padres",
+          "translation": "нужно вернуть её родителям",
+          "base": "devolver a (alguien) a (alguien)",
+          "explanation": "la = Маха, прямое дополнение; a sus padres — адресаты возвращения."
+        },
+        {
+          "es": "No puedo hacerlo solo",
+          "translation": "я не могу справиться один",
+          "base": "hacer (algo)",
+          "explanation": "lo = провести операцию по возвращению Махи, не личность Кира или ребёнок."
+        }
+      ]
+    },
+    {
+      "title": "Побег через космопорт",
+      "es": "Kira despertó a Maha. Las dos montaron en el vehículo de Aldin. Aldin condujo durante muchas horas. Tenían que llegar a la estación espacial más cercana. Estaba lejos de la capital. Por el camino, Maha se durmió de nuevo. Cuando llegaron, Kira y Aldin la sacaron del vehículo. Caminaron hacia la nave más cercana. Aldin habló con uno de los guardias de seguridad. Le dijo que estaban realizando una misión secreta del gobierno. El guardia dijo que no se lo diría a nadie. No hizo nada para detenerlos. Entraron en la estación espacial sin ningún problema.",
+      "ru": "Кира разбудила Маху. Они обе сели в автомобиль Альдина. Он ехал много часов. Им нужно было добраться до ближайшего космопорта, далеко от столицы. По дороге Маха снова заснула. Когда прибыли, Кира и Альдин вынесли девочку из автомобиля и направились к ближайшему кораблю. Альдин поговорил с охранником, сказав, что они выполняют секретное правительственное задание. Охранник пообещал никому об этом не рассказывать. Он не пытался их остановить. Они беспрепятственно вошли в космическую станцию.",
+      "notes": [
+        {
+          "term": "despertar a (alguien)",
+          "es": [
+            "despertó a Maha"
+          ],
+          "ru": [
+            "разбудила Маху"
+          ],
+          "explanation": "будить другого человека; не путать с despertarse — просыпаться."
+        },
+        {
+          "term": "la estación espacial",
+          "es": [
+            "estación espacial"
+          ],
+          "ru": [
+            "космопорта"
+          ],
+          "explanation": "космическая станция, здесь место отправления космических кораблей."
+        },
+        {
+          "term": "realizar una misión",
+          "es": [
+            "realizando una misión secreta"
+          ],
+          "ru": [
+            "выполняют секретное правительственное задание"
+          ],
+          "explanation": "выполнять задание, осуществлять миссию."
+        },
+        {
+          "term": "sin ningún problema",
+          "es": [
+            "sin ningún problema"
+          ],
+          "ru": [
+            "беспрепятственно"
+          ],
+          "explanation": "без каких-либо проблем, беспрепятственно."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Kira despertó a Maha",
+          "translation": "Кира разбудила Маху",
+          "base": "despertar a (alguien)",
+          "explanation": "здесь нет se: despertar — переходный глагол «разбудить», в отличие от despertarse."
+        },
+        {
+          "es": "Maha se durmió de nuevo",
+          "translation": "Маха снова заснула",
+          "base": "dormirse",
+          "explanation": "se относится к Махе; подчёркивает момент засыпания."
+        },
+        {
+          "es": "la sacaron del vehículo",
+          "translation": "они вынесли девочку из машины",
+          "base": "sacar a (alguien) de (lugar)",
+          "explanation": "la = Маха; подлежащее Кира и Альдин."
+        },
+        {
+          "es": "Le dijo que estaban realizando una misión secreta",
+          "translation": "сказал охраннику, что выполняют тайную миссию",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "le = охранник, которому сообщает Альдин; estaban — Альдин и спутницы как команда."
+        },
+        {
+          "es": "no se lo diría a nadie",
+          "translation": "он никому об этом не расскажет",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "se = le (кому: a nadie) перед lo; lo = информация о секретном задании; говорящий охранник."
+        },
+        {
+          "es": "detenerlos",
+          "translation": "их остановить",
+          "base": "detener a (alguien)",
+          "explanation": "los = Альдин и его спутники (группа, включая Киру и Маху)."
+        }
+      ]
+    },
+    {
+      "title": "Подлёт к Лунарии",
+      "es": "Maha se despertó cuando despegó la nave. No estaba contenta, pero no podía hacer nada. Aldin sintió pena por ella, pero sabía que estaban haciendo lo correcto.\n\nEl viaje por el espacio duró varios días. La nave se acercó a Lunaria. Aldin habló por radio y dijo:\n\n–Esta es la nave terraria 12913. Tengo que hablar con el emperador lunario. Soy el ministro Aldin de Terraria.\n\n–¿Por qué quieres hablar con nuestro emperador? –dijo un guardia por radio.\n\n–Tenemos a su hija.\n\nLa radio se quedó en silencio. En pocos segundos, Aldin escuchó un aviso del ordenador. Las naves lunarias estaban llegando. Esperaban cerca de la nave.\n\nDe repente, la radio comenzó a funcionar de nuevo. Aldin escuchó una voz:",
+      "ru": "Маха проснулась, когда корабль взлетел. Она была недовольна, но ничего не могла поделать. Альдину было её жаль, однако он знал, что они поступают правильно.\n\nКосмический перелёт длился несколько дней. Корабль приблизился к Лунарии. Альдин вышел на радиосвязь:\n\n— Это террарийский корабль 12913. Мне нужно поговорить с императором лунариев. Я министр Альдин с Террарии.\n\n— Зачем тебе говорить с нашим императором? — спросил по радио стражник.\n\n— У нас его дочь.\n\nРадио замолчало. Через несколько секунд Альдин услышал сигнал компьютера: приближались лунарийские корабли. Они остановились возле его корабля.\n\nНеожиданно радио снова заработало. Альдин услышал голос:",
+      "notes": [
+        {
+          "term": "despegar",
+          "es": [
+            "despegó"
+          ],
+          "ru": [
+            "взлетел"
+          ],
+          "explanation": "взлетать, отрываться от земли; о самолётах и кораблях."
+        },
+        {
+          "term": "sentir pena por (alguien)",
+          "es": [
+            "sintió pena por ella"
+          ],
+          "ru": [
+            "было её жаль"
+          ],
+          "explanation": "жалеть, сочувствовать кому-либо."
+        },
+        {
+          "term": "hacer lo correcto",
+          "es": [
+            "haciendo lo correcto"
+          ],
+          "ru": [
+            "поступают правильно"
+          ],
+          "explanation": "делать то, что правильно и оправданно с нравственной точки зрения."
+        },
+        {
+          "term": "acercarse a (algo)",
+          "es": [
+            "se acercó a Lunaria"
+          ],
+          "ru": [
+            "приблизился к Лунарии"
+          ],
+          "explanation": "приближаться к объекту, расстояние уменьшается."
+        },
+        {
+          "term": "el aviso",
+          "es": [
+            "aviso"
+          ],
+          "ru": [
+            "сигнал"
+          ],
+          "explanation": "предупреждение, оповещение, сигнал системы."
+        },
+        {
+          "term": "en pocos segundos",
+          "es": [
+            "En pocos segundos"
+          ],
+          "ru": [
+            "Через несколько секунд"
+          ],
+          "explanation": "через несколько секунд; в контексте повествования."
+        },
+        {
+          "term": "volver a funcionar",
+          "es": [
+            "comenzó a funcionar de nuevo"
+          ],
+          "ru": [
+            "радио снова заработало"
+          ],
+          "explanation": "снова начать работать, запуститься после паузы."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Maha se despertó",
+          "translation": "Маха проснулась",
+          "base": "despertarse",
+          "explanation": "se = Маха, которая пришла в бодрствующее состояние; отличать от despertar a в прошлом блоке."
+        },
+        {
+          "es": "Aldin sintió pena por ella",
+          "translation": "Альдин пожалел её",
+          "base": "sentir pena por (alguien)",
+          "explanation": "ella = Маха, к которой Альдин испытывает сочувствие."
+        },
+        {
+          "es": "estaban haciendo lo correcto",
+          "translation": "они поступали правильно",
+          "base": "hacer lo correcto",
+          "explanation": "подразумеваемое подлежащее — Альдин и Кира, действующие ради защиты Махи."
+        },
+        {
+          "es": "La nave se acercó a Lunaria",
+          "translation": "корабль приблизился к Лунарии",
+          "base": "acercarse a (lugar)",
+          "explanation": "se часть acercarse; субъект космический корабль, не девочка."
+        },
+        {
+          "es": "Tenemos a su hija",
+          "translation": "у нас его дочь",
+          "base": "tener a (alguien)",
+          "explanation": "su = дочь лунарийского императора, с которым хотят поговорить."
+        },
+        {
+          "es": "La radio se quedó en silencio",
+          "translation": "радио замолчало",
+          "base": "quedarse + adjetivo",
+          "explanation": "se обозначает переход в тишину; субъект радио."
+        }
+      ]
+    },
+    {
+      "title": "Угроза по радиосвязи",
+      "es": "–Entréganos a Maha o te mataremos –dijo la voz.\n\n–No vais a matarnos –dijo Aldin con certeza.\n\n–¿Por qué lo sabes?\n\n–Quiero hablar con tu emperador ahora mismo –respondió Aldin.\n\nFinalmente, una voz poderosa se escuchó en la radio.\n\n–Soy el emperador de Lunaria. Dame a mi hija –dijo con una voz muy grave–, y os perdonaré la vida.\n\n–Te entregaremos a Maha. Te la entregaremos con una condición.\n\n–¿Cuál es esa condición?",
+      "ru": "— Отдайте нам Маху, или мы тебя убьём, — произнёс голос.\n\n— Вы нас не убьёте, — уверенно ответил Альдин.\n\n— Откуда ты знаешь?\n\n— Я хочу прямо сейчас поговорить с твоим императором, — сказал Альдин.\n\nНаконец по радио раздался властный голос.\n\n— Я император Лунарии. Отдай мне мою дочь, — сказал он очень низким голосом, — и я сохраню вам жизнь.\n\n— Мы вернём тебе Маху. Вернём её при одном условии.\n\n— Каком именно?",
+      "notes": [
+        {
+          "term": "entregar (algo) a (alguien)",
+          "es": [
+            "Entréganos a Maha"
+          ],
+          "ru": [
+            "Отдайте нам Маху"
+          ],
+          "explanation": "передать или вернуть кого-то; nos — получатель, Maha — объект."
+        },
+        {
+          "term": "con certeza",
+          "es": [
+            "con certeza"
+          ],
+          "ru": [
+            "уверенно"
+          ],
+          "explanation": "с уверенностью, без сомнений."
+        },
+        {
+          "term": "la voz grave",
+          "es": [
+            "voz muy grave"
+          ],
+          "ru": [
+            "очень низким голосом"
+          ],
+          "explanation": "низкий по тембру голос; grave может также значить «серьёзный»."
+        },
+        {
+          "term": "perdonarle la vida a (alguien)",
+          "es": [
+            "os perdonaré la vida"
+          ],
+          "ru": [
+            "сохраню вам жизнь"
+          ],
+          "explanation": "пощадить, не убить; os — адресаты во 2-м лице мн. числа."
+        },
+        {
+          "term": "con una condición",
+          "es": [
+            "con una condición"
+          ],
+          "ru": [
+            "при одном условии"
+          ],
+          "explanation": "с одним условием, при оговорённом требовании."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "una voz poderosa se escuchó en la radio",
+          "translation": "по радио послышался голос",
+          "base": "se + escuchar",
+          "explanation": "пассивное se: голос был слышен, конкретный слушатель не назван."
+        },
+        {
+          "es": "Entréganos a Maha",
+          "translation": "отдай нам Маху",
+          "base": "entregar a (alguien) a (alguien)",
+          "explanation": "nos = лунарийские стражники, требующие выдачи Махи; императив tú."
+        },
+        {
+          "es": "te mataremos",
+          "translation": "мы тебя убьём",
+          "base": "matar a (alguien)",
+          "explanation": "te = Альдин, получатель угрозы; подлежащее лунарии."
+        },
+        {
+          "es": "No vais a matarnos",
+          "translation": "вы нас не убьёте",
+          "base": "matar a (alguien)",
+          "explanation": "nos = Альдин и люди на его корабле; vais — обращение vosotros к лунариям."
+        },
+        {
+          "es": "Dame a mi hija",
+          "translation": "отдай мне мою дочь",
+          "base": "dar (algo) a (alguien)",
+          "explanation": "me = лунарийский император, a mi hija — что должны вернуть."
+        },
+        {
+          "es": "os perdonaré la vida",
+          "translation": "я сохраню вам жизнь",
+          "base": "perdonar la vida a (alguien)",
+          "explanation": "os = все террарии на корабле; косвенное дополнение «кому пощажу жизнь»."
+        },
+        {
+          "es": "Te entregaremos a Maha",
+          "translation": "мы отдадим тебе Маху",
+          "base": "entregar (algo) a (alguien)",
+          "explanation": "te = отец Махи, кому передадут; прямое дополнение — Maha."
+        },
+        {
+          "es": "Te la entregaremos",
+          "translation": "мы передадим тебе её",
+          "base": "entregar (algo) a (alguien)",
+          "explanation": "te = лунарийский император, адресат; la = его дочь Маха, прямое дополнение."
+        }
+      ]
+    },
+    {
+      "title": "Условие мира",
+      "es": "–Queremos paz. Tiene que haber paz entre Terraria y Lunaria.\n\nEl emperador calló durante varios minutos y al final dijo:\n\n–¿Por qué debería creerte? ¿Por qué debería creer que habrá paz?\n\n–Porque te hemos devuelto a tu hija. Porque sé que no podéis soportar más la guerra. Porque sé que la guerra ha sido muy difícil para ti y para tu gente. Piensa en los problemas económicos. Piensa en el hambre y el dolor. Estamos todos muy mal. Esto tiene que terminarse.\n\nLa radio se quedó en silencio. Finalmente, una voz suave habló.\n\n–Estoy de acuerdo –suspiró el emperador –. Acepto. Entrégame a mi hija y acepto la paz.",
+      "ru": "— Мы хотим мира. Между Террарией и Лунарией должен быть мир.\n\nИмператор молчал несколько минут, а затем спросил:\n\n— Почему я должен тебе верить? Почему должен верить, что наступит мир?\n\n— Потому что мы вернули тебе дочь. Потому что я знаю: вы больше не можете выносить эту войну. Знаю, как тяжело она далась тебе и твоему народу. Подумай об экономических проблемах, о голоде и страданиях. Нам всем очень плохо. Это должно закончиться.\n\nРадио умолкло. Наконец раздался мягкий голос:\n\n— Я согласен, — вздохнул император. — Принимаю. Верни мне мою дочь, и я согласен на мир.",
+      "notes": [
+        {
+          "term": "la paz",
+          "es": [
+            "paz"
+          ],
+          "ru": [
+            "мира"
+          ],
+          "explanation": "мир как отсутствие войны; не путать с el mundo — мир как планета."
+        },
+        {
+          "term": "debería + infinitivo",
+          "es": [
+            "debería creerte"
+          ],
+          "ru": [
+            "должен тебе верить"
+          ],
+          "explanation": "условное наклонение deber: «почему я должен», уместно для сомнения и вежливого возражения."
+        },
+        {
+          "term": "soportar",
+          "es": [
+            "soportar más la guerra"
+          ],
+          "ru": [
+            "выносить эту войну"
+          ],
+          "explanation": "терпеть, выносить трудности."
+        },
+        {
+          "term": "el dolor",
+          "es": [
+            "dolor"
+          ],
+          "ru": [
+            "страданиях"
+          ],
+          "explanation": "боль, страдание; также о физических ощущениях."
+        },
+        {
+          "term": "terminarse",
+          "es": [
+            "terminarse"
+          ],
+          "ru": [
+            "закончиться"
+          ],
+          "explanation": "заканчиваться, завершаться; se относится к войне/ситуации."
+        },
+        {
+          "term": "aceptar",
+          "es": [
+            "Acepto"
+          ],
+          "ru": [
+            "Принимаю"
+          ],
+          "explanation": "принимать предложение или условия; здесь согласие на мир."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "¿Por qué debería creerte?",
+          "translation": "почему я должен тебе верить",
+          "base": "creer a (alguien)",
+          "explanation": "te = Альдин, к которому обращается лунарийский император."
+        },
+        {
+          "es": "te hemos devuelto a tu hija",
+          "translation": "мы вернули тебе твою дочь",
+          "base": "devolver (algo) a (alguien)",
+          "explanation": "te = лунарийский император, получатель; a tu hija — прямое дополнение, Маха. Perfecto hemos devuelto звучит как уже совершённое возвращение, хотя физически передачу только обсуждают — неточность авторской реплики."
+        },
+        {
+          "es": "no podéis soportar más la guerra",
+          "translation": "вы больше не можете терпеть войну",
+          "base": "soportar (algo)",
+          "explanation": "podéis — vosotros: лунарийский император и его народ, а не террарии."
+        },
+        {
+          "es": "para ti y para tu gente",
+          "translation": "для тебя и твоего народа",
+          "base": "para + pronombre tónico",
+          "explanation": "ti — ударная форма после para (император); tu gente — народ Лунарии."
+        },
+        {
+          "es": "Esto tiene que terminarse",
+          "translation": "это должно закончиться",
+          "base": "terminarse",
+          "explanation": "se относится к ситуации войны как процессу, которому нужно положить конец."
+        },
+        {
+          "es": "Entrégame a mi hija",
+          "translation": "верни мне мою дочь",
+          "base": "entregar (algo) a (alguien)",
+          "explanation": "me = лунарийский император, a mi hija = Маха; повелительное tú."
+        }
+      ]
+    }
+  ],
   "source": {
     "file": "Short Stories in Spanish for Beginners — Olly Richards (1).pdf",
-    "heading_page": 181
-  }
+    "heading_page": 181,
+    "editorial_corrections": [
+      {
+        "pdf_page": 181,
+        "printed": "Era el momento demostrar quién era.",
+        "edited": "Era el momento de demostrar quién era.",
+        "reason": "В конструкции era el momento de + infinitivo необходим предлог de."
+      },
+      {
+        "pdf_page": 182,
+        "printed": "No te lo he dije por una sola razón.",
+        "edited": "No te lo he dicho por una sola razón.",
+        "reason": "Pretérito perfecto образуется с причастием dicho, не с формой indefinido dije."
+      }
+    ]
+  },
+  "exercises": [
+    {
+      "id": "chapter-3-comprehension",
+      "instruction": "Seleccione una única respuesta para cada pregunta.",
+      "source": {
+        "file": "Short Stories in Spanish for Beginners — Olly Richards (1).pdf",
+        "pdf_pages": [
+          181,
+          182,
+          183,
+          184,
+          185,
+          186,
+          187,
+          188
+        ],
+        "chapters": [
+          3
+        ],
+        "answer_key_page": 190,
+        "instruction": "Seleccione una única respuesta para cada pregunta."
+      },
+      "questions": [
+        {
+          "prompt": "Después de estar en la granja, Aldin va ___.",
+          "options": [
+            "a un restaurante",
+            "a otro planeta",
+            "al palacio",
+            "a su casa"
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "Aldin se da cuenta de que Valior, el emperador, ___.",
+          "options": [
+            "quiere la guerra",
+            "quiere la paz",
+            "siempre dice la verdad",
+            "es amigo del emperador lunario"
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "Aldin tiene un plan: ___.",
+          "options": [
+            "devolver a la niña",
+            "quedarse con la niña",
+            "matar a la niña",
+            "no hacer nada"
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "Maha quiere ___.",
+          "options": [
+            "volver a casa",
+            "quedarse en Terraria",
+            "hablar con sus padres",
+            "vivir en la granja de Kira"
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "Cuando Aldin habla con el emperador lunario, le pide ___.",
+          "options": [
+            "dinero",
+            "la paz",
+            "un puesto de trabajo",
+            "la posibilidad de quedarse en Lunaria"
+          ],
+          "answer": 1
+        }
+      ]
+    }
+  ]
 }
