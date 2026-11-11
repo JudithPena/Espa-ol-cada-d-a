@@ -58,7 +58,7 @@ jobs:
           path: docs/grammar_pr34_browser/
           if-no-files-found: warn
       - name: Save screenshots and results to the current PR branch
-        if: success()
+        if: false # The validated merge job will save the final snapshots to avoid racing pushes
         continue-on-error: true
         run: |
           git config user.name "github-actions[bot]"
@@ -105,6 +105,8 @@ jobs:
   grammar-merge-preview-pr34:
     if: github.event_name == 'push' && github.ref == 'refs/heads/fix/grammar-three-lives-review-20261111'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -116,8 +118,15 @@ jobs:
         with:
           node-version: "22"
       - name: Merge into current PR branch without committing
+        id: merge
         run: |
           git fetch origin claude/charming-cerf-bzze60
+          if git merge-base --is-ancestor origin/claude/charming-cerf-bzze60 HEAD; then
+            echo "needed=false" >> "$GITHUB_OUTPUT"
+            echo "Target branch already integrated; no merge commit needed."
+            exit 0
+          fi
+          echo "needed=true" >> "$GITHUB_OUTPUT"
           git -c user.name="PR integration audit" -c user.email="audit@localhost" merge --no-ff --no-commit origin/claude/charming-cerf-bzze60 || true
           python tools/resolve_pr34_merge.py
           test -z "$(git diff --name-only --diff-filter=U)"
@@ -152,3 +161,12 @@ jobs:
           name: grammar-pr34-merged-preview
           path: docs/grammar_pr34_browser/
           if-no-files-found: warn
+      - name: Commit verified merge to current PR branch (do not merge the PR)
+        if: steps.merge.outputs.needed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/grammar_pr34_browser/ || true
+          git diff --check
+          git commit -m "Merge latest grammar target into PR 34 after validated conflict resolution"
+          git push origin HEAD:fix/grammar-three-lives-review-20261111
