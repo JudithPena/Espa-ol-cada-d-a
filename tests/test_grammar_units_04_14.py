@@ -12,7 +12,8 @@ SOURCE_ROWS = {
     # Unit 7 is deliberately redesigned in Fable stage 4; see test_grammar_unit07_fable.py.
     8: [6, 6, 12, 8], 9: [8, 12, 6, 4],
     10: [8, 15, 8], 11: [10, 8, 10], 12: [8, 8, 8, 4],
-    13: [11, 8, 8], 14: [8, 8, 8],
+    # Unit 13 has Fable stage 6 tests, rather than frozen textbook row coverage.
+    14: [8, 8, 8],
 }
 
 
@@ -54,7 +55,7 @@ def test_valid_variants_are_not_rejected_as_wrong():
     assert next(q for q in questions(12) if q['prompt'] == '___ árboles son muy altos.')['answers'] == ['aquellos', 'esos']
     iranian = [q for q in questions(14) if q['clues'][0][0] == 'iraní']
     assert [q['answers'] for q in iranian] == [['iraní'], ['iraníes', 'iranís'], ['iraníes', 'iranís']]
-    assert all(q['answers'] == ['marrón'] for q in questions(13) if q['clues'][0][0] == 'marrón')
+    assert next(q for q in questions(13) if 'dos faldas ___' in q['prompt'])['answers'] == ['marrones']
 
 
 @pytest.mark.parametrize('clock', [{'hour': 24, 'minute': 0}, {'hour': 3, 'minute': 60}, {'hour': 3.5, 'minute': 0}, []])

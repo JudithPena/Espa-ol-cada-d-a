@@ -8,34 +8,38 @@
     {
       "title": "Прилагательное: род и число",
       "paragraphs": [
-        "Прилагательное говорит, **какой человек или предмет**. Его форму выбираем по роду и числу испанского существительного: это называется **согласованием**.",
-        "У прилагательных с окончанием `-o` женская форма обычно оканчивается на **`-a`**. Для нескольких предметов у этих форм добавляем **`-s`**: `-os` или `-as`.",
-        "Смотрим на род испанского слова, а не на русский перевод или пол человека. Например, в `Don Santiago es una persona encantadora` — «дон Сантьяго — очаровательный человек» — нужна форма `encantadora`, потому что слово `persona` женского рода."
+        "Прилагательное описывает человека или предмет: **какой? какая? какие?** В испанском оно согласуется с существительным по **роду** и **числу** — даже когда стоит после `ser` или `estar`: `El libro es nuevo` — книга новая; `Las mesas son nuevas` — столы новые.",
+        "У многих прилагательных на **`-o`** четыре формы. Сравни `un coche rojo` — красная машина (в испанском `coche` мужского рода), `una mesa roja` — красный стол (в испанском `mesa` женского рода), `coches rojos` и `mesas rojas` — множественное число.",
+        "Опирайся на **испанское существительное**, а не русский перевод или пол описываемого человека: `Don Santiago es una persona encantadora` — дон Сантьяго очаровательный человек; форма женского рода относится к `persona`, хотя говорят о мужчине. Формы прилагательных на `-e` и согласную подробно сравним в следующем разделе."
       ],
       "wordGroups": [
         {
-          "title": "Мужской род",
+          "title": "Род и число: cuatro formas",
           "words": [
             [
-              "un coche pequeño",
-              "маленькая машина"
+              "un coche rojo / dos coches rojos",
+              "красная машина / две красные машины"
             ],
             [
-              "coches pequeños",
-              "маленькие машины"
+              "una casa blanca / dos casas blancas",
+              "белый дом / два белых дома"
             ]
           ]
         },
         {
-          "title": "Женский род",
+          "title": "Испанский род важнее перевода",
           "words": [
             [
-              "una casa pequeña",
-              "маленький дом"
+              "el libro nuevo",
+              "новая книга"
             ],
             [
-              "casas pequeñas",
-              "маленькие дома"
+              "la mesa roja",
+              "красный стол"
+            ],
+            [
+              "una persona encantadora",
+              "очаровательный человек"
             ]
           ]
         }
@@ -43,35 +47,76 @@
       "check": {
         "id": "check-a",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "Выбери прилагательное по испанскому существительному. В последнем вопросе смотри на слово persona.",
         "questions": [
           {
             "prompt": "Una casa ___.",
             "answers": [
               "pequeña"
             ],
-            "explain": "Casa — женский род: pequeña.",
             "options": [
-              "pequeña",
+              "pequeño",
               "pequeños",
-              "pequeño"
+              "pequeña",
+              "pequeñas"
             ],
-            "context": "Дополни предложение."
+            "explain": "`Casa` — женский род, единственное число. Для `pequeño` нужна форма `pequeña`, без окончания множественного числа.",
+            "context": "Описание одного дома.",
+            "sourceRef": "13.1.1",
+            "interaction": "gap-choice",
+            "clues": [
+              [
+                "pequeño",
+                "маленький"
+              ]
+            ]
           },
           {
-            "prompt": "Unos coches ___.",
+            "prompt": "Los coches son ___.",
             "answers": [
-              "pequeños"
+              "rojos"
             ],
-            "explain": "Coches — мужской род, множественное число: pequeños.",
             "options": [
-              "pequeña",
-              "pequeños",
-              "pequeño"
+              "rojas",
+              "rojo",
+              "rojos",
+              "roja"
             ],
-            "context": "Дополни предложение."
+            "explain": "`Coches` — мужской род множественного числа; из `rojo` получается `rojos`: добавляем `-s`.",
+            "context": "Говорят о нескольких красных машинах.",
+            "sourceRef": "extra",
+            "interaction": "gap-choice",
+            "clues": [
+              [
+                "rojo",
+                "красный"
+              ]
+            ]
+          },
+          {
+            "prompt": "Don Santiago es una persona ___.",
+            "answers": [
+              "encantadora"
+            ],
+            "options": [
+              "encantador",
+              "encantadoras",
+              "encantadora",
+              "encantadores"
+            ],
+            "explain": "`Persona` всегда женского рода, хотя дон Сантьяго — мужчина. Поэтому `una persona encantadora`, а не `encantador`.",
+            "context": "Описание дона Сантьяго.",
+            "sourceRef": "extra",
+            "interaction": "gap-choice",
+            "clues": [
+              [
+                "encantador",
+                "очаровательный"
+              ]
+            ]
           }
-        ]
+        ],
+        "revision": 2
       },
       "illustration": {
         "image": "art/theory-004-014/013a.webp",
@@ -93,34 +138,46 @@
     {
       "title": "Когда мужская и женская формы совпадают",
       "paragraphs": [
-        "У многих прилагательных, оканчивающихся на **`-e` или согласную**, форма для мужского и женского рода **одинаковая**: `joven`, `feliz`, `azul`, `gris`, `marrón`.",
-        "Есть и другие модели: **`trabajador → trabajadora`, `charlatán → charlatana`**. Поэтому нельзя добавлять `-a` ко всем словам на согласную.",
-        "Прилагательные с общей формой для мужского и женского рода тоже меняются по числу. Для смешанной группы обычно нужен мужской род: `Concha y Rodrigo son simpáticos`."
+        "Не все прилагательные меняют форму по роду. У **`alegre`, `inteligente`, `fuerte`, `joven`, `feliz`, `marrón`** одинаковая форма для мужчины и женщины: `un chico alegre` — весёлый парень; `una chica alegre` — весёлая девушка. **Одна форма для двух родов не означает одну форму для двух чисел.**",
+        "Во множественном числе: `alegre → alegres`, `inteligente → inteligentes`, `joven → jóvenes`, `feliz → felices`, `marrón → marrones`. Обрати внимание на **ударения** (`jóvenes`, но `marrones`) и замену **`z → c`** (`felices`).",
+        "Другие прилагательные, даже на согласную, **меняются по роду**: `trabajador / trabajadora`, `charlatán / charlatana`, `encantador / encantadora`. У `charlatana` уже нет графического ударения. При этом `trabajadoras` — женский род множественного числа. Для смешанной группы обычно используется форма **мужского рода множественного числа**: `Ana y Pablo son simpáticos`, но `Ana y Pablo son inteligentes`."
       ],
       "wordGroups": [
         {
-          "title": "Форма для обоих родов",
+          "title": "Одинаковая форма для обоих родов, разное число",
           "words": [
             [
-              "un chico alegre / una chica alegre",
-              "весёлый парень / весёлая девушка"
+              "una chica alegre / unas chicas alegres",
+              "весёлая девушка / весёлые девушки"
+            ],
+            [
+              "un chico joven / dos chicos jóvenes",
+              "молодой парень / два молодых парня"
+            ],
+            [
+              "una falda marrón / dos faldas marrones",
+              "коричневая юбка / две коричневые юбки"
+            ],
+            [
+              "feliz → felices",
+              "счастливый / счастливые"
             ]
           ]
         },
         {
-          "title": "Множественное число",
+          "title": "Меняется по роду",
           "words": [
             [
-              "joven → jóvenes",
-              "молодой → молодые"
+              "trabajador / trabajadora / trabajadoras",
+              "трудолюбивый / трудолюбивая / трудолюбивые женщины"
             ],
             [
-              "feliz → felices",
-              "счастливый → счастливые"
+              "charlatán / charlatana",
+              "болтливый / болтливая"
             ],
             [
-              "trabajadora → trabajadoras",
-              "трудолюбивая → трудолюбивые женщины"
+              "simpático / simpática / simpáticos",
+              "дружелюбный / дружелюбная / дружелюбные (м./смеш.)"
             ]
           ]
         }
@@ -128,35 +185,69 @@
       "check": {
         "id": "check-b",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "Различай модель изменения: род может оставаться общим, а число меняться.",
         "questions": [
           {
-            "prompt": "Una chica ___.",
+            "prompt": "Какое прилагательное **изменяется по роду**?",
             "answers": [
-              "alegre"
+              "trabajador"
             ],
-            "explain": "Alegre одинаково для мужского и женского рода.",
             "options": [
-              "alegres",
+              "trabajador",
               "alegre",
-              "alegra"
+              "feliz",
+              "marrón"
             ],
-            "context": "Дополни предложение."
+            "explain": "`Trabajador → trabajadora`: прибавляем `-a` для женского рода. `Alegre`, `feliz` и `marrón` имеют общую форму для обоих родов.",
+            "context": "Сравни четыре знакомых прилагательных.",
+            "sourceRef": "extra",
+            "interaction": "choice"
           },
           {
-            "prompt": "Concha y Rodrigo son ___.",
+            "prompt": "Unas chicas ___.",
             "answers": [
-              "simpáticos"
+              "alegres"
             ],
-            "explain": "Для смешанной группы обычно мужской род, множественное число.",
             "options": [
-              "simpáticos",
-              "simpáticas",
-              "simpático"
+              "alegre",
+              "alegres",
+              "alegras"
             ],
-            "context": "Дополни предложение."
+            "explain": "`Alegre` не различает род, но во множественном числе становится `alegres`: `unas chicas alegres`. Форма `alegras` неверна.",
+            "context": "Описывают нескольких девушек.",
+            "sourceRef": "13.1.2",
+            "interaction": "gap-choice",
+            "clues": [
+              [
+                "alegre",
+                "весёлый"
+              ]
+            ]
+          },
+          {
+            "prompt": "Las chicas son ___.",
+            "answers": [
+              "trabajadoras"
+            ],
+            "options": [
+              "trabajadores",
+              "trabajadora",
+              "trabajadoras",
+              "trabajador"
+            ],
+            "explain": "`Chicas` — женский род множественного числа. `Trabajador` меняется и по роду, и по числу: `trabajadora → trabajadoras`.",
+            "context": "Девушки усердно работают.",
+            "sourceRef": "extra",
+            "interaction": "gap-choice",
+            "clues": [
+              [
+                "trabajador",
+                "трудолюбивый"
+              ]
+            ]
           }
-        ]
+        ],
+        "revision": 2
       },
       "illustration": {
         "image": "art/theory-004-014/013b.webp",
@@ -177,37 +268,51 @@
     {
       "title": "Место прилагательного: buen и mal",
       "paragraphs": [
-        "Прилагательное обычно стоит **после существительного**. После `ser` и `estar` согласование сохраняется: `Las chicas están cansadas` — девушки устали.",
-        "Перед существительным **мужского рода единственного числа** `bueno` сокращается до `buen`, `malo` — до `mal`. В женском роде сокращения нет: `una mala idea`."
+        "В обычном **нейтральном описании** прилагательное часто стоит **после существительного**: `un coche rojo` — красная машина, `una casa blanca` — белый дом. После `ser` тоже используется полная согласованная форма: `El profesor es bueno` — преподаватель хороший. Положение до существительного тоже возможно, но иногда меняет оттенок смысла.",
+        "**`Bueno → buen`** и **`malo → mal`** непосредственно **перед существительным мужского рода единственного числа**: `un buen profesor` — хороший преподаватель; `un mal ejemplo` — плохой пример. Здесь нельзя говорить `un bueno profesor` или `un malo ejemplo`.",
+        "В **женском роде** сокращения нет: `una buena profesora`, `una mala idea`. **После существительного** и в сказуемом — полная форма: `un profesor bueno`, `un ejemplo malo`, `El profesor es bueno`. Сравни `un buen profesor` и `un profesor bueno`: обе фразы грамматически возможны; перед существительным употребляется `buen`, после — `bueno`, а смысловой акцент может различаться."
       ],
       "wordGroups": [
         {
-          "title": "После существительного",
-          "words": [
-            [
-              "ojos azules",
-              "голубые глаза"
-            ],
-            [
-              "ropa nueva",
-              "новая одежда"
-            ]
-          ]
-        },
-        {
-          "title": "Перед существительным",
+          "title": "Перед существительным мужского рода единственного числа",
           "words": [
             [
               "un buen profesor",
               "хороший преподаватель"
             ],
             [
+              "un mal ejemplo",
+              "плохой пример"
+            ]
+          ]
+        },
+        {
+          "title": "Женский род — полная форма",
+          "words": [
+            [
               "una buena profesora",
               "хорошая преподавательница"
             ],
             [
-              "un mal día",
-              "плохой день"
+              "una mala idea",
+              "плохая идея"
+            ]
+          ]
+        },
+        {
+          "title": "После существительного или ser",
+          "words": [
+            [
+              "un profesor bueno",
+              "хороший преподаватель"
+            ],
+            [
+              "un ejemplo malo",
+              "плохой пример"
+            ],
+            [
+              "El profesor es bueno",
+              "преподаватель хороший"
             ]
           ]
         }
@@ -215,35 +320,55 @@
       "check": {
         "id": "check-c",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "Выбери форму по её положению относительно существительного и по роду.",
         "questions": [
           {
-            "prompt": "Un ___ profesor.",
+            "prompt": "Es un ___ profesor.",
             "answers": [
               "buen"
             ],
-            "explain": "Перед profesor в единственном числе bueno сокращается до buen.",
             "options": [
               "bueno",
               "buen",
               "buena"
             ],
-            "context": "Дополни предложение."
+            "explain": "`Profesor` мужского рода единственного числа; перед ним `bueno` теряет `-o`: `un buen profesor`. После существительного было бы `profesor bueno`.",
+            "context": "Говорят о преподавателе.",
+            "sourceRef": "13.3.4",
+            "interaction": "gap-choice"
           },
           {
-            "prompt": "Una profesora ___.",
+            "prompt": "Es un ___ ejemplo.",
             "answers": [
-              "buena"
+              "mal"
             ],
-            "explain": "После существительного женского рода нужна форма buena.",
             "options": [
-              "buena",
-              "bueno",
-              "buen"
+              "malo",
+              "mala",
+              "mal"
             ],
-            "context": "Дополни предложение."
+            "explain": "Перед `ejemplo` (мужской род, ед. число) `malo` сокращается до `mal`: `un mal ejemplo`. После слова нужна полная форма `malo`.",
+            "context": "Обсуждают плохой пример.",
+            "sourceRef": "extra",
+            "interaction": "gap-choice"
+          },
+          {
+            "prompt": "Es una ___ idea.",
+            "answers": [
+              "mala"
+            ],
+            "options": [
+              "mal",
+              "malo",
+              "mala"
+            ],
+            "explain": "`Idea` — женского рода, поэтому перед ним сохраняется полная форма `mala`: `una mala idea`. `Mal` здесь не подходит.",
+            "context": "Оценивают предложенную идею.",
+            "sourceRef": "extra",
+            "interaction": "gap-choice"
           }
-        ]
+        ],
+        "revision": 2
       },
       "illustration": {
         "image": "art/theory-004-014/013c.webp",
@@ -262,750 +387,157 @@
   "exercises": [
     {
       "id": "13.1",
-      "title": "13.1 · Подбери окончание",
-      "instruction": "Дополни предложение подходящей формой слова из подсказки.",
+      "title": "13.1 · Согласуй с существительным",
+      "instruction": "Определи испанский род и число; в пропуски вводи одно прилагательное, в остальных заданиях выбирай подходящую форму или пару.",
       "questions": [
         {
-          "prompt": "Vivo en un piso ___.",
+          "prompt": "En mi habitación tengo una mesa ___.",
           "answers": [
-            "pequeño"
+            "pequeña"
           ],
-          "explain": "Piso — мужской род, единственное число.",
+          "explain": "`Mesa` — женский род единственного числа, несмотря на русский перевод «стол». Поэтому от `pequeño` получаем `pequeña`.",
+          "context": "Рассказывают о мебели в комнате.",
           "sourceRef": "13.1.1",
-          "context": "Впиши форму слова из подсказки.",
+          "interaction": "input",
           "clues": [
             [
               "pequeño",
               "маленький"
             ]
-          ]
+          ],
+          "inputFormat": {
+            "instruction": "Впиши только одно прилагательное в правильной форме. Не добавляй артикль и другие слова.",
+            "placeholder": "Прилагательное"
+          }
         },
         {
-          "prompt": "Rosa es ___.",
+          "prompt": "Tenemos dos coches ___.",
           "answers": [
-            "rubia"
-          ],
-          "explain": "Роса — женщина: rubia.",
-          "sourceRef": "13.1.2",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "rubio",
-              "светловолосый"
-            ]
+            "rojos"
           ],
           "options": [
-            "rubias",
-            "rubio",
-            "rubia"
+            "rojo",
+            "rojas",
+            "rojos",
+            "roja"
           ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Tiene el pelo ___.",
-          "answers": [
-            "corto"
-          ],
-          "explain": "Pelo — мужской род, единственное число: corto.",
-          "sourceRef": "13.1.2",
-          "context": "Впиши форму слова из подсказки.",
+          "explain": "`Coches` — мужской род, множественное число. Значит, прилагательное `rojo` становится `rojos` (не `rojas`).",
+          "context": "Описывают две машины.",
+          "sourceRef": "extra",
+          "interaction": "gap-choice",
           "clues": [
             [
-              "corto",
-              "короткий"
+              "rojo",
+              "красный"
             ]
           ]
         },
         {
-          "prompt": "Tiene el pelo corto y ___.",
+          "prompt": "Los libros de Ana son ___.",
           "answers": [
-            "rizado"
+            "nuevos"
           ],
-          "explain": "Pelo — мужской род, единственное число: rizado.",
-          "sourceRef": "13.1.2",
-          "context": "Впиши форму слова из подсказки.",
+          "explain": "`Libros` — мужской род, множественное число: `nuevo → nuevos`. Не ориентируйся на русское слово «книги» женского рода.",
+          "context": "Анна только купила книги.",
+          "sourceRef": "13.1.8",
+          "interaction": "input",
           "clues": [
             [
-              "rizado",
-              "кудрявый"
+              "nuevo",
+              "новый"
             ]
-          ]
+          ],
+          "inputFormat": {
+            "instruction": "Впиши только одно прилагательное в правильной форме. Не добавляй артикль и другие слова.",
+            "placeholder": "Прилагательное"
+          }
         },
         {
-          "prompt": "Rosa es muy ___.",
+          "prompt": "Mi hermana lleva una camisa ___.",
           "answers": [
-            "simpática"
-          ],
-          "explain": "Роса — женщина: simpática.",
-          "sourceRef": "13.1.2",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "simpático",
-              "приятный, дружелюбный"
-            ]
+            "roja"
           ],
           "options": [
-            "simpático",
-            "simpática",
-            "simpáticos",
-            "simpáticas"
+            "rojas",
+            "roja",
+            "rojos",
+            "rojo"
           ],
-          "interaction": "gap-choice"
+          "explain": "`Camisa` — одно слово женского рода в единственном числе: `camisa roja`. Формы с `-s` описывают множественное число.",
+          "context": "Одежда сестры.",
+          "sourceRef": "13.1.7",
+          "interaction": "gap-choice",
+          "clues": [
+            [
+              "rojo",
+              "красный"
+            ]
+          ]
         },
         {
-          "prompt": "Las rosas son ___.",
+          "prompt": "La camisa y la falda son ___.",
           "answers": [
             "blancas"
           ],
-          "explain": "Rosas — женский род, множественное число.",
-          "sourceRef": "13.1.4",
-          "context": "Впиши форму слова из подсказки.",
+          "explain": "`Camisa` и `falda` — два существительных женского рода; для обоих вместе нужно женское множественное `blancas`.",
+          "context": "Описывают две вещи.",
+          "sourceRef": "extra",
+          "interaction": "input",
           "clues": [
             [
               "blanco",
               "белый"
             ]
-          ]
+          ],
+          "inputFormat": {
+            "instruction": "Впиши только одно прилагательное в правильной форме. Не добавляй артикль и другие слова.",
+            "placeholder": "Прилагательное"
+          }
         },
         {
-          "prompt": "Chus y Lolo siempre están ___.",
+          "prompt": "¿Qué frase правильно описывает один маленький дом и два маленьких дома?",
           "answers": [
-            "enfadados"
-          ],
-          "explain": "Двое мужчин: enfadados.",
-          "sourceRef": "13.1.6",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "enfadado",
-              "сердитый"
-            ]
-          ]
-        },
-        {
-          "prompt": "Lleva una camisa ___.",
-          "answers": [
-            "roja"
-          ],
-          "explain": "Camisa — женский род, единственное число.",
-          "sourceRef": "13.1.7",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "rojo",
-              "красный"
-            ]
+            "una casa pequeña / dos casas pequeñas"
           ],
           "options": [
-            "roja",
-            "rojo",
-            "rojos"
+            "una casa pequeña / dos casas pequeñas",
+            "una casa pequeño / dos casas pequeños",
+            "una casa pequeñas / dos casas pequeña"
           ],
-          "interaction": "gap-choice"
+          "explain": "В первой части `casa` — жен. ед. (`pequeña`), во второй `casas` — жен. мн. (`pequeñas`). Одно окончание не подходит к обеим частям.",
+          "context": "Сравни два связанных словосочетания.",
+          "sourceRef": "extra",
+          "interaction": "choice"
         },
         {
-          "prompt": "Eduardo es ___.",
+          "prompt": "El teléfono es nuevo. Los teléfonos son ___.",
           "answers": [
-            "alto"
+            "nuevos"
           ],
-          "explain": "Эдуардо — мужчина: alto.",
-          "sourceRef": "13.1.8",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "alto",
-              "высокий"
-            ]
-          ]
+          "explain": "`Teléfonos` — мужской род множественного числа. Из формы `nuevo` в первой фразе образуем `nuevos` для нескольких телефонов.",
+          "context": "Описывают один телефон и несколько таких же.",
+          "sourceRef": "extra",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Впиши только одно прилагательное в правильной форме. Не добавляй артикль и другие слова.",
+            "placeholder": "Прилагательное"
+          }
         },
         {
-          "prompt": "Eduardo es ___.",
+          "prompt": "El mapa es ___.",
           "answers": [
-            "moreno"
-          ],
-          "explain": "Эдуардо — мужчина: moreno.",
-          "sourceRef": "13.1.8",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "moreno",
-              "темноволосый"
-            ]
-          ]
-        },
-        {
-          "prompt": "Tiene los ojos ___.",
-          "answers": [
-            "negros"
-          ],
-          "explain": "Ojos — мужской род, множественное число.",
-          "sourceRef": "13.1.8",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "negro",
-              "чёрный"
-            ]
+            "antiguo"
           ],
           "options": [
-            "negro",
-            "negras",
-            "negra",
-            "negros"
+            "antigua",
+            "antiguos",
+            "antiguo",
+            "antiguas"
           ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Eduardo es ___.",
-          "answers": [
-            "guapo"
-          ],
-          "explain": "Эдуардо — мужчина: guapo.",
-          "sourceRef": "13.1.8",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "guapo",
-              "красивый"
-            ]
-          ]
-        },
-        {
-          "prompt": "Eduardo es un poco ___.",
-          "answers": [
-            "antipático"
-          ],
-          "explain": "Продолжаем об Эдуардо: antipático.",
-          "sourceRef": "13.1.8",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "antipático",
-              "неприятный в общении"
-            ]
-          ]
-        },
-        {
-          "prompt": "Lleva una blusa ___.",
-          "answers": [
-            "amarilla"
-          ],
-          "explain": "Blusa — женский род: amarilla.",
-          "sourceRef": "13.1.9",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "amarillo",
-              "жёлтый"
-            ]
-          ],
-          "options": [
-            "amarillo",
-            "amarilla",
-            "amarillos"
-          ],
-          "interaction": "gap-choice"
-        }
-      ],
-      "preview": {
-        "source": "Vivo en una casa ___.",
-        "sentenceParts": [
-          "Vivo en una casa ",
-          "."
-        ],
-        "answer": "pequeña",
-        "translation": "Живу в маленьком доме.",
-        "targetPrefix": ""
-      },
-      "inlineAnswer": true,
-      "inputLabel": "Короткий ввод · Выбор ответа",
-      "inputFormat": {
-        "instruction": "Впиши только слово из подсказки в нужной форме. Артикль и остальное предложение не добавляй.",
-        "example": "bonitas",
-        "placeholder": "Слово в нужной форме"
-      },
-      "theorySections": [
-        0
-      ]
-    },
-    {
-      "id": "13.2",
-      "title": "13.2 · Кто говорит и о ком?",
-      "instruction": "Дополни предложение подходящей формой слова из подсказки.",
-      "questions": [
-        {
-          "prompt": "Rosa tiene los ojos ___.",
-          "answers": [
-            "verdes"
-          ],
-          "explain": "Ojos — множественное число: verdes.",
-          "sourceRef": "13.1.2",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "verde",
-              "зелёный"
-            ]
-          ]
-        },
-        {
-          "prompt": "Rosa es simpática y ___.",
-          "answers": [
-            "alegre"
-          ],
-          "explain": "Alegre одинаково для обоих родов.",
-          "sourceRef": "13.1.2",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "alegre",
-              "весёлый"
-            ]
-          ]
-        },
-        {
-          "prompt": "Rosa también es muy ___.",
-          "answers": [
-            "charlatana"
-          ],
-          "explain": "Женская форма charlatán — charlatana, без знака ударения.",
-          "sourceRef": "13.1.2",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "charlatán",
-              "болтливый"
-            ]
-          ]
-        },
-        {
-          "prompt": "Gerardo y Ana son ___.",
-          "answers": [
-            "inteligentes"
-          ],
-          "explain": "Два человека: inteligentes. Форма одинакова для обоих родов.",
-          "sourceRef": "13.1.3",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "inteligente",
-              "умный"
-            ]
-          ]
-        },
-        {
-          "prompt": "Don Santiago es una persona ___.",
-          "answers": [
-            "encantadora"
-          ],
-          "explain": "Согласуем с persona — женский род, хотя речь о мужчине.",
-          "sourceRef": "13.1.5",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "encantador",
-              "очаровательный"
-            ]
-          ],
-          "options": [
-            "encantadoras",
-            "encantador",
-            "encantadora"
-          ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Chus y Lolo no son ___.",
-          "answers": [
-            "felices"
-          ],
-          "explain": "Два человека: feliz → felices.",
-          "sourceRef": "13.1.6",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "feliz",
-              "счастливый"
-            ]
-          ]
-        },
-        {
-          "prompt": "Lleva unos pantalones ___.",
-          "answers": [
-            "grises"
-          ],
-          "explain": "Pantalones — множественное число: grises.",
-          "sourceRef": "13.1.7",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "gris",
-              "серый"
-            ]
-          ]
-        },
-        {
-          "prompt": "Eduardo es alto y ___.",
-          "answers": [
-            "fuerte"
-          ],
-          "explain": "Fuerte — одна форма для обоих родов.",
-          "sourceRef": "13.1.8",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "fuerte",
-              "сильный"
-            ]
-          ]
-        },
-        {
-          "prompt": "Begoña lleva una falda ___.",
-          "answers": [
-            "marrón"
-          ],
-          "explain": "Marrón не меняется по роду: una falda marrón.",
-          "sourceRef": "13.1.9",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "marrón",
-              "коричневый"
-            ]
-          ]
-        },
-        {
-          "prompt": "Concha y Rodrigo son ___.",
-          "answers": [
-            "simpáticos"
-          ],
-          "explain": "Смешанная группа: мужской род, множественное число.",
-          "sourceRef": "13.1.10",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "simpático",
-              "приятный, дружелюбный"
-            ]
-          ]
-        },
-        {
-          "prompt": "Concha y Rodrigo son muy ___.",
-          "answers": [
-            "trabajadores"
-          ],
-          "explain": "Продолжаем о Конче и Родриго: trabajadores.",
-          "sourceRef": "13.1.10",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "trabajador",
-              "трудолюбивый"
-            ]
-          ],
-          "options": [
-            "trabajadoras",
-            "trabajador",
-            "trabajadora",
-            "trabajadores"
-          ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Concha y Rodrigo también son muy ___.",
-          "answers": [
-            "amables"
-          ],
-          "explain": "Два человека: amables.",
-          "sourceRef": "13.1.10",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "amable",
-              "любезный"
-            ]
-          ]
-        },
-        {
-          "prompt": "Las hijas de Andrés son ___.",
-          "answers": [
-            "jóvenes"
-          ],
-          "explain": "Joven → jóvenes. В обоих родах форма одинакова.",
-          "sourceRef": "13.1.11",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "joven",
-              "молодой"
-            ]
-          ]
-        },
-        {
-          "prompt": "Nosotras somos ___.",
-          "answers": [
-            "rubias"
-          ],
-          "explain": "Говорят две девушки: rubias.",
-          "translation": "Мы — светловолосые девушки.",
-          "sourceRef": "13.2.1",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "rubio",
-              "светловолосый"
-            ]
-          ],
-          "options": [
-            "rubia",
-            "rubio",
-            "rubias"
-          ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Estoy muy ___.",
-          "answers": [
-            "gordo"
-          ],
-          "explain": "Один мужчина: gordo.",
-          "translation": "Мужчина говорит: «Я очень полный».",
-          "sourceRef": "13.2.2",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "gordo",
-              "полный"
-            ]
-          ]
-        },
-        {
-          "prompt": "Mi gata está ___.",
-          "answers": [
-            "triste"
-          ],
-          "explain": "Triste одинаково для обоих родов, здесь единственное число.",
-          "translation": "Моя кошка грустит.",
-          "sourceRef": "13.2.3",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "triste",
-              "грустный"
-            ]
-          ]
-        },
-        {
-          "prompt": "Nosotros estamos ___.",
-          "answers": [
-            "enfermos"
-          ],
-          "explain": "Мужской род, множественное число: enfermos.",
-          "translation": "Двое мужчин говорят: «Мы больны».",
-          "sourceRef": "13.2.4",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "enfermo",
-              "больной"
-            ]
-          ],
-          "options": [
-            "enferma",
-            "enfermas",
-            "enfermos",
-            "enfermo"
-          ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Marga está ___.",
-          "answers": [
-            "alegre"
-          ],
-          "explain": "Alegre одинаково для обоих родов.",
-          "translation": "Марга весела.",
-          "sourceRef": "13.2.5",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "alegre",
-              "весёлый"
-            ]
-          ]
-        },
-        {
-          "prompt": "Nosotras estamos muy ___.",
-          "answers": [
-            "cansadas"
-          ],
-          "explain": "Две женщины: cansadas.",
-          "translation": "Мама и дочь говорят: «Мы очень устали».",
-          "sourceRef": "13.2.6",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "cansado",
-              "уставший"
-            ]
-          ]
-        },
-        {
-          "prompt": "Julia es muy ___.",
-          "answers": [
-            "fuerte"
-          ],
-          "explain": "Fuerte одинаково для обоих родов.",
-          "translation": "Хулия очень сильная.",
-          "sourceRef": "13.2.7",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "fuerte",
-              "сильный"
-            ]
-          ]
-        },
-        {
-          "prompt": "Nosotros somos ___.",
-          "answers": [
-            "campeones"
-          ],
-          "explain": "Мужской род, множественное число: campeones.",
-          "translation": "Мужская команда говорит: «Мы чемпионы».",
-          "sourceRef": "13.2.8",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "campeón",
-              "чемпион"
-            ]
-          ]
-        }
-      ],
-      "preview": {
-        "source": "Nosotras estamos ___.",
-        "sentenceParts": [
-          "Nosotras estamos ",
-          "."
-        ],
-        "answer": "cansadas",
-        "translation": "Мы устали. Говорят две женщины.",
-        "targetPrefix": ""
-      },
-      "inlineAnswer": true,
-      "inputLabel": "Короткий ввод · Выбор ответа",
-      "inputFormat": {
-        "instruction": "Впиши только слово из подсказки в нужной форме. Артикль и остальное предложение не добавляй.",
-        "example": "bonitas",
-        "placeholder": "Слово в нужной форме"
-      },
-      "theorySections": [
-        1
-      ]
-    },
-    {
-      "id": "13.3",
-      "title": "13.3 · Описание рядом с предметом",
-      "instruction": "Дополни предложение подходящей формой слова из подсказки.",
-      "questions": [
-        {
-          "prompt": "Tiene los ojos ___.",
-          "answers": [
-            "azules"
-          ],
-          "explain": "Ojos — множественное число: azules.",
-          "sourceRef": "13.3.1",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "azul",
-              "голубой"
-            ]
-          ]
-        },
-        {
-          "prompt": "La amapola es una flor ___.",
-          "answers": [
-            "roja"
-          ],
-          "explain": "Flor — женский род: roja.",
-          "sourceRef": "13.3.2",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "rojo",
-              "красный"
-            ]
-          ],
-          "options": [
-            "rojos",
-            "rojo",
-            "roja"
-          ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "El español es un idioma ___.",
-          "answers": [
-            "fácil"
-          ],
-          "explain": "Idioma — единственное число; fácil не меняется по роду.",
-          "sourceRef": "13.3.3",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "fácil",
-              "лёгкий"
-            ]
-          ]
-        },
-        {
-          "prompt": "Don Tomás es un ___ profesor.",
-          "answers": [
-            "buen"
-          ],
-          "explain": "Перед profesor мужского рода единственного числа: buen.",
-          "sourceRef": "13.3.4",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "bueno",
-              "хороший"
-            ]
-          ]
-        },
-        {
-          "prompt": "La comida ___ de Peter es la paella.",
-          "answers": [
-            "preferida"
-          ],
-          "explain": "Comida — женский род: preferida.",
-          "sourceRef": "13.3.5",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "preferido",
-              "любимый"
-            ]
-          ],
-          "options": [
-            "preferida",
-            "preferidas",
-            "preferido",
-            "preferidos"
-          ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "En Toledo hay edificios ___.",
-          "answers": [
-            "antiguos"
-          ],
-          "explain": "Edificios — мужской род, множественное число.",
-          "sourceRef": "13.3.6",
-          "context": "Впиши форму слова из подсказки.",
+          "explain": "`Mapa` — существительное мужского рода, хотя заканчивается на `-a`. `El mapa antiguo` — здесь полная мужская форма единственного числа `antiguo`.",
+          "context": "Описание одного старого плана города.",
+          "sourceRef": "extra",
+          "interaction": "gap-choice",
           "clues": [
             [
               "antiguo",
@@ -1014,62 +546,620 @@
           ]
         },
         {
-          "prompt": "Necesito ropa ___.",
+          "prompt": "Don Santiago es una persona ___.",
           "answers": [
-            "nueva"
+            "encantadora"
           ],
-          "explain": "Ropa — женский род, единственное число.",
-          "sourceRef": "13.3.7",
-          "context": "Впиши форму слова из подсказки.",
+          "explain": "Даже когда описывают мужчину, прилагательное согласуется с `persona` (женский род): `una persona encantadora`.",
+          "context": "Хвалят дона Сантьяго.",
+          "sourceRef": "13.1.5",
+          "interaction": "input",
           "clues": [
             [
-              "nuevo",
-              "новый"
+              "encantador",
+              "очаровательный"
             ]
-          ]
+          ],
+          "inputFormat": {
+            "instruction": "Впиши только одно прилагательное в правильной форме. Не добавляй артикль и другие слова.",
+            "placeholder": "Прилагательное"
+          }
         },
         {
-          "prompt": "Mi color ___ es el rojo.",
+          "prompt": "¿Qué пара правильно показывает согласование в испанском?",
           "answers": [
-            "preferido"
-          ],
-          "explain": "Color — мужской род, единственное число.",
-          "sourceRef": "13.3.8",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "preferido",
-              "любимый"
-            ]
+            "el libro rojo / la mesa roja"
           ],
           "options": [
-            "preferidos",
-            "preferida",
-            "preferido"
+            "el libro rojo / la mesa roja",
+            "el libro roja / la mesa rojo",
+            "el libro rojo / la mesa rojos"
           ],
-          "interaction": "gap-choice"
+          "explain": "`Libro` мужского рода, а `mesa` женского. Правильная пара — `el libro rojo` и `la mesa roja`; русские переводы имеют другой род.",
+          "context": "Сравни два предмета.",
+          "sourceRef": "extra",
+          "interaction": "choice"
+        },
+        {
+          "prompt": "Mi madre lleva una blusa ___.",
+          "answers": [
+            "amarilla"
+          ],
+          "explain": "`Blusa` — женский род, единственное число, поэтому `amarillo → amarilla`. Пишем только прилагательное.",
+          "context": "Одежда мамы.",
+          "sourceRef": "13.1.9",
+          "interaction": "input",
+          "clues": [
+            [
+              "amarillo",
+              "жёлтый"
+            ]
+          ],
+          "inputFormat": {
+            "instruction": "Впиши только одно прилагательное в правильной форме. Не добавляй артикль и другие слова.",
+            "placeholder": "Прилагательное"
+          }
+        },
+        {
+          "prompt": "Mis padres tienen los ojos ___.",
+          "answers": [
+            "negros"
+          ],
+          "explain": "`Ojos` — мужской род множественного числа: `negro → negros`. Пол говорящих или владельцев глаз на форму не влияет.",
+          "context": "Описывают глаза родителей.",
+          "sourceRef": "13.1.8",
+          "interaction": "input",
+          "clues": [
+            [
+              "negro",
+              "чёрный"
+            ]
+          ],
+          "inputFormat": {
+            "instruction": "Впиши только одно прилагательное в правильной форме. Не добавляй артикль и другие слова.",
+            "placeholder": "Прилагательное"
+          }
         }
       ],
       "preview": {
-        "source": "Un ___ profesor.",
+        "source": "La casa es ___.",
         "sentenceParts": [
-          "Un ",
-          " profesor."
+          "La casa es ",
+          "."
         ],
-        "answer": "buen",
-        "translation": "Хороший преподаватель.",
+        "answer": "pequeña",
+        "translation": "Дом маленький; маленький — pequeño.",
         "targetPrefix": ""
       },
       "inlineAnswer": true,
       "inputLabel": "Короткий ввод · Выбор ответа",
       "inputFormat": {
-        "instruction": "Впиши только слово из подсказки в нужной форме. Артикль и остальное предложение не добавляй.",
-        "example": "bonitas",
-        "placeholder": "Слово в нужной форме"
+        "instruction": "Впиши одно прилагательное в согласованной форме. Остальное предложение не переписывай.",
+        "placeholder": "Прилагательное"
+      },
+      "theorySections": [
+        0
+      ],
+      "revision": 2
+    },
+    {
+      "id": "13.2",
+      "title": "13.2 · Две модели прилагательных",
+      "instruction": "Определи, меняется ли прилагательное по роду, затем выбери или введи форму для нужного числа. В вопросах без пропуска выбери правильную модель или объяснение.",
+      "questions": [
+        {
+          "prompt": "Какое слово имеет **разные формы для мужчины и женщины**?",
+          "answers": [
+            "trabajador"
+          ],
+          "options": [
+            "trabajador",
+            "alegre",
+            "marrón",
+            "joven"
+          ],
+          "explain": "`Trabajador → trabajadora`: женская форма получает `-a`. У `alegre`, `marrón`, `joven` форма одна для обоих родов, но меняется число.",
+          "context": "Распредели знакомые прилагательные по моделям.",
+          "sourceRef": "extra",
+          "interaction": "choice"
+        },
+        {
+          "prompt": "Una chica alegre → unas chicas ___.",
+          "answers": [
+            "alegres"
+          ],
+          "explain": "`Alegre` не меняется по роду: `chica alegre`. Но `chicas` во множественном числе требуют `alegres`. Здесь недостаточно переписать исходное слово.",
+          "context": "Одна весёлая девушка и несколько весёлых девушек.",
+          "sourceRef": "13.1.2",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Впиши только одно прилагательное в правильной форме. Не добавляй артикль и другие слова.",
+            "placeholder": "Прилагательное"
+          }
+        },
+        {
+          "prompt": "Mis amigos son ___.",
+          "answers": [
+            "felices"
+          ],
+          "options": [
+            "feliz",
+            "felices",
+            "felizas"
+          ],
+          "explain": "`Feliz` подходит обоим родам, но для нескольких друзей нужна форма `felices`: `z` меняется на `c` перед `-es`.",
+          "context": "Друзья радуются.",
+          "sourceRef": "13.1.6",
+          "interaction": "gap-choice",
+          "clues": [
+            [
+              "feliz",
+              "счастливый"
+            ]
+          ]
+        },
+        {
+          "prompt": "Una falda marrón → dos faldas ___.",
+          "answers": [
+            "marrones"
+          ],
+          "explain": "`Marrón` не меняется по роду, но во множественном числе становится `marrones`: ударный слог сохраняется, знак ударения исчезает.",
+          "context": "Сравнивают одну и две юбки.",
+          "sourceRef": "13.1.9",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Впиши только одно прилагательное в правильной форме. Не добавляй артикль и другие слова.",
+            "placeholder": "Прилагательное"
+          }
+        },
+        {
+          "prompt": "Un chico joven → dos chicos ___.",
+          "answers": [
+            "jóvenes"
+          ],
+          "options": [
+            "joven",
+            "jóvenes",
+            "jovena"
+          ],
+          "explain": "`Joven` подходит обоим родам, но при множественном числе пишем `jóvenes` с ударением на `ó`. `Jovena` не является нормативной формой.",
+          "context": "Говорят о молодых парнях.",
+          "sourceRef": "13.1.11",
+          "interaction": "gap-choice"
+        },
+        {
+          "prompt": "Marta es muy ___.",
+          "answers": [
+            "charlatana"
+          ],
+          "explain": "Прилагательное на `-án` здесь имеет женскую форму `charlatana` без графического ударения. `Marta` — женщина; `charlatán` — мужская форма.",
+          "context": "Марта много разговаривает.",
+          "sourceRef": "13.1.2",
+          "interaction": "input",
+          "clues": [
+            [
+              "charlatán",
+              "разговорчивая, болтливая"
+            ]
+          ],
+          "inputFormat": {
+            "instruction": "Впиши только одно прилагательное в правильной форме. Не добавляй артикль и другие слова.",
+            "placeholder": "Прилагательное"
+          }
+        },
+        {
+          "prompt": "Какая пара показывает **общую форму по роду**, но **изменение по числу**?",
+          "answers": [
+            "una chica alegre → unas chicas alegres"
+          ],
+          "options": [
+            "una chica alegre → unas chicas alegres",
+            "un chico simpático → una chica simpática",
+            "un chico trabajador → una chica trabajadora"
+          ],
+          "explain": "В `alegre → alegres` род остаётся неразличимым, а число меняется. В двух других парах изменение связано с мужским/женским родом.",
+          "context": "Выбери пример именно для общего рода и разных чисел.",
+          "sourceRef": "extra",
+          "interaction": "choice"
+        },
+        {
+          "prompt": "Lola es muy trabajadora. Sus hermanas son ___.",
+          "answers": [
+            "trabajadoras"
+          ],
+          "explain": "`Trabajadora` относится к одной женщине; для сестёр Лолы нужна женская форма множественного числа `trabajadoras`.",
+          "context": "Все сестры много работают.",
+          "sourceRef": "13.1.10",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Впиши только одно прилагательное в правильной форме. Не добавляй артикль и другие слова.",
+            "placeholder": "Прилагательное"
+          }
+        },
+        {
+          "prompt": "Concha y Rodrigo son muy ___.",
+          "answers": [
+            "trabajadores"
+          ],
+          "options": [
+            "trabajadoras",
+            "trabajador",
+            "trabajadores",
+            "trabajadora"
+          ],
+          "explain": "Конча и Родриго — смешанная группа. В ней обычно используется мужской род множественного числа: `trabajadores`, не `trabajadoras`.",
+          "context": "Друзья вместе усердно работают.",
+          "sourceRef": "13.1.10",
+          "interaction": "gap-choice",
+          "clues": [
+            [
+              "trabajador",
+              "трудолюбивый"
+            ]
+          ]
+        },
+        {
+          "prompt": "Ana y Pablo son ___.",
+          "answers": [
+            "simpáticos"
+          ],
+          "explain": "В смешанной группе обычно мужской род множественного числа: `simpáticos`. Женское `simpáticas` подходило бы группе женщин.",
+          "context": "Говорят о двух друзьях.",
+          "sourceRef": "extra",
+          "interaction": "input",
+          "clues": [
+            [
+              "simpático",
+              "дружелюбный"
+            ]
+          ],
+          "inputFormat": {
+            "instruction": "Впиши только одно прилагательное в правильной форме. Не добавляй артикль и другие слова.",
+            "placeholder": "Прилагательное"
+          }
+        },
+        {
+          "prompt": "Почему в «dos chicas inteligentes» стоит **inteligentes**?",
+          "answers": [
+            "Прилагательное общее для обоих родов, но получает -s во множественном числе."
+          ],
+          "options": [
+            "Прилагательное общее для обоих родов, но получает -s во множественном числе.",
+            "У прилагательного отдельная женская форма inteligentes.",
+            "Прилагательное вообще никогда не меняется."
+          ],
+          "explain": "`Inteligente` одинаково для мужчины и женщины, но `dos chicas` — множественное число, поэтому требуется `inteligentes`. Это согласование по числу, не по роду.",
+          "context": "Выбери правило, объясняющее испанскую фразу.",
+          "sourceRef": "extra",
+          "interaction": "choice"
+        },
+        {
+          "prompt": "Ana y Lucía son ___.",
+          "answers": [
+            "inteligentes"
+          ],
+          "explain": "`Inteligente` не меняется по роду, зато у двух женщин ставим множественное число `inteligentes`.",
+          "context": "Говорят о двух умных подругах.",
+          "sourceRef": "13.1.3",
+          "interaction": "input",
+          "clues": [
+            [
+              "inteligente",
+              "умный"
+            ]
+          ],
+          "inputFormat": {
+            "instruction": "Впиши только одно прилагательное в правильной форме. Не добавляй артикль и другие слова.",
+            "placeholder": "Прилагательное"
+          }
+        },
+        {
+          "prompt": "Как правильно сказать «две счастливые девушки»?",
+          "answers": [
+            "dos chicas felices"
+          ],
+          "options": [
+            "dos chicas felices",
+            "dos chicas feliz",
+            "dos chicas felizas"
+          ],
+          "explain": "`Feliz` — общая форма по роду, а множественное число — `felices` (`z → c`). Поэтому `dos chicas felices`.",
+          "context": "Выбери законченный вариант.",
+          "sourceRef": "extra",
+          "interaction": "choice"
+        }
+      ],
+      "preview": {
+        "source": "Las chicas son ___.",
+        "sentenceParts": [
+          "Las chicas son ",
+          "."
+        ],
+        "answer": "trabajadoras",
+        "translation": "Девушки трудолюбивые; trabajador — трудолюбивый.",
+        "targetPrefix": ""
+      },
+      "inlineAnswer": true,
+      "inputLabel": "Короткий ввод · Выбор ответа",
+      "inputFormat": {
+        "instruction": "Впиши одно прилагательное в правильной форме. Если нужно, сохрани или измени знак ударения.",
+        "placeholder": "Форма прилагательного"
+      },
+      "theorySections": [
+        1
+      ],
+      "revision": 2
+    },
+    {
+      "id": "13.3",
+      "title": "13.3 · Buen, mal и положение прилагательного",
+      "instruction": "Сначала определяй место прилагательного: перед существительным или после него. Выбирай форму, вписывай одно слово или собирай словосочетание по указанному порядку.",
+      "questions": [
+        {
+          "prompt": "Don Tomás es un ___ profesor.",
+          "answers": [
+            "buen"
+          ],
+          "options": [
+            "bueno",
+            "buen",
+            "buena"
+          ],
+          "explain": "`Profesor` — мужской род единственного числа, и прилагательное стоит перед ним: `bueno → buen`, поэтому `un buen profesor`.",
+          "context": "Коллеги хвалят учителя Томаса.",
+          "sourceRef": "13.3.4",
+          "interaction": "gap-choice"
+        },
+        {
+          "prompt": "Marta es una ___ profesora.",
+          "answers": [
+            "buena"
+          ],
+          "explain": "`Profesora` женского рода. Перед женским существительным не сокращаем `buena`: `una buena profesora`, а не `una buen profesora`.",
+          "context": "Родители хвалят преподавательницу.",
+          "sourceRef": "extra",
+          "interaction": "input",
+          "clues": [
+            [
+              "bueno",
+              "хороший"
+            ]
+          ],
+          "inputFormat": {
+            "instruction": "Впиши только одно прилагательное в правильной форме. Не добавляй артикль и другие слова.",
+            "placeholder": "Прилагательное"
+          }
+        },
+        {
+          "prompt": "Hoy es un ___ día.",
+          "answers": [
+            "mal"
+          ],
+          "options": [
+            "malo",
+            "mal",
+            "mala"
+          ],
+          "explain": "`Día` мужского рода единственного числа. Перед ним `malo` принимает краткую форму `mal`: `un mal día`.",
+          "context": "Сегодня день складывается неудачно.",
+          "sourceRef": "extra",
+          "interaction": "gap-choice"
+        },
+        {
+          "prompt": "Eso es una ___ idea.",
+          "answers": [
+            "mala"
+          ],
+          "explain": "`Idea` женского рода: `una mala idea`. Сокращение `mal` используется перед существительным мужского рода единственного числа.",
+          "context": "Кто-то предложил неподходящее решение.",
+          "sourceRef": "extra",
+          "interaction": "input",
+          "clues": [
+            [
+              "malo",
+              "плохой"
+            ]
+          ],
+          "inputFormat": {
+            "instruction": "Впиши только одно прилагательное в правильной форме. Не добавляй артикль и другие слова.",
+            "placeholder": "Прилагательное"
+          }
+        },
+        {
+          "prompt": "Mi hermano es un profesor ___.",
+          "answers": [
+            "bueno"
+          ],
+          "options": [
+            "buen",
+            "buena",
+            "bueno"
+          ],
+          "explain": "`Bueno` стоит после существительного `profesor`, поэтому не сокращается: `un profesor bueno` грамматически возможно, как и `un buen profesor`.",
+          "context": "Говорят о профессии брата.",
+          "sourceRef": "extra",
+          "interaction": "gap-choice"
+        },
+        {
+          "prompt": "Este es un ___ ejemplo.",
+          "answers": [
+            "mal"
+          ],
+          "explain": "`Ejemplo` — мужской род, единственное число. Перед ним `malo` сокращается: `un mal ejemplo`; после было бы `un ejemplo malo`.",
+          "context": "Преподаватель показывает неудачный образец.",
+          "sourceRef": "extra",
+          "interaction": "input",
+          "clues": [
+            [
+              "malo",
+              "плохой"
+            ]
+          ],
+          "inputFormat": {
+            "instruction": "Впиши только одно прилагательное в правильной форме. Не добавляй артикль и другие слова.",
+            "placeholder": "Прилагательное"
+          }
+        },
+        {
+          "prompt": "Es un día ___.",
+          "answers": [
+            "malo"
+          ],
+          "options": [
+            "mal",
+            "mala",
+            "malo"
+          ],
+          "explain": "После существительного мужского рода используем полную форму `malo`: `un día malo`. Перед ним было бы `un mal día`; обе конструкции возможны.",
+          "context": "Характеризуют день после события.",
+          "sourceRef": "extra",
+          "interaction": "gap-choice"
+        },
+        {
+          "prompt": "Как исправить «un bueno profesor»?",
+          "answers": [
+            "un buen profesor"
+          ],
+          "options": [
+            "un buen profesor",
+            "un profesor buen",
+            "una buen profesor"
+          ],
+          "explain": "Перед `profesor` (м. р., ед. ч.) нужна краткая форма `buen`: `un buen profesor`. После существительного можно сказать `un profesor bueno`, но не `un profesor buen`.",
+          "context": "Исправь ошибку, не меняя смысл.",
+          "sourceRef": "extra",
+          "interaction": "choice"
+        },
+        {
+          "prompt": "Mi hermano es ___.",
+          "answers": [
+            "un buen amigo"
+          ],
+          "tiles": [
+            "un",
+            "buen",
+            "amigo",
+            "bueno",
+            "una",
+            "amiga"
+          ],
+          "interaction": "build",
+          "context": "Собери словосочетание «хороший друг», поставив прилагательное ПЕРЕД существительным.",
+          "sourceRef": "extra",
+          "explain": "Задано прилагательное **перед** существительным мужского рода единственного числа: `un buen amigo`. `Un amigo bueno` тоже возможно, но здесь нужен указанный порядок.",
+          "inputFormat": {
+            "instruction": "Собери только словосочетание в пропуске из плиток. Лишние плитки не используй.",
+            "placeholder": "Выбери слова для фразы"
+          }
+        },
+        {
+          "prompt": "Es una ___ profesora.",
+          "answers": [
+            "buena"
+          ],
+          "options": [
+            "buen",
+            "bueno",
+            "buena"
+          ],
+          "explain": "`Profesora` женского рода, и краткой формы `buen` здесь нет: `una buena profesora`. На позицию перед существительным не реагируем без учёта рода.",
+          "context": "Подруга хвалит свою учительницу.",
+          "sourceRef": "extra",
+          "interaction": "gap-choice"
+        },
+        {
+          "prompt": "Hoy es ___.",
+          "answers": [
+            "un mal día"
+          ],
+          "tiles": [
+            "un",
+            "mal",
+            "día",
+            "malo",
+            "bueno",
+            "una"
+          ],
+          "interaction": "build",
+          "context": "Собери «плохой день» с прилагательным ПЕРЕД существительным.",
+          "sourceRef": "extra",
+          "explain": "По условию `malo` ставим **перед** существительным мужского рода `día`; поэтому собираем `un mal día`, не `un malo día`. Лишние плитки не требуются.",
+          "inputFormat": {
+            "instruction": "Собери только словосочетание в пропуске из плиток. Лишние плитки не используй.",
+            "placeholder": "Выбери слова для фразы"
+          }
+        },
+        {
+          "prompt": "Как объяснить «un buen profesor / un profesor bueno»?",
+          "answers": [
+            "Оба порядка допустимы: перед profesor — buen, после него — bueno."
+          ],
+          "options": [
+            "Оба порядка допустимы: перед profesor — buen, после него — bueno.",
+            "Только вариант un buen profesor грамматически правильный.",
+            "После существительного тоже обязательно нужно buen."
+          ],
+          "explain": "Обе фразы могут быть грамматически правильными. Прилагательное перед существительным сокращается `buen`, после — полная форма `bueno`; оттенок оценки может различаться.",
+          "context": "Сравни положение и форму, не объявляя один порядок ошибкой.",
+          "sourceRef": "extra",
+          "interaction": "choice"
+        },
+        {
+          "prompt": "Pedro es un ___ compañero.",
+          "answers": [
+            "mal"
+          ],
+          "explain": "`Compañero` — мужской род, единственное число. Перед ним `malo` сокращается до `mal`: `un mal compañero`. После существительного сказали бы `un compañero malo`.",
+          "context": "О друзьях и работе Педро.",
+          "sourceRef": "extra",
+          "interaction": "input",
+          "clues": [
+            [
+              "malo",
+              "плохой"
+            ]
+          ],
+          "inputFormat": {
+            "instruction": "Впиши только одно прилагательное в правильной форме. Не добавляй артикль и другие слова.",
+            "placeholder": "Прилагательное"
+          }
+        },
+        {
+          "prompt": "La respuesta es ___.",
+          "answers": [
+            "mala"
+          ],
+          "options": [
+            "mal",
+            "malo",
+            "mala"
+          ],
+          "explain": "`Respuesta` — женский род, а после `es` прилагательное стоит в полной форме: `mala`. Краткое `mal` возможно перед существительным мужского рода единственного числа, но не здесь.",
+          "context": "Преподаватель оценивает ответ ученика.",
+          "sourceRef": "extra",
+          "interaction": "gap-choice"
+        }
+      ],
+      "preview": {
+        "source": "Es un ___ profesor.",
+        "sentenceParts": [
+          "Es un ",
+          " profesor."
+        ],
+        "answer": "buen",
+        "translation": "Это хороший преподаватель (bueno стоит до существительного).",
+        "targetPrefix": ""
+      },
+      "inlineAnswer": true,
+      "inputLabel": "Короткий ввод · Выбор ответа",
+      "inputFormat": {
+        "instruction": "Впиши только одну форму прилагательного (buen/bueno/buena или mal/malo/mala).",
+        "placeholder": "Одна форма"
       },
       "theorySections": [
         2
-      ]
+      ],
+      "revision": 2
     }
   ],
   "learningOrder": [
@@ -1084,56 +1174,69 @@
   "summary": {
     "wordGroups": [
       {
-        "title": "Прилагательное меняется по роду и числу",
+        "title": "Четыре формы прилагательных на -o",
         "words": [
           [
-            "un coche pequeño",
-            "маленькая машина"
+            "un coche rojo / dos coches rojos",
+            "красная машина / красные машины"
           ],
           [
-            "coches pequeños",
-            "маленькие машины"
+            "una mesa roja / dos mesas rojas",
+            "красный стол / красные столы"
           ],
           [
-            "una casa pequeña",
-            "маленький дом"
+            "una persona encantadora",
+            "очаровательный человек (persona — ж. р.)"
           ]
         ]
       },
       {
-        "title": "Женская форма не всегда оканчивается на -a",
+        "title": "Один родовой вариант ≠ одно число",
         "words": [
           [
-            "un chico alegre / una chica alegre",
-            "весёлый парень / весёлая девушка"
+            "una chica alegre / unas chicas alegres",
+            "весёлая девушка / весёлые девушки"
           ],
           [
-            "una falda marrón",
-            "коричневая юбка"
+            "feliz → felices",
+            "счастливый / счастливые"
           ],
           [
-            "jóvenes",
-            "молодые"
+            "joven → jóvenes",
+            "молодой / молодые"
+          ],
+          [
+            "marrón → marrones",
+            "коричневый / коричневые"
+          ],
+          [
+            "trabajador → trabajadoras",
+            "трудолюбивый / трудолюбивые женщины"
+          ],
+          [
+            "charlatán → charlatana",
+            "болтливый / болтливая"
           ]
         ]
       },
       {
-        "title": "Где поставить прилагательное",
+        "title": "Форма зависит от места и рода",
         "words": [
           [
-            "ojos azules",
-            "голубые глаза"
+            "un buen profesor / un profesor bueno",
+            "хороший преподаватель (оба порядка возможны)"
           ],
           [
-            "ropa nueva",
-            "новая одежда"
+            "un mal ejemplo / un ejemplo malo",
+            "плохой пример (оба порядка возможны)"
           ],
           [
-            "un buen profesor",
-            "хороший преподаватель"
+            "una buena profesora / una mala idea",
+            "хорошая преподавательница / плохая идея"
           ]
         ]
       }
     ]
-  }
+  },
+  "revision": 2
 }
