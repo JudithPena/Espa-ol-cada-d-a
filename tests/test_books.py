@@ -254,7 +254,9 @@ def test_el_cofre_complete_chapters_source_and_publisher_quizzes():
         (118, 'Ilamaban', 'llamaban'),
     }
     # Distinct semantic units already covered in chapter 1 are not repeated as new notes.
-    assert not {'el cofre', 'el collar', 'recordar', 'a través de', 'con recelo'} & learned
+    introduced = {n['term'].casefold() for chapter in book['chapters'][1:]
+                  for block in chapter['blocks'] for n in block['notes']}
+    assert not {'el cofre', 'el collar', 'recordar', 'a través de', 'con recelo'} & introduced
 
 def test_el_reloj_complete_chapters_source_notes_pronouns_and_quizzes():
     """Fourth anthology story: strict source fidelity, teaching data, and complete printed quizzes."""
