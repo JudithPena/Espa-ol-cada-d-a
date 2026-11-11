@@ -100,7 +100,7 @@ def test_third_group_practises_spanish_noun_gender_and_both_marroqui_plurals():
     both = [q for q in ex["questions"] if "marroquíes" in q["answers"]]
     assert len(both) == 1 and set(both[0]["answers"]) == {"marroquíes", "marroquís"}
     assert both[0]["interaction"] == "input"
-    assert any(q["answers"] == ["francesas"] and "ciudades" in q["prompt"]
+    assert any(q["answers"] == ["francesas"] and "calles" in q["prompt"]
                for q in ex["questions"])
     assert any(q["answers"] == ["dos ciudades portuguesas"]
                for q in ex["questions"])

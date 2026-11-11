@@ -170,18 +170,18 @@
         "instruction": "Прочитай короткую ситуацию: кто говорит и нужен ли артикль?",
         "questions": [
           {
-            "prompt": "Lucía: «Soy de Chile». Как сказать её национальность нейтрально?",
+            "prompt": "Marta: «Soy de Brasil». Как она обычно сообщает национальность?",
             "answers": [
-              "Soy chilena."
+              "Soy brasileña."
             ],
             "options": [
-              "Soy una chilena.",
-              "Soy chilena.",
-              "Soy chileno."
+              "Soy una brasileña.",
+              "Soy brasileña.",
+              "Soy brasileño."
             ],
             "interaction": "choice",
-            "context": "Лусия рассказывает о себе без уточнений.",
-            "explain": "Когда после `ser` просто называют национальность, обычно говорят `Soy chilena` без артикля. `Una chilena` возможно в иных контекстах, но здесь не нужно."
+            "context": "Марта представляется, без дополнительного противопоставления.",
+            "explain": "Марта — одна женщина из Бразилии. В нейтральном сообщении о национальности после `soy` используем `brasileña` без артикля; `brasileño` — мужская форма."
           },
           {
             "prompt": "Anna y Mia: «Somos de Alemania. Somos ___».",
@@ -198,18 +198,18 @@
             "explain": "Говорят две женщины: множественное число женского рода `alemanas`. Исходная мужская форма `alemán`, а женская — `alemana`."
           },
           {
-            "prompt": "Lucía señala a su amiga: «Es ___ amiga peruana».",
+            "prompt": "Pablo presenta a un colega: «Es ___ compañero italiano».",
             "answers": [
-              "una"
+              "un"
             ],
             "options": [
-              "un",
               "una",
+              "un",
               "без артикля"
             ],
             "interaction": "choice",
-            "context": "Нужно выбрать определитель перед существительным.",
-            "explain": "В `una amiga peruana` неопределённый артикль `una` относится к женскому существительному `amiga`. Отсутствие артикля после `ser` у `Soy peruana` — другое правило."
+            "context": "Представляют одного коллегу — мужчину из Италии.",
+            "explain": "`Compañero` — мужское существительное единственного числа, поэтому `un compañero italiano`. `Un` относится к существительному, а не к прилагательному происхождения."
           }
         ],
         "revision": 2
@@ -787,32 +787,32 @@
       "instruction": "Найди существительное в испанской фразе и согласуй с ним прилагательное происхождения. В поле вводи слово, в вопросах с кнопками выбирай исправление.",
       "questions": [
         {
-          "prompt": "Что верно для **двух французских городов**?",
+          "prompt": "Как описать по-испански **два канадских музея**?",
           "answers": [
-            "dos ciudades francesas"
+            "dos museos canadienses"
           ],
           "options": [
-            "dos ciudades franceses",
-            "dos ciudades francesas",
-            "dos ciudad francesa"
+            "dos museos canadiense",
+            "dos museos canadienses",
+            "dos museos canadiensas"
           ],
-          "interaction": "choice",
-          "context": "По-испански `ciudad` — слово женского рода.",
-          "explain": "`Ciudades` — женское множественное число. Поэтому `francés` принимает форму `francesas`; русский «город» не определяет испанский род.",
-          "sourceRef": "14.3.4"
+          "context": "Исходная форма `canadiense` подходит и мужчинам, и женщинам; по-испански музей — `el museo`.",
+          "explain": "`Museos` — мужское множественное число. Общеродовое `canadiense` не меняется по роду, но для нескольких музеев нужно множественное `canadienses`.",
+          "sourceRef": "extra",
+          "interaction": "choice"
         },
         {
-          "prompt": "Una ciudad francesa → dos ciudades ___.",
+          "prompt": "Una calle francesa → tres calles ___.",
           "answers": [
             "francesas"
           ],
-          "explain": "`Ciudad` — женского рода, а `ciudades` — множественное. Прилагательное тоже требует женского множественного: `francesa → francesas`.",
-          "context": "Преврати выражение «один французский город» во множественное число.",
+          "context": "Одна улица во Франции — три улицы в той же стране.",
+          "explain": "`Calle` — испанское существительное женского рода. `Tres calles` — женское множественное, поэтому из `francesa` получается `francesas`. Это перенос модели с `ciudad` на новое существительное.",
           "sourceRef": "extra",
           "interaction": "input",
           "inputFormat": {
-            "instruction": "Введи одно слово в нужной форме, без артикля и других слов.",
-            "placeholder": "Одно слово"
+            "instruction": "Впиши одно прилагательное во множественном числе, без артикля.",
+            "placeholder": "Прилагательное"
           }
         },
         {
