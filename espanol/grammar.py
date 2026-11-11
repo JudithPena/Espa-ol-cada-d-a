@@ -11,6 +11,23 @@ from pathlib import Path
 GRAMMAR = Path(__file__).resolve().parent.parent / "content" / "grammar"
 
 
+def apply_accent_policies(unit: dict, unit_policies: dict, path: Path) -> None:
+    """Apply question-specific rules in memory, preserving source JSON and progress keys."""
+    groups = {group['id']: group for group in [section['check'] for section in unit['sections'] if section.get('check')] + unit['exercises']}
+    for group_id, overrides in unit_policies.items():
+        if group_id not in groups:
+            raise ValueError(f"{path}: accent policy refers to unknown group {group_id}")
+        questions = groups[group_id]['questions']
+        for index, settings in overrides.items():
+            if not isinstance(index, str) or not index.isdecimal() or int(index) >= len(questions):
+                raise ValueError(f"{path}: accent policy refers to unknown question {group_id}/{index}")
+            question = questions[int(index)]
+            if question['answers'][0] != settings['answer']:
+                raise ValueError(f"{path}: accent policy anchor differs from answer {group_id}/{index}")
+            question.update({key: settings[key] for key in ('accentPolicy', 'accentContrasts')
+                             if key in settings})
+
+
 def _image_uri(directory: Path, relative: str) -> str:
     image = (directory / relative).resolve()
     if not image.is_relative_to(directory.resolve()) or image.suffix != ".webp":
@@ -67,19 +84,7 @@ def load_grammar(directory: Path = GRAMMAR, *, schema_check: bool | None = None)
         unit_policies = policies.get(unit['id'], {})
         if unit_policies:
             applied_policy_units.add(unit['id'])
-            groups = {g['id']: g for g in [s['check'] for s in unit['sections'] if s.get('check')] + unit['exercises']}
-            for group_id, overrides in unit_policies.items():
-                if group_id not in groups:
-                    raise ValueError(f"{path}: accent policy refers to unknown group {group_id}")
-                questions = groups[group_id]['questions']
-                for index, settings in overrides.items():
-                    if not isinstance(index, str) or not index.isdecimal() or int(index) >= len(questions):
-                        raise ValueError(f"{path}: accent policy refers to unknown question {group_id}/{index}")
-                    question = questions[int(index)]
-                    if question['answers'][0] != settings['answer']:
-                        raise ValueError(f"{path}: accent policy anchor differs from answer {group_id}/{index}")
-                    question.update({key: settings[key] for key in ('accentPolicy', 'accentContrasts')
-                                     if key in settings})
+            apply_accent_policies(unit, unit_policies, path)
             if validator is not None:
                 issues = breaking_findings(structure_unit(unit, path.name, validator))
                 if issues:
