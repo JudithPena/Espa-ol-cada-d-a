@@ -29,7 +29,7 @@ function unlockUntil(run, route) {
 }
 
 test('all practice groups keep the last failed question and its individual analysis until explicit theory review',()=>{
- const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
+ const units=fs.readdirSync('content/grammar').filter(n=>/^\d{3}_.+\.json$/.test(n)).map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
  let checked=0;
  for(const u of units)for(const g of u.exercises){
   const storage=new Map();let r=context([u],storage);unlockUntil(r,'exercise:'+g.id);
@@ -901,7 +901,7 @@ test('the group-name mini-check keeps errors and repeats them without losing liv
 });
 
 test('every mini-check in all 17 units renders choices and completes by clicking',()=>{
- const units=fs.readdirSync('content/grammar').filter(f=>f.endsWith('.json')).sort()
+ const units=fs.readdirSync('content/grammar').filter(f=>/^\d{3}_.+\.json$/.test(f)).sort()
   .map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
  assert.equal(units.length,47);
  for(const unit of units){
@@ -1025,7 +1025,7 @@ test('17.3 fills words in a fixed sentence, keeps partial choices on resume and 
 });
 
 test('all typing screens show a persistent format and example without changing grading', () => {
- const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
+ const units=fs.readdirSync('content/grammar').filter(n=>/^\d{3}_.+\.json$/.test(n)).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
  let typed=0,legacy=0;
  for(const unit of units) {
   const run=context([unit]);
@@ -1086,7 +1086,7 @@ test('format overrides work in textareas, and article-free answers stay article-
 });
 
 test('all exercises stop at exactly three wrong submissions without leaking answers or credit',()=>{
- const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
+ const units=fs.readdirSync('content/grammar').filter(n=>/^\d{3}_.+\.json$/.test(n)).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
  let count=0;
  for(const u of units)for(const group of u.exercises){
   const run=context([u]);unlockUntil(run,'exercise:'+group.id);
@@ -1283,7 +1283,7 @@ test('an old failed long exercise does not gain extra lives after reload',()=>{
 });
 
 test('171 grammar exercises require real corrections that spend remaining lives',()=>{
- const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
+ const units=fs.readdirSync('content/grammar').filter(n=>/^\d{3}_.+\.json$/.test(n)).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
  let count=0;
  for(const u of units)for(const group of u.exercises){
   if(group.limitedAttempt)continue; // New limited groups have dedicated cumulative-error regressions.
@@ -1377,7 +1377,7 @@ test('grammar viewport follows the visible keyboard area and the keyboard can be
 });
 
 test('all grammar mini-checks have three lives, disclose only on failure, and never auto-navigate',()=>{
- const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
+ const units=fs.readdirSync('content/grammar').filter(n=>/^\d{3}_.+\.json$/.test(n)).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
  let total=0;
  for(const u of units)for(const [i,section] of u.sections.entries()){
   if(!section.check || section.check.limitedAttempt)continue;
@@ -1414,7 +1414,7 @@ test('a saved failed mini-check resumes at its last wrong question with no refun
 });
 
 test('every accepted alternative in mini-checks is offered and any one correct choice suffices',()=>{
- const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
+ const units=fs.readdirSync('content/grammar').filter(n=>/^\d{3}_.+\.json$/.test(n)).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
  let checked=0;
  for(const u of units)for(const [si,section] of u.sections.entries()){
   if(!section.check)continue;
@@ -1437,7 +1437,7 @@ test('every accepted alternative in mini-checks is offered and any one correct c
 });
 
 test('grammar list gives each theme a distinct icon and marks only fully completed themes',()=>{
- const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
+ const units=fs.readdirSync('content/grammar').filter(n=>/^\d{3}_.+\.json$/.test(n)).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
  const run=context(units);
  run('view.grammar=null;');
  const icons=run('COURSE.grammar.map(u=>G_UNIT_ICONS[u.id])');
@@ -1468,7 +1468,7 @@ test('completed theme markers survive reload through the existing progress store
 });
 
 test('all 17 final exercises open the recap automatically, including after corrections and reload',()=>{
- const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
+ const units=fs.readdirSync('content/grammar').filter(n=>/^\d{3}_.+\.json$/.test(n)).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
  for(const u of units)for(const makeError of [false,true]){
   const storage=new Map();let run=context([u],storage);
   const route=u.learningOrder.filter(r=>r.startsWith('exercise:')).at(-1);
@@ -1519,7 +1519,7 @@ test('opening grammar from home always shows the list while preserving the saved
 });
 
 test('theory, exercises and recap remain identifiable even before unlocking',()=>{
- const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
+ const units=fs.readdirSync('content/grammar').filter(n=>/^\d{3}_.+\.json$/.test(n)).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
  for(const u of units){
   const run=context([u]);run(`view.grammar=${JSON.stringify(u.id)};`);
   const html=run('grammarView()');
@@ -1597,7 +1597,7 @@ test('yellow feedback also completes a correction without changing first-answer 
 });
 
 test('all manual screens include the six Spanish keys, with ü when needed',()=>{
- const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
+ const units=fs.readdirSync('content/grammar').filter(n=>/^\d{3}_.+\.json$/.test(n)).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
  let fields=0;
  for(const u of units){
   const run=context([u]);
@@ -1628,7 +1628,7 @@ test('almost-correct sound is unique, soft, and respects mute',()=>{
 });
 
 test('all 17 units derive persistent theory and practice context from their actual structure',()=>{
- const units=fs.readdirSync('content/grammar').filter(n=>n.endsWith('.json')).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
+ const units=fs.readdirSync('content/grammar').filter(n=>/^\d{3}_.+\.json$/.test(n)).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
  for(const u of units){
   const run=context([u]);
   for(const [i,s] of u.sections.entries()){
@@ -1791,7 +1791,7 @@ test('previously green accepted responses adopt current guidance without changin
 });
 
 test('multi-answer audit keeps regional, contextual and equally valid choices green unless explicitly annotated',()=>{
- const units=fs.readdirSync('content/grammar').filter(f=>f.endsWith('.json')).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
+ const units=fs.readdirSync('content/grammar').filter(f=>/^\d{3}_.+\.json$/.test(f)).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
  const run=context(units);let questions=0,alternatives=0,warnings=0;
  for(const [ui,u] of units.entries()) {
   const groups=[...u.sections.filter(s=>s.check).map(s=>s.check),...u.exercises];
@@ -1820,7 +1820,7 @@ test('yellow mini-check choices preserve all three lives and complete normally',
 });
 
 test('all 17 completion screens derive the next lesson from course order and preserve results',()=>{
- const units=fs.readdirSync('content/grammar').filter(f=>f.endsWith('.json')).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
+ const units=fs.readdirSync('content/grammar').filter(f=>/^\d{3}_.+\.json$/.test(f)).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
  for(const [i,u] of units.entries()) {
   const handlers={},run=context(units,new Map(),handlers);
   run(`render=()=>{};window.scrollTo=()=>{};var u=COURSE.grammar[${i}];
@@ -1962,7 +1962,7 @@ test('an old failed profession attempt reopens the newly required theory instead
 });
 
 test('all grammar choice sets receive valid, balanced attempt orders without changing course data',()=>{
- const units=fs.readdirSync('content/grammar').filter(f=>f.endsWith('.json')).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
+ const units=fs.readdirSync('content/grammar').filter(f=>/^\d{3}_.+\.json$/.test(f)).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
  const run=context(units);
  run(`function seeded(seed){let n=seed>>>0;return ()=>((n=(1664525*n+1013904223)>>>0)/4294967296);}`);
  const before=run('JSON.stringify(COURSE.grammar)');let standard=0,guided=0;
@@ -2095,7 +2095,7 @@ test('multiple accepted answers cannot hide an always-correct last position behi
 });
 
 test('article recall accepts every preserved answer, case and whitespace, while rejecting extra accents and wrong forms',()=>{
- const units=fs.readdirSync('content/grammar').filter(f=>f.endsWith('.json')).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
+ const units=fs.readdirSync('content/grammar').filter(f=>/^\d{3}_.+\.json$/.test(f)).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
  const run=context(units);
  const result=JSON.parse(run(`JSON.stringify((()=>{let count=0;for(const u of COURSE.grammar)for(const g of u.exercises)for(const q of g.questions){if(q.interaction!=='article-input')continue;count++;for(const a of q.answers){const value='  '+a.toUpperCase().replace(/ /g,'   ')+'  ';if(!grammarResult(q,value,g,true).good)throw Error(g.id+': '+a);}if(grammarResult(q,'ellos',g,true).good)throw Error(g.id+': wrong article');if(q.inputFormat.example||q.options)throw Error(g.id+': answer cue');}return {count};})())`));
  assert.equal(result.count,177);
@@ -2180,7 +2180,7 @@ test('2 through 10 choices distribute across attempts and within thirty-question
 });
 
 test('all actual six-option questions reach all six positions across seeded attempts',()=>{
- const units=fs.readdirSync('content/grammar').filter(f=>f.endsWith('.json')).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
+ const units=fs.readdirSync('content/grammar').filter(f=>/^\d{3}_.+\.json$/.test(f)).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
  const run=context(units);
  const result=JSON.parse(run(`JSON.stringify((()=>{
   function seeded18(seed){let n=seed>>>0;return ()=>((n=(1664525*n+1013904223)>>>0)/4294967296);}
