@@ -7,7 +7,8 @@ from espanol.grammar import load_grammar
 
 
 SOURCE_ROWS = {
-    4: [15, 10, 12, 10], 5: [8, 10, 12], 6: [15, 8, 6, 10],
+    4: [15, 10, 12, 10], 6: [15, 8, 6, 10],
+    # Unit 5 has Fable Stage 5 coverage tests instead of frozen source-row counts.
     # Unit 7 is deliberately redesigned in Fable stage 4; see test_grammar_unit07_fable.py.
     8: [6, 6, 12, 8], 9: [8, 12, 6, 4],
     10: [8, 15, 8], 11: [10, 8, 10], 12: [8, 8, 8, 4],

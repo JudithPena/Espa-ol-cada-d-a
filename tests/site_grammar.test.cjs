@@ -1052,7 +1052,7 @@ test('all typing screens show a persistent format and example without changing g
   })())`));
   typed+=result.typed;legacy+=result.legacy;
  }
- assert.equal(typed,1204);assert.equal(legacy,158); // Fable 4: +9 independent typed tasks in unit 7
+ assert.equal(typed,1200);assert.equal(legacy,158); // Fable 5: unit 5 has 16 typed questions
 });
 
 test('quantity answers accept digits or words while the field explains the quantity format', () => {
@@ -1432,7 +1432,7 @@ test('every accepted alternative in mini-checks is offered and any one correct c
    }
   }
  }
- assert.equal(checked,20); // Fable 4: additional correct mini-check alternatives
+ assert.equal(checked,21); // Fable 5: both plural alternatives are accepted in check-c
 });
 
 test('grammar list gives each theme a distinct icon and marks only fully completed themes',()=>{
@@ -1803,7 +1803,7 @@ test('multi-answer audit keeps regional, contextual and equally valid choices gr
    }
   }
  }
- assert.equal(questions,2087);assert.equal(alternatives,353);assert.equal(warnings,25); // Fable 4: unit 7 reworked
+ assert.equal(questions,2084);assert.equal(alternatives,356);assert.equal(warnings,25); // Fable 5: unit 5 now has 44 questions
 });
 
 test('yellow mini-check choices preserve all three lives and complete normally',()=>{
@@ -1894,32 +1894,21 @@ test('Fable 4 unit-7 revision invalidates old indexed answers but preserves prio
  assert.equal(run('P.xp'),81);
 });
 
-test('revised profession practice never reuses answers from the old all-omission exercise',()=>{
+test('Fable stage 5 unit-5 revisions invalidate indexed answers and keep XP and best scores',()=>{
  const updated=JSON.parse(fs.readFileSync('content/grammar/005_sin_articulo.json','utf8'));
- const legacy=structuredClone(updated);delete legacy.revision;
- legacy.learningOrder=['section:0','exercise:5.1','section:1','exercise:5.2','section:2','exercise:5.3','summary'];
- delete legacy.exercises[0].revision;
- for(const q of legacy.exercises[0].questions)q.answers=['Без артикля'];
+ const legacy=structuredClone(updated);legacy.revision=2;
+ for(const g of [...legacy.sections.map(s=>s.check),...legacy.exercises])g.revision=2;
  const storage=new Map();let run=context([legacy],storage);unlockUntil(run,'exercise:5.1');
- run(`render=()=>{};save();P.xp=52;P.grammar['other-unit/practice']={correct:4,total:4};
-   var u=COURSE.grammar[0],g=u.exercises[0];P.grammar[grammarKey(u,g)]={correct:8,total:8};save();
-   gStoreAttempt(u,u.exercises[1],gNewAttempt(u.exercises[1],{0:{value:'wrong',checked:true,good:false}}));
-   gStart(u.id,'exercise:5.1');gMove(1);
-   for(let i=0;i<2;i++){gResponse(G.steps[G.at]).value='Без артикля';gCheck();gMove(1);}
-   gResponse(G.steps[G.at]).value='un';gCheck();gExit();
-   var records=gAttempts();delete records[grammarKey(u,g)].revision;store.set(G_ATTEMPTS_KEY,JSON.stringify(records));
-   var session=gSaved();delete session.unitRevision;delete session.groupRevisions;store.set(G_SESSION_KEY,JSON.stringify(session));`);
- const previous=run('JSON.stringify(P)'),otherAttempt=run('JSON.stringify(gAttempt(COURSE.grammar[0],COURSE.grammar[0].exercises[1]))');
+ run(`render=()=>{};var u=COURSE.grammar[0],g=u.exercises[0];
+   P.xp=52;P.grammar[grammarKey(u,g)]={correct:8,total:8};save();
+   gStart(u.id,'exercise:5.1');gMove(1);gPickValue('una');gExit();`);
+ const before=run('JSON.stringify(P)');
+ assert.equal(run('gAttempt(COURSE.grammar[0],COURSE.grammar[0].exercises[0]).errors'),1);
  run=context([updated],storage);run(`render=()=>{};gStart(COURSE.grammar[0].id,'all',true);`);
- assert.equal(run('JSON.stringify(P)'),previous);
- assert.equal(run('G.steps[G.at].type'),'theory');assert.equal(run('G.steps[G.at].section'),1);
- assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).revision'),2);
- assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),0);
- assert.equal(run('Object.keys(gAttempt(gUnit(),gUnit().exercises[0]).responses).length'),0);
- assert.equal(run('JSON.stringify(gAttempt(gUnit(),gUnit().exercises[1]))'),otherAttempt);
- run(`P.grammar[grammarKey(gUnit(),gUnit().sections[1].check)]={correct:2,total:2};gStart(gUnit().id,'exercise:5.1');gMove(1);`);
- assert.equal(run('gResponse(G.steps[G.at]).checked'),false);
- assert.equal(run('P.xp'),52);
+ assert.equal(run('JSON.stringify(P)'),before,'earned XP and best group result must survive');
+ const info=JSON.parse(run(`JSON.stringify((()=>{const u=gUnit(),g=u.exercises[0],a=gAttempt(u,g);return {rev:a.revision,errors:a.errors,answers:Object.keys(a.responses).length,best:P.grammar[grammarKey(u,g)],xp:P.xp};})())`));
+ assert.equal(info.rev,3);assert.equal(info.errors,0);assert.equal(info.answers,0);
+ assert.deepEqual(info.best,{correct:8,total:8});assert.equal(info.xp,52);
 });
 
 test('an updated exercise discards obsolete correction steps while the same revision retains errors',()=>{
@@ -1992,7 +1981,7 @@ test('all grammar choice sets receive valid, balanced attempt orders without cha
    assert.deepEqual(result,{},`${u.number}/${g.id}: ${JSON.stringify(result)}`);
   }
  }
- assert.equal(standard,725);assert.equal(guided,9); // Fable 4: fewer mechanical choices
+ assert.equal(standard,726);assert.equal(guided,9); // Fable 5: +1 meaningful choice compared to old unit 5
  assert.equal(run('JSON.stringify(COURSE.grammar)'),before);
 });
 
@@ -2116,7 +2105,7 @@ test('article recall accepts every preserved answer, case and whitespace, while 
  const units=fs.readdirSync('content/grammar').filter(f=>/^\d{3}_.+\.json$/.test(f)).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
  const run=context(units);
  const result=JSON.parse(run(`JSON.stringify((()=>{let count=0;for(const u of COURSE.grammar)for(const g of u.exercises)for(const q of g.questions){if(q.interaction!=='article-input')continue;count++;for(const a of q.answers){const value='  '+a.toUpperCase().replace(/ /g,'   ')+'  ';if(!grammarResult(q,value,g,true).good)throw Error(g.id+': '+a);}if(grammarResult(q,'ellos',g,true).good)throw Error(g.id+': wrong article');if(q.inputFormat.example||q.options)throw Error(g.id+': answer cue');}return {count};})())`));
- assert.equal(result.count,186); // Fable 4: 19 instead of 10 article-input questions in unit 7
+ assert.equal(result.count,187); // Fable 5: unit 5 now has 16 instead of 15 article-input questions
  for(const value of ['él','ellos','es la','un padre',''])assert.equal(run(`grammarResult(COURSE.grammar[5].exercises[1].questions[0],${JSON.stringify(value)},COURSE.grammar[5].exercises[1],true).good`),false);
 });
 
