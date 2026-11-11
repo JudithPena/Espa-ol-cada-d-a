@@ -21,7 +21,8 @@ jobs:
           python -m espanol grammar-lint 5
           python -m espanol grammar-lint 13
           python -m espanol grammar-lint 8
-          python -m espanol grammar-lint 2
+          python -m espanol grammar-lint 2 --report /tmp/unit2-lint-summary.md --json-out /tmp/unit2-lint-findings.json
+          python -c "from pathlib import Path; print(Path('/tmp/unit2-lint-summary.md').read_text())"
       - name: Архив диагностик грамматического линтера
         if: always()
         uses: actions/upload-artifact@v4
@@ -30,6 +31,8 @@ jobs:
           path: |
             /tmp/grammar-lint-summary.md
             /tmp/grammar-lint-findings.json
+            /tmp/unit2-lint-summary.md
+            /tmp/unit2-lint-findings.json
           if-no-files-found: warn
       - name: Проверка словаря и лимитов Telegram
         run: python -m espanol validate
