@@ -1803,7 +1803,7 @@ test('multi-answer audit keeps regional, contextual and equally valid choices gr
    }
   }
  }
- assert.equal(questions,2073);assert.equal(alternatives,360);assert.equal(warnings,25); // Fable 7: unit 8 68→58, 4 additional alternative questions
+ assert.equal(questions,2073);assert.equal(alternatives,355);assert.equal(warnings,25); // Fable 7: unit 8 68→58, four optional instead of five
 });
 
 test('yellow mini-check choices preserve all three lives and complete normally',()=>{

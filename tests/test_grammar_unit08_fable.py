@@ -41,7 +41,7 @@ def test_every_answer_is_reachable_in_existing_formats():
             if q.get("options"):
                 assert q["interaction"] in ("choice", "gap-choice")
                 assert all(a in q["options"] for a in q["answers"])
-                assert len(q["options"]) == len({x.casefold() for x in q["options"])
+                assert len(q["options"]) == len({x.casefold() for x in q["options"]})
                 assert len(q["options"]) >= 2
             else:
                 assert q["interaction"] in ("article-input", "input")
