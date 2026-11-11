@@ -1,6 +1,161 @@
 from espanol.site import load_books
 
 
+def test_vacaciones_first_chapter_matches_supplied_pdf_and_catalog():
+    import hashlib
+    import re
+
+    books = [b for b in load_books() if b['id'] == 'lola-lago-vacaciones-al-sol']
+    assert len(books) == 1
+    book = books[0]
+    assert book['title'] == 'Lola Lago - Vacaciones al sol'
+    assert (book['level'], book['vocabulary_min_level']) == ('A1', 'A1')
+    assert len(book['chapters']) == 23
+    chapter = book['chapters'][0]
+    assert (chapter['id'], chapter['number'], chapter['order'], chapter['title']) == ('1', 1, 1, '')
+    # Hash of the entire first chapter, independently extracted from PDF page 3.
+    # Only whitespace and the presentation of footnote numerals are normalized.
+    original = ' '.join(b['es'] for b in chapter['blocks']).replace('¹', '1').replace('²', '2')
+    original = re.sub(r'\s+', ' ', original).strip()
+    assert hashlib.sha256(original.encode()).hexdigest() == 'b5ab6727ae69fbdcb8abd4ce82fbe021d942a496ff563cc677351ede8e8a8a2e'
+    terms = [n['term'] for b in chapter['blocks'] for n in b['notes']]
+    assert len(terms) == len(set(terms))
+    # Elementary A0 course words are deliberately not re-taught.
+    assert not {'la oficina', 'la mujer', 'pequeño', 'el amigo', 'la mesa', 'el año', 'la palabra', 'muy', 'pero'} & set(terms)
+    assert chapter['blocks'][0]['pronouns'] == chapter['blocks'][2]['pronouns'] == []
+    assert 'pasiva refleja' in chapter['blocks'][1]['pronouns'][0]['explanation']
+    for block in chapter['blocks']:
+        for lang in ('es', 'ru'):
+            assert not re.search(r'(?m)^[–—][^\n]*\n\n[–—]', block[lang])
+
+
+def test_vacaciones_complete_source_order_and_learning_progress():
+    import hashlib
+    import json
+    import re
+    import unicodedata
+    from pathlib import Path
+
+    book = next(b for b in load_books() if b['id'] == 'lola-lago-vacaciones-al-sol')
+    signatures = json.loads(Path('tests/data/vacaciones_source_signatures.json').read_text(encoding='utf-8'))
+    assert [c['number'] for c in book['chapters']] == list(range(1, 24))
+    assert [c['order'] for c in book['chapters']] == list(range(1, 24))
+    assert all(c['title'] == '' for c in book['chapters'])
+    assert len({c['icon'] for c in book['chapters']}) == 23
+    learned = set()
+    for chapter in book['chapters']:
+        source = ' '.join(b['es'] for b in chapter['blocks'])
+        source = re.sub(r'\s+', ' ', unicodedata.normalize('NFKC', source)).strip()
+        assert hashlib.sha256(source.encode()).hexdigest() == signatures[chapter['id']]['sha256']
+        for block in chapter['blocks']:
+            for note in block['notes']:
+                if isinstance(note, dict):
+                    assert note['term'] not in learned, (chapter['number'], note['term'])
+                    learned.add(note['term'])
+            for lang in ('es', 'ru'):
+                assert not re.search(r'(?m)^[–—][^\n]*\n\n[–—]', block[lang])
+    assert {'la oficina', 'la mesa', 'el médico', 'el abogado', 'trabajar', 'estudiar', 'el año'}.isdisjoint(learned)
+    assert sum(len(b.get('images', [])) for c in book['chapters'] for b in c['blocks']) == 3
+    assert book['chapters'][-1]['blocks'][-1]['es'].endswith('–No me llames «nena».')
+
+
+def test_lola_series_levels_illustrations_and_all_original_exercise_groups():
+    books = {b['id']: b for b in load_books()}
+    vacaciones = books['lola-lago-vacaciones-al-sol']
+    nota = books['lola-lago-nota-falsa']
+    assert [(b['series']['number'], b['level'], b['vocabulary_min_level']) for b in (vacaciones, nota)] == [
+        (1, 'A1', 'A1'), (2, 'A2', 'A1')]
+    for book, chapters in ((vacaciones, [8, 15, 21]), (nota, [2, 9, 17])):
+        assert [c['number'] for c in book['chapters'] if any(b.get('images') for b in c['blocks'])] == chapters
+        assert sum(len(b.get('images', [])) for c in book['chapters'] for b in c['blocks']) == 3
+    exercises = [(c['number'], e) for c in vacaciones['chapters'] for e in c.get('exercises', [])]
+    assert [(n, len(e['questions'])) for n, e in exercises] == [
+        (2, 6), (3, 9), (5, 7), (8, 3), (9, 12), (12, 9),
+        (14, 7), (14, 6), (14, 1), (15, 2), (17, 8), (18, 5), (19, 6), (23, 6)]
+    assert {p for _, e in exercises for p in e['source']['pdf_pages']} == set(range(40, 47))
+    assert all(n == max(e['source']['chapters']) for n, e in exercises)
+    questions = [q for _, e in exercises for q in e['questions']]
+    assert sum(q.get('kind') == 'reflection' for q in questions) == 10
+    for q in questions:
+        if q.get('kind') != 'reflection':
+            assert len(q['options']) == len(set(q['options']))
+    ambiguous = vacaciones['chapters'][2]['exercises'][0]['questions'][6]
+    assert ambiguous['options'][ambiguous['answer']] == 'No se dice en el texto'
+    beach = vacaciones['chapters'][17]['exercises'][0]['questions'][4]
+    assert beach['options'][beach['answer']] == 'No se dice en el texto'
+
+
+def test_book_series_rejects_invalid_and_duplicate_numbers(tmp_path):
+    import json
+    import pytest
+    base = {'id':'first','title':'First','author':'Author','level':'A1','vocabulary_min_level':'A1',
+            'series':{'id':'lola','title':'Lola Lago','number':1}}
+    first = tmp_path / 'first'; first.mkdir()
+    path = first / 'book.json'
+    for invalid in (0, -1, True, '1', None):
+        base['series']['number'] = invalid
+        path.write_text(json.dumps(base), encoding='utf-8')
+        with pytest.raises(ValueError, match='у серии'):
+            load_books(tmp_path)
+    base['series']['number'] = 2
+    path.write_text(json.dumps(base), encoding='utf-8')
+    second = tmp_path / 'second'; second.mkdir()
+    base['id'] = 'second'; base['series']['number'] = 1
+    (second / 'book.json').write_text(json.dumps(base), encoding='utf-8')
+    assert [b['id'] for b in load_books(tmp_path)] == ['second', 'first']
+    base['series']['number'] = 2
+    (second / 'book.json').write_text(json.dumps(base), encoding='utf-8')
+    with pytest.raises(ValueError, match='повторный номер'):
+        load_books(tmp_path)
+
+
+def test_library_covers_are_distinct_and_lola_titles_use_the_same_format():
+    import hashlib
+    import json
+    from pathlib import Path
+    from PIL import Image
+
+    digests = set()
+    for metadata_path in Path('content/books').glob('*/book.json'):
+        book = json.loads(metadata_path.read_text(encoding='utf-8'))
+        cover = metadata_path.parent / book['cover']
+        assert cover.is_file(), metadata_path
+        with Image.open(cover) as image:
+            assert image.width >= 768 and image.height >= 1152
+            assert image.width * 3 == image.height * 2
+            image.verify()
+        digest = hashlib.sha256(cover.read_bytes()).digest()
+        assert digest not in digests, metadata_path
+        digests.add(digest)
+        if book.get('series', {}).get('id') == 'lola-lago-detective':
+            assert book['title'].startswith('Lola Lago - ')
+            assert book['title'].count('Lola Lago') == 1
+
+
+def test_olly_collection_has_one_parent_and_complete_contents():
+    books = [b for b in load_books() if b.get('series', {}).get('id') == 'olly-richards-short-stories-beginners']
+    assert [b['series']['number'] for b in books] == list(range(1, 9))
+    assert [b['level'] for b in books] == ['B1'] * 8
+    parent = next(b for b in load_books() if b['id'] == 'olly-richards-short-stories-beginners')
+    assert parent['kind'] == 'collection' and parent['level'] == 'B1'
+    assert parent['vocabulary_min_level'] == 'A2'
+    assert parent['books'] == [b['id'] for b in books]
+    assert all(b['collection'] == parent['id'] for b in books)
+    assert parent['chapters'] == parent['chapter_catalog'] == []
+    assert all(b['vocabulary_min_level'] == 'A2' for b in books)
+    assert [len(b['chapter_catalog']) for b in books] == [4, 3, 3, 3, 3, 3, 3, 3]
+    for book in books:
+        assert [c['number'] for c in book['chapters']] == [1]
+        assert [c['status'] for c in book['chapter_catalog']] == ['published'] + ['draft'] * (len(book['chapter_catalog']) - 1)
+        assert all(c['title'].strip() for c in book['chapter_catalog'])
+        chapter = book['chapters'][0]
+        assert len(chapter['exercises']) == 1
+        assert len(chapter['exercises'][0]['questions']) == 5
+        assert all(block['es'] and block['ru'] and block['notes'] for block in chapter['blocks'])
+    assert sum(len(b.get('images', [])) for book in books for b in book['chapters'][0]['blocks']) == 6
+    assert sum(len(book.get('pending_illustrations', [])) for book in books) == 2
+
+
 def test_book_chapters_have_complete_readable_blocks():
     books = load_books()
     assert books
@@ -87,6 +242,10 @@ def test_catalog_groups_chapters_and_preserves_independent_levels(tmp_path):
     assert sum(b['level'] == 'B2' for b in books) == 2
     first = next(b for b in books if b['id'] == 'first')
     assert [c['id'] for c in first['chapters']] == ['one', 'two']
+    assert [c['id'] for c in first['chapter_catalog']] == ['one', 'two', 'three']
+    assert first['chapter_catalog'][-1]['status'] == 'draft'
+    assert all(set(c) == {'id', 'number', 'order', 'title', 'icon', 'status'} for c in first['chapter_catalog'])
+    assert 'example' not in str(first['chapter_catalog'])
     assert (first['level'], first['vocabulary_min_level']) == ('B2', 'B1')
     assert next(b for b in books if b['id'] == 'other')['vocabulary_min_level'] == 'A1'
 
@@ -96,6 +255,35 @@ def test_harry_level_and_vocabulary_threshold_are_independent():
     assert book['level'] == 'B2'
     assert book['vocabulary_min_level'] == 'B1'
     assert [(c['number'], c['title']) for c in book['chapters']] == [(1, 'El niño que vivió'), (2, 'El vidrio que se desvaneció')]
+    catalog = book['chapter_catalog']
+    assert [c['number'] for c in catalog] == list(range(1, 18))
+    assert [c['order'] for c in catalog] == list(range(1, 18))
+    assert [c['status'] for c in catalog] == ['published'] * 2 + ['draft'] * 15
+    assert catalog[5]['title'] == 'El viaje desde el andén nueve y tres cuartos'
+    assert catalog[13]['title'] == 'Norberto, el ridgeback noruego'
+    assert catalog[-1]['title'] == 'El hombre con dos caras'
+
+
+def test_draft_chapter_contents_do_not_leak_into_the_site(tmp_path):
+    import json
+    folder = tmp_path / 'book'
+    (folder / 'chapters').mkdir(parents=True)
+    (folder / 'book.json').write_text(json.dumps({'id': 'book', 'title': 'Book', 'author': 'Author',
+        'level': 'B2', 'vocabulary_min_level': 'B1'}), encoding='utf-8')
+    path = folder / 'chapters' / '1.json'
+    draft = {'id': '1', 'number': 1, 'order': 1, 'title': 'First', 'status': 'draft',
+             'blocks': [{'es': 'PRIVATE DRAFT'}], 'exercises': [{'prompt': 'PRIVATE EXERCISE'}]}
+    path.write_text(json.dumps(draft), encoding='utf-8')
+    book = load_books(tmp_path)[0]
+    assert book['chapters'] == []
+    assert len(book['chapter_catalog']) == 1
+    assert 'PRIVATE' not in json.dumps(book)
+    draft['status'] = 'published'
+    draft['blocks'] = []
+    path.write_text(json.dumps(draft), encoding='utf-8')
+    import pytest
+    with pytest.raises(ValueError):
+        load_books(tmp_path)
 
 
 def test_local_cover_is_packaged_and_cannot_escape_book_folder(tmp_path):
@@ -648,8 +836,37 @@ def test_a1_books_skip_words_of_the_site_a0_course():
     # Слова A0 остаются только с необычным значением в контексте (estudiar — «разобрать запись»,
     # el señor — «хозяин дома»).
     unusual = {'estudiar', 'el señor'}
+    # The guide also allows a familiar A0 word in an unfamiliar function.
+    # These specific entries teach emphasis, approximate numbers and a vocative,
+    # rather than re-teaching sí, unos or mujer in their elementary meanings.
+    unusual_by_book = {'lola-lago-vacaciones-al-sol': {
+        'sí (усилительное)', 'unos (приблизительное количество)', 'mujer (обращение)'}}
     for book in load_books():
         if book['vocabulary_min_level'] != 'A1':
             continue
         terms = [n['term'] for c in book['chapters'] for b in c['blocks'] for n in b['notes'] if isinstance(n, dict)]
-        assert not [t for t in terms if key(t) in a0 and t not in unusual], book['id']
+        permitted = unusual | unusual_by_book.get(book['id'], set())
+        assert not [t for t in terms if key(t) in a0 and t not in permitted], book['id']
+
+
+def test_collection_rejects_broken_links_duplicates_and_nested_collections(tmp_path):
+    import json
+    import pytest
+    base = dict(title='Title', author='Author', level='B1', vocabulary_min_level='A2')
+    parent = dict(base, id='collection', kind='collection', books=['member'])
+    member = dict(base, id='member', collection='collection')
+    for name in ('collection', 'member'):
+        (tmp_path / name).mkdir()
+    def write(p, m):
+        for name, data in (('collection', p), ('member', m)):
+            (tmp_path / name / 'book.json').write_text(json.dumps(data), encoding='utf-8')
+    write(parent, member)
+    assert len(load_books(tmp_path)) == 2
+    for p, m in [({**parent, 'books': ['member', 'member']}, member),
+                 ({**parent, 'books': ['missing']}, member),
+                 (parent, {**member, 'collection': 'missing'}),
+                 (parent, {**member, 'level': 'A2'}),
+                 (parent, {**member, 'kind': 'collection', 'books': ['collection']})]:
+        write(p, m)
+        with pytest.raises(ValueError):
+            load_books(tmp_path)

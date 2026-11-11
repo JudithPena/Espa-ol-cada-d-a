@@ -219,6 +219,26 @@ test('chapter labels omit missing titles and technical placeholders without inve
   assert.equal(ctx.bookChapterLabel({number:1,title:'El niño que vivió'}),'Глава 1. El niño que vivió');
 });
 
+test('reading parts are numbered in order independently of author chapter numbers', () => {
+  const viewCode = source.slice(source.indexOf('function bookView()'), source.indexOf('function courseView()'));
+  const chapter = JSON.parse(fs.readFileSync('content/books/lola-lago-vacaciones-al-sol/chapters/001.json', 'utf8'));
+  const context = {esc:ctx.esc, view:{book:'vacaciones',bookChapter:'1'},
+    bookById:() => ({title:'Lola Lago - Vacaciones al sol',chapters:[chapter]}),
+    bookChapterLabel:ctx.bookChapterLabel, bookTitle:ctx.bookTitle, bookOriginal:ctx.bookOriginal, bookText:ctx.bookText,
+    bookMarks:ctx.bookMarks, bookNote:ctx.bookNote, bookPronouns:ctx.bookPronouns};
+  vm.createContext(context); vm.runInContext(viewCode, context);
+  const html = context.bookView();
+  assert.deepEqual([...html.matchAll(/class="book-part">([^<]+)<\/span>/g)].map(m=>m[1]),
+    ['Часть 1 из 3', 'Часть 2 из 3', 'Часть 3 из 3']);
+  assert.match(html, /Lola Lago - Vacaciones al sol · Глава 1<\/p>/);
+  assert.doesNotMatch(html, /role="tablist"|Sin título|Untitled/);
+  assert.equal((html.match(/<summary>Перевод<\/summary>/g) || []).length, 3);
+  assert.equal((html.match(/<details class="book-pronouns">/g) || []).length, 1);
+  chapter.number = 2;
+  assert.match(context.bookView(), /Глава 2<\/p>/);
+  assert.match(context.bookView(), /Часть 1 из 3/);
+});
+
 test('chapter cards use stable individual icons and escape labels and icon text', () => {
   const catalog = source.slice(source.indexOf('function booksView()'),source.indexOf('function bookText('));
   const context = {esc:ctx.esc, view:{book:'test'}, COURSE:{books:[{id:'test',title:'Test',author:'Author',level:'A1',chapters:[
@@ -234,6 +254,26 @@ test('chapter cards use stable individual icons and escape labels and icon text'
   assert.match(html, /aria-hidden="true">&lt;svg&gt;<\/span>/);
   assert.match(html, /aria-hidden="true">📖<\/span>/);
   assert.doesNotMatch(html, /Sin título|<img>|<svg>|Глава 3\./);
+});
+
+test('series numbers appear in titles without changing unnumbered books', () => {
+  assert.equal(ctx.bookTitle({title:'Vacaciones al sol',series:{number:1}}), '1. Vacaciones al sol');
+  assert.equal(ctx.bookTitle({title:'Una nota falsa',series:{number:2}}), '2. Una nota falsa');
+  assert.equal(ctx.bookTitle({title:'Other book'}), 'Other book');
+  const catalog = source.slice(source.indexOf('function booksView()'), source.indexOf('function bookText('));
+  const context = {esc:ctx.esc, view:{bookLevel:'A2',book:'nota'},
+    COURSE:{books:[{id:'nota',title:'Una nota falsa',author:'Author',level:'A2',chapters:[{id:'7',number:7,title:''}],
+      series:{id:'lola',title:'Lola Lago, detective',number:2}}]},
+    plural:(n,one)=>one};
+  vm.createContext(context); vm.runInContext(catalog,context);
+  assert.match(context.bookLevelView(), />2\. Una nota falsa<\/b>/);
+  assert.match(context.bookLevelView(), /Lola Lago, detective/);
+  assert.match(context.bookChaptersView(), /<h2>2\. Una nota falsa<\/h2>/);
+  context.bookRoute(['books','A1','nota','7']);
+  assert.equal(context.view.tab,'book');
+  assert.equal(context.view.bookLevel,'A2');
+  assert.equal(context.view.bookChapter,'7');
+  assert.equal(context.bookHash(),'#books/A2/nota/7');
 });
 
 test('book text preserves single dialogue line breaks and real paragraph breaks', () => {
@@ -257,7 +297,10 @@ test('story without chapters opens straight from its card and shows no chapter l
     view:{bookLevel:'A2'}, COURSE:{books:[{...meta, chapters:[], story}]}};
   vm.createContext(cat); vm.runInContext(catalogSource + viewCode, cat);
   const card = cat.bookLevelView();
-  assert.match(card, /data-book-id="los-tres-cerditos"/); assert.match(card, /рассказ/); assert.match(card, /🐷/);
+  assert.match(card, /data-book-id="los-tres-cerditos"/); assert.match(card, /рассказ/);
+  assert.match(card, /class="book-cover"/); assert.ok(card.includes(`src="${meta.cover}"`));
+  cat.COURSE.books[0].cover = null;
+  assert.match(cat.bookLevelView(), /🐷/);
   assert.doesNotMatch(card, /глав/);
   cat.location = {hash:'#books/A2/los-tres-cerditos'}; assert.equal(cat.bookSync(), true);
   assert.equal(cat.view.tab, 'book'); assert.equal(cat.view.bookChapter, null);
@@ -286,4 +329,73 @@ test('block illustrations are placed before their line and keep highlights intac
   assert.match(html, /Ya <strong>vez<\/strong>\.<\/p><figure class="book-figure"><img src="data:image\/webp;base64,BB" alt="sopla" loading="lazy"><\/figure><p lang="es">Y sopló\.<\/p>$/);
   assert.equal((html.match(/<strong>vez<\/strong>/g) || []).length, 2);
   assert.equal(ctx.bookOriginal({es:'Texto', notes:[]}), '<p lang="es">Texto</p>');
+});
+
+test('complete contents show unavailable chapters but route only to published analysis', () => {
+  const catalogSource = source.slice(source.indexOf('function booksView()'), source.indexOf('function bookText('));
+  const dir = 'content/books/harry-potter-piedra/chapters';
+  const raw = fs.readdirSync(dir).filter(f => f.endsWith('.json')).map(f => JSON.parse(fs.readFileSync(`${dir}/${f}`, 'utf8')));
+  const meta = JSON.parse(fs.readFileSync('content/books/harry-potter-piedra/book.json', 'utf8'));
+  const book = {...meta, chapters:raw.filter(c => c.status === 'published'), chapter_catalog:raw};
+  const cat = {esc:ctx.esc, plural:(n,one,few,many) => n === 1 ? one : n < 5 ? few : many,
+    view:{bookLevel:'B2',book:book.id}, COURSE:{books:[book]}};
+  vm.createContext(cat); vm.runInContext(catalogSource, cat);
+  assert.match(cat.bookLevelView(), /17 глав/);
+  const html = cat.bookChaptersView();
+  assert.equal((html.match(/class="mcard book-chapter-card"/g) || []).length, 17);
+  assert.equal((html.match(/data-book-chapter=/g) || []).length, 2);
+  assert.equal((html.match(/ disabled>/g) || []).length, 15);
+  assert.equal((html.match(/>Скоро</g) || []).length, 15);
+  assert.match(html, /Доступно 2 из 17 глав/);
+  assert.match(html, /Глава 6\. El viaje desde el andén nueve y tres cuartos/);
+  assert.match(html, /class="book-cover-large"/);
+  assert.ok(html.includes(`src="${meta.cover}"`));
+  cat.location = {hash:`#books/B2/${book.id}/3`}; cat.bookSync();
+  assert.equal(cat.view.tab, 'book-chapters'); assert.equal(cat.view.bookChapter, null);
+  assert.equal(cat.bookHash(), `#books/B2/${book.id}`);
+  cat.location.hash = `#books/B2/${book.id}/1`; cat.bookSync();
+  assert.equal(cat.view.tab, 'book'); assert.equal(cat.view.bookChapter, '1');
+  // Finishing a chapter unlocks the same entry and stable route.
+  book.chapters.push(raw.find(c => c.id === '3'));
+  cat.location.hash = `#books/B2/${book.id}/3`; cat.bookSync();
+  assert.equal(cat.view.tab, 'book'); assert.equal(cat.view.bookChapter, '3');
+  assert.equal((cat.bookChaptersView().match(/ disabled>/g) || []).length, 14);
+});
+
+test('unavailable titles and large cover attributes remain escaped', () => {
+  const catalogSource = source.slice(source.indexOf('function booksView()'), source.indexOf('function bookText('));
+  const cat = {esc:ctx.esc, view:{book:'test'}, COURSE:{books:[{id:'test',title:'<Title>',author:'<Author>',
+    level:'B2', cover:'cover" onerror="bad', chapters:[], chapter_catalog:[{id:'1',number:1,title:'<script>',icon:'<img>',status:'draft'}]}]}};
+  vm.createContext(cat); vm.runInContext(catalogSource, cat);
+  const html = cat.bookChaptersView();
+  for (const text of ['<Title>', '<Author>', '<script>', '<img>']) assert.ok(!html.includes(text));
+  assert.match(html, /cover&amp;|cover&quot;/);
+  assert.doesNotMatch(html, /data-book-chapter=/);
+});
+
+test('anthology is one B1 card with eight ordered readers and working old links', () => {
+  const catalogSource = source.slice(source.indexOf('function booksView()'), source.indexOf('function bookText('));
+  const books = fs.readdirSync('content/books').map(id => JSON.parse(fs.readFileSync(`content/books/${id}/book.json`, 'utf8'))).map(b => ({...b,chapters:[],chapter_catalog:[]}));
+  const parent = books.find(b => b.kind === 'collection');
+  const members = parent.books.map(id => books.find(b => b.id === id));
+  const cat = {esc:ctx.esc, plural:(_,a)=>a,view:{bookLevel:'B1',book:parent.id},COURSE:{books}};
+  vm.createContext(cat);vm.runInContext(catalogSource,cat);
+  const level = cat.bookLevelView();
+  assert.match(level, new RegExp(`data-book-id="${parent.id}"`));
+  for (const b of members) assert.ok(!level.includes(`data-book-id="${b.id}"`));
+  cat.view.bookLevel = 'A2';
+  assert.ok(!cat.bookLevelView().includes('olly-richards'));
+  cat.bookRoute(['books','B1',parent.id]);
+  const html = cat.bookChaptersView();
+  assert.match(html,/Рассказы сборника/);
+  assert.equal((html.match(/data-book-id=/g)||[]).length,8);
+  assert.match(html,/class="book-cover-large"/);
+  for(let i=1;i<members.length;i++) assert.ok(html.indexOf(ctx.esc(members[i-1].title))<html.indexOf(ctx.esc(members[i].title)));
+  members[0].chapters=[{id:'1',number:1,title:'El avión'}];
+  cat.bookRoute(['books','A2',members[0].id,'1']);
+  assert.equal(cat.view.bookLevel,'B1');assert.equal(cat.view.tab,'book');
+  assert.equal(cat.bookHash(),`#books/B1/${members[0].id}/1`);
+  cat.bookRoute(['books','A2',members[0].id,'2']);
+  assert.equal(cat.view.tab,'book-chapters');
+  assert.match(cat.bookChaptersView(), new RegExp(`data-book-id="${parent.id}"`));
 });

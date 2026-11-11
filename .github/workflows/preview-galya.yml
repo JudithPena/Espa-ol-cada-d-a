@@ -19,8 +19,17 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
-      - name: Отправить три карточки автору
+      - name: Отправить пять новых карточек только автору
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_REVIEW_CHAT_ID: ${{ secrets.TELEGRAM_REVIEW_CHAT_ID }}
-        run: python -m scripts.preview_galya
+        run: |
+          python - <<'PY'
+          from scripts import preview_galya
+
+          # Случайная выборка из нового списка Гали для проверки автором.
+          # Получатель задаётся только TELEGRAM_REVIEW_CHAT_ID внутри main().
+          preview_galya.SAMPLES = ('fingir', 'rollizo', 'arrojar', 'valla', 'espiar')
+          print('На проверку автору: ' + ', '.join(preview_galya.SAMPLES))
+          preview_galya.main()
+          PY

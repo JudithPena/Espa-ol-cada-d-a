@@ -84,6 +84,7 @@ h2 + .btn.wide, h2 + .muted { margin-top: 10px; display: flex; }
 .vseg ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 15px; }
 .book-block { line-height: 1.65; }
 .book-block p { white-space: pre-line; }
+.book-part { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
 .book-figure { margin: 14px 0; }
 .book-figure img { display: block; max-width: 100%; height: auto; margin: 0 auto; border-radius: 12px; }
 .book-block ul { list-style: disc; padding-left: 1.3em; }
@@ -120,7 +121,26 @@ h2 + .btn.wide, h2 + .muted { margin-top: 10px; display: flex; }
 .book-chapter-label { min-width: 0; text-align: center; overflow-wrap: anywhere; }
 .book-chapter-arrow { text-align: right; font-size: 24px; }
 .book-chapter-card:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-.book-cover { width: 48px; height: 64px; object-fit: cover; border-radius: 6px; flex: none; }
+.mcard.book-chapter-card:disabled { opacity: 1; cursor: default; color: var(--muted); background: var(--bg); border-color: var(--line); box-shadow: none; transform: none; }
+.book-chapter-soon { display: block; margin-top: 6px; font-size: 13px; font-weight: 400; }
+.book-overview { margin: 24px 0 28px; text-align: center; }
+.book-cover-large { display: block; width: min(260px, 100%); height: auto; aspect-ratio: 2 / 3; object-fit: contain; margin: 0 auto 24px; border-radius: 10px; box-shadow: 0 10px 28px #15244326; }
+.book-overview h2 { overflow-wrap: anywhere; }
+.book-overview p { margin: 10px 0 0; }
+.book-overview .muted { display: block; }
+.book-availability { font-weight: 600; color: var(--accent); }
+.book-series { margin: 20px 0; }
+.book-series-list { display: grid; gap: 8px; margin-top: 12px; }
+.book-series-item { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); text-align: left; font: inherit; }
+button.book-series-item { cursor: pointer; }
+button.book-series-item:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.book-series-item span { min-width: 0; overflow-wrap: anywhere; }
+.book-series-item small { flex: none; color: var(--accent); font-weight: 700; }
+.book-series-item[aria-current="page"] { background: var(--accent-soft); border-color: var(--accent); }
+.mcard.book-card { grid-template-columns: 80px minmax(0, 1fr) 18px; }
+.book-card > span { min-width: 0; }
+.book-card small { display: block; margin-top: 6px; line-height: 1.45; }
+.book-cover { width: 80px; height: 120px; object-fit: contain; border-radius: 6px; flex: none; box-shadow: 0 3px 10px #15244318; }
 .vseg .nt { font-size: 14px; color: var(--muted); }
 .es { font-weight: 700; }
 
@@ -267,6 +287,13 @@ main { padding-block: 16px 110px; }
 .pfoot.bad .fb h3 { color: var(--bad); }
 .fb .ans { font-weight: 700; }
 .fb .ex { font-size: 14px; color: var(--muted); }
+.gerror-analysis { margin-top: 24px; padding: 20px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); overflow-wrap: anywhere; }
+.gerror-item + .gerror-item { border-top: 1px solid var(--line); margin-top: 24px; padding-top: 8px; }
+.gerror-analysis h3 { color: var(--bad); margin-top: 0; }
+.gerror-analysis h4 { margin: 20px 0 8px; }
+.gerror-entered { padding: 12px; background: var(--bad-soft); border-radius: 10px; white-space: pre-wrap; }
+.gerror-answers { padding-left: 22px; color: var(--good); }
+.gerror-answers li { padding: 4px 0; }
 .two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
 /* карточка слова */
@@ -2503,15 +2530,28 @@ function videoView() {
 
 function booksView() {
   return `<button class="btn ghost sm back" data-tab="home">← Главная</button><h2>📚 Разбор книг</h2><p class="muted">Выберите уровень книги</p>
-    <div class="levels">${BOOK_LEVELS.map(level => { const n = (COURSE.books || []).filter(b => b.level === level).length; return `<button class="lvl" data-book-level="${level}"><b>${level}</b><small>${n} ${plural(n, "книга", "книги", "книг")}</small></button>`; }).join("")}</div>`;
+    <div class="levels">${BOOK_LEVELS.map(level => { const n = (COURSE.books || []).filter(b => b.level === level && !b.collection).length; return `<button class="lvl" data-book-level="${level}"><b>${level}</b><small>${n} ${plural(n, "книга", "книги", "книг")}</small></button>`; }).join("")}</div>`;
 }
 const BOOK_LEVELS = ["A1", "A2", "B1", "B2", "C1", "C2"];
 const bookById = id => (COURSE.books || []).find(b => b.id === id);
 // Открытый текст: рассказ целиком или выбранная глава книги.
 const bookCurrentText = () => { const b = bookById(view.book); return b?.story || b?.chapters.find(c => c.id === view.bookChapter); };
+function bookCardsView(books) {
+  return `<div class="menu">${books.map(b => {
+    const count = (b.chapter_catalog || b.chapters).length;
+    const label = b.kind === "collection" ? `${b.books.length} рассказов` : b.story ? "рассказ" : `${count} ${plural(count, "глава", "главы", "глав")}`;
+    return `<button class="mcard book-card" data-book-id="${esc(b.id)}">${b.cover ? `<img class="book-cover" src="${esc(b.cover)}" alt="">` : `<span class="mi" aria-hidden="true">${esc(b.story?.icon || b.icon || "📖")}</span>`}<span><b>${esc(bookTitle(b))}</b><small>${b.series && !b.collection ? esc(b.series.title) + " · " : ""}${esc(b.author)} · ${label}</small></span><span aria-hidden="true">›</span></button>`;
+  }).join("")}</div>`;
+}
 function bookLevelView() {
-  const books = (COURSE.books || []).filter(b => b.level === view.bookLevel);
-  return `<button class="btn ghost sm back" data-book-nav="levels">← Все уровни</button><h2>Книги · ${esc(view.bookLevel)}</h2>${books.length ? `<div class="menu">${books.map(b => `<button class="mcard" data-book-id="${esc(b.id)}">${b.cover ? `<img class="book-cover" src="${esc(b.cover)}" alt="">` : `<span class="mi" aria-hidden="true">${esc(b.story?.icon || b.icon || "📖")}</span>`}<span><b>${esc(b.title)}</b><small>${esc(b.author)} · ${b.story ? "рассказ" : `${b.chapters.length} ${plural(b.chapters.length, "глава", "главы", "глав")}`}</small></span><span aria-hidden="true">›</span></button>`).join("")}</div>` : '<p class="muted">На этом уровне пока нет книг.</p>'}`;
+  const books = (COURSE.books || []).filter(b => b.level === view.bookLevel && !b.collection);
+  return `<button class="btn ghost sm back" data-book-nav="levels">← Все уровни</button><h2>Книги · ${esc(view.bookLevel)}</h2>${books.length ? bookCardsView(books) : '<p class="muted">На этом уровне пока нет книг.</p>'}`;
+}
+function bookCollectionView(book) {
+  const members = book.books.map(bookById).filter(Boolean);
+  const total = members.reduce((n, b) => n + (b.chapter_catalog || b.chapters).length, 0);
+  const ready = members.reduce((n, b) => n + b.chapters.length, 0);
+  return `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(book.level)}</button><section class="book-overview">${book.cover ? `<img class="book-cover-large" src="${esc(book.cover)}" alt="">` : ""}<h2>${esc(book.title)}</h2><p class="muted">${esc(book.author)} · ${esc(book.level)}</p><p class="book-availability">${members.length} рассказов · Доступно ${ready} из ${total} глав</p></section><h3>Рассказы сборника</h3>${bookCardsView(members)}`;
 }
 function bookChapterLabel(chapter) {
   const raw = typeof chapter.title === "string" ? chapter.title.trim() : "";
@@ -2519,10 +2559,25 @@ function bookChapterLabel(chapter) {
   const title = placeholder ? "" : raw;
   return `Глава ${chapter.number}${title ? `. ${title}` : ""}`;
 }
+function bookTitle(book) {
+  return `${book.series ? `${book.series.number}. ` : ""}${book.title}`;
+}
+function bookSeriesView(book) {
+  if (!book.series || book.collection) return "";
+  const siblings = (COURSE.books || []).filter(b => b.series?.id === book.series.id).sort((a, b) => a.series.number - b.series.number);
+  if (siblings.length < 2) return "";
+  const collection = book.series.id === "olly-richards-short-stories-beginners";
+  return `<details class="book-series"><summary>${collection ? "Все рассказы сборника" : "Книги этой серии"} (${siblings.length})</summary><div class="book-series-list">${siblings.map(b => b.id === book.id
+    ? `<div class="book-series-item" aria-current="page"><span>${esc(bookTitle(b))}</span><small>${esc(b.level)}</small></div>`
+    : `<button type="button" class="book-series-item" data-book-id="${esc(b.id)}"><span>${esc(bookTitle(b))}</span><small>${esc(b.level)}</small></button>`).join("")}</div></details>`;
+}
 function bookChaptersView() {
   const b = bookById(view.book);
   if (!b) return booksView();
-  return `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(b.level)}</button><h2>${esc(b.title)}</h2><p class="muted">${esc(b.author)}</p><h3>Главы</h3>${b.chapters.length ? `<div class="menu">${b.chapters.map(c => `<button class="mcard book-chapter-card" data-book-chapter="${esc(c.id)}"><span class="mi" aria-hidden="true">${esc(c.icon || "📖")}</span><span class="book-chapter-label"><b>${esc(bookChapterLabel(c))}</b></span><span class="book-chapter-arrow" aria-hidden="true">›</span></button>`).join("")}</div>` : '<p class="muted">Опубликованных глав пока нет.</p>'}`;
+  if (b.kind === "collection") return bookCollectionView(b);
+  const catalog = b.chapter_catalog || b.chapters;
+  const available = new Set(b.chapters.map(c => c.id));
+  return `${b.collection ? `<button class="btn ghost sm back" data-book-id="${esc(b.collection)}">← Рассказы сборника</button>` : `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(b.level)}</button>`}<section class="book-overview">${b.cover ? `<img class="book-cover-large" src="${esc(b.cover)}" alt="">` : ""}<h2>${esc(bookTitle(b))}</h2><p class="muted">${b.series ? esc(b.series.title) + " · " : ""}${esc(b.author)}</p>${catalog.length ? `<p class="book-availability">Доступно ${b.chapters.length} из ${catalog.length} глав</p>` : ""}</section>${bookSeriesView(b)}<h3>Главы</h3>${catalog.length ? `<div class="menu">${catalog.map(c => { const ready = available.has(c.id); return `<button class="mcard book-chapter-card" ${ready ? `data-book-chapter="${esc(c.id)}"` : 'disabled'}><span class="mi" aria-hidden="true">${esc(c.icon || "📖")}</span><span class="book-chapter-label"><b>${esc(bookChapterLabel(c))}</b>${ready ? "" : '<small class="book-chapter-soon">Скоро</small>'}</span><span class="book-chapter-arrow" aria-hidden="true">${ready ? "›" : ""}</span></button>`; }).join("")}</div>` : '<p class="muted">Опубликованных глав пока нет.</p>'}`;
 }
 // Переход по разделу книг: меняет экран, а запись в историю (адрес #books/…) делает navSync() в render().
 function bookGo(level = null, book = null, chapter = null) {
@@ -2533,7 +2588,9 @@ function bookRoute(parts) {
   view.tab = "books"; view.bookLevel = null; view.book = null; view.bookChapter = null;
   if (!BOOK_LEVELS.includes(level)) return;
   view.bookLevel = level; view.tab = "book-level";
-  if (!b || b.level !== level) return;
+  if (!b) return;
+  // При изменении уровня книги старые ссылки продолжают открывать ту же главу.
+  view.bookLevel = b.level;
   view.book = b.id;
   // Рассказ без глав открывается сразу текстом.
   if (b.story) { view.tab = "book"; return; }
@@ -2633,11 +2690,11 @@ function bookView() {
   const hasExercises = Boolean(chapter.exercises?.length);
   const total = (chapter.exercises || []).flatMap(ex => ex.questions).filter(q => q.kind !== "reflection").length;
   // Рассказ без глав: назад — к книгам уровня, в шапке только название и автор.
-  const head = b.story ? `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(b.level)}</button><h2>Разбор текста</h2><p>${esc(b.title)} · ${esc(b.author)}</p>`
-    : `<button class="btn ghost sm back" data-book-nav="chapters">← Главы книги</button><h2>Разбор текста</h2><p>${esc(b.title)} · ${esc(bookChapterLabel(chapter))}</p>`;
+  const head = b.story ? `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(b.level)}</button><section class="book-overview">${b.cover ? `<img class="book-cover-large" src="${esc(b.cover)}" alt="">` : ""}<h2>Разбор текста</h2><p>${esc(bookTitle(b))} · ${esc(b.author)}</p></section>`
+    : `<button class="btn ghost sm back" data-book-nav="chapters">← Главы книги</button><h2>Разбор текста</h2><p>${esc(bookTitle(b))} · ${esc(bookChapterLabel(chapter))}</p>`;
   return `<div data-book-chapter-view>${head}
     ${hasExercises ? `<div class="book-tabs" role="tablist" aria-label="Содержание главы"><button type="button" class="btn ghost" id="book-tab-analysis" role="tab" aria-controls="book-panel-analysis" aria-selected="true" data-book-panel-tab="analysis">Разбор</button><button type="button" class="btn ghost" id="book-tab-exercises" role="tab" aria-controls="book-panel-exercises" aria-selected="false" tabindex="-1" data-book-panel-tab="exercises">Упражнения</button></div>` : ""}
-    <div class="book-panel" data-book-panel="analysis" ${hasExercises ? 'id="book-panel-analysis" role="tabpanel" aria-labelledby="book-tab-analysis" tabindex="0"' : ""}>${chapter.blocks.map(block => `<section class="vseg book-block"><h3>${esc(block.title)}</h3>${bookOriginal(block)}<details><summary>Перевод</summary><p>${bookText(block.ru, bookMarks(block, "ru"))}</p></details><h4>Разбор</h4><ul>${block.notes.map(note => `<li>${bookNote(note)}</li>`).join("")}</ul>${block.pronouns && (!Array.isArray(block.pronouns) || block.pronouns.length) ? `<details class="book-pronouns"><summary>Мини-разбор местоимений</summary>${bookPronouns(block.pronouns)}</details>` : ""}</section>`).join("")}</div>
+    <div class="book-panel" data-book-panel="analysis" ${hasExercises ? 'id="book-panel-analysis" role="tabpanel" aria-labelledby="book-tab-analysis" tabindex="0"' : ""}>${chapter.blocks.map((block, index) => `<section class="vseg book-block"><h3><span class="book-part">Часть ${index + 1} из ${chapter.blocks.length}</span>${esc(block.title)}</h3>${bookOriginal(block)}<details><summary>Перевод</summary><p>${bookText(block.ru, bookMarks(block, "ru"))}</p></details><h4>Разбор</h4><ul>${block.notes.map(note => `<li>${bookNote(note)}</li>`).join("")}</ul>${block.pronouns && (!Array.isArray(block.pronouns) || block.pronouns.length) ? `<details class="book-pronouns"><summary>Мини-разбор местоимений</summary>${bookPronouns(block.pronouns)}</details>` : ""}</section>`).join("")}</div>
     ${hasExercises ? `<div class="book-panel" data-book-panel="exercises" id="book-panel-exercises" role="tabpanel" aria-labelledby="book-tab-exercises" tabindex="0" hidden>${total ? `<p data-book-progress role="status" aria-live="polite">Выполнено: 0 из ${total}</p>` : ""}${bookExercises(chapter)}</div>` : ""}</div>`;
 }
 
