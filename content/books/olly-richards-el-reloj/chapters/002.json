@@ -3,11 +3,866 @@
   "number": 2,
   "order": 2,
   "title": "El Caribe",
-  "icon": "📖",
-  "status": "draft",
-  "blocks": [],
+  "icon": "🏴‍☠️",
+  "status": "published",
+  "blocks": [
+    {
+      "title": "Странный пират из прошлого",
+      "es": "Carlos y Susana miraron al extraño hombre que tenían delante. Finalmente, Carlos habló.\n–¿Volver al siglo XVII? ¿Usted? ¿Eric el Kraken? –preguntó.\nEl hombre no contestó. Estaba ocupado con el reloj.\nCarlos se acercó más a él. Parecía un pirata antiguo. Vestía ropa negra desteñida. Su ropa era como la de un pirata del Caribe. Un pirata como los de los cuentos. ¿Podría ser verdad?\nFinalmente, el hombre miró a Carlos y contestó:\n–Sí, soy yo.\nCarlos ahora entendía que el reloj realmente tenía poderes extraños.\n–Ahora lo entiendo… ¡La leyenda es cierta!\n–¿Qué leyenda? –dijo Eric.\n–La leyenda de su reloj.\nEric miró a Carlos y a Susana.\n–¿Dónde han oído hablar ustedes sobre mi reloj?\nSusana respondió:\n–Aparece como una leyenda en un libro.\n–¿En un libro, dice usted? ¡Ja! ¡Así que soy famoso!\n–No… No exactamente. Solo su reloj.",
+      "ru": "Карлос и Сусана смотрели на странного человека перед собой. Наконец Карлос заговорил.\n— Вернуться в XVII век? Вы? Эрик Кракен? — спросил он.\nМужчина не ответил: он был занят часами.\nКарлос подошёл к нему поближе. Тот выглядел как пират из далёкого прошлого. На нём была выцветшая чёрная одежда, как у карибских пиратов из сказок. Неужели всё это могло быть правдой?\nНаконец мужчина посмотрел на Карлоса и ответил:\n— Да, это я.\nТеперь Карлос понимал, что часы действительно обладают необычной силой.\n— Теперь я понимаю… Легенда правдива!\n— Какая легенда? — спросил Эрик.\n— Легенда о ваших часах.\nЭрик посмотрел на Карлоса и Сусану.\n— Откуда вы узнали о моих часах?\nСусана ответила:\n— О них рассказывается как о легенде в одной книге.\n— В книге, говорите? Ха! Значит, я знаменит!\n— Нет… Не совсем. Только ваши часы.",
+      "notes": [
+        {
+          "term": "volver a + lugar / época",
+          "es": [
+            "Volver al siglo XVII"
+          ],
+          "ru": [
+            "Вернуться в XVII век"
+          ],
+          "explanation": "вернуться куда-либо или в определённую эпоху. В оригинальном издании здесь опечатка: «sigo XVII» вместо «siglo XVII»."
+        },
+        {
+          "term": "tener delante (a alguien)",
+          "es": [
+            "tenían delante"
+          ],
+          "ru": [
+            "перед собой"
+          ],
+          "explanation": "иметь кого-либо прямо перед собой, перед глазами."
+        },
+        {
+          "term": "desteñido",
+          "es": [
+            "desteñida"
+          ],
+          "ru": [
+            "выцветшая"
+          ],
+          "explanation": "выцветший, утративший яркость цвета, например об одежде."
+        },
+        {
+          "term": "el cuento",
+          "es": [
+            "cuentos"
+          ],
+          "ru": [
+            "сказок"
+          ],
+          "explanation": "сказка или небольшой вымышленный рассказ."
+        },
+        {
+          "term": "ser cierto",
+          "es": [
+            "es cierta"
+          ],
+          "ru": [
+            "правдива"
+          ],
+          "explanation": "быть правдой; здесь о легенде, которая оказалась достоверной."
+        },
+        {
+          "term": "aparecer en (una obra)",
+          "es": [
+            "Aparece"
+          ],
+          "ru": [
+            "рассказывается"
+          ],
+          "explanation": "появляться, упоминаться в книге или другом источнике; не обязательно буквально «появляться» перед глазами."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "que tenían delante",
+          "translation": "который был прямо перед ними",
+          "base": "tener (a alguien) delante",
+          "explanation": "tenían = Карлос и Сусана; delante — перед ними; относительное que относится к мужчине."
+        },
+        {
+          "es": "se acercó más a él",
+          "translation": "подошёл к нему поближе",
+          "base": "acercarse a (alguien)",
+          "explanation": "se входит в местоименный глагол acercarse, él — неизвестный пират."
+        },
+        {
+          "es": "Ahora lo entiendo",
+          "translation": "Теперь я понимаю",
+          "base": "entender (algo)",
+          "explanation": "lo заменяет ситуацию: Карлос понял, что часы действительно обладают силой."
+        },
+        {
+          "es": "¿Dónde han oído hablar ustedes sobre mi reloj?",
+          "translation": "Откуда вы узнали о моих часах?",
+          "base": "oír hablar de/sobre (algo)",
+          "explanation": "ustedes — вежливое множественное обращение к Карлосу и Сусане; mi — Эрика."
+        }
+      ]
+    },
+    {
+      "title": "Откуда взялись необычные часы",
+      "es": "Eric anduvo por la arena, pensativo. Miró el reloj y dijo:\n–Este reloj es mío, pero no lo fabriqué yo. Lo encontré en un tesoro de otro pirata.\n–¿Otro pirata? –dijo Carlos.\n–Sí, no sé quién era. Nadie lo sabe.\nCarlos entendió entonces que Eric el Kraken solo había encontrado el reloj. No sabía cómo funcionaba. Eric tampoco sabía por qué el reloj tenía esos poderes extraños.\nCarlos le dijo al pirata:\n–Eric, ¿sabe cómo funciona el reloj?\n–Por supuesto que sí –respondió enfadado.",
+      "ru": "Эрик задумчиво шёл по песку. Он посмотрел на часы и сказал:\n— Эти часы мои, но я их не изготавливал. Я нашёл их среди сокровищ другого пирата.\n— Другого пирата? — переспросил Карлос.\n— Да, я не знаю, кто он был. Никто не знает.\nТут Карлос понял, что Эрик Кракен лишь нашёл часы. Он не знал, как они работают. И Эрик тоже не понимал, почему у часов такая необычная сила.\nКарлос спросил пирата:\n— Эрик, вы знаете, как работают эти часы?\n— Конечно, знаю, — сердито ответил тот.",
+      "notes": [
+        {
+          "term": "la arena",
+          "es": [
+            "arena"
+          ],
+          "ru": [
+            "песку"
+          ],
+          "explanation": "песок; por la arena — по песку."
+        },
+        {
+          "term": "pensativo",
+          "es": [
+            "pensativo"
+          ],
+          "ru": [
+            "задумчиво"
+          ],
+          "explanation": "погружённый в мысли; pensativo — прилагательное, по-русски здесь естественнее наречие."
+        },
+        {
+          "term": "fabricar",
+          "es": [
+            "fabriqué"
+          ],
+          "ru": [
+            "изготавливал"
+          ],
+          "explanation": "изготовлять, производить; fabriqué — форма прошедшего времени от fabricar."
+        },
+        {
+          "term": "el tesoro",
+          "es": [
+            "tesoro"
+          ],
+          "ru": [
+            "сокровищ"
+          ],
+          "explanation": "сокровище; здесь находка из пиратского клада."
+        },
+        {
+          "term": "enfadado",
+          "es": [
+            "enfadado"
+          ],
+          "ru": [
+            "сердито"
+          ],
+          "explanation": "сердитый, рассерженный; слово особенно распространено в Испании."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "no lo fabriqué yo",
+          "translation": "я их не изготавливал",
+          "base": "fabricar (algo)",
+          "explanation": "lo — el reloj, одни часы в единственном числе по-испански; yo подчёркивает, что Эрик не автор механизма."
+        },
+        {
+          "es": "Lo encontré",
+          "translation": "Я нашёл их",
+          "base": "encontrar (algo)",
+          "explanation": "lo — те же часы. В русском слове «часы» множественное число, поэтому «их»."
+        },
+        {
+          "es": "Carlos le dijo al pirata",
+          "translation": "Карлос спросил пирата",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "le = Эрику; al pirata уточняет адресата, один человек, не два."
+        }
+      ]
+    },
+    {
+      "title": "Мир будущего глазами Эрика",
+      "es": "Entonces miró a Carlos de nuevo y dijo:\n–A veces, lo tengo en mi mano, y me transporta al futuro, tal y como ha ocurrido aquí. Minutos después, lo tengo en mi mano y vuelvo a mi época. Ahora déjenme solo. Es la hora de volver de nuevo al pasado.\n–¿Y para qué viene aquí?\n–Me gusta ver cómo han cambiado las cosas. ¡Ya no hay piratas en el Caribe! ¡Hay edificios muy altos! ¿Sabe que incluso hay máquinas voladoras? ¡Increíble!\nCarlos y Susana sonrieron. El pirata no estaba acostumbrado al mundo moderno. Parecía estar un poco loco.\nEric miró el reloj de nuevo y dijo:\n–Ahora, ¡déjenme! En pocos segundos volveré a mi época. Mi época y lugar de hace cientos de años.",
+      "ru": "Затем он снова посмотрел на Карлоса и сказал:\n— Иногда я держу их в руке, и они переносят меня в будущее — именно так, как случилось здесь. Через несколько минут я снова беру их в руку и возвращаюсь в своё время. А теперь оставьте меня одного. Пора возвращаться в прошлое.\n— А зачем вы сюда приходите?\n— Мне нравится смотреть, как всё изменилось. В Карибском море больше нет пиратов! Здесь очень высокие здания! Знаете, тут даже есть летающие машины! Невероятно!\nКарлос и Сусана улыбнулись. Пират не привык к современному миру. Он казался немного сумасшедшим.\nЭрик снова посмотрел на часы и сказал:\n— А теперь оставьте меня! Через несколько секунд я вернусь в своё время. Туда, где я жил сотни лет назад.",
+      "notes": [
+        {
+          "term": "transportar a (alguien) al futuro",
+          "es": [
+            "me transporta al futuro"
+          ],
+          "ru": [
+            "переносят меня в будущее"
+          ],
+          "explanation": "перемещать кого-либо в будущее. me — объект, которого переносят; sujeto — часы."
+        },
+        {
+          "term": "tal y como",
+          "es": [
+            "tal y como"
+          ],
+          "ru": [
+            "именно так"
+          ],
+          "explanation": "точно так, как; вводит сравнение с уже произошедшим."
+        },
+        {
+          "term": "la máquina voladora",
+          "es": [
+            "máquinas voladoras"
+          ],
+          "ru": [
+            "летающие машины"
+          ],
+          "explanation": "буквально «летающие машины»; так пират, не знающий самолётов, описывает авиацию."
+        },
+        {
+          "term": "estar acostumbrado a (algo)",
+          "es": [
+            "no estaba acostumbrado"
+          ],
+          "ru": [
+            "не привык"
+          ],
+          "explanation": "быть привычным к чему-либо; привычный оборот estar acostumbrado a + существительное или инфинитив."
+        },
+        {
+          "term": "en pocos segundos",
+          "es": [
+            "En pocos segundos"
+          ],
+          "ru": [
+            "Через несколько секунд"
+          ],
+          "explanation": "спустя всего несколько секунд."
+        },
+        {
+          "term": "hace cientos de años",
+          "es": [
+            "hace cientos de años"
+          ],
+          "ru": [
+            "сотни лет назад"
+          ],
+          "explanation": "сотни лет тому назад; hace указывает, сколько времени прошло."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "lo tengo en mi mano",
+          "translation": "я держу их в руке",
+          "base": "tener (algo)",
+          "explanation": "lo = reloj; mi = Эрик. В испанском существительное reloj в единственном числе."
+        },
+        {
+          "es": "me transporta al futuro",
+          "translation": "переносят меня в будущее",
+          "base": "transportar a (alguien) a (un lugar)",
+          "explanation": "me = Эрика, прямое дополнение; субъект «часы» по-испански el reloj."
+        },
+        {
+          "es": "déjenme solo",
+          "translation": "оставьте меня одного",
+          "base": "dejar a (alguien) + adjetivo",
+          "explanation": "me = Эрик; императив ustedes déjen + me, при присоединении местоимения ставится ударение."
+        }
+      ]
+    },
+    {
+      "title": "Неожиданное предложение",
+      "es": "Carlos y Susana se miraron. Hablaron entre ellos.\n–¿Qué piensas, Susana?\n–¿Qué pienso, dices?\n–Sí. ¿Quieres ir al Caribe del siglo XVII?\nSusana se quedó pensativa.\n–¡Vamos! ¡Será divertido! –gritó Carlos.\n–De acuerdo. ¡Vamos! –dijo ella finalmente.\nCarlos y Susana se acercaron a Eric el Kraken y le dijeron:\n–Queremos ir con usted.\n–No –dijo Eric.\n–¿Qué quiere decir con «no»? –preguntó Carlos.\n–Quiero decir… «no» –dijo Eric con un movimiento de su mano.\n–Pero nosotros también queremos ver cómo han cambiado las cosas. Queremos ver cómo eran antes las cosas. Igual que usted quiere ver cómo son las cosas ahora.\nDe repente, Eric el Kraken los miró fijamente.\n–Esperen. De acuerdo. Vendrán conmigo. Puede que tenga una tarea para ustedes. ¿De acuerdo?\n–De acuerdo –respondió Carlos–. Entonces, ¿funcionará si los tres tocamos el reloj?\n–Funcionará. Solo tienen que poner sus manos en el reloj. ¡Deprisa!",
+      "ru": "Карлос и Сусана переглянулись и заговорили между собой.\n— Что думаешь, Сусана?\n— Что я думаю, спрашиваешь?\n— Да. Хочешь отправиться в Карибское море XVII века?\nСусана задумалась.\n— Давай! Будет весело! — воскликнул Карлос.\n— Ладно. Поехали! — наконец согласилась она.\nКарлос и Сусана подошли к Эрику Кракену и сказали:\n— Мы хотим отправиться с вами.\n— Нет, — ответил Эрик.\n— Что значит «нет»? — спросил Карлос.\n— Это значит… «нет», — сказал Эрик, махнув рукой.\n— Но мы тоже хотим увидеть, как всё изменилось. Хотим посмотреть, какими вещи были раньше, точно так же, как вы хотите видеть их сейчас.\nВдруг Эрик Кракен пристально посмотрел на них.\n— Подождите. Хорошо. Вы пойдёте со мной. Возможно, у меня найдётся для вас задание. Согласны?\n— Согласны, — ответил Карлос. — Значит, это сработает, если мы все трое прикоснёмся к часам?\n— Сработает. Вам нужно только положить на них руки. Быстрее!",
+      "notes": [
+        {
+          "term": "con un movimiento de la mano",
+          "es": [
+            "con un movimiento de su mano"
+          ],
+          "ru": [
+            "махнув рукой"
+          ],
+          "explanation": "жестом руки; буквально «одним движением руки»."
+        },
+        {
+          "term": "puede que + subjuntivo",
+          "es": [
+            "Puede que tenga"
+          ],
+          "ru": [
+            "Возможно, у меня"
+          ],
+          "explanation": "возможно, что…; после puede que здесь обязательно subjuntivo tenga."
+        },
+        {
+          "term": "tocar (algo)",
+          "es": [
+            "tocamos"
+          ],
+          "ru": [
+            "прикоснёмся"
+          ],
+          "explanation": "прикасаться к чему-либо; tocar в этом контексте не «играть на инструменте»."
+        },
+        {
+          "term": "deprisa",
+          "es": [
+            "¡Deprisa!"
+          ],
+          "ru": [
+            "Быстрее!"
+          ],
+          "explanation": "быстро, поспешно; здесь приказ поторопиться."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Carlos y Susana se miraron",
+          "translation": "Карлос и Сусана переглянулись",
+          "base": "mirarse (recíproco)",
+          "explanation": "se взаимное: Карлос посмотрел на Сусану, а она на него."
+        },
+        {
+          "es": "Susana se quedó pensativa",
+          "translation": "Сусана задумалась",
+          "base": "quedarse + adjetivo",
+          "explanation": "se выражает изменение состояния, не действие над самой собой."
+        },
+        {
+          "es": "Eric el Kraken los miró fijamente",
+          "translation": "Эрик Кракен пристально посмотрел на них",
+          "base": "mirar a (alguien)",
+          "explanation": "los = Карлос и Сусана вместе, прямое дополнение."
+        },
+        {
+          "es": "Vendrán conmigo",
+          "translation": "Вы пойдёте со мной",
+          "base": "venir con (alguien)",
+          "explanation": "conmigo = con + mí; «со мной» означает с Эриком."
+        },
+        {
+          "es": "¿funcionará si los tres tocamos el reloj?",
+          "translation": "это сработает, если мы все трое прикоснёмся к часам?",
+          "base": "tocar (algo)",
+          "explanation": "los tres = Эрик, Карлос и Сусана; el reloj — объект прикосновения."
+        }
+      ]
+    },
+    {
+      "title": "В лагере карибских пиратов",
+      "es": "Los tres tocaron el reloj. De repente, fueron transportados al Caribe del siglo XVII. La noche se convirtió en día y de repente, estaban en un campamento pirata. Carlos y Susana soltaron el reloj. Varios piratas los miraban. Uno de ellos, de piel morena y pelo largo, se acercó a Eric el Kraken.\n–¡Buenos días, capitán! ¡Por fin ha vuelto!\nEl hombre se presentó como Frank. Y después le dijo a su capitán:\n–¿Y ha traído a gente con usted?\nEric el Kraken sonrió y miró a su alrededor.\n–¡Escuchen! Les voy a presentar a…\nEric el Kraken miró a sus invitados y les preguntó:\n–¿Cómo se llaman ustedes?\n–Carlos y Susana –respondieron.\n–¡Eso es! ¡Hombres! ¡Les voy a presentar a Carlos y a Susana!\nLos piratas no prestaron mucha atención. Estaban acostumbrados a cosas extrañas que ocurrían con el reloj.",
+      "ru": "Все трое прикоснулись к часам. Вдруг их перенесло в Карибское море XVII века. Ночь превратилась в день, и внезапно они очутились в пиратском лагере. Карлос и Сусана отпустили часы. Несколько пиратов смотрели на них. Один из них, смуглый и длинноволосый, подошёл к Эрику Кракену.\n— Доброе утро, капитан! Наконец-то вы вернулись!\nМужчина представился Фрэнком. Затем он спросил своего капитана:\n— Вы привели с собой людей?\nЭрик Кракен улыбнулся и огляделся.\n— Слушайте! Сейчас я представлю вам…\nОн посмотрел на гостей и спросил:\n— Как вас зовут?\n— Карлос и Сусана, — ответили они.\n— Вот именно! Парни! Представляю вам Карлоса и Сусану!\nПираты почти не обратили на это внимания. Они уже привыкли к странностям, происходившим из-за часов.",
+      "notes": [
+        {
+          "term": "convertirse en (algo)",
+          "es": [
+            "se convirtió en"
+          ],
+          "ru": [
+            "превратилась в"
+          ],
+          "explanation": "превращаться во что-либо; ночь превратилась в день."
+        },
+        {
+          "term": "el campamento",
+          "es": [
+            "campamento"
+          ],
+          "ru": [
+            "лагере"
+          ],
+          "explanation": "лагерь, временное поселение."
+        },
+        {
+          "term": "presentarse como (alguien)",
+          "es": [
+            "se presentó como"
+          ],
+          "ru": [
+            "представился"
+          ],
+          "explanation": "представиться кем-либо или под определённым именем."
+        },
+        {
+          "term": "el invitado",
+          "es": [
+            "invitados"
+          ],
+          "ru": [
+            "гостей"
+          ],
+          "explanation": "приглашённый человек, гость."
+        },
+        {
+          "term": "prestar atención",
+          "es": [
+            "prestaron mucha atención"
+          ],
+          "ru": [
+            "обратили на это внимания"
+          ],
+          "explanation": "обращать внимание; prestar буквально «одолжить», но в этой конструкции означает «уделить»."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "fueron transportados",
+          "translation": "их перенесло",
+          "base": "ser + participio (voz pasiva)",
+          "explanation": "страдательный залог: все трое подверглись переносу; не означает, что они кого-то перенесли."
+        },
+        {
+          "es": "Varios piratas los miraban",
+          "translation": "Несколько пиратов смотрели на них",
+          "base": "mirar a (alguien)",
+          "explanation": "los = Карлос и Сусана, незнакомые пиратам гости; Эрик уже известен своей команде."
+        },
+        {
+          "es": "El hombre se presentó como Frank",
+          "translation": "Мужчина представился Фрэнком",
+          "base": "presentarse como (alguien)",
+          "explanation": "se — часть глагола представления; Франк называет своё имя."
+        },
+        {
+          "es": "Les voy a presentar a Carlos y a Susana",
+          "translation": "Представляю вам Карлоса и Сусану",
+          "base": "presentar (a alguien) a (alguien)",
+          "explanation": "les = пиратам (адресаты), Carlos y Susana = люди, которых представляют; не путать с людьми, которым представляют."
+        }
+      ]
+    },
+    {
+      "title": "О какой битве идёт речь?",
+      "es": "–Sí, Carlos y Susana –continuó Eric–. Ellos nos van a ayudar a ganar.\nEntonces los hombres sí prestaron atención. Hubo una ovación.\n–¿Ganar? –dijo Carlos. ¿Ganar qué?\nEl Kraken miró a la pareja.\n–Nos van a ayudar a ganar la batalla.\n–¿Batalla? –gritó Susana–. ¿Qué batalla?\n–La batalla contra los barcos españoles.\n–¿Qué? ¡No había dicho nada de eso!",
+      "ru": "— Да, Карлос и Сусана, — продолжал Эрик. — Они помогут нам победить.\nВот тут мужчины обратили внимание. Раздались одобрительные возгласы.\n— Победить? — удивился Карлос. — Что победить?\nКракен посмотрел на пару.\n— Они помогут нам выиграть битву.\n— Битву? — закричала Сусана. — Какую битву?\n— Битву против испанских кораблей.\n— Что? Вы же ничего об этом не говорили!",
+      "notes": [
+        {
+          "term": "la ovación",
+          "es": [
+            "ovación"
+          ],
+          "ru": [
+            "одобрительные возгласы"
+          ],
+          "explanation": "бурные одобрительные возгласы, овация."
+        },
+        {
+          "term": "la batalla",
+          "es": [
+            "batalla"
+          ],
+          "ru": [
+            "битву"
+          ],
+          "explanation": "битва, сражение. В этой главе речь о морском бою."
+        },
+        {
+          "term": "sí (усилительная частица)",
+          "es": [
+            "sí prestaron atención"
+          ],
+          "ru": [
+            "Вот тут мужчины обратили внимание"
+          ],
+          "explanation": "подчёркивает контраст: раньше не обращали внимания, а теперь всё-таки обратили. В исходном PDF ошибочно написано si без ударения."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Ellos nos van a ayudar a ganar",
+          "translation": "Они помогут нам победить",
+          "base": "ayudar a (alguien) a + infinitivo",
+          "explanation": "ellos = Карлос и Сусана; nos = Эрик и его пираты, получатели помощи."
+        },
+        {
+          "es": "Nos van a ayudar a ganar la batalla",
+          "translation": "Они помогут нам выиграть битву",
+          "base": "ayudar a (alguien) a + infinitivo",
+          "explanation": "nos снова команда пиратов; субъект — гости из будущего."
+        }
+      ]
+    },
+    {
+      "title": "Предупреждение Фрэнка",
+      "es": "Eric el Kraken se alejó. Fue a su tienda. Carlos y Susana miraron hacia el mar. Estaba lleno de barcos piratas. Se quedaron solos con Frank.\n–Lo siento –dijo Frank.\n–¿Por qué lo siente? –le preguntó Susana.\n–Porque Eric está loco. Su mente está llena de odio.\n–¿Loco?\n–Loco –hizo una pausa–. Completamente loco.\n–Ya veo –respondió Carlos–. ¿Y por qué dice eso?\n–Porque piensa que les puede usar a ustedes.\n–¿Usarnos?\n–Usarles para detener el avance de los barcos españoles. Los barcos españoles conocen el reloj. Quieren conseguirlo a toda costa. Por eso nos atacan cada noche. Eric tiene que detenerlos. Piensa que ustedes pueden ayudarnos.",
+      "ru": "Эрик Кракен отошёл и направился в свою палатку. Карлос и Сусана посмотрели на море: оно было полно пиратских кораблей. Они остались с Фрэнком одни.\n— Мне жаль, — сказал Фрэнк.\n— Почему вам жаль? — спросила Сусана.\n— Потому что Эрик сумасшедший. Его душа полна ненависти.\n— Сумасшедший?\n— Сумасшедший, — он помолчал. — Совершенно сумасшедший.\n— Понятно, — ответил Карлос. — А почему вы так говорите?\n— Потому что он думает, что может вас использовать.\n— Использовать нас?\n— Использовать вас, чтобы остановить наступление испанских кораблей. Испанцы знают о часах и хотят заполучить их любой ценой. Поэтому они нападают на нас каждую ночь. Эрику нужно их остановить. Он думает, что вы сможете нам помочь.",
+      "notes": [
+        {
+          "term": "la tienda (de campaña)",
+          "es": [
+            "tienda"
+          ],
+          "ru": [
+            "палатку"
+          ],
+          "explanation": "в этом контексте шатёр, палатка, а не магазин. Обычно: tienda de campaña."
+        },
+        {
+          "term": "el odio",
+          "es": [
+            "odio"
+          ],
+          "ru": [
+            "ненависти"
+          ],
+          "explanation": "ненависть; estar lleno de odio — быть полным ненависти."
+        },
+        {
+          "term": "hacer una pausa",
+          "es": [
+            "hizo una pausa"
+          ],
+          "ru": [
+            "он помолчал"
+          ],
+          "explanation": "сделать паузу в речи."
+        },
+        {
+          "term": "el avance",
+          "es": [
+            "avance"
+          ],
+          "ru": [
+            "наступление"
+          ],
+          "explanation": "продвижение, наступление; el avance de los barcos — наступление кораблей."
+        },
+        {
+          "term": "a toda costa",
+          "es": [
+            "a toda costa"
+          ],
+          "ru": [
+            "любой ценой"
+          ],
+          "explanation": "во что бы то ни стало, любой ценой."
+        },
+        {
+          "term": "detener (algo / a alguien)",
+          "es": [
+            "detenerlos"
+          ],
+          "ru": [
+            "остановить"
+          ],
+          "explanation": "останавливать кого-либо/что-либо; detenerlos — остановить их, испанские корабли."
+        },
+        {
+          "term": "atacar",
+          "es": [
+            "atacan"
+          ],
+          "ru": [
+            "нападают"
+          ],
+          "explanation": "атаковать, нападать."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Se quedaron solos con Frank",
+          "translation": "Они остались с Фрэнком одни",
+          "base": "quedarse + adjetivo / estado",
+          "explanation": "se — изменение состояния, остались одни, а не ушли сами от себя."
+        },
+        {
+          "es": "Lo siento",
+          "translation": "Мне жаль",
+          "base": "sentir (algo)",
+          "explanation": "lo — обстоятельства в целом; «извините / мне жаль» как устойчивая фраза."
+        },
+        {
+          "es": "les puede usar a ustedes",
+          "translation": "может вас использовать",
+          "base": "usar a (alguien)",
+          "explanation": "les = Карлос и Сусана, прямое дополнение с leísmo; нейтральное нормативное употребление — los puede usar / puede usarlos."
+        },
+        {
+          "es": "Quieren conseguirlo a toda costa",
+          "translation": "хотят заполучить их любой ценой",
+          "base": "conseguir (algo)",
+          "explanation": "lo = el reloj, единственное число по-испански, хотя «часы» — множественное по-русски."
+        },
+        {
+          "es": "Por eso nos atacan cada noche",
+          "translation": "Поэтому они нападают на нас каждую ночь",
+          "base": "atacar a (alguien)",
+          "explanation": "nos = люди из команды Эрика, а не Карлос и Сусана."
+        }
+      ]
+    },
+    {
+      "title": "Опасность остаться в прошлом",
+      "es": "Se oían ruidos de batalla a lo lejos. Los ingleses se estaban acercando. Carlos dijo:\n–¿Cómo quieren que les ayudemos?\n–Ustedes saben lo que va a pasar porque viven en el futuro.\n–No, no, no. No sabemos nada de esta batalla. ¡El reloj es una leyenda!\nFrank se entristeció.\n–Eric se sentirá decepcionado. Está obsesionado con el reloj. Hará lo que sea para conservarlo. Una vez que sepa que ustedes no pueden ayudarnos, no les necesitará más. Las cosas se pueden poner feas.\nSusana y Carlos se miraron atemorizados.\n–¿Y qué podemos hacer? –preguntó Susana.\n–Tienen que robar el reloj a nuestro capitán. Si no tiene el reloj, no habrá batalla.",
+      "ru": "Издалека доносились звуки боя. Англичане приближались. Карлос спросил:\n— Как вы хотите, чтобы мы вам помогли?\n— Вы знаете, что случится, ведь вы живёте в будущем.\n— Нет, нет, нет. Мы ничего не знаем об этой битве! Часы — это всего лишь легенда!\nФрэнк опечалился.\n— Эрик будет разочарован. Он одержим этими часами. Он сделает что угодно, лишь бы сохранить их. Когда он поймёт, что вы не можете нам помочь, вы ему больше не понадобитесь. Дело может принять дурной оборот.\nСусана и Карлос испуганно переглянулись.\n— И что же нам делать? — спросила Сусана.\n— Вам нужно украсть часы у нашего капитана. Если у него не будет часов, не будет и битвы.",
+      "notes": [
+        {
+          "term": "a lo lejos",
+          "es": [
+            "a lo lejos"
+          ],
+          "ru": [
+            "Издалека"
+          ],
+          "explanation": "вдалеке, издалека; выражение расстояния."
+        },
+        {
+          "term": "los ingleses (оговорка оригинала)",
+          "es": [
+            "Los ingleses"
+          ],
+          "ru": [
+            "Англичане"
+          ],
+          "explanation": "в данном предложении издания названы англичане, но предыдущие и следующие реплики говорят об испанских кораблях. Это сюжетная нестыковка исходника, не новый участник боя."
+        },
+        {
+          "term": "entristecerse",
+          "es": [
+            "se entristeció"
+          ],
+          "ru": [
+            "опечалился"
+          ],
+          "explanation": "опечалиться; изменение эмоционального состояния, se — часть местоименного глагола."
+        },
+        {
+          "term": "decepcionado",
+          "es": [
+            "decepcionado"
+          ],
+          "ru": [
+            "разочарован"
+          ],
+          "explanation": "разочарованный, испытывающий разочарование."
+        },
+        {
+          "term": "estar obsesionado con (algo)",
+          "es": [
+            "Está obsesionado con el reloj"
+          ],
+          "ru": [
+            "одержим этими часами"
+          ],
+          "explanation": "быть одержимым чем-либо; estar obsesionado con."
+        },
+        {
+          "term": "hacer lo que sea",
+          "es": [
+            "Hará lo que sea"
+          ],
+          "ru": [
+            "Он сделает что угодно"
+          ],
+          "explanation": "быть готовым на всё; sea — subjuntivo от ser в устойчивом обороте."
+        },
+        {
+          "term": "conservar",
+          "es": [
+            "conservarlo"
+          ],
+          "ru": [
+            "сохранить их"
+          ],
+          "explanation": "сохранять, беречь, не отдавать; -lo относится к часам (el reloj)."
+        },
+        {
+          "term": "una vez que + subjuntivo",
+          "es": [
+            "Una vez que sepa"
+          ],
+          "ru": [
+            "Когда он поймёт"
+          ],
+          "explanation": "когда / как только; sepa в subjuntivo обозначает ещё не наступившее событие."
+        },
+        {
+          "term": "ponerse feas las cosas",
+          "es": [
+            "Las cosas se pueden poner feas"
+          ],
+          "ru": [
+            "Дело может принять дурной оборот"
+          ],
+          "explanation": "разговорное выражение: ситуация может стать неприятной или опасной."
+        },
+        {
+          "term": "atemorizado",
+          "es": [
+            "atemorizados"
+          ],
+          "ru": [
+            "испуганно"
+          ],
+          "explanation": "испуганный, охваченный страхом."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Frank se entristeció",
+          "translation": "Фрэнк опечалился",
+          "base": "entristecerse",
+          "explanation": "se указывает на состояние Фрэнка; оно не равно отдельному «себя»."
+        },
+        {
+          "es": "no les necesitará más",
+          "translation": "вы ему больше не понадобитесь",
+          "base": "necesitar a (alguien)",
+          "explanation": "les = Карлос и Сусана; вариант личного leísmo (в нейтральной норме «no los necesitará»). Подлежащее — Эрик."
+        },
+        {
+          "es": "Susana y Carlos se miraron atemorizados",
+          "translation": "Сусана и Карлос испуганно переглянулись",
+          "base": "mirarse (recíproco)",
+          "explanation": "se взаимное: оба посмотрели друг на друга; atemorizados относится к обоим."
+        },
+        {
+          "es": "robar el reloj a nuestro capitán",
+          "translation": "украсть часы у нашего капитана",
+          "base": "robar (algo) a (alguien)",
+          "explanation": "el reloj — что украсть; a nuestro capitán — у кого. Здесь нет прямого местоимения в этой реплике, но модель поможет различить два дополнения."
+        }
+      ]
+    },
+    {
+      "title": "План на берегу моря",
+      "es": "–De acuerdo. ¿Cuándo?\n–Esta tarde. Esta tarde habrá una gran batalla. Eric el Kraken va a enviar muchos barcos a la guerra. Ustedes tienen que llevarse el reloj y no volver nunca aquí.\nFrank se fue a la tienda de Eric y ellos se sentaron en la playa.\n–¿Qué podemos hacer? Solo soy un relojero –dijo Carlos–. Tú eres una guardia de seguridad. ¿Cómo podemos robarle algo a un pirata?\n–Tenemos que buscar una forma de hacerlo –dijo Susana–. Espera. ¡Tengo una idea!",
+      "ru": "— Хорошо. Когда?\n— Сегодня днём. Сегодня днём состоится большая битва. Эрик Кракен отправит в бой много кораблей. Вам нужно забрать часы с собой и никогда сюда не возвращаться.\nФрэнк отправился в палатку Эрика, а Карлос и Сусана сели на пляже.\n— Что же нам делать? Я всего лишь часовщик, — сказал Карлос. — А ты сотрудница службы безопасности. Как нам украсть что-то у пирата?\n— Нужно найти способ это сделать, — ответила Сусана. — Погоди. У меня есть идея!",
+      "notes": [
+        {
+          "term": "enviar (algo)",
+          "es": [
+            "enviar"
+          ],
+          "ru": [
+            "отправит"
+          ],
+          "explanation": "посылать, отправлять; enviar barcos a la guerra — отправлять корабли в бой."
+        },
+        {
+          "term": "llevarse (algo)",
+          "es": [
+            "llevarse el reloj"
+          ],
+          "ru": [
+            "забрать часы с собой"
+          ],
+          "explanation": "унести, взять с собой; se добавляет значение удаления предмета с места."
+        },
+        {
+          "term": "el/la guardia de seguridad",
+          "es": [
+            "una guardia de seguridad"
+          ],
+          "ru": [
+            "сотрудница службы безопасности"
+          ],
+          "explanation": "охранник / сотрудник службы безопасности. Guardia — существительное общего рода: una guardia — женщина."
+        },
+        {
+          "term": "buscar una forma de + infinitivo",
+          "es": [
+            "buscar una forma de hacerlo"
+          ],
+          "ru": [
+            "найти способ это сделать"
+          ],
+          "explanation": "искать способ что-либо сделать; de + инфинитив."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "llevarse el reloj",
+          "translation": "забрать часы с собой",
+          "base": "llevarse (algo)",
+          "explanation": "se входит в llevarse: не просто нести, а унести предмет оттуда."
+        },
+        {
+          "es": "robarle algo a un pirata",
+          "translation": "украсть что-то у пирата",
+          "base": "robar (algo) a (alguien)",
+          "explanation": "le = пирату, косвенное дополнение (пострадавший), algo = похищаемая вещь."
+        },
+        {
+          "es": "buscar una forma de hacerlo",
+          "translation": "найти способ это сделать",
+          "base": "hacer (algo)",
+          "explanation": "lo в hacerlo отсылает к задаче украсть часы у пирата."
+        }
+      ]
+    }
+  ],
   "source": {
     "file": "Short Stories in Spanish for Beginners — Olly Richards (1).pdf",
     "heading_page": 86
-  }
+  },
+  "exercises": [
+    {
+      "id": "chapter-2-comprehension",
+      "instruction": "Seleccione una única respuesta para cada pregunta.",
+      "source": {
+        "file": "Short Stories in Spanish for Beginners — Olly Richards (1).pdf",
+        "pdf_pages": [
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92
+        ],
+        "chapters": [
+          2
+        ],
+        "answer_key_page": 190,
+        "instruction": "Seleccione una única respuesta para cada pregunta."
+      },
+      "questions": [
+        {
+          "prompt": "El hombre que robó el reloj se llama ___.",
+          "options": [
+            "Carlos",
+            "Eric",
+            "Frank",
+            "Derek"
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "El poder del reloj es el siguiente: ___.",
+          "options": [
+            "viajar en el tiempo",
+            "viajar solo al siglo XVII",
+            "viajar solo al siglo XXI",
+            "viajar solo al signo XVI"
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "Eric viaja de nuevo ___.",
+          "options": [
+            "con Carlos",
+            "con Susana",
+            "con Carlos y Susana",
+            "él solo"
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "Eric quiere ___.",
+          "options": [
+            "ayuda para luchar contra los barcos españoles",
+            "escapar de los barcos italianos",
+            "quedarse a vivir con Carlos y Susana",
+            "viajar al siglo XVI"
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "Frank les dice a Carlos y a Susana que ___.",
+          "options": [
+            "vuelvan a su época",
+            "roben el reloj",
+            "ayuden en la batalla contra los barcos españoles",
+            "se alejen de Eric"
+          ],
+          "answer": 1
+        }
+      ]
+    }
+  ]
 }

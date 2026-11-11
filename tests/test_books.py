@@ -182,7 +182,7 @@ def test_olly_collection_has_one_parent_and_complete_contents():
     assert [len(b['chapter_catalog']) for b in books] == [4, 3, 3, 3, 3, 3, 3, 3]
     for book in books:
         expected = ([1, 2, 3, 4] if book['id'] == 'olly-richards-la-paella-loca' else
-                    [1, 2, 3] if book['id'] in {'olly-richards-la-criatura', 'olly-richards-el-caballero'} else [1])
+                    [1, 2, 3] if book['id'] in {'olly-richards-la-criatura', 'olly-richards-el-caballero', 'olly-richards-el-reloj'} else [1])
         assert [c['number'] for c in book['chapters']] == expected
         assert [c['status'] for c in book['chapter_catalog']] == (
             ['published'] * len(expected) + ['draft'] * (len(book['chapter_catalog']) - len(expected)))
@@ -194,6 +194,69 @@ def test_olly_collection_has_one_parent_and_complete_contents():
     assert sum(len(b.get('images', [])) for book in books for chapter in book['chapters']
                for b in chapter['blocks']) == 7
     assert sum(len(book.get('pending_illustrations', [])) for book in books) == 1
+
+def test_el_reloj_complete_chapters_source_notes_pronouns_and_quizzes():
+    """Fourth anthology story: strict source fidelity, teaching data, and complete printed quizzes."""
+    import hashlib
+    import re
+
+    book = next(b for b in load_books() if b['id'] == 'olly-richards-el-reloj')
+    assert book['vocabulary_min_level'] == 'A2'
+    assert [ch['title'] for ch in book['chapters']] == ['Leyenda', 'El Caribe', 'La batalla']
+    assert [ch['status'] for ch in book['chapters']] == ['published'] * 3
+    assert [len(ch['blocks']) for ch in book['chapters']] == [9, 9, 9]
+    expected = [
+        (2, 997, '749b8b2675d166765882ab015c45b78d2a628f1cf56814ca333044c5a33826b8',
+         50, 33, [1, 0, 2, 0, 1], 86, list(range(86, 93))),
+        (3, 1138, '1773b8e552bc6c404e488e3b8cf3c15886c6b357addd0be7a7df0903c2c582ad',
+         54, 30, [2, 1, 1, 3, 1], 93, list(range(93, 100))),
+    ]
+    learned = {note.get('term') for block in book['chapters'][0]['blocks']
+               for note in block['notes'] if isinstance(note, dict) and note.get('term')}
+    for chapter, (number, count, digest, n_notes, n_pronouns, answers, page, pdf_pages) in zip(
+            book['chapters'][1:], expected):
+        assert chapter['number'] == number
+        source = re.sub(r'\s+', ' ', ' '.join(b['es'] for b in chapter['blocks'])).strip()
+        assert len(source.split()) == count
+        assert hashlib.sha256(source.encode('utf-8')).hexdigest() == digest
+        assert chapter['source']['heading_page'] == page
+        assert all(50 <= len(block['es'].split()) <= 180 for block in chapter['blocks'])
+        assert all(block['ru'] and block['pronouns'] for block in chapter['blocks'])
+        assert sum(len(block['pronouns']) for block in chapter['blocks']) == n_pronouns
+        notes = [note for block in chapter['blocks'] for note in block['notes']]
+        assert len(notes) == n_notes
+        terms = {note['term'] for note in notes}
+        assert len(terms) == len(notes) and terms.isdisjoint(learned)
+        learned |= terms
+        for block in chapter['blocks']:
+            for note in block['notes']:
+                assert note['explanation'] and len(note['es']) >= 1 and len(note['ru']) >= 1
+                for lang in ('es', 'ru'):
+                    for mark in note[lang]:
+                        assert re.search(r'(?<!\w)' + re.escape(mark) + r'(?!\w)', block[lang], re.I), (
+                            number, block['title'], lang, note['term'], mark)
+            for pronoun in block['pronouns']:
+                assert pronoun['es'] in block['es'], (number, block['title'], pronoun['es'])
+                assert pronoun['translation'] and pronoun['explanation']
+        assert len(chapter['exercises']) == 1
+        exercise = chapter['exercises'][0]
+        assert exercise['source']['pdf_pages'] == pdf_pages
+        assert exercise['source']['chapters'] == [number]
+        assert exercise['source']['answer_key_page'] == 190
+        assert len(exercise['questions']) == 5
+        assert [len(q['options']) for q in exercise['questions']] == [4] * 5
+        assert [q['answer'] for q in exercise['questions']] == answers
+
+    ch2 = ' '.join(block['es'] for block in book['chapters'][1]['blocks'])
+    assert '¿Volver al siglo XVII?' in ch2 and 'al sigo XVII' not in ch2
+    assert 'los hombres sí prestaron atención' in ch2
+    assert 'Los ingleses se estaban acercando' in ch2
+    assert any('нестыковка' in note['explanation']
+               for block in book['chapters'][1]['blocks'] for note in block['notes'])
+    introduced = {note['term'] for chapter in book['chapters'][1:]
+                  for block in chapter['blocks'] for note in block['notes']}
+    assert not {'moreno', 'el reloj', 'el siglo', 'la leyenda'} & introduced
+
 
 def test_el_caballero_finished_chapters_source_notes_and_exercises():
     import hashlib
