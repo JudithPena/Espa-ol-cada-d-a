@@ -3,9 +3,10 @@ let G = null;
 const G_SESSION_KEY = "espanol-cada-dia.grammar-session.v1";
 const G_ATTEMPTS_KEY = "espanol-cada-dia.grammar-attempts.v1";
 const G_CHOICE_ORDER_VERSION = 2;
-const gHasLives = group => group.title !== 'Мини-проверка';
-const gErrorLimit = group => gHasLives(group) ? Math.max(3, Math.ceil(group.questions.length / 5)) : null;
-const gOutOfLives = (group, errors) => gHasLives(group) && errors >= gErrorLimit(group);
+// All grammar groups, including mini-checks, have exactly three lives.
+const gHasLives = _group => true;
+const gErrorLimit = _group => 3;
+const gOutOfLives = (_group, errors) => errors >= 3;
 function gAttempts() {
   try { const records=JSON.parse(store.get(G_ATTEMPTS_KEY) || '{}'); return records && typeof records==='object' && !Array.isArray(records) ? records : {}; }
   catch (_) { return {}; }
@@ -199,12 +200,9 @@ function gEnsureAttempt(unit, group) {
     gRefreshAttemptVersions(unit); attempt=gAttempt(unit,group);
   }
   if(attempt && attempt.limit!==gErrorLimit(group)) {
-    // Keep answered questions and mistakes when an older attempt gains lives.
-    if((!gHasLives(group) || (gErrorLimit(group)>(attempt.limit ?? 3) && !gOutOfLives(group,attempt.errors))) && ['failed','review'].includes(attempt.status)) {
-      attempt.status=group.questions.every((_,i)=>attempt.responses[i]?.checked) ? (attempt.errors?'correcting':'passed') : 'active'; delete attempt.reviewAt;
-      if(G.recovery===group.id) G.recovery=null;
-    }
-    attempt.limit=gErrorLimit(group);
+    // Never resurrect spent lives, discard completed progress, or change question ids.
+    attempt.limit=3;
+    if(!['passed','review'].includes(attempt.status) && gOutOfLives(group,attempt.errors)) attempt.status='failed';
     gStoreAttempt(unit,group,attempt);
   }
   if(G.attemptIds[group.id] !== attempt?.id || !attempt) {
@@ -219,7 +217,7 @@ function gEnsureAttempt(unit, group) {
     G.attemptIds[group.id]=attempt.id;
   }
   if(gEnsureChoiceOrders(group,attempt))gStoreAttempt(unit,group,attempt);
-  if(['failed','review'].includes(attempt.status)) G.recovery=group.id;
+  if(attempt.status==='review') G.recovery=group.id;
   return attempt;
 }
 function gFlushAttempt() {
@@ -240,11 +238,12 @@ function gTheorySections(unit, group) {
   return own>=0 ? [own] : group.theorySections || [0];
 }
 function gReviewTheory() {
-  const unit=gUnit(), group=gGroups(unit).find(g=>g.id===G.recovery);
+  const unit=gUnit(), group=gGroups(unit).find(g=>g.id===(G.recovery || G.steps[G.at]?.group));
   if(!group) return;
   const attempt=gAttempt(unit,group);
   if(attempt?.status!=='failed') return;
   attempt.status='review'; attempt.reviewAt=0;
+  G.recovery=group.id; // Only an explicit click opens the related rule.
   gStoreAttempt(unit,group,attempt); gSave(); render();
 }
 function gReviewMove(delta) {
@@ -263,8 +262,8 @@ function gCanBack() {
   return !G.ended && G.at>0;
 }
 function gRepeatExercise() {
-  const unit=gUnit(), group=gGroups(unit).find(g=>g.id===G.recovery), attempt=group && gAttempt(unit,group);
-  if(attempt?.status!=='review' || attempt.reviewAt!==gTheorySections(unit,group).length-1) return;
+  const unit=gUnit(), group=gGroups(unit).find(g=>g.id===(G.recovery || G.steps[G.at]?.group)), attempt=group && gAttempt(unit,group);
+  if(!attempt || (attempt.status!=='failed' && !(attempt.status==='review' && attempt.reviewAt===gTheorySections(unit,group).length-1))) return;
   const freshAttempt=gNewAttempt(group); gStoreAttempt(unit,group,freshAttempt);
   G.responses[group.id]={}; G.attemptIds[group.id]=freshAttempt.id;
   G.recovery=null; G.retry=false; G.ended=false;
@@ -403,6 +402,15 @@ function gStart(unitId, route = "all", resume = false) {
   else return;
   G.unitRevision=unit.revision || 1; G.attemptIds ||= {};
   gRefreshAttemptVersions(unit);
+  // Migrate sessions which used to force failed attempts to a separate screen.
+  if(G.recovery) {
+    const failed=gGroups(unit).find(g=>g.id===G.recovery), attempt=failed && gAttempt(unit,failed);
+    if(attempt?.status==='failed') {
+      const wrong=G.steps.filter(s=>s.group===failed.id && s.type==='question' && attempt.responses[s.qi]?.checked && !attempt.responses[s.qi]?.good);
+      if(wrong.length) G.at=G.steps.indexOf(wrong.at(-1));
+      G.recovery=null;
+    }
+  }
   view.grammar = unit.id; view.tab = "grammar"; S = null;
   gSave(); render();
 }
@@ -434,7 +442,10 @@ function gCheck() {
     if(attempt.responses[step.qi]?.correction?.checked) { G.responses[group.id]=attempt.responses; return; }
     response.checked=true; Object.assign(response,assessment);
     attempt.responses[step.qi].correction=response;
-    if(group.questions.every((_,i)=>attempt.responses[i]?.good || attempt.responses[i]?.correction?.good)) {
+    if(!response.good) {
+      attempt.errors++;
+      if(gOutOfLives(group,attempt.errors)) attempt.status='failed';
+    } else if(group.questions.every((_,i)=>attempt.responses[i]?.good || attempt.responses[i]?.correction?.good)) {
       attempt.status='passed'; gStoreAttempt(unit,group,attempt);
       gradeGrammar(unit,group,group.questions.map((_,i)=>attempt.responses[i].value));
     }
@@ -449,7 +460,7 @@ function gCheck() {
   Object.assign(response,assessment);
   attempt.responses[step.qi]=response;
   if(!response.good) attempt.errors++;
-  if(gOutOfLives(group,attempt.errors)) { attempt.status='failed'; G.recovery=group.id; }
+  if(gOutOfLives(group,attempt.errors)) attempt.status='failed';
   else if(group.questions.every((_,i)=>attempt.responses[i]?.checked)) attempt.status=attempt.errors?'correcting':'passed';
   G.responses[group.id]=attempt.responses;
   gStoreAttempt(unit,group,attempt);
@@ -552,6 +563,11 @@ function gGuided(q,response,group,qi) { return `<div class="gguided">${gGuidedCo
 function gMove(delta) {
   if(!G) return;
   if(G.recovery) return gReviewMove(delta);
+  const selected=G.steps[G.at];
+  if(selected?.type==='question') {
+    const group=gGroups(gUnit()).find(g=>g.id===selected.group);
+    if(group && gAttempt(gUnit(),group)?.status==='failed') return;
+  }
   if (delta < 0 && G.at === 0) return gExit();
   const step = G.steps[G.at];
   if (delta > 0 && step.type === "question" && !gResponse(step)?.checked) return;
@@ -608,7 +624,7 @@ function gSubmitGrammarForm(unit, group, values) {
     G.at=G.steps.findIndex(s=>s.group===group.id && s.qi===qi);
     const response=gResponse(G.steps[G.at]);
     if(!response.checked) { response.value=values[qi] || ''; gCheck(); }
-    if(G.recovery || !response.checked) break;
+    if(G.recovery || gAttempt(unit,group)?.status==='failed' || !response.checked) break;
   }
   if(!G.recovery && ['passed','correcting'].includes(gAttempt(unit,group)?.status)) gMove(1);
   gSave(); render();
@@ -781,7 +797,7 @@ function gIntro(group) {
   const visual = pictures.length ? `<div class="gintro-art" aria-hidden="true">${pictures.map(q => `<img src="${esc(q.image)}" alt="" width="384" height="384">`).join("")}</div>` : preview ? `<div class="gintro-demo"><span class="kicker">Образец</span><div class="gintro-source" lang="es">${gWorkedPreview(preview)}${preview.targetPrefix === "" ? "" : ` <span aria-hidden="true">→</span> ${esc(preview.targetPrefix ?? "la")}`}</div><div class="gintro-answer" lang="es">${esc(preview.answer)}<span aria-hidden="true">✓</span></div><span class="muted">${esc(preview.translation)}</span></div>` : group.introGroups ? grammarWordGroups(group.introGroups) : "";
   const choice = group.questions.every(q => q.options), modes=new Set(group.questions.map(q=>q.guidedGaps?'Выбор слов в пропусках':q.tiles?'Сборка фразы':q.options?'Выбор ответа':'Короткий ввод')), mixed=modes.size>1;
   const tip = preview?.tip || '';
-  return `<div class="gintro ${visual ? "has-visual" : ""}">${visual}<div class="gintro-copy"><div class="gintro-tags"><span>${group.questions.length} ${plural(group.questions.length,"задание","задания","заданий")}</span><span>${esc([...modes].join(' · '))}</span></div><p>${esc(group.instruction)}</p><p class="muted gintro-tip">После трёх ошибок повторим правило и начнём упражнение заново.</p>${modes.has('Сборка фразы') ? '<p class="muted gintro-tip">Нажимай на слова по порядку. Выбранное слово можно убрать нажатием.</p>' : mixed ? '<p class="muted gintro-tip">Часть ответов выбирай из вариантов, остальные вписывай самостоятельно.</p>' : tip ? `<p class="muted gintro-tip">${esc(tip)}</p>` : ""}</div>${group.family ? `<div class="gintro-family">${grammarFamily(group.family)}</div>` : ""}${group.example ? `<div class="gworked-example gintro-family"><small>${esc(group.example.label)}</small><b>${esc(group.example.es)}</b><small>${esc(group.example.ru)}</small></div>` : ""}</div>`;
+  return `<div class="gintro ${visual ? "has-visual" : ""}">${visual}<div class="gintro-copy"><div class="gintro-tags"><span>${group.questions.length} ${plural(group.questions.length,"задание","задания","заданий")}</span><span>${esc([...modes].join(' · '))}</span></div><p>${esc(group.instruction)}</p><p class="muted gintro-tip">У тебя три жизни. После третьей ошибки увидишь разбор этого вопроса и сам выберешь: повторить правило или упражнение.</p>${modes.has('Сборка фразы') ? '<p class="muted gintro-tip">Нажимай на слова по порядку. Выбранное слово можно убрать нажатием.</p>' : mixed ? '<p class="muted gintro-tip">Часть ответов выбирай из вариантов, остальные вписывай самостоятельно.</p>' : tip ? `<p class="muted gintro-tip">${esc(tip)}</p>` : ""}</div>${group.family ? `<div class="gintro-family">${grammarFamily(group.family)}</div>` : ""}${group.example ? `<div class="gworked-example gintro-family"><small>${esc(group.example.label)}</small><b>${esc(group.example.es)}</b><small>${esc(group.example.ru)}</small></div>` : ""}</div>`;
 }
 function gRatings(ratings) {
   if (!ratings) return "";
