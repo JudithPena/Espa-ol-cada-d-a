@@ -62,8 +62,7 @@ jobs:
       - name: Install site and real Chromium test dependencies
         run: |
           python -m pip install -r requirements.txt playwright
-          # Hosted runners already provide Chromium's core libraries; avoid flaky apt mirrors.
-          python -m playwright install chromium
+          python -m playwright install --with-deps chromium
       - name: Build the actual grammar website
         run: python -m espanol site
       - name: Run Chromium at 320, 390, 768, and 1280px
@@ -89,7 +88,7 @@ jobs:
 
   grammar-immediate-feedback-browser:
     if: github.event_name == 'pull_request' && (github.head_ref == 'fix/grammar-immediate-feedback-20261111' || github.head_ref == 'audit/grammar-schema-linter-20261111' || github.head_ref == 'audit/fable-stage3-recovered-20261111')
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
@@ -98,7 +97,8 @@ jobs:
       - name: Install dependencies and real Playwright Chromium
         run: |
           python -m pip install -r requirements.txt playwright
-          python -m playwright install --with-deps chromium
+          # Ubuntu 24.04 runners supply the shared libraries; skip flaky apt mirrors.
+          python -m playwright install chromium
       - name: Build local website without deploying
         run: python -m espanol site
       - name: Chromium regression (320, 390, 768, 1280px; 1, 7, 15, 38, 45)
