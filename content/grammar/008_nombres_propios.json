@@ -8,33 +8,46 @@
     {
       "title": "Говорим о человеке или обращаемся к нему",
       "paragraphs": [
-        "Когда говорим о человеке и называем его фамилию со словами вроде **`señor` — «сеньор» или `doctora` — «доктор»**, перед ними обычно нужен артикль. Если обращаемся к этому человеку напрямую, артикля нет.",
-        "Перед **обычным именем без фамилии**, а также перед **`don` и `doña`** в нейтральной речи артикль обычно не нужен: `Aquí vive don José` — здесь живёт дон Хосе."
+        "Когда **говорим о другом человеке**, со званиями `señor`, `señora`, `doctor`, `doctora` и фамилией обычно используем определённый артикль: `¿Está el doctor Rojo?` — «Доктор Рохо здесь?»; `La doctora Vega trabaja aquí` — «Доктор Вега работает здесь».",
+        "Когда **обращаемся к собеседнику**, артикля нет: `Buenos días, doctor Rojo` — «Доброе утро, доктор Рохо». Прямое обращение отделяется **запятой**: `Hola, doctora Vega`.",
+        "Перед обычным личным именем в нейтральной речи артикля обычно нет: `Elena vive aquí`. Перед `don`/`doña` + имя тоже нет: `Aquí vive doña Isabel`. В разговорной речи некоторых регионов артикль перед личным именем возможен, но в уроке используем нейтральный вариант."
       ],
       "wordGroups": [
         {
-          "title": "Рассказываем о человеке",
+          "title": "Говорим о человеке",
           "words": [
             [
-              "el señor Alonso",
-              "сеньор Алонсо"
+              "¿Está el doctor Rojo?",
+              "Доктор Рохо здесь?"
             ],
             [
-              "la doctora Castro",
-              "доктор Кастро"
+              "La doctora Vega trabaja aquí.",
+              "Здесь работает доктор Вега"
+            ],
+            [
+              "Las doctoras Castro y Ramírez",
+              "доктора Кастро и Рамирес (две женщины)"
             ]
           ]
         },
         {
-          "title": "Обращаемся к человеку",
+          "title": "Обращаемся или называем имя",
           "words": [
             [
-              "Buenos días, señor Alonso",
-              "Доброе утро, сеньор Алонсо"
+              "Buenos días, doctor Rojo.",
+              "Доброе утро, доктор Рохо."
             ],
             [
-              "Hola, Elena",
-              "Привет, Элена"
+              "Hola, doctora Vega.",
+              "Здравствуйте, доктор Вега."
+            ],
+            [
+              "Aquí vive doña Isabel.",
+              "Здесь живёт донья Исабель."
+            ],
+            [
+              "Elena trabaja aquí.",
+              "Элена работает здесь."
             ]
           ]
         }
@@ -42,45 +55,67 @@
       "check": {
         "id": "check-a",
         "title": "Мини-проверка",
-        "instruction": "∅ — ничего не вставляем.",
+        "instruction": "Выбери ответ по ситуации: рассказ о человеке или обращение к нему.",
         "questions": [
           {
-            "prompt": "Aquí trabaja ___ doctora Castro.",
+            "prompt": "En esta clínica trabaja ___ doctora Vega.",
             "answers": [
               "la"
             ],
-            "explain": "Рассказываем о докторе Кастро: la doctora Castro.",
             "options": [
-              "Без артикля",
-              "la"
+              "la",
+              "el",
+              "Без артикля"
             ],
-            "context": "Дополни предложение."
+            "explain": "`Doctora` обозначает конкретную женщину-врача, о которой рассказывают: `la doctora Vega`. При приветствии самой врача артикль не нужен.",
+            "context": "Коллега рассказывает, кто работает в клинике.",
+            "interaction": "gap-choice",
+            "sourceRef": "extra"
           },
           {
-            "prompt": "Buenos días, ___ doctor Rojo.",
+            "prompt": "Buenos días, ___ señor Alonso.",
             "answers": [
               "Без артикля"
             ],
-            "explain": "Прямое обращение: doctor Rojo без артикля.",
             "options": [
               "Без артикля",
-              "el"
+              "el",
+              "la"
             ],
-            "context": "Дополни предложение."
+            "explain": "Это прямое обращение к господину Алонсо: `Buenos días, señor Alonso`. Запятая выделяет обращение, артикля здесь нет.",
+            "context": "Посетитель приветствует господина Алонсо.",
+            "interaction": "gap-choice",
+            "sourceRef": "extra"
+          },
+          {
+            "prompt": "¿Какая пара различает вопрос о враче и приветствие?",
+            "answers": [
+              "¿Está el doctor Rojo? / Buenos días, doctor Rojo."
+            ],
+            "options": [
+              "¿Está el doctor Rojo? / Buenos días, doctor Rojo.",
+              "¿Está doctor Rojo? / Buenos días, el doctor Rojo.",
+              "¿Está la doctor Rojo? / Buenos días, la doctor Rojo."
+            ],
+            "explain": "В вопросе о третьем лице нужен `el doctor Rojo`, при личном приветствии — `doctor Rojo` без артикля. Запятая после приветствия отделяет обращение.",
+            "context": "Сначала ты ищешь врача, затем здороваешься с ним.",
+            "interaction": "choice",
+            "sourceRef": "extra"
           }
-        ]
+        ],
+        "revision": 2
       },
       "illustration": {
         "image": "art/theory-004-014/008a.webp",
         "alt": "Слева посетители говорят о враче. Справа один посетитель приветствует её напрямую.",
         "examples": [
           [
-            "Es **la doctora** Castro.",
-            "Это доктор Кастро. Говорим о ней."
+            "¿Está **el doctor** Rojo?",
+            "Спрашивают о докторе Рохо."
           ],
           [
-            "Buenos días, **doctora** Castro.",
-            "Доброе утро, доктор Кастро. Обращаемся к ней."
+            "Buenos días, **doctor** Rojo.",
+            "Обращаются непосредственно к врачу."
           ]
         ]
       },
@@ -89,41 +124,63 @@
     {
       "title": "Улицы, площади и здания",
       "paragraphs": [
-        "В названии места артикль обычно выбираем по слову **«улица», «площадь», «музей» и т. п.**, а не по имени, которое идёт дальше.",
-        "**Женский род:** `calle`, `plaza`, `avenida`. **Мужской:** `hotel`, `museo`, `teatro`, `paseo`."
+        "В связной речи с названиями **улиц, площадей, зданий** артикль выбираем по **опорному существительному**: `Estamos en la calle Alcalá` — «Мы на улице Алькала», но `Estamos en el teatro Real` — «Мы в театре Реаль». Название после него не определяет род.",
+        "Женский род: `la calle`, `la plaza`, `la avenida`. Мужской: `el hotel`, `el museo`, `el teatro`, `el hospital`, `el cine`. Во множественном числе: `las calles`, `las plazas`, `los museos`.",
+        "На вывеске или в **адресной строке** можно написать `Calle Mayor, 5` без артикля. В связном предложении обычно: `Vivo en la calle Mayor` — «Я живу на улице Майор». Это разные форматы."
       ],
       "wordGroups": [
         {
-          "title": "La",
+          "title": "Женский род",
           "words": [
             [
-              "la calle Mayor",
-              "улица Майор"
+              "la calle Alcalá",
+              "улица Алькала"
             ],
             [
-              "la plaza Real",
-              "Королевская площадь"
+              "la plaza Mayor",
+              "площадь Майор"
             ],
             [
               "la avenida de América",
               "проспект Америки"
+            ],
+            [
+              "las calles Mayor y Real",
+              "улицы Майор и Реаль"
             ]
           ]
         },
         {
-          "title": "El",
+          "title": "Мужской род",
           "words": [
             [
-              "el hotel Central",
-              "отель «Сентраль»"
+              "el teatro Real",
+              "театр Реаль"
             ],
             [
               "el museo Botero",
               "музей Ботеро"
             ],
             [
-              "el paseo del Parque",
-              "Парковый бульвар"
+              "el hotel Central",
+              "отель Сентраль"
+            ],
+            [
+              "los museos",
+              "музеи"
+            ]
+          ]
+        },
+        {
+          "title": "Адресная строка ≠ предложение",
+          "words": [
+            [
+              "Calle Mayor, 5",
+              "улица Майор, дом 5"
+            ],
+            [
+              "Vivo en la calle Mayor.",
+              "Я живу на улице Майор."
             ]
           ]
         }
@@ -131,47 +188,67 @@
       "check": {
         "id": "check-b",
         "title": "Мини-проверка",
-        "instruction": "∅ — ничего не вставляем.",
+        "instruction": "Выбери артикль или опорное слово: учитывай род и число.",
         "questions": [
           {
-            "prompt": "Vivo en ___ calle Mayor.",
+            "prompt": "Estamos en ___ plaza Mayor.",
             "answers": [
               "la"
             ],
-            "explain": "Calle — женский род: la calle Mayor.",
             "options": [
               "la",
               "el",
-              "Без артикля"
+              "las"
             ],
-            "context": "Дополни предложение."
+            "explain": "`Plaza` женского рода единственного числа, значит `en la plaza Mayor`. Название `Mayor` не влияет на артикль.",
+            "context": "Друг сообщает место встречи.",
+            "interaction": "gap-choice",
+            "sourceRef": "extra"
           },
           {
-            "prompt": "___ hotel Central está aquí.",
+            "prompt": "¿Какое слово определяет el в «el teatro Real»?",
             "answers": [
+              "teatro"
+            ],
+            "options": [
+              "teatro",
+              "Real",
+              "название города"
+            ],
+            "explain": "`Teatro` — мужской род единственного числа. `Real` часть названия, но род артикля выбирают по `teatro`.",
+            "context": "Найди опорное слово в названии здания.",
+            "interaction": "choice",
+            "sourceRef": "extra"
+          },
+          {
+            "prompt": "En la ciudad hay ___ museos.",
+            "answers": [
+              "los"
+            ],
+            "options": [
+              "los",
+              "las",
               "el"
             ],
-            "explain": "Hotel — мужской род: el hotel Central.",
-            "options": [
-              "Без артикля",
-              "el",
-              "la"
-            ],
-            "context": "Дополни предложение."
+            "explain": "`Museos` — мужской род множественного числа: `los museos`. Разные названия отдельных музеев не изменяют согласование.",
+            "context": "Говорят о нескольких музеях города.",
+            "interaction": "gap-choice",
+            "sourceRef": "extra"
           }
-        ]
+        ],
+        "revision": 2
       },
       "illustration": {
         "image": "art/theory-004-014/008b.webp",
         "alt": "Двое друзей с картой стоят на площади рядом с музеем и улицей.",
         "examples": [
           [
-            "**El museo** está en **la plaza**.",
-            "Музей находится на площади."
+            "Estamos en **la calle** Mayor.",
+            "Мы на улице Майор."
           ],
           [
-            "Vivo en **la calle** Mayor.",
-            "Живу на улице Майор."
+            "**El museo** está en **la plaza**.",
+            "Музей находится на площади."
           ]
         ]
       },
@@ -180,44 +257,57 @@
     {
       "title": "Географические названия",
       "paragraphs": [
-        "Большинство названий городов, стран и континентов употребляются **без артикля**: например, `Madrid`. В некоторых артикль — часть названия. Кроме примеров в карточках, запомни **`El Salvador`, `Los Ángeles`, `La Paz`**.",
-        "С названиями рек, горных цепей и групп островов обычно нужен артикль. Перед `lago` и `mar`: `el lago Titicaca`, `el mar Caribe`.",
-        "У ряда стран возможны оба варианта: **`India / la India`, `Perú / el Perú`, `Ecuador / el Ecuador`**. Оба принимаются в заданиях."
+        "Большинство привычных названий городов, стран и континентов употребляются **без артикля**: `Madrid`, `Cuba`, `Francia`, `Europa`. Например, `Vivo en Madrid` — «Я живу в Мадриде».",
+        "В названиях **`La Habana`, `El Salvador`, `Los Ángeles`, `El Cairo`, `La Paz`** артикль — **часть самого имени**. Его пишут с прописной буквы **и внутри предложения**: `Vivimos en La Habana`, `Trabaja en El Salvador`.",
+        "Перед географическими объектами бывает **обычный артикль**: `el lago Titicaca` (по слову `lago`), `el Amazonas` (река), `los Pirineos` (горы). В названии региона `la Mancha` артикль пишется со строчной.",
+        "У отдельных стран возможны обе формы: `Perú / el Perú`, `Argentina / la Argentina`, `Ecuador / el Ecuador`, `India / la India`. Здесь артикль **не часть имени** и пишется со строчной в середине фразы. Для Индии чаще рекомендуют `la India`, но `India` тоже нормативно."
       ],
       "wordGroups": [
         {
-          "title": "Без артикля",
+          "title": "Обычно без артикля",
           "words": [
             [
-              "Cuba",
-              "Куба"
+              "Vivo en Madrid.",
+              "Живу в Мадриде."
             ],
             [
-              "Francia",
-              "Франция"
+              "Trabajo en Francia.",
+              "Работаю во Франции."
             ],
             [
-              "Europa",
-              "Европа"
+              "Mi familia vive en Cuba.",
+              "Моя семья живёт на Кубе."
             ]
           ]
         },
         {
-          "title": "Артикль — часть названия",
+          "title": "Артикль — часть собственного имени",
           "words": [
             [
-              "La Habana",
-              "Гавана"
+              "en La Habana",
+              "в Гаване"
             ],
             [
-              "El Cairo",
-              "Каир"
+              "en El Salvador",
+              "в Сальвадоре"
+            ],
+            [
+              "en Los Ángeles",
+              "в Лос-Анджелесе"
+            ],
+            [
+              "en El Cairo",
+              "в Каире"
             ]
           ]
         },
         {
-          "title": "Реки, горы, острова",
+          "title": "Обычный артикль географического объекта",
           "words": [
+            [
+              "el lago Titicaca",
+              "озеро Титикака"
+            ],
             [
               "el Amazonas",
               "Амазонка"
@@ -227,8 +317,25 @@
               "Пиренеи"
             ],
             [
-              "las islas Galápagos",
-              "Галапагосские острова"
+              "la Mancha",
+              "регион Ла-Манча (артикль строчный)"
+            ]
+          ]
+        },
+        {
+          "title": "Возможны два употребления",
+          "words": [
+            [
+              "Perú / el Perú",
+              "Перу — оба варианта"
+            ],
+            [
+              "India / la India",
+              "Индия — оба, предпочтительно la India"
+            ],
+            [
+              "Argentina / la Argentina",
+              "Аргентина — оба варианта"
             ]
           ]
         }
@@ -236,42 +343,67 @@
       "check": {
         "id": "check-c",
         "title": "Мини-проверка",
-        "instruction": "∅ — ничего не вставляем.",
+        "instruction": "Выбери правильный вариант или правило для имени места.",
         "questions": [
           {
-            "prompt": "Madrid está en ___ España.",
-            "answers": [
-              "Без артикля"
-            ],
-            "explain": "Название España обычно используем без артикля.",
-            "options": [
-              "Без артикля",
-              "la"
-            ],
-            "context": "Дополни предложение."
-          },
-          {
-            "prompt": "___ Habana está en Cuba.",
+            "prompt": "Mi amiga vive en ___ Habana.",
             "answers": [
               "La"
             ],
-            "explain": "Артикль La входит в название La Habana.",
             "options": [
               "La",
               "El",
               "Без артикля"
             ],
-            "context": "Дополни предложение."
+            "explain": "В имени города `La Habana` слово `La` — обязательная часть названия, даже в середине предложения.",
+            "context": "Подруга живёт в Гаване.",
+            "interaction": "gap-choice",
+            "sourceRef": "extra"
+          },
+          {
+            "prompt": "Mi primo trabaja en ___ Cuba.",
+            "answers": [
+              "Без артикля"
+            ],
+            "options": [
+              "Без артикля",
+              "la",
+              "el"
+            ],
+            "explain": "Название страны `Cuba` в обычной фразе не требует артикля: `trabaja en Cuba`.",
+            "context": "Кузен рассказывает, где работает.",
+            "interaction": "gap-choice",
+            "sourceRef": "extra"
+          },
+          {
+            "prompt": "¿Почему в «el lago Titicaca» стоит el?",
+            "answers": [
+              "Артикль относится к слову lago."
+            ],
+            "options": [
+              "Артикль относится к слову lago.",
+              "El — первая часть имени Titicaca.",
+              "Все названия стран требуют el."
+            ],
+            "explain": "`Lago` — нарицательное существительное мужского рода. В `El Salvador` начальное `El` — часть собственного имени страны, а здесь `el` — обычный артикль.",
+            "context": "Сравни озеро и название страны.",
+            "interaction": "choice",
+            "sourceRef": "extra"
           }
-        ]
+        ],
+        "revision": 2
       },
       "illustration": {
         "image": "art/theory-004-014/008c.webp",
         "alt": "Путешественник с чемоданом смотрит на улицу с цветными домами и балконами.",
         "examples": [
           [
-            "Viajo a **La Habana**.",
-            "Еду в Гавану."
+            "Mi amiga vive en **La Habana**.",
+            "Подруга живёт в Гаване: La входит в название."
+          ],
+          [
+            "Vivo en **Madrid**.",
+            "Я живу в Мадриде: артикля нет."
           ]
         ]
       },
@@ -280,33 +412,51 @@
     {
       "title": "Артикли в названиях и адресах",
       "paragraphs": [
-        "Разные правила могут встретиться вместе: на рисунке артикли относятся к названию профессии и месту работы.",
-        "Если артикль входит в собственное название и пишется с большой буквы, **не соединяем его с `a` или `de`**: в двух группах ниже это сопоставлено с обычными `al` и `del`."
+        "Когда `el` — **обычный артикль**, предлоги `a` и `de` с ним сливаются: `Voy al museo` (`a + el = al`) — «Иду в музей»; `Vengo del museo` (`de + el = del`) — «Возвращаюсь из музея».",
+        "Когда **`El` входит в собственное имя**, как в `El Salvador` и `El Cairo`, в письменной речи слияния **нет**: `Viajo a El Salvador` и `Vengo de El Cairo`. Это **два слова**: `a El`, `de El`, а не `al`/`del`.",
+        "С женским артиклем `La` из названия `La Habana` тоже нет слияния: `Volvemos de La Habana`. На табличке адрес может быть `Calle Mayor, 5`, а в связной фразе — `Nos vemos en la calle Mayor`."
       ],
       "wordGroups": [
         {
-          "title": "Артикль — часть имени или названия",
+          "title": "Обычный el — слитно",
           "words": [
             [
-              "de El Cairo",
-              "из Каира"
+              "Voy al museo.",
+              "Иду в музей."
             ],
             [
-              "a El Salvador",
-              "в Сальвадор"
+              "Vengo del museo.",
+              "Возвращаюсь из музея."
+            ],
+            [
+              "Voy al teatro.",
+              "Иду в театр."
             ]
           ]
         },
         {
-          "title": "Обычное слово",
+          "title": "El в имени — два слова",
           "words": [
             [
-              "Voy al museo",
-              "Иду в музей"
+              "Viajo a El Salvador.",
+              "Еду в Сальвадор."
             ],
             [
-              "La puerta del hospital.",
-              "Дверь больницы."
+              "Vengo de El Cairo.",
+              "Возвращаюсь из Каира."
+            ]
+          ]
+        },
+        {
+          "title": "La в имени — без слияния",
+          "words": [
+            [
+              "Volvemos de La Habana.",
+              "Возвращаемся из Гаваны."
+            ],
+            [
+              "Trabajo en La Paz.",
+              "Работаю в Ла-Пасе."
             ]
           ]
         }
@@ -314,35 +464,55 @@
       "check": {
         "id": "check-d",
         "title": "Мини-проверка",
-        "instruction": "∅ — ничего не вставляем.",
+        "instruction": "Выбери форму: обычное el или El как часть названия.",
         "questions": [
           {
-            "prompt": "Viajo a ___ Salvador.",
-            "answers": [
-              "El"
-            ],
-            "explain": "El — часть названия El Salvador. Пишем a El Salvador.",
-            "options": [
-              "El",
-              "Без артикля",
-              "La"
-            ],
-            "context": "Дополни предложение."
-          },
-          {
-            "prompt": "Voy ___ museo.",
+            "prompt": "Mañana voy ___ museo.",
             "answers": [
               "al"
             ],
-            "explain": "Обычный артикль el соединяется с a: al museo.",
             "options": [
-              "a el",
               "al",
-              "a la"
+              "a el",
+              "a El museo"
             ],
-            "context": "Дополни предложение."
+            "explain": "`Museo` — обычное существительное с артиклем `el`. Предлог `a` образует одно слово `al`: `voy al museo`.",
+            "context": "У тебя билеты на выставку.",
+            "interaction": "gap-choice",
+            "sourceRef": "extra"
+          },
+          {
+            "prompt": "Mi madre viaja ___ Salvador.",
+            "answers": [
+              "a El"
+            ],
+            "options": [
+              "a El",
+              "al",
+              "de El"
+            ],
+            "explain": "`El` входит в имя `El Salvador`. С предлогом направления `a` пишем два слова: `a El Salvador`.",
+            "context": "Мама едет в Сальвадор.",
+            "interaction": "gap-choice",
+            "sourceRef": "extra"
+          },
+          {
+            "prompt": "Mi amigo viene ___ Cairo.",
+            "answers": [
+              "de El"
+            ],
+            "options": [
+              "de El",
+              "del",
+              "al"
+            ],
+            "explain": "`El Cairo` — название города; `El` часть имени. После предлога `de` слияния нет: `de El Cairo`.",
+            "context": "Друг возвращается из Каира.",
+            "interaction": "gap-choice",
+            "sourceRef": "extra"
           }
-        ]
+        ],
+        "revision": 2
       },
       "illustration": {
         "image": "art/theory-004-014/008d.webp",
@@ -350,7 +520,11 @@
         "examples": [
           [
             "**La doctora** Sonia trabaja en **el hospital**.",
-            "Доктор Соня работает в больнице."
+            "Говорим о враче и больнице с обычными артиклями."
+          ],
+          [
+            "Voy **al museo**; viajo **a El Salvador**.",
+            "С музеем слитно, с названием страны раздельно."
           ]
         ]
       },
@@ -491,7 +665,7 @@
       "theorySections": [
         0
       ],
-      "revision": 2,
+      "revision": 3,
       "inputFormat": {
         "instruction": "Впиши только el, la, los, las или ∅. Имя и остальное предложение уже написаны.",
         "example": "el (когда говорим о señor Alonso)",
@@ -748,7 +922,7 @@
       "theorySections": [
         1
       ],
-      "revision": 2,
+      "revision": 3,
       "inputFormat": {
         "instruction": "Впиши только определённый артикль: el, la, los или las. Остальное предложение уже написано.",
         "example": "los (перед museos)",
@@ -1170,7 +1344,8 @@
       "theorySections": [
         2
       ],
-      "allowNoArticle": true
+      "allowNoArticle": true,
+      "revision": 2
     },
     {
       "id": "8.4",
@@ -1388,7 +1563,8 @@
       "theorySections": [
         3
       ],
-      "allowNoArticle": true
+      "allowNoArticle": true,
+      "revision": 2
     }
   ],
   "learningOrder": [
@@ -1473,5 +1649,6 @@
         ]
       }
     ]
-  }
+  },
+  "revision": 2
 }
