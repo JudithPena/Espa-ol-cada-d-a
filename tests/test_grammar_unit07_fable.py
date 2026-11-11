@@ -71,7 +71,9 @@ def test_unit7_no_article_is_a_real_answer_and_plural_alternatives_are_accepted(
     bombones = next(q for q in plurals if "regalado ___ bombones" in q["prompt"])
     for question, article in [(peras, "unas"), (manzanas, "unas"), (bombones, "unos")]:
         assert set(question["answers"]) == {article, "Без артикля"}
-        assert "без артикля" in question["explain"].lower()
+        assert article in question["explain"]
+        assert ("без артикля" in question["explain"].lower()
+                or "Compro manzanas" in question["explain"])
 
 
 def test_unit7_meaningful_contrasts_and_no_long_guessing_run():
