@@ -8,9 +8,9 @@
     {
       "title": "Профессия или национальность — без артикля",
       "paragraphs": [
-        "Когда мы просто называем **профессию или национальность человека после глагола `ser`**, артикль обычно не нужен.",
-        "Так же обычно сообщаем об учёбе, религии и политических взглядах: `Soy estudiante` — я студент или студентка; `Son protestantes` — они протестанты; `Son socialistas` — они социалисты.",
-        "Без артикля называем и будущую профессию: `Quiero ser bailarina` — хочу стать танцовщицей. В заданиях **∅ — «Без артикля»** означает, что в пропуск ничего не вставляем."
+        "После **`ser`**, когда мы называем профессию, занятие или национальность человека, обычно **не ставим неопределённый артикль**: `Soy abogada`, `Ella es peruana`, `Somos estudiantes`. Это способ сообщить, кто человек или чем он занимается.",
+        "С религиозной принадлежностью и взглядами похожая модель: `Son protestantes`, `Son socialistas`. В таких сообщениях мы называем принадлежность, а не считаем людей.",
+        "Когда говорим о будущей профессии, также обычно опускаем артикль: `Quiero ser bailarina`. **«Без артикля»** означает, что в пропуск ничего не добавляем. Не превращай правило в «после `ser` артиклей никогда не бывает»: значение и описание могут изменить выбор."
       ],
       "wordGroups": [
         {
@@ -43,35 +43,46 @@
       "check": {
         "id": "check-a",
         "title": "Мини-проверка",
-        "instruction": "∅ — ничего не вставляем.",
+        "instruction": "Выбери форму или предложение, подходящее по смыслу. «Без артикля» = ничего не вставлять.",
         "questions": [
           {
-            "prompt": "Eva es ___ abogada.",
+            "prompt": "— ¿A qué te dedicas? — Soy ___ abogado.",
             "answers": [
               "Без артикля"
             ],
-            "explain": "Просто называем профессию после es: Eva es abogada.",
             "options": [
               "Без артикля",
-              "una"
+              "un"
             ],
-            "context": "Просто сообщи, кем работает человек, без оценки."
+            "explain": "Собеседник спрашивает о работе; `soy abogado` называет профессию. `Soy un abogado` возможно при иной подаче, но в нейтральном ответе обычно без артикля.",
+            "context": "Разговор при знакомстве."
           },
           {
-            "prompt": "Quiero ser bailarina. Почему перед bailarina нет артикля?",
+            "prompt": "Clara es ___ peruana.",
             "answers": [
-              "Называем будущую профессию."
+              "Без артикля"
             ],
-            "explain": "Хочу стать танцовщицей: после quiero ser просто называем профессию, без её оценки. В других фразах после ser артикль возможен.",
             "options": [
-              "После ser артиклей никогда не бывает.",
-              "Называем будущую профессию.",
-              "Перед словами женского рода артикль не нужен."
+              "una",
+              "Без артикля"
             ],
-            "context": "Выбери объяснение правила."
+            "explain": "`Peruana` здесь национальность после `es`. Нейтральная характеристика происхождения не требует неопределённого артикля.",
+            "context": "Короткая информация о Кларе."
+          },
+          {
+            "prompt": "Какое предложение означает, что Марта хочет **сама стать поваром**?",
+            "answers": [
+              "Marta quiere ser cocinera."
+            ],
+            "options": [
+              "Marta quiere ser cocinera.",
+              "Marta quiere una cocinera."
+            ],
+            "explain": "`Quiere ser cocinera` — хочет работать поваром; `quiere una cocinera` — хочет найти повара. Оба предложения могут быть верными, но выражают разные мысли.",
+            "context": "Сравни значение двух правильных испанских фраз."
           }
         ],
-        "revision": 2
+        "revision": 3
       },
       "illustration": {
         "image": "art/theory-004-014/005a.webp",
@@ -88,9 +99,9 @@
     {
       "title": "Профессия с описанием",
       "paragraphs": [
-        "Когда не просто называем профессию, а **характеризуем человека**, перед названием профессии часто используем **`un` или `una`**. Форму выбираем по роду этого названия.",
-        "**Наличие описания не означает, что артикль обязателен во всех конструкциях.** Например, `Es profesora de español` — она преподавательница испанского. Здесь `de español` уточняет, что она преподаёт; артикль обычно не нужен.",
-        "Артикль возможен и без прилагательного, когда представляем человека: `Es un cantante` — это певец. Выбор зависит от того, что хотим сообщить, а не только от наличия описывающего слова."
+        "Когда **оцениваем или характеризуем человека**, перед профессией часто появляется **`un / una`**: `Es un abogado muy bueno`, `Es una médica excelente`. Артикль согласуется с испанским названием профессии.",
+        "Но **не каждое уточнение требует артикля**. `Es profesora de español` просто называет предмет, который она преподаёт: `de español` не равно оценке `muy buena`.",
+        "Сравни: `Es médico` сообщает о профессии, а `Es un médico excelente` дополнительно оценивает человека. Слова `Es cantante` и `Es un cantante` возможны в подходящих ситуациях: **выбор зависит от смысла**, поэтому не ищи механического признака вроде любого прилагательного или дополнения."
       ],
       "wordGroups": [
         {
@@ -110,34 +121,46 @@
       "check": {
         "id": "check-b",
         "title": "Мини-проверка",
-        "instruction": "∅ — ничего не вставляем.",
+        "instruction": "Выбери вариант по смыслу испанской фразы; уточнение и оценка не одно и то же.",
         "questions": [
           {
-            "prompt": "Es ___ actor famoso.",
+            "prompt": "Laura es ___ actriz muy famosa.",
             "answers": [
-              "un"
+              "una"
             ],
-            "explain": "Famoso добавляет описание: un actor famoso.",
             "options": [
-              "un",
-              "Без артикля",
-              "el"
+              "una",
+              "Без артикля"
             ],
-            "context": "Дополни предложение."
+            "explain": "`Muy famosa` характеризует актрису: `una actriz muy famosa`. Это не просто название её занятия.",
+            "context": "Сведения об актрисе Лауре."
           },
           {
-            "prompt": "Ella es ___ argentina.",
+            "prompt": "Elena es ___ profesora de español.",
             "answers": [
               "Без артикля"
             ],
-            "explain": "Здесь называем национальность после es: es argentina. Не выделяем её среди других людей.",
             "options": [
-              "Без артикля",
-              "una"
+              "una",
+              "Без артикля"
             ],
-            "context": "Просто сообщи национальность человека."
+            "explain": "`De español` сообщает, что именно преподаёт Елена. Здесь это название специальности: `es profesora de español`. Не всякое дополнение требует `una`.",
+            "context": "Рассказывают о преподавательнице Елене."
+          },
+          {
+            "prompt": "Diego es ___ músico muy bueno.",
+            "answers": [
+              "un"
+            ],
+            "options": [
+              "un",
+              "Без артикля"
+            ],
+            "explain": "`Muy bueno` — оценка музыканта: `un músico muy bueno`; `es músico` без оценки обычно употребляется без артикля.",
+            "context": "Друг характеризует Диего."
           }
-        ]
+        ],
+        "revision": 3
       },
       "illustration": {
         "image": "art/theory-004-014/005b.webp",
@@ -154,20 +177,21 @@
     {
       "title": "Когда можно обойтись без артикля",
       "paragraphs": [
-        "Артикль часто не нужен, когда говорим, **что обычно едим, пьём или что у нас есть**, без указания конкретного предмета или порции: `Como carne` — ем мясо, `Tomo café` — пью кофе, `¿Tienes coche?` — у тебя есть машина?",
-        "Если называем одну порцию или описываем, какой именно продукт или предмет имеем в виду, может понадобиться артикль: **`un queso muy fuerte` — сыр с насыщенным вкусом**."
+        "Когда говорим о продукте, веществе или занятии **без выделения отдельной порции**, артикль часто не ставим: `Tomo café`, `No como carne`, `Colecciono monedas`. Так мы называем то, что пьют, едят или собирают.",
+        "Если считаем **отдельный предмет или порцию**, обычно используем `un / una`: `Quiero un café` — одну чашку кофе в кафе; `Necesito una botella de agua` — одну бутылку; `Tengo una hija` — одну дочь. Само слово `café` может обозначать и напиток вообще, и порцию.",
+        "С неопределённым множественным числом **оба варианта могут быть правильными**: `Compro manzanas` — покупаю яблоки, не выделяя количество; `Compro unas manzanas` — покупаю несколько яблок. Если задача не ограничивает смысл, принимай обе формы. `Unos / unas` добавляют значение некоторого количества, а не автоматически требуются перед любым множественным числом."
       ],
       "wordGroups": [
         {
-          "title": "Без подсчёта",
+          "title": "Вещество или занятие — без подсчёта",
           "words": [
             [
-              "Colecciono monedas",
-              "Собираю монеты"
+              "No tomo azúcar",
+              "Я не употребляю сахар"
             ],
             [
-              "No tomo azúcar",
-              "Не употребляю сахар"
+              "Colecciono monedas",
+              "Я коллекционирую монеты"
             ],
             [
               "¿Tienes hermanos?",
@@ -176,15 +200,32 @@
           ]
         },
         {
-          "title": "Отдельный предмет или порция",
+          "title": "Отдельная порция или предмет",
           "words": [
             [
-              "una taza de café",
+              "un café",
               "чашка кофе"
             ],
             [
-              "unas monedas chinas",
-              "несколько китайских монет"
+              "una botella de agua",
+              "бутылка воды"
+            ],
+            [
+              "un cuaderno",
+              "тетрадь"
+            ]
+          ]
+        },
+        {
+          "title": "Неопределённое множество: оба варианта возможны",
+          "words": [
+            [
+              "Compro manzanas",
+              "Покупаю яблоки"
+            ],
+            [
+              "Compro unas manzanas",
+              "Покупаю несколько яблок"
             ]
           ]
         }
@@ -192,34 +233,48 @@
       "check": {
         "id": "check-c",
         "title": "Мини-проверка",
-        "instruction": "∅ — ничего не вставляем.",
+        "instruction": "Выбери подходящий вариант. Если допустимы два ответа, правильными считаются оба.",
         "questions": [
           {
-            "prompt": "No tomo ___ azúcar.",
+            "prompt": "En casa no tomo ___ azúcar.",
             "answers": [
               "Без артикля"
             ],
-            "explain": "Говорим о сахаре вообще, без количества: no tomo azúcar.",
             "options": [
               "Без артикля",
               "un"
             ],
-            "context": "Скажи, что вообще не употребляешь сахар; речь не об одной порции."
+            "explain": "`Azúcar` обозначает продукт в целом, не отдельную порцию: `no tomo azúcar`. `Un azúcar` в особых ситуациях может обозначать пакетик или порцию.",
+            "context": "Разговор о питании."
           },
           {
-            "prompt": "Tomo ___ taza de café al día.",
+            "prompt": "Necesito ___ cuaderno para clase.",
             "answers": [
-              "una"
+              "un"
             ],
-            "explain": "Считаем чашки: одна чашка — una taza.",
             "options": [
-              "una",
               "un",
               "Без артикля"
             ],
-            "context": "Дополни предложение."
+            "explain": "`Cuaderno` — исчисляемый предмет в единственном числе. Нужна одна тетрадь: `un cuaderno`. Просто опустить артикль здесь нельзя.",
+            "context": "Собирают вещи на урок."
+          },
+          {
+            "prompt": "Compramos ___ flores.",
+            "answers": [
+              "Без артикля",
+              "unas"
+            ],
+            "options": [
+              "unas",
+              "Без артикля",
+              "una"
+            ],
+            "explain": "`Compramos flores` и `compramos unas flores` естественны. Вторая фраза подчёркивает несколько цветов. `Una flores` нарушает согласование числа.",
+            "context": "Разговор о покупке цветов."
           }
-        ]
+        ],
+        "revision": 3
       },
       "illustration": {
         "image": "art/theory-004-014/005c.webp",
@@ -237,23 +292,22 @@
   "exercises": [
     {
       "id": "5.1",
-      "title": "5.1 · Чем занимается человек?",
-      "instruction": "Реши по смыслу: просто сообщаем, чем занимается человек, или даём ему характеристику? Выбери либо впиши подходящий вариант. ∅ означает отсутствие артикля.",
+      "title": "5.1 · Назвать профессию или оценить человека",
+      "instruction": "Читай испанское предложение и короткую ситуацию. Выбери или впиши только артикль. Если он не нужен, используй «Без артикля». Не опирайся на одно слово в русской подписи.",
       "questions": [
         {
-          "prompt": "Soy ___ abogada.",
+          "prompt": "— ¿A qué te dedicas? — Soy ___ abogada.",
           "answers": [
             "Без артикля"
           ],
-          "explain": "Когда просто называем свою профессию после soy, артикль обычно не нужен: soy abogada.",
-          "translation": "Я адвокат.",
-          "sourceRef": "5.1.1",
-          "context": "Ева рассказывает, кем работает, без оценки её работы.",
+          "explain": "После `soy` в обычном ответе о профессии говорим `soy abogada`. `Una abogada` возможно в особом представлении человека, но это не нейтральное название занятия.",
+          "context": "Собеседники знакомятся.",
           "options": [
             "Без артикля",
-            "un",
-            "una"
+            "una",
+            "un"
           ],
+          "sourceRef": "5.1.1",
           "interaction": "gap-choice"
         },
         {
@@ -261,31 +315,28 @@
           "answers": [
             "un"
           ],
-          "explain": "Здесь не просто называем занятие, а даём оценку: un estudiante muy bueno.",
-          "translation": "Хосе Луис — очень хороший студент.",
+          "explain": "`Muy bueno` оценивает Хосе Луиса как студента. Поэтому естественно `un estudiante muy bueno`; `una` не согласуется с мужским родом.",
+          "context": "Друзья говорят о Хосе Луисе.",
           "sourceRef": "5.1.2",
-          "context": "Хосе Луиса хвалят за учёбу.",
-          "options": [
-            "Без артикля",
-            "una",
-            "un"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только un, una, unos, unas либо выбери «Без артикля». Не переписывай предложение.",
+            "placeholder": "Артикль или ∅"
+          }
         },
         {
           "prompt": "Mar es ___ actriz famosa.",
           "answers": [
             "una"
           ],
-          "explain": "Famosa описывает актрису; используем модель с неопределённым артиклем: una actriz famosa.",
-          "translation": "Мар — известная актриса.",
-          "sourceRef": "5.1.3",
-          "context": "Расскажи об известной актрисе.",
+          "explain": "Здесь не просто называют профессию: `famosa` характеризует Мар. `Una actriz famosa` согласует артикль с женским родом слова `actriz`.",
+          "context": "Рассказывают о Мар.",
           "options": [
-            "un",
+            "una",
             "Без артикля",
-            "una"
+            "un"
           ],
+          "sourceRef": "5.1.3",
           "interaction": "gap-choice"
         },
         {
@@ -293,25 +344,28 @@
           "answers": [
             "Без артикля"
           ],
-          "explain": "В вопросе о профессии действует та же модель без артикля: ¿Es fotógrafo?",
-          "translation": "Феликс работает фотографом?",
+          "explain": "Вопрос выясняет, работает ли Феликс фотографом: `¿Es fotógrafo?`. Неопределённый артикль в обычном вопросе о профессии опускается.",
+          "context": "Соседи знакомятся.",
           "sourceRef": "5.1.4",
-          "context": "Ты хочешь узнать профессию Феликса, без оценки его работы."
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только un, una, unos, unas либо выбери «Без артикля». Не переписывай предложение.",
+            "placeholder": "Артикль или ∅"
+          }
         },
         {
-          "prompt": "Roberto es ___ médico buenísimo.",
+          "prompt": "Roberto es ___ médico muy bueno.",
           "answers": [
             "un"
           ],
-          "explain": "Buenísimo даёт оценку: un médico buenísimo. Médico — мужского рода.",
-          "translation": "Роберто — отличный врач.",
-          "sourceRef": "5.1.5",
-          "context": "Похвали Роберто как врача.",
+          "explain": "`Muy bueno` — оценка врача, поэтому естественно `un médico muy bueno`. Без `muy bueno` обычная фраза о работе была бы `es médico`.",
+          "context": "Коллеги говорят о Роберто.",
           "options": [
             "un",
             "Без артикля",
             "una"
           ],
+          "sourceRef": "5.1.5",
           "interaction": "gap-choice"
         },
         {
@@ -319,113 +373,127 @@
           "answers": [
             "Без артикля"
           ],
-          "explain": "После quiere ser просто называем профессию: quiere ser cocinero, без артикля.",
-          "translation": "Адриан хочет стать поваром.",
+          "explain": "`Quiere ser cocinero` называет профессию, которую Адриан хочет освоить; после `ser` здесь обычно не нужен `un`.",
+          "context": "Адриан рассказывает о своих планах.",
           "sourceRef": "5.1.6",
-          "context": "Адриан говорит о будущей профессии.",
-          "options": [
-            "una",
-            "un",
-            "Без артикля"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только un, una, unos, unas либо выбери «Без артикля». Не переписывай предложение.",
+            "placeholder": "Артикль или ∅"
+          }
         },
         {
           "prompt": "Eloísa es ___ camarera muy simpática.",
           "answers": [
             "una"
           ],
-          "explain": "Для такой характеристики используем una camarera muy simpática; camarera — женского рода.",
-          "translation": "Элоиса — очень приветливая официантка.",
+          "explain": "`Muy simpática` даёт характеристику Элоисе: `una camarera muy simpática`. Артикль `una` согласуется с `camarera`.",
+          "context": "Гости говорят об Элоисе.",
+          "options": [
+            "una",
+            "Без артикля",
+            "un"
+          ],
           "sourceRef": "5.1.7",
-          "context": "Отметь приветливость Элоисы."
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Leonor y Ana son ___ profesoras.",
           "answers": [
             "Без артикля"
           ],
-          "explain": "Называем профессию нескольких людей без описания: son profesoras. Во множественном числе артикль здесь тоже обычно не нужен.",
-          "translation": "Леонор и Ана — преподавательницы.",
+          "explain": "`Son profesoras` сообщает занятие двух людей; при таком назывании профессии артикль обычно не используется даже во множественном числе.",
+          "context": "Рассказывают о Леонор и Ане.",
           "sourceRef": "5.1.8",
-          "context": "Сообщи, кем работают Леонор и Ана, без оценки их работы.",
-          "options": [
-            "unas",
-            "Без артикля",
-            "unos"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только un, una, unos, unas либо выбери «Без артикля». Не переписывай предложение.",
+            "placeholder": "Артикль или ∅"
+          }
+        },
+        {
+          "prompt": "Mi hermana es ___ profesora de español.",
+          "answers": [
+            "Без артикля"
           ],
+          "explain": "`De español` называет предмет преподавания, а не оценивает работу. В нейтральной фразе `es profesora de español` артикль обычно опускается.",
+          "context": "В разговоре о семье.",
+          "options": [
+            "Без артикля",
+            "una"
+          ],
+          "sourceRef": "extra",
           "interaction": "gap-choice"
         }
       ],
       "preview": {
-        "source": "Es ___ médica muy buena.",
+        "source": "Mi amigo es ___ médico muy bueno.",
         "sentenceParts": [
-          "Es ",
-          " médica muy buena."
+          "Mi amigo es ",
+          " médico muy bueno."
         ],
-        "answer": "una",
-        "translation": "Она очень хороший врач.",
+        "answer": "un",
+        "translation": "Мой друг — очень хороший врач.",
         "targetPrefix": "",
-        "tip": "Здесь даём характеристику, а не просто называем профессию."
+        "tip": ""
       },
-      "inputLabel": "Выбор ответа · Короткий ввод",
+      "inputLabel": "Выбор или ввод артикля",
       "theorySections": [
         0,
         1
       ],
       "inputFormat": {
-        "instruction": "Впиши только un, una или ∅. Символ ∅ означает, что артикль не нужен. Остальное предложение уже написано.",
-        "example": "una (как в una médica muy buena)",
-        "placeholder": "un, una или ∅"
+        "instruction": "Введи только un, una, unos, unas либо выбери «Без артикля». Не переписывай предложение.",
+        "placeholder": "Артикль или ∅"
       },
-      "revision": 2,
+      "revision": 3,
       "allowNoArticle": true
     },
     {
       "id": "5.2",
-      "title": "5.2 · Профессия и описание",
-      "instruction": "Впиши артикль по смыслу. Если артикль не нужен, нажми «Без артикля».",
+      "title": "5.2 · Самостоятельный выбор по смыслу",
+      "instruction": "Вводи только артикль или отмечай «Без артикля». В вопросах с двумя полными предложениями выбери то, которое точнее передаёт ситуацию. Не считай любое уточнение обязательным сигналом артикля.",
       "questions": [
         {
-          "prompt": "¿Quién es Luis Miguel? Es ___ cantante.",
+          "prompt": "Luis es ___ cantante muy conocido.",
           "answers": [
             "un"
           ],
-          "explain": "Представляем человека: это певец.",
+          "explain": "`Muy conocido` характеризует певца, а не только сообщает его занятие. В таком описании естественно `un cantante muy conocido`; `cantante` здесь мужского рода.",
+          "context": "Разговор о Луисе.",
           "sourceRef": "5.2.1",
-          "context": "Представь человека: «Это один из певцов». Выбери неопределённый артикль.",
           "interaction": "article-input",
           "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
+            "instruction": "Введи только un, una, unos, unas либо выбери «Без артикля». Не переписывай предложение.",
+            "placeholder": "Артикль или ∅"
           }
         },
         {
-          "prompt": "Luis Miguel es ___ mexicano.",
+          "prompt": "Luis es ___ mexicano.",
           "answers": [
             "Без артикля"
           ],
-          "explain": "Национальность после es называем без артикля.",
+          "explain": "Здесь национальность после `es` выступает признаком человека: `es mexicano`. `Un mexicano` бывает существительным в иных конструкциях, но нейтральное обозначение происхождения обычно без артикля.",
+          "context": "Собеседник спрашивает, откуда Луис.",
+          "options": [
+            "Без артикля",
+            "un"
+          ],
           "sourceRef": "5.2.1",
-          "context": "Просто сообщи национальность человека.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
+          "interaction": "gap-choice"
         },
         {
-          "prompt": "La doctora Ramírez es ___ médica buenísima.",
+          "prompt": "La doctora Ramírez es ___ médica muy buena.",
           "answers": [
             "una"
           ],
-          "explain": "Есть описание buenísima: una médica buenísima.",
+          "explain": "`Muy buena` оценивает врача: `una médica muy buena`. Артикль согласуется с женским родом `médica`, а не просто определяется глаголом `es`.",
+          "context": "Пациенты обсуждают доктора Рамирес.",
           "sourceRef": "5.2.2",
-          "context": "Нужен ли здесь артикль?",
           "interaction": "article-input",
           "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
+            "instruction": "Введи только un, una, unos, unas либо выбери «Без артикля». Не переписывай предложение.",
+            "placeholder": "Артикль или ∅"
           }
         },
         {
@@ -433,69 +501,55 @@
           "answers": [
             "Без артикля"
           ],
-          "explain": "Национальность после es — без артикля.",
+          "explain": "Это нейтральное сообщение о национальности: `es argentina`. Слово `argentina` не описывает качество её работы.",
+          "context": "В анкете указано место рождения доктора Рамирес.",
+          "options": [
+            "Без артикля",
+            "una"
+          ],
           "sourceRef": "5.2.2",
-          "context": "Просто сообщи национальность человека.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
+          "interaction": "gap-choice"
         },
         {
-          "prompt": "El marido de Luisa es ___ abogado.",
+          "prompt": "— ¿A qué se dedica el marido de Luisa? — Es ___ abogado.",
           "answers": [
             "Без артикля"
           ],
-          "explain": "Просто называем профессию.",
+          "explain": "В ответе на вопрос о работе называем профессию: `es abogado`. Он не оценивает, насколько хорошо человек работает.",
+          "context": "Два знакомых говорят о семье Луисы.",
           "sourceRef": "5.2.3",
-          "context": "Просто сообщи, кем работает человек, без оценки.",
           "interaction": "article-input",
           "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
+            "instruction": "Введи только un, una, unos, unas либо выбери «Без артикля». Не переписывай предложение.",
+            "placeholder": "Артикль или ∅"
           }
         },
         {
-          "prompt": "Es ___ abogado muy bueno.",
+          "prompt": "El marido de Luisa es ___ abogado muy bueno.",
           "answers": [
             "un"
           ],
-          "explain": "Muy bueno оценивает работу адвоката: un abogado muy bueno.",
-          "sourceRef": "5.2.3",
-          "context": "Нужен ли здесь артикль?",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "Tomás se ha hecho ___ musulmán.",
-          "answers": [
+          "explain": "`Muy bueno` сообщает оценку его работы, поэтому естественно `un abogado muy bueno`. При простом названии профессии было бы `es abogado`.",
+          "context": "Луиса рекомендует мужа как специалиста.",
+          "options": [
+            "un",
             "Без артикля"
           ],
-          "explain": "Здесь говорится о принятии религии: se ha hecho musulmán.",
-          "sourceRef": "5.2.4",
-          "context": "Просто назови религию человека, без оценки.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
+          "sourceRef": "5.2.3",
+          "interaction": "gap-choice"
         },
         {
           "prompt": "Los tíos de Andrea son ___ protestantes.",
           "answers": [
             "Без артикля"
           ],
-          "explain": "Религию после son называем без артикля.",
+          "explain": "`Son protestantes` называет религиозную принадлежность; после `ser` в таком нейтральном сообщении обычно нет артикля.",
+          "context": "Разговор о родственниках Андреа.",
           "sourceRef": "5.2.5",
-          "context": "Просто назови религию человека, без оценки.",
           "interaction": "article-input",
           "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
+            "instruction": "Введи только un, una, unos, unas либо выбери «Без артикля». Не переписывай предложение.",
+            "placeholder": "Артикль или ∅"
           }
         },
         {
@@ -503,229 +557,184 @@
           "answers": [
             "un"
           ],
-          "explain": "Famoso добавляет описание: un actor famoso.",
+          "explain": "`Actor famoso` — не только название занятия, но и описание известности. В таком варианте употребляем `un actor famoso`.",
+          "context": "Друзья обсуждают брата Патрисио.",
+          "options": [
+            "un",
+            "Без артикля"
+          ],
           "sourceRef": "5.2.6",
-          "context": "Нужен ли здесь артикль?",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
+          "interaction": "gap-choice"
         },
         {
-          "prompt": "¿Quién es Vargas Llosa? Es ___ escritor.",
+          "prompt": "Какое предложение **оценивает**, насколько хорошо Роберто работает врачом?",
           "answers": [
-            "un"
+            "Roberto es un médico muy bueno."
           ],
-          "explain": "Представляем человека: это писатель.",
-          "sourceRef": "5.2.7",
-          "context": "Представь человека: «Это один из писателей». Выбери неопределённый артикль.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "Vargas Llosa era ___ peruano.",
-          "answers": [
-            "Без артикля"
+          "options": [
+            "Roberto es médico.",
+            "Roberto es un médico muy bueno."
           ],
-          "explain": "Национальность после era — без артикля.",
-          "sourceRef": "5.2.7",
-          "context": "Просто сообщи национальность человека.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "Alberto y Lola son ___ estudiantes.",
-          "answers": [
-            "Без артикля"
-          ],
-          "explain": "Просто называем их занятие.",
-          "sourceRef": "5.2.8",
-          "context": "Просто сообщи, кем работает человек, без оценки.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
+          "explain": "Обе фразы грамматически возможны. `Es médico` называет профессию; `es un médico muy bueno` ещё и оценивает работу.",
+          "context": "Выбери между двумя правильными испанскими фразами.",
+          "sourceRef": "extra",
+          "interaction": "choice"
         },
         {
           "prompt": "Alberto y Lola son ___ socialistas.",
           "answers": [
             "Без артикля"
           ],
-          "explain": "Говорим о взглядах после son без артикля.",
+          "explain": "`Son socialistas` здесь сообщает о политических взглядах, а не выделяет какую-то группу как отдельный набор людей.",
+          "context": "Говорят о взглядах Альберто и Лолы.",
           "sourceRef": "5.2.8",
-          "context": "Просто назови политические взгляды этих людей.",
           "interaction": "article-input",
           "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
+            "instruction": "Введи только un, una, unos, unas либо выбери «Без артикля». Не переписывай предложение.",
+            "placeholder": "Артикль или ∅"
           }
         },
         {
-          "prompt": "Sarita quiere ser ___ bailarina.",
-          "answers": [
-            "Без артикля"
-          ],
-          "explain": "После quiere ser называем профессию без артикля.",
-          "sourceRef": "5.2.9",
-          "context": "Просто сообщи, кем работает человек, без оценки.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "García Márquez fue ___ escritor de éxito.",
+          "prompt": "Pedro es ___ artista muy creativo.",
           "answers": [
             "un"
           ],
-          "explain": "De éxito — описание: успешный писатель.",
-          "sourceRef": "5.2.10",
-          "context": "Нужен ли здесь артикль?",
+          "explain": "`Artista` не меняет форму по роду человека. `Pedro` и `creativo` показывают мужской род, а оценка `muy creativo` делает естественным `un artista`.",
+          "context": "Друзья обсуждают работы Педро.",
+          "options": [
+            "un",
+            "una",
+            "Без артикля"
+          ],
+          "sourceRef": "extra",
+          "interaction": "gap-choice"
+        },
+        {
+          "prompt": "Mi tía es ___ profesora de español.",
+          "answers": [
+            "Без артикля"
+          ],
+          "explain": "`De español` лишь уточняет, что преподаёт тётя: `es profesora de español`. Это не оценка, поэтому одного дополнения недостаточно, чтобы требовать `una`.",
+          "context": "В семье рассказывают о занятиях родственников.",
+          "sourceRef": "extra",
           "interaction": "article-input",
           "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
-            "placeholder": "Введите артикль"
+            "instruction": "Введи только un, una, unos, unas либо выбери «Без артикля». Не переписывай предложение.",
+            "placeholder": "Артикль или ∅"
           }
+        },
+        {
+          "prompt": "Какая из фраз отвечает именно на вопрос **«¿Qué enseña Elena?»** (что преподаёт Елена)?",
+          "answers": [
+            "Elena es profesora de español."
+          ],
+          "options": [
+            "Elena es una profesora muy buena.",
+            "Elena es profesora de español."
+          ],
+          "explain": "Обе фразы возможны. `Profesora de español` отвечает на вопрос о предмете; `una profesora muy buena` характеризует качество работы, но не говорит, что она преподаёт.",
+          "context": "Собеседнику нужно узнать предмет преподавания Елены.",
+          "sourceRef": "extra",
+          "interaction": "choice"
         }
       ],
       "preview": {
-        "source": "Es ___ actor famoso.",
+        "source": "Eva es ___ abogada muy buena.",
         "sentenceParts": [
-          "Es ",
-          " actor famoso."
+          "Eva es ",
+          " abogada muy buena."
         ],
-        "answer": "un",
-        "translation": "Он известный актёр.",
+        "answer": "una",
+        "translation": "Ева — очень хороший адвокат.",
         "targetPrefix": "",
         "tip": ""
       },
-      "inputLabel": "Выбор ответа",
+      "inputLabel": "Артикль либо выбор предложения",
       "theorySections": [
+        0,
         1
       ],
-      "allowNoArticle": true
+      "allowNoArticle": true,
+      "revision": 3,
+      "inputFormat": {
+        "instruction": "Введи только un, una, unos, unas либо выбери «Без артикля». Не переписывай предложение.",
+        "placeholder": "Артикль или ∅"
+      }
     },
     {
       "id": "5.3",
-      "title": "5.3 · Еда, занятия и вещи",
-      "instruction": "Определи смысл: продукт или занятие вообще, отдельный предмет, порция или несколько вещей. Выбери либо впиши артикль; ∅ — без артикля.",
+      "title": "5.3 · Вещества, порции и неопределённое множество",
+      "instruction": "Читай испанский смысл целиком: это продукт, отдельный предмет или неопределённое количество? Где возможны и `unos/unas`, и отсутствие артикля, оба ответа принимаются.",
       "questions": [
         {
           "prompt": "¿Comes ___ carne?",
           "answers": [
             "Без артикля"
           ],
-          "explain": "Говорим о мясе как о продукте, без количества.",
+          "explain": "В обычном вопросе о еде `carne` — вещество или вид продукта: `¿Comes carne?`. Не требуется выделять одну порцию.",
+          "context": "Вопрос за обедом.",
           "options": [
-            "una",
-            "Без артикля"
+            "Без артикля",
+            "una"
           ],
           "sourceRef": "5.3.1",
-          "context": "Спроси, ест ли человек мясо вообще.",
           "interaction": "gap-choice"
         },
         {
-          "prompt": "Quiero ___ tortilla, por favor.",
+          "prompt": "Quiero ___ bocadillo de queso.",
           "answers": [
-            "una"
+            "un"
           ],
-          "explain": "Речь об одном целом блюде, а не о продукте вообще: una tortilla.",
-          "sourceRef": "5.3.1",
-          "context": "Закажи одну целую тортилью.",
-          "translation": "Одну тортилью, пожалуйста.",
-          "options": [
-            "una",
-            "unas",
-            "unos",
-            "un",
-            "Без артикля"
-          ],
-          "interaction": "gap-choice"
+          "explain": "`Bocadillo` — один отдельный бутерброд, который заказывают. Поэтому `un bocadillo`; нулевой артикль перед таким исчисляемым словом не подходит.",
+          "context": "Заказ в кафе.",
+          "sourceRef": "extra",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только un, una, unos, unas либо выбери «Без артикля». Не переписывай предложение.",
+            "placeholder": "Артикль или ∅"
+          }
         },
         {
           "prompt": "Colecciono ___ monedas.",
           "answers": [
             "Без артикля"
           ],
-          "explain": "Называем вид коллекции: colecciono monedas.",
+          "explain": "`Colecciono monedas` сообщает о хобби без выделения нескольких экземпляров. `Unas monedas` указало бы на некоторую группу монет, а здесь речь о занятии в целом.",
+          "context": "Рассказывают об увлечениях.",
           "options": [
             "Без артикля",
             "unas"
           ],
           "sourceRef": "5.3.2",
-          "context": "Скажи, что коллекционируешь монеты вообще, без указания количества.",
           "interaction": "gap-choice"
         },
         {
           "prompt": "Tengo ___ monedas chinas.",
           "answers": [
+            "Без артикля",
             "unas"
           ],
-          "explain": "Называем несколько монет, а не занятие коллекционированием: unas monedas chinas.",
+          "explain": "`Tengo monedas chinas` сообщает о наличии монет; `tengo unas monedas chinas` подчёркивает несколько экземпляров. Оба варианта правильны без дополнительного ограничения.",
+          "context": "Рассказывают, что есть в коллекции.",
           "sourceRef": "5.3.2",
-          "context": "У тебя несколько китайских монет; точное число не называешь.",
-          "translation": "У меня есть несколько китайских монет.",
-          "options": [
-            "Без артикля",
-            "una",
-            "unos",
-            "un",
-            "unas"
-          ],
-          "interaction": "gap-choice"
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только un, una, unos, unas либо выбери «Без артикля». Не переписывай предложение.",
+            "placeholder": "Артикль или ∅"
+          }
         },
         {
-          "prompt": "Alberto tiene ___ apartamento en Benidorm.",
-          "answers": [
-            "un"
-          ],
-          "explain": "У Альберто есть одна квартира: un apartamento.",
-          "options": [
-            "el",
-            "Без артикля",
-            "un"
-          ],
-          "sourceRef": "5.3.3",
-          "context": "Дополни фразу: артикль или без артикля?",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "¿Tomas ___ café?",
+          "prompt": "¿Tienes ___ hermanos?",
           "answers": [
             "Без артикля"
           ],
-          "explain": "Спрашиваем, пьёт ли человек кофе вообще.",
+          "explain": "Обычный вопрос о наличии братьев и сестёр звучит `¿Tienes hermanos?`. `Unos hermanos` требует другого контекста, где выделяют конкретную группу.",
+          "context": "При знакомстве спрашивают о семье.",
           "options": [
             "Без артикля",
-            "un"
+            "unos"
           ],
-          "sourceRef": "5.3.4",
-          "context": "Спроси о привычке пить кофе, а не предложи чашку.",
-          "translation": "Спрашиваешь, пьёт ли человек кофе вообще, без указания порции.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Solo tomo ___ taza al día.",
-          "answers": [
-            "una"
-          ],
-          "explain": "Указываем количество: одна чашка в день.",
-          "options": [
-            "Без артикля",
-            "la",
-            "una"
-          ],
-          "sourceRef": "5.3.4",
-          "context": "Дополни фразу: артикль или без артикля?",
+          "sourceRef": "5.3.12",
           "interaction": "gap-choice"
         },
         {
@@ -733,174 +742,135 @@
           "answers": [
             "Без артикля"
           ],
-          "explain": "Сахар как продукт, без количества: no tomo azúcar.",
-          "options": [
-            "un",
-            "Без артикля"
-          ],
+          "explain": "`Azúcar` здесь обозначает сахар как продукт вообще, а не отдельный пакетик: `no tomo azúcar`.",
+          "context": "Обсуждают пищевые привычки.",
           "sourceRef": "5.3.5",
-          "context": "Скажи, что вообще не употребляешь сахар; речь не об одной порции.",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только un, una, unos, unas либо выбери «Без артикля». Не переписывай предложение.",
+            "placeholder": "Артикль или ∅"
+          }
+        },
+        {
+          "prompt": "Necesito ___ botella de agua.",
+          "answers": [
+            "una"
+          ],
+          "explain": "`Botella` — одна исчисляемая бутылка, женского рода. Поэтому `una botella de agua`; жидкость `agua` сама по себе не влияет на род `botella`.",
+          "context": "Покупка перед прогулкой.",
+          "options": [
+            "una",
+            "Без артикля",
+            "un"
+          ],
+          "sourceRef": "extra",
           "interaction": "gap-choice"
+        },
+        {
+          "prompt": "Necesito ___ cuaderno para clase.",
+          "answers": [
+            "un"
+          ],
+          "explain": "Нужна одна тетрадь — исчисляемый предмет мужского рода: `un cuaderno`. Здесь нельзя просто пропустить `un`.",
+          "context": "Собираются на занятия.",
+          "sourceRef": "5.3.9",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только un, una, unos, unas либо выбери «Без артикля». Не переписывай предложение.",
+            "placeholder": "Артикль или ∅"
+          }
+        },
+        {
+          "prompt": "En mi tienda vendo ___ libros.",
+          "answers": [
+            "Без артикля",
+            "unos"
+          ],
+          "explain": "`Vendo libros` называет товар без количества; `vendo unos libros` выделяет некоторое количество книг. Без более узкого контекста оба варианта естественны.",
+          "context": "Продавец рассказывает о своём магазине.",
+          "sourceRef": "5.3.11",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только un, una, unos, unas либо выбери «Без артикля». Не переписывай предложение.",
+            "placeholder": "Артикль или ∅"
+          }
+        },
+        {
+          "prompt": "Какой фразой естественнее ответить на вопрос **«¿Qué bebes normalmente?»** (что ты обычно пьёшь)?",
+          "answers": [
+            "Tomo café."
+          ],
+          "options": [
+            "Quiero un café.",
+            "Tomo café."
+          ],
+          "explain": "`Tomo café` описывает привычку; `quiero un café` — просьба об одной порции. Обе фразы правильные, но только первая прямо отвечает на вопрос о привычке.",
+          "context": "Разговор о том, что обычно пьют.",
+          "sourceRef": "extra",
+          "interaction": "choice"
+        },
+        {
+          "prompt": "Какой фразой попросишь **одну чашку кофе** у официанта?",
+          "answers": [
+            "Quiero un café."
+          ],
+          "options": [
+            "Tomo café.",
+            "Quiero un café."
+          ],
+          "explain": "`Un café` в кафе обычно означает одну порцию. `Tomo café` сообщает, что человек пьёт кофе, но само по себе не оформляет заказ.",
+          "context": "Официант ждёт заказ.",
+          "sourceRef": "extra",
+          "interaction": "choice"
         },
         {
           "prompt": "Tengo ___ hija.",
           "answers": [
             "una"
           ],
-          "explain": "Одна дочь — una hija. Вопрос о наличии детей вообще был бы ¿Tienes hijos?, без артикля.",
+          "explain": "`Hija` — исчисляемое существительное женского рода в единственном числе. Сообщаем о дочери: `tengo una hija`. В вопросе `¿Tienes hijos?` множественное число возможно без артикля.",
+          "context": "Знакомые говорят о своих детях.",
+          "options": [
+            "una",
+            "Без артикля",
+            "un"
+          ],
           "sourceRef": "5.3.6",
-          "context": "Сообщи, что у тебя одна дочь.",
-          "translation": "У меня есть дочь."
-        },
-        {
-          "prompt": "Chelo canta ___ ópera.",
-          "answers": [
-            "Без артикля"
-          ],
-          "explain": "Называем жанр: canta ópera.",
-          "options": [
-            "una",
-            "Без артикля"
-          ],
-          "sourceRef": "5.3.7",
-          "context": "Назови музыкальный жанр, в котором поёт Чело.",
           "interaction": "gap-choice"
         },
         {
-          "prompt": "Ernesto es ___ músico muy bueno.",
-          "answers": [
-            "un"
-          ],
-          "explain": "Даём оценку музыканту: un músico muy bueno, как в модели профессии с описанием.",
-          "sourceRef": "5.3.8",
-          "context": "Похвали Эрнесто как музыканта.",
-          "translation": "Эрнесто — очень хороший музыкант.",
-          "options": [
-            "un",
-            "unas",
-            "unos",
-            "Без артикля",
-            "una"
-          ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Escribe ___ canciones.",
-          "answers": [
-            "Без артикля"
-          ],
-          "explain": "Говорим о занятии вообще: пишет песни.",
-          "options": [
-            "Без артикля",
-            "unas"
-          ],
-          "sourceRef": "5.3.8",
-          "context": "Скажи, что он пишет песни вообще, без указания количества.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Necesito ___ cuaderno.",
-          "answers": [
-            "un"
-          ],
-          "explain": "Cuaderno — отдельный предмет мужского рода; один такой предмет — un cuaderno.",
-          "sourceRef": "5.3.9",
-          "context": "Тебе нужна одна тетрадь.",
-          "translation": "Мне нужна тетрадь."
-        },
-        {
-          "prompt": "¿Quieres ___ queso?",
-          "answers": [
-            "Без артикля"
-          ],
-          "explain": "Предлагаем сыр как продукт, без отдельной порции.",
-          "options": [
-            "Без артикля",
-            "un"
-          ],
-          "sourceRef": "5.3.10",
-          "context": "Предложи немного сыра как продукта, а не целую головку.",
-          "translation": "Предлагаешь сыр как продукт, без уточнения порции или отдельной головки.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Es ___ queso muy fuerte.",
-          "answers": [
-            "un"
-          ],
-          "explain": "Добавлено описание сорта: un queso muy fuerte.",
-          "options": [
-            "Без артикля",
-            "el",
-            "un"
-          ],
-          "sourceRef": "5.3.10",
-          "context": "Дополни фразу: артикль или без артикля?",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Carolina es ___ vendedora muy amable.",
+          "prompt": "Quiero ___ manzana para la merienda.",
           "answers": [
             "una"
           ],
-          "explain": "Amable — любезная. Оцениваем человека: una vendedora muy amable.",
-          "sourceRef": "5.3.11",
-          "context": "Отметь любезность продавщицы.",
-          "translation": "Каролина — очень любезная продавщица.",
-          "options": [
-            "una",
-            "Без артикля",
-            "un",
-            "unos",
-            "unas"
-          ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Vende ___ libros.",
-          "answers": [
-            "unos"
-          ],
-          "explain": "Выделяем несколько экземпляров: unos libros. Вид товара без количества — vende libros.",
-          "sourceRef": "5.3.11",
-          "context": "Она продаёт несколько книг, а не просто называет свой вид товара.",
-          "translation": "Она продаёт несколько книг."
-        },
-        {
-          "prompt": "¿Tienes ___ hermanos?",
-          "answers": [
-            "Без артикля"
-          ],
-          "explain": "Спрашиваем о наличии братьев или сестёр без подсчёта.",
-          "options": [
-            "unos",
-            "Без артикля"
-          ],
-          "sourceRef": "5.3.12",
-          "context": "Спроси о наличии братьев или сестёр, без указания количества.",
-          "interaction": "gap-choice"
+          "explain": "Речь об одном яблоке: `una manzana`. Для отдельного исчисляемого предмета в единственном числе нельзя опустить неопределённый артикль.",
+          "context": "Выбирают перекус.",
+          "sourceRef": "extra",
+          "interaction": "article-input",
+          "inputFormat": {
+            "instruction": "Введи только un, una, unos, unas либо выбери «Без артикля». Не переписывай предложение.",
+            "placeholder": "Артикль или ∅"
+          }
         }
       ],
       "preview": {
-        "source": "Colecciono ___ monedas.",
+        "source": "Tengo ___ monedas españolas.",
         "sentenceParts": [
-          "Colecciono ",
-          " monedas."
+          "Tengo ",
+          " monedas españolas."
         ],
-        "answer": "Без артикля",
-        "translation": "Я собираю монеты. Перед monedas ничего не добавляем.",
+        "answer": "unas",
+        "translation": "У меня есть несколько испанских монет.",
         "targetPrefix": "",
-        "tip": "∅ — перед словом ничего не добавляем.",
-        "displayAnswer": "∅"
+        "tip": "В предложении без указания количества допустимо и «Без артикля»."
       },
-      "inputLabel": "Выбор ответа · Короткий ввод",
+      "inputLabel": "Выбор или ввод артикля",
       "theorySections": [
         2
       ],
-      "revision": 2,
+      "revision": 3,
       "inputFormat": {
-        "instruction": "Впиши только un, una, unos, unas или ∅. Название предмета уже написано.",
-        "example": "unos (несколько предметов мужского рода)",
+        "instruction": "Введи только un, una, unos, unas либо выбери «Без артикля». Не переписывай предложение.",
         "placeholder": "Артикль или ∅"
       },
       "allowNoArticle": true
@@ -918,49 +888,53 @@
   "summary": {
     "wordGroups": [
       {
-        "title": "Профессия или национальность — без артикля",
+        "title": "Профессия, происхождение, принадлежность",
         "words": [
           [
-            "Es abogado",
-            "Он адвокат"
+            "Soy abogada.",
+            "Я адвокат."
           ],
           [
-            "Es peruano",
-            "Он перуанец"
+            "Es peruana.",
+            "Она перуанка."
+          ],
+          [
+            "Son protestantes.",
+            "Они протестанты."
           ]
         ]
       },
       {
-        "title": "Характеристика: часто с un / una",
+        "title": "Оценка и уточнение: не путать",
         "words": [
           [
-            "Es un abogado excelente",
-            "Он отличный адвокат"
+            "Es un médico muy bueno.",
+            "Он очень хороший врач."
           ],
           [
-            "Es una profesora muy buena",
-            "Она очень хороший преподаватель"
+            "Es profesora de español.",
+            "Она преподаёт испанский."
           ]
         ]
       },
       {
-        "title": "Занятия, еда и вещи: когда артикль не нужен",
+        "title": "Продукт, предмет и количество",
         "words": [
           [
-            "Colecciono monedas",
-            "Собираю монеты"
+            "Tomo café.",
+            "Я пью кофе."
           ],
           [
-            "No tomo azúcar",
-            "Не употребляю сахар"
+            "Quiero un café.",
+            "Хочу одну чашку кофе."
           ],
           [
-            "¿Tienes hermanos?",
-            "У тебя есть братья или сёстры?"
+            "Compro manzanas / unas manzanas.",
+            "Покупаю яблоки / несколько яблок."
           ]
         ]
       }
     ]
   },
-  "revision": 2
+  "revision": 3
 }
