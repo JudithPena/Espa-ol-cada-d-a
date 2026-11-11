@@ -24,7 +24,7 @@ jobs:
       - name: Новые проверки политики трёх жизней
         run: node --test tests/site_grammar_policy.test.cjs
       - name: Плеер грамматики и распределение вариантов ответа
-        run: node --test tests/site_grammar.test.cjs
+        run: timeout 90s node --test tests/site_grammar.test.cjs
       - name: Уроки основного курса на сайте (сценарии, проверка ответов)
         run: node --test tests/site_course.test.cjs
       - name: Тесты бота на Cloudflare
