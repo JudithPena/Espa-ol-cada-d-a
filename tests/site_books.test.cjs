@@ -499,3 +499,67 @@ test('the full reading automatically creates paired links for numbered lexical n
   assert.match(html, /<summary>Перевод<\/summary><p><strong>крупный<\/strong>/);
   assert.doesNotMatch(html, /<summary>Перевод<\/summary><p>[^<]*<sup/);
 });
+
+
+test('all catalogued works have concise original spoiler-free introductions', () => {
+  const books = fs.readdirSync('content/books', {withFileTypes:true}).filter(entry => entry.isDirectory())
+    .map(entry => JSON.parse(fs.readFileSync(`content/books/${entry.name}/book.json`, 'utf8')));
+  assert.equal(books.length, 14, 'Update this regression baseline when the library grows');
+  for (const book of books) {
+    assert.equal(typeof book.annotation, 'string', book.id);
+    assert.ok(book.annotation.length >= 85 && book.annotation.length <= 350, book.id);
+    assert.ok(!/[<>\\r\\n]/.test(book.annotation), book.id);
+    assert.ok(!/^\\s|\\s$/.test(book.annotation), book.id);
+  }
+  assert.equal(books.filter(b => b.kind === 'collection').length, 1);
+  assert.equal(books.filter(b => b.kind === 'story').length, 1);
+  assert.equal(books.filter(b => b.collection).length, 8);
+});
+
+test('cover and annotation render together in regular book, anthology and standalone story', () => {
+  const catalogSource = source.slice(source.indexOf('function booksView()'), source.indexOf('function courseView()'));
+  const sandbox = {
+    esc: ctx.esc, plural: (n, a, b, c) => n === 1 ? a : n < 5 ? b : c,
+    view: {bookLevel:'B1', book:'normal', bookChapter:null},
+    COURSE: {books: []}
+  };
+  vm.createContext(sandbox); vm.runInContext(catalogSource,sandbox);
+  const normal = {id:'normal',title:'Libro',author:'Autora',cover:'cover.webp',
+    annotation:'История о путешествии <без спойлеров> & загадке.',
+    level:'B1',chapters:[],chapter_catalog:[{id:'1',number:1,order:1,title:'Начало',status:'draft'}]};
+  const collection = {id:'collection',kind:'collection',title:'Сборник',author:'Автор',cover:'all.webp',
+    level:'B1',annotation:'Несколько разных историй для чтения.',books:['normal'],chapters:[],chapter_catalog:[]};
+  const story = {id:'story',kind:'story',title:'Сказка',author:'Автор',cover:'story.webp',level:'B1',
+    annotation:'Три персонажа отправляются в путь.',chapters:[],story:{blocks:[{title:'Начало',es:'Había una vez.',ru:'Жили-были.',notes:[],pronouns:[]}]}};
+  sandbox.COURSE.books=[normal,collection,story];
+  const chapters = sandbox.bookChaptersView();
+  assert.match(chapters, /class="book-intro"/);
+  assert.match(chapters, /class="book-cover-large" src="cover.webp"/);
+  assert.match(chapters, /class="book-annotation"/);
+  assert.match(chapters, /История о путешествии &lt;без спойлеров&gt; &amp; загадке/);
+  assert.doesNotMatch(chapters, /<без спойлеров>/);
+  assert.ok(chapters.indexOf('cover.webp') < chapters.indexOf('book-annotation'));
+  assert.ok(chapters.indexOf('book-annotation') < chapters.indexOf('<h3>Главы</h3>'));
+  sandbox.view.book='collection';
+  const anthology=sandbox.bookChaptersView();
+  assert.match(anthology, /class="book-cover-large" src="all.webp"/);
+  assert.match(anthology, /Несколько разных историй для чтения/);
+  assert.match(anthology, /Рассказы сборника/);
+  sandbox.view.book='story'; sandbox.view.bookChapter=null;
+  const standalone=sandbox.bookView();
+  assert.match(standalone, /class="book-cover-large" src="story.webp"/);
+  assert.match(standalone, /Три персонажа отправляются в путь/);
+  assert.ok(standalone.indexOf('book-annotation') < standalone.indexOf('Había una vez'));
+  assert.match(source, /@media \\(min-width: 530px\\)/);
+  assert.match(source, /book-intro:has\\(\\.book-cover-large\\)/);
+});
+
+test('source metadata supports unillustrated chapters without an annotation layout regression', () => {
+  const catalogSource = source.slice(source.indexOf('function booksView()'), source.indexOf('function bookText('));
+  const sandbox={esc:ctx.esc,plural:(_,a)=>a,COURSE:{books:[{id:'legacy',title:'Тест',author:'Автор',level:'A1',
+    chapters:[],chapter_catalog:[],annotation:'Короткое описание тестовой книги.'}]},view:{book:'legacy'}};
+  vm.createContext(sandbox); vm.runInContext(catalogSource,sandbox);
+  const html=sandbox.bookChaptersView();
+  assert.match(html,/Короткое описание тестовой книги/);
+  assert.doesNotMatch(html,/class="book-cover-large"/);
+});
