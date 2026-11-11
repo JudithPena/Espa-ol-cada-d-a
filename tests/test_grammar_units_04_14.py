@@ -10,7 +10,8 @@ SOURCE_ROWS = {
     4: [15, 10, 12, 10], 6: [15, 8, 6, 10],
     # Unit 5 has Fable Stage 5 coverage tests instead of frozen source-row counts.
     # Unit 7 is deliberately redesigned in Fable stage 4; see test_grammar_unit07_fable.py.
-    8: [6, 6, 12, 8], 9: [8, 12, 6, 4],
+    # Unit 8 Stage 7 replaces dated textbook tasks; validated by dedicated tests.
+    9: [8, 12, 6, 4],
     10: [8, 15, 8], 11: [10, 8, 10], 12: [8, 8, 8, 4],
     # Unit 13 has Fable stage 6 tests, rather than frozen textbook row coverage.
     14: [8, 8, 8],
@@ -50,8 +51,8 @@ def test_valid_variants_are_not_rejected_as_wrong():
     questions = lambda n: [q for g in by_number[n]['exercises'] for q in g['questions']]
     assert next(q for q in questions(4) if q['prompt'] == '___ aula')['answers'] == ['un', 'una']
     assert next(q for q in questions(4) if q['prompt'] == '___ hacha')['answers'] == ['un', 'una']
-    assert next(q for q in questions(8) if q['prompt'] == '___ India está en Asia.')['answers'] == ['la', 'Без артикля']
-    assert next(q for q in questions(8) if q['prompt'] == 'India está en ___ Asia.')['answers'] == ['Без артикля', 'el']
+    assert next(q for q in questions(8) if 'trabaja en ___ India' in q['prompt'])['answers'] == ['la', 'Без артикля']
+    assert next(q for q in questions(8) if 'vive en ___ Perú' in q['prompt'])['answers'] == ['Без артикля', 'el']
     assert next(q for q in questions(12) if q['prompt'] == '___ árboles son muy altos.')['answers'] == ['aquellos', 'esos']
     iranian = [q for q in questions(14) if q['clues'][0][0] == 'iraní']
     assert [q['answers'] for q in iranian] == [['iraní'], ['iraníes', 'iranís'], ['iraníes', 'iranís']]
