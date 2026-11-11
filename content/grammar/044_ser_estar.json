@@ -497,6 +497,14 @@
           },
           "feedbackAnswers": [
             "Esos cristales están sucios"
+          ],
+          "accentPolicy": "contextual",
+          "accentContrasts": [
+            {
+              "expected": "están",
+              "entered": "estan",
+              "explanation": "В форме «están» ударение над á обязательно: здесь проверяется форма estar для множественного числа."
+            }
           ]
         },
         {
@@ -777,7 +785,15 @@
           "inputFormat": {
             "instruction": "Впиши только пропущенную форму глагола. Остальные слова уже написаны.",
             "placeholder": "Форма глагола"
-          }
+          },
+          "accentPolicy": "contextual",
+          "accentContrasts": [
+            {
+              "expected": "están",
+              "entered": "estan",
+              "explanation": "В форме «están» ударение над á обязательно: здесь проверяется форма estar для множественного числа."
+            }
+          ]
         },
         {
           "prompt": "Mañana ___ mi cumpleaños.",
@@ -1295,7 +1311,15 @@
           "inputFormat": {
             "instruction": "Впиши только пропущенную форму глагола. Остальные слова уже написаны.",
             "placeholder": "Форма глагола"
-          }
+          },
+          "accentPolicy": "contextual",
+          "accentContrasts": [
+            {
+              "expected": "están",
+              "entered": "estan",
+              "explanation": "В форме «están» ударение над á обязательно: здесь проверяется форма estar для множественного числа."
+            }
+          ]
         },
         {
           "prompt": "Hoy Juan ___ muy guapo con el uniforme.",
@@ -1387,7 +1411,15 @@
           "inputFormat": {
             "instruction": "Впиши только пропущенную форму глагола. Остальные слова уже написаны.",
             "placeholder": "Форма глагола"
-          }
+          },
+          "accentPolicy": "contextual",
+          "accentContrasts": [
+            {
+              "expected": "están",
+              "entered": "estan",
+              "explanation": "В форме «están» ударение над á обязательно: здесь проверяется форма estar для множественного числа."
+            }
+          ]
         },
         {
           "prompt": "Ana y Sergio ___ casados.",
@@ -1411,7 +1443,15 @@
           "inputFormat": {
             "instruction": "Впиши только пропущенную форму глагола. Остальные слова уже написаны.",
             "placeholder": "Форма глагола"
-          }
+          },
+          "accentPolicy": "contextual",
+          "accentContrasts": [
+            {
+              "expected": "están",
+              "entered": "estan",
+              "explanation": "В форме «están» ударение над á обязательно: здесь проверяется форма estar для множественного числа."
+            }
+          ]
         },
         {
           "prompt": "Подруга спрашивает, готова ли ты выходить. Ответь: «Да, я готова».",
