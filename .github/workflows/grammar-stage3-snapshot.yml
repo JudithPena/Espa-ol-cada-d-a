@@ -1,0 +1,16 @@
+name: Stage3 grammar source snapshot
+on:
+  push:
+    branches: [audit/grammar-accent-policy-stage3-20261111]
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect current source for analysis
+        run: |
+          tar czf /tmp/grammar-stage3-source.tar.gz espanol content/grammar docs/grammar_audit docs/grammar_lint_guide.md docs/grammar_fields.md docs/site_grammar_guide.md AGENTS.md CLAUDE.md tests requirements.txt pyproject.toml .github/workflows/tests.yml
+      - uses: actions/upload-artifact@v4
+        with:
+          name: grammar-stage3-source
+          path: /tmp/grammar-stage3-source.tar.gz
