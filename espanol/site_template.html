@@ -2468,7 +2468,7 @@ function grammarResult(q,value,group={},manual=!q.options&&!q.tiles&&!q.guidedGa
       return wrong; // No evidence for a contextual judgement: do not guess.
     // soft and vetted contextual answers are accepted without consuming a life.
     // Unannotated legacy questions preserve the previous forgiving behaviour.
-    return {...grammarAcceptedResult(q,answer),status:'almost',good:true,reason:'accent',corrected:answer,missing};
+    return {...grammarAcceptedResult(q,answer),status:'almost',good:true,reason:'accent',corrected:q.normalize==='phrase'?expected:answer,missing};
   }
   // ñ/n and ü/u are not accent-only typos. Explain these errors without accepting them.
   for(const answer of q.answers) {
