@@ -17,6 +17,14 @@ CASES = (
     (5, "exercise:5.1", "choice"),
     (5, "exercise:5.2", "input"),
     (5, "exercise:5.3", "choice"),
+    (8, "section:0", "choice"),
+    (8, "section:1", "choice"),
+    (8, "section:2", "choice"),
+    (8, "section:3", "choice"),
+    (8, "exercise:8.1", "choice"),
+    (8, "exercise:8.2", "choice"),
+    (8, "exercise:8.3", "choice"),
+    (8, "exercise:8.4", "choice"),
     (13, "section:0", "choice"),
     (13, "section:1", "choice"),
     (13, "section:2", "choice"),
@@ -31,6 +39,22 @@ CASES = (
     (15, "exercise:15.2", "build"),
     (38, "exercise:38.1b", "gaps"),
     (45, "exercise:45.2", "gaps"),
+)
+# Additional **successful submissions** with real keyboard/button interactions.
+# Each case starts a fresh session: do not accidentally satisfy a later answer by previous context.
+SUCCESS8 = (
+    ("exercise:8.1", 2, "∅"),
+    ("exercise:8.2", 1, "el"),
+    ("exercise:8.3", 1, "∅"),
+    ("exercise:8.3", 7, "∅"),
+    ("exercise:8.3", 7, "el"),
+    ("exercise:8.3", 9, "∅"),
+    ("exercise:8.3", 9, "la"),
+    ("exercise:8.4", 1, "al"),
+    ("exercise:8.4", 3, "del"),
+    ("exercise:8.4", 5, "a El"),
+    ("exercise:8.4", 7, "de El"),
+    ("exercise:8.4", 9, "de La"),
 )
 OUT = Path("docs/grammar_immediate_feedback_browser")
 SHOTS = OUT / "screenshots"
@@ -270,6 +294,89 @@ def run_case(browser, width, number, route, expected_mode, qi=0):
         REPORT["cases"].append(item)
         context.close()
 
+def run_unit08_correct_case(browser, width, route, qi, answer):
+    """Exercise real input controls, ∅ button, alternatives, spaced input and reload."""
+    context=browser.new_context(viewport={"width":width,"height":820},
+                                is_mobile=width<=390,has_touch=width<=390,
+                                device_scale_factor=1)
+    page=context.new_page()
+    item={"unit":8,"width":width,"route":route,"question_index":qi,
+          "answer":answer,"status":"pending","screenshots":[]}
+    errors=[]
+    page.on("pageerror",lambda exc:errors.append(str(exc)))
+    try:
+        page.goto(ORIGIN,wait_until="domcontentloaded",timeout=45000)
+        page.evaluate("localStorage.clear()")
+        page.reload(wait_until="domcontentloaded")
+        page.wait_for_function("typeof gStart==='function' && Array.isArray(COURSE.grammar) && COURSE.grammar.length>0",timeout=30000)
+        page.evaluate(PREPARE,{"number":8,"route":route,"qi":qi})
+        html=page.locator(".gplayer").inner_text()
+        assert_true("El señor Alonso" in html, f"u8 {route}: unit header missing")
+        if route.startswith("exercise:"):
+            assert_true(route.split(":")[1] in html, f"u8 {route}: group name missing")
+        item["initial_layout"]=check_layout(page,"unit8 correct "+route)
+        assert_true(page.evaluate("gQuestionMode(gGroups(gUnit()).find(g=>g.id===G.steps[G.at].group).questions[G.steps[G.at].qi],gResponse(G.steps[G.at]))")=="input",
+                    f"u8 {route} #{qi}: intended input control missing")
+        old=page.evaluate("""() => {
+          const s=G.steps[G.at],g=gGroups(gUnit()).find(x=>x.id===s.group);
+          return {errors:gAttempt(gUnit(),g).errors,checked:gResponse(s).checked};
+        }""")
+        assert_true(old["errors"]==0 and not old["checked"],"fresh input not clean")
+        if answer=="∅":
+            button=page.locator("[data-gno-article]")
+            assert_true(button.count()==1,"unit8: accessible omission button absent")
+            button.click()
+            state=page.evaluate("""() => {
+              const s=G.steps[G.at],g=gGroups(gUnit()).find(x=>x.id===s.group);
+              return {value:gResponse(s).value,checked:gResponse(s).checked,errors:gAttempt(gUnit(),g).errors};
+            }""")
+            assert_true(state=={"value":"∅","checked":False,"errors":0},
+                        "omission button must fill ∅ without grading or losing life: "+str(state))
+            item["omission_button"]=state
+        else:
+            field=page.locator("#g-answer")
+            assert_true(field.count()==1,"u8: actual text field missing")
+            field.fill(answer)
+            assert_true(field.input_value()==answer,"u8: typed text truncated or normalized before submit")
+        if width==390 and route=="exercise:8.4" and qi==5:
+            # A two-word draft must survive page reload before submitting.
+            page.reload(wait_until="domcontentloaded")
+            page.wait_for_function("typeof gStart==='function' && Array.isArray(COURSE.grammar)",timeout=30000)
+            page.evaluate("""() => {
+              const u=COURSE.grammar.find(u=>u.number===8);
+              gStart(u.id,'all',true);
+            }""")
+            restored=page.evaluate("""() => ({value:gResponse(G.steps[G.at]).value,group:G.steps[G.at].group,qi:G.steps[G.at].qi})""")
+            assert_true(restored=={"value":"a El","group":"8.4","qi":5},
+                        "two-word draft not restored: "+str(restored))
+            item["reload_restored"]=restored
+        button=page.locator("[data-gcheck]")
+        assert_true(button.count()==1 and button.is_enabled(),"unit8: submit button not available")
+        button.click()
+        state=page.evaluate("""() => {
+          const s=G.steps[G.at],g=gGroups(gUnit()).find(x=>x.id===s.group),a=gAttempt(gUnit(),g);
+          return {good:gResponse(s).good,status:a.status,errors:a.errors,value:gResponse(s).value,
+                  checked:gResponse(s).checked};
+        }""")
+        assert_true(state["good"] is True and state["checked"] is True and state["errors"]==0,
+                    f"u8 {route} #{qi} {answer}: correct answer rejected: {state}")
+        item["result"]=state
+        item["after_layout"]=check_layout(page,"unit8 accepted "+route)
+        if width==390 and (answer in ("∅","a El","de El","de La","del")):
+            item["screenshots"].append(picture(page,width,8,f"accepted_{route.replace(':','_').replace('.','_')}_{qi}_{answer.replace(' ','_')}"))
+        assert_true(not errors,f"u8 {route} #{qi}: JavaScript errors {errors}")
+        item["status"]="passed"
+    except Exception as exc:
+        item["status"]="failed";item["error"]=repr(exc)
+        REPORT["failures"].append({"width":width,"unit":8,"route":route,"qi":qi,"answer":answer,"error":repr(exc)})
+        try:
+            item["screenshots"].append(picture(page,width,8,f"accepted_{route.replace(':','_')}_{qi}_FAILED"))
+        except Exception:pass
+    finally:
+        REPORT["cases"].append(item)
+        context.close()
+
+
 def main():
     proc=subprocess.Popen([sys.executable,"-m","http.server","8765","--directory","site"],
                           stdout=subprocess.DEVNULL,stderr=subprocess.STDOUT)
@@ -283,6 +390,9 @@ def main():
                     number,route,mode,*extra=case
                     run_case(browser,width,number,route,mode,extra[0] if extra else 0)
                     print(f"{width}px / unit {number}: {REPORT['cases'][-1]['status']}",flush=True)
+                for route,qi,answer in SUCCESS8:
+                    run_unit08_correct_case(browser,width,route,qi,answer)
+                    print(f"{width}px / unit 8 accepted {route} #{qi}: {REPORT['cases'][-1]['status']}",flush=True)
             browser.close()
     finally:
         proc.terminate()
