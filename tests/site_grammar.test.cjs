@@ -1898,7 +1898,7 @@ test('Fable stage 6 unit-13 word builders have distractors and accept the intend
    const q=u.exercises[2].questions[qi];
    assert.equal(q.interaction,'build');assert.ok(q.tiles.length>q.answers[0].split(' ').length);
    const run=context([u]);unlockUntil(run,'exercise:13.3');
-   run(`gStart(COURSE.grammar[0].id,'exercise:13.3');gMove(1);G.at=G.steps.findIndex(s=>s.group==='13.3'&&s.qi===${qi});`);
+   run(`gStart(COURSE.grammar[0].id,'exercise:13.3');gMove(1);G.at=G.steps.findIndex(s=>s.group==='13.3'&&s.qi===${qi});render=()=>{};document.querySelector=()=>null;`);
    const result=JSON.parse(run(`JSON.stringify((()=>{const s=G.steps[G.at],q=gUnit().exercises[2].questions[s.qi];for(const word of q.answers[0].split(' ')){const index=q.tiles.indexOf(word);if(index<0)throw Error('Missing tile '+word);gBuild('add',index);}const value=gResponse(s).value;gCheck();return {value,good:gResponse(s).good,errors:gAttempt(gUnit(),gUnit().exercises[2]).errors};})())`));
    assert.equal(result.value,q.answers[0]);assert.equal(result.good,true);
    assert.equal(result.errors,0);
