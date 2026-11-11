@@ -906,6 +906,14 @@ def load_books(directory: Path | None = None) -> list[dict]:
             if series_key in series_numbers:
                 raise ValueError(f"{path}: повторный номер книги внутри серии")
             series_numbers.add(series_key)
+        # Аннотация хранится только в метаданных книги; для старых тестовых фикстур
+        # поле необязательно, но все реальные book.json проверяются отдельным тестом.
+        annotation = meta.get("annotation")
+        if annotation is not None:
+            if (not isinstance(annotation, str) or not annotation.strip()
+                    or len(annotation.strip()) > 350 or "\n" in annotation):
+                raise ValueError(f"{path}: аннотация книги должна быть непустой строкой до 350 символов")
+            meta["annotation"] = annotation.strip()
         cover = meta.get("cover")
         if cover and not isinstance(cover, str):
             raise ValueError(f"{path}: обложка должна быть ссылкой или именем файла")
