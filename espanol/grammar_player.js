@@ -521,7 +521,7 @@ function gBuilderContents(q,response) {
   const chosen=response.chosen || [];
   return `${gAnswerHint(q)}<div class="gbuild-answer" role="group" aria-label="Собранный ответ">${response.checked ? `<b lang="es">${esc(response.value)}</b>` : chosen.length ? chosen.map((index,i)=>`<button class="gtile is-chosen" data-gremove="${i}" aria-label="Убрать ${esc(q.tiles[index])}">${esc(q.tiles[index])}<span aria-hidden="true"> ×</span></button>`).join('') : `<span class="muted">${q.answerHint ? 'Собери ответ из слов ниже' : 'Нажимай на слова в нужном порядке'}</span>`}</div>${response.checked?'':`<div class="gbuild-bank" role="group" aria-label="Слова для сборки">${q.tiles.map((word,i)=>`<button class="gtile" data-gadd="${i}" lang="es" ${chosen.includes(i)?'disabled':''}>${esc(word)}</button>`).join('')}</div>`}`;
 }
-function gAnswerHint(q) { return q.answerHint && !q.answers.some(a=>grammarNormalize(a)===grammarNormalize(q.answerHint)) ? `<p class="ganswer-hint">Нужно сказать: <strong>«${esc(q.answerHint)}»</strong></p>` : ''; }
+function gAnswerHint(q) { return q.answerHint && !q.answers?.some(a=>grammarNormalize(a)===grammarNormalize(q.answerHint)) ? `<p class="ganswer-hint">Нужно сказать: <strong>«${esc(q.answerHint)}»</strong></p>` : ''; }
 function gBuilder(q,response) { return `<div class="gbuild">${gBuilderContents(q,response)}</div>`; }
 function gComposeGaps(parts, values) {
   return parts.map((part,i)=>part+(values[i] || '')).join('').trim();
