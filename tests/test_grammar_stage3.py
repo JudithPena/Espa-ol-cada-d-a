@@ -24,8 +24,9 @@ def test_sidecar_is_loaded_in_memory_without_modifying_any_lesson_bytes():
             for index,p in question_map.items():
                 q=group_map[group_id]["questions"][int(index)]
                 assert q["answers"][0]==p["answer"]
-                assert q["accentPolicy"]==p["accentPolicy"]
-                assert q["accentContrasts"]==p["accentContrasts"]
+                for key in ("accentPolicy", "accentContrasts", "normalize", "gapAnswers"):
+                    if key in p:
+                        assert q[key] == p[key]
                 count+=1
     assert count>=21
     assert source=={p.name:p.read_bytes() for p in GRAMMAR.glob("[0-9]*.json")}
