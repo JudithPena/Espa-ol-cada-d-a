@@ -45,6 +45,10 @@ jobs:
         run: node --test tests/site_grammar.test.cjs
       - name: Этап 3 — контекстные ударения и альтернативные ответы
         run: node --test tests/grammar_stage3.test.cjs
+      - name: Статические данные, кеш, ошибки сети и сохранность прогресса
+        run: |
+          python -m espanol.site_budget site
+          node --test tests/site_static_data.test.cjs
       - name: Уроки основного курса на сайте (сценарии, проверка ответов)
         run: node --test tests/site_course.test.cjs
       - name: Тесты бота на Cloudflare
@@ -113,3 +117,30 @@ jobs:
           name: grammar-immediate-feedback-browser
           path: docs/grammar_immediate_feedback_browser/
           if-no-files-found: warn
+
+  static-data-browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install Chromium test dependencies
+        run: |
+          pip install -r requirements.txt playwright
+          python -m playwright install --with-deps chromium
+      - name: Build without publication and test actual JSON loading
+        run: |
+          python -m espanol site
+          python -m espanol.site_budget site
+          git worktree add --detach /tmp/ecd-site-baseline HEAD^
+          (cd /tmp/ecd-site-baseline && python -m espanol site -o /tmp/ecd-site-before/index.html)
+          python tests/site_static_browser.py --site site --baseline /tmp/ecd-site-before --report /tmp/site-static-browser.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: static-data-browser
+          path: /tmp/site-static-browser.json

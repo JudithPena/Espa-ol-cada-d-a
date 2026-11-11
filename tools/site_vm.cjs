@@ -50,10 +50,11 @@ function context(data, storage = new Map(), opts = {}) {
   // Любой элемент страницы — заглушка: свойства и вызовы возвращают её же (отрисовка тесту не нужна).
   const node = new Proxy(function () {}, {get: (t, k) => k === 'isConnected' ? false : typeof k === 'string' ? node : undefined, apply: () => node});
   const voices = opts.speech ? [{lang: 'es-ES', name: 'test'}] : [];
-  const sandbox = {console, setTimeout: noop, clearTimeout: noop, addEventListener: noop,
+  const appNode = {innerHTML: ''};
+  const sandbox = {console, AbortController, ...(opts.fetch ? {fetch: opts.fetch} : {}), ...(opts.caches ? {caches: opts.caches} : {}), setTimeout: noop, clearTimeout: noop, addEventListener: noop,
     localStorage: {getItem: k => storage.get(k) || null, setItem: (k, v) => storage.set(k, v), removeItem: k => storage.delete(k)},
-    window: {addEventListener: noop}, document: {documentElement: {classList: {toggle: noop}}, addEventListener: noop,
-      getElementById: () => null, querySelector: () => node, querySelectorAll: () => [], body: {appendChild: noop}},
+    window: {addEventListener: noop, scrollTo: noop}, document: {documentElement: {classList: {toggle: noop}}, addEventListener: noop,
+      getElementById: () => null, querySelector: sel => sel === '#app' ? appNode : node, querySelectorAll: () => [], body: {appendChild: noop}},
     matchMedia: () => ({matches: false, addEventListener: noop}), navigator: {},
     location: {hostname: 'localhost'},
   };
@@ -77,7 +78,7 @@ function context(data, storage = new Map(), opts = {}) {
   const run = code => vm.runInContext(code, ctx);
   // Отрисовка без DOM: только playerView (он заводит состояние шага), как render() в браузере.
   // opts.audio — проверяем и сам звук, иначе say отключён.
-  run(`render = () => { if (S && S.kind !== "result" && S.steps?.[S.at]) playerView(); }; sfx = () => {}; ${opts.audio ? '' : 'say = () => {};'}`);
+  if (!opts.render) run(`render = () => { if (S && S.kind !== "result" && S.steps?.[S.at]) playerView(); }; sfx = () => {}; ${opts.audio ? '' : 'say = () => {};'}`);
   return run;
 }
 

@@ -1767,6 +1767,7 @@ function updateSkills(outcomes) {
 }
 // «Повторить» → «Фразы и конструкции»: до 10 заданий, не больше двух на навык.
 function startPhraseReview() {
+  if (COURSE.resources && dataWait([COURSE.resources.common, ...completedLevelRefs()], startPhraseReview)) return;
   let tags = dueSkills();
   if (!tags.length) tags = Object.keys(P.skills).filter(t => SKILLS[t]).sort((a, b) =>
     (P.skills[b].err / Math.max(1, P.skills[b].ok + P.skills[b].err)) - (P.skills[a].err / Math.max(1, P.skills[a].ok + P.skills[a].err))).slice(0, 5);
@@ -2119,6 +2120,7 @@ let S = null;   // текущее занятие
 let view = { tab: "home", level: null };
 
 function startLesson(i) {
+  if (COURSE.resources && dataWait([COURSE.resources.common, LESSONS[i]._data, ...completedLevelRefs()], () => startLesson(i))) return;
   const L = LESSONS[i];
   if (L.scripted) return startScript(i);
   const screens = theoryScreens(L);
@@ -2336,7 +2338,7 @@ function tabsBar() {
 function stepTitle(L) { return `${L.emoji} ${L.kindLabel}${L.words.length ? " · " + words(L.words.length) : ""}`; }
 const rowNote = L => L.goal ? esc(L.goal) : stepTitle(L);
 
-const LEVELS = ["A0", "A1", "A2", "B1", "B2", "C1"];
+const LEVELS = ["A0", "A1", "A2", "B1", "B2", "C1", "C2"];
 const levelOf = i => COURSE.units.find(u => u.number === LESSONS[i].unit)?.level;
 function levelStats(lv) {
   const idx = LESSONS.map((L, i) => levelOf(i) === lv ? i : -1).filter(i => i >= 0);
@@ -2667,6 +2669,7 @@ function bookGo(level = null, book = null, chapter = null) {
   bookRoute(["books", level, book, chapter]); render(); window.scrollTo(0, 0);
 }
 function bookRoute(parts) {
+  pendingBookRoute = COURSE.resources?.books && !dataLoaded.has(COURSE.resources.books.url) ? parts.slice() : null;
   const level = parts[1], b = bookById(parts[2]);
   view.tab = "books"; view.bookLevel = null; view.book = null; view.bookChapter = null;
   if (!BOOK_LEVELS.includes(level)) return;
@@ -3296,8 +3299,134 @@ function resultView() {
 /* ================================================================ отрисовка и события */
 /*__GRAMMAR_PLAYER__*/
 const app = $("#app");
+/* Content-addressed static data. No writes to progress, scores or session keys. */
+const dataRequests = new Map(), dataLoaded = new Set();
+let dataGeneration = 0, dataRetry = null, pendingBookRoute = null, dataPending = false;
+const DATA_CACHE = "ecd-learning-data-v1";
+function dataRefs() {
+  const refs = [];
+  if (COURSE.resources?.common) refs.push(COURSE.resources.common);
+  if (BOOK_TABS.includes(view.tab) && COURSE.resources?.books) refs.push(COURSE.resources.books);
+  if (view.tab === "book") {
+    const text = bookCurrentText();
+    if (text?._data) refs.push(text._data);
+  }
+  if (view.tab === "grammar" && view.grammar) {
+    const unit = COURSE.grammar.find(u => u.id === view.grammar);
+    if (unit?._data) refs.push(unit._data);
+  }
+  if (view.tab === "video") {
+    const video = COURSE.videos.find(v => v.id === view.video);
+    if (video?._data) refs.push(video._data);
+  }
+  if (view.tab === "review") refs.push(...completedLevelRefs());
+  return refs;
+}
+function completedLevelRefs() {
+  return LESSONS.filter(L => P.done[L.id] && L._data).map(L => L._data);
+}
+function dataValidate(ref, value) {
+  const array = v => Array.isArray(v);
+  let valid = value && typeof value === "object" && !array(value);
+  if (ref.kind === "books") valid = array(value) && value.every(b => typeof b.id === "string" && array(b.chapters));
+  else if (ref.kind === "common") valid &&= array(value.words) && value.words.length === LESSONS.length && value.words.every(array) && value.audio && value.avatars;
+  else if (ref.kind === "level") {
+    const expected = LESSONS.filter(L => L._data?.url === ref.url).map(L => L.id);
+    valid &&= array(value.lessons) && value.lessons.length === expected.length && value.lessons.every((L, i) => L.id === expected[i] && array(L.words) && array(L.blocks) && array(L.quiz) && array(L.sentences));
+  } else if (ref.kind === "grammar") valid &&= COURSE.grammar.some(u => u.id === value.id && u._data?.url === ref.url) && array(value.sections) && array(value.exercises) && value.exercises.every(g => array(g.questions));
+  else if (ref.kind === "text") valid &&= array(value.blocks) && value.blocks.length > 0;
+  else if (ref.kind === "video") valid &&= array(value.segments);
+  else valid = false;
+  if (!valid) throw new Error("Неверный формат материала");
+  return value;
+}
+async function dataFetch(ref) {
+  let cache;
+  try {
+    cache = await globalThis.caches?.open(DATA_CACHE);
+    const stored = await cache?.match(ref.url);
+    if (stored) {
+      try { return dataValidate(ref, await stored.json()); }
+      catch (_) { await cache.delete(ref.url); }
+    }
+  } catch (_) { /* Private mode / full disk: network and memory cache still work. */ }
+  const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 20000);
+  try {
+    const response = await fetch(ref.url, {signal: controller.signal});
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const value = dataValidate(ref, await response.clone().json());
+    if (cache) {
+      try {
+        await cache.put(ref.url, response);
+        const keys = await cache.keys();
+        for (const key of keys.slice(0, Math.max(0, keys.length - 64))) await cache.delete(key);
+      } catch (_) { /* Cache is optional, never a prerequisite for learning. */ }
+    }
+    return value;
+  } finally { clearTimeout(timer); }
+}
+function dataApply(ref, value) {
+  if (ref.kind === "books") {
+    COURSE.books.splice(0, COURSE.books.length, ...value);
+  } else if (ref.kind === "common") {
+    WORDS.clear();
+    value.words.forEach((list, i) => {
+      LESSONS[i].words = list;
+      list.forEach(w => { if (!WORDS.has(w.es)) WORDS.set(w.es, {...w, li: i}); });
+    });
+    Object.assign(AUDIO, value.audio); Object.assign(AVATARS, value.avatars);
+    TTS.ok = Object.keys(AUDIO).length > 0 || SPEECH;
+  } else if (ref.kind === "level") {
+    value.lessons.forEach(L => Object.assign(LESSONS.find(meta => meta.id === L.id), L));
+  } else if (ref.kind === "grammar") {
+    Object.assign(COURSE.grammar.find(u => u._data?.url === ref.url), value);
+  } else if (ref.kind === "video") {
+    Object.assign(COURSE.videos.find(v => v._data?.url === ref.url), value);
+  } else if (ref.kind === "text") {
+    for (const book of COURSE.books) for (const text of [...book.chapters, ...(book.story ? [book.story] : [])]) {
+      if (text._data?.url === ref.url) Object.assign(text, value);
+    }
+  }
+}
+function dataLoad(ref) {
+  if (dataLoaded.has(ref.url)) return Promise.resolve();
+  if (dataRequests.has(ref.url)) return dataRequests.get(ref.url);
+  const pending = dataFetch(ref).then(value => { dataApply(ref, value); dataLoaded.add(ref.url); })
+    .finally(() => dataRequests.delete(ref.url));
+  dataRequests.set(ref.url, pending);
+  return pending;
+}
+// Return synchronously for portable fragments and already hydrated resources.
+// A newer navigation invalidates only the screen callback, not useful cached data.
+function dataLeave() {
+  if (!dataPending) return;
+  ++dataGeneration; dataPending = false; dataRetry = null;
+  if (G) { gSave(); G = null; }
+  clearTimeout(autoTimer); stopSpeech(); S = null;
+}
+function dataWait(refs, resume) {
+  const generation = ++dataGeneration;
+  dataRetry = null;
+  refs = [...new Map(refs.filter(Boolean).map(ref => [ref.url, ref])).values()].filter(ref => !dataLoaded.has(ref.url));
+  dataPending = !!refs.length;
+  if (!refs.length) return false;
+  stopSpeech();
+  app.innerHTML = `${topBar()}<main><div class="wrap"><section class="panel" role="status"><h2>Загружаем материал…</h2><p>Это может занять несколько секунд.</p><button class="btn ghost" data-tab="home">На главную</button></section></div></main>${tabsBar()}`;
+  Promise.all(refs.map(dataLoad)).then(() => {
+    if (generation === dataGeneration) resume();
+  }).catch(() => {
+    if (generation !== dataGeneration) return;
+    dataRetry = () => { if (!dataWait(refs, resume)) resume(); };
+    app.innerHTML = `${topBar()}<main><div class="wrap"><section class="panel" role="alert"><h2>Не удалось загрузить материал</h2><p>Проверьте соединение и попробуйте ещё раз. Ваш прогресс сохранён.</p><button class="btn" data-retry-data>Повторить загрузку</button> <button class="btn ghost" data-refresh-data>Обновить страницу</button> <button class="btn ghost" data-tab="home">На главную</button></section></div></main>${tabsBar()}`;
+  });
+  return true;
+}
+
 // Перерисовка убрала диалог с экрана (следующий слайд, другая вкладка) — его озвучка останавливается.
 function render() {
+  if (!BOOK_TABS.includes(view.tab)) pendingBookRoute = null;
+  if (pendingBookRoute && dataLoaded.has(COURSE.resources.books.url)) bookRoute(pendingBookRoute);
+  if (dataWait(dataRefs(), render)) { if (!pendingBookRoute) navSync(); return; }
   renderView();
   navSync();
   if (DLG.box && !DLG.box.isConnected) stopSpeech();
@@ -3498,6 +3627,9 @@ document.addEventListener("click", e => {
   const el = e.target.closest("button, .spoiler, [data-say], [data-line]");
   if (!el) return;
   const d = el.dataset;
+  if ("retryData" in d) return dataRetry?.();
+  if ("refreshData" in d) return location.reload();
+  if (d.tab) dataLeave();
   if (d.bookJump) return bookJump(d.bookJump);
   if ("bookSaveReflection" in d) {
     const box = el.closest("[data-book-exercise]");
