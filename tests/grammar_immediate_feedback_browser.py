@@ -17,6 +17,14 @@ CASES = (
     (5, "exercise:5.1", "choice"),
     (5, "exercise:5.2", "input"),
     (5, "exercise:5.3", "choice"),
+    (13, "section:0", "choice"),
+    (13, "section:1", "choice"),
+    (13, "section:2", "choice"),
+    (13, "exercise:13.1", "input"),
+    (13, "exercise:13.2", "choice"),
+    (13, "exercise:13.3", "choice"),
+    (13, "exercise:13.3", "build", 8),
+    (13, "exercise:13.3", "build", 10),
     (7, "exercise:7.1", "choice"),
     (7, "exercise:7.2", "choice"),
     (7, "exercise:7.3", "input"),
@@ -31,7 +39,7 @@ ORIGIN = "http://127.0.0.1:8765/index.html"
 REPORT = {"browser": "Chromium via Playwright", "widths": WIDTHS, "cases": [], "failures": [],
           "limitations": ["Android/iOS native IME not available in Linux Chromium; 520px-height viewport emulates keyboard obstruction, not a real mobile keyboard."]}
 
-PREPARE = r"""({number,route}) => {
+PREPARE = r"""({number,route,qi=0}) => {
   const u=COURSE.grammar.find(u=>u.number===number);
   if(!u) throw Error('Unit '+number+' not found');
   P.grammar ||= {}; P.grammarRead ||= {};
@@ -49,7 +57,8 @@ PREPARE = r"""({number,route}) => {
   P.grammar[grammarKey(u,group)]={correct:1,total:group.questions.length};
   const score=JSON.stringify(P.grammar[grammarKey(u,group)]);
   save(); gStart(u.id,route); gMove(1);
-  if(!G || G.steps[G.at]?.type!=='question') throw Error('Failed to start '+route);
+  G.at=G.steps.findIndex(s=>s.type==='question'&&s.group===group.id&&s.qi===qi);
+  if(!G || G.at<0 || G.steps[G.at]?.type!=='question') throw Error('Failed to start '+route+' index '+qi);
   return {score,group:group.id,questions:group.questions.length};
 }"""
 
@@ -129,20 +138,21 @@ def enter_wrong(page, question):
     assert_true(check.count()>0 and check.is_enabled(),"Check button missing or disabled")
     check.click()
 
-def run_case(browser, width, number, route, expected_mode):
+def run_case(browser, width, number, route, expected_mode, qi=0):
     context=browser.new_context(viewport={"width":width,"height":820},
                                is_mobile=width<=390,has_touch=width<=390,
                                device_scale_factor=1)
     page=context.new_page()
     exceptions=[]
     page.on("pageerror",lambda err: exceptions.append(str(err)))
-    item={"width":width,"unit":number,"route":route,"screenshots":[],"layouts":{}}
+    item={"width":width,"unit":number,"route":route,"question_index":qi,"screenshots":[],"layouts":{}}
+    label_id=route.replace(":","_").replace(".","_")+f"_q{qi}"
     try:
         page.goto(ORIGIN,wait_until="domcontentloaded",timeout=45000)
         page.evaluate("localStorage.clear()")
         page.reload(wait_until="domcontentloaded")
         page.wait_for_function("typeof gStart==='function' && Array.isArray(COURSE.grammar) && COURSE.grammar.length>0",timeout=30000)
-        initial=page.evaluate(PREPARE,{"number":number,"route":route})
+        initial=page.evaluate(PREPARE,{"number":number,"route":route,"qi":qi})
         item["initial"]=initial
         label=f"u{number} width {width}"
         item["layouts"]["initial"]=check_layout(page,label+" initial")
@@ -151,9 +161,10 @@ def run_case(browser, width, number, route, expected_mode):
             if n==1:
                 assert_true(q["mode"]==expected_mode or expected_mode=="gaps" and q["gaps"]>0,
                             f"{label}: expected {expected_mode}, got {q['mode']}")
-            if width<=390 and (q["mode"]=="input" or q["gaps"]>0) and n==1:
+            if width<=390 and (q["mode"] in ("input","build") or q["gaps"]>0) and n==1:
                 page.set_viewport_size({"width":width,"height":520})
-                page.locator("[data-ggap],#g-answer").first.focus()
+                if q["mode"]!="build":
+                    page.locator("[data-ggap],#g-answer").first.focus()
                 page.evaluate("gSyncViewport()")
                 item["layouts"]["keyboard_emulation"]=check_layout(page,label+" short height")
                 assert_true(page.locator("[data-gcheck]").count()>0,label+": check button unavailable during compressed height")
@@ -177,6 +188,11 @@ def run_case(browser, width, number, route, expected_mode):
                             and omitted["errors"]==before_omit,
                             "Unit 5: ∅ must not submit or consume a life: "+str(omitted))
                 item["omission_button"]={"clicked":True,"value":omitted["value"],"errors":omitted["errors"]}
+            if number==13 and route=="exercise:13.3" and q["mode"]=="build" and n==1:
+                bank=page.locator(".gbuild-bank [data-gadd]")
+                assert_true(bank.count()>len(q["answers"][0].split()),
+                            "Unit 13 word bank must have distractors, not only required words")
+                item["distractors"]={"bank":bank.count(),"needed":len(q["answers"][0].split())}
             enter_wrong(page,q)
             state=page.evaluate("""() => {
               const s=G.steps[G.at],g=gGroups(gUnit()).find(g=>g.id===s.group),a=gAttempt(gUnit(),g);
@@ -205,7 +221,7 @@ def run_case(browser, width, number, route, expected_mode):
                 assert_true(state["status"]=="active",label+": failed too early")
             item["layouts"][f"error_{n}"]=check_layout(page,label+f" error {n}")
             if number==1 or n==3:
-                item["screenshots"].append(picture(page,width,number,f"{route.replace(':','_').replace('.','_')}_error_{n}"))
+                item["screenshots"].append(picture(page,width,number,f"{label_id}_error_{n}"))
             if n<3:
                 next_button=page.locator("[data-gnext]")
                 assert_true(next_button.count()>0,label+": next unavailable")
@@ -215,14 +231,14 @@ def run_case(browser, width, number, route, expected_mode):
         assert_true(page.evaluate("Boolean(G.recovery)"),label+": theory didn't open")
         item["layouts"]["theory"]=check_layout(page,label+" theory")
         if number==1 or width==390:
-            item["screenshots"].append(picture(page,width,number,route.replace(':','_').replace('.','_')+"_theory"))
+            item["screenshots"].append(picture(page,width,number,label_id+"_theory"))
         page.locator("[data-greview-mistake]").click()
         assert_true(page.evaluate("!G.recovery && G.steps[G.at].qi") == last,
                     label+": did not return to same failed question")
         assert_true(page.locator(".fb").inner_text().find("Верный ответ:")>=0,
                     label+": lost mistake analysis")
         if number==1 or width==390:
-            item["screenshots"].append(picture(page,width,number,route.replace(':','_').replace('.','_')+"_returned_to_error"))
+            item["screenshots"].append(picture(page,width,number,label_id+"_returned_to_error"))
         page.locator("[data-grepeat-exercise]").click()
         remaining=page.evaluate("""() => {
           const u=gUnit(),g=gGroups(u).find(x=>x.id===G.steps[G.at].group);
@@ -233,7 +249,7 @@ def run_case(browser, width, number, route, expected_mode):
         assert_true(remaining["score"]==initial["score"],label+": previous progress lost")
         item["layouts"]["retry"]=check_layout(page,label+" retry")
         if number==1 or width==390:
-            item["screenshots"].append(picture(page,width,number,route.replace(':','_').replace('.','_')+"_retry"))
+            item["screenshots"].append(picture(page,width,number,label_id+"_retry"))
         assert_true(not exceptions, label+": JavaScript errors: "+str(exceptions))
         item["status"]="passed"
     except Exception as error:
@@ -241,7 +257,7 @@ def run_case(browser, width, number, route, expected_mode):
         item["error"]=repr(error)
         REPORT["failures"].append({"width":width,"unit":number,"error":repr(error)})
         try:
-            item["screenshots"].append(picture(page,width,number,route.replace(':','_').replace('.','_')+"_FAILED"))
+            item["screenshots"].append(picture(page,width,number,label_id+"_FAILED"))
         except Exception:
             pass
     finally:
@@ -257,8 +273,9 @@ def main():
             browser=playwright.chromium.launch(headless=True,args=["--no-sandbox"])
             REPORT["browser_version"]=browser.version
             for width in WIDTHS:
-                for number,route,mode in CASES:
-                    run_case(browser,width,number,route,mode)
+                for case in CASES:
+                    number,route,mode,*extra=case
+                    run_case(browser,width,number,route,mode,extra[0] if extra else 0)
                     print(f"{width}px / unit {number}: {REPORT['cases'][-1]['status']}",flush=True)
             browser.close()
     finally:
