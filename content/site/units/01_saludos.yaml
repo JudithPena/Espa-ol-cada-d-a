@@ -51,17 +51,19 @@ lessons:
           format: приветствие по-испански
           skill: greeting_time
           items:
-            - q: "☀️ 9:00. Вы входите в офис."
+            - q: "☀️ 9:00. Вы входите в офис. Поздоровайтесь по времени суток."
               a: "Buenos días | Hola, buenos días"
               explain: "До обеда здороваются словами buenos días."
               mistakes:
+                "hola": "_Hola_ здесь уместно. В этом задании назовите утреннее приветствие."
                 "buenas dias": "Почти: días — слово мужского рода, поэтому **buenos** días. А «добрый вечер» — **buenas** tardes."
                 "buenas días": "Почти: días — слово мужского рода, поэтому **buenos** días. А «добрый вечер» — **buenas** tardes."
                 "buenas tardes": "Buenas tardes говорят после обеда. А в 9:00 обед ещё не наступил."
-            - q: "🌇 17:00. Вы встречаете соседа."
+            - q: "🌇 17:00. Вы встречаете соседа. Поздоровайтесь по времени суток."
               a: "Buenas tardes | Hola, buenas tardes"
               explain: "После обеда и до темноты здороваются словами buenas tardes."
               mistakes:
+                "hola": "_Hola_ здесь уместно. В этом задании назовите приветствие для времени после обеда."
                 "buenos tardes": "Почти: tardes — слово женского рода, поэтому **buenas** tardes. А **buenos** — только в buenos días."
                 "buenos días": "Buenos días говорят до обеда, около 14:00 в Испании обедают. В 17:00 — buenas tardes."
       - learn: [adiós, hasta luego, hasta mañana]
@@ -167,6 +169,7 @@ lessons:
           text: |
             Слово **y** значит «и» или «а».
             В значении «а» оно помогает вежливо вернуть вопрос собеседнику: _¿Y tú?_ — «А ты?», _Bien, ¿y tú?_ — «Хорошо, а ты?»
+            В вопросе _¿Y tú?_ слово **tú** означает «ты» и пишется со знаком ударения.
             В значении «и» оно соединяет слова: _Carmen y Carlos_ — «Кармен и Карлос», _el queso y el vino_ — «сыр и вино».
       - choose:
           title: Что ответить?
@@ -189,6 +192,11 @@ lessons:
               mistakes:
                 "bien gracias": "Ответ верный, а вопрос в ответ забыли: добавьте **¿y tú?** — «а ты?»."
                 "bien": "Ответ верный, а вопрос в ответ забыли: добавьте **¿y tú?** — «а ты?»."
+                # Ключи mistakes сравниваются без ударений: эти четыре ловят «¿y tu?» без знака (верные ответы проверяются раньше).
+                "Bien, ¿y tú?": "Почти! Слово **tú** — «ты» — пишется со знаком ударения: **¿Y tú?** Без знака это другое слово."
+                "Bien, gracias. ¿Y tú?": "Почти! Слово **tú** — «ты» — пишется со знаком ударения: **¿Y tú?** Без знака это другое слово."
+                "Muy bien, ¿y tú?": "Почти! Слово **tú** — «ты» — пишется со знаком ударения: **¿Y tú?** Без знака это другое слово."
+                "Muy bien, gracias. ¿Y tú?": "Почти! Слово **tú** — «ты» — пишется со знаком ударения: **¿Y tú?** Без знака это другое слово."
       - build:
           title: Соберите фразу
           free: true
@@ -342,13 +350,14 @@ lessons:
     kind: dialogue
     title: Утро в офисе
     goal: поблагодарить, извиниться и попросить кофе
-    version: 2
+    version: 3
     vocab:
       - "🙏 por favor [пор фабо́р] — пожалуйста (просьба) :: Un café, por favor. — Кофе, пожалуйста. {forms: un}"
       - "🙏 muchas gracias [му́час гра́θиас] — большое спасибо"
       - "🤝 de nada [дэ на́да] — не за что"
       - "🙇 perdón [пэрдо́н] — извините, простите"
       - "👌 vale [ба́лэ] — ладно, хорошо, окей"
+      - "🙂 no pasa nada [но па́са на́да] — ничего страшного (ответ на извинение) :: ¡Perdón! No pasa nada. — Простите! Ничего страшного."
     # Урок начинается разговором: слова — из него, вопросы к разговору — с кнопкой «Показать диалог» (source).
     blocks:
       - "Лусия и Пабло работают в одном офисе в Мадриде."
@@ -360,9 +369,7 @@ lessons:
             - "Pablo: ¡Hola, Lucía! ¿Qué tal? | Привет, Лусия! Как дела?"
             - "Lucía: Muy bien, gracias. ¿Y tú? | Очень хорошо, спасибо. А ты?"
             - "Pablo: Bien. ¿Café? | Хорошо. Кофе?"
-            - "Lucía: ¡Sí, por favor! | Да, пожалуйста!"
-            - "Pablo: ¡Perdón! El café... | Ой, прости! Кофе..."
-            - "Lucía: ¡No, no, Pablo! Vale, gracias. | Ничего-ничего, Пабло! Всё хорошо, спасибо."
+            - "Lucía: ¡Vale! ¡Muchas gracias, Pablo! | Давай! Большое спасибо, Пабло!"
             - "Pablo: De nada. | Не за что."
       - learn: [por favor, muchas gracias, de nada]
       - match:
@@ -383,7 +390,7 @@ lessons:
               explain: "На «спасибо» отвечают de nada — «не за что». Por favor говорят, когда о чём-то просят."
               mistakes:
                 "Por favor.": "Por favor — «пожалуйста», когда о чём-то просят. На «спасибо» отвечают de nada — «не за что»."
-      - learn: [perdón, vale]
+      - learn: [perdón, vale, no pasa nada]
       - choose:
           title: Поняли?
           source: morning
@@ -394,9 +401,22 @@ lessons:
             - q: "Что Пабло предлагает Лусии?"
               options: "Café. | Vino. | Chocolate."
               explain: "Pablo: Bien. ¿Café? — Пабло предлагает кофе."
-            - q: "Почему Пабло говорит ¡Perdón!?"
-              options: "Он пролил кофе. | Он опоздал на работу. | Он забыл имя Лусии."
-              explain: "Pablo: ¡Perdón! El café... — с кофе что-то случилось, и Пабло извиняется."
+      - "У лифта Пабло случайно задевает сеньору Лопес."
+      - dialogue:
+          id: lift
+          title: У лифта
+          voices: {Señora López: f}
+          lines:
+            - "Pablo: ¡Perdón, señora López! | Простите, сеньора Лопес!"
+            - "Señora López: No pasa nada. | Ничего страшного."
+      - choose:
+          title: Поняли?
+          source: lift
+          skill: polite
+          items:
+            - q: "Что сеньора Лопес отвечает на извинение?"
+              options: "No pasa nada. | De nada. | Por favor."
+              explain: "Señora López: No pasa nada. — «ничего страшного»: так отвечают на извинение. De nada говорят в ответ на благодарность."
       - note:
           id: un_cafe
           text: |
@@ -412,7 +432,7 @@ lessons:
           skill: polite
           items:
             - q: "Напишите по-испански: «Один кофе, пожалуйста»."
-              a: "Un café, por favor | Hola, un café, por favor | Buenos días, un café, por favor | Buenas tardes, un café, por favor"
+              a: "Un café, por favor | Por favor, un café | Hola, un café, por favor | Buenos días, un café, por favor | Buenas tardes, un café, por favor"
               explain: "Un café, por favor — «Один кофе, пожалуйста»: так просят одну чашку кофе."
               mistakes:
                 "el cafe por favor": "В готовой фразе — **un** café: un значит «один», так просят одну чашку. И в слове caf**é** есть знак ударения."
@@ -449,9 +469,14 @@ lessons:
             - lines: ["Pablo: ¿Café?"]
               options: "¡Sí, por favor! | ¡De nada! | ¡Perdón!"
               explain: "Когда вам что-то предлагают и вы согласны, говорят sí, por favor — «да, пожалуйста»."
+            - lines: ["Pablo: ¿Chocolate?"]
+              options: "¡Vale! | ¡De nada! | ¡No pasa nada!"
+              explain: "_Vale_ здесь значит «давай»: так соглашаются, когда вам что-то предлагают."
             - lines: ["Lucía: ¡Perdón, Pablo!"]
-              options: "¡No, no! Vale. | ¡Sí, por favor! | ¡Muchas gracias!"
-              explain: "На «извини» можно ответить ¡No, no! Vale — «ничего, всё хорошо»."
+              options: "No pasa nada. | De nada. | ¡Muchas gracias!"
+              explain: "На извинение можно ответить _No pasa nada_ — «ничего страшного». _De nada_ говорят в ответ на благодарность."
+              mistakes:
+                "De nada.": "_De nada_ говорят в ответ на благодарность. На извинение отвечают _No pasa nada_ — «ничего страшного»."
 
   - id: practice
     kind: practice

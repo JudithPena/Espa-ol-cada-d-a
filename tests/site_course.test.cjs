@@ -486,7 +486,7 @@ test('приёмка 1–7 на реальных уроках темы 01 и 02'
   assert.match(run('stepBody(S.steps[S.at])'), /Показать диалог «Утром»/);
   run('S.state.pick = (S.steps[S.at].correct + 1) % 3; answer(false, S.steps[S.at])');
   const qs = J(run, 'S.steps.map(s => s.q)');
-  assert.equal(qs.indexOf('Как дела у Лусии утром?', i + 1), i + 3, 'повтор — сразу после вопросов к этому диалогу');
+  assert.equal(qs.indexOf('Как дела у Лусии утром?', i + 1), i + 2, 'повтор — сразу после двух вопросов к этому диалогу');
   // 5: кофе — ясная формулировка и формат, пояснение к el cafe por favor.
   const coffee = J(run, 'S.steps.find(s => s.type === "write" && /кофе/.test(s.q))');
   assert.match(coffee.q, /Напишите по-испански: «Один кофе, пожалуйста»/);
@@ -504,6 +504,116 @@ test('приёмка 1–7 на реальных уроках темы 01 и 02'
   pick('hasta'); pick('luego'); pick('mañana'); pick('Pablo');
   assert.equal(run('S.state.result'), 'good');
   assert.deepEqual(J(run, 'SFX'), [true]);
+});
+
+// ТЗ №1 темы 01 (U01-01, U01-05, U01-06, U01-07, U01-08): ввод и выбор на шагах, собранных из content/site/units/01_saludos.yaml.
+test('тема 01: ответы на предложение, благодарность и извинение, два порядка в просьбе о кофе, подсказки Hola и tú', () => {
+  const run = context(site, new Map(), {audio: {}});
+  run('say = () => {}');
+  const steps = id => { run(`startLesson(${idx(run, id)})`); return J(run, 'S.steps'); };
+  const res = (st, typed) => J(run, `writeResult(${JSON.stringify(st)}, ${JSON.stringify(typed)})`);
+  const plainQ = st => String(st.q || '').replace(/<[^>]+>/g, '');
+
+  // U01-01: условие называет цель, ¡Hola! получает подсказку по ситуации; оба образца утра засчитываются.
+  const greet = steps('saludos/vocab1').filter(s => s.type === 'write' && /Поздоровайтесь/.test(plainQ(s)));
+  assert.equal(greet.length, 2);
+  const [morning9, evening17] = greet;
+  for (const st of greet) assert.match(plainQ(st), /по времени суток/);
+  for (const ok of ['Buenos días', 'Hola, buenos días']) assert.equal(res(morning9, ok).ok, true, ok);
+  for (const ok of ['Buenas tardes', 'Hola, buenas tardes']) assert.equal(res(evening17, ok).ok, true, ok);
+  assert.match(res(morning9, 'Hola').why.html, /уместно.*утреннее приветствие/);
+  assert.match(res(evening17, '¡Hola!').why.html, /уместно.*после обеда/);
+
+  // U01-05: tú в заметке до ввода; без знака — подсказка про слово tú, забытый вопрос — прежняя подсказка.
+  const v2 = steps('saludos/vocab2');
+  const tip = J(run, 'LESSONS[S.li].blocks.find(b => b.id === "y_tu")');
+  assert.match(JSON.stringify(tip), /tú.*означает «ты» и пишется со знаком ударения/);
+  const tu = v2.find(s => s.type === 'write' && /¿Qué tal\?/.test(plainQ(s)));
+  assert.ok(v2.findIndex(s => s.type === 'theory' && JSON.stringify(s).includes('пишется со знаком ударения')) < v2.indexOf(tu), 'заметка до ввода');
+  assert.equal(res(tu, 'Bien, gracias. ¿Y tú?').ok, true);
+  for (const bad of ['Bien, gracias. ¿Y tu?', 'Bien, ¿y tu?', 'Muy bien, ¿y tu?', 'Muy bien, gracias. ¿Y tu?', 'Bien, gracias, ¿y tu?']) {
+    const r = res(tu, bad);
+    assert.equal(r.ok, false, bad);
+    assert.match(r.why.html, /<b>tú<\/b>.*знаком ударения/, bad);
+  }
+  assert.match(res(tu, 'Bien, gracias').why.html, /вопрос в ответ забыли/);
+
+  // U01-08: оба порядка и приветствие засчитываются сразу и без «почти»; другое слово — вторая попытка.
+  const d = steps('saludos/dialogue');
+  const coffee = d.find(s => s.type === 'write' && /кофе/.test(plainQ(s)));
+  assert.equal(coffee.a[0], 'Un café, por favor', 'первый образец');
+  assert.ok(coffee.a.includes('Por favor, un café'), 'альтернатива «Por favor, un café» на месте');
+  for (const ok of ['Por favor, un café', 'Un café, por favor', 'Hola, un café, por favor']) {
+    const r = res(coffee, ok);
+    assert.equal(r.ok, true, ok);
+    assert.ok(!r.almost, `${ok}: без «почти»`);
+  }
+  run(`S.at = S.steps.findIndex(s => s.type === "write" && /кофе/.test(s.q)); S.state = null; playerView(); S.state.value = "Un vino, por favor"; writeCheck()`);
+  assert.equal(run('S.state.result'), undefined, 'после первой ошибки — вторая попытка');
+  assert.equal(run('S.state.tries'), 1);
+
+  // U01-06, U01-07: morning — понятный обмен, два вопроса с ответом в репликах; lift — извинение и ответ.
+  const L = J(run, 'LESSONS[S.li]');
+  const src = id => L.blocks.find(b => b.t === 'dialogue' && b.id === id);
+  const spoken = id => src(id).lines.map(l => l[1]).join(' ');
+  assert.doesNotMatch(spoken('morning'), /Perdón|No, no/);
+  assert.match(spoken('morning'), /¿Café\?.*¡Vale! ¡Muchas gracias, Pablo!.*De nada\./);
+  const flat = t => t.toLowerCase().replace(/[¡!¿?.,]/g, '').trim();
+  for (const id of ['morning', 'lift']) {
+    const qs = d.filter(s => s.type === 'mc' && s.src != null && L.blocks[s.src].id === id);
+    assert.equal(qs.length, id === 'morning' ? 2 : 1, id);
+    for (const q of qs) assert.ok(flat(spoken(id)).includes(flat(q.plain[q.correct])), `${id}: «${q.plain[q.correct]}» звучит в сцене`);
+  }
+  assert.ok(!d.some(s => /Почему Пабло говорит/.test(plainQ(s))));
+  const lift = src('lift');
+  assert.equal(lift.title, 'У лифта');
+  assert.deepEqual(lift.lines.map(l => [l[0], l[1]]), [['Pablo', '¡Perdón, señora López!'], ['Señora López', 'No pasa nada.']]);
+  assert.notEqual(lift.cast['Señora López'].v, lift.cast.Pablo.v);
+  const wNo = d.findIndex(s => s.type === 'word' && s.word.es === 'no pasa nada');
+  const qLift = d.findIndex(s => s.type === 'mc' && /сеньора Лопес отвечает на извинение/.test(plainQ(s)));
+  assert.ok(wNo >= 0 && wNo < qLift, 'карточка no pasa nada до первой проверки');
+  assert.equal(d[qLift - 1].type, 'theory', 'вопрос сразу после сцены у лифта');
+  assert.deepEqual([...d[qLift].plain].sort(), ['De nada.', 'No pasa nada.', 'Por favor.']);
+  // Ошибка в вопросе к lift — повтор рядом, с открытой сценой «У лифта».
+  run(`S.at = ${qLift}; S.state = null; playerView()`);
+  assert.match(run('stepBody(S.steps[S.at])'), /Показать диалог «У лифта»/);
+  run('S.state.pick = S.steps[S.at].plain.indexOf("De nada."); answer(false, S.steps[S.at])');
+  assert.equal(run(`S.steps[${qLift + 1}].srcOpen && LESSONS[S.li].blocks[S.steps[${qLift + 1}].src].id`), 'lift');
+
+  // Финальный ответ на ¡Perdón, Pablo!: De nada — пояснение ошибки, No pasa nada — верно.
+  run(`startLesson(${idx(run, 'saludos/dialogue')})`);
+  const fin = run('S.steps.findIndex(s => s.type === "mc" && JSON.stringify(s).includes("¡Perdón, Pablo!"))');
+  run(`S.at = ${fin}; S.state = null; playerView(); S.state.pick = S.steps[S.at].plain.indexOf("De nada."); answer(false, S.steps[S.at])`);
+  const foot = run('stepFoot(S.steps[S.at])');
+  assert.match(foot, /Верно: No pasa nada\./);
+  assert.match(foot, /<i>De nada<\/i> говорят в ответ на благодарность/);
+  const again = run('S.steps.length - 1');
+  assert.match(run(`JSON.stringify(S.steps[${again}])`), /¡Perdón, Pablo!/, 'самостоятельное задание вернулось в конце');
+  run(`S.at = ${again}; S.state = null; playerView(); S.state.pick = S.steps[S.at].correct; answer(true, S.steps[S.at])`);
+  assert.equal(run('S.state.result'), 'good');
+  assert.equal(run('S.steps[S.at].plain[S.steps[S.at].correct]'), 'No pasa nada.');
+  // Проверка Sí, por favor в ответ на предложение сохранена.
+  assert.equal(run('S.steps.find(s => s.type === "mc" && JSON.stringify(s.lines || []).includes("¿Café?") && s.plain[s.correct] === "¡Sí, por favor!") != null'), true);
+});
+
+test('тема 01: старое прохождение «Утро в офисе» (версия 2) сохраняется, но просит пройти версию 3', () => {
+  const storage = new Map([['espanol-cada-dia.v1', JSON.stringify({done: {'saludos/dialogue': {stars: 3, acc: 100, at: '2026-11-09'}},
+    ver: {'saludos/dialogue': {v: 2}}, xp: 40,
+    // Ключи заданий старой версии (удалённый вопрос, прежние условия 9:00) — в истории навыков.
+    skills: {polite: {s: 1, due: 0, n: 1, ok: 1, err: 0, seen: ['saludos/dialogue|почему пабло говорит perdón']},
+      greeting_time: {s: 1, due: 0, n: 1, ok: 1, err: 0, seen: ['saludos/vocab1|☀️ 9:00. вы входите в офис.']}}})]]);
+  const run = context(site, storage);
+  run(`startLesson(${idx(run, 'saludos/dialogue')})`);
+  assert.ok(run('S.steps.length') > 10, 'урок новой версии открывается при старых ключах в истории');
+  run('startPhraseReview()');
+  assert.ok(run('S.steps.length') >= 1, 'повторение навыков работает со старыми ключами');
+  const i = idx(run, 'saludos/dialogue');
+  assert.equal(run(`LESSONS[${i}].version`), 3);
+  assert.equal(run(`isDone(${i})`), true, 'старое прохождение не стёрто');
+  assert.equal(run(`isOutdated(${i})`), true);
+  assert.equal(run('P.done["saludos/dialogue"].stars'), 3);
+  assert.equal(run('P.xp'), 40);
+  assert.match(run('view.level = "A0"; courseView()'), /Урок обновлён — пройти новую версию/);
 });
 
 test('приёмка 8 на реальных уроках: numeros/dictado и hora/escucha без звука не засчитываются пустыми, с альтернативой — «без звука»', () => {
