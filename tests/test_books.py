@@ -182,7 +182,7 @@ def test_olly_collection_has_one_parent_and_complete_contents():
     assert [len(b['chapter_catalog']) for b in books] == [4, 3, 3, 3, 3, 3, 3, 3]
     for book in books:
         expected = ([1, 2, 3, 4] if book['id'] == 'olly-richards-la-paella-loca' else
-                    [1, 2, 3] if book['id'] == 'olly-richards-la-criatura' else [1])
+                    [1, 2, 3] if book['id'] in {'olly-richards-la-criatura', 'olly-richards-el-caballero'} else [1])
         assert [c['number'] for c in book['chapters']] == expected
         assert [c['status'] for c in book['chapter_catalog']] == (
             ['published'] * len(expected) + ['draft'] * (len(book['chapter_catalog']) - len(expected)))
@@ -194,6 +194,49 @@ def test_olly_collection_has_one_parent_and_complete_contents():
     assert sum(len(b.get('images', [])) for book in books for chapter in book['chapters']
                for b in chapter['blocks']) == 7
     assert sum(len(book.get('pending_illustrations', [])) for book in books) == 1
+
+def test_el_caballero_finished_chapters_source_notes_and_exercises():
+    import hashlib
+    import re
+
+    book = next(b for b in load_books() if b['id'] == 'olly-richards-el-caballero')
+    assert [c['title'] for c in book['chapters']] == [
+        'El oro', 'El bosque', 'El secreto']
+    assert [c['status'] for c in book['chapters']] == ['published'] * 3
+    assert [len(c['blocks']) for c in book['chapters']] == [9, 9, 8]
+    expected = (
+        (2, 1094, 'f5c11733c88ce91be1cb75e14667f95c2b7eed66d7da676903db5b735716eec4',
+         68, 21, [0, 0, 1, 2, 3]),
+        (3, 922, '46235c7754c9a1326d5509c724e1ed8ca3fc69d4920567d0833fa5a021d950c5',
+         55, 19, [2, 1, 2, 2, 0]),
+    )
+    learned = {n.get('term') for b in book['chapters'][0]['blocks']
+               for n in b['notes'] if isinstance(n, dict) and n.get('term')}
+    for chapter, (number, words, digest, notes_count, pronoun_count, answers) in zip(
+            book['chapters'][1:], expected):
+        assert chapter['number'] == number
+        original = re.sub(r'\s+', ' ', ' '.join(b['es'] for b in chapter['blocks'])).strip()
+        assert len(original.split()) == words
+        assert hashlib.sha256(original.encode('utf-8')).hexdigest() == digest
+        notes = [n for b in chapter['blocks'] for n in b['notes']]
+        assert len(notes) == notes_count
+        terms = {n['term'] for n in notes}
+        assert len(terms) == len(notes)
+        assert not terms & learned, (number, terms & learned)
+        learned |= terms
+        assert sum(len(b['pronouns']) for b in chapter['blocks']) == pronoun_count
+        assert all(60 <= len(b['es'].split()) <= 180 for b in chapter['blocks'])
+        assert all(b['ru'] and b['pronouns'] for b in chapter['blocks'])
+        assert [len(q['options']) for q in chapter['exercises'][0]['questions']] == [4] * 5
+        assert chapter['source']['heading_page'] == (64 if number == 2 else 71)
+        assert chapter['exercises'][0]['source']['answer_key_page'] == 190
+        assert [q['answer'] for q in chapter['exercises'][0]['questions']] == answers
+    chapter2, chapter3 = book['chapters'][1:]
+    assert '¿Y qué pasó?' in ' '.join(b['es'] for b in chapter2['blocks'])
+    assert '¿Y qué paso?' not in ' '.join(b['es'] for b in chapter2['blocks'])
+    assert 'Los guardias de Authuran' in ' '.join(b['es'] for b in chapter3['blocks'])
+    assert 'Los guardias de Arthuran' not in ' '.join(b['es'] for b in chapter3['blocks'])
+
 
 def test_la_criatura_finished_chapters_match_source_and_exercises():
     import hashlib

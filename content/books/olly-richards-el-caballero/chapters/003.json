@@ -3,11 +3,823 @@
   "number": 3,
   "order": 3,
   "title": "El secreto",
-  "icon": "📖",
-  "status": "draft",
-  "blocks": [],
+  "icon": "🔐",
+  "status": "published",
+  "blocks": [
+    {
+      "title": "Долина и крестьянские поля",
+      "es": "El grupo continuó el camino. Mientras caminaban, Alfred preguntó:\n–¿Cómo vamos a entrar al castillo?\n–Por la puerta principal –se rio Lars. Seguidamente miró a Alfred de modo sospechoso. Alfred se quedó callado. Había algo extraño.\nLos caballos continuaron por el camino y bajaron por una ladera preciosa, llena de hierba, árboles y riachuelos de aguas cristalinas. Mientras viajaban por el camino, los hombres vieron a muchos campesinos.\nLos campesinos vivían fuera de las murallas del castillo. Labraban la tierra. Recogían las cosechas para alimentar a la gente que vivía dentro de las murallas.\nUno de los campesinos se detuvo al ver que el grupo se acercaba por el camino.",
+      "ru": "Отряд продолжил путь. Пока они шли, Альфред спросил:\n— Как мы войдём в замок?\n— Через главные ворота, — рассмеялся Ларс. Затем он подозрительно посмотрел на Альфреда. Тот замолчал. Здесь было что-то странное.\nЛошади двигались по дороге и спустились по прекрасному склону, покрытому травой и деревьями, среди которых текли ручьи с кристально чистой водой. По пути путники увидели множество крестьян.\nКрестьяне жили за стенами замка. Они возделывали землю и собирали урожай, чтобы кормить людей, живших внутри крепостных стен.\nОдин из крестьян остановился, увидев приближавшийся отряд.",
+      "notes": [
+        {
+          "term": "seguidamente",
+          "es": [
+            "Seguidamente"
+          ],
+          "ru": [
+            "Затем"
+          ],
+          "explanation": "затем, вслед за этим; более книжный переход к следующему действию."
+        },
+        {
+          "term": "de modo sospechoso",
+          "es": [
+            "de modo sospechoso"
+          ],
+          "ru": [
+            "подозрительно"
+          ],
+          "explanation": "подозрительным образом, с подозрением; de modo + прилагательное."
+        },
+        {
+          "term": "la ladera",
+          "es": [
+            "ladera"
+          ],
+          "ru": [
+            "склону"
+          ],
+          "explanation": "склон горы или холма, склонённая поверхность местности."
+        },
+        {
+          "term": "el riachuelo",
+          "es": [
+            "riachuelos"
+          ],
+          "ru": [
+            "ручьи"
+          ],
+          "explanation": "небольшой ручей; уменьшительное от río."
+        },
+        {
+          "term": "cristalino/-a",
+          "es": [
+            "cristalinas"
+          ],
+          "ru": [
+            "кристально чистой"
+          ],
+          "explanation": "прозрачный, как кристалл; здесь о чистой воде."
+        },
+        {
+          "term": "el campesino",
+          "es": [
+            "campesinos"
+          ],
+          "ru": [
+            "крестьян"
+          ],
+          "explanation": "крестьянин, сельский житель, земледелец."
+        },
+        {
+          "term": "labrar la tierra",
+          "es": [
+            "Labraban la tierra"
+          ],
+          "ru": [
+            "возделывали землю"
+          ],
+          "explanation": "обрабатывать почву, заниматься земледелием; labrar + прямое дополнение."
+        },
+        {
+          "term": "recoger la cosecha",
+          "es": [
+            "Recogían las cosechas"
+          ],
+          "ru": [
+            "собирали урожай"
+          ],
+          "explanation": "собирать урожай; recoger также «подбирать, забирать», зависит от дополнения."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "se rio Lars",
+          "translation": "рассмеялся Ларс",
+          "base": "reírse",
+          "explanation": "se = часть глагола reírse, а не объект смеха."
+        },
+        {
+          "es": "Alfred se quedó callado",
+          "translation": "Тот замолчал",
+          "base": "quedarse + adjetivo",
+          "explanation": "se = Альфред; quedarse callado — перейти в состояние молчания."
+        }
+      ]
+    },
+    {
+      "title": "Неожиданная тревога крестьянина",
+      "es": "–¡Saludos, señor! –dijo.\n–Saludos, noble campesino –le respondió el caballero Lars.\n–¿Adónde se dirige?\n–Voy al castillo. Tengo que ver al rey.\nLa mujer del campesino se acercó.\n–¿Quiénes son estos hombres? –le preguntó a su marido.\nSu marido no respondió porque no sabía la respuesta. Así que le preguntó directamente a Lars:\n–¿Quiénes son ustedes? Veo que llevan un cargamento en los caballos.\n–Venimos en una misión importante de parte del rey Andur.\nEl campesino se calló por un momento. Después, habló:\n–Espero que no ocurra nada grave –miró a Lars con preocupación.\n–No, tranquilo –le dijo Alfred con una sonrisa–, está todo bien.\n–Me alegro.",
+      "ru": "— Приветствую вас, господин! — сказал он.\n— Приветствую тебя, почтенный крестьянин, — ответил рыцарь Ларс.\n— Куда вы направляетесь?\n— В замок. Мне нужно увидеть короля.\nК ним подошла жена крестьянина.\n— Кто эти люди? — спросила она мужа.\nМуж не ответил, потому что не знал ответа. Вместо этого он спросил самого Ларса:\n— Кто вы такие? Вижу, вы везёте какой-то груз на лошадях.\n— Мы прибыли с важным поручением от имени короля Андура.\nКрестьянин ненадолго замолчал, а затем сказал:\n— Надеюсь, ничего серьёзного не случится, — он тревожно посмотрел на Ларса.\n— Не волнуйтесь, — с улыбкой ответил Альфред, — всё хорошо.\n— Рад слышать.",
+      "notes": [
+        {
+          "term": "noble (обращение)",
+          "es": [
+            "noble campesino"
+          ],
+          "ru": [
+            "почтенный крестьянин"
+          ],
+          "explanation": "вежливое обращение «благородный, почтенный»; не обязательно принадлежность к дворянству."
+        },
+        {
+          "term": "de parte de",
+          "es": [
+            "de parte del rey Andur"
+          ],
+          "ru": [
+            "от имени короля Андура"
+          ],
+          "explanation": "от лица или по поручению кого-либо; de parte de + лицо."
+        },
+        {
+          "term": "esperar que + subjuntivo",
+          "es": [
+            "Espero que"
+          ],
+          "ru": [
+            "Надеюсь"
+          ],
+          "explanation": "после выражения надежды требуется subjuntivo: ocurra от ocurrir."
+        },
+        {
+          "term": "ocurrir algo grave",
+          "es": [
+            "ocurra nada grave"
+          ],
+          "ru": [
+            "ничего серьёзного не случится"
+          ],
+          "explanation": "случиться, произойти; nada grave = ничего серьёзного."
+        },
+        {
+          "term": "con preocupación",
+          "es": [
+            "con preocupación"
+          ],
+          "ru": [
+            "тревожно"
+          ],
+          "explanation": "с тревогой, обеспокоенно; preocupación — тревога, озабоченность."
+        },
+        {
+          "term": "callarse",
+          "es": [
+            "se calló"
+          ],
+          "ru": [
+            "замолчал"
+          ],
+          "explanation": "замолчать; se — часть возвратного глагола callarse."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "le respondió el caballero Lars",
+          "translation": "ответил рыцарь Ларс",
+          "base": "responder a (alguien)",
+          "explanation": "le = крестьянину, косвенное дополнение; отвечающий — Ларс."
+        },
+        {
+          "es": "le preguntó a su marido",
+          "translation": "спросила она мужа",
+          "base": "preguntar a (alguien)",
+          "explanation": "le = её мужу, а a su marido уточняет адресата вопроса; говорящая — жена."
+        }
+      ]
+    },
+    {
+      "title": "Секрет королевства и ворота",
+      "es": "El grupo siguió viajando por los campos. Entonces Alfred le dijo a Lars:\n–Parece que los campesinos tenían miedo o estaban preocupados.\n–Y lo estaban.\n–¿Por qué?\n–Porque hay un secreto. Solo lo sabe la gente de este reino. Y lo quieren mantener secreto.\n–¿Y qué es? ¿Hay algún peligro?\nLars no dijo nada y siguieron por el camino hasta que vieron un gran puente de piedra, parecido al del reino del rey Andur.\nDos guardias estaban en el puente. Uno de ellos se acercó y le preguntó a Alfred:\n–¿Viene usted de parte del rey Andur?\n–Sí. Este caballero nos ha protegido en el camino y los otros dos guardias vienen con nosotros.\n–Está bien.\nEl guardia miró las carretas y preguntó:\n–¿Es el cargamento?\n–Sí –respondió Lars –. Es el cargamento.\nAlfred miró a Lars. Él parecía conocer el reino de Authuran muy bien.\nEl guardia de Authuran hizo un gesto para abrir la puerta. Otro guardia abrió la puerta y entraron por ella.",
+      "ru": "Отряд продолжил путь через поля. Тогда Альфред сказал Ларсу:\n— Похоже, крестьяне испугались или чем-то встревожены.\n— Так и есть.\n— Почему?\n— Потому что существует тайна. Её знают только жители этого королевства и хотят сохранить в секрете.\n— Что это за тайна? Нам угрожает опасность?\nЛарс промолчал. Они шли дальше и вскоре увидели большой каменный мост, похожий на мост в королевстве Андура.\nНа мосту стояли два стражника. Один подошёл и спросил Альфреда:\n— Вы прибыли от имени короля Андура?\n— Да. Этот рыцарь защищал нас в дороге, и ещё двое стражников путешествуют с нами.\n— Хорошо.\nСтражник взглянул на телеги и спросил:\n— Это тот самый груз?\n— Да, — ответил Ларс. — Тот самый.\nАльфред посмотрел на Ларса. Казалось, тот прекрасно знал королевство Аутурана.\nСтражник Аутурана подал знак открыть ворота. Другой стражник открыл их, и путники вошли.",
+      "notes": [
+        {
+          "term": "mantener (algo) en secreto",
+          "es": [
+            "mantener"
+          ],
+          "ru": [
+            "сохранить"
+          ],
+          "explanation": "сохранять тайну; mantener + secreto подразумевает нежелание раскрывать информацию."
+        },
+        {
+          "term": "el secreto",
+          "es": [
+            "secreto"
+          ],
+          "ru": [
+            "тайна"
+          ],
+          "explanation": "тайна, секрет; существительное мужского рода."
+        },
+        {
+          "term": "proteger (a alguien)",
+          "es": [
+            "nos ha protegido"
+          ],
+          "ru": [
+            "защищал нас"
+          ],
+          "explanation": "защищать кого-либо; nos = сопровождаемых рыцарем стражников."
+        },
+        {
+          "term": "la carreta",
+          "es": [
+            "carretas"
+          ],
+          "ru": [
+            "телеги"
+          ],
+          "explanation": "телега, повозка для перевозки груза."
+        },
+        {
+          "term": "hacer un gesto",
+          "es": [
+            "hizo un gesto"
+          ],
+          "ru": [
+            "подал знак"
+          ],
+          "explanation": "сделать жест; здесь приказал открыть ворота жестом."
+        },
+        {
+          "term": "por ella",
+          "es": [
+            "por ella"
+          ],
+          "ru": [
+            "вошли"
+          ],
+          "explanation": "буквально «через неё»; ella указывает на ворота, опущено в естественном переводе."
+        },
+        {
+          "term": "conocer (un lugar) muy bien",
+          "es": [
+            "conocer el reino de Authuran muy bien"
+          ],
+          "ru": [
+            "прекрасно знал королевство Аутурана"
+          ],
+          "explanation": "хорошо знать местность, ориентироваться; conocer, а не saber."
+        },
+        {
+          "term": "parecer + infinitivo",
+          "es": [
+            "parecía"
+          ],
+          "ru": [
+            "Казалось"
+          ],
+          "explanation": "казаться, производить впечатление; parece conocer = похоже, что знает."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Solo lo sabe la gente de este reino",
+          "translation": "Её знают только жители этого королевства",
+          "base": "saber (algo)",
+          "explanation": "lo = сам секрет, ещё неизвестный Альфреду; существительное el secreto мужского рода."
+        },
+        {
+          "es": "nos ha protegido",
+          "translation": "защищал нас",
+          "base": "proteger a (alguien)",
+          "explanation": "nos = Альфреда и двух других стражников, прямое дополнение."
+        },
+        {
+          "es": "le preguntó a Alfred",
+          "translation": "спросил Альфреда",
+          "base": "preguntar a (alguien)",
+          "explanation": "le = Альфреду, косвенное дополнение; а a Alfred уточняет лицо."
+        }
+      ]
+    },
+    {
+      "title": "Знакомая площадь",
+      "es": "Llegaron a una plaza. Había mucha gente, muchos mercaderes, campesinos que volvían de trabajar y guardias.\nCaminaron por la plaza y Alfred se extrañó:\n–Este lugar me resulta familiar.\n–Se parece a la plaza del reino del rey Andur.\n–Sí, es casi idéntica.\nAlfred habló con los mercaderes, los campesinos y los guardias, y le dijo a Lars:\n–Toda la gente de aquí parece muy amable.\n–Hace mucho tiempo, los dos reinos, Andur y Authuran, estuvieron unidos. Por eso son tan similares –dijo Lars–. Pero eso ocurrió antes de la gran batalla.",
+      "ru": "Они оказались на площади. Там было полно людей: торговцев, возвращавшихся с работы крестьян и стражников.\nПройдя по площади, Альфред удивился:\n— Это место кажется мне знакомым.\n— Оно похоже на площадь в королевстве Андура.\n— Да, почти такое же.\nАльфред поговорил с торговцами, крестьянами и стражниками, а потом сказал Ларсу:\n— Все здесь кажутся очень приветливыми.\n— Давным-давно королевства Андура и Аутурана были единым государством, — объяснил Ларс. — Вот почему они так похожи. Но это было ещё до великой битвы.",
+      "notes": [
+        {
+          "term": "el mercader",
+          "es": [
+            "mercaderes"
+          ],
+          "ru": [
+            "торговцев"
+          ],
+          "explanation": "купец, торговец, более историческое или литературное слово, чем vendedor."
+        },
+        {
+          "term": "resultar familiar",
+          "es": [
+            "me resulta familiar"
+          ],
+          "ru": [
+            "кажется мне знакомым"
+          ],
+          "explanation": "казаться знакомым кому-либо; me = тому, кто узнаёт место."
+        },
+        {
+          "term": "casi idéntico/-a",
+          "es": [
+            "casi idéntica"
+          ],
+          "ru": [
+            "почти такое же"
+          ],
+          "explanation": "почти идентичный; совпадающий почти во всём."
+        },
+        {
+          "term": "estar unido/-a",
+          "es": [
+            "estuvieron unidos"
+          ],
+          "ru": [
+            "были единым государством"
+          ],
+          "explanation": "быть объединённым; estuvieron unidos = прежде существовали вместе."
+        },
+        {
+          "term": "similar",
+          "es": [
+            "similares"
+          ],
+          "ru": [
+            "похожи"
+          ],
+          "explanation": "сходный, похожий; прилагательное обычно с a."
+        },
+        {
+          "term": "amable (о жителях)",
+          "es": [
+            "amable"
+          ],
+          "ru": [
+            "приветливыми"
+          ],
+          "explanation": "любезный, доброжелательный; здесь впечатление от жителей города."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Este lugar me resulta familiar",
+          "translation": "Это место кажется мне знакомым",
+          "base": "resultar familiar a (alguien)",
+          "explanation": "me = Альфреду, кому место кажется знакомым; el lugar — подлежащее."
+        },
+        {
+          "es": "Alfred se extrañó",
+          "translation": "Альфред удивился",
+          "base": "extrañarse",
+          "explanation": "se = Альфред, pronominal глагол эмоционального состояния."
+        }
+      ]
+    },
+    {
+      "title": "Встреча с королём Аутураном",
+      "es": "Los caballos con el cargamento entraron por la puerta del castillo. El castillo también era muy parecido al castillo del rey Andur. Los guardias de Authuran llevaron a los caballos a otro lugar para descargar el oro. Lars y Alfred fueron a ver al rey. El rey les dijo:\n–¡Bienvenidos a mi reino!\n–Saludos, Majestad.\n–¡Eres tú, Lars! ¡Me alegro de verte!\n–Yo también me alegro de verle a usted.\nAlfred no entendía nada. ¿Por qué se conocían?\n–¿Has traído todo el oro, Lars?\n–Sí, ya es vuestro.\n–¡Excelente! Podemos comenzar nuestro plan.\nAlfred se asustó. ¿Qué plan?\nLars sacó sus pociones de fuerza, las pociones que había comprado al tendero de la plaza, antes de iniciar la misión.",
+      "ru": "Лошади с грузом въехали в ворота замка. Сам замок тоже очень напоминал замок Андура. Стражники Аутурана увели лошадей, чтобы разгрузить золото. Ларс и Альфред отправились к королю. Тот сказал:\n— Добро пожаловать в моё королевство!\n— Приветствую, ваше величество.\n— Ларс! Это ты! Как я рад тебя видеть!\n— И я рад вас видеть.\nАльфред ничего не понимал. Откуда они знакомы?\n— Ты привёз всё золото, Ларс?\n— Да, теперь оно ваше.\n— Превосходно! Мы можем приступить к нашему плану.\nАльфред испугался. Что ещё за план?\nЛарс достал зелья силы, купленные у торговца на площади ещё до начала миссии.",
+      "notes": [
+        {
+          "term": "descargar (algo)",
+          "es": [
+            "descargar el oro"
+          ],
+          "ru": [
+            "разгрузить золото"
+          ],
+          "explanation": "снять груз с транспорта; здесь выгрузить золото с лошадей."
+        },
+        {
+          "term": "Authuran (правописание имени)",
+          "es": [
+            "Los guardias de Authuran"
+          ],
+          "ru": [
+            "Стражники Аутурана"
+          ],
+          "explanation": "Имя короля — Authuran; в печатном оригинале в этой фразе ошибка Arthuran, в разборе исправлена для единообразия."
+        },
+        {
+          "term": "Majestad",
+          "es": [
+            "Majestad"
+          ],
+          "ru": [
+            "ваше величество"
+          ],
+          "explanation": "титул и форма обращения к монарху; употребляется с usted."
+        },
+        {
+          "term": "bienvenido/-a a",
+          "es": [
+            "Bienvenidos a mi reino"
+          ],
+          "ru": [
+            "Добро пожаловать в моё королевство"
+          ],
+          "explanation": "приветственная формула; bienvenidos согласовано с группой гостей."
+        },
+        {
+          "term": "comenzar (un plan)",
+          "es": [
+            "comenzar nuestro plan"
+          ],
+          "ru": [
+            "приступить к нашему плану"
+          ],
+          "explanation": "начать реализацию замысла, приступить к делу."
+        },
+        {
+          "term": "excelente",
+          "es": [
+            "Excelente"
+          ],
+          "ru": [
+            "Превосходно"
+          ],
+          "explanation": "очень хорошо, превосходно; эмоциональная оценка."
+        },
+        {
+          "term": "antes de + infinitivo",
+          "es": [
+            "antes de iniciar la misión"
+          ],
+          "ru": [
+            "ещё до начала миссии"
+          ],
+          "explanation": "перед тем как сделать что-либо; de + инфинитив, когда субъект совпадает."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "me alegro de verle a usted",
+          "translation": "я рад вас видеть",
+          "base": "alegrarse de ver a (alguien)",
+          "explanation": "me = Ларс; verle a usted — вежливое мужское leísmo, адресат — король; в нейтральной системе возможно verlo."
+        },
+        {
+          "es": "¿Por qué se conocían?",
+          "translation": "Откуда они знакомы?",
+          "base": "conocerse",
+          "explanation": "se = взаимное знакомство Ларса и Аутурана, не каждый знает самого себя."
+        }
+      ]
+    },
+    {
+      "title": "Открывается тайна волшебной воды",
+      "es": "–¿Qué ocurre aquí? –dijo Alfred.\n–Tenemos algo que contarte, Alfred.\n–¿Qué ocurre?\nAlfred se alejó de ellos varios pasos, asustado. ¿Cómo se conocían el rey y el caballero Lars? ¿Por qué Lars sacaba sus pociones de fuerza? ¿No tenía el reino de Arthuran agua mágica para poder fabricarlas?\nLars se acercó a Alfred:\n–Alfred –le dijo–, el agua mágica de este reino hace mucho que se acabó.\n–¿Y el rey Andur lo sabe?\n–No, él no lo sabe.\n–¿Y por qué le das las pociones de fuerza a este rey?\n–Son las últimas pociones de fuerza, las últimas fabricadas con agua mágica. No hay más agua mágica. ¿Entiendes?\nAlfred asintió y Lars continuó:\n–Pero si añadimos estas pociones al agua normal, será igual. Se convertirá en agua mágica.\nLars bajó la mirada y añadió:\n–Esperamos que así sea.",
+      "ru": "— Что здесь происходит? — спросил Альфред.\n— Нам нужно кое-что тебе рассказать, Альфред.\n— Что случилось?\nАльфред в испуге отошёл от них на несколько шагов. Откуда король и рыцарь Ларс знают друг друга? Зачем Ларс достал зелья силы? Разве в королевстве Аутурана не было волшебной воды для их изготовления?\nЛарс подошёл к Альфреду:\n— Альфред, — сказал он, — волшебная вода в этом королевстве давно закончилась.\n— А король Андур знает об этом?\n— Нет, не знает.\n— Тогда зачем ты отдаёшь зелья силы этому королю?\n— Это последние зелья силы, последние, сделанные из волшебной воды. Больше волшебной воды нет. Понимаешь?\nАльфред кивнул, а Ларс продолжил:\n— Но если добавить эти зелья к обычной воде, получится то же самое. Вода станет волшебной.\nЛарс опустил глаза и добавил:\n— Мы надеемся, что так и будет.",
+      "notes": [
+        {
+          "term": "acabarse (что-то иссякло)",
+          "es": [
+            "se acabó"
+          ],
+          "ru": [
+            "закончилась"
+          ],
+          "explanation": "закончиться, исчерпаться; здесь о запасах магической воды."
+        },
+        {
+          "term": "asentir",
+          "es": [
+            "asintió"
+          ],
+          "ru": [
+            "кивнул"
+          ],
+          "explanation": "кивать головой, соглашаясь; asintió — indefinido от asentir."
+        },
+        {
+          "term": "bajar la mirada",
+          "es": [
+            "bajó la mirada"
+          ],
+          "ru": [
+            "опустил глаза"
+          ],
+          "explanation": "опустить взгляд; может выражать неуверенность, стыд или смущение."
+        },
+        {
+          "term": "no haber más (algo)",
+          "es": [
+            "No hay más agua mágica"
+          ],
+          "ru": [
+            "Больше волшебной воды нет"
+          ],
+          "explanation": "no hay más + существительное: запас чего-то полностью закончился."
+        },
+        {
+          "term": "tener algo que contar",
+          "es": [
+            "Tenemos algo que contarte"
+          ],
+          "ru": [
+            "Нам нужно кое-что тебе рассказать"
+          ],
+          "explanation": "иметь что рассказать; te = адресат Альфред."
+        },
+        {
+          "term": "esperar que + subjuntivo (ожидание результата)",
+          "es": [
+            "Esperamos que así sea"
+          ],
+          "ru": [
+            "Мы надеемся, что так и будет"
+          ],
+          "explanation": "после esperanza/esperar que употребляется subjuntivo sea, потому что исход события неизвестен."
+        },
+        {
+          "term": "ser fabricado/-a con",
+          "es": [
+            "fabricadas con agua mágica"
+          ],
+          "ru": [
+            "сделанные из волшебной воды"
+          ],
+          "explanation": "пассивная причастная конструкция; fabricadas согласуется с pociones."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Tenemos algo que contarte",
+          "translation": "Нам нужно кое-что тебе рассказать",
+          "base": "contar (algo) a (alguien)",
+          "explanation": "te = Альфреду, косвенное дополнение; algo — содержание рассказа."
+        },
+        {
+          "es": "el agua mágica de este reino hace mucho que se acabó",
+          "translation": "волшебная вода в этом королевстве давно закончилась",
+          "base": "acabarse",
+          "explanation": "se — часть acabarse, обозначает исчерпание запаса воды."
+        },
+        {
+          "es": "Se convertirá en agua mágica",
+          "translation": "Вода станет волшебной",
+          "base": "convertirse en",
+          "explanation": "se — возвратно-средняя форма изменения состояния воды."
+        }
+      ]
+    },
+    {
+      "title": "Ложь ради сохранения мира",
+      "es": "Alfred se sintió traicionado.\n–¡Me has mentido! –dijo. ¡Has mentido al rey Andur!\n–Mentí… Pero te he mentido para mantener la paz.\n–¿Cómo van a tener paz los dos reyes hermanos? El secreto de que no queda agua mágica no se sabe aún, pero pronto lo averiguarán. El rey Andur sabrá que robaste el oro.\nLars no sonreía.\n–Alfred, si el rey Andur sabe que no queda agua mágica, la paz se terminará. El rey Andur atacará el reino de Authuran y se terminará la paz.\n–¿Entonces usarás las pociones para fabricar agua mágica para Andur?\n–Sí, solo para mantener la paz. Si podemos.",
+      "ru": "Альфред почувствовал себя преданным.\n— Ты меня обманул! — сказал он. — Ты обманул короля Андура!\n— Да, я солгал… Но я обманул тебя ради сохранения мира.\n— Как братья-короли смогут жить в мире? О том, что волшебной воды больше нет, пока никто не знает, но скоро все выяснят правду. Король Андур узнает, что ты украл золото.\nЛарс больше не улыбался.\n— Альфред, если Андур узнает, что волшебной воды больше нет, мир закончится. Король Андур нападёт на королевство Аутурана — и конец миру.\n— Значит, ты используешь зелья, чтобы изготовить волшебную воду для Андура?\n— Да, только ради мира. Если получится.",
+      "notes": [
+        {
+          "term": "sentirse traicionado/-a",
+          "es": [
+            "se sintió traicionado"
+          ],
+          "ru": [
+            "почувствовал себя преданным"
+          ],
+          "explanation": "почувствовать себя обманутым или преданным; здесь эмоциональное состояние Альфреда."
+        },
+        {
+          "term": "mentir a (alguien)",
+          "es": [
+            "Me has mentido"
+          ],
+          "ru": [
+            "Ты меня обманул"
+          ],
+          "explanation": "солгать кому-либо; me = Альфреду, косвенное дополнение в испанском."
+        },
+        {
+          "term": "mantener la paz",
+          "es": [
+            "mantener la paz"
+          ],
+          "ru": [
+            "сохранения мира"
+          ],
+          "explanation": "сохранять мир, предотвращать войну; mantener здесь «поддерживать состояние»."
+        },
+        {
+          "term": "averiguar (algo)",
+          "es": [
+            "lo averiguarán"
+          ],
+          "ru": [
+            "выяснят правду"
+          ],
+          "explanation": "выяснить, разузнать; lo заменяет факт отсутствия воды."
+        },
+        {
+          "term": "atacar (un lugar)",
+          "es": [
+            "atacará el reino de Authuran"
+          ],
+          "ru": [
+            "нападёт на королевство Аутурана"
+          ],
+          "explanation": "нападать на кого-либо или что-либо; здесь atacar без обязательного предлога a перед неживым объектом."
+        },
+        {
+          "term": "si + presente, futuro",
+          "es": [
+            "si el rey Andur sabe"
+          ],
+          "ru": [
+            "если Андур узнает"
+          ],
+          "explanation": "реальное условие о будущем: si + presente de indicativo; в главной части futuro."
+        },
+        {
+          "term": "no quedar (algo)",
+          "es": [
+            "no queda agua mágica"
+          ],
+          "ru": [
+            "волшебной воды больше нет"
+          ],
+          "explanation": "не осталось чего-либо; quedar о запасе или остатке."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Me has mentido",
+          "translation": "Ты меня обманул",
+          "base": "mentir a (alguien)",
+          "explanation": "me = Альфреду, которому солгал Ларс; по синтаксису дательный объект, хотя перевод «меня»."
+        },
+        {
+          "es": "pronto lo averiguarán",
+          "translation": "скоро все выяснят правду",
+          "base": "averiguar (algo)",
+          "explanation": "lo = факт, что волшебная вода закончилась; futuro averiguarán — узнают в будущем."
+        },
+        {
+          "es": "la paz se terminará",
+          "translation": "мир закончится",
+          "base": "terminarse",
+          "explanation": "se = часть pronominal terminarse: мир прекратится."
+        }
+      ]
+    },
+    {
+      "title": "Риск новой войны",
+      "es": "Alfred miró con desconfianza a Lars.\n–¿Qué quieres decir con “si podemos”?\n–Tal y como te dije –respondió Lars–, el agua mágica está normalmente hecha con agua mágica pura. No hay más.\n–¿Y entonces?\n–Lo intentaremos.\n–¿Intentar qué?\n–Intentar hacer agua mágica utilizando estas pociones. Las pociones tienen el agua. Quizás funcione.\n–¿Quizás? ¿Quizás?–gritó Alfred–. ¿Y qué si no funciona? Dijiste que no hay más agua mágica.\nEl rey respondió en esta ocasión.\n–Entonces la gran batalla del bosque Silencioso puede no haber sido la última…",
+      "ru": "Альфред недоверчиво посмотрел на Ларса.\n— Что ты хочешь сказать: «Если получится»?\n— Как я тебе уже говорил, — ответил Ларс, — обычно волшебную воду делают из чистой волшебной воды. А её больше нет.\n— И что тогда?\n— Попробуем.\n— Что попробуем?\n— Попробуем сделать волшебную воду из этих зелий. В зельях есть эта вода. Может, сработает.\n— Может?! Может?! — закричал Альфред. — А если не сработает? Ты же сказал, что волшебной воды больше нет!\nТут ответил король:\n— Тогда великая битва в Безмолвном лесу, возможно, была не последней…",
+      "notes": [
+        {
+          "term": "tal y como",
+          "es": [
+            "Tal y como te dije"
+          ],
+          "ru": [
+            "Как я тебе уже говорил"
+          ],
+          "explanation": "точно так, как; Tal y como связывает объяснение с прежними словами говорящего."
+        },
+        {
+          "term": "¿Y qué si…?",
+          "es": [
+            "¿Y qué si no funciona?"
+          ],
+          "ru": [
+            "А если не сработает?"
+          ],
+          "explanation": "разговорный вопрос о возможном отрицательном исходе."
+        },
+        {
+          "term": "quizás + subjuntivo",
+          "es": [
+            "Quizás funcione"
+          ],
+          "ru": [
+            "Может, сработает"
+          ],
+          "explanation": "quizás с subjuntivo подчёркивает неуверенность: funcione (presente de subjuntivo)."
+        },
+        {
+          "term": "no haber sido la última",
+          "es": [
+            "no haber sido la última"
+          ],
+          "ru": [
+            "была не последней"
+          ],
+          "explanation": "perfecto de infinitivo после puede: возможность того, что прошлая битва не была последней."
+        },
+        {
+          "term": "en esta ocasión",
+          "es": [
+            "en esta ocasión"
+          ],
+          "ru": [
+            "Тут"
+          ],
+          "explanation": "в этот раз, на сей раз; подчёркивает, что ответил уже другой говорящий."
+        },
+        {
+          "term": "hacer algo utilizando (algo)",
+          "es": [
+            "hacer agua mágica utilizando estas pociones"
+          ],
+          "ru": [
+            "сделать волшебную воду из этих зелий"
+          ],
+          "explanation": "используя что-либо как средство; gerundio utilizando описывает способ выполнения действия."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Tal y como te dije",
+          "translation": "Как я тебе уже говорил",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "te = Альфреду; Ларс ссылается на собственные слова в прошлом."
+        },
+        {
+          "es": "Lo intentaremos",
+          "translation": "Попробуем",
+          "base": "intentar (algo)",
+          "explanation": "lo = попытку сделать новую волшебную воду; не местоимение, заменяющее конкретный предмет."
+        }
+      ]
+    }
+  ],
   "source": {
     "file": "Short Stories in Spanish for Beginners — Olly Richards (1).pdf",
     "heading_page": 71
-  }
+  },
+  "exercises": [
+    {
+      "id": "chapter-3-comprehension",
+      "instruction": "Seleccione una única respuesta para cada pregunta.",
+      "source": {
+        "file": "Short Stories in Spanish for Beginners — Olly Richards (1).pdf",
+        "pdf_pages": [
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77
+        ],
+        "chapters": [
+          3
+        ],
+        "answer_key_page": 190,
+        "instruction": "Seleccione una única respuesta para cada pregunta."
+      },
+      "questions": [
+        {
+          "prompt": "La primera persona del reino de Authuran que habla con Lars y los guardias es ___.",
+          "options": [
+            "el rey",
+            "la reina",
+            "un campesino",
+            "una campesina"
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "La plaza del reino de Authuran ___.",
+          "options": [
+            "no se parece a la del rey Andur",
+            "se parece a la del rey Andur",
+            "tiene muchas estatuas",
+            "está vacía"
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "Lars y el rey ___.",
+          "options": [
+            "se pelean",
+            "no se conocen",
+            "se conocen",
+            "son primos"
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "Lars saca ___.",
+          "options": [
+            "una espada",
+            "una poción de fuerza",
+            "dos pociones de fuerza",
+            "una espada y las pociones"
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "El secreto era que ___.",
+          "options": [
+            "el reino de Authuran no tiene más agua mágica",
+            "el rey Andur va a atacar el reino de Authuran",
+            "Lars es el rey de Authuran",
+            "el oro es falso"
+          ],
+          "answer": 0
+        }
+      ]
+    }
+  ]
 }

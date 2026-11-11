@@ -3,11 +3,976 @@
   "number": 2,
   "order": 2,
   "title": "El bosque",
-  "icon": "📖",
-  "status": "draft",
-  "blocks": [],
+  "icon": "🌲",
+  "status": "published",
+  "blocks": [
+    {
+      "title": "По дороге из королевства",
+      "es": "Lars y los tres guardias avanzaban por el camino. Un poco después, Alfred, el guardia, le dijo:\n–Lars, ¿sabes lo que hay en el camino?\n–Sí, Alfred. El camino no es seguro. Hay muchos peligros.\n–Sí. Tienes razón. Y ¿tienes un plan?\n–Bueno, intentaremos no entrar en luchas. Hay algunos monstruos peligrosos en este camino. Mejor mantenernos alejados de ellos.\n–Pero, ¿sabes luchar, Lars?\n–Soy famoso por mis aventuras. Sé luchar muy bien.\n–Eso espero.\nLars y los tres guardias cruzaron un gran puente de piedra. Era parecido al puente del castillo del rey Andur.\n–Alfred –dijo Lars–, este puente es muy parecido al puente de vuestro castillo.\n–Sí, Lars. Lo construimos hace mucho tiempo.\n–¿Vosotros?\n–Nosotros no. Fueron los habitantes del reino, hace muchos años.",
+      "ru": "Ларс и трое стражников продвигались по дороге. Через некоторое время один из стражников, Альфред, спросил его:\n— Ларс, ты знаешь, что ждёт нас на этой дороге?\n— Да, Альфред. Дорога небезопасная. На ней много опасностей.\n— Верно. А у тебя есть план?\n— Ну, постараемся не ввязываться в драки. На этой дороге встречаются опасные чудовища. Лучше держаться от них подальше.\n— А ты умеешь сражаться, Ларс?\n— Я прославился своими приключениями. Драться я умею очень хорошо.\n— Надеюсь.\nЛарс и трое стражников пересекли большой каменный мост. Он напоминал мост у замка короля Андура.\n— Альфред, — сказал Ларс, — этот мост очень похож на мост у вашего замка.\n— Да, Ларс. Мы построили его давным-давно.\n— Вы?\n— Не мы лично. Его много лет назад построили жители королевства.",
+      "notes": [
+        {
+          "term": "avanzar",
+          "es": [
+            "avanzaban"
+          ],
+          "ru": [
+            "продвигались"
+          ],
+          "explanation": "двигаться вперёд, продвигаться; avanzaban — imperfecto, длительный фон рассказа."
+        },
+        {
+          "term": "intentar no + infinitivo",
+          "es": [
+            "intentaremos"
+          ],
+          "ru": [
+            "постараемся"
+          ],
+          "explanation": "постараться не делать что-либо; отрицание no стоит перед инфинитивом, а не перед intentar."
+        },
+        {
+          "term": "entrar en luchas",
+          "es": [
+            "entrar en luchas"
+          ],
+          "ru": [
+            "ввязываться в драки"
+          ],
+          "explanation": "вступать в ссоры и схватки; здесь образное entrar en, не буквальное «войти». "
+        },
+        {
+          "term": "mantenerse alejado de (algo / alguien)",
+          "es": [
+            "mantenernos alejados de ellos"
+          ],
+          "ru": [
+            "держаться от них подальше"
+          ],
+          "explanation": "держаться подальше от кого-либо; nos относится ко всему отряду, de ellos — к чудовищам."
+        },
+        {
+          "term": "Eso espero.",
+          "es": [
+            "Eso espero."
+          ],
+          "ru": [
+            "Надеюсь."
+          ],
+          "explanation": "буквально «на это надеюсь»; естественный короткий ответ на обещание или заверение."
+        },
+        {
+          "term": "el puente",
+          "es": [
+            "puente"
+          ],
+          "ru": [
+            "мост"
+          ],
+          "explanation": "мост; puente de piedra — каменный мост."
+        },
+        {
+          "term": "ser parecido a (algo)",
+          "es": [
+            "Era parecido"
+          ],
+          "ru": [
+            "напоминал"
+          ],
+          "explanation": "быть похожим на; al = a + el, необходимо предлог a."
+        },
+        {
+          "term": "el habitante",
+          "es": [
+            "habitantes"
+          ],
+          "ru": [
+            "жители"
+          ],
+          "explanation": "житель города, страны или королевства; habitantes del reino."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "le dijo",
+          "translation": "спросил его",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "le = Ларсу; косвенное дополнение, говорящий — стражник Альфред."
+        },
+        {
+          "es": "Mejor mantenernos alejados de ellos",
+          "translation": "Лучше держаться от них подальше",
+          "base": "mantenerse alejado de (alguien)",
+          "explanation": "nos = отряд, рефлексивное местоимение при mantenerse; ellos = чудовища после de."
+        },
+        {
+          "es": "Lo construimos hace mucho tiempo",
+          "translation": "Мы построили его давным-давно",
+          "base": "construir (algo)",
+          "explanation": "lo = каменный мост, прямое дополнение; позже Альфред уточняет, что его построили жители королевства."
+        }
+      ]
+    },
+    {
+      "title": "Тайна Безмолвного леса",
+      "es": "Después de cruzar el puente de piedra, el grupo llegó a un gran bosque. En el bosque había muchos árboles, pero era muy silencioso. No había animales, ni se oía nada.\n–¿Por qué es tan silencioso este bosque? –dijo Alfred.\n–Estamos entrando en el bosque Silencioso. Aquí no hay animales.\n–¿Por qué no?\n–Hace mucho tiempo, hubo una gran batalla aquí entre el rey Andur y su hermano.\nAlfred era joven. No sabía nada sobre la batalla. Pensaba que el rey Andur y el rey Authuran confiaban el uno en el otro.\n–¿Te sorprendes, Alfred? –dijo Lars.\n–Sí –respondió.\n–¿Por qué?\n–Pensaba que los dos reyes hermanos nunca se habían peleado.\n–Pues sí, se pelearon hace muchos años.",
+      "ru": "Перейдя каменный мост, путники добрались до большого леса. Там росло множество деревьев, но стояла удивительная тишина: не было животных, не доносилось ни звука.\n— Почему в этом лесу так тихо? — спросил Альфред.\n— Мы входим в Безмолвный лес. Здесь нет животных.\n— Почему?\n— Давным-давно здесь произошла большая битва между королём Андуром и его братом.\nАльфред был молод. Он ничего не знал об этой битве и думал, что короли Андур и Аутуран доверяли друг другу.\n— Ты удивлён, Альфред? — спросил Ларс.\n— Да, — ответил тот.\n— Почему?\n— Я думал, братья-короли никогда не ссорились.\n— Ещё как ссорились, много лет назад.",
+      "notes": [
+        {
+          "term": "no oírse nada",
+          "es": [
+            "ni se oía nada"
+          ],
+          "ru": [
+            "не доносилось ни звука"
+          ],
+          "explanation": "не было слышно ничего; se перед oía образует безлично-пассивную конструкцию."
+        },
+        {
+          "term": "el bosque Silencioso",
+          "es": [
+            "bosque Silencioso"
+          ],
+          "ru": [
+            "Безмолвный лес"
+          ],
+          "explanation": "название леса после сражения; Silencioso — безмолвный, тихий."
+        },
+        {
+          "term": "la batalla",
+          "es": [
+            "batalla"
+          ],
+          "ru": [
+            "битва"
+          ],
+          "explanation": "битва, сражение; существительное женского рода."
+        },
+        {
+          "term": "confiar el uno en el otro",
+          "es": [
+            "confiaban el uno en el otro"
+          ],
+          "ru": [
+            "доверяли друг другу"
+          ],
+          "explanation": "взаимное доверие; confiar en + человек, el uno en el otro = друг другу."
+        },
+        {
+          "term": "pelearse",
+          "es": [
+            "se habían peleado"
+          ],
+          "ru": [
+            "ссорились"
+          ],
+          "explanation": "ссориться или драться друг с другом; habían peleado — предпрошедшее, se подчёркивает взаимное действие."
+        },
+        {
+          "term": "sorprenderse",
+          "es": [
+            "Te sorprendes"
+          ],
+          "ru": [
+            "Ты удивлён"
+          ],
+          "explanation": "удивляться; здесь te относится к Альфреду."
+        },
+        {
+          "term": "hace muchos años",
+          "es": [
+            "hace muchos años"
+          ],
+          "ru": [
+            "много лет назад"
+          ],
+          "explanation": "выражение времени: hace + промежуток = «назад»."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "ni se oía nada",
+          "translation": "не доносилось ни звука",
+          "base": "oírse (algo)",
+          "explanation": "se — пассивно-средняя конструкция: «ничего не было слышно», без названного слушателя."
+        },
+        {
+          "es": "confiaban el uno en el otro",
+          "translation": "доверяли друг другу",
+          "base": "confiar en (alguien)",
+          "explanation": "el uno en el otro передаёт взаимность между двумя братьями-королями."
+        },
+        {
+          "es": "se habían peleado",
+          "translation": "ссорились",
+          "base": "pelearse",
+          "explanation": "se = взаимное действие двух братьев, а habían peleado — pluscuamperfecto."
+        }
+      ]
+    },
+    {
+      "title": "Воспоминания рыцаря о битве",
+      "es": "El bosque Silencioso era muy oscuro, apenas se veía la luz del sol. Los árboles eran muy altos, con ramas muy grandes.\n–¿Sabes por dónde vamos, Lars? –dijo Alfred.\n–Sí, el bosque es muy oscuro, pero sé por dónde vamos.\n–¿Has estado aquí alguna vez?\nLars sonrió y dijo:\n–Sí, he estado aquí antes.\n–¿Cuándo?\n–Hace muchos años.\nLars recordó aquellos años, cuando el rey Andur y su hermano habían luchado entre sí. Fue una de las batallas más grandes. Antes, el bosque se llamaba el bosque de los Animales. Después de la gran batalla, se llamó el bosque Silencioso.\nLars dijo:\n–Cuando yo era más joven, luché junto al rey Andur. Estuve en la batalla del bosque.\n–¿Cómo empezó la batalla?\n–La batalla la inició el rey Andur.\n–¿Y por qué iba a pelear contra su hermano?\n–El rey Andur quería una fuente que había en el bosque.",
+      "ru": "В Безмолвном лесу было очень темно: солнечный свет едва проникал сквозь высокие деревья с огромными ветвями.\n— Ты знаешь, куда мы идём, Ларс? — спросил Альфред.\n— Да. Лес очень тёмный, но я знаю дорогу.\n— Ты бывал здесь раньше?\nЛарс улыбнулся и ответил:\n— Да, бывал.\n— Когда?\n— Много лет назад.\nЛарс вспомнил те времена, когда король Андур воевал со своим братом. То была одна из величайших битв. Раньше лес назывался Лесом животных, но после великого сражения его стали называть Безмолвным лесом.\nЛарс сказал:\n— Когда я был моложе, я сражался на стороне короля Андура. Я участвовал в битве в этом лесу.\n— Как началась битва?\n— Её начал король Андур.\n— Но зачем ему было воевать против собственного брата?\n— Король Андур хотел завладеть источником, который находился в лесу.",
+      "notes": [
+        {
+          "term": "apenas",
+          "es": [
+            "apenas"
+          ],
+          "ru": [
+            "едва"
+          ],
+          "explanation": "едва, почти не; едва проникал свет."
+        },
+        {
+          "term": "la rama",
+          "es": [
+            "ramas"
+          ],
+          "ru": [
+            "ветвями"
+          ],
+          "explanation": "ветка дерева; ramas muy grandes — огромные ветви."
+        },
+        {
+          "term": "entre sí",
+          "es": [
+            "entre sí"
+          ],
+          "ru": [
+            "со своим братом"
+          ],
+          "explanation": "между собой, друг с другом; подчёркивает взаимное действие участников."
+        },
+        {
+          "term": "luchar junto a (alguien)",
+          "es": [
+            "luché junto al rey Andur"
+          ],
+          "ru": [
+            "сражался на стороне короля Андура"
+          ],
+          "explanation": "сражаться рядом с кем-либо или на чьей-либо стороне; al = a + el."
+        },
+        {
+          "term": "iniciar (algo)",
+          "es": [
+            "la inició"
+          ],
+          "ru": [
+            "Её начал"
+          ],
+          "explanation": "начать, положить начало; la здесь заменяет la batalla."
+        },
+        {
+          "term": "ir a + infinitivo в imperfecto",
+          "es": [
+            "iba a pelear"
+          ],
+          "ru": [
+            "было воевать"
+          ],
+          "explanation": "в вопросе ¿por qué iba a pelear? передаёт предполагаемое намерение: «зачем ему было воевать?». "
+        },
+        {
+          "term": "la fuente",
+          "es": [
+            "fuente"
+          ],
+          "ru": [
+            "источником"
+          ],
+          "explanation": "водный источник, родник; не путать с «фонтаном» в других контекстах."
+        },
+        {
+          "term": "recordar (algo)",
+          "es": [
+            "recordó aquellos años"
+          ],
+          "ru": [
+            "вспомнил те времена"
+          ],
+          "explanation": "вспоминать; recordar употребляется без обязательного de, в отличие от acordarse de."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "apenas se veía la luz del sol",
+          "translation": "солнечный свет едва проникал",
+          "base": "verse (algo)",
+          "explanation": "se veía — «можно было увидеть / было видно», подлежащее la luz del sol."
+        },
+        {
+          "es": "La batalla la inició el rey Andur",
+          "translation": "Её начал король Андур",
+          "base": "iniciar (algo)",
+          "explanation": "la = битву, вынесенную в начало фразы; инициатор действия — король Андур."
+        }
+      ]
+    },
+    {
+      "title": "Озеро на месте источника",
+      "es": "Continuaron unos cuantos minutos sin decir nada. Alfred pensaba. Quería saber más cosas de la gran batalla. Quería saber qué había pasado hacía años. Pensaba que el rey Andur era un rey pacífico.\n–¿Puedo preguntarte algo más, Lars?\n–Sí.\n–¿Qué clase de fuente es exactamente?\n–Espera y verás.\nLars y Alfred permanecieron callados durante una hora. Los otros guardias hablaban en voz baja de vez en cuando. El bosque Silencioso estaba todavía oscuro. La luz del sol seguía sin verse a través de los árboles. Solo había árboles y silencio. Nada más.\nFinalmente, llegaron a un lago.\n–Hemos llegado al lago –dijo el caballero.\n–¿Qué es esto?\n–Hace muchos años, este lago era una fuente.\n–¿La fuente de la batalla?\n–Sí.\nLos tres guardias y el caballero se acercaron al lago. Lars habló:\n–Hace tiempo, esto solo era una fuente. Había poca agua, no había tanta. Y el agua era mágica. Beber el agua otorgaba poderes.\n–¿Qué tipo de poderes?\n–La persona que bebía el agua se convertía en una persona muy poderosa.",
+      "ru": "Они ещё несколько минут шли молча. Альфред размышлял. Ему хотелось побольше узнать о великой битве и о событиях многолетней давности. Он считал короля Андура миролюбивым правителем.\n— Можно задать тебе ещё один вопрос, Ларс?\n— Да.\n— А что это был за источник?\n— Потерпи и сам увидишь.\nЛарс и Альфред час шли молча. Другие стражники время от времени переговаривались вполголоса. Безмолвный лес оставался тёмным: солнце всё ещё не пробивалось сквозь деревья. Вокруг были одни деревья и тишина. Больше ничего.\nНаконец они вышли к озеру.\n— Мы пришли к озеру, — сказал рыцарь.\n— Что это такое?\n— Много лет назад на месте озера был источник.\n— Тот самый, из-за которого произошла битва?\n— Да.\nТрое стражников и рыцарь подошли к озеру. Ларс рассказал:\n— Раньше здесь был лишь небольшой источник. Воды в нём было мало, совсем не столько, сколько сейчас. И вода была волшебной. Тот, кто пил её, получал особые силы.\n— Какие именно силы?\n— Человек, выпивший эту воду, становился невероятно могущественным.",
+      "notes": [
+        {
+          "term": "pacífico/-a",
+          "es": [
+            "pacífico"
+          ],
+          "ru": [
+            "миролюбивым"
+          ],
+          "explanation": "мирный, не склонный к войнам; о человеке pacífico — миролюбивый."
+        },
+        {
+          "term": "permanecer callado/-a",
+          "es": [
+            "permanecieron callados"
+          ],
+          "ru": [
+            "шли молча"
+          ],
+          "explanation": "оставаться молчаливым, не разговаривать; permanecer подчёркивает продолжительность состояния."
+        },
+        {
+          "term": "en voz baja",
+          "es": [
+            "en voz baja"
+          ],
+          "ru": [
+            "вполголоса"
+          ],
+          "explanation": "тихим голосом, вполголоса."
+        },
+        {
+          "term": "a través de",
+          "es": [
+            "a través de los árboles"
+          ],
+          "ru": [
+            "сквозь деревья"
+          ],
+          "explanation": "через что-либо, сквозь; часто о свете, взгляде, движении."
+        },
+        {
+          "term": "otorgar (algo)",
+          "es": [
+            "otorgaba"
+          ],
+          "ru": [
+            "получал"
+          ],
+          "explanation": "даровать, наделять; literalmente вода «давала способности» тому, кто её пил."
+        },
+        {
+          "term": "el poder (магическая сила)",
+          "es": [
+            "poderes"
+          ],
+          "ru": [
+            "силы"
+          ],
+          "explanation": "существительное poder — власть или способность; poderes во множественном числе — сверхъестественные силы."
+        },
+        {
+          "term": "convertirse en (algo)",
+          "es": [
+            "se convertía en"
+          ],
+          "ru": [
+            "становился"
+          ],
+          "explanation": "превращаться в, становиться; требуется предлог en."
+        },
+        {
+          "term": "mágico/-a",
+          "es": [
+            "mágica"
+          ],
+          "ru": [
+            "волшебной"
+          ],
+          "explanation": "волшебный, магический; магическая сила описана только для воды из прошлого."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "se convertía en una persona muy poderosa",
+          "translation": "становился невероятно могущественным",
+          "base": "convertirse en (algo)",
+          "explanation": "se входит в глагол изменения состояния convertirse, подлежащее — пьющий воду человек."
+        },
+        {
+          "es": "Los tres guardias y el caballero se acercaron al lago",
+          "translation": "Трое стражников и рыцарь подошли к озеру",
+          "base": "acercarse a (un lugar)",
+          "explanation": "se — часть pronominal acercarse; al lago = к озеру."
+        }
+      ]
+    },
+    {
+      "title": "Почему исчезла магия",
+      "es": "Alfred tomó un poco de agua en sus manos y la bebió.\n–Parece agua normal –dijo.\n–Claro –dijo Lars–, ahora es agua normal. Hace años era mágica.\nAlfred secó sus manos y preguntó:\n–¿Y qué pasó? ¿Por qué no es mágica el agua ahora?\n–Los dos hermanos querían poder. Habrían hecho cualquier cosa para lograrlo. Un día oyeron hablar de la fuente mágica. Una fuente que hacía fuerte a la gente. Inmediatamente, los dos hermanos quisieron poseerla. Corrieron al bosque. Cuando se encontraron en la fuente, la lucha empezó.\n–¿Qué hicieron? –preguntó Alfred.",
+      "ru": "Альфред зачерпнул немного воды ладонями и выпил.\n— Похожа на обычную воду, — заметил он.\n— Разумеется, — сказал Ларс. — Теперь это обычная вода. Много лет назад она была волшебной.\nАльфред вытер руки и спросил:\n— А что случилось? Почему теперь вода не волшебная?\n— Оба брата жаждали власти. Ради неё они были готовы на всё. Однажды они услышали о волшебном источнике, вода которого делала людей сильными. Оба тут же захотели им завладеть и устремились в лес. Когда они встретились у источника, началась битва.\n— Что они сделали? — спросил Альфред.",
+      "notes": [
+        {
+          "term": "secar (algo)",
+          "es": [
+            "secó sus manos"
+          ],
+          "ru": [
+            "вытер руки"
+          ],
+          "explanation": "высушить или вытереть; secó — прошедшая форма от secar."
+        },
+        {
+          "term": "¿Y qué pasó?",
+          "es": [
+            "¿Y qué pasó?"
+          ],
+          "ru": [
+            "А что случилось?"
+          ],
+          "explanation": "«А что случилось?»; в печатном оригинале ошибочно напечатано paso без ударения. Вопросительное прошло́е pasó требует акцента, опечатка исправлена."
+        },
+        {
+          "term": "hacer cualquier cosa para + infinitivo",
+          "es": [
+            "Habrían hecho cualquier cosa para lograrlo"
+          ],
+          "ru": [
+            "Ради неё они были готовы на всё"
+          ],
+          "explanation": "быть готовым на всё ради цели; habrían hecho — condicional compuesto, гипотетическая готовность в прошлом."
+        },
+        {
+          "term": "oír hablar de (algo)",
+          "es": [
+            "oyeron hablar de la fuente mágica"
+          ],
+          "ru": [
+            "услышали о волшебном источнике"
+          ],
+          "explanation": "услышать о существовании чего-то: oír hablar de + существительное."
+        },
+        {
+          "term": "poseer",
+          "es": [
+            "poseerla"
+          ],
+          "ru": [
+            "завладеть"
+          ],
+          "explanation": "обладать, владеть; la = волшебный источник, дополнение женского рода."
+        },
+        {
+          "term": "inmediatamente",
+          "es": [
+            "Inmediatamente"
+          ],
+          "ru": [
+            "тут же"
+          ],
+          "explanation": "немедленно, сразу же; вводит действие без задержки."
+        },
+        {
+          "term": "encontrarse (dos personas)",
+          "es": [
+            "se encontraron en la fuente"
+          ],
+          "ru": [
+            "они встретились у источника"
+          ],
+          "explanation": "встретиться друг с другом; se здесь взаимное."
+        },
+        {
+          "term": "la lucha empezó",
+          "es": [
+            "la lucha empezó"
+          ],
+          "ru": [
+            "началась битва"
+          ],
+          "explanation": "lucha = борьба, схватка; empezó — прошедшая форма от empezar."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "la bebió",
+          "translation": "выпил",
+          "base": "beber (algo)",
+          "explanation": "la = воду (el agua с артиклем el, но род женский), прямое дополнение."
+        },
+        {
+          "es": "se encontraron en la fuente",
+          "translation": "они встретились у источника",
+          "base": "encontrarse (dos personas)",
+          "explanation": "se здесь взаимное: два брата встретились друг с другом."
+        },
+        {
+          "es": "poseerla",
+          "translation": "завладеть",
+          "base": "poseer (algo)",
+          "explanation": "la = fuente mágica, местоимение женского рода, присоединено к инфинитиву."
+        }
+      ]
+    },
+    {
+      "title": "Последняя волшебная вода",
+      "es": "–Ambos reyes llamaron a sus guardias y soldados. La batalla continuó durante muchos días… semanas… hasta meses. Durante la batalla, los hombres bebieron tanta agua como pudieron. Querían ser fuertes y poderosos para ganar. Dejaron que sus caballos se mojaran. Caminaron por el agua. Se bañaron en ella. Bebieron el agua. El manantial del agua mágica simplemente se secó. Nunca lo volvieron a encontrar. La lluvia llegó y llenó el lago. Pero ya no era agua mágica.\nAlfred lo miró:\n–¿Entonces ese fue el final del agua mágica?\n–¡No exactamente! –respondió Lars mirando seriamente a Alfred–. Una pequeña cantidad se salvó. Authuran la tenía. Y él sabía el secreto. Si añades una gota de agua mágica a una pequeña cantidad de agua normal, puedes hacer agua mágica. Lleva tiempo, pero es posible.\n–Entonces ese es el secreto…\n–Bueno, esa es una parte del secreto. Vamos. Salgamos del bosque.",
+      "ru": "— Оба короля призвали своих стражников и солдат. Битва продолжалась много дней, потом недель и даже месяцев. Во время сражения воины пили столько воды, сколько могли. Они хотели стать сильными и могущественными, чтобы победить. Они позволяли лошадям намокать, ходили по воде, купались в ней и пили её. Волшебный родник попросту иссяк. Больше его так и не нашли. Потом пошёл дождь и наполнил озеро, но вода уже не была волшебной.\nАльфред посмотрел на него:\n— Значит, волшебная вода совсем исчезла?\n— Не совсем! — серьёзно ответил Ларс, глядя на Альфреда. — Небольшое количество удалось сохранить. Оно было у Аутурана, и он знал секрет: если добавить каплю волшебной воды в небольшое количество обычной, можно получить новую волшебную воду. Это требует времени, но возможно.\n— Значит, вот в чём секрет…\n— Ну, это лишь часть секрета. Идём, пора выходить из леса.",
+      "notes": [
+        {
+          "term": "ambos/-as",
+          "es": [
+            "Ambos reyes"
+          ],
+          "ru": [
+            "Оба короля"
+          ],
+          "explanation": "оба, обе; согласуется по роду с существительным."
+        },
+        {
+          "term": "el soldado",
+          "es": [
+            "soldados"
+          ],
+          "ru": [
+            "солдат"
+          ],
+          "explanation": "солдат; singular soldado."
+        },
+        {
+          "term": "tanto/-a… como + poder",
+          "es": [
+            "tanta agua como pudieron"
+          ],
+          "ru": [
+            "столько воды, сколько могли"
+          ],
+          "explanation": "сравнительная конструкция количества: tanta agua como pudieron."
+        },
+        {
+          "term": "mojarse",
+          "es": [
+            "se mojaran"
+          ],
+          "ru": [
+            "намокать"
+          ],
+          "explanation": "намокать, становиться мокрым; после dejar que употреблён imperfecto de subjuntivo mojaran."
+        },
+        {
+          "term": "el manantial",
+          "es": [
+            "manantial"
+          ],
+          "ru": [
+            "родник"
+          ],
+          "explanation": "природный водный источник, родник; отличие от общего fuente."
+        },
+        {
+          "term": "secarse (о водоёме)",
+          "es": [
+            "se secó"
+          ],
+          "ru": [
+            "иссяк"
+          ],
+          "explanation": "пересохнуть, иссякнуть; se secó — сам источник высох, а не кто-то его высушил."
+        },
+        {
+          "term": "llenar (algo)",
+          "es": [
+            "llenó el lago"
+          ],
+          "ru": [
+            "наполнил озеро"
+          ],
+          "explanation": "наполнять; прямое дополнение — el lago."
+        },
+        {
+          "term": "salvarse (от утраты)",
+          "es": [
+            "se salvó"
+          ],
+          "ru": [
+            "удалось сохранить"
+          ],
+          "explanation": "сохраниться, уцелеть; una pequeña cantidad se salvó — немного воды осталось."
+        },
+        {
+          "term": "la gota",
+          "es": [
+            "una gota"
+          ],
+          "ru": [
+            "каплю"
+          ],
+          "explanation": "капля, капелька; una gota de agua."
+        },
+        {
+          "term": "añadir (algo) a (algo)",
+          "es": [
+            "añades"
+          ],
+          "ru": [
+            "добавить"
+          ],
+          "explanation": "добавить что-либо во что-либо; a указывает, куда добавляют."
+        },
+        {
+          "term": "llevar tiempo",
+          "es": [
+            "Lleva tiempo"
+          ],
+          "ru": [
+            "Это требует времени"
+          ],
+          "explanation": "требовать времени, быть длительным процессом; llevar здесь не «нести» или «везти»."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "se mojaran",
+          "translation": "намокать",
+          "base": "mojarse",
+          "explanation": "se = лошади, которые намокали сами; mojaran — imperfecto de subjuntivo после dejaron que."
+        },
+        {
+          "es": "El manantial del agua mágica simplemente se secó",
+          "translation": "Волшебный родник попросту иссяк",
+          "base": "secarse",
+          "explanation": "se — pronominal форма изменения состояния, не действие чужого человека."
+        },
+        {
+          "es": "Nunca lo volvieron a encontrar",
+          "translation": "Больше его так и не нашли",
+          "base": "volver a encontrar (algo)",
+          "explanation": "lo = волшебный родник (manantial), а не agua (женский род)."
+        },
+        {
+          "es": "Authuran la tenía",
+          "translation": "Оно было у Аутурана",
+          "base": "tener (algo)",
+          "explanation": "la = una pequeña cantidad de agua mágica, количество воды, которое сохранилось."
+        }
+      ]
+    },
+    {
+      "title": "Из леса — к королевству Аутурана",
+      "es": "Los hombres y los caballos siguieron el camino. El sol se empezaba a ver en el cielo mientras salían del bosque. Los árboles ya no eran tan altos y se veía más paisaje.\n–Ya hemos salido del bosque Silencioso –dijo Lars.\n–¿Dónde estamos ahora?\n–Ya casi hemos llegado. Hemos tenido suerte. No hemos visto ningún monstruo.\nAlfred puso cara de miedo.\n–¿De verdad que hay monstruos en el bosque?\nLars rio.\n–Sí. ¿Por qué crees que hemos viajado de día? Hay más monstruos de noche.\n–¿Por qué no lo has dicho antes?\n–Probablemente no hubierais venido –dijo Lars riéndose–. Está bien, vamos.",
+      "ru": "Люди и лошади продолжили путь. Когда они выходили из леса, солнце снова стало видно на небе. Деревья уже не были такими высокими, а вокруг открывался более широкий вид.\n— Мы вышли из Безмолвного леса, — сказал Ларс.\n— Где мы теперь?\n— Мы уже почти на месте. Нам повезло: ни одного чудовища не встретили.\nАльфред испуганно посмотрел на него.\n— Так в лесу правда водятся чудовища?\nЛарс засмеялся.\n— Да. Как ты думаешь, почему мы ехали днём? Ночью их гораздо больше.\n— Почему же ты не сказал раньше?\n— Наверняка вы бы тогда не согласились идти, — со смехом ответил Ларс. — Ладно, в путь.",
+      "notes": [
+        {
+          "term": "el paisaje",
+          "es": [
+            "paisaje"
+          ],
+          "ru": [
+            "вид"
+          ],
+          "explanation": "пейзаж, окружающая местность; здесь стало лучше видно окрестности."
+        },
+        {
+          "term": "tener suerte",
+          "es": [
+            "Hemos tenido suerte"
+          ],
+          "ru": [
+            "Нам повезло"
+          ],
+          "explanation": "повезти; дословно «иметь удачу», форма pretérito perfecto."
+        },
+        {
+          "term": "poner cara de miedo",
+          "es": [
+            "puso cara de miedo"
+          ],
+          "ru": [
+            "испуганно посмотрел"
+          ],
+          "explanation": "сделать испуганное лицо, выразить страх мимикой."
+        },
+        {
+          "term": "de día / de noche",
+          "es": [
+            "de día",
+            "de noche"
+          ],
+          "ru": [
+            "днём",
+            "Ночью"
+          ],
+          "explanation": "днём / ночью; одинаковая модель de + время суток."
+        },
+        {
+          "term": "probablemente + condicional compuesto",
+          "es": [
+            "Probablemente no hubierais venido"
+          ],
+          "ru": [
+            "Наверняка вы бы тогда не согласились идти"
+          ],
+          "explanation": "предположение о несостоявшемся действии в прошлом; hubierais venido — pluscuamperfecto de subjuntivo, aquí разговорная альтернатива habríais venido."
+        },
+        {
+          "term": "salir del bosque",
+          "es": [
+            "salían del bosque"
+          ],
+          "ru": [
+            "выходили из леса"
+          ],
+          "explanation": "выйти из леса; salir de, не salir en."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "¿Por qué no lo has dicho antes?",
+          "translation": "Почему же ты не сказал раньше?",
+          "base": "decir (algo)",
+          "explanation": "lo = то, что чудовища действительно живут в лесу; tú = Ларс."
+        }
+      ]
+    },
+    {
+      "title": "Вдали появляется город",
+      "es": "El grupo siguió avanzando por el camino. Vieron una ciudad a lo lejos. Esa ciudad parecía el reino del hermano del rey Andur. Los guardias nunca habían estado allí.\n–¿Ese es el reino de Authuran? –preguntó Alfred.\n–Sí, ese es el reino. Allí es donde tenemos que entregar el cargamento de oro.\n–Hay una cosa que no te he preguntado, caballero.\n–Dime.\n–¿Para qué es este oro?",
+      "ru": "Отряд продолжил двигаться по дороге. Вдали показался город. По всей видимости, это было королевство брата Андура. Стражники никогда прежде здесь не бывали.\n— Это королевство Аутурана? — спросил Альфред.\n— Да, это оно. Именно сюда мы должны доставить груз золота.\n— Рыцарь, я кое о чём тебя ещё не спросил.\n— Спрашивай.\n— Для чего нужно это золото?",
+      "notes": [
+        {
+          "term": "a lo lejos",
+          "es": [
+            "a lo lejos"
+          ],
+          "ru": [
+            "Вдали"
+          ],
+          "explanation": "в отдалении, на расстоянии; обычно относится к тому, что видно."
+        },
+        {
+          "term": "entregar (algo) a (alguien)",
+          "es": [
+            "entregar el cargamento de oro"
+          ],
+          "ru": [
+            "доставить груз золота"
+          ],
+          "explanation": "передать или доставить груз адресату; здесь груз предназначен королю Аутурану."
+        },
+        {
+          "term": "¿Para qué…?",
+          "es": [
+            "¿Para qué es este oro?"
+          ],
+          "ru": [
+            "Для чего нужно это золото?"
+          ],
+          "explanation": "вопрос о цели или назначении: «для чего?», не причина ¿por qué?."
+        },
+        {
+          "term": "parecer (una cosa)",
+          "es": [
+            "parecía el reino"
+          ],
+          "ru": [
+            "По всей видимости, это было королевство"
+          ],
+          "explanation": "казаться; parecía — imperfecto, передаёт впечатление путешественников."
+        },
+        {
+          "term": "nunca antes",
+          "es": [
+            "nunca habían estado allí"
+          ],
+          "ru": [
+            "никогда прежде здесь не бывали"
+          ],
+          "explanation": "никогда до этого момента; habían estado — pluscuamperfecto."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "no te he preguntado",
+          "translation": "я кое о чём тебя ещё не спросил",
+          "base": "preguntar (algo) a (alguien)",
+          "explanation": "te = Ларсу как адресату вопроса; говорящий — Альфред."
+        }
+      ]
+    },
+    {
+      "title": "Золото в обмен на волшебную воду",
+      "es": "–El rey Andur perdió la batalla del bosque Silencioso. Desde entonces, el rey Andur tiene que pagar cada cinco años una cantidad de oro a su hermano.\n–¿Por qué tiene que pagarle oro a su hermano? ¿No hay paz entre ellos?\n–Hay paz. Pero su hermano tiene una cosa que el rey Andur no tiene. Tiene que comprarla.\n–¿Qué es lo que tiene su hermano?\n–Más agua mágica. Andur la compra para mantener feliz a su gente. Ellos quieren hacer pociones de fuerza.\nLars sacó las pociones que había comprado.\n–¡He oído hablar de las pociones! ¿Funcionan de verdad?\n–Sí –dijo Lars mientras guardaba las pociones–. Funcionan si están hechas con agua mágica real. Ahora tenemos que irnos.",
+      "ru": "— Король Андур проиграл битву в Безмолвном лесу. С тех пор он должен каждые пять лет платить своему брату определённое количество золота.\n— Зачем платить брату золотом? Разве между ними нет мира?\n— Мир есть. Но у брата есть кое-что, чего нет у Андура. И ему приходится это покупать.\n— Что же есть у его брата?\n— Ещё волшебная вода. Андур покупает её, чтобы его подданные были довольны. Они хотят делать зелья силы.\nЛарс достал купленные им зелья.\n— Я слышал об этих зельях! Они и правда действуют?\n— Да, — сказал Ларс, убирая зелья. — Действуют, если сделаны из настоящей волшебной воды. А сейчас нам пора идти.",
+      "notes": [
+        {
+          "term": "desde entonces",
+          "es": [
+            "Desde entonces"
+          ],
+          "ru": [
+            "С тех пор"
+          ],
+          "explanation": "с того времени; устанавливает следствие прежнего события."
+        },
+        {
+          "term": "cada + период",
+          "es": [
+            "cada cinco años"
+          ],
+          "ru": [
+            "каждые пять лет"
+          ],
+          "explanation": "каждые пять лет; повторяемость с cada без предлога."
+        },
+        {
+          "term": "una cantidad de (algo)",
+          "es": [
+            "una cantidad de oro"
+          ],
+          "ru": [
+            "определённое количество золота"
+          ],
+          "explanation": "количество чего-либо; количество в тексте не названо точно."
+        },
+        {
+          "term": "mantener + adjetivo",
+          "es": [
+            "mantener feliz a su gente"
+          ],
+          "ru": [
+            "чтобы его подданные были довольны"
+          ],
+          "explanation": "поддерживать состояние кого-либо: mantener + complemento + adjetivo."
+        },
+        {
+          "term": "oír hablar de (algo) — pretérito perfecto",
+          "es": [
+            "He oído hablar de las pociones"
+          ],
+          "ru": [
+            "Я слышал об этих зельях"
+          ],
+          "explanation": "«слышать о чём-то»; эта форма указывает на опыт, имеющий отношение к настоящему."
+        },
+        {
+          "term": "estar hecho/-a de (algo)",
+          "es": [
+            "están hechas con agua mágica real"
+          ],
+          "ru": [
+            "сделаны из настоящей волшебной воды"
+          ],
+          "explanation": "быть изготовленным из; в тексте употреблено con, подчёркнута используемая составляющая."
+        },
+        {
+          "term": "de verdad",
+          "es": [
+            "de verdad"
+          ],
+          "ru": [
+            "и правда"
+          ],
+          "explanation": "действительно, на самом деле; вопрос ¿funcionan de verdad?"
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Tiene que comprarla",
+          "translation": "И ему приходится это покупать",
+          "base": "comprar (algo)",
+          "explanation": "la = una cosa, конкретно волшебную воду, которую Андур покупает у брата."
+        },
+        {
+          "es": "Andur la compra",
+          "translation": "Андур покупает её",
+          "base": "comprar (algo)",
+          "explanation": "la = agua mágica, женский род несмотря на форму el agua."
+        }
+      ]
+    }
+  ],
   "source": {
     "file": "Short Stories in Spanish for Beginners — Olly Richards (1).pdf",
     "heading_page": 64
-  }
+  },
+  "exercises": [
+    {
+      "id": "chapter-2-comprehension",
+      "instruction": "Seleccione una única respuesta para cada pregunta.",
+      "source": {
+        "file": "Short Stories in Spanish for Beginners — Olly Richards (1).pdf",
+        "pdf_pages": [
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70
+        ],
+        "chapters": [
+          2
+        ],
+        "answer_key_page": 190,
+        "instruction": "Seleccione una única respuesta para cada pregunta."
+      },
+      "questions": [
+        {
+          "prompt": "El caballero Lars ___.",
+          "options": [
+            "conoce el camino",
+            "no conoce el camino",
+            "lleva un cargamento de plata",
+            "dice que el camino lleva al mar"
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "En el grupo ___.",
+          "options": [
+            "viajan tres guardias y Lars",
+            "viajan dos guardias y Lars",
+            "viajan un guardia y Lars",
+            "viaja solo Lars"
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "En el bosque Silencioso ___.",
+          "options": [
+            "no ocurrió nada",
+            "hubo una lucha entre los reinos de dos hermanos",
+            "hubo una lucha entre primos",
+            "hubo una lucha entre dos dragones"
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "La fuente del bosque Silencioso ___.",
+          "options": [
+            "sigue existiendo",
+            "nunca ha existido",
+            "ahora es un lago",
+            "ahora es un río"
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "Al salir del bosque Silencioso, ___.",
+          "options": [
+            "hay otro bosque",
+            "hay un mar",
+            "vuelven al reino del rey Andur",
+            "ven el reino del hermano del rey Andur"
+          ],
+          "answer": 3
+        }
+      ]
+    }
+  ]
 }
