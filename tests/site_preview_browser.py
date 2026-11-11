@@ -3,8 +3,6 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
-import urllib.request
-import time
 from urllib.parse import urlparse
 
 from playwright.sync_api import sync_playwright
@@ -24,28 +22,24 @@ def main():
     url = args.url.rstrip('/') + '/'
     host = urlparse(url).hostname
     assert host and host.endswith('.espanolcadadia.pages.dev') and host != 'espanolcadadia.pages.dev', 'Preview host required'
-    with urllib.request.urlopen(args.production, timeout=60) as response:
-        old_html = response.read()
-        old_cache = response.headers.get('Cache-Control', 'max-age=0, must-revalidate')
-    assert b'const COURSE = ' in old_html
-    for attempt in range(20):
-        try:
-            with urllib.request.urlopen(url, timeout=15) as check:
-                assert b'const COURSE = ' in check.read()
-            break
-        except Exception:
-            if attempt == 19:
-                raise
-            time.sleep(3)
-    # The source is read-only production HTML. All test storage and playback use preview origin.
-    report = {'preview': url, 'production_html_sha256': hashlib.sha256(old_html).hexdigest(), 'production_html_bytes':len(old_html), 'legacy_cache_control':old_cache, 'widths': []}
+    report = {'preview': url, 'widths': []}
     try:
         with sync_playwright() as p:
             browser = p.chromium.launch(args=['--autoplay-policy=no-user-gesture-required'])
+            legacy_context = browser.new_context()
+            legacy_page = legacy_context.new_page()
+            legacy_response = legacy_page.goto(args.production, wait_until='domcontentloaded', timeout=60000)
+            assert legacy_response.status == 200, f'Production browser HTTP {legacy_response.status}; no protection settings changed'
+            old_html = legacy_response.body()
+            old_cache = legacy_response.headers.get('cache-control', 'max-age=0, must-revalidate')
+            assert b'const COURSE = ' in old_html
+            report.update(production_html_sha256=hashlib.sha256(old_html).hexdigest(), production_html_bytes=len(old_html), legacy_cache_control=old_cache)
+            legacy_context.close()
             for width in (390, 1280):
                 context = browser.new_context(viewport={'width': width, 'height': 850})
                 page = context.new_page()
-                errors = []
+                errors, responses = [], {}
+                page.on('response', lambda response: responses.update({response.url:response}))
                 page.on('pageerror', lambda error: errors.append(str(error)))
                 # Simulate replacing an old release on the SAME origin: seed old progress,
                 # let the actual old player save a grammar session, then fetch the real new HTML.
@@ -68,8 +62,8 @@ def main():
                 assert before == after, 'Progress/session changed during old-to-new upgrade'
                 assert page.evaluate('localStorage.getItem("preview-unrelated-key")') == 'keep'
                 resource_url = page.evaluate('COURSE.resources.common.url')
-                resource = context.request.get(url + resource_url)
-                assert resource.status == 200
+                resource = responses.get(url + resource_url)
+                assert resource and resource.status == 200
                 assert 'immutable' in resource.headers.get('cache-control', '')
                 assert hashlib.sha256(resource.body()).hexdigest() == Path(urlparse(resource_url).path).stem
                 audio_count = page.evaluate('Object.keys(AUDIO).length')
@@ -118,6 +112,12 @@ def main():
                 assert page.url.endswith(book_hash)
                 chapter = book['chapters'][0]
                 chapter_hash = book_hash + '/' + chapter['id']
+                for direct_hash, selector in ((book_hash, '[data-book-chapter]'), (chapter_hash, '.book-block')):
+                    direct = context.new_page()
+                    direct.goto(url + direct_hash, wait_until='domcontentloaded', timeout=60000)
+                    direct.wait_for_selector(selector, timeout=60000)
+                    assert direct.url.endswith(direct_hash)
+                    direct.close()
                 page.goto(url + chapter_hash)
                 page.wait_for_selector('.book-block')
                 assert page.url.endswith(chapter_hash)
@@ -145,7 +145,7 @@ def main():
                 report['widths'].append({'width':width,'status':'passed','old_to_new_progress':'identical',
                     'root_cache_control':response.headers.get('cache-control'),'audio_keys':audio_count,
                     'lessons':lessons,'dialogue':dialogue,'grammar':page.evaluate('COURSE.grammar[0].id'),
-                    'book_url':url+book_hash,'chapter_url':url+chapter_hash,'retry':'passed','offline_cached_json':'passed','errors':errors})
+                    'book_url':url+book_hash,'chapter_url':url+chapter_hash,'fresh_direct_links':'passed','retry':'passed','offline_cached_json':'passed','errors':errors})
                 context.close()
             browser.close()
     finally:
