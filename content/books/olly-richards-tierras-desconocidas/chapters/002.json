@@ -3,11 +3,1254 @@
   "number": 2,
   "order": 2,
   "title": "El mar",
-  "icon": "📖",
-  "status": "draft",
-  "blocks": [],
+  "icon": "⛵",
+  "status": "published",
+  "blocks": [
+    {
+      "title": "План похода на запад",
+      "es": "La reunión fue tal y como Thoric esperaba. Era sobre los planes de exploración del jefe Eskol. Quería viajar más lejos, mucho más lejos. Quería atravesar las montañas y el lago. Quería bajar por el río hasta llegar al mar. Quería que la nueva expedición fuera tan lejos hacia el oeste como fuera posible.\nLa gente estaba sorprendida, incluidos Thoric y Niels. Pero todos estaban de acuerdo con la expedición. Empezaron a organizarla.\nTranscurrió un mes. Fue un mes que se hizo muy largo. El invierno estaba cerca. La gente de Asglor sabía que necesitarían más alimentos pronto. Querían evitar la escasez de alimentos. Afortunadamente, los barcos estaban ya casi terminados. Con suerte, este sería el último invierno en el que pasarían hambre.",
+      "ru": "Собрание прошло именно так, как и ожидал Торик. Речь шла о планах вождя Эскола по исследованию новых земель. Он хотел отправиться дальше, гораздо дальше. Пересечь горы и озеро, спуститься по реке к морю. Он хотел, чтобы новая экспедиция продвинулась на запад настолько далеко, насколько это было возможно.\nЛюди удивились, в том числе Торик и Нильс. Однако все поддержали экспедицию и начали её готовить.\nПрошёл месяц. Он тянулся бесконечно долго. Приближалась зима, и жители Асглора знали, что скоро им снова потребуется больше еды. Они хотели избежать голода. К счастью, корабли были почти готовы. Если повезёт, эта зима станет последней, когда им придётся голодать.",
+      "notes": [
+        {
+          "term": "tal y como",
+          "es": [
+            "tal y como"
+          ],
+          "ru": [
+            "именно так, как"
+          ],
+          "explanation": "точно так, как; подчёркивает совпадение с ожиданиями."
+        },
+        {
+          "term": "atravesar",
+          "es": [
+            "atravesar"
+          ],
+          "ru": [
+            "Пересечь"
+          ],
+          "explanation": "пересечь, пройти или проехать через что-либо."
+        },
+        {
+          "term": "tan… como fuera posible",
+          "es": [
+            "tan lejos hacia el oeste como fuera posible"
+          ],
+          "ru": [
+            "настолько далеко, насколько это было возможно"
+          ],
+          "explanation": "«как можно дальше»; fuera — imperfecto de subjuntivo после сравнения с потенциальным пределом."
+        },
+        {
+          "term": "incluir",
+          "es": [
+            "incluidos"
+          ],
+          "ru": [
+            "в том числе"
+          ],
+          "explanation": "включая; incluidos — причастие мужского рода множественного числа."
+        },
+        {
+          "term": "estar de acuerdo con (algo)",
+          "es": [
+            "estaban de acuerdo"
+          ],
+          "ru": [
+            "поддержали"
+          ],
+          "explanation": "быть согласным, поддерживать решение."
+        },
+        {
+          "term": "transcurrir",
+          "es": [
+            "Transcurrió"
+          ],
+          "ru": [
+            "Прошёл"
+          ],
+          "explanation": "протекать, проходить (о времени)."
+        },
+        {
+          "term": "hacerse largo",
+          "es": [
+            "se hizo muy largo"
+          ],
+          "ru": [
+            "тянулся бесконечно долго"
+          ],
+          "explanation": "субъективно долго длиться; se hizo обозначает изменение восприятия."
+        },
+        {
+          "term": "evitar",
+          "es": [
+            "evitar"
+          ],
+          "ru": [
+            "избежать"
+          ],
+          "explanation": "предотвращать, избегать нежелательной ситуации."
+        },
+        {
+          "term": "con suerte",
+          "es": [
+            "Con suerte"
+          ],
+          "ru": [
+            "Если повезёт"
+          ],
+          "explanation": "если повезёт; разговорный оборот надежды."
+        },
+        {
+          "term": "pasar hambre",
+          "es": [
+            "pasarían hambre"
+          ],
+          "ru": [
+            "голодать"
+          ],
+          "explanation": "голодать, испытывать нехватку еды; condicional о возможном будущем."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "tan lejos hacia el oeste como fuera posible",
+          "translation": "настолько далеко, насколько это было возможно",
+          "base": "tan + adverbio + como + subjuntivo",
+          "explanation": "fuera — imperfecto de subjuntivo в оценке возможного предела, не отдельное прошедшее событие."
+        },
+        {
+          "es": "Empezaron a organizarla",
+          "translation": "начали её готовить",
+          "base": "organizar (algo)",
+          "explanation": "la = la expedición; подлежащее — жители поселения."
+        },
+        {
+          "es": "se hizo muy largo",
+          "translation": "тянулся бесконечно долго",
+          "base": "hacerse + adjetivo",
+          "explanation": "se входит в hacerse и обозначает изменение восприятия: месяц казался очень долгим."
+        }
+      ]
+    },
+    {
+      "title": "Строительство кораблей",
+      "es": "Niels supervisaba la construcción de los barcos. Estaban hechos de la madera de los árboles de un bosque cercano al río. El jefe Eskol visitaba a menudo el lugar de construcción para ver el progreso.\n–Dime, Niels –dijo Eskol–, ¿cuándo podremos navegar? Ya veo que algunos barcos están ya en el río.\nDespués añadió seriamente:\n–Tenemos que zarpar pronto.\n–No lo sé, jefe, puede que dentro de una semana, quizás menos.\n–¿Solo una semana? ¡Excelente!\n–Sí, la madera es buena y los obreros son muy hábiles –dijo Niels.",
+      "ru": "Нильс руководил постройкой кораблей. Их делали из древесины деревьев, росших в лесу неподалёку от реки. Вождь Эскол часто приходил на место строительства, чтобы посмотреть, как идут дела.\n— Скажи, Нильс, — спросил Эскол, — когда мы сможем выйти в море? Я вижу, некоторые корабли уже на реке.\nЗатем он серьёзно добавил:\n— Нам нужно скоро отплывать.\n— Не знаю, вождь. Возможно, через неделю, а может, и раньше.\n— Всего через неделю? Превосходно!\n— Да, древесина хорошая, а работники очень умелые, — ответил Нильс.",
+      "notes": [
+        {
+          "term": "supervisar",
+          "es": [
+            "supervisaba"
+          ],
+          "ru": [
+            "руководил"
+          ],
+          "explanation": "контролировать работу, наблюдать за выполнением."
+        },
+        {
+          "term": "la construcción",
+          "es": [
+            "construcción"
+          ],
+          "ru": [
+            "постройкой"
+          ],
+          "explanation": "постройка, строительство."
+        },
+        {
+          "term": "el progreso",
+          "es": [
+            "progreso"
+          ],
+          "ru": [
+            "как идут дела"
+          ],
+          "explanation": "ход работ, продвижение, прогресс."
+        },
+        {
+          "term": "navegar",
+          "es": [
+            "navegar"
+          ],
+          "ru": [
+            "выйти в море"
+          ],
+          "explanation": "плавать на судне, совершать плавание."
+        },
+        {
+          "term": "zarpar",
+          "es": [
+            "zarpar"
+          ],
+          "ru": [
+            "отплывать"
+          ],
+          "explanation": "отправляться в плавание, сниматься с якоря."
+        },
+        {
+          "term": "puede que + subjuntivo",
+          "es": [
+            "puede que"
+          ],
+          "ru": [
+            "Возможно"
+          ],
+          "explanation": "может быть; при глаголе обычно требует subjuntivo; здесь предложение эллиптическое."
+        },
+        {
+          "term": "el obrero",
+          "es": [
+            "obreros"
+          ],
+          "ru": [
+            "работники"
+          ],
+          "explanation": "рабочий, строитель."
+        },
+        {
+          "term": "hábil",
+          "es": [
+            "hábiles"
+          ],
+          "ru": [
+            "умелые"
+          ],
+          "explanation": "умелый, ловкий, искусный в деле."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Estaban hechos de la madera",
+          "translation": "Их делали из древесины",
+          "base": "estar hecho de (algo)",
+          "explanation": "подлежащее — корабли; hechos согласуется с barcos, конструкция передаёт материал."
+        },
+        {
+          "es": "–Dime, Niels",
+          "translation": "Скажи, Нильс",
+          "base": "decir a (alguien)",
+          "explanation": "me в форме dime относится к Эсколу: «скажи мне». Это императив di + me."
+        },
+        {
+          "es": "puede que dentro de una semana",
+          "translation": "Возможно, через неделю",
+          "base": "puede que + subjuntivo",
+          "explanation": "После puede que обычно нужен subjuntivo, но глагол здесь опущен по контексту: podamos navegar."
+        }
+      ]
+    },
+    {
+      "title": "Кто поплывёт с вождём",
+      "es": "Unos días más tarde, el jefe Eskol dio una segunda charla en el Gran Salón para decidir quiénes irían en los barcos. Solo había espacio para 75 personas. Uno por uno, hubo voluntarios que levantaron la mano. La mayoría eran guerreros. Estaban muy bien entrenados.\nThoric también quería ir. Aunque no era un guerrero, era muy bueno cazando. Los alimentos eran siempre importantes en una expedición.\n–No sabes qué comida habrá allí –le dijo Thoric al jefe. Necesitaréis cazadores y yo puedo cazar en cualquier lugar y cualquier cosa.\nFinalmente, el jefe Eskol le dijo:\n–Está bien, Thoric. Ven con nosotros.\nAhora Thoric tenía muchas ganas de zarpar con la expedición. Quería conocer tierras lejanas.",
+      "ru": "Несколько дней спустя вождь Эскол во второй раз выступил в Большом зале, чтобы решить, кто поплывёт на кораблях. Места было всего для 75 человек. Один за другим добровольцы поднимали руки. Большинство были воинами, отлично подготовленными к походам.\nТорик тоже хотел отправиться. Хотя он не был воином, охотился он очень хорошо. В экспедиции всегда важно иметь еду.\n— Ты не знаешь, какая пища будет там, — сказал Торик вождю. — Вам понадобятся охотники, а я могу охотиться где угодно и на кого угодно.\nНаконец вождь Эскол ответил:\n— Хорошо, Торик. Идём с нами.\nТеперь Торик с нетерпением ждал отплытия. Ему хотелось увидеть далёкие земли.",
+      "notes": [
+        {
+          "term": "haber espacio para (alguien)",
+          "es": [
+            "Solo había espacio para"
+          ],
+          "ru": [
+            "Места было всего для"
+          ],
+          "explanation": "было место для; impersonal hay/había + существительное."
+        },
+        {
+          "term": "el voluntario",
+          "es": [
+            "voluntarios"
+          ],
+          "ru": [
+            "добровольцы"
+          ],
+          "explanation": "доброволец, человек, который вызывается сам."
+        },
+        {
+          "term": "levantar la mano",
+          "es": [
+            "levantaron la mano"
+          ],
+          "ru": [
+            "поднимали руки"
+          ],
+          "explanation": "поднять руку, чтобы вызваться или попросить слова."
+        },
+        {
+          "term": "el guerrero",
+          "es": [
+            "guerreros"
+          ],
+          "ru": [
+            "воинами"
+          ],
+          "explanation": "воин; не то же самое, что просто солдат."
+        },
+        {
+          "term": "entrenado",
+          "es": [
+            "entrenados"
+          ],
+          "ru": [
+            "подготовленными"
+          ],
+          "explanation": "тренированный, подготовленный к определённой задаче."
+        },
+        {
+          "term": "en cualquier lugar",
+          "es": [
+            "en cualquier lugar"
+          ],
+          "ru": [
+            "где угодно"
+          ],
+          "explanation": "в любом месте, где бы ни пришлось."
+        },
+        {
+          "term": "tener muchas ganas de + infinitivo",
+          "es": [
+            "tenía muchas ganas de zarpar"
+          ],
+          "ru": [
+            "с нетерпением ждал отплытия"
+          ],
+          "explanation": "очень хотеть сделать что-либо, с нетерпением ждать."
+        },
+        {
+          "term": "aunque + indicativo",
+          "es": [
+            "Aunque no era"
+          ],
+          "ru": [
+            "Хотя он не был"
+          ],
+          "explanation": "хотя; indicativo для известного факта. Здесь Торик действительно не воин."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "levantaron la mano",
+          "translation": "поднимали руки",
+          "base": "levantar la mano",
+          "explanation": "букв. «подняли руку»; множественное подлежащее voluntarios и распределённое действие один за другим."
+        },
+        {
+          "es": "le dijo Thoric al jefe",
+          "translation": "сказал Торик вождю",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "le = вождю Эсколу; то же лицо названо в al jefe."
+        },
+        {
+          "es": "Necesitaréis cazadores",
+          "translation": "Вам понадобятся охотники",
+          "base": "necesitar + objeto",
+          "explanation": "necesitaréis — будущее vosotros (обращение к нескольким участникам экспедиции)."
+        },
+        {
+          "es": "el jefe Eskol le dijo",
+          "translation": "вождь Эскол ответил",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "le = Торику; подлежащее, произносящее ответ, — Эскол."
+        }
+      ]
+    },
+    {
+      "title": "Отплытие и долгие недели в море",
+      "es": "Cuando llegó el día, Niels, Thoric, el jefe Eskol y el resto de los vikingos se subieron a los barcos. Rezaron a los dioses para que les ayudaran. Las mujeres y sus familias se despidieron de los guerreros. La mujer de Eskol gobernaba el pueblo cuando él estaba fuera. Fue para despedirse de los hombres también. Finalmente, se subieron a los barcos. La expedición comenzó.\nLos tres barcos viajaron hacia el oeste. Los barcos estaban en condiciones excelentes y todo el mundo parecía contento. Las primeras semanas transcurrieron sin novedad.\nVarias semanas después, los barcos continuaban avanzando, pero no se veía tierra. Solo se veía agua. Ni siquiera veían pájaros. Los pájaros indicaban que había tierra cerca. Algunos de los vikingos comenzaron a hacer preguntas al jefe Eskol.",
+      "ru": "Когда настал день отправления, Нильс, Торик, вождь Эскол и остальные викинги поднялись на корабли. Они молились богам, чтобы те им помогли. Женщины и семьи прощались с воинами. Жена Эскола управляла поселением, пока мужа не было, и тоже пришла проводить мужчин. Наконец все сели на корабли. Экспедиция началась.\nТри корабля направились на запад. Они были в отличном состоянии, и все, казалось, были довольны. Первые недели прошли без происшествий.\nНо прошло ещё несколько недель, а корабли всё плыли, и земли нигде не было видно. Вокруг была только вода. Не встречались даже птицы, а птицы означали, что суша близко. Некоторые викинги начали задавать вождю Эсколу вопросы.",
+      "notes": [
+        {
+          "term": "rezar",
+          "es": [
+            "Rezaron"
+          ],
+          "ru": [
+            "молились"
+          ],
+          "explanation": "молиться; здесь rezar a los dioses."
+        },
+        {
+          "term": "despedirse de (alguien)",
+          "es": [
+            "se despidieron de"
+          ],
+          "ru": [
+            "прощались с"
+          ],
+          "explanation": "прощаться с кем-либо; возвратная форма обязательна."
+        },
+        {
+          "term": "gobernar",
+          "es": [
+            "gobernaba"
+          ],
+          "ru": [
+            "управляла"
+          ],
+          "explanation": "править, управлять страной или общиной."
+        },
+        {
+          "term": "en condiciones excelentes",
+          "es": [
+            "en condiciones excelentes"
+          ],
+          "ru": [
+            "в отличном состоянии"
+          ],
+          "explanation": "в прекрасном состоянии (о технике, кораблях и т. п.)."
+        },
+        {
+          "term": "sin novedad",
+          "es": [
+            "sin novedad"
+          ],
+          "ru": [
+            "без происшествий"
+          ],
+          "explanation": "без происшествий, без особых событий."
+        },
+        {
+          "term": "avanzar",
+          "es": [
+            "avanzando"
+          ],
+          "ru": [
+            "всё плыли"
+          ],
+          "explanation": "продвигаться вперёд; здесь движение судов."
+        },
+        {
+          "term": "ni siquiera",
+          "es": [
+            "Ni siquiera"
+          ],
+          "ru": [
+            "даже"
+          ],
+          "explanation": "даже не; усиливает отрицание."
+        },
+        {
+          "term": "indicar",
+          "es": [
+            "indicaban"
+          ],
+          "ru": [
+            "означали"
+          ],
+          "explanation": "указывать на что-либо, служить признаком."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "para que les ayudaran",
+          "translation": "чтобы те им помогли",
+          "base": "para que + subjuntivo",
+          "explanation": "les = отправляющимся викингам; ayudaran — imperfecto de subjuntivo, цель молитвы в прошлом."
+        },
+        {
+          "es": "se despidieron de los guerreros",
+          "translation": "прощались с воинами",
+          "base": "despedirse de (alguien)",
+          "explanation": "se — часть местоименного глагола despedirse, а не «сами себя прощали»."
+        },
+        {
+          "es": "se subieron a los barcos",
+          "translation": "поднялись на корабли",
+          "base": "subirse a (algo)",
+          "explanation": "se входит в subirse: сесть/подняться на транспорт."
+        },
+        {
+          "es": "no se veía tierra",
+          "translation": "земли нигде не было видно",
+          "base": "pasiva refleja con se",
+          "explanation": "se — пассивная конструкция: суша не была видна; нет человека, который «смотрел на себя»."
+        }
+      ],
+      "images": [
+        {
+          "file": "images/01.webp",
+          "alt": "Иллюстрация к морскому путешествию викингов"
+        }
+      ]
+    },
+    {
+      "title": "Сомнения и гнев Эскола",
+      "es": "–Jefe Eskol, ¿estás seguro de que hay tierra en el oeste? –preguntó un hombre.\n–Sí, estoy seguro.\n–¿Qué pasará si no encontramos tierra?\nEl jefe Eskol gritó con furia:\n–¡Vamos a encontrar tierra! Hay tierra hacia el oeste. Alguien me lo dijo. Alguien que la vio con sus propios ojos. ¿Queda claro?\n–Pero… Pero… –dijo el hombre.\nNo estaba seguro de qué decir o hacer. Finalmente dijo:\n–¿Pero quién? ¿Quién te lo dijo?\n–Fuera de mi vista.\nEra un buen jefe, pero su carácter era muy fuerte. Eskol era fuerte y enérgico. No le gustaba que le hiciesen demasiadas preguntas. Pero los hombres no tenían su fe. No estaban seguros de que hubiera tierra cerca.",
+      "ru": "— Вождь Эскол, ты уверен, что на западе есть суша? — спросил один из мужчин.\n— Да, уверен.\n— А что будет, если мы её не найдём?\nЭскол в ярости закричал:\n— Мы найдём землю! На западе есть суша. Мне об этом сказали. Человек, который видел её своими глазами. Ясно?\n— Но… Но… — начал мужчина.\nОн не знал, что сказать или сделать. Наконец он спросил:\n— Но кто? Кто тебе это сказал?\n— Прочь с глаз моих.\nЭскол был хорошим вождём, но обладал крутым нравом. Он был сильным и энергичным человеком и не любил, когда ему задавали слишком много вопросов. А вот его люди не разделяли его уверенности: они не знали, есть ли поблизости земля.",
+      "notes": [
+        {
+          "term": "con furia",
+          "es": [
+            "con furia"
+          ],
+          "ru": [
+            "в ярости"
+          ],
+          "explanation": "с яростью, в гневе."
+        },
+        {
+          "term": "con sus propios ojos",
+          "es": [
+            "con sus propios ojos"
+          ],
+          "ru": [
+            "своими глазами"
+          ],
+          "explanation": "лично, собственными глазами."
+        },
+        {
+          "term": "¿Queda claro?",
+          "es": [
+            "¿Queda claro?"
+          ],
+          "ru": [
+            "Ясно?"
+          ],
+          "explanation": "Понятно? Жёсткий вопрос-подтверждение."
+        },
+        {
+          "term": "¡Fuera de mi vista!",
+          "es": [
+            "Fuera de mi vista"
+          ],
+          "ru": [
+            "Прочь с глаз моих"
+          ],
+          "explanation": "грубый приказ уйти немедленно."
+        },
+        {
+          "term": "el carácter",
+          "es": [
+            "carácter"
+          ],
+          "ru": [
+            "нравом"
+          ],
+          "explanation": "характер; carácter fuerte — крутой нрав, властность."
+        },
+        {
+          "term": "enérgico",
+          "es": [
+            "enérgico"
+          ],
+          "ru": [
+            "энергичным"
+          ],
+          "explanation": "энергичный, решительный."
+        },
+        {
+          "term": "tener fe (en algo)",
+          "es": [
+            "no tenían su fe"
+          ],
+          "ru": [
+            "не разделяли его уверенности"
+          ],
+          "explanation": "букв. «не имели его веры»; здесь не были столь уверены в существовании земли."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Alguien me lo dijo",
+          "translation": "Мне об этом сказали",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "me = Эсколу, lo = сообщение о существовании суши на западе."
+        },
+        {
+          "es": "la vio con sus propios ojos",
+          "translation": "видел её своими глазами",
+          "base": "ver (algo)",
+          "explanation": "la = la tierra; неизвестный рассказчик видел землю."
+        },
+        {
+          "es": "¿Quién te lo dijo?",
+          "translation": "Кто тебе это сказал?",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "te = Эсколу, lo = информацию о земле."
+        },
+        {
+          "es": "No le gustaba que le hiciesen demasiadas preguntas",
+          "translation": "не любил, когда ему задавали слишком много вопросов",
+          "base": "gustarle (algo) a (alguien); hacer preguntas a (alguien)",
+          "explanation": "оба le указывают на Эскола: ему не нравилось, когда *ему* задавали вопросы; hiciesen — imperfecto de subjuntivo."
+        },
+        {
+          "es": "su fe",
+          "translation": "его уверенности",
+          "base": "posesivo su",
+          "explanation": "su относится к Эсколу; другие викинги не разделяли его веру в успех поисков."
+        }
+      ]
+    },
+    {
+      "title": "Таинственное доказательство",
+      "es": "Decidió hablar al resto de los vikingos del barco:\n–¡Hay tierra en el oeste! ¡Lo puedo probar! ¿Queda claro? ¡Tengo pruebas!\nLevantó un pedazo de tela con dibujos extraños.\n–¡Me vais a creer! ¡Sé que está ahí!\nEl resto de los vikingos no preguntaron nada más y siguieron remando. Pero todos tenían una pregunta en su mente: «¿Quién le había dicho al jefe Eskol que había tierra al oeste? ¿De dónde había sacado la prueba?»",
+      "ru": "Он решил обратиться к остальным викингам на корабле:\n— На западе есть суша! Я могу это доказать! Ясно вам? У меня есть доказательства!\nОн поднял кусок ткани со странными рисунками.\n— Вы мне поверите! Я знаю, что она там!\nОстальные викинги больше ничего не спрашивали и продолжили грести. Но каждый задавался одним вопросом: «Кто рассказал вождю Эсколу о земле на западе? Откуда у него взялось доказательство?»",
+      "notes": [
+        {
+          "term": "probar (algo)",
+          "es": [
+            "probar"
+          ],
+          "ru": [
+            "доказать"
+          ],
+          "explanation": "доказывать; здесь не «пробовать на вкус»."
+        },
+        {
+          "term": "la prueba",
+          "es": [
+            "pruebas"
+          ],
+          "ru": [
+            "доказательства"
+          ],
+          "explanation": "доказательство, свидетельство."
+        },
+        {
+          "term": "un pedazo de",
+          "es": [
+            "un pedazo de"
+          ],
+          "ru": [
+            "кусок"
+          ],
+          "explanation": "кусок чего-либо; pedazo de tela — кусок ткани."
+        },
+        {
+          "term": "la tela",
+          "es": [
+            "tela"
+          ],
+          "ru": [
+            "ткани"
+          ],
+          "explanation": "ткань, полотно."
+        },
+        {
+          "term": "seguir + gerundio",
+          "es": [
+            "siguieron remando"
+          ],
+          "ru": [
+            "продолжили грести"
+          ],
+          "explanation": "продолжать делать что-либо."
+        },
+        {
+          "term": "sacar (algo) de (algún lugar)",
+          "es": [
+            "había sacado"
+          ],
+          "ru": [
+            "взялось"
+          ],
+          "explanation": "доставать, брать откуда-либо; aquí de dónde había sacado = «откуда взял»."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "¡Lo puedo probar!",
+          "translation": "Я могу это доказать!",
+          "base": "poder probar (algo)",
+          "explanation": "lo = факт существования земли на западе, а не кусок ткани."
+        },
+        {
+          "es": "¡Me vais a creer!",
+          "translation": "Вы мне поверите!",
+          "base": "creer a (alguien)",
+          "explanation": "me = Эсколу; vais — форма vosotros, обращение ко всем викингам."
+        },
+        {
+          "es": "le había dicho al jefe Eskol",
+          "translation": "рассказал вождю Эсколу",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "le = вождю; había dicho — предпрошедшее действие по отношению к сцене на корабле."
+        }
+      ]
+    },
+    {
+      "title": "Шторм сбивает корабли с курса",
+      "es": "Más tarde, aquel mismo día, de repente comenzó a llover. El viento se hizo más rápido. El agua comenzó a agitarse. Era la tormenta más fuerte que habían visto hasta entonces. Los barcos apenas podían navegar. Los vikingos intentaron mantener los tres barcos unidos.\nPor fin pasó la tormenta. El jefe Eskol podía ver el cielo de nuevo. Comprobó dónde estaban los barcos. Se enfadó. ¡La tormenta había cambiado el rumbo de los barcos! Ahora no estaban seguros de dónde estaban. El jefe no podía decírselo a sus hombres. Lo único que podía hacer era confiar en que todo iría bien. Tenían que encontrar tierra si iban hacia el oeste.",
+      "ru": "Позже в тот же день внезапно начался дождь. Ветер усилился, вода забурлила. Это была самая сильная буря, какую им доводилось видеть. Корабли едва могли плыть. Викинги пытались удержать все три корабля вместе.\nНаконец буря закончилась. Вождь Эскол снова смог увидеть небо. Он проверил, где находятся корабли, и рассердился. Буря изменила их курс! Теперь никто не знал, где они находятся. Вождь не мог сообщить об этом своим людям. Ему оставалось только надеяться, что всё обойдётся. Если они продолжат двигаться на запад, то должны будут найти землю.",
+      "notes": [
+        {
+          "term": "agitarse",
+          "es": [
+            "agitarse"
+          ],
+          "ru": [
+            "забурлила"
+          ],
+          "explanation": "всколыхнуться, прийти в движение (о воде)."
+        },
+        {
+          "term": "la tormenta",
+          "es": [
+            "tormenta"
+          ],
+          "ru": [
+            "буря"
+          ],
+          "explanation": "буря, шторм."
+        },
+        {
+          "term": "apenas + verbo",
+          "es": [
+            "apenas podían"
+          ],
+          "ru": [
+            "едва могли"
+          ],
+          "explanation": "едва, с трудом; не путать с apenas = «как только»."
+        },
+        {
+          "term": "mantener unido (algo)",
+          "es": [
+            "mantener los tres barcos unidos"
+          ],
+          "ru": [
+            "удержать все три корабля вместе"
+          ],
+          "explanation": "не дать чему-то разъединиться; unidos — причастие в функции определения состояния."
+        },
+        {
+          "term": "comprobar",
+          "es": [
+            "Comprobó"
+          ],
+          "ru": [
+            "проверил"
+          ],
+          "explanation": "проверять, убеждаться."
+        },
+        {
+          "term": "enfadarse",
+          "es": [
+            "Se enfadó"
+          ],
+          "ru": [
+            "рассердился"
+          ],
+          "explanation": "рассердиться; местоименный глагол."
+        },
+        {
+          "term": "el rumbo",
+          "es": [
+            "rumbo"
+          ],
+          "ru": [
+            "курс"
+          ],
+          "explanation": "курс корабля или направление движения."
+        },
+        {
+          "term": "confiar en que + indicativo",
+          "es": [
+            "confiar en que todo iría bien"
+          ],
+          "ru": [
+            "надеяться, что всё обойдётся"
+          ],
+          "explanation": "полагаться на то, что; iría — condicional, ожидаемый исход из прошлого."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "El agua comenzó a agitarse",
+          "translation": "вода забурлила",
+          "base": "agitarse",
+          "explanation": "se входит в agitarse: вода сама забурлила от шторма."
+        },
+        {
+          "es": "Se enfadó",
+          "translation": "рассердился",
+          "base": "enfadarse",
+          "explanation": "se относится к Эсколу, прономинальная форма «рассердиться»."
+        },
+        {
+          "es": "no podía decírselo a sus hombres",
+          "translation": "не мог сообщить об этом своим людям",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "se = les (его людям), lo = то, что курс сбился и местоположение неизвестно. Перед lo косвенное les становится se."
+        },
+        {
+          "es": "Lo único que podía hacer",
+          "translation": "Ему оставалось только",
+          "base": "lo único que + verbo",
+          "explanation": "нейтральное lo субстантивирует прилагательное único: «единственное, что он мог сделать»."
+        }
+      ]
+    },
+    {
+      "title": "Птицы в утреннем небе",
+      "es": "Días después, mientras todos dormían, Thoric se despertó. Miró al cielo. Era temprano. Vio algo. Al principio no se lo podía creer. Miró de nuevo. Sí, ¡estaban allí! Thoric corrió hacia Niels y lo despertó:\n–¡Niels! ¡Niels, despierta! –gritó.\n–¿Qué ocurre? –dijo el explorador sin abrir los ojos.\n–¡Hay pájaros en el cielo!\n–¿Y qué?\n–¡Hay pájaros en el cielo! ¡Hay tierra cerca!\nNiels abrió los ojos. Miró al cielo. Allí, hacia el oeste, vio pájaros.\n–¡Por los dioses! ¡Es verdad!\nNiels se levantó y fue a hablar con el jefe. Thoric fue con él.\n–¡Jefe Eskol, despierta! –gritó Niels.\nEl jefe Eskol se despertó rápidamente.",
+      "ru": "Через несколько дней, пока все спали, Торик проснулся. Он взглянул на небо. Было ещё рано. И вдруг он что-то увидел. Сначала не мог поверить своим глазам. Посмотрел ещё раз. Да, они были там! Торик подбежал к Нильсу и разбудил его:\n— Нильс! Нильс, просыпайся! — закричал он.\n— Что случилось? — спросил исследователь, не открывая глаз.\n— В небе птицы!\n— Ну и что?\n— Птицы в небе! Значит, суша рядом!\nНильс открыл глаза. Посмотрел на небо и увидел на западе птиц.\n— Клянусь богами! Это правда!\nОн встал и пошёл к вождю. Торик отправился с ним.\n— Вождь Эскол, просыпайся! — крикнул Нильс.\nВождь быстро проснулся.",
+      "notes": [
+        {
+          "term": "no poder creérselo",
+          "es": [
+            "no se lo podía creer"
+          ],
+          "ru": [
+            "не мог поверить своим глазам"
+          ],
+          "explanation": "не верить своим глазам; se относится к Торику, lo — к увиденному."
+        },
+        {
+          "term": "despertar a (alguien)",
+          "es": [
+            "despertó"
+          ],
+          "ru": [
+            "разбудил"
+          ],
+          "explanation": "будить кого-либо; не путать с despertarse — просыпаться."
+        },
+        {
+          "term": "¿Y qué?",
+          "es": [
+            "¿Y qué?"
+          ],
+          "ru": [
+            "Ну и что?"
+          ],
+          "explanation": "разговорное «и что с того?»."
+        },
+        {
+          "term": "¡Por los dioses!",
+          "es": [
+            "¡Por los dioses!"
+          ],
+          "ru": [
+            "Клянусь богами!"
+          ],
+          "explanation": "эмоциональное восклицание в стиле персонажей-викингов."
+        },
+        {
+          "term": "sin + infinitivo",
+          "es": [
+            "sin abrir los ojos"
+          ],
+          "ru": [
+            "не открывая глаз"
+          ],
+          "explanation": "не совершая действия; sin + инфинитив."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "no se lo podía creer",
+          "translation": "не мог поверить своим глазам",
+          "base": "creerse (algo)",
+          "explanation": "se = Торик (pronominal creerse), lo = то, что он увидел в небе; не косвенное дополнение третьего лица."
+        },
+        {
+          "es": "lo despertó",
+          "translation": "разбудил его",
+          "base": "despertar a (alguien)",
+          "explanation": "lo = Нильса, прямое дополнение; подлежащее — Торик."
+        },
+        {
+          "es": "sin abrir los ojos",
+          "translation": "не открывая глаз",
+          "base": "sin + infinitivo",
+          "explanation": "отрицательная обстоятельственная конструкция относится к Нильсу, который отвечает, не открывая глаза."
+        },
+        {
+          "es": "Thoric fue con él",
+          "translation": "Торик отправился с ним",
+          "base": "ir con (alguien)",
+          "explanation": "él = Нильс; ударение отличает личное местоимение él от артикля el."
+        }
+      ]
+    },
+    {
+      "title": "Наконец — неизвестная земля",
+      "es": "–¿Niels? ¿Thoric? ¿Qué ocurre?\n–¡Hay pájaros en el cielo! –gritó Niels.\n–¡Hay tierra! –gritó Thoric.\nEl jefe Eskol se levantó rápidamente y gritó a los capitanes de los tres barcos:\n–¡Hay que remar! ¡Vamos! ¡Despertad todos! ¡Hay tierra cerca!\nDespués gritó a los hombres:\n–¡Tenéis que remar! ¡Vamos!\nRemaron con mucha fuerza y vieron tierra por fin. Thoric y Niels sonreían. El jefe Eskol no sonrió. Él nunca sonreía. Pero por lo menos, no parecía enfadado.\nEl jefe Eskol mandó a los barcos parar en una playa cercana. La playa era muy grande y había muchos árboles y colinas cerca. Era un lugar precioso.\nLos vikingos bajaron de sus barcos y pisaron la playa.\nThoric habló con Niels:\n–Niels, ¿qué es este lugar?\n–No lo sé, Thoric, no se parece a ningún otro lugar que yo recuerde.\n–Necesitamos explorar más allá de la playa.\n–Estoy de acuerdo.",
+      "ru": "— Нильс? Торик? Что случилось?\n— В небе птицы! — крикнул Нильс.\n— Земля! — воскликнул Торик.\nЭскол быстро поднялся и закричал капитанам трёх кораблей:\n— Надо грести! Давайте! Будите всех! Земля близко!\nЗатем он закричал остальным:\n— Гребите! Вперёд!\nОни гребли изо всех сил и наконец увидели сушу. Торик и Нильс улыбались, Эскол — нет. Он никогда не улыбался. Но хотя бы не казался сердитым.\nЭскол приказал остановить корабли у близлежащего пляжа. Пляж был большим; вокруг росли деревья и возвышались холмы. Это было прекрасное место.\nВикинги сошли с кораблей и ступили на пляж.\nТорик заговорил с Нильсом:\n— Нильс, что это за место?\n— Не знаю, Торик. Оно не похоже ни на одно место, какое я помню.\n— Нужно исследовать земли дальше пляжа.\n— Согласен.",
+      "notes": [
+        {
+          "term": "remar",
+          "es": [
+            "remar"
+          ],
+          "ru": [
+            "грести"
+          ],
+          "explanation": "грести вёслами."
+        },
+        {
+          "term": "por lo menos",
+          "es": [
+            "por lo menos"
+          ],
+          "ru": [
+            "хотя бы"
+          ],
+          "explanation": "по крайней мере."
+        },
+        {
+          "term": "mandar + infinitivo",
+          "es": [
+            "mandó a los barcos parar"
+          ],
+          "ru": [
+            "приказал остановить корабли"
+          ],
+          "explanation": "приказать выполнить действие; здесь не совсем естественный порядок слов автора."
+        },
+        {
+          "term": "la colina",
+          "es": [
+            "colinas"
+          ],
+          "ru": [
+            "холмы"
+          ],
+          "explanation": "холм, небольшая возвышенность."
+        },
+        {
+          "term": "pisar",
+          "es": [
+            "pisaron"
+          ],
+          "ru": [
+            "ступили"
+          ],
+          "explanation": "ступать, наступать."
+        },
+        {
+          "term": "parecerse a (algo)",
+          "es": [
+            "no se parece a"
+          ],
+          "ru": [
+            "не похоже ни на"
+          ],
+          "explanation": "быть похожим на; aquí отрицание."
+        },
+        {
+          "term": "más allá de",
+          "es": [
+            "más allá de"
+          ],
+          "ru": [
+            "дальше пляжа"
+          ],
+          "explanation": "за пределами, дальше чего-либо."
+        },
+        {
+          "term": "que + subjuntivo (referencia indefinida)",
+          "es": [
+            "que yo recuerde"
+          ],
+          "ru": [
+            "какое я помню"
+          ],
+          "explanation": "subjuntivo recuerde: говорящий не может назвать ни одного знакомого подобного места."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Él nunca sonreía",
+          "translation": "Он никогда не улыбался",
+          "base": "pronombre sujeto él",
+          "explanation": "Él = Эскол; ударение отличает местоимение от артикля el."
+        },
+        {
+          "es": "mandó a los barcos parar",
+          "translation": "приказал остановить корабли",
+          "base": "mandar + infinitivo",
+          "explanation": "mandó выражает приказ; буквальная форма автора неловкая, смысл — остановить корабли у берега."
+        },
+        {
+          "es": "no se parece a ningún otro lugar",
+          "translation": "не похоже ни на одно место",
+          "base": "parecerse a (algo)",
+          "explanation": "se обязательно в parecerse a, а ningún усиливает отрицание."
+        },
+        {
+          "es": "que yo recuerde",
+          "translation": "какое я помню",
+          "base": "que + subjuntivo",
+          "explanation": "recuerde в subjuntivo: Нильс не может указать конкретное сходное место, которое помнил бы."
+        }
+      ]
+    },
+    {
+      "title": "Охота среди необычной природы",
+      "es": "El jefe Eskol llamó a los hombres. Se organizaron en pequeños grupos. El jefe dijo:\n–Necesitamos comida. Apenas nos queda nada. Tenéis que cazar varios animales.\nThoric y Niels cazaron juntos, pero nada les parecía normal. Los árboles eran diferentes. Los sonidos eran diferentes. Incluso los animales eran diferentes. Pero los hombres tenían hambre. Los mataron y comieron los animales desconocidos. La carne era diferente, pero no era peor que la carne a la que estaban acostumbrados.",
+      "ru": "Вождь Эскол созвал людей. Они разделились на небольшие группы, и вождь сказал:\n— Нам нужна еда. У нас почти ничего не осталось. Вы должны добыть несколько животных.\nТорик и Нильс охотились вместе, но всё вокруг казалось им необычным. Деревья были другими. Звуки были другими. Даже животные были другими. Однако мужчины были голодны. Они убили незнакомых животных и съели их. Мясо отличалось от привычного, но было не хуже того, к которому они привыкли.",
+      "notes": [
+        {
+          "term": "apenas quedar nada",
+          "es": [
+            "Apenas nos queda nada"
+          ],
+          "ru": [
+            "почти ничего не осталось"
+          ],
+          "explanation": "устойчивое указание на нехватку; nos — у нас."
+        },
+        {
+          "term": "incluso",
+          "es": [
+            "Incluso"
+          ],
+          "ru": [
+            "Даже"
+          ],
+          "explanation": "даже, включая неожиданное."
+        },
+        {
+          "term": "desconocido",
+          "es": [
+            "desconocidos"
+          ],
+          "ru": [
+            "незнакомых"
+          ],
+          "explanation": "неизвестный, незнакомый."
+        },
+        {
+          "term": "estar acostumbrado a (algo)",
+          "es": [
+            "estaban acostumbrados"
+          ],
+          "ru": [
+            "они привыкли"
+          ],
+          "explanation": "быть привычным к чему-либо; a вводит объект привычки."
+        },
+        {
+          "term": "no ser peor que",
+          "es": [
+            "no era peor que"
+          ],
+          "ru": [
+            "не хуже"
+          ],
+          "explanation": "быть не хуже чего-либо; peor — сравнительная степень от malo."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Se organizaron en pequeños grupos",
+          "translation": "Они разделились на небольшие группы",
+          "base": "organizarse",
+          "explanation": "se обозначает самоорганизацию людей по группам."
+        },
+        {
+          "es": "Apenas nos queda nada",
+          "translation": "У нас почти ничего не осталось",
+          "base": "quedarle (algo) a (alguien)",
+          "explanation": "nos = викингам, получателям/владельцам остатка; nada — почти нулевой запас еды."
+        },
+        {
+          "es": "nada les parecía normal",
+          "translation": "всё вокруг казалось им необычным",
+          "base": "parecerle (algo) a (alguien)",
+          "explanation": "les = Торику и Нильсу; подлежащее — всё увиденное, а не они."
+        },
+        {
+          "es": "Los mataron",
+          "translation": "Они убили",
+          "base": "matar (algo)",
+          "explanation": "los = los animales desconocidos, а не местные жители; подлежащее — охотники."
+        },
+        {
+          "es": "a la que estaban acostumbrados",
+          "translation": "к которому они привыкли",
+          "base": "estar acostumbrado a (algo)",
+          "explanation": "la que соотносится с la carne, a — обязательный предлог при acostumbrado."
+        }
+      ]
+    },
+    {
+      "title": "Что находится за пляжем?",
+      "es": "Por la noche, el jefe Eskol habló a los vikingos en la playa:\n–Ya tenemos comida y estamos agradecidos por ello, pero ahora necesitamos explorar. Tenemos que ver qué es lo que hay más allá de la playa. Tenemos que averiguar si este lugar es apropiado para cultivar. Si podemos cultivar aquí, vendrán más vikingos.\nUno de los vikingos dijo:\n–¿Cómo sabemos dónde estamos? La tormenta nos llevó lejos de nuestro rumbo.\nEl jefe Eskol calló durante varios minutos. Era una de las pocas ocasiones en que no contestaba. Al final, no dijo nada. Ignoró la pregunta del hombre y dijo:\n–Tenemos que explorar este lugar. Mañana al amanecer empezaremos.",
+      "ru": "Вечером на пляже вождь Эскол обратился к викингам:\n— Теперь у нас есть еда, и мы за это благодарны. Но нам нужно исследовать местность. Посмотреть, что находится за пределами пляжа. Выяснить, подходит ли эта земля для земледелия. Если здесь можно выращивать урожай, к нам приплывут новые викинги.\nОдин из мужчин спросил:\n— А откуда нам знать, где мы находимся? Буря унесла нас далеко от намеченного курса.\nЭскол молчал несколько минут. Это был один из немногих случаев, когда он не отвечал. В конце концов он так ничего и не сказал. Проигнорировав вопрос мужчины, он объявил:\n— Мы должны исследовать эти места. Завтра на рассвете начнём.",
+      "notes": [
+        {
+          "term": "estar agradecido por (algo)",
+          "es": [
+            "estamos agradecidos por ello"
+          ],
+          "ru": [
+            "мы за это благодарны"
+          ],
+          "explanation": "быть благодарным за что-либо; ello здесь относится к полученной пище."
+        },
+        {
+          "term": "averiguar",
+          "es": [
+            "averiguar"
+          ],
+          "ru": [
+            "Выяснить"
+          ],
+          "explanation": "выяснить, установить."
+        },
+        {
+          "term": "apropiado para + infinitivo",
+          "es": [
+            "apropiado para cultivar"
+          ],
+          "ru": [
+            "подходит ли эта земля для земледелия"
+          ],
+          "explanation": "подходящий для чего-либо; здесь для возделывания земли."
+        },
+        {
+          "term": "callar",
+          "es": [
+            "calló"
+          ],
+          "ru": [
+            "молчал"
+          ],
+          "explanation": "умолкать, молчать."
+        },
+        {
+          "term": "ignorar (algo)",
+          "es": [
+            "Ignoró"
+          ],
+          "ru": [
+            "Проигнорировав"
+          ],
+          "explanation": "оставить без внимания; здесь вопрос собеседника."
+        },
+        {
+          "term": "al amanecer",
+          "es": [
+            "al amanecer"
+          ],
+          "ru": [
+            "на рассвете"
+          ],
+          "explanation": "на рассвете; amanecer — рассвет или «рассветать»."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "estamos agradecidos por ello",
+          "translation": "мы за это благодарны",
+          "base": "estar agradecido por (algo)",
+          "explanation": "ello — нейтральное местоимение: получение еды после охоты."
+        },
+        {
+          "es": "qué es lo que hay más allá de la playa",
+          "translation": "что находится за пределами пляжа",
+          "base": "lo que + verbo",
+          "explanation": "lo в lo que представляет «то, что»; не отдельный объект, уже названный ранее."
+        },
+        {
+          "es": "La tormenta nos llevó lejos de nuestro rumbo",
+          "translation": "Буря унесла нас далеко от намеченного курса",
+          "base": "llevar (algo / alguien)",
+          "explanation": "nos — всю экспедицию викингов, прямое дополнение; rumbo — направление плавания."
+        },
+        {
+          "es": "en que no contestaba",
+          "translation": "когда он не отвечал",
+          "base": "en que + indicativo",
+          "explanation": "en que относит уточнение ко временам/случаям: «один из немногих случаев, когда…»."
+        }
+      ]
+    }
+  ],
   "source": {
     "file": "Short Stories in Spanish for Beginners — Olly Richards (1).pdf",
-    "heading_page": 129
-  }
+    "heading_page": 129,
+    "editorial_corrections": [
+      {
+        "pdf_page": 129,
+        "printed": "–dijo Neils.",
+        "edited": "–dijo Niels.",
+        "reason": "Нильс последовательно называется Niels; опечатка в исходном тексте."
+      },
+      {
+        "pdf_page": 135,
+        "printed": "el padre de Neils",
+        "edited": "el padre de Niels",
+        "reason": "Опечатка имени в одном из вариантов ответа к главе."
+      }
+    ]
+  },
+  "exercises": [
+    {
+      "id": "chapter-2-comprehension",
+      "instruction": "Seleccione una única respuesta para cada pregunta.",
+      "source": {
+        "file": "Short Stories in Spanish for Beginners — Olly Richards (1).pdf",
+        "pdf_pages": [
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135
+        ],
+        "chapters": [
+          2
+        ],
+        "answer_key_page": 190,
+        "instruction": "Seleccione una única respuesta para cada pregunta."
+      },
+      "questions": [
+        {
+          "prompt": "¿Cuántos vikingos forman parte de la expedición?",
+          "options": [
+            "50",
+            "60",
+            "75",
+            "85"
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "¿Cuántos barcos hay en la expedición?",
+          "options": [
+            "dos",
+            "tres",
+            "cuatro",
+            "cinco"
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "En medio del viaje, los barcos ___.",
+          "options": [
+            "son atacados por otros vikingos",
+            "no pueden mantenerse juntos",
+            "empiezan a llenarse de agua",
+            "se encuentran con una tormenta"
+          ],
+          "answer": 3
+        },
+        {
+          "prompt": "¿Quién es el primero en ver los pájaros en el cielo?",
+          "options": [
+            "Thoric",
+            "Niels",
+            "el jefe Eskol",
+            "el padre de Niels"
+          ],
+          "answer": 0
+        },
+        {
+          "prompt": "¿En qué orden planean los vikingos hacer estas cosas?",
+          "options": [
+            "explorar el terreno, cazar y cultivar.",
+            "recoger comida, cazar y explorar el terreno.",
+            "cazar, recoger comida y explorar el terreno.",
+            "cazar, explorar el terreno y cultivar."
+          ],
+          "answer": 3
+        }
+      ]
+    }
+  ]
 }

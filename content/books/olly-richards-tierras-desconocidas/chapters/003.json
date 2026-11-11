@@ -3,11 +3,1178 @@
   "number": 3,
   "order": 3,
   "title": "La decisión",
-  "icon": "📖",
-  "status": "draft",
-  "blocks": [],
+  "icon": "🧭",
+  "status": "published",
+  "blocks": [
+    {
+      "title": "Утренний разговор и неожиданное имя",
+      "es": "Los hombres se despertaron al amanecer y desayunaron. Tenían algunas provisiones del viaje y carne de lo que habían cazado.\nThoric fue a hablar con el jefe Eskol en cuanto terminó.\n–Buenos días, jefe.\n–Hola, Thoric. ¿Querías algo?\n–Quería hablar contigo.\n–Dime.\nThoric quería preguntarle una cosa.\n–Al principio del viaje, los hombres dudaban. Preguntaban mucho porque no sabían si había tierra al oeste. Pero al final, fuiste un buen líder y llegamos a salvo a esta tierra.\n–Sí. Vete al grano, Thoric.\n–El hombre que te contó todo. El que te dio la prueba. ¿Quién era?\n–¿El hombre que me dijo que existían estas tierras?\n–Sí, exacto.\nEl jefe Eskol miró a su alrededor.\n–¿Qué ocurre? –preguntó Thoric.\n–¿Dónde está Niels?\n–Está durmiendo, creo.\n–El hombre que me contó eso, era su padre.\n–¿Su padre?\n–Sí.\nThoric se sorprendió mucho. ¿El padre de Niels era aquel hombre misterioso? Pero el padre de Niels estaba muerto.\nThoric no entendía.",
+      "ru": "На рассвете мужчины проснулись и позавтракали. У них оставались кое-какие припасы из путешествия и мясо добытых на охоте животных.\nЗакончив завтракать, Торик подошёл к вождю Эсколу.\n— Доброе утро, вождь.\n— Привет, Торик. Ты что-то хотел?\n— Хотел поговорить с тобой.\n— Говори.\nТорик собирался задать один вопрос.\n— В начале путешествия люди сомневались. Они много спрашивали, потому что не знали, есть ли земля на западе. Но в конце концов ты проявил себя хорошим вождём, и мы благополучно добрались сюда.\n— Да. Ближе к делу, Торик.\n— Человек, который тебе всё рассказал, который дал доказательство. Кто он был?\n— Тот, кто сообщил мне о существовании этих земель?\n— Да, именно.\nЭскол огляделся.\n— Что такое? — спросил Торик.\n— Где Нильс?\n— По-моему, спит.\n— Человек, который мне всё рассказал, был его отцом.\n— Его отцом?\n— Да.\nТорик очень удивился. Неужели тем таинственным человеком был отец Нильса? Но ведь он умер.\nТорик ничего не понимал.",
+      "notes": [
+        {
+          "term": "las provisiones",
+          "es": [
+            "provisiones"
+          ],
+          "ru": [
+            "припасы"
+          ],
+          "explanation": "припасы, запасы продовольствия в походе."
+        },
+        {
+          "term": "en cuanto + verbo",
+          "es": [
+            "en cuanto terminó"
+          ],
+          "ru": [
+            "Закончив завтракать"
+          ],
+          "explanation": "как только; en cuanto + indicativo о совершившемся действии."
+        },
+        {
+          "term": "dudar",
+          "es": [
+            "dudaban"
+          ],
+          "ru": [
+            "сомневались"
+          ],
+          "explanation": "сомневаться, испытывать неуверенность."
+        },
+        {
+          "term": "a salvo",
+          "es": [
+            "a salvo"
+          ],
+          "ru": [
+            "благополучно"
+          ],
+          "explanation": "в безопасности, невредимым; llegar a salvo — благополучно добраться."
+        },
+        {
+          "term": "ir al grano",
+          "es": [
+            "Vete al grano"
+          ],
+          "ru": [
+            "Ближе к делу"
+          ],
+          "explanation": "переходить прямо к сути; повелительная форма vete."
+        },
+        {
+          "term": "preguntar a (alguien)",
+          "es": [
+            "preguntarle"
+          ],
+          "ru": [
+            "задать один вопрос"
+          ],
+          "explanation": "задать вопрос кому-либо; le = вождю Эсколу."
+        },
+        {
+          "term": "sorprenderse",
+          "es": [
+            "se sorprendió"
+          ],
+          "ru": [
+            "удивился"
+          ],
+          "explanation": "удивиться, испытать неожиданность."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "preguntarle una cosa",
+          "translation": "задать один вопрос",
+          "base": "preguntar (algo) a (alguien)",
+          "explanation": "le = Эсколу; sujeto = Торик, задающий вождю вопрос."
+        },
+        {
+          "es": "fuiste un buen líder",
+          "translation": "ты проявил себя хорошим вождём",
+          "base": "ser (pretérito indefinido, tú)",
+          "explanation": "fuiste — форма tú в indefinido, подлежащее Эскол, а не «ты ходил» (ir и ser совпадают)."
+        },
+        {
+          "es": "Vete al grano",
+          "translation": "Ближе к делу",
+          "base": "irse + imperativo (vete)",
+          "explanation": "te — часть императива vete от irse; выражение «переходи к сути»."
+        },
+        {
+          "es": "me dijo que existían estas tierras",
+          "translation": "сообщил мне о существовании этих земель",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "me = Эсколу; existían в imperfecto на фоне прошлого сообщения."
+        },
+        {
+          "es": "era su padre",
+          "translation": "был его отцом",
+          "base": "posesivo su",
+          "explanation": "su относится к Нильсу, а не к Торику или Эсколу."
+        },
+        {
+          "es": "Thoric se sorprendió mucho",
+          "translation": "Торик очень удивился",
+          "base": "sorprenderse",
+          "explanation": "se — часть sorprenderse; эмоциональное изменение самого Торика."
+        }
+      ]
+    },
+    {
+      "title": "Правда о первой тайной экспедиции",
+      "es": "–Pensaba que el padre de Niels había muerto en una expedición hacia el este –dijo–. En una caída en las montañas.\n–No. Eso fue una mentira. Yo lo envié hacia el oeste. Era una misión secreta. Nadie sabía nada.\n–¿Lo enviaste aquí? ¿Lo enviaste a esta tierra? ¿Solo?\n–No. Lo envié al oeste junto con otros 13 hombres. Dos de ellos murieron en el camino. Ocho hombres murieron aquí. El padre de Niels y otros dos hombres lograron volver. Murieron al llegar al pueblo o poco después. Estaban exhaustos. Antes de morir, me habló de esta tierra. Y me dio esto.\nEskol tiró la tela con dibujos en la mesa. Tenía algún tipo de escritura. Thoric no había visto nunca nada así. Miró al jefe. Sí, quizás el jefe Eskol tenía alguna prueba. Ahora. ¿Pero qué prueba tenía en aquel entonces?",
+      "ru": "— Я думал, отец Нильса погиб во время экспедиции на восток, — сказал он. — Сорвался в горах.\n— Нет. Это была ложь. Я отправил его на запад. Это было тайное задание. Никто ничего не знал.\n— Ты послал его сюда? На эту землю? Одного?\n— Нет. Он отправился на запад ещё с тринадцатью мужчинами. Двое погибли по дороге. Восемь умерли здесь. Отец Нильса и ещё двое сумели вернуться. Они умерли, когда добрались до поселения, или вскоре после этого. Они были совершенно измотаны. Перед смертью он рассказал мне об этой земле. И дал мне вот это.\nЭскол бросил на стол ткань с рисунками. На ней были какие-то письмена. Торик никогда ничего подобного не видел. Он посмотрел на вождя. Да, возможно, теперь у Эскола и были доказательства. Теперь. Но какие доказательства были у него тогда?",
+      "notes": [
+        {
+          "term": "la caída",
+          "es": [
+            "caída"
+          ],
+          "ru": [
+            "Сорвался"
+          ],
+          "explanation": "падение; по контексту — смерть от падения в горах."
+        },
+        {
+          "term": "la mentira",
+          "es": [
+            "mentira"
+          ],
+          "ru": [
+            "ложь"
+          ],
+          "explanation": "ложь, выдумка."
+        },
+        {
+          "term": "la misión secreta",
+          "es": [
+            "misión secreta"
+          ],
+          "ru": [
+            "тайное задание"
+          ],
+          "explanation": "секретная миссия, поручение, о котором не знают другие."
+        },
+        {
+          "term": "enviar a (alguien)",
+          "es": [
+            "envié"
+          ],
+          "ru": [
+            "отправил"
+          ],
+          "explanation": "посылать, отправлять кого-либо на задание."
+        },
+        {
+          "term": "junto con",
+          "es": [
+            "junto con"
+          ],
+          "ru": [
+            "ещё с"
+          ],
+          "explanation": "вместе с; здесь отправились ещё тринадцать человек."
+        },
+        {
+          "term": "lograr + infinitivo",
+          "es": [
+            "lograron volver"
+          ],
+          "ru": [
+            "сумели вернуться"
+          ],
+          "explanation": "суметь, добиться результата вопреки трудностям."
+        },
+        {
+          "term": "exhausto",
+          "es": [
+            "exhaustos"
+          ],
+          "ru": [
+            "совершенно измотаны"
+          ],
+          "explanation": "крайне уставший, обессиленный."
+        },
+        {
+          "term": "tirar",
+          "es": [
+            "tiró"
+          ],
+          "ru": [
+            "бросил"
+          ],
+          "explanation": "бросить, швырнуть; здесь — положить броском на стол."
+        },
+        {
+          "term": "la escritura",
+          "es": [
+            "escritura"
+          ],
+          "ru": [
+            "письмена"
+          ],
+          "explanation": "письменность, письменные знаки; в контексте неизвестный текст."
+        },
+        {
+          "term": "en aquel entonces",
+          "es": [
+            "en aquel entonces"
+          ],
+          "ru": [
+            "тогда"
+          ],
+          "explanation": "в то время, в тот период (в противопоставлении ahora)."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Yo lo envié hacia el oeste",
+          "translation": "Я отправил его на запад",
+          "base": "enviar a (alguien)",
+          "explanation": "lo = отец Нильса; yo = Эскол."
+        },
+        {
+          "es": "¿Lo enviaste aquí?",
+          "translation": "Ты послал его сюда?",
+          "base": "enviar a (alguien)",
+          "explanation": "lo = отец Нильса, прямое дополнение; pregunta Thoric."
+        },
+        {
+          "es": "junto con otros 13 hombres",
+          "translation": "ещё с тринадцатью мужчинами",
+          "base": "junto con + número",
+          "explanation": "отец Нильса и ещё 13 — всего 14. В книге перечислено 2+8+3=13 судеб, судьба одного участника остаётся неясной: это внутренняя числовая нестыковка источника."
+        },
+        {
+          "es": "lograron volver",
+          "translation": "сумели вернуться",
+          "base": "lograr + infinitivo",
+          "explanation": "трое, включая отца Нильса, смогли добраться обратно; lograr подчёркивает преодолённые трудности."
+        },
+        {
+          "es": "me habló de esta tierra",
+          "translation": "рассказал мне об этой земле",
+          "base": "hablar de (algo) a (alguien)",
+          "explanation": "me = Эсколу, который получил рассказ от отца Нильса."
+        },
+        {
+          "es": "me dio esto",
+          "translation": "дал мне вот это",
+          "base": "dar (algo) a (alguien)",
+          "explanation": "me = Эсколу, esto = кусок ткани с рисунками."
+        }
+      ]
+    },
+    {
+      "title": "Опасное предчувствие и просьба молчать",
+      "es": "–¿Cómo lo sabías? –preguntó Thoric–. ¿Por qué enviaste a tus hombres hacia el oeste, donde pensabas que solo había mar?\n–Tenía un presentimiento.\n–¿Tenías un presentimiento? ¿El padre de Niels murió porque tú tenías un presentimiento y decidiste arriesgar su vida? Si se entera, nunca te lo perdonará.\nEl jefe Eskol cogió a Thoric del brazo.\n–No debes contarle esto a Niels. Niels es el mejor explorador que tenemos. Casi tan bueno como su padre. No podemos permitir que ahora se distraiga. Lo necesitamos.\nThoric asintió.\n–Entendido.\n–Ahora, vuelve con los hombres.",
+      "ru": "— Откуда ты знал? — спросил Торик. — Зачем отправил людей на запад, если думал, что там только море?\n— У меня было предчувствие.\n— Предчувствие? Отец Нильса умер из-за того, что у тебя было предчувствие и ты решил рискнуть его жизнью? Если Нильс узнает, он никогда тебе этого не простит.\nЭскол схватил Торика за руку.\n— Ты не должен рассказывать Нильсу. Он наш лучший исследователь, почти такой же хороший, как его отец. Мы не можем допустить, чтобы сейчас он отвлёкся. Он нам нужен.\nТорик кивнул.\n— Понял.\n— Теперь возвращайся к людям.",
+      "notes": [
+        {
+          "term": "el presentimiento",
+          "es": [
+            "presentimiento"
+          ],
+          "ru": [
+            "предчувствие"
+          ],
+          "explanation": "предчувствие, интуитивная догадка без доказательств."
+        },
+        {
+          "term": "arriesgar la vida (de alguien)",
+          "es": [
+            "arriesgar su vida"
+          ],
+          "ru": [
+            "рискнуть его жизнью"
+          ],
+          "explanation": "подвергать чью-либо жизнь опасности."
+        },
+        {
+          "term": "enterarse de (algo)",
+          "es": [
+            "se entera"
+          ],
+          "ru": [
+            "узнает"
+          ],
+          "explanation": "узнать, выяснить; требует de для названия новости."
+        },
+        {
+          "term": "perdonar",
+          "es": [
+            "perdonará"
+          ],
+          "ru": [
+            "простит"
+          ],
+          "explanation": "прощать кому-либо что-либо."
+        },
+        {
+          "term": "coger a (alguien) del brazo",
+          "es": [
+            "cogió a Thoric del brazo"
+          ],
+          "ru": [
+            "схватил Торика за руку"
+          ],
+          "explanation": "схватить кого-либо за руку; del brazo, не *por el brazo*."
+        },
+        {
+          "term": "no permitir que + subjuntivo",
+          "es": [
+            "No podemos permitir que"
+          ],
+          "ru": [
+            "Мы не можем допустить, чтобы"
+          ],
+          "explanation": "после permitir que для желаемого/нежелательного действия нужен subjuntivo: se distraiga."
+        },
+        {
+          "term": "distraerse",
+          "es": [
+            "se distraiga"
+          ],
+          "ru": [
+            "он отвлёкся"
+          ],
+          "explanation": "отвлекаться; subjuntivo после no podemos permitir que."
+        },
+        {
+          "term": "asentir",
+          "es": [
+            "asintió"
+          ],
+          "ru": [
+            "кивнул"
+          ],
+          "explanation": "кивнуть в знак согласия."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "arriesgar su vida",
+          "translation": "рискнуть его жизнью",
+          "base": "arriesgar (algo)",
+          "explanation": "su относится к отцу Нильса, жизнью которого рискнул Эскол."
+        },
+        {
+          "es": "Si se entera",
+          "translation": "Если Нильс узнает",
+          "base": "enterarse de (algo)",
+          "explanation": "se — часть enterarse, подлежащее — Нильс; si + presente описывает реальную возможность."
+        },
+        {
+          "es": "nunca te lo perdonará",
+          "translation": "никогда тебе этого не простит",
+          "base": "perdonar (algo) a (alguien)",
+          "explanation": "te = Эсколу, lo = его рискованное решение и смерть отца Нильса."
+        },
+        {
+          "es": "No debes contarle esto a Niels",
+          "translation": "Ты не должен рассказывать Нильсу",
+          "base": "contar (algo) a (alguien)",
+          "explanation": "le = Нильсу, esto = тайну о смерти его отца; a Niels дублирует косвенное дополнение."
+        },
+        {
+          "es": "No podemos permitir que ahora se distraiga",
+          "translation": "Мы не можем допустить, чтобы сейчас он отвлёкся",
+          "base": "permitir que + subjuntivo",
+          "explanation": "se в distraiga относится к Нильсу; se distraiga — presente de subjuntivo после permitir que."
+        },
+        {
+          "es": "Lo necesitamos",
+          "translation": "Он нам нужен",
+          "base": "necesitar a (alguien)",
+          "explanation": "Lo = Нильса; субъект «мы» — Эскол и его люди."
+        }
+      ]
+    },
+    {
+      "title": "Поход в лес и встреча с деревней",
+      "es": "Poco después, todos los vikingos cogieron sus armas, atravesaron la playa y entraron en el bosque. Estaban listos para la acción. Niels iba a la cabeza del grupo. Hacía mucho calor. Varios de los hombres se quitaron las armaduras.\nCaminaron durante horas. De repente, detrás de una colina, vieron algo. Era una pequeña comunidad. Se podría decir que era un pueblo.\nNiels hizo un gesto con su mano y todo el grupo se detuvo inmediatamente.\nNiels, Eskol y Thoric se acercaron. El pueblo era extraño. Las casas les parecían extrañas. Había hombres, mujeres y niños de piel oscura. Llevaban ropas extrañas y hablaban una lengua muy rara. Los hombres no sabían qué pensar.\nEl jefe Eskol fue el primero en avanzar hacia el pueblo. El resto del grupo lo siguió. Al principio, los nativos se asustaron mucho y algunos corrieron a sus casas, pero el jefe Eskol les hizo un gesto calmado.",
+      "ru": "Вскоре все викинги взяли оружие, пересекли пляж и вошли в лес. Они были готовы действовать. Нильс шёл во главе отряда. Стояла сильная жара. Некоторые мужчины сняли доспехи.\nОни шли несколько часов. Внезапно за холмом увидели что-то необычное: небольшое поселение, можно сказать, деревню.\nНильс подал знак рукой, и весь отряд тут же остановился.\nНильс, Эскол и Торик подошли ближе. Деревня была непривычной, и дома выглядели странно. Там жили мужчины, женщины и дети с тёмной кожей. Они носили непривычную одежду и говорили на совершенно непонятном языке. Викинги не знали, что думать.\nЭскол первым пошёл к деревне. Остальные последовали за ним. Сначала местные жители сильно испугались, некоторые побежали к своим домам. Но Эскол сделал им успокаивающий жест.",
+      "notes": [
+        {
+          "term": "ir a la cabeza de (algo)",
+          "es": [
+            "iba a la cabeza del grupo"
+          ],
+          "ru": [
+            "шёл во главе отряда"
+          ],
+          "explanation": "идти впереди группы, возглавлять её."
+        },
+        {
+          "term": "la armadura",
+          "es": [
+            "armaduras"
+          ],
+          "ru": [
+            "доспехи"
+          ],
+          "explanation": "доспех, защитное вооружение средневекового воина."
+        },
+        {
+          "term": "quitarse (la ropa / armadura)",
+          "es": [
+            "se quitaron"
+          ],
+          "ru": [
+            "сняли"
+          ],
+          "explanation": "снимать с себя одежду, доспехи и т. п."
+        },
+        {
+          "term": "la comunidad",
+          "es": [
+            "comunidad"
+          ],
+          "ru": [
+            "поселение"
+          ],
+          "explanation": "община, сообщество; здесь небольшое поселение."
+        },
+        {
+          "term": "detenerse",
+          "es": [
+            "se detuvo"
+          ],
+          "ru": [
+            "остановился"
+          ],
+          "explanation": "остановиться; se — часть прономинального глагола."
+        },
+        {
+          "term": "la piel oscura",
+          "es": [
+            "piel oscura"
+          ],
+          "ru": [
+            "тёмной кожей"
+          ],
+          "explanation": "тёмная кожа; нейтральное внешнее описание людей в тексте."
+        },
+        {
+          "term": "el nativo",
+          "es": [
+            "nativos"
+          ],
+          "ru": [
+            "местные жители"
+          ],
+          "explanation": "коренной житель данной местности; в данном контексте жители найденной деревни."
+        },
+        {
+          "term": "asustarse",
+          "es": [
+            "se asustaron"
+          ],
+          "ru": [
+            "испугались"
+          ],
+          "explanation": "испугаться; se — часть глагола изменения состояния."
+        },
+        {
+          "term": "hacer un gesto",
+          "es": [
+            "hizo un gesto"
+          ],
+          "ru": [
+            "сделал им успокаивающий жест"
+          ],
+          "explanation": "сделать жест, подать знак рукой; здесь успокаивающий."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "se quitaron las armaduras",
+          "translation": "сняли доспехи",
+          "base": "quitarse la armadura",
+          "explanation": "se — сами викинги сняли доспехи с себя, не с других."
+        },
+        {
+          "es": "Niels hizo un gesto con su mano",
+          "translation": "Нильс подал знак рукой",
+          "base": "hacer un gesto",
+          "explanation": "su относится к Нильсу; gesto — сигнал остановиться."
+        },
+        {
+          "es": "todo el grupo se detuvo",
+          "translation": "весь отряд тут же остановился",
+          "base": "detenerse",
+          "explanation": "se — часть глагола остановки: отряд перестал двигаться."
+        },
+        {
+          "es": "Las casas les parecían extrañas",
+          "translation": "дома выглядели странно",
+          "base": "parecerle (algo) a (alguien)",
+          "explanation": "les = трём викингам и спутникам: им казались странными дома; дома — подлежащее."
+        },
+        {
+          "es": "El resto del grupo lo siguió",
+          "translation": "Остальные последовали за ним",
+          "base": "seguir a (alguien)",
+          "explanation": "lo = Эскола, который первым направился к деревне."
+        },
+        {
+          "es": "los nativos se asustaron mucho",
+          "translation": "местные жители сильно испугались",
+          "base": "asustarse",
+          "explanation": "se относится к местным жителям, реагирующим на появление чужаков."
+        },
+        {
+          "es": "el jefe Eskol les hizo un gesto calmado",
+          "translation": "Эскол сделал им успокаивающий жест",
+          "base": "hacer un gesto a (alguien)",
+          "explanation": "les = местным жителям, а не викингам."
+        }
+      ]
+    },
+    {
+      "title": "Местный вождь раскрывает судьбу пропавших",
+      "es": "–¡No queremos haceros daño! –dijo en voz baja. Y repitió estas palabras con gestos simples.\nDespués de un rato, el jefe del pueblo apareció ante Eskol y le ofreció una bebida. El jefe Eskol bebió. El hombre miró a Eskol y dijo «agua» en lengua vikinga. ¡Sabían hablar su lengua!\nEl jefe Eskol habló con el jefe del pueblo durante varias horas y entendió muchas cosas. El jefe le explicó por qué hablaba la lengua vikinga. La había aprendido de la primera expedición. Los vikingos habían hablado con él.\nDespués, el jefe del pueblo explicó qué les había pasado a los hombres de la primera expedición. La gente del pueblo no les había matado. Habían intentado ayudarles. Ellos no quisieron su ayuda y murieron. Algunos fueron devorados por animales. Algunos murieron porque comieron comida venenosa. Algunos murieron a causa de enfermedades.",
+      "ru": "— Мы не хотим причинить вам вреда! — сказал он тихим голосом и повторил свои слова простыми жестами.\nЧерез некоторое время перед Эсколом появился вождь деревни и предложил ему напиток. Эскол выпил. Мужчина посмотрел на него и произнёс слово «вода» на языке викингов. Они умели говорить на их языке!\nЭскол несколько часов беседовал с деревенским вождём и многое понял. Тот объяснил, откуда знает язык викингов: он выучил его от участников первой экспедиции. Викинги раньше разговаривали с ним.\nЗатем местный вождь рассказал, что случилось с людьми первой экспедиции. Жители деревни их не убивали. Они пытались им помочь, но викинги отказались от помощи и погибли. Кого-то растерзали животные. Кто-то умер, съев ядовитую пищу. Другие умерли от болезней.",
+      "notes": [
+        {
+          "term": "hacer daño a (alguien)",
+          "es": [
+            "haceros daño"
+          ],
+          "ru": [
+            "причинить вам вреда"
+          ],
+          "explanation": "причинять вред кому-либо; os обозначает «вам» при обращении к жителям деревни."
+        },
+        {
+          "term": "en voz baja",
+          "es": [
+            "en voz baja"
+          ],
+          "ru": [
+            "тихим голосом"
+          ],
+          "explanation": "тихо, негромко."
+        },
+        {
+          "term": "ofrecer (algo) a (alguien)",
+          "es": [
+            "ofreció"
+          ],
+          "ru": [
+            "предложил"
+          ],
+          "explanation": "предлагать кому-либо что-либо; le = Эсколу."
+        },
+        {
+          "term": "devorar",
+          "es": [
+            "devorados"
+          ],
+          "ru": [
+            "растерзали"
+          ],
+          "explanation": "пожирать, растерзать; были растерзаны животными."
+        },
+        {
+          "term": "venenoso",
+          "es": [
+            "venenosa"
+          ],
+          "ru": [
+            "ядовитую"
+          ],
+          "explanation": "ядовитый, токсичный."
+        },
+        {
+          "term": "a causa de",
+          "es": [
+            "a causa de"
+          ],
+          "ru": [
+            "от"
+          ],
+          "explanation": "по причине чего-либо; здесь болезни как причина смерти."
+        },
+        {
+          "term": "la enfermedad",
+          "es": [
+            "enfermedades"
+          ],
+          "ru": [
+            "болезней"
+          ],
+          "explanation": "болезнь, заболевание; не путать с estar enfermo (быть больным)."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "haceros daño",
+          "translation": "причинить вам вреда",
+          "base": "hacer daño a (alguien)",
+          "explanation": "os = вам, местным жителям; инфинитив hacer + прямой объект os присоединён в конце."
+        },
+        {
+          "es": "le ofreció una bebida",
+          "translation": "предложил ему напиток",
+          "base": "ofrecer (algo) a (alguien)",
+          "explanation": "le = Эсколу, предложенную вещь обозначает una bebida."
+        },
+        {
+          "es": "La había aprendido de la primera expedición",
+          "translation": "он выучил его от участников первой экспедиции",
+          "base": "aprender (algo) de (alguien)",
+          "explanation": "la = la lengua vikinga, подлежащее — вождь деревни."
+        },
+        {
+          "es": "qué les había pasado a los hombres",
+          "translation": "что случилось с людьми",
+          "base": "pasarle (algo) a (alguien)",
+          "explanation": "les = участникам первой экспедиции, названным ещё раз через a los hombres."
+        },
+        {
+          "es": "no les había matado",
+          "translation": "их не убивали",
+          "base": "matar a (alguien)",
+          "explanation": "les указывает на погибших викингов; здесь это прямое дополнение в leísmo множественного числа (нейтральная норма предпочла бы los)."
+        },
+        {
+          "es": "Habían intentado ayudarles",
+          "translation": "Они пытались им помочь",
+          "base": "ayudar a (alguien)",
+          "explanation": "les = прежним викингам; ayudar допускает варианты управления в региональном употреблении."
+        },
+        {
+          "es": "Algunos fueron devorados por animales",
+          "translation": "Кого-то растерзали животные",
+          "base": "pasiva perifrástica (ser + participio)",
+          "explanation": "algunos = часть викингов; fueron devorados — пассивная конструкция, животные — исполнитель действия."
+        }
+      ]
+    },
+    {
+      "title": "Эскол сообщает викингам страшную правду",
+      "es": "Después de hablar con el jefe del pueblo, el jefe Eskol reunió a los vikingos y les dijo:\n–Caballeros, he aprendido muchas cosas. Antes de nosotros hubo vikingos aquí. No escucharon a la gente del pueblo y murieron.\nMiró a su alrededor, a sus hombres, estaba muy serio. Eskol continuó.\n–El jefe del pueblo me ha dicho que algunos de los vikingos se fueron. Intentaron volver a su tierra –hizo una pausa–. Yo he visto a estos hombres –continuó–. Me hablaron de esta tierra. Ellos ya murieron también. Murieron de agotamiento después del viaje.\nLos hombres se miraron entre sí. Entonces, así fue como Eskol tuvo noticias sobre las tierras del oeste.\nEskol no había terminado. Se quedó muy silencioso, y dijo:",
+      "ru": "После разговора с деревенским вождём Эскол собрал своих людей и сказал им:\n— Господа, я узнал много нового. До нас здесь уже были викинги. Они не прислушались к местным жителям и погибли.\nОн оглядел своих людей. Лицо его было очень серьёзным. Эскол продолжил:\n— Вождь деревни сказал мне, что некоторые викинги ушли. Они пытались вернуться на родину, — он выдержал паузу. — Я видел этих людей, — продолжил он. — Они рассказали мне об этой земле. Теперь они тоже мертвы. Они умерли от изнеможения после путешествия.\nМужчины переглянулись. Вот как Эскол узнал о западных землях.\nНо Эскол ещё не закончил. Он помолчал, а потом произнёс:",
+      "notes": [
+        {
+          "term": "escuchar a (alguien)",
+          "es": [
+            "No escucharon a"
+          ],
+          "ru": [
+            "не прислушались к"
+          ],
+          "explanation": "слушать, прислушиваться к чужим словам или советам."
+        },
+        {
+          "term": "hacer una pausa",
+          "es": [
+            "hizo una pausa"
+          ],
+          "ru": [
+            "выдержал паузу"
+          ],
+          "explanation": "сделать паузу в речи."
+        },
+        {
+          "term": "el agotamiento",
+          "es": [
+            "agotamiento"
+          ],
+          "ru": [
+            "изнеможения"
+          ],
+          "explanation": "крайнее физическое истощение, изнеможение."
+        },
+        {
+          "term": "mirarse entre sí",
+          "es": [
+            "se miraron entre sí"
+          ],
+          "ru": [
+            "переглянулись"
+          ],
+          "explanation": "взаимное действие: посмотрели друг на друга."
+        },
+        {
+          "term": "tener noticias de (algo)",
+          "es": [
+            "tuvo noticias sobre"
+          ],
+          "ru": [
+            "узнал о"
+          ],
+          "explanation": "получить сведения о ком-либо или чём-либо."
+        },
+        {
+          "term": "quedarse silencioso",
+          "es": [
+            "Se quedó muy silencioso"
+          ],
+          "ru": [
+            "Он помолчал"
+          ],
+          "explanation": "замолчать или стать очень тихим; quedarse + adjetivo показывает изменение состояния."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "reunió a los vikingos y les dijo",
+          "translation": "собрал своих людей и сказал им",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "les = собравшимся викингам; им адресована речь."
+        },
+        {
+          "es": "me ha dicho que algunos de los vikingos se fueron",
+          "translation": "сказал мне, что некоторые викинги ушли",
+          "base": "decir a (alguien); irse",
+          "explanation": "me = Эсколу; se в se fueron относится к ушедшим викингам и входит в irse."
+        },
+        {
+          "es": "Me hablaron de esta tierra",
+          "translation": "Они рассказали мне об этой земле",
+          "base": "hablar de (algo) a (alguien)",
+          "explanation": "me = Эсколу; hablaron — вернувшиеся участники прежней экспедиции."
+        },
+        {
+          "es": "Los hombres se miraron entre sí",
+          "translation": "Мужчины переглянулись",
+          "base": "mirarse entre sí",
+          "explanation": "se — взаимное действие: каждый посмотрел на других."
+        },
+        {
+          "es": "Se quedó muy silencioso",
+          "translation": "Он помолчал",
+          "base": "quedarse + adjetivo",
+          "explanation": "se указывает на изменение состояния Эскола: он замолчал."
+        }
+      ]
+    },
+    {
+      "title": "Выбор между родиной и новыми землями",
+      "es": "–Tenemos que tomar una decisión. No sabemos dónde estamos. La tormenta nos cambió el rumbo.\nLos vikingos callaron durante varios minutos.\nEl jefe Eskol siguió hablando:\n–Ahora tenemos que decidir. ¿Nos quedamos aquí? ¿Aprendemos a vivir en esta sociedad? Si aprendemos, la gente de esta comunidad nos ayudará. Nos proveerán de alimentos. Nos enseñarán –miró a los hombres a su alrededor –. ¿O intentamos volver a casa y nos arriesgamos al agotamiento y a la muerte?\nEl jefe Eskol miró a los nativos y dijo:\n–Esta buena gente conoce la tierra. Pueden cultivarla. Pueden cazar. Nos han ofrecido quedarnos aquí. Para mí está claro. Me quedo.",
+      "ru": "— Нам нужно принять решение. Мы не знаем, где находимся. Буря сбила нас с курса.\nВикинги несколько минут молчали.\nЭскол продолжил:\n— Сейчас нам предстоит решить: останемся ли мы здесь? Научимся ли жить среди этих людей? Если научимся, жители деревни помогут нам. Они обеспечат нас едой. Они нас многому научат, — он посмотрел на своих людей. — Или мы попытаемся вернуться домой и рискнём умереть от изнеможения?\nЭскол посмотрел на местных жителей и сказал:\n— Эти добрые люди знают здешние земли. Они умеют их возделывать и охотиться. Они предложили нам остаться. Для меня всё ясно. Я остаюсь.",
+      "notes": [
+        {
+          "term": "tomar una decisión",
+          "es": [
+            "tomar una decisión"
+          ],
+          "ru": [
+            "принять решение"
+          ],
+          "explanation": "принять решение, сделать выбор."
+        },
+        {
+          "term": "la sociedad",
+          "es": [
+            "sociedad"
+          ],
+          "ru": [
+            "среди этих людей"
+          ],
+          "explanation": "общество; здесь жить в обществе местных жителей."
+        },
+        {
+          "term": "proveer de (algo) a (alguien)",
+          "es": [
+            "Nos proveerán de alimentos"
+          ],
+          "ru": [
+            "Они обеспечат нас едой"
+          ],
+          "explanation": "снабжать кого-либо чем-либо; de alimentos вводит то, чем снабжают."
+        },
+        {
+          "term": "enseñar a (alguien)",
+          "es": [
+            "Nos enseñarán"
+          ],
+          "ru": [
+            "Они нас многому научат"
+          ],
+          "explanation": "учить кого-либо; nos = прибывших викингов."
+        },
+        {
+          "term": "arriesgarse a (algo)",
+          "es": [
+            "nos arriesgamos"
+          ],
+          "ru": [
+            "рискнём"
+          ],
+          "explanation": "рисковать чем-либо; aquí «рискуем подвергнуться изнеможению и смерти»."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "nos cambió el rumbo",
+          "translation": "сбила нас с курса",
+          "base": "cambiar (algo) a (alguien)",
+          "explanation": "nos = участникам экспедиции; rumbo — курс кораблей, который изменила буря."
+        },
+        {
+          "es": "¿Nos quedamos aquí?",
+          "translation": "останемся ли мы здесь?",
+          "base": "quedarse en (algún lugar)",
+          "explanation": "nos — прономинальный глагол quedarse, субъект — все викинги."
+        },
+        {
+          "es": "nos ayudará",
+          "translation": "помогут нам",
+          "base": "ayudar a (alguien)",
+          "explanation": "nos = прибывшим викингам, помощь окажут жители деревни."
+        },
+        {
+          "es": "Nos proveerán de alimentos",
+          "translation": "Они обеспечат нас едой",
+          "base": "proveer de (algo) a (alguien)",
+          "explanation": "nos = викингам; de alimentos показывает, чем снабдят."
+        },
+        {
+          "es": "Nos enseñarán",
+          "translation": "Они нас многому научат",
+          "base": "enseñar a (alguien)",
+          "explanation": "nos = прибывшим викингам, субъект — жители деревни."
+        },
+        {
+          "es": "nos arriesgamos al agotamiento y a la muerte",
+          "translation": "рискнём умереть от изнеможения",
+          "base": "arriesgarse a (algo)",
+          "explanation": "nos — участники возможного обратного путешествия; рискуют истощением и смертью."
+        },
+        {
+          "es": "Nos han ofrecido quedarnos aquí",
+          "translation": "Они предложили нам остаться",
+          "base": "ofrecer (algo) a (alguien)",
+          "explanation": "nos = викингам, которые могут остаться; quedarse — pronominal quedarse."
+        }
+      ]
+    },
+    {
+      "title": "Мнения разделились",
+      "es": "Los hombres miraron al jefe Eskol. Uno dijo:\n–¿Vamos a abandonar a nuestras familias? ¿A no ver a nuestros amigos de nuevo?\nOtro hombre gritó:\n–¡Mira nuestros barcos! ¡La tormenta los ha destrozado! ¡No podemos regresar a salvo con barcos en este estado!\nEl jefe Eskol miró a sus hombres:\n–Los dos tenéis razón. Por eso tenéis que elegir. Si queréis iros, sois libres de iros. No os forzaré a quedaros. Si elegís quedaros, sois bienvenidos. Pero a partir de ahora, no soy vuestro jefe, soy solo uno más.",
+      "ru": "Мужчины посмотрели на вождя. Один спросил:\n— Мы бросим наши семьи? И никогда больше не увидим друзей?\nДругой закричал:\n— Посмотрите на корабли! Буря их разгромила! На кораблях в таком состоянии мы не сможем безопасно вернуться!\nЭскол взглянул на своих людей:\n— Вы оба правы. Поэтому решать вам. Если хотите уплыть, вы свободны. Я не стану заставлять вас оставаться. Если решите остаться, буду рад. Но с этого момента я больше не ваш вождь. Я всего лишь один из вас.",
+      "notes": [
+        {
+          "term": "abandonar",
+          "es": [
+            "abandonar"
+          ],
+          "ru": [
+            "бросим"
+          ],
+          "explanation": "покидать, оставлять (семью, место, обязательства)."
+        },
+        {
+          "term": "destrozar",
+          "es": [
+            "ha destrozado"
+          ],
+          "ru": [
+            "разгромила"
+          ],
+          "explanation": "разрушать, серьёзно повреждать; здесь буря повредила корабли."
+        },
+        {
+          "term": "regresar",
+          "es": [
+            "regresar"
+          ],
+          "ru": [
+            "вернуться"
+          ],
+          "explanation": "возвращаться; здесь на кораблях после шторма."
+        },
+        {
+          "term": "ser libre de + infinitivo",
+          "es": [
+            "sois libres de iros"
+          ],
+          "ru": [
+            "вы свободны"
+          ],
+          "explanation": "иметь свободу сделать что-либо; iros — «уйти/уплыть»."
+        },
+        {
+          "term": "forzar a (alguien) a + infinitivo",
+          "es": [
+            "forzaré"
+          ],
+          "ru": [
+            "заставлять"
+          ],
+          "explanation": "принуждать кого-либо что-либо сделать; os — тех, кто решает."
+        },
+        {
+          "term": "a partir de ahora",
+          "es": [
+            "a partir de ahora"
+          ],
+          "ru": [
+            "с этого момента"
+          ],
+          "explanation": "начиная с этого момента."
+        },
+        {
+          "term": "uno más",
+          "es": [
+            "uno más"
+          ],
+          "ru": [
+            "один из вас"
+          ],
+          "explanation": "один из остальных, равный другим; Эскол отказывается от статуса вождя."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "¿Vamos a abandonar a nuestras familias?",
+          "translation": "Мы бросим наши семьи?",
+          "base": "abandonar a (alguien)",
+          "explanation": "nuestras = семьи викингов, оставшиеся в Асглоре."
+        },
+        {
+          "es": "La tormenta los ha destrozado",
+          "translation": "Буря их разгромила",
+          "base": "destrozar (algo)",
+          "explanation": "los = los barcos, три корабля, повреждённые бурей."
+        },
+        {
+          "es": "Los dos tenéis razón",
+          "translation": "Вы оба правы",
+          "base": "tener razón",
+          "explanation": "Los dos — двое выступивших викингов; tenéis — vosotros."
+        },
+        {
+          "es": "Si queréis iros",
+          "translation": "Если хотите уплыть",
+          "base": "irse (vosotros)",
+          "explanation": "iros — прономинальный инфинитив: ir + os, относится к викингам."
+        },
+        {
+          "es": "No os forzaré a quedaros",
+          "translation": "Я не стану заставлять вас оставаться",
+          "base": "forzar a (alguien) a + infinitivo",
+          "explanation": "os = обращение ко всем викингам; quedaros — quedarse в форме vosotros."
+        }
+      ]
+    },
+    {
+      "title": "Новый дом и новая экспедиция",
+      "es": "En los días siguientes, se formaron dos grupos. Un grupo decidió quedarse en las nuevas tierras. Intentarían establecer una nueva sociedad vikinga. El segundo grupo se iría en los dos barcos menos dañados. Intentarían volver a casa.\nUn mes más tarde, el segundo grupo abandonó las tierras. Los hombres del primer grupo les vieron navegar lejos. Al mismo tiempo, el jefe Eskol habló:\n–Las cosas no siempre salen como uno planea.\n–No –respondió Niels mirando a su antiguo jefe–. Tú querías ayudar a nuestro pueblo. Las cosas no salieron como esperábamos. Pero este es un buen lugar. Podemos vivir aquí.\n–Sí –dijo Thoric–. Es interesante. Es bueno estar en un lugar nuevo con cosas nuevas.\n–Y podemos seguir explorando –continuó Niels–. Podemos encontrar desafíos nuevos e interesantes. No te preocupes. Seremos felices.\nEntonces sonrió y dijo:\n–« Jefe ».\nLos hombres se rieron. Estaban listos para su nueva expedición: explorar un nuevo mundo. Uno que más tarde se llamaría América del Norte.",
+      "ru": "В последующие дни образовались две группы. Одни решили остаться на новых землях и попробовать основать новое общество викингов. Другие собирались отплыть на двух менее повреждённых кораблях и попытаться вернуться домой.\nМесяц спустя вторая группа покинула эти земли. Люди из первой группы смотрели, как их товарищи уплывают вдаль. Тогда Эскол сказал:\n— Не всё всегда получается так, как планируешь.\n— Нет, — ответил Нильс, глядя на прежнего вождя. — Ты хотел помочь нашему народу. Всё пошло не так, как мы ожидали. Но это хорошее место. Мы можем здесь жить.\n— Да, — согласился Торик. — Интересно оказаться в новом месте, где всё непривычно.\n— И мы можем продолжать исследования, — добавил Нильс. — Найдём новые интересные испытания. Не волнуйся. Мы будем счастливы.\nЗатем он улыбнулся и сказал:\n— «Вождь».\nМужчины засмеялись. Они были готовы к новой экспедиции — исследовать новый мир. Мир, который впоследствии назовут Северной Америкой.",
+      "notes": [
+        {
+          "term": "formarse (un grupo)",
+          "es": [
+            "se formaron"
+          ],
+          "ru": [
+            "образовались"
+          ],
+          "explanation": "образоваться, сформироваться; здесь о двух группах."
+        },
+        {
+          "term": "establecer",
+          "es": [
+            "establecer"
+          ],
+          "ru": [
+            "основать"
+          ],
+          "explanation": "создать, основать (общество, поселение)."
+        },
+        {
+          "term": "dañado",
+          "es": [
+            "dañados"
+          ],
+          "ru": [
+            "повреждённых"
+          ],
+          "explanation": "повреждённый; los menos dañados — менее пострадавшие корабли."
+        },
+        {
+          "term": "salir como uno planea",
+          "es": [
+            "salen como uno planea"
+          ],
+          "ru": [
+            "получается так, как планируешь"
+          ],
+          "explanation": "идти по плану; подлежащее las cosas."
+        },
+        {
+          "term": "antiguo",
+          "es": [
+            "antiguo jefe"
+          ],
+          "ru": [
+            "прежнего вождя"
+          ],
+          "explanation": "прежний, бывший (об официальной роли), не «древний». "
+        },
+        {
+          "term": "el desafío",
+          "es": [
+            "desafíos"
+          ],
+          "ru": [
+            "испытания"
+          ],
+          "explanation": "вызов, трудная задача; здесь новые приключения и испытания."
+        },
+        {
+          "term": "estar listo para (algo)",
+          "es": [
+            "Estaban listos para"
+          ],
+          "ru": [
+            "Они были готовы к"
+          ],
+          "explanation": "быть готовым к действию или новому этапу."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "se formaron dos grupos",
+          "translation": "образовались две группы",
+          "base": "formarse",
+          "explanation": "se пассивно-среднее: группы образовались, без указания организатора."
+        },
+        {
+          "es": "Un grupo decidió quedarse",
+          "translation": "Одни решили остаться",
+          "base": "quedarse",
+          "explanation": "местоименная форма quedarse обозначает решение жить на новой земле."
+        },
+        {
+          "es": "les vieron navegar lejos",
+          "translation": "смотрели, как их товарищи уплывают вдаль",
+          "base": "ver a (alguien) + infinitivo",
+          "explanation": "les = отплывающим викингам; это вариант leísmo множественного числа при прямом дополнении (нормативно los)."
+        },
+        {
+          "es": "Las cosas no siempre salen como uno planea",
+          "translation": "Не всё всегда получается так, как планируешь",
+          "base": "salir como uno planea",
+          "explanation": "uno — обобщённый субъект «человек, любой из нас», без конкретного лица."
+        },
+        {
+          "es": "No te preocupes",
+          "translation": "Не волнуйся",
+          "base": "preocuparse",
+          "explanation": "te = Эсколу, к которому обращается Нильс; pronominal preocuparse."
+        },
+        {
+          "es": "Seremos felices",
+          "translation": "Мы будем счастливы",
+          "base": "futuro simple, nosotros",
+          "explanation": "seremos — будущее от ser; nosotros — оставшиеся на новой земле викинги."
+        }
+      ]
+    }
+  ],
   "source": {
     "file": "Short Stories in Spanish for Beginners — Olly Richards (1).pdf",
-    "heading_page": 136
-  }
+    "heading_page": 136,
+    "editorial_corrections": [
+      {
+        "pdf_page": 137,
+        "printed": "Era un misión secreta.",
+        "edited": "Era una misión secreta.",
+        "reason": "Род: misión — женский."
+      },
+      {
+        "pdf_page": 139,
+        "printed": "miró sus hombres",
+        "edited": "miró a sus hombres",
+        "reason": "Обязательное личное a перед прямым дополнением «людей»."
+      },
+      {
+        "pdf_page": 140,
+        "printed": "–continuó Neils–",
+        "edited": "–continuó Niels–",
+        "reason": "Опечатка в имени Нильс."
+      }
+    ]
+  },
+  "exercises": [
+    {
+      "id": "chapter-3-comprehension",
+      "instruction": "Seleccione una única respuesta para cada pregunta.",
+      "source": {
+        "file": "Short Stories in Spanish for Beginners — Olly Richards (1).pdf",
+        "pdf_pages": [
+          136,
+          137,
+          138,
+          139,
+          140,
+          141,
+          142
+        ],
+        "chapters": [
+          3
+        ],
+        "answer_key_page": 190,
+        "instruction": "Seleccione una única respuesta para cada pregunta."
+      },
+      "questions": [
+        {
+          "prompt": "El hombre que le habló al jefe Eskol sobre las tierras del oeste era ___.",
+          "options": [
+            "el padre de Eskol",
+            "el padre de Thoric",
+            "el padre de Niels",
+            "su propio padre"
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "Cuando exploran las nuevas tierras, Eskol y sus hombres se encuentran con ___.",
+          "options": [
+            "más animales",
+            "un grupo de vikingos",
+            "un grupo de nativos",
+            "un gran volcán"
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "Se forman dos grupos de vikingos porque ___.",
+          "options": [
+            "tienen hambre",
+            "quieren pelear",
+            "unos quieren quedarse y otros quieren volver a su pueblo",
+            "ninguna de las opciones anteriores"
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "El jefe Eskol decide ___.",
+          "options": [
+            "volver al pueblo",
+            "seguir explorando",
+            "quedarse",
+            "pelear"
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "Un grupo vuelve a Asglor en ___.",
+          "options": [
+            "un barco",
+            "dos barcos",
+            "tres barcos",
+            "ninguna de las opciones anteriores"
+          ],
+          "answer": 1
+        }
+      ]
+    }
+  ]
 }
