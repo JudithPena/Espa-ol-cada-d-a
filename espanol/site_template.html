@@ -2713,21 +2713,23 @@ function bookText(text, marks = []) {
 }
 // Оригинал блока с иллюстрациями: без before — перед текстом, с before — перед этой строкой.
 // Место отмечается служебным символом, чтобы выделения и их номера считались по всему тексту.
-function bookOriginal(block) {
+function bookOriginal(block, links = null) {
   const CUT = "\u0001", text = String(block.es ?? ""), images = Array.isArray(block.images) ? block.images : [];
   const figure = im => `<figure class="book-figure"><img src="${esc(im.src)}" alt="${esc(im.alt || "")}" loading="lazy"></figure>`;
   const placed = images.map(im => ({im, at: im.before ? text.indexOf(im.before) : -1})).filter(x => x.at > 0).sort((a, b) => a.at - b.at);
   let marked = text;
   for (const {at} of [...placed].reverse()) marked = marked.slice(0, at).replace(/\n+$/, "") + CUT + marked.slice(at);
-  const parts = bookText(marked, bookMarks(block, "es")).split(CUT);
+  const parts = (links ? bookNumberedText(marked, block.marks?.es || [], links) : bookText(marked, bookMarks(block, "es"))).split(CUT);
   return images.filter(im => !(placed.some(x => x.im === im))).map(figure).join("")
     + parts.map((part, i) => (i ? figure(placed[i - 1].im) : "") + `<p lang="es">${part}</p>`).join("");
 }
 function bookMarks(block, lang) {
   return [...(block.marks?.[lang] || []), ...block.notes.flatMap(n => typeof n === "object" && n ? (n[lang] || []).map(text => n.occurrences?.[lang]?.[text] ? {text, occurrences: n.occurrences[lang][text]} : text) : [])];
 }
-function bookNote(note) {
-  return typeof note === "string" ? esc(note) : `<strong>${esc(note.term)}</strong> — ${esc(note.explanation)}`;
+function bookNote(note, link = null) {
+  if (typeof note === "string") return esc(note);
+  const back = link ? `<button type="button" class="book-note-index" data-book-jump="book-word-${esc(link.key)}" aria-label="Вернуться к слову №${link.number}">${link.number}</button>` : "";
+  return `${back}<strong>${esc(note.term)}</strong> — ${esc(note.explanation)}`;
 }
 function bookPronouns(pronouns) {
   if (typeof pronouns === "string") return `<p>${esc(pronouns)}</p>`;
@@ -2753,6 +2755,22 @@ function bookSetPanel(name, focus = false) {
     tab.setAttribute("aria-selected", String(active)); tab.tabIndex = active ? 0 : -1;
     if (active && focus) tab.focus();
   });
+}
+// Внутренняя навигация сохраняет адрес главы, положение вкладок и открытые спойлеры.
+function bookJump(targetId) {
+  const root = document.querySelector("[data-book-chapter-view]");
+  const target = document.getElementById(targetId);
+  if (!root || !target || !root.contains(target)) return;
+  const sticky = document.querySelector(".top");
+  const offset = Math.max(0, sticky?.getBoundingClientRect().bottom || 0) + 16;
+  const top = Math.max(0, window.scrollY + target.getBoundingClientRect().top - offset);
+  const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({top, behavior: reduced ? "auto" : "smooth"});
+  const flash = target.closest(".book-note-item") || target;
+  flash.classList.remove("book-jump-highlight");
+  void flash.offsetWidth;
+  flash.classList.add("book-jump-highlight");
+  setTimeout(() => flash.classList.remove("book-jump-highlight"), 1700);
 }
 function bookView() {
   const b = bookById(view.book), chapter = b?.story || b?.chapters.find(c => c.id === view.bookChapter);
@@ -3403,6 +3421,7 @@ document.addEventListener("click", e => {
   const el = e.target.closest("button, .spoiler, [data-say], [data-line]");
   if (!el) return;
   const d = el.dataset;
+  if (d.bookJump) return bookJump(d.bookJump);
   if ("bookSaveReflection" in d) {
     const box = el.closest("[data-book-exercise]");
     const chapter = bookCurrentText();
