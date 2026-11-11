@@ -2361,7 +2361,7 @@ const grammarNormalize = value => {
   const normalized=String(value).normalize("NFC").trim().toLocaleLowerCase("es").replace(/\s+/g, " ");
   return ['∅','—','–','-'].includes(normalized) ? 'без артикля' : normalized;
 };
-const grammarCorrect = (q, value) => q.answers.some(a => grammarNormalize(a) === grammarNormalize(value));
+const grammarCorrect = (q, value) => q.answers.some(a => grammarComparisonValue(q,a) === grammarComparisonValue(q,value));
 function grammarAcceptedResult(q, answer) {
   const warning=q.answerWarnings?.[answer];
   return warning ? {status:'almost',good:true,reason:'variant',warning} : {status:'correct',good:true};
@@ -2370,7 +2370,9 @@ function grammarFeedbackTitle(result) {
   return result.status==='almost' ? (result.warning?.message || 'Почти правильно!') : result.good ? '✓ Верно' : 'Пока неверно';
 }
 function grammarFeedbackExplanation(q, result) {
-  return result.warning?.explanation || q.explain;
+  if(result?.explanation)
+    return result.explanation+(q.explain ? ' '+q.explain : '');
+  return result?.warning?.explanation || q.explain;
 }
 function grammarChoiceClass(q, value, selected, checked, group={}) {
   if(!checked) return '';
@@ -2381,28 +2383,94 @@ function grammarChoiceNote(q, value, checked) {
   if(!checked || !q.answerWarnings || !grammarCorrect(q,value))return '';
   return `<small class="goption-status">${grammarResult(q,value,{},false).status==='almost'?'Допустимо':'Рекомендуется'}</small>`;
 }
-// Only omitted acute accents can be forgiven; ñ, ü and extra/moved accents stay significant.
+// Stage 3: explicit policy for acute accents, with legacy behaviour for unannotated lessons.
+// Never fold ñ or ü into n or u: they are different Spanish letters/sounds.
 const G_ACCENT_PAIRS = {'á':'a','é':'e','í':'i','ó':'o','ú':'u'};
-const G_ACCENT_MEANING = new Set(['sí','tú','él','mí','té','dé','sé','más','aún','qué','quién','quiénes','cuál','cuáles','cómo','cuándo','cuánto','cuánta','cuántos','cuántas','dónde','adónde','está','estás','esté','estés','estén']);
-function grammarResult(q, value, group={}, manual=!q.options && !q.tiles && !q.guidedGaps) {
-  const accepted=q.answers.find(a=>grammarNormalize(a)===grammarNormalize(value));
-  if(accepted!==undefined) return grammarAcceptedResult(q,accepted);
+const G_ACCENT_MEANING = new Set([
+  'sí','tú','él','mí','té','dé','sé','más','aún','qué','quién','quiénes',
+  'cuál','cuáles','cómo','cuándo','cuánto','cuánta','cuántos','cuántas',
+  'dónde','adónde','está','estás','esté','estés','estén','habló'
+]);
+const G_ACCENT_EXPLANATIONS = {
+  'sí':'«sí» означает «да», а «si» — «если».',
+  'tú':'«tú» — личное местоимение, а «tu» — притяжательное.',
+  'él':'«él» — личное местоимение, а «el» — артикль.',
+  'está':'«está» — форма глагола estar, а «esta» — указательное слово.',
+  'habló':'«habló» — прошедшее время (он/она говорил), а «hablo» — настоящее (я говорю).',
+  'más':'«más» выражает количество или сравнение, а «mas» — противительный союз.'
+};
+function grammarComparisonValue(q,value) {
+  const normalized=grammarNormalize(value);
+  // Remove only framing punctuation; interior punctuation and all letters stay significant.
+  return q.normalize==='phrase'
+    ? normalized.replace(/^[¿¡]+/u,'').replace(/[.!?]+$/u,'').trim()
+    : normalized;
+}
+function grammarAccentPolicy(q,group={}) {
+  if(q.accentSensitive===true)return 'strict';
+  if(q.accentPolicy)return q.accentPolicy;
+  if(group.accentSensitive===true)return 'strict';
+  if(group.accentPolicy)return group.accentPolicy;
+  return 'legacy'; // Keep old saved lessons stable unless explicitly annotated.
+}
+function grammarMissingAccents(expected,value) {
+  const reference=[...grammarNormalize(expected)],candidate=[...grammarNormalize(value)];
+  if(reference.length!==candidate.length)return null;
+  const missing=[];
+  for(let i=0;i<reference.length;i++) {
+    if(reference[i]===candidate[i])continue;
+    if(G_ACCENT_PAIRS[reference[i]]!==candidate[i])return null;
+    missing.push({index:i,char:reference[i]});
+  }
+  return missing.length?missing:null;
+}
+function grammarAccentContrast(q,group,answer,value) {
+  const listed=[...(group.accentContrasts||[]),...(q.accentContrasts||[])];
+  if(!listed.length)return null;
+  const tokens=text=>grammarNormalize(text).match(/[\p{L}\p{M}]+/gu)||[];
+  const original=tokens(answer),entered=tokens(value);
+  if(original.length!==entered.length)return null;
+  return listed.find(pair=>original.some((token,i)=>
+    token===grammarNormalize(pair.expected)&&entered[i]===grammarNormalize(pair.entered)))||null;
+}
+function grammarSemanticAccent(answer,missing) {
+  const normalized=grammarNormalize(answer);
+  for(const match of normalized.matchAll(/[\p{L}\p{M}]+/gu)) {
+    if(G_ACCENT_MEANING.has(match[0])&&missing.some(m=>m.index>=match.index&&m.index<match.index+match[0].length))
+      return match[0];
+  }
+  return null;
+}
+function grammarResult(q,value,group={},manual=!q.options&&!q.tiles&&!q.guidedGaps) {
+  const entered=grammarComparisonValue(q,value);
+  const accepted=q.answers.find(a=>grammarComparisonValue(q,a)===entered);
+  if(accepted!==undefined)return grammarAcceptedResult(q,accepted);
   const wrong={status:'wrong',good:false};
-  if(!manual || q.accentSensitive || group.accentSensitive || /ударени|тильд|acento|tilde/i.test([q.prompt,group.title,group.instruction].join(' '))) return wrong;
-  const entered=grammarNormalize(value);
+  if(!manual)return wrong;
+  const policy=grammarAccentPolicy(q,group);
   for(const answer of q.answers) {
-    const expected=grammarNormalize(answer);
-    if(expected.length!==entered.length) continue;
-    const missing=[];let valid=true;
-    for(let i=0;i<expected.length;i++) {
-      if(expected[i]===entered[i])continue;
-      if(G_ACCENT_PAIRS[expected[i]]!==entered[i]) {valid=false;break;}
-      missing.push({index:i,char:expected[i]});
-    }
-    if(!valid || !missing.length)continue;
-    const tokens=[...expected.matchAll(/[\p{L}\p{M}]+/gu)];
-    if(tokens.some(t=>G_ACCENT_MEANING.has(t[0]) && missing.some(m=>m.index>=t.index && m.index<t.index+t[0].length)))continue;
+    const expected=grammarComparisonValue(q,answer);
+    const missing=grammarMissingAccents(expected,entered);
+    if(!missing)continue;
+    const contrast=grammarAccentContrast(q,group,expected,entered);
+    if(contrast)return {...wrong,reason:'accent-contrast',explanation:contrast.explanation};
+    const semantic=grammarSemanticAccent(expected,missing);
+    if(semantic)return {...wrong,reason:'accent-meaning',
+      explanation:G_ACCENT_EXPLANATIONS[semantic]||'Без ударения здесь меняется значение или грамматическая форма слова «'+semantic+'».'};
+    if(policy==='strict')return {...wrong,reason:'accent-strict',
+      explanation:'В этом задании правильное написание с ударением обязательно: «'+answer+'».'};
+    if(policy==='contextual'&&!(q.accentContrasts?.length||group.accentContrasts?.length))
+      return wrong; // No evidence for a contextual judgement: do not guess.
+    // soft and vetted contextual answers are accepted without consuming a life.
+    // Unannotated legacy questions preserve the previous forgiving behaviour.
     return {...grammarAcceptedResult(q,answer),status:'almost',good:true,reason:'accent',corrected:answer,missing};
+  }
+  // ñ/n and ü/u are not accent-only typos. Explain these errors without accepting them.
+  for(const answer of q.answers) {
+    const expected=grammarComparisonValue(q,answer);
+    const skeleton=s=>s.replace(/ñ/g,'n').replace(/ü/g,'u');
+    if(expected!==entered&&skeleton(expected)===skeleton(entered))
+      return {...wrong,reason:'letter',explanation:'В испанском ñ отличается от n, а ü от u. Правильная форма: «'+answer+'».'};
   }
   return wrong;
 }
@@ -2412,7 +2480,7 @@ function grammarAccentHint(result) {
   const canonical=String(result.corrected).normalize('NFC').trim().replace(/\s+/g,' ');
   const marked=[...canonical].map((c,i)=>positions.has(i)?`<mark class="gmissing-accent">${esc(c)}</mark>`:esc(c)).join('');
   const letters=[...new Set(result.missing.map(m=>m.char))];
-  return `<p class="gaccent-hint">Верный ответ — <b lang="es">${marked}</b>. ${letters.length===1?'Не забудь поставить ударение над':'Не забудь поставить ударения над'} <b lang="es">${letters.map(esc).join(', ')}</b>.</p>`;
+  return `<p class="gaccent-hint">Правильно по смыслу, но не забудь ударение: <b lang="es">${marked}</b>. ${letters.length===1?'Нужен знак над':'Нужны знаки над'} <b lang="es">${letters.map(esc).join(', ')}</b>.</p>`;
 }
 function gCharsPanel(q, field='g-answer') {
   return `<span class="gaccents" role="group" aria-label="Испанские буквы">${gInputChars(q).map(c=>`<button type="button" class="btn ghost sm" data-gchar="${c}" data-gfield="${field}" aria-label="Вставить ${c}">${c}</button>`).join('')}</span>`;
