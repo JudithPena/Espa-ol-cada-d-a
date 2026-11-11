@@ -159,6 +159,24 @@ def run_case(browser, width, number, route, expected_mode):
                 assert_true(page.locator("[data-gcheck]").count()>0,label+": check button unavailable during compressed height")
                 page.set_viewport_size({"width":width,"height":820})
                 page.evaluate("gSyncViewport()")
+            if number==5 and route=="exercise:5.2" and n==1:
+                # A real browser click on ∅ must fill the article field without checking it or losing a life.
+                omit=page.locator("[data-gno-article]")
+                assert_true(omit.count()>0, "Unit 5: no-article input control is missing")
+                before_omit=page.evaluate("""() => {
+                    const s=G.steps[G.at],g=gGroups(gUnit()).find(g=>g.id===s.group);
+                    return gAttempt(gUnit(),g).errors;
+                }""")
+                omit.click()
+                omitted=page.evaluate("""() => {
+                    const s=G.steps[G.at],g=gGroups(gUnit()).find(g=>g.id===s.group);
+                    return {value:gResponse(s).value,checked:gResponse(s).checked,
+                            errors:gAttempt(gUnit(),g).errors};
+                }""")
+                assert_true(omitted["value"]=="∅" and omitted["checked"] is False
+                            and omitted["errors"]==before_omit,
+                            "Unit 5: ∅ must not submit or consume a life: "+str(omitted))
+                item["omission_button"]={"clicked":True,"value":omitted["value"],"errors":omitted["errors"]}
             enter_wrong(page,q)
             state=page.evaluate("""() => {
               const s=G.steps[G.at],g=gGroups(gUnit()).find(g=>g.id===s.group),a=gAttempt(gUnit(),g);
