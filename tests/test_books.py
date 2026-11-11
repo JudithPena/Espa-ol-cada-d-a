@@ -178,7 +178,7 @@ def test_la_criatura_finished_chapters_match_source_and_exercises():
             for n in b['notes'] if isinstance(n, dict) and n.get('term')}
     for chapter, (number, words, digest, note_count, answers) in zip(book['chapters'][1:], expected):
         assert chapter['number'] == number
-        source = re.sub(r'\\s+', ' ', ' '.join(b['es'] for b in chapter['blocks'])).strip()
+        source = re.sub(r'\s+', ' ', ' '.join(b['es'] for b in chapter['blocks'])).strip()
         assert len(source.split()) == words
         assert hashlib.sha256(source.encode()).hexdigest() == digest
         assert chapter['source']['heading_page'] == (45 if number == 2 else 51)
