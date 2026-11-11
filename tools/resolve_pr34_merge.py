@@ -79,9 +79,9 @@ def main():
     t=replace_once(t,
       "gMove(1);gMove(-1);gCheck();gRepeatExercise();",
       "gMove(1);gMove(-1);gCheck();")
-    t=replace_once(t,
+    t=t.replace(
       "for(const answer of ['first wrong','second wrong','third wrong'])assert.ok(r('gPlayerView()').includes(answer));",
-      "console.log('HISTORY-CORRECTION:',r('JSON.stringify(gAttemptErrors(gAttempt(gUnit(),gUnit().exercises[0])))')); for(const answer of ['first wrong','second wrong','third wrong'])assert.ok(r('gPlayerView()').includes(answer),answer);")
+      "console.log('HISTORY-CORRECTION:',r('JSON.stringify(gAttemptErrors(gAttempt(gUnit(),gUnit().exercises[0])))')); for(const answer of ['first wrong','second wrong','third wrong'])assert.ok(r('gPlayerView()').includes(answer),answer);",1)
     TEST.write_text(t)
     PLAYER.write_text(p)
     subprocess.check_call(["git","add",str(PLAYER),str(TEST)])
