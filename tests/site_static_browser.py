@@ -8,6 +8,8 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import json
 from pathlib import Path
 import threading
+import statistics
+import time
 
 from playwright.sync_api import sync_playwright
 
@@ -15,6 +17,7 @@ from playwright.sync_api import sync_playwright
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--site', type=Path, default=Path('site'))
+    parser.add_argument('--baseline', type=Path, help='Optional original build for a same-machine cold-load comparison')
     parser.add_argument('--report', type=Path, default=Path('/tmp/site-static-browser.json'))
     args = parser.parse_args()
     handler = partial(SimpleHTTPRequestHandler, directory=str(args.site.resolve()))
@@ -22,10 +25,32 @@ def main():
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
     url = f'http://127.0.0.1:{server.server_port}/'
-    results = []
+    results, benchmark = [], {}
     try:
         with sync_playwright() as p:
             browser = p.chromium.launch()
+            if args.baseline:
+                baseline_server = ThreadingHTTPServer(('127.0.0.1', 0), partial(SimpleHTTPRequestHandler, directory=str(args.baseline.resolve())))
+                threading.Thread(target=baseline_server.serve_forever, daemon=True).start()
+                try:
+                    for label, address in [('before', f'http://127.0.0.1:{baseline_server.server_port}/'), ('after', url)]:
+                        samples = []
+                        for _ in range(3):
+                            cold_context = browser.new_context(viewport={'width': 390, 'height': 800})
+                            cold_page = cold_context.new_page()
+                            # Compare local HTML/JS/data, excluding variable third-party fonts.
+                            cold_page.route('https://**/*', lambda route: route.abort())
+                            start = time.perf_counter()
+                            cold_page.goto(address, wait_until='domcontentloaded')
+                            cold_page.wait_for_selector('[data-level="A0"]')
+                            elapsed = (time.perf_counter() - start) * 1000
+                            network = cold_page.evaluate('performance.getEntriesByType("navigation")[0].transferSize + performance.getEntriesByType("resource").reduce((n,r)=>n+r.transferSize,0)')
+                            samples.append({'ready_ms': round(elapsed, 1), 'transfer_bytes': network})
+                            cold_context.close()
+                        benchmark[label] = {'samples': samples, 'median_ready_ms': statistics.median(s['ready_ms'] for s in samples)}
+                    print('Cold-load benchmark (local HTTP, 390px, three fresh contexts): ' + json.dumps(benchmark))
+                finally:
+                    baseline_server.shutdown()
             for width in (320, 390, 768, 1280):
                 context = browser.new_context(viewport={'width': width, 'height': 800})
                 page = context.new_page()
@@ -116,7 +141,7 @@ def main():
     finally:
         server.shutdown()
         args.report.parent.mkdir(parents=True, exist_ok=True)
-        args.report.write_text(json.dumps(results, ensure_ascii=False, indent=2))
+        args.report.write_text(json.dumps({'widths': results, 'benchmark': benchmark}, ensure_ascii=False, indent=2))
     print(f'Browser regression passed at {len(results)} widths; report: {args.report}')
 
 
