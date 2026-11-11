@@ -2171,7 +2171,7 @@ test('new possessive units fail at three errors, preserve failure on reload, and
   for(const g of u.exercises){
    const storage=new Map();let run=context([u],storage);unlockUntil(run,'exercise:'+g.id);
    run(`save();gStart(COURSE.grammar[0].id,'exercise:${g.id}');gMove(1);for(let i=0;i<3;i++){gResponse(G.steps[G.at]).value='incorrecto';gCheck();if(!G.recovery)gMove(1);}gSave();`);
-   assert.equal(run(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id==='\${g.id}')).errors`),3);
+   assert.equal(run(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id==='${g.id}')).errors`),3);
    run=context([u],storage);run(`gStart(COURSE.grammar[0].id,'all',true);gReviewTheory();`);
    assert.ok(run('gPlayerView()').includes(u.sections[g.theorySections[0]].title));
    assert.equal(run('P.xp'),0);
