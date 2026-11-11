@@ -8,7 +8,7 @@ from espanol.grammar import load_grammar
 
 def test_all_typing_questions_have_complete_format_guidance():
     units = load_grammar()
-    assert len(units) == 45
+    assert len(units) == 47
     typed = legacy = 0
     for unit in units:
         for group in [s['check'] for s in unit['sections'] if s.get('check')] + unit['exercises']:
@@ -21,7 +21,7 @@ def test_all_typing_questions_have_complete_format_guidance():
                     legacy += 1
                 else:
                     typed += 1
-    assert (typed, legacy) == (1134, 149)
+    assert (typed, legacy) == (1195, 158)
 
 
 @pytest.mark.parametrize('format', [{}, {'instruction':'Впиши слово'}, 'слово',
@@ -31,4 +31,16 @@ def test_rejects_incomplete_format_guidance(tmp_path, format):
         'id':'a','inputFormat':format,'questions':[{'prompt':'___','answers':['casa'],'explain':'Дом.'}]}]}
     (tmp_path/'001.json').write_text(json.dumps(fixture),encoding='utf8')
     with pytest.raises(ValueError, match='input format'):
+        load_grammar(tmp_path)
+
+
+@pytest.mark.parametrize('flag,hint,message', [('yes', 'Подсказка', 'must be boolean'),
+                                             (True, '', 'requires a retry hint')])
+def test_deferred_feedback_requires_a_boolean_and_a_useful_hint(tmp_path, flag, hint, message):
+    fixture = {'id': 'fixture', 'sections': [], 'exercises': [{
+        'id': 'a', 'deferAnswerFeedback': flag, 'questions': [{
+            'prompt': '___', 'answers': ['casa'], 'options': ['casa', 'coche'],
+            'explain': 'Дом.', 'retryHint': hint}]}]}
+    (tmp_path/'001.json').write_text(json.dumps(fixture), encoding='utf8')
+    with pytest.raises(ValueError, match=message):
         load_grammar(tmp_path)

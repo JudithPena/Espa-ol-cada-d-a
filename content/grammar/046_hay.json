@@ -1,0 +1,1904 @@
+{
+  "id": "046_hay",
+  "number": 46,
+  "title": "Hay un vaso en la mesa",
+  "subtitle": "Как сказать, что есть и чего нет",
+  "level": "A1",
+  "sections": [
+    {
+      "title": "Что есть в комнате: одна форма hay",
+      "paragraphs": [
+        "Чтобы сообщить, что где-то есть человек или предмет, используем **hay** — форму haber: `Hay un vaso en la mesa` — на столе есть стакан. О нескольких предметах тоже говорим **hay**: `Hay cinco alumnos en clase` — в классе пять учеников. Hay не меняется по числу.",
+        "Перед одним исчисляемым предметом ставим **un/una**: un reloj, una mesa. Во множественном числе возможны существительное без артикля, unos/unas, число, muchos/pocos: `Hay sillas`, `Hay unas sillas`, `Hay cuatro sillas`. Количество не меняет hay.",
+        "Если предмет уже назван в вопросе, его можно не повторять: `¿Hay un hotel por aquí? —Hay uno` — здесь есть гостиница? — есть одна. Перед существительным — **un hotel**, без него — **uno**. Для женского рода обе формы — **una**."
+      ],
+      "check": {
+        "id": "check-1",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "В классе пять учеников. Выбери сообщение об их наличии.",
+            "answers": [
+              "Hay cinco alumnos."
+            ],
+            "explain": "Hay остаётся той же формой перед множественным числом.",
+            "context": "Речь о наличии в классе, а не о владельце.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "learningAction": "распознавание",
+            "options": [
+              "Hay cinco alumnos.",
+              "Han cinco alumnos.",
+              "Tiene cinco alumnos."
+            ]
+          },
+          {
+            "prompt": "¿Hay un hotel por aquí? —Sí, hay ___.",
+            "answers": [
+              "uno"
+            ],
+            "explain": "Без существительного мужского рода используем uno; un ставится перед hotel.",
+            "context": "Hotel повторять не нужно.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "learningAction": "распознавание",
+            "options": [
+              "un",
+              "uno",
+              "una"
+            ]
+          }
+        ],
+        "limitedAttempt": true,
+        "theorySections": [
+          0
+        ]
+      },
+      "presentation": "paradigm",
+      "table": {
+        "heads": [
+          "Один предмет",
+          "Несколько предметов"
+        ],
+        "rows": [
+          [
+            "Hay una mesa.",
+            "Hay mesas."
+          ],
+          [
+            "Hay un reloj.",
+            "Hay dos relojes."
+          ],
+          [
+            "Hay uno / una.",
+            "Hay muchos / muchas."
+          ]
+        ]
+      }
+    },
+    {
+      "title": "Нет совсем или есть немного?",
+      "paragraphs": [
+        "Для отсутствия ставим **no перед hay**: `No hay espejo` — зеркала нет; `No hay árboles` — деревьев нет. Можно усилить отрицание: **no hay ningún + мужское слово в единственном числе**, **no hay ninguna + женское**: `No hay ningún hotel`, `No hay ninguna biblioteca`.",
+        "Не путай **No hay bares** — баров нет — и **No hay muchos bares** — баров немного, их не много. Во второй фразе не утверждается, что нет ни одного. Muchos/muchas и pocos/pocas согласуются с существительным.",
+        "В коротком ответе без существительного сохраняется полная форма: `¿Hay hoteles? —No hay ninguno`. Для женского рода: `¿Hay farmacias? —No hay ninguna`. Перед мужским существительным — ningún, без него — ninguno."
+      ],
+      "check": {
+        "id": "check-2",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "No hay muchos bares. Что сообщается?",
+            "answers": [
+              "Баров не много; фраза не означает, что их совсем нет."
+            ],
+            "explain": "No hay muchos отрицает большое количество, а не любое наличие.",
+            "context": "Отличи количество от полного отсутствия.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "learningAction": "сравнение значений",
+            "options": [
+              "Баров нет ни одного.",
+              "Баров не много; фраза не означает, что их совсем нет.",
+              "Баров обязательно очень много."
+            ]
+          },
+          {
+            "prompt": "No hay ___ biblioteca en este barrio.",
+            "answers": [
+              "ninguna"
+            ],
+            "explain": "Biblioteca — женский род, единственное число.",
+            "context": "Ни одной библиотеки.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "learningAction": "распознавание",
+            "options": [
+              "ningún",
+              "ninguno",
+              "ninguna"
+            ]
+          }
+        ],
+        "limitedAttempt": true,
+        "theorySections": [
+          1
+        ]
+      },
+      "presentation": "examples",
+      "examples": [
+        [
+          "No hay hospital.",
+          "Больницы нет."
+        ],
+        [
+          "No hay ningún hospital.",
+          "Нет ни одной больницы."
+        ],
+        [
+          "No hay muchos hospitales.",
+          "Больниц не много."
+        ]
+      ]
+    },
+    {
+      "title": "Продукты и вещества: hay leche",
+      "paragraphs": [
+        "Когда говорим о веществе без счёта по отдельным предметам, артикль обычно не нужен: **Hay leche, hay agua, hay pan** — есть молоко, вода, хлеб. Отрицание строится так же: `No hay queso` — сыра нет.",
+        "С веществом используем **mucho/poco** в нужном роде, без множественного числа: `Hay poco pan`, `No hay mucha mantequilla`. Вода — женского рода: **mucha agua**, хотя говорят el agua. В коротком ответе можно опустить продукт: `¿Hay pan? —No hay mucho`.",
+        "Единицу измерения считаем как отдельный предмет: **Hay un litro de leche** — есть литр молока. Сравни: `Hay leche` — молоко есть; `Hay seis huevos` — есть шесть яиц. Uvas, naranjas, plátanos и yogures можно считать."
+      ],
+      "check": {
+        "id": "check-3",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "Воды много: Hay ___ agua.",
+            "answers": [
+              "mucha"
+            ],
+            "explain": "Agua — женского рода; mucha не меняется на mucho из-за el agua.",
+            "context": "Количество вещества.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "learningAction": "распознавание",
+            "options": [
+              "mucho",
+              "muchos",
+              "mucha"
+            ]
+          },
+          {
+            "prompt": "¿Hay pan? —No hay mucho. Как понять ответ?",
+            "answers": [
+              "Хлеба не много."
+            ],
+            "explain": "Mucho заменяет количество хлеба; это не сообщение о полном отсутствии.",
+            "context": "Прочитай короткий ответ.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "learningAction": "понимание реплики",
+            "options": [
+              "Хлеба не много.",
+              "Хлеба совсем нет.",
+              "Есть много буханок."
+            ]
+          }
+        ],
+        "limitedAttempt": true,
+        "theorySections": [
+          2
+        ]
+      },
+      "presentation": "paradigm",
+      "table": {
+        "heads": [
+          "Вещество",
+          "Считаем предметы или порции"
+        ],
+        "rows": [
+          [
+            "Hay leche.",
+            "Hay un litro de leche."
+          ],
+          [
+            "Hay queso.",
+            "Hay seis huevos."
+          ],
+          [
+            "Hay poca mantequilla.",
+            "Hay pocas naranjas."
+          ]
+        ]
+      }
+    },
+    {
+      "title": "Спросить о количестве и найти нужное место",
+      "paragraphs": [
+        "С исчисляемым словом во множественном числе спрашиваем **¿Cuántos… hay? / ¿Cuántas… hay?**: `¿Cuántos huevos hay?` — сколько яиц? `¿Cuántas tiendas hay?` — сколько магазинов? Ответ может быть коротким: `Hay tres`, `No hay ninguno`.",
+        "С веществом — **¿Cuánto… hay? / ¿Cuánta… hay?**: `¿Cuánto pan hay?`, `¿Cuánta leche hay?`. Ответ: `Hay poco` или `Hay un litro`. Вопросительное слово согласуется с названием продукта, а не с единицей в ответе.",
+        "Чтобы узнать, существует ли что-то здесь, спрашиваем **¿Hay…?**: `¿Hay una frutería por aquí?` — здесь есть фруктовая лавка? Если ищем пока неизвестное место, спрашиваем **¿Dónde hay…?**: `¿Dónde hay un estanco?` — где есть табачный киоск? Ответ: `Hay uno en la esquina` — есть один на углу."
+      ],
+      "check": {
+        "id": "check-4",
+        "title": "Мини-проверка",
+        "instruction": "Выбери ответ по ситуации.",
+        "questions": [
+          {
+            "prompt": "___ leche hay en la nevera?",
+            "answers": [
+              "¿Cuánta"
+            ],
+            "explain": "Leche — неисчисляемое слово женского рода: cuánta.",
+            "context": "Спрашиваешь о количестве молока.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "learningAction": "распознавание",
+            "options": [
+              "¿Cuántas",
+              "¿Cuánta",
+              "¿Cuánto"
+            ]
+          },
+          {
+            "prompt": "Ты в незнакомом районе ищешь любой табачный киоск. Как спросить?",
+            "answers": [
+              "¿Dónde hay un estanco?"
+            ],
+            "explain": "Hay позволяет спросить, где есть пока неизвестный объект.",
+            "context": "Не называешь конкретный киоск.",
+            "sourceRef": "extra",
+            "inputChars": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ],
+            "learningAction": "распознавание",
+            "options": [
+              "¿Dónde hay un estanco?",
+              "¿Cuánto estanco hay?",
+              "¿Cuántas estanco hay?"
+            ]
+          }
+        ],
+        "limitedAttempt": true,
+        "theorySections": [
+          3
+        ]
+      },
+      "presentation": "examples",
+      "dialogues": [
+        {
+          "title": "В магазине",
+          "lines": [
+            [
+              "¿Cuántos yogures hay?",
+              "Сколько йогуртов есть?"
+            ],
+            [
+              "Hay tres.",
+              "Есть три."
+            ],
+            [
+              "¿Y cuánta leche hay?",
+              "А сколько молока?"
+            ],
+            [
+              "Hay un litro.",
+              "Есть литр."
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "46.1",
+      "title": "46.1 · Опиши комнату",
+      "theorySections": [
+        0
+      ],
+      "questions": [
+        {
+          "prompt": "Опиши наличие: mesa.",
+          "answers": [
+            "Hay una mesa",
+            "Hay una mesa."
+          ],
+          "explain": "Сообщаем о наличии через hay.",
+          "context": "Составь фразу с mesa.",
+          "sourceRef": "46.1.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Hay una mesa"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "mesa",
+            "una",
+            "Hay"
+          ],
+          "facts": {
+            "label": "Комната · mesa",
+            "items": [
+              [
+                "mesa",
+                "1"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Опиши наличие: espejo.",
+          "answers": [
+            "No hay espejo",
+            "No hay espejo.",
+            "No hay ningún espejo",
+            "No hay ningún espejo."
+          ],
+          "explain": "No hay сообщает об отсутствии; ningún усиливает отрицание.",
+          "context": "Составь фразу с espejo.",
+          "sourceRef": "46.1.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "No hay espejo",
+            "No hay ningún espejo"
+          ],
+          "facts": {
+            "label": "Комната · espejo",
+            "items": [
+              [
+                "espejo",
+                "0"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Опиши наличие: alfombra.",
+          "answers": [
+            "Hay una alfombra",
+            "Hay una alfombra."
+          ],
+          "explain": "Сообщаем о наличии через hay.",
+          "context": "Составь фразу с alfombra.",
+          "sourceRef": "46.1.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Hay una alfombra"
+          ],
+          "facts": {
+            "label": "Комната · alfombra",
+            "items": [
+              [
+                "alfombra",
+                "1"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Исправь одну ошибку: Han cuatro sillas.",
+          "answers": [
+            "Hay cuatro sillas",
+            "Hay cuatro sillas."
+          ],
+          "explain": "Даже перед четырьмя предметами используем hay.",
+          "context": "В комнате четыре стула.",
+          "sourceRef": "46.1.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "исправление ошибки",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Hay cuatro sillas"
+          ],
+          "facts": {
+            "label": "Комната · sillas",
+            "items": [
+              [
+                "sillas",
+                "4"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Опиши наличие: lámpara.",
+          "answers": [
+            "Hay una lámpara",
+            "Hay una lámpara."
+          ],
+          "explain": "Сообщаем о наличии через hay.",
+          "context": "Составь фразу с lámpara.",
+          "sourceRef": "46.1.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Hay una lámpara"
+          ],
+          "facts": {
+            "label": "Комната · lámpara",
+            "items": [
+              [
+                "lámpara",
+                "1"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Как описать televisor по карточке?",
+          "answers": [
+            "No hay televisor."
+          ],
+          "explain": "Ноль означает отсутствие: no hay.",
+          "context": "Телевизоров: 0.",
+          "sourceRef": "46.1.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "извлечение данных",
+          "options": [
+            "Hay un televisor.",
+            "No hay televisor.",
+            "Hay muchos televisores."
+          ],
+          "facts": {
+            "label": "Комната · televisor",
+            "items": [
+              [
+                "televisor",
+                "0"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Опиши наличие: reloj.",
+          "answers": [
+            "Hay un reloj",
+            "Hay un reloj."
+          ],
+          "explain": "Сообщаем о наличии через hay.",
+          "context": "Составь фразу с reloj.",
+          "sourceRef": "46.1.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Hay un reloj"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "un",
+            "reloj",
+            "Hay"
+          ],
+          "facts": {
+            "label": "Комната · reloj",
+            "items": [
+              [
+                "reloj",
+                "1"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Hay ___ en la pared.",
+          "answers": [
+            "dos cuadros"
+          ],
+          "explain": "Два предмета: dos cuadros; hay не меняется.",
+          "context": "Картины: 2.",
+          "sourceRef": "46.1.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "извлечение данных",
+          "inputFormat": {
+            "instruction": "Впиши число словами и существительное во множественном числе.",
+            "placeholder": "Число и предмет"
+          },
+          "facts": {
+            "label": "Комната · cuadros",
+            "items": [
+              [
+                "cuadros",
+                "2"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Опиши наличие: cojín.",
+          "answers": [
+            "No hay cojín",
+            "No hay cojín.",
+            "No hay ningún cojín",
+            "No hay ningún cojín."
+          ],
+          "explain": "No hay сообщает об отсутствии; ningún усиливает отрицание.",
+          "context": "Составь фразу с cojín.",
+          "sourceRef": "46.1.9",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "No hay cojín",
+            "No hay ningún cojín"
+          ],
+          "facts": {
+            "label": "Комната · cojín",
+            "items": [
+              [
+                "cojín",
+                "0"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Опиши наличие: sillón.",
+          "answers": [
+            "Hay un sillón",
+            "Hay un sillón."
+          ],
+          "explain": "Сообщаем о наличии через hay.",
+          "context": "Составь фразу с sillón.",
+          "sourceRef": "46.1.10",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Hay un sillón"
+          ],
+          "facts": {
+            "label": "Комната · sillón",
+            "items": [
+              [
+                "sillón",
+                "1"
+              ]
+            ]
+          }
+        }
+      ],
+      "preview": {
+        "source": "Hay ___.",
+        "sentenceParts": [
+          "Hay ",
+          "."
+        ],
+        "answer": "una puerta",
+        "targetPrefix": "",
+        "translation": "Есть дверь."
+      },
+      "instruction": "Смотри на карточку: 0 означает отсутствие. Сообщи, что есть в комнате.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+        "placeholder": "Полное предложение"
+      },
+      "limitedAttempt": true
+    },
+    {
+      "id": "46.2",
+      "title": "46.2 · Что есть в городе",
+      "theorySections": [
+        1
+      ],
+      "questions": [
+        {
+          "prompt": "Сообщи о городе: colegios.",
+          "answers": [
+            "Hay cinco colegios",
+            "Hay cinco colegios."
+          ],
+          "explain": "Ноль требует no hay; положительное количество — hay.",
+          "context": "Используй название из карточки и точное количество.",
+          "sourceRef": "46.2.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Hay cinco colegios"
+          ],
+          "facts": {
+            "label": "Ciudad Nueva",
+            "items": [
+              [
+                "colegios",
+                "5"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Сообщи о городе: cine.",
+          "answers": [
+            "Hay un cine",
+            "Hay un cine."
+          ],
+          "explain": "Ноль требует no hay; положительное количество — hay.",
+          "context": "Используй название из карточки и точное количество.",
+          "sourceRef": "46.2.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Hay un cine"
+          ],
+          "facts": {
+            "label": "Ciudad Nueva",
+            "items": [
+              [
+                "cine",
+                "1"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Исправь сообщение: Hay un hospital.",
+          "answers": [
+            "No hay hospital",
+            "No hay hospital.",
+            "No hay ningún hospital",
+            "No hay ningún hospital.",
+            "No hay hospitales",
+            "No hay hospitales."
+          ],
+          "explain": "В карточке ноль: нужно no hay. Ningún ставится перед hospital.",
+          "context": "Больниц нет. Используй hospital.",
+          "sourceRef": "46.2.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "исправление по данным",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "No hay hospital",
+            "No hay ningún hospital",
+            "No hay hospitales"
+          ],
+          "facts": {
+            "label": "Ciudad Nueva",
+            "items": [
+              [
+                "hospital",
+                "0"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Сообщи о городе: polideportivo.",
+          "answers": [
+            "Hay un polideportivo",
+            "Hay un polideportivo."
+          ],
+          "explain": "Ноль требует no hay; положительное количество — hay.",
+          "context": "Используй название из карточки и точное количество.",
+          "sourceRef": "46.2.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Hay un polideportivo"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "un",
+            "Hay",
+            "polideportivo"
+          ],
+          "facts": {
+            "label": "Ciudad Nueva",
+            "items": [
+              [
+                "polideportivo",
+                "1"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "¿Cuántos parques hay? —Hay ___.",
+          "answers": [
+            "dos"
+          ],
+          "explain": "Число можно использовать без повторения parques.",
+          "context": "В городе два парка.",
+          "sourceRef": "46.2.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "краткий ответ",
+          "inputFormat": {
+            "instruction": "Впиши только число словами.",
+            "placeholder": "Число"
+          },
+          "facts": {
+            "label": "Ciudad Nueva",
+            "items": [
+              [
+                "parques",
+                "2"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Сообщи о городе: estación de ferrocarril.",
+          "answers": [
+            "No hay estación de ferrocarril",
+            "No hay estación de ferrocarril.",
+            "No hay ninguna estación de ferrocarril",
+            "No hay ninguna estación de ferrocarril."
+          ],
+          "explain": "Ноль требует no hay; положительное количество — hay.",
+          "context": "Используй название из карточки и точное количество.",
+          "sourceRef": "46.2.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "No hay estación de ferrocarril",
+            "No hay ninguna estación de ferrocarril"
+          ],
+          "facts": {
+            "label": "Ciudad Nueva",
+            "items": [
+              [
+                "estación de ferrocarril",
+                "0"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Сообщи о городе: estación de autobús.",
+          "answers": [
+            "Hay una estación de autobús",
+            "Hay una estación de autobús."
+          ],
+          "explain": "Ноль требует no hay; положительное количество — hay.",
+          "context": "Используй название из карточки и точное количество.",
+          "sourceRef": "46.2.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Hay una estación de autobús"
+          ],
+          "facts": {
+            "label": "Ciudad Nueva",
+            "items": [
+              [
+                "estación de autobús",
+                "1"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "¿Hay hoteles? —No hay ___.",
+          "answers": [
+            "ninguno"
+          ],
+          "explain": "Без названия мужского рода используем полную форму ninguno.",
+          "context": "В городе нет гостиниц.",
+          "sourceRef": "46.2.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "замена существительного",
+          "inputFormat": {
+            "instruction": "Впиши отрицательное местоимение без существительного.",
+            "placeholder": "Одно слово"
+          },
+          "facts": {
+            "label": "Ciudad Nueva",
+            "items": [
+              [
+                "hoteles",
+                "0"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "В городе две церкви. Какое сообщение противоречит данным?",
+          "answers": [
+            "No hay iglesias."
+          ],
+          "explain": "Две церкви есть, поэтому полное отрицание неверно.",
+          "context": "Выбери именно неверное сообщение.",
+          "sourceRef": "46.2.9",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "оценка смысла",
+          "options": [
+            "Hay dos iglesias.",
+            "Hay iglesias.",
+            "No hay iglesias."
+          ],
+          "facts": {
+            "label": "Ciudad Nueva",
+            "items": [
+              [
+                "iglesias",
+                "2"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Сообщи о городе: biblioteca.",
+          "answers": [
+            "Hay una biblioteca",
+            "Hay una biblioteca."
+          ],
+          "explain": "Ноль требует no hay; положительное количество — hay.",
+          "context": "Используй название из карточки и точное количество.",
+          "sourceRef": "46.2.10",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Hay una biblioteca"
+          ],
+          "facts": {
+            "label": "Ciudad Nueva",
+            "items": [
+              [
+                "biblioteca",
+                "1"
+              ]
+            ]
+          }
+        }
+      ],
+      "preview": {
+        "source": "No hay ___.",
+        "sentenceParts": [
+          "No hay ",
+          "."
+        ],
+        "answer": "ninguna piscina",
+        "targetPrefix": "",
+        "translation": "Нет ни одного бассейна."
+      },
+      "instruction": "Сравни сведения о городе и составь ответ. Числа пиши словами.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+        "placeholder": "Полное предложение"
+      },
+      "limitedAttempt": true
+    },
+    {
+      "id": "46.3",
+      "title": "46.3 · Проверь продукты",
+      "theorySections": [
+        2
+      ],
+      "questions": [
+        {
+          "prompt": "Опиши продукт: leche.",
+          "answers": [
+            "Hay leche",
+            "Hay leche."
+          ],
+          "explain": "Вещество или множественное число не требуют un/una. При отсутствии добавляем no перед hay.",
+          "context": "Используй название из карточки; для яиц назови точное число.",
+          "sourceRef": "46.3.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Hay leche"
+          ],
+          "facts": {
+            "label": "В холодильнике",
+            "items": [
+              [
+                "leche",
+                "есть"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Скажи, что воды нет.",
+          "answers": [
+            "No hay agua",
+            "No hay agua."
+          ],
+          "explain": "Вода как вещество не требует артикля: no hay agua.",
+          "context": "Используй agua.",
+          "sourceRef": "46.3.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "сообщение об отсутствии",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "No hay agua"
+          ],
+          "facts": {
+            "label": "В холодильнике",
+            "items": [
+              [
+                "agua",
+                "нет"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Сливочное масло есть, но его не много. Как сказать?",
+          "answers": [
+            "No hay mucha mantequilla."
+          ],
+          "explain": "Mantequilla — женский род; отрицание большого количества не равно отсутствию.",
+          "context": "Уточнение к карточке: масла немного.",
+          "sourceRef": "46.3.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "выбор количества",
+          "options": [
+            "No hay mantequilla.",
+            "No hay mucha mantequilla.",
+            "No hay muchos mantequilla."
+          ],
+          "facts": {
+            "label": "В холодильнике",
+            "items": [
+              [
+                "mantequilla",
+                "есть"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Исправь фразу о сыре: Hay unos queso.",
+          "answers": [
+            "Hay queso",
+            "Hay queso."
+          ],
+          "explain": "О сыре как веществе говорим без unos.",
+          "context": "Не считаем куски сыра.",
+          "sourceRef": "46.3.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "исправление ошибки",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Hay queso"
+          ],
+          "facts": {
+            "label": "В холодильнике",
+            "items": [
+              [
+                "queso",
+                "есть"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Опиши продукт: huevos.",
+          "answers": [
+            "Hay seis huevos",
+            "Hay seis huevos."
+          ],
+          "explain": "Вещество или множественное число не требуют un/una. При отсутствии добавляем no перед hay.",
+          "context": "Используй название из карточки; для яиц назови точное число.",
+          "sourceRef": "46.3.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Hay seis huevos"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "seis",
+            "Hay",
+            "huevos"
+          ],
+          "facts": {
+            "label": "В холодильнике",
+            "items": [
+              [
+                "huevos",
+                "6"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Опиши продукт: uvas.",
+          "answers": [
+            "Hay uvas",
+            "Hay uvas."
+          ],
+          "explain": "Вещество или множественное число не требуют un/una. При отсутствии добавляем no перед hay.",
+          "context": "Используй название из карточки; для яиц назови точное число.",
+          "sourceRef": "46.3.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Hay uvas"
+          ],
+          "facts": {
+            "label": "В холодильнике",
+            "items": [
+              [
+                "uvas",
+                "есть"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Hay ___ naranjas.",
+          "answers": [
+            "pocas"
+          ],
+          "explain": "Считаем апельсины: женский род, множественное число.",
+          "context": "Уточнение: апельсинов мало. Используй форму poco.",
+          "sourceRef": "46.3.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "согласование количества",
+          "inputFormat": {
+            "instruction": "Впиши нужную форму poco.",
+            "placeholder": "Количество"
+          },
+          "facts": {
+            "label": "В холодильнике",
+            "items": [
+              [
+                "naranjas",
+                "есть"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Опиши продукт: plátanos.",
+          "answers": [
+            "No hay plátanos",
+            "No hay plátanos."
+          ],
+          "explain": "Вещество или множественное число не требуют un/una. При отсутствии добавляем no перед hay.",
+          "context": "Используй название из карточки; для яиц назови точное число.",
+          "sourceRef": "46.3.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "No hay plátanos"
+          ],
+          "facts": {
+            "label": "В холодильнике",
+            "items": [
+              [
+                "plátanos",
+                "нет"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "Опиши продукт: zumo de naranja.",
+          "answers": [
+            "No hay zumo de naranja",
+            "No hay zumo de naranja."
+          ],
+          "explain": "Вещество или множественное число не требуют un/una. При отсутствии добавляем no перед hay.",
+          "context": "Используй название из карточки; для яиц назови точное число.",
+          "sourceRef": "46.3.9",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение фразы",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "No hay zumo de naranja"
+          ],
+          "facts": {
+            "label": "В холодильнике",
+            "items": [
+              [
+                "zumo de naranja",
+                "нет"
+              ]
+            ]
+          }
+        },
+        {
+          "prompt": "¿Hay yogures? —No hay ___.",
+          "answers": [
+            "ninguno"
+          ],
+          "explain": "Yogur — мужской род, краткий ответ: ninguno.",
+          "context": "В холодильнике нет йогуртов.",
+          "sourceRef": "46.3.10",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "краткий ответ",
+          "inputFormat": {
+            "instruction": "Ответь одним отрицательным местоимением.",
+            "placeholder": "Одно слово"
+          },
+          "facts": {
+            "label": "В холодильнике",
+            "items": [
+              [
+                "yogures",
+                "нет"
+              ]
+            ]
+          }
+        }
+      ],
+      "preview": {
+        "source": "Hay ___.",
+        "sentenceParts": [
+          "Hay ",
+          "."
+        ],
+        "answer": "pan",
+        "targetPrefix": "",
+        "translation": "Есть хлеб."
+      },
+      "instruction": "Данные сообщают о наличии продукта. Следуй уточнению в каждом вопросе.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+        "placeholder": "Полное предложение"
+      },
+      "limitedAttempt": true
+    },
+    {
+      "id": "46.4",
+      "title": "46.4 · Спроси и ответь",
+      "theorySections": [
+        3
+      ],
+      "questions": [
+        {
+          "prompt": "¿Dónde ___? —___ en la esquina.",
+          "answers": [
+            "hay un buzón Hay uno"
+          ],
+          "explain": "Перед buzón — un, без существительного — uno.",
+          "context": "Спроси, где есть почтовый ящик (un buzón), и ответь без повторения существительного.",
+          "sourceRef": "46.4.1",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение диалога",
+          "gapParts": [
+            "¿Dónde ",
+            "? —",
+            " en la esquina."
+          ],
+          "gapWordCounts": [
+            3,
+            2
+          ],
+          "inputFormat": {
+            "instruction": "Заполни поля пропущенными словами. Не повторяй уже написанную часть реплики.",
+            "placeholder": "Пропущенные слова"
+          }
+        },
+        {
+          "prompt": "En mi barrio ___.",
+          "answers": [
+            "no hay metro"
+          ],
+          "explain": "Отрицание no ставим перед hay.",
+          "context": "В моём районе нет метро.",
+          "sourceRef": "46.4.2",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "воспроизведение",
+          "inputFormat": {
+            "instruction": "Впиши только пропущенное сочетание. Остальную фразу не повторяй.",
+            "placeholder": "Пропущенное сочетание"
+          }
+        },
+        {
+          "prompt": "¿Dónde ___? —___ a cien metros.",
+          "answers": [
+            "hay un estanco Hay uno"
+          ],
+          "explain": "Вопрос о неизвестном киоске: dónde hay. Без estanco используем uno.",
+          "context": "Спроси о табачном киоске (un estanco). Ответь: есть один в ста метрах.",
+          "sourceRef": "46.4.3",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение диалога",
+          "gapParts": [
+            "¿Dónde ",
+            "? —",
+            " a cien metros."
+          ],
+          "gapWordCounts": [
+            3,
+            2
+          ],
+          "inputFormat": {
+            "instruction": "Заполни поля пропущенными словами. Не повторяй уже написанную часть реплики.",
+            "placeholder": "Пропущенные слова"
+          }
+        },
+        {
+          "prompt": "¿___ en tu barrio? —No, ___.",
+          "answers": [
+            "Hay muchas tiendas no hay muchas"
+          ],
+          "explain": "Tiendas — женский род, множественное число: muchas и в вопросе, и без существительного.",
+          "context": "Спроси, много ли магазинов. Ответь, что их не много, не повторяя tiendas.",
+          "sourceRef": "46.4.4",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение диалога",
+          "gapParts": [
+            "¿",
+            " en tu barrio? —No, ",
+            "."
+          ],
+          "gapWordCounts": [
+            3,
+            3
+          ],
+          "inputFormat": {
+            "instruction": "Заполни поля пропущенными словами. Не повторяй уже написанную часть реплики.",
+            "placeholder": "Пропущенные слова"
+          }
+        },
+        {
+          "prompt": "¿Cuántos ___ en la nevera? —___ ninguno.",
+          "answers": [
+            "huevos hay No hay"
+          ],
+          "explain": "Cuántos huevos hay; в отрицательном ответе No hay ninguno.",
+          "context": "Спроси о числе яиц. Ответ: нет ни одного.",
+          "sourceRef": "46.4.5",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение диалога",
+          "gapParts": [
+            "¿Cuántos ",
+            " en la nevera? —",
+            " ninguno."
+          ],
+          "gapWordCounts": [
+            2,
+            2
+          ],
+          "inputFormat": {
+            "instruction": "Заполни поля пропущенными словами. Не повторяй уже написанную часть реплики.",
+            "placeholder": "Пропущенные слова"
+          }
+        },
+        {
+          "prompt": "¿Cuánta ___? —___.",
+          "answers": [
+            "leche hay Hay un litro"
+          ],
+          "explain": "Leche — вещество женского рода, cuánta; считаем литры: un litro.",
+          "context": "Спроси, сколько молока. Ответ: есть один литр.",
+          "sourceRef": "46.4.6",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение диалога",
+          "gapParts": [
+            "¿Cuánta ",
+            "? —",
+            "."
+          ],
+          "gapWordCounts": [
+            2,
+            3
+          ],
+          "inputFormat": {
+            "instruction": "Заполни поля пропущенными словами. Не повторяй уже написанную часть реплики.",
+            "placeholder": "Пропущенные слова"
+          }
+        },
+        {
+          "prompt": "¿___ por aquí? —Sí, ___ en la Plaza Mayor.",
+          "answers": [
+            "Hay una cafetería hay una"
+          ],
+          "explain": "Cafetería — женский род: una перед словом и вместо него.",
+          "context": "Спроси, есть ли здесь кафе (una cafetería). Ответь без повторения cafetería.",
+          "sourceRef": "46.4.7",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение диалога",
+          "gapParts": [
+            "¿",
+            " por aquí? —Sí, ",
+            " en la Plaza Mayor."
+          ],
+          "gapWordCounts": [
+            3,
+            2
+          ],
+          "inputFormat": {
+            "instruction": "Заполни поля пропущенными словами. Не повторяй уже написанную часть реплики.",
+            "placeholder": "Пропущенные слова"
+          }
+        },
+        {
+          "prompt": "¿Cuántos ___ en la nevera? —___.",
+          "answers": [
+            "yogures hay Hay tres"
+          ],
+          "explain": "Число можно использовать самостоятельно: hay tres.",
+          "context": "Спроси, сколько йогуртов, и ответь: три.",
+          "sourceRef": "46.4.8",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "построение диалога",
+          "gapParts": [
+            "¿Cuántos ",
+            " en la nevera? —",
+            "."
+          ],
+          "gapWordCounts": [
+            2,
+            2
+          ],
+          "inputFormat": {
+            "instruction": "Заполни поля пропущенными словами. Не повторяй уже написанную часть реплики.",
+            "placeholder": "Пропущенные слова"
+          }
+        },
+        {
+          "prompt": "Составь вопрос: сколько воды на полу?",
+          "answers": [
+            "Cuánta agua hay en el suelo",
+            "Cuánta agua hay en el suelo.",
+            "¿Cuánta agua hay en el suelo?"
+          ],
+          "explain": "Agua — женского рода, вещество: cuánta agua. Hay неизменно.",
+          "context": "Используй agua и en el suelo.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "самостоятельный вопрос",
+          "inputFormat": {
+            "instruction": "Напиши всё предложение. Точку и знаки ¿ ? можно не вводить.",
+            "placeholder": "Полное предложение"
+          },
+          "feedbackAnswers": [
+            "Cuánta agua hay en el suelo"
+          ]
+        },
+        {
+          "prompt": "¿Hay una biblioteca? —Hay una. Что заменяет una в ответе?",
+          "answers": [
+            "Одну библиотеку."
+          ],
+          "explain": "Una заменяет una biblioteca; существительное не повторяется.",
+          "context": "Объясни короткий ответ.",
+          "sourceRef": "extra",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "learningAction": "объяснение замены",
+          "options": [
+            "Одну библиотеку.",
+            "Несколько библиотек.",
+            "Отсутствие библиотеки."
+          ]
+        }
+      ],
+      "preview": {
+        "source": "¿Cuántas ventanas ___?",
+        "sentenceParts": [
+          "¿Cuántas ventanas ",
+          "?"
+        ],
+        "answer": "hay",
+        "targetPrefix": "",
+        "translation": "Сколько окон?"
+      },
+      "instruction": "В диалогах заполни обе реплики. Полные вопросы пиши только там, где это указано.",
+      "inlineAnswer": true,
+      "inputLabel": "Ввод словами",
+      "inputFormat": {
+        "instruction": "Заполни поля пропущенными словами. Не повторяй уже написанную часть реплики.",
+        "placeholder": "Пропущенные слова"
+      },
+      "limitedAttempt": true
+    }
+  ],
+  "summary": {
+    "heads": [
+      "Задача",
+      "Модель"
+    ],
+    "rows": [
+      [
+        "Один предмет",
+        "Hay un hotel / una tienda."
+      ],
+      [
+        "Несколько",
+        "Hay hoteles / dos tiendas / muchos bares."
+      ],
+      [
+        "Отсутствие",
+        "No hay hotel / ningún hotel / hoteles."
+      ],
+      [
+        "Вещество",
+        "Hay leche / poca agua."
+      ],
+      [
+        "Количество",
+        "¿Cuántos huevos / cuánta leche hay?"
+      ],
+      [
+        "Короткий ответ",
+        "Hay uno / una / tres. No hay ninguno."
+      ],
+      [
+        "Неизвестное место",
+        "¿Dónde hay un estanco?"
+      ]
+    ]
+  },
+  "learningOrder": [
+    "section:0",
+    "exercise:46.1",
+    "section:1",
+    "exercise:46.2",
+    "section:2",
+    "exercise:46.3",
+    "section:3",
+    "exercise:46.4",
+    "summary"
+  ]
+}

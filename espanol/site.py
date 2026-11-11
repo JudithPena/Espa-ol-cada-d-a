@@ -881,9 +881,9 @@ def _embed_book_images(text: dict, folder: Path, path: Path) -> None:
 
 
 def load_books(directory: Path | None = None) -> list[dict]:
-    """Одна папка на книгу, отдельные файлы глав; черновики не попадают на сайт."""
+    """Отдельные файлы глав; в оглавлении черновика видны только метаданные."""
     directory = Path(directory) if directory is not None else Path(__file__).resolve().parent.parent / "content" / "books"
-    books, ids = [], set()
+    books, ids, series_numbers = [], set(), set()
     for path in sorted(directory.glob("*/book.json")):
         meta = json.loads(path.read_text(encoding="utf-8"))
         book_id = meta.get("id")
@@ -894,6 +894,18 @@ def load_books(directory: Path | None = None) -> list[dict]:
             raise ValueError(f"{path}: укажите уровень книги и отдельный порог лексики")
         if not all(isinstance(meta.get(k), str) and meta[k].strip() for k in ("title", "author")):
             raise ValueError(f"{path}: укажите название и автора")
+        series = meta.get("series")
+        if series is not None:
+            if (not isinstance(series, dict)
+                    or not isinstance(series.get("id"), str)
+                    or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", series["id"])
+                    or not isinstance(series.get("title"), str) or not series["title"].strip()
+                    or type(series.get("number")) is not int or series["number"] < 1):
+                raise ValueError(f"{path}: у серии нужны id, название и положительный номер книги")
+            series_key = (series["id"], series["number"])
+            if series_key in series_numbers:
+                raise ValueError(f"{path}: повторный номер книги внутри серии")
+            series_numbers.add(series_key)
         cover = meta.get("cover")
         if cover and not isinstance(cover, str):
             raise ValueError(f"{path}: обложка должна быть ссылкой или именем файла")
@@ -909,8 +921,17 @@ def load_books(directory: Path | None = None) -> list[dict]:
         if icon:
             meta["icon"] = icon.strip()
         kind = meta.get("kind", "book")
-        if kind not in ("book", "story"):
-            raise ValueError(f"{path}: kind — book или story")
+        if kind not in ("book", "story", "collection"):
+            raise ValueError(f"{path}: kind — book, story или collection")
+        if kind == "collection":
+            members = meta.get("books")
+            if (not isinstance(members, list) or not members
+                    or any(not isinstance(member, str) for member in members)
+                    or len(set(members)) != len(members)
+                    or (path.parent / "chapters").exists() or (path.parent / "story.json").exists()):
+                raise ValueError(f"{path}: у сборника нужен уникальный список books без собственного текста")
+            books.append({**meta, "cover": cover, "chapters": [], "chapter_catalog": []})
+            continue
         if kind == "story":
             # Рассказ без глав: весь текст в story.json, на сайте открывается сразу из карточки.
             story_path = path.parent / "story.json"
@@ -929,7 +950,7 @@ def load_books(directory: Path | None = None) -> list[dict]:
             _embed_book_images(story, path.parent, story_path)
             books.append({**meta, "kind": "story", "cover": cover, "chapters": [], "story": story})
             continue
-        chapters, chapter_ids, orders, numbers = [], set(), set(), set()
+        chapters, chapter_catalog, chapter_ids, orders, numbers = [], [], set(), set(), set()
         for chapter_path in sorted((path.parent / "chapters").glob("*.json")):
             chapter = json.loads(chapter_path.read_text(encoding="utf-8"))
             chapter_id, number, order = chapter.get("id"), chapter.get("number"), chapter.get("order")
@@ -949,12 +970,31 @@ def load_books(directory: Path | None = None) -> list[dict]:
                 raise ValueError(f"{chapter_path}: иконка главы должна быть коротким символом")
             chapter["icon"] = icon.strip()
             chapter_ids.add(chapter_id); numbers.add(number); orders.add(order)
+            # Оглавление показывает объём книги, но не публикует незавершённый разбор.
+            chapter_catalog.append({key: chapter[key] for key in
+                                    ("id", "number", "order", "title", "icon", "status")})
             if chapter["status"] == "published":
                 _check_book_text(chapter, chapter_path)
                 _embed_book_images(chapter, path.parent, chapter_path)
                 chapters.append(chapter)
-        books.append({**meta, "cover": cover, "chapters": sorted(chapters, key=lambda c: c["order"])})
-    return books
+        books.append({**meta, "cover": cover, "chapters": sorted(chapters, key=lambda c: c["order"]),
+                      "chapter_catalog": sorted(chapter_catalog, key=lambda c: c["order"])})
+    by_id = {book["id"]: book for book in books}
+    for book in books:
+        parent_id = book.get("collection")
+        if parent_id is not None:
+            parent = by_id.get(parent_id)
+            if (not parent or parent.get("kind") != "collection"
+                    or book.get("kind") == "collection" or book["id"] not in parent["books"]
+                    or book["level"] != parent["level"]):
+                raise ValueError(f"{book['id']}: неверная связь с родительским сборником")
+        if book.get("kind") == "collection":
+            for member_id in book["books"]:
+                member = by_id.get(member_id)
+                if not member or member.get("collection") != book["id"]:
+                    raise ValueError(f"{book['id']}: произведение {member_id} не принадлежит сборнику")
+    return sorted(books, key=lambda book: ((book.get("series") or {}).get("id", book["id"]),
+                                          (book.get("series") or {}).get("number", 0)))
 
 
 def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None = None,

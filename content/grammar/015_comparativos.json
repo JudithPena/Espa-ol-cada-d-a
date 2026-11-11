@@ -239,7 +239,7 @@
       "title": "Старше и младше: mayor, menor",
       "paragraphs": [
         "При сравнении возраста **`mayor` — старше, `menor` — младше**. В таких сравнениях с `que` дополнительное `más` не нужно.",
-        "**`Mayor` и `menor` одинаковы для мужского и женского рода.** О старой вещи обычно говорим **`más viejo`**: `Mi coche es más viejo que el tuyo` — моя машина старше твоей."
+        "**`Mayor` и `menor` одинаковы для мужского и женского рода.** О старой вещи обычно говорим **`más viejo`**: `Este coche es más viejo que el coche de Ana` — эта машина старше машины Аны."
       ],
       "wordGroups": [
         {
@@ -948,15 +948,12 @@
           ]
         },
         {
-          "prompt": "La capacidad de los discos Suiko es ___.",
+          "prompt": "La capacidad de los discos Suiko es ___ que la capacidad de los discos Misima.",
           "answers": [
-            "menor que la de los discos Misima",
-            "menor que la de los Misima",
-            "más pequeña que la de los discos Misima",
-            "más pequeña que la de los Misima"
+            "más pequeña"
           ],
-          "explain": "Сравниваем ёмкость: menor que la de los discos Misima — меньше, чем у дисков Misima. По объёму памяти нельзя определить мощность компьютера.",
-          "context": "pequeño · допиши сравнение",
+          "explain": "20 GB меньше, чем 80 GB: más pequeña — меньше. Capacidad — женского рода, поэтому pequeña.",
+          "context": "pequeño · сравни ёмкость дисков",
           "facts": {
             "label": "Ёмкость диска",
             "items": [
@@ -972,18 +969,17 @@
           },
           "interaction": "build",
           "tiles": [
+            "pequeño",
+            "menos",
+            "pequeñas",
             "más",
-            "el",
-            "Misima",
-            "los",
-            "la",
-            "menor",
-            "que",
-            "de",
-            "discos",
-            "como",
-            "las"
-          ]
+            "pequeña"
+          ],
+          "inputFormat": {
+            "instruction": "Впиши только сравнение с прилагательным pequeño в нужной форме. Часть с que уже написана.",
+            "example": "más alta",
+            "placeholder": "Сравнение с прилагательным"
+          }
         },
         {
           "prompt": "El canguro es ___.",
@@ -1075,7 +1071,8 @@
             "fuerte",
             "tú",
             "como"
-          ]
+          ],
+          "retryHint": "Проверь направление сравнения. После que нужна форма местоимения, которой называют собеседника."
         },
         {
           "prompt": "Soy ___.",
@@ -1102,39 +1099,43 @@
             "más alto como vosotras",
             "más alto que vosotras"
           ],
-          "interaction": "gap-choice"
+          "interaction": "gap-choice",
+          "retryHint": "Прилагательное описывает мужчину, а местоимение после que — двух женщин, к которым он обращается."
         },
         {
           "prompt": "Sois ___.",
           "answers": [
-            "menores que nosotras",
             "más jóvenes que nosotras",
-            "menos viejos que nosotras"
+            "menores que nosotras"
           ],
-          "explain": "О мальчиках: menores. Говорящая сравнивает их с собой и другой женщиной: que nosotras.",
-          "context": "Взрослая женщина говорит мальчикам: «Вы младше нас».",
+          "explain": "Sois относится к мальчикам: más jóvenes — «моложе», во множественном числе. «Нас» — это две говорящие женщины, поэтому que nosotras. Menores que nosotras тоже означает «младше нас».",
+          "context": "Две взрослые женщины говорят мальчикам: «Вы моложе нас».",
           "facts": {
-            "label": "Возраст · viejo",
+            "label": "Возраст · joven — молодой",
             "items": [
               [
                 "Вы · мальчики",
-                "младше"
+                "моложе"
               ],
               [
-                "Мы · женщины",
+                "Мы · две взрослые женщины",
                 "старше"
               ]
             ]
           },
           "interaction": "build",
           "tiles": [
+            "nosotros",
             "más",
+            "joven",
+            "que",
             "nosotras",
             "menores",
-            "que",
+            "jóvenes",
             "como",
             "menos"
-          ]
+          ],
+          "retryHint": "Сравнивают возраст мальчиков с возрастом двух говорящих женщин. Проверь форму множественного числа и местоимение для «мы»."
         },
         {
           "prompt": "Eres ___.",
@@ -1166,7 +1167,8 @@
             "yo",
             "como",
             "rápida"
-          ]
+          ],
+          "retryHint": "Прилагательное описывает мужчину. Местоимение после que относится к говорящей женщине, а не к собеседнику."
         }
       ],
       "inputFormat": {
@@ -1176,7 +1178,9 @@
       },
       "theorySections": [
         5
-      ]
+      ],
+      "revision": 2,
+      "deferAnswerFeedback": true
     },
     {
       "id": "15.4",
