@@ -3378,6 +3378,7 @@ function dataApply(ref, value) {
       list.forEach(w => { if (!WORDS.has(w.es)) WORDS.set(w.es, {...w, li: i}); });
     });
     Object.assign(AUDIO, value.audio); Object.assign(AVATARS, value.avatars);
+    TTS.ok = Object.keys(AUDIO).length > 0 || SPEECH;
   } else if (ref.kind === "level") {
     value.lessons.forEach(L => Object.assign(LESSONS.find(meta => meta.id === L.id), L));
   } else if (ref.kind === "grammar") {

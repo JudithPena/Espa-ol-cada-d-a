@@ -151,4 +151,17 @@ test('leaving a loading next lesson clears the previous result and cancels its c
   assert.match(run('app.innerHTML'),/Курс по уровням/);
 });
 
+test('late audio metadata enables recorded voices even without browser speech synthesis',async()=> {
+  const {run}=harness(new Map(),{fetch:async url=>{
+    const value=JSON.parse(fs.readFileSync(path.join(out,url),'utf8'));
+    if(url===shell.resources.common.url) value.audio={hola:'word-clip','@speaker|hola':'dialogue-clip'};
+    return new Response(JSON.stringify(value),{status:200});
+  }});
+  assert.equal(run('SPEECH'),false);assert.equal(run('TTS.ok'),false);
+  await ready(run);
+  assert.equal(run('TTS.ok'),true);assert.equal(run('!!canSay("hola")'),true);
+  assert.equal(run('audioId("hola","speaker")'),'dialogue-clip');
+  run('say("hola")');assert.equal(run('player.src'),'a/word-clip.mp3');
+});
+
 process.on('exit',()=>fs.rmSync(out,{recursive:true,force:true}));
