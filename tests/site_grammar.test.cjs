@@ -38,7 +38,7 @@ test('all practice groups keep the last failed question and its individual analy
    r(`var s=G.steps[G.at];gResponse(s).value=${JSON.stringify('ошибка '+i)};gCheck();`);
    const html=r('gPlayerView()');
    if(i<2){
-    assert.ok(!html.includes('Верный ответ:'));assert.ok(!html.includes('gerror-analysis'));
+    assert.ok(html.includes('Верный ответ:'));assert.ok(!html.includes('gerror-analysis'));
     assert.equal(r(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id===${JSON.stringify(g.id)})).status`),'active');
     r('gMove(1);');
    }
@@ -104,28 +104,27 @@ test('15.3 compares boys with two speaking women and builds both natural age com
   assert.equal(r(`grammarResult(${JSON.stringify(q)},${JSON.stringify(a)}).status`),'wrong');
 });
 
-test('15.3 hides model answers, explanation and correct-choice highlighting while lives remain, including after reload',()=>{
+test('15.3 reveals correct answers immediately, retains history on reload and three lives',()=>{
  const storage=new Map();let r=context([unit15],storage);unlockUntil(r,'exercise:15.3');
  r(`save();gStart(COURSE.grammar[0].id,'exercise:15.3');gMove(1);gResponse(G.steps[G.at]).value='wrong';gCheck();`);
  for(let error=1;error<=2;error++){
   if(error===2)r(`gMove(1);gPickValue('menos alto que vosotras');`);
   assert.equal(r(`gAttempt(gUnit(),gUnit().exercises[2]).errors`),error);
   const html=r('gPlayerView()');
-  assert.ok(!html.includes('Верный ответ:'));assert.ok(!/class="opt (right|almost)/.test(html));
-  assert.ok(!html.includes(unit15.exercises[2].questions[error-1].explain));
-  assert.ok(html.includes(unit15.exercises[2].questions[error-1].retryHint));
+  assert.ok(html.includes('Верный ответ:'));
+  assert.ok(html.includes('Почему:'));
+  assert.ok(!html.includes('gerror-analysis'));
   r=context([unit15],storage);r(`gStart(COURSE.grammar[0].id,'all',true);`);
-  assert.ok(!r('gPlayerView()').includes('Верный ответ:'));
+  assert.ok(r('gPlayerView()').includes('Верный ответ:'));
  }
  r(`gMove(1);gResponse(G.steps[G.at]).value='más jóvenes que nosotros';gCheck();`);
  assert.equal(r(`gAttempt(gUnit(),gUnit().exercises[2]).errors`),3);
  assert.ok(!r('G.recovery'));assert.ok(r('gPlayerView()').includes('Повторить правило'));
  r('gReviewTheory();');assert.ok(r('gPlayerView()').includes('Чем я, чем ты: que yo, que tú'));
  r('gRepeatExercise();');assert.equal(r(`gAttempt(gUnit(),gUnit().exercises[2]).errors`),0);
- // The same no-spoiler policy now applies to every practice group.
  const other=context([unit15]);unlockUntil(other,'exercise:15.1');
  other(`gStart(COURSE.grammar[0].id,'exercise:15.1');gMove(1);gResponse(G.steps[G.at]).value='wrong';gCheck();`);
- assert.ok(!other('gPlayerView()').includes('Верный ответ:'));
+ assert.ok(other('gPlayerView()').includes('Верный ответ:'));
 });
 
 test('unit 36 completes every answer, resumes drafts and reviews its own theory after three errors',()=>{
@@ -434,7 +433,7 @@ test('choice click grades immediately, plays the matching sound once and keeps e
  run('gMove(1);gPick(0);');
  assert.equal(run('gResponse(G.steps[G.at]).good'),false);
  assert.equal(run('played.join(",")'),'true,false');
- assert.ok(!run('gPlayerView()').includes('Верный ответ: la estudiante'));
+ assert.ok(run('gPlayerView()').includes('Верный ответ:'));
 });
 test('answer sounds differ, resume suspended audio and respect mute', () => {
  const run=context();
@@ -840,7 +839,7 @@ test('an old hotel choice resumes as editable input without losing checked answe
  run(`gResponse(G.steps[G.at]).value='hotels';gCheck();`);
  assert.equal(run('gResponse(G.steps[G.at]).good'),false);
  assert.equal(run('G.at'),8);
- assert.ok(!run('gPlayerView()').includes('Верный ответ:'));
+ assert.ok(run('gPlayerView()').includes('Верный ответ:'));
  run('gSave();G=null;gStart(COURSE.grammar[0].id,"all",true);');
  assert.equal(run('gResponse(G.steps[G.at]).checked'),true);
  assert.equal(run('G.responses["3.1"][1].good'),true);
@@ -1012,7 +1011,7 @@ test('17.3 fills words in a fixed sentence, keeps partial choices on resume and 
  assert.equal(run('gResponse(G.steps[G.at]).good'),false);
  html=run('gPlayerView()');
  assert.ok(html.includes('data-gnext'));
- assert.ok(!html.includes(' / la bebida'));
+ assert.ok(html.includes(' / la bebida')); // Every accepted alternative is disclosed after the incorrect submission.
  run(`gMove(1);for(let __grammarGuard=0;!G.steps[G.at].correction&&__grammarGuard++<300;){const s=G.steps[G.at];gResponse(s).value=gUnit().exercises[2].questions[s.qi].answers[0];gCheck();gMove(1);}gSelectGap(0,1);gSelectGap(1,0);gSelectGap(2,1);gSelectGap(3,0);gCheck();`);
  assert.equal(run('gResponse(G.steps[G.at]).good'),true);
  assert.equal(run('G.ended'),false);
@@ -1085,7 +1084,7 @@ test('format overrides work in textareas, and article-free answers stay article-
  assert.ok(gender('grammarForm(COURSE.grammar[0],COURSE.grammar[0].exercises[1])').includes('без артикля: la уже написано'));
 });
 
-test('all exercises stop at exactly three wrong submissions without leaking answers or credit',()=>{
+test('all exercises reveal each wrong answer, stop at three errors and never award free credit',()=>{
  const units=fs.readdirSync('content/grammar').filter(n=>/^\d{3}_.+\.json$/.test(n)).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
  let count=0;
  for(const u of units)for(const group of u.exercises){
@@ -1097,7 +1096,7 @@ test('all exercises stop at exactly three wrong submissions without leaking answ
     if(q.options)gPick(q.options.findIndex(v=>!grammarCorrect(q,v)));
     else{gResponse(step).value='incorrecto';gCheck();}`);
    assert.equal(run(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id===${JSON.stringify(group.id)})).errors`),error);
-   assert.equal(run('gPlayerView()').includes('Верный ответ:'),error===3);
+   assert.ok(run('gPlayerView()').includes('Верный ответ:'));
    if(error<3)run('gMove(1)');
   }
   assert.ok(!run('G.recovery'));
@@ -1376,7 +1375,7 @@ test('grammar viewport follows the visible keyboard area and the keyboard can be
  assert.equal(run('viewportPlayer.style.top'),'0px');
 });
 
-test('all grammar mini-checks have three lives, disclose only on failure, and never auto-navigate',()=>{
+test('all grammar mini-checks disclose immediately, keep three lives and never auto-navigate',()=>{
  const units=fs.readdirSync('content/grammar').filter(n=>/^\d{3}_.+\.json$/.test(n)).sort().map(n=>JSON.parse(fs.readFileSync('content/grammar/'+n,'utf8')));
  let total=0;
  for(const u of units)for(const [i,section] of u.sections.entries()){
@@ -1387,7 +1386,7 @@ test('all grammar mini-checks have three lives, disclose only on failure, and ne
   for(let n=1;n<=3;n++){
    run('gResponse(G.steps[G.at]).value="wrong";gCheck();');
    assert.equal(run(`gAttempt(gUnit(),gUnit().sections[${i}].check).errors`),n);
-   assert.equal(run('gPlayerView()').includes('Верный ответ:'),n===3);
+   assert.ok(run('gPlayerView()').includes('Верный ответ:'));
    if(n<3)run('gMove(1)');
   }
   assert.equal(run(`gAttempt(gUnit(),gUnit().sections[${i}].check).status`),'failed');
@@ -1764,10 +1763,10 @@ test('yellow correction is accepted without another retry or error and keeps the
  const run=context([u]);unlockUntil(run,'exercise:4.3');
  run(`gStart(COURSE.grammar[0].id,'exercise:4.3');gMove(1);gPick(2);`);
  const wrong=run('gPlayerView()');assert.ok(wrong.includes('pfoot bad'));
- assert.equal((wrong.match(/class="opt wrong"/g)||[]).length,0);
- assert.equal((wrong.match(/class="opt right"/g)||[]).length,0);
- assert.equal((wrong.match(/class="opt almost"/g)||[]).length,0);
- assert.ok(!wrong.includes('Верный ответ:'));
+ assert.ok((wrong.match(/class="opt wrong"/g)||[]).length>=1);
+ assert.ok((wrong.match(/class="opt right"/g)||[]).length>=1);
+ assert.ok((wrong.match(/class="opt (right|almost)"/g)||[]).length>=1);
+ assert.ok(wrong.includes('Верный ответ:'));
  run('gMove(1);gPick(1);');
  assert.equal(run('gResponse(G.steps[G.at]).status'),'almost');
  assert.equal(run('gAttempt(gUnit(),gUnit().exercises.find(g=>g.id==="4.3")).status'),'passed');
@@ -2547,7 +2546,7 @@ test('unit 39 distinguishes joining, two legal positions, accent omissions and t
 test('unit 39 shows meaningful answer alternatives once and retains old feedback when unspecified',()=>{
  const u=JSON.parse(fs.readFileSync('content/grammar/039_amame_damelo.json','utf8'));const run=context([u]);
  unlockUntil(run,'exercise:39.4');run(`gStart(COURSE.grammar[0].id,'exercise:39.4');gMove(1);gResponse(G.steps[G.at]).value='wrong';gCheck();`);
- const html=run('gPlayerView()');assert.ok(!html.includes('Верный ответ:'));assert.ok(html.includes('Осталось попыток: 2 из 3'));
+ const html=run('gPlayerView()');assert.ok(html.includes('Верный ответ:'));assert.ok(html.includes('Осталось попыток: 2 из 3'));
 });
 
 test('unit 40 checks reflexive roles, reciprocal person, omission and semantic accents',()=>{
