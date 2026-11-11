@@ -22,6 +22,8 @@ jobs:
           python -m espanol grammar-lint 13
           python -m espanol grammar-lint 8
           python -m espanol grammar-lint 2 --report /tmp/unit2-lint-summary.md --json-out /tmp/unit2-lint-findings.json
+          python -m espanol grammar-lint 14 --report /tmp/unit14-lint-summary.md --json-out /tmp/unit14-lint-findings.json
+          python -c "from pathlib import Path; print(Path('/tmp/unit14-lint-summary.md').read_text())"
           python -c "from pathlib import Path; print(Path('/tmp/unit2-lint-summary.md').read_text())"
       - name: Архив диагностик грамматического линтера
         if: always()
@@ -33,6 +35,8 @@ jobs:
             /tmp/grammar-lint-findings.json
             /tmp/unit2-lint-summary.md
             /tmp/unit2-lint-findings.json
+            /tmp/unit14-lint-summary.md
+            /tmp/unit14-lint-findings.json
           if-no-files-found: warn
       - name: Проверка словаря и лимитов Telegram
         run: python -m espanol validate
@@ -148,3 +152,27 @@ jobs:
         with:
           name: static-data-browser
           path: /tmp/site-static-browser.json
+
+  grammar-unit14-browser:
+    if: github.event_name == 'pull_request' && github.head_ref == 'audit/fable-stage9-unit14-20261112'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install dependencies and real Chromium
+        run: |
+          python -m pip install -r requirements.txt playwright
+          python -m playwright install chromium
+      - name: Build site locally without publishing
+        run: python -m espanol site
+      - name: Stage 9 — unit 14 Chromium 320/390/768/1280px, answers, lives, revisions
+        run: python tests/grammar_unit14_browser.py
+      - name: Archive unit 14 Chromium evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grammar-unit14-chromium
+          path: docs/grammar_unit14_browser/
+          if-no-files-found: warn
