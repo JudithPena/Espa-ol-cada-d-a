@@ -13,8 +13,8 @@ def test_article_input_audit_keeps_a_mixed_progression_and_all_question_answers(
     assert sum(len(u['exercises']) for u in audit['units']) == 60
     assert changes['convertedChoices'] == 173
     for change in changes['questions']:
-        # 2026 Fable stage 4 intentionally changed unit 7; the November 8 audit is historical.
-        if change['unit'] in (5, 7):
+        # Fable stages 4, 5 and 7 redesigned 7, 5 and 8. This snapshot is dated.
+        if change['unit'] in (5, 7, 8):
             continue
         unit = units[change['unit'] - 1]
         group = next(g for g in unit['exercises'] if g['id'] == change['group'])

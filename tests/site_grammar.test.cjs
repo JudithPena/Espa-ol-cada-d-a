@@ -960,14 +960,14 @@ test('time practice offers complete openings for both current time and scheduled
 test('article omission is compact, accessible and works in converted input with an explicit control',()=>{
  const all=JSON.parse(fs.readFileSync('content/grammar/008_nombres_propios.json','utf8'));
  const run=context([all]);unlockUntil(run,'exercise:8.3');
- run(`gStart(COURSE.grammar[0].id,'exercise:8.3');G.at=3;`);
+ run(`gStart(COURSE.grammar[0].id,'exercise:8.3');G.at=G.steps.findIndex(s=>s.group==='8.3'&&s.qi===1);`);
  assert.ok(run('gPlayerView()').includes('placeholder="Артикль или ∅"'));
  assert.ok(run('gPlayerView()').includes('data-gno-article'));
- for(const spelling of ['∅','—','-','Без артикля']) assert.equal(run(`grammarCorrect(gUnit().exercises[2].questions[2],${JSON.stringify(spelling)})`),true);
+ for(const spelling of ['∅','—','-','Без артикля']) assert.equal(run(`grammarCorrect(gUnit().exercises[2].questions[1],${JSON.stringify(spelling)})`),true);
  assert.equal(run(`grammarCorrect({answers:['las']},'∅')`),false);
  run(`gResponse(G.steps[G.at]).value='∅';gCheck();`);
  assert.equal(run('gResponse(G.steps[G.at]).good'),true);
- assert.equal(run('G.at'),3);
+ assert.equal(run('G.at'),2);
 });
 
 test('form paradigms have a desktop table and readable mobile definitions with escaped text',()=>{
@@ -1052,7 +1052,7 @@ test('all typing screens show a persistent format and example without changing g
   })())`));
   typed+=result.typed;legacy+=result.legacy;
  }
- assert.equal(typed,1186);assert.equal(legacy,160); // Fable 6: 14 fewer typed, 2 added builds
+ assert.equal(typed,1176);assert.equal(legacy,160); // Fable 7: 10 fewer typed in unit 8
 });
 
 test('quantity answers accept digits or words while the field explains the quantity format', () => {
@@ -1803,7 +1803,7 @@ test('multi-answer audit keeps regional, contextual and equally valid choices gr
    }
   }
  }
- assert.equal(questions,2083);assert.equal(alternatives,356);assert.equal(warnings,25); // Fable 6: unit 13 49→48
+ assert.equal(questions,2073);assert.equal(alternatives,355);assert.equal(warnings,25); // Fable 7: unit 8 68→58, four optional instead of five
 });
 
 test('yellow mini-check choices preserve all three lives and complete normally',()=>{
@@ -1873,6 +1873,42 @@ test('next lesson uses actual metadata and order, escapes titles, and ignores st
  assert.ok(html.includes('Описание «длинной темы»'));
  assert.equal(run('gNextUnit({id:"missing"})'),undefined);
  run(`gStartNextUnit(COURSE.grammar[2].id);`);assert.equal(run('G.unit'),unit.id);
+});
+
+test('Fable stage 7 unit 8: optional geography and two-word toponym forms are assessed',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/008_nombres_propios.json','utf8'));
+ const r=context([u]);
+ const geo=u.exercises[2].questions,travel=u.exercises[3].questions;
+ for(const text of ['Perú','India','Argentina','Ecuador']){
+   const q=geo.find(q=>q.prompt.includes(text));
+   assert.ok(q && q.answers.length===2,`missing optional ${text}`);
+   for(const a of q.answers)assert.equal(r(`grammarCorrect(${JSON.stringify(q)},${JSON.stringify(a)})`),true,text+' '+a);
+ }
+ const pairs=[['voy ___ museo.','al'],['vuelve ___ museo.','del'],['viajo ___ Salvador.','a El'],['viene ___ Cairo.','de El'],['Volvemos ___ Habana.','de La']];
+ for(const [part,answer] of pairs){
+   const q=travel.find(q=>q.prompt.toLowerCase().includes(part.toLowerCase()));
+   assert.ok(q,part);assert.equal(q.answers[0],answer);
+   assert.equal(r(`grammarCorrect(${JSON.stringify(q)},${JSON.stringify(answer)})`),true,part);
+ }
+ assert.equal(r(`grammarCorrect(${JSON.stringify(travel.find(q=>q.prompt==='Mañana viajo ___ Salvador.'))},'al')`),false);
+ assert.equal(r(`grammarCorrect(${JSON.stringify(travel.find(q=>q.prompt==='Mi amigo viene ___ Cairo.'))},'del')`),false);
+});
+
+test('Fable stage 7 unit 8: edited attempts are reissued while XP and achievements survive',()=>{
+ const updated=JSON.parse(fs.readFileSync('content/grammar/008_nombres_propios.json','utf8'));
+ const legacy=structuredClone(updated);legacy.revision=1;
+ for(const s of legacy.sections)s.check.revision=1;
+ legacy.exercises.forEach((g,i)=>g.revision=i<2?2:1);
+ const storage=new Map();let run=context([legacy],storage);unlockUntil(run,'exercise:8.3');
+ run(`render=()=>{};var u=COURSE.grammar[0],g=u.exercises[2];
+   P.xp=89;P.grammar[grammarKey(u,g)]={correct:12,total:15};save();
+   gStart(u.id,'exercise:8.3');gMove(1);gResponse(G.steps[G.at]).value='borrador';gSave();gExit();`);
+ const before=run('JSON.stringify(P)');
+ run=context([updated],storage);run(`render=()=>{};gStart(COURSE.grammar[0].id,'all',true);`);
+ assert.equal(run('JSON.stringify(P)'),before,'XP and historical best must survive');
+ const state=JSON.parse(run(`JSON.stringify((()=>{const u=gUnit(),g=u.exercises[2],a=gAttempt(u,g);return {revision:a.revision,responses:Object.keys(a.responses).length,errors:a.errors,best:P.grammar[grammarKey(u,g)],xp:P.xp};})())`));
+ assert.equal(state.revision,2);assert.equal(state.responses,0);assert.equal(state.errors,0);
+ assert.deepEqual(state.best,{correct:12,total:15});assert.equal(state.xp,89);
 });
 
 test('Fable stage 6 unit-13 revisions restart stale answers without deleting XP or best results',()=>{
@@ -1980,7 +2016,7 @@ test('migrating several revised exercises returns the current exercise to its be
    store.set(G_ATTEMPTS_KEY,JSON.stringify(records));store.set(G_SESSION_KEY,JSON.stringify(G));G=null;`);
  run=context([u],storage);run(`gStart(COURSE.grammar[0].id,'all',true)`);
  assert.equal(run('G.steps[G.at].type'),'intro');assert.equal(run('G.steps[G.at].group'),'8.1');
- assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).revision'),2);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).revision'),3); // Fable stage7: 8.2 bumped to revision 3
  assert.equal(run('Object.keys(gAttempt(gUnit(),gUnit().exercises[1]).responses).length'),0);
 });
 
@@ -2134,8 +2170,8 @@ test('multiple accepted answers cannot hide an always-correct last position behi
 test('article recall accepts every preserved answer, case and whitespace, while rejecting extra accents and wrong forms',()=>{
  const units=fs.readdirSync('content/grammar').filter(f=>/^\d{3}_.+\.json$/.test(f)).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
  const run=context(units);
- const result=JSON.parse(run(`JSON.stringify((()=>{let count=0;for(const u of COURSE.grammar)for(const g of u.exercises)for(const q of g.questions){if(q.interaction!=='article-input')continue;count++;for(const a of q.answers){const value='  '+a.toUpperCase().replace(/ /g,'   ')+'  ';if(!grammarResult(q,value,g,true).good)throw Error(g.id+': '+a);}if(grammarResult(q,'ellos',g,true).good)throw Error(g.id+': wrong article');if(q.inputFormat.example||q.options)throw Error(g.id+': answer cue');}return {count};})())`));
- assert.equal(result.count,187); // Fable 5: unit 5 now has 16 instead of 15 article-input questions
+ const result=JSON.parse(run(`JSON.stringify((()=>{let count=0;for(const u of COURSE.grammar)for(const g of u.exercises)for(const q of g.questions){if(q.interaction!=='article-input')continue;count++;for(const a of q.answers){const value='  '+a.toUpperCase().replace(/ /g,'   ')+'  ';if(!grammarResult(q,value,g,true).good)throw Error(g.id+': '+a);}if(grammarResult(q,'ellos',g,true).good)throw Error(g.id+': wrong article');if(q.inputFormat?.example||q.options)throw Error(g.id+': answer cue');}return {count};})())`));
+ assert.equal(result.count,177); // Fable 7: unit 8 now has 18 instead of 28 article-input questions
  for(const value of ['él','ellos','es la','un padre',''])assert.equal(run(`grammarResult(COURSE.grammar[5].exercises[1].questions[0],${JSON.stringify(value)},COURSE.grammar[5].exercises[1],true).good`),false);
 });
 

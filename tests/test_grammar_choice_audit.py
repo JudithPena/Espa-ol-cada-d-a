@@ -26,6 +26,9 @@ def test_audit_covers_all_units_and_offers_every_accepted_choice():
         elif unit['number'] == 13:
             # Historical Nov 8 audit counted 49; Stage 6 now has 48.
             assert record['reviewed'] == 49 and total == 48
+        elif unit['number'] == 8:
+            # Stage 7 supersedes the 68-question historical choice audit.
+            assert record['reviewed'] == 68 and total == 58
         else:
             assert total == record['reviewed']
         for group in groups(unit):
