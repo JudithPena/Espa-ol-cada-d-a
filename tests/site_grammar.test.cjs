@@ -501,8 +501,8 @@ test('second unit runs through locks, choice and typed questions and preserves f
   gMove(1);
  }`);
  assert.equal(run('G.ended'),true);
- assert.equal(run('P.grammar["002_el_libro_la_mesa/2.1"].correct'),32);
- assert.equal(run('P.grammar["002_el_libro_la_mesa/2.2"].correct'),6);
+ assert.equal(run('P.grammar["002_el_libro_la_mesa/2.1"].correct'),15);
+ assert.equal(run('P.grammar["002_el_libro_la_mesa/2.2"].correct'),11);
  assert.equal(run('P.grammar["002_el_libro_la_mesa/2.3"].correct'),10);
  assert.equal(run('P.grammar["001_el_hijo_la_hija/1.1"].correct'),10);
  assert.ok(run('gPlayerView()').includes('Поздравляю! Урок пройден!'));
@@ -516,7 +516,7 @@ test('new unit renders noun groups and typed pictures with matching instructions
  unlockUntil(run,'exercise:2.3');
  run('gStart(COURSE.grammar[0].id,"exercise:2.3");gMove(1);');
  const picture=run('gPlayerView()');
- assert.ok(picture.includes('Напиши название с артиклем'));
+ assert.ok(picture.includes('Впиши два слова: определённый артикль'));
  assert.ok(picture.includes('id="g-answer"') && picture.includes('Слова для упражнения'));
  assert.ok(!picture.includes('профессии'));
  const intro=run('gIntro(COURSE.grammar[0].exercises[2])');
@@ -534,7 +534,7 @@ test('third unit completes all stages and keeps previous units intact', () => {
  }`);
  assert.equal(run('G.ended'),true);
  assert.deepEqual(JSON.parse(run('JSON.stringify(gUnit().exercises.map(g=>P.grammar[grammarKey(gUnit(),g)].correct))')),[18,10,10]);
- assert.equal(run('P.grammar["002_el_libro_la_mesa/2.1"].correct'),32);
+ assert.equal(run('P.grammar["002_el_libro_la_mesa/2.1"].correct'),15);
  assert.ok(run('gPlayerView()').includes('Лучший результат: 38 из 38'));
 });
 
@@ -2737,4 +2737,46 @@ test('failed review preserves every different correction submitted for the same 
  for(const answer of ['first wrong','second wrong','third wrong'])assert.ok(r('gPlayerView()').includes(answer));
  r('gReviewTheory();');for(let i=1;i<g.theorySections.length;i++)r('gReviewMove(1);');r('gRepeatExercise();');
  assert.equal(r('gAttemptErrors(gAttempt(gUnit(),gUnit().exercises[0])).length'),0);
+});
+
+
+test('Fable stage 8 unit 2 accepts both gorilla genders, exact animal form and accent warning',()=>{
+ const r=context([unit2]),qs=unit2.exercises[2].questions;
+ for(const [q,a,status] of [
+   [qs[0],'el árbol','correct'],[qs[0],'el arbol','almost'],[qs[0],'la árbol','wrong'],
+   [qs[4],'el gorila','correct'],[qs[4],'la gorila','correct'],
+   [qs[1],'el tren','correct'],[qs[1],'la tren','wrong'],
+   [qs[7],'el tenedor','correct'],[qs[7],'la tenedor','wrong'],
+   [unit2.exercises[1].questions[5],'la','correct'],
+   [unit2.exercises[1].questions[5],'el','wrong'],
+   [unit2.exercises[1].questions[6],'el','correct'],
+   [unit2.exercises[1].questions[6],'la','wrong']]){
+   assert.equal(r(`grammarResult(${JSON.stringify(q)},${JSON.stringify(a)}).status`),status,q.prompt+'/'+a);
+ }
+ const q=unit2.sections[5].check.questions[1];
+ for(const a of ['la gorila','el gorila hembra']){
+   assert.ok(q.answers.includes(a)&&q.options.includes(a));
+   assert.equal(r(`grammarResult(${JSON.stringify(q)},${JSON.stringify(a)}).good`),true);
+ }
+ const other=context([unit2]);unlockUntil(other,'section:5');
+ other(`gStart(COURSE.grammar[0].id,'section:5');gMove(1);gPick(1);gMove(1);gPickValue('el gorila hembra');`);
+ assert.equal(other('gResponse(G.steps[G.at]).good'),true,'second correct button must work');
+});
+
+test('Fable stage 8 unit 2 revised groups preserve earned XP, best scores and invalidate stale answers',()=>{
+ const previous=structuredClone(unit2);previous.revision=1;
+ for(const g of [...previous.sections.map(s=>s.check),...previous.exercises])g.revision=(g.revision||2)-1;
+ previous.exercises[0].questions[0]={prompt:'___ atención',answers:['la'],options:['el','la'],explain:'Старое задание.'};
+ const storage=new Map();let r=context([previous],storage);unlockUntil(r,'exercise:2.1');
+ r(`render=()=>{};var u=COURSE.grammar[0],g=u.exercises[0];
+   P.xp=41;P.grammar[grammarKey(u,g)]={correct:25,total:32};save();
+   gStart(u.id,'exercise:2.1');gMove(1);gResponse(G.steps[G.at]).value='error';gCheck();gExit();`);
+ const before=r('JSON.stringify(P)');
+ assert.equal(r('gAttempt(COURSE.grammar[0],COURSE.grammar[0].exercises[0]).errors'),1);
+ r=context([unit2],storage);r(`render=()=>{};gStart(COURSE.grammar[0].id,'all',true);`);
+ assert.equal(r('JSON.stringify(P)'),before);
+ const data=JSON.parse(r(`JSON.stringify((()=>{const u=gUnit(),g=u.exercises[0],a=gAttempt(u,g);
+  return {revision:a.revision,errors:a.errors,responses:Object.keys(a.responses).length,
+          best:P.grammar[grammarKey(u,g)],xp:P.xp};})())`));
+ assert.deepEqual(data,{revision:2,errors:0,responses:0,best:{correct:25,total:32},xp:41});
 });
