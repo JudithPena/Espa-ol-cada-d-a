@@ -21,6 +21,8 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: "22"
+      - name: Новые проверки политики трёх жизней
+        run: node --test tests/site_grammar_policy.test.cjs
       - name: Плеер грамматики и распределение вариантов ответа
         run: node --test tests/site_grammar.test.cjs
       - name: Уроки основного курса на сайте (сценарии, проверка ответов)
