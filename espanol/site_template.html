@@ -2523,15 +2523,28 @@ function videoView() {
 
 function booksView() {
   return `<button class="btn ghost sm back" data-tab="home">← Главная</button><h2>📚 Разбор книг</h2><p class="muted">Выберите уровень книги</p>
-    <div class="levels">${BOOK_LEVELS.map(level => { const n = (COURSE.books || []).filter(b => b.level === level).length; return `<button class="lvl" data-book-level="${level}"><b>${level}</b><small>${n} ${plural(n, "книга", "книги", "книг")}</small></button>`; }).join("")}</div>`;
+    <div class="levels">${BOOK_LEVELS.map(level => { const n = (COURSE.books || []).filter(b => b.level === level && !b.collection).length; return `<button class="lvl" data-book-level="${level}"><b>${level}</b><small>${n} ${plural(n, "книга", "книги", "книг")}</small></button>`; }).join("")}</div>`;
 }
 const BOOK_LEVELS = ["A1", "A2", "B1", "B2", "C1", "C2"];
 const bookById = id => (COURSE.books || []).find(b => b.id === id);
 // Открытый текст: рассказ целиком или выбранная глава книги.
 const bookCurrentText = () => { const b = bookById(view.book); return b?.story || b?.chapters.find(c => c.id === view.bookChapter); };
+function bookCardsView(books) {
+  return `<div class="menu">${books.map(b => {
+    const count = (b.chapter_catalog || b.chapters).length;
+    const label = b.kind === "collection" ? `${b.books.length} рассказов` : b.story ? "рассказ" : `${count} ${plural(count, "глава", "главы", "глав")}`;
+    return `<button class="mcard book-card" data-book-id="${esc(b.id)}">${b.cover ? `<img class="book-cover" src="${esc(b.cover)}" alt="">` : `<span class="mi" aria-hidden="true">${esc(b.story?.icon || b.icon || "📖")}</span>`}<span><b>${esc(bookTitle(b))}</b><small>${b.series && !b.collection ? esc(b.series.title) + " · " : ""}${esc(b.author)} · ${label}</small></span><span aria-hidden="true">›</span></button>`;
+  }).join("")}</div>`;
+}
 function bookLevelView() {
-  const books = (COURSE.books || []).filter(b => b.level === view.bookLevel);
-  return `<button class="btn ghost sm back" data-book-nav="levels">← Все уровни</button><h2>Книги · ${esc(view.bookLevel)}</h2>${books.length ? `<div class="menu">${books.map(b => { const count = (b.chapter_catalog || b.chapters).length; return `<button class="mcard book-card" data-book-id="${esc(b.id)}">${b.cover ? `<img class="book-cover" src="${esc(b.cover)}" alt="">` : `<span class="mi" aria-hidden="true">${esc(b.story?.icon || b.icon || "📖")}</span>`}<span><b>${esc(bookTitle(b))}</b><small>${b.series ? esc(b.series.title) + " · " : ""}${esc(b.author)} · ${b.story ? "рассказ" : `${count} ${plural(count, "глава", "главы", "глав")}`}</small></span><span aria-hidden="true">›</span></button>`; }).join("")}</div>` : '<p class="muted">На этом уровне пока нет книг.</p>'}`;
+  const books = (COURSE.books || []).filter(b => b.level === view.bookLevel && !b.collection);
+  return `<button class="btn ghost sm back" data-book-nav="levels">← Все уровни</button><h2>Книги · ${esc(view.bookLevel)}</h2>${books.length ? bookCardsView(books) : '<p class="muted">На этом уровне пока нет книг.</p>'}`;
+}
+function bookCollectionView(book) {
+  const members = book.books.map(bookById).filter(Boolean);
+  const total = members.reduce((n, b) => n + (b.chapter_catalog || b.chapters).length, 0);
+  const ready = members.reduce((n, b) => n + b.chapters.length, 0);
+  return `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(book.level)}</button><section class="book-overview">${book.cover ? `<img class="book-cover-large" src="${esc(book.cover)}" alt="">` : ""}<h2>${esc(book.title)}</h2><p class="muted">${esc(book.author)} · ${esc(book.level)}</p><p class="book-availability">${members.length} рассказов · Доступно ${ready} из ${total} глав</p></section><h3>Рассказы сборника</h3>${bookCardsView(members)}`;
 }
 function bookChapterLabel(chapter) {
   const raw = typeof chapter.title === "string" ? chapter.title.trim() : "";
@@ -2543,7 +2556,7 @@ function bookTitle(book) {
   return `${book.series ? `${book.series.number}. ` : ""}${book.title}`;
 }
 function bookSeriesView(book) {
-  if (!book.series) return "";
+  if (!book.series || book.collection) return "";
   const siblings = (COURSE.books || []).filter(b => b.series?.id === book.series.id).sort((a, b) => a.series.number - b.series.number);
   if (siblings.length < 2) return "";
   const collection = book.series.id === "olly-richards-short-stories-beginners";
@@ -2554,9 +2567,10 @@ function bookSeriesView(book) {
 function bookChaptersView() {
   const b = bookById(view.book);
   if (!b) return booksView();
+  if (b.kind === "collection") return bookCollectionView(b);
   const catalog = b.chapter_catalog || b.chapters;
   const available = new Set(b.chapters.map(c => c.id));
-  return `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(b.level)}</button><section class="book-overview">${b.cover ? `<img class="book-cover-large" src="${esc(b.cover)}" alt="">` : ""}<h2>${esc(bookTitle(b))}</h2><p class="muted">${b.series ? esc(b.series.title) + " · " : ""}${esc(b.author)}</p>${catalog.length ? `<p class="book-availability">Доступно ${b.chapters.length} из ${catalog.length} глав</p>` : ""}</section>${bookSeriesView(b)}<h3>Главы</h3>${catalog.length ? `<div class="menu">${catalog.map(c => { const ready = available.has(c.id); return `<button class="mcard book-chapter-card" ${ready ? `data-book-chapter="${esc(c.id)}"` : 'disabled'}><span class="mi" aria-hidden="true">${esc(c.icon || "📖")}</span><span class="book-chapter-label"><b>${esc(bookChapterLabel(c))}</b>${ready ? "" : '<small class="book-chapter-soon">Скоро</small>'}</span><span class="book-chapter-arrow" aria-hidden="true">${ready ? "›" : ""}</span></button>`; }).join("")}</div>` : '<p class="muted">Опубликованных глав пока нет.</p>'}`;
+  return `${b.collection ? `<button class="btn ghost sm back" data-book-id="${esc(b.collection)}">← Рассказы сборника</button>` : `<button class="btn ghost sm back" data-book-nav="level">← Книги уровня ${esc(b.level)}</button>`}<section class="book-overview">${b.cover ? `<img class="book-cover-large" src="${esc(b.cover)}" alt="">` : ""}<h2>${esc(bookTitle(b))}</h2><p class="muted">${b.series ? esc(b.series.title) + " · " : ""}${esc(b.author)}</p>${catalog.length ? `<p class="book-availability">Доступно ${b.chapters.length} из ${catalog.length} глав</p>` : ""}</section>${bookSeriesView(b)}<h3>Главы</h3>${catalog.length ? `<div class="menu">${catalog.map(c => { const ready = available.has(c.id); return `<button class="mcard book-chapter-card" ${ready ? `data-book-chapter="${esc(c.id)}"` : 'disabled'}><span class="mi" aria-hidden="true">${esc(c.icon || "📖")}</span><span class="book-chapter-label"><b>${esc(bookChapterLabel(c))}</b>${ready ? "" : '<small class="book-chapter-soon">Скоро</small>'}</span><span class="book-chapter-arrow" aria-hidden="true">${ready ? "›" : ""}</span></button>`; }).join("")}</div>` : '<p class="muted">Опубликованных глав пока нет.</p>'}`;
 }
 // Переход по разделу книг: меняет экран, а запись в историю (адрес #books/…) делает navSync() в render().
 function bookGo(level = null, book = null, chapter = null) {

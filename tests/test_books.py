@@ -132,10 +132,16 @@ def test_library_covers_are_distinct_and_lola_titles_use_the_same_format():
             assert book['title'].count('Lola Lago') == 1
 
 
-def test_olly_collection_keeps_independent_levels_and_complete_contents():
+def test_olly_collection_has_one_parent_and_complete_contents():
     books = [b for b in load_books() if b.get('series', {}).get('id') == 'olly-richards-short-stories-beginners']
     assert [b['series']['number'] for b in books] == list(range(1, 9))
-    assert [b['level'] for b in books] == ['A2'] * 2 + ['B1'] * 6
+    assert [b['level'] for b in books] == ['B1'] * 8
+    parent = next(b for b in load_books() if b['id'] == 'olly-richards-short-stories-beginners')
+    assert parent['kind'] == 'collection' and parent['level'] == 'B1'
+    assert parent['vocabulary_min_level'] == 'A2'
+    assert parent['books'] == [b['id'] for b in books]
+    assert all(b['collection'] == parent['id'] for b in books)
+    assert parent['chapters'] == parent['chapter_catalog'] == []
     assert all(b['vocabulary_min_level'] == 'A2' for b in books)
     assert [len(b['chapter_catalog']) for b in books] == [4, 3, 3, 3, 3, 3, 3, 3]
     for book in books:
@@ -841,3 +847,26 @@ def test_a1_books_skip_words_of_the_site_a0_course():
         terms = [n['term'] for c in book['chapters'] for b in c['blocks'] for n in b['notes'] if isinstance(n, dict)]
         permitted = unusual | unusual_by_book.get(book['id'], set())
         assert not [t for t in terms if key(t) in a0 and t not in permitted], book['id']
+
+
+def test_collection_rejects_broken_links_duplicates_and_nested_collections(tmp_path):
+    import json
+    import pytest
+    base = dict(title='Title', author='Author', level='B1', vocabulary_min_level='A2')
+    parent = dict(base, id='collection', kind='collection', books=['member'])
+    member = dict(base, id='member', collection='collection')
+    for name in ('collection', 'member'):
+        (tmp_path / name).mkdir()
+    def write(p, m):
+        for name, data in (('collection', p), ('member', m)):
+            (tmp_path / name / 'book.json').write_text(json.dumps(data), encoding='utf-8')
+    write(parent, member)
+    assert len(load_books(tmp_path)) == 2
+    for p, m in [({**parent, 'books': ['member', 'member']}, member),
+                 ({**parent, 'books': ['missing']}, member),
+                 (parent, {**member, 'collection': 'missing'}),
+                 (parent, {**member, 'level': 'A2'}),
+                 (parent, {**member, 'kind': 'collection', 'books': ['collection']})]:
+        write(p, m)
+        with pytest.raises(ValueError):
+            load_books(tmp_path)

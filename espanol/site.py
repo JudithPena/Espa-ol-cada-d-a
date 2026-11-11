@@ -921,8 +921,17 @@ def load_books(directory: Path | None = None) -> list[dict]:
         if icon:
             meta["icon"] = icon.strip()
         kind = meta.get("kind", "book")
-        if kind not in ("book", "story"):
-            raise ValueError(f"{path}: kind — book или story")
+        if kind not in ("book", "story", "collection"):
+            raise ValueError(f"{path}: kind — book, story или collection")
+        if kind == "collection":
+            members = meta.get("books")
+            if (not isinstance(members, list) or not members
+                    or any(not isinstance(member, str) for member in members)
+                    or len(set(members)) != len(members)
+                    or (path.parent / "chapters").exists() or (path.parent / "story.json").exists()):
+                raise ValueError(f"{path}: у сборника нужен уникальный список books без собственного текста")
+            books.append({**meta, "cover": cover, "chapters": [], "chapter_catalog": []})
+            continue
         if kind == "story":
             # Рассказ без глав: весь текст в story.json, на сайте открывается сразу из карточки.
             story_path = path.parent / "story.json"
@@ -970,6 +979,20 @@ def load_books(directory: Path | None = None) -> list[dict]:
                 chapters.append(chapter)
         books.append({**meta, "cover": cover, "chapters": sorted(chapters, key=lambda c: c["order"]),
                       "chapter_catalog": sorted(chapter_catalog, key=lambda c: c["order"])})
+    by_id = {book["id"]: book for book in books}
+    for book in books:
+        parent_id = book.get("collection")
+        if parent_id is not None:
+            parent = by_id.get(parent_id)
+            if (not parent or parent.get("kind") != "collection"
+                    or book.get("kind") == "collection" or book["id"] not in parent["books"]
+                    or book["level"] != parent["level"]):
+                raise ValueError(f"{book['id']}: неверная связь с родительским сборником")
+        if book.get("kind") == "collection":
+            for member_id in book["books"]:
+                member = by_id.get(member_id)
+                if not member or member.get("collection") != book["id"]:
+                    raise ValueError(f"{book['id']}: произведение {member_id} не принадлежит сборнику")
     return sorted(books, key=lambda book: ((book.get("series") or {}).get("id", book["id"]),
                                           (book.get("series") or {}).get("number", 0)))
 
