@@ -172,7 +172,7 @@ def test_la_paella_loca_complete_chapters_notes_and_source_keys():
         for block in chapter['blocks']:
             assert 45 <= len(block['es'].split()) <= 150
             for language in ('es', 'ru'):
-                assert not __import__('re').search(r'(?m)^[–—][^\\n]*\\n\\n[–—]', block[language])
+                assert not __import__('re').search(r'(?m)^[–—][^\n]*\n\n[–—]', block[language])
             for note in block['notes']:
                 assert note['term'] not in learned, (chapter['number'], note['term'])
                 learned.add(note['term'])
