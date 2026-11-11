@@ -138,6 +138,45 @@ def structure_unit(unit: dict, file: str, validator: Draft202012Validator) -> li
                     found.append(_issue('ERROR', 'GUIDED_ARITY', unit, file, 'Число частей guidedGaps неверно.',
                                         'Для N списков вариантов нужны N+1 текстовых частей.',
                                         'Привести parts и choices к согласованному количеству.', name, index))
+            # Stage 3: contextual accent decisions must be justified by question data.
+            policy = q.get('accentPolicy', group.get('accentPolicy'))
+            contrasts = list(group.get('accentContrasts') or []) + list(q.get('accentContrasts') or [])
+            if policy == 'contextual' and not contrasts:
+                found.append(_issue('ERROR', 'ACCENT_CONTEXT_MISSING', unit, file,
+                                    'Контекстный режим без указанных грамматических противопоставлений.',
+                                    'Движок не должен угадывать значение пропущенного ударения.',
+                                    'Добавить accentContrasts или выбрать strict/soft.', name, index))
+            if policy == 'soft' and q.get('accentSensitive') is True:
+                found.append(_issue('ERROR', 'ACCENT_POLICY_CONFLICT', unit, file,
+                                    'Одновременно заданы мягкий и строгий режимы.',
+                                    'Проверка не должна зависеть от противоречивой конфигурации.',
+                                    'Оставить один явный режим.', name, index))
+            if contrasts and isinstance(answers, list):
+                tokens = {token.casefold() for answer in answers if isinstance(answer, str)
+                          for token in re.findall(r'\w+', answer, flags=re.UNICODE)}
+                for pair in contrasts:
+                    if not isinstance(pair, dict):
+                        continue  # JSON Schema reports the invalid structure.
+                    expected, entered = pair.get('expected', ''), pair.get('entered', '')
+                    if isinstance(expected, str) and expected.casefold() not in tokens:
+                        found.append(_issue('ERROR', 'ACCENT_CONTRAST_UNUSED', unit, file,
+                                            f'Контраст {expected!r} отсутствует в допустимых ответах.',
+                                            'Контекстный запрет никогда не сработает.',
+                                            'Сверить пару с answers, не придумывая новые варианты.', name, index))
+                    if isinstance(expected, str) and isinstance(entered, str):
+                        trans = str.maketrans('áéíóúÁÉÍÓÚ', 'aeiouAEIOU')
+                        if expected == entered or expected.translate(trans).casefold() != entered.translate(trans).casefold():
+                            found.append(_issue('ERROR', 'ACCENT_CONTRAST_INVALID', unit, file,
+                                                f'Пара {expected!r}/{entered!r} отличается не только акутом.',
+                                                'Контекстный режим описывает лишь отсутствие/наличие ударения.',
+                                                'Уточнить expected и entered.', name, index))
+            if q.get('gapAnswers') is not None:
+                count = len(gap_parts)-1 if isinstance(gap_parts, list) else len((guided or {}).get('choices', [])) if isinstance(guided, dict) else 0
+                if len(q['gapAnswers']) != count:
+                    found.append(_issue('ERROR', 'GAP_ANSWERS_ARITY', unit, file,
+                                        'Число списков gapAnswers не совпадает с числом пропусков.',
+                                        'Нельзя точно сопоставить варианты ответов с полями.',
+                                        'Для N полей задать N списков, не меняя общий answers.', name, index))
             if 'pictureCount' in q and not q.get('image'):
                 found.append(_issue('ERROR', 'MISSING_PICTURE', unit, file, 'pictureCount без изображения.',
                                     'Отрисовка картинки не сможет работать.', 'Добавить image и imageAlt.', name, index))
