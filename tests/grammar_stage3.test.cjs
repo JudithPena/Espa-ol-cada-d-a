@@ -96,9 +96,9 @@ test('real contextual policy catalog points to matching intact lesson positions'
       for(const [index,policy] of Object.entries(questions)){
         const q=group.questions[Number(index)];assert.ok(q);
         assert.equal(q.answers[0],policy.answer);
-        const target={...q,accentPolicy:policy.accentPolicy,accentContrasts:policy.accentContrasts};
+        const target={...q,...policy};
         assert.equal(grade(target,q.answers[0],group).good,true);
-        for(const pair of policy.accentContrasts){
+        for(const pair of (policy.accentContrasts||[])){
           const typed=q.answers[0].replace(new RegExp(pair.expected,'iu'),pair.entered);
           if(typed!==q.answers[0]){
             const result=grade(target,typed,group);
