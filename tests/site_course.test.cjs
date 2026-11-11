@@ -598,8 +598,15 @@ test('тема 01: ответы на предложение, благодарн�
 
 test('тема 01: старое прохождение «Утро в офисе» (версия 2) сохраняется, но просит пройти версию 3', () => {
   const storage = new Map([['espanol-cada-dia.v1', JSON.stringify({done: {'saludos/dialogue': {stars: 3, acc: 100, at: '2026-11-09'}},
-    ver: {'saludos/dialogue': {v: 2}}, xp: 40})]]);
+    ver: {'saludos/dialogue': {v: 2}}, xp: 40,
+    // Ключи заданий старой версии (удалённый вопрос, прежние условия 9:00) — в истории навыков.
+    skills: {polite: {s: 1, due: 0, n: 1, ok: 1, err: 0, seen: ['saludos/dialogue|почему пабло говорит perdón']},
+      greeting_time: {s: 1, due: 0, n: 1, ok: 1, err: 0, seen: ['saludos/vocab1|☀️ 9:00. вы входите в офис.']}}})]]);
   const run = context(site, storage);
+  run(`startLesson(${idx(run, 'saludos/dialogue')})`);
+  assert.ok(run('S.steps.length') > 10, 'урок новой версии открывается при старых ключах в истории');
+  run('startPhraseReview()');
+  assert.ok(run('S.steps.length') >= 1, 'повторение навыков работает со старыми ключами');
   const i = idx(run, 'saludos/dialogue');
   assert.equal(run(`LESSONS[${i}].version`), 3);
   assert.equal(run(`isDone(${i})`), true, 'старое прохождение не стёрто');
