@@ -249,15 +249,26 @@ function gReviewTheory() {
 function gReviewMove(delta) {
   const unit=gUnit(), group=gGroups(unit).find(g=>g.id===G.recovery), attempt=group && gAttempt(unit,group);
   if(attempt?.status!=='review') return;
+  if(delta<0 && !attempt.reviewAt) return gReturnToMistake();
   attempt.reviewAt=Math.max(0,Math.min(gTheorySections(unit,group).length-1,(attempt.reviewAt||0)+delta));
   gStoreAttempt(unit,group,attempt); gSave(); render();
+}
+function gReturnToMistake() {
+  if(!G?.recovery) return;
+  const unit=gUnit(), group=gGroups(unit).find(g=>g.id===G.recovery);
+  const attempt=group && gAttempt(unit,group);
+  if(attempt?.status!=='review') return;
+  attempt.status='failed';
+  gStoreAttempt(unit,group,attempt);
+  G.recovery=null;
+  gSave(); render();
 }
 // «Назад» браузера в плеере: есть ли предыдущий шаг (иначе выход к разделам урока).
 function gCanBack() {
   if(!G) return false;
   if(G.recovery) {
     const unit=gUnit(), group=gGroups(unit).find(g=>g.id===G.recovery), attempt=group && gAttempt(unit,group);
-    return attempt?.status==='review' && (attempt.reviewAt||0)>0;
+    return attempt?.status==='review';
   }
   return !G.ended && G.at>0;
 }
@@ -303,7 +314,7 @@ function gRecoveryView(unit) {
   const group=gGroups(unit).find(g=>g.id===G.recovery), attempt=gAttempt(unit,group);
   if(attempt.status==='review') {
     const sections=gTheorySections(unit,group), at=attempt.reviewAt||0, section=unit.sections[sections[at]], last=at===sections.length-1;
-    return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><span class="greview-label">Повторение правила</span><span class="pcount">${at+1}/${sections.length}</span></div>${gContext(unit,{type:"theory",section:sections[at]},true,`Повторение · ${at+1} из ${sections.length}`)}</div><div class="pbody"><div class="wrap">${gTheory(section)}</div></div><div class="pfoot"><div class="wrap gplayer-actions"><button class="btn ghost" ${at?'data-greview-back':'data-gexit'}>← Назад</button><button class="btn" ${last?'data-grepeat-exercise':'data-greview-next'}>${last?'Попробовать ещё раз':'Далее →'}</button></div></div></div>`;
+    return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><span class="greview-label">Повторение правила</span><span class="pcount">${at+1}/${sections.length}</span></div>${gContext(unit,{type:"theory",section:sections[at]},true,`Повторение · ${at+1} из ${sections.length}`)}</div><div class="pbody"><div class="wrap">${gTheory(section)}</div></div><div class="pfoot"><div class="wrap gplayer-actions greview-actions"><button class="btn ghost" data-greview-mistake>← К разбору ошибки</button>${at?'<button class="btn ghost" data-greview-back>← Назад по теории</button>':''}<button class="btn" ${last?'data-grepeat-exercise':'data-greview-next'}>${last?'Попробовать ещё раз':'Далее →'}</button></div></div></div>`;
   }
   return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="К разделам урока">×</button><span class="greview-label">Повторение упражнения</span>${gHearts(attempt, group)}</div>${gContext(unit,{type:"intro",group:group.id})}</div><div class="pbody"><div class="wrap gresult gfailed"><span class="gresult-icon" aria-hidden="true">📖</span><h2 id="g-title" tabindex="-1">Пока не получилось. Давай повторим правило!</h2><p>Лимит ошибок исчерпан (${gErrorLimit(group)}). Повтори теорию, а затем попробуй пройти упражнение ещё раз.</p><p class="muted">Начнём с правила «${esc(unit.sections[gTheorySections(unit,group)[0]].title)}».</p></div></div><div class="pfoot"><div class="wrap"><button class="btn wide" data-greview-theory>Повторить теорию</button></div></div></div>`;
 }
