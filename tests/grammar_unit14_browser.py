@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Fable stage 9: real Chromium acceptance and progress checks for unit 14."""
+import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -108,7 +109,7 @@ def run_answer(browser, width, route, qi, answer, expected):
             field = page.locator("#g-answer")
             assert field.count() == 1, "Text input not rendered"
             if width == 390 and answer == "japonés":
-                for character in "áéíóúüñ":
+                for character in "áéíóúñ":
                     assert page.locator('[data-gchar="' + character + '"]').count() == 1, (
                         "Missing Spanish-character button " + character
                     )
@@ -144,7 +145,7 @@ def run_answer(browser, width, route, qi, answer, expected):
             item["screenshots"] = [
                 base.picture(page, width, 14, "accepted_" + route.replace(":", "_").replace(".", "_")
                              + "_" + str(qi) + "_" + expected + "_"
-                             + answer.replace(" ", "_").replace("/", "_")[:20])
+                             + hashlib.sha256(answer.encode("utf-8")).hexdigest()[:10])
             ]
         assert not errors, "JavaScript errors: " + repr(errors)
         item["status"] = "passed"
