@@ -145,7 +145,8 @@ def test_olly_collection_has_one_parent_and_complete_contents():
     assert all(b['vocabulary_min_level'] == 'A2' for b in books)
     assert [len(b['chapter_catalog']) for b in books] == [4, 3, 3, 3, 3, 3, 3, 3]
     for book in books:
-        expected = [1, 2, 3, 4] if book['id'] == 'olly-richards-la-paella-loca' else [1]
+        expected = ([1, 2, 3, 4] if book['id'] == 'olly-richards-la-paella-loca' else
+                    [1, 2, 3] if book['id'] == 'olly-richards-la-criatura' else [1])
         assert [c['number'] for c in book['chapters']] == expected
         assert [c['status'] for c in book['chapter_catalog']] == (
             ['published'] * len(expected) + ['draft'] * (len(book['chapter_catalog']) - len(expected)))
@@ -157,6 +158,41 @@ def test_olly_collection_has_one_parent_and_complete_contents():
     assert sum(len(b.get('images', [])) for book in books for chapter in book['chapters']
                for b in chapter['blocks']) == 7
     assert sum(len(book.get('pending_illustrations', [])) for book in books) == 1
+
+def test_la_criatura_finished_chapters_match_source_and_exercises():
+    import hashlib
+    import re
+
+    book = next(b for b in load_books() if b['id'] == 'olly-richards-la-criatura')
+    assert [c['title'] for c in book['chapters']] == [
+        'La excursión', 'La búsqueda', 'La sorpresa']
+    assert [c['status'] for c in book['chapters']] == ['published'] * 3
+    assert [len(c['blocks']) for c in book['chapters'][1:]] == [8, 7]
+    expected = [
+        (2, 1030, 'b68d15ee5e47afdbcbea970c263cad0ae254f9fd89df70f95fd84f8ead2719da',
+         64, [1, 3, 2, 0, 1]),
+        (3, 902, '09517c043b086f6d892a89a69c70536fc1e1196cea09b8a3ee126836e147c318',
+         48, [2, 0, 3, 0, 2]),
+    ]
+    seen = {n.get('term') for b in book['chapters'][0]['blocks']
+            for n in b['notes'] if isinstance(n, dict) and n.get('term')}
+    for chapter, (number, words, digest, note_count, answers) in zip(book['chapters'][1:], expected):
+        assert chapter['number'] == number
+        source = re.sub(r'\\s+', ' ', ' '.join(b['es'] for b in chapter['blocks'])).strip()
+        assert len(source.split()) == words
+        assert hashlib.sha256(source.encode()).hexdigest() == digest
+        assert chapter['source']['heading_page'] == (45 if number == 2 else 51)
+        notes = [n for b in chapter['blocks'] for n in b['notes']]
+        assert len(notes) == note_count
+        terms = {n['term'] for n in notes}
+        assert len(terms) == len(notes) and not (terms & seen)
+        seen |= terms
+        assert all(60 <= len(b['es'].split()) <= 160 for b in chapter['blocks'])
+        assert all(b['ru'] and b['pronouns'] for b in chapter['blocks'])
+        exercises = chapter['exercises'][0]
+        assert exercises['source']['answer_key_page'] == 190
+        assert [q['answer'] for q in exercises['questions']] == answers
+
 
 def test_la_paella_loca_complete_chapters_notes_and_source_keys():
     book = next(b for b in load_books() if b['id'] == 'olly-richards-la-paella-loca')
