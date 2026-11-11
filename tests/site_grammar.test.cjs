@@ -274,7 +274,7 @@ test('corrections preserve the first-answer score without duplicate XP', () => {
  const run=context();
  unlockUntil(run,'exercise:1.1');
  run(`gStart(COURSE.grammar[0].id,"exercise:1.1"); gMove(1);
-   while(!G.ended) { const step=G.steps[G.at], group=gGroups(gUnit()).find(g=>g.id===step.group); gResponse(step).value=!step.correction && step.qi===0?"wrong":group.questions[step.qi].answers[0]; gCheck(); gMove(1); }`);
+   for(let __grammarGuard=0;!G.ended&&__grammarGuard++<300;) { const step=G.steps[G.at], group=gGroups(gUnit()).find(g=>g.id===step.group); gResponse(step).value=!step.correction && step.qi===0?"wrong":group.questions[step.qi].answers[0]; gCheck(); gMove(1); }`);
  assert.equal(run('P.grammar["001_el_hijo_la_hija/1.1"].correct'),9);
  assert.equal(run('P.xp'),18);
  run('gRetry();');
@@ -307,7 +307,7 @@ test('stages unlock in order after completing the previous practice', () => {
  assert.equal(run('gRouteOpen(COURSE.grammar[0],"section:1")'),false);
  run('gStart(COURSE.grammar[0].id,"exercise:1.3")');
  assert.equal(run('G'),null);
- run(`gStart(COURSE.grammar[0].id,"section:0"); gMove(1); while(!G.ended) { const step=G.steps[G.at]; gResponse(step).value=!step.correction && step.qi<2?"wrong":COURSE.grammar[0].sections[0].check.questions[step.qi].answers[0];gCheck();gMove(1); }`);
+ run(`gStart(COURSE.grammar[0].id,"section:0"); gMove(1); for(let __grammarGuard=0;!G.ended&&__grammarGuard++<300;) { const step=G.steps[G.at]; gResponse(step).value=!step.correction && step.qi<2?"wrong":COURSE.grammar[0].sections[0].check.questions[step.qi].answers[0];gCheck();gMove(1); }`);
  assert.equal(run('gRouteOpen(COURSE.grammar[0],"section:1")'),true);
  assert.equal(run('gRouteOpen(COURSE.grammar[0],"section:2")'),false);
 });
@@ -381,7 +381,7 @@ test('typed answers always keep manual next, whether correct or incorrect', () =
 test('completion celebrates the whole unit and offers a next lesson only when available', () => {
  const run=context();
  unlockUntil(run,'exercise:1.3');
- run('gStart(COURSE.grammar[0].id,"exercise:1.3");gMove(1);while(!G.ended){const step=G.steps[G.at],group=gGroups(gUnit()).find(g=>g.id===step.group);if(step.type==="question"){gResponse(step).value=group.questions[step.qi].answers[0];gCheck();}gMove(1);}');
+ run('gStart(COURSE.grammar[0].id,"exercise:1.3");gMove(1);for(let __grammarGuard=0;!G.ended&&__grammarGuard++<300;){const step=G.steps[G.at],group=gGroups(gUnit()).find(g=>g.id===step.group);if(step.type==="question"){gResponse(step).value=group.questions[step.qi].answers[0];gCheck();}gMove(1);}');
  let html=run('gPlayerView()');
  assert.ok(html.includes('Поздравляю! Урок пройден!'));
  assert.ok(html.includes('gfireworks') && html.includes('data-gmain'));
@@ -794,7 +794,7 @@ test('the group-name mini-check keeps errors and repeats them without losing liv
  assert.equal(run('G.steps[G.at].correction'),true);
  assert.equal(run('gAttempt(gUnit(),gUnit().sections[8].check).errors'),3);
  assert.equal(run('!!P.grammar[grammarKey(gUnit(),gUnit().sections[8].check)]'),false);
- run(`while(!G.ended){const s=G.steps[G.at];gResponse(s).value=gUnit().sections[8].check.questions[s.qi].answers[0];gCheck();gMove(1);}`);
+ run(`for(let __grammarGuard=0;!G.ended&&__grammarGuard++<300;){const s=G.steps[G.at];gResponse(s).value=gUnit().sections[8].check.questions[s.qi].answers[0];gCheck();gMove(1);}`);
  assert.equal(run('gAttempt(gUnit(),gUnit().sections[8].check).errors'),3);
  assert.equal(run('P.grammar[grammarKey(gUnit(),gUnit().sections[8].check)].correct'),0);
 });
@@ -1046,7 +1046,7 @@ test('failed 3.2 reviews its own rule, preserves review position and resets only
  assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).errors'),0);
  assert.notEqual(run('gAttempt(gUnit(),gUnit().exercises[1]).id'),oldId);
  assert.equal(run('Object.keys(G.responses["3.2"]).length'),0);
- run('gMove(1);while(!G.ended){const s=G.steps[G.at];gResponse(s).value=gUnit().exercises[1].questions[s.qi].answers[0];gCheck();gMove(1);}');
+ run('gMove(1);for(let __grammarGuard=0;!G.ended&&__grammarGuard++<300;){const s=G.steps[G.at];gResponse(s).value=gUnit().exercises[1].questions[s.qi].answers[0];gCheck();gMove(1);}');
  assert.equal(run('P.grammar[gUnit().id+"/3.2"].correct'),10);
 });
 
@@ -1065,7 +1065,7 @@ test('multi-part theory starts at the right block and cannot reset hearts before
 
 test('third mistake on the last question fails, and previous successful results remain intact', () => {
  const run=context([unit]);unlockUntil(run,'exercise:1.1');
- run('gStart(COURSE.grammar[0].id,"exercise:1.1");gMove(1);while(!G.ended){const s=G.steps[G.at];gResponse(s).value=gUnit().exercises[0].questions[s.qi].answers[0];gCheck();gMove(1);}');
+ run('gStart(COURSE.grammar[0].id,"exercise:1.1");gMove(1);for(let __grammarGuard=0;!G.ended&&__grammarGuard++<300;){const s=G.steps[G.at];gResponse(s).value=gUnit().exercises[0].questions[s.qi].answers[0];gCheck();gMove(1);}');
  const xp=run('P.xp'),best=run('P.grammar[gUnit().id+"/1.1"].correct');
  run('gStart(COURSE.grammar[0].id,"exercise:1.1");gMove(1);for(let i=0;i<10;i++){const s=G.steps[G.at];gResponse(s).value=i>=7?"wrong":gUnit().exercises[0].questions[i].answers[0];gCheck();if(i<9)gMove(1);}');
  assert.equal(run('G.recovery'),'1.1');
@@ -1084,7 +1084,7 @@ test('duplicate submission and back navigation never refund or double-charge hea
 
 test('errors during correction do not consume lives or change the first-answer score', () => {
  const run=context([unit]);unlockUntil(run,'exercise:1.1');
- run('gStart(COURSE.grammar[0].id,"exercise:1.1");gMove(1);while(!G.ended){const s=G.steps[G.at];gResponse(s).value=!s.correction && s.qi<2?"wrong":gUnit().exercises[0].questions[s.qi].answers[0];gCheck();gMove(1);}gRetry();gResponse(G.steps[G.at]).value="wrong";gCheck();');
+ run('gStart(COURSE.grammar[0].id,"exercise:1.1");gMove(1);for(let __grammarGuard=0;!G.ended&&__grammarGuard++<300;){const s=G.steps[G.at];gResponse(s).value=!s.correction && s.qi<2?"wrong":gUnit().exercises[0].questions[s.qi].answers[0];gCheck();gMove(1);}gRetry();gResponse(G.steps[G.at]).value="wrong";gCheck();');
  assert.ok(!run('G.recovery'));
  assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),2);
  assert.equal(run('P.grammar[gUnit().id+"/1.1"].correct'),8);
@@ -1163,7 +1163,7 @@ test('life counts round up per five questions with a minimum of three',()=>{
    run('gMove(1);');
   }
   assert.equal(run('G.ended'),false);
-  run(`while(!G.ended){const s=G.steps[G.at];gResponse(s).value=gUnit().exercises[0].questions[s.qi].answers[0];gCheck();gMove(1);}`);
+  run(`for(let __grammarGuard=0;!G.ended&&__grammarGuard++<300;){const s=G.steps[G.at];gResponse(s).value=gUnit().exercises[0].questions[s.qi].answers[0];gCheck();gMove(1);}`);
   assert.equal(run('P.grammar[gUnit().id+"/3.1"].correct'),size-limit+1);
  }
 });
@@ -1227,7 +1227,7 @@ test('correction queue and drafts survive reload and keep the next section locke
  assert.equal(run(`gRouteOpen(gUnit(),'exercise:1.2')`),false);
  run(`gResponse(G.steps[G.at]).value=gUnit().exercises[0].questions[G.steps[G.at].qi].answers[0];gCheck();gMove(1);`);
  // Complete whichever of the two mistakes remains after the earlier click.
- while(!run('G.ended'))run(`gResponse(G.steps[G.at]).value=gUnit().exercises[0].questions[G.steps[G.at].qi].answers[0];gCheck();gMove(1);`);
+ for(let __grammarGuard=0;!run('G.ended')&&__grammarGuard++<300;)run(`gResponse(G.steps[G.at]).value=gUnit().exercises[0].questions[G.steps[G.at].qi].answers[0];gCheck();gMove(1);`);
  assert.equal(run(`gRouteOpen(gUnit(),'exercise:1.2')`),true);
  assert.equal(run('P.grammar[gUnit().id+"/1.1"].correct'),8);
  assert.equal(run('P.xp'),16);
@@ -1301,7 +1301,7 @@ test('all mini-checks allow every first answer to be wrong, then require correct
   assert.equal(run('G.steps[G.at].correction'),true);
   run(`gResponse(G.steps[G.at]).value='wrong';gCheck();gMove(1);`);
   assert.equal(run('G.steps[G.at].qi'),0);
-  run(`while(!G.ended){const s=G.steps[G.at];gResponse(s).value=gUnit().sections[${i}].check.questions[s.qi].answers[0];gCheck();gMove(1);}`);
+  run(`for(let __grammarGuard=0;!G.ended&&__grammarGuard++<300;){const s=G.steps[G.at];gResponse(s).value=gUnit().sections[${i}].check.questions[s.qi].answers[0];gCheck();gMove(1);}`);
   assert.equal(run(`gAttempt(gUnit(),gUnit().sections[${i}].check).errors`),section.check.questions.length);
   assert.equal(run(`P.grammar[grammarKey(gUnit(),gUnit().sections[${i}].check)].correct`),0);
  }
@@ -1490,7 +1490,7 @@ test('yellow answers survive reload, cost no lives and do not enter the correcti
  assert.equal(run('gUnit().exercises[0].questions[2].answers[0]'),'tíos');
  run(`gMove(1);`);
  assert.deepEqual(JSON.parse(run('JSON.stringify(G.steps.filter(s=>s.correction).map(s=>s.qi))')),[0,1]);
- run(`while(!G.ended){const s=G.steps[G.at];gResponse(s).value=gUnit().exercises[0].questions[s.qi].answers[0];gCheck();gMove(1);}`);
+ run(`for(let __grammarGuard=0;!G.ended&&__grammarGuard++<300;){const s=G.steps[G.at];gResponse(s).value=gUnit().exercises[0].questions[s.qi].answers[0];gCheck();gMove(1);}`);
  assert.equal(run('P.grammar[gUnit().id+"/3.1"].correct'),1);
  assert.equal(run('P.xp'),2);
 });
@@ -1832,7 +1832,7 @@ test('an updated exercise discards obsolete correction steps while the same revi
 test('all eight new profession questions pass with their contextual answers and cannot be passed by omission',()=>{
  const u=JSON.parse(fs.readFileSync('content/grammar/005_sin_articulo.json','utf8'));
  let run=context([u]);unlockUntil(run,'exercise:5.1');
- run(`gStart(COURSE.grammar[0].id,'exercise:5.1');gMove(1);while(!G.ended){const s=G.steps[G.at];gResponse(s).value=gUnit().exercises[0].questions[s.qi].answers[0];gCheck();gMove(1);}`);
+ run(`gStart(COURSE.grammar[0].id,'exercise:5.1');gMove(1);for(let __grammarGuard=0;!G.ended&&__grammarGuard++<300;){const s=G.steps[G.at];gResponse(s).value=gUnit().exercises[0].questions[s.qi].answers[0];gCheck();gMove(1);}`);
  assert.equal(run('P.grammar[grammarKey(gUnit(),gUnit().exercises[0])].correct'),8);
  assert.equal(run('P.xp'),16);
  run=context([u]);unlockUntil(run,'exercise:5.1');
@@ -1908,7 +1908,7 @@ test('attempt order is unchanged by checking, back, reload and correction; compl
  assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).id'),attemptId);
  assert.equal(run('JSON.stringify(gAttempt(gUnit(),gUnit().exercises[0]).optionOrders)'),orders);
  assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),1);
- run(`gMove(1);while(!G.ended){gPickValue('a');gMove(1);}`);
+ run(`gMove(1);for(let __grammarGuard=0;!G.ended&&__grammarGuard++<300;){gPickValue('a');gMove(1);}`);
  assert.equal(run('JSON.stringify(gAttempt(gUnit(),gUnit().exercises[0]).optionOrders)'),orders);
  assert.equal(run('P.grammar[grammarKey(gUnit(),gUnit().exercises[0])].correct'),7);
  run(`gStart(gUnit().id,'exercise:4.1');gMove(1);`);
