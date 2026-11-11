@@ -81,3 +81,27 @@ jobs:
             git commit -m "test(grammar): archive PR 34 Chromium visual evidence [skip ci]"
             git push origin HEAD:fix/grammar-three-lives-review-20261111
           fi
+
+  grammar-immediate-feedback-browser:
+    if: github.event_name == 'pull_request' && (github.head_ref == 'fix/grammar-immediate-feedback-20261111' || github.head_ref == 'audit/grammar-schema-linter-20261111')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install dependencies and real Playwright Chromium
+        run: |
+          python -m pip install -r requirements.txt playwright
+          python -m playwright install --with-deps chromium
+      - name: Build local website without deploying
+        run: python -m espanol site
+      - name: Chromium regression (320, 390, 768, 1280px; 1, 7, 15, 38, 45)
+        run: python tests/grammar_immediate_feedback_browser.py
+      - name: Archive screenshots and machine results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grammar-immediate-feedback-browser
+          path: docs/grammar_immediate_feedback_browser/
+          if-no-files-found: warn
