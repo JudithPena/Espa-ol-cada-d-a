@@ -1105,12 +1105,12 @@
           "interaction": "choice"
         },
         {
-          "prompt": "En el libro hay un ___ personaje.",
+          "prompt": "Pedro es un ___ compañero.",
           "answers": [
             "mal"
           ],
-          "explain": "`Personaje` — мужской род единственного числа. Перед ним `malo` сокращается до `mal`: `un mal personaje`. После существительного возможна полная форма `malo`.",
-          "context": "Обсуждают плохо написанного персонажа.",
+          "explain": "`Compañero` — мужской род, единственное число. Перед ним `malo` сокращается до `mal`: `un mal compañero`. После существительного сказали бы `un compañero malo`.",
+          "context": "О друзьях и работе Педро.",
           "sourceRef": "extra",
           "interaction": "input",
           "clues": [
@@ -1125,7 +1125,7 @@
           }
         },
         {
-          "prompt": "Una idea ___ no ayuda.",
+          "prompt": "La respuesta es ___.",
           "answers": [
             "mala"
           ],
@@ -1134,8 +1134,8 @@
             "malo",
             "mala"
           ],
-          "explain": "`Idea` женского рода, а прилагательное стоит после него: `una idea mala`. Перед существительным тоже `una mala idea` — женская полная форма.",
-          "context": "Отзыв о предложении.",
+          "explain": "`Respuesta` — женский род, а после `es` прилагательное стоит в полной форме: `mala`. Краткое `mal` возможно перед существительным мужского рода единственного числа, но не здесь.",
+          "context": "Преподаватель оценивает ответ ученика.",
           "sourceRef": "extra",
           "interaction": "gap-choice"
         }
