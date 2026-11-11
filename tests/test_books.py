@@ -182,7 +182,7 @@ def test_olly_collection_has_one_parent_and_complete_contents():
     assert [len(b['chapter_catalog']) for b in books] == [4, 3, 3, 3, 3, 3, 3, 3]
     for book in books:
         expected = ([1, 2, 3, 4] if book['id'] == 'olly-richards-la-paella-loca' else
-                    [1, 2, 3] if book['id'] in {'olly-richards-la-criatura', 'olly-richards-el-caballero', 'olly-richards-el-reloj', 'olly-richards-el-cofre', 'olly-richards-tierras-desconocidas', 'olly-richards-laura-la-mujer-invisible'} else [1])
+                    [1, 2, 3] if book['id'] in {'olly-richards-la-criatura', 'olly-richards-el-caballero', 'olly-richards-el-reloj', 'olly-richards-el-cofre', 'olly-richards-tierras-desconocidas', 'olly-richards-laura-la-mujer-invisible', 'olly-richards-la-capsula'} else [1])
         assert [c['number'] for c in book['chapters']] == expected
         assert [c['status'] for c in book['chapter_catalog']] == (
             ['published'] * len(expected) + ['draft'] * (len(book['chapter_catalog']) - len(expected)))
@@ -194,6 +194,85 @@ def test_olly_collection_has_one_parent_and_complete_contents():
     assert sum(len(b.get('images', [])) for book in books for chapter in book['chapters']
                for b in chapter['blocks']) == 8
     assert sum(len(book.get('pending_illustrations', [])) for book in books) == 0
+    assert sum(len(book['chapters']) for book in books) == 25
+    assert all(ch['status'] == 'published' for book in books for ch in book['chapter_catalog'])
+
+
+def test_la_capsula_finishes_anthology_with_full_original_and_study_notes():
+    """Eighth story: exact Spanish source, complete plot and publisher key."""
+    import hashlib
+    import re
+
+    book = next(b for b in load_books() if b['id'] == 'olly-richards-la-capsula')
+    assert book['vocabulary_min_level'] == 'A2'
+    assert [c['title'] for c in book['chapters']] == ['La cápsula', 'La niña', 'La verdad']
+    assert [c['status'] for c in book['chapters']] == ['published'] * 3
+    assert [len(c['blocks']) for c in book['chapters']] == [9, 10, 13]
+    expected = [
+        (2, 1169, '287b5c1161b42c31144687b1d972184006c2b708e7044d5dd747ab675be5d3d9',
+         70, 70, [1, 0, 3, 2, 1], 173, list(range(173, 181))),
+        (3, 1569, '72eb7a566aa204855dc7dbc891be502b0054d31c55347ba5b0801f3420addc00',
+         79, 92, [2, 0, 0, 1, 1], 181, list(range(181, 189))),
+    ]
+    learned = {note['term'].casefold() for b in book['chapters'][0]['blocks']
+               for note in b['notes'] if isinstance(note, dict) and note.get('term')}
+    for chapter, (number, words, digest, note_count, pronoun_count, answer_key,
+                  heading_page, pages) in zip(book['chapters'][1:], expected):
+        assert chapter['number'] == number
+        assert chapter['source']['heading_page'] == heading_page
+        spanish = re.sub(r'\s+', ' ', ' '.join(b['es'] for b in chapter['blocks'])).strip()
+        assert len(spanish.split()) == words
+        assert hashlib.sha256(spanish.encode('utf-8')).hexdigest() == digest
+        assert all(60 <= len(b['es'].split()) <= 180 and b['ru'] for b in chapter['blocks'])
+        assert sum(len(b['pronouns']) for b in chapter['blocks']) == pronoun_count
+        notes = [n for b in chapter['blocks'] for n in b['notes']]
+        assert len(notes) == note_count
+        terms = {n['term'].casefold() for n in notes}
+        assert len(terms) == note_count and not terms.intersection(learned)
+        learned.update(terms)
+        for block in chapter['blocks']:
+            for lang in ('es', 'ru'):
+                marked = []
+                for note in block['notes']:
+                    assert note['term'] and note['explanation'] and note[lang]
+                    for phrase in note[lang]:
+                        matches = list(re.finditer(
+                            r'(?<!\w)' + re.escape(phrase) + r'(?!\w)',
+                            block[lang], re.IGNORECASE))
+                        assert matches, (number, block['title'], lang, note['term'], phrase)
+                        for m in matches:
+                            assert all(m.end() <= a or m.start() >= z for a, z in marked), (
+                                'overlapping highlights', number, block['title'],
+                                lang, note['term'], phrase)
+                            marked.append((m.start(), m.end()))
+            for pronoun in block['pronouns']:
+                assert pronoun['es'] in block['es'], (
+                    number, block['title'], pronoun['es'])
+                assert all(pronoun.get(k) for k in ('translation', 'base', 'explanation'))
+        assert len(chapter['exercises']) == 1
+        quiz = chapter['exercises'][0]
+        assert quiz['source']['pdf_pages'] == pages
+        assert quiz['source']['chapters'] == [number]
+        assert quiz['source']['answer_key_page'] == 190
+        assert len(quiz['questions']) == 5
+        assert [len(q['options']) for q in quiz['questions']] == [4] * 5
+        assert [q['answer'] for q in quiz['questions']] == answer_key
+        assert not any(b.get('images') for b in chapter['blocks'])
+    assert not book['chapters'][1]['source'].get('editorial_corrections')
+    assert {(fix['pdf_page'], fix['printed'], fix['edited'])
+            for fix in book['chapters'][2]['source']['editorial_corrections']} == {
+        (181, 'Era el momento demostrar quién era.',
+         'Era el momento de demostrar quién era.'),
+        (182, 'No te lo he dije por una sola razón.',
+         'No te lo he dicho por una sola razón.'),
+    }
+    ch3 = ' '.join(b['es'] for b in book['chapters'][2]['blocks'])
+    assert 'No te lo he dicho por una sola razón.' in ch3
+    assert 'No te lo he dije' not in ch3
+    assert 'Entrégame a mi hija y acepto la paz.' in ch3
+    assert not {'lejos de (algo)', 'bastante + adjetivo', 'despertarse'} & (
+        {note['term'] for ch in book['chapters'][1:]
+         for b in ch['blocks'] for note in b['notes']})
 
 
 def test_laura_la_mujer_invisible_complete_chapters_full_text_notes_and_quizzes():
