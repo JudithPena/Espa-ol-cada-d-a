@@ -11,6 +11,12 @@ from playwright.sync_api import sync_playwright
 WIDTHS = (320, 390, 768, 1280)
 CASES = (
     (1, "exercise:1.1", "choice"),
+    (5, "section:0", "choice"),
+    (5, "section:1", "choice"),
+    (5, "section:2", "choice"),
+    (5, "exercise:5.1", "choice"),
+    (5, "exercise:5.2", "input"),
+    (5, "exercise:5.3", "choice"),
     (7, "exercise:7.1", "choice"),
     (7, "exercise:7.2", "choice"),
     (7, "exercise:7.3", "input"),
@@ -37,7 +43,8 @@ PREPARE = r"""({number,route}) => {
     if(group) P.grammar[grammarKey(u,group)]={correct:1,total:group.questions.length};
     else P.grammarRead[u.id+'/'+r]=true;
   }
-  const group=u.exercises.find(g=>route==='exercise:'+g.id);
+  const group=route.startsWith('section:') ? u.sections[+route.split(':')[1]].check
+    : u.exercises.find(g=>route==='exercise:'+g.id);
   if(!group)throw Error('Group absent');
   P.grammar[grammarKey(u,group)]={correct:1,total:group.questions.length};
   const score=JSON.stringify(P.grammar[grammarKey(u,group)]);
@@ -152,6 +159,24 @@ def run_case(browser, width, number, route, expected_mode):
                 assert_true(page.locator("[data-gcheck]").count()>0,label+": check button unavailable during compressed height")
                 page.set_viewport_size({"width":width,"height":820})
                 page.evaluate("gSyncViewport()")
+            if number==5 and route=="exercise:5.2" and n==1:
+                # A real browser click on ∅ must fill the article field without checking it or losing a life.
+                omit=page.locator("[data-gno-article]")
+                assert_true(omit.count()>0, "Unit 5: no-article input control is missing")
+                before_omit=page.evaluate("""() => {
+                    const s=G.steps[G.at],g=gGroups(gUnit()).find(g=>g.id===s.group);
+                    return gAttempt(gUnit(),g).errors;
+                }""")
+                omit.click()
+                omitted=page.evaluate("""() => {
+                    const s=G.steps[G.at],g=gGroups(gUnit()).find(g=>g.id===s.group);
+                    return {value:gResponse(s).value,checked:gResponse(s).checked,
+                            errors:gAttempt(gUnit(),g).errors};
+                }""")
+                assert_true(omitted["value"]=="∅" and omitted["checked"] is False
+                            and omitted["errors"]==before_omit,
+                            "Unit 5: ∅ must not submit or consume a life: "+str(omitted))
+                item["omission_button"]={"clicked":True,"value":omitted["value"],"errors":omitted["errors"]}
             enter_wrong(page,q)
             state=page.evaluate("""() => {
               const s=G.steps[G.at],g=gGroups(gUnit()).find(g=>g.id===s.group),a=gAttempt(gUnit(),g);
@@ -180,7 +205,7 @@ def run_case(browser, width, number, route, expected_mode):
                 assert_true(state["status"]=="active",label+": failed too early")
             item["layouts"][f"error_{n}"]=check_layout(page,label+f" error {n}")
             if number==1 or n==3:
-                item["screenshots"].append(picture(page,width,number,f"error_{n}"))
+                item["screenshots"].append(picture(page,width,number,f"{route.replace(':','_').replace('.','_')}_error_{n}"))
             if n<3:
                 next_button=page.locator("[data-gnext]")
                 assert_true(next_button.count()>0,label+": next unavailable")
@@ -190,17 +215,17 @@ def run_case(browser, width, number, route, expected_mode):
         assert_true(page.evaluate("Boolean(G.recovery)"),label+": theory didn't open")
         item["layouts"]["theory"]=check_layout(page,label+" theory")
         if number==1 or width==390:
-            item["screenshots"].append(picture(page,width,number,"theory"))
+            item["screenshots"].append(picture(page,width,number,route.replace(':','_').replace('.','_')+"_theory"))
         page.locator("[data-greview-mistake]").click()
         assert_true(page.evaluate("!G.recovery && G.steps[G.at].qi") == last,
                     label+": did not return to same failed question")
         assert_true(page.locator(".fb").inner_text().find("Верный ответ:")>=0,
                     label+": lost mistake analysis")
         if number==1 or width==390:
-            item["screenshots"].append(picture(page,width,number,"returned_to_error"))
+            item["screenshots"].append(picture(page,width,number,route.replace(':','_').replace('.','_')+"_returned_to_error"))
         page.locator("[data-grepeat-exercise]").click()
         remaining=page.evaluate("""() => {
-          const u=gUnit(),g=u.exercises.find(x=>x.id===G.steps[G.at].group);
+          const u=gUnit(),g=gGroups(u).find(x=>x.id===G.steps[G.at].group);
           const a=gAttempt(u,g);
           return {errors:a.errors,score:JSON.stringify(P.grammar[grammarKey(u,g)])};
         }""")
@@ -208,7 +233,7 @@ def run_case(browser, width, number, route, expected_mode):
         assert_true(remaining["score"]==initial["score"],label+": previous progress lost")
         item["layouts"]["retry"]=check_layout(page,label+" retry")
         if number==1 or width==390:
-            item["screenshots"].append(picture(page,width,number,"retry"))
+            item["screenshots"].append(picture(page,width,number,route.replace(':','_').replace('.','_')+"_retry"))
         assert_true(not exceptions, label+": JavaScript errors: "+str(exceptions))
         item["status"]="passed"
     except Exception as error:
@@ -216,7 +241,7 @@ def run_case(browser, width, number, route, expected_mode):
         item["error"]=repr(error)
         REPORT["failures"].append({"width":width,"unit":number,"error":repr(error)})
         try:
-            item["screenshots"].append(picture(page,width,number,"FAILED"))
+            item["screenshots"].append(picture(page,width,number,route.replace(':','_').replace('.','_')+"_FAILED"))
         except Exception:
             pass
     finally:

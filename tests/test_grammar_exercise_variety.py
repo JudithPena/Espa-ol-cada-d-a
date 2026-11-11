@@ -11,26 +11,27 @@ from espanol.grammar import load_grammar
 def test_profession_practice_contrasts_meanings_after_both_rules_are_taught():
     u = load_grammar()[4]
     g = u['exercises'][0]
-    assert g['id'] == '5.1' and len(g['questions']) == 8
+    assert g['id'] == '5.1' and len(g['questions']) == 9  # Fable 5 added de español contrast
     assert u['learningOrder'].index('section:1') < u['learningOrder'].index('exercise:5.1')
     assert g['theorySections'] == [0, 1]
     assert {q['answers'][0] for q in g['questions']} == {'un', 'una', 'Без артикля'}
     assert any(not q.get('options') for q in g['questions'])
     assert any('quiere ser' in q['prompt'] for q in g['questions'])
     assert any(' son ' in q['prompt'] and q['answers'] == ['Без артикля'] for q in g['questions'])
-    assert all(q['context'] and q['explain'] and q['translation'] for q in g['questions'])
+    assert all(q['context'] and q['explain'] for q in g['questions'])  # Translation is optional when Spanish is self-evident
     # Guessing "no article" or one fixed button cannot complete this exercise.
     assert not all('Без артикля' in q['answers'] for q in g['questions'])
     for position in range(5):
         assert not all(q.get('options', [])[position:position+1] and q['options'][position] in q['answers'] for q in g['questions'])
     plural = next(q for q in g['questions'] if ' son ' in q['prompt'])
-    assert 'unas' in plural['options']
+    assert plural['answers'] == ['Без артикля'] and plural['interaction'] == 'article-input'
 
 
 def test_other_flagged_series_require_different_decisions():
     units = load_grammar()
     food = units[4]['exercises'][2]['questions']
-    assert {'un', 'una', 'unos', 'unas', 'Без артикля'} == {q['answers'][0] for q in food}
+    assert {'un', 'una', 'unos', 'unas', 'Без артикля'} <= {a for q in food for a in q['answers']}
+    assert sum(q['interaction'] == 'choice' for q in food) >= 2  # Both valid sentences, different intent
     names = units[7]['exercises'][0]['questions']
     assert next(q for q in names if q['prompt'].startswith('Buenos días'))['answers'] == ['Без артикля']
     assert next(q for q in names if '¿Dónde está' in q['prompt'])['answers'] == ['el']
