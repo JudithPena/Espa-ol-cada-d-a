@@ -393,7 +393,13 @@ def markdown_report(findings: list[Finding], checked_units: int, checked_questio
 def count_content(directory: Path = DIRECTORY, only: set[int] | None = None) -> tuple[int,int]:
     count=questions=0
     for p in directory.glob('[0-9]*.json'):
-        u=json.loads(p.read_text())
+        try:
+            u=json.loads(p.read_text(encoding='utf-8'))
+        except (ValueError,UnicodeError):
+            # inspect_directory reports JSON_PARSE; statistics must not crash.
+            continue
+        if not isinstance(u,dict):
+            continue
         if only and u.get('number') not in only:continue
         count+=1
         questions+=sum(len(g['questions']) for g in u.get('exercises',[]))
