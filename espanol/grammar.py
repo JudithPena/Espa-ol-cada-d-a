@@ -24,7 +24,7 @@ def apply_accent_policies(unit: dict, unit_policies: dict, path: Path) -> None:
             question = questions[int(index)]
             if question['answers'][0] != settings['answer']:
                 raise ValueError(f"{path}: accent policy anchor differs from answer {group_id}/{index}")
-            question.update({key: settings[key] for key in ('accentPolicy', 'accentContrasts')
+            question.update({key: settings[key] for key in ('accentPolicy', 'accentContrasts', 'normalize', 'gapAnswers')
                              if key in settings})
 
 
