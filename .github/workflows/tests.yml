@@ -68,3 +68,36 @@ jobs:
             git commit -m "test(grammar): archive PR 34 Chromium visual evidence [skip ci]"
             git push origin HEAD:fix/grammar-three-lives-review-20261111
           fi
+
+  grammar-merge-audit-pr34:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/fix/grammar-three-lives-review-20261111'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Inspect merge conflicts with current PR base
+        run: |
+          git fetch origin claude/charming-cerf-bzze60
+          set +e
+          git -c user.name="PR audit" -c user.email="audit@localhost" merge --no-commit --no-ff origin/claude/charming-cerf-bzze60
+          status=$?
+          echo "Merge exit: $status"
+          echo "Unmerged paths:"
+          git diff --name-only --diff-filter=U
+          echo "Conflict markers (redacted to 240 lines each):"
+          for p in espanol/grammar_player.js tests/site_grammar.test.cjs espanol/site_template.html docs/site_grammar_guide.md; do
+            if git ls-files --unmerged -- "$p" | grep -q .; then
+              echo "::group::$p"
+              python - "$p" <<'PY'
+          import sys
+          lines=open(sys.argv[1]).read().splitlines()
+          markers=[i for i,x in enumerate(lines) if x.startswith(('<<<<<<<','=======','>>>>>>>'))]
+          for at in markers[:45]:
+              print(f'{at+1}: ' + ' | '.join(f'{j+1}:{lines[j][:180]}' for j in range(max(at-2,0),min(at+3,len(lines)))))
+          PY
+              echo "::endgroup::"
+            fi
+          done
+          git merge --abort >/dev/null 2>&1 || true
+          exit 0
