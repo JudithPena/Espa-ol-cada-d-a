@@ -187,7 +187,7 @@ def run_case(browser, width, number, route, expected_mode):
                 assert_true(state["status"]=="active",label+": failed too early")
             item["layouts"][f"error_{n}"]=check_layout(page,label+f" error {n}")
             if number==1 or n==3:
-                item["screenshots"].append(picture(page,width,number,f"{route.replace(\':\',\'_\').replace(\'.\',\'_\')}_error_{n}"))
+                item["screenshots"].append(picture(page,width,number,f"{route.replace(':','_').replace('.','_')}_error_{n}"))
             if n<3:
                 next_button=page.locator("[data-gnext]")
                 assert_true(next_button.count()>0,label+": next unavailable")
