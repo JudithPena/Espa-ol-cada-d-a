@@ -43,7 +43,7 @@ def test_other_flagged_series_require_different_decisions():
     assert all(q.get('clock') for q in time)
     assert any(not q.get('options') for q in time)
     feminine = units[1]['sections'][4]['check']['questions']
-    assert any(q['answers'] == ['el avión'] for q in feminine)
+    assert any('avión' in q['prompt'] and '-ción' in q['explain'] for q in feminine)
     assert any('Почему' in q['prompt'] for q in feminine)
 
 
