@@ -132,6 +132,42 @@ def test_library_covers_are_distinct_and_lola_titles_use_the_same_format():
             assert book['title'].count('Lola Lago') == 1
 
 
+
+def test_all_books_have_short_spoiler_free_annotations():
+    import json
+    from pathlib import Path
+    from espanol.site import load_books
+
+    files = sorted(Path("content/books").glob("*/book.json"))
+    assert len(files) == 14
+    annotations = {}
+    for path in files:
+        meta = json.loads(path.read_text(encoding="utf-8"))
+        summary = meta.get("annotation")
+        assert isinstance(summary, str) and 85 <= len(summary) <= 350, path
+        assert summary == summary.strip() and "\\n" not in summary and "<" not in summary and ">" not in summary, path
+        annotations[meta["id"]] = summary
+    # A collection has its own introduction; each member describes its own story.
+    anthology = json.loads(Path("content/books/olly-richards-short-stories-beginners/book.json").read_text(encoding="utf-8"))
+    assert all(annotations[child] != annotations[anthology["id"]] for child in anthology["books"])
+    for book in load_books():
+        assert book["annotation"] == annotations[book["id"]]
+
+
+def test_book_annotation_is_validated_when_present(tmp_path):
+    import json
+    import pytest
+    from espanol.site import load_books
+    folder = tmp_path / "test-book"
+    folder.mkdir()
+    base = {"id": "test-book", "title": "Libro", "author": "Autor",
+            "level": "A1", "vocabulary_min_level": "A1"}
+    for invalid in ("", "   ", 7, {"text": "wrong"}, "a" * 351, "dos\\nlíneas"):
+        (folder / "book.json").write_text(json.dumps({**base, "annotation": invalid}), encoding="utf-8")
+        with pytest.raises(ValueError, match="аннотация"):
+            load_books(tmp_path)
+
+
 def test_olly_collection_has_one_parent_and_complete_contents():
     books = [b for b in load_books() if b.get('series', {}).get('id') == 'olly-richards-short-stories-beginners']
     assert [b['series']['number'] for b in books] == list(range(1, 9))
