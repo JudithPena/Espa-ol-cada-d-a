@@ -34,10 +34,10 @@ def test_other_flagged_series_require_different_decisions():
     assert sum(q['interaction'] == 'choice' for q in food) >= 2  # Both valid sentences, different intent
     names = units[7]['exercises'][0]['questions']
     assert next(q for q in names if q['prompt'].startswith('Buenos días'))['answers'] == ['Без артикля']
-    assert next(q for q in names if '¿Dónde está' in q['prompt'])['answers'] == ['el']
+    assert next(q for q in names if '¿Dónde vive' in q['prompt'])['answers'] == ['el']
     assert any(q['answers'] == ['las'] for q in names)
     addresses = units[7]['exercises'][1]['questions']
-    assert {q['answers'][0] for q in addresses} == {'el', 'la', 'los', 'las'}
+    assert {q['answers'][0] for q in addresses if q['interaction'] == 'article-input'} == {'el', 'la', 'los', 'las'}
     time = units[8]['exercises'][0]['questions']
     assert {q['answers'][0].lower() for q in time} == {'son las', 'es la', 'a las', 'a la'}
     assert all(q.get('clock') for q in time)
