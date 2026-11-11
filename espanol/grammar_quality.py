@@ -177,6 +177,25 @@ def structure_unit(unit: dict, file: str, validator: Draft202012Validator) -> li
                                         'Число списков gapAnswers не совпадает с числом пропусков.',
                                         'Нельзя точно сопоставить варианты ответов с полями.',
                                         'Для N полей задать N списков, не меняя общий answers.', name, index))
+                if (isinstance(gap_parts, list) and len(q['gapAnswers']) == count and
+                        isinstance(answers, list) and all(isinstance(a, str) for a in answers)):
+                    widths = q.get('gapWordCounts') or [1] * count
+                    if (isinstance(widths, list) and len(widths) == count and
+                            all(isinstance(n, int) and n > 0 for n in widths) and
+                            all(len(a.split()) == sum(widths) for a in answers)):
+                        expected_slots = [set() for _ in range(count)]
+                        for answer in answers:
+                            words = answer.split()
+                            pos = 0
+                            for slot, width in enumerate(widths):
+                                expected_slots[slot].add(' '.join(words[pos:pos+width]))
+                                pos += width
+                        for slot, allowed in enumerate(q['gapAnswers']):
+                            if isinstance(allowed, list) and set(allowed) != expected_slots[slot]:
+                                found.append(_issue('ERROR', 'GAP_ANSWERS_INCONSISTENT', unit, file,
+                                                    f'У пропуска {slot+1} варианты расходятся с полным answers.',
+                                                    'Подсказка не может принимать или показывать несуществующие комбинации.',
+                                                    'Согласовать gapAnswers с исходными answers.', name, index))
             if 'pictureCount' in q and not q.get('image'):
                 found.append(_issue('ERROR', 'MISSING_PICTURE', unit, file, 'pictureCount без изображения.',
                                     'Отрисовка картинки не сможет работать.', 'Добавить image и imageAlt.', name, index))
