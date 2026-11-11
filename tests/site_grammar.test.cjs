@@ -48,7 +48,7 @@ test('unit 36 completes every answer, resumes drafts and reviews its own theory 
    if(i<3)r('gMove(1);');
   }
   assert.equal(r('JSON.stringify(P.grammar)'),r('best'));
-  r=context([u],storage);r(`gStart(COURSE.grammar[0].id,'all',true);`);assert.ok(r('G.recovery'));r('gReviewTheory();');
+  r=context([u],storage);r(`gStart(COURSE.grammar[0].id,'all',true);`);assert.equal(r('gAttempt(gUnit(),gGroups(gUnit()).find(g=>g.id===G.steps[G.at].group)).status'),'failed');r('gReviewTheory();');
   assert.ok(r('gPlayerView()').includes(u.sections[g.theorySections[0]].title));
   for(let i=1;i<g.theorySections.length;i++)r('gMove(1);');r('gRepeatExercise();');
   assert.equal(r(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id==='${g.id}')).errors`),0);
@@ -84,7 +84,7 @@ test('personal-pronoun units finish every question and preserve failed attempts 
    r=context([u],storage);r(`gStart(COURSE.grammar[0].id,'all',true);`);assert.equal(r('gResponse(G.steps[G.at]).value'),'borrador');
    r(`var best=JSON.stringify(P.grammar);for(let i=0;i<3;i++){gResponse(G.steps[G.at]).value='incorrecto';gCheck();if(!G.recovery)gMove(1);}`);
    assert.equal(r('JSON.stringify(P.grammar)'),r('best'));
-   r=context([u],storage);r(`gStart(COURSE.grammar[0].id,'all',true);`);assert.ok(r('G.recovery'));r('gReviewTheory();');
+   r=context([u],storage);r(`gStart(COURSE.grammar[0].id,'all',true);`);assert.equal(r('gAttempt(gUnit(),gGroups(gUnit()).find(g=>g.id===G.steps[G.at].group)).status'),'failed');r('gReviewTheory();');
    assert.ok(r('gPlayerView()').includes(u.sections[g.theorySections[0]].title));
    for(let i=1;i<g.theorySections.length;i++)r('gMove(1);');r('gRepeatExercise();');
    assert.equal(r(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id==='${g.id}')).errors`),0);
@@ -127,7 +127,7 @@ test('relative units complete all questions and restore failed attempts at the e
   r=context([u],storage);r(`gStart(COURSE.grammar[0].id,'all',true);`);assert.equal(r('gResponse(G.steps[G.at]).value'),'parcial');
   r(`var previous=JSON.stringify(P.grammar);for(let i=0;i<3;i++){gResponse(G.steps[G.at]).value='incorrecto';gCheck();if(!G.recovery)gMove(1);}`);
   assert.equal(r('JSON.stringify(P.grammar)'),r('previous'));
-  r=context([u],storage);r(`gStart(COURSE.grammar[0].id,'all',true);`);assert.ok(r('G.recovery'));r('gReviewTheory();');
+  r=context([u],storage);r(`gStart(COURSE.grammar[0].id,'all',true);`);assert.equal(r('gAttempt(gUnit(),gGroups(gUnit()).find(g=>g.id===G.steps[G.at].group)).status'),'failed');r('gReviewTheory();');
   assert.ok(r('gPlayerView()').includes(u.sections[g.theorySections[0]].title));
   for(let i=1;i<g.theorySections.length;i++)r('gMove(1);');r('gRepeatExercise();');
   assert.equal(r(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id==='${g.id}')).errors`),0);
@@ -169,7 +169,7 @@ test('new interrogative lessons complete all formats and preserve attempts, alte
    r=context([u],storage);r(`gStart(COURSE.grammar[0].id,'all',true);`);assert.equal(r('gResponse(G.steps[G.at]).value'),'borrador');
    r(`var best=JSON.stringify(P.grammar);for(let i=0;i<3;i++){gResponse(G.steps[G.at]).value='incorrecto';gCheck();if(!G.recovery)gMove(1);}`);
    assert.equal(r('JSON.stringify(P.grammar)'),r('best'));
-   r=context([u],storage);r(`gStart(COURSE.grammar[0].id,'all',true);`);assert.ok(r('G.recovery'));r('gReviewTheory();');
+   r=context([u],storage);r(`gStart(COURSE.grammar[0].id,'all',true);`);assert.equal(r('gAttempt(gUnit(),gGroups(gUnit()).find(g=>g.id===G.steps[G.at].group)).status'),'failed');r('gReviewTheory();');
    assert.ok(r('gPlayerView()').includes(u.sections[g.theorySections[0]].title));
    for(let i=1;i<g.theorySections.length;i++)r('gMove(1);');r('gRepeatExercise();');
    assert.equal(r(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id==='${g.id}')).errors`),0);
@@ -334,7 +334,7 @@ test('choice click grades immediately, plays the matching sound once and keeps e
  run('gMove(1);gPick(0);');
  assert.equal(run('gResponse(G.steps[G.at]).good'),false);
  assert.equal(run('played.join(",")'),'true,false');
- assert.ok(run('gPlayerView()').includes('Верный ответ: la estudiante'));
+ assert.ok(!run('gPlayerView()').includes('Верный ответ: la estudiante'));
 });
 test('answer sounds differ, resume suspended audio and respect mute', () => {
  const run=context();
@@ -740,7 +740,7 @@ test('an old hotel choice resumes as editable input without losing checked answe
  run(`gResponse(G.steps[G.at]).value='hotels';gCheck();`);
  assert.equal(run('gResponse(G.steps[G.at]).good'),false);
  assert.equal(run('G.at'),8);
- assert.ok(run('gPlayerView()').includes('После -l добавляем -es'));
+ assert.ok(!run('gPlayerView()').includes('Верный ответ:'));
  run('gSave();G=null;gStart(COURSE.grammar[0].id,"all",true);');
  assert.equal(run('gResponse(G.steps[G.at]).checked'),true);
  assert.equal(run('G.responses["3.1"][1].good'),true);
@@ -791,12 +791,13 @@ test('the group-name mini-check keeps errors and repeats them without losing liv
   run(`gPick(gUnit().sections[8].check.questions[G.steps[G.at].qi].options.indexOf(${JSON.stringify(wrong)}));gMove(1);`);
  }
  assert.ok(!run('G.recovery'));
- assert.equal(run('G.steps[G.at].correction'),true);
+ assert.equal(run('G.steps[G.at].type'),'question');
+ assert.equal(run('gAttempt(gUnit(),gUnit().sections[8].check).status'),'failed');
  assert.equal(run('gAttempt(gUnit(),gUnit().sections[8].check).errors'),3);
  assert.equal(run('!!P.grammar[grammarKey(gUnit(),gUnit().sections[8].check)]'),false);
- run(`for(let __grammarGuard=0;!G.ended&&__grammarGuard++<300;){const s=G.steps[G.at];gResponse(s).value=gUnit().sections[8].check.questions[s.qi].answers[0];gCheck();gMove(1);}`);
- assert.equal(run('gAttempt(gUnit(),gUnit().sections[8].check).errors'),3);
- assert.equal(run('P.grammar[grammarKey(gUnit(),gUnit().sections[8].check)].correct'),0);
+ assert.ok(run('gPlayerView()').includes('data-greview-theory'));
+ run('gReviewTheory();');
+ assert.equal(run('gAttempt(gUnit(),gUnit().sections[8].check).status'),'review');
 });
 
 test('every mini-check in all 17 units renders choices and completes by clicking',()=>{
