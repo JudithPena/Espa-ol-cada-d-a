@@ -1875,6 +1875,25 @@ test('next lesson uses actual metadata and order, escapes titles, and ignores st
  run(`gStartNextUnit(COURSE.grammar[2].id);`);assert.equal(run('G.unit'),unit.id);
 });
 
+test('Fable 4 unit-7 revision invalidates old indexed answers but preserves prior achievements',()=>{
+ const updated=JSON.parse(fs.readFileSync('content/grammar/007_un_perro_el_perro.json','utf8'));
+ const legacy=structuredClone(updated);legacy.revision=1;
+ for(const g of [...legacy.sections.map(s=>s.check),...legacy.exercises])g.revision=1;
+ const storage=new Map();let run=context([legacy],storage);unlockUntil(run,'exercise:7.1');
+ run(`render=()=>{};var u=COURSE.grammar[0],g=u.exercises[0];
+   P.xp=81;P.grammar[grammarKey(u,g)]={correct:10,total:12};save();
+   gStart(u.id,'exercise:7.1');gMove(1);gPickValue('la');gExit();`);
+ const before=run('JSON.stringify(P)');
+ assert.equal(run('gAttempt(COURSE.grammar[0],COURSE.grammar[0].exercises[0]).errors'),1);
+ run=context([updated],storage);run(`render=()=>{};gStart(COURSE.grammar[0].id,'all',true);`);
+ assert.equal(run('JSON.stringify(P)'),before,'historical XP and achievements must survive');
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).revision'),2);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),0);
+ assert.equal(run('Object.keys(gAttempt(gUnit(),gUnit().exercises[0]).responses).length'),0);
+ assert.equal(run('P.grammar[grammarKey(gUnit(),gUnit().exercises[0])].correct'),10);
+ assert.equal(run('P.xp'),81);
+});
+
 test('revised profession practice never reuses answers from the old all-omission exercise',()=>{
  const updated=JSON.parse(fs.readFileSync('content/grammar/005_sin_articulo.json','utf8'));
  const legacy=structuredClone(updated);delete legacy.revision;
