@@ -89,7 +89,7 @@ def test_second_group_differentiates_ser_and_noun_articles():
                for q in ex["questions"])
     assert any(q["answers"] == ["mexicanos"] and "Pablo y Ana" in q["prompt"]
                for q in ex["questions"])
-    assert "существительному" in " ".join(unit14()["sections"][1]["paragraphs"])
+    assert "относится к слову" in " ".join(unit14()["sections"][1]["paragraphs"])
 
 
 def test_third_group_practises_spanish_noun_gender_and_both_marroqui_plurals():
