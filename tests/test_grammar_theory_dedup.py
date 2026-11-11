@@ -8,7 +8,7 @@ from espanol.grammar import GRAMMAR, load_grammar
 
 def test_all_units_preserve_notes_checks_practice_order_and_summaries():
     snapshots = json.loads((Path(__file__).parent / 'data/grammar_theory_preservation.json').read_text())
-    paths = sorted(GRAMMAR.glob('*.json'))
+    paths = sorted(GRAMMAR.glob('[0-9]*.json'))
     assert len(paths) == len(snapshots) == 47
     for path in paths:
         u = json.loads(path.read_text())
