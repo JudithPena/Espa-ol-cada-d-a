@@ -89,6 +89,15 @@ def main():
                 page.go_forward()
                 page.wait_for_selector('[data-book-chapter]')
                 assert len([r for r in requests if chapter['_data']['url'] in r]) == loaded
+                # Cancel a failed next lesson while an old result is still present.
+                level_failure = '**/d/levels/a1/*.json'
+                page.route(level_failure, lambda route: route.abort())
+                page.evaluate('S={kind:"result"};startLesson(LESSONS.findIndex(L=>L.level==="A1"))')
+                page.wait_for_selector('[data-retry-data]')
+                page.locator('[data-tab="home"]').first.click()
+                page.wait_for_selector('[data-level="A0"]')
+                assert page.evaluate('S===null && view.tab==="home"')
+                page.unroute(level_failure)
                 # Every main course loads through the production startLesson entry point.
                 for level in ('A0', 'A1'):
                     page.evaluate("""level=>{S=null;G=null;P.openAll=true;P.sound=false;P.autoDlg=false;

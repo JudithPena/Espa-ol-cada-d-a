@@ -136,4 +136,19 @@ test('persistent content cache serves a fresh page without JSON network access',
   assert.match(second.run('app.innerHTML'),/book-block/);assert.equal(requests,0);
 });
 
+test('leaving a loading next lesson clears the previous result and cancels its callback',async()=> {
+  let release;
+  const {run}=harness(new Map(),{fetch:async url=>{
+    if(url.includes('/levels/')) await new Promise(resolve=>release=resolve);
+    return new Response(fs.readFileSync(path.join(out,url)),{status:200});
+  }});
+  await ready(run);
+  run('S={kind:"result"};startLesson(0)');
+  while(!release) await tick();
+  run('dataLeave();view.tab="home";render()');
+  release();await drain(run);
+  assert.equal(run('S'),null);assert.equal(run('view.tab'),'home');
+  assert.match(run('app.innerHTML'),/Курс по уровням/);
+});
+
 process.on('exit',()=>fs.rmSync(out,{recursive:true,force:true}));

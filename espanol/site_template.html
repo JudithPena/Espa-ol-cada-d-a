@@ -3304,7 +3304,7 @@ function resultView() {
 const app = $("#app");
 /* Content-addressed static data. No writes to progress, scores or session keys. */
 const dataRequests = new Map(), dataLoaded = new Set();
-let dataGeneration = 0, dataRetry = null, pendingBookRoute = null;
+let dataGeneration = 0, dataRetry = null, pendingBookRoute = null, dataPending = false;
 const DATA_CACHE = "ecd-learning-data-v1";
 function dataRefs() {
   const refs = [];
@@ -3400,10 +3400,17 @@ function dataLoad(ref) {
 }
 // Return synchronously for portable fragments and already hydrated resources.
 // A newer navigation invalidates only the screen callback, not useful cached data.
+function dataLeave() {
+  if (!dataPending) return;
+  ++dataGeneration; dataPending = false; dataRetry = null;
+  if (G) { gSave(); G = null; }
+  clearTimeout(autoTimer); stopSpeech(); S = null;
+}
 function dataWait(refs, resume) {
   const generation = ++dataGeneration;
   dataRetry = null;
   refs = [...new Map(refs.filter(Boolean).map(ref => [ref.url, ref])).values()].filter(ref => !dataLoaded.has(ref.url));
+  dataPending = !!refs.length;
   if (!refs.length) return false;
   stopSpeech();
   app.innerHTML = `${topBar()}<main><div class="wrap"><section class="panel" role="status"><h2>Загружаем материал…</h2><p>Это может занять несколько секунд.</p><button class="btn ghost" data-tab="home">На главную</button></section></div></main>${tabsBar()}`;
@@ -3624,6 +3631,7 @@ document.addEventListener("click", e => {
   const d = el.dataset;
   if ("retryData" in d) return dataRetry?.();
   if ("refreshData" in d) return location.reload();
+  if (d.tab) dataLeave();
   if (d.bookJump) return bookJump(d.bookJump);
   if ("bookSaveReflection" in d) {
     const box = el.closest("[data-book-exercise]");
