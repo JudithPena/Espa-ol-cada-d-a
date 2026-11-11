@@ -3,11 +3,1157 @@
   "number": 3,
   "order": 3,
   "title": "Bilbao",
-  "icon": "📖",
-  "status": "draft",
-  "blocks": [],
+  "icon": "🗝️",
+  "status": "published",
+  "blocks": [
+    {
+      "title": "Последний перелёт",
+      "es": "En el aeropuerto de Palma, Arturo compró comida para el viaje. Necesitaba un buen descanso. Estaba sintiéndose cansado. Entonces recordó. Solo había una persona más que tenía que ver. ¡Por fin su misión estaría terminada!\nArturo tomó el vuelo a Bilbao. Poco después llegaba al aeropuerto de Bilbao. Como siempre, tomó un taxi. Todavía le quedaba mucho camino por recorrer.\nEl taxista era muy amable y lo llevó a la ciudad. Allí, pasaron cerca del Guggenheim y Arturo vio lo grande que era el museo. Arturo le preguntó al taxista:",
+      "ru": "В аэропорту Пальмы Артуро купил еду на дорогу. Ему нужен был хороший отдых: он чувствовал себя уставшим. И тут он вспомнил: оставался всего один человек, с которым нужно встретиться. Наконец его миссия будет выполнена!\nАртуро сел на самолёт до Бильбао. Вскоре он прибыл в аэропорт Бильбао. Как обычно, взял такси. Впереди его ещё ждал долгий путь.\nВодитель был очень любезен и отвёз его в город. По дороге они проехали мимо музея Гуггенхайма, и Артуро увидел, насколько велико это здание. Он спросил таксиста:",
+      "notes": [
+        {
+          "term": "tomar el vuelo",
+          "es": [
+            "tomó el vuelo"
+          ],
+          "ru": [
+            "сел на самолёт"
+          ],
+          "explanation": "воспользоваться рейсом, полететь; здесь tomar + el vuelo a Bilbao."
+        },
+        {
+          "term": "quedarle a alguien (algo) por + infinitivo",
+          "es": [
+            "le quedaba mucho camino por recorrer"
+          ],
+          "ru": [
+            "Впереди его ещё ждал долгий путь"
+          ],
+          "explanation": "кому-либо ещё предстоит что-либо; le = Артуро, por recorrer — пройти."
+        },
+        {
+          "term": "estar sintiéndose + adjetivo",
+          "es": [
+            "Estaba sintiéndose cansado"
+          ],
+          "ru": [
+            "он чувствовал себя уставшим"
+          ],
+          "explanation": "продолжительное ощущение усталости; estar + gerundio от sentirse."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Estaba sintiéndose cansado",
+          "translation": "он чувствовал себя уставшим",
+          "base": "sentirse + adjetivo",
+          "explanation": "se — часть sentirse, относится к Артуро; gerundio sintiéndose после estaba сообщает продолжающееся ощущение."
+        },
+        {
+          "es": "le quedaba mucho camino por recorrer",
+          "translation": "Впереди его ещё ждал долгий путь",
+          "base": "quedarle (algo) por + infinitivo",
+          "explanation": "le = Артуро, которому ещё предстоит путь; mucho camino — подлежащее."
+        },
+        {
+          "es": "lo llevó a la ciudad",
+          "translation": "отвёз его в город",
+          "base": "llevar a (alguien) a (un lugar)",
+          "explanation": "lo = Артуро, прямое дополнение; субъект — таксист."
+        },
+        {
+          "es": "le preguntó al taxista",
+          "translation": "спросил таксиста",
+          "base": "preguntar (algo) a (alguien)",
+          "explanation": "le = таксисту; al taxista повторно обозначает адресата вопроса."
+        }
+      ]
+    },
+    {
+      "title": "Разговор о музее Гуггенхайма",
+      "es": "–¿Ha estado alguna vez dentro del Guggenheim?\n–Sí, hace un mes estuve con mi familia.\n–¿Y le gustó?\n–Sí, es muy bonito por dentro. Pero el arte que hay dentro del museo es muy raro.\n–¿Raro?\n–Sí, es arte muy moderno. A mí me gusta más el arte tradicional.\n–A mí también –dijo Arturo–. Siempre he preferido las cosas tradicionales. Miró a través de la ventana mientras el taxi se movía.",
+      "ru": "— Вы когда-нибудь были внутри музея Гуггенхайма?\n— Да, месяц назад ходил туда с семьёй.\n— И вам понравилось?\n— Да, внутри очень красиво. Но искусство, которое там выставлено, очень странное.\n— Странное?\n— Да, очень современное. Мне больше нравится традиционное искусство.\n— Мне тоже, — сказал Артуро. — Я всегда предпочитал традиционные вещи. Он смотрел в окно, пока такси ехало.",
+      "notes": [
+        {
+          "term": "¿Ha estado alguna vez…?",
+          "es": [
+            "¿Ha estado alguna vez dentro del Guggenheim?"
+          ],
+          "ru": [
+            "Вы когда-нибудь были внутри музея Гуггенхайма?"
+          ],
+          "explanation": "вопрос о жизненном опыте; pretérito perfecto с alguna vez."
+        },
+        {
+          "term": "el arte moderno",
+          "es": [
+            "arte muy moderno"
+          ],
+          "ru": [
+            "очень современное"
+          ],
+          "explanation": "современное искусство; arte — существительное мужского рода с особым употреблением артикля."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "¿Y le gustó?",
+          "translation": "И вам понравилось?",
+          "base": "gustarle (algo) a (alguien)",
+          "explanation": "le = таксисту, который был в музее; подразумеваемое подлежащее — посещение музея."
+        },
+        {
+          "es": "A mí me gusta más el arte tradicional",
+          "translation": "Мне больше нравится традиционное искусство",
+          "base": "gustarle (algo) a (alguien)",
+          "explanation": "me = таксисту; A mí усиливает противопоставление его вкусов остальным."
+        },
+        {
+          "es": "A mí también",
+          "translation": "Мне тоже",
+          "base": "a mí también",
+          "explanation": "опущен повтор gustar, «мне тоже нравится традиционное искусство»; говорящий — Артуро."
+        },
+        {
+          "es": "el taxi se movía",
+          "translation": "такси ехало",
+          "base": "moverse",
+          "explanation": "se входит в moverse, «двигаться»; подлежащее el taxi."
+        }
+      ]
+    },
+    {
+      "title": "Поиски адреса в Бильбао",
+      "es": "Finalmente, Arturo llegó al centro de Bilbao. Le pagó al taxista y cerró la puerta del taxi. Caminó por el centro de la ciudad. Bilbao era una ciudad bonita.\nTanta gente y tantas cosas que ver. ¡Tenía que concentrarse! Estaba a punto de terminar su misión.\nNo recordaba exactamente adónde tenía que ir. La casa de la tercera persona que tenía que ver estaba en algún lugar de Bilbao. Pero no estaba seguro de dónde. Decidió preguntar:\n–Disculpe. ¿Cómo puedo ir hasta aquí?\nArturo le mostró un mapa. En el mapa aparecía un puerto. Cerca del puerto aparecía un lugar señalado en rojo. Era la casa de la tercera persona.\nEl hombre miró el mapa.\n–¡Ah! Conozco ese lugar –dijo. Y le enseñó a Arturo el camino.\n–¡Gracias! ¡Es usted muy amable! –dijo Arturo mientras se iba.\nArturo anduvo durante media hora. No quería volver a tomar un taxi. Estaba cansado de estar sentado. Era sano caminar. Quería caminar. Estaban sucediendo cosas importantes. Le daba tiempo para pensar en ellas.",
+      "ru": "Наконец Артуро добрался до центра Бильбао. Он расплатился с таксистом, закрыл дверцу и пошёл пешком по центру города. Бильбао был красивым городом.\nКак много людей и сколько всего можно увидеть! Надо сосредоточиться! Он был близок к завершению миссии.\nОн не помнил точно, куда ему нужно идти. Дом третьего человека, с которым он должен был встретиться, находился где-то в Бильбао. Но где именно, он не знал. Решил спросить дорогу:\n— Извините. Как мне добраться вот сюда?\nАртуро показал мужчине карту. На карте был порт, а рядом красным отмечено какое-то место. Это был дом третьего человека.\nМужчина посмотрел на карту.\n— А, я знаю это место! — сказал он и объяснил Артуро дорогу.\n— Спасибо! Вы очень любезны! — сказал Артуро, уходя.\nОн шёл полчаса. Снова садиться в такси ему не хотелось. Он устал сидеть. Ходьба полезна для здоровья. Ему хотелось пройтись. Происходили важные события, и прогулка давала время их обдумать.",
+      "notes": [
+        {
+          "term": "concentrarse",
+          "es": [
+            "concentrarse"
+          ],
+          "ru": [
+            "сосредоточиться"
+          ],
+          "explanation": "сосредоточивать внимание; pronominal se."
+        },
+        {
+          "term": "estar a punto de + infinitivo",
+          "es": [
+            "Estaba a punto de terminar"
+          ],
+          "ru": [
+            "был близок к завершению"
+          ],
+          "explanation": "быть вот-вот готовым что-либо сделать."
+        },
+        {
+          "term": "señalado/-a (на карте)",
+          "es": [
+            "señalado en rojo"
+          ],
+          "ru": [
+            "красным отмечено"
+          ],
+          "explanation": "отмеченный, обозначенный; здесь на карте красным цветом."
+        },
+        {
+          "term": "mostrar (algo) a (alguien)",
+          "es": [
+            "le mostró un mapa"
+          ],
+          "ru": [
+            "показал мужчине карту"
+          ],
+          "explanation": "показывать; le = незнакомому мужчине, карта — прямое дополнение."
+        },
+        {
+          "term": "estar cansado de + infinitivo",
+          "es": [
+            "Estaba cansado de estar sentado"
+          ],
+          "ru": [
+            "устал сидеть"
+          ],
+          "explanation": "устать от чего-либо; de + инфинитив."
+        },
+        {
+          "term": "dar tiempo para + infinitivo",
+          "es": [
+            "Le daba tiempo para pensar en ellas"
+          ],
+          "ru": [
+            "давала время их обдумать"
+          ],
+          "explanation": "давать время для действия; le = Артуро, ellas = важные события."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Le pagó al taxista",
+          "translation": "Он расплатился с таксистом",
+          "base": "pagar (algo) a (alguien)",
+          "explanation": "le = таксисту как получателю денег, косвенное дополнение."
+        },
+        {
+          "es": "Tenía que concentrarse",
+          "translation": "Надо сосредоточиться",
+          "base": "concentrarse",
+          "explanation": "se — часть глагола concentrarse; инфинитив стоит после tener que."
+        },
+        {
+          "es": "le mostró un mapa",
+          "translation": "показал мужчине карту",
+          "base": "mostrar (algo) a (alguien)",
+          "explanation": "le = прохожему, которому показали карту; un mapa — прямое дополнение."
+        },
+        {
+          "es": "Y le enseñó a Arturo el camino",
+          "translation": "и объяснил Артуро дорогу",
+          "base": "enseñar (algo) a (alguien)",
+          "explanation": "le и a Arturo — один адресат; el camino — прямое дополнение."
+        },
+        {
+          "es": "Le daba tiempo para pensar en ellas",
+          "translation": "давала время их обдумать",
+          "base": "dar tiempo para + infinitivo",
+          "explanation": "le = Артуро; ellas = cosas importantes, важные события, а не люди."
+        }
+      ]
+    },
+    {
+      "title": "Маленький дом у порта",
+      "es": "Al final, llegó a una calle donde se encontraba una casa pequeña hecha de madera. Al lado de la casa de madera había una iglesia muy antigua y un pequeño puerto, con varios barcos. Los barcos no eran del propietario de la casa, pero él gestionaba los alquileres.\nArturo cruzó la calle. Llegó rápidamente a la pequeña casa.\n–¡Espero que esta vez haya alguien! –dijo, acordándose de Lucía en Mallorca. No quería esperar. Él también era impaciente a veces.\nLlamó a la puerta una vez. Esperó. Llamó una segunda vez. Por fin alguien abrió. Era un hombre joven, de unos 25 años. Parecido a Arturo, pero sin la barba.\n–¡Hola! –dijo el joven–, ¿puedo ayudarle en algo? ¿Quiere alquilar un barco? ¿Quizás un viaje en barco?\n–Ah, no –dijo Arturo–. Me llamo Arturo –continuó–. Solo quería hablar con usted.\n–¡Nada de «usted»! Puedes llamarme Antxon.\n–Está bien… Quería hablar contigo.\n–Claro, Arturo. Pasa.",
+      "ru": "В конце концов он оказался на улице, где стоял маленький деревянный дом. Рядом с ним была очень старая церковь и небольшой порт с несколькими судами. Лодки не принадлежали хозяину дома, но он занимался их сдачей в аренду.\nАртуро перешёл улицу и быстро подошёл к домику.\n— Надеюсь, в этот раз кто-нибудь есть дома! — сказал он, вспомнив Лусию на Майорке. Ждать ему не хотелось. Иногда он и сам бывал нетерпеливым.\nОн постучал один раз и подождал. Постучал второй раз. Наконец дверь открылась. На пороге стоял молодой мужчина лет двадцати пяти. Он немного походил на Артуро, только без бороды.\n— Здравствуйте! — сказал молодой человек. — Могу я вам чем-нибудь помочь? Хотите арендовать лодку? Или, может быть, совершить морскую прогулку?\n— Нет, — ответил Артуро. — Меня зовут Артуро, — продолжил он. — Я только хотел с вами поговорить.\n— Никакого «вы»! Зови меня Анчон.\n— Хорошо… Я хотел с тобой поговорить.\n— Конечно, Артуро. Проходи.",
+      "notes": [
+        {
+          "term": "gestionar (algo)",
+          "es": [
+            "gestionaba los alquileres"
+          ],
+          "ru": [
+            "занимался их сдачей в аренду"
+          ],
+          "explanation": "управлять чем-либо; здесь контролировать аренду лодок."
+        },
+        {
+          "term": "alquilar (algo)",
+          "es": [
+            "alquilar un barco"
+          ],
+          "ru": [
+            "арендовать лодку"
+          ],
+          "explanation": "арендовать, брать напрокат; лодка здесь как коммерческий объект."
+        },
+        {
+          "term": "parecerse a (alguien)",
+          "es": [
+            "Parecido a Arturo"
+          ],
+          "ru": [
+            "походил на Артуро"
+          ],
+          "explanation": "похожий на кого-либо; предлог a обязателен."
+        },
+        {
+          "term": "impaciente",
+          "es": [
+            "impaciente"
+          ],
+          "ru": [
+            "нетерпеливым"
+          ],
+          "explanation": "нетерпеливый, не любящий ждать."
+        },
+        {
+          "term": "nada de + sustantivo",
+          "es": [
+            "Nada de «usted»"
+          ],
+          "ru": [
+            "Никакого «вы»"
+          ],
+          "explanation": "категоричное отвержение; nada de + существительное или обращение."
+        },
+        {
+          "term": "dijo Arturo (исправление)",
+          "es": [
+            "dijo Arturo"
+          ],
+          "ru": [
+            "ответил Артуро"
+          ],
+          "explanation": "В исходнике явная опечатка «–Arturo dijo Arturo.»; исправлена атрибуция прямой речи «–dijo Arturo–.»."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "él gestionaba los alquileres",
+          "translation": "он занимался их сдачей в аренду",
+          "base": "gestionar (algo)",
+          "explanation": "él = владелец маленького дома, не Артуро; управляет арендой чужих лодок."
+        },
+        {
+          "es": "acordándose de Lucía",
+          "translation": "вспомнив Лусию",
+          "base": "acordarse de (alguien)",
+          "explanation": "se — часть acordarse; de Lucía — предмет воспоминания."
+        },
+        {
+          "es": "¿puedo ayudarle en algo?",
+          "translation": "Могу я вам чем-нибудь помочь?",
+          "base": "ayudar a (alguien)",
+          "explanation": "le = Артуро как человек, которому Анчон предлагает помощь; leísmo употреблён в обращении к мужчине."
+        },
+        {
+          "es": "Puedes llamarme Antxon",
+          "translation": "Зови меня Анчон",
+          "base": "llamar (a alguien) (nombre)",
+          "explanation": "me = Анчон; он просит звать его по имени, без «usted»."
+        }
+      ]
+    },
+    {
+      "title": "Кольцо с последней цифрой",
+      "es": "Arturo miró a su alrededor. La casa era muy tradicional y simple. El propietario parecía tradicional y simple también. Vestía ropa sencilla. Tenía gustos tradicionales. Todo estaba limpio y ordenado.\n–¿Y bien? –le dijo Antxon mirando expectante a Arturo.\n–¿Sí? –dijo Arturo con calma.\n–Querías hablar conmigo.\nArturo comenzó a hablar. Pero se dio cuenta de algo. Antxon tenía un anillo. En ese anillo aparecía un número. Arturo empezó a reírse.\n–¿Qué ocurre, Arturo? –dijo Antxon preocupado.\n–Pensaba que iba a ser más difícil.\n–¿El qué?\n–Ese anillo tuyo… ¿Quién te lo dio?\n–Fue un regalo que me hicieron hace muchos años, cuando era niño. No me acuerdo de quién me lo dio. Creo que antes era un collar.\nArturo vio el número que tenía. Ya tenía el tercer número. Tenía los tres números y su misión estaba completada… casi. Había algunas cosas más que hacer.",
+      "ru": "Артуро огляделся. Дом был очень простым и традиционным. И хозяин казался таким же. Он носил простую одежду, предпочитал традиционные вещи. Всё было чисто и аккуратно.\n— Ну так что? — с ожиданием спросил Анчон, глядя на Артуро.\n— Да? — спокойно ответил Артуро.\n— Ты хотел со мной поговорить.\nАртуро начал говорить, но кое-что заметил: у Анчона было кольцо, а на кольце — цифра. Артуро рассмеялся.\n— Что случилось, Артуро? — обеспокоился Анчон.\n— Я думал, будет сложнее.\n— Что именно?\n— Вот это твоё кольцо… Кто тебе его подарил?\n— Мне его подарили много лет назад, когда я был ребёнком. Не помню, кто именно. Кажется, раньше это было ожерелье.\nАртуро увидел написанную на нём цифру. Третья цифра найдена! Теперь у него были все три цифры, и миссия была выполнена… почти. Оставалось ещё кое-что сделать.",
+      "notes": [
+        {
+          "term": "expectante",
+          "es": [
+            "expectante"
+          ],
+          "ru": [
+            "с ожиданием"
+          ],
+          "explanation": "ожидающий ответа, настороженно любопытный."
+        },
+        {
+          "term": "el anillo",
+          "es": [
+            "anillo"
+          ],
+          "ru": [
+            "кольцо"
+          ],
+          "explanation": "кольцо на пальце; здесь оно хранит одну из цифр."
+        },
+        {
+          "term": "darse cuenta de (algo)",
+          "es": [
+            "se dio cuenta de algo"
+          ],
+          "ru": [
+            "кое-что заметил"
+          ],
+          "explanation": "заметить, осознать; требует предлога de."
+        },
+        {
+          "term": "reírse",
+          "es": [
+            "empezó a reírse"
+          ],
+          "ru": [
+            "рассмеялся"
+          ],
+          "explanation": "засмеяться; empezar a + infinitivo показывает начало действия."
+        },
+        {
+          "term": "el regalo",
+          "es": [
+            "regalo"
+          ],
+          "ru": [
+            "подарили"
+          ],
+          "explanation": "подарок; здесь переведено глаголом по контексту."
+        },
+        {
+          "term": "completar (una misión)",
+          "es": [
+            "estaba completada"
+          ],
+          "ru": [
+            "была выполнена"
+          ],
+          "explanation": "закончить выполнение; сочетание estar + participio сообщает результат."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "se dio cuenta de algo",
+          "translation": "кое-что заметил",
+          "base": "darse cuenta de (algo)",
+          "explanation": "se = Артуро, часть устойчивого выражения замечания."
+        },
+        {
+          "es": "¿Quién te lo dio?",
+          "translation": "Кто тебе его подарил?",
+          "base": "dar (algo) a (alguien)",
+          "explanation": "te = Анчону, кому подарили; lo = кольцо, что подарили."
+        },
+        {
+          "es": "me hicieron",
+          "translation": "Мне его подарили",
+          "base": "hacer (algo) a (alguien)",
+          "explanation": "me = Анчону, получателю подарка; буквальный оборот fue un regalo que me hicieron — «мне сделали подарок». "
+        },
+        {
+          "es": "No me acuerdo de quién me lo dio",
+          "translation": "Не помню, кто именно",
+          "base": "acordarse de (algo) / dar (algo) a (alguien)",
+          "explanation": "me в me acuerdo — возвратное Анчона; me lo dio — мне подарил его, me = Анчону, lo = кольцо/ожерелье."
+        }
+      ]
+    },
+    {
+      "title": "Артуро объясняет свою просьбу",
+      "es": "Miró a Antxon a los ojos.\n–Antxon te voy a explicar lo que ocurre. Yo tengo un cofre. Esta es la foto.\nSacó la foto del cofre y se la enseñó a Antxon.\n–El cofre tiene un candado. Necesitamos tres números para abrirlo, y esos tres números los tienen tres personas diferentes.\nAntxon lo miró con extrañeza. Y después preguntó:\n–¿Y qué contiene el cofre?\n–De momento no puedo decírtelo.\n–Pero, ¿por qué yo tengo uno de los números?\nArturo no quería explicarle nada más. Tenía que terminar su visita.\n–Antxon, toma esta carta y léela. Esta carta también la tienen las otras dos personas. Las cartas son idénticas. Te diré lo que tienes que hacer. Ahora me tengo que ir. Confía en mí y hasta pronto.\nArturo se fue de la pequeña casa. Antxon estaba tan sorprendido que no sabía qué hacer. Abrió la carta. Decía así:",
+      "ru": "Артуро посмотрел Анчону прямо в глаза.\n— Анчон, я объясню тебе, что происходит. У меня есть сундук. Вот его фотография.\nОн достал снимок сундука и показал Анчону.\n— На сундуке замок. Чтобы его открыть, нужны три цифры, и каждая цифра есть у одного из трёх разных людей.\nАнчон странно посмотрел на него и спросил:\n— А что в сундуке?\n— Пока не могу тебе сказать.\n— Но почему одна из цифр именно у меня?\nАртуро не хотел больше ничего объяснять. Пора было завершать визит.\n— Анчон, возьми письмо и прочитай его. Такое же письмо есть у других двух людей. Все письма одинаковые. Я расскажу тебе, что нужно сделать. А сейчас мне пора уходить. Доверься мне, скоро увидимся.\nАртуро вышел из маленького дома. Анчон был так удивлён, что не знал, что делать. Он открыл письмо. Там было написано:",
+      "notes": [
+        {
+          "term": "explicar (algo) a (alguien)",
+          "es": [
+            "te voy a explicar lo que ocurre"
+          ],
+          "ru": [
+            "я объясню тебе, что происходит"
+          ],
+          "explanation": "объяснить кому-либо что-либо; te = Анчону."
+        },
+        {
+          "term": "contener (algo)",
+          "es": [
+            "contiene el cofre"
+          ],
+          "ru": [
+            "в сундуке"
+          ],
+          "explanation": "содержать внутри; кто-то спрашивает о содержимом сундука."
+        },
+        {
+          "term": "de momento",
+          "es": [
+            "De momento"
+          ],
+          "ru": [
+            "Пока"
+          ],
+          "explanation": "пока что, на данный момент."
+        },
+        {
+          "term": "con extrañeza",
+          "es": [
+            "con extrañeza"
+          ],
+          "ru": [
+            "странно"
+          ],
+          "explanation": "с удивлением, недоумением; о взгляде Анчона."
+        },
+        {
+          "term": "idéntico/-a",
+          "es": [
+            "idénticas"
+          ],
+          "ru": [
+            "одинаковые"
+          ],
+          "explanation": "полностью одинаковый, идентичный; cartas — жен. род мн. числа."
+        },
+        {
+          "term": "confiar en (alguien)",
+          "es": [
+            "Confía en mí"
+          ],
+          "ru": [
+            "Доверься мне"
+          ],
+          "explanation": "доверять кому-либо; после confiar обязателен предлог en."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "te voy a explicar lo que ocurre",
+          "translation": "я объясню тебе, что происходит",
+          "base": "explicar (algo) a (alguien)",
+          "explanation": "te = Анчону как адресату; lo que ocurre = что происходит."
+        },
+        {
+          "es": "se la enseñó a Antxon",
+          "translation": "показал Анчону",
+          "base": "enseñar (algo) a (alguien)",
+          "explanation": "se = le, Анчону; la = фотографию (la foto). le la в испанском заменяется на se la."
+        },
+        {
+          "es": "para abrirlo",
+          "translation": "Чтобы его открыть",
+          "base": "abrir (algo)",
+          "explanation": "lo = сундук или его замок (оба мужского рода), в контексте именно замок."
+        },
+        {
+          "es": "Antxon lo miró con extrañeza",
+          "translation": "Анчон странно посмотрел на него",
+          "base": "mirar a (alguien)",
+          "explanation": "lo = Артуро, а не сундук; подлежащее — Анчон."
+        },
+        {
+          "es": "no puedo decírtelo",
+          "translation": "не могу тебе сказать",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "te = Анчону, lo = содержимое сундука или ответ на вопрос, оба присоединены к инфинитиву."
+        },
+        {
+          "es": "toma esta carta y léela",
+          "translation": "возьми письмо и прочитай его",
+          "base": "leer (algo)",
+          "explanation": "la в léela = carta, письмо (женского рода по-испански); к утвердительному повелительному присоединяется с ударением."
+        },
+        {
+          "es": "Te diré lo que tienes que hacer",
+          "translation": "Я расскажу тебе, что нужно сделать",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "te = Анчону, косвенное дополнение; lo que = то, что предстоит сделать."
+        }
+      ]
+    },
+    {
+      "title": "Приглашение в Барселону",
+      "es": "«Queridos David, Lucía y Antxon:\nGracias por leer mi carta. Como sabéis, os he ayudado a encontrar un número. Hay otras dos personas que tienen un número también. Esos tres números abren un cofre que está en Barcelona. Está en mi casa.\nQuiero que los tres os reunáis conmigo allí dentro de tres días. Podréis abrir el cofre con vuestros tres números.\nNo tengo nada más que deciros. Dentro de poco sabréis quién soy. Pero hoy no es ese día. ¡Buen viaje!\nUn saludo,\nArturo»",
+      "ru": "«Дорогие Давид, Лусия и Анчон!\nСпасибо, что читаете моё письмо. Как вы уже знаете, я помог вам найти по одной цифре. Есть ещё два человека, у которых тоже есть по цифре. Эти три цифры откроют сундук, находящийся в Барселоне, в моём доме.\nЯ хочу, чтобы через три дня вы все трое встретились там со мной. Вы сможете открыть сундук с помощью своих трёх цифр.\nБольше мне нечего вам сказать. Скоро вы узнаете, кто я. Но сегодня ещё не тот день. Счастливого пути!\nС наилучшими пожеланиями,\nАртуро»",
+      "notes": [
+        {
+          "term": "reunirse con (alguien)",
+          "es": [
+            "os reunáis conmigo"
+          ],
+          "ru": [
+            "встретились там со мной"
+          ],
+          "explanation": "встретиться с кем-либо; os — форма для vosotros, reunáis — subjuntivo после quiero que."
+        },
+        {
+          "term": "dentro de tres días",
+          "es": [
+            "dentro de tres días"
+          ],
+          "ru": [
+            "через три дня"
+          ],
+          "explanation": "через три дня в будущем, не «в течение трёх дней»."
+        },
+        {
+          "term": "dentro de poco",
+          "es": [
+            "Dentro de poco"
+          ],
+          "ru": [
+            "Скоро"
+          ],
+          "explanation": "в скором времени, вскоре."
+        },
+        {
+          "term": "como sabéis",
+          "es": [
+            "Como sabéis"
+          ],
+          "ru": [
+            "Как вы уже знаете"
+          ],
+          "explanation": "обращение к группе на vosotros; sabéis — 2-е лицо мн. числа."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "os he ayudado a encontrar un número",
+          "translation": "я помог вам найти по одной цифре",
+          "base": "ayudar a (alguien) a + infinitivo",
+          "explanation": "os = группе адресатов на vosotros, кого Артуро поддержал в поиске."
+        },
+        {
+          "es": "Quiero que los tres os reunáis conmigo allí",
+          "translation": "Я хочу, чтобы через три дня вы все трое встретились там со мной",
+          "base": "querer que + subjuntivo / reunirse con",
+          "explanation": "os — возвратное 2-го лица мн. числа vosotros; reunáis — presente de subjuntivo после Quiero que."
+        },
+        {
+          "es": "No tengo nada más que deciros",
+          "translation": "Больше мне нечего вам сказать",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "os = Давиду, Лусии и Анчону, косвенное дополнение в составе deciros."
+        },
+        {
+          "es": "sabréis quién soy",
+          "translation": "вы узнаете, кто я",
+          "base": "saber + вопросительное предложение",
+          "explanation": "quién — вопросительное слово внутри косвенного вопроса с ударением; sabréis — futuro для vosotros."
+        }
+      ]
+    },
+    {
+      "title": "Трое незнакомцев встречаются",
+      "es": "Tres días después, David, Lucía y Antxon llegaron a Barcelona, a la dirección que aparecía en la carta.\nLucía y Antxon fueron los primeros en llegar a la casa de Arturo. Después llegó David.\n–Hola –dijo David.\n–Hola –dijeron Lucía y Antxon.\nLos tres callaron unos segundos hasta que al final David dijo:\n–¿Qué hacemos aquí?\n–¿Los dos habéis leído la carta? –dijo Lucía.\n–Sí –dijeron los dos jóvenes.\n–No tengo ni idea de qué es todo esto –añadió David.\n–Bien. Entonces, entremos y descubrámoslo –dijo Lucía y llamó a la puerta.",
+      "ru": "Через три дня Давид, Лусия и Анчон приехали в Барселону, по адресу из письма.\nЛусия и Анчон прибыли к дому Артуро первыми. Затем приехал Давид.\n— Привет, — сказал Давид.\n— Привет, — ответили Лусия и Анчон.\nВсе трое несколько секунд молчали, пока Давид наконец не спросил:\n— Что мы здесь делаем?\n— Вы оба прочитали письмо? — спросила Лусия.\n— Да, — ответили двое молодых людей.\n— Понятия не имею, что всё это значит, — добавил Давид.\n— Хорошо. Тогда войдём и разберёмся, — сказала Лусия и постучала в дверь.",
+      "notes": [
+        {
+          "term": "callar (в разговоре)",
+          "es": [
+            "callaron"
+          ],
+          "ru": [
+            "молчали"
+          ],
+          "explanation": "замолчать, ничего не говорить; aquí callaron unos segundos."
+        },
+        {
+          "term": "no tener ni idea de",
+          "es": [
+            "No tengo ni idea de"
+          ],
+          "ru": [
+            "Понятия не имею"
+          ],
+          "explanation": "совершенно не знать; устойчивое выражение с de."
+        },
+        {
+          "term": "descubrir (что происходит)",
+          "es": [
+            "descubrámoslo"
+          ],
+          "ru": [
+            "разберёмся"
+          ],
+          "explanation": "выяснить, что происходит; lo = загадка встречи, присоединено к subjuntivo в побуждении."
+        },
+        {
+          "term": "añadir (реплику)",
+          "es": [
+            "añadió David"
+          ],
+          "ru": [
+            "добавил Давид"
+          ],
+          "explanation": "добавить реплику к разговору; здесь не про физическое добавление."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "¿Los dos habéis leído la carta?",
+          "translation": "Вы оба прочитали письмо?",
+          "base": "haber + participio (pretérito perfecto, vosotros)",
+          "explanation": "habéis leído — pretérito perfecto во 2-м лице множественного числа (vosotros); los dos относится к Давиду и Анчону, к которым обращается Лусия."
+        },
+        {
+          "es": "entremos y descubrámoslo",
+          "translation": "войдём и разберёмся",
+          "base": "entrar / descubrir (algo)",
+          "explanation": "формы subjuntivo 1-го лица мн. числа как побуждение «давайте»; lo = что означает это приглашение."
+        }
+      ]
+    },
+    {
+      "title": "Сундук наконец открыт",
+      "es": "Arturo escuchó que llamaban a la puerta y abrió enseguida. Estaba bien vestido. Les había estado esperando. Después de todo, era un evento muy especial.\n–Hola –dijo con calma–. Gracias por venir.\nLos tres entraron en la casa. Era sencilla y estaba muy ordenada. Había muchos libros y revistas. Arturo les ofreció café, pero nadie quiso. Estaban demasiado nerviosos. Finalmente, Arturo sonrió y dijo:\n–Seguidme.\nLes llevó a una habitación. En el centro estaba el cofre. David, Lucía y Antxon corrieron hacia el cofre. Todos tenían sus números. Estaban listos para abrirlo.\nCada persona introdujo un número. David comenzó y después fue el turno de Lucía. Finalmente, llegó el turno de Antxon. Cuando introdujo su número, el candado hizo un ruido y Arturo abrió el cofre. Estaba lleno de cosas. Encima de las cosas había otra carta.",
+      "ru": "Артуро услышал стук и тут же открыл. Он был нарядно одет и ждал гостей. В конце концов, это было очень особенное событие.\n— Здравствуйте, — спокойно произнёс он. — Спасибо, что пришли.\nВсе трое вошли в дом. Внутри было просто и очень аккуратно. Повсюду лежали книги и журналы. Артуро предложил им кофе, но никто не захотел: все слишком нервничали. Наконец он улыбнулся и сказал:\n— Идите за мной.\nОн привёл их в комнату. Посреди неё стоял сундук. Давид, Лусия и Анчон бросились к нему. У каждого была своя цифра. Всё было готово, чтобы открыть сундук.\nКаждый ввёл по одной цифре. Начал Давид, затем настала очередь Лусии, наконец — Анчона. Когда Анчон ввёл свою цифру, замок щёлкнул, и Артуро открыл сундук. Внутри было много разных вещей, а поверх них лежало ещё одно письмо.",
+      "notes": [
+        {
+          "term": "el evento especial",
+          "es": [
+            "evento muy especial"
+          ],
+          "ru": [
+            "очень особенное событие"
+          ],
+          "explanation": "особое событие, мероприятие; здесь семейная встреча."
+        },
+        {
+          "term": "llamar a la puerta (опечатка)",
+          "es": [
+            "llamaban a la puerta"
+          ],
+          "ru": [
+            "стук"
+          ],
+          "explanation": "В исходнике напечатано «Ilamaban» с заглавной I вместо строчной l; исправлено на llamaban."
+        },
+        {
+          "term": "después de todo",
+          "es": [
+            "Después de todo"
+          ],
+          "ru": [
+            "В конце концов"
+          ],
+          "explanation": "ведь, в конце концов — вводное пояснение причины."
+        },
+        {
+          "term": "estar listo/-a para + infinitivo",
+          "es": [
+            "Estaban listos para abrirlo"
+          ],
+          "ru": [
+            "Всё было готово, чтобы открыть сундук"
+          ],
+          "explanation": "быть готовым к действию; listo — готовый."
+        },
+        {
+          "term": "introducir (una cifra)",
+          "es": [
+            "introdujo un número"
+          ],
+          "ru": [
+            "ввёл по одной цифре"
+          ],
+          "explanation": "ввести цифру в замок или код; не «представить»."
+        },
+        {
+          "term": "ser el turno de (alguien)",
+          "es": [
+            "fue el turno de Lucía"
+          ],
+          "ru": [
+            "настала очередь Лусии"
+          ],
+          "explanation": "настала чья-либо очередь; выражение с de."
+        },
+        {
+          "term": "hacer un ruido",
+          "es": [
+            "hizo un ruido"
+          ],
+          "ru": [
+            "щёлкнул"
+          ],
+          "explanation": "издать звук; здесь замок щёлкнул."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Les había estado esperando",
+          "translation": "он ждал гостей",
+          "base": "esperar a (alguien)",
+          "explanation": "les = трое приглашённых, в исходнике leísmo мн. числа вместо los, это прямое дополнение."
+        },
+        {
+          "es": "Arturo les ofreció café",
+          "translation": "Артуро предложил им кофе",
+          "base": "ofrecer (algo) a (alguien)",
+          "explanation": "les = троим гостям, косвенное дополнение; café — то, что предложили."
+        },
+        {
+          "es": "Seguidme",
+          "translation": "Идите за мной",
+          "base": "seguir a (alguien)",
+          "explanation": "me = Артуро, за кем следуют; после утвердительного повелительного vosotros seguid местоимение приклеено к глаголу."
+        },
+        {
+          "es": "Les llevó a una habitación",
+          "translation": "Он привёл их в комнату",
+          "base": "llevar a (alguien)",
+          "explanation": "les = троим гостям; в авторском тексте leísmo для прямого дополнения мн. числа."
+        },
+        {
+          "es": "Estaban listos para abrirlo",
+          "translation": "Всё было готово, чтобы открыть сундук",
+          "base": "abrir (algo)",
+          "explanation": "lo = сундук, мужской род; todos estaban listos = готова была группа гостей."
+        },
+        {
+          "es": "Cuando introdujo su número",
+          "translation": "Когда Анчон ввёл свою цифру",
+          "base": "introducir (algo)",
+          "explanation": "su относится к цифре Анчона: третьего участника. sujeto вводится из предыдущего предложения."
+        }
+      ]
+    },
+    {
+      "title": "Ещё одно письмо",
+      "es": "Antxon se rio:\n–¡Ja, ja! ¿Otra carta? ¡No me lo puedo creer!\n–¿Alguien quiere leerla? –dijo Lucía.\n–Yo la leeré –dijo David.\nDavid cogió la carta del cofre y se la leyó a los demás:\n«Hola David, Lucía y Antxon. Gracias por venir. Os he traído aquí por un propósito especial. Todos sabéis que fuisteis niños adoptados. Lo comprobé en una agencia».\nA David le temblaban las manos.\n–¿Vosotros también fuisteis adoptados?\n–Sí –dijo Antxon.\n–Yo también. Sigue leyendo –dijo Lucía.",
+      "ru": "Анчон рассмеялся:\n— Ха-ха! Ещё одно письмо? Поверить не могу!\n— Кто-нибудь хочет прочитать? — спросила Лусия.\n— Я прочту, — сказал Давид.\nДавид взял письмо из сундука и прочитал его остальным:\n«Здравствуйте, Давид, Лусия и Анчон. Спасибо, что приехали. Я привёл вас сюда с особой целью. Все вы знаете, что были усыновлёнными детьми. Я проверил это через агентство».\nУ Давида задрожали руки.\n— Вас тоже усыновили?\n— Да, — ответил Анчон.\n— Меня тоже. Читай дальше, — сказала Лусия.",
+      "notes": [
+        {
+          "term": "no poder creérselo",
+          "es": [
+            "No me lo puedo creer"
+          ],
+          "ru": [
+            "Поверить не могу"
+          ],
+          "explanation": "не верить своим глазам; lo — вся ситуация, me — личное переживание."
+        },
+        {
+          "term": "el propósito",
+          "es": [
+            "propósito especial"
+          ],
+          "ru": [
+            "особой целью"
+          ],
+          "explanation": "цель, намерение; более формально, чем idea."
+        },
+        {
+          "term": "el niño adoptado",
+          "es": [
+            "niños adoptados"
+          ],
+          "ru": [
+            "усыновлёнными детьми"
+          ],
+          "explanation": "усыновлённый или удочерённый ребёнок."
+        },
+        {
+          "term": "comprobar (un dato)",
+          "es": [
+            "Lo comprobé"
+          ],
+          "ru": [
+            "Я проверил это"
+          ],
+          "explanation": "проверить, удостовериться в факте; lo = факт усыновления."
+        },
+        {
+          "term": "temblarle las manos a (alguien)",
+          "es": [
+            "le temblaban las manos"
+          ],
+          "ru": [
+            "У Давида задрожали руки"
+          ],
+          "explanation": "у кого-то дрожат руки; le указывает обладателя, las manos — подлежащее."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "No me lo puedo creer",
+          "translation": "Поверить не могу",
+          "base": "creerse (algo)",
+          "explanation": "me относится к Анчону как переживающему человеку, lo обозначает неожиданное наличие ещё одного письма."
+        },
+        {
+          "es": "¿Alguien quiere leerla?",
+          "translation": "Кто-нибудь хочет прочитать?",
+          "base": "leer (algo)",
+          "explanation": "la = carta (жен. род), прямое дополнение; говорящая Лусия."
+        },
+        {
+          "es": "Yo la leeré",
+          "translation": "Я прочту",
+          "base": "leer (algo)",
+          "explanation": "la = письмо, которое собирается читать Давид."
+        },
+        {
+          "es": "se la leyó a los demás",
+          "translation": "прочитал его остальным",
+          "base": "leer (algo) a (alguien)",
+          "explanation": "se = les, другим двоим; la = письмо. le(s) + la перед глаголом заменяется на se la."
+        },
+        {
+          "es": "Os he traído aquí",
+          "translation": "Я привёл вас сюда",
+          "base": "traer a (alguien) (a algún lugar)",
+          "explanation": "os = все трое адресатов письма, прямое дополнение при traer."
+        },
+        {
+          "es": "Lo comprobé en una agencia",
+          "translation": "Я проверил это через агентство",
+          "base": "comprobar (algo)",
+          "explanation": "lo = факт усыновления этих трёх людей; нейтральное прямое дополнение."
+        },
+        {
+          "es": "A David le temblaban las manos",
+          "translation": "У Давида задрожали руки",
+          "base": "temblarle (algo) a (alguien)",
+          "explanation": "le = Давиду как обладателю рук; las manos — подлежащее во множественном числе, отсюда temblaban."
+        }
+      ]
+    },
+    {
+      "title": "Семейная тайна",
+      "es": "«Los tres… Sois hermanos. Yo soy vuestro tío. Vuestra madre era mi hermana. Ella y vuestro padre murieron en un accidente. Ocurrió justo después del nacimiento de David. Estas son sus cosas. Lo mismo que los collares. Han pertenecido a la familia durante generaciones.\nDespués de esa pérdida tan terrible, yo era el único miembro que quedaba de vuestra familia. Intenté mantenernos juntos como una familia tradicional, pero solo no podía cuidar de un bebé y de dos niños pequeños. Tuve que entregaros en adopción. Quería asegurarme de que tendríais padres cariñosos. Quería que tuvierais la mejor vida posible.\nAhora que ya sois adultos, era el momento. Quería deciros que tenéis más familia, además de la familia que conocéis y queréis. Mirad a vuestro alrededor. Tenéis a vuestros hermanos y a vuestra hermana. Tenéis a vuestro tío.\nCon cariño,\nArturo»\nDavid, Lucía y Antxon se miraron. Se dieron la vuelta y allí estaba: era su tío Arturo. Lo miraron y sonrieron.\n–Tengo tanto que contaros… –dijo Arturo llorando.",
+      "ru": "«Вы трое… Вы братья и сестра. А я — ваш дядя. Ваша мать была моей сестрой. Она и ваш отец погибли в несчастном случае. Это произошло вскоре после рождения Давида. Здесь их вещи. Как и ожерелья, они принадлежали нашей семье на протяжении многих поколений.\nПосле этой ужасной утраты я остался единственным членом вашей семьи. Я пытался сохранить нас вместе как обычную семью, но не мог в одиночку заботиться о младенце и двух маленьких детях. Мне пришлось отдать вас на усыновление. Я хотел убедиться, что у вас будут любящие родители. Я хотел, чтобы ваша жизнь сложилась как можно лучше.\nТеперь, когда вы уже взрослые, настало время. Я хотел рассказать вам, что у вас есть ещё родные, помимо семьи, которую вы знаете и любите. Посмотрите вокруг. У вас есть братья и сестра. И есть дядя.\nС любовью,\nАртуро».\nДавид, Лусия и Анчон посмотрели друг на друга. Повернулись — и увидели его. Это был их дядя Артуро. Они посмотрели на него и улыбнулись.\n— Мне столько всего нужно вам рассказать… — произнёс Артуро со слезами на глазах.",
+      "notes": [
+        {
+          "term": "el tío (родственник)",
+          "es": [
+            "tío"
+          ],
+          "ru": [
+            "дядя"
+          ],
+          "explanation": "дядя, брат матери; не разговорное «парень»."
+        },
+        {
+          "term": "morir en un accidente",
+          "es": [
+            "murieron en un accidente"
+          ],
+          "ru": [
+            "погибли в несчастном случае"
+          ],
+          "explanation": "погибнуть вследствие несчастного случая."
+        },
+        {
+          "term": "el nacimiento",
+          "es": [
+            "nacimiento"
+          ],
+          "ru": [
+            "рождения"
+          ],
+          "explanation": "рождение человека; после nacimiento de David."
+        },
+        {
+          "term": "pertenecer a (alguien / algo)",
+          "es": [
+            "pertenecido a la familia"
+          ],
+          "ru": [
+            "принадлежали нашей семье"
+          ],
+          "explanation": "принадлежать кому-либо; требует предлог a."
+        },
+        {
+          "term": "durante generaciones",
+          "es": [
+            "durante generaciones"
+          ],
+          "ru": [
+            "на протяжении многих поколений"
+          ],
+          "explanation": "из поколения в поколение; традиция или имущество долго сохранялось в семье."
+        },
+        {
+          "term": "la pérdida",
+          "es": [
+            "pérdida tan terrible"
+          ],
+          "ru": [
+            "ужасной утраты"
+          ],
+          "explanation": "утрата близких; существительное жен. рода."
+        },
+        {
+          "term": "mantener juntos (a alguien)",
+          "es": [
+            "mantenernos juntos"
+          ],
+          "ru": [
+            "сохранить нас вместе"
+          ],
+          "explanation": "сохранять группу вместе, не разлучать; nos = дядя и трое детей."
+        },
+        {
+          "term": "entregar en adopción",
+          "es": [
+            "entregaros en adopción"
+          ],
+          "ru": [
+            "отдать вас на усыновление"
+          ],
+          "explanation": "передать ребёнка приёмным родителям; os = трое детей."
+        },
+        {
+          "term": "asegurarse de que + indicativo",
+          "es": [
+            "asegurarme"
+          ],
+          "ru": [
+            "убедиться"
+          ],
+          "explanation": "убедиться в будущем результате; de que вводит придаточное с condicional tendríais, а не subjuntivo."
+        },
+        {
+          "term": "cariñoso/-a",
+          "es": [
+            "cariñosos"
+          ],
+          "ru": [
+            "любящие"
+          ],
+          "explanation": "ласковый, заботливый; о приёмных родителях."
+        },
+        {
+          "term": "además de",
+          "es": [
+            "además de la familia"
+          ],
+          "ru": [
+            "помимо семьи"
+          ],
+          "explanation": "кроме, в дополнение к; предлог de."
+        },
+        {
+          "term": "con cariño",
+          "es": [
+            "Con cariño"
+          ],
+          "ru": [
+            "С любовью"
+          ],
+          "explanation": "тёплая формула завершения письма."
+        },
+        {
+          "term": "llorar",
+          "es": [
+            "llorando"
+          ],
+          "ru": [
+            "со слезами на глазах"
+          ],
+          "explanation": "плакать; деепричастие сообщает, как говорит Артуро."
+        }
+      ],
+      "pronouns": [
+        {
+          "es": "Ella y vuestro padre murieron",
+          "translation": "Она и ваш отец погибли",
+          "base": "morir",
+          "explanation": "vuestro = отец всех трёх детей, притяжательная форма vosotros; Ella — их общая мать."
+        },
+        {
+          "es": "Han pertenecido a la familia durante generaciones",
+          "translation": "они принадлежали нашей семье на протяжении многих поколений",
+          "base": "pertenecer a (alguien)",
+          "explanation": "непрерывная связь со многими поколениями; вещи передавались семье, a la familia — владелец."
+        },
+        {
+          "es": "Intenté mantenernos juntos",
+          "translation": "Я пытался сохранить нас вместе",
+          "base": "mantener a (alguien) (juntos)",
+          "explanation": "nos = Артуро и трое племянников, группа, которую дядя пытался не разлучать."
+        },
+        {
+          "es": "entregaros en adopción",
+          "translation": "отдать вас на усыновление",
+          "base": "entregar a (alguien) en adopción",
+          "explanation": "os = Давид, Лусия и Анчон — трое детей. Присоединено к инфинитиву entregar."
+        },
+        {
+          "es": "Quería asegurarme de que tendríais padres cariñosos",
+          "translation": "Я хотел убедиться, что у вас будут любящие родители",
+          "base": "asegurarse de que + indicativo",
+          "explanation": "me — часть asegurarse, говорит Артуро; tendríais — условное будущее из точки зрения прошлого, а не subjuntivo."
+        },
+        {
+          "es": "Quería que tuvierais la mejor vida posible",
+          "translation": "Я хотел, чтобы ваша жизнь сложилась как можно лучше",
+          "base": "querer que + subjuntivo",
+          "explanation": "tuvierais — imperfecto de subjuntivo после quería; адресаты — все трое приёмных детей."
+        },
+        {
+          "es": "Quería deciros que tenéis más familia",
+          "translation": "Я хотел рассказать вам, что у вас есть ещё родные",
+          "base": "decir (algo) a (alguien)",
+          "explanation": "os = трое детей, получатели сообщения; tenéis — indicativo, потому что содержание сообщения утверждается как факт."
+        },
+        {
+          "es": "Se dieron la vuelta",
+          "translation": "Повернулись",
+          "base": "darse la vuelta",
+          "explanation": "se — все трое, развернулись, чтобы посмотреть на Артуро."
+        },
+        {
+          "es": "Lo miraron y sonrieron",
+          "translation": "Они посмотрели на него и улыбнулись",
+          "base": "mirar a (alguien)",
+          "explanation": "lo = Артуро, мужчина, стоящий перед ними; он и есть их дядя."
+        }
+      ]
+    }
+  ],
   "source": {
     "file": "Short Stories in Spanish for Beginners — Olly Richards (1).pdf",
-    "heading_page": 115
-  }
+    "heading_page": 115,
+    "editorial_corrections": [
+      {
+        "pdf_page": 116,
+        "printed": "–Ah, no –Arturo dijo Arturo. Me llamo Arturo –continuó–.",
+        "edited": "–Ah, no –dijo Arturo–. Me llamo Arturo –continuó–.",
+        "reason": "Повторённое имя и нарушенное оформление прямой речи."
+      },
+      {
+        "pdf_page": 118,
+        "printed": "Ilamaban",
+        "edited": "llamaban",
+        "reason": "Опечатка с заглавной I вместо строчной l."
+      }
+    ]
+  },
+  "exercises": [
+    {
+      "id": "chapter-3-comprehension",
+      "instruction": "Seleccione una única respuesta para cada pregunta.",
+      "source": {
+        "file": "Short Stories in Spanish for Beginners — Olly Richards (1).pdf",
+        "pdf_pages": [
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122
+        ],
+        "chapters": [
+          3
+        ],
+        "answer_key_page": 190,
+        "instruction": "Seleccione una única respuesta para cada pregunta."
+      },
+      "questions": [
+        {
+          "prompt": "Arturo viaja por último a ___.",
+          "options": [
+            "Madrid y a Palma",
+            "a Palma",
+            "a Bilbao y a Barcelona",
+            "a Barcelona"
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "Arturo habla con el taxista sobre ___.",
+          "options": [
+            "la familia del taxista",
+            "la familia de Arturo",
+            "un museo",
+            "su viaje a Bilbao"
+          ],
+          "answer": 2
+        },
+        {
+          "prompt": "Antxon, la tercera persona de la misión de Arturo, vive ___.",
+          "options": [
+            "cerca de un parque",
+            "en un barco",
+            "en un pueblo pequeño",
+            "al lado de un puerto"
+          ],
+          "answer": 3
+        },
+        {
+          "prompt": "Al final, el cofre contiene ___.",
+          "options": [
+            "solo una carta",
+            "una carta y algunas cosas más",
+            "una carta de sus padres",
+            "dinero"
+          ],
+          "answer": 1
+        },
+        {
+          "prompt": "David, Lucía y Antxon son ___.",
+          "options": [
+            "primos",
+            "hermanos",
+            "amigos",
+            "niños"
+          ],
+          "answer": 1
+        }
+      ]
+    }
+  ]
 }
