@@ -527,19 +527,18 @@
           }
         },
         {
-          "prompt": "Mila y Ana son ___.",
+          "prompt": "Ana es vietnamita. Sus tres primos son ___.",
           "answers": [
-            "nicaragüenses"
+            "vietnamitas"
           ],
-          "options": [
-            "nicaragüensas",
-            "nicaragüenses",
-            "nicaragüense"
-          ],
-          "interaction": "gap-choice",
-          "context": "Обе девушки из Никарагуа; базовая форма `nicaragüense`.",
-          "explain": "`Nicaragüense` не превращается в `nicaragüensa`, но для нескольких людей обязательно окончание `-s`: `nicaragüenses`.",
-          "sourceRef": "14.1.19"
+          "explain": "`Vietnamita` имеет общую форму для женщин и мужчин. Но речь о трёх двоюродных братьях, поэтому добавляем множественное `-s`: `vietnamitas`.",
+          "context": "Ана и её три двоюродных брата из Вьетнама; исходная форма дана в первой фразе.",
+          "sourceRef": "14.1.16",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Впиши одно прилагательное во множественном числе, без артикля.",
+            "placeholder": "Национальность"
+          }
         },
         {
           "prompt": "Emi es japonesa. Su hermano Kenji es ___.",
