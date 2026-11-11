@@ -39,13 +39,13 @@ test('each grammar exercise and mini-check gets exactly three lives regardless o
     assert.equal(run('gHearts(null,'+JSON.stringify(g)+')').match(/♥/g).length,3);
   }
 });
-test('incorrect answers do not leak, failed card stays visible, theory and retry are voluntary',()=>{
+test('incorrect answers immediately explain solutions; failed card, theory and retry remain voluntary',()=>{
   const run=context([unit3]);unlockUntil(run,'exercise:3.2');
   run('gStart(COURSE.grammar[0].id,"exercise:3.2");gMove(1);');
   for(let i=1;i<=3;i++){
     run('gResponse(G.steps[G.at]).value="wrong";gCheck();');
     const html=run('gPlayerView()');
-    assert.equal(html.includes('Верный ответ:'),i===3);
+    assert.ok(html.includes('Верный ответ:'),'first and later mistakes must reveal the answer');
     if(i<3) {
       assert.ok(html.includes('Осталось попыток: '+(3-i)+' из 3'));
       run('gMove(1)');
@@ -91,7 +91,7 @@ test('wrong correction costs a life instead of permitting unlimited copying',()=
  assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),1);
  run('gResponse(G.steps[G.at]).value="wrong";gCheck();');
  assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).errors'),2);
- assert.ok(!run('gPlayerView()').includes('Верный ответ:'));
+ assert.ok(run('gPlayerView()').includes('Верный ответ:'));
  run('gMove(1);gResponse(G.steps[G.at]).value="wrong";gCheck();');
  assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).status'),'failed');
  assert.ok(run('gPlayerView()').includes('Верный ответ:'));
@@ -113,9 +113,11 @@ test('PR #34: units 1, 7, 15, 38 and 45 retain question-specific explanations af
     for(let i=1;i<=3;i++){
       run('gResponse(G.steps[G.at]).value="incorrecto";gCheck();');
       const html=run('gPlayerView()');
-      assert.equal(html.includes('Верный ответ:'),i===3,file+' life '+i);
+      assert.ok(html.includes('Верный ответ:'),file+' life '+i);
+      const question=run('gGroups(gUnit()).find(g=>g.id===G.steps[G.at].group).questions[G.steps[G.at].qi]');
+      assert.ok(html.includes('Почему:'),file+' explanation on mistake '+i);
+      assert.ok(question.answers.every(a=>html.includes(a.replaceAll('&','&amp;').replaceAll('<','&lt;'))),file+' accepted alternatives');
       if(i===3){
-        const question=run('gGroups(gUnit()).find(g=>g.id===G.steps[G.at].group).questions[G.steps[G.at].qi]');
         assert.ok(html.includes(question.explain.replaceAll('&','&amp;').replaceAll('<','&lt;')),file+' explanation');
         assert.equal(run('gAttempt(gUnit(),gGroups(gUnit()).find(g=>g.id===G.steps[G.at].group)).status'),'failed');
       } else run('gMove(1)');
