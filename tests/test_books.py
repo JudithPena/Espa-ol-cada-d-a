@@ -182,7 +182,7 @@ def test_olly_collection_has_one_parent_and_complete_contents():
     assert [len(b['chapter_catalog']) for b in books] == [4, 3, 3, 3, 3, 3, 3, 3]
     for book in books:
         expected = ([1, 2, 3, 4] if book['id'] == 'olly-richards-la-paella-loca' else
-                    [1, 2, 3] if book['id'] in {'olly-richards-la-criatura', 'olly-richards-el-caballero', 'olly-richards-el-reloj', 'olly-richards-el-cofre', 'olly-richards-tierras-desconocidas'} else [1])
+                    [1, 2, 3] if book['id'] in {'olly-richards-la-criatura', 'olly-richards-el-caballero', 'olly-richards-el-reloj', 'olly-richards-el-cofre', 'olly-richards-tierras-desconocidas', 'olly-richards-laura-la-mujer-invisible'} else [1])
         assert [c['number'] for c in book['chapters']] == expected
         assert [c['status'] for c in book['chapter_catalog']] == (
             ['published'] * len(expected) + ['draft'] * (len(book['chapter_catalog']) - len(expected)))
@@ -194,6 +194,82 @@ def test_olly_collection_has_one_parent_and_complete_contents():
     assert sum(len(b.get('images', [])) for book in books for chapter in book['chapters']
                for b in chapter['blocks']) == 8
     assert sum(len(book.get('pending_illustrations', [])) for book in books) == 0
+
+
+def test_laura_la_mujer_invisible_complete_chapters_full_text_notes_and_quizzes():
+    """Seventh Olly Richards story: full source, exact note targets, pronouns and original exercise key."""
+    import hashlib
+    import re
+
+    book = next(b for b in load_books() if b['id'] == 'olly-richards-laura-la-mujer-invisible')
+    assert book['vocabulary_min_level'] == 'A2'
+    assert [c['title'] for c in book['chapters']] == [
+        'El incidente', 'La mentira', 'El objeto']
+    assert [c['status'] for c in book['chapters']] == ['published'] * 3
+    assert [len(c['blocks']) for c in book['chapters']] == [12, 10, 10]
+    expected = [
+        (2, 1252, '1f1315d91b0b260aa324420e814c0fff199134428d07e77be79b040b066ef85a',
+         80, 55, [0, 1, 2, 1, 0], 151, list(range(151, 157))),
+        (3, 1423, '0d158ed38a2f9e3f0027b15b4379573ae1fb1c7046e5dd9db7e029d8896c8a40',
+         66, 70, [3, 1, 1, 0, 2], 157, list(range(157, 165))),
+    ]
+    learned = {n['term'].casefold() for b in book['chapters'][0]['blocks']
+               for n in b['notes'] if isinstance(n, dict) and n.get('term')}
+    for chapter, (number, word_count, digest, notes_count, pronouns_count,
+                  answer_key, title_page, pdf_pages) in zip(book['chapters'][1:], expected):
+        assert chapter['number'] == number and chapter['source']['heading_page'] == title_page
+        source = re.sub(r'\s+', ' ', ' '.join(b['es'] for b in chapter['blocks'])).strip()
+        assert len(source.split()) == word_count
+        assert hashlib.sha256(source.encode('utf-8')).hexdigest() == digest
+        assert all(60 <= len(b['es'].split()) <= 180 for b in chapter['blocks'])
+        assert all(b['ru'] and b['notes'] and b['pronouns'] for b in chapter['blocks'])
+        assert not any(b.get('images') for b in chapter['blocks'])
+        notes = [n for b in chapter['blocks'] for n in b['notes']]
+        assert len(notes) == notes_count
+        terms = {n['term'].casefold() for n in notes}
+        assert len(terms) == notes_count
+        assert not terms.intersection(learned), terms.intersection(learned)
+        learned |= terms
+        assert sum(len(b['pronouns']) for b in chapter['blocks']) == pronouns_count
+        for block in chapter['blocks']:
+            for lang in ('es', 'ru'):
+                marked = []
+                for note in block['notes']:
+                    assert note['term'] and note['explanation'] and note[lang]
+                    for substring in note[lang]:
+                        matches = list(re.finditer(
+                            r'(?<!\w)' + re.escape(substring) + r'(?!\w)',
+                            block[lang], re.IGNORECASE))
+                        assert matches, (number, block['title'], lang, note['term'], substring)
+                        for match in matches:
+                            assert all(match.end() <= i or match.start() >= j for i, j in marked), (
+                                'overlapping vocabulary highlights', number, block['title'], lang, note['term'])
+                            marked.append((match.start(), match.end()))
+            for pronoun in block['pronouns']:
+                assert pronoun['es'] in block['es'], (number, block['title'], pronoun['es'])
+                assert all(pronoun.get(k) for k in ('translation', 'base', 'explanation'))
+        assert len(chapter['exercises']) == 1
+        exercise = chapter['exercises'][0]
+        assert exercise['source']['pdf_pages'] == pdf_pages
+        assert exercise['source']['chapters'] == [number]
+        assert exercise['source']['answer_key_page'] == 190
+        assert len(exercise['questions']) == 5
+        assert [len(q['options']) for q in exercise['questions']] == [4] * 5
+        assert [q['answer'] for q in exercise['questions']] == answer_key
+
+    ch2, ch3 = book['chapters'][1:]
+    assert any(f['printed'] == '«No quiero robar »'
+               and f['edited'] == '«No quiero robar»'
+               for f in ch2['source']['editorial_corrections'])
+    assert any(f['printed'] == 'os estaréis preguntado'
+               and f['edited'] == 'os estaréis preguntando'
+               for f in ch3['source']['editorial_corrections'])
+    assert 'os estaréis preguntando' in ' '.join(b['es'] for b in ch3['blocks'])
+    assert 'os estaréis preguntado' not in ' '.join(b['es'] for b in ch3['blocks'])
+    assert 'Se ha dado cuenta de lo estupendo que es ser una persona normal!' in (
+        ' '.join(b['es'] for b in ch3['blocks']))
+    # Known A0/A1 vocabulary does not get redundant notes, but new senses are fine.
+    assert not {'el hospital', 'la tienda', 'el reloj', 'despertarse'} & learned
 
 
 def test_tierras_desconocidas_completed_source_links_and_publisher_quizzes():
