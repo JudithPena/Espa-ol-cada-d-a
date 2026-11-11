@@ -1875,6 +1875,36 @@ test('next lesson uses actual metadata and order, escapes titles, and ignores st
  run(`gStartNextUnit(COURSE.grammar[2].id);`);assert.equal(run('G.unit'),unit.id);
 });
 
+test('Fable stage 6 unit-13 revisions restart stale answers without deleting XP or best results',()=>{
+ const updated=JSON.parse(fs.readFileSync('content/grammar/013_adjetivos.json','utf8'));
+ const legacy=structuredClone(updated);legacy.revision=1;
+ for(const g of [...legacy.sections.map(s=>s.check),...legacy.exercises])g.revision=1;
+ const store=new Map();let run=context([legacy],store);unlockUntil(run,'exercise:13.1');
+ run(`render=()=>{};var u=COURSE.grammar[0],g=u.exercises[0];
+   P.xp=73;P.grammar[grammarKey(u,g)]={correct:10,total:12};save();
+   gStart(u.id,'exercise:13.1');gMove(1);gResponse(G.steps[G.at]).value='error';gCheck();gExit();`);
+ const before=run('JSON.stringify(P)');
+ assert.equal(run('gAttempt(COURSE.grammar[0],COURSE.grammar[0].exercises[0]).errors'),1);
+ run=context([updated],store);run(`render=()=>{};gStart(COURSE.grammar[0].id,'all',true);`);
+ assert.equal(run('JSON.stringify(P)'),before,'best score and XP survive revision');
+ const data=JSON.parse(run(`JSON.stringify((()=>{const u=gUnit(),g=u.exercises[0],a=gAttempt(u,g);return {revision:a.revision,errors:a.errors,responses:Object.keys(a.responses).length,best:P.grammar[grammarKey(u,g)],xp:P.xp};})())`));
+ assert.equal(data.revision,2);assert.equal(data.errors,0);assert.equal(data.responses,0);
+ assert.deepEqual(data.best,{correct:10,total:12});assert.equal(data.xp,73);
+});
+
+test('Fable stage 6 unit-13 word builders have distractors and accept the intended noun phrases',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/013_adjetivos.json','utf8'));
+ for(const qi of [8,10]){
+   const q=u.exercises[2].questions[qi];
+   assert.equal(q.interaction,'build');assert.ok(q.tiles.length>q.answers[0].split(' ').length);
+   const run=context([u]);unlockUntil(run,'exercise:13.3');
+   run(`gStart(COURSE.grammar[0].id,'exercise:13.3');gMove(1);G.at=G.steps.findIndex(s=>s.group==='13.3'&&s.qi===${qi});`);
+   const result=JSON.parse(run(`JSON.stringify((()=>{const s=G.steps[G.at],q=gUnit().exercises[2].questions[s.qi];for(const word of q.answers[0].split(' ')){const index=q.tiles.indexOf(word);if(index<0)throw Error('Missing tile '+word);gBuild('add',index);}const value=gResponse(s).value;gCheck();return {value,good:gResponse(s).good,errors:gAttempt(gUnit(),gUnit().exercises[2]).errors};})())`));
+   assert.equal(result.value,q.answers[0]);assert.equal(result.good,true);
+   assert.equal(result.errors,0);
+ }
+});
+
 test('Fable 4 unit-7 revision invalidates old indexed answers but preserves prior achievements',()=>{
  const updated=JSON.parse(fs.readFileSync('content/grammar/007_un_perro_el_perro.json','utf8'));
  const legacy=structuredClone(updated);legacy.revision=1;
