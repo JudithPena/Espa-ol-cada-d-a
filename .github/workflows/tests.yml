@@ -20,6 +20,7 @@ jobs:
           python -m espanol grammar-lint --report /tmp/grammar-lint-summary.md --json-out /tmp/grammar-lint-findings.json
           python -m espanol grammar-lint 5
           python -m espanol grammar-lint 13
+          python -m espanol grammar-lint 8
       - name: Архив диагностик грамматического линтера
         if: always()
         uses: actions/upload-artifact@v4
