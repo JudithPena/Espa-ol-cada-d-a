@@ -11,6 +11,23 @@ from pathlib import Path
 GRAMMAR = Path(__file__).resolve().parent.parent / "content" / "grammar"
 
 
+def apply_accent_policies(unit: dict, unit_policies: dict, path: Path) -> None:
+    """Apply question-specific rules in memory, preserving source JSON and progress keys."""
+    groups = {group['id']: group for group in [section['check'] for section in unit['sections'] if section.get('check')] + unit['exercises']}
+    for group_id, overrides in unit_policies.items():
+        if group_id not in groups:
+            raise ValueError(f"{path}: accent policy refers to unknown group {group_id}")
+        questions = groups[group_id]['questions']
+        for index, settings in overrides.items():
+            if not isinstance(index, str) or not index.isdecimal() or int(index) >= len(questions):
+                raise ValueError(f"{path}: accent policy refers to unknown question {group_id}/{index}")
+            question = questions[int(index)]
+            if question['answers'][0] != settings['answer']:
+                raise ValueError(f"{path}: accent policy anchor differs from answer {group_id}/{index}")
+            question.update({key: settings[key] for key in ('accentPolicy', 'accentContrasts', 'normalize', 'gapAnswers')
+                             if key in settings})
+
+
 def _image_uri(directory: Path, relative: str) -> str:
     image = (directory / relative).resolve()
     if not image.is_relative_to(directory.resolve()) or image.suffix != ".webp":
@@ -45,6 +62,16 @@ def load_grammar(directory: Path = GRAMMAR, *, schema_check: bool | None = None)
     if schema_check is None:
         schema_check = directory.resolve() == GRAMMAR.resolve()
     validator = schema_validator() if schema_check else None
+    # Standalone policy annotations must not change frozen lesson JSON bytes,
+    # question indices or progress keys. Apply only while loading the official course.
+    policies = {}
+    if directory.resolve() == GRAMMAR.resolve():
+        policy_file = directory / 'accent_policies.json'
+        if policy_file.is_file():
+            policies = json.loads(policy_file.read_text(encoding='utf-8'))
+        if not isinstance(policies, dict):
+            raise ValueError('accent policy catalog must be a dictionary')
+    applied_policy_units = set()
     units = []
     for path in sorted(directory.glob("[0-9]*.json")):
         unit = json.loads(path.read_text(encoding="utf-8"))
@@ -54,6 +81,15 @@ def load_grammar(directory: Path = GRAMMAR, *, schema_check: bool | None = None)
             if issues:
                 problem = issues[0]
                 raise ValueError(f"{path}: {problem.rule}: {problem.message}")
+        unit_policies = policies.get(unit['id'], {})
+        if unit_policies:
+            applied_policy_units.add(unit['id'])
+            apply_accent_policies(unit, unit_policies, path)
+            if validator is not None:
+                issues = breaking_findings(structure_unit(unit, path.name, validator))
+                if issues:
+                    first = issues[0]
+                    raise ValueError(f"{path}: {first.rule}: {first.message}")
         if 'revision' in unit and (type(unit['revision']) is not int or unit['revision'] < 1):
             raise ValueError(f"{path}: revision must be a positive integer")
         if any(u["id"] == unit["id"] for u in units):
@@ -199,4 +235,6 @@ def load_grammar(directory: Path = GRAMMAR, *, schema_check: bool | None = None)
             if family and family.get("portraits"):
                 family["portraits"] = {name: _image_uri(directory, image) for name, image in family["portraits"].items()}
         units.append(unit)
+    if set(policies) != applied_policy_units:
+        raise ValueError(f'accent policy references unknown units: {sorted(set(policies) - applied_policy_units)}')
     return units

@@ -29,6 +29,8 @@ jobs:
           if-no-files-found: warn
       - name: Проверка словаря и лимитов Telegram
         run: python -m espanol validate
+      - name: Локальная сборка грамматического сайта без публикации
+        run: python -m espanol site
       - name: Тесты
         run: python -m pytest -q
       - uses: actions/setup-node@v5
@@ -38,6 +40,8 @@ jobs:
         run: node --test tests/site_grammar_policy.test.cjs
       - name: Плеер грамматики и распределение вариантов ответа
         run: node --test tests/site_grammar.test.cjs
+      - name: Этап 3 — контекстные ударения и альтернативные ответы
+        run: node --test tests/grammar_stage3.test.cjs
       - name: Уроки основного курса на сайте (сценарии, проверка ответов)
         run: node --test tests/site_course.test.cjs
       - name: Тесты бота на Cloudflare
@@ -83,8 +87,8 @@ jobs:
           fi
 
   grammar-immediate-feedback-browser:
-    if: github.event_name == 'pull_request' && (github.head_ref == 'fix/grammar-immediate-feedback-20261111' || github.head_ref == 'audit/grammar-schema-linter-20261111')
-    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && (github.head_ref == 'fix/grammar-immediate-feedback-20261111' || github.head_ref == 'audit/grammar-schema-linter-20261111' || github.head_ref == 'audit/fable-stage3-recovered-20261111')
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
@@ -93,7 +97,8 @@ jobs:
       - name: Install dependencies and real Playwright Chromium
         run: |
           python -m pip install -r requirements.txt playwright
-          python -m playwright install --with-deps chromium
+          # Ubuntu 24.04 runners supply the shared libraries; skip flaky apt mirrors.
+          python -m playwright install chromium
       - name: Build local website without deploying
         run: python -m espanol site
       - name: Chromium regression (320, 390, 768, 1280px; 1, 7, 15, 38, 45)

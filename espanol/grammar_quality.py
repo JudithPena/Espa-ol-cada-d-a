@@ -138,6 +138,64 @@ def structure_unit(unit: dict, file: str, validator: Draft202012Validator) -> li
                     found.append(_issue('ERROR', 'GUIDED_ARITY', unit, file, 'Число частей guidedGaps неверно.',
                                         'Для N списков вариантов нужны N+1 текстовых частей.',
                                         'Привести parts и choices к согласованному количеству.', name, index))
+            # Stage 3: contextual accent decisions must be justified by question data.
+            policy = q.get('accentPolicy', group.get('accentPolicy'))
+            contrasts = list(group.get('accentContrasts') or []) + list(q.get('accentContrasts') or [])
+            if policy == 'contextual' and not contrasts:
+                found.append(_issue('ERROR', 'ACCENT_CONTEXT_MISSING', unit, file,
+                                    'Контекстный режим без указанных грамматических противопоставлений.',
+                                    'Движок не должен угадывать значение пропущенного ударения.',
+                                    'Добавить accentContrasts или выбрать strict/soft.', name, index))
+            if policy == 'soft' and q.get('accentSensitive') is True:
+                found.append(_issue('ERROR', 'ACCENT_POLICY_CONFLICT', unit, file,
+                                    'Одновременно заданы мягкий и строгий режимы.',
+                                    'Проверка не должна зависеть от противоречивой конфигурации.',
+                                    'Оставить один явный режим.', name, index))
+            if contrasts and isinstance(answers, list):
+                tokens = {token.casefold() for answer in answers if isinstance(answer, str)
+                          for token in re.findall(r'\w+', answer, flags=re.UNICODE)}
+                for pair in contrasts:
+                    if not isinstance(pair, dict):
+                        continue  # JSON Schema reports the invalid structure.
+                    expected, entered = pair.get('expected', ''), pair.get('entered', '')
+                    if isinstance(expected, str) and expected.casefold() not in tokens:
+                        found.append(_issue('ERROR', 'ACCENT_CONTRAST_UNUSED', unit, file,
+                                            f'Контраст {expected!r} отсутствует в допустимых ответах.',
+                                            'Контекстный запрет никогда не сработает.',
+                                            'Сверить пару с answers, не придумывая новые варианты.', name, index))
+                    if isinstance(expected, str) and isinstance(entered, str):
+                        trans = str.maketrans('áéíóúÁÉÍÓÚ', 'aeiouAEIOU')
+                        if expected == entered or expected.translate(trans).casefold() != entered.translate(trans).casefold():
+                            found.append(_issue('ERROR', 'ACCENT_CONTRAST_INVALID', unit, file,
+                                                f'Пара {expected!r}/{entered!r} отличается не только акутом.',
+                                                'Контекстный режим описывает лишь отсутствие/наличие ударения.',
+                                                'Уточнить expected и entered.', name, index))
+            if q.get('gapAnswers') is not None:
+                count = len(gap_parts)-1 if isinstance(gap_parts, list) else len((guided or {}).get('choices', [])) if isinstance(guided, dict) else 0
+                if len(q['gapAnswers']) != count:
+                    found.append(_issue('ERROR', 'GAP_ANSWERS_ARITY', unit, file,
+                                        'Число списков gapAnswers не совпадает с числом пропусков.',
+                                        'Нельзя точно сопоставить варианты ответов с полями.',
+                                        'Для N полей задать N списков, не меняя общий answers.', name, index))
+                if (isinstance(gap_parts, list) and len(q['gapAnswers']) == count and
+                        isinstance(answers, list) and all(isinstance(a, str) for a in answers)):
+                    widths = q.get('gapWordCounts') or [1] * count
+                    if (isinstance(widths, list) and len(widths) == count and
+                            all(isinstance(n, int) and n > 0 for n in widths) and
+                            all(len(a.split()) == sum(widths) for a in answers)):
+                        expected_slots = [set() for _ in range(count)]
+                        for answer in answers:
+                            words = answer.split()
+                            pos = 0
+                            for slot, width in enumerate(widths):
+                                expected_slots[slot].add(' '.join(words[pos:pos+width]))
+                                pos += width
+                        for slot, allowed in enumerate(q['gapAnswers']):
+                            if isinstance(allowed, list) and set(allowed) != expected_slots[slot]:
+                                found.append(_issue('ERROR', 'GAP_ANSWERS_INCONSISTENT', unit, file,
+                                                    f'У пропуска {slot+1} варианты расходятся с полным answers.',
+                                                    'Подсказка не может принимать или показывать несуществующие комбинации.',
+                                                    'Согласовать gapAnswers с исходными answers.', name, index))
             if 'pictureCount' in q and not q.get('image'):
                 found.append(_issue('ERROR', 'MISSING_PICTURE', unit, file, 'pictureCount без изображения.',
                                     'Отрисовка картинки не сможет работать.', 'Добавить image и imageAlt.', name, index))
@@ -157,6 +215,26 @@ def structure_unit(unit: dict, file: str, validator: Draft202012Validator) -> li
 def inspect_directory(directory: Path = DIRECTORY, only: set[int] | None = None, *, pedagogical: bool = True) -> list[Finding]:
     validator = schema_validator(directory)
     found = []
+    # Sidecar policies are applied for the official course only, after raw JSON has
+    # been inspected. This validates the same effective data the browser receives.
+    from .grammar import apply_accent_policies
+    policies = {}
+    if directory.resolve() == DIRECTORY.resolve():
+        policy_file = directory / 'accent_policies.json'
+        if policy_file.is_file():
+            try:
+                policies = json.loads(policy_file.read_text(encoding='utf-8'))
+            except (ValueError, UnicodeError) as exc:
+                found.append(_issue('ERROR', 'ACCENT_POLICY_PARSE', None, policy_file.name,
+                                    'Невозможно прочитать каталог режимов ударений.', str(exc),
+                                    'Исправить JSON каталога политик.'))
+            if not isinstance(policies, dict):
+                found.append(_issue('ERROR', 'ACCENT_POLICY_TYPE', None, policy_file.name,
+                                    'Каталог режимов ударений должен быть словарём.',
+                                    'Данные нельзя безопасно сопоставить с юнитами.',
+                                    'Исправить структуру каталога.'))
+                policies = {}
+    seen_policy_units = set()
     seen: set[str] = set()
     seen_numbers: set[int] = set()
     for path in sorted(directory.glob('[0-9]*.json')):
@@ -185,8 +263,24 @@ def inspect_directory(directory: Path = DIRECTORY, only: set[int] | None = None,
                                 'Старые файлы могут иметь исторические имена; это не ошибка идентификатора.',
                                 'Для новых юнитов назвать файл по id. Существующие id и ключи прогресса не менять.'))
         found.extend(structure_unit(unit,path.name,validator))
+        policy = policies.get(unit.get('id'), {})
+        if policy:
+            seen_policy_units.add(unit['id'])
+            try:
+                apply_accent_policies(unit, policy, path)
+            except (KeyError, IndexError, TypeError, AttributeError, ValueError) as exc:
+                found.append(_issue('ERROR', 'ACCENT_POLICY_REFERENCE', unit, path.name,
+                                    'Каталог ссылается на неподходящий вопрос или ответ.', str(exc),
+                                    'Исправить ссылку на существующий unit/group/index без изменения id.'))
+            else:
+                found.extend(structure_unit(unit,path.name,validator))
         if pedagogical:
             found.extend(pedagogical_unit(unit,path.name))
+    for missing in set(policies) - seen_policy_units if only is None else set():
+        found.append(_issue('ERROR', 'ACCENT_POLICY_ORPHAN', None, 'accent_policies.json',
+                            f'Каталог содержит неизвестный юнит {missing}.',
+                            'Контекстное правило нельзя применить к существующему заданию.',
+                            'Удалить устаревшую ссылку или восстановить корректную.'))
     return apply_baseline(found,directory)
 
 

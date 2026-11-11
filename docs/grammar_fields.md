@@ -74,6 +74,8 @@
 | `deferAnswerFeedback` | логическое | нет |
 | `shuffleOptions` | логическое | нет |
 | `optionOrderReason` | строка | нет |
+| `accentPolicy` | strict / soft / contextual | нет |
+| `accentContrasts` | массив [accentContrast] | нет |
 
 ## question
 
@@ -114,6 +116,10 @@
 | `guidedGaps` | guidedGaps | нет |
 | `ratings` | ratings | нет |
 | `retryHint` | строка | нет |
+| `accentPolicy` | strict / soft / contextual | нет |
+| `accentContrasts` | массив [accentContrast] | нет |
+| `normalize` | phrase | нет |
+| `gapAnswers` | массив [массив [строка]] | нет |
 
 ## wordGroup
 
@@ -257,6 +263,16 @@
 | `heads` | массив [строка] | нет |
 | `rows` | массив [массив [строка]] | нет |
 | `schemes` | массив [scheme] | нет |
+
+## accentContrast
+
+Подтверждённая в контексте пара разных грамматических значений.
+
+| Поле | Тип | Обязательно |
+|---|---|---|
+| `expected` | строка | да |
+| `entered` | строка | да |
+| `explanation` | строка | да |
 
 ## Реально поддерживаемые вопросы
 
