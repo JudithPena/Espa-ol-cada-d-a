@@ -101,3 +101,44 @@ jobs:
           done
           git merge --abort >/dev/null 2>&1 || true
           exit 0
+
+  grammar-merge-preview-pr34:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/fix/grammar-three-lives-review-20261111'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Merge into current PR branch without committing
+        run: |
+          git fetch origin claude/charming-cerf-bzze60
+          git -c user.name="PR integration audit" -c user.email="audit@localhost" merge --no-ff --no-commit origin/claude/charming-cerf-bzze60 || true
+          python tools/resolve_pr34_merge.py
+          test -z "$(git diff --name-only --diff-filter=U)"
+      - name: Install project dependencies
+        run: python -m pip install -r requirements.txt pytest
+      - name: Validate the combined grammar and all repository tests
+        run: |
+          python -m espanol validate
+          python -m pytest -q
+          node --test tests/site_grammar_policy.test.cjs tests/site_grammar.test.cjs tests/site_course.test.cjs
+      - name: Build the merged website
+        run: python -m espanol site
+      - name: Install browser and run real Chromium
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+          python tests/grammar_pr34_browser.py
+      - name: Preserve merged-run browser screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grammar-pr34-merged-preview
+          path: docs/grammar_pr34_browser/
+          if-no-files-found: warn
