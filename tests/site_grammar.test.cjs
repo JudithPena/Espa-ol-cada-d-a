@@ -1432,7 +1432,7 @@ test('every accepted alternative in mini-checks is offered and any one correct c
    }
   }
  }
- assert.equal(checked,21); // Fable 5: both plural alternatives are accepted in check-c
+ assert.equal(checked,22); // Fable 5: extra mini-check alternatives are validated
 });
 
 test('grammar list gives each theme a distinct icon and marks only fully completed themes',()=>{
@@ -1930,12 +1930,12 @@ test('an updated exercise discards obsolete correction steps while the same revi
  assert.ok(run('gPlayerView()').includes('data-greview-theory'))
 });
 
-test('all eight new profession questions pass with their contextual answers and cannot be passed by omission',()=>{
+test('all nine revised profession questions pass with their contextual answers and cannot be passed by omission',()=>{
  const u=JSON.parse(fs.readFileSync('content/grammar/005_sin_articulo.json','utf8'));
  let run=context([u]);unlockUntil(run,'exercise:5.1');
  run(`gStart(COURSE.grammar[0].id,'exercise:5.1');gMove(1);for(let __grammarGuard=0;!G.ended&&__grammarGuard++<300;){const s=G.steps[G.at];gResponse(s).value=gUnit().exercises[0].questions[s.qi].answers[0];gCheck();gMove(1);}`);
- assert.equal(run('P.grammar[grammarKey(gUnit(),gUnit().exercises[0])].correct'),8);
- assert.equal(run('P.xp'),16);
+ assert.equal(run('P.grammar[grammarKey(gUnit(),gUnit().exercises[0])].correct'),9);
+ assert.equal(run('P.xp'),18);
  run=context([u]);unlockUntil(run,'exercise:5.1');
  run(`gStart(COURSE.grammar[0].id,'exercise:5.1');gMove(1);for(let __grammarGuard=0;!G.ended&&!G.recovery&&__grammarGuard++<300;){gResponse(G.steps[G.at]).value='Без артикля';gCheck();if(!G.recovery)gMove(1);}`);
  assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).status'),'failed');
@@ -2121,7 +2121,8 @@ test('omission control is available for both required and absent articles and do
  assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).errors'),0);
  run('gCheck();');
  assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).errors'),1);
- run('gMove(1);');
+ run(`gMove(1);G.at=G.steps.findIndex(s=>s.group==='5.2'&&s.qi===4);`);
+ // The next question is a choice; jump to the following input requiring omission.
  assert.ok(run('gPlayerView()').includes('data-gno-article'));
  run('gNoArticle();gCheck();');
  assert.equal(run('gResponse(G.steps[G.at]).status'),'correct');
