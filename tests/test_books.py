@@ -233,6 +233,42 @@ def test_olly_a2_vocabulary_avoids_words_taught_in_course_a0_and_a1():
 
 
 
+
+def test_remaining_book_vocabulary_respects_cumulative_prior_course_levels():
+    """Only re-teach words that have a new sense, construction or government.
+
+    Guide §7: min A1 excludes material taught in course A0;
+    min A2 or B1 excludes material from A0 and A1 while A2 lessons do not exist.
+    """
+    books = {book['id']: book for book in load_books()}
+    excluded = {
+        ('harry-potter-piedra', '1'): {'nublado'},
+        ('harry-potter-piedra', '2'): {'peinarse', 'el dormitorio', 'repetir'},
+        ('lola-lago-nota-falsa', '1'): {'escribir'},
+        ('lola-lago-nota-falsa', '14'): {'estudiar'},
+    }
+    for (book_id, chapter_id), terms_to_exclude in excluded.items():
+        chapter = next(c for c in books[book_id]['chapters'] if c['id'] == chapter_id)
+        notes = {n['term'] for b in chapter['blocks'] for n in b['notes'] if isinstance(n, dict)}
+        assert terms_to_exclude.isdisjoint(notes), (book_id, chapter_id)
+
+    story_notes = {n['term'] for b in books['los-tres-cerditos']['story']['blocks']
+                   for n in b['notes'] if isinstance(n, dict)}
+    assert 'el estómago' not in story_notes
+
+    # Same spelling is not necessarily the same sense or grammatical construction.
+    retained = {
+        ('harry-potter-piedra', '1'): {'la cuenta', 'la tapa', 'entre'},
+        ('harry-potter-piedra', '2'): {'la manzana', 'la cuenta'},
+        ('lola-lago-nota-falsa', '11'): {'el señor'},
+        ('lola-lago-vacaciones-al-sol', '10'): {'el músico / la música'},
+    }
+    for (book_id, chapter_id), terms_to_retain in retained.items():
+        chapter = next(c for c in books[book_id]['chapters'] if c['id'] == chapter_id)
+        notes = {n['term'] for b in chapter['blocks'] for n in b['notes'] if isinstance(n, dict)}
+        assert terms_to_retain.issubset(notes), (book_id, chapter_id)
+
+
 def test_book_chapters_have_complete_readable_blocks():
     books = load_books()
     assert books
