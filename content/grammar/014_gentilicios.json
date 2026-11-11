@@ -6,53 +6,45 @@
   "level": "A1",
   "sections": [
     {
-      "title": "Как меняются слова, обозначающие национальность",
+      "title": "Откуда человек: пять моделей gentilicios",
       "paragraphs": [
-        "Слова вроде **`chileno`, `chilena` — «чилийский», «чилийская»** показывают, откуда человек или вещь. По-испански такое слово называется `gentilicio`. **Слова, обозначающие национальность или происхождение, пишем с маленькой буквы**, а название страны — с большой: `Chile → chileno`.",
-        "Формы на `-o` меняются по роду и числу. После согласной женская форма часто получает `-a`: `alemán → alemana`.",
-        "У `costarricense`, `nicaragüense`, `vietnamita`, `iraní` мужская и женская формы совпадают. Множественное число: `costarricenses`. У `iraní` допустимы оба окончания: **`-es` и `-s`**."
+        "**`Gentilicio`** — слово, которое называет национальность или происхождение. `Chile` — название страны (с большой буквы); `chileno`, `chilena` — прилагательное происхождения (с маленькой). Испанское название страны и соответствующее прилагательное — не одно и то же.",
+        "У прилагательных на **`-o`** меняются и род, и число: `chileno → chilena → chilenos / chilenas`. Некоторые слова с мужской формой на согласную получают в женском роде **`-a`**: `alemán → alemana`, `japonés → japonesa`. При добавлении `-a` ударение остаётся на том же слоге, но знак в `alemana` и `japonesa` не нужен.",
+        "У **`costarricense`, `nicaragüense`, `vietnamita`, `iraní`** одна форма для мужчины и женщины, но не обязательно для одного и нескольких: `costarricense → costarricenses`; `vietnamita → vietnamitas`. В `nicaragüense` сохраняется `ü`.",
+        "Слова с ударным **`-í`** могут образовывать множественное число на `-es` и на `-s`: `iraníes / iranís`, `marroquíes / marroquís`. В нейтральном учебном примере чаще выбирают форму на `-es`; обе нормативны."
       ],
       "wordGroups": [
         {
-          "title": "Меняем род и число",
+          "title": "Изменяются род и число",
           "words": [
             [
-              "brasileño / brasileña",
-              "бразилец / бразильянка"
+              "chileno / chilena",
+              "чилиец / чилийка"
             ],
             [
-              "brasileños / brasileñas",
-              "бразильцы / бразильянки"
-            ]
-          ]
-        },
-        {
-          "title": "Одна форма для обоих родов",
-          "words": [
-            [
-              "costarricense",
-              "коста-риканский / коста-риканская"
+              "alemán / alemana",
+              "немец / немка"
             ],
-            [
-              "vietnamitas",
-              "вьетнамские"
-            ],
-            [
-              "iraníes / iranís",
-              "иранские"
-            ]
-          ]
-        },
-        {
-          "title": "Добавляем -a",
-          "words": [
             [
               "japonés / japonesa",
               "японец / японка"
+            ]
+          ]
+        },
+        {
+          "title": "Один род — разные числа",
+          "words": [
+            [
+              "costarricense → costarricenses",
+              "из Коста-Рики, единственное → множественное"
             ],
             [
-              "japoneses / japonesas",
-              "японцы / японки"
+              "vietnamita → vietnamitas",
+              "вьетнамец/вьетнамка → несколько человек"
+            ],
+            [
+              "iraní → iraníes / iranís",
+              "из Ирана; оба варианта множественного числа"
             ]
           ]
         }
@@ -60,35 +52,52 @@
       "check": {
         "id": "check-a",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "Выбери модель: что меняется при смене рода и числа?",
         "questions": [
           {
-            "prompt": "Ana es ___.",
+            "prompt": "Una amiga de Chile: ¿qué forma concuerda con amiga?",
             "answers": [
-              "brasileña"
+              "chilena"
             ],
-            "explain": "Ана — женщина: brasileña.",
             "options": [
-              "brasileña",
-              "brasileño",
-              "brasileñas"
+              "chileno",
+              "chilena",
+              "chilenos"
             ],
-            "context": "Дополни предложение."
+            "interaction": "choice",
+            "context": "Одна подруга из Чили.",
+            "explain": "`Amiga` — существительное женского рода единственного числа. У формы `chileno` нужно заменить `-o` на `-a`: `chilena`."
           },
           {
-            "prompt": "Ana y Lucía son ___.",
+            "prompt": "Ana es costarricense. Su hermano también es de Costa Rica. ¿Qué forma подходит брату?",
             "answers": [
-              "costarricenses"
-            ],
-            "explain": "Costarricense не меняется по роду; для нескольких добавляем -s.",
-            "options": [
-              "costarricensas",
-              "costarricenses",
               "costarricense"
             ],
-            "context": "Дополни предложение."
+            "options": [
+              "costarricenso",
+              "costarricense",
+              "costarricensa"
+            ],
+            "interaction": "choice",
+            "context": "Сравни женщину и мужчину одного происхождения.",
+            "explain": "`Costarricense` общая форма для мужчин и женщин. `-o` и `-a` к ней не добавляют; во множественном числе будет `costarricenses`."
+          },
+          {
+            "prompt": "Какие формы множественного числа слова `iraní` нормативны?",
+            "answers": [
+              "iraníes и iranís"
+            ],
+            "options": [
+              "только iraníes",
+              "iraníes и iranís",
+              "только iranís"
+            ],
+            "interaction": "choice",
+            "context": "Вспомни модель с ударным -í.",
+            "explain": "После ударного `-í` возможны оба окончания: `iraníes` и `iranís`. В литературной речи более распространено `iraníes`, но `iranís` тоже правильно."
           }
-        ]
+        ],
+        "revision": 2
       },
       "illustration": {
         "image": "art/theory-004-014/014a.webp",
@@ -108,35 +117,49 @@
       "presentation": "examples"
     },
     {
-      "title": "Национальность после ser",
+      "title": "Отвечаем на вопрос «Откуда ты?»",
       "paragraphs": [
-        "Когда просто называем **национальность человека после `ser`**, артикль обычно не нужен — как и при сообщении о профессии. Ниже показаны формы для одного человека и нескольких людей.",
-        "Для группы женщин выбираем женский род. Для мужчин или смешанной группы обычно нужен мужской род."
+        "Если просто говорим, кто мы **по национальности**, после `ser` обычно не нужен артикль: `Soy chilena` — «Я чилийка»; `Pablo es peruano` — «Пабло перуанец». Но отвечать на `¿De dónde eres?` можно и иначе: `Soy de Chile`.",
+        "В диалоге обращай внимание, **кто говорит**. `Soy` относится к одному говорящему; `somos` — к «мы». Если говорят только женщины, будет женское множественное; для мужской или смешанной группы обычно используется мужское множественное.",
+        "Не путай сообщение о национальности с существительным. `Es una amiga chilena` — «Это чилийская подруга»: `una` относится к слову **`amiga`**, а `chilena` его описывает. Субстантивированные слова происхождения могут принимать определители в других контекстах: правило не означает абсолютный запрет артикля."
       ],
       "wordGroups": [
         {
-          "title": "Один человек",
+          "title": "Один говорящий",
           "words": [
             [
-              "Soy peruana",
-              "Я перуанка"
+              "Soy de Perú.",
+              "Я из Перу."
             ],
             [
-              "Soy francés",
-              "Я француз"
+              "Soy peruana.",
+              "Я перуанка."
             ]
           ]
         },
         {
-          "title": "Несколько человек",
+          "title": "Группа представляет себя",
           "words": [
             [
-              "Somos italianas",
-              "Мы итальянки"
+              "Somos italianas.",
+              "Мы итальянки (говорят женщины)."
             ],
             [
-              "Somos mexicanos",
-              "Мы мексиканцы"
+              "Somos mexicanos.",
+              "Мы мексиканцы (группа мужчин или смешанная)."
+            ]
+          ]
+        },
+        {
+          "title": "Существительное требует своего определителя",
+          "words": [
+            [
+              "Es una amiga chilena.",
+              "Это чилийская подруга."
+            ],
+            [
+              "Soy chilena.",
+              "Я чилийка (нейтральное сообщение)."
             ]
           ]
         }
@@ -144,35 +167,52 @@
       "check": {
         "id": "check-b",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "Прочитай короткую ситуацию: кто говорит и нужен ли артикль?",
         "questions": [
           {
-            "prompt": "Dos mujeres de China: somos ___.",
+            "prompt": "Marta: «Soy de Brasil». Как она обычно сообщает национальность?",
             "answers": [
-              "chinas"
+              "Soy brasileña."
             ],
-            "explain": "Две женщины: chinas.",
             "options": [
-              "chinas",
-              "chino",
-              "chinos"
+              "Soy una brasileña.",
+              "Soy brasileña.",
+              "Soy brasileño."
             ],
-            "context": "Дополни предложение."
+            "interaction": "choice",
+            "context": "Марта представляется, без дополнительного противопоставления.",
+            "explain": "Марта — одна женщина из Бразилии. В нейтральном сообщении о национальности после `soy` используем `brasileña` без артикля; `brasileño` — мужская форма."
           },
           {
-            "prompt": "Un hombre y una mujer de México: somos ___.",
+            "prompt": "Anna y Mia: «Somos de Alemania. Somos ___».",
             "answers": [
-              "mexicanos"
+              "alemanas"
             ],
-            "explain": "Смешанная группа: mexicanos.",
             "options": [
-              "mexicanas",
-              "mexicanos",
-              "mexicano"
+              "alemanes",
+              "alemana",
+              "alemanas"
             ],
-            "context": "Дополни предложение."
+            "interaction": "choice",
+            "context": "Две женщины говорят от своего имени.",
+            "explain": "Говорят две женщины: множественное число женского рода `alemanas`. Исходная мужская форма `alemán`, а женская — `alemana`."
+          },
+          {
+            "prompt": "Pablo presenta a un colega: «Es ___ compañero italiano».",
+            "answers": [
+              "un"
+            ],
+            "options": [
+              "una",
+              "un",
+              "без артикля"
+            ],
+            "interaction": "choice",
+            "context": "Представляют одного коллегу — мужчину из Италии.",
+            "explain": "`Compañero` — мужское существительное единственного числа, поэтому `un compañero italiano`. `Un` относится к существительному, а не к прилагательному происхождения."
           }
-        ]
+        ],
+        "revision": 2
       },
       "illustration": {
         "image": "art/theory-004-014/014b.webp",
@@ -188,36 +228,36 @@
       "presentation": "examples"
     },
     {
-      "title": "Происхождение людей и вещей",
+      "title": "Согласуем происхождение с человеком или предметом",
       "paragraphs": [
-        "Прилагательные происхождения описывают **и людей, и предметы**, обычно после существительного.",
-        "Форму прилагательного выбираем по роду и числу **испанского** слова. Например, `ciudad` — женского рода, поэтому и описание будет в женском роде, хотя русский «город» — мужского.",
-        "В сочетаниях вроде `una amiga chilena` — чилийская подруга — артикль относится к существительному `amiga`. Правило о национальности после `ser` не означает, что артикль нужно убирать перед любым сочетанием с прилагательным происхождения."
+        "Слова происхождения описывают не только людей, но и **места, еду, одежду и вещи**. Обычно прилагательное стоит после существительного: `un plato mexicano`, `una moneda japonesa`.",
+        "Форму прилагательного выбираем по роду и числу **испанского существительного**, а не по роду русского перевода. `Ciudad` — женского рода, поэтому `una ciudad francesa`; для нескольких городов нужно множественное число: `dos ciudades francesas`. В другой ситуации попробуй согласовать новое существительное самостоятельно.",
+        "У общих по роду форм число всё равно изменяется: `una moneda marroquí → dos monedas marroquíes / marroquís`. Обе формы множественного числа правильны, хотя вариант с `-es` распространённее. В `una amiga chilena` определитель `una` согласуется с существительным `amiga`, а прилагательное `chilena` — с тем же существительным."
       ],
       "wordGroups": [
         {
-          "title": "Один человек или предмет",
+          "title": "На что ориентироваться",
           "words": [
             [
-              "una moneda japonesa",
-              "японская монета"
+              "una ciudad francesa",
+              "город (исп. `ciudad`, жен. род) во Франции"
             ],
             [
-              "un escritor colombiano",
-              "колумбийский писатель"
+              "dos platos mexicanos",
+              "два блюда из Мексики"
             ]
           ]
         },
         {
-          "title": "Несколько предметов",
+          "title": "Описываем людей и вещи",
           "words": [
             [
-              "ciudades francesas",
-              "французские города"
+              "una moneda japonesa",
+              "монета из Японии"
             ],
             [
-              "ciudades canadienses",
-              "канадские города"
+              "un escritor colombiano",
+              "писатель из Колумбии"
             ]
           ]
         }
@@ -225,35 +265,52 @@
       "check": {
         "id": "check-c",
         "title": "Мини-проверка",
-        "instruction": "",
+        "instruction": "Определи существительное и согласуй описание страны с его формой.",
         "questions": [
           {
-            "prompt": "Una ciudad ___.",
+            "prompt": "Dos camisetas de México → dos camisetas ___.",
             "answers": [
-              "portuguesa"
+              "mexicanas"
             ],
-            "explain": "Ciudad — женский род: portuguesa.",
             "options": [
-              "portuguesas",
-              "portuguesa",
-              "portugués"
+              "mexicanos",
+              "mexicanas",
+              "mexicana"
             ],
-            "context": "Дополни предложение."
+            "interaction": "choice",
+            "context": "Две футболки из Мексики.",
+            "explain": "`Camisetas` — женский род, множественное число. От `mexicano` получаем `mexicanas`, потому что описание согласуется с испанским существительным."
           },
           {
-            "prompt": "Dos ciudades ___.",
+            "prompt": "Un profesor de Estados Unidos → dos profesoras ___.",
             "answers": [
-              "canadienses"
+              "estadounidenses"
             ],
-            "explain": "Ciudades — множественное число: canadienses; род форму не меняет.",
             "options": [
-              "canadienses",
-              "canadiensas",
-              "canadiense"
+              "estadounidensa",
+              "estadounidense",
+              "estadounidenses"
             ],
-            "context": "Дополни предложение."
+            "interaction": "choice",
+            "context": "Две преподавательницы из США.",
+            "explain": "`Estadounidense` не имеет разных форм по роду; множественное число `profesoras` требует `estadounidenses`, с окончанием `-s`."
+          },
+          {
+            "prompt": "Unas cartas de Japón → unas cartas ___.",
+            "answers": [
+              "japonesas"
+            ],
+            "options": [
+              "japoneses",
+              "japonesa",
+              "japonesas"
+            ],
+            "interaction": "choice",
+            "context": "Описывают несколько писем из Японии.",
+            "explain": "`Cartas` — женский род множественного числа. От `japonés` образуется женское множественное `japonesas`; графическое ударение исчезает."
           }
-        ]
+        ],
+        "revision": 2
       },
       "illustration": {
         "image": "art/theory-004-014/014c.webp",
@@ -271,780 +328,657 @@
   "exercises": [
     {
       "id": "14.1",
-      "title": "14.1 · Измени форму",
-      "instruction": "Прочитай местоимение и подсказку заново в каждом вопросе. Модели с разными окончаниями чередуются; впиши или выбери нужную форму.",
+      "title": "14.1 · Выбери модель происхождения",
+      "instruction": "Сначала разберись в модели слова. В заданиях с кнопками выбери ответ; в остальных впиши одно слово. Страну не путай с прилагательным.",
       "questions": [
         {
-          "prompt": "Ellos son ___.",
+          "prompt": "Что здесь название страны, а что — прилагательное происхождения?",
           "answers": [
-            "japoneses"
-          ],
-          "explain": "Ellos — несколько мужчин. Подходящая форма: japoneses.",
-          "translation": "несколько мужчин",
-          "sourceRef": "14.1.5",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "japonés",
-              "японский"
-            ]
+            "Страна: Chile; прилагательное: chileno"
           ],
           "options": [
-            "japonesa",
-            "japonés",
-            "japoneses",
-            "japonesas"
+            "Страна: chileno; прилагательное: Chile",
+            "Страна: Chile; прилагательное: chileno",
+            "Страна: chileno; прилагательное: chileno"
           ],
-          "interaction": "gap-choice"
+          "interaction": "choice",
+          "context": "Сопоставь существительное — название государства — и прилагательное.",
+          "explain": "`Chile` обозначает страну и пишется с прописной. `Chileno` в середине предложения обычно пишем со строчной: `Pablo es chileno`.",
+          "sourceRef": "extra"
         },
         {
-          "prompt": "Ella es ___.",
+          "prompt": "Pablo es chileno. Su hermana Lucía es ___.",
           "answers": [
-            "costarricense"
+            "chilena"
           ],
-          "explain": "Ella — одна женщина. Подходящая форма: costarricense.",
-          "translation": "одна женщина",
-          "sourceRef": "14.1.2",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "costarricense",
-              "коста-риканский"
-            ]
-          ]
+          "explain": "`Lucía` — одна женщина. Прилагательное `chileno` меняет `-o` на `-a` и становится `chilena`; число остаётся единственным.",
+          "context": "Пабло — чилиец, Лусия — его сестра.",
+          "sourceRef": "extra",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Введи одно слово в нужной форме, без артикля и других слов.",
+            "placeholder": "Одно слово"
+          }
         },
         {
-          "prompt": "Ellas son ___.",
-          "answers": [
-            "venezolanas"
-          ],
-          "explain": "Ellas — несколько женщин. Подходящая форма: venezolanas.",
-          "translation": "несколько женщин",
-          "sourceRef": "14.1.7",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "venezolano",
-              "венесуэльский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Ella es ___.",
-          "answers": [
-            "iraní"
-          ],
-          "explain": "Ella — одна женщина. Подходящая форма: iraní.",
-          "translation": "одна женщина",
-          "sourceRef": "14.1.4",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "iraní",
-              "иранский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Ellos son ___.",
-          "answers": [
-            "brasileños"
-          ],
-          "explain": "Ellos — несколько мужчин. Подходящая форма: brasileños.",
-          "translation": "несколько мужчин",
-          "sourceRef": "14.1.1",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "brasileño",
-              "бразильский"
-            ]
-          ],
-          "options": [
-            "brasileñas",
-            "brasileña",
-            "brasileños",
-            "brasileño"
-          ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Ellas son ___.",
-          "answers": [
-            "nicaragüenses"
-          ],
-          "explain": "Ellas — несколько женщин. Подходящая форма: nicaragüenses.",
-          "translation": "несколько женщин",
-          "sourceRef": "14.1.6",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "nicaragüense",
-              "никарагуанский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Ella es ___.",
-          "answers": [
-            "escocesa"
-          ],
-          "explain": "Ella — одна женщина. Подходящая форма: escocesa.",
-          "translation": "одна женщина",
-          "sourceRef": "14.1.3",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "escocés",
-              "шотландский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Ellas son ___.",
-          "answers": [
-            "vietnamitas"
-          ],
-          "explain": "Ellas — несколько женщин. Подходящая форма: vietnamitas.",
-          "translation": "несколько женщин",
-          "sourceRef": "14.1.8",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "vietnamita",
-              "вьетнамский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Ellas son ___.",
-          "answers": [
-            "iraníes",
-            "iranís"
-          ],
-          "explain": "Ellas — несколько женщин. Подходящая форма: iraníes или iranís.",
-          "translation": "несколько женщин",
-          "sourceRef": "14.1.4",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "iraní",
-              "иранский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Ella es ___.",
-          "answers": [
-            "brasileña"
-          ],
-          "explain": "Ella — одна женщина. Подходящая форма: brasileña.",
-          "translation": "одна женщина",
-          "sourceRef": "14.1.1",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "brasileño",
-              "бразильский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Ella es ___.",
-          "answers": [
-            "nicaragüense"
-          ],
-          "explain": "Ella — одна женщина. Подходящая форма: nicaragüense.",
-          "translation": "одна женщина",
-          "sourceRef": "14.1.6",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "nicaragüense",
-              "никарагуанский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Ellas son ___.",
-          "answers": [
-            "escocesas"
-          ],
-          "explain": "Ellas — несколько женщин. Подходящая форма: escocesas.",
-          "translation": "несколько женщин",
-          "sourceRef": "14.1.3",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "escocés",
-              "шотландский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Ellos son ___.",
-          "answers": [
-            "venezolanos"
-          ],
-          "explain": "Ellos — несколько мужчин. Подходящая форма: venezolanos.",
-          "translation": "несколько мужчин",
-          "sourceRef": "14.1.7",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "venezolano",
-              "венесуэльский"
-            ]
-          ],
-          "options": [
-            "venezolanos",
-            "venezolano",
-            "venezolanas",
-            "venezolana"
-          ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Ellos son ___.",
-          "answers": [
-            "costarricenses"
-          ],
-          "explain": "Ellos — несколько мужчин. Подходящая форма: costarricenses.",
-          "translation": "несколько мужчин",
-          "sourceRef": "14.1.2",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "costarricense",
-              "коста-риканский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Ella es ___.",
-          "answers": [
-            "japonesa"
-          ],
-          "explain": "Ella — одна женщина. Подходящая форма: japonesa.",
-          "translation": "одна женщина",
-          "sourceRef": "14.1.5",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "japonés",
-              "японский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Ellos son ___.",
-          "answers": [
-            "vietnamitas"
-          ],
-          "explain": "Ellos — несколько мужчин. Подходящая форма: vietnamitas.",
-          "translation": "несколько мужчин",
-          "sourceRef": "14.1.8",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "vietnamita",
-              "вьетнамский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Ellos son ___.",
-          "answers": [
-            "iraníes",
-            "iranís"
-          ],
-          "explain": "Ellos — несколько мужчин. Подходящая форма: iraníes или iranís.",
-          "translation": "несколько мужчин",
-          "sourceRef": "14.1.4",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "iraní",
-              "иранский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Ellas son ___.",
+          "prompt": "Ana y Julia son ___.",
           "answers": [
             "brasileñas"
           ],
-          "explain": "Ellas — несколько женщин. Подходящая форма: brasileñas.",
-          "translation": "несколько женщин",
-          "sourceRef": "14.1.1",
-          "context": "Измени слово для указанной группы.",
+          "options": [
+            "brasileños",
+            "brasileña",
+            "brasileñas",
+            "brasileño"
+          ],
+          "interaction": "gap-choice",
+          "context": "Две подруги из Бразилии. Исходная мужская форма — `brasileño`.",
+          "explain": "Две женщины требуют женского множественного числа: `brasileño → brasileña → brasileñas`. Нужны одновременно `-a` и `-s`.",
+          "sourceRef": "14.1.18",
           "clues": [
             [
               "brasileño",
-              "бразильский"
+              "из Бразилии"
             ]
           ]
         },
         {
-          "prompt": "Ellos son ___.",
+          "prompt": "Kenji es japonés. Su hermana Emi es ___.",
           "answers": [
-            "nicaragüenses"
+            "japonesa"
           ],
-          "explain": "Ellos — несколько мужчин. Подходящая форма: nicaragüenses.",
-          "translation": "несколько мужчин",
-          "sourceRef": "14.1.6",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "nicaragüense",
-              "никарагуанский"
-            ]
-          ]
+          "explain": "У слова `japonés` женская форма `japonesa`: добавляем `-a`, ударение остаётся на том же слоге, а графический знак уже не нужен.",
+          "context": "Кэндзи и его сестра из Японии.",
+          "sourceRef": "14.1.15",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Введи одно слово в нужной форме, без артикля и других слов.",
+            "placeholder": "Одно слово"
+          }
         },
         {
-          "prompt": "Ellos son ___.",
+          "prompt": "Un alumno alemán → una alumna ___.",
           "answers": [
-            "escoceses"
+            "alemana"
           ],
-          "explain": "Ellos — несколько мужчин. Подходящая форма: escoceses.",
-          "translation": "несколько мужчин",
-          "sourceRef": "14.1.3",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "escocés",
-              "шотландский"
-            ]
+          "explain": "`Alemán` заканчивается на согласную, но женская форма `alemana` получает `-a` и теряет графическое ударение. `Alumna` женского рода.",
+          "context": "Переходим от одного ученика к одной ученице из Германии.",
+          "sourceRef": "extra",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Введи одно слово в нужной форме, без артикля и других слов.",
+            "placeholder": "Одно слово"
+          }
+        },
+        {
+          "prompt": "Какое предложение показывает **одну форму для мужчины и женщины**?",
+          "answers": [
+            "Pablo es vietnamita. Ana es vietnamita."
           ],
           "options": [
-            "escoceses",
-            "escocesa",
-            "escocesas",
-            "escocés"
+            "Pablo es vietnamito. Ana es vietnamita.",
+            "Pablo es vietnamita. Ana es vietnamita.",
+            "Pablo es vietnamita. Ana es vietnamito."
           ],
-          "interaction": "gap-choice"
+          "interaction": "choice",
+          "context": "У Пабло и Аны одинаковое происхождение: они из Вьетнама.",
+          "explain": "`Vietnamita` одинаково для мужчины и женщины. Нельзя образовывать мужскую форму `vietnamito`: окончание `-a` здесь не признак женского рода.",
+          "sourceRef": "14.1.21"
         },
         {
-          "prompt": "Ella es ___.",
-          "answers": [
-            "vietnamita"
-          ],
-          "explain": "Ella — одна женщина. Подходящая форма: vietnamita.",
-          "translation": "одна женщина",
-          "sourceRef": "14.1.8",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "vietnamita",
-              "вьетнамский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Ellas son ___.",
-          "answers": [
-            "japonesas"
-          ],
-          "explain": "Ellas — несколько женщин. Подходящая форма: japonesas.",
-          "translation": "несколько женщин",
-          "sourceRef": "14.1.5",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "japonés",
-              "японский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Ellas son ___.",
+          "prompt": "Un amigo costarricense → dos amigas ___.",
           "answers": [
             "costarricenses"
           ],
-          "explain": "Ellas — несколько женщин. Подходящая форма: costarricenses.",
-          "translation": "несколько женщин",
-          "sourceRef": "14.1.2",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "costarricense",
-              "коста-риканский"
-            ]
-          ]
+          "explain": "`Costarricense` имеет общую форму для обоих родов. Здесь меняется число: `dos amigas` → `costarricenses` с окончанием `-s`.",
+          "context": "Один друг из Коста-Рики — две подруги оттуда же.",
+          "sourceRef": "14.1.14",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Введи одно слово в нужной форме, без артикля и других слов.",
+            "placeholder": "Одно слово"
+          }
         },
         {
-          "prompt": "Ella es ___.",
+          "prompt": "Mehdi es iraní. Sus dos hermanas son ___.",
           "answers": [
-            "venezolana"
+            "iraníes",
+            "iranís"
           ],
-          "explain": "Ella — одна женщина. Подходящая форма: venezolana.",
-          "translation": "одна женщина",
-          "sourceRef": "14.1.7",
-          "context": "Измени слово для указанной группы.",
-          "clues": [
-            [
-              "venezolano",
-              "венесуэльский"
-            ]
-          ]
+          "explain": "`Iraní` подходит обоим родам. Для двух сестёр возможно `iraníes` или `iranís`: обе формы множественного числа нормативны, первая чаще употребляется.",
+          "context": "Мехди и обе его сестры из Ирана. Введи один из двух нормативных вариантов.",
+          "sourceRef": "14.1.9",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Введи одно слово в нужной форме, без артикля и других слов.",
+            "placeholder": "Одно слово"
+          }
+        },
+        {
+          "prompt": "Las dos amigas son ___.",
+          "answers": [
+            "nicaragüenses"
+          ],
+          "options": [
+            "nicaraguenses",
+            "nicaragüense",
+            "nicaragüenses"
+          ],
+          "interaction": "gap-choice",
+          "context": "Две подруги приехали из Никарагуа. Исходная форма: `nicaragüense`.",
+          "explain": "`Nicaragüense` не меняется по роду, но во множественном числе получает `-s`: `nicaragüenses`. Две точки над `ü` сохраняются.",
+          "sourceRef": "14.1.6"
+        },
+        {
+          "prompt": "Un chico escocés → dos chicas ___.",
+          "answers": [
+            "escocesas"
+          ],
+          "explain": "От `escocés` женская форма — `escocesa` без графического ударения. Для двух девушек добавляем `-s`: `escocesas`.",
+          "context": "Один парень из Шотландии — две девушки из Шотландии.",
+          "sourceRef": "14.1.12",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Введи одно слово в нужной форме, без артикля и других слов.",
+            "placeholder": "Одно слово"
+          }
+        },
+        {
+          "prompt": "Найди исправление ошибки: «Pablo es vietnamito».",
+          "answers": [
+            "Pablo es vietnamita."
+          ],
+          "options": [
+            "Pablo es vietnamitos.",
+            "Pablo es vietnamita.",
+            "Pablo es vietnamito."
+          ],
+          "interaction": "choice",
+          "context": "Пабло — один мужчина из Вьетнама; проверь, нужно ли менять окончание.",
+          "explain": "`Vietnamita` одинаково для обоих родов, поэтому `Pablo es vietnamita`. Варианты `vietnamito` и `vietnamitos` в этой функции неверны.",
+          "sourceRef": "extra"
+        },
+        {
+          "prompt": "Una periodista venezolana → dos periodistas (un hombre y una mujer) ___.",
+          "answers": [
+            "venezolanos"
+          ],
+          "explain": "Для смешанной группы из двух людей выбираем мужское множественное: `venezolano → venezolanos`. `Periodistas` само по себе не определяет род.",
+          "context": "Двое журналистов из Венесуэлы: мужчина и женщина.",
+          "sourceRef": "14.1.13",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Введи одно слово в нужной форме, без артикля и других слов.",
+            "placeholder": "Одно слово"
+          }
+        },
+        {
+          "prompt": "Ana es brasileña. Carlos y Diego son ___.",
+          "answers": [
+            "brasileños"
+          ],
+          "explain": "Для Карлоса и Диего требуется мужское множественное `brasileños`. У `brasileño` меняется и род, и число в зависимости от группы.",
+          "context": "Ана, Карлос и Диего из Бразилии. Теперь говорят только о двух мужчинах.",
+          "sourceRef": "14.1.5",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Введи одно слово в нужной форме, без артикля и других слов.",
+            "placeholder": "Одно слово"
+          }
+        },
+        {
+          "prompt": "Ana es vietnamita. Sus tres primos son ___.",
+          "answers": [
+            "vietnamitas"
+          ],
+          "explain": "`Vietnamita` имеет общую форму для женщин и мужчин. Но речь о трёх двоюродных братьях, поэтому добавляем множественное `-s`: `vietnamitas`.",
+          "context": "Ана и её три двоюродных брата из Вьетнама; исходная форма дана в первой фразе.",
+          "sourceRef": "14.1.16",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Впиши одно прилагательное во множественном числе, без артикля.",
+            "placeholder": "Национальность"
+          }
+        },
+        {
+          "prompt": "Emi es japonesa. Su hermano Kenji es ___.",
+          "answers": [
+            "japonés"
+          ],
+          "explain": "Для одного мужчины используем `japonés`. Знак ударения на `é` нужен по правилу написания; `japones` без него — орфографическая ошибка с мягкой проверкой.",
+          "context": "Эми и её брат из Японии; требуется мужская форма единственного числа.",
+          "sourceRef": "extra",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Введи одно слово в нужной форме, без артикля и других слов.",
+            "placeholder": "Одно слово"
+          }
         }
       ],
       "preview": {
-        "source": "Ella es ___.",
+        "source": "Ana es brasileña. Luis es ___.",
         "sentenceParts": [
-          "Ella es ",
+          "Ana es brasileña. Luis es ",
           "."
         ],
-        "answer": "brasileña",
-        "translation": "Она бразильянка.",
-        "targetPrefix": ""
+        "answer": "brasileño",
+        "translation": "Ана бразильянка, а Луис бразилец.",
+        "targetPrefix": "",
+        "tip": "Ориентируйся на человека и образуй нужную форму."
       },
       "inlineAnswer": true,
-      "inputLabel": "Короткий ввод · Выбор ответа",
+      "inputLabel": "Выбор и самостоятельное образование формы",
       "inputFormat": {
-        "instruction": "Впиши только слово, обозначающее национальность или происхождение, в нужной форме. Артикль и остальное предложение не добавляй.",
-        "example": "españolas",
-        "placeholder": "Слово в нужной форме"
+        "instruction": "В поле введи только одно слово в нужной форме, без артикля; в задании с кнопками выбери вариант.",
+        "placeholder": "Национальность"
       },
       "theorySections": [
         0
       ],
-      "revision": 2
+      "revision": 3
     },
     {
       "id": "14.2",
-      "title": "14.2 · Откуда вы?",
-      "instruction": "Дополни предложение подходящей формой слова из подсказки.",
+      "title": "14.2 · Представляем себя и друзей",
+      "instruction": "Прочитай, кому принадлежит реплика и кто входит в группу. Смотри указание у вопроса: одно слово, артикль или вся группа слов.",
       "questions": [
         {
-          "prompt": "Soy ___.",
+          "prompt": "Lucía: «Soy de Chile. Soy ___».",
           "answers": [
-            "peruana"
+            "chilena"
           ],
-          "explain": "Одна женщина: peruana.",
-          "translation": "Женщина из Перу.",
+          "options": [
+            "chileno",
+            "chilena",
+            "chilenos"
+          ],
+          "interaction": "gap-choice",
+          "context": "Лусия говорит о себе.",
+          "explain": "`Soy` относится к одной говорящей — Лусии. Она женщина из Чили: `Soy chilena`, без артикля при нейтральном сообщении о национальности.",
+          "sourceRef": "extra"
+        },
+        {
+          "prompt": "Pablo: «Soy de Francia. Soy ___».",
+          "answers": [
+            "francés"
+          ],
+          "explain": "О себе говорит один мужчина. Мужская форма от `francesa` — `francés` с графическим ударением; обычно после `soy` артикль не нужен.",
+          "context": "Пабло рассказывает о себе; известна женская форма `francesa`.",
+          "sourceRef": "14.2.4",
+          "interaction": "input",
+          "clues": [
+            [
+              "francesa",
+              "француженка"
+            ]
+          ],
+          "inputFormat": {
+            "instruction": "Введи одно слово в нужной форме, без артикля и других слов.",
+            "placeholder": "Одно слово"
+          }
+        },
+        {
+          "prompt": "Ana y Sofía: «Somos de Perú. Somos ___».",
+          "answers": [
+            "peruanas"
+          ],
+          "explain": "Говорят две женщины, поэтому выбираем женское множественное `peruanas`. `Somos` указывает на «мы», артикль не нужен.",
+          "context": "Обе девушки говорят вместе; мужская форма `peruano`.",
           "sourceRef": "14.2.1",
-          "context": "Впиши форму слова из подсказки.",
+          "interaction": "input",
           "clues": [
             [
               "peruano",
-              "перуанский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Somos ___.",
-          "answers": [
-            "chinas"
-          ],
-          "explain": "Две женщины: chinas.",
-          "translation": "Две женщины из Китая.",
-          "sourceRef": "14.2.2",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "chino",
-              "китайский"
+              "из Перу"
             ]
           ],
-          "options": [
-            "chinas",
-            "china",
-            "chino"
-          ],
-          "interaction": "gap-choice"
+          "inputFormat": {
+            "instruction": "Введи одно слово в нужной форме, без артикля и других слов.",
+            "placeholder": "Одно слово"
+          }
         },
         {
-          "prompt": "Somos ___.",
-          "answers": [
-            "egipcios"
-          ],
-          "explain": "Двое мужчин: egipcios.",
-          "translation": "Двое мужчин из Египта.",
-          "sourceRef": "14.2.3",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "egipcio",
-              "египетский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Soy ___.",
-          "answers": [
-            "francesa"
-          ],
-          "explain": "Женская форма francés — francesa.",
-          "translation": "Женщина из Франции.",
-          "sourceRef": "14.2.4",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "francés",
-              "французский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Somos ___.",
-          "answers": [
-            "italianas"
-          ],
-          "explain": "Две женщины: italianas.",
-          "translation": "Две женщины из Италии.",
-          "sourceRef": "14.2.5",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "italiano",
-              "итальянский"
-            ]
-          ],
-          "options": [
-            "italiano",
-            "italiana",
-            "italianos",
-            "italianas"
-          ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Somos ___.",
+          "prompt": "Pablo y Ana: «Somos de México. Somos ___».",
           "answers": [
             "mexicanos"
           ],
-          "explain": "Смешанная группа: mexicanos.",
-          "translation": "Мужчина и женщина из Мексики.",
+          "options": [
+            "mexicanas",
+            "mexicanos",
+            "mexicano",
+            "mexicana"
+          ],
+          "interaction": "gap-choice",
+          "context": "Смешанная группа: мужчина и женщина.",
+          "explain": "`Somos` относится к двоим людям, в составе группы есть мужчина. Используем мужское множественное `mexicanos`, а не `mexicanas`.",
           "sourceRef": "14.2.6",
-          "context": "Впиши форму слова из подсказки.",
           "clues": [
             [
               "mexicano",
-              "мексиканский"
+              "из Мексики"
             ]
           ]
         },
         {
-          "prompt": "Soy ___.",
+          "prompt": "Lucía спокойно сообщает национальность. Какая фраза здесь нейтральная?",
           "answers": [
-            "india"
-          ],
-          "explain": "Женская форма indio — india. Это происхождение, не религия.",
-          "translation": "Женщина из Индии.",
-          "sourceRef": "14.2.7",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "indio",
-              "индийский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Somos ___.",
-          "answers": [
-            "rusos"
-          ],
-          "explain": "Двое мужчин: rusos.",
-          "translation": "Двое мужчин из России.",
-          "sourceRef": "14.2.8",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "ruso",
-              "русский"
-            ]
+            "Soy chilena."
           ],
           "options": [
-            "rusos",
-            "rusa",
-            "ruso"
+            "Soy una chilena.",
+            "Soy chilena.",
+            "Soy un chileno."
           ],
-          "interaction": "gap-choice"
+          "interaction": "choice",
+          "context": "Без существительного и дополнительного противопоставления.",
+          "explain": "`Soy chilena` — обычная нейтральная фраза после `ser`. Артикль возможен у субстантивированного названия национальности в иных контекстах, но здесь не требуется.",
+          "sourceRef": "extra"
+        },
+        {
+          "prompt": "Lucía: «Es ___ amiga chilena».",
+          "answers": [
+            "una"
+          ],
+          "explain": "`Amiga` — женское существительное в единственном числе, перед ним нужен `una`. Артикль относится к `amiga`, а не к прилагательному `chilena`.",
+          "context": "Лусия представляет одну подругу из Чили. Введи только артикль.",
+          "sourceRef": "extra",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Впиши только неопределённый артикль перед `amiga`.",
+            "placeholder": "Артикль"
+          }
+        },
+        {
+          "prompt": "Lucía: «Clara es ___».",
+          "answers": [
+            "una amiga chilena"
+          ],
+          "explain": "В полном словосочетании `una amiga chilena` артикль `una` относится к `amiga` (ж. р., ед. ч.), а прилагательное `chilena` согласуется с ней.",
+          "context": "Клара — одна из подруг Лусии. Она из Чили. Введи всю группу слов: неопределённый артикль + amiga + прилагательное.",
+          "sourceRef": "extra",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Введи целую группу из трёх слов: артикль, `amiga` и национальность.",
+            "placeholder": "Артикль + существительное + прилагательное"
+          }
+        },
+        {
+          "prompt": "Собеседник спрашивает «¿De dónde eres?». Ответь **через ser + de + страну**, не через национальность.",
+          "answers": [
+            "Soy de Chile."
+          ],
+          "options": [
+            "Soy chilena.",
+            "Soy de Chile.",
+            "Soy una chilena."
+          ],
+          "interaction": "choice",
+          "context": "Отвечает Лусия, которая родилась в Чили.",
+          "explain": "На вопрос `¿De dónde eres?` естественно ответить и `Soy de Chile`, и `Soy chilena`, но условие требует конструкцию с `de` и названием страны: `Soy de Chile`.",
+          "sourceRef": "extra"
+        },
+        {
+          "prompt": "Luis y Miguel: «Somos de Egipto. Somos ___».",
+          "answers": [
+            "egipcios"
+          ],
+          "explain": "Для двух мужчин нужна форма мужского множественного `egipcios`. После `somos` не добавляем артикль, когда просто сообщаем происхождение.",
+          "context": "Двое мужчин из Египта. Дана форма `egipcio`.",
+          "sourceRef": "14.2.3",
+          "interaction": "input",
+          "clues": [
+            [
+              "egipcio",
+              "из Египта"
+            ]
+          ],
+          "inputFormat": {
+            "instruction": "Введи одно слово в нужной форме, без артикля и других слов.",
+            "placeholder": "Одно слово"
+          }
+        },
+        {
+          "prompt": "Clara y Sara: «Somos de Italia. Somos ___».",
+          "answers": [
+            "italianas"
+          ],
+          "options": [
+            "italianos",
+            "italiana",
+            "italianas",
+            "italiano"
+          ],
+          "interaction": "gap-choice",
+          "context": "Две подруги из Италии отвечают вместе. Дана мужская форма `italiano`.",
+          "explain": "Говорят две женщины: от `italiano` образуем `italianas` (женский род, множественное число). `Somos` передаёт «мы», без артикля.",
+          "sourceRef": "14.2.5",
+          "clues": [
+            [
+              "italiano",
+              "из Италии"
+            ]
+          ]
         }
       ],
       "preview": {
-        "source": "Somos ___.",
+        "source": "María: Soy de Perú. Soy ___.",
         "sentenceParts": [
-          "Somos ",
+          "María: Soy de Perú. Soy ",
           "."
         ],
-        "answer": "italianas",
-        "translation": "Мы итальянки. Говорят две женщины.",
+        "answer": "peruana",
+        "translation": "Мария: «Я из Перу. Я перуанка».",
         "targetPrefix": ""
       },
       "inlineAnswer": true,
-      "inputLabel": "Короткий ввод · Выбор ответа",
+      "inputLabel": "Диалоги · Артикль · Полная реплика",
       "inputFormat": {
-        "instruction": "Впиши только слово, обозначающее национальность или происхождение, в нужной форме. Артикль и остальное предложение не добавляй.",
-        "example": "españolas",
-        "placeholder": "Слово в нужной форме"
+        "instruction": "Обычно введи только нужное слово; если в вопросе сказано «вся группа слов», введи её целиком.",
+        "placeholder": "Ответ по условию"
       },
       "theorySections": [
         1
-      ]
+      ],
+      "revision": 2
     },
     {
       "id": "14.3",
-      "title": "14.3 · Люди, города и вещи",
-      "instruction": "Дополни предложение подходящей формой слова из подсказки.",
+      "title": "14.3 · Чилийская подруга и вещи из разных стран",
+      "instruction": "Найди существительное в испанской фразе и согласуй с ним прилагательное происхождения. В поле вводи слово, в вопросах с кнопками выбирай исправление.",
       "questions": [
         {
-          "prompt": "El yen es una moneda ___.",
+          "prompt": "Как описать по-испански **два канадских музея**?",
           "answers": [
-            "japonesa"
+            "dos museos canadienses"
           ],
-          "explain": "Moneda — женский род, единственное число.",
-          "translation": "японская",
-          "sourceRef": "14.3.1",
-          "context": "Впиши форму слова из подсказки.",
+          "options": [
+            "dos museos canadiense",
+            "dos museos canadienses",
+            "dos museos canadiensas"
+          ],
+          "context": "Исходная форма `canadiense` подходит и мужчинам, и женщинам; по-испански музей — `el museo`.",
+          "explain": "`Museos` — мужское множественное число. Общеродовое `canadiense` не меняется по роду, но для нескольких музеев нужно множественное `canadienses`.",
+          "sourceRef": "extra",
+          "interaction": "choice"
+        },
+        {
+          "prompt": "Una calle francesa → tres calles ___.",
+          "answers": [
+            "francesas"
+          ],
+          "context": "Одна улица во Франции — три улицы в той же стране.",
+          "explain": "`Calle` — испанское существительное женского рода. `Tres calles` — женское множественное, поэтому из `francesa` получается `francesas`. Это перенос модели с `ciudad` на новое существительное.",
+          "sourceRef": "extra",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Впиши одно прилагательное во множественном числе, без артикля.",
+            "placeholder": "Прилагательное"
+          }
+        },
+        {
+          "prompt": "Una moneda marroquí → dos monedas ___.",
+          "answers": [
+            "marroquíes",
+            "marroquís"
+          ],
+          "explain": "`Monedas` — женское множественное число. У `marroquí` род общий, но число нужно изменить: нормативны `marroquíes` и `marroquís` (первый вариант чаще).",
+          "context": "Две монеты из Марокко. Введи один из двух нормативных вариантов.",
+          "sourceRef": "14.3.2",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Введи одно слово в нужной форме, без артикля и других слов.",
+            "placeholder": "Одно слово"
+          }
+        },
+        {
+          "prompt": "Un plato japonés → dos platos ___.",
+          "answers": [
+            "japoneses"
+          ],
+          "options": [
+            "japonesa",
+            "japonesas",
+            "japoneses",
+            "japonés"
+          ],
+          "interaction": "gap-choice",
+          "context": "Два блюда из Японии. Исходная мужская форма: `japonés`.",
+          "explain": "`Platos` — мужское множественное число. От `japonés` получаем `japoneses`: добавляем `-es`, знак ударения в этой форме не нужен.",
+          "sourceRef": "extra",
           "clues": [
             [
               "japonés",
-              "японский"
+              "из Японии"
             ]
           ]
         },
         {
-          "prompt": "El dírham es una moneda ___.",
+          "prompt": "Clara es una amiga ___.",
           "answers": [
-            "marroquí"
+            "chilena"
           ],
-          "explain": "Marroquí одинаково для обоих родов.",
-          "translation": "марокканская",
-          "sourceRef": "14.3.2",
-          "context": "Впиши форму слова из подсказки.",
+          "explain": "`Amiga` — женский род единственного числа, поэтому выбираем `chilena`. Артикль `una` определяет `amiga`, а не национальность как отдельное существительное.",
+          "context": "Клара — подруга Лусии из Чили. Исходная мужская форма `chileno`.",
+          "sourceRef": "extra",
+          "interaction": "input",
           "clues": [
             [
-              "marroquí",
-              "марокканский"
+              "chileno",
+              "из Чили"
             ]
-          ]
+          ],
+          "inputFormat": {
+            "instruction": "Введи одно слово в нужной форме, без артикля и других слов.",
+            "placeholder": "Одно слово"
+          }
         },
         {
-          "prompt": "Gabriel García Márquez fue un escritor ___.",
+          "prompt": "Un escritor colombiano → dos escritoras ___.",
           "answers": [
-            "colombiano"
+            "colombianas"
           ],
-          "explain": "Escritor — мужской род, единственное число.",
-          "translation": "колумбийский",
+          "explain": "`Escritoras` — женское множественное число. От `colombiano` получаем `colombianas`; нельзя оставить мужскую форму `colombianos`.",
+          "context": "Теперь речь о двух писательницах из Колумбии.",
           "sourceRef": "14.3.3",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "colombiano",
-              "колумбийский"
-            ]
-          ]
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Введи одно слово в нужной форме, без артикля и других слов.",
+            "placeholder": "Одно слово"
+          }
         },
         {
-          "prompt": "Burdeos es una ciudad ___.",
+          "prompt": "В объявлении написали «dos ciudades portugués». Как исправить грамматику?",
           "answers": [
-            "francesa"
-          ],
-          "explain": "Ciudad — женский род: francesa.",
-          "translation": "французский город",
-          "sourceRef": "14.3.4",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "francés",
-              "французский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Julia Roberts es una actriz ___.",
-          "answers": [
-            "estadounidense"
-          ],
-          "explain": "Estadounidense одинаково для обоих родов.",
-          "translation": "американская, из США",
-          "sourceRef": "14.3.5",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "estadounidense",
-              "американский, из США"
-            ]
-          ]
-        },
-        {
-          "prompt": "Hanói es la capital ___.",
-          "answers": [
-            "vietnamita"
-          ],
-          "explain": "Vietnamita одинаково для обоих родов.",
-          "translation": "вьетнамская",
-          "sourceRef": "14.3.6",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "vietnamita",
-              "вьетнамский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Montreal y Edmonton son ciudades ___.",
-          "answers": [
-            "canadienses"
-          ],
-          "explain": "Ciudades — множественное число: canadienses.",
-          "translation": "канадские",
-          "sourceRef": "14.3.7",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "canadiense",
-              "канадский"
-            ]
-          ]
-        },
-        {
-          "prompt": "Lisboa es la capital ___.",
-          "answers": [
-            "portuguesa"
-          ],
-          "explain": "Capital — женский род: portuguesa.",
-          "translation": "португальская",
-          "sourceRef": "14.3.8",
-          "context": "Впиши форму слова из подсказки.",
-          "clues": [
-            [
-              "portugués",
-              "португальский"
-            ]
+            "dos ciudades portuguesas"
           ],
           "options": [
-            "portugués",
-            "portugueses",
-            "portuguesa"
+            "dos ciudades portugueses",
+            "dos ciudades portuguesa",
+            "dos ciudades portuguesas"
           ],
-          "interaction": "gap-choice"
+          "interaction": "choice",
+          "context": "`Ciudad` — женского рода; мужская форма национальности — `portugués`.",
+          "explain": "`Dos ciudades` — женский род и множественное число, значит нужно `portuguesas`. Форма `portugués` не согласована ни по роду, ни по числу.",
+          "sourceRef": "14.3.8"
+        },
+        {
+          "prompt": "Una profesora estadounidense → tres profesores ___.",
+          "answers": [
+            "estadounidenses"
+          ],
+          "explain": "`Estadounidense` не различает мужской и женский род, но согласуется по числу: `tres profesores estadounidenses`, с окончанием `-s`.",
+          "context": "Три преподавателя из США, теперь мужчины.",
+          "sourceRef": "14.3.5",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Введи одно слово в нужной форме, без артикля и других слов.",
+            "placeholder": "Одно слово"
+          }
+        },
+        {
+          "prompt": "Un libro alemán → unos libros ___.",
+          "answers": [
+            "alemanes"
+          ],
+          "explain": "`Libros` — мужское множественное число. У `alemán` множественная форма `alemanes`; знак ударения при добавлении `-es` больше не нужен.",
+          "context": "Несколько книг из Германии. Исходное прилагательное дано в единственном числе.",
+          "sourceRef": "extra",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Введи одно слово в нужной форме, без артикля и других слов.",
+            "placeholder": "Одно слово"
+          }
+        },
+        {
+          "prompt": "Una comida vietnamita → dos comidas ___.",
+          "answers": [
+            "vietnamitas"
+          ],
+          "explain": "`Vietnamita` общая по роду форма, но у двух блюд требуется множественное число: `dos comidas vietnamitas`. `Comidas` женского рода.",
+          "context": "Два блюда из Вьетнама. Сравни одну и несколько порций еды.",
+          "sourceRef": "14.3.6",
+          "interaction": "input",
+          "inputFormat": {
+            "instruction": "Введи одно слово в нужной форме, без артикля и других слов.",
+            "placeholder": "Одно слово"
+          }
+        },
+        {
+          "prompt": "Какие два сочетания верно описывают машину и мотоцикл из Чили?",
+          "answers": [
+            "un coche chileno / una moto chilena"
+          ],
+          "options": [
+            "un coche chilena / una moto chileno",
+            "un coche chileno / una moto chilena",
+            "un coche chilenos / una moto chilenas"
+          ],
+          "interaction": "choice",
+          "context": "`Coche` — мужского рода, `moto` — женского; каждый предмет один.",
+          "explain": "`Coche` требует `chileno`, а `moto` — `chilena`. В обоих сочетаниях единственное число, поэтому окончания множественного числа не нужны.",
+          "sourceRef": "extra"
         }
       ],
       "preview": {
-        "source": "Una ciudad ___.",
+        "source": "Un coche italiano → dos coches ___.",
         "sentenceParts": [
-          "Una ciudad ",
+          "Un coche italiano → dos coches ",
           "."
         ],
-        "answer": "francesa",
-        "translation": "Французский город.",
+        "answer": "italianos",
+        "translation": "Одна итальянская машина → две итальянские машины.",
         "targetPrefix": ""
       },
       "inlineAnswer": true,
-      "inputLabel": "Короткий ввод · Выбор ответа",
+      "inputLabel": "Существительное → род и число → происхождение",
       "inputFormat": {
-        "instruction": "Впиши только слово, обозначающее национальность или происхождение, в нужной форме. Артикль и остальное предложение не добавляй.",
-        "example": "españolas",
-        "placeholder": "Слово в нужной форме"
+        "instruction": "Введи одно прилагательное, если вопрос не просит выбрать целую фразу.",
+        "placeholder": "Прилагательное"
       },
       "theorySections": [
         2
-      ]
+      ],
+      "revision": 2
     }
   ],
   "learningOrder": [
@@ -1110,5 +1044,6 @@
         ]
       }
     ]
-  }
+  },
+  "revision": 2
 }

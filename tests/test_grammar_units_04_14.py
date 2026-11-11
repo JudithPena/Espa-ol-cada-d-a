@@ -13,8 +13,7 @@ SOURCE_ROWS = {
     # Unit 8 Stage 7 replaces dated textbook tasks; validated by dedicated tests.
     9: [8, 12, 6, 4],
     10: [8, 15, 8], 11: [10, 8, 10], 12: [8, 8, 8, 4],
-    # Unit 13 has Fable stage 6 tests, rather than frozen textbook row coverage.
-    14: [8, 8, 8],
+    # Units 13 and 14 have Fable stage 6/9 coverage tests instead of frozen textbook rows.
 }
 
 
@@ -54,8 +53,8 @@ def test_valid_variants_are_not_rejected_as_wrong():
     assert next(q for q in questions(8) if 'trabaja en ___ India' in q['prompt'])['answers'] == ['la', 'Без артикля']
     assert next(q for q in questions(8) if 'vive en ___ Perú' in q['prompt'])['answers'] == ['Без артикля', 'el']
     assert next(q for q in questions(12) if q['prompt'] == '___ árboles son muy altos.')['answers'] == ['aquellos', 'esos']
-    iranian = [q for q in questions(14) if q['clues'][0][0] == 'iraní']
-    assert [q['answers'] for q in iranian] == [['iraní'], ['iraníes', 'iranís'], ['iraníes', 'iranís']]
+    iranian = [q for q in questions(14) if 'iraníes' in q['answers']]
+    assert len(iranian) == 1 and set(iranian[0]['answers']) == {'iraníes', 'iranís'}
     assert next(q for q in questions(13) if 'dos faldas ___' in q['prompt'])['answers'] == ['marrones']
 
 

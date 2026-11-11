@@ -1052,7 +1052,7 @@ test('all typing screens show a persistent format and example without changing g
   })())`));
   typed+=result.typed;legacy+=result.legacy;
  }
- assert.equal(typed,1164);assert.equal(legacy,160); // Fable 8: unit 2 now has 26 typed instead of 38
+ assert.equal(typed,1154);assert.equal(legacy,160); // Fable 9: unit 14 replaces rote typing with independent choices
 });
 
 test('quantity answers accept digits or words while the field explains the quantity format', () => {
@@ -1803,7 +1803,7 @@ test('multi-answer audit keeps regional, contextual and equally valid choices gr
    }
   }
  }
- assert.equal(questions,2057);assert.equal(alternatives,356);assert.equal(warnings,25); // Fable 8: unit 2 73→57, one additional gorila alternative
+ assert.equal(questions,2056);assert.equal(alternatives,356);assert.equal(warnings,25); // Fable 9: unit 14 46→45; both normative plurals retained
 });
 
 test('yellow mini-check choices preserve all three lives and complete normally',()=>{
@@ -2047,7 +2047,7 @@ test('all grammar choice sets receive valid, balanced attempt orders without cha
    assert.deepEqual(result,{},`${u.number}/${g.id}: ${JSON.stringify(result)}`);
   }
  }
- assert.equal(standard,733);assert.equal(guided,9); // Fable 8: unit 2 has four fewer multiple-choice tasks
+ assert.equal(standard,742);assert.equal(guided,9); // Fable 9: unit 14 adds meaningful choice-based operations
  assert.equal(run('JSON.stringify(COURSE.grammar)'),before);
 });
 
