@@ -89,6 +89,7 @@ h2 + .btn.wide, h2 + .muted { margin-top: 10px; display: flex; }
 .book-term-link:focus-visible, .book-note-index:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .book-number { position: relative; top: -.1em; color: var(--accent); font-size: .68em; font-weight: 800; padding-left: .12em; line-height: 0; }
 .book-note-item { padding: 4px 5px; margin-left: -5px; border-radius: 8px; }
+.book-note-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .book-note-index { display: inline-block; min-width: 28px; min-height: 28px; border: 0; border-radius: 7px; padding: 2px 5px; margin: -3px 5px -3px -4px; vertical-align: baseline; background: transparent; color: var(--accent); font: 800 .87em/1.4 var(--body); text-align: center; touch-action: manipulation; }
 .book-jump-highlight { animation: book-jump-highlight 1.7s ease-out; }
 @keyframes book-jump-highlight { 0%, 25% { background: var(--accent-soft); box-shadow: 0 0 0 3px var(--accent-soft); } 100% { background: transparent; box-shadow: none; } }
@@ -2766,6 +2767,7 @@ function bookJump(targetId) {
   const top = Math.max(0, window.scrollY + target.getBoundingClientRect().top - offset);
   const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
   window.scrollTo({top, behavior: reduced ? "auto" : "smooth"});
+  target.focus?.({preventScroll: true});
   const flash = target.closest(".book-note-item") || target;
   flash.classList.remove("book-jump-highlight");
   void flash.offsetWidth;
@@ -2785,7 +2787,7 @@ function bookView() {
     <div class="book-panel" data-book-panel="analysis" ${hasExercises ? 'id="book-panel-analysis" role="tabpanel" aria-labelledby="book-tab-analysis" tabindex="0"' : ""}>${chapter.blocks.map((block, index) => {
       const links = bookLexicon(block, index);
       const notes = bookNoteOrder(block, links);
-      return `<section class="vseg book-block"><h3><span class="book-part">Часть ${index + 1} из ${chapter.blocks.length}</span>${esc(block.title)}</h3>${bookOriginal(block, links)}<details><summary>Перевод</summary><p>${bookText(block.ru, bookMarks(block, "ru"))}</p></details><h4>Разбор</h4><ul>${notes.map(({note, link}) => `<li${link ? ` class="book-note-item" id="book-note-${esc(link.key)}"` : ""}>${bookNote(note, link)}</li>`).join("")}</ul>${block.pronouns && (!Array.isArray(block.pronouns) || block.pronouns.length) ? `<details class="book-pronouns"><summary>Мини-разбор местоимений</summary>${bookPronouns(block.pronouns)}</details>` : ""}</section>`;
+      return `<section class="vseg book-block"><h3><span class="book-part">Часть ${index + 1} из ${chapter.blocks.length}</span>${esc(block.title)}</h3>${bookOriginal(block, links)}<details><summary>Перевод</summary><p>${bookText(block.ru, bookMarks(block, "ru"))}</p></details><h4>Разбор</h4><ul>${notes.map(({note, link}) => `<li${link ? ` class="book-note-item" id="book-note-${esc(link.key)}" tabindex="-1"` : ""}>${bookNote(note, link)}</li>`).join("")}</ul>${block.pronouns && (!Array.isArray(block.pronouns) || block.pronouns.length) ? `<details class="book-pronouns"><summary>Мини-разбор местоимений</summary>${bookPronouns(block.pronouns)}</details>` : ""}</section>`;
     }).join("")}</div>
     ${hasExercises ? `<div class="book-panel" data-book-panel="exercises" id="book-panel-exercises" role="tabpanel" aria-labelledby="book-tab-exercises" tabindex="0" hidden>${total ? `<p data-book-progress role="status" aria-live="polite">Выполнено: 0 из ${total}</p>` : ""}${bookExercises(chapter)}</div>` : ""}</div>`;
 }
