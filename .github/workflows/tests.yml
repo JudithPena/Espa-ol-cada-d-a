@@ -31,3 +31,40 @@ jobs:
         run: |
           python -m espanol bot-data --no-audio
           node --test bot/test/*.test.js
+
+  grammar-browser-pr34:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/fix/grammar-three-lives-review-20261111'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install site and real Chromium test dependencies
+        run: |
+          python -m pip install -r requirements.txt playwright
+          python -m playwright install --with-deps chromium
+      - name: Build the actual grammar website
+        run: python -m espanol site
+      - name: Run Chromium at 320, 390, 768, and 1280px
+        run: python tests/grammar_pr34_browser.py
+      - name: Keep screenshots and JSON evidence in Actions
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grammar-pr34-chromium-screenshots
+          path: docs/grammar_pr34_browser/
+          if-no-files-found: warn
+      - name: Save screenshots and results to the current PR branch
+        if: success()
+        continue-on-error: true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/grammar_pr34_browser/
+          if ! git diff --cached --quiet; then
+            git commit -m "test(grammar): archive PR 34 Chromium visual evidence [skip ci]"
+            git push origin HEAD:fix/grammar-three-lives-review-20261111
+          fi
