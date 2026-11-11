@@ -2016,7 +2016,7 @@ test('migrating several revised exercises returns the current exercise to its be
    store.set(G_ATTEMPTS_KEY,JSON.stringify(records));store.set(G_SESSION_KEY,JSON.stringify(G));G=null;`);
  run=context([u],storage);run(`gStart(COURSE.grammar[0].id,'all',true)`);
  assert.equal(run('G.steps[G.at].type'),'intro');assert.equal(run('G.steps[G.at].group'),'8.1');
- assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).revision'),2);
+ assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).revision'),3); // Fable stage7: 8.2 bumped to revision 3
  assert.equal(run('Object.keys(gAttempt(gUnit(),gUnit().exercises[1]).responses).length'),0);
 });
 
@@ -2170,8 +2170,8 @@ test('multiple accepted answers cannot hide an always-correct last position behi
 test('article recall accepts every preserved answer, case and whitespace, while rejecting extra accents and wrong forms',()=>{
  const units=fs.readdirSync('content/grammar').filter(f=>/^\d{3}_.+\.json$/.test(f)).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
  const run=context(units);
- const result=JSON.parse(run(`JSON.stringify((()=>{let count=0;for(const u of COURSE.grammar)for(const g of u.exercises)for(const q of g.questions){if(q.interaction!=='article-input')continue;count++;for(const a of q.answers){const value='  '+a.toUpperCase().replace(/ /g,'   ')+'  ';if(!grammarResult(q,value,g,true).good)throw Error(g.id+': '+a);}if(grammarResult(q,'ellos',g,true).good)throw Error(g.id+': wrong article');if(q.inputFormat.example||q.options)throw Error(g.id+': answer cue');}return {count};})())`));
- assert.equal(result.count,187); // Fable 5: unit 5 now has 16 instead of 15 article-input questions
+ const result=JSON.parse(run(`JSON.stringify((()=>{let count=0;for(const u of COURSE.grammar)for(const g of u.exercises)for(const q of g.questions){if(q.interaction!=='article-input')continue;count++;for(const a of q.answers){const value='  '+a.toUpperCase().replace(/ /g,'   ')+'  ';if(!grammarResult(q,value,g,true).good)throw Error(g.id+': '+a);}if(grammarResult(q,'ellos',g,true).good)throw Error(g.id+': wrong article');if(q.inputFormat?.example||q.options)throw Error(g.id+': answer cue');}return {count};})())`));
+ assert.equal(result.count,177); // Fable 7: unit 8 now has 18 instead of 28 article-input questions
  for(const value of ['él','ellos','es la','un padre',''])assert.equal(run(`grammarResult(COURSE.grammar[5].exercises[1].questions[0],${JSON.stringify(value)},COURSE.grammar[5].exercises[1],true).good`),false);
 });
 
