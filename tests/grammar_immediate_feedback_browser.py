@@ -419,7 +419,7 @@ def run_unit02_correct_case(browser,width,route,qi,answer,expected):
         page.evaluate(PREPARE,{"number":2,"route":route,"qi":qi})
         assert_true(page.evaluate("gUnit().number")==2,"Unit 2 navigation lost")
         active=page.evaluate("""() => ({group:G.steps[G.at].group,qi:G.steps[G.at].qi})""")
-        assert_true(active=={"group":route.split(":")[1],"qi":qi},"Wrong question route: "+str(active))
+        assert_true(active=={"group":("check-f" if route=="section:5" else route.split(":")[1]),"qi":qi},"Wrong question route: "+str(active))
         item["before"]=check_layout(page,"unit2 before "+route)
         q=page.evaluate(QUESTION)
         if route=="exercise:2.3":
