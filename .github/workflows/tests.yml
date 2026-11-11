@@ -29,6 +29,8 @@ jobs:
           if-no-files-found: warn
       - name: Проверка словаря и лимитов Telegram
         run: python -m espanol validate
+      - name: Локальная сборка грамматического сайта без публикации
+        run: python -m espanol site
       - name: Тесты
         run: python -m pytest -q
       - uses: actions/setup-node@v5
