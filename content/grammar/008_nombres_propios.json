@@ -534,400 +534,287 @@
   "exercises": [
     {
       "id": "8.1",
-      "title": "8.1 · О человеке или к человеку?",
-      "instruction": "Различай рассказ о человеке и прямое обращение к нему. Выбери или впиши артикль; ∅ — ничего не добавляем.",
+      "title": "8.1 · Говорим о человеке или обращаемся?",
+      "instruction": "Определи ситуацию, затем выбери реплику или заполни артикль.",
       "questions": [
         {
-          "prompt": "¿Dónde vive ___ don José?",
+          "prompt": "Как правильно сначала спросить о докторе, затем поздороваться с ним?",
           "answers": [
-            "Без артикля"
+            "¿Está el doctor Rojo? / Buenos días, doctor Rojo."
           ],
-          "explain": "Перед don артикль обычно не нужен.",
           "options": [
-            "el",
-            "la",
-            "Без артикля"
+            "¿Está el doctor Rojo? / Buenos días, doctor Rojo.",
+            "¿Está doctor Rojo? / Buenos días, el doctor Rojo.",
+            "¿Está la doctor Rojo? / Buenos días, la doctor Rojo."
           ],
-          "sourceRef": "8.1.1",
-          "context": "Спроси, где живёт дон Хосе.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Aquí vive ___ señor Alfonsín.",
-          "answers": [
-            "el"
-          ],
-          "explain": "Говорим о человеке: el señor Alfonsín. При приветствии артикля не было бы.",
-          "sourceRef": "8.1.2",
-          "context": "Ты рассказываешь о сеньоре Альфонсине, а не обращаешься к нему.",
-          "translation": "Здесь живёт сеньор Альфонсин.",
-          "options": [
-            "el",
-            "Без артикля",
-            "la",
-            "las"
-          ],
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Buenas tardes, ___ Elena.",
-          "answers": [
-            "Без артикля"
-          ],
-          "explain": "Перед именем в таком обращении артикля нет.",
-          "options": [
-            "Без артикля",
-            "el",
-            "la"
-          ],
-          "sourceRef": "8.1.2",
-          "context": "Поприветствуй Элену.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "Aquí trabaja ___ doctora Castro.",
-          "answers": [
-            "la"
-          ],
-          "explain": "Говорим о докторе: la doctora Castro.",
-          "options": [
-            "la",
-            "el",
-            "Без артикля"
-          ],
-          "sourceRef": "8.1.3",
-          "context": "Ты говоришь о месте работы врача.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "¿Quién es ___ señora Jiménez?",
-          "answers": [
-            "la"
-          ],
-          "explain": "Спрашиваем о конкретной женщине: la señora Jiménez.",
-          "options": [
-            "el",
-            "Без артикля",
-            "la"
-          ],
-          "sourceRef": "8.1.4",
-          "context": "Спроси другого человека, кто такая сеньора Хименес.",
-          "interaction": "gap-choice"
-        },
-        {
-          "prompt": "¿Dónde está ___ doctor Rojo?",
-          "answers": [
-            "el"
-          ],
-          "explain": "Речь о враче, а не обращение к нему: el doctor Rojo. Сравни следующее приветствие.",
+          "context": "Ты ищешь доктора Рохо в клинике, затем встречаешь его.",
+          "explain": "Когда речь о нём, говорим `el doctor Rojo`. При личном обращении — `doctor Rojo` без артикля, отделяя его запятой.",
           "sourceRef": "8.1.5",
-          "context": "Ты спрашиваешь другого человека о докторе Рохо.",
-          "translation": "Где доктор Рохо?"
+          "interaction": "choice"
         },
         {
-          "prompt": "Buenos días, ___ doctor Rojo.",
+          "prompt": "En esta clínica trabaja ___ doctora Vega.",
+          "answers": [
+            "la"
+          ],
+          "context": "Ты объясняешь коллеге, кто здесь работает.",
+          "explain": "Говорим о конкретной женщине-враче, а не обращаемся к ней: `la doctora Vega`. `Doctora` — женский род единственного числа.",
+          "sourceRef": "extra",
+          "interaction": "article-input"
+        },
+        {
+          "prompt": "Buenos días, ___ doctora Vega.",
           "answers": [
             "Без артикля"
           ],
-          "explain": "Прямое обращение — без артикля.",
+          "context": "Пациент входит в кабинет и приветствует врача.",
+          "explain": "Обращение `doctora Vega` следует после приветствия и запятой. Артикль не употребляется: `Buenos días, doctora Vega`.",
+          "sourceRef": "extra",
+          "interaction": "article-input"
+        },
+        {
+          "prompt": "¿Dónde vive ___ señor Alonso?",
+          "answers": [
+            "el"
+          ],
           "options": [
             "el",
-            "la",
+            "Без артикля",
+            "la"
+          ],
+          "context": "Ты спрашиваешь соседа о господине Алонсо.",
+          "explain": "Вопрос задают другому человеку, а говорят о господине Алонсо: `el señor Alonso`. Это не прямое обращение.",
+          "sourceRef": "8.1.2",
+          "interaction": "gap-choice"
+        },
+        {
+          "prompt": "Gracias, ___ señora Jiménez.",
+          "answers": [
             "Без артикля"
           ],
-          "sourceRef": "8.1.6",
-          "context": "Поприветствуй доктора Рохо.",
-          "interaction": "gap-choice"
+          "context": "Ты благодаришь сеньору Хименес за помощь.",
+          "explain": "Слово `señora Jiménez` обозначает собеседницу и отделено запятой: `Gracias, señora Jiménez`. Перед обращением артикля нет.",
+          "sourceRef": "8.1.4",
+          "interaction": "article-input"
+        },
+        {
+          "prompt": "Por aquí vive ___ doña Isabel.",
+          "answers": [
+            "Без артикля"
+          ],
+          "context": "Ты объясняешь гостю, где живёт донья Исабель.",
+          "explain": "При сочетании `doña` с личным именем артикля в нейтральной речи нет, даже когда говорим об этом человеке: `vive doña Isabel`.",
+          "sourceRef": "8.1.1",
+          "interaction": "article-input"
+        },
+        {
+          "prompt": "Как нейтрально сообщить коллеге о месте работы Элены?",
+          "answers": [
+            "Elena trabaja en esta oficina."
+          ],
+          "options": [
+            "Elena trabaja en esta oficina.",
+            "La Elena trabaja en esta oficina.",
+            "El Elena trabaja en esta oficina."
+          ],
+          "context": "Ты пишешь деловую записку о знакомой по имени Элена.",
+          "explain": "В нейтральной письменной речи обычное личное имя `Elena` употребляют без артикля. Разговорное `la Elena` встречается регионально, но здесь не используется.",
+          "sourceRef": "8.1.2",
+          "interaction": "choice"
         },
         {
           "prompt": "Aquí trabajan ___ doctoras Castro y Ramírez.",
           "answers": [
             "las"
           ],
-          "explain": "Говорим о двух женщинах: doctoras, женский род и множественное число, поэтому las.",
+          "context": "Ты рассказываешь о двух сотрудницах больницы.",
+          "explain": "Слово `doctoras` женского рода множественного числа, говорят о третьих лицах: `las doctoras Castro y Ramírez`.",
           "sourceRef": "8.1.6",
-          "context": "Здесь работают две женщины-врача.",
-          "translation": "Здесь работают доктора Кастро и Рамирес."
+          "interaction": "article-input"
+        },
+        {
+          "prompt": "Как написать приветствие врачу?",
+          "answers": [
+            "Hola, doctora Vega."
+          ],
+          "options": [
+            "Hola, doctora Vega.",
+            "Hola la doctora Vega.",
+            "Hola, la doctora Vega."
+          ],
+          "context": "Ты пишешь короткое приветствие на открытке.",
+          "explain": "Обращение отделяется запятой от `Hola`: `Hola, doctora Vega`. Упоминание `la doctora Vega` здесь не является нейтральным обращением.",
+          "sourceRef": "extra",
+          "interaction": "choice"
         }
       ],
       "preview": {
-        "source": "Aquí trabaja ___ doctora Castro.",
+        "source": "En esta clínica trabaja ___ doctora Vega.",
         "sentenceParts": [
-          "Aquí trabaja ",
-          " doctora Castro."
+          "En esta clínica trabaja ",
+          " doctora Vega."
         ],
         "answer": "la",
-        "translation": "Здесь работает доктор Кастро.",
-        "targetPrefix": "",
-        "tip": ""
+        "translation": "В этой клинике работает доктор Вега.",
+        "targetPrefix": ""
       },
-      "inputLabel": "Выбор ответа · Короткий ввод",
+      "inputLabel": "Реплики · Свободный ввод",
       "theorySections": [
         0
       ],
       "revision": 3,
       "inputFormat": {
-        "instruction": "Впиши только el, la, los, las или ∅. Имя и остальное предложение уже написаны.",
-        "example": "el (когда говорим о señor Alonso)",
+        "instruction": "Впиши только el, la, los, las; если артикля нет, нажми «Без артикля». Имя не переписывай.",
         "placeholder": "Артикль или ∅"
       },
       "allowNoArticle": true
     },
     {
       "id": "8.2",
-      "title": "8.2 · Здания, улицы и площади",
-      "instruction": "Впиши определённый артикль в адрес или вопрос о месте. Учитывай род и число названия.",
+      "title": "8.2 · Артикль по слову улица или здание",
+      "instruction": "Смотри на род и число опорного слова; иногда выбери реплику или исправь текст.",
       "questions": [
         {
-          "prompt": "___ hotel Central está en la plaza de España.",
+          "prompt": "Почему в «Estamos en la calle Alcalá» используется la?",
           "answers": [
-            "el"
+            "Артикль относится к слову calle."
           ],
-          "explain": "Артикль относится к hotel: мужской род.",
-          "sourceRef": "8.2.1",
-          "context": "Впиши артикль.",
-          "facts": {
-            "label": "Адрес",
-            "items": [
-              [
-                "hotel Central",
-                "plaza de España"
-              ]
-            ]
-          },
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "¿Dónde están ___ plazas de Madrid?",
-          "answers": [
-            "las"
+          "options": [
+            "Артикль относится к слову calle.",
+            "Артикль относится к слову Alcalá.",
+            "Все названия улиц требуют el."
           ],
-          "explain": "Plazas — женский род, множественное число: las plazas.",
-          "sourceRef": "8.2.1",
-          "context": "Спроси о площадях Мадрида.",
-          "translation": "Где находятся площади Мадрида?",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ museo Botero está en la calle Mayor.",
-          "answers": [
-            "el"
-          ],
-          "explain": "Артикль относится к museo: мужской род.",
+          "context": "Ты помогаешь товарищу разобраться в адресе.",
+          "explain": "`Calle` — существительное женского рода, поэтому `la calle Alcalá`; имя улицы не задаёт форму артикля.",
           "sourceRef": "8.2.2",
-          "context": "Впиши артикль.",
-          "facts": {
-            "label": "Адрес",
-            "items": [
-              [
-                "museo Botero",
-                "calle Mayor"
-              ]
-            ]
-          },
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
+          "interaction": "choice"
         },
         {
-          "prompt": "Estamos en ___ calle Mayor.",
-          "answers": [
-            "la"
-          ],
-          "explain": "Артикль выбираем по слову calle, а не по названию Mayor: la calle Mayor.",
-          "sourceRef": "8.2.2",
-          "context": "Скажи, на какой улице вы находитесь.",
-          "translation": "Мы на улице Майор.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ banco Nacional está en la avenida de América.",
+          "prompt": "Nos vemos en ___ teatro Real.",
           "answers": [
             "el"
           ],
-          "explain": "Артикль относится к banco: мужской род.",
-          "sourceRef": "8.2.3",
-          "context": "Впиши артикль.",
-          "facts": {
-            "label": "Адрес",
-            "items": [
-              [
-                "banco Nacional",
-                "avenida de América"
-              ]
-            ]
-          },
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
+          "context": "Друзья договариваются встретиться у театра.",
+          "explain": "`Teatro` — мужской род единственного числа. Перед названием здания нужен `el`: `en el teatro Real`; слово `Real` не влияет на род.",
+          "sourceRef": "8.2.4",
+          "interaction": "article-input"
         },
         {
-          "prompt": "¿Dónde están ___ museos de Madrid?",
+          "prompt": "Как правильно сказать, где находится кафе?",
+          "answers": [
+            "Está en la plaza Mayor."
+          ],
+          "options": [
+            "Está en la plaza Mayor.",
+            "Está en el plaza Mayor.",
+            "Está en las plaza Mayor."
+          ],
+          "context": "Знакомый спрашивает тебя об адресе кафе.",
+          "explain": "`Plaza` женского рода единственного числа: `en la plaza Mayor`. Артикль `el` неверен по роду, а `las` — по числу.",
+          "sourceRef": "8.2.5",
+          "interaction": "choice"
+        },
+        {
+          "prompt": "Mi hermana trabaja en ___ hotel Central.",
+          "answers": [
+            "el"
+          ],
+          "context": "Ты рассказываешь, где работает сестра.",
+          "explain": "Опорное слово `hotel` — мужской род единственного числа, поэтому `el hotel Central`; собственное название отеля не влияет.",
+          "sourceRef": "8.2.1",
+          "interaction": "article-input"
+        },
+        {
+          "prompt": "Как исправить сообщение «Nos vemos en el calle Mayor»?",
+          "answers": [
+            "Nos vemos en la calle Mayor."
+          ],
+          "options": [
+            "Nos vemos en la calle Mayor.",
+            "Nos vemos en las calle Mayor.",
+            "Nos vemos en el calle Mayor."
+          ],
+          "context": "Друг прислал адрес встречи с ошибкой.",
+          "explain": "Слово `calle` женского рода, значит `en la calle Mayor`. Исправляем артикль, не меняя название улицы.",
+          "sourceRef": "8.2.2",
+          "interaction": "choice"
+        },
+        {
+          "prompt": "¿Dónde están ___ museos de la ciudad?",
           "answers": [
             "los"
           ],
-          "explain": "Museos — мужской род, множественное число: los museos.",
+          "context": "Ты ищешь сразу несколько музеев на карте.",
+          "explain": "`Museos` — мужской род множественного числа, поэтому `los museos`. Женский род `ciudad` не влияет на артикль перед `museos`.",
           "sourceRef": "8.2.3",
-          "context": "Спроси о музеях Мадрида.",
-          "translation": "Где находятся музеи Мадрида?",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
+          "interaction": "article-input"
         },
         {
-          "prompt": "___ teatro Lorca está en la avenida de América.",
-          "answers": [
-            "el"
-          ],
-          "explain": "Артикль относится к teatro: мужской род.",
-          "sourceRef": "8.2.4",
-          "context": "Впиши артикль.",
-          "facts": {
-            "label": "Адрес",
-            "items": [
-              [
-                "teatro Lorca",
-                "avenida de América"
-              ]
-            ]
-          },
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "¿Dónde está ___ teatro Lorca?",
-          "answers": [
-            "el"
-          ],
-          "explain": "Артикль относится к teatro — мужскому роду единственного числа: el teatro Lorca.",
-          "sourceRef": "8.2.4",
-          "context": "Спроси, где театр Лорка.",
-          "translation": "Где находится театр Лорка?",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "___ cine América está en la plaza Real.",
-          "answers": [
-            "el"
-          ],
-          "explain": "Артикль относится к cine: мужской род.",
-          "sourceRef": "8.2.5",
-          "context": "Впиши артикль.",
-          "facts": {
-            "label": "Адрес",
-            "items": [
-              [
-                "cine América",
-                "plaza Real"
-              ]
-            ]
-          },
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
-        },
-        {
-          "prompt": "Vamos a ___ plaza Real.",
+          "prompt": "Llegamos a ___ avenida de América.",
           "answers": [
             "la"
           ],
-          "explain": "Plaza — женский род: a la plaza Real. A и la пишем раздельно.",
-          "sourceRef": "8.2.5",
-          "context": "Скажи, на какую площадь вы идёте.",
-          "translation": "Мы идём на Королевскую площадь.",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
+          "context": "Вы приехали на проспект Америки.",
+          "explain": "`Avenida` — существительное женского рода. Пишем `a la avenida de América` раздельно, без мужского сокращения `al`.",
+          "sourceRef": "8.2.3",
+          "interaction": "article-input"
         },
         {
-          "prompt": "___ hospital Universitario está en el paseo del Parque.",
+          "prompt": "Что правильно сказать о своей улице в связной речи?",
           "answers": [
-            "el"
+            "Vivo en la calle Mayor."
           ],
-          "explain": "Артикль относится к hospital: мужской род.",
-          "sourceRef": "8.2.6",
-          "context": "Впиши артикль.",
-          "facts": {
-            "label": "Адрес",
-            "items": [
-              [
-                "hospital Universitario",
-                "paseo del Parque"
-              ]
-            ]
-          },
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
+          "options": [
+            "Vivo en la calle Mayor.",
+            "Vivo en calle Mayor, 5.",
+            "Vivo en el calle Mayor."
+          ],
+          "context": "У знакомого вопрос о названии улицы, не о точном номере дома.",
+          "explain": "В предложении о конкретной улице говорим `en la calle Mayor`. В адресной строке допустимо `Calle Mayor, 5`, но не в данной форме ответа.",
+          "sourceRef": "8.2.2",
+          "interaction": "choice"
         },
         {
           "prompt": "¿Dónde están ___ calles Mayor y Real?",
           "answers": [
             "las"
           ],
-          "explain": "Calles — несколько улиц, женский род: las calles. Названия не меняют выбор артикля.",
+          "context": "Ты спрашиваешь о двух разных улицах.",
+          "explain": "`Calles` — женский род множественного числа. Артикль `las` относится к двум улицам, а не к их названиям.",
           "sourceRef": "8.2.6",
-          "context": "Спроси о двух улицах.",
-          "translation": "Где находятся улицы Майор и Реаль?",
-          "interaction": "article-input",
-          "inputFormat": {
-            "instruction": "Впиши только артикль. Остальную часть предложения не переписывай.",
-            "placeholder": "Введите артикль"
-          }
+          "interaction": "article-input"
+        },
+        {
+          "prompt": "En el plano aparecen ___ plazas del centro.",
+          "answers": [
+            "las"
+          ],
+          "context": "На карте отмечено несколько городских площадей.",
+          "explain": "`Plazas` — женский род множественного числа; нужен `las`. Это определяется числом и родом, а не местом расположения.",
+          "sourceRef": "8.2.1",
+          "interaction": "article-input"
         }
       ],
       "preview": {
-        "source": "El museo está en ___ calle Mayor.",
+        "source": "Nos vemos en ___ teatro Real.",
         "sentenceParts": [
-          "El museo está en ",
-          " calle Mayor."
+          "Nos vemos en ",
+          " teatro Real."
         ],
-        "answer": "la",
-        "translation": "Музей находится на улице Майор.",
-        "targetPrefix": "",
-        "tip": ""
+        "answer": "el",
+        "translation": "Увидимся у театра Реаль.",
+        "targetPrefix": ""
       },
-      "inputLabel": "Выбор ответа · Короткий ввод",
+      "inputLabel": "Артикль · Род/число · Исправление",
       "theorySections": [
         1
       ],
       "revision": 3,
       "inputFormat": {
-        "instruction": "Впиши только определённый артикль: el, la, los или las. Остальное предложение уже написано.",
-        "example": "los (перед museos)",
-        "placeholder": "el, la, los или las"
-      }
+        "instruction": "Впиши только el, la, los или las. Остальной адрес уже написан.",
+        "placeholder": "Артикль"
+      },
+      "allowNoArticle": false
     },
     {
       "id": "8.3",
