@@ -196,6 +196,26 @@ def structure_unit(unit: dict, file: str, validator: Draft202012Validator) -> li
 def inspect_directory(directory: Path = DIRECTORY, only: set[int] | None = None, *, pedagogical: bool = True) -> list[Finding]:
     validator = schema_validator(directory)
     found = []
+    # Sidecar policies are applied for the official course only, after raw JSON has
+    # been inspected. This validates the same effective data the browser receives.
+    from .grammar import apply_accent_policies
+    policies = {}
+    if directory.resolve() == DIRECTORY.resolve():
+        policy_file = directory / 'accent_policies.json'
+        if policy_file.is_file():
+            try:
+                policies = json.loads(policy_file.read_text(encoding='utf-8'))
+            except (ValueError, UnicodeError) as exc:
+                found.append(_issue('ERROR', 'ACCENT_POLICY_PARSE', None, policy_file.name,
+                                    'Невозможно прочитать каталог режимов ударений.', str(exc),
+                                    'Исправить JSON каталога политик.'))
+            if not isinstance(policies, dict):
+                found.append(_issue('ERROR', 'ACCENT_POLICY_TYPE', None, policy_file.name,
+                                    'Каталог режимов ударений должен быть словарём.',
+                                    'Данные нельзя безопасно сопоставить с юнитами.',
+                                    'Исправить структуру каталога.'))
+                policies = {}
+    seen_policy_units = set()
     seen: set[str] = set()
     seen_numbers: set[int] = set()
     for path in sorted(directory.glob('[0-9]*.json')):
@@ -224,8 +244,24 @@ def inspect_directory(directory: Path = DIRECTORY, only: set[int] | None = None,
                                 'Старые файлы могут иметь исторические имена; это не ошибка идентификатора.',
                                 'Для новых юнитов назвать файл по id. Существующие id и ключи прогресса не менять.'))
         found.extend(structure_unit(unit,path.name,validator))
+        policy = policies.get(unit.get('id'), {})
+        if policy:
+            seen_policy_units.add(unit['id'])
+            try:
+                apply_accent_policies(unit, policy, path)
+            except (KeyError, IndexError, TypeError, AttributeError, ValueError) as exc:
+                found.append(_issue('ERROR', 'ACCENT_POLICY_REFERENCE', unit, path.name,
+                                    'Каталог ссылается на неподходящий вопрос или ответ.', str(exc),
+                                    'Исправить ссылку на существующий unit/group/index без изменения id.'))
+            else:
+                found.extend(structure_unit(unit,path.name,validator))
         if pedagogical:
             found.extend(pedagogical_unit(unit,path.name))
+    for missing in set(policies) - seen_policy_units if only is None else set():
+        found.append(_issue('ERROR', 'ACCENT_POLICY_ORPHAN', None, 'accent_policies.json',
+                            f'Каталог содержит неизвестный юнит {missing}.',
+                            'Контекстное правило нельзя применить к существующему заданию.',
+                            'Удалить устаревшую ссылку или восстановить корректную.'))
     return apply_baseline(found,directory)
 
 
