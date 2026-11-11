@@ -2986,8 +2986,6 @@ function statsView() {
     <div class="row"><span>Звуки ответов</span><button class="switch" data-sound aria-pressed="${P.sound !== false}" aria-label="Звуки ответов"></button></div>
     <div class="row"><span>Автовоспроизведение диалогов</span><button class="switch" data-auto-dlg aria-pressed="${P.autoDlg !== false}" aria-label="Автовоспроизведение диалогов"></button></div>
     <div class="row"><span>Цель на день</span><span class="seg">${[20, 30, 50].map(g => `<button data-goal="${g}" aria-pressed="${P.goal === g}">${g}</button>`).join("")}</span></div>
-    <div class="row"><span>Я учусь в канале</span><button class="btn ghost sm" data-join>Начать с урока…</button></div>
-    <div class="row"><span>Открыть все уроки<br><small class="muted">чтобы посмотреть любой урок без очереди</small></span><button class="switch" data-openall aria-pressed="${!!P.openAll}" aria-label="Открыть все уроки"></button></div>
     <div class="row"><span>Сбросить прогресс</span>${view.confirmReset ? `<span class="confirm"><button class="btn bad" data-reset="yes">Да, сбросить</button><button class="btn ghost" data-reset="no">Отмена</button></span>` : `<button class="btn ghost" data-reset="ask">Сбросить</button>`}</div>
   </section>`;
 }
