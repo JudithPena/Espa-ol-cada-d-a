@@ -787,6 +787,7 @@ function gWorkedPreview(preview) {
   return `${esc(preview.sentenceParts[0])}<mark class="gpreview-insert">${esc(preview.displayAnswer ?? preview.answer)}</mark>${esc(preview.sentenceParts[1])}`;
 }
 function gGapMistakes(q,response) {
+  if(!q.answers?.length) return null;
   const count=q.guidedGaps?.choices?.length || (q.gapParts?.length-1);
   if(!count)return null;
   let values=response.slotValues || response.gapValues;
