@@ -30,10 +30,12 @@ def main():
             legacy_page = legacy_context.new_page()
             legacy_response = legacy_page.goto(args.production, wait_until='domcontentloaded', timeout=60000)
             assert legacy_response.status == 200, f'Production browser HTTP {legacy_response.status}; no protection settings changed'
-            old_html = legacy_response.body()
+            # The monolithic response exceeds Chromium's inspector body cache.
+            # Capture the loaded document, keeping its real inline engine and COURSE data.
+            old_html = legacy_page.content().encode('utf-8')
             old_cache = legacy_response.headers.get('cache-control', 'max-age=0, must-revalidate')
             assert b'const COURSE = ' in old_html
-            report.update(production_html_sha256=hashlib.sha256(old_html).hexdigest(), production_html_bytes=len(old_html), legacy_cache_control=old_cache)
+            report.update(legacy_dom_sha256=hashlib.sha256(old_html).hexdigest(), legacy_dom_bytes=len(old_html), legacy_capture='actual production document DOM', legacy_cache_control=old_cache)
             legacy_context.close()
             for width in (390, 1280):
                 context = browser.new_context(viewport={'width': width, 'height': 850})
