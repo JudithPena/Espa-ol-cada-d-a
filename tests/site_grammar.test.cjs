@@ -520,7 +520,7 @@ test('new unit renders noun groups and typed pictures with matching instructions
  assert.ok(picture.includes('id="g-answer"') && picture.includes('Слова для упражнения'));
  assert.ok(!picture.includes('профессии'));
  const intro=run('gIntro(COURSE.grammar[0].exercises[2])');
- assert.ok(intro.includes('Выбор ответа') && intro.includes('Короткий ввод'));
+ assert.ok(intro.includes('Короткий ввод') && !intro.includes('Выбор ответа'));
 });
 
 test('third unit completes all stages and keeps previous units intact', () => {
@@ -1052,7 +1052,7 @@ test('all typing screens show a persistent format and example without changing g
   })())`));
   typed+=result.typed;legacy+=result.legacy;
  }
- assert.equal(typed,1176);assert.equal(legacy,160); // Fable 7: 10 fewer typed in unit 8
+ assert.equal(typed,1164);assert.equal(legacy,160); // Fable 8: unit 2 now has 26 typed instead of 38
 });
 
 test('quantity answers accept digits or words while the field explains the quantity format', () => {
@@ -1803,7 +1803,7 @@ test('multi-answer audit keeps regional, contextual and equally valid choices gr
    }
   }
  }
- assert.equal(questions,2073);assert.equal(alternatives,355);assert.equal(warnings,25); // Fable 7: unit 8 68→58, four optional instead of five
+ assert.equal(questions,2057);assert.equal(alternatives,356);assert.equal(warnings,25); // Fable 8: unit 2 73→57, one additional gorila alternative
 });
 
 test('yellow mini-check choices preserve all three lives and complete normally',()=>{
@@ -2047,7 +2047,7 @@ test('all grammar choice sets receive valid, balanced attempt orders without cha
    assert.deepEqual(result,{},`${u.number}/${g.id}: ${JSON.stringify(result)}`);
   }
  }
- assert.equal(standard,737);assert.equal(guided,9); // Fable 6: 11 more choice questions in unit 13
+ assert.equal(standard,733);assert.equal(guided,9); // Fable 8: unit 2 has four fewer multiple-choice tasks
  assert.equal(run('JSON.stringify(COURSE.grammar)'),before);
 });
 
@@ -2171,7 +2171,7 @@ test('article recall accepts every preserved answer, case and whitespace, while 
  const units=fs.readdirSync('content/grammar').filter(f=>/^\d{3}_.+\.json$/.test(f)).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
  const run=context(units);
  const result=JSON.parse(run(`JSON.stringify((()=>{let count=0;for(const u of COURSE.grammar)for(const g of u.exercises)for(const q of g.questions){if(q.interaction!=='article-input')continue;count++;for(const a of q.answers){const value='  '+a.toUpperCase().replace(/ /g,'   ')+'  ';if(!grammarResult(q,value,g,true).good)throw Error(g.id+': '+a);}if(grammarResult(q,'ellos',g,true).good)throw Error(g.id+': wrong article');if(q.inputFormat?.example||q.options)throw Error(g.id+': answer cue');}return {count};})())`));
- assert.equal(result.count,177); // Fable 7: unit 8 now has 18 instead of 28 article-input questions
+ assert.equal(result.count,162); // Fable 8: unit 2 now has seven instead of 22 article-input questions
  for(const value of ['él','ellos','es la','un padre',''])assert.equal(run(`grammarResult(COURSE.grammar[5].exercises[1].questions[0],${JSON.stringify(value)},COURSE.grammar[5].exercises[1],true).good`),false);
 });
 
