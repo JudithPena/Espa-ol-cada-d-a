@@ -81,8 +81,9 @@ ORIGIN = "http://127.0.0.1:8765/index.html"
 REPORT = {"browser": "Chromium via Playwright", "widths": WIDTHS, "cases": [], "failures": [],
           "limitations": ["Android/iOS native IME not available in Linux Chromium; 520px-height viewport emulates keyboard obstruction, not a real mobile keyboard."]}
 
-PREPARE = r"""({number,route,qi=0}) => {
+PREPARE = r"""async ({number,route,qi=0}) => {
   const u=COURSE.grammar.find(u=>u.number===number);
+  if(u?._data && (!u.exercises?.[0]?.questions || !u.sections?.[0]?.check?.questions)) await dataLoad(u._data);
   if(!u) throw Error('Unit '+number+' not found');
   P.grammar ||= {}; P.grammarRead ||= {};
   const routes=gRoutes(u), idx=routes.indexOf(route);
@@ -366,8 +367,9 @@ def run_unit08_correct_case(browser, width, route, qi, answer):
             # A two-word draft must survive page reload before submitting.
             page.reload(wait_until="domcontentloaded")
             page.wait_for_function("typeof gStart==='function' && Array.isArray(COURSE.grammar)",timeout=30000)
-            page.evaluate("""() => {
+            page.evaluate("""async () => {
               const u=COURSE.grammar.find(u=>u.number===8);
+              await dataLoad(u._data);
               gStart(u.id,'all',true);
             }""")
             restored=page.evaluate("""() => ({value:gResponse(G.steps[G.at]).value,group:G.steps[G.at].group,qi:G.steps[G.at].qi})""")
@@ -445,7 +447,7 @@ def run_unit02_correct_case(browser,width,route,qi,answer,expected):
             if route=="exercise:2.3" and qi==1 and width==390:
                 field.fill("el tre");page.reload(wait_until="domcontentloaded")
                 page.wait_for_function("typeof gStart==='function' && Array.isArray(COURSE.grammar)",timeout=30000)
-                page.evaluate("""() => {const u=COURSE.grammar.find(x=>x.number===2);gStart(u.id,'all',true);}""")
+                page.evaluate("""async () => {const u=COURSE.grammar.find(x=>x.number===2);await dataLoad(u._data);gStart(u.id,'all',true);}""")
                 stored=page.evaluate("""() => ({group:G.steps[G.at].group,qi:G.steps[G.at].qi,value:gResponse(G.steps[G.at]).value})""")
                 assert_true(stored=={"group":"2.3","qi":1,"value":"el tre"},
                             "Draft not restored: "+str(stored))
