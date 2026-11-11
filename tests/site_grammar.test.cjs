@@ -1052,7 +1052,7 @@ test('all typing screens show a persistent format and example without changing g
   })())`));
   typed+=result.typed;legacy+=result.legacy;
  }
- assert.equal(typed,1195);assert.equal(legacy,158);
+ assert.equal(typed,1204);assert.equal(legacy,158); // Fable 4: +9 independent typed tasks in unit 7
 });
 
 test('quantity answers accept digits or words while the field explains the quantity format', () => {
@@ -1432,7 +1432,7 @@ test('every accepted alternative in mini-checks is offered and any one correct c
    }
   }
  }
- assert.equal(checked,18);
+ assert.equal(checked,20); // Fable 4: additional correct mini-check alternatives
 });
 
 test('grammar list gives each theme a distinct icon and marks only fully completed themes',()=>{
@@ -1803,7 +1803,7 @@ test('multi-answer audit keeps regional, contextual and equally valid choices gr
    }
   }
  }
- assert.equal(questions,2117);assert.equal(alternatives,349);assert.equal(warnings,25);
+ assert.equal(questions,2087);assert.equal(alternatives,353);assert.equal(warnings,25); // Fable 4: unit 7 reworked
 });
 
 test('yellow mini-check choices preserve all three lives and complete normally',()=>{
@@ -1973,7 +1973,7 @@ test('all grammar choice sets receive valid, balanced attempt orders without cha
    assert.deepEqual(result,{},`${u.number}/${g.id}: ${JSON.stringify(result)}`);
   }
  }
- assert.equal(standard,764);assert.equal(guided,9);
+ assert.equal(standard,725);assert.equal(guided,9); // Fable 4: fewer mechanical choices
  assert.equal(run('JSON.stringify(COURSE.grammar)'),before);
 });
 
@@ -2097,7 +2097,7 @@ test('article recall accepts every preserved answer, case and whitespace, while 
  const units=fs.readdirSync('content/grammar').filter(f=>/^\d{3}_.+\.json$/.test(f)).sort().map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
  const run=context(units);
  const result=JSON.parse(run(`JSON.stringify((()=>{let count=0;for(const u of COURSE.grammar)for(const g of u.exercises)for(const q of g.questions){if(q.interaction!=='article-input')continue;count++;for(const a of q.answers){const value='  '+a.toUpperCase().replace(/ /g,'   ')+'  ';if(!grammarResult(q,value,g,true).good)throw Error(g.id+': '+a);}if(grammarResult(q,'ellos',g,true).good)throw Error(g.id+': wrong article');if(q.inputFormat.example||q.options)throw Error(g.id+': answer cue');}return {count};})())`));
- assert.equal(result.count,177);
+ assert.equal(result.count,186); // Fable 4: 19 instead of 10 article-input questions in unit 7
  for(const value of ['él','ellos','es la','un padre',''])assert.equal(run(`grammarResult(COURSE.grammar[5].exercises[1].questions[0],${JSON.stringify(value)},COURSE.grammar[5].exercises[1],true).good`),false);
 });
 
@@ -2193,8 +2193,9 @@ test('all actual six-option questions reach all six positions across seeded atte
    }
   }return {counts,questions};
  })())`));
- assert.equal(Object.keys(result.questions).length,9);
- assert.ok(result.counts.every(n=>Math.abs(n-900)<108),JSON.stringify(result.counts));
+ assert.equal(Object.keys(result.questions).length,7); // Fable 4: 2 six-option unit-7 questions removed
+ const expected=Object.keys(result.questions).length*600/6;
+ assert.ok(result.counts.every(n=>Math.abs(n-expected)<expected*.12),JSON.stringify(result.counts));
  for(const [key,counts] of Object.entries(result.questions))assert.ok(counts.every(n=>n>0),`${key}: ${counts}`);
 });
 
