@@ -13,3 +13,5 @@
 7. В конце работы укажи изменённые файлы/подразделы, проверенные сценарии, оставшиеся риски и остановись.
 
 Если в этой папке уже существует `AGENTS.md`, **не заменяй его молча**: вручную объедини совместимые инструкции и разреши конфликты с владельцем проекта.
+
+- Разметка `**жирный**` и `` `пример` `` работает только в теории (`paragraphs`, `formulas`, испанские реплики `dialogues`, `illustration.examples`). В `explain`, `context`, `notes`, `prompt`, `instruction` пишем обычный текст: тест `test_markup_only_in_fields_that_render_it`. После правки данных юнита пересчитайте хеши в `tests/data/grammar_before_*.json`, `grammar_question_signatures.json` (если менялся `prompt`) и `grammar_theory_preservation.json`.

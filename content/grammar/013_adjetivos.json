@@ -60,7 +60,7 @@
               "pequeña",
               "pequeñas"
             ],
-            "explain": "`Casa` — женский род, единственное число. Для `pequeño` нужна форма `pequeña`, без окончания множественного числа.",
+            "explain": "Casa — женский род, единственное число. Для pequeño нужна форма pequeña, без окончания множественного числа.",
             "context": "Описание одного дома.",
             "sourceRef": "13.1.1",
             "interaction": "gap-choice",
@@ -82,7 +82,7 @@
               "rojos",
               "roja"
             ],
-            "explain": "`Coches` — мужской род множественного числа; из `rojo` получается `rojos`: добавляем `-s`.",
+            "explain": "Coches — мужской род множественного числа; из rojo получается rojos: добавляем -s.",
             "context": "Говорят о нескольких красных машинах.",
             "sourceRef": "extra",
             "interaction": "gap-choice",
@@ -104,7 +104,7 @@
               "encantadora",
               "encantadores"
             ],
-            "explain": "`Persona` всегда женского рода, хотя дон Сантьяго — мужчина. Поэтому `una persona encantadora`, а не `encantador`.",
+            "explain": "Persona всегда женского рода, хотя дон Сантьяго — мужчина. Поэтому una persona encantadora, а не encantador.",
             "context": "Описание дона Сантьяго.",
             "sourceRef": "extra",
             "interaction": "gap-choice",
@@ -188,7 +188,7 @@
         "instruction": "Различай модель изменения: род может оставаться общим, а число меняться.",
         "questions": [
           {
-            "prompt": "Какое прилагательное **изменяется по роду**?",
+            "prompt": "Какое прилагательное изменяется по роду?",
             "answers": [
               "trabajador"
             ],
@@ -198,7 +198,7 @@
               "feliz",
               "marrón"
             ],
-            "explain": "`Trabajador → trabajadora`: прибавляем `-a` для женского рода. `Alegre`, `feliz` и `marrón` имеют общую форму для обоих родов.",
+            "explain": "Trabajador → trabajadora: прибавляем -a для женского рода. Alegre, feliz и marrón имеют общую форму для обоих родов.",
             "context": "Сравни четыре знакомых прилагательных.",
             "sourceRef": "extra",
             "interaction": "choice"
@@ -213,7 +213,7 @@
               "alegres",
               "alegras"
             ],
-            "explain": "`Alegre` не различает род, но во множественном числе становится `alegres`: `unas chicas alegres`. Форма `alegras` неверна.",
+            "explain": "Alegre не различает род, но во множественном числе становится alegres: unas chicas alegres. Форма alegras неверна.",
             "context": "Описывают нескольких девушек.",
             "sourceRef": "13.1.2",
             "interaction": "gap-choice",
@@ -235,7 +235,7 @@
               "trabajadoras",
               "trabajador"
             ],
-            "explain": "`Chicas` — женский род множественного числа. `Trabajador` меняется и по роду, и по числу: `trabajadora → trabajadoras`.",
+            "explain": "Chicas — женский род множественного числа. Trabajador меняется и по роду, и по числу: trabajadora → trabajadoras.",
             "context": "Девушки усердно работают.",
             "sourceRef": "extra",
             "interaction": "gap-choice",
@@ -332,7 +332,7 @@
               "buen",
               "buena"
             ],
-            "explain": "`Profesor` мужского рода единственного числа; перед ним `bueno` теряет `-o`: `un buen profesor`. После существительного было бы `profesor bueno`.",
+            "explain": "Profesor мужского рода единственного числа; перед ним bueno теряет -o: un buen profesor. После существительного было бы profesor bueno.",
             "context": "Говорят о преподавателе.",
             "sourceRef": "13.3.4",
             "interaction": "gap-choice"
@@ -347,7 +347,7 @@
               "mala",
               "mal"
             ],
-            "explain": "Перед `ejemplo` (мужской род, ед. число) `malo` сокращается до `mal`: `un mal ejemplo`. После слова нужна полная форма `malo`.",
+            "explain": "Перед ejemplo (мужской род, ед. число) malo сокращается до mal: un mal ejemplo. После слова нужна полная форма malo.",
             "context": "Обсуждают плохой пример.",
             "sourceRef": "extra",
             "interaction": "gap-choice"
@@ -362,7 +362,7 @@
               "malo",
               "mala"
             ],
-            "explain": "`Idea` — женского рода, поэтому перед ним сохраняется полная форма `mala`: `una mala idea`. `Mal` здесь не подходит.",
+            "explain": "Idea — женского рода, поэтому перед ним сохраняется полная форма mala: una mala idea. Mal здесь не подходит.",
             "context": "Оценивают предложенную идею.",
             "sourceRef": "extra",
             "interaction": "gap-choice"
@@ -395,7 +395,7 @@
           "answers": [
             "pequeña"
           ],
-          "explain": "`Mesa` — женский род единственного числа, несмотря на русский перевод «стол». Поэтому от `pequeño` получаем `pequeña`.",
+          "explain": "Mesa — женский род единственного числа, несмотря на русский перевод «стол». Поэтому от pequeño получаем pequeña.",
           "context": "Рассказывают о мебели в комнате.",
           "sourceRef": "13.1.1",
           "interaction": "input",
@@ -421,7 +421,7 @@
             "rojos",
             "roja"
           ],
-          "explain": "`Coches` — мужской род, множественное число. Значит, прилагательное `rojo` становится `rojos` (не `rojas`).",
+          "explain": "Coches — мужской род, множественное число. Значит, прилагательное rojo становится rojos (не rojas).",
           "context": "Описывают две машины.",
           "sourceRef": "extra",
           "interaction": "gap-choice",
@@ -437,7 +437,7 @@
           "answers": [
             "nuevos"
           ],
-          "explain": "`Libros` — мужской род, множественное число: `nuevo → nuevos`. Не ориентируйся на русское слово «книги» женского рода.",
+          "explain": "Libros — мужской род, множественное число: nuevo → nuevos. Не ориентируйся на русское слово «книги» женского рода.",
           "context": "Анна только купила книги.",
           "sourceRef": "13.1.8",
           "interaction": "input",
@@ -463,7 +463,7 @@
             "rojos",
             "rojo"
           ],
-          "explain": "`Camisa` — одно слово женского рода в единственном числе: `camisa roja`. Формы с `-s` описывают множественное число.",
+          "explain": "Camisa — одно слово женского рода в единственном числе: camisa roja. Формы с -s описывают множественное число.",
           "context": "Одежда сестры.",
           "sourceRef": "13.1.7",
           "interaction": "gap-choice",
@@ -479,7 +479,7 @@
           "answers": [
             "blancas"
           ],
-          "explain": "`Camisa` и `falda` — два существительных женского рода; для обоих вместе нужно женское множественное `blancas`.",
+          "explain": "Camisa и falda — два существительных женского рода; для обоих вместе нужно женское множественное blancas.",
           "context": "Описывают две вещи.",
           "sourceRef": "extra",
           "interaction": "input",
@@ -504,7 +504,7 @@
             "una casa pequeño / dos casas pequeños",
             "una casa pequeñas / dos casas pequeña"
           ],
-          "explain": "В первой части `casa` — жен. ед. (`pequeña`), во второй `casas` — жен. мн. (`pequeñas`). Одно окончание не подходит к обеим частям.",
+          "explain": "В первой части casa — жен. ед. (pequeña), во второй casas — жен. мн. (pequeñas). Одно окончание не подходит к обеим частям.",
           "context": "Сравни два связанных словосочетания.",
           "sourceRef": "extra",
           "interaction": "choice"
@@ -514,7 +514,7 @@
           "answers": [
             "nuevos"
           ],
-          "explain": "`Teléfonos` — мужской род множественного числа. Из формы `nuevo` в первой фразе образуем `nuevos` для нескольких телефонов.",
+          "explain": "Teléfonos — мужской род множественного числа. Из формы nuevo в первой фразе образуем nuevos для нескольких телефонов.",
           "context": "Описывают один телефон и несколько таких же.",
           "sourceRef": "extra",
           "interaction": "input",
@@ -534,7 +534,7 @@
             "antiguo",
             "antiguas"
           ],
-          "explain": "`Mapa` — существительное мужского рода, хотя заканчивается на `-a`. `El mapa antiguo` — здесь полная мужская форма единственного числа `antiguo`.",
+          "explain": "Mapa — существительное мужского рода, хотя заканчивается на -a. El mapa antiguo — здесь полная мужская форма единственного числа antiguo.",
           "context": "Описание одного старого плана города.",
           "sourceRef": "extra",
           "interaction": "gap-choice",
@@ -550,7 +550,7 @@
           "answers": [
             "encantadora"
           ],
-          "explain": "Даже когда описывают мужчину, прилагательное согласуется с `persona` (женский род): `una persona encantadora`.",
+          "explain": "Даже когда описывают мужчину, прилагательное согласуется с persona (женский род): una persona encantadora.",
           "context": "Хвалят дона Сантьяго.",
           "sourceRef": "13.1.5",
           "interaction": "input",
@@ -575,7 +575,7 @@
             "el libro roja / la mesa rojo",
             "el libro rojo / la mesa rojos"
           ],
-          "explain": "`Libro` мужского рода, а `mesa` женского. Правильная пара — `el libro rojo` и `la mesa roja`; русские переводы имеют другой род.",
+          "explain": "Libro мужского рода, а mesa женского. Правильная пара — el libro rojo и la mesa roja; русские переводы имеют другой род.",
           "context": "Сравни два предмета.",
           "sourceRef": "extra",
           "interaction": "choice"
@@ -585,7 +585,7 @@
           "answers": [
             "amarilla"
           ],
-          "explain": "`Blusa` — женский род, единственное число, поэтому `amarillo → amarilla`. Пишем только прилагательное.",
+          "explain": "Blusa — женский род, единственное число, поэтому amarillo → amarilla. Пишем только прилагательное.",
           "context": "Одежда мамы.",
           "sourceRef": "13.1.9",
           "interaction": "input",
@@ -605,7 +605,7 @@
           "answers": [
             "negros"
           ],
-          "explain": "`Ojos` — мужской род множественного числа: `negro → negros`. Пол говорящих или владельцев глаз на форму не влияет.",
+          "explain": "Ojos — мужской род множественного числа: negro → negros. Пол говорящих или владельцев глаз на форму не влияет.",
           "context": "Описывают глаза родителей.",
           "sourceRef": "13.1.8",
           "interaction": "input",
@@ -648,7 +648,7 @@
       "instruction": "Определи, меняется ли прилагательное по роду, затем выбери или введи форму для нужного числа. В вопросах без пропуска выбери правильную модель или объяснение.",
       "questions": [
         {
-          "prompt": "Какое слово имеет **разные формы для мужчины и женщины**?",
+          "prompt": "Какое слово имеет разные формы для мужчины и женщины?",
           "answers": [
             "trabajador"
           ],
@@ -658,7 +658,7 @@
             "marrón",
             "joven"
           ],
-          "explain": "`Trabajador → trabajadora`: женская форма получает `-a`. У `alegre`, `marrón`, `joven` форма одна для обоих родов, но меняется число.",
+          "explain": "Trabajador → trabajadora: женская форма получает -a. У alegre, marrón, joven форма одна для обоих родов, но меняется число.",
           "context": "Распредели знакомые прилагательные по моделям.",
           "sourceRef": "extra",
           "interaction": "choice"
@@ -668,7 +668,7 @@
           "answers": [
             "alegres"
           ],
-          "explain": "`Alegre` не меняется по роду: `chica alegre`. Но `chicas` во множественном числе требуют `alegres`. Здесь недостаточно переписать исходное слово.",
+          "explain": "Alegre не меняется по роду: chica alegre. Но chicas во множественном числе требуют alegres. Здесь недостаточно переписать исходное слово.",
           "context": "Одна весёлая девушка и несколько весёлых девушек.",
           "sourceRef": "13.1.2",
           "interaction": "input",
@@ -687,7 +687,7 @@
             "felices",
             "felizas"
           ],
-          "explain": "`Feliz` подходит обоим родам, но для нескольких друзей нужна форма `felices`: `z` меняется на `c` перед `-es`.",
+          "explain": "Feliz подходит обоим родам, но для нескольких друзей нужна форма felices: z меняется на c перед -es.",
           "context": "Друзья радуются.",
           "sourceRef": "13.1.6",
           "interaction": "gap-choice",
@@ -703,7 +703,7 @@
           "answers": [
             "marrones"
           ],
-          "explain": "`Marrón` не меняется по роду, но во множественном числе становится `marrones`: ударный слог сохраняется, знак ударения исчезает.",
+          "explain": "Marrón не меняется по роду, но во множественном числе становится marrones: ударный слог сохраняется, знак ударения исчезает.",
           "context": "Сравнивают одну и две юбки.",
           "sourceRef": "13.1.9",
           "interaction": "input",
@@ -722,7 +722,7 @@
             "jóvenes",
             "jovena"
           ],
-          "explain": "`Joven` подходит обоим родам, но при множественном числе пишем `jóvenes` с ударением на `ó`. `Jovena` не является нормативной формой.",
+          "explain": "Joven подходит обоим родам, но при множественном числе пишем jóvenes с ударением на ó. Jovena не является нормативной формой.",
           "context": "Говорят о молодых парнях.",
           "sourceRef": "13.1.11",
           "interaction": "gap-choice"
@@ -732,7 +732,7 @@
           "answers": [
             "charlatana"
           ],
-          "explain": "Прилагательное на `-án` здесь имеет женскую форму `charlatana` без графического ударения. `Marta` — женщина; `charlatán` — мужская форма.",
+          "explain": "Прилагательное на -án здесь имеет женскую форму charlatana без графического ударения. Marta — женщина; charlatán — мужская форма.",
           "context": "Марта много разговаривает.",
           "sourceRef": "13.1.2",
           "interaction": "input",
@@ -748,7 +748,7 @@
           }
         },
         {
-          "prompt": "Какая пара показывает **общую форму по роду**, но **изменение по числу**?",
+          "prompt": "Какая пара показывает общую форму по роду, но изменение по числу?",
           "answers": [
             "una chica alegre → unas chicas alegres"
           ],
@@ -757,7 +757,7 @@
             "un chico simpático → una chica simpática",
             "un chico trabajador → una chica trabajadora"
           ],
-          "explain": "В `alegre → alegres` род остаётся неразличимым, а число меняется. В двух других парах изменение связано с мужским/женским родом.",
+          "explain": "В alegre → alegres род остаётся неразличимым, а число меняется. В двух других парах изменение связано с мужским/женским родом.",
           "context": "Выбери пример именно для общего рода и разных чисел.",
           "sourceRef": "extra",
           "interaction": "choice"
@@ -767,7 +767,7 @@
           "answers": [
             "trabajadoras"
           ],
-          "explain": "`Trabajadora` относится к одной женщине; для сестёр Лолы нужна женская форма множественного числа `trabajadoras`.",
+          "explain": "Trabajadora относится к одной женщине; для сестёр Лолы нужна женская форма множественного числа trabajadoras.",
           "context": "Все сестры много работают.",
           "sourceRef": "13.1.10",
           "interaction": "input",
@@ -787,7 +787,7 @@
             "trabajadores",
             "trabajadora"
           ],
-          "explain": "Конча и Родриго — смешанная группа. В ней обычно используется мужской род множественного числа: `trabajadores`, не `trabajadoras`.",
+          "explain": "Конча и Родриго — смешанная группа. В ней обычно используется мужской род множественного числа: trabajadores, не trabajadoras.",
           "context": "Друзья вместе усердно работают.",
           "sourceRef": "13.1.10",
           "interaction": "gap-choice",
@@ -803,7 +803,7 @@
           "answers": [
             "simpáticos"
           ],
-          "explain": "В смешанной группе обычно мужской род множественного числа: `simpáticos`. Женское `simpáticas` подходило бы группе женщин.",
+          "explain": "В смешанной группе обычно мужской род множественного числа: simpáticos. Женское simpáticas подходило бы группе женщин.",
           "context": "Говорят о двух друзьях.",
           "sourceRef": "extra",
           "interaction": "input",
@@ -819,7 +819,7 @@
           }
         },
         {
-          "prompt": "Почему в «dos chicas inteligentes» стоит **inteligentes**?",
+          "prompt": "Почему в «dos chicas inteligentes» стоит inteligentes?",
           "answers": [
             "Прилагательное общее для обоих родов, но получает -s во множественном числе."
           ],
@@ -828,7 +828,7 @@
             "У прилагательного отдельная женская форма inteligentes.",
             "Прилагательное вообще никогда не меняется."
           ],
-          "explain": "`Inteligente` одинаково для мужчины и женщины, но `dos chicas` — множественное число, поэтому требуется `inteligentes`. Это согласование по числу, не по роду.",
+          "explain": "Inteligente одинаково для мужчины и женщины, но dos chicas — множественное число, поэтому требуется inteligentes. Это согласование по числу, не по роду.",
           "context": "Выбери правило, объясняющее испанскую фразу.",
           "sourceRef": "extra",
           "interaction": "choice"
@@ -838,7 +838,7 @@
           "answers": [
             "inteligentes"
           ],
-          "explain": "`Inteligente` не меняется по роду, зато у двух женщин ставим множественное число `inteligentes`.",
+          "explain": "Inteligente не меняется по роду, зато у двух женщин ставим множественное число inteligentes.",
           "context": "Говорят о двух умных подругах.",
           "sourceRef": "13.1.3",
           "interaction": "input",
@@ -863,7 +863,7 @@
             "dos chicas feliz",
             "dos chicas felizas"
           ],
-          "explain": "`Feliz` — общая форма по роду, а множественное число — `felices` (`z → c`). Поэтому `dos chicas felices`.",
+          "explain": "Feliz — общая форма по роду, а множественное число — felices (z → c). Поэтому dos chicas felices.",
           "context": "Выбери законченный вариант.",
           "sourceRef": "extra",
           "interaction": "choice"
@@ -905,7 +905,7 @@
             "buen",
             "buena"
           ],
-          "explain": "`Profesor` — мужской род единственного числа, и прилагательное стоит перед ним: `bueno → buen`, поэтому `un buen profesor`.",
+          "explain": "Profesor — мужской род единственного числа, и прилагательное стоит перед ним: bueno → buen, поэтому un buen profesor.",
           "context": "Коллеги хвалят учителя Томаса.",
           "sourceRef": "13.3.4",
           "interaction": "gap-choice"
@@ -915,7 +915,7 @@
           "answers": [
             "buena"
           ],
-          "explain": "`Profesora` женского рода. Перед женским существительным не сокращаем `buena`: `una buena profesora`, а не `una buen profesora`.",
+          "explain": "Profesora женского рода. Перед женским существительным не сокращаем buena: una buena profesora, а не una buen profesora.",
           "context": "Родители хвалят преподавательницу.",
           "sourceRef": "extra",
           "interaction": "input",
@@ -940,7 +940,7 @@
             "mal",
             "mala"
           ],
-          "explain": "`Día` мужского рода единственного числа. Перед ним `malo` принимает краткую форму `mal`: `un mal día`.",
+          "explain": "Día мужского рода единственного числа. Перед ним malo принимает краткую форму mal: un mal día.",
           "context": "Сегодня день складывается неудачно.",
           "sourceRef": "extra",
           "interaction": "gap-choice"
@@ -950,7 +950,7 @@
           "answers": [
             "mala"
           ],
-          "explain": "`Idea` женского рода: `una mala idea`. Сокращение `mal` используется перед существительным мужского рода единственного числа.",
+          "explain": "Idea женского рода: una mala idea. Сокращение mal используется перед существительным мужского рода единственного числа.",
           "context": "Кто-то предложил неподходящее решение.",
           "sourceRef": "extra",
           "interaction": "input",
@@ -975,7 +975,7 @@
             "buena",
             "bueno"
           ],
-          "explain": "`Bueno` стоит после существительного `profesor`, поэтому не сокращается: `un profesor bueno` грамматически возможно, как и `un buen profesor`.",
+          "explain": "Bueno стоит после существительного profesor, поэтому не сокращается: un profesor bueno грамматически возможно, как и un buen profesor.",
           "context": "Говорят о профессии брата.",
           "sourceRef": "extra",
           "interaction": "gap-choice"
@@ -985,7 +985,7 @@
           "answers": [
             "mal"
           ],
-          "explain": "`Ejemplo` — мужской род, единственное число. Перед ним `malo` сокращается: `un mal ejemplo`; после было бы `un ejemplo malo`.",
+          "explain": "Ejemplo — мужской род, единственное число. Перед ним malo сокращается: un mal ejemplo; после было бы un ejemplo malo.",
           "context": "Преподаватель показывает неудачный образец.",
           "sourceRef": "extra",
           "interaction": "input",
@@ -1010,7 +1010,7 @@
             "mala",
             "malo"
           ],
-          "explain": "После существительного мужского рода используем полную форму `malo`: `un día malo`. Перед ним было бы `un mal día`; обе конструкции возможны.",
+          "explain": "После существительного мужского рода используем полную форму malo: un día malo. Перед ним было бы un mal día; обе конструкции возможны.",
           "context": "Характеризуют день после события.",
           "sourceRef": "extra",
           "interaction": "gap-choice"
@@ -1025,7 +1025,7 @@
             "un profesor buen",
             "una buen profesor"
           ],
-          "explain": "Перед `profesor` (м. р., ед. ч.) нужна краткая форма `buen`: `un buen profesor`. После существительного можно сказать `un profesor bueno`, но не `un profesor buen`.",
+          "explain": "Перед profesor (м. р., ед. ч.) нужна краткая форма buen: un buen profesor. После существительного можно сказать un profesor bueno, но не un profesor buen.",
           "context": "Исправь ошибку, не меняя смысл.",
           "sourceRef": "extra",
           "interaction": "choice"
@@ -1046,7 +1046,7 @@
           "interaction": "build",
           "context": "Собери словосочетание «хороший друг», поставив прилагательное ПЕРЕД существительным.",
           "sourceRef": "extra",
-          "explain": "Задано прилагательное **перед** существительным мужского рода единственного числа: `un buen amigo`. `Un amigo bueno` тоже возможно, но здесь нужен указанный порядок.",
+          "explain": "Задано прилагательное перед существительным мужского рода единственного числа: un buen amigo. Un amigo bueno тоже возможно, но здесь нужен указанный порядок.",
           "inputFormat": {
             "instruction": "Собери только словосочетание в пропуске из плиток. Лишние плитки не используй.",
             "placeholder": "Выбери слова для фразы"
@@ -1062,7 +1062,7 @@
             "bueno",
             "buena"
           ],
-          "explain": "`Profesora` женского рода, и краткой формы `buen` здесь нет: `una buena profesora`. На позицию перед существительным не реагируем без учёта рода.",
+          "explain": "Profesora женского рода, и краткой формы buen здесь нет: una buena profesora. На позицию перед существительным не реагируем без учёта рода.",
           "context": "Подруга хвалит свою учительницу.",
           "sourceRef": "extra",
           "interaction": "gap-choice"
@@ -1083,7 +1083,7 @@
           "interaction": "build",
           "context": "Собери «плохой день» с прилагательным ПЕРЕД существительным.",
           "sourceRef": "extra",
-          "explain": "По условию `malo` ставим **перед** существительным мужского рода `día`; поэтому собираем `un mal día`, не `un malo día`. Лишние плитки не требуются.",
+          "explain": "По условию malo ставим перед существительным мужского рода día; поэтому собираем un mal día, не un malo día. Лишние плитки не требуются.",
           "inputFormat": {
             "instruction": "Собери только словосочетание в пропуске из плиток. Лишние плитки не используй.",
             "placeholder": "Выбери слова для фразы"
@@ -1099,7 +1099,7 @@
             "Только вариант un buen profesor грамматически правильный.",
             "После существительного тоже обязательно нужно buen."
           ],
-          "explain": "Обе фразы могут быть грамматически правильными. Прилагательное перед существительным сокращается `buen`, после — полная форма `bueno`; оттенок оценки может различаться.",
+          "explain": "Обе фразы могут быть грамматически правильными. Прилагательное перед существительным сокращается buen, после — полная форма bueno; оттенок оценки может различаться.",
           "context": "Сравни положение и форму, не объявляя один порядок ошибкой.",
           "sourceRef": "extra",
           "interaction": "choice"
@@ -1109,7 +1109,7 @@
           "answers": [
             "mal"
           ],
-          "explain": "`Compañero` — мужской род, единственное число. Перед ним `malo` сокращается до `mal`: `un mal compañero`. После существительного сказали бы `un compañero malo`.",
+          "explain": "Compañero — мужской род, единственное число. Перед ним malo сокращается до mal: un mal compañero. После существительного сказали бы un compañero malo.",
           "context": "О друзьях и работе Педро.",
           "sourceRef": "extra",
           "interaction": "input",
@@ -1134,7 +1134,7 @@
             "malo",
             "mala"
           ],
-          "explain": "`Respuesta` — женский род, а после `es` прилагательное стоит в полной форме: `mala`. Краткое `mal` возможно перед существительным мужского рода единственного числа, но не здесь.",
+          "explain": "Respuesta — женский род, а после es прилагательное стоит в полной форме: mala. Краткое mal возможно перед существительным мужского рода единственного числа, но не здесь.",
           "context": "Преподаватель оценивает ответ ученика.",
           "sourceRef": "extra",
           "interaction": "gap-choice"

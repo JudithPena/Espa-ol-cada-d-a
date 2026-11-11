@@ -66,3 +66,22 @@ def test_guided_gaps_require_a_reachable_accepted_answer(tmp_path, frame):
     (tmp_path/'001.json').write_text(json.dumps(unit), encoding='utf-8')
     with pytest.raises(ValueError, match='guided gaps'):
         load_grammar(tmp_path)
+
+
+def test_markup_only_in_fields_that_render_it():
+    """Backticks and ** are drawn only in theory (paragraphs, formulas, dialogues, illustration examples)."""
+    plain = {'explain', 'context', 'notes', 'prompt', 'instruction'}
+    bad = []
+
+    def walk(obj, key, unit):
+        if isinstance(obj, dict):
+            for k, v in obj.items():
+                walk(v, k, unit)
+        elif isinstance(obj, list):
+            for v in obj:
+                walk(v, key, unit)
+        elif isinstance(obj, str) and key in plain and ('`' in obj or '**' in obj):
+            bad.append((unit, key, obj[:60]))
+    for unit in load_grammar():
+        walk(unit, None, unit['number'])
+    assert not bad, bad[:5]
