@@ -59,6 +59,7 @@ PREPARE = r"""({number,route,qi=0}) => {
   save(); gStart(u.id,route); gMove(1);
   G.at=G.steps.findIndex(s=>s.type==='question'&&s.group===group.id&&s.qi===qi);
   if(!G || G.at<0 || G.steps[G.at]?.type!=='question') throw Error('Failed to start '+route+' index '+qi);
+  gSave(); render(); // after selecting a non-first exercise question, refresh the actual player controls
   return {score,group:group.id,questions:group.questions.length};
 }"""
 
@@ -167,7 +168,12 @@ def run_case(browser, width, number, route, expected_mode, qi=0):
                     page.locator("[data-ggap],#g-answer").first.focus()
                 page.evaluate("gSyncViewport()")
                 item["layouts"]["keyboard_emulation"]=check_layout(page,label+" short height")
-                assert_true(page.locator("[data-gcheck]").count()>0,label+": check button unavailable during compressed height")
+                if q["mode"]=="build":
+                    assert_true(page.locator(".gbuild-bank [data-gadd]").count()>0,
+                                label+": word-bank buttons unavailable at reduced height")
+                else:
+                    assert_true(page.locator("[data-gcheck]").count()>0,
+                                label+": check button unavailable during compressed height")
                 page.set_viewport_size({"width":width,"height":820})
                 page.evaluate("gSyncViewport()")
             if number==5 and route=="exercise:5.2" and n==1:

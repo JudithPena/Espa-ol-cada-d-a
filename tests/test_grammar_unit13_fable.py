@@ -83,7 +83,7 @@ def test_unit13_buen_mal_and_full_forms_have_sufficient_contrast_and_build_distr
     assert "buen" in answers and "mal" in answers and "bueno" in answers
     assert "buena" in answers and "mala" in answers and "malo" in answers
     assert len([q for q in g["questions"] if q.get("tiles")]) == 2
-    assert any("оба" in q["explain"].lower() and "profesor bueno" in q["prompt"]
+    assert any("обе" in q["explain"].lower() and "profesor bueno" in q["prompt"]
                for q in g["questions"])
     assert all("ojos azules" not in q["prompt"] for q in g["questions"])
     assert all(len(q["tiles"]) >= 5 for q in g["questions"] if q.get("tiles"))
