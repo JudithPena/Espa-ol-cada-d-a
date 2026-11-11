@@ -8,7 +8,7 @@ name: Сайт курса
 
 on:
   push:
-    branches: [ccr-f4c9bfd6-txio5n, "claude/**"]
+    branches: [ccr-f4c9bfd6-txio5n, "claude/**", "codex/split-static-learning-data"]
     paths:
       - "content/**"
       - "espanol/**"
@@ -80,7 +80,11 @@ jobs:
       - name: Проверить бюджет Cloudflare после копирования аудио
         if: steps.check.outputs.ready == 'true'
         run: |
+          set -euo pipefail
           python -m espanol.site_budget _site | tee site-budget.json
+          if [ "$GITHUB_REF_NAME" = "codex/split-static-learning-data" ]; then
+            python -m tools.site_audio_audit _site | tee site-audio-audit.json
+          fi
           cat site-budget.json >> "$GITHUB_STEP_SUMMARY"
 
       - name: Проект на Cloudflare Pages
@@ -90,6 +94,7 @@ jobs:
           npx --yes wrangler@4 pages project create "$PROJECT" --production-branch main || echo "Проект уже существует или не создался: смотрим на выкладку ниже."
 
       - name: Выложить сайт
+        id: deploy
         if: steps.check.outputs.ready == 'true'
         run: |
           if [ "$GITHUB_REF_NAME" = "ccr-f4c9bfd6-txio5n" ]; then
@@ -109,3 +114,25 @@ jobs:
               echo "Постоянный адрес этой ветки: https://$ALIAS.$PROJECT.pages.dev"
             fi
           } >> "$GITHUB_STEP_SUMMARY"
+          PREVIEW_URL=$(grep -oE 'https://[a-zA-Z0-9.-]+\.pages\.dev' deploy.log | head -1)
+          echo "url=$PREVIEW_URL" >> "$GITHUB_OUTPUT"
+
+      - name: Проверить опубликованный PR60 с полным аудио
+        if: steps.check.outputs.ready == 'true' && github.ref_name == 'codex/split-static-learning-data'
+        run: |
+          set -euo pipefail
+          pip install playwright
+          python -m playwright install --with-deps chromium
+          python tests/site_preview_browser.py --url "${{ steps.deploy.outputs.url }}" --report site-preview-browser.json
+
+      - name: Сохранить бюджет и диагностику предпросмотра
+        if: always() && github.ref_name == 'codex/split-static-learning-data'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr60-deployed-preview
+          path: |
+            site-budget.json
+            site-audio-audit.json
+            site-preview-browser.json
+            deploy.log
+          if-no-files-found: warn
