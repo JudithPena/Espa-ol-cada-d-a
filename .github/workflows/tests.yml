@@ -121,6 +121,16 @@ jobs:
           git -c user.name="PR integration audit" -c user.email="audit@localhost" merge --no-ff --no-commit origin/claude/charming-cerf-bzze60 || true
           python tools/resolve_pr34_merge.py
           test -z "$(git diff --name-only --diff-filter=U)"
+      - name: Export merged code for independent review
+        if: always()
+        run: |
+          tar -czf /tmp/pr34_merged_source.tar.gz espanol/grammar_player.js espanol/site_template.html tests/site_grammar.test.cjs tests/site_grammar_policy.test.cjs content/grammar/
+      - name: Archive merged source for independent tests
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr34-merged-source
+          path: /tmp/pr34_merged_source.tar.gz
       - name: Install project dependencies
         run: python -m pip install -r requirements.txt pytest
       - name: Validate the combined grammar and all repository tests
