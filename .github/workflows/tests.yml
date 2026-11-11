@@ -90,7 +90,7 @@ jobs:
           fi
 
   grammar-immediate-feedback-browser:
-    if: github.event_name == 'pull_request' && (github.head_ref == 'fix/grammar-immediate-feedback-20261111' || github.head_ref == 'audit/grammar-schema-linter-20261111' || github.head_ref == 'audit/fable-stage3-recovered-20261111' || github.head_ref == 'audit/fable-stage4-unit07-20261111' || github.head_ref == 'audit/fable-stage5-unit05-20261111' || github.head_ref == 'audit/fable-stage6-unit13-20261111')
+    if: github.event_name == 'pull_request' && (github.head_ref == 'fix/grammar-immediate-feedback-20261111' || github.head_ref == 'audit/grammar-schema-linter-20261111' || github.head_ref == 'audit/fable-stage3-recovered-20261111' || github.head_ref == 'audit/fable-stage4-unit07-20261111' || github.head_ref == 'audit/fable-stage5-unit05-20261111' || github.head_ref == 'audit/fable-stage6-unit13-20261111' || github.head_ref == 'audit/fable-stage7-unit08-20261111')
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
@@ -104,7 +104,7 @@ jobs:
           python -m playwright install chromium
       - name: Build local website without deploying
         run: python -m espanol site
-      - name: Chromium regression (320, 390, 768, 1280px; 1, 5, 7, 13, 15, 38, 45)
+      - name: Chromium regression (320, 390, 768, 1280px; 1, 5, 7, 8, 13, 15, 38, 45)
         run: python tests/grammar_immediate_feedback_browser.py
       - name: Archive screenshots and machine results
         if: always()
