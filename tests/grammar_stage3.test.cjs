@@ -86,7 +86,7 @@ test('only written framing punctuation is ignored when explicitly enabled',()=>{
   const missing=grade(phone,'Telefono azul');
   assert.equal(missing.status,'almost');
   const hint=run('grammarAccentHint('+JSON.stringify(missing)+')');
-  assert.match(hint,/<mark class="gmissing-accent">é<\\/mark>/);
+  assert.match(hint,/<mark class="gmissing-accent">é<\/mark>/);
 });
 test('real contextual policy catalog points to matching intact lesson positions',()=>{
   for(const [unitId,groups] of Object.entries(catalog)){
