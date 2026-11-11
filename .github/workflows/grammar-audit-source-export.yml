@@ -1,0 +1,15 @@
+name: Grammar audit source snapshot (temporary)
+on:
+  push:
+    branches: [audit/grammar-schema-linter-20261111]
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Pack source and existing grammar data
+        run: tar czf /tmp/grammar_audit_source.tar.gz espanol content/grammar tests docs/grammar_audit docs/site_grammar_guide.md AGENTS.md CLAUDE.md requirements.txt pyproject.toml .github/workflows/tests.yml
+      - uses: actions/upload-artifact@v4
+        with:
+          name: grammar-audit-source
+          path: /tmp/grammar_audit_source.tar.gz
