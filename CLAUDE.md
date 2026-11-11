@@ -101,6 +101,18 @@ Telegram-курс испанского с нуля до A1: канал **@espano
 - В `.claude/settings.json`: основная модель Sonnet, советник Opus (`advisorModel`) — Opus зовут на развилках
   и перед тем, как объявить задачу готовой. Сменить: `/model`, `/advisor`; выключить: `/advisor off`.
 
+## Аудит A0–A1 и программа A2–C2 (MYTHOS, 11 ноября 2026)
+
+- Независимый аудит основного курса сайта и стратегия продолжения — только документы, уроки и код не менялись.
+  Вход — `docs/mythos_audit_progress.md`; главный отчёт — `docs/a0_a1_mythos_audit.md`; находки с ID
+  (`U01-06`, `SYS-02`, `ENG-01`…) — `docs/a0_a1_mythos_issues.md`; ТЗ исправлений — `docs/a0_a1_mythos_implementation_plan.md`.
+- Продолжение курса: `docs/a2_c2_curriculum_strategy.md`, `docs/a2_c2_curriculum_map.md`,
+  `docs/a2_c2_platform_roadmap.md`, первый юнит A2 — `docs/a2_pilot_blueprint.md`.
+- Сканеры аудита — `python tools/audit/course_scan.py <команда>` (только чтение, в `validate` не входят).
+- Перед правкой урока сайта смотрите его находки в реестре; главные правила, которых нет в руководстве уроков:
+  ответ на вопрос к диалогу должен быть в самих репликах, а не в подписи говорящего; у фразы на ввод
+  принимаются варианты с местоимением, другим порядком слов и краткий ответ.
+
 ## Сайт курса (прототип)
 
 - `python -m espanol site` собирает `site/index.html` (в `.gitignore`): курс в духе Busuu — уроки по порядку,
