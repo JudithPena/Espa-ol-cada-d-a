@@ -18,6 +18,7 @@ jobs:
         run: |
           python tools/grammar_schema_docs.py --check
           python -m espanol grammar-lint --report /tmp/grammar-lint-summary.md --json-out /tmp/grammar-lint-findings.json
+          python -m espanol grammar-lint 5
       - name: Архив диагностик грамматического линтера
         if: always()
         uses: actions/upload-artifact@v4

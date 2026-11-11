@@ -95,7 +95,11 @@ def test_pedagogy_warns_for_audit_control_examples_without_blocking():
     p7,u7=fixture(7)
     f5=pedagogical_unit(u5,p5)
     f7=pedagogical_unit(u7,p7)
-    assert any(x.rule=='CONTEXT_LEAK' and x.group=='5.2' for x in f5)
+    # Stage 5 removed leaks in unit 5; a deliberately corrupted fixture must still trigger the rule.
+    assert not any(x.rule=='CONTEXT_LEAK' and x.group=='5.2' for x in f5)
+    bad=copy.deepcopy(u5)
+    bad['exercises'][1]['questions'][0]['context']='Выбери неопределённый артикль.'
+    assert any(x.rule=='CONTEXT_LEAK' and x.group=='5.2' for x in pedagogical_unit(bad,p5))
     assert not any(x.rule=='NEVER_CORRECT_OPTION' and 'Без артикля' in x.message for x in f7)
     assert not any(x.rule=='LONG_HOMOGENEOUS' for x in f7)
     assert all(x.severity in ('WARNING','INFO') for x in f5+f7)
