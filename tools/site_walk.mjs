@@ -7,7 +7,7 @@
 // урок доходит до экрана результата. Записей звука при локальной сборке нет — это и есть проверка «без звука».
 import { createRequire } from 'node:module';
 const { chromium } = createRequire(import.meta.url)('playwright');   // Playwright стоит глобально (NODE_PATH), ESM его так не видит
-import { pathToFileURL } from 'node:url';
+import http from 'node:http';
 import path from 'node:path';
 import fs from 'node:fs';
 
@@ -16,7 +16,19 @@ const flag = f => args.includes(f);
 const val = f => { const k = args.indexOf(f); return k >= 0 ? args[k + 1] : null; };
 const widths = (val('--widths') || '320,390,430').split(',').map(Number);
 const shots = val('--shots');
-const page0 = pathToFileURL(path.resolve('site/index.html')).href;
+// Split JSON cannot be fetched from file://. Serve the same directory as Pages.
+const root = path.resolve('site');
+const server = http.createServer((req, res) => {
+  const filename = path.resolve(root, '.' + decodeURIComponent(req.url.split('?')[0] === '/' ? '/index.html' : req.url.split('?')[0]));
+  if (!filename.startsWith(root + path.sep)) { res.writeHead(403); res.end(); return; }
+  fs.readFile(filename, (error, data) => {
+    if (error) { res.writeHead(404); res.end(); return; }
+    res.setHeader('Content-Type', filename.endsWith('.json') ? 'application/json' : filename.endsWith('.html') ? 'text/html; charset=utf-8' : filename.endsWith('.webp') ? 'image/webp' : 'application/octet-stream');
+    res.end(data);
+  });
+});
+await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+const page0 = `http://127.0.0.1:${server.address().port}/`;
 const browser = await chromium.launch();
 let failures = 0;
 
@@ -80,11 +92,13 @@ for (const width of widths) {
   page.on('pageerror', e => errors.push(String(e)));
   page.on('console', m => { if (m.type() === 'error' && !/a\/[0-9a-f]+\.mp3|ERR_FILE_NOT_FOUND|net::/.test(m.text())) errors.push(m.text()); });
   await page.goto(page0);
+  await page.waitForFunction(() => !COURSE.resources || dataLoaded.has(COURSE.resources.common.url));
   await page.evaluate(() => { P.openAll = true; P.sound = false; P.autoDlg = false; });
   for (const id of await lessonIds(page)) {
     const i = await page.evaluate(id => LESSONS.findIndex(L => L.id === id), id);
     if (i < 0) { console.log(`✗ нет урока ${id}`); failures++; continue; }
     await page.evaluate(i => startLesson(i), i);
+    await page.waitForFunction(() => !!S);
     if (flag('--noaudio')) await page.evaluate(() => { S.noAudio = true; enterStep(); });
     let n = 0, wide = 0, last = '';
     for (; n < 400; n++) {
@@ -104,4 +118,5 @@ for (const width of widths) {
   await page.close();
 }
 await browser.close();
+await new Promise(resolve => server.close(resolve));
 process.exit(failures ? 1 : 0);

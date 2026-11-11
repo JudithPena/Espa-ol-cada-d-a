@@ -65,7 +65,8 @@ def test_theory_art_is_served_on_demand_but_fragments_remain_portable(course, tm
     assert len(assets) == 41
     for scene in art:
         data = base64.b64decode(scene["image"].split(",", 1)[1])
-        assert assets[data] in page
+        resources = "\n".join(p.read_text() for p in (tmp_path / "d" / "grammar").rglob("*.json"))
+        assert assets[data] in resources
         assert scene["image"] not in page
 
     fragment = build_site(course, load_cards(CONTENT), tmp_path / "embed.html", units={0}, fragment=True)

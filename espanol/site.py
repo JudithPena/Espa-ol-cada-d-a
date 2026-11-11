@@ -1,10 +1,10 @@
 """Сайт курса в духе Busuu: уроки по порядку, упражнения, прогресс и повторение слов.
 
-    python -m espanol site                    # site/index.html — открыть в браузере
+    python -m espanol site                    # site/index.html + d/, i/, g/, a/ — раздавать через HTTP
     python -m espanol site --units 0-5        # только темы 0–5
     python -m espanol site --fragment         # без <html>/<head> (для встраивания)
 
-Сайт — одна страница без сервера (шаблон espanol/site_template.html). Сюда выгружаются
+Сайт — статическая оболочка и JSON по требованию (шаблон espanol/site_template.html). Сюда выгружаются
 уроки курса как данные: слова с карточками-разборами из content/repaso/, блоки урока в HTML,
 упражнения «вопрос => ответ» и тесты. Шаги урока, варианты ответов и повторение по интервалам
 собирает уже страница, а прогресс ученика хранится в его браузере (localStorage).
@@ -1079,6 +1079,14 @@ def build_site(course: Course, cards: dict[str, WordCard], out: str | Path, unit
     if audio_cache and not fragment:
         from .site_audio import record
         site["audio"] = record(site, out.parent, audio_cache)
+    if not fragment:
+        from .site_assets import split_site
+        site = split_site(site, out.parent)
+        (out.parent / "_headers").write_text(
+            "/\n  Cache-Control: no-cache\n/index.html\n  Cache-Control: no-cache\n"
+            "/d/*\n  Cache-Control: public, max-age=31536000, immutable\n"
+            "/i/*\n  Cache-Control: public, max-age=31536000, immutable\n"
+            "/g/*\n  Cache-Control: public, max-age=31536000, immutable\n", encoding="utf-8")
     data = json.dumps(site, ensure_ascii=False).replace("</", "<\\/")
     page = TEMPLATE.read_text(encoding="utf-8").replace("/*__DATA__*/{}", data)
     page = page.replace("/*__GRAMMAR_PLAYER__*/", TEMPLATE.with_name("grammar_player.js").read_text(encoding="utf-8"))

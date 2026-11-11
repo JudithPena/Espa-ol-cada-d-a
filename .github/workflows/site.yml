@@ -67,6 +67,7 @@ jobs:
       - name: Сборка сайта
         if: steps.check.outputs.ready == 'true'
         run: |
+          set -euo pipefail
           pip install -r requirements.txt
           if [ "$GITHUB_REF_NAME" = "ccr-f4c9bfd6-txio5n" ]; then
             python -m espanol site --audio-cache .cache/site-audio -o _site/index.html | tee build.log
@@ -75,6 +76,12 @@ jobs:
             python -m espanol site --preview --audio-cache .cache/site-audio -o _site/index.html | tee build.log
           fi
           grep "Озвучка сайта" build.log >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: Проверить бюджет Cloudflare после копирования аудио
+        if: steps.check.outputs.ready == 'true'
+        run: |
+          python -m espanol.site_budget _site | tee site-budget.json
+          cat site-budget.json >> "$GITHUB_STEP_SUMMARY"
 
       - name: Проект на Cloudflare Pages
         if: steps.check.outputs.ready == 'true'
@@ -92,6 +99,7 @@ jobs:
             BRANCH="$GITHUB_REF_NAME"
             TITLE="Предпросмотр выложен (основной сайт не изменился)"
           fi
+          set -euo pipefail
           npx --yes wrangler@4 pages deploy _site --project-name "$PROJECT" --branch "$BRANCH" --commit-dirty=true | tee deploy.log
           {
             echo "### $TITLE"
