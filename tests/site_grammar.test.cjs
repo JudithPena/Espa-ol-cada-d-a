@@ -912,7 +912,7 @@ test('17.3 fills words in a fixed sentence, keeps partial choices on resume and 
  html=run('gPlayerView()');
  assert.ok(html.includes('data-gnext'));
  assert.ok(!html.includes(' / la bebida'));
- run(`gMove(1);while(!G.steps[G.at].correction){const s=G.steps[G.at];gResponse(s).value=gUnit().exercises[2].questions[s.qi].answers[0];gCheck();gMove(1);}gSelectGap(0,1);gSelectGap(1,0);gSelectGap(2,1);gSelectGap(3,0);gCheck();`);
+ run(`gMove(1);for(let __grammarGuard=0;!G.steps[G.at].correction&&__grammarGuard++<300;){const s=G.steps[G.at];gResponse(s).value=gUnit().exercises[2].questions[s.qi].answers[0];gCheck();gMove(1);}gSelectGap(0,1);gSelectGap(1,0);gSelectGap(2,1);gSelectGap(3,0);gCheck();`);
  assert.equal(run('gResponse(G.steps[G.at]).good'),true);
  assert.equal(run('G.ended'),false);
  run('var checkedAt=G.at;gMove(1);');
@@ -1816,7 +1816,7 @@ test('an updated exercise discards obsolete correction steps while the same revi
  const legacy=structuredClone(updated);delete legacy.exercises[0].revision;
  const storage=new Map();let run=context([legacy],storage);unlockUntil(run,'exercise:9.1');
  run(`render=()=>{};save();gStart(COURSE.grammar[0].id,'exercise:9.1');gMove(1);
-   while(!G.steps[G.at].correction){const s=G.steps[G.at],q=gUnit().exercises[0].questions[s.qi];gResponse(s).value=s.qi===0?'wrong':q.answers[0];gCheck();gMove(1);}gExit();`);
+   for(let __grammarGuard=0;!G.steps[G.at].correction&&__grammarGuard++<300;){const s=G.steps[G.at],q=gUnit().exercises[0].questions[s.qi];gResponse(s).value=s.qi===0?'wrong':q.answers[0];gCheck();gMove(1);}gExit();`);
  run=context([updated],storage);run(`render=()=>{};gStart(COURSE.grammar[0].id,'all',true);`);
  assert.equal(run('G.steps[G.at].type'),'intro');
  assert.equal(run('G.steps.some(s=>s.correction)'),false);
@@ -1836,7 +1836,7 @@ test('all eight new profession questions pass with their contextual answers and 
  assert.equal(run('P.grammar[grammarKey(gUnit(),gUnit().exercises[0])].correct'),8);
  assert.equal(run('P.xp'),16);
  run=context([u]);unlockUntil(run,'exercise:5.1');
- run(`gStart(COURSE.grammar[0].id,'exercise:5.1');gMove(1);while(!G.ended&&!G.recovery){gResponse(G.steps[G.at]).value='Без артикля';gCheck();if(!G.recovery)gMove(1);}`);
+ run(`gStart(COURSE.grammar[0].id,'exercise:5.1');gMove(1);for(let __grammarGuard=0;!G.ended&&!G.recovery&&__grammarGuard++<300;){gResponse(G.steps[G.at]).value='Без артикля';gCheck();if(!G.recovery)gMove(1);}`);
  assert.equal(run('gAttempt(gUnit(),gUnit().exercises[0]).status'),'failed');
  assert.equal(run('P.xp'),0);
 });
