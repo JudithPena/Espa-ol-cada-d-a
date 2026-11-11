@@ -2407,6 +2407,7 @@ function grammarComparisonValue(q,value) {
     : normalized;
 }
 function grammarAccentPolicy(q,group={}) {
+  group=group||{};
   if(q.accentSensitive===true)return 'strict';
   if(q.accentPolicy)return q.accentPolicy;
   if(group.accentSensitive===true)return 'strict';
@@ -2425,6 +2426,7 @@ function grammarMissingAccents(expected,value) {
   return missing.length?missing:null;
 }
 function grammarAccentContrast(q,group,answer,value) {
+  group=group||{};
   const listed=[...(group.accentContrasts||[]),...(q.accentContrasts||[])];
   if(!listed.length)return null;
   const tokens=text=>grammarNormalize(text).match(/[\p{L}\p{M}]+/gu)||[];
@@ -2442,6 +2444,7 @@ function grammarSemanticAccent(answer,missing) {
   return null;
 }
 function grammarResult(q,value,group={},manual=!q.options&&!q.tiles&&!q.guidedGaps) {
+  group=group||{};
   const entered=grammarComparisonValue(q,value);
   const accepted=q.answers.find(a=>grammarComparisonValue(q,a)===entered);
   if(accepted!==undefined)return grammarAcceptedResult(q,accepted);
