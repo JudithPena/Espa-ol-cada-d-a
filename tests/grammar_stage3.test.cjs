@@ -138,7 +138,7 @@ test('warning variants remain accepted, and errors receive tailored feedback',()
 });
 
 test('all real unit 34–45 alternatives are accepted without changing source answers',()=>{
-  const filenames=fs.readdirSync('content/grammar').filter(name=>/^0(?:3[4-9]|4[0-5])_.*\\.json$/.test(name));
+  const filenames=fs.readdirSync('content/grammar').filter(name=>/^0(?:3[4-9]|4[0-5])_.*\.json$/.test(name));
   assert.equal(filenames.length,12);
   let answers=0,questions=0;
   for(const filename of filenames){
