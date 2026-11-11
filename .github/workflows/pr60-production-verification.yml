@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   production-browser:
@@ -24,13 +25,12 @@ jobs:
         run: |
           pip install playwright
           python -m playwright install --with-deps chromium
-      - name: Сохранить старую production-версию до объединения
-        run: python tests/pr60_release_probe.py capture
-      - name: Сохранить снимок для проверки прогресса
-        uses: actions/upload-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
           name: pr60-legacy-production-snapshot
-          path: /tmp/pr60-production-check/legacy*
+          path: /tmp/pr60-production-check
+          run-id: 43101739663
+          github-token: ${{ github.token }}
       - name: Дождаться обновления основного домена
         run: python tests/pr60_release_probe.py wait
       - name: Проверить основной сайт без записи пользовательских данных

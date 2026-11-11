@@ -109,7 +109,9 @@ def main():
                 page.wait_for_selector('[data-gstart]')
                 checked_units=[]
                 for unit_id in page.evaluate('COURSE.grammar.filter(u=>[1,13,47].includes(u.number)).map(u=>u.id)'):
-                    page.evaluate('(id)=>{view.tab="grammar";view.grammar=id;render()}',unit_id)
+                    page.locator('[data-grammar-list]').click()
+                    page.wait_for_selector(f'[data-grammar="{unit_id}"]')
+                    page.locator(f'[data-grammar="{unit_id}"]').click()
                     page.wait_for_selector('[data-gstart]',timeout=60000)
                     page.locator('[data-gstart]').first.click()
                     page.wait_for_selector('.gplayer')
@@ -187,6 +189,9 @@ def main():
                     'approved_story_cover':{'id':story['id'],'sha256':cover_sha,'dimensions':dimensions,'removed_labels':'absent'},'book_url':url+book_hash,'chapter_url':url+chapter_hash,'fresh_direct_links':'passed','retry':'passed','offline_cached_json':'passed','errors':errors})
                 context.close()
             browser.close()
+    except Exception:
+        print('PRODUCTION_DIAGNOSTICS', json.dumps({'url':page.url,'text':page.locator('body').inner_text()[:15000],'errors':errors,'view':page.evaluate('({view,G:!!G,S:!!S,pending:dataPending})')},ensure_ascii=False),flush=True)
+        raise
     finally:
         args.report.parent.mkdir(parents=True, exist_ok=True)
         args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2))
