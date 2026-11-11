@@ -225,7 +225,7 @@ test('reading parts are numbered in order independently of author chapter number
   const context = {esc:ctx.esc, view:{book:'vacaciones',bookChapter:'1'},
     bookById:() => ({title:'Lola Lago - Vacaciones al sol',chapters:[chapter]}),
     bookChapterLabel:ctx.bookChapterLabel, bookTitle:ctx.bookTitle, bookOriginal:ctx.bookOriginal, bookText:ctx.bookText,
-    bookMarks:ctx.bookMarks, bookNote:ctx.bookNote, bookPronouns:ctx.bookPronouns};
+    bookMarks:ctx.bookMarks, bookNote:ctx.bookNote, bookLexicon:ctx.bookLexicon, bookNoteOrder:ctx.bookNoteOrder, bookPronouns:ctx.bookPronouns};
   vm.createContext(context); vm.runInContext(viewCode, context);
   const html = context.bookView();
   assert.deepEqual([...html.matchAll(/class="book-part">([^<]+)<\/span>/g)].map(m=>m[1]),
@@ -293,7 +293,7 @@ test('story without chapters opens straight from its card and shows no chapter l
   const story = JSON.parse(fs.readFileSync('content/books/los-tres-cerditos/story.json', 'utf8'));
   const meta = JSON.parse(fs.readFileSync('content/books/los-tres-cerditos/book.json', 'utf8'));
   const cat = {esc:ctx.esc, plural:(n,one,few,many) => n === 1 ? one : n < 5 ? few : many,
-    bookText:ctx.bookText, bookOriginal:ctx.bookOriginal, bookMarks:ctx.bookMarks, bookNote:ctx.bookNote, bookPronouns:ctx.bookPronouns, bookExercises:() => '',
+    bookText:ctx.bookText, bookOriginal:ctx.bookOriginal, bookMarks:ctx.bookMarks, bookNote:ctx.bookNote, bookLexicon:ctx.bookLexicon, bookNoteOrder:ctx.bookNoteOrder, bookPronouns:ctx.bookPronouns, bookExercises:() => '',
     view:{bookLevel:'A2'}, COURSE:{books:[{...meta, chapters:[], story}]}};
   vm.createContext(cat); vm.runInContext(catalogSource + viewCode, cat);
   const card = cat.bookLevelView();
@@ -398,4 +398,104 @@ test('anthology is one B1 card with eight ordered readers and working old links'
   cat.bookRoute(['books','A2',members[0].id,'2']);
   assert.equal(cat.view.tab,'book-chapters');
   assert.match(cat.bookChaptersView(), new RegExp(`data-book-id="${parent.id}"`));
+});
+
+test('numbers follow first use, not note order; reset in each block', () => {
+  const block = {es:'El hombre corpulento y rollizo parece corpulento.',ru:'Крупный и круглый мужчина.',notes:[
+    {term:'rollizo',explanation:'круглый',es:['rollizo'],ru:['круглый']},
+    {term:'corpulento',explanation:'крупный',es:['corpulento'],ru:['Крупный']}
+  ]};
+  const links = ctx.bookLexicon(block, 2);
+  assert.deepEqual(Array.from(links, x => [x.note.term, x.number]), [['corpulento',1],['rollizo',2]]);
+  const html = ctx.bookOriginal(block, links);
+  assert.equal((html.match(/data-book-jump="book-note-2-1"/g)||[]).length,2);
+  assert.equal((html.match(/id="book-word-2-1"/g)||[]).length,1);
+  assert.match(html, /<strong>corpulento<\/strong><sup class="book-number" aria-hidden="true">1<\/sup>/);
+  assert.match(html, /<strong>rollizo<\/strong><sup class="book-number" aria-hidden="true">2<\/sup>/);
+  const notes = ctx.bookNoteOrder(block, links);
+  assert.deepEqual(Array.from(notes,x=>x.note.term),['corpulento','rollizo']);
+  assert.match(ctx.bookNote(notes[0].note,notes[0].link), /data-book-jump="book-word-2-1"/);
+  assert.equal(ctx.bookLexicon(block,3)[0].number,1);
+  const ru = ctx.bookText(block.ru,ctx.bookMarks(block,'ru'));
+  assert.ok(ru.includes('<strong>Крупный</strong>'));
+  assert.doesNotMatch(ru, /book-number|data-book-jump|<sup/);
+});
+
+test('separate adjacent words and discontinuous phrases keep their own note identities', () => {
+  const block = {es:'fabricaba taladros. apartó los taladros de su mente.',notes:[
+    {term:'apartar (algo) de la mente',es:['apartó','de su mente']},
+    {term:'el taladro',es:['taladros']},
+    {term:'fabricar',es:['fabricaba']}
+  ]};
+  const links = ctx.bookLexicon(block, 0);
+  assert.deepEqual(Array.from(links,x=>[x.note.term,x.number]), [
+    ['fabricar',1],['el taladro',2],['apartar (algo) de la mente',3]
+  ]);
+  const html = ctx.bookOriginal(block,links);
+  assert.match(html, /<strong>fabricaba<\/strong><sup[^>]*>1<\/sup><\/button> <button[^>]*><strong>taladros<\/strong><sup[^>]*>2<\/sup>/);
+  assert.equal((html.match(/data-book-jump="book-note-0-0"/g)||[]).length,2);
+  assert.equal((html.match(/data-book-jump="book-note-0-1"/g)||[]).length,2);
+  assert.ok(!html.includes('<strong>apartó los taladros'));
+});
+
+test('identical forms can link to different explanations with selected occurrences', () => {
+  const block = {es:'banco, banco, banco.',notes:[
+    {term:'el banco (asiento)',es:['banco'],occurrences:{es:{banco:[0,2]}}},
+    {term:'el banco (entidad financiera)',es:['banco'],occurrences:{es:{banco:[1]}}}
+  ]};
+  const links = ctx.bookLexicon(block,0), html = ctx.bookOriginal(block, links);
+  assert.deepEqual(Array.from(links,x=>x.number),[1,2]);
+  assert.equal((html.match(/data-book-jump="book-note-0-0"/g)||[]).length,2);
+  assert.equal((html.match(/data-book-jump="book-note-0-1"/g)||[]).length,1);
+  assert.equal((html.match(/id="book-word-0-0"/g)||[]).length,1);
+  assert.equal((html.match(/id="book-word-0-1"/g)||[]).length,1);
+});
+
+test('unmatched notes remain readable without dangling links or phantom numbers', () => {
+  const block = {es:'El árbol.',notes:[{term:'inexistente',es:['cielo']},{term:'el árbol',es:['árbol']}]};
+  const links = ctx.bookLexicon(block,7);
+  assert.equal(links.length,1);
+  assert.equal(links[0].number,1);
+  assert.equal(ctx.bookNoteOrder(block,links).at(-1).note.term,'inexistente');
+  assert.doesNotMatch(ctx.bookOriginal(block,links), /book-note-7-0/);
+});
+
+test('the jump respects sticky header and highlights the target without changing routes', () => {
+  const cls={added:[],removed:[],add(x){this.added.push(x);},remove(x){this.removed.push(x);}};
+  const target={getBoundingClientRect:()=>({top:400}),closest:()=>null,classList:cls,offsetWidth:100};
+  const root={contains:x=>x===target};
+  let moved=null;
+  ctx.document={querySelector:s=>s==='.top'?{getBoundingClientRect:()=>({bottom:66})}:root,
+    getElementById:id=>id==='book-note-0-1'?target:null};
+  ctx.window={scrollY:200,matchMedia:()=>({matches:true}),scrollTo:opts=>{moved=opts;}};
+  ctx.setTimeout=()=>{};
+  ctx.bookJump('book-note-0-1');
+  assert.equal(moved.top,518);
+  assert.equal(moved.behavior,'auto');
+  assert.deepEqual(cls.added,['book-jump-highlight']);
+  moved=null;
+  ctx.bookJump('missing');
+  assert.equal(moved,null);
+});
+
+test('the full reading automatically creates paired links for numbered lexical notes', () => {
+  const chapter={id:'1',number:1,title:'',blocks:[
+    {title:'Первый',es:'corpulento rollizo',ru:'крупный круглый',notes:[
+      {term:'rollizo',explanation:'круглый',es:['rollizo'],ru:['круглый']},
+      {term:'corpulento',explanation:'крупный',es:['corpulento'],ru:['крупный']}],pronouns:[]},
+    {title:'Второй',es:'rollizo',ru:'круглый',notes:[
+      {term:'rollizo',explanation:'круглый',es:['rollizo'],ru:['круглый']}],pronouns:[]}
+  ]};
+  ctx.COURSE={books:[{id:'test',title:'Libro',author:'Autor',chapters:[chapter]}]};
+  ctx.view={book:'test',bookChapter:'1'};
+  const html=ctx.bookView();
+  for(const id of ['0-0','0-1','1-0']){
+    assert.match(html,new RegExp(`id="book-word-${id}"`));
+    assert.match(html,new RegExp(`id="book-note-${id}"`));
+  }
+  assert.equal((html.match(/<sup class="book-number"/g)||[]).length,3);
+  assert.equal((html.match(/class="book-note-index"/g)||[]).length,3);
+  assert.equal((html.match(/<sup class="book-number" aria-hidden="true">1<\/sup>/g)||[]).length,2);
+  assert.match(html, /<summary>Перевод<\/summary><p><strong>крупный<\/strong>/);
+  assert.doesNotMatch(html, /<summary>Перевод<\/summary><p>[^<]*<sup/);
 });
