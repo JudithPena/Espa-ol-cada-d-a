@@ -2345,11 +2345,7 @@ function levelStats(lv) {
 }
 
 function homeView() {
-  const ci = currentIndex(), doneN = LESSONS.filter((_, i) => isDone(i)).length, due = dueWords().length;
-  let html = "";
-  if (doneN && doneN < LESSONS.length && !unitClosed(ci)) html += `<div class="notice" style="margin-top:0">▶️ Урок ${LESSONS[ci].n}. ${esc(LESSONS[ci].title)}<button class="btn" data-lesson="${ci}">Продолжить</button></div>`;
-  if (due) html += `<div class="notice">🔁 Пора повторить ${words(due)}<button class="btn" data-review="due">Повторить</button></div>`;
-  html += `<h2 class="sech">Курс по уровням</h2><div class="levels">${LEVELS.map(lv => {
+  let html = `<h2 class="sech">Курс по уровням</h2><div class="levels">${LEVELS.map(lv => {
     const st = levelStats(lv);
     if (!st.n || st.closed) return `<div class="lvl soon" aria-label="Уровень ${lv}, скоро"><b>${lv}</b><small>скоро</small></div>`;
     return `<button class="lvl" data-level="${lv}"><b>${lv}</b><small>${st.done} из ${st.n} уроков</small><div class="bar"><i style="width:${Math.round(st.done / st.n * 100)}%"></i></div></button>`;
