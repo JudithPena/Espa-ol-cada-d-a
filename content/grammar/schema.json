@@ -1,0 +1,1050 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://espanolcadadia.pages.dev/grammar/schema.json",
+  "title": "Español cada día — отдельный курс грамматики",
+  "description": "Формат фактически используемых юнитов. Не меняет IDs, порядок вопросов, ответы, оценивание или прогресс.",
+  "$defs": {
+    "unit": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "number": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subtitle": {
+          "type": "string",
+          "minLength": 1
+        },
+        "level": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/section"
+          },
+          "minItems": 1
+        },
+        "exercises": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/group"
+              },
+              {
+                "required": [
+                  "theorySections"
+                ]
+              }
+            ]
+          },
+          "minItems": 1
+        },
+        "summary": {
+          "$ref": "#/$defs/summary"
+        },
+        "learningOrder": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "number",
+        "title",
+        "subtitle",
+        "level",
+        "sections",
+        "exercises",
+        "summary",
+        "learningOrder"
+      ],
+      "description": "Один файл JSON = один самостоятельный грамматический юнит."
+    },
+    "section": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "paragraphs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "check": {
+          "$ref": "#/$defs/group"
+        },
+        "presentation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "wordGroups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/wordGroup"
+          }
+        },
+        "dialogues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/dialogue"
+          }
+        },
+        "table": {
+          "$ref": "#/$defs/table"
+        },
+        "illustration": {
+          "$ref": "#/$defs/illustration"
+        },
+        "schemes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/scheme"
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "minItems": 1
+        },
+        "formulas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "schemeGrid": {
+          "type": "boolean"
+        },
+        "agreement": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/scheme"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "paragraphs",
+        "check"
+      ]
+    },
+    "group": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "instruction": {
+          "type": "string"
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/question"
+          },
+          "minItems": 1
+        },
+        "theorySections": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "inputLabel": {
+          "type": "string"
+        },
+        "preview": {
+          "$ref": "#/$defs/preview"
+        },
+        "inputFormat": {
+          "$ref": "#/$defs/inputFormat"
+        },
+        "inlineAnswer": {
+          "type": "boolean"
+        },
+        "phraseInput": {
+          "type": "boolean"
+        },
+        "limitedAttempt": {
+          "type": "boolean"
+        },
+        "answerPlaceholder": {
+          "type": "string"
+        },
+        "allowNoArticle": {
+          "type": "boolean"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "pictureTitle": {
+          "type": "string"
+        },
+        "introGroups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/wordGroup"
+          }
+        },
+        "vocabulary": {
+          "$ref": "#/$defs/table"
+        },
+        "articleContractions": {
+          "type": "boolean"
+        },
+        "accentSensitive": {
+          "type": "boolean"
+        },
+        "family": {
+          "$ref": "#/$defs/family"
+        },
+        "example": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1
+            },
+            "es": {
+              "type": "string",
+              "minLength": 1
+            },
+            "ru": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "label",
+            "es",
+            "ru"
+          ]
+        },
+        "questionBlocks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "at": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "person": {
+                "type": "string",
+                "minLength": 1
+              },
+              "title": {
+                "type": "string"
+              },
+              "instruction": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "at",
+              "person"
+            ]
+          }
+        },
+        "deferAnswerFeedback": {
+          "type": "boolean"
+        },
+        "shuffleOptions": {
+          "type": "boolean"
+        },
+        "optionOrderReason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "instruction",
+        "questions"
+      ]
+    },
+    "question": {
+      "type": "object",
+      "properties": {
+        "prompt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "answers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "explain": {
+          "type": "string",
+          "minLength": 1
+        },
+        "context": {
+          "type": "string"
+        },
+        "sourceRef": {
+          "type": "string"
+        },
+        "inputChars": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "á",
+              "é",
+              "í",
+              "ó",
+              "ú",
+              "ü",
+              "ñ"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 2,
+          "uniqueItems": true
+        },
+        "inputFormat": {
+          "$ref": "#/$defs/inputFormat"
+        },
+        "optionLabels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "shuffleOptions": {
+          "type": "boolean"
+        },
+        "optionOrderReason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "interaction": {
+          "enum": [
+            "choice",
+            "gap-choice",
+            "input",
+            "article-input",
+            "build"
+          ]
+        },
+        "translation": {
+          "type": "string"
+        },
+        "learningAction": {
+          "type": "string"
+        },
+        "facts": {
+          "$ref": "#/$defs/facts"
+        },
+        "sourceParts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "tiles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "gapParts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2
+        },
+        "sourceLabel": {
+          "type": "string"
+        },
+        "gapWordCounts": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "minItems": 1
+        },
+        "feedbackAnswers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "clues": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "minItems": 1
+        },
+        "image": {
+          "type": "string",
+          "minLength": 1
+        },
+        "imageAlt": {
+          "type": "string"
+        },
+        "answerHint": {
+          "type": "string"
+        },
+        "answerWarnings": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/warning"
+          }
+        },
+        "distance": {
+          "enum": [
+            "near",
+            "listener",
+            "far"
+          ]
+        },
+        "clock": {
+          "type": "object",
+          "properties": {
+            "hour": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 23
+            },
+            "minute": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 59
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "hour",
+            "minute"
+          ]
+        },
+        "accentSensitive": {
+          "type": "boolean"
+        },
+        "pictureCount": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12
+        },
+        "guidedGaps": {
+          "$ref": "#/$defs/guidedGaps"
+        },
+        "ratings": {
+          "$ref": "#/$defs/ratings"
+        },
+        "retryHint": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "prompt",
+        "answers",
+        "explain"
+      ],
+      "description": "Один вопрос; id не вводится: индекс вопроса сохраняет идентичность попытки."
+    },
+    "wordGroup": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "words": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "minItems": 1
+        },
+        "label": {
+          "type": "string"
+        },
+        "exception": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "words"
+      ]
+    },
+    "table": {
+      "type": "object",
+      "properties": {
+        "heads": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "minItems": 1
+        },
+        "compactForms": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "heads",
+        "rows"
+      ]
+    },
+    "scheme": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "from": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            }
+          ]
+        },
+        "to": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            }
+          ]
+        },
+        "note": {
+          "type": "string"
+        },
+        "fromLabel": {
+          "type": "string"
+        },
+        "toLabel": {
+          "type": "string"
+        },
+        "translations": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "minItems": 1
+        },
+        "change": {
+          "type": "object",
+          "properties": {
+            "from": {
+              "type": "string"
+            },
+            "to": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "from",
+            "to"
+          ]
+        },
+        "inlineTranslation": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "from",
+        "to"
+      ]
+    },
+    "illustration": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string",
+          "minLength": 1
+        },
+        "alt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "minItems": 1
+        },
+        "captionExamples": {
+          "type": "boolean"
+        },
+        "captionDialogue": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "image",
+        "alt",
+        "examples"
+      ]
+    },
+    "dialogue": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "lines"
+      ]
+    },
+    "ratings": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "people": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "level": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 3
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "level"
+            ]
+          },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "people"
+      ]
+    },
+    "facts": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "items"
+      ]
+    },
+    "guidedGaps": {
+      "type": "object",
+      "properties": {
+        "parts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2
+        },
+        "choices": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 2
+          },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "parts",
+        "choices"
+      ]
+    },
+    "warning": {
+      "type": "object",
+      "properties": {
+        "preferred": {
+          "type": "string",
+          "minLength": 1
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        },
+        "explanation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "type": "string",
+          "pattern": "^https://"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "preferred",
+        "message",
+        "explanation",
+        "source"
+      ]
+    },
+    "preview": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "answer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "translation": {
+          "type": "string"
+        },
+        "targetPrefix": {
+          "type": "string"
+        },
+        "sentenceParts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tip": {
+          "type": "string"
+        },
+        "displayAnswer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "gapParts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "gapAnswers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "answer",
+        "translation"
+      ]
+    },
+    "inputFormat": {
+      "type": "object",
+      "properties": {
+        "instruction": {
+          "type": "string",
+          "minLength": 1
+        },
+        "placeholder": {
+          "type": "string",
+          "minLength": 1
+        },
+        "example": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "instruction",
+        "placeholder"
+      ]
+    },
+    "family": {
+      "type": "object",
+      "properties": {
+        "parents": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "branches": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "couple": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 2
+              },
+              "children": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "child": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "couple"
+            ]
+          }
+        },
+        "portraits": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "parents",
+        "branches",
+        "portraits"
+      ]
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "wordGroups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/wordGroup"
+          }
+        },
+        "heads": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "minItems": 1
+        },
+        "schemes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/scheme"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "description": "Итоговые схемы, словарные группы либо таблица.",
+      "anyOf": [
+        {
+          "required": [
+            "wordGroups"
+          ]
+        },
+        {
+          "required": [
+            "heads",
+            "rows"
+          ]
+        },
+        {
+          "required": [
+            "schemes"
+          ]
+        }
+      ]
+    }
+  },
+  "$ref": "#/$defs/unit"
+}
