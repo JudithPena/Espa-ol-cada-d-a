@@ -1,0 +1,43 @@
+name: PR60 — проверка основной публикации
+
+on:
+  push:
+    branches: ["codex/pr60-production-verification"]
+    paths:
+      - ".github/workflows/pr60-production-verification.yml"
+      - "tests/pr60_release_probe.py"
+      - "tests/site_preview_browser.py"
+
+permissions:
+  contents: read
+
+jobs:
+  production-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Установить Chromium
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Сохранить старую production-версию до объединения
+        run: python tests/pr60_release_probe.py capture
+      - name: Сохранить снимок для проверки прогресса
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr60-legacy-production-snapshot
+          path: /tmp/pr60-production-check/legacy*
+      - name: Дождаться обновления основного домена
+        run: python tests/pr60_release_probe.py wait
+      - name: Проверить основной сайт без записи пользовательских данных
+        run: |
+          python tests/site_preview_browser.py --url https://espanolcadadia.pages.dev/ --allow-production --legacy-html /tmp/pr60-production-check/legacy.html --legacy-meta /tmp/pr60-production-check/legacy-meta.json --report /tmp/pr60-production-report.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr60-production-report
+          path: /tmp/pr60-production-report.json

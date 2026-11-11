@@ -16,29 +16,39 @@ def wait_home(page):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--url', required=True)
+    parser.add_argument('--allow-production', action='store_true')
+    parser.add_argument('--legacy-html', type=Path)
+    parser.add_argument('--legacy-meta', type=Path)
     parser.add_argument('--production', default='https://espanolcadadia.pages.dev/')
     parser.add_argument('--report', type=Path, default=Path('/tmp/site-preview-browser.json'))
     args = parser.parse_args()
     url = args.url.rstrip('/') + '/'
     host = urlparse(url).hostname
-    assert host and host.endswith('.espanolcadadia.pages.dev') and host != 'espanolcadadia.pages.dev', 'Preview host required'
+    assert (args.allow_production and host=='espanolcadadia.pages.dev') or (host and host.endswith('.espanolcadadia.pages.dev') and host!='espanolcadadia.pages.dev'), 'Explicit production opt-in required'
     report = {'preview': url, 'widths': []}
     try:
         with sync_playwright() as p:
             browser = p.chromium.launch(args=['--autoplay-policy=no-user-gesture-required'])
-            legacy_context = browser.new_context()
-            legacy_page = legacy_context.new_page()
-            legacy_response = legacy_page.goto(args.production, wait_until='domcontentloaded', timeout=60000)
-            assert legacy_response.status == 200, f'Production browser HTTP {legacy_response.status}; no protection settings changed'
-            # The monolithic response exceeds Chromium's inspector body cache.
-            # Capture the loaded document, keeping its real inline engine and COURSE data.
-            old_html = legacy_page.content().encode('utf-8')
-            old_cache = legacy_response.headers.get('cache-control', 'max-age=0, must-revalidate')
+            if args.legacy_html:
+                assert args.legacy_meta and args.legacy_meta.is_file()
+                old_html=args.legacy_html.read_bytes()
+                meta=json.loads(args.legacy_meta.read_text())
+                old_cache=meta['cache_control']
+                report['legacy_capture']='actual production DOM captured before merge'
+            else:
+                legacy_context=browser.new_context()
+                legacy_page=legacy_context.new_page()
+                legacy_response=legacy_page.goto(args.production,wait_until='domcontentloaded',timeout=60000)
+                assert legacy_response.status==200
+                old_html=legacy_page.content().encode('utf-8')
+                old_cache=legacy_response.headers.get('cache-control','max-age=0, must-revalidate')
+                legacy_context.close()
             assert b'const COURSE = ' in old_html
-            report.update(legacy_dom_sha256=hashlib.sha256(old_html).hexdigest(), legacy_dom_bytes=len(old_html), legacy_capture='actual production document DOM', legacy_cache_control=old_cache)
-            legacy_context.close()
+            report.update(legacy_dom_sha256=hashlib.sha256(old_html).hexdigest(),legacy_dom_bytes=len(old_html),legacy_cache_control=old_cache)
             for width in (390, 1280):
                 context = browser.new_context(viewport={'width': width, 'height': 850})
+                # No writes to any server: only isolated browser storage contains test progress.
+                context.route('**/*', lambda route: route.continue_() if route.request.method in ('GET','HEAD') else route.abort())
                 page = context.new_page()
                 errors, responses = [], {}
                 page.on('response', lambda response: responses.update({response.url:response}))
@@ -49,7 +59,7 @@ def main():
                 page.goto(url, wait_until='domcontentloaded', timeout=60000)
                 wait_home(page)
                 page.evaluate('''() => {
-                  P.xp=1234; P.done[LESSONS[0].id]={stars:3}; P.ver[LESSONS[0].id]={v:LESSONS[0].version};
+                  P.openAll=true; P.xp=1234; P.done[LESSONS[0].id]={stars:3}; P.ver[LESSONS[0].id]={v:LESSONS[0].version};
                   P.words[LESSONS[0].words[0].es]={s:3,due:1}; saveLocal();
                   localStorage.setItem('preview-unrelated-key','keep');
                   view.grammar=COURSE.grammar[0].id;view.tab='grammar';gStart(view.grammar,'all');gSave();
@@ -58,7 +68,7 @@ def main():
                 page.unroute(url)
                 response = page.reload(wait_until='domcontentloaded', timeout=60000)
                 wait_home(page)
-                assert page.evaluate('COURSE.preview===true && !!COURSE.resources')
+                assert page.evaluate('(expected)=>COURSE.preview===expected && !!COURSE.resources', not args.allow_production)
                 assert 'no-cache' in response.headers.get('cache-control', '')
                 after = page.evaluate('({p:JSON.parse(localStorage.getItem(KEY)),session:localStorage.getItem(G_SESSION_KEY)})')
                 assert before == after, 'Progress/session changed during old-to-new upgrade'
@@ -97,6 +107,17 @@ def main():
                 assert page.evaluate('G.unit===COURSE.grammar[0].id')
                 page.locator('[data-gexit]').first.click()
                 page.wait_for_selector('[data-gstart]')
+                checked_units=[]
+                for unit_id in page.evaluate('COURSE.grammar.filter(u=>[1,13,47].includes(u.number)).map(u=>u.id)'):
+                    page.evaluate('(id)=>{view.tab="grammar";view.grammar=id;render()}',unit_id)
+                    page.wait_for_selector('[data-gstart]',timeout=60000)
+                    page.locator('[data-gstart]').first.click()
+                    page.wait_for_selector('.gplayer')
+                    assert page.evaluate('G.unit')==unit_id
+                    checked_units.append(unit_id)
+                    page.locator('[data-gexit]').first.click()
+                    page.wait_for_selector('[data-gstart]')
+                assert len(checked_units)==3
                 # Character-specific prerecorded clip, fetched and decoded from Cloudflare.
                 dialogue = page.evaluate('''() => {
                   const key=Object.keys(AUDIO).find(k=>k.startsWith('@'));
@@ -162,14 +183,14 @@ def main():
                 assert not errors, errors
                 report['widths'].append({'width':width,'status':'passed','old_to_new_progress':'identical',
                     'root_cache_control':response.headers.get('cache-control'),'audio_keys':audio_count,
-                    'lessons':lessons,'dialogue':dialogue,'grammar':page.evaluate('COURSE.grammar[0].id'),
+                    'lessons':lessons,'dialogue':dialogue,'grammar_units':checked_units,
                     'approved_story_cover':{'id':story['id'],'sha256':cover_sha,'dimensions':dimensions,'removed_labels':'absent'},'book_url':url+book_hash,'chapter_url':url+chapter_hash,'fresh_direct_links':'passed','retry':'passed','offline_cached_json':'passed','errors':errors})
                 context.close()
             browser.close()
     finally:
         args.report.parent.mkdir(parents=True, exist_ok=True)
         args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2))
-    print('DEPLOYED_PREVIEW_REPORT ' + json.dumps(report, ensure_ascii=False))
+    print(('PRODUCTION_CHECK_REPORT ' if args.allow_production else 'DEPLOYED_PREVIEW_REPORT ') + json.dumps(report, ensure_ascii=False))
 
 
 if __name__ == '__main__':
