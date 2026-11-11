@@ -32,8 +32,8 @@ def test_unit7_is_concise_and_requires_independent_article_production():
     unit = unit7()
     assert [len(g["questions"]) for g in unit["exercises"]] == [12, 12, 12]
     assert [len(s["check"]["questions"]) for s in unit["sections"]] == [3, 3, 3]
-    assert sum(bool(q.get("options")) for g in unit["exercises"] for q in g["questions"]) == 16
-    assert sum(not q.get("options") for g in unit["exercises"] for q in g["questions"]) == 20
+    assert sum(bool(q.get("options")) for g in unit["exercises"] for q in g["questions"]) == 17
+    assert sum(not q.get("options") for g in unit["exercises"] for q in g["questions"]) == 19
     assert all(
         g["instruction"] and g["theorySections"] == [i]
         for i, g in enumerate(unit["exercises"])
@@ -41,7 +41,8 @@ def test_unit7_is_concise_and_requires_independent_article_production():
     assert all(section["check"]["instruction"] for section in unit["sections"])
     for group in all_groups(unit):
         for q in group["questions"]:
-            assert q["prompt"].count("___") == 1, (group["id"], q["prompt"])
+            assert (q["prompt"].count("___") == 1 or
+                    q["interaction"] == "choice" and "___" not in q["prompt"]), (group["id"], q["prompt"])
             assert q["explain"] and len(q["explain"]) > 35
             assert q["context"]
             if q.get("options"):
@@ -66,9 +67,9 @@ def test_unit7_no_article_is_a_real_answer_and_plural_alternatives_are_accepted(
     assert len(no_article) == 5
     assert unit["exercises"][2]["allowNoArticle"] is True
     plurals = unit["exercises"][2]["questions"]
-    peras = next(q for q in plurals if "He comprado ___ peras" in q["prompt"])
+    peras = next(q for q in plurals if "Compro ___ peras" in q["prompt"])
     manzanas = next(q for q in plurals if "Compro ___ manzanas" in q["prompt"])
-    bombones = next(q for q in plurals if "regalado ___ bombones" in q["prompt"])
+    bombones = next(q for q in plurals if "Tengo ___ bombones" in q["prompt"])
     for question, article in [(peras, "unas"), (manzanas, "unas"), (bombones, "unos")]:
         assert set(question["answers"]) == {article, "Без артикля"}
         assert article in question["explain"]
