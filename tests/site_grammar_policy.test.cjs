@@ -110,12 +110,12 @@ test('PR #34: units 1, 7, 15, 38 and 45 retain question-specific explanations af
     const run=context([u]);
     unlockUntil(run,route);
     run('gStart(COURSE.grammar[0].id,'+JSON.stringify(route)+');gMove(1);');
-    const question=run('gGroups(gUnit()).find(g=>g.id===G.steps[G.at].group).questions[G.steps[G.at].qi]');
     for(let i=1;i<=3;i++){
       run('gResponse(G.steps[G.at]).value="incorrecto";gCheck();');
       const html=run('gPlayerView()');
       assert.equal(html.includes('Верный ответ:'),i===3,file+' life '+i);
       if(i===3){
+        const question=run('gGroups(gUnit()).find(g=>g.id===G.steps[G.at].group).questions[G.steps[G.at].qi]');
         assert.ok(html.includes(question.explain.replaceAll('&','&amp;').replaceAll('<','&lt;')),file+' explanation');
         assert.equal(run('gAttempt(gUnit(),gGroups(gUnit()).find(g=>g.id===G.steps[G.at].group)).status'),'failed');
       } else run('gMove(1)');
