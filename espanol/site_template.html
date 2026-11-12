@@ -1277,7 +1277,8 @@ html.grammar-playing, html.grammar-playing body { overflow: hidden; }
  .gm60-topology::after{content:"";position:absolute;top:292px;left:25%;right:25%;height:24px;border:2px solid #b294d9;border-bottom:none;border-radius:15px 15px 0 0;opacity:.8;z-index:0;}
 }
 @media(max-width:680px){
- .gm60-orb-foot{max-width:164px;font-size:10px;line-height:1.18;margin-top:5px;}
+ /* The supporting caption remains in the surrounding branches; don't cram it inside a 190px circle. */
+ .gm60-orb-foot{display:none;}
 }
 
 /* Unit 60: art-directed refinement / compact mobile edition. Only .gm60 descendants. */
