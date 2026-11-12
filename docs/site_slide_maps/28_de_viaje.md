@@ -192,8 +192,8 @@
 ## Урок `de_viaje/lectura` — «Opiniones: dos hoteles»
 
 - **Цель:** понять отзывы о гостиницах и написать свой.
-- **Длина:** 19 шагов, около 12 минут. **Новая лексика:** limpio/a, sucio/a, el ruido, amable, recomendar, el/la recepcionista, la opinión.
-- **Интерактив:** выбор 6, ввод 2, пары 1, группы 1, письмо 1; на слух и с голосом собеседника — 1. **Самостоятельное воспроизведение:** ввод, сборка и письмо — 3 заданий.
+- **Длина:** 21 шаг, около 13 минут. **Новая лексика:** limpio/a, sucio/a, el ruido, amable, recomendar, el/la recepcionista, la opinión.
+- **Интерактив:** выбор 8, ввод 2, пары 1, группы 1, письмо 1; на слух и с голосом собеседника — 1. **Самостоятельное воспроизведение:** ввод, сборка и письмо — 3 заданий.
 
 | Шаг | Экран / тип блока | Что видит или делает ученик | Источник |
 |---|---|---|---|
@@ -201,34 +201,36 @@
 | 2 | W | новое слово: sucio/a — грязный | — |
 | 3 | W | новое слово: el ruido — шум | — |
 | 4 | W | новое слово: amable — любезный, приветливый | — |
-| 5 | W | новое слово: recomendar — советовать, рекомендовать | — |
-| 6 | W | новое слово: el/la recepcionista — администратор гостиницы | — |
-| 7 | W | новое слово: la opinión — мнение; отзыв | — |
-| 8 | M: пары | Соедините пары: 6 пар (limpio — чистый…) | — |
-| 9 | T: text + reading | Перед поездкой Ирина читает отзывы о двух гостиницах Севильи. | — |
-| 10 | S: группы | О какой гостинице это сказано?: Hotel Sol / Hotel Luna | `opiniones` |
-| 11 | C: выбор | ¿Cuántas noches estuvo Olga en el hotel? → Tres. | `opiniones` |
-| 12 | C: выбор | ¿Qué hizo la recepcionista del Hotel Sol? → Recomendó un restaurante. | `opiniones` |
-| 13 | C: выбор | ¿Por qué Tom no pudo dormir? → Porque hubo mucho ruido en la calle. | `opiniones` |
-| 14 | C: выбор | ¿Quién recomienda su hotel? → Olga. | `opiniones` |
-| 15 | I: ввод | ¿Cuánto cuesta el desayuno en el Hotel Luna? → Ocho euros | `opiniones` |
-| 16 | I: ввод | Как Ольга пишет «Рекомендую (эту гостиницу)!»? → Lo recomiendo | `opiniones` |
-| 17 | C~: выбор на слух | на слух «La habitación es pequeña, pero muy limp…» → Номер маленький, но очень чистый. | — |
-| 18 | C: выбор | El baño está muy ___: quiero cambiar de habitación. → sucio | — |
-| 19 | O: письмо по признакам | Напишите отзыв о гостинице или квартире, где вы останавлива…; образец: Estuve dos noches en el Hotel Sol de Se… | — |
+| 5 | M: пары | Соедините пары: 4 пар (limpio — чистый…) | — |
+| 6 | W | новое слово: recomendar — советовать, рекомендовать | — |
+| 7 | W | новое слово: el/la recepcionista — администратор гостиницы | — |
+| 8 | W | новое слово: la opinión — мнение; отзыв | — |
+| 9 | C: выбор | — ¿Conoces un buen hotel en Sevilla? — Sí, te ___ el Hotel … → recomiendo | — |
+| 10 | C: выбор | He leído muchas ___ de este hotel: a todos les gusta. → opiniones | — |
+| 11 | T: text + reading | Перед поездкой Ирина читает отзывы о двух гостиницах Севильи. | — |
+| 12 | S: группы | О какой гостинице это сказано?: Hotel Sol / Hotel Luna | `opiniones` |
+| 13 | C: выбор | ¿Cuántas noches estuvo Olga en el hotel? → Tres. | `opiniones` |
+| 14 | C: выбор | ¿Qué hizo la recepcionista del Hotel Sol? → Recomendó un restaurante. | `opiniones` |
+| 15 | C: выбор | ¿Por qué Tom no pudo dormir? → Porque hubo mucho ruido en la calle. | `opiniones` |
+| 16 | C: выбор | ¿Quién recomienda su hotel? → Olga. | `opiniones` |
+| 17 | I: ввод | ¿Cuánto cuesta el desayuno en el Hotel Luna? → Ocho euros | `opiniones` |
+| 18 | I: ввод | Как Ольга пишет «Рекомендую (эту гостиницу)!»? → Lo recomiendo | `opiniones` |
+| 19 | C~: выбор на слух | на слух «La habitación es pequeña, pero muy limp…» → Номер маленький, но очень чистый. | — |
+| 20 | C: выбор | El baño está muy ___: quiero cambiar de habitación. → sucio | — |
+| 21 | O: письмо по признакам | Напишите отзыв о гостинице или квартире, где вы останавлива…; образец: Estuve dos noches en el Hotel Sol de Se… | — |
 
-Сигнатура: `W×7 M T(text+reading) S C@opiniones×4 I@opiniones×2 C~ C O`
+Сигнатура: `W×4 M W×3 C×2 T(text+reading) S C@opiniones×4 I@opiniones×2 C~ C O`
 
 ## Урок `de_viaje/mision` — «Билет и заселение»
 
 - **Цель:** купить билет на вокзале и заселиться в гостиницу.
-- **Длина:** 19 шагов, около 13 минут. **Новая лексика:** нет.
-- **Интерактив:** выбор 4, ввод 8, сборка 1, письмо 1; на слух и с голосом собеседника — 11. **Самостоятельное воспроизведение:** ввод, сборка и письмо — 10 заданий.
+- **Длина:** 19 шагов, около 12 минут. **Новая лексика:** нет.
+- **Интерактив:** выбор 4, ввод 8, сборка 1, письмо 1; на слух и с голосом собеседника — 10. **Самостоятельное воспроизведение:** ввод, сборка и письмо — 10 заданий.
 
 | Шаг | Экран / тип блока | Что видит или делает ученик | Источник |
 |---|---|---|---|
-| 1 | I: ввод | Сегодня я не завтракал. → Hoy no he desayunado | — |
-| 2 | I~: диктант | на слух «Todavía no he visto la catedral.» → Todavía no he visto la catedral | — |
+| 1 | I: ввод | En 2020 (nosotros, estar) ___ en Italia. → estuvimos | — |
+| 2 | I: ввод | Carlos todavía no ha (volver) ___. → vuelto | — |
 | 3 | T: mission | На вокзале | — |
 | 4 | H: ход разговора (ввод) | Empleado: Buenos días. ¿Adónde viaja? → написать: A Valencia | — |
 | 5 | H: ход разговора (ввод) | Empleado: ¿Para cuándo? → написать: Para mañana por la mañana | — |

@@ -758,7 +758,7 @@ lessons:
       - "🛎 el/la recepcionista [рэθэпθьони́ста] — администратор гостиницы"
       - "💬 la opinión [опиньо́н] — мнение; отзыв {pl: opiniones} :: Hay muchas opiniones de este hotel. — Об этой гостинице много отзывов."
     blocks:
-      - learn: [limpio/a, sucio/a, el ruido, amable, recomendar, el/la recepcionista, la opinión]
+      - learn: [limpio/a, sucio/a, el ruido, amable]
       - match:
           title: Соедините пары
           rule: none
@@ -767,8 +767,17 @@ lessons:
             - "sucio — грязный"
             - "el ruido — шум"
             - "amable — любезный"
-            - "recomendar — советовать"
-            - "la opinión — отзыв"
+      - learn: [recomendar, el/la recepcionista, la opinión]
+      - choose:
+          title: Новые слова
+          rule: none
+          items:
+            - q: "— ¿Conoces un buen hotel en Sevilla? — Sí, te ___ el Hotel Sol."
+              options: "recomiendo | encuentro | dejo"
+              explain: "Recomendar — «советовать»: te recomiendo."
+            - q: "He leído muchas ___ de este hotel: a todos les gusta."
+              options: "opiniones | reservas | llegadas"
+              explain: "Las opiniones — отзывы."
       - "Перед поездкой Ирина читает отзывы о двух гостиницах Севильи."
       - reading:
           id: opiniones
