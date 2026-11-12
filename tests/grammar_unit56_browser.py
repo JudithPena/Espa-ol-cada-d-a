@@ -26,6 +26,8 @@ PREPARE = r"""async ({route,qi=0}) => {
     if(g)P.grammar[grammarKey(u,g)]={correct:1,total:g.questions.length};
     else P.grammarRead[u.id+'/'+stage]=true;
   }
+  const group=route.startsWith('section:')?u.sections[+route.split(':')[1]].check:u.exercises.find(g=>route==='exercise:'+g.id);
+  const records=gAttempts();delete records[grammarKey(u,group)];store.set(G_ATTEMPTS_KEY,JSON.stringify(records));
   save();gStart(u.id,route);gMove(1);
   G.at=G.steps.findIndex(s=>s.type==='question'&&s.group===(route.startsWith('section:')?u.sections[+route.split(':')[1]].check.id:route.split(':')[1])&&s.qi===qi);
   if(G.at<0)throw Error('Question not found '+route+'/'+qi);
