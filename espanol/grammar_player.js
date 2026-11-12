@@ -953,6 +953,12 @@ function gTopicMap60(unit) {
   const positions = pronouns.pairs.map(([label, phrase]) => `<li><small>${esc(label)}</small><b lang="es">${esc(phrase.replaceAll(' + ', ' → '))}</b></li>`).join('');
   const timePeriods = period.chips.slice(0,3).map(t => `<li><b lang="es">${esc(t)}</b><i aria-hidden="true"></i></li>`).join('');
   const present = period.examples[0], fresh = news.examples[0];
+  const dayArt = unit.sections[period.illustrationSection]?.illustration;
+  const newsArt = unit.sections[news.illustrationSection]?.illustration;
+  const scene = (art, es, ru, cls) => `<figure class="gm60-scene ${cls}">
+    ${art ? `<img src="${esc(art.image)}" alt="${esc(art.alt)}" width="384" height="384" loading="lazy" decoding="async">` : ""}
+    <figcaption><strong lang="es">${esc(es)}</strong><span>${esc(ru)}</span></figcaption>
+  </figure>`;
   return `<section class="gm60" aria-label="Карта-постер юнита ${unit.number}">
     <header class="gm60-top">
       <div><p class="gm60-edition">${unit.number} / Грамматика · наглядная памятка</p><h3>Pretérito <em>perfecto</em></h3><p>${esc(map.lead)}</p></div>
@@ -961,11 +967,13 @@ function gTopicMap60(unit) {
     <div class="gm60-paper">
       <div class="gm60-topology">
         <svg class="gm60-wires" viewBox="0 0 1050 430" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M 428 209 C 380 185, 355 160, 303 153"/><path d="M 618 211 C 670 185, 706 153, 754 148"/>
-          <path d="M 518 371 C 518 405, 518 410, 518 427"/><circle cx="301" cy="153" r="5"/><circle cx="754" cy="148" r="5"/>
+          <defs><marker id="gm60-arrow" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto"><path d="M0 0L7 4.5L0 9" fill="none" stroke="#8157ba" stroke-width="1.5"/></marker></defs>
+          <path class="gm60-connect-left" d="M 413 187 C 356 151, 335 135, 294 135" marker-end="url(#gm60-arrow)"/>
+          <path class="gm60-connect-right" d="M 638 187 C 686 150, 714 135, 760 135" marker-end="url(#gm60-arrow)"/>
+          <path class="gm60-connect-down" d="M 526 375 L 526 416" marker-end="url(#gm60-arrow)"/>
         </svg>
         <aside class="gm60-wing left">
-          <p class="gm60-label">Часть 1 · кто?</p><h4>Выбери форму <span lang="es">haber</span></h4>
+          <p class="gm60-label">Ветвь 1 · кто сделал?</p><h4>Выбери форму <span lang="es">haber</span></h4>
           <p class="gm60-wing-intro">${esc(persons.note)}</p><ol class="gm60-persons">${list}</ol>
         </aside>
         <div class="gm60-orb">
@@ -975,7 +983,7 @@ function gTopicMap60(unit) {
           <span class="gm60-orb-foot">Меняется haber. Причастие не согласуется.</span>
         </div>
         <aside class="gm60-wing right">
-          <p class="gm60-label">Часть 2 · что?</p><h4>Образуй причастие</h4>
+          <p class="gm60-label">Ветвь 2 · что сделано?</p><h4>Образуй причастие</h4>
           <p class="gm60-wing-intro">Основа глагола ведёт к окончанию:</p>
           <ul class="gm60-fork">${endings}</ul>
           <div class="gm60-irregular"><p>Особые формы и написание</p><div>${specials}</div></div>
@@ -996,20 +1004,20 @@ function gTopicMap60(unit) {
         <p class="gm60-time-caption">Периоды продолжаются до настоящего момента</p>
         <div class="gm60-context">
           <div class="gm60-context-text">
-            <strong lang="es">${esc(present[0])}</strong><small>${esc(present[1])}</small>
+            ${scene(dayArt, present[0], present[1], "gm60-scene-day")}
             <p>Период ещё идёт, хотя само действие могло закончиться. Также: <b lang="es">${esc(period.chips.slice(3).join(', '))}</b>.</p>
           </div>
           <aside class="gm60-news-note">
             <p class="gm60-label">Свежая новость · <span lang="es">${esc(news.chips[1])}</span></p>
             <h5>Свежая новость важна сейчас</h5>
-            <strong lang="es">${esc(fresh[0])}</strong><small>${esc(fresh[1])}</small>
+            ${scene(newsArt, fresh[0], fresh[1], "gm60-scene-news")}
             <p>Также: <span lang="es">${esc([news.chips[0],news.chips[2]].join(', '))}</span>.</p>
           </aside>
         </div>
       </section>
       <aside class="gm60-check"><span class="gm60-check-icon" aria-hidden="true">✓</span>
         <div><h4>Запомните главное</h4>
-          <p>Лицо → <span lang="es">haber</span> + причастие → местоимение перед <span lang="es">haber</span> → связь с настоящим.</p>
+          <p>Выбери лицо для <span lang="es">haber</span> → добавь неизменяемое причастие → поставь местоимение перед <span lang="es">haber</span> → проверь связь с настоящим.</p>
           <small>${esc(checks.note)} ${esc(checks.pairs[2][1])}</small>
         </div>
       </aside>
