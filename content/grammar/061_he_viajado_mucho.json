@@ -12,6 +12,7 @@
     "exercise:61.3",
     "section:2",
     "exercise:61.4",
+    "exercise:61.5",
     "summary"
   ],
   "sections": [
@@ -65,7 +66,7 @@
       "check": {
         "id": "check-1",
         "title": "Мини-проверка",
-        "instruction": "Выбери форму, объяснение смысла или подходящую фразу.",
+        "instruction": "Определи смысл вопроса об опыте, выбери форму и найди отрицательную реплику.",
         "questions": [
           {
             "context": "Что хочет узнать собеседник?",
@@ -100,22 +101,23 @@
             "interaction": "gap-choice"
           },
           {
-            "context": "Как передать отсутствие такого опыта у говорящего?",
-            "prompt": "Выбери предложение, начинающееся с Nunca.",
+            "context": "Говорящий никогда не занимался дайвингом.",
+            "prompt": "В какой реплике отрицание построено правильно?",
             "answers": [
-              "Nunca he buceado."
+              "No he buceado nunca."
             ],
-            "explain": "He относится к yo; перед стоящим в начале nunca дополнительное no не нужно.",
+            "explain": "После глагола nunca требует no перед haber: no he buceado nunca. Перед глаголом достаточно nunca: nunca he buceado.",
             "sourceRef": "extra",
             "learningAction": "распознавание",
             "options": [
-              "Nunca he buceado.",
-              "Nunca has buceado.",
-              "Nunca hemos buceado."
+              "No he buceado nunca.",
+              "He buceado nunca.",
+              "Nunca no he buceado."
             ],
             "interaction": "choice"
           }
-        ]
+        ],
+        "revision": 2
       }
     },
     {
@@ -162,23 +164,37 @@
       "check": {
         "id": "check-2",
         "title": "Мини-проверка",
-        "instruction": "Выбери форму, объяснение смысла или подходящую фразу.",
+        "instruction": "Выбери причину нынешней ситуации и объясни связь события с его результатом.",
         "questions": [
           {
-            "context": "Хулия не может отправить сообщение: телефон разрядился.",
-            "prompt": "Julia no puede escribir porque su móvil ___.",
+            "context": "Хулия сейчас не может написать сообщение: телефон разрядился.",
+            "prompt": "Что объясняет её ситуацию?",
             "answers": [
-              "se ha apagado"
+              "Su móvil se ha apagado."
             ],
-            "explain": "Причина относится к su móvil — одному телефону; se ha apagado. Субъект первой части Julia не определяет местоимение причины.",
+            "explain": "Разряженный телефон выключился: se ha apagado. Encenderse — включиться, recibir un mensaje — получить сообщение; сами по себе эти события не объясняют отсутствие связи.",
             "sourceRef": "extra",
             "learningAction": "выбор по контексту",
             "options": [
-              "se ha apagado",
-              "se han apagado",
-              "me he apagado"
+              "Su móvil se ha apagado.",
+              "Su móvil se ha encendido.",
+              "Su móvil ha recibido un mensaje."
             ],
-            "interaction": "gap-choice"
+            "interaction": "choice",
+            "clues": [
+              [
+                "apagarse",
+                "выключаться"
+              ],
+              [
+                "encenderse",
+                "включаться"
+              ],
+              [
+                "recibir",
+                "получать"
+              ]
+            ]
           },
           {
             "context": "Как связаны эти события?",
@@ -212,7 +228,19 @@
             ],
             "interaction": "gap-choice"
           }
-        ]
+        ],
+        "revision": 2
+      },
+      "illustration": {
+        "image": "art/061/broken-glasses.webp",
+        "alt": "Женщина держит повреждённые очки над открытой книгой и не может продолжить чтение.",
+        "examples": [
+          [
+            "He roto mis gafas. Ahora no puedo leer.",
+            "Я сломала свои очки. Сейчас я не могу читать."
+          ]
+        ],
+        "captionExamples": true
       }
     },
     {
@@ -263,7 +291,7 @@
       "check": {
         "id": "check-3",
         "title": "Мини-проверка",
-        "instruction": "Выбери форму, объяснение смысла или подходящую фразу.",
+        "instruction": "Выбери реплику по выполненности действия и различи ya, todavía no и por fin.",
         "questions": [
           {
             "context": "Ты всё ещё ждёшь посылку.",
@@ -314,6 +342,21 @@
             "interaction": "gap-choice"
           }
         ]
+      },
+      "illustration": {
+        "image": "art/061/trip-preparation.webp",
+        "alt": "Женщина готовится к поездке: чемодан закрыт, рядом лежат паспорт и билет, небольшая сумка ещё пуста.",
+        "examples": [
+          [
+            "Ya he preparado la maleta.",
+            "Я уже собрала чемодан."
+          ],
+          [
+            "Todavía no he preparado el bolso.",
+            "Я ещё не собрала сумку."
+          ]
+        ],
+        "captionExamples": true
       }
     }
   ],
@@ -656,7 +699,7 @@
     {
       "id": "61.3",
       "title": "61.3 · Объясни причину нынешней ситуации",
-      "instruction": "Впиши форму perfecto причины. Действующее лицо в каждой ситуации указано отдельно. Остальные слова уже написаны.",
+      "instruction": "Выбери причину нынешней ситуации, впиши форму или исправь ошибку. Действующее лицо указано в каждой ситуации.",
       "theorySections": [
         0,
         1
@@ -744,6 +787,82 @@
             "ü",
             "ñ"
           ]
+        },
+        {
+          "context": "Вы пришли за билетами, но касса уже всё продала.",
+          "prompt": "No quedan entradas porque…",
+          "answers": [
+            "las han vendido todas."
+          ],
+          "options": [
+            "las han vendido todas.",
+            "todavía no las han vendido.",
+            "ya las hemos comprado."
+          ],
+          "interaction": "choice",
+          "explain": "Продажа всех билетов объясняет, почему в кассе ничего не осталось. Во втором варианте билеты ещё не проданы, а третий говорит о вашей покупке.",
+          "sourceRef": "extra",
+          "learningAction": "выбор по контексту",
+          "clues": [
+            [
+              "quedar",
+              "оставаться"
+            ],
+            [
+              "vender",
+              "продавать"
+            ]
+          ]
+        },
+        {
+          "context": "Ана сейчас не может позвонить: она потеряла телефон.",
+          "prompt": "Ana no puede llamar porque ___ el móvil.",
+          "answers": [
+            "ha perdido"
+          ],
+          "explain": "В причине действует Ana: ha perdido. У первой части и причины здесь одна героиня; perfecto называет событие с нынешним результатом.",
+          "sourceRef": "extra",
+          "learningAction": "применение данных",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "clues": [
+            [
+              "perder",
+              "терять"
+            ]
+          ]
+        },
+        {
+          "context": "Две подруги объясняют, почему не могут войти. Исправь выделение.",
+          "prompt": "No podemos entrar porque ___ las llaves.",
+          "answers": [
+            "hemos perdido"
+          ],
+          "explain": "О себе две подруги говорят hemos. Причастие perdido не согласуется ни с ними, ни с las llaves.",
+          "sourceRef": "extra",
+          "learningAction": "исправление ошибки",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceLabel": "Фраза с ошибкой",
+          "sourceParts": [
+            "No podemos entrar porque ",
+            "hemos perdidas",
+            " las llaves."
+          ]
         }
       ],
       "preview": {
@@ -755,7 +874,8 @@
         "answer": "he perdido",
         "targetPrefix": "",
         "translation": "Я не могу войти в дом, потому что потерял ключи."
-      }
+      },
+      "revision": 2
     },
     {
       "id": "61.4",
@@ -799,7 +919,7 @@
             ]
           ],
           "inputFormat": {
-            "instruction": "В первом поле впиши has и причастие. Во втором — короткий ответ от лица Лауры с местоимением-дополнением. Знак ударения обязателен.",
+            "instruction": "Заполни вопрос Габриэля и короткий ответ Лауры. В ответе замени названный предмет местоимением. Сохрани смысл ситуации; ударения обязательны.",
             "placeholder": "Часть реплики"
           },
           "inputChars": [
@@ -838,7 +958,7 @@
             ]
           ],
           "inputFormat": {
-            "instruction": "В первом поле впиши has и причастие. Во втором — короткий ответ от лица Лауры с местоимением-дополнением. Знак ударения обязателен.",
+            "instruction": "Заполни вопрос Габриэля и короткий ответ Лауры. В ответе замени названный предмет местоимением. Сохрани смысл ситуации; ударения обязательны.",
             "placeholder": "Часть реплики"
           },
           "inputChars": [
@@ -877,7 +997,7 @@
             ]
           ],
           "inputFormat": {
-            "instruction": "В первом поле впиши has и причастие. Во втором — короткий ответ от лица Лауры с местоимением-дополнением. Знак ударения обязателен.",
+            "instruction": "Заполни вопрос Габриэля и короткий ответ Лауры. В ответе замени названный предмет местоимением. Сохрани смысл ситуации; ударения обязательны.",
             "placeholder": "Часть реплики"
           },
           "inputChars": [
@@ -919,7 +1039,7 @@
             ]
           ],
           "inputFormat": {
-            "instruction": "В первом поле впиши has и причастие. Во втором — короткий ответ от лица Лауры с местоимением-дополнением. Знак ударения обязателен.",
+            "instruction": "Заполни вопрос Габриэля и короткий ответ Лауры. В ответе замени названный предмет местоимением. Сохрани смысл ситуации; ударения обязательны.",
             "placeholder": "Часть реплики"
           },
           "inputChars": [
@@ -943,7 +1063,144 @@
         "answer": "los he recogido ya",
         "targetPrefix": "",
         "translation": "Ты уже забрала билеты? — Да, я их уже забрала."
-      }
+      },
+      "revision": 2
+    },
+    {
+      "id": "61.5",
+      "title": "61.5 · Подготовься к поездке с другом",
+      "instruction": "Узнай об опыте друга, объясни задержку и обсуди приготовления. Выбирай реплику по ситуации, исправляй ошибку и пиши короткие ответы.",
+      "theorySections": [
+        0,
+        1,
+        2
+      ],
+      "inlineAnswer": true,
+      "phraseInput": true,
+      "accentPolicy": "strict",
+      "inputLabel": "Реплика в pretérito perfecto",
+      "inputFormat": {
+        "instruction": "Впиши пропущенную часть реплики. Знаки ударения обязательны.",
+        "placeholder": "Пропущенная часть"
+      },
+      "questions": [
+        {
+          "context": "Ты спрашиваешь друга, бывал ли он когда-нибудь в Испании.",
+          "prompt": "¿___ alguna vez en España?",
+          "answers": [
+            "has estado"
+          ],
+          "explain": "Друг — tú, поэтому has estado. Alguna vez спрашивает об опыте до настоящего момента.",
+          "sourceRef": "extra",
+          "learningAction": "ответ на реплику",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "clues": [
+            [
+              "estar",
+              "бывать, находиться"
+            ]
+          ]
+        },
+        {
+          "context": "Друг впервые едет в Испанию и говорит о своём опыте.",
+          "prompt": "Какая реплика соответствует ситуации?",
+          "answers": [
+            "Nunca he estado en España."
+          ],
+          "options": [
+            "Nunca he estado en España.",
+            "Ya he estado en España.",
+            "He estado muchas veces en España."
+          ],
+          "interaction": "choice",
+          "explain": "Nunca сообщает об отсутствии опыта. Ya и muchas veces означают, что человек уже бывал в Испании.",
+          "sourceRef": "extra",
+          "learningAction": "выбор по контексту"
+        },
+        {
+          "context": "Ты не можешь оплатить билеты: случайно оставил кошелёк дома.",
+          "prompt": "No puedo pagar los billetes porque ___ la cartera en casa.",
+          "answers": [
+            "he dejado",
+            "me he dejado"
+          ],
+          "explain": "Оставленный дома кошелёк объясняет нынешнюю невозможность заплатить. Подходят he dejado и me he dejado; местоименная форма подчёркивает, что вещь оставлена по забывчивости.",
+          "sourceRef": "extra",
+          "learningAction": "применение данных",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "clues": [
+            [
+              "dejar",
+              "оставлять"
+            ]
+          ]
+        },
+        {
+          "context": "Друг спрашивает: ¿Has comprado ya las entradas? Ты их ещё не купил.",
+          "prompt": "Начни ответ с Todavía no и замени las entradas местоимением.",
+          "answers": [
+            "todavía no las he comprado"
+          ],
+          "explain": "Las entradas заменяется на las перед he. Todavía no показывает, что покупка пока не состоялась.",
+          "sourceRef": "extra",
+          "learningAction": "ответ на реплику",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "normalize": "phrase",
+          "inputFormat": {
+            "instruction": "Напиши всю ответную реплику, начиная с Todavía no. Точку можно не ставить.",
+            "placeholder": "Ответ другу"
+          }
+        },
+        {
+          "context": "Исправь реплику подруги о готовом чемодане.",
+          "prompt": "La maleta, ya ___.",
+          "answers": [
+            "la he preparado"
+          ],
+          "explain": "La заменяет la maleta и стоит перед he. Местоимение не помещают между he и preparado.",
+          "sourceRef": "extra",
+          "learningAction": "исправление ошибки",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceLabel": "Фраза с ошибкой",
+          "sourceParts": [
+            "La maleta, ya ",
+            "he la preparado",
+            "."
+          ]
+        }
+      ]
     }
   ],
   "summary": {
@@ -994,5 +1251,6 @@
         "Por fin han llegado."
       ]
     ]
-  }
+  },
+  "revision": 2
 }

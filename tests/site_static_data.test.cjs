@@ -9,7 +9,7 @@ const {context, ROOT} = require('../tools/site_vm.cjs');
 const out = fs.mkdtempSync(path.join(os.tmpdir(), 'ecd-data-'));
 execFileSync('python3', ['-m', 'espanol', 'site', '-o', path.join(out,'index.html')], {cwd:ROOT});
 const html = fs.readFileSync(path.join(out,'index.html'),'utf8');
-const shell = JSON.parse(html.split('const COURSE = ')[1].split(';\n')[0].replaceAll('<\\/', '</'));
+const shell = JSON.parse(html.split('const COURSE = ')[1].split(/;\r?\n/)[0].replaceAll('<\\/', '</'));
 const json = ref => JSON.parse(fs.readFileSync(path.join(out,ref.url),'utf8'));
 const catalog = json(shell.resources.books);
 const tick = () => new Promise(resolve=>setImmediate(resolve));

@@ -96,7 +96,7 @@ def test_preparations_have_dependent_fields_and_all_word_counts_match():
 
 def test_images_and_action_variety():
     qs = [q for g in unit()["exercises"] for q in g["questions"]]
-    assert len(qs) == 18
+    assert len(qs) == 26
     assert sum(bool(q.get("image")) for q in qs) == 4
     raw = json.loads(next(GRAMMAR.glob(f"{NUMBER:03d}_*.json")).read_text(encoding="utf-8"))
     from PIL import Image

@@ -90,8 +90,8 @@ def test_news_subject_number_and_both_orders():
 
 def test_source_splits_and_images():
     qs = [q for g in unit()["exercises"] for q in g["questions"]]
-    assert len(qs) == 27
-    assert sum(bool(q.get("image")) for q in qs) == 7
+    assert len(qs) == 32
+    assert sum(bool(q.get("image")) for q in qs) == 8
     raw = json.loads(next(GRAMMAR.glob(f"{NUMBER:03d}_*.json")).read_text(encoding="utf-8"))
     from PIL import Image
     for q in [q for g in raw["exercises"] for q in g["questions"] if q.get("image")]:

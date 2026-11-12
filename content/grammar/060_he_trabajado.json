@@ -12,6 +12,7 @@
     "exercise:60.2",
     "section:3",
     "exercise:60.3",
+    "exercise:60.4",
     "summary"
   ],
   "sections": [
@@ -85,7 +86,7 @@
       "check": {
         "id": "check-1",
         "title": "Мини-проверка",
-        "instruction": "Выбери форму, объяснение смысла или подходящую фразу.",
+        "instruction": "Выбери форму haber и определи, кто говорит в предложении.",
         "questions": [
           {
             "context": "Сара рассказывает о себе.",
@@ -210,39 +211,39 @@
       "check": {
         "id": "check-2",
         "title": "Мини-проверка",
-        "instruction": "Выбери форму, объяснение смысла или подходящую фразу.",
+        "instruction": "Выбери фразу без ошибки и объяснение роли причастия и местоимения.",
         "questions": [
           {
-            "context": "Три подруги рассказывают о себе.",
-            "prompt": "Nosotras ___ en casa.",
+            "context": "Три подруги сообщают, что уже поужинали.",
+            "prompt": "Какая реплика передаёт это без ошибки?",
             "answers": [
-              "hemos cenado"
+              "Nosotras hemos cenado."
             ],
-            "explain": "Говорят nosotras, поэтому hemos; причастие cenado остаётся в форме на -o.",
-            "sourceRef": "extra",
-            "learningAction": "выбор по контексту",
             "options": [
-              "hemos cenado",
-              "han cenado",
-              "he cenado"
+              "Nosotras hemos cenado.",
+              "Nosotras hemos cenadas.",
+              "Nosotras han cenado."
             ],
-            "interaction": "gap-choice"
+            "interaction": "choice",
+            "explain": "Nosotras требует hemos; причастие cenado не согласуется с говорящими и сохраняет -o.",
+            "sourceRef": "extra",
+            "learningAction": "выбор по контексту"
           },
           {
-            "context": "Выбери фразу, где говорящий рассказывает о себе.",
-            "prompt": "Как он сообщает, что сегодня умылся?",
+            "context": "Говорящий сообщает, что сегодня умылся.",
+            "prompt": "Где местоимение стоит на своём месте?",
             "answers": [
               "Me he lavado hoy."
             ],
-            "explain": "Говорящий использует me и he: me he lavado.",
-            "sourceRef": "extra",
-            "learningAction": "распознавание",
             "options": [
               "Me he lavado hoy.",
-              "Te has lavado hoy.",
-              "Se ha lavado hoy."
+              "He me lavado hoy.",
+              "He lavado me hoy."
             ],
-            "interaction": "choice"
+            "interaction": "choice",
+            "explain": "Me относится к говорящему и ставится перед he. Местоимение не вставляют между haber и причастием и не отделяют после него.",
+            "sourceRef": "extra",
+            "learningAction": "выбор по контексту"
           },
           {
             "context": "Лола говорит: «Las he abierto». Что относится к las?",
@@ -260,7 +261,8 @@
             ],
             "interaction": "choice"
           }
-        ]
+        ],
+        "revision": 2
       }
     },
     {
@@ -291,21 +293,21 @@
       "check": {
         "id": "check-3",
         "title": "Мини-проверка",
-        "instruction": "Выбери форму, объяснение смысла или подходящую фразу.",
+        "instruction": "Определи связь события с текущим периодом, выбери форму и оцени региональный вариант.",
         "questions": [
           {
             "context": "Сейчас воскресенье; говорящий подводит итог текущей недели.",
             "prompt": "Esta semana hemos visitado dos museos.",
             "answers": [
-              "Неделя включает момент разговора."
+              "Посещения завершены; неделя ещё включает момент разговора."
             ],
-            "explain": "Perfecto позволяет подвести итог внутри ещё текущего периода; посещения уже состоялись.",
+            "explain": "В воскресенье неделя ещё текущая. Посещения уже состоялись: perfecto не означает, что само действие продолжается.",
             "sourceRef": "extra",
             "learningAction": "объяснение различия",
             "options": [
-              "Неделя включает момент разговора.",
-              "Посещения обязательно продолжаются прямо сейчас.",
-              "Речь обязательно идёт о прошлой неделе."
+              "Посещения завершены; неделя ещё включает момент разговора.",
+              "Посещения продолжаются всё время, пока идёт неделя.",
+              "Perfecto указывает, что неделя уже полностью закончилась."
             ],
             "interaction": "choice"
           },
@@ -341,7 +343,23 @@
             ],
             "interaction": "choice"
           }
-        ]
+        ],
+        "revision": 2
+      },
+      "illustration": {
+        "image": "art/060/day-recap.webp",
+        "alt": "Вечером женщина ужинает с подругой; у входа стоят спортивная сумка и кроссовки.",
+        "examples": [
+          [
+            "Hoy he hecho deporte.",
+            "Сегодня я позанималась спортом."
+          ],
+          [
+            "He preparado la cena.",
+            "Я приготовила ужин."
+          ]
+        ],
+        "captionExamples": true
       }
     },
     {
@@ -387,7 +405,7 @@
       "check": {
         "id": "check-4",
         "title": "Мини-проверка",
-        "instruction": "Выбери форму, объяснение смысла или подходящую фразу.",
+        "instruction": "Выбери форму для свежей новости и смысл сообщения о недавнем событии.",
         "questions": [
           {
             "context": "Сосед сообщает свежую новость о директоре.",
@@ -438,6 +456,17 @@
             "interaction": "gap-choice"
           }
         ]
+      },
+      "illustration": {
+        "image": "art/060/library-opening.webp",
+        "alt": "Сотрудница перерезает ленту у новой библиотеки, внутри видны книжные полки.",
+        "examples": [
+          [
+            "Han abierto una biblioteca en el barrio.",
+            "В районе открыли библиотеку."
+          ]
+        ],
+        "captionExamples": true
       }
     }
   ],
@@ -819,14 +848,14 @@
           "interaction": "gap-choice"
         },
         {
-          "context": "Ты только недавно начал пользоваться программой.",
+          "context": "Исправь форму глагола в сообщении о новой программе.",
           "prompt": "Yo ___ a usar este programa hace poco.",
           "answers": [
             "he empezado"
           ],
           "explain": "Говорящий — yo, поэтому he; у empezar здесь причастие empezado, а не форма с empi-.",
           "sourceRef": "60.2.5",
-          "learningAction": "воспроизведение",
+          "learningAction": "исправление ошибки",
           "clues": [
             [
               "empezar",
@@ -841,6 +870,12 @@
             "ú",
             "ü",
             "ñ"
+          ],
+          "sourceLabel": "Фраза с ошибкой",
+          "sourceParts": [
+            "Yo ",
+            "he empezar",
+            " a usar este programa hace poco."
           ]
         },
         {
@@ -894,14 +929,14 @@
           ]
         },
         {
-          "context": "Спроси одного друга, читал ли он что-нибудь интересное.",
+          "context": "Измени вопрос другу: спроси об опыте за последнее время.",
           "prompt": "¿___ algo interesante últimamente?",
           "answers": [
             "Has leído"
           ],
           "explain": "Tú требует has; у leer причастие leído со знаком над í, который разделяет гласные по слогам.",
           "sourceRef": "60.2.8",
-          "learningAction": "воспроизведение",
+          "learningAction": "преобразование",
           "clues": [
             [
               "leer",
@@ -916,6 +951,12 @@
             "ú",
             "ü",
             "ñ"
+          ],
+          "sourceLabel": "Исходный вопрос",
+          "sourceParts": [
+            "¿",
+            "Lees",
+            " algo interesante?"
           ]
         },
         {
@@ -1000,7 +1041,8 @@
         "answer": "hemos estado",
         "targetPrefix": "",
         "translation": "Этим летом мы побывали в Перу."
-      }
+      },
+      "revision": 2
     },
     {
       "id": "60.3",
@@ -1197,6 +1239,162 @@
         "targetPrefix": "",
         "translation": "Сбежали пятьдесят заключённых."
       }
+    },
+    {
+      "id": "60.4",
+      "title": "60.4 · Подведи итог субботы",
+      "instruction": "Сообщи о сделанных делах, задай вопрос друзьям, исправь реплику и передай новость. В конце напиши самостоятельный вопрос.",
+      "theorySections": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "inlineAnswer": true,
+      "phraseInput": true,
+      "accentPolicy": "strict",
+      "inputLabel": "Ответ в pretérito perfecto",
+      "inputFormat": {
+        "instruction": "Впиши только пропущенную часть в pretérito perfecto. Знак ударения обязателен.",
+        "placeholder": "Пропущенная часть"
+      },
+      "questions": [
+        {
+          "context": "Вечером субботы ты отмечаешь выполненные дела.",
+          "prompt": "Hoy ___ la compra.",
+          "answers": [
+            "he hecho"
+          ],
+          "explain": "О себе говорим he; hacer имеет причастие hecho. Покупки завершены, но сегодняшний день ещё идёт.",
+          "sourceRef": "extra",
+          "learningAction": "применение данных",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "facts": {
+            "label": "Твой список дел",
+            "items": [
+              [
+                "Покупки",
+                "Выполнены сегодня"
+              ]
+            ]
+          },
+          "clues": [
+            [
+              "hacer la compra",
+              "покупать продукты"
+            ]
+          ]
+        },
+        {
+          "context": "Спроси двух друзей, бывали ли они в кино в этом месяце.",
+          "prompt": "Собери вопрос, начиная с глагола. Два слова лишние.",
+          "answers": [
+            "habéis ido al cine este mes",
+            "habéis ido este mes al cine"
+          ],
+          "explain": "К двум друзьям обращаемся на vosotros: habéis ido. Este mes обозначает текущий период; его можно поставить после ido или в конце.",
+          "sourceRef": "extra",
+          "learningAction": "построение фразы",
+          "interaction": "build",
+          "normalize": "phrase",
+          "tiles": [
+            "habéis",
+            "ido",
+            "al",
+            "cine",
+            "este",
+            "mes",
+            "han",
+            "vais"
+          ]
+        },
+        {
+          "context": "Исправь порядок слов в сообщении о сестре.",
+          "prompt": "Mi hermana ___ temprano hoy.",
+          "answers": [
+            "se ha levantado"
+          ],
+          "explain": "Se ставится перед ha; затем идёт причастие levantado. Меняется порядок слов, а не лицо говорящего.",
+          "sourceRef": "extra",
+          "learningAction": "исправление ошибки",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceLabel": "Фраза с ошибкой",
+          "sourceParts": [
+            "Mi hermana ",
+            "ha se levantado",
+            " temprano hoy."
+          ]
+        },
+        {
+          "context": "Ты сообщаешь другу свежую новость о соседях.",
+          "prompt": "Los vecinos ___ una biblioteca.",
+          "answers": [
+            "han abierto"
+          ],
+          "explain": "Los vecinos — множественное число, поэтому han. Особое причастие abrir — abierto; новость сообщается как актуальная сейчас.",
+          "sourceRef": "extra",
+          "learningAction": "применение данных",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "clues": [
+            [
+              "abrir",
+              "открывать"
+            ]
+          ],
+          "image": "art/060/library-opening.webp",
+          "imageAlt": "Жители стоят у открытого входа в библиотеку; женщина перерезает праздничную ленту."
+        },
+        {
+          "context": "Вечером спроси друга, что он сделал сегодня.",
+          "prompt": "Начни с Qué, используй hacer и обращайся на tú.",
+          "answers": [
+            "qué has hecho hoy",
+            "qué has hecho tú hoy",
+            "qué has hecho hoy tú"
+          ],
+          "explain": "Вопрос о tú требует has hecho; hoy связывает сделанное с текущим днём. Подлежащее tú можно не произносить.",
+          "sourceRef": "extra",
+          "learningAction": "ответ на реплику",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "normalize": "phrase",
+          "inputFormat": {
+            "instruction": "Напиши весь вопрос по-испански. Знаки ¿ ? можно не ставить; ударения обязательны.",
+            "placeholder": "Вопрос другу"
+          }
+        }
+      ]
     }
   ],
   "summary": {
@@ -1237,5 +1435,6 @@
         "Han abierto una tienda."
       ]
     ]
-  }
+  },
+  "revision": 2
 }

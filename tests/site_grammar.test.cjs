@@ -1052,7 +1052,7 @@ test('all typing screens show a persistent format and example without changing g
   })())`));
   typed+=result.typed;legacy+=result.legacy;
  }
- assert.equal(typed,1548);assert.equal(legacy,205); // Fable 8: unit 2 now has 26 typed instead of 38
+ assert.equal(typed,1558);assert.equal(legacy,206); // Fable 8: unit 2 now has 26 typed instead of 38
 });
 
 test('quantity answers accept digits or words while the field explains the quantity format', () => {
@@ -1107,7 +1107,7 @@ test('all exercises reveal each wrong answer, stop at three errors and never awa
   const at=run('G.at');run('gMove(1)');assert.equal(run('G.at'),at);
   count++;
  }
- assert.equal(count,236);
+ assert.equal(count,238);
 });
 
 test('exit, route restart, whole-unit restart and reload preserve the failed or active attempt', () => {
@@ -1303,7 +1303,7 @@ test('171 grammar exercises require real corrections that spend remaining lives'
   assert.equal(run(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id===${JSON.stringify(group.id)})).errors`),2);
   count++;
  }
- assert.equal(count,228);
+ assert.equal(count,230);
 });
 
 test('correction queue and drafts survive reload and keep the next section locked',()=>{
@@ -1803,7 +1803,7 @@ test('multi-answer audit keeps regional, contextual and equally valid choices gr
    }
   }
  }
- assert.equal(questions,2760);assert.equal(alternatives,404);assert.equal(warnings,25); // Fable 8: unit 2 73→57, one additional gorila alternative
+ assert.equal(questions,2773);assert.equal(alternatives,407);assert.equal(warnings,25); // Fable 8: unit 2 73→57, one additional gorila alternative
 });
 
 test('yellow mini-check choices preserve all three lives and complete normally',()=>{
@@ -2047,7 +2047,7 @@ test('all grammar choice sets receive valid, balanced attempt orders without cha
    assert.deepEqual(result,{},`${u.number}/${g.id}: ${JSON.stringify(result)}`);
   }
  }
- assert.equal(standard,1007);assert.equal(guided,9); // Fable 8: unit 2 has four fewer multiple-choice tasks
+ assert.equal(standard,1009);assert.equal(guided,9); // Fable 8: unit 2 has four fewer multiple-choice tasks
  assert.equal(run('JSON.stringify(COURSE.grammar)'),before);
 });
 
@@ -2857,4 +2857,33 @@ test('unit 54 separates verbs with and without se and follows unit 53 in course 
   assert.equal(run(`(()=>{const [q,g]=${find(ref)};return grammarResult(q,${JSON.stringify(a)},g).status})()`),status,ref+'/'+a);
  const all=fs.readdirSync('content/grammar').filter(f=>/^05[34]_.*\.json$/.test(f)).map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));const r=context(all);
  assert.equal(r('gNextUnit(COURSE.grammar[0]).number'),54);
+});
+
+
+test('perfecto final scenarios accept all allowed replies and reject subject and clitic errors',()=>{
+ for(const n of [60,61]){
+  const u=JSON.parse(fs.readFileSync('content/grammar/'+(n===60?'060_he_trabajado':'061_he_viajado_mucho')+'.json','utf8'));
+  const r=context([u]),g=u.exercises.at(-1);
+  for(const q of g.questions)for(const a of q.answers)
+   assert.equal(r('grammarResult('+JSON.stringify(q)+','+JSON.stringify(a)+','+JSON.stringify(g)+',true).good'),true,a);
+  const bad=n===60?[[0,'ha hecho'],[1,'han ido al cine este mes'],[2,'he se levantado'],[4,'qué ha hecho hoy']]:[[0,'ha estado'],[2,'ha dejado'],[3,'todavía no los he comprado'],[4,'he la preparado']];
+  for(const [i,a]of bad)assert.equal(r('grammarResult('+JSON.stringify(g.questions[i])+','+JSON.stringify(a)+','+JSON.stringify(g)+',true).good'),false,a);
+ }
+});
+
+
+test('perfecto revisions keep earned XP and best results while replacing stale attempts',()=>{
+ for(const n of [60,61]){
+  const current=JSON.parse(fs.readFileSync('content/grammar/'+(n===60?'060_he_trabajado':'061_he_viajado_mucho')+'.json','utf8'));
+  const previous=structuredClone(current),id=n===60?'60.2':'61.4';
+  previous.revision=1;previous.exercises.pop();previous.learningOrder=previous.learningOrder.filter(r=>r!=='exercise:'+n+'.'+(n===60?4:5));
+  previous.exercises.find(g=>g.id===id).revision=1;
+  const storage=new Map();let r=context([previous],storage);unlockUntil(r,'exercise:'+id);
+  r('render=()=>{};var u=COURSE.grammar[0],g=u.exercises.find(g=>g.id==='+JSON.stringify(id)+');P.xp=41;P.grammar[grammarKey(u,g)]={correct:2,total:g.questions.length};save();gStart(u.id,"exercise:"+g.id);gMove(1);gResponse(G.steps[G.at]).value="incorrecto";gCheck();gExit();');
+  const before=r('JSON.stringify(P)');
+  r=context([current],storage);r('render=()=>{};gStart(COURSE.grammar[0].id,"all",true);');
+  assert.equal(r('JSON.stringify(P)'),before);
+  const after=JSON.parse(r('JSON.stringify((()=>{const u=gUnit(),g=u.exercises.find(g=>g.id==='+JSON.stringify(id)+'),a=gAttempt(u,g);return {revision:a.revision,errors:a.errors,responses:Object.keys(a.responses).length,xp:P.xp,hasFinal:gRoutes(u).includes("exercise:"+u.exercises.at(-1).id)};})())'));
+  assert.deepEqual(after,{revision:2,errors:0,responses:0,xp:41,hasFinal:true});
+ }
 });

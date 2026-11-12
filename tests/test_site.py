@@ -58,11 +58,11 @@ def test_theory_art_is_served_on_demand_but_fragments_remain_portable(course, tm
     from espanol.grammar import load_grammar
 
     art = [s["illustration"] for u in load_grammar() for s in u["sections"] if s.get("illustration")]
-    assert len(art) == 41
+    assert len(art) == 45
     out = build_site(course, load_cards(CONTENT), tmp_path / "index.html", units={0})
     page = out.read_text(encoding="utf-8")
     assets = {p.read_bytes(): p.relative_to(tmp_path).as_posix() for p in (tmp_path / "g").glob("*.webp")}
-    assert len(assets) == 41
+    assert len(assets) == 45
     for scene in art:
         data = base64.b64decode(scene["image"].split(",", 1)[1])
         resources = "\n".join(p.read_text() for p in (tmp_path / "d" / "grammar").rglob("*.json"))

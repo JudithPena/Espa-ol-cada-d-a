@@ -10,7 +10,7 @@ f=importlib.util.module_from_spec(spec)
 spec.loader.exec_module(f)
 f.REPORT['browser']='Chrome on Windows via Playwright'
 f.REPORT['limitations']=['Native Android/iOS keyboards are not available; the 520px viewport checks reduced visible height only.']
-OUT=Path('docs/grammar_units/browser60_61')
+OUT=Path('docs/grammar_units/browser60_61_polish')
 OUT.mkdir(parents=True,exist_ok=True)
 report={'widths':[320,390,768,1280],'questions':0,'theory':0,'images':0,'failures':[],'checks':[]}
 
@@ -64,6 +64,7 @@ with sync_playwright() as p:
                     page.evaluate('G.at=G.steps.findIndex(s=>s.type!=="question");gSave();render()')
                     f.check_layout(page,f'{number} {route} theory {width}')
                     assert page.locator('.gplayer').inner_text().find('**')<0
+                    page.wait_for_function("()=>[...document.querySelectorAll('.gplayer img')].every(im=>im.complete&&im.naturalWidth>0)")
                     report['theory']+=1
                 else:
                     page.evaluate('G.at=0;gSave();render()')
