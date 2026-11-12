@@ -98,8 +98,7 @@ def main():
                 assert page.evaluate('gAttempt(gUnit(),gUnit().exercises[0]).errors')==1
                 assert 'Están jugando' in page.locator('.pfoot').inner_text()
                 page.locator('[data-gnext]').click()
-                page.locator('#g-answer').fill('está lloviendo')
-                page.locator('[data-gcheck]').click()
+                page.locator('[data-gpick][data-gvalue="está lloviendo"]').click()
                 assert page.evaluate('gAttempt(gUnit(),gUnit().exercises[0]).errors')==2
                 page.locator('[data-gnext]').click()
                 gap=page.locator('[data-ggap]')
