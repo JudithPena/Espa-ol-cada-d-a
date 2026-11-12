@@ -714,6 +714,7 @@ const G_UNIT_ICONS = {
   '050_voy_hago_conozco': '🚶',
   '051_manana_voy_al_medico': '🗓️',
   '052_vivo_desde': '⏳',
+  '055_me_gusta': '❤️',
   '046_hay': '🥛',
   '045_tengo_tienes_tiene': '👜',
   '044_ser_estar': '🎭',
