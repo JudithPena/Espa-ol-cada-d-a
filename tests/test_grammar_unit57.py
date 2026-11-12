@@ -50,7 +50,7 @@ def test_unit_contract_and_order():
     assert u["id"] == "057_hago_estoy_haciendo"
     assert u["learningOrder"] == [
         "section:0", "exercise:57.1", "section:1", "exercise:57.2",
-        "section:2", "exercise:57.3", "section:3", "exercise:57.4", "summary"
+        "section:2", "section:3", "exercise:57.3", "exercise:57.4", "summary"
     ]
     assert len(u["sections"]) == 4
     assert [len(g["questions"]) for g in u["exercises"]] == [10, 11, 11, 10]
