@@ -2887,3 +2887,29 @@ test('perfecto revisions keep earned XP and best results while replacing stale a
   assert.deepEqual(after,{revision:2,errors:0,responses:0,xp:41,hasFinal:true});
  }
 });
+
+
+test('summary topic maps opt in only on the last slide and preserve saved progress',()=>{
+ for(const number of [60,61]){
+  const u=JSON.parse(fs.readFileSync('content/grammar/'+(number===60?'060_he_trabajado':'061_he_viajado_mucho')+'.json','utf8'));
+  const r=context([u]);unlockUntil(r,'summary');r('gStart(COURSE.grammar[0].id,"summary");');
+  const before=r('JSON.stringify(P)');
+  const html=r('gPlayerView()');
+  assert.match(html,/gplayer-topic-map/);assert.match(html,/class="gmap"/);
+  assert.equal((html.match(/class="gmap-card /g)||[]).length,6);
+  assert.equal(r('JSON.stringify(P)'),before);
+  r('gStart(COURSE.grammar[0].id,"section:0");');
+  assert.ok(!r('gPlayerView()').includes('gplayer-topic-map'));
+ }
+ const r=context([unit]);unlockUntil(r,'summary');r('gStart(COURSE.grammar[0].id,"summary");');
+ assert.ok(!r('gPlayerView()').includes('class="gmap"'));
+});
+
+test('summary map labels, examples and image alternatives are escaped',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/060_he_trabajado.json','utf8'));
+ u.summary.topicMap.cards[0].title='<img src=x onerror=alert(1)>';
+ u.summary.topicMap.cards[0].examples=[['<script>alert(1)</script>','<b>перевод</b>']];
+ const html=context([u])('gTopicMap(COURSE.grammar[0])');
+ assert.ok(html.includes('&lt;img'));assert.ok(html.includes('&lt;script&gt;'));
+ assert.ok(!html.includes('<script>'));assert.ok(!html.includes('<b>перевод</b>'));
+});

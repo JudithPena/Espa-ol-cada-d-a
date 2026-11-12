@@ -165,3 +165,18 @@ test('late audio metadata enables recorded voices even without browser speech sy
 });
 
 process.on('exit',()=>fs.rmSync(out,{recursive:true,force:true}));
+
+
+test('finishing a grammar summary can open the next catalog-only unit without losing results',async()=>{
+ const {run,counts}=harness();await ready(run);
+ const unit=shell.grammar.find(u=>u.number===60),next=shell.grammar.find(u=>u.number===61);
+ await run('dataLoad('+JSON.stringify(unit._data)+')');
+ assert.equal(run('Array.isArray(COURSE.grammar.find(u=>u.number===61).exercises[0].questions)'),false);
+ run('var u=COURSE.grammar.find(u=>u.number===60);P.grammar||={};P.grammarRead||={};for(const g of [...u.sections.map(s=>s.check),...u.exercises])P.grammar[grammarKey(u,g)]={correct:g.questions.length,total:g.questions.length};gStart(u.id,"summary");gMove(1);');
+ assert.ok(run('gPlayerView()').includes('data-gnext-unit'));
+ const best=run('JSON.stringify(P.grammar)');
+ run('gStartNextUnit('+JSON.stringify(next.id)+')');await drain(run);
+ assert.equal(run('gUnit().number'),61);
+ assert.equal(run('JSON.stringify(P.grammar)'),best);
+ assert.equal(counts.get(next._data.url),1);
+});

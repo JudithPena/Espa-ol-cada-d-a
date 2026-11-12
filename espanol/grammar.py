@@ -81,6 +81,14 @@ def load_grammar(directory: Path = GRAMMAR, *, schema_check: bool | None = None)
             if issues:
                 problem = issues[0]
                 raise ValueError(f"{path}: {problem.rule}: {problem.message}")
+        summary_map = unit.get('summary', {}).get('topicMap')
+        if summary_map is not None:
+            for card in summary_map.get('cards', []):
+                art_index = card.get('illustrationSection')
+                if art_index is not None and (type(art_index) is not int or
+                        not 0 <= art_index < len(unit['sections']) or
+                        not unit['sections'][art_index].get('illustration')):
+                    raise ValueError(f"{path}: summary map illustrationSection must reference an illustrated section")
         unit_policies = policies.get(unit['id'], {})
         if unit_policies:
             applied_policy_units.add(unit['id'])

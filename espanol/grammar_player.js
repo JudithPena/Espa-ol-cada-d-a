@@ -805,12 +805,20 @@ function gNextUnit(unit) {
   const units=COURSE.grammar || [], index=units.findIndex(u=>u.id===unit?.id);
   return index>=0 ? units[index+1] : undefined;
 }
+function gUnitHydrated(unit) {
+  return Array.isArray(unit.sections) && Array.isArray(unit.exercises)
+    && unit.sections.every(s=>!s.check || Array.isArray(s.check.questions))
+    && unit.exercises.every(g=>Array.isArray(g.questions));
+}
 function gCanStartUnit(unit) {
+  if(unit?._data && !gUnitHydrated(unit)) return !!unit.learningOrder?.length;
   return !!unit && (gUnitComplete(unit) || gRouteOpen(unit,'all')) && gSteps(unit,'all').length>0;
 }
 function gStartNextUnit(id) {
   const next=gNextUnit(gUnit());
-  if(next?.id===id && gCanStartUnit(next)) gStart(next.id,'all');
+  if(next?.id!==id || !gCanStartUnit(next)) return;
+  if(next._data && !gUnitHydrated(next) && dataWait([next._data],()=>gStart(next.id,'all'))) return;
+  gStart(next.id,'all');
 }
 function gFireworks() {
   const colors = ["#7357dd","#f0aa36","#46a890","#ed7183"];
@@ -933,6 +941,20 @@ function gFailureAnalysis(attempt,unit,group) {
     return `<article class="gerror-item"><h4>Ошибка ${i+1} · Вопрос ${error.qi+1}</h4>${q.context?`<p>${esc(q.context)}</p>`:''}<p lang="es">${esc(q.prompt)}</p><h4>Твой ответ</h4><p class="gerror-entered" lang="es">${esc(gOptionLabel(q,error.value))}</p><h4>${answers.length>1?'Правильные варианты':'Правильный ответ'}</h4><ul class="gerror-answers">${answers.map(a=>`<li lang="es">${esc(a)}</li>`).join('')}</ul><h4>Почему ответ не подходит</h4><p>${esc(grammarFeedbackExplanation(q,assessment))}</p></article>`;
   }).join('')}</section>`;
 }
+
+// Opt-in summary map; all other units keep their existing summary renderer.
+function gTopicMap(unit) {
+  const map=unit.summary.topicMap, tones=['violet','peach','mint','blue','rose'];
+  const examples=pairs=>(pairs || []).map(([es,ru])=>`<div class="gmap-example"><strong lang="es">${esc(es)}</strong><span>${esc(ru)}</span></div>`).join('');
+  const cards=map.cards.map((card,index)=>{
+    const tone=tones.includes(card.tone)?card.tone:'violet';
+    const art=Number.isInteger(card.illustrationSection)?unit.sections[card.illustrationSection]?.illustration:null;
+    const exampleHTML=examples(card.examples);
+    return `<article class="gmap-card gmap-${tone}" aria-labelledby="gmap-${unit.number}-${index}"><h4 id="gmap-${unit.number}-${index}"><span class="gmap-number" aria-hidden="true">${index+1}</span>${esc(card.title)}</h4>${card.text?`<p>${esc(card.text)}</p>`:''}${card.chips?`<ul class="gmap-chips" aria-label="Ключевые выражения">${card.chips.map(text=>`<li lang="es">${esc(text)}</li>`).join('')}</ul>`:''}${card.pairs?`<dl class="gmap-pairs${card.pairStyle==='stacked'?' gmap-pairs-stacked':''}">${card.pairs.map(([label,value])=>`<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>`:''}${art?`<div class="gmap-illustrated"><img src="${esc(art.image)}" alt="${esc(art.alt)}" width="384" height="384" loading="lazy" decoding="async"><div>${exampleHTML}</div></div>`:exampleHTML?`<div class="gmap-examples">${exampleHTML}</div>`:''}${card.note?`<p class="gmap-note">${esc(card.note)}</p>`:''}</article>`;
+  }).join('');
+  return `<section class="gmap" aria-label="Карта темы: ${esc(unit.title)}"><header class="gmap-hero"><div><p class="gmap-eyebrow">Юнит ${unit.number} · Карта темы</p><h3>${esc(unit.title)}</h3><p>${esc(map.lead)}</p></div><div class="gmap-formula" aria-label="Модель: ${esc(map.formula.map(pair=>pair[0]).join(' + '))}">${map.formula.map(([es,ru],i)=>`${i?'<span class="gmap-plus" aria-hidden="true">+</span>':''}<div><b lang="es">${esc(es)}</b><span>${esc(ru)}</span></div>`).join('')}</div></header><div class="gmap-grid">${cards}</div><aside class="gmap-takeaway"><span aria-hidden="true">✓</span><p>${esc(map.takeaway)}</p></aside></section>`;
+}
+
 function gPlayerView(failure=null) {
   const unit = gUnit();
   const current=G.steps[G.at], currentGroup=current?.group && gGroups(unit).find(g=>g.id===current.group);
@@ -948,7 +970,7 @@ function gPlayerView(failure=null) {
   // Answers remain hidden until submission; after each checked mistake they are shown immediately.
   let title, content, kicker = "Грамматика";
   if (step.type === "theory") { const section = unit.sections[step.section]; title = section.title; content = gTheory(section); kicker = "Правило"; }
-  if (step.type === "summary") { title = "Что запомнить"; content = unit.summary.wordGroups ? grammarWordGroups(unit.summary.wordGroups) : unit.summary.schemes ? `<div class="gsummary-cards">${grammarSchemes(unit.summary.schemes)}</div>` : grammarTable(unit.summary); kicker = "Кратко"; }
+  if (step.type === "summary") { title = "Что запомнить"; content = unit.summary.topicMap ? gTopicMap(unit) : unit.summary.wordGroups ? grammarWordGroups(unit.summary.wordGroups) : unit.summary.schemes ? `<div class="gsummary-cards">${grammarSchemes(unit.summary.schemes)}</div>` : grammarTable(unit.summary); kicker = "Кратко"; }
   if (step.type === "intro") {
     title = group.title; kicker = "Упражнение";
     content = gIntro(group);
@@ -977,7 +999,7 @@ function gPlayerView(failure=null) {
   const failed=step.type==='question'&&attempt?.status==='failed';
   const question=step.type==='question'?group.questions[step.qi]:null;
   const feedback=checked ? `<div class="fb"><div class="gfeedback-head"><h3 role="status">${esc(grammarFeedbackTitle(response))}${failed?' · Жизни закончились':''}</h3><button class="btn ghost sm" data-gfeedback-toggle aria-expanded="${!response.feedbackHidden}" aria-controls="g-feedback-details" aria-label="${response.feedbackHidden?'Показать разбор ответа':'Свернуть разбор ответа'}">${response.feedbackHidden?'Показать':'Свернуть ×'}</button></div><div id="g-feedback-details" ${response.feedbackHidden?'hidden':''}>${failed?`<p>Три ошибки. Упражнение не засчитано, ты остаёшься на этом вопросе.</p>`:(!response.good&&attempt?.errors===2?'<p class="glast-chance">Осталась последняя жизнь.</p>':'')}${response.good?`${grammarAccentHint(response)}<span class="ex">${esc(grammarFeedbackExplanation(question,response))}</span>`:gMistakeAnalysis(question,response,group)}</div></div>` : "";
-  return `<div class="player gplayer"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><div class="bar" role="progressbar" aria-label="Прогресс урока" aria-valuemin="0" aria-valuemax="${G.steps.length}" aria-valuenow="${G.at}"><i style="width:${Math.round(G.at / G.steps.length * 100)}%"></i></div>${attempt ? gHearts(attempt, group) : ''}</div>${gContext(unit,step,step.type!=="question")}</div>
+  return `<div class="player gplayer${step.type==='summary' && unit.summary.topicMap?' gplayer-topic-map':''}"><div class="ptop"><div class="wrap"><button class="x" data-gexit aria-label="Выйти из урока">×</button><div class="bar" role="progressbar" aria-label="Прогресс урока" aria-valuemin="0" aria-valuemax="${G.steps.length}" aria-valuenow="${G.at}"><i style="width:${Math.round(G.at / G.steps.length * 100)}%"></i></div>${attempt ? gHearts(attempt, group) : ''}</div>${gContext(unit,step,step.type!=="question")}</div>
     <div class="pbody"><div class="wrap">${step.type==="question"?`<span class="kicker">${esc(kicker)}</span><h2 id="g-title" tabindex="-1">${esc(title)}</h2>`:""}${content}${failed ? gFailureAnalysis(attempt,unit,group) : ""}</div></div>
     <div class="pfoot ${checked ? response.status==='almost'?'almost':response.good ? "good" : "bad" : ""}"><div class="wrap">${feedback}<div class="gplayer-actions">${failed ? '<button class="btn ghost" data-gexit>К разделам</button><button class="btn ghost" data-greview-theory>Повторить правило</button><button class="btn" data-grepeat-exercise>Попробовать заново</button>' : `${step.type==='question' && !checked ? '<button class="btn ghost ghide-keyboard" data-ghide-keyboard>Скрыть клавиатуру ↓</button>' : ''}<button class="btn ghost" data-gback${G.at ? "" : ' aria-label="Назад к разделам урока"'}>← Назад</button>${step.type === "question" && !checked ? gQuestionMode(group.questions[step.qi],response)==='choice' ? '<span class="muted gpick-hint">Нажми на вариант ответа</span>' : `<button class="btn" data-gcheck ${response.value.trim() ? "" : "disabled"}>Проверить</button>` : `<button class="btn" data-gnext>${step.correction && checked && !response.good ? "Попробовать ещё раз" : !step.correction && attempt?.status==='correcting' ? "К ошибкам →" : G.at===G.steps.length-1 && step.type==='question' && gNextRoute(unit,G.route)==='summary' ? "Что запомнить →" : G.at === G.steps.length - 1 ? "Завершить" : step.type === "intro" ? "Начать" : "Далее →"}</button>`}`}</div></div></div></div>`;
 }
