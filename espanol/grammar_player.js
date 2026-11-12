@@ -944,77 +944,78 @@ function gFailureAnalysis(attempt,unit,group) {
 
 // Opt-in summary map; all other units keep their existing summary renderer.
 function gTopicMap60(unit) {
+  // Unit 60 only: a custom conceptual poster, not a generic summary-card template.
   const map = unit.summary.topicMap;
-  const [persons, participles, period, pronouns, news, checks] = map.cards;
-  const examples = card => (card.examples || []).slice(0, 1).map(([es, ru]) =>
-    `<div class="gposter60-example"><strong lang="es">${esc(es)}</strong><small>${esc(ru)}</small></div>`).join("");
-  const chips = card => `<ul class="gposter60-chips">${(card.chips || []).map(t =>
-    `<li lang="es">${esc(t)}</li>`).join("")}</ul>`;
-  const picture = card => {
-    const art = Number.isInteger(card.illustrationSection) ? unit.sections[card.illustrationSection]?.illustration : null;
-    return art ? `<img class="gposter60-picture" src="${esc(art.image)}" alt="${esc(art.alt)}" width="112" height="112" loading="lazy" decoding="async">` : "";
-  };
-  return `<section class="gposter60" aria-label="Карта-постер юнита ${unit.number}">
-    <header class="gposter60-heading">
-      <p class="gposter60-kicker"><span aria-hidden="true">✦</span> Юнит ${unit.number} / Карта темы</p>
-      <h3>${esc(unit.title)} <span>· pretérito perfecto</span></h3>
-      <p>${esc(map.lead)}</p>
+  const [persons, parts, period, pronouns, news, checks] = map.cards;
+  const list = persons.pairs.map(([who, form]) => `<li><span lang="es">${esc(who)}</span><strong lang="es">${esc(form)}</strong></li>`).join('');
+  const endings = parts.pairs.slice(0,2).map(([from, to]) => `<li><span lang="es">${esc(from)}</span><strong lang="es">${esc(to)}</strong></li>`).join('');
+  const specials = parts.pairs.slice(2).map(([from, to]) => `<span lang="es">${esc(from)} → <b>${esc(to)}</b></span>`).join('');
+  const positions = pronouns.pairs.map(([label, phrase]) => `<li><small>${esc(label)}</small><b lang="es">${esc(phrase.replaceAll(' + ', ' → '))}</b></li>`).join('');
+  const timePeriods = period.chips.slice(0,3).map(t => `<li><b lang="es">${esc(t)}</b><i aria-hidden="true"></i></li>`).join('');
+  const present = period.examples[0], fresh = news.examples[0];
+  return `<section class="gm60" aria-label="Карта-постер юнита ${unit.number}">
+    <header class="gm60-top">
+      <div><p class="gm60-edition">${unit.number} / Грамматика · наглядная памятка</p><h3>Pretérito <em>perfecto</em></h3><p>${esc(map.lead)}</p></div>
+      <div class="gm60-stamp" aria-label="Юнит ${unit.number}">HE<br>TRA<br>BAJADO</div>
     </header>
-    <section class="gposter60-core" aria-labelledby="gposter60-core-title">
-      <div class="gposter60-core-copy">
-        <span class="gposter60-overline">Главная формула</span>
-        <h4 id="gposter60-core-title">Два слова — одно время</h4>
-        <p class="gposter60-core-example" lang="es">${esc(unit.summary.rows[0][2])}</p>
-        <small>Меняется <b lang="es">haber</b>, причастие остаётся неизменным.</small>
+    <div class="gm60-paper">
+      <div class="gm60-topology">
+        <svg class="gm60-wires" viewBox="0 0 1050 430" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M 428 209 C 380 185, 355 160, 303 153"/><path d="M 618 211 C 670 185, 706 153, 754 148"/>
+          <path d="M 518 371 C 518 405, 518 410, 518 427"/><circle cx="301" cy="153" r="5"/><circle cx="754" cy="148" r="5"/>
+        </svg>
+        <aside class="gm60-wing left">
+          <p class="gm60-label">Часть 1 · кто?</p><h4>Выбери форму <span lang="es">haber</span></h4>
+          <p class="gm60-wing-intro">${esc(persons.note)}</p><ol class="gm60-persons">${list}</ol>
+        </aside>
+        <div class="gm60-orb">
+          <span class="gm60-orb-top">Главный принцип</span>
+          <p class="gm60-orb-formula"><b lang="es">${esc(map.formula[0][0])}</b><span>+</span><b lang="es">${esc(map.formula[1][0])}</b></p>
+          <strong class="gm60-orb-example" lang="es">${esc(unit.summary.rows[0][2])}</strong>
+          <span class="gm60-orb-foot">Меняется haber. Причастие не согласуется.</span>
+        </div>
+        <aside class="gm60-wing right">
+          <p class="gm60-label">Часть 2 · что?</p><h4>Образуй причастие</h4>
+          <p class="gm60-wing-intro">Основа глагола ведёт к окончанию:</p>
+          <ul class="gm60-fork">${endings}</ul>
+          <div class="gm60-irregular"><p>Особые формы и написание</p><div>${specials}</div></div>
+          <p class="gm60-fine">Не <s lang="es">comidas</s>, а <b lang="es">comido</b>, даже с <i lang="es">nosotras</i>.</p>
+        </aside>
       </div>
-      <div class="gposter60-equation" aria-label="${esc(map.formula.map(item => item[0]).join(" плюс "))}">
-        ${map.formula.map(([word, label], i) =>
-          `${i ? '<span class="gposter60-plus" aria-hidden="true">+</span>' : ''}<div class="gposter60-token"><strong lang="es">${esc(word)}</strong><span>${esc(label)}</span></div>`).join("")}
-      </div>
-    </section>
-    <div class="gposter60-connector" aria-hidden="true"><span></span></div>
-    <div class="gposter60-foundations">
-      <article class="gposter60-module gposter60-persons" aria-labelledby="gposter60-persons">
-        <div class="gposter60-module-heading"><span class="gposter60-pictogram" aria-hidden="true">◉</span><div><small>01 / Лицо</small><h4 id="gposter60-persons">${esc(persons.title)}</h4></div></div>
-        <div class="gposter60-person-grid">${persons.pairs.map(([who, form]) => `<div><span lang="es">${esc(who)}</span><strong lang="es">${esc(form)}</strong></div>`).join("")}</div>
-        <p class="gposter60-module-note">${esc(persons.note)}</p>
-      </article>
-      <article class="gposter60-module gposter60-participles" aria-labelledby="gposter60-participles">
-        <div class="gposter60-module-heading"><span class="gposter60-pictogram" aria-hidden="true">✎</span><div><small>02 / Действие</small><h4 id="gposter60-participles">${esc(participles.title)}</h4></div></div>
-        <div class="gposter60-formations">${participles.pairs.slice(0, 2).map(([from, to]) => `<div><span lang="es">${esc(from)}</span><b aria-hidden="true">→</b><strong lang="es">${esc(to)}</strong></div>`).join("")}</div>
-        <p class="gposter60-mini-label">Особые формы</p>
-        <div class="gposter60-irregular">${participles.pairs.slice(2).map(([from, to]) => `<span lang="es">${esc(from)} <b>→ ${esc(to)}</b></span>`).join("")}</div>
-        <p class="gposter60-module-note">${esc(participles.note)}</p>
-      </article>
+      <div class="gm60-subline">↓ Если есть местоимение ↓</div>
+      <section class="gm60-ribbon" aria-label="Порядок местоимений">
+        <div><p class="gm60-label">Порядок слов</p><h4>Перед <span lang="es">haber</span></h4></div>
+        <ol class="gm60-lane">${positions}</ol>
+        <p class="gm60-ribbon-note">${esc(pronouns.note)}</p>
+      </section>
+      <section class="gm60-usage" aria-label="Связь с настоящим">
+        <div class="gm60-usage-head"><div><p class="gm60-label">Временная линия</p><h4>Произошло раньше — актуально сейчас</h4></div></div>
+        <div class="gm60-timechart" aria-label="Текущие периоды доходят до настоящего момента">
+          <ul class="gm60-time-periods">${timePeriods}</ul><div class="gm60-now">AHORA<small>сейчас</small></div>
+        </div>
+        <p class="gm60-time-caption">Периоды продолжаются до настоящего момента</p>
+        <div class="gm60-context">
+          <div class="gm60-context-text">
+            <strong lang="es">${esc(present[0])}</strong><small>${esc(present[1])}</small>
+            <p>Период ещё идёт, хотя само действие могло закончиться. Также: <b lang="es">${esc(period.chips.slice(3).join(', '))}</b>.</p>
+          </div>
+          <aside class="gm60-news-note">
+            <p class="gm60-label">Свежая новость · <span lang="es">${esc(news.chips[1])}</span></p>
+            <h5>Свежая новость важна сейчас</h5>
+            <strong lang="es">${esc(fresh[0])}</strong><small>${esc(fresh[1])}</small>
+            <p>Также: <span lang="es">${esc([news.chips[0],news.chips[2]].join(', '))}</span>.</p>
+          </aside>
+        </div>
+      </section>
+      <aside class="gm60-check"><span class="gm60-check-icon" aria-hidden="true">✓</span>
+        <div><h4>Запомните главное</h4>
+          <p>Лицо → <span lang="es">haber</span> + причастие → местоимение перед <span lang="es">haber</span> → связь с настоящим.</p>
+          <small>${esc(checks.note)} ${esc(checks.pairs[2][1])}</small>
+        </div>
+      </aside>
     </div>
-    <div class="gposter60-connector gposter60-connector-short" aria-hidden="true"><span></span></div>
-    <article class="gposter60-pronouns" aria-labelledby="gposter60-pronouns">
-      <div class="gposter60-module-heading"><span class="gposter60-pictogram" aria-hidden="true">↳</span><div><small>03 / Порядок слов</small><h4 id="gposter60-pronouns">${esc(pronouns.title)}</h4></div></div>
-      <div class="gposter60-pronoun-forms">${pronouns.pairs.map(([label, pattern]) => `<div><small>${esc(label)}</small><strong lang="es">${esc(pattern)}</strong></div>`).join("")}</div>
-      <p class="gposter60-module-note">${esc(pronouns.note)}</p>
-    </article>
-    <div class="gposter60-uses-label"><span aria-hidden="true">↓</span> Связь с настоящим <span aria-hidden="true">↓</span></div>
-    <div class="gposter60-uses">
-      <article class="gposter60-use gposter60-period" aria-labelledby="gposter60-period">
-        <div class="gposter60-module-heading"><span class="gposter60-pictogram" aria-hidden="true">▣</span><div><small>04 / Когда?</small><h4 id="gposter60-period">${esc(period.title)}</h4></div></div>
-        ${chips(period)}
-        <div class="gposter60-use-example">${picture(period)}${examples(period)}</div>
-        <p class="gposter60-module-note">${esc(period.text)} ${esc(period.note)}</p>
-      </article>
-      <article class="gposter60-use gposter60-news" aria-labelledby="gposter60-news">
-        <div class="gposter60-module-heading"><span class="gposter60-pictogram" aria-hidden="true">✧</span><div><small>05 / Что произошло?</small><h4 id="gposter60-news">${esc(news.title)}</h4></div></div>
-        ${chips(news)}
-        <div class="gposter60-use-example">${picture(news)}${examples(news)}</div>
-        <p class="gposter60-module-note">${esc(news.note)}</p>
-      </article>
-    </div>
-    <aside class="gposter60-remember" aria-label="Запомните главное">
-      <span class="gposter60-remember-mark" aria-hidden="true">✓</span>
-      <div><h4>Запомните главное</h4><p>${esc(map.takeaway)}</p><small>${esc(checks.note)} ${esc(checks.pairs[2][1])}</small></div>
-    </aside>
   </section>`;
 }
-
 function gTopicMap(unit) {
   if (unit.number === 60) return gTopicMap60(unit);
   const map=unit.summary.topicMap, tones=['violet','peach','mint','blue','rose'];
