@@ -697,6 +697,77 @@ test('тема 02: старое прохождение listening, dialogue и gr
   assert.match(run('view.level = "A0"; courseView()'), /Урок обновлён — пройти новую версию/);
 });
 
+// ТЗ №3 (U03-01, U03-02, U03-04, U03-05, U01-02, U01-03): шаги из 03_en_clase.yaml и saludos/vocab1.
+test('тема 03 и saludos/vocab1: вопрос о слове mochila, ответы про сыр, ввод в тесте темы, приветствия без подсказки', () => {
+  const run = context(site, new Map(), {audio: {}});
+  run('say = () => {}');
+  const steps = id => { run(`startLesson(${idx(run, id)})`); return J(run, 'S.steps'); };
+  const res = (st, typed) => J(run, `writeResult(${JSON.stringify(st)}, ${JSON.stringify(typed)})`);
+  const plainQ = st => String(st.q || '').replace(/<[^>]+>/g, '');
+  const opts = st => st.plain || st.options || [];
+  const line = st => (st.lines || []).map(l => l[1]).join(' ');
+  const offTopic = ['Muy bien, gracias.', 'No, gracias.', 'De nada.', '¿Cómo te llamas?'];
+
+  // U03-01: вопрос о значении незнакомого mochila; неверные варианты — из той же функции.
+  const d = steps('en_clase/dialogue');
+  assert.ok(!d.some(s => /tarea/.test(plainQ(s))), 'нет условия про tarea');
+  const moch = d.find(s => s.type === 'mc' && /mochila/.test(plainQ(s)));
+  assert.equal(opts(moch)[moch.correct], 'Perdón, ¿qué significa «mochila»?');
+  const malaga = d.find(s => s.type === 'mc' && /Málaga/.test(line(s)));
+  assert.equal(opts(malaga)[malaga.correct], '¿Cómo se escribe?');
+  assert.match(malaga.explain, /спрашивают о значении/);
+
+  // U03-02, U03-04: миссия school.
+  const pr = steps('en_clase/practice');
+  const again = pr.find(s => s.type === 'mc' && /Попросите повторить/.test(plainQ(s)));
+  assert.equal(opts(again)[again.correct], 'Otra vez, por favor.');
+  for (const st of [moch, malaga, again]) for (const bad of offTopic) assert.ok(!opts(st).includes(bad), `${plainQ(st)}: ${bad}`);
+  const cheese = pr.find(s => s.type === 'write' && /сыр/.test(plainQ(s)));
+  assert.ok(!cheese.format, 'без требования «с артиклем»');
+  for (const ok of ['el queso', 'queso', 'Se dice queso', 'Se dice «queso»']) assert.equal(res(cheese, ok).ok, true, ok);
+  assert.equal(res(cheese, 'la queso').ok, false);
+
+  // U03-05: ввод в тесте темы — с подсказками и в подсчёте результата.
+  const qz = steps('en_clase/quiz');
+  const w = qz.find(s => s.type === 'write');
+  assert.ok(w && /Скажите об этом и попросите повторить/.test(plainQ(w)));
+  for (const ok of ['No entiendo. Otra vez, por favor', 'Otra vez, por favor. No entiendo']) assert.equal(res(w, ok).ok, true, ok);
+  assert.match(res(w, 'No entiendo').why.html, /Добавьте просьбу повторить/);
+  assert.match(res(w, 'No entiendo. Más despacio, por favor').why.html, /«Ещё раз» — <b>otra vez<\/b>/);
+  assert.equal(run('S.check'), 'soft');
+  assert.equal(run('S.steps.filter(isGraded).some(s => s.type === "write")'), true, 'ввод — оцениваемое задание теста');
+  const wi = qz.indexOf(w);
+  run(`S.at = ${wi}; S.state = null; playerView(); S.state.value = "No entiendo. Otra vez, por favor"; writeCheck()`);
+  assert.equal(run('S.graded'), 1);
+  assert.equal(run('S.outcomes[0].key'), w.key);
+  assert.equal(run('S.outcomes[0].outcome'), 'first');
+
+  // U01-02, U01-03: оцениваемое время — 11:00; реплика Пабло не подсказывает ответ.
+  const v1 = steps('saludos/vocab1');
+  assert.ok(!v1.some(s => /13:30/.test(plainQ(s))));
+  const eleven = v1.find(s => s.type === 'mc' && /^11:00/.test(plainQ(s)));
+  assert.equal(opts(eleven)[eleven.correct], '¡Buenos días!');
+  const night = v1.find(s => s.type === 'mc' && /^23:00\. Пабло/.test(plainQ(s)));
+  assert.equal(line(night), '¡Hola, Lucía!');
+  assert.doesNotMatch(line(night), /noches/i);
+  assert.equal(opts(night)[night.correct], '¡Buenas noches, Pablo!');
+});
+
+test('тема 03: старое прохождение dialogue, practice и quiz (версия 2) сохраняется, но просит пройти версию 3', () => {
+  const ids = ['en_clase/dialogue', 'en_clase/practice', 'en_clase/quiz'];
+  const done = Object.fromEntries(ids.map(id => [id, {stars: 3, acc: 100, at: '2026-11-10'}]));
+  const ver = Object.fromEntries(ids.map(id => [id, {v: 2}]));
+  const run = context(site, new Map([['espanol-cada-dia.v1', JSON.stringify({done, ver, xp: 70})]]));
+  for (const id of ids) {
+    const i = idx(run, id);
+    assert.equal(run(`LESSONS[${i}].version`), 3, id);
+    assert.equal(run(`isDone(${i}) && isOutdated(${i})`), true, id);
+    assert.equal(run(`P.done[${JSON.stringify(id)}].stars`), 3, id);
+  }
+  assert.equal(run('P.xp'), 70);
+  assert.match(run('view.level = "A0"; courseView()'), /Урок обновлён — пройти новую версию/);
+});
+
 test('приёмка 8 на реальных уроках: numeros/dictado и hora/escucha без звука не засчитываются пустыми, с альтернативой — «без звука»', () => {
   for (const id of ['numeros/dictado', 'hora/escucha']) {
     const run = context(site);   // нет записей и испанского голоса
