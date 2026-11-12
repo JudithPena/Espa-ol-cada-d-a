@@ -143,8 +143,12 @@ jobs:
           git worktree add --detach /tmp/ecd-site-baseline HEAD^
           (cd /tmp/ecd-site-baseline && python -m espanol site -o /tmp/ecd-site-before/index.html)
           python tests/site_static_browser.py --site site --baseline /tmp/ecd-site-before --report /tmp/site-static-browser.json
+          python tests/grammar_unit56_browser.py --site site --report /tmp/grammar-unit56-browser.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: static-data-browser
-          path: /tmp/site-static-browser.json
+          path: |
+            /tmp/site-static-browser.json
+            /tmp/grammar-unit56-browser.json
+            /tmp/grammar56-screenshots/*.png
