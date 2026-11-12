@@ -9,7 +9,7 @@ from espanol.grammar import GRAMMAR, load_grammar
 NUMBER = 56
 SOURCE_ITEMS = [8, 11, 6]
 NOT_TRANSFERRED = {
-    "56.1.1": "Заполненный образец Estoy escribiendo una carta перенесён на вступительный экран 56.1",
+    "56.1.1": "Заполненный образец Estoy escribiendo una carta дан в теории блока 1: у 56.1 вступление показывает галерею иллюстраций",
     "56.2.1": "Заполненный образец Están pasando unos días en Potosí перенесён на вступительный экран 56.2",
     "56.3.1": "Заполненный образец Estoy estudiando español приведён как образец построения формы в первом блоке теории",
     "56.3.2": "Заполненный образец No me estoy duchando перенесён на вступительный экран 56.4",
@@ -86,6 +86,7 @@ def test_generated_pictures_are_real_and_only_used_in_visual_questions():
         img = GRAMMAR / q["image"]
         assert img.is_file() and img.suffix == ".webp" and img.stat().st_size > 5000
     assert (GRAMMAR / "art/056/prompts.json").is_file()
+    assert ["Estoy escribiendo una carta.", "Я сейчас пишу письмо."] in unit()["sections"][0]["examples"]
     assert all(not q.get("image") for g in unit()["exercises"][1:] for q in g["questions"])
 
 
