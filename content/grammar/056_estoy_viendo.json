@@ -95,6 +95,10 @@
         [
           "Estoy estudiando español.",
           "Я сейчас изучаю испанский."
+        ],
+        [
+          "Estoy escribiendo una carta.",
+          "Я сейчас пишу письмо."
         ]
       ],
       "notes": [
@@ -158,11 +162,11 @@
       }
     },
     {
-      "title": "Временно, не обычно: hoy, esta semana, últimamente",
+      "title": "Привычка или временная ситуация: presente / estar + gerundio",
       "presentation": "comparison",
       "paragraphs": [
-        "**Estar + gerundio** обозначает не только действие в эту секунду, но и **временную ситуацию** в текущем периоде. Важно, что она не является обычной привычкой.",
-        "Слова **hoy**, **esta semana**, **este mes**, **este año** и **últimamente** помогают показать временные рамки: `Este mes está trabajando en Argentina` — в этом месяце она работает в Аргентине, хотя обычно работает в другом месте."
+        "**Estar + gerundio** показывает действие в процессе или **временную ситуацию** на текущий период. Обычное настоящее время (**presente**) удобно, когда ты говоришь о привычном распорядке. Сравни: `Normalmente trabajo en casa` — обычно я работаю дома; `Esta semana estoy trabajando en la oficina` — на этой неделе я работаю в офисе.",
+        "Слова **hoy**, **esta semana**, **este mes**, **este año** и **últimamente** помогают назвать период, но сами по себе не требуют gerundio. Используй конструкцию с estar, если хочешь **подчеркнуть процесс или временное изменение**: `Este mes está trabajando en Argentina`."
       ],
       "schemes": [
         {
@@ -171,6 +175,13 @@
           "from": "Luisa normalmente trabaja en España.",
           "toLabel": "в этом месяце",
           "to": "Este mes está trabajando en Argentina."
+        },
+        {
+          "label": "Привычный распорядок и перемена на этой неделе",
+          "fromLabel": "обычно",
+          "from": "Normalmente trabajo en casa.",
+          "toLabel": "на этой неделе",
+          "to": "Esta semana estoy trabajando en la oficina."
         }
       ],
       "examples": [
@@ -184,7 +195,7 @@
         ]
       ],
       "notes": [
-        "Слова «hoy» или «últimamente» сами по себе не требуют gerundio. Здесь конструкция подчёркивает временный, продолжающийся характер ситуации."
+        "Обе формы могут быть грамматически возможны в одном контексте. В заданиях на контраст мы прямо просим подчеркнуть привычку (presente) или временный процесс (estar + gerundio)."
       ],
       "check": {
         "id": "check-2",
@@ -243,11 +254,11 @@
       }
     },
     {
-      "title": "Siempre + gerundio: действие повторяется и раздражает",
+      "title": "Siempre + gerundio: выразительное повторение",
       "presentation": "examples",
       "paragraphs": [
-        "Слова **siempre**, **todo el rato**, **a todas horas**, **todo el día** могут сочетаться с **estar + gerundio**, даже если действие происходит часто, а не прямо сейчас. Так говорящий **усиливает** повторение действия — нередко выражает раздражение, удивление или упрёк.",
-        "Сравни: `Siempre pregunta lo mismo` — просто сообщает о привычке; `Siempre está preguntando lo mismo` — подчёркивает, что человек всё время спрашивает одно и то же. Такое усиление не обязательно отрицательное: всё зависит от ситуации и тона."
+        "Слова **siempre**, **todo el rato**, **a todas horas**, **todo el día** могут сочетаться с **estar + gerundio**, даже если действие повторяется часто, а не происходит только сейчас. Такая конструкция подчёркивает **повторение и отношение говорящего**: удивление, жалобу, упрёк, восхищение или просто усиление.",
+        "Сравни: `Siempre pregunta lo mismo` — нейтрально сообщает о привычке; `Siempre está preguntando lo mismo` — выделяет повторение. Эмоция может быть и положительной, например когда человек постоянно помогает другим. Значение зависит от контекста и интонации."
       ],
       "examples": [
         [
@@ -257,6 +268,10 @@
         [
           "Estáis todo el día jugando y no estudiáis.",
           "Вы целыми днями играете и не учитесь."
+        ],
+        [
+          "¡Está siempre ayudando a los demás!",
+          "Он всё время помогает другим! (Одобрение.)"
         ]
       ],
       "notes": [
@@ -284,18 +299,18 @@
             "interaction": "choice"
           },
           {
-            "context": "Сравни две фразы о друге.",
-            "prompt": "Siempre está perdiendo las llaves.",
+            "context": "Сравни нейтральную привычку и подчеркнутое повторение.",
+            "prompt": "Siempre llama a su madre. Siempre está llamando a su madre.",
             "answers": [
-              "Говорящий подчёркивает частые потери ключей."
+              "Первая сообщает о привычке, вторая подчёркивает повторение."
             ],
-            "explain": "Siempre + estar + gerundio усиливает повторение.",
+            "explain": "Presente simple обычно даёт нейтральную характеристику; siempre + estar + gerundio подчёркивает повторяемость и может добавлять эмоцию.",
             "sourceRef": "extra",
             "learningAction": "объяснение различия",
             "options": [
-              "Говорящий подчёркивает частые потери ключей.",
-              "Друг прямо сейчас ищет ключи.",
-              "Друг перестал терять ключи."
+              "Первая сообщает о привычке, вторая подчёркивает повторение.",
+              "Первая описывает прошлое, вторая — будущее.",
+              "Обе обязательно описывают действие только в данную секунду."
             ],
             "interaction": "choice"
           },
@@ -315,7 +330,8 @@
             ],
             "interaction": "choice"
           }
-        ]
+        ],
+        "revision": 2
       }
     },
     {
@@ -330,9 +346,9 @@
         {
           "label": "Два положения возвратного местоимения",
           "fromLabel": "перед estar",
-          "from": "Nos estamos vistiendo.",
+          "from": "Te estás lavando.",
           "toLabel": "после герундия",
-          "to": "Estamos vistiéndonos."
+          "to": "Estás lavándote."
         },
         {
           "label": "С отрицанием",
@@ -441,7 +457,7 @@
       },
       "questions": [
         {
-          "context": "Двое друзей держат карты и играют за столом.",
+          "context": "Посмотри на сцену: что делают друзья?",
           "prompt": "___ a las cartas.",
           "answers": [
             "Están jugando"
@@ -464,23 +480,19 @@
             "ú",
             "ü",
             "ñ"
-          ]
+          ],
+          "image": "art/056/playing_cards.webp",
+          "imageAlt": "Двое сидят за столом с картами в руках."
         },
         {
-          "context": "За окном падает снег, а не дождь.",
+          "context": "Какая погода за окном? Ответь на вопрос.",
           "prompt": "—¿Está lloviendo? —No, ___.",
           "answers": [
             "está nevando"
           ],
-          "explain": "Снег идёт прямо сейчас, поэтому está nevando. В вопросе спрашивали о дожде.",
+          "explain": "За окном видны снежинки: está nevando. Дождь — está lloviendo, град — está granizando; это разные погодные явления.",
           "sourceRef": "56.1.3",
-          "learningAction": "ответ на реплику",
-          "clues": [
-            [
-              "nevar",
-              "идти (о снеге)"
-            ]
-          ],
+          "learningAction": "распознавание",
           "inputChars": [
             "á",
             "é",
@@ -489,10 +501,18 @@
             "ú",
             "ü",
             "ñ"
-          ]
+          ],
+          "image": "art/056/snowing.webp",
+          "imageAlt": "Девушка у окна, за которым падают снежинки.",
+          "options": [
+            "está nevando",
+            "está lloviendo",
+            "está granizando"
+          ],
+          "interaction": "gap-choice"
         },
         {
-          "context": "Папа держит газету и читает её прямо сейчас.",
+          "context": "Дочь спрашивает про папу. Ответь по картинке.",
           "prompt": "—¿Qué ___ papá? —___ el periódico.",
           "answers": [
             "está haciendo está leyendo"
@@ -527,10 +547,12 @@
             "ú",
             "ü",
             "ñ"
-          ]
+          ],
+          "image": "art/056/reading_newspaper.webp",
+          "imageAlt": "Отец с газетой и девушка, обращающаяся к нему."
         },
         {
-          "context": "По телефону спрашивают, учится ли Мария; она смотрит телевизор.",
+          "context": "Подруга по телефону спрашивает, учится ли сейчас Мария.",
           "prompt": "—¿Está estudiando María? —No, ___ la tele.",
           "answers": [
             "está viendo"
@@ -552,10 +574,12 @@
             "ú",
             "ü",
             "ñ"
-          ]
+          ],
+          "image": "art/056/watching_tv.webp",
+          "imageAlt": "Одна девушка говорит по телефону, другая сидит перед телевизором."
         },
         {
-          "context": "Двое малышей плачут, и взрослый спрашивает почему.",
+          "context": "Взрослые не понимают, что случилось. Посмотри на детей.",
           "prompt": "¿Por qué ___?",
           "answers": [
             "están llorando"
@@ -577,10 +601,12 @@
             "ú",
             "ü",
             "ñ"
-          ]
+          ],
+          "image": "art/056/crying_children.webp",
+          "imageAlt": "Два маленьких ребёнка со слезами на щеках; взрослые рядом."
         },
         {
-          "context": "Луиса танцует с другом; спроси, с кем она танцует.",
+          "context": "Луиса на празднике. Спроси по картинке, с кем она.",
           "prompt": "¿Con quién ___ Luisa?",
           "answers": [
             "está bailando"
@@ -602,10 +628,12 @@
             "ú",
             "ü",
             "ñ"
-          ]
+          ],
+          "image": "art/056/dancing.webp",
+          "imageAlt": "Луиса и её партнёр в танцевальной позе."
         },
         {
-          "context": "Трое спортсменов сейчас бегут марафон.",
+          "context": "На трассе идут соревнования. Что делают участники?",
           "prompt": "___ un maratón.",
           "answers": [
             "Están corriendo"
@@ -619,6 +647,29 @@
               "бежать"
             ]
           ],
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "image": "art/056/running_marathon.webp",
+          "imageAlt": "Три участника в спортивной форме на беговой трассе."
+        },
+        {
+          "context": "Марта сидит за столом. Опиши её действие по картинке.",
+          "prompt": "Marta ___ una carta.",
+          "answers": [
+            "está escribiendo"
+          ],
+          "explain": "Марта — ella: está. Писать — escribir, герундий escribiendo.",
+          "sourceRef": "extra",
+          "learningAction": "применение данных",
+          "image": "art/056/writing_letter.webp",
+          "imageAlt": "Девушка с ручкой, листом бумаги и конвертом за столом.",
           "inputChars": [
             "á",
             "é",
@@ -690,7 +741,8 @@
             "leer"
           ]
         }
-      ]
+      ],
+      "revision": 2
     },
     {
       "id": "56.2",
@@ -719,7 +771,7 @@
       },
       "questions": [
         {
-          "context": "Дети сейчас в парке; там они играют.",
+          "context": "Дети ещё не вернулись домой. Ответь, где их видели.",
           "prompt": "—¿Dónde están los niños? —___ en el parque.",
           "answers": [
             "Están jugando"
@@ -744,7 +796,7 @@
           ]
         },
         {
-          "context": "Тереса разговаривает с соседкой.",
+          "context": "Тересу зовут к телефону. С кем она сейчас?",
           "prompt": "—¿Con quién ___ Teresa? —Con una vecina.",
           "answers": [
             "está hablando"
@@ -769,7 +821,7 @@
           ]
         },
         {
-          "context": "На этой неделе стоит необычно жаркая погода.",
+          "context": "В этом месяце погода совсем не ноябрьская.",
           "prompt": "Esta semana ___ mucho calor.",
           "answers": [
             "está haciendo"
@@ -794,7 +846,7 @@
           ]
         },
         {
-          "context": "Артур в последнее время спит мало; предупреди его.",
+          "context": "Артур в последнее время выглядит очень уставшим. Предупреди его.",
           "prompt": "Ten cuidado, Arturo. Últimamente ___ muy poco.",
           "answers": [
             "estás durmiendo"
@@ -819,7 +871,45 @@
           ]
         },
         {
-          "context": "Кристина сегодня обедает у подруги, поэтому не ест с нами.",
+          "context": "Луис обычно работает дома, но сегодня хочет подчеркнуть временную перемену.",
+          "prompt": "Luis normalmente ___ en casa, pero hoy ___ en la oficina.",
+          "answers": [
+            "trabaja está trabajando"
+          ],
+          "gapParts": [
+            "Luis normalmente ",
+            " en casa, pero hoy ",
+            " en la oficina."
+          ],
+          "gapWordCounts": [
+            1,
+            2
+          ],
+          "clues": [
+            [
+              "trabajar",
+              "работать"
+            ]
+          ],
+          "inputFormat": {
+            "instruction": "Первый пропуск — привычка (presente), второй — временный процесс (estar + gerundio). Заполни оба.",
+            "placeholder": "Форма глагола"
+          },
+          "explain": "Normalmente — обычный распорядок: trabaja. Hoy подчёркивает временное изменение: está trabajando. Просто hoy не запрещает форму trabaja, но здесь требуется именно процесс.",
+          "sourceRef": "extra",
+          "learningAction": "объяснение различия",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
+          "context": "Кристину зовут на обед, но она уже у подруги.",
           "prompt": "—¿Por qué no come Cristina hoy con nosotros? —___ en casa de una amiga.",
           "answers": [
             "Está comiendo"
@@ -844,7 +934,7 @@
           ]
         },
         {
-          "context": "Ханс сейчас проходит курс испанского в Перу.",
+          "context": "Ханс приехал в Перу на несколько недель. Чем он занят?",
           "prompt": "—¿Dónde está Hans? —___ un curso de español en Perú.",
           "answers": [
             "Está haciendo"
@@ -869,7 +959,7 @@
           ]
         },
         {
-          "context": "Собеседник сейчас слушает кубинскую музыку; спроси, что он слушает.",
+          "context": "Слышна музыка. Спроси у собеседника, что звучит.",
           "prompt": "—¿Qué ___? —Música cubana.",
           "answers": [
             "estás escuchando"
@@ -894,7 +984,7 @@
           ]
         },
         {
-          "context": "Луиса обычно работает в Испании, но в этом месяце она в Аргентине.",
+          "context": "У Луисы изменился рабочий график на один месяц.",
           "prompt": "Luisa normalmente trabaja en España, pero este mes ___ en Argentina.",
           "answers": [
             "está trabajando"
@@ -917,6 +1007,22 @@
             "ü",
             "ñ"
           ]
+        },
+        {
+          "context": "Друг звонит, а ты посреди приготовления ужина. Подчеркни, что занят прямо сейчас.",
+          "prompt": "Ahora no puedo salir: ___ la cena.",
+          "answers": [
+            "estoy haciendo"
+          ],
+          "options": [
+            "estoy haciendo",
+            "hago",
+            "voy a hacer"
+          ],
+          "interaction": "gap-choice",
+          "explain": "Estoy haciendo подчёркивает, что готовка уже идёт. Hago тоже возможно в других контекстах, но не даёт такого явного акцента на процессе; voy a hacer говорит о намерении.",
+          "sourceRef": "extra",
+          "learningAction": "выбор по контексту"
         },
         {
           "context": "Сотрудник обычно работает дома, но на этой неделе ходит в офис.",
@@ -958,7 +1064,8 @@
             "ñ"
           ]
         }
-      ]
+      ],
+      "revision": 2
     },
     {
       "id": "56.3",
@@ -966,6 +1073,7 @@
       "instruction": "Вставь нужные формы, чтобы передать повторяющееся действие и отношение говорящего. В конце исправь ошибку и собери фразу.",
       "theorySections": [
         2,
+        1,
         0
       ],
       "inlineAnswer": true,
@@ -1076,6 +1184,22 @@
           "interaction": "choice"
         },
         {
+          "context": "Ты сравниваешь нейтральную привычку и эмоционально подчёркнутое повторение.",
+          "prompt": "Siempre habla muy deprisa. Siempre está hablando muy deprisa.",
+          "answers": [
+            "Первая фраза нейтрально сообщает о привычке; вторая её подчёркивает."
+          ],
+          "options": [
+            "Первая фраза нейтрально сообщает о привычке; вторая её подчёркивает.",
+            "Первая фраза описывает завершённое действие; вторая — будущее.",
+            "Во второй фразе речь обязательно об этой секунде."
+          ],
+          "interaction": "choice",
+          "explain": "Presente simple сообщает о повторении без особой оценки; estar + gerundio с siempre может придавать ему эмоциональный оттенок. Обе испанские фразы грамматически правильны.",
+          "sourceRef": "extra",
+          "learningAction": "объяснение различия"
+        },
+        {
           "context": "Отличи нейтральную привычку от эмоционального комментария.",
           "prompt": "Ella está todo el día hablando por teléfono.",
           "answers": [
@@ -1137,7 +1261,8 @@
             "haces"
           ]
         }
-      ]
+      ],
+      "revision": 2
     },
     {
       "id": "56.4",
@@ -1361,8 +1486,34 @@
             "estáis",
             "me"
           ]
+        },
+        {
+          "context": "Вы собираетесь выходить из дома. Сообщи о себе и других, что сейчас одеваетесь.",
+          "prompt": "Напиши полное предложение: «Мы сейчас одеваемся».",
+          "answers": [
+            "Nos estamos vistiendo.",
+            "Estamos vistiéndonos."
+          ],
+          "normalize": "phrase",
+          "inputFormat": {
+            "instruction": "Напиши всё испанское предложение с nosotros. Допустимы оба положения местоимения. Точку можно не ставить.",
+            "placeholder": "Полное предложение"
+          },
+          "explain": "Оба варианта верны: nos перед estamos или слитно после герундия: vistiéndonos. Знак ударения при присоединении обязателен.",
+          "sourceRef": "extra",
+          "learningAction": "построение фразы",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
         }
-      ]
+      ],
+      "revision": 2
     }
   ],
   "summary": {
@@ -1384,12 +1535,12 @@
         "estoy · estás · está · estamos · estáis · están"
       ],
       [
-        "Временная ситуация",
-        "Este mes estoy trabajando en casa."
+        "Привычка или временная ситуация",
+        "Normalmente trabajo en casa. Esta semana estoy trabajando en la oficina."
       ],
       [
-        "Повторение с оттенком эмоции",
-        "Siempre está preguntando lo mismo."
+        "Выразительное повторение",
+        "Siempre está preguntando lo mismo (не только жалоба)."
       ],
       [
         "Возвратный глагол, вариант 1",
