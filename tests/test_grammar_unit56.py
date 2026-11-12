@@ -54,9 +54,9 @@ def test_format_and_route():
         "section:0", "exercise:56.1", "section:1", "exercise:56.2",
         "section:2", "exercise:56.3", "section:3", "exercise:56.4", "summary"
     ]
-    assert [len(g["questions"]) for g in u["exercises"]] == [11, 13, 6, 9]
+    assert [len(g["questions"]) for g in u["exercises"]] == [11, 12, 7, 9]
     assert all(g["accentPolicy"] == "strict" for g in u["exercises"])
-    assert [g.get("revision") for g in u["exercises"]] == [2, 2, None, 2]
+    assert [g.get("revision") for g in u["exercises"]] == [2, 2, 2, 2]
     assert u["sections"][2]["check"]["revision"] == 2
     assert all(g["theorySections"] for g in u["exercises"])
     assert all(s["presentation"] in {"paradigm", "comparison", "examples"} for s in u["sections"])
@@ -99,7 +99,7 @@ def test_contrast_and_emotional_repetition_are_explicit():
     ex = u["exercises"][1]
     assert any(q.get("gapWordCounts") == [1, 2] and "trabaja está trabajando" in q["answers"] for q in ex["questions"])
     assert any("estoy haciendo" in q["answers"] and "hago" in q["options"] for q in ex["questions"] if q.get("options"))
-    assert any("Siempre habla muy deprisa." in q["prompt"] for q in ex["questions"])
+    assert any("Siempre habla muy deprisa." in q["prompt"] for q in u["exercises"][2]["questions"])
 
 
 def test_book_pictures_are_adapted_to_text_and_input():
