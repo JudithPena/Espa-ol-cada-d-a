@@ -97,7 +97,7 @@ def main():
                 gap.nth(0).fill('vinieron');gap.nth(1).fill('quisieron')
                 page.locator('[data-gcheck]').click()
                 assert page.evaluate('gResponse(G.steps[G.at]).good'),(width,'two gaps')
-                page.evaluate(PREPARE,{'route':'exercise:59.1c','qi':3})
+                page.evaluate(PREPARE,{'route':'exercise:59.1c','qi':4})
                 gap=page.locator('[data-ggap]')
                 assert gap.count()==3
                 for i,answer in enumerate(('hicieron','estuvimos','quiso')): gap.nth(i).fill(answer)
@@ -107,6 +107,30 @@ def main():
                 page.evaluate(PREPARE,{'route':'exercise:59.2','qi':4})
                 page.locator('[data-gpick][data-gvalue="fue"]').click()
                 assert page.evaluate('gResponse(G.steps[G.at]).good'),(width,'ser choice')
+                # New tests: independently choose the verb, not just conjugate a provided infinitive.
+                for qi,form in ((3,'dijo'),(6,'pude'),(9,'hizo')):
+                    page.evaluate(PREPARE,{'route':'exercise:59.1c','qi':qi})
+                    picks=page.locator('[data-gpick]')
+                    assert picks.count() == 3
+                    page.locator(f'[data-gpick][data-gvalue="{form}"]').click()
+                    assert page.evaluate('gResponse(G.steps[G.at]).good'),(width,'semantic stem choice',qi)
+                # Both generated illustrations describe different meanings of fue.
+                for qi,lemma in ((8,'ir'),(9,'ser')):
+                    page.evaluate(PREPARE,{'route':'exercise:59.2','qi':qi})
+                    img=page.locator('img.gquestion-picture')
+                    assert img.count()==1,(width,qi,'image missing')
+                    page.wait_for_function("document.querySelector('img.gquestion-picture')?.naturalWidth === 384")
+                    assert img.get_attribute('alt')
+                    assert_layout(page,f'{width}:ser-ir-image:{qi}')
+                    page.screenshot(path=str(shots/f'unit59-{width}-ser-ir-{qi}.png'),animations='disabled')
+                    page.locator(f'[data-gpick][data-gvalue="{lemma}"]').click()
+                    assert page.evaluate('gResponse(G.steps[G.at]).good'),(width,'ser/ir meaning',qi)
+                page.evaluate(PREPARE,{'route':'exercise:59.3','qi':8})
+                two=page.locator('[data-ggap]')
+                assert two.count()==2
+                two.nth(0).fill('fui');two.nth(1).fill('fue')
+                page.locator('[data-gcheck]').click()
+                assert page.evaluate('gResponse(G.steps[G.at]).good'),(width,'independent ir+ser production')
                 # Three distinct failed submissions, explanation, voluntary review.
                 page.evaluate(PREPARE,{'route':'exercise:59.1a','qi':0})
                 page.locator('#g-answer').fill('morieron')
