@@ -54,8 +54,10 @@ def test_format_and_route():
         "section:0", "exercise:56.1", "section:1", "exercise:56.2",
         "section:2", "exercise:56.3", "section:3", "exercise:56.4", "summary"
     ]
-    assert [len(g["questions"]) for g in u["exercises"]] == [10, 10, 6, 8]
+    assert [len(g["questions"]) for g in u["exercises"]] == [11, 13, 6, 9]
     assert all(g["accentPolicy"] == "strict" for g in u["exercises"])
+    assert [g.get("revision") for g in u["exercises"]] == [2, 2, None, 2]
+    assert u["sections"][2]["check"]["revision"] == 2
     assert all(g["theorySections"] for g in u["exercises"])
     assert all(s["presentation"] in {"paradigm", "comparison", "examples"} for s in u["sections"])
     for section in u["sections"]:
@@ -76,6 +78,28 @@ def test_format_and_route():
                 assert sum(q["gapWordCounts"]) == len(q["answers"][0].split())
 
 
+def test_generated_pictures_are_real_and_only_used_in_visual_questions():
+    visual = unit()["exercises"][0]["questions"][:8]
+    assert len({q["image"] for q in visual}) == 8
+    assert all(q["imageAlt"] and q["image"].startswith("art/056/") for q in visual)
+    for q in visual:
+        img = GRAMMAR / q["image"]
+        assert img.is_file() and img.suffix == ".webp" and img.stat().st_size > 5000
+    assert (GRAMMAR / "art/056/prompts.json").is_file()
+    assert all(not q.get("image") for g in unit()["exercises"][1:] for q in g["questions"])
+
+
+def test_contrast_and_emotional_repetition_are_explicit():
+    u = unit()
+    assert "выразительное повторение" in u["sections"][2]["title"].lower()
+    assert "эмоци" in " ".join(u["sections"][2]["paragraphs"])
+    assert "Siempre llama a su madre" in u["sections"][2]["check"]["questions"][1]["prompt"]
+    ex = u["exercises"][1]
+    assert any(q.get("gapWordCounts") == [1, 2] and "trabaja está trabajando" in q["answers"] for q in ex["questions"])
+    assert any("estoy haciendo" in q["answers"] and "hago" in q["options"] for q in ex["questions"] if q.get("options"))
+    assert any("Siempre habla muy deprisa." in q["prompt"] for q in ex["questions"])
+
+
 def test_book_pictures_are_adapted_to_text_and_input():
     assert by_ref("56.1.2")["answers"] == ["Están jugando"]
     assert by_ref("56.1.3")["answers"] == ["está nevando"]
@@ -94,6 +118,9 @@ def test_reflexive_pronoun_positions_and_accents():
     assert g["questions"][7]["tiles"] == ["se", "vistiendo", "están", "estáis", "me"]
     assert "está" in unit()["sections"][0]["table"]["rows"][2][1]
     assert "estáis" in unit()["sections"][0]["table"]["rows"][4][1]
+    own = g["questions"][-1]
+    assert set(own["answers"]) == {"Nos estamos vistiendo.", "Estamos vistiéndonos."}
+    assert own["normalize"] == "phrase"
 
 
 def test_report_exists():
