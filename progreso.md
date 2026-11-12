@@ -10,8 +10,8 @@
 
 ## Сейчас
 
-- Готово тем: **5 из 19**. Уроков A2: **40**, новых слов и выражений: **160**.
-- В работе: тема 29 — En el mercado + КТ-1.
+- Готово тем: **6 из 19**. Уроков A2: **49**, новых слов и выражений: **198**.
+- В работе: тема 30 — Cuando era pequeño.
 
 ## Темы
 
@@ -22,8 +22,8 @@
 | 26 | Una vida | биография; годы и сотни; a los 20 años; hace dos años; pude, quise, vine, dije | 8 | 34 | ✅ готово |
 | 27 | Hoy y ayer | perfecto и indefinido; ya, todavía no; неправильные причастия; опыт и подробности | 7 | 19 | ✅ готово |
 | 28 | De viaje | вокзал, аэропорт, гостиница; lo, la, los, las; ir / irse; предлоги пути | 8 | 40 | ✅ готово |
-| 29 | En el mercado + КТ-1 | количества и меры; algo / nada, alguno / ninguno; ¿Me pone…?; контрольная точка 1 | — | — | ⏭ следующая |
-| 30 | Cuando era pequeño | pretérito imperfecto: формы, привычки; antes / ahora; ya no, todavía | — | — | ⬜ не начата |
+| 29 | En el mercado + КТ-1 | количества и меры; algo / nada, alguno / ninguno; ¿Me pone…?; контрольная точка 1 | 9 | 38 | ✅ готово |
+| 30 | Cuando era pequeño | pretérito imperfecto: формы, привычки; antes / ahora; ya no, todavía | — | — | ⏭ следующая |
 | 31 | Cómo era | imperfecto в описании; más / menos… que, tan… como, mejor / peor | — | — | ⬜ не начата |
 | 32 | ¿Qué pasó? | indefinido и imperfecto вместе; cuando, de repente, entonces, al final; estaba + герундий | — | — | ⬜ не начата |
 | 33 | ¿Quedamos? | предложить, согласиться, отказаться: ¿Te apetece…?, ¿Por qué no…?, es que… | — | — | ⬜ не начата |
@@ -62,6 +62,7 @@
 | 12.11.2026 | Тема 26 «Una vida» (8 уроков). Признаки письма одинаково понимают ñ при сборке и на странице. |
 | 12.11.2026 | Тема 27 «Hoy y ayer» (7 уроков). |
 | 12.11.2026 | Тема 28 «De viaje» (8 уроков). Заведён этот файл. |
+| 12.11.2026 | Тема 29 «En el mercado» (9 уроков) с контрольной точкой 1 по темам 24–29. |
 
 ## Что не проверено
 

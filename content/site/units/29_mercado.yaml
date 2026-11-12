@@ -1,0 +1,1136 @@
+id: mercado
+number: 29
+level: A2
+title: En el mercado — на рынке
+goals:
+  - купить продукты на рынке — попросить, уточнить, расплатиться
+  - называть количество и упаковку — килограмм, десяток, банка, кусок
+  - сказать «что-нибудь» и «ничего», «кто-то» и «никто», «какой-нибудь» и «никакой»
+  - сказать, чего слишком много, мало или достаточно
+
+# Тема 6 карты A2: количества и меры; algo / nada, alguien / nadie, alguno / ninguno; ¿Me pone…?; глагол poner.
+# Последний урок темы — контрольная точка 1 по темам 24–29.
+lessons:
+  - id: fruteria
+    kind: listening
+    title: "¿Qué le pongo?"
+    goal: попросить продукты на рынке и понять, сколько с вас
+    version: 2
+    # Карта экранов: docs/site_slide_maps/29_mercado.md
+    vocab:
+      - "⚖️ el kilo [ки́ло] — килограмм :: Un kilo de tomates, por favor. — Килограмм помидоров, пожалуйста."
+      - "➗ medio/a [мэ́дьо, мэ́дья] — пол-, половина :: medio kilo de queso — полкило сыра"
+      - "🔸 el gramo [гра́мо] — грамм :: doscientos gramos de jamón — двести граммов хамона"
+      - "🧅 la cebolla [θэбо́йя] — лук, луковица :: Necesito dos cebollas. — Мне нужны две луковицы."
+      - "🍓 la fresa [фрэ́са] — клубника :: Las fresas están muy buenas. — Клубника очень вкусная."
+      - "🙋 ¿Qué le pongo? [кэ ле по́нго] — что вам положить? что для вас? (говорит продавец)"
+      - "🛍 ¿Me pone...? [мэ по́нэ] — положите мне…, дайте мне… (на рынке) :: ¿Me pone un kilo de naranjas? — Дайте мне килограмм апельсинов."
+      - "✋ nada más [на́да мас] — больше ничего :: Nada más, gracias. — Больше ничего, спасибо."
+    blocks:
+      - "Суббота, рынок. Лусия покупает овощи и фрукты. Послушайте разговор два раза: текста пока нет."
+      - dialogue:
+          id: puesto
+          hidden: true
+          lines:
+            - "Dependienta: ¡Buenos días! ¿Qué le pongo? | Доброе утро! Что вам положить?"
+            - "Lucía: Buenos días. ¿Me pone un kilo de tomates, por favor? | Доброе утро. Дайте мне килограмм помидоров, пожалуйста."
+            - "Dependienta: Claro. ¿Algo más? | Конечно. Что-нибудь ещё?"
+            - "Lucía: Sí, medio kilo de cebollas. ¿Tiene fresas? | Да, полкило лука. У вас есть клубника?"
+            - "Dependienta: Sí, hoy están muy buenas. ¿Cuánto quiere? | Да, сегодня она очень хорошая. Сколько вам?"
+            - "Lucía: Doscientos gramos, por favor. | Двести граммов, пожалуйста."
+            - "Dependienta: Aquí tiene. ¿Algo más? | Вот, пожалуйста. Что-нибудь ещё?"
+            - "Lucía: Nada más, gracias. ¿Cuánto es? | Больше ничего, спасибо. Сколько с меня?"
+            - "Dependienta: Son cinco euros con sesenta. | С вас пять евро шестьдесят."
+      - choose:
+          title: Что вы поняли?
+          source: puesto
+          items:
+            - q: "Сколько Лусия платит?"
+              options: "Cinco euros con sesenta. | Seis euros con cincuenta. | Cinco euros con dieciséis."
+              explain: "Dependienta: Son cinco euros con sesenta."
+      - learn: [el kilo, medio/a, el gramo, la cebolla, la fresa]
+      - choose:
+          title: Детали разговора
+          source: puesto
+          skill: cantidades
+          items:
+            - q: "¿Cuántos tomates compra Lucía?"
+              options: "Un kilo. | Medio kilo. | Doscientos gramos."
+              explain: "Lucía просит un kilo de tomates. Полкило — это лук, двести граммов — клубника."
+            - q: "¿Qué fruta compra?"
+              options: "Fresas. | Naranjas. | Manzanas."
+              explain: "Lucía: ¿Tiene fresas? … Doscientos gramos, por favor."
+            - q: "¿Cuántas cebollas compra?"
+              options: "Medio kilo. | Un kilo. | Dos cebollas."
+              explain: "Lucía: Sí, medio kilo de cebollas."
+      - compare:
+          id: de
+          slide: new
+          title: Сколько чего
+          lead: "После меры всегда стоит **de**, а артикль перед продуктом не нужен."
+          cards:
+            - head: un kilo de tomates
+              label: килограмм помидоров
+              tone: blue
+            - head: medio kilo de cebollas
+              label: полкило лука
+              tone: sun
+            - head: doscientos gramos de fresas
+              label: двести граммов клубники
+              tone: rose
+          note: "Перед **medio** артикль не ставят: _medio kilo_, а не «un medio kilo». Полтора килограмма — _un kilo y medio_."
+      - write:
+          title: Напишите по-испански
+          format: количество + de + продукт
+          free: true
+          skill: cantidades
+          rule: de
+          items:
+            - q: "килограмм картошки"
+              a: "un kilo de patatas"
+              explain: "Un kilo de + продукт во множественном числе."
+              mistakes:
+                "un kilo patatas": "После меры нужно **de**: un kilo **de** patatas."
+                "un kilo de las patatas": "После de артикль не нужен: un kilo de **patatas**."
+            - q: "полкило сыра"
+              a: "medio kilo de queso"
+              explain: "Medio kilo — без артикля."
+              mistakes:
+                "un medio kilo de queso": "Перед medio артикль не нужен: **medio kilo**."
+            - q: "триста граммов хамона"
+              a: "trescientos gramos de jamón | 300 gramos de jamón"
+              explain: "Trescientos gramos de jamón."
+      - learn: ["¿Qué le pongo?", "¿Me pone...?", nada más]
+      - choose:
+          title: Что ответить?
+          free: true
+          skill: mercado_pedir
+          rule: none
+          items:
+            - lines: ["Dependienta: ¿Qué le pongo?"]
+              q: "Вам нужен килограмм апельсинов."
+              options: "¿Me pone un kilo de naranjas? | ¿Le pongo un kilo de naranjas? | ¿Cuánto es un kilo de naranjas?"
+              explain: "Покупатель просит ¿Me pone…? А ¿Le pongo…? спросил бы продавец."
+            - lines: ["Dependienta: ¿Algo más?"]
+              q: "Больше ничего не нужно."
+              options: "Nada más, gracias. | Algo más, gracias. | Más nada, gracias."
+              explain: "«Больше ничего» — nada más."
+            - say: "¿Me pone medio kilo de fresas?"
+              options: "Дайте мне полкило клубники. | Сколько стоит полкило клубники? | У вас есть полкило клубники?"
+              explain: "¿Me pone…? — так просят на рынке; medio kilo — «полкило»."
+              noaudio: {q: "Что значит «¿Me pone medio kilo de fresas?»", options: "Дайте мне полкило клубники. | Сколько стоит полкило клубники? | У вас есть полкило клубники?"}
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          free: true
+          skill: cantidades
+          rule: de
+          items:
+            - say: "Medio kilo de cebollas, por favor."
+              a: "Medio kilo de cebollas, por favor"
+              noaudio: {q: "Напишите по-испански: «Полкило лука, пожалуйста».", a: "Medio kilo de cebollas, por favor | Por favor, medio kilo de cebollas"}
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: mercado_pedir
+          rule: none
+          items:
+            - "¿Me pone un kilo de tomates, por favor? — Дайте мне килограмм помидоров, пожалуйста."
+      - sort:
+          title: Кто это говорит?
+          source: puesto
+          groups:
+            "продавец": ["¿Qué le pongo?", "¿Algo más?", "Son cinco euros con sesenta."]
+            "покупатель": ["¿Me pone un kilo de tomates?", "Nada más, gracias.", "¿Cuánto es?"]
+
+  - id: cantidades
+    kind: vocab
+    title: "Una docena, una lata, un trozo"
+    goal: назвать упаковку и количество продукта
+    version: 2
+    vocab:
+      - "🥛 el litro [ли́тро] — литр :: un litro de leche — литр молока"
+      - "🥫 la lata [ла́та] — консервная банка :: una lata de tomate — банка томатов"
+      - "📦 el paquete [пакэ́тэ] — пачка, упаковка :: un paquete de arroz — пачка риса"
+      - "🥚 la docena [доθэ́на] — дюжина, десяток :: una docena de huevos — десяток яиц"
+      - "🥖 la barra [ба́рра] — батон; брусок :: una barra de pan — батон хлеба"
+      - "🧀 el trozo [тро́θо] — кусок :: un trozo de queso — кусок сыра"
+      - "🫒 el aceite [аθэ́йтэ] — растительное масло :: una botella de aceite — бутылка масла"
+      - "🍬 el azúcar [аθу́кар] — сахар :: un café con azúcar — кофе с сахаром"
+    blocks:
+      - "Не всё продают на вес. Вот список покупок Лусии."
+      - list:
+          id: lista
+          items:
+            - "🥛 un litro de leche"
+            - "🫒 una botella de aceite"
+            - "🥚 una docena de huevos"
+            - "🥖 una barra de pan"
+            - "🥫 una lata de tomate"
+            - "📦 un paquete de arroz"
+            - "🧀 un trozo de queso"
+            - "🍬 un kilo de azúcar"
+      - learn: [el litro, la lata, el paquete, la docena]
+      - match:
+          title: Что в чём продают
+          skill: cantidades
+          rule: lista
+          pairs:
+            - "una docena — de huevos"
+            - "un litro — de leche"
+            - "una lata — de tomate"
+            - "un paquete — de arroz"
+      - learn: [la barra, el trozo, el aceite, el azúcar]
+      - choose:
+          title: Выберите слово
+          skill: cantidades
+          rule: lista
+          items:
+            - q: "Para el desayuno compro una ___ de pan."
+              options: "barra | lata | docena"
+              explain: "Хлеб считают батонами: una barra de pan."
+            - q: "¿Me pone un ___ de queso?"
+              options: "trozo | litro | paquete de"
+              explain: "Сыр режут кусками: un trozo de queso."
+            - q: "Para la ensalada necesito una botella de ___."
+              options: "aceite | azúcar | arroz"
+              explain: "В бутылке — масло: una botella de aceite."
+            - say: "Una barra de pan y una docena de huevos."
+              options: "Батон хлеба и десяток яиц. | Пачка хлеба и банка яиц. | Кусок хлеба и килограмм яиц."
+              explain: "Una barra — батон, una docena — десяток."
+              noaudio: {q: "Что значит «Una barra de pan y una docena de huevos»?", options: "Батон хлеба и десяток яиц. | Пачка хлеба и банка яиц. | Кусок хлеба и килограмм яиц."}
+      - write:
+          title: Напишите по-испански
+          format: количество + de + продукт
+          skill: cantidades
+          rule: lista
+          items:
+            - q: "литр молока"
+              a: "un litro de leche"
+              mistakes:
+                "un litro leche": "После меры нужно **de**: un litro **de** leche."
+            - q: "десяток яиц"
+              a: "una docena de huevos"
+              mistakes:
+                "un docena de huevos": "Docena — женского рода: **una** docena."
+            - q: "кусок сыра"
+              a: "un trozo de queso"
+            - q: "две банки томатов"
+              a: "dos latas de tomate | dos latas de tomates"
+              explain: "Множественное число — у упаковки: dos lata**s**."
+            - q: "кофе без сахара"
+              a: "(un) café sin azúcar"
+              explain: "Sin — «без»: café sin azúcar."
+      - sort:
+          title: Как это продают?
+          skill: cantidades
+          rule: lista
+          groups:
+            "por kilos": [patatas, naranjas, tomates]
+            "por litros": [leche, aceite, zumo]
+            "por barras o paquetes": [pan, arroz]
+      - build:
+          title: Соберите фразу
+          skill: cantidades
+          rule: lista
+          items:
+            - es: "Necesitamos dos litros de leche y una barra de pan."
+              ru: "Нам нужны два литра молока и батон хлеба."
+              alt: ["Necesitamos una barra de pan y dos litros de leche."]
+      - compose:
+          title: Список покупок
+          skill: cantidades
+          rule: lista
+          items:
+            - q: "Напишите свой список покупок на неделю: пять-шесть продуктов с количеством или упаковкой."
+              format: "Un kilo de…, una docena de…"
+              words: [12, 60]
+              checks:
+                - label: "мера или упаковка: kilo, litro, docena, barra, lata, paquete, botella, trozo, gramos"
+                  any: [kilo, kilos, litro, litros, docena, barra, barras, lata, latas, paquete, paquetes, botella, botellas, trozo, gramos]
+                - label: "после меры — de + продукт"
+                  re: "(kilo|kilos|gramos|litro|litros|docena|barra|barras|lata|latas|paquete|paquetes|botella|botellas|trozo) de \\w+"
+              sample: "Un kilo de patatas, medio kilo de tomates, una docena de huevos, dos litros de leche, una barra de pan y un trozo de queso."
+              sample_ru: "Килограмм картошки, полкило помидоров, десяток яиц, два литра молока, батон хлеба и кусок сыра."
+    forms: [sin]
+    quiz:
+      - q: "Compro los huevos por ___."
+        options: "docenas | litros | barras"
+        explain: "Яйца продают десятками: por docenas."
+        skill: cantidades
+      - q: "Какая фраза правильная?"
+        options: "un litro de leche | un litro leche | un litro de la leche"
+        explain: "После меры — de без артикля."
+        skill: cantidades
+
+  - id: precios
+    kind: dialogue
+    title: "¿A cuánto están las peras?"
+    goal: спросить цену за килограмм и выбрать свежее
+    version: 2
+    vocab:
+      - "🥕 la zanahoria [θанао́рья] — морковь :: un kilo de zanahorias — килограмм моркови"
+      - "🫑 el pimiento [пимье́нто] — сладкий перец :: un pimiento rojo — красный перец"
+      - "🥬 la lechuga [лечу́га] — салат-латук :: una lechuga fresca — свежий салат"
+      - "🧄 el ajo [а́хо] — чеснок :: pan con ajo — хлеб с чесноком"
+      - "🍋 el limón [лимо́н] — лимон {pl: limones} :: té con limón — чай с лимоном"
+      - "🍐 la pera [пэ́ра] — груша :: Las peras están muy buenas. — Груши очень вкусные."
+      - "🌿 fresco/a [фрэ́ско, фрэ́ска] — свежий :: pescado fresco — свежая рыба"
+      - "💶 ¿A cuánto está...? [а куа́нто эста́] — почём…? сколько стоит (сегодня)? :: ¿A cuánto están las peras? — Почём груши?"
+    blocks:
+      - learn: [la zanahoria, el pimiento, la lechuga, el ajo]
+      - learn: [el limón, la pera, fresco/a, "¿A cuánto está...?"]
+      - "Цены на рынке меняются каждый день, поэтому спрашивают не _¿cuánto cuesta?_, а **¿a cuánto está?** — «почём сегодня?»."
+      - table:
+          id: precios
+          title: Сегодня на рынке
+          rows:
+            - ["tomates", "2,10 € el kilo"]
+            - ["zanahorias", "1,20 € el kilo"]
+            - ["pimientos", "2,80 € el kilo"]
+            - ["peras", "1,90 € el kilo"]
+            - ["limones", "2,00 € el kilo"]
+            - ["lechuga", "0,90 € la unidad"]
+      - choose:
+          title: Посмотрите на цены
+          skill: precios
+          rule: precios
+          items:
+            - q: "¿A cuánto está la lechuga?"
+              options: "A noventa céntimos. | A dos euros el kilo. | A un euro con noventa."
+              explain: "Lechuga — 0,90 € la unidad: девяносто центов за штуку."
+            - q: "¿A cuánto están los pimientos?"
+              options: "A dos ochenta el kilo. | A dos diez el kilo. | A uno veinte el kilo."
+              explain: "Pimientos — 2,80 €: a dos (euros con) ochenta el kilo."
+            - q: "¿Qué es más barato: un kilo de peras o un kilo de zanahorias?"
+              options: "Un kilo de zanahorias. | Un kilo de peras. | Es el mismo precio."
+              explain: "Zanahorias — 1,20 €, peras — 1,90 €."
+            - q: "Compras dos lechugas. ¿Cuánto pagas?"
+              options: "Un euro con ochenta. | Noventa céntimos. | Dos euros con ochenta."
+              explain: "0,90 € × 2 = 1,80 €."
+      - "Пабло покупает фрукты."
+      - dialogue:
+          id: peras
+          title: У прилавка
+          lines:
+            - "Pablo: Buenos días. ¿A cuánto están las peras? | Добрый день. Почём груши?"
+            - "Dependienta: A uno noventa el kilo. Están muy buenas. | По евро девяносто за килограмм. Очень хорошие."
+            - "Pablo: ¿Y los limones? | А лимоны?"
+            - "Dependienta: A dos euros el kilo. | По два евро за килограмм."
+            - "Pablo: Un kilo de peras y dos limones, por favor. | Килограмм груш и два лимона, пожалуйста."
+            - "Dependienta: Muy bien. ¿Algo más? | Хорошо. Что-нибудь ещё?"
+            - "Pablo: Sí, una lechuga. ¿Está fresca? | Да, один салат. Он свежий?"
+            - "Dependienta: Claro, es de hoy. | Конечно, сегодняшний."
+      - choose:
+          title: Поняли?
+          source: peras
+          skill: precios
+          items:
+            - q: "¿Cuántos limones compra Pablo?"
+              options: "Dos limones. | Un kilo. | Dos kilos."
+              explain: "Pablo: Un kilo de peras y dos limones. Килограмм — это груши."
+            - q: "¿Qué pregunta Pablo de la lechuga?"
+              options: "¿Está fresca? | ¿A cuánto está? | ¿Es de aquí?"
+              explain: "Pablo: Sí, una lechuga. ¿Está fresca?"
+            - q: "¿Cuánto paga Pablo por las peras?"
+              options: "Un euro con noventa. | Dos euros. | Tres euros con ochenta."
+              explain: "Килограмм груш по 1,90 €: un euro con noventa."
+      - match:
+          title: Соедините пары
+          free: true
+          rule: none
+          pairs:
+            - "la zanahoria — морковь"
+            - "el pimiento — перец"
+            - "la lechuga — салат"
+            - "el ajo — чеснок"
+            - "el limón — лимон"
+            - "la pera — груша"
+      - choose:
+          title: Что сказать?
+          free: true
+          skill: precios
+          rule: none
+          items:
+            - q: "Вы хотите узнать, почём сегодня помидоры."
+              options: "¿A cuánto están los tomates? | ¿Cuántos tomates están? | ¿A cuánto está los tomates?"
+              explain: "Помидоров много — están: ¿A cuánto están los tomates?"
+            - say: "Las fresas están a tres euros el kilo."
+              options: "Клубника по три евро за килограмм. | Клубника стоит три евро за штуку. | Три килограмма клубники за евро."
+              explain: "Están a tres euros el kilo — «по три евро за килограмм»."
+              noaudio: {q: "Что значит «Las fresas están a tres euros el kilo»?", options: "Клубника по три евро за килограмм. | Клубника стоит три евро за штуку. | Три килограмма клубники за евро."}
+            - q: "El pescado no está ___: es de ayer."
+              options: "fresco | barato | maduro"
+              explain: "Вчерашняя рыба — не свежая: no está fresco."
+      - build:
+          title: Соберите вопрос
+          free: true
+          skill: precios
+          rule: none
+          items:
+            - "¿A cuánto están las zanahorias hoy? — Почём сегодня морковь?"
+      - write:
+          title: Спросите по-испански
+          format: вопрос по-испански
+          free: true
+          skill: precios
+          rule: none
+          items:
+            - q: "Почём груши?"
+              a: "¿A cuánto están las peras? | ¿A cuánto están las peras hoy? | ¿Cuánto cuestan las peras?"
+              explain: "¿A cuánto están…? — о цене на сегодня."
+              mistakes:
+                "a cuánto está las peras": "Груш много: **están**."
+            - q: "Салат свежий?"
+              a: "¿La lechuga está fresca? | ¿Está fresca la lechuga? | ¿Es fresca la lechuga? | ¿La lechuga es fresca?"
+              explain: "О свежести — estar fresco: ¿Está fresca?"
+    allow: [unidad, mismo, maduro]
+    quiz:
+      - q: "— ¿A cuánto ___ los limones? — A dos euros el kilo."
+        options: "están | está | son las"
+        explain: "Лимонов много: están."
+        skill: precios
+        free: true
+      - q: "Что такое «el ajo»?"
+        options: "чеснок | лук | перец"
+        explain: "El ajo — чеснок; лук — la cebolla, перец — el pimiento."
+        skill: precios
+        free: true
+
+  - id: algo_nada
+    kind: grammar
+    title: "Algo o nada, alguien o nadie"
+    goal: сказать «что-нибудь» и «ничего», «кто-то» и «никто», «какой-нибудь» и «никакой»
+    version: 2
+    vocab:
+      - "🧍 alguien [а́льгьен] — кто-то, кто-нибудь :: ¿Hay alguien en casa? — Дома кто-нибудь есть?"
+      - "🚫 nadie [на́дье] — никто :: No hay nadie. — Никого нет."
+      - "☝️ alguno/a [альгу́но, альгу́на] — какой-нибудь; некоторые {forms: algún algunos algunas} :: ¿Tiene algún queso francés? — У вас есть какой-нибудь французский сыр?"
+      - "0️⃣ ninguno/a [нингу́но, нингу́на] — никакой, ни один {forms: ningún} :: No tengo ningún limón. — У меня нет ни одного лимона."
+    blocks:
+      - compare:
+          id: pares
+          title: Три пары
+          cards:
+            - head: algo — nada
+              say: false
+              label: о вещах
+              tone: blue
+              ex: ["¿Quieres algo? — Хочешь чего-нибудь?", "No quiero nada. — Я ничего не хочу."]
+            - head: alguien — nadie
+              say: false
+              label: о людях
+              tone: sun
+              ex: ["¿Hay alguien? — Есть кто-нибудь?", "No hay nadie. — Никого нет."]
+            - head: alguno — ninguno
+              say: false
+              label: один из многих
+              tone: mint
+              ex: ["¿Tiene alguna pera? — У вас есть хоть одна груша?", "No tengo ninguna. — Ни одной нет."]
+          note: "После глагола отрицание двойное, как в русском: **No** quiero **nada**. **No** hay **nadie**. **No** tengo **ninguna**."
+      - learn: [alguien, nadie]
+      - write:
+          title: Вставьте слово
+          format: algo, nada, alguien или nadie
+          skill: algo_nada
+          rule: pares
+          items:
+            - q: "— ¿Quieres ___ de fruta? — Sí, una pera."
+              a: "algo"
+              explain: "О вещи, в вопросе — algo."
+            - q: "— ¿Qué has comprado? — No he comprado ___."
+              a: "nada"
+              explain: "О вещи, с отрицанием — nada."
+              mistakes:
+                "algo": "После no — **nada**: no he comprado nada."
+            - q: "— ¿Hay ___ en la tienda? — Sí, una señora."
+              a: "alguien"
+              explain: "О человеке, в вопросе — alguien."
+              mistakes:
+                "algo": "О людях — **alguien**; algo — о вещах."
+            - q: "Es muy temprano: en el mercado no hay ___."
+              a: "nadie"
+              explain: "О людях, с отрицанием — nadie."
+              mistakes:
+                "nada": "О людях — **nadie**; nada — о вещах."
+      - learn: [alguno/a, ninguno/a]
+      - table:
+          id: algun
+          slide: new
+          title: Перед существительным
+          rows:
+            - ["мужской род", "**algún** limón", "**ningún** limón"]
+            - ["женский род", "**alguna** pera", "**ninguna** pera"]
+            - ["без существительного", "alguno, alguna", "ninguno, ninguna"]
+      - note:
+          id: corto
+          text: "Перед существительным мужского рода **alguno** и **ninguno** теряют `o`: _algún limón_, _ningún problema_. Без существительного — полная форма: _— ¿Tienes algún limón? — No, no tengo **ninguno**._"
+      - choose:
+          title: Выберите форму
+          skill: algo_nada
+          rule: algun
+          items:
+            - q: "¿Tiene ___ queso francés?"
+              options: "algún | alguno | alguna"
+              explain: "Перед словом мужского рода — algún."
+            - q: "No tengo ___ naranja."
+              options: "ninguna | ningún | nada"
+              explain: "Naranja — женского рода: ninguna naranja."
+            - q: "— ¿Tienes algún limón? — No, no tengo ___."
+              options: "ninguno | ningún | nadie"
+              explain: "Без существительного — полная форма: ninguno."
+            - q: "No hay ___ problema."
+              options: "ningún | ninguno | nada"
+              explain: "Problema — мужского рода, слово стоит перед ним: ningún problema."
+            - say: "No hay nadie en la tienda."
+              options: "В булочной никого нет. | В булочной ничего нет. | В булочной кто-то есть."
+              explain: "Nadie — «никто»; nada — «ничего»."
+              noaudio: {q: "Что значит «No hay nadie en la tienda»?", options: "В магазине никого нет. | В магазине ничего нет. | В магазине кто-то есть."}
+      - build:
+          title: Соберите фразу
+          skill: algo_nada
+          rule: pares
+          items:
+            - es: "Hoy no he comprado nada."
+              ru: "Сегодня я ничего не купил."
+              extra: [algo]
+            - es: "¿Tiene alguna fruta de aquí?"
+              ru: "У вас есть какие-нибудь местные фрукты?"
+              rule: algun
+              extra: [algún]
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: algo_nada
+          rule: pares
+          items:
+            - q: "Я ничего не хочу."
+              a: "No quiero nada | (Yo) no quiero nada"
+              explain: "Двойное отрицание: no… nada."
+              mistakes:
+                "quiero nada": "После глагола нужны оба слова: **no** quiero **nada**."
+                "no quiero algo": "С отрицанием — **nada**: no quiero nada."
+            - q: "Там никого нет."
+              a: "No hay nadie | Allí no hay nadie | No hay nadie allí"
+              explain: "О людях — nadie: no hay nadie."
+              mistakes:
+                "no hay nada": "No hay nada — «там ничего нет». О людях — **nadie**."
+      - compose:
+          title: О себе
+          skill: algo_nada
+          rule: pares
+          items:
+            - q: "Что вы сегодня уже купили и чего у вас дома совсем нет? Напишите две фразы."
+              format: "Hoy he comprado algo de… No tengo ningún…"
+              words: [6, 35]
+              sentences: 2
+              checks:
+                - label: "есть nada, nadie, ningún или ninguna"
+                  any: [nada, nadie, ningún, ninguna, ninguno]
+              sample: "Hoy he comprado algo de fruta. En casa no tengo ningún limón y no hay nada de pan."
+              sample_ru: "Сегодня я купил немного фруктов. Дома у меня нет ни одного лимона и совсем нет хлеба."
+    quiz:
+      - q: "— ¿Hay ___ en casa? — No, no hay nadie."
+        options: "alguien | algo | alguno"
+        explain: "О людях — alguien."
+        skill: algo_nada
+      - q: "No tengo ___ plátano."
+        options: "ningún | ninguno | nadie"
+        explain: "Перед словом мужского рода — ningún."
+        skill: algo_nada
+
+  - id: poner
+    kind: grammar
+    title: "Poner. Слишком много, мало, достаточно"
+    goal: сказать, что вы положили и чего слишком много или мало
+    version: 2
+    vocab:
+      - "📥 poner [понэ́р] — класть, ставить :: ¿Dónde pongo la fruta? — Куда положить фрукты?"
+      - "🧂 la sal [саль] — соль :: La sopa no tiene sal. — В супе нет соли."
+      - "🔺 demasiado/a [дэмасья́до, дэмасья́да] — слишком много; слишком :: Hay demasiada sal. — Слишком много соли."
+      - "🔻 poco/a [по́ко, по́ка] — мало :: Tenemos poco pan. — У нас мало хлеба."
+      - "👌 suficiente [суфиθье́нтэ] — достаточный; достаточно :: No hay suficiente leche. — Молока недостаточно."
+    blocks:
+      - "В вопросе _¿Me pone un kilo?_ — глагол **poner**: «класть, ставить». В настоящем времени у него особая форма «я», а в прошедшем — особая основа, как у _tuve_ и _pude_."
+      - learn: [poner]
+      - table:
+          id: poner
+          title: poner
+          rows:
+            - ["сейчас", "**pongo**, pones, pone, ponemos, ponéis, ponen"]
+            - ["вчера", "**puse**, pusiste, puso, pusimos, pusisteis, pusieron"]
+            - ["сегодня", "he **puesto**"]
+      - write:
+          title: Вставьте форму poner
+          format: одна форма глагола
+          skill: poner
+          rule: poner
+          items:
+            - q: "Siempre (yo) ___ limón en el té."
+              a: "pongo"
+              explain: "Yo — pongo."
+              mistakes:
+                "pono": "Форма «я» — **pongo**."
+            - q: "¿Dónde (tú) ___ las llaves normalmente?"
+              a: "pones"
+              explain: "Tú — pones."
+            - q: "Ayer (yo) ___ mucho ajo en la sopa."
+              a: "puse"
+              explain: "В прошедшем времени основа pus-: puse."
+              mistakes:
+                "poní": "У poner особая основа: **puse**."
+            - q: "¿Dónde has ___ el aceite?"
+              a: "puesto"
+              explain: "Причастие неправильное: puesto."
+              mistakes:
+                "ponido": "У poner причастие неправильное: **puesto**."
+            - q: "Ayer el camarero me ___ un vaso de agua."
+              a: "puso"
+              explain: "Él — puso."
+      - learn: [la sal, demasiado/a, poco/a, suficiente]
+      - list:
+          id: escala
+          slide: new
+          items:
+            - "🔺 **demasiado** — слишком много: _Hay demasiada sal._"
+            - "🟢 **mucho** — много: _Hay mucha fruta._"
+            - "👌 **suficiente** — достаточно: _Hay suficiente pan._"
+            - "🔻 **poco** — мало: _Hay poca leche._"
+            - "⭕ **nada de** — совсем нет: _No hay nada de azúcar._"
+      - note:
+          id: acuerdo
+          text: "**Demasiado**, **mucho** и **poco** согласуются с продуктом: _demasiad**a** sal_, _poc**os** huevos_, _much**as** naranjas_. **Suficiente** по родам не меняется: _suficiente pan, suficiente leche_."
+      - write:
+          title: Согласуйте слово
+          format: одна форма слова
+          skill: demasiado_poco
+          rule: acuerdo
+          items:
+            - q: "En la sopa hay (demasiado) ___ sal."
+              a: "demasiada"
+              explain: "La sal — женского рода: demasiada."
+              mistakes:
+                "demasiado": "La sal — женского рода: demasiad**a** sal."
+            - q: "Tenemos (poco) ___ huevos: solo dos."
+              a: "pocos"
+              explain: "Los huevos — мужской род, много: pocos."
+            - q: "Has comprado (mucho) ___ naranjas."
+              a: "muchas"
+              explain: "Las naranjas — женский род, много: muchas."
+            - q: "Hay (poco) ___ leche en la nevera."
+              a: "poca"
+              explain: "La leche — женского рода: poca."
+      - choose:
+          title: Что это значит?
+          skill: demasiado_poco
+          rule: escala
+          items:
+            - say: "No hay suficiente pan para todos."
+              options: "Хлеба не хватит на всех. | Хлеба слишком много для всех. | Хлеба нет ни у кого."
+              explain: "No hay suficiente — «недостаточно»."
+              noaudio: {q: "Что значит «No hay suficiente pan para todos»?", options: "Хлеба не хватит на всех. | Хлеба слишком много для всех. | Хлеба нет ни у кого."}
+            - q: "В супе слишком много соли. Что вы скажете?"
+              options: "Tiene demasiada sal. | Tiene poca sal. | No tiene nada de sal."
+              explain: "Слишком много — demasiada."
+            - q: "Dos barras de pan para diez amigos. ¿Es suficiente?"
+              options: "No, es poco. | Sí, es demasiado. | Sí, es mucho."
+              explain: "Два батона на десятерых — мало: es poco."
+      - build:
+          title: Соберите фразу
+          skill: demasiado_poco
+          rule: acuerdo
+          items:
+            - es: "Has puesto demasiado azúcar en el café."
+              ru: "Ты положил в кофе слишком много сахара."
+              skill: poner
+            - es: "No hay suficiente leche para el desayuno."
+              ru: "Молока на завтрак недостаточно."
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: demasiado_poco
+          rule: escala
+          items:
+            - q: "У нас мало хлеба."
+              a: "Tenemos poco pan | Hay poco pan | (Nosotros) tenemos poco pan"
+              explain: "El pan — мужского рода: poco pan."
+            - q: "Куда положить фрукты? (я)"
+              a: "¿Dónde pongo la fruta? | ¿Dónde pongo las frutas?"
+              skill: poner
+              rule: poner
+              explain: "Yo — pongo."
+      - compose:
+          title: О себе
+          skill: demasiado_poco
+          rule: escala
+          items:
+            - q: "¿Qué hay en tu nevera? Напишите две-три фразы: чего много, чего мало и чего совсем нет."
+              format: "En mi nevera hay mucha… y poco…"
+              words: [8, 45]
+              sentences: 2
+              checks:
+                - label: "есть hay или tengo"
+                  any: [hay, tengo]
+                - label: "много или мало: mucho, poco, demasiado, suficiente"
+                  any: [mucho, mucha, muchos, muchas, poco, poca, pocos, pocas, demasiado, demasiada, demasiados, demasiadas, suficiente]
+                - label: "чего нет: no hay…, nada de…, ningún…"
+                  any: [no hay, no tengo, nada de, ningún, ninguna]
+              sample: "En mi nevera hay mucha fruta y poca carne. Tengo suficiente leche, pero no hay nada de queso."
+              sample_ru: "В моём холодильнике много фруктов и мало мяса. Молока достаточно, а сыра совсем нет."
+    quiz:
+      - q: "Ayer Rosa me ___ dos kilos de naranjas."
+        options: "puso | pone | ponió"
+        explain: "Вчера, она: puso."
+        skill: poner
+      - q: "Hay ___ gente en el mercado: no puedo pasar."
+        options: "demasiada | poca | ninguna"
+        explain: "Не пройти — людей слишком много: demasiada gente."
+        skill: demasiado_poco
+
+  - id: lectura
+    kind: reading
+    title: "El mercado de mi barrio"
+    goal: понять рассказ о рынке и написать, где покупаете продукты вы
+    version: 2
+    vocab:
+      - "🍎 la frutería [фрутэри́а] — фруктовая лавка :: Compro las naranjas en la frutería. — Апельсины я покупаю во фруктовой лавке."
+      - "🥖 la panadería [панадэри́а] — булочная :: La panadería abre a las siete. — Булочная открывается в семь."
+      - "🥩 la carnicería [карниθэри́а] — мясная лавка"
+      - "🐟 la pescadería [пэскадэри́а] — рыбная лавка"
+      - "🧑‍🌾 el vendedor / la vendedora [бэндэдо́р, бэндэдо́ра] — продавец, продавщица :: La vendedora es muy amable. — Продавщица очень приветливая."
+    blocks:
+      - learn: [la frutería, la panadería, la carnicería, la pescadería, el vendedor / la vendedora]
+      - match:
+          title: Где что покупают
+          rule: none
+          pairs:
+            - "la frutería — fruta y verdura"
+            - "la panadería — pan"
+            - "la carnicería — carne y pollo"
+            - "la pescadería — pescado"
+      - "Лусия рассказывает о рынке в своём районе."
+      - reading:
+          id: barrio
+          title: El mercado de mi barrio
+          text: |
+            Todos los sábados voy al mercado de mi barrio. Es un mercado antiguo, de 1920, y me encanta.
+
+            Primero voy a la frutería: allí compro fruta y verdura para toda la semana. La vendedora se llama Rosa y es muy amable: siempre me recomienda algo. Después paso por la pescadería. El sábado pasado compré medio kilo de pescado fresco y lo cociné para mis amigos. En la carnicería compro pollo y un poco de jamón. Por último voy a la panadería y compro dos barras de pan.
+
+            En el supermercado casi todo es más barato, pero en el mercado la comida es más fresca y conozco a todos los vendedores. ¡Y siempre vuelvo a casa con demasiadas cosas!
+          translation: |
+            Каждую субботу я хожу на рынок в своём районе. Это старинный рынок, 1920 года, и я его обожаю.
+
+            Сначала я иду во фруктовую лавку: там покупаю фрукты и овощи на всю неделю. Продавщицу зовут Роса, и она очень приветливая: всегда что-нибудь мне советует. Потом захожу в рыбную лавку. В прошлую субботу я купила полкило свежей рыбы и приготовила её для друзей. В мясной лавке покупаю курицу и немного хамона. Напоследок иду в булочную и беру два батона.
+
+            В супермаркете почти всё дешевле, но на рынке еда свежее, и я знаю всех продавцов. И я всегда возвращаюсь домой со слишком большим количеством покупок!
+      - sort:
+          title: Что Лусия покупает и где?
+          source: barrio
+          groups:
+            "en la frutería": [fruta, verdura]
+            "en la carnicería": [pollo, un poco de jamón]
+            "en la panadería": [dos barras de pan]
+      - choose:
+          title: Что сказано в тексте?
+          source: barrio
+          items:
+            - q: "¿Cuándo va Lucía al mercado?"
+              options: "Todos los sábados. | Todos los días. | El sábado pasado."
+              explain: "Todos los sábados voy al mercado de mi barrio."
+            - q: "¿Qué hace la vendedora de la frutería?"
+              options: "Siempre le recomienda algo. | Cocina para sus amigos. | Vende pescado fresco."
+              explain: "La vendedora … es muy amable: siempre me recomienda algo."
+            - q: "¿Qué hizo Lucía con el pescado?"
+              options: "Lo cocinó para sus amigos. | Lo compró en el supermercado. | Lo puso en la nevera."
+              explain: "Compré medio kilo de pescado fresco y lo cociné para mis amigos."
+              skill: lo_la
+            - q: "¿Por qué prefiere el mercado?"
+              options: "Porque la comida es más fresca. | Porque todo es más barato. | Porque está más cerca."
+              explain: "En el supermercado casi todo es más barato, pero en el mercado la comida es más fresca."
+      - write:
+          title: Ответьте по тексту
+          format: короткий ответ по-испански
+          source: barrio
+          items:
+            - q: "¿Cuánto pan compra Lucía?"
+              a: "Dos barras | Dos barras de pan | Compra dos barras (de pan)"
+              explain: "Por último voy a la panadería y compro dos barras de pan."
+              skill: cantidades
+            - q: "Как в тексте сказано «со слишком большим количеством вещей»?"
+              a: "con demasiadas cosas"
+              explain: "¡Y siempre vuelvo a casa con demasiadas cosas!"
+              skill: demasiado_poco
+      - choose:
+          title: Послушайте
+          free: true
+          rule: none
+          items:
+            - say: "Conozco a todos los vendedores del mercado."
+              options: "Я знаю всех продавцов на рынке. | Я знаю все лавки на рынке. | Все продавцы на рынке знают меня."
+              explain: "Conozco a… — «я знаю (людей)»; los vendedores — «продавцы»."
+              noaudio: {q: "Что значит «Conozco a todos los vendedores del mercado»?", options: "Я знаю всех продавцов на рынке. | Я знаю все лавки на рынке. | Все продавцы на рынке знают меня."}
+      - compose:
+          title: Где покупаю я
+          free: true
+          rule: none
+          skill: [cantidades, demasiado_poco]
+          items:
+            - q: "¿Dónde haces la compra? Напишите 4–5 фраз: куда вы ходите за продуктами и когда · что там покупаете и сколько · что вам там нравится или не нравится."
+              format: "Hago la compra en… Compro…"
+              words: [25, 100]
+              sentences: 3
+              checks:
+                - label: "где: en el mercado, en el supermercado, en la frutería…"
+                  any: [mercado, supermercado, frutería, panadería, carnicería, pescadería, tienda]
+                - label: "что покупаете: compro…"
+                  any: [compro, compramos]
+                - label: "количество: kilo, litro, docena, barra, mucho, poco…"
+                  any: [kilo, kilos, litro, litros, docena, barra, barras, paquete, lata, mucho, mucha, muchos, muchas, poco, poca, un poco de, algo de]
+              sample: "Hago la compra en el supermercado de mi barrio los sábados. Compro mucha fruta, dos litros de leche y una docena de huevos. El pan lo compro en la panadería. El supermercado es barato, pero hay demasiada gente."
+              sample_ru: "Я хожу за продуктами в супермаркет своего района по субботам. Покупаю много фруктов, два литра молока и десяток яиц. Хлеб беру в булочной. Супермаркет недорогой, но там слишком много людей."
+
+  - id: mision
+    kind: practice
+    title: Покупки по списку
+    goal: купить продукты по списку и попросить другого купить нужное
+    version: 2
+    allow: [ofertas, oferta, Atención]
+    blocks:
+      - review:
+          title: Вспомним
+          skills: [lo_la, preposiciones_viaje, ir_irse]
+          n: 2
+      - mission:
+          id: lista
+          title: На рынке
+          text: "Вы на рынке со списком: килограмм апельсинов, полкило помидоров, десяток яиц и двести граммов сыра. Купите всё по порядку и спросите, сколько с вас."
+      - chat:
+          id: dependienta
+          title: У прилавка
+          with: Dependienta
+          skill: mercado_pedir
+          turns:
+            - say: "¡Hola! ¿Qué le pongo? | Здравствуйте! Что вам положить?"
+              task: "Попросите килограмм апельсинов."
+              write: "¿Me pone un kilo de naranjas? | ¿Me pone un kilo de naranjas, por favor? | Un kilo de naranjas(, por favor) | Quiero un kilo de naranjas(, por favor)"
+              format: просьба
+              mistakes:
+                "me pone un kilo naranjas": "После меры нужно **de**: un kilo **de** naranjas."
+            - say: "Aquí tiene. ¿Algo más? | Вот, пожалуйста. Что-нибудь ещё?"
+              task: "Полкило помидоров."
+              skill: cantidades
+              write: "Medio kilo de tomates | (Sí,) medio kilo de tomates(, por favor) | ¿Me pone medio kilo de tomates(, por favor)?"
+              format: что ещё
+              mistakes:
+                "un medio kilo de tomates": "Перед medio артикль не нужен: **medio kilo**."
+            - say: "Muy bien. ¿Algo más? | Хорошо. Что-нибудь ещё?"
+              task: "Спросите, есть ли у неё яйца."
+              write: "¿Tiene huevos? | ¿Hay huevos? | ¿Tienen huevos? | Sí, ¿tiene huevos?"
+              format: вопрос
+            - say: "Sí, claro. ¿Cuántos quiere? | Да, конечно. Сколько вам?"
+              task: "Десяток."
+              choose: "Una docena. | Un kilo. | Una barra."
+              explain: "Яйца считают десятками: una docena."
+              skill: cantidades
+            - say: "¿Algo más? | Что-нибудь ещё?"
+              task: "Двести граммов сыра — и больше ничего."
+              skill: cantidades
+              write: "Doscientos gramos de queso y nada más | 200 gramos de queso y nada más | Sí, doscientos gramos de queso y nada más | Doscientos gramos de queso. Nada más(, gracias) | Doscientos gramos de queso y nada más, gracias"
+              format: что ещё
+            - say: "Aquí tiene. | Вот, пожалуйста."
+              task: "Спросите, сколько с вас."
+              write: "¿Cuánto es? | ¿Cuánto es todo?"
+              format: вопрос
+            - say: "Son nueve euros con veinte. | С вас девять евро двадцать."
+      - "В супермаркете объявляют скидки дня — ofertas. Послушайте объявление два раза: текста нет."
+      - dialogue:
+          id: ofertas
+          hidden: true
+          title: Скидки дня
+          lines:
+            - "Megafonía: Atención, ofertas de hoy: naranjas a un euro el kilo, dos litros de leche por un euro con cincuenta y una docena de huevos a dos euros. | Внимание, скидки дня: апельсины по евро за килограмм, два литра молока за евро пятьдесят и десяток яиц за два евро."
+      - choose:
+          title: Что объявили?
+          source: ofertas
+          skill: precios
+          items:
+            - q: "¿A cuánto están las naranjas?"
+              options: "A un euro el kilo. | A dos euros el kilo. | A un euro con cincuenta."
+              explain: "…naranjas a un euro el kilo."
+            - q: "¿Cuánto cuestan dos litros de leche?"
+              options: "Un euro con cincuenta. | Dos euros. | Un euro."
+              explain: "…dos litros de leche por un euro con cincuenta."
+            - q: "¿Qué cuesta dos euros?"
+              options: "Una docena de huevos. | Un kilo de naranjas. | Un litro de leche."
+              explain: "…una docena de huevos a dos euros."
+      - compose:
+          title: Сообщение соседке
+          free: true
+          rule: none
+          skill: cantidades
+          items:
+            - q: "Вы на работе, а дома пустой холодильник. Напишите соседке по квартире Ане: попросите купить четыре-пять продуктов и укажите количество."
+              format: "¡Hola, Ana! ¿Puedes comprar…?"
+              words: [15, 70]
+              checks:
+                - label: "просьба: ¿Puedes comprar…? или Necesitamos…"
+                  any: [puedes comprar, puedes ir, necesitamos, necesito, hay que comprar, tienes que comprar]
+                - label: "количество + de + продукт"
+                  re: "(kilo|kilos|gramos|litro|litros|docena|barra|barras|lata|latas|paquete|paquetes|botella|botellas|trozo) de \\w+"
+              sample: "¡Hola, Ana! ¿Puedes comprar una barra de pan, un litro de leche, medio kilo de tomates y una docena de huevos? No hay nada en la nevera. ¡Gracias!"
+              sample_ru: "Привет, Ана! Можешь купить батон хлеба, литр молока, полкило помидоров и десяток яиц? В холодильнике ничего нет. Спасибо!"
+
+  - id: quiz
+    kind: quiz
+    title: "Тест: En el mercado"
+    goal: проверить цели темы — покупки, количества, algo / nada, poner
+    version: 2
+    check: soft
+    blocks:
+      - "Это тест по теме «En el mercado»: тринадцать заданий."
+      - cando:
+          - "попросить на рынке: ¿Me pone…?, ¿A cuánto están…?, Nada más"
+          - "назвать количество: un kilo de, una docena de, un trozo de"
+          - "algo / nada, alguien / nadie, algún / ningún"
+          - "poner; demasiado, poco, suficiente"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          rule: none
+          skill: cantidades
+          items:
+            - say: "Una docena de huevos y un litro de leche."
+              a: "Una docena de huevos y un litro de leche"
+              noaudio: {q: "Напишите по-испански: «Десяток яиц и литр молока».", a: "Una docena de huevos y un litro de leche"}
+      - choose:
+          title: Послушайте
+          rule: none
+          items:
+            - say: "Las peras están a dos euros el kilo."
+              options: "Груши по два евро за килограмм. | Два килограмма груш за евро. | Груша стоит два евро."
+              skill: precios
+              noaudio: {q: "Что значит «Las peras están a dos euros el kilo»?", options: "Груши по два евро за килограмм. | Два килограмма груш за евро. | Груша стоит два евро."}
+            - say: "No tengo ningún limón."
+              options: "У меня нет ни одного лимона. | У меня есть несколько лимонов. | Мне не нужны лимоны."
+              skill: algo_nada
+              noaudio: {q: "Что значит «No tengo ningún limón»?", options: "У меня нет ни одного лимона. | У меня есть несколько лимонов. | Мне не нужны лимоны."}
+      - write:
+          title: Вставьте слово
+          format: одно слово
+          rule: none
+          items:
+            - q: "— ¿Quieres algo más? — No, ___ más, gracias."
+              a: "nada"
+              skill: algo_nada
+            - q: "En el mercado no hay ___: es muy temprano."
+              a: "nadie"
+              skill: algo_nada
+            - q: "Ayer (yo, poner) ___ demasiada sal en la sopa."
+              a: "puse"
+              skill: poner
+            - q: "Hay (poco) ___ leche: tenemos que comprar más."
+              a: "poca"
+              skill: demasiado_poco
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          rule: none
+          items:
+            - q: "Полкило сыра, пожалуйста."
+              a: "Medio kilo de queso, por favor | Por favor, medio kilo de queso | ¿Me pone medio kilo de queso(, por favor)?"
+              skill: cantidades
+            - q: "Почём помидоры?"
+              a: "¿A cuánto están los tomates? | ¿A cuánto están los tomates hoy? | ¿Cuánto cuestan los tomates?"
+              skill: precios
+      - build:
+          title: Соберите фразу
+          rule: none
+          skill: mercado_pedir
+          items:
+            - "¿Me pone un kilo de naranjas, por favor? — Дайте мне килограмм апельсинов, пожалуйста."
+    quiz:
+      - q: "¿Tiene ___ queso de aquí?"
+        options: "algún | alguno | alguien"
+        explain: "Перед словом мужского рода — algún."
+        skill: algo_nada
+      - q: "Где покупают хлеб?"
+        options: "en la panadería | en la pescadería | en la carnicería"
+        explain: "La panadería — булочная: pan."
+        skill: cantidades
+      - q: "Hay ___ sal en la sopa: no me gusta nada."
+        options: "demasiada | poca | suficiente"
+        explain: "Суп совсем не нравится — соли слишком много: demasiada."
+        skill: demasiado_poco
+
+  - id: control
+    kind: final
+    title: "Контрольная точка 1"
+    goal: проверить первую треть уровня — рассказ о прошлом, слух и сообщение другу
+    version: 2
+    check: soft
+    blocks:
+      - "Контрольная точка по темам 24–29. Здесь нет нового: проверяем, что вы уже умеете. Результат подскажет, какие темы стоит повторить."
+      - cando:
+          - "рассказать о прошлом: ayer fui, he visto, hace dos años"
+          - "понять на слух разговор о поездке"
+          - "купить билет и продукты, заселиться в гостиницу"
+          - "написать другу сообщение о поездке"
+      - "Понедельник. Диего расспрашивает Ирину о выходных. Послушайте разговор два раза: текста нет."
+      - dialogue:
+          id: lunes
+          hidden: true
+          title: Как прошли выходные
+          lines:
+            - "Diego: ¡Hola, Irina! ¿Qué tal el fin de semana? | Привет, Ирина! Как выходные?"
+            - "Irina: Muy bien. Fui a Valencia con Olga. Llegamos el viernes por la noche. | Отлично. Я ездила в Валенсию с Ольгой. Мы приехали в пятницу вечером."
+            - "Diego: ¿Y qué hicisteis? | И что вы делали?"
+            - "Irina: El sábado visitamos el centro y comimos paella. El domingo fuimos a la playa. | В субботу посмотрели центр и ели паэлью. В воскресенье ходили на пляж."
+            - "Diego: ¡Qué bien! Yo nunca he estado en Valencia. ¿Cómo fuisteis? | Здорово! А я никогда не был в Валенсии. Как вы ехали?"
+            - "Irina: En tren. El tren de vuelta tuvo una hora de retraso, pero no pasó nada. | На поезде. Обратный поезд опоздал на час, но ничего страшного."
+            - "Diego: ¿Has comprado algo? | Ты что-нибудь купила?"
+            - "Irina: Sí, un kilo de naranjas en el mercado y un regalo para mi madre. | Да, килограмм апельсинов на рынке и подарок маме."
+            - "Diego: ¿Vas a volver? | Поедешь ещё?"
+            - "Irina: Claro. Me encantó la ciudad. ¡Y todavía no he visto el museo! | Конечно. Город мне очень понравился. А в музее я ещё не была!"
+      - choose:
+          title: Что вы поняли?
+          source: lunes
+          items:
+            - q: "¿Con quién fue Irina a Valencia?"
+              options: "Con Olga. | Con Diego. | Con su madre."
+              skill: fui_fue
+            - q: "¿Cuándo llegaron?"
+              options: "El viernes por la noche. | El sábado por la mañana. | El domingo."
+              skill: pret_ar
+            - q: "¿Qué hicieron el domingo?"
+              options: "Fueron a la playa. | Visitaron el centro. | Comieron paella."
+              skill: fui_fue
+            - q: "¿Qué pasó con el tren de vuelta?"
+              options: "Tuvo una hora de retraso. | Estuvo cancelado. | Salió de otro andén."
+              skill: horario
+            - q: "¿Qué compró Irina en el mercado?"
+              options: "Un kilo de naranjas. | Medio kilo de fresas. | Un trozo de queso."
+              skill: cantidades
+            - q: "¿Qué no ha visto todavía?"
+              options: "El museo. | La playa. | El centro."
+              skill: participios
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          free: true
+          rule: none
+          items:
+            - say: "Hace dos años que vivo en Madrid."
+              a: "Hace dos años que vivo en Madrid"
+              skill: desde_hace
+              noaudio: {q: "Напишите по-испански: «Я живу в Мадриде уже два года». Начните с Hace.", a: "Hace dos años que vivo en Madrid"}
+            - say: "Ayer no pude ir al mercado."
+              a: "Ayer no pude ir al mercado"
+              skill: pret_irregular_dos
+              noaudio: {q: "Напишите по-испански: «Вчера я не смог пойти на рынок».", a: "Ayer no pude ir al mercado | No pude ir al mercado ayer"}
+      - write:
+          title: Вставьте слово или форму
+          format: одно или два слова
+          free: true
+          rule: none
+          items:
+            - q: "Ayer (yo, hacer) ___ la compra."
+              a: "hice"
+              skill: pret_irregular
+            - q: "Picasso (nacer) ___ en Málaga."
+              a: "nació"
+              skill: vida
+            - q: "Esta semana (nosotros, ver) ___ dos películas."
+              a: "hemos visto"
+              skill: perf_indef
+            - q: "— ¿Tienes las llaves? — Sí, ___ tengo."
+              a: "las"
+              skill: lo_la
+            - q: "Estudio español ___ un año."
+              a: "desde hace"
+              skill: desde_hace
+            - q: "(yo) No ___ dónde está el andén."
+              a: "sé"
+              skill: saber_conocer
+      - choose:
+          title: Выберите слово
+          free: true
+          rule: none
+          items:
+            - q: "Llegué a España ___ tres años."
+              options: "hace | desde hace | desde"
+              skill: hace_atras
+            - q: "¿Me pone medio kilo ___ tomates?"
+              options: "de | con | a"
+              skill: cantidades
+            - q: "No hay ___ en la tienda: está cerrada."
+              options: "nadie | alguien | ningún"
+              skill: algo_nada
+            - q: "El tren ___ Sevilla sale del andén dos."
+              options: "para | por | en"
+              skill: preposiciones_viaje
+      - "Ольга пишет Диего после поездки."
+      - reading:
+          id: mensaje
+          title: Mensaje de Olga
+          text: |
+            ¡Hola, Diego! Ya he vuelto de Valencia. El viaje fue genial, pero hoy estoy muy cansada. Esta mañana he ido al mercado porque no tengo nada en la nevera: he comprado fruta, una docena de huevos y un trozo de queso. Ayer no pude llamarte porque llegamos muy tarde. Tengo muchas fotos. ¿Quedamos el jueves?
+
+            Un abrazo,
+            Olga
+          translation: |
+            Привет, Диего! Я уже вернулась из Валенсии. Поездка была отличная, но сегодня я очень устала. Утром сходила на рынок, потому что в холодильнике пусто: купила фрукты, десяток яиц и кусок сыра. Вчера я не смогла тебе позвонить, потому что мы приехали очень поздно. У меня много фотографий. Встретимся в четверг?
+
+            Обнимаю,
+            Ольга
+      - choose:
+          title: Что написала Ольга?
+          source: mensaje
+          items:
+            - q: "¿Por qué ha ido Olga al mercado?"
+              options: "Porque no tiene nada en la nevera. | Porque quiere cocinar paella. | Porque trabaja allí."
+              skill: algo_nada
+            - q: "¿Qué ha comprado?"
+              options: "Fruta, huevos y queso. | Fruta, leche y pan. | Pescado y verdura."
+              skill: cantidades
+            - q: "¿Por qué no llamó ayer?"
+              options: "Porque llegaron muy tarde. | Porque no tiene móvil. | Porque estuvo en el mercado."
+              skill: pret_irregular_dos
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          free: true
+          rule: none
+          items:
+            - q: "Вчера мы ходили в кино."
+              a: "Ayer fuimos al cine | Fuimos al cine ayer | (Nosotros) ayer fuimos al cine"
+              skill: fui_fue
+            - q: "Я ещё не купил билеты."
+              a: "Todavía no he comprado los billetes | No he comprado los billetes todavía | (Yo) todavía no he comprado los billetes"
+              skill: participios
+            - q: "Я не умею водить машину."
+              a: "No sé conducir | (Yo) no sé conducir"
+              skill: saber_conocer
+      - compose:
+          title: Сообщение другу
+          free: true
+          rule: none
+          skill: [fui_fue, perf_indef]
+          items:
+            - q: "Напишите другу сообщение о поездке или о выходных, 60–80 слов: куда вы ездили и когда · как добирались · что делали и что ели или купили · как всё прошло · чего вы ещё не видели и хотите увидеть."
+              format: "¡Hola! El sábado fui a…"
+              words: [45, 130]
+              sentences: 5
+              checks:
+                - label: "куда и когда: fui / fuimos / estuve + день"
+                  any: [fui, fuimos, estuve, estuvimos]
+                - label: "день или время: el sábado, ayer, hace…"
+                  any: [el sábado, el domingo, el viernes, ayer, anoche, el fin de semana, hace, la semana pasada, el mes pasado]
+                - label: "как добирались: en tren, en coche, en avión…"
+                  any: [en tren, en coche, en avión, en autobús, en metro, a pie, en bici]
+                - label: "оценка: fue…, me gustó…, me encantó…"
+                  any: [fue, me gustó, me gustaron, me encantó, me encantaron, lo pasé, lo pasamos]
+                - label: "чего ещё не видели: todavía no… или nunca…"
+                  any: [todavía no, nunca]
+              sample: "¡Hola, Ana! El sábado pasado fui a Toledo con mis amigos. Fuimos en tren y llegamos a las diez. Primero visitamos la catedral y después paseamos por el centro. Comimos en un restaurante pequeño y yo compré un recuerdo para mi madre. Fue un día genial: me encantó la ciudad. Todavía no he visto el museo y quiero volver. ¿Y tú? ¿Qué has hecho? Un abrazo."
+              sample_ru: "Привет, Ана! В прошлую субботу я ездил в Толедо с друзьями. Мы поехали на поезде и приехали в десять. Сначала посетили собор, а потом гуляли по центру. Пообедали в маленьком ресторане, и я купил сувенир маме. День был отличный: город мне очень понравился. В музее я ещё не был, поэтому хочу вернуться. А ты? Что у тебя нового? Обнимаю."
