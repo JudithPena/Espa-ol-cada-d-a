@@ -666,7 +666,8 @@ def _compose_item(it: Any, w: str) -> dict:
     for c in _items(it.get("checks")):
         if not isinstance(c, dict) or not str(c.get("label") or "").strip():
             raise ContentError(f"{w}: у признака нужен label")
-        check = {"label": str(c["label"]).strip(), "re": str(c.get("re") or "").strip(),
+        # \w в браузере не знает ñ и ü, а в Python знает: приводим к одному набору букв (текст уже без ударений)
+        check = {"label": str(c["label"]).strip(), "re": str(c.get("re") or "").strip().replace("\\w", "[a-zñü0-9]"),
                  "if": [str(x).strip() for x in _items(c.get("if"))]}
         for key in (*CHECK_KEYS, "if"):
             if any(isinstance(x, bool) for x in _items(c.get(key))):   # YAML читает no / sí без кавычек как false / true

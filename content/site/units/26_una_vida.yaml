@@ -1,0 +1,1093 @@
+id: una_vida
+number: 26
+level: A2
+title: Una vida — рассказ о жизни
+goals:
+  - рассказать, где и когда человек родился, вырос, женился, переехал
+  - называть годы и понимать их на слух
+  - сказать, сколько времени назад что-то случилось — hace dos años
+  - рассказать коротко о своей жизни и о жизни близкого человека
+
+# Тема 3 карты A2: биография. Indefinido: nacer, casarse, morir; особые основы (pude, quise, vine, dije); годы и сотни;
+# a los 20 años, hace dos años (назад) в отличие от desde hace (уже) из темы 24.
+lessons:
+  - id: picasso
+    kind: reading
+    title: "La vida de Picasso"
+    goal: понять короткую биографию и сказать, где вы родились
+    version: 2
+    # Карта экранов: docs/site_slide_maps/26_una_vida.md
+    allow: [Guernica]
+    vocab:
+      - "🌱 la vida [би́да] — жизнь :: Es la historia de su vida. — Это история его жизни."
+      - "👶 nacer [наθэ́р] — рождаться :: Nací en Kiev. — Я родился в Киеве."
+      - "🕯 morir [мори́р] — умирать :: Picasso murió en 1973. — Пикассо умер в 1973 году."
+      - "🌍 el mundo [му́ндо] — мир, свет :: Es famoso en todo el mundo. — Он знаменит во всём мире."
+      - "🎨 el pintor / la pintora [пинто́р, пинто́ра] — художник, художница :: Picasso es un pintor español. — Пикассо — испанский художник."
+      - "🖌 pintar [пинта́р] — писать красками, рисовать :: Pintó muchos cuadros. — Он написал много картин."
+      - "🖼 el cuadro [куа́дро] — картина :: Es un cuadro de Picasso. — Это картина Пикассо."
+      - "⭐ famoso/a [фамо́со, фамо́са] — знаменитый, известный :: Es una pintora muy famosa. — Это очень известная художница."
+    blocks:
+      - learn: [la vida, nacer, morir, el mundo]
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "nacer — рождаться"
+            - "morir — умирать"
+            - "la vida — жизнь"
+            - "el mundo — мир"
+      - learn: [el pintor / la pintora, pintar, el cuadro, famoso/a]
+      - choose:
+          title: Новые слова
+          rule: none
+          items:
+            - q: "Picasso es un ___ muy famoso."
+              options: "pintor | cuadro | mundo"
+              explain: "El pintor — художник. El cuadro — то, что он пишет."
+            - say: "Es un cuadro muy famoso."
+              options: "Это очень известная картина. | Это очень известный художник. | Это очень старая картина."
+              explain: "El cuadro — «картина», famoso — «известный»."
+              noaudio: {q: "Что значит «Es un cuadro muy famoso»?", options: "Это очень известная картина. | Это очень известный художник. | Это очень старая картина."}
+      - "Биография — это цепочка дат и событий. Прочитайте, как прошла жизнь Пикассо."
+      - reading:
+          id: picasso
+          title: La vida de Picasso
+          text: |
+            Pablo Picasso es uno de los pintores más famosos del mundo. Nació en Málaga, en el sur de España, en 1881. Su padre fue pintor y profesor. Pablo empezó a pintar muy joven: a los ocho años pintó su primer cuadro.
+
+            En 1895 la familia fue a vivir a Barcelona. En 1904 Picasso fue a vivir a París. Allí conoció a muchos pintores y pintó cuadros muy famosos. En 1937 pintó el «Guernica», su cuadro más famoso.
+
+            Picasso vivió en Francia muchos años y nunca volvió a vivir en España. Murió en 1973, a los noventa y un años.
+          translation: |
+            Пабло Пикассо — один из самых знаменитых художников мира. Он родился в Малаге, на юге Испании, в 1881 году. Его отец был художником и преподавателем. Пабло начал рисовать очень рано: в восемь лет он написал свою первую картину.
+
+            В 1895 году семья переехала жить в Барселону. В 1904 году Пикассо уехал жить в Париж. Там он познакомился со многими художниками и написал очень известные картины. В 1937 году он написал «Гернику» — свою самую знаменитую картину.
+
+            Пикассо много лет жил во Франции и больше не вернулся жить в Испанию. Он умер в 1973 году, в девяносто один год.
+      - choose:
+          title: Что сказано в тексте?
+          source: picasso
+          skill: vida
+          items:
+            - q: "¿Dónde nació Picasso?"
+              options: "En Málaga. | En Barcelona. | En París."
+              explain: "Nació en Málaga, en el sur de España. В Барселону и Париж он переехал позже."
+            - q: "¿Qué hizo Picasso a los ocho años?"
+              options: "Pintó su primer cuadro. | Fue a vivir a Barcelona. | Conoció a muchos pintores."
+              explain: "A los ocho años pintó su primer cuadro."
+            - q: "¿En qué año pintó el «Guernica»?"
+              options: "En 1937. | En 1904. | En 1973."
+              explain: "En 1937 pintó el «Guernica». В 1904 году он уехал в Париж, в 1973-м умер."
+            - q: "¿Cuántos años vivió Picasso?"
+              options: "Noventa y uno. | Ochenta y uno. | Setenta y tres."
+              explain: "Murió en 1973, a los noventa y un años."
+      - write:
+          title: Ответьте по тексту
+          format: короткий ответ по-испански
+          source: picasso
+          skill: vida
+          items:
+            - q: "¿En qué año nació Picasso?"
+              a: "En 1881 | Nació en 1881 | Picasso nació en 1881 | 1881"
+              explain: "Nació en Málaga … en 1881."
+            - q: "Как в тексте сказано «он умер в 1973 году»?"
+              a: "Murió en 1973"
+              explain: "Murió en 1973, a los noventa y un años."
+              mistakes:
+                "morió en 1973": "У morir в форме «он» корень меняется: **murió**."
+      - text:
+          id: naci
+          slide: new
+          text: "О себе говорят **nací** — «я родился, я родилась»: _Nací en Kiev._ О другом человеке — **nació**: _Mi madre nació en Odesa._ Спросить можно так: _¿Dónde naciste?_"
+      - choose:
+          title: Что ответить?
+          free: true
+          skill: vida
+          rule: naci
+          items:
+            - lines: ["Diego: ¿Dónde naciste?"]
+              q: "Вы родились в Киеве."
+              options: "Nací en Kiev. | Nació en Kiev. | Naciste en Kiev."
+              explain: "О себе — nací. Nació — «он родился», naciste — «ты родился»."
+            - q: "Mi abuelo ___ en 1940 y ___ en 2015."
+              options: "nació … murió | nací … morí | nace … muere"
+              explain: "О дедушке — формы «он»: nació, murió."
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: vida
+          rule: naci
+          items:
+            - es: "Picasso nació en Málaga en 1881."
+              ru: "Пикассо родился в Малаге в 1881 году."
+              alt: ["Picasso nació en 1881 en Málaga."]
+            - es: "Es uno de los pintores más famosos del mundo."
+              ru: "Он один из самых знаменитых художников мира."
+      - compose:
+          title: О себе
+          free: true
+          skill: vida
+          rule: naci
+          items:
+            - q: "¿Dónde naciste? Ответьте о себе одной фразой."
+              format: "Nací en…"
+              words: [3, 15]
+              checks:
+                - label: "начинается с Nací en…"
+                  starts: [nací en, yo nací en]
+              sample: "Nací en Kiev."
+              sample_ru: "Я родился в Киеве."
+
+  - id: anos
+    kind: vocab
+    title: "Годы: mil novecientos noventa"
+    goal: назвать год и понять его на слух
+    version: 2
+    # сотни и числа 21–29 показаны в таблицах урока
+    forms: [trescientos, trescientas, cuatrocientos, cuatrocientas, seiscientos, seiscientas, ochocientos, ochocientas,
+            veintiuno, veintiún, veintidós, veintitrés, veinticuatro, veinticinco, veintiséis, veintisiete, veintiocho, veintinueve]
+    vocab:
+      - "💯 ciento [θье́нто] — сто (перед другим числом) :: ciento veinte — сто двадцать"
+      - "2️⃣ doscientos/as [досθье́нтос] — двести :: doscientos euros — двести евро"
+      - "5️⃣ quinientos/as [киньэ́нтос] — пятьсот :: quinientos años — пятьсот лет"
+      - "7️⃣ setecientos/as [сэтэθье́нтос] — семьсот"
+      - "9️⃣ novecientos/as [нобэθье́нтос] — девятьсот :: mil novecientos — тысяча девятьсот"
+      - "📅 ¿En qué año? [эн кэ а́ньо] — в каком году? :: ¿En qué año naciste? — В каком году ты родился?"
+      - "🏛 el siglo [си́гло] — век, столетие :: Picasso es un pintor del siglo veinte. — Пикассо — художник двадцатого века."
+    blocks:
+      - "Чтобы назвать год, нужны сотни. Большинство образуется просто: число + `cientos`. Три формы — особые."
+      - table:
+          id: cientos
+          title: Сотни
+          rows:
+            - ["100", "cien (**ciento** uno, ciento veinte)"]
+            - ["200", "doscientos"]
+            - ["300", "trescientos"]
+            - ["400", "cuatrocientos"]
+            - ["500", "**quinientos**"]
+            - ["600", "seiscientos"]
+            - ["700", "**setecientos**"]
+            - ["800", "ochocientos"]
+            - ["900", "**novecientos**"]
+      - learn: [ciento, doscientos/as, quinientos/as, setecientos/as, novecientos/as]
+      - match:
+          title: Соедините пары
+          skill: anos
+          rule: cientos
+          pairs:
+            - "200 — doscientos"
+            - "500 — quinientos"
+            - "700 — setecientos"
+            - "900 — novecientos"
+            - "120 — ciento veinte"
+      - write:
+          title: Напишите число словами
+          format: число словами
+          skill: anos
+          rule: cientos
+          items:
+            - q: "500"
+              a: "quinientos"
+              explain: "Особая форма: quinientos."
+              mistakes:
+                "cincocientos": "У пятисот особая форма: **quinientos**."
+            - q: "900"
+              a: "novecientos"
+              explain: "Особая форма: novecientos, от nueve."
+              mistakes:
+                "nuevecientos": "Особая форма: **nove**cientos, без `ue`."
+            - q: "150"
+              a: "ciento cincuenta"
+              explain: "Перед другим числом — ciento: ciento cincuenta."
+              mistakes:
+                "cien cincuenta": "Перед другим числом cien превращается в **ciento**: ciento cincuenta."
+      - rule:
+          id: anos
+          slide: new
+          text: |
+            Год читается как обычное число — тысячи, сотни, десятки: 1995 — **mil novecientos noventa y cinco**, 2024 — **dos mil veinticuatro**.
+            Перед mil слово «один» не нужно: _mil novecientos_, а не «un mil».
+            Числа от 21 до 29 пишутся в одно слово: _veintiuno, veintidós, veintitrés, veinticuatro, veinticinco, veintiséis, veintisiete, veintiocho, veintinueve_.
+      - choose:
+          title: Какой это год?
+          skill: anos
+          rule: anos
+          items:
+            - q: "mil novecientos ochenta y cinco"
+              options: "1985 | 1895 | 1958"
+              explain: "Mil — 1000, novecientos — 900, ochenta y cinco — 85."
+            - q: "dos mil veintidós"
+              options: "2022 | 2012 | 2202"
+              explain: "Dos mil — 2000, veintidós — 22."
+            - say: "mil ochocientos ochenta y uno"
+              options: "1881 | 1981 | 1818"
+              explain: "Mil ochocientos — 1800, ochenta y uno — 81: год рождения Пикассо."
+              noaudio: {q: "Какой это год: «mil ochocientos ochenta y uno»?", options: "1881 | 1981 | 1818"}
+      - write:
+          title: Запишите год цифрами
+          format: год цифрами
+          skill: anos
+          rule: anos
+          items:
+            - say: "mil novecientos noventa y dos"
+              a: "1992"
+              noaudio: {q: "Запишите цифрами: mil novecientos noventa y dos", a: "1992"}
+            - say: "dos mil diez"
+              a: "2010"
+              noaudio: {q: "Запишите цифрами: dos mil diez", a: "2010"}
+            - say: "mil novecientos setenta y tres"
+              a: "1973"
+              noaudio: {q: "Запишите цифрами: mil novecientos setenta y tres", a: "1973"}
+            - say: "dos mil veinticinco"
+              a: "2025"
+              noaudio: {q: "Запишите цифрами: dos mil veinticinco", a: "2025"}
+      - write:
+          title: Напишите год словами
+          format: год словами
+          skill: anos
+          rule: anos
+          items:
+            - q: "2020"
+              a: "dos mil veinte"
+              explain: "Dos mil + veinte."
+            - q: "1999"
+              a: "mil novecientos noventa y nueve"
+              explain: "Mil + novecientos + noventa y nueve."
+              mistakes:
+                "mil nuevecientos noventa y nueve": "Девятьсот — **novecientos**, без `ue`."
+                "un mil novecientos noventa y nueve": "Перед mil слово un не нужно: **mil** novecientos…"
+      - learn: ["¿En qué año?", el siglo]
+      - choose:
+          title: Что ответить?
+          skill: anos
+          rule: anos
+          items:
+            - lines: ["Diego: ¿En qué año naciste?"]
+              q: "Вы родились в 1990 году."
+              options: "Nací en mil novecientos noventa. | Nació en mil novecientos noventa. | Nací en mil nuevecientos noventa."
+              explain: "О себе — nací; девятьсот — novecientos."
+              skill: vida
+            - q: "1937 — ¿qué siglo es?"
+              options: "El siglo veinte. | El siglo diecinueve. | El siglo dieciocho."
+              explain: "Годы 1901–2000 — двадцатый век: el siglo veinte."
+      - build:
+          title: Соберите вопрос
+          skill: vida
+          rule: none
+          items:
+            - "¿En qué año naciste? — В каком году ты родился?"
+      - compose:
+          title: О себе
+          skill: anos
+          rule: anos
+          items:
+            - q: "¿En qué año naciste? Ответьте фразой и напишите год словами."
+              format: "Nací en mil novecientos…"
+              words: [4, 14]
+              checks:
+                - label: "начинается с Nací en…"
+                  starts: [nací en, yo nací en]
+                - label: "год словами: mil novecientos… или dos mil…"
+                  any: [mil novecientos, dos mil]
+              sample: "Nací en mil novecientos noventa."
+              sample_ru: "Я родился в тысяча девятьсот девяностом году."
+    quiz:
+      - q: "Как сказать «500»?"
+        options: "quinientos | cincocientos | cincuenta"
+        explain: "Особая форма: quinientos. Cincuenta — это 50."
+        skill: anos
+      - q: "mil novecientos sesenta y seis"
+        options: "1966 | 1976 | 1696"
+        explain: "Novecientos — 900, sesenta y seis — 66."
+        skill: anos
+
+  - id: etapas
+    kind: vocab
+    title: Этапы жизни
+    goal: рассказать о главных событиях в жизни человека — вырос, переехал, женился
+    version: 2
+    vocab:
+      - "🌳 crecer [крэθэ́р] — расти, вырастать :: Crecí en un pueblo. — Я вырос в деревне."
+      - "🚚 mudarse [муда́рсэ] — переезжать :: Me mudé a Madrid en 2020. — Я переехал в Мадрид в 2020 году."
+      - "💍 casarse [каса́рсэ] — жениться, выходить замуж :: Mis padres se casaron en 1988. — Мои родители поженились в 1988 году."
+      - "👰 la boda [бо́да] — свадьба :: Fue una boda muy bonita. — Это была очень красивая свадьба."
+      - "🌴 jubilarse [хубила́рсэ] — выходить на пенсию :: Mi abuela se jubiló en 2010. — Моя бабушка вышла на пенсию в 2010 году."
+      - "🎂 a los... años [а лос а́ньос] — в … лет :: A los veinte años empecé a trabajar. — В двадцать лет я начал работать."
+    blocks:
+      - "Лусия показывает Ирине фотографию бабушки и дедушки."
+      - dialogue:
+          id: abuelos
+          title: Бабушка Кармен
+          lines:
+            - "Irina: ¿Quién es esta señora? | Кто эта женщина?"
+            - "Lucía: Es mi abuela Carmen. Nació en un pueblo de Andalucía en 1945. | Это моя бабушка Кармен. Она родилась в деревне в Андалусии в 1945 году."
+            - "Irina: ¿Y creció allí? | И выросла там?"
+            - "Lucía: Sí, creció en el pueblo, pero a los dieciocho años se mudó a Madrid para trabajar. | Да, выросла в деревне, но в восемнадцать лет переехала в Мадрид работать."
+            - "Irina: ¿Y tu abuelo? | А твой дедушка?"
+            - "Lucía: Mi abuelo Antonio es de Madrid. Se conocieron en 1966 en una fiesta y se casaron un año después. | Мой дедушка Антонио — из Мадрида. Они познакомились в 1966 году на вечеринке и поженились через год."
+            - "Irina: ¡Qué bonito! ¿Tuvieron muchos hijos? | Как красиво! У них было много детей?"
+            - "Lucía: Tres: mi madre y mis dos tíos. Mi abuela trabajó en una tienda hasta 2010. Ese año se jubiló. | Трое: моя мама и двое моих дядей. Бабушка работала в магазине до 2010 года. В тот год она вышла на пенсию."
+            - "Irina: ¿Y ahora? | А сейчас?"
+            - "Lucía: Ahora viaja mucho. ¡El año pasado fue a México! | Сейчас она много путешествует. В прошлом году ездила в Мексику!"
+      - learn: [crecer, mudarse, casarse, la boda, jubilarse, a los... años]
+      - choose:
+          title: Поняли?
+          source: abuelos
+          skill: etapas
+          items:
+            - q: "¿Dónde nació la abuela de Lucía?"
+              options: "En un pueblo de Andalucía. | En Madrid. | En México."
+              explain: "Lucía: Nació en un pueblo de Andalucía en 1945."
+            - q: "¿Para qué se mudó a Madrid?"
+              options: "Para trabajar. | Para estudiar. | Para casarse."
+              explain: "A los dieciocho años se mudó a Madrid para trabajar."
+            - q: "¿En qué año se casaron los abuelos?"
+              options: "En 1967. | En 1966. | En 1945."
+              explain: "Se conocieron en 1966 … y se casaron un año después — то есть в 1967-м."
+            - q: "¿Qué hizo la abuela en 2010?"
+              options: "Se jubiló. | Se mudó a Madrid. | Fue a México."
+              explain: "Trabajó en una tienda hasta 2010. Ese año se jubiló."
+      - compare:
+          id: cuando
+          slide: new
+          title: Когда это случилось
+          cards:
+            - head: en 1966
+              label: в 1966 году
+              tone: blue
+              ex: ["Se conocieron en 1966. — Они познакомились в 1966 году."]
+            - head: a los 18 años
+              label: в 18 лет
+              tone: sun
+              ex: ["A los dieciocho años se mudó a Madrid. — В восемнадцать лет она переехала в Мадрид."]
+            - head: un año después
+              label: через год
+              tone: mint
+              ex: ["Se casaron un año después. — Они поженились через год."]
+          note: "**Conocer** в прошедшем времени значит «познакомиться»: _Conocí a mi marido en 2015_ — «Я познакомилась с мужем в 2015 году»."
+      - match:
+          title: Соедините пары
+          free: true
+          skill: etapas
+          rule: none
+          pairs:
+            - "nacer — родиться"
+            - "crecer — вырасти"
+            - "casarse — пожениться"
+            - "mudarse — переехать"
+            - "jubilarse — выйти на пенсию"
+            - "la boda — свадьба"
+      - write:
+          title: Поставьте глагол в прошедшее время
+          format: одна форма глагола
+          accents: strict
+          free: true
+          skill: etapas
+          rule: cuando
+          items:
+            - q: "Mi hermana (casarse) se ___ en 2019."
+              a: "casó"
+              explain: "Ella — se casó."
+              mistakes:
+                "caso": "Нужен знак ударения: se cas**ó**. Без него — «я женюсь»."
+            - q: "A los veinte años (yo, empezar) ___ a trabajar."
+              a: "empecé"
+              explain: "Empezar → empecé: перед e буква z меняется на c."
+              mistakes:
+                "empezé": "Перед `e` пишется `c`: empe**c**é."
+            - q: "Mis padres se (conocer) ___ en la universidad."
+              a: "conocieron"
+              explain: "Ellos — se conocieron: «познакомились»."
+            - q: "Mi abuelo (jubilarse) se ___ a los sesenta y cinco años."
+              a: "jubiló"
+              explain: "Él — se jubiló."
+            - q: "(yo, crecer) ___ en una ciudad pequeña."
+              a: "crecí"
+              explain: "Yo — crecí."
+      - choose:
+          title: Послушайте
+          free: true
+          skill: etapas
+          rule: cuando
+          items:
+            - say: "Me casé a los treinta años."
+              options: "Я женился в тридцать лет. | Я женюсь через тридцать лет. | Он женился тридцать лет назад."
+              explain: "Me casé — «я женился»; a los treinta años — «в тридцать лет»."
+              noaudio: {q: "Что значит «Me casé a los treinta años»?", options: "Я женился в тридцать лет. | Я женюсь через тридцать лет. | Он женился тридцать лет назад."}
+            - say: "Fue una boda muy bonita."
+              options: "Это была очень красивая свадьба. | Это очень красивая свадьба. | Я был на красивой свадьбе."
+              explain: "Fue — «была»; la boda — «свадьба»."
+              noaudio: {q: "Что значит «Fue una boda muy bonita»?", options: "Это была очень красивая свадьба. | Это очень красивая свадьба. | Я был на красивой свадьбе."}
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: etapas
+          rule: cuando
+          items:
+            - es: "Mis abuelos se casaron en 1967."
+              ru: "Мои бабушка и дедушка поженились в 1967 году."
+              alt: ["En 1967 mis abuelos se casaron."]
+            - es: "A los dieciocho años se mudó a Madrid."
+              ru: "В восемнадцать лет она переехала в Мадрид."
+              alt: ["Se mudó a Madrid a los dieciocho años."]
+              extra: [en]
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          free: true
+          skill: etapas
+          rule: cuando
+          items:
+            - q: "Я вырос в Одессе."
+              a: "Crecí en Odesa | (Yo) crecí en Odesa"
+              explain: "Crecer → crecí."
+            - q: "В двадцать лет я начал работать."
+              a: "A los veinte años empecé a trabajar | Empecé a trabajar a los veinte años | A los 20 años empecé a trabajar | Empecé a trabajar a los 20 años"
+              explain: "A los veinte años — «в двадцать лет»; empecé a + инфинитив."
+              mistakes:
+                "en veinte años empecé a trabajar": "Возраст — **a los** veinte años. En veinte años значит «через двадцать лет»."
+                "a veinte años empecé a trabajar": "Нужен артикль: a **los** veinte años."
+      - compose:
+          title: О своей семье
+          free: true
+          skill: etapas
+          rule: cuando
+          items:
+            - q: "Напишите две-три фразы о родителях или о бабушке с дедушкой: где родились, где выросли, когда поженились, куда переехали."
+              format: "Mi madre nació en… Mis padres se casaron en…"
+              words: [8, 50]
+              sentences: 2
+              checks:
+                - label: "событие в прошлом: nació, creció, se casaron, se mudó, vivió…"
+                  any: [nació, nacieron, creció, crecieron, se casó, se casaron, se mudó, se mudaron, vivió, vivieron, trabajó, trabajaron, se conocieron, se jubiló, estudió]
+                - label: "когда: en + год или a los … años"
+                  re: "(en (19|20)\\d\\d|en mil|en dos mil|a los \\w+( y \\w+)? años|a los \\d+ años)"
+              sample: "Mi madre nació en Odesa en 1965. Mis padres se conocieron en la universidad y se casaron en 1988."
+              sample_ru: "Моя мама родилась в Одессе в 1965 году. Мои родители познакомились в университете и поженились в 1988 году."
+    quiz:
+      - q: "A ___ veinte años me mudé a Valencia."
+        options: "los | las | el"
+        explain: "Возраст — a los … años: los años."
+        skill: etapas
+        free: true
+      - q: "Mis padres ___ en 1990: fue una boda pequeña."
+        options: "se casaron | se casó | se casan"
+        explain: "Mis padres — они, в прошлом: se casaron."
+        skill: etapas
+        free: true
+
+  - id: hace_anos
+    kind: grammar
+    title: "Hace dos años: сколько времени назад"
+    goal: сказать, сколько времени назад что-то случилось
+    version: 2
+    vocab:
+      - "🕐 hace poco [а́θэ по́ко] — недавно :: Me mudé hace poco. — Я недавно переехал."
+      - "🕰 hace mucho [а́θэ му́чо] — давно :: Estuve en México hace mucho. — Я был в Мексике давно."
+      - "🔚 último/a [у́льтимо, у́льтима] — последний :: ¿Cuándo fue la última vez? — Когда это было в последний раз?"
+      - "🥇 por primera vez [пор примэ́ра бэθ] — впервые, в первый раз :: En 2019 fui a España por primera vez. — В 2019 году я впервые съездил в Испанию."
+    blocks:
+      - "Слово **hace** вы знаете: _Hace un año que estudio español_ — «я учу испанский уже год». С прошедшим временем оно значит другое — «тому назад»."
+      - compare:
+          id: hace
+          title: Назад или уже?
+          cards:
+            - head: hace + срок
+              say: false
+              label: "назад — действие закончилось"
+              tone: blue
+              ex: ["Llegué a Madrid hace dos años. — Я приехал в Мадрид два года назад.", "Me casé hace un mes. — Я женился месяц назад."]
+            - head: desde hace + срок
+              say: false
+              label: "уже — действие продолжается"
+              tone: sun
+              ex: ["Vivo en Madrid desde hace dos años. — Я живу в Мадриде уже два года.", "Estoy casado desde hace un mes. — Я женат уже месяц."]
+          note: "Подсказка — время глагола: с прошедшим (_llegué, me casé_) — просто **hace**; с настоящим (_vivo, estoy_) — **desde hace**."
+      - sort:
+          title: Назад или уже?
+          skill: hace_atras
+          groups:
+            "назад": ["Llegué hace un mes.", "Me mudé hace dos años.", "Nos casamos hace diez años."]
+            "уже": ["Vivo aquí desde hace un mes.", "Trabajo aquí desde hace dos años.", "Estudio español desde hace un año."]
+      - write:
+          title: hace или desde hace?
+          format: hace или desde hace
+          skill: hace_atras
+          items:
+            - q: "Conocí a Diego ___ dos años."
+              a: "hace"
+              explain: "Conocí — прошедшее время, событие случилось: hace dos años — «два года назад»."
+              mistakes:
+                "desde hace": "Conocí — законченное событие: «познакомился два года назад» — просто **hace**."
+            - q: "Conozco a Diego ___ dos años."
+              a: "desde hace"
+              explain: "Conozco — настоящее время, знакомство продолжается: desde hace."
+              mistakes:
+                "hace": "Conozco — настоящее время: знаком «уже два года» — **desde hace**."
+            - q: "Me mudé a esta casa ___ seis meses."
+              a: "hace"
+              explain: "Me mudé — прошедшее время: hace seis meses."
+              mistakes:
+                "desde hace": "Me mudé — законченное событие: просто **hace**."
+            - q: "Trabajo en este hospital ___ seis meses."
+              a: "desde hace"
+              explain: "Trabajo — настоящее время: desde hace."
+              mistakes:
+                "hace": "Trabajo — настоящее время: «уже шесть месяцев» — **desde hace**."
+      - learn: [hace poco, hace mucho, último/a, por primera vez]
+      - choose:
+          title: Что ответить?
+          skill: hace_atras
+          items:
+            - lines: ["Irina: ¿Cuándo llegaste a España?"]
+              q: "Вы приехали три года назад."
+              options: "Hace tres años. | Desde hace tres años. | En tres años."
+              explain: "«Три года назад» — hace tres años. En tres años значит «через три года»."
+            - say: "Estuve en México hace mucho."
+              options: "Я был в Мексике давно. | Я давно живу в Мексике. | Я скоро поеду в Мексику."
+              explain: "Estuve — «я был», hace mucho — «давно»."
+              noaudio: {q: "Что значит «Estuve en México hace mucho»?", options: "Я был в Мексике давно. | Я давно живу в Мексике. | Я скоро поеду в Мексику."}
+            - q: "Mi hermana se casó ___: la boda fue en septiembre."
+              options: "hace poco | hace mucho | por primera vez"
+              explain: "Свадьба была совсем недавно — hace poco."
+            - say: "¿Cuándo fuiste al cine por última vez?"
+              options: "Когда ты в последний раз ходил в кино? | Когда ты впервые пошёл в кино? | Когда ты пойдёшь в кино?"
+              explain: "Por última vez — «в последний раз»; por primera vez — «впервые»."
+              noaudio: {q: "Что значит «¿Cuándo fuiste al cine por última vez?»", options: "Когда ты в последний раз ходил в кино? | Когда ты впервые пошёл в кино? | Когда ты пойдёшь в кино?"}
+      - build:
+          title: Соберите фразу
+          skill: hace_atras
+          items:
+            - es: "En 2019 fui a España por primera vez."
+              ru: "В 2019 году я впервые съездил в Испанию."
+              alt: ["Fui a España por primera vez en 2019."]
+            - es: "Mis padres se casaron hace treinta años."
+              ru: "Мои родители поженились тридцать лет назад."
+              alt: ["Hace treinta años mis padres se casaron."]
+              extra: [desde]
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: hace_atras
+          items:
+            - q: "Я приехал в Мадрид два года назад."
+              a: "Llegué a Madrid hace dos años | Hace dos años llegué a Madrid | (Yo) llegué a Madrid hace dos años"
+              explain: "Llegué — прошедшее время, поэтому просто hace dos años."
+              mistakes:
+                "llegué a madrid desde hace dos años": "С прошедшим временем — просто **hace**: llegué hace dos años."
+                "llegué a madrid dos años hace": "Hace стоит перед сроком: **hace** dos años."
+            - q: "Мы познакомились недавно."
+              a: "Nos conocimos hace poco | Hace poco nos conocimos | (Nosotros) nos conocimos hace poco"
+              explain: "Nos conocimos — «мы познакомились»; hace poco — «недавно»."
+      - compose:
+          title: О себе
+          skill: hace_atras
+          rule: hace
+          items:
+            - q: "¿Cuándo empezaste a estudiar español? ¿Cuándo fuiste al cine por última vez? Ответьте двумя фразами с hace."
+              format: "Empecé a estudiar español hace…"
+              words: [8, 35]
+              sentences: 2
+              checks:
+                - label: "есть hace + срок"
+                  re: "hace (un|una|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|\\w+|\\d+) (dia|dias|semana|semanas|mes|meses|año|años)|hace poco|hace mucho"
+                - label: "глагол в прошедшем времени: empecé, fui…"
+                  any: [empecé, fui, estuve, vi]
+              sample: "Empecé a estudiar español hace un año. Fui al cine hace dos semanas."
+              sample_ru: "Я начал учить испанский год назад. В кино я ходил две недели назад."
+    quiz:
+      - q: "Llegué a Madrid ___ dos años."
+        options: "hace | desde hace | desde"
+        explain: "Llegué — законченное событие: hace dos años — «два года назад»."
+        skill: hace_atras
+      - q: "Vivo en Madrid ___ dos años."
+        options: "desde hace | hace | en"
+        explain: "Vivo — настоящее время, действие продолжается: desde hace."
+        skill: desde_hace
+
+  - id: otros_irregulares
+    kind: grammar
+    title: "Pude, quise, vine, dije"
+    goal: сказать, что вы не смогли, захотели, пришли и что вам сказали
+    version: 2
+    unlocks: [preterite_irregular]
+    vocab:
+      - "🚶‍♂️ venir [бэни́р] — приходить, приезжать (сюда) :: ¿Vienes a la fiesta? — Ты придёшь на вечеринку?"
+      - "🗣 decir [дэθи́р] — говорить, сказать :: ¿Qué dices? — Что ты говоришь?"
+      - "✅ la verdad [бэрда́д] — правда :: Es verdad. — Это правда."
+      - "📰 la noticia [ноти́θья] — новость :: Tengo una noticia. — У меня есть новость."
+      - "🏁 por fin [пор фин] — наконец, наконец-то :: ¡Por fin es viernes! — Наконец-то пятница!"
+    blocks:
+      - "Два новых глагола — venir и decir. В настоящем времени у них особая форма «я»: **vengo**, **digo**."
+      - learn: [venir, decir]
+      - compare:
+          id: presente
+          style: small
+          cards:
+            - head: vengo
+              label: я прихожу
+            - head: vienes
+              label: ты приходишь
+            - head: digo
+              label: я говорю
+            - head: dices
+              label: ты говоришь
+          note: "Остальные формы: _viene, venimos, venís, vienen_ и _dice, decimos, decís, dicen_."
+      - choose:
+          title: Выберите форму
+          skill: pret_irregular_dos
+          rule: presente
+          items:
+            - q: "— ¿Vienes a la fiesta? — Sí, ___ con mi hermana."
+              options: "vengo | vieno | veno"
+              explain: "Форма «я» у venir — vengo."
+            - q: "Siempre (yo) ___ la verdad."
+              options: "digo | deco | dico"
+              explain: "Форма «я» у decir — digo."
+      - text:
+          id: fuertes
+          slide: new
+          text: "В прошедшем времени у этих глаголов, а ещё у poder и querer, — новая основа и окончания без знаков ударения, как у _tuve_ и _estuve_."
+      - table:
+          id: tabla
+          rows:
+            - ["poder", "**pud-**", "pude, pudiste, pudo, pudimos, pudisteis, pudieron"]
+            - ["querer", "**quis-**", "quise, quisiste, quiso, quisimos, quisisteis, quisieron"]
+            - ["venir", "**vin-**", "vine, viniste, vino, vinimos, vinisteis, vinieron"]
+            - ["decir", "**dij-**", "dije, dijiste, dijo, dijimos, dijisteis, **dijeron**"]
+      - more:
+          title: Почему dijeron, а не `dijieron`?
+          text: "После `j` в окончании «они» буква `i` пропадает: **dijeron**. А слово **vino** значит и «он пришёл», и «вино» — смысл ясен из фразы: _Pablo vino a casa_ и _un vino español_."
+      - write:
+          title: Поставьте глагол в прошедшее время
+          format: одна форма глагола
+          skill: pret_irregular_dos
+          rule: tabla
+          items:
+            - q: "Ayer no (yo, poder) ___ ir a clase."
+              a: "pude"
+              explain: "Yo — pude."
+              mistakes:
+                "podí": "У poder особая основа: **pude**."
+                "pudé": "Окончание без знака ударения: **pude**."
+            - q: "Mi hermano no (querer) ___ venir a la fiesta."
+              a: "quiso"
+              explain: "Él — quiso. No quiso — «не захотел, отказался»."
+              mistakes:
+                "querió": "У querer особая основа: **quiso**."
+            - q: "¿A qué hora (tú, venir) ___ a casa anoche?"
+              a: "viniste"
+              explain: "Tú — viniste."
+              mistakes:
+                "veniste": "Основа в прошедшем времени — vin-: **viniste**."
+            - q: "¿Qué (decir) ___ la profesora?"
+              a: "dijo"
+              explain: "Ella — dijo."
+              mistakes:
+                "dició": "У decir особая основа: **dijo**."
+                "dijó": "Окончание без знака ударения: **dijo**."
+            - q: "Mis amigos (decir) ___ la verdad."
+              a: "dijeron"
+              explain: "Ellos — dijeron, без i после j."
+              mistakes:
+                "dijieron": "После `j` буква `i` пропадает: **dijeron**."
+            - q: "El sábado no (nosotros, poder) ___ salir."
+              a: "pudimos"
+              explain: "Nosotros — pudimos."
+      - learn: [la verdad, la noticia, por fin]
+      - choose:
+          title: Послушайте
+          skill: pret_irregular_dos
+          rule: tabla
+          items:
+            - say: "No pude venir porque tuve que trabajar."
+              options: "Я не смог прийти, потому что мне пришлось работать. | Я не хочу приходить, потому что работаю. | Он не пришёл, потому что работал."
+              explain: "No pude — «я не смог»; tuve que — «мне пришлось»."
+              noaudio: {q: "Что значит «No pude venir porque tuve que trabajar»?", options: "Я не смог прийти, потому что мне пришлось работать. | Я не хочу приходить, потому что работаю. | Он не пришёл, потому что работал."}
+            - say: "Por fin me dijo la verdad."
+              options: "Наконец он сказал мне правду. | Наконец я сказал ему правду. | Он всегда говорит мне правду."
+              explain: "Me dijo — «он сказал мне»; por fin — «наконец»."
+              noaudio: {q: "Что значит «Por fin me dijo la verdad»?", options: "Наконец он сказал мне правду. | Наконец я сказал ему правду. | Он всегда говорит мне правду."}
+      - match:
+          title: Вопрос — ответ
+          skill: pret_irregular_dos
+          rule: tabla
+          pairs:
+            - "¿Por qué no viniste? — No pude: tuve un examen."
+            - "¿Qué te dijo Ana? — Me dijo una noticia."
+            - "¿Vino Carlos a la fiesta? — No, no quiso venir."
+            - "¿Pudisteis ver el partido? — Sí, lo vimos en un bar."
+      - build:
+          title: Соберите фразу
+          skill: pret_irregular_dos
+          rule: tabla
+          items:
+            - es: "Ayer no pude ir a clase."
+              ru: "Вчера я не смог пойти на занятие."
+              alt: ["No pude ir a clase ayer."]
+              extra: [puedo]
+            - es: "Mi abuelo vino a Madrid por primera vez."
+              ru: "Мой дедушка впервые приехал в Мадрид."
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: pret_irregular_dos
+          rule: tabla
+          items:
+            - q: "Что он сказал?"
+              a: "¿Qué dijo? | ¿Qué dijo él? | ¿Él qué dijo?"
+              explain: "Él — dijo."
+              mistakes:
+                "qué dice": "Dice — настоящее время: «что он говорит?». В прошлом — **dijo**."
+            - q: "Я не смог прийти."
+              a: "No pude venir | (Yo) no pude venir"
+              explain: "No pude + инфинитив."
+              mistakes:
+                "no puedo venir": "No puedo — «не могу» сейчас. «Не смог» — **no pude**."
+      - compose:
+          title: О себе
+          skill: pret_irregular_dos
+          rule: tabla
+          items:
+            - q: "Что вы не смогли сделать на прошлой неделе и почему? Напишите одну-две фразы."
+              format: "La semana pasada no pude… porque…"
+              words: [6, 35]
+              checks:
+                - label: "есть no pude + действие"
+                  re: "no pude (\\w+(ar|er|ir)|ir)\\b"
+                - label: "причина: porque…"
+                  any: [porque]
+              sample: "La semana pasada no pude ir a clase porque tuve mucho trabajo."
+              sample_ru: "На прошлой неделе я не смог пойти на занятие, потому что у меня было много работы."
+    quiz:
+      - q: "— ¿Qué te ___ el médico? — Que tengo que descansar."
+        options: "dijo | dije | dició"
+        explain: "El médico — «он»: dijo."
+        skill: pret_irregular_dos
+      - q: "Ayer mis amigos no ___ venir."
+        options: "pudieron | pudo | podieron"
+        explain: "Mis amigos — они: pudieron, основа pud-."
+        skill: pret_irregular_dos
+
+  - id: lectura
+    kind: reading
+    title: "La vida de mi abuelo"
+    goal: понять рассказ о жизни человека и написать биографию близкого
+    version: 2
+    vocab:
+      - "🧒 de niño / de niña [дэ ни́ньо, дэ ни́нья] — в детстве :: De niño viví en un pueblo. — В детстве я жил в деревне."
+      - "🏙 la capital [капита́ль] — столица {pl: capitales} :: Madrid es la capital de España. — Мадрид — столица Испании."
+      - "🚦 al principio [аль принθи́пьо] — сначала, поначалу :: Al principio fue difícil. — Поначалу было трудно."
+      - "🚀 el éxito [э́ксито] — успех :: El restaurante tuvo mucho éxito. — Ресторан имел большой успех."
+    blocks:
+      - learn: [de niño / de niña, la capital, al principio, el éxito]
+      - choose:
+          title: Новые слова
+          rule: none
+          items:
+            - q: "Kiev es la ___ de Ucrania."
+              options: "capital | catedral | vida"
+              explain: "La capital — столица."
+            - say: "Al principio fue muy difícil."
+              options: "Поначалу было очень трудно. | В конце было очень трудно. | Сейчас очень трудно."
+              explain: "Al principio — «сначала, поначалу»; fue — «было»."
+              noaudio: {q: "Что значит «Al principio fue muy difícil»?", options: "Поначалу было очень трудно. | В конце было очень трудно. | Сейчас очень трудно."}
+            - q: "___ viví en un pueblo pequeño; ahora vivo en la capital."
+              options: "De niño | Por último | Por fin"
+              explain: "De niño — «в детстве»: раньше жил в деревне, теперь — в столице."
+            - q: "La película tuvo mucho ___: la vio todo el mundo."
+              options: "éxito | error | consejo"
+              explain: "Tener éxito — «иметь успех». Todo el mundo — «все»."
+      - "Диего рассказывает о своём дедушке из Мексики."
+      - reading:
+          id: abuelo
+          title: La vida de mi abuelo
+          text: |
+            Mi abuelo Miguel nació en 1940 en un pueblo pequeño del norte de México. De niño no pudo ir mucho a la escuela porque tuvo que trabajar en el campo con su padre.
+
+            A los dieciséis años se mudó a la capital para buscar trabajo. Primero trabajó en un mercado y después en un restaurante. Allí conoció a mi abuela, Rosa. Se casaron en 1965 y tuvieron cuatro hijos.
+
+            En 1980 mis abuelos abrieron su restaurante. Al principio fue muy difícil, pero trabajaron mucho y el restaurante tuvo éxito.
+
+            Mi abuelo se jubiló hace quince años. Hace dos años vino a Madrid por primera vez para ver a su familia. Me dijo: «Diego, en la vida hay que trabajar, pero también hay que viajar». Ahora quiere aprender inglés. ¡Y tiene ochenta y seis años!
+          translation: |
+            Мой дедушка Мигель родился в 1940 году в маленькой деревне на севере Мексики. В детстве он не смог много ходить в школу, потому что ему пришлось работать в поле с отцом.
+
+            В шестнадцать лет он переехал в столицу искать работу. Сначала работал на рынке, а потом в ресторане. Там он познакомился с моей бабушкой Росой. Они поженились в 1965 году, и у них родилось четверо детей.
+
+            В 1980 году бабушка с дедушкой открыли свой ресторан. Поначалу было очень трудно, но они много работали, и ресторан стал успешным.
+
+            Дедушка вышел на пенсию пятнадцать лет назад. Два года назад он впервые приехал в Мадрид повидать семью. Он сказал мне: «Диего, в жизни нужно работать, но нужно и путешествовать». Теперь он хочет выучить английский. А ему восемьдесят шесть лет!
+      - choose:
+          title: Что сказано в тексте?
+          source: abuelo
+          items:
+            - q: "¿Por qué no pudo ir mucho a la escuela?"
+              options: "Porque tuvo que trabajar en el campo. | Porque se mudó a la capital. | Porque no quiso estudiar."
+              explain: "De niño no pudo ir mucho a la escuela porque tuvo que trabajar en el campo con su padre."
+              skill: pret_irregular_dos
+            - q: "¿Qué hizo a los dieciséis años?"
+              options: "Se mudó a la capital. | Se casó con Rosa. | Abrió un restaurante."
+              explain: "A los dieciséis años se mudó a la capital para buscar trabajo."
+              skill: etapas
+            - q: "¿Dónde conoció a su mujer?"
+              options: "En un restaurante. | En un mercado. | En su pueblo."
+              explain: "Primero trabajó en un mercado y después en un restaurante. Allí conoció a mi abuela."
+              skill: etapas
+            - q: "¿Cuándo se jubiló?"
+              options: "Hace quince años. | Hace dos años. | En 1980."
+              explain: "Mi abuelo se jubiló hace quince años. Два года назад он приехал в Мадрид."
+              skill: hace_atras
+            - q: "¿Qué quiere hacer ahora?"
+              options: "Aprender inglés. | Abrir otro restaurante. | Volver a su pueblo."
+              explain: "Ahora quiere aprender inglés."
+      - sort:
+          title: До 1970 года или после?
+          source: abuelo
+          groups:
+            "antes de 1970": [nació en un pueblo, se mudó a la capital, se casó con Rosa]
+            "después de 1970": [abrió su restaurante, se jubiló, vino a Madrid]
+      - write:
+          title: Ответьте по тексту
+          format: короткий ответ по-испански
+          source: abuelo
+          items:
+            - q: "¿Cuántos hijos tuvieron los abuelos?"
+              a: "Cuatro | Tuvieron cuatro hijos | Cuatro hijos | 4"
+              explain: "Se casaron en 1965 y tuvieron cuatro hijos."
+            - q: "Как в тексте сказано «поначалу было очень трудно»?"
+              a: "Al principio fue muy difícil"
+              explain: "Al principio fue muy difícil, pero trabajaron mucho."
+      - compose:
+          title: Биография
+          free: true
+          rule: none
+          skill: [vida, etapas, hace_atras]
+          items:
+            - q: "Напишите биографию человека из вашей семьи или известного человека, 5–6 фраз: где и когда родился · где вырос · что делал · когда женился или переехал · что с ним сейчас."
+              format: "Mi abuela nació en… A los … años…"
+              words: [35, 120]
+              sentences: 4
+              checks:
+                - label: "рождение: nació en…"
+                  any: [nació, nací]
+                - label: "год или возраст: en 1965, a los veinte años"
+                  re: "(en (1|2)\\d\\d\\d|en mil|en dos mil|a los \\w+( y \\w+)? años|a los \\d+ años)"
+                - label: "ещё события: creció, estudió, trabajó, se casó, se mudó, tuvo…"
+                  any: [creció, estudió, trabajó, se casó, se casaron, se mudó, se mudaron, tuvo, tuvieron, vivió, empezó, conoció, se jubiló, abrió, fue, pintó, escribió, murió, vino]
+              sample: "Mi abuela Olga nació en 1950 en un pueblo de Ucrania. Creció allí y a los dieciocho años se mudó a Kiev para estudiar. Trabajó en una escuela muchos años. Se casó en 1975 y tuvo dos hijos. Se jubiló hace diez años y ahora vive con mi familia."
+              sample_ru: "Моя бабушка Ольга родилась в 1950 году в деревне на Украине. Она выросла там, а в восемнадцать лет переехала в Киев учиться. Много лет работала в школе. Вышла замуж в 1975 году, у неё двое детей. Десять лет назад она вышла на пенсию и теперь живёт с моей семьёй."
+
+  - id: mision
+    kind: practice
+    title: Расскажите о себе
+    goal: понять рассказ человека о его жизни и рассказать о своей
+    version: 2
+    blocks:
+      - review:
+          title: Вспомним
+          skills: [pret_ar, pret_irregular, fui_fue]
+          n: 2
+      - "Первое занятие в языковой школе. Преподавательница Кармен рассказывает о себе. Послушайте её два раза: текста нет."
+      - dialogue:
+          id: carmen
+          hidden: true
+          title: Кармен о себе
+          lines:
+            - "Carmen: ¡Hola a todos! Me llamo Carmen. Nací en Sevilla en 1985. Estudié en la universidad de Granada. A los veinticinco años me mudé a Madrid. Empecé a trabajar en esta escuela hace diez años. Hace tres años me casé y el año pasado tuve una hija. | Всем привет! Меня зовут Кармен. Я родилась в Севилье в 1985 году. Училась в университете Гранады. В двадцать пять лет переехала в Мадрид. В этой школе начала работать десять лет назад. Три года назад я вышла замуж, а в прошлом году у меня родилась дочь."
+      - choose:
+          title: Что рассказала Кармен?
+          source: carmen
+          items:
+            - q: "¿En qué año nació Carmen?"
+              options: "En 1985. | En 1995. | En 1975."
+              explain: "Nací en Sevilla en 1985 — mil novecientos ochenta y cinco."
+              skill: anos
+            - q: "¿Dónde estudió?"
+              options: "En Granada. | En Sevilla. | En Madrid."
+              explain: "Estudié en la universidad de Granada. В Севилье она родилась, в Мадрид переехала позже."
+            - q: "¿Cuándo empezó a trabajar en la escuela?"
+              options: "Hace diez años. | Hace tres años. | A los veinticinco años."
+              explain: "Empecé a trabajar en esta escuela hace diez años."
+              skill: hace_atras
+            - q: "¿Qué pasó el año pasado?"
+              options: "Tuvo una hija. | Se casó. | Se mudó a Madrid."
+              explain: "Hace tres años me casé y el año pasado tuve una hija."
+      - mission:
+          id: clase
+          title: Теперь вы
+          text: "Теперь Кармен расспрашивает учеников. Отвечайте от себя — о своей настоящей жизни. В конце спросите её сами."
+      - chat:
+          id: entrevista
+          title: На занятии
+          with: Carmen
+          skill: vida
+          turns:
+            - say: "Y tú, ¿dónde naciste? | А ты где родился?"
+              task: "Ответьте о себе."
+              compose:
+                format: "Nací en…"
+                words: [3, 15]
+                checks:
+                  - label: "есть Nací en…"
+                    any: [nací en]
+                sample: "Nací en Kiev."
+                sample_ru: "Я родился в Киеве."
+            - say: "¿Y en qué año? | А в каком году?"
+              task: "Назовите год своего рождения."
+              skill: anos
+              compose:
+                format: "En mil novecientos…"
+                words: [1, 12]
+                checks:
+                  - label: "назван год — цифрами или словами"
+                    re: "(1|2)\\d\\d\\d|mil novecientos|dos mil"
+                sample: "En mil novecientos noventa."
+                sample_ru: "В тысяча девятьсот девяностом."
+            - say: "¿Dónde creciste? | Где ты вырос?"
+              task: "Скажите, где вы выросли."
+              skill: etapas
+              compose:
+                format: "Crecí en…"
+                words: [2, 20]
+                checks:
+                  - label: "есть Crecí en… или En…"
+                    any: [crecí en, en]
+                sample: "Crecí en un pueblo cerca de Kiev."
+                sample_ru: "Я вырос в деревне недалеко от Киева."
+            - say: "¿Cuándo empezaste a estudiar español? | Когда ты начал учить испанский?"
+              task: "Ответьте с hace или назовите год."
+              skill: hace_atras
+              compose:
+                format: "Empecé hace…"
+                words: [2, 20]
+                checks:
+                  - label: "когда: hace… или en + год"
+                    any: [hace, en]
+                sample: "Empecé hace un año."
+                sample_ru: "Я начал год назад."
+            - say: "¿Y por qué viniste a esta escuela? | А почему ты пришёл в эту школу?"
+              task: "Назовите причину или цель."
+              skill: para_porque
+              compose:
+                format: "Porque… / Para…"
+                words: [2, 25]
+                checks:
+                  - label: "есть porque или para"
+                    any: [porque, para]
+                sample: "Porque quiero hablar mejor."
+                sample_ru: "Потому что хочу говорить лучше."
+            - say: "¡Muy bien! Ahora pregunta tú. | Очень хорошо! Теперь спрашивай ты."
+              task: "Спросите Кармен, где она родилась (на «ты»)."
+              write: "¿Dónde naciste? | (Y tú,) ¿dónde naciste? | ¿Dónde naciste tú? | Carmen, ¿dónde naciste?"
+              format: вопрос
+              mistakes:
+                "dónde nació": "Nació — форма «он, она» и вежливое «вы». На «ты» — **naciste**."
+                "dónde nací": "Nací — «я родился». Вопрос к «ты» — **naciste**."
+            - say: "Nací en Sevilla, en 1985. | Я родилась в Севилье, в 1985 году."
+      - compose:
+          title: Mi vida
+          free: true
+          rule: none
+          skill: [vida, hace_atras]
+          items:
+            - q: "Расскажите о своей жизни в пяти фразах: где и когда родились · где выросли · что изучали или где работали · важное событие и когда оно было · что делаете сейчас."
+              format: "Nací en… en… Crecí en…"
+              words: [30, 120]
+              sentences: 4
+              checks:
+                - label: "рождение: Nací en…"
+                  any: [nací]
+                - label: "год или возраст: en 1990, a los veinte años"
+                  re: "(en (1|2)\\d\\d\\d|en mil|en dos mil|a los \\w+( y \\w+)? años|a los \\d+ años)"
+                - label: "сколько времени назад: hace…"
+                  any: [hace]
+                - label: "ещё событие: crecí, estudié, empecé, me mudé, me casé, tuve…"
+                  any: [crecí, estudié, empecé, terminé, me mudé, me casé, tuve, conocí, trabajé, viví, vine, fui]
+              sample: "Nací en Kiev en 1990. Crecí allí y estudié en la universidad. A los veintidós años empecé a trabajar en una oficina. Hace dos años me mudé a Valencia. Ahora estudio español y trabajo en un hotel."
+              sample_ru: "Я родился в Киеве в 1990 году. Вырос там и учился в университете. В двадцать два года начал работать в офисе. Два года назад переехал в Валенсию. Сейчас учу испанский и работаю в гостинице."
+
+  - id: quiz
+    kind: quiz
+    title: "Тест: Una vida"
+    goal: проверить цели темы — биография, годы, hace и особые глаголы
+    version: 2
+    check: soft
+    blocks:
+      - "Это тест по теме «Una vida»: тринадцать заданий."
+      - cando:
+          - "рассказать о жизни: nació, creció, se casó, se mudó, murió"
+          - "назвать год и понять его на слух"
+          - "сказать, когда это было: en 1990, a los veinte años, hace dos años"
+          - "использовать pude, quise, vine, dije"
+      - write:
+          title: Запишите год цифрами
+          format: год цифрами
+          rule: none
+          skill: anos
+          items:
+            - say: "mil novecientos ochenta y ocho"
+              a: "1988"
+              noaudio: {q: "Запишите цифрами: mil novecientos ochenta y ocho", a: "1988"}
+            - say: "dos mil dieciséis"
+              a: "2016"
+              noaudio: {q: "Запишите цифрами: dos mil dieciséis", a: "2016"}
+      - choose:
+          title: Послушайте
+          rule: none
+          items:
+            - say: "Se casaron hace diez años."
+              options: "Они поженились десять лет назад. | Они женаты уже десять лет. | Они поженятся через десять лет."
+              skill: hace_atras
+              noaudio: {q: "Что значит «Se casaron hace diez años»?", options: "Они поженились десять лет назад. | Они женаты уже десять лет. | Они поженятся через десять лет."}
+      - write:
+          title: Поставьте глагол в прошедшее время
+          format: одна форма глагола
+          accents: strict
+          rule: none
+          items:
+            - q: "Mi abuela (nacer) ___ en 1950."
+              a: "nació"
+              skill: vida
+            - q: "Ayer no (yo, poder) ___ venir."
+              a: "pude"
+              skill: pret_irregular_dos
+            - q: "¿Qué te (decir) ___ tus padres?"
+              a: "dijeron"
+              skill: pret_irregular_dos
+            - q: "Mi hermano (mudarse) se ___ a Barcelona."
+              a: "mudó"
+              skill: etapas
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          rule: none
+          items:
+            - q: "Я родился в 1990 году."
+              a: "Nací en 1990 | (Yo) nací en 1990 | Nací en mil novecientos noventa"
+              skill: vida
+            - q: "Мы познакомились два года назад."
+              a: "Nos conocimos hace dos años | Hace dos años nos conocimos"
+              skill: hace_atras
+      - build:
+          title: Соберите фразу
+          rule: none
+          skill: etapas
+          items:
+            - es: "A los veinte años empecé a trabajar."
+              ru: "В двадцать лет я начал работать."
+              alt: ["Empecé a trabajar a los veinte años."]
+    quiz:
+      - q: "Picasso ___ en 1973."
+        options: "murió | nació | muere"
+        explain: "Murió — «умер». Nació — «родился» (в 1881 году)."
+        skill: vida
+      - q: "Trabajo aquí ___ cinco años."
+        options: "desde hace | hace | a los"
+        explain: "Trabajo — настоящее время, действие продолжается: desde hace."
+        skill: desde_hace
+      - q: "Mi tío vino a España ___ primera vez en 2010."
+        options: "por | para | a"
+        explain: "Por primera vez — «впервые»."
+        skill: hace_atras
