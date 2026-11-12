@@ -1102,7 +1102,7 @@ html.grammar-playing, html.grammar-playing body { overflow: hidden; }
 
 
 /* Unit 60 poster only — a hand-composed formula map, not a reusable card grid. */
-.gm60{--v:#7950ba;--deep:#55318f;--rose:#da8dad;--mint:#368a78;max-width:1140px;margin:0 auto 25px;position:relative;isolation:isolate;font:500 14px/1.5 var(--body);color:var(--ink)}
+.gm60{--v:#7950ba;--deep:#55318f;--rose:#da8dad;--mint:#368a78;--surface:#fff;--ink:#252139;--muted:#69708a;color-scheme:light;max-width:1140px;margin:0 auto 25px;position:relative;isolation:isolate;font:500 14px/1.5 var(--body);color:var(--ink)}
 .gm60 p,.gm60 h3,.gm60 h4,.gm60 h5{margin:0}
 .gm60 :is(ul,ol){margin:0;padding:0;list-style:none}
 .gm60 *{min-width:0}
@@ -1265,6 +1265,8 @@ html.grammar-playing, html.grammar-playing body { overflow: hidden; }
  .gm60-orb{width:218px}
  .gm60-fork strong{width:71px;height:66px}
 }
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .gm60-top{background:#faf7fe;border-radius:18px;padding:16px 18px;margin-bottom:8px}}
+:root[data-theme="dark"] .gm60-top{background:#faf7fe;border-radius:18px;padding:16px 18px;margin-bottom:8px}
 @media(prefers-reduced-motion:reduce){.gm60 *{transition:none!important;animation:none!important}}
 @media print{.gm60-paper{box-shadow:none}.gm60-context,.gm60-topology,.gm60-ribbon{break-inside:avoid}}
 
