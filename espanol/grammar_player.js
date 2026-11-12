@@ -712,6 +712,7 @@ const G_UNIT_ICONS = {
   '048_trabajo_como_vivo': '💼',
   '049_quiero_mido_sueno': '🔄',
   '050_voy_hago_conozco': '🚶',
+  '053_me_levanto': '⏰',
   '046_hay': '🥛',
   '045_tengo_tienes_tiene': '👜',
   '044_ser_estar': '🎭',

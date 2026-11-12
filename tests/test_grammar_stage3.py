@@ -14,7 +14,7 @@ def test_sidecar_is_loaded_in_memory_without_modifying_any_lesson_bytes():
     source={p.name:p.read_bytes() for p in GRAMMAR.glob("[0-9]*.json")}
     units=load_grammar()
     catalog=json.loads(POLICIES.read_text(encoding="utf-8"))
-    assert len(units)==50
+    assert len(units)==51
     assert set(catalog)=={u["id"] for u in units if u["id"] in catalog}
     count=0
     for u in units:
