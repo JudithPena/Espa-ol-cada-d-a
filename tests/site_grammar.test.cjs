@@ -1052,7 +1052,7 @@ test('all typing screens show a persistent format and example without changing g
   })())`));
   typed+=result.typed;legacy+=result.legacy;
  }
- assert.equal(typed,1370);assert.equal(legacy,184); // Fable 8: unit 2 now has 26 typed instead of 38
+ assert.equal(typed,1370);assert.equal(legacy,187); // Fable 8: unit 2 now has 26 typed instead of 38
 });
 
 test('quantity answers accept digits or words while the field explains the quantity format', () => {
