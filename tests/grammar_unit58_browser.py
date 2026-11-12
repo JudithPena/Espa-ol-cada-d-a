@@ -81,7 +81,6 @@ def main():
                     ('exercise:58.1',11,'trabajó'),
                     ('exercise:58.2',7,'saqué'),
                     ('exercise:58.3',3,'vi'),
-                    ('exercise:58.3',6,'di'),
                     ('exercise:58.4',0,'se trasladó')
                 ]:
                     page.evaluate(PREPARE,{'route':route,'qi':qi})
@@ -89,6 +88,11 @@ def main():
                     page.locator('[data-gcheck]').click()
                     assert page.evaluate('gResponse(G.steps[G.at]).good'),(width,route,qi,answer)
                     check_layout(page,f'{width}:{route}:{qi}')
+                # dar → di is a choice task, so interact with the real choice widget.
+                page.evaluate(PREPARE,{'route':'exercise:58.3','qi':6})
+                page.locator('[data-gpick][data-gvalue="di"]').click()
+                assert page.evaluate('gResponse(G.steps[G.at]).good'),(width,'dar → di')
+                check_layout(page,f'{width}:58.3:di')
                 page.evaluate(PREPARE,{'route':'exercise:58.1','qi':11})
                 page.locator('#g-answer').fill('trabajo')
                 page.locator('[data-gcheck]').click()
