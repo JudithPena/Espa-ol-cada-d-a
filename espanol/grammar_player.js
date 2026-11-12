@@ -720,6 +720,7 @@ const G_UNIT_ICONS = {
   '056_estoy_viendo': '🎬',
   '057_hago_estoy_haciendo': '🔀',
   '058_trabaje_comi_vivi': '🕰️',
+  '059_durmio_leyo_hizo': '🌀',
   '046_hay': '🥛',
   '045_tengo_tienes_tiene': '👜',
   '044_ser_estar': '🎭',
