@@ -281,12 +281,12 @@
       }
     },
     {
-      "title": "У многих частых глаголов меняется основа во всех лицах",
+      "title": "Особые основы: сначала четыре модели, затем три семейства",
       "presentation": "paradigm",
       "paragraphs": [
-        "У ряда частых глаголов indefinido образуется с **особой основой во всех лицах** и окончаниями **-e, -iste, -o, -imos, -isteis, -ieron**. Например, `tener → tuve, tuviste, tuvo, tuvimos, tuvisteis, tuvieron`, `estar → estuve, estuvo`, `venir → vine, vinieron`. В этих формах **нет письменного ударения**: не «tuvó», а `tuvo`.",
-        "Запомни пары: `decir → dij-`, `estar → estuv-`, `haber → hub-`, `hacer → hic-` (но `hizo`), `poder → pud-`, `poner → pus-`, `querer → quis-`, `saber → sup-`, `tener → tuv-`, `traer → traj-`, `venir → vin-`. С основами на **j** у decir и traer в ellos/ustedes окончание **-eron**: `dijeron`, `trajeron`.",
-        "Когда `haber` означает «было / произошло», это безличный глагол: говори `hubo un incendio`, `hubo dos conciertos` **независимо от количества объектов**. Для практики о событиях не используй «hubieron dos incendios»."
+        "Сначала запомни общий принцип: у частых неправильных глаголов **меняется основа во всех лицах**. Окончания обычно **-e, -iste, -o, -imos, -isteis, -ieron**, без графического ударения. Начни с четырёх опорных моделей в таблице: tener → tuve, hacer → hice (но él hizo), decir → dije, venir → vine.",
+        "Остальные основы изучай не единым списком из одиннадцати слов, а тремя небольшими группами ниже. Сначала найди нужный глагол по смыслу, затем его основу и только после этого прибавь окончание. Например: «не смог» → poder → pud- + -e = pude; «сказал» → decir → dij- + -o = dijo.",
+        "После основы с **j** в третьем лице множественного числа нужна форма **-eron**, не -ieron: dijeron, trajeron. Для безличного haber употребляй **hubo** и с одним событием, и с несколькими: hubo un incendio, hubo dos conciertos."
       ],
       "table": {
         "heads": [
@@ -344,13 +344,23 @@
       },
       "wordGroups": [
         {
-          "title": "Особые основы с обычным -ieron",
-          "label": "основа",
+          "title": "Семейство 1 · Частые формы с -uv- / -ub-",
+          "label": "форма",
           "words": [
             [
               "estar → estuv-",
               "estuve, estuvo"
             ],
+            [
+              "haber → hub-",
+              "hubo (безлично)"
+            ]
+          ]
+        },
+        {
+          "title": "Семейство 2 · Короткие основы для действий и состояний",
+          "label": "форма",
+          "words": [
             [
               "poder → pud-",
               "pude, pudo"
@@ -366,6 +376,16 @@
             [
               "saber → sup-",
               "supe, supo"
+            ]
+          ]
+        },
+        {
+          "title": "Семейство 3 · Дополнительная основа на j",
+          "label": "форма",
+          "words": [
+            [
+              "traer → traj-",
+              "traje, trajeron (без i)"
             ]
           ]
         }
@@ -389,9 +409,9 @@
         ]
       ],
       "notes": [
-        "«Haber» в значении существования употребляется только безлично в третьем лице ед. числа: hubo. У отдельных форм вспомогательного haber существует другая парадигма, но она не нужна для подобных предложений.",
-        "Hacer: hice, hiciste, hizo, hicimos, hicisteis, hicieron — в третьем лице именно hizo с z.",
-        "Decir и traer в третьем лице множественного числа — dijeron и trajeron, а не формы с -ieron."
+        "Основа говорит, какой глагол ты выбираешь; окончание показывает лицо. Чередуй эти два решения вместо заучивания длинной строки.",
+        "«Haber» в значении существования — безличное: hubo; формы вспомогательного haber имеют другое употребление, его здесь не проверяем.",
+        "Hacer: hice, hiciste, hizo, hicimos, hicisteis, hicieron. Decir и traer во множественном числе: dijeron и trajeron — после j без i."
       ],
       "check": {
         "id": "check-3",
@@ -1126,6 +1146,22 @@
           ]
         },
         {
+          "context": "Начальник объяснил причину задержки словами, а не действием.",
+          "prompt": "El jefe nos ___ la verdad.",
+          "answers": [
+            "dijo"
+          ],
+          "explain": "По смыслу «сказал» — decir; él → dijo. Сделал бы hizo, а pude относится к yo.",
+          "sourceRef": "extra",
+          "learningAction": "самостоятельный выбор глагола по смыслу",
+          "interaction": "gap-choice",
+          "options": [
+            "dijo",
+            "pude",
+            "hizo"
+          ]
+        },
+        {
           "context": "Друзья обсуждают, чем занимались в воскресенье и почему Энрике остался дома.",
           "prompt": "—¿Qué ___ ustedes el domingo? —Nada especial. ___ en casa viendo la tele. Enrique no ___ salir.",
           "answers": [
@@ -1184,6 +1220,22 @@
           ]
         },
         {
+          "context": "Ты пытался открыть дверь, но не смог: ключ сломался.",
+          "prompt": "Intenté abrir la puerta, pero no ___.",
+          "answers": [
+            "pude"
+          ],
+          "explain": "Смысл «не смог» задаёт poder; yo → pude. Сначала выбери глагол по ситуации, затем особую основу pud-.",
+          "sourceRef": "extra",
+          "learningAction": "самостоятельный выбор глагола по смыслу",
+          "interaction": "gap-choice",
+          "options": [
+            "dijo",
+            "pude",
+            "hizo"
+          ]
+        },
+        {
           "context": "Лаура на прошлой неделе вышла замуж, но случайно сломала руку.",
           "prompt": "Laura se ___ la semana pasada y se ___ un brazo.",
           "answers": [
@@ -1235,6 +1287,22 @@
           ]
         },
         {
+          "context": "Вчера мама испекла пирог. Как передать это событие, не получая готовый инфинитив?",
+          "prompt": "Ayer mamá ___ una tarta.",
+          "answers": [
+            "hizo"
+          ],
+          "explain": "Сначала смысл «сделала» — hacer, затем ella → hizo. Не путай с dijo («сказала») и pude («смог»).",
+          "sourceRef": "extra",
+          "learningAction": "самостоятельный выбор глагола по смыслу",
+          "interaction": "gap-choice",
+          "options": [
+            "dijo",
+            "pude",
+            "hizo"
+          ]
+        },
+        {
           "context": "В доме Анхеля вчера вечером произошёл пожар.",
           "prompt": "—¿Qué ___ anoche? —___ un incendio en el bloque de Ángel.",
           "answers": [
@@ -1261,62 +1329,9 @@
             "ü",
             "ñ"
           ]
-        },
-        {
-          "context": "Несколько гостей вчера вечером пришли поздно.",
-          "prompt": "Los invitados ___ a las once.",
-          "answers": [
-            "vinieron"
-          ],
-          "explain": "Venir, ellos → vinieron. Особая основа vin-.",
-          "sourceRef": "extra",
-          "learningAction": "выбор",
-          "interaction": "gap-choice",
-          "options": [
-            "venieron",
-            "vinieron",
-            "vinistes"
-          ]
-        },
-        {
-          "context": "Вчера я сделал ужин.",
-          "prompt": "Ayer yo ___ la cena.",
-          "answers": [
-            "hice"
-          ],
-          "explain": "Hacer, yo → hice, а не hací.",
-          "sourceRef": "extra",
-          "learningAction": "воспроизведение",
-          "inputChars": [
-            "á",
-            "é",
-            "í",
-            "ó",
-            "ú",
-            "ü",
-            "ñ"
-          ]
-        },
-        {
-          "context": "Впиши форму, которая обозначает «было три концерта».",
-          "prompt": "Ayer ___ tres conciertos.",
-          "answers": [
-            "hubo"
-          ],
-          "explain": "Haber безличный: hubo, даже если концертов несколько.",
-          "sourceRef": "extra",
-          "learningAction": "применение",
-          "inputChars": [
-            "á",
-            "é",
-            "í",
-            "ó",
-            "ú",
-            "ü",
-            "ñ"
-          ]
         }
-      ]
+      ],
+      "revision": 2
     },
     {
       "id": "59.1d",
@@ -1607,41 +1622,41 @@
           ]
         },
         {
-          "context": "Здесь fue обозначает движение к месту, а не качество.",
-          "prompt": "El año pasado Marta ___ a Cuba.",
+          "context": "На изображении путешественница с рюкзаком. Марта рассказывает, куда ездила в прошлом году.",
+          "prompt": "El año pasado Marta fue a una ciudad nueva. Здесь fue — форма какого глагола?",
           "answers": [
-            "fue"
+            "ir"
           ],
-          "explain": "Ir, ella → fue, направление задано оборотом a Cuba.",
+          "explain": "«A una ciudad nueva» указывает на перемещение к месту: fue — от ir. Форма написана так же, как в ser, поэтому решает смысл.",
           "sourceRef": "extra",
-          "learningAction": "понимание",
+          "learningAction": "определение глагола по смыслу и сцене",
           "interaction": "gap-choice",
           "options": [
-            "fue",
-            "fueron",
-            "fui"
-          ]
+            "ser",
+            "ir"
+          ],
+          "image": "art/059/ir_traveler.webp",
+          "imageAlt": "Путешественница с рюкзаком стоит перед городским зданием."
         },
         {
-          "context": "Это был трудный год для экспедиции.",
-          "prompt": "El viaje ___ complicado.",
+          "context": "На картинке преподавательница у доски. Фраза сообщает о её прежней профессии.",
+          "prompt": "Elena fue profesora durante quince años. Здесь fue — форма какого глагола?",
           "answers": [
-            "fue"
+            "ser"
           ],
-          "explain": "Ser в значении характеристики: fue.",
+          "explain": "«Fue profesora» — кем она была, значит ser. Поездку к месту описывал бы ir; одинаковое написание fue не определяет значение само по себе.",
           "sourceRef": "extra",
-          "learningAction": "воспроизведение",
-          "inputChars": [
-            "á",
-            "é",
-            "í",
-            "ó",
-            "ú",
-            "ü",
-            "ñ"
-          ]
+          "learningAction": "определение глагола по смыслу и сцене",
+          "interaction": "gap-choice",
+          "options": [
+            "ir",
+            "ser"
+          ],
+          "image": "art/059/ser_teacher.webp",
+          "imageAlt": "Женщина держит книги и указку у школьной доски."
         }
-      ]
+      ],
+      "revision": 2
     },
     {
       "id": "59.3",
@@ -1823,14 +1838,23 @@
           ]
         },
         {
-          "context": "Представь, что вы с друзьями прошлым летом ездили в Португалию.",
-          "prompt": "El verano pasado nosotros ___ a Portugal.",
+          "context": "Турист вспоминает прошлое лето: сначала он сам куда-то поехал, затем оценивает поездку. Инфинитивы не даны.",
+          "prompt": "El verano pasado yo ___ a Lima. El viaje ___ fantástico.",
           "answers": [
-            "fuimos"
+            "fui fue"
           ],
-          "explain": "Ir, nosotros → fuimos; это поездка в указанное место.",
+          "explain": "Первое — движение yo: ir → fui. Второе — характеристика el viaje: ser → fue. Здесь нужны два разных глагола с похожими формами.",
           "sourceRef": "extra",
-          "learningAction": "применение",
+          "learningAction": "самостоятельный выбор глагола и лица",
+          "gapParts": [
+            "El verano pasado yo ",
+            " a Lima. El viaje ",
+            " fantástico."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
           "inputChars": [
             "á",
             "é",
@@ -1842,12 +1866,12 @@
           ]
         },
         {
-          "context": "Собери: «Это было прекрасное путешествие». Два слова лишние.",
-          "prompt": "Собери фразу из плиток.",
+          "context": "После путешествия собеседник кратко оценивает поездку, а не сообщает, куда ездил.",
+          "prompt": "Собери одно короткое предложение-оценку путешествия из плиток.",
           "answers": [
             "fue un viaje fantástico"
           ],
-          "explain": "Ser + характеристика: fue un viaje fantástico.",
+          "explain": "Это оценка поездки: ser → fue; существительное viaje — мужского рода, поэтому un viaje fantástico. Движение к месту не описывается.",
           "sourceRef": "extra",
           "learningAction": "построение фразы",
           "interaction": "build",
@@ -1860,7 +1884,8 @@
             "fuimos"
           ]
         }
-      ]
+      ],
+      "revision": 2
     }
   ],
   "summary": {
