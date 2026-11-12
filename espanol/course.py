@@ -668,6 +668,9 @@ def _compose_item(it: Any, w: str) -> dict:
             raise ContentError(f"{w}: у признака нужен label")
         check = {"label": str(c["label"]).strip(), "re": str(c.get("re") or "").strip(),
                  "if": [str(x).strip() for x in _items(c.get("if"))]}
+        for key in (*CHECK_KEYS, "if"):
+            if any(isinstance(x, bool) for x in _items(c.get(key))):   # YAML читает no / sí без кавычек как false / true
+                raise ContentError(f"{w}: в признаке «{check['label']}» слова no, yes, on, off пишите в кавычках")
         for key in CHECK_KEYS:
             check[key] = [str(x).strip() for x in _items(c.get(key))]
         if not (check["re"] or any(check[k] for k in CHECK_KEYS)):

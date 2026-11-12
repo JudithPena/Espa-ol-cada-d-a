@@ -16,8 +16,8 @@
 | № темы | Файл / id | Тема карты | Уроков | Статус |
 |---|---|---|---|---|
 | 24 | `24_espanol_y_yo` | 1. El español y yo | 9 | готово: validate, тесты, проход в браузере ×3 режима |
-| 25 | `25_ayer` | 2. ¿Qué hiciste ayer? | | следующая |
-| 26 | `26_una_vida` | 3. Una vida | | |
+| 25 | `25_ayer` | 2. ¿Qué hiciste ayer? | 8 | готово: validate, тесты, проход в браузере ×3 режима |
+| 26 | `26_una_vida` | 3. Una vida | | следующая |
 | 27 | `27_hoy_y_ayer` | 4. Hoy y ayer | | |
 | 28 | `28_de_viaje` | 5. De viaje | | |
 | 29 | `29_mercado` | 6. En el mercado + КТ-1 | | |

@@ -63,7 +63,7 @@ for (const meta of data.lessons.filter(L => L.unit === unit)) {
   const steps = JSON.parse(run(`JSON.stringify(S.steps.map(st => ({...st, word: st.word && {es: st.word.es, ru: st.word.ru}, blocks: st.blocks && st.blocks.map(b => ({t: b.t, title: b.title, html: b.html, lines: b.lines, cards: b.cards && b.cards.map(c => ({head: c.head})), items: b.t === "examples" ? b.items : undefined}))})))`));
   const L = data.lessons[i];
   const secs = steps.reduce((a, st) => a + (st.type === 'theory' ? (st.blocks.some(b => b.t === 'reading') ? 100 : st.blocks.some(b => b.t === 'dialogue') ? 70 : 30)
-    : st.type === 'compose' ? ((st.words && st.words[0] >= 20) ? 240 : (st.words && st.words[1] <= 16) ? 40 : 75) : SECONDS[st.type] || 20) + (st.chat ? 10 : 0), 0);
+    : st.type === 'compose' ? ((st.words && st.words[0] >= 20) ? 240 : st.chat || (st.words && st.words[1] <= 16) ? 40 : 75) : st.type === 'write' ? (String(st.a[0]).includes(' ') ? 40 : 20) : SECONDS[st.type] || 20) + (st.chat ? 10 : 0), 0);
   const count = t => steps.filter(st => st.type === t).length;
   const listen = steps.filter(st => st.say || (st.chat && st.line)).length;
   const parts = [['выбор', count('mc')], ['ввод', count('write')], ['сборка', count('build')], ['пары', count('match')], ['группы', count('sort')], ['письмо', count('compose')]]
