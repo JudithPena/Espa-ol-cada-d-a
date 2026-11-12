@@ -127,7 +127,7 @@ def main():
                 assert page.evaluate('gResponse(G.steps[G.at]).status')=='wrong'
                 assert page.evaluate('gAttempt(gUnit(),gUnit().exercises[3]).errors')==1
                 # The semantic contrast has two fields, and all expected choices render.
-                page.evaluate(PREPARE,{'route':'exercise:56.2','qi':8})
+                page.evaluate(PREPARE,{'route':'exercise:56.2','qi':4})
                 assert page.locator('[data-ggap]').count()==2
                 check_no_overflow(page,f'{width}:contrast-gaps')
                 page.evaluate(PREPARE,{'route':'exercise:56.2','qi':9})
