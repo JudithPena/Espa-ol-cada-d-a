@@ -713,6 +713,7 @@ const G_UNIT_ICONS = {
   '049_quiero_mido_sueno': '🔄',
   '050_voy_hago_conozco': '🚶',
   '051_manana_voy_al_medico': '🗓️',
+  '052_vivo_desde': '⏳',
   '046_hay': '🥛',
   '045_tengo_tienes_tiene': '👜',
   '044_ser_estar': '🎭',

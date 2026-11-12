@@ -902,7 +902,7 @@ test('the group-name mini-check keeps errors and repeats them without losing liv
 test('every mini-check in all 17 units renders choices and completes by clicking',()=>{
  const units=fs.readdirSync('content/grammar').filter(f=>/^\d{3}_.+\.json$/.test(f)).sort()
   .map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
- assert.equal(units.length,51);
+ assert.equal(units.length,52);
  for(const unit of units){
   const run=context([unit]);
   for(const [index,section] of unit.sections.entries()){
@@ -1052,7 +1052,7 @@ test('all typing screens show a persistent format and example without changing g
   })())`));
   typed+=result.typed;legacy+=result.legacy;
  }
- assert.equal(typed,1293);assert.equal(legacy,174); // Fable 8: unit 2 now has 26 typed instead of 38
+ assert.equal(typed,1315);assert.equal(legacy,180); // Fable 8: unit 2 now has 26 typed instead of 38
 });
 
 test('quantity answers accept digits or words while the field explains the quantity format', () => {
@@ -1107,7 +1107,7 @@ test('all exercises reveal each wrong answer, stop at three errors and never awa
   const at=run('G.at');run('gMove(1)');assert.equal(run('G.at'),at);
   count++;
  }
- assert.equal(count,196);
+ assert.equal(count,199);
 });
 
 test('exit, route restart, whole-unit restart and reload preserve the failed or active attempt', () => {
@@ -1303,7 +1303,7 @@ test('171 grammar exercises require real corrections that spend remaining lives'
   assert.equal(run(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id===${JSON.stringify(group.id)})).errors`),2);
   count++;
  }
- assert.equal(count,188);
+ assert.equal(count,191);
 });
 
 test('correction queue and drafts survive reload and keep the next section locked',()=>{
@@ -1440,7 +1440,7 @@ test('grammar list gives each theme a distinct icon and marks only fully complet
  const run=context(units);
  run('view.grammar=null;');
  const icons=run('COURSE.grammar.map(u=>G_UNIT_ICONS[u.id])');
- assert.ok(icons.every(Boolean));assert.equal(new Set(icons).size,51);
+ assert.ok(icons.every(Boolean));assert.equal(new Set(icons).size,52);
  assert.ok(!run('grammarView()').includes('gcompleted-badge'));
  // Completing the exercises alone leaves mini-checks and theory unfinished.
  run(`const doneUnit=COURSE.grammar[0];for(const g of doneUnit.exercises)P.grammar[grammarKey(doneUnit,g)]={correct:0,total:g.questions.length};`);
@@ -1451,7 +1451,7 @@ test('grammar list gives each theme a distinct icon and marks only fully complet
  assert.equal(run('gUnitComplete(COURSE.grammar[0])'),true);
  const html=run('grammarView()');
  assert.equal((html.match(/gcompleted-badge/g)||[]).length,1);
- assert.ok(html.includes('Пройдено тем: 1 из 51'));
+ assert.ok(html.includes('Пройдено тем: 1 из 52'));
  assert.match(html,/class="mcard gcomplete" data-grammar="001_el_hijo_la_hija"/);
  assert.match(html,/class="mcard " data-grammar="002_el_libro_la_mesa"/);
  run('delete P.grammarRead[COURSE.grammar[0].id+"/summary"];');
@@ -1803,7 +1803,7 @@ test('multi-answer audit keeps regional, contextual and equally valid choices gr
    }
   }
  }
- assert.equal(questions,2282);assert.equal(alternatives,361);assert.equal(warnings,25); // Fable 8: unit 2 73→57, one additional gorila alternative
+ assert.equal(questions,2323);assert.equal(alternatives,372);assert.equal(warnings,25); // Fable 8: unit 2 73→57, one additional gorila alternative
 });
 
 test('yellow mini-check choices preserve all three lives and complete normally',()=>{
@@ -1841,7 +1841,7 @@ test('all 17 completion screens derive the next lesson from course order and pre
    assert.ok(html.includes('Все уроки раздела пройдены!'));assert.ok(!html.includes('data-gnext-unit'));
    handlers.click({target:{closest:s=>s==='button, .spoiler, [data-say], [data-line]'?{dataset:{grammarList:''}}:null,classList:{contains:()=>false}}});
    assert.equal(run('G'),null);assert.equal(run('view.grammar'),null);assert.equal(run('view.tab'),'grammar');
-   assert.equal((run('grammarView()').match(/data-grammar="/g)||[]).length,51);
+   assert.equal((run('grammarView()').match(/data-grammar="/g)||[]).length,52);
   }
   assert.equal(run('JSON.stringify(P)'),before);
  }
@@ -2047,7 +2047,7 @@ test('all grammar choice sets receive valid, balanced attempt orders without cha
    assert.deepEqual(result,{},`${u.number}/${g.id}: ${JSON.stringify(result)}`);
   }
  }
- assert.equal(standard,815);assert.equal(guided,9); // Fable 8: unit 2 has four fewer multiple-choice tasks
+ assert.equal(standard,828);assert.equal(guided,9); // Fable 8: unit 2 has four fewer multiple-choice tasks
  assert.equal(run('JSON.stringify(COURSE.grammar)'),before);
 });
 
@@ -2819,4 +2819,14 @@ test('unit 51 keeps reflexive se, ñ and accent-bearing forms exact in scheduled
   assert.equal(run(`(()=>{const [q,g]=${find(ref)};return grammarResult(q,${JSON.stringify(a)},g).status})()`),status,ref+'/'+a);
  const all=fs.readdirSync('content/grammar').filter(f=>/^05[01]_.*\.json$/.test(f)).map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));const r=context(all);
  assert.equal(r('gNextUnit(COURSE.grammar[0]).number'),51);
+});
+
+
+test('unit 52 accepts natural desde / hace que variants and keeps target accents strict',()=>{
+ const u=JSON.parse(fs.readFileSync('content/grammar/052_vivo_desde.json','utf8'));const run=context([u]);
+ const find=ref=>`COURSE.grammar[0].exercises.flatMap(g=>g.questions.map(q=>[q,g])).find(([q])=>q.sourceRef===${JSON.stringify(ref)}||q.answers[0]===${JSON.stringify(ref)})`;
+ for(const [ref,a,status] of [['52.2.8','vivo en guayaquil desde 1999','correct'],['52.2.8','Vivo en Guayaquil desde hace 1999','wrong'],['52.2.12','Jose no ve a Marisa desde el verano','almost'],['52.3.6','cuanto tiempo hace que estudiais','wrong'],['52.3.6','¿Desde cuándo estudiáis','correct'],['52.2.2','desde seis meses','wrong'],['52.2.2','desde hace seis meses','correct'],['52.1.5','sois somos','correct'],['52.2.3','Hace un año que no vemos el mar','correct'],['52.2.3','Hace un año que vemos el mar','wrong']])
+  assert.equal(run(`(()=>{const [q,g]=${find(ref)};return grammarResult(q,${JSON.stringify(a)},g).status})()`),status,ref+'/'+a);
+ const all=fs.readdirSync('content/grammar').filter(f=>/^05[12]_.*\.json$/.test(f)).map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));const r=context(all);
+ assert.equal(r('gNextUnit(COURSE.grammar[0]).number'),52);
 });

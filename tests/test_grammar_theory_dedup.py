@@ -9,7 +9,7 @@ from espanol.grammar import GRAMMAR, load_grammar
 def test_all_units_preserve_notes_checks_practice_order_and_summaries():
     snapshots = json.loads((Path(__file__).parent / 'data/grammar_theory_preservation.json').read_text())
     paths = sorted(GRAMMAR.glob('[0-9]*.json'))
-    assert len(paths) == len(snapshots) == 51
+    assert len(paths) == len(snapshots) == 52
     for path in paths:
         u = json.loads(path.read_text())
         protected = {'titles': [s['title'] for s in u['sections']],
@@ -32,7 +32,7 @@ def test_indefinite_article_forms_have_one_visual_paradigm():
 
 def test_theory_keeps_varied_presentations_and_distinctive_rules():
     units = load_grammar()
-    assert sum(len(u['sections']) for u in units) == 214
+    assert sum(len(u['sections']) for u in units) == 217
     assert {s['presentation'] for u in units for s in u['sections']} == {'examples', 'comparison', 'paradigm'}
     required = {1: ['la pilota', 'la dependienta', 'la jefe'], 2: ['el radio', 'la pijama', 'gorila'],
                 3: ['champúes', 'cómic', 'gafas'], 4: ['una pequeña águila', 'una águila'],
