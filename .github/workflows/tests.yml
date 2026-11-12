@@ -21,6 +21,7 @@ jobs:
           python -m espanol grammar-lint 5
           python -m espanol grammar-lint 13
           python -m espanol grammar-lint 56 --strict-warnings
+          python -m espanol grammar-lint 57 --strict-warnings
           python -m espanol grammar-lint 8
           python -m espanol grammar-lint 2 --report /tmp/unit2-lint-summary.md --json-out /tmp/unit2-lint-findings.json
           python -c "from pathlib import Path; print(Path('/tmp/unit2-lint-summary.md').read_text())"
@@ -145,6 +146,7 @@ jobs:
           (cd /tmp/ecd-site-baseline && python -m espanol site -o /tmp/ecd-site-before/index.html)
           python tests/site_static_browser.py --site site --baseline /tmp/ecd-site-before --report /tmp/site-static-browser.json
           python tests/grammar_unit56_browser.py --site site --report /tmp/grammar-unit56-browser.json
+          python tests/grammar_unit57_browser.py --site site --report /tmp/grammar-unit57-browser.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -152,4 +154,6 @@ jobs:
           path: |
             /tmp/site-static-browser.json
             /tmp/grammar-unit56-browser.json
+            /tmp/grammar-unit57-browser.json
+            /tmp/grammar57-screenshots/*.png
             /tmp/grammar56-screenshots/*.png
