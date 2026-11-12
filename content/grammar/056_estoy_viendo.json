@@ -91,6 +91,10 @@
         [
           "Llévate el paraguas. Está lloviendo.",
           "Возьми зонт. Идёт дождь."
+        ],
+        [
+          "Estoy estudiando español.",
+          "Я сейчас изучаю испанский."
         ]
       ],
       "notes": [
@@ -374,8 +378,8 @@
             "interaction": "choice"
           },
           {
-            "context": "Выбери оба допустимых варианта (любой из них засчитывается): «Я сейчас причёсываюсь».",
-            "prompt": "Me estoy peinando.",
+            "context": "Нужно сказать: «Я сейчас причёсываюсь». Оба правильных порядка местоимения допустимы; выбери любой.",
+            "prompt": "Как сказать это по-испански?",
             "answers": [
               "Estoy peinándome.",
               "Me estoy peinando."
