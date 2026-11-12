@@ -980,7 +980,7 @@ function gTopicMap60(unit) {
           <span class="gm60-orb-top">Главный принцип</span>
           <p class="gm60-orb-formula"><b lang="es">${esc(map.formula[0][0])}</b><span>+</span><b lang="es">${esc(map.formula[1][0])}</b></p>
           <strong class="gm60-orb-example" lang="es">${esc(unit.summary.rows[0][2])}</strong>
-          <span class="gm60-orb-foot">Haber в presente меняется по лицам. Причастие неизменно.</span>
+          <span class="gm60-orb-foot">Haber — в presente; причастие неизменно.</span>
         </div>
         <aside class="gm60-wing right">
           <p class="gm60-label">Ветвь 2 · что сделано?</p><h4>Образуй причастие</h4>
