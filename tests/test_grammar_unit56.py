@@ -79,7 +79,8 @@ def test_format_and_route():
 
 
 def test_generated_pictures_are_real_and_only_used_in_visual_questions():
-    visual = unit()["exercises"][0]["questions"][:8]
+    raw = json.loads(next(GRAMMAR.glob("056_*.json")).read_text(encoding="utf-8"))
+    visual = raw["exercises"][0]["questions"][:8]
     assert len({q["image"] for q in visual}) == 8
     assert all(q["imageAlt"] and q["image"].startswith("art/056/") for q in visual)
     for q in visual:
@@ -93,7 +94,7 @@ def test_generated_pictures_are_real_and_only_used_in_visual_questions():
 def test_contrast_and_emotional_repetition_are_explicit():
     u = unit()
     assert "выразительное повторение" in u["sections"][2]["title"].lower()
-    assert "эмоци" in " ".join(u["sections"][2]["paragraphs"])
+    assert "эмоци" in " ".join(u["sections"][2]["paragraphs"]).lower()
     assert "Siempre llama a su madre" in u["sections"][2]["check"]["questions"][1]["prompt"]
     ex = u["exercises"][1]
     assert any(q.get("gapWordCounts") == [1, 2] and "trabaja está trabajando" in q["answers"] for q in ex["questions"])
