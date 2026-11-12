@@ -162,11 +162,19 @@ def test_ser_ir_visual_contrast_and_independent_two_field_transfer():
     semantic=u["exercises"][4]["questions"][-2:]
     assert [q["answers"] for q in semantic] == [["ir"],["ser"]]
     assert all(set(q["options"])=={"ser","ir"} for q in semantic)
-    assert {q["image"] for q in semantic} == {"art/059/ir_traveler.webp","art/059/ser_teacher.webp"}
-    for q in semantic:
-        assert q["imageAlt"] and q["learningAction"]
-        image=GRAMMAR / q["image"]
+    raw_semantic=raw()["exercises"][4]["questions"][-2:]
+    assert {q["image"] for q in raw_semantic} == {"art/059/ir_traveler.webp","art/059/ser_teacher.webp"}
+    from base64 import b64decode
+    from io import BytesIO
+    from PIL import Image
+    for original, rendered in zip(raw_semantic, semantic):
+        assert rendered["imageAlt"] and rendered["learningAction"]
+        image=GRAMMAR / original["image"]
         assert image.exists() and image.stat().st_size > 5000
+        assert rendered["image"].startswith("data:image/webp;base64,")
+        embedded=b64decode(rendered["image"].split(",",1)[1])
+        assert embedded == image.read_bytes()
+        assert Image.open(BytesIO(embedded)).size == (384, 384)
     assert (GRAMMAR / "art/059/prompts.json").exists()
     transfer=u["exercises"][5]["questions"][-2]
     assert transfer["sourceRef"]=="extra"
