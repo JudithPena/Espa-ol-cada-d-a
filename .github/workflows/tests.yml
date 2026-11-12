@@ -148,6 +148,7 @@ jobs:
           python tests/site_static_browser.py --site site --baseline /tmp/ecd-site-before --report /tmp/site-static-browser.json
           python tests/grammar_unit56_browser.py --site site --report /tmp/grammar-unit56-browser.json
           python tests/grammar_unit57_browser.py --site site --report /tmp/grammar-unit57-browser.json
+          python tests/grammar_unit58_browser.py --site site --report /tmp/grammar-unit58-browser.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -156,5 +157,7 @@ jobs:
             /tmp/site-static-browser.json
             /tmp/grammar-unit56-browser.json
             /tmp/grammar-unit57-browser.json
+            /tmp/grammar-unit58-browser.json
+            /tmp/grammar58-screenshots/*.png
             /tmp/grammar57-screenshots/*.png
             /tmp/grammar56-screenshots/*.png
