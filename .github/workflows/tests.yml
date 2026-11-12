@@ -22,6 +22,7 @@ jobs:
           python -m espanol grammar-lint 13
           python -m espanol grammar-lint 56 --strict-warnings
           python -m espanol grammar-lint 57 --strict-warnings
+          python -m espanol grammar-lint 58 --strict-warnings
           python -m espanol grammar-lint 8
           python -m espanol grammar-lint 2 --report /tmp/unit2-lint-summary.md --json-out /tmp/unit2-lint-findings.json
           python -c "from pathlib import Path; print(Path('/tmp/unit2-lint-summary.md').read_text())"
