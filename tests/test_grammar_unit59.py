@@ -128,3 +128,48 @@ def test_ser_ir_ambiguity_and_source_history_corrections():
     assert by_ref("59.3.1e")["answers"] == ["fue"]
     assert by_ref("59.3.2c")["answers"] == ["divirtió"]
     assert Path("docs/grammar_units/59.md").is_file()
+
+
+def test_reworked_groups_keep_identity_and_bump_attempt_revision():
+    u=unit()
+    assert [g["id"] for g in u["exercises"]] == ["59.1a","59.1b","59.1c","59.1d","59.2","59.3"]
+    assert {g["id"]:g.get("revision",1) for g in u["exercises"]} == {
+        "59.1a":1,"59.1b":1,"59.1c":2,"59.1d":1,"59.2":2,"59.3":2
+    }
+    assert u.get("revision",1) == 1  # stage order was not altered
+
+
+def test_semantic_stem_selection_not_single_verb_conjugation():
+    u=unit()
+    stems=u["sections"][2]
+    groups=stems["wordGroups"]
+    assert len(groups)==3
+    assert [len(g["words"]) for g in groups] == [2,4,1]
+    # Theory keeps all eleven roots; no root is removed or duplicated in the groups.
+    full=" ".join(stems["paragraphs"])+" ".join(" ".join(pair) for group in groups for pair in group["words"])
+    for word in ("decir","estar","haber","hacer","poder","poner","querer","saber","tener","traer","venir"):
+        assert word in full or word in " ".join(stems["table"]["heads"]), word
+    semantic=[q for q in u["exercises"][2]["questions"] if q.get("learningAction")=="самостоятельный выбор глагола по смыслу"]
+    assert len(semantic)==3
+    assert {q["answers"][0] for q in semantic}=={"hizo","dijo","pude"}
+    assert all(set(q["options"])=={"hizo","dijo","pude"} for q in semantic)
+    assert all(q["sourceRef"]=="extra" for q in semantic)
+    assert all("hacer" not in q["prompt"] and "decir" not in q["prompt"] and "poder" not in q["prompt"] for q in semantic)
+
+
+def test_ser_ir_visual_contrast_and_independent_two_field_transfer():
+    u=unit()
+    semantic=u["exercises"][4]["questions"][-2:]
+    assert [q["answers"] for q in semantic] == [["ir"],["ser"]]
+    assert all(set(q["options"])=={"ser","ir"} for q in semantic)
+    assert {q["image"] for q in semantic} == {"art/059/ir_traveler.webp","art/059/ser_teacher.webp"}
+    for q in semantic:
+        assert q["imageAlt"] and q["learningAction"]
+        image=GRAMMAR / q["image"]
+        assert image.exists() and image.stat().st_size > 5000
+    assert (GRAMMAR / "art/059/prompts.json").exists()
+    transfer=u["exercises"][5]["questions"][-2]
+    assert transfer["sourceRef"]=="extra"
+    assert transfer["answers"]==["fui fue"]
+    assert transfer["gapWordCounts"]==[1,1]
+    assert not any(v in transfer["prompt"] for v in ("(ser)","(ir)"))
