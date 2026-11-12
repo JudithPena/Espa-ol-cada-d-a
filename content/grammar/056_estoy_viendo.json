@@ -871,6 +871,44 @@
           ]
         },
         {
+          "context": "Луис обычно работает дома, но сегодня хочет подчеркнуть временную перемену.",
+          "prompt": "Luis normalmente ___ en casa, pero hoy ___ en la oficina.",
+          "answers": [
+            "trabaja está trabajando"
+          ],
+          "gapParts": [
+            "Luis normalmente ",
+            " en casa, pero hoy ",
+            " en la oficina."
+          ],
+          "gapWordCounts": [
+            1,
+            2
+          ],
+          "clues": [
+            [
+              "trabajar",
+              "работать"
+            ]
+          ],
+          "inputFormat": {
+            "instruction": "Первый пропуск — привычка (presente), второй — временный процесс (estar + gerundio). Заполни оба.",
+            "placeholder": "Форма глагола"
+          },
+          "explain": "Normalmente — обычный распорядок: trabaja. Hoy подчёркивает временное изменение: está trabajando. Просто hoy не запрещает форму trabaja, но здесь требуется именно процесс.",
+          "sourceRef": "extra",
+          "learningAction": "объяснение различия",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ]
+        },
+        {
           "context": "Кристину зовут на обед, но она уже у подруги.",
           "prompt": "—¿Por qué no come Cristina hoy con nosotros? —___ en casa de una amiga.",
           "answers": [
@@ -960,44 +998,6 @@
               "работать"
             ]
           ],
-          "inputChars": [
-            "á",
-            "é",
-            "í",
-            "ó",
-            "ú",
-            "ü",
-            "ñ"
-          ]
-        },
-        {
-          "context": "Луис обычно работает дома, но сегодня хочет подчеркнуть временную перемену.",
-          "prompt": "Luis normalmente ___ en casa, pero hoy ___ en la oficina.",
-          "answers": [
-            "trabaja está trabajando"
-          ],
-          "gapParts": [
-            "Luis normalmente ",
-            " en casa, pero hoy ",
-            " en la oficina."
-          ],
-          "gapWordCounts": [
-            1,
-            2
-          ],
-          "clues": [
-            [
-              "trabajar",
-              "работать"
-            ]
-          ],
-          "inputFormat": {
-            "instruction": "Первый пропуск — привычка (presente), второй — временный процесс (estar + gerundio). Заполни оба.",
-            "placeholder": "Форма глагола"
-          },
-          "explain": "Normalmente — обычный распорядок: trabaja. Hoy подчёркивает временное изменение: está trabajando. Просто hoy не запрещает форму trabaja, но здесь требуется именно процесс.",
-          "sourceRef": "extra",
-          "learningAction": "объяснение различия",
           "inputChars": [
             "á",
             "é",
