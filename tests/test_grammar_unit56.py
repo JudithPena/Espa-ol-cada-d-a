@@ -105,6 +105,7 @@ def test_contrast_and_emotional_repetition_are_explicit():
 def test_book_pictures_are_adapted_to_text_and_input():
     assert by_ref("56.1.2")["answers"] == ["Están jugando"]
     assert by_ref("56.1.3")["answers"] == ["está nevando"]
+    assert set(by_ref("56.1.3")["options"]) == {"está nevando", "está lloviendo", "está granizando"}
     assert by_ref("56.1.4")["gapWordCounts"] == [2, 2]
     assert by_ref("56.1.6")["answers"] == ["están llorando"]
     assert by_ref("56.2.3")["answers"] == ["están discutiendo"]
