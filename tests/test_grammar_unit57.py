@@ -29,7 +29,7 @@ def by_ref(ref):
 def test_previous_grammar_units_untouched():
     baseline = json.loads(Path("tests/data/grammar_before_unit57.json").read_text(encoding="utf-8"))
     paths = sorted(p for p in GRAMMAR.glob("[0-9]*.json") if int(p.name[:3]) < NUMBER)
-    assert len(paths) == len(baseline) == 54
+    assert len(paths) == len(baseline) == 56
     for path in paths:
         assert hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest() == baseline[path.name], path.name
 
