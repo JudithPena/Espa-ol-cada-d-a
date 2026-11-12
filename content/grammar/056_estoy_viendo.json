@@ -490,15 +490,9 @@
           "answers": [
             "está nevando"
           ],
-          "explain": "Снег идёт прямо сейчас, поэтому está nevando. В вопросе спрашивали о дожде.",
+          "explain": "За окном видны снежинки: está nevando. Дождь — está lloviendo, град — está granizando; это разные погодные явления.",
           "sourceRef": "56.1.3",
-          "learningAction": "ответ на реплику",
-          "clues": [
-            [
-              "nevar",
-              "идти (о снеге)"
-            ]
-          ],
+          "learningAction": "распознавание",
           "inputChars": [
             "á",
             "é",
@@ -509,7 +503,13 @@
             "ñ"
           ],
           "image": "art/056/snowing.webp",
-          "imageAlt": "Девушка у окна, за которым падают снежинки."
+          "imageAlt": "Девушка у окна, за которым падают снежинки.",
+          "options": [
+            "está nevando",
+            "está lloviendo",
+            "está granizando"
+          ],
+          "interaction": "gap-choice"
         },
         {
           "context": "Дочь спрашивает про папу. Ответь по картинке.",
