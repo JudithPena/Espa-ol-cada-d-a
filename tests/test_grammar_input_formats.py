@@ -21,7 +21,7 @@ def test_all_typing_questions_have_complete_format_guidance():
                     legacy += 1
                 else:
                     typed += 1
-    assert (typed, legacy) == (1548, 205)  # Fable stage 8: unit 2 has 27 typed instead of 38
+    assert (typed, legacy) == (1545, 205)  # Unit 59 refinement: three extra independent verb decisions now use choices
 
 
 @pytest.mark.parametrize('format', [{}, {'instruction':'Впиши слово'}, 'слово',
