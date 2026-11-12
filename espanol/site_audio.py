@@ -38,6 +38,7 @@ CAST: dict[str, tuple[str, str, str]] = {
     "Recepcionista": ("f", F1 + "@-4Hz", "recepcionista"),
     "Secretaria": ("f", F2 + "@-4Hz", "secretaria"),
     "Carmen": ("f", F2 + "@-10Hz", "carmen"),
+    "Megafonía": ("f", F1 + "@-10Hz", "megafonia"),
     "Dependienta": ("f", F2, "dependienta"),
     "Médica": ("f", F2 + "@-8Hz", "medica"),
     "Madre": ("f", F1 + "@-12Hz", "madre"),
@@ -51,6 +52,7 @@ CAST: dict[str, tuple[str, str, str]] = {
     "Hugo": ("m", M + "@+6Hz", "hugo"),
     "Sergio": ("m", M + "@-4Hz", "sergio"),
     "Camarero": ("m", M + "@-14Hz", "camarero"),
+    "Empleado": ("m", M + "@-8Hz", "empleado"),
     "Señor García": ("m", M + "@-16Hz", "senor_garcia"),
 }
 _SPARE = {"f": [F1, F2, F1 + "@-8Hz", F2 + "@+6Hz", F1 + "@+6Hz", F2 + "@-8Hz"],

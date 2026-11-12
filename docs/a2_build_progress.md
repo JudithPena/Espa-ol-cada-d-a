@@ -1,6 +1,6 @@
-# Курс A2 на сайте: журнал разработки
+# Курс A2 на сайте: договорённости и изменения движка
 
-Постоянный файл хода работы: с него начинается продолжение в новой сессии. Задача автора (12 ноября 2026):
+Подробности к журналу [progreso.md](../progreso.md): с журнала начинается продолжение в новой сессии. Задача автора (12 ноября 2026):
 «на основе аудита, карты и советов сделать курс A2 на сайте, ни в чём себя не ограничивая».
 
 - **Основания:** программа уровня — [карта A2–C2](a2_c2_curriculum_map.md), принципы — [стратегия](a2_c2_curriculum_strategy.md),
@@ -13,27 +13,7 @@
 
 ## Статус тем
 
-| № темы | Файл / id | Тема карты | Уроков | Статус |
-|---|---|---|---|---|
-| 24 | `24_espanol_y_yo` | 1. El español y yo | 9 | готово: validate, тесты, проход в браузере ×3 режима |
-| 25 | `25_ayer` | 2. ¿Qué hiciste ayer? | 8 | готово: validate, тесты, проход в браузере ×3 режима |
-| 26 | `26_una_vida` | 3. Una vida | 8 | готово: validate, тесты, проход в браузере ×3 режима |
-| 27 | `27_hoy_y_ayer` | 4. Hoy y ayer | 7 | готово: validate, тесты, проход в браузере ×3 режима |
-| 28 | `28_de_viaje` | 5. De viaje | | следующая |
-| 29 | `29_mercado` | 6. En el mercado + КТ-1 | | |
-| 30 | `30_de_pequeno` | 7. Cuando era pequeño | | |
-| 31 | `31_como_era` | 8. Cómo era | | |
-| 32 | `32_que_paso` | 9. ¿Qué pasó? | | |
-| 33 | `33_quedamos` | 10. ¿Quedamos? | | |
-| 34 | `34_recomiendo` | 11. Te lo recomiendo | | |
-| 35 | `35_por_la_ciudad` | 12. Por la ciudad + КТ-2 | | |
-| 36 | `36_me_encuentro_mal` | 13. Me encuentro mal | | |
-| 37 | `37_de_compras` | 14. De compras | | |
-| 38 | `38_mi_trabajo` | 15. Mi trabajo, mis estudios | | |
-| 39 | `39_la_gente` | 16. La gente | | |
-| 40 | `40_planes_y_deseos` | 17. Planes y deseos | | |
-| 41 | `41_mundo_hispano` | 18. El mundo hispano | | |
-| 42 | `42_final_dos` | 19. Итог A2 | | |
+Таблица тем, счётчики и журнал по датам — в [progreso.md](../progreso.md) в корне репозитория: он обновляется после каждой темы.
 
 ## Что сделано в движке и сборке (12 ноября)
 
@@ -85,7 +65,7 @@
 4. `python -m pytest -q tests/test_site_a2.py tests/test_scenario.py tests/test_site.py` и
    `node --test tests/site_course.test.cjs`.
 5. `python -m espanol site --preview` → `node tools/site_walk.mjs --unit N` (и с `--mistakes`, `--noaudio`).
-6. Строка в таблице статуса, коммит, пуш. Перед большим коммитом — полный `python -m pytest -q`.
+6. `python tools/progreso.py "Тема N «…» (K уроков)."` — пересчитывает таблицу и счётчики в `progreso.md` и дописывает строку журнала; затем коммит и пуш. Перед большим коммитом — полный `python -m pytest -q`.
 
 ## Чего проверка не охватывает
 
