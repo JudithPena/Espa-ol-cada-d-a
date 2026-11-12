@@ -48,6 +48,10 @@
         [
           "Está tocando una canción mexicana.",
           "Она сейчас играет мексиканскую песню."
+        ],
+        [
+          "Jorge y Santi tocan en una orquesta.",
+          "Хорхе и Санти играют в оркестре."
         ]
       ],
       "notes": [
@@ -613,12 +617,12 @@
           "interaction": "choice"
         },
         {
-          "context": "В семье принято обедать в два часа дня.",
-          "prompt": "En mi casa ___ a las dos.",
+          "context": "В вашей семье по воскресеньям принято обедать в три часа.",
+          "prompt": "En nuestra familia ___ a las tres los domingos.",
           "answers": [
             "comemos"
           ],
-          "explain": "Обычное время приёма пищи передаётся presente: comemos.",
+          "explain": "Обычный семейный распорядок по воскресеньям: comemos. Это привычка, не отдельный процесс.",
           "sourceRef": "extra",
           "learningAction": "воспроизведение",
           "clues": [
