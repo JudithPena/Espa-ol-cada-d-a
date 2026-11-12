@@ -123,7 +123,8 @@ lessons:
     kind: dialogue
     title: Если вы не поняли
     goal: сказать, что не понимаете, попросить повторить и объяснить слово
-    version: 2
+    version: 3
+    allow: [mochila]   # в «Что ответить?» ученик нарочно не знает этого слова: оно вводится позже
     vocab:
       - "🤷 No entiendo. [но энтьэ́ндо] — я не понимаю."
       - "🔁 Otra vez, por favor. [о́тра бэθ пор фабо́р] — ещё раз, пожалуйста."
@@ -180,13 +181,14 @@ lessons:
           free: true
           skill: ask_in_class
           items:
-            - lines: ["Profesora: Lee, por favor: la tarea."]
-              q: "Вы не знаете слово tarea."
-              options: "Perdón, ¿qué significa «tarea»? | ¿Cómo se dice «tarea» en español? | Muy bien, gracias."
-              explain: "Чтобы узнать, что значит слово, спрашивают ¿Qué significa...? А ¿Cómo se dice...? — когда хотят узнать, как это по-испански."
+            - lines: ["Profesora: Lee, por favor: la mochila."]
+              q: "Вы не понимаете, что значит слово mochila. Спросите об этом."
+              options: "Perdón, ¿qué significa «mochila»? | ¿Cómo se dice «mochila» en español? | ¿Cómo se escribe «mochila»?"
+              explain: "О значении слова спрашивают ¿Qué significa...? А ¿Cómo se dice...? — как сказать по-испански, ¿Cómo se escribe? — как пишется."
             - lines: ["Profesora: Escribe la palabra: «Málaga»."]
-              q: "Вы не знаете, как пишется это слово."
-              options: "¿Cómo se escribe? | ¿Qué significa? | No, gracias."
+              q: "Вы не знаете, как пишется это слово. Спросите."
+              options: "¿Cómo se escribe? | ¿Qué significa? | ¿Cómo se dice en español?"
+              explain: "Как пишется — ¿Cómo se escribe? ¿Qué significa? спрашивают о значении."
               rule: none
             - q: "Вы хотите узнать, как по-испански «спасибо»."
               options: "¿Cómo se dice «спасибо» en español? | ¿Qué significa «спасибо»? | ¿Cómo se escribe «спасибо»?"
@@ -204,7 +206,7 @@ lessons:
     kind: practice
     title: Practica en español
     goal: понять задание по-испански и спросить о незнакомом слове
-    version: 2
+    version: 3
     vocab:
       - "🏋️ practica [пра́ктика] — тренируйся, практикуйся"
     # Практикум начинается заданием; карточка practica — перед миссией.
@@ -264,22 +266,23 @@ lessons:
           source: school
           skill: class_words
           items:
-            - q: "Profesora: ¿Cómo se dice «сыр» en español? — Ответьте словом с артиклем."
-              a: "el queso"
-              format: el или la + слово
+            - q: "Profesora: ¿Cómo se dice «сыр» en español? — Ответьте."
+              a: "El queso | Queso | Se dice queso | Se dice el queso"
+              explain: "Достаточно одного слова: queso. Полный ответ — Se dice «queso»."
       - choose:
           source: school
           skill: ask_in_class
           items:
             - lines: ["Profesora: Escucha y repite: «la traducción»."]
-              q: "Вы не расслышали слово."
-              options: "Otra vez, por favor. | De nada. | ¿Cómo te llamas?"
+              q: "Вы не расслышали слово. Попросите повторить."
+              options: "Otra vez, por favor. | ¿Qué significa «traducción»? | ¿Cómo se escribe?"
+              explain: "Повторить просят словами otra vez — «ещё раз». Остальные два вопроса — о значении и о написании."
 
   - id: quiz
     kind: quiz
     title: Язык занятий
     goal: понять задание по-испански, переспросить и спросить о незнакомом слове
-    version: 2
+    version: 3
     check: soft
     blocks:
       - "Это тест по теме «Язык занятий»."
@@ -296,6 +299,19 @@ lessons:
             - "la palabra — слово"
             - "No entiendo. — я не понимаю"
             - "¿Cómo se escribe? — как это пишется?"
+      - write:
+          title: Скажите по-испански
+          format: две короткие фразы
+          rule: none
+          skill: ask_in_class
+          items:
+            - q: "Вы не поняли фразу. Скажите об этом и попросите повторить ещё раз."
+              a: "No entiendo. Otra vez, por favor | Otra vez, por favor. No entiendo | Perdón, no entiendo. Otra vez, por favor"
+              explain: "No entiendo — «я не понимаю», otra vez — «ещё раз»."
+              mistakes:
+                "no entiendo": "Это верно. Добавьте просьбу повторить: **Otra vez, por favor**."
+                "otra vez por favor": "Просьба есть. Сначала скажите, что не поняли: **No entiendo**."
+                "no entiendo más despacio por favor": "Más despacio — «помедленнее». «Ещё раз» — **otra vez**."
     quiz:
       - q: Что значит «Escucha y repite»?
         options: "Послушай и повтори | Прочитай и переведи | Напиши и ответь"

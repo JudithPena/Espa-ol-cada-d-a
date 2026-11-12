@@ -37,9 +37,9 @@ lessons:
           title: Что вы скажете?
           skill: greeting_time
           items:
-            - q: "13:30. Вы заходите в магазин в Мадриде."
+            - q: "11:00. Вы заходите в магазин в Мадриде."
               options: "¡Buenos días! | ¡Buenas tardes! | ¡Buenas noches!"
-              explain: "В Испании обедают около 14:00, поэтому до обеда, даже в половине второго, говорят buenos días."
+              explain: "С утра и до обеда говорят buenos días."
             - q: "18:00. Соседка возвращается домой с работы."
               options: "¡Buenas tardes! | ¡Buenos días! | ¡Buenas noches!"
               explain: "После обеда и до темноты говорят buenas tardes."
@@ -107,10 +107,10 @@ lessons:
           free: true
           rule: none
           items:
-            - lines: ["Pablo: ¡Buenas noches, Lucía!"]
-              q: "23:00. Пабло здоровается с вами в подъезде."
+            - lines: ["Pablo: ¡Hola, Lucía!"]
+              q: "23:00. Пабло здоровается с вами в подъезде. Ответьте приветствием по времени суток."
               options: "¡Buenas noches, Pablo! | ¡Buenos días, Pablo! | ¡Buenas tardes, Pablo!"
-              explain: "На приветствие отвечают тем же приветствием: поздно вечером — buenas noches."
+              explain: "Поздно вечером здороваются словами buenas noches."
               skill: greeting_time
               rule: day
             - lines: ["Pablo: ¡Hasta mañana!"]
