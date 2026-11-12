@@ -89,6 +89,7 @@ def test_situations_have_generated_art():
         path = GRAMMAR / q["image"]
         assert path.exists() and path.suffix == ".webp" and path.stat().st_size > 5000
     assert (GRAMMAR / "art/057/prompts.json").exists()
+    assert ["Jorge y Santi tocan en una orquesta.", "Хорхе и Санти играют в оркестре."] in unit()["sections"][0]["examples"]
 
 
 def test_grammar_meaning_and_alternatives():
