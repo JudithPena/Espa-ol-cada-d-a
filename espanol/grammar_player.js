@@ -943,7 +943,80 @@ function gFailureAnalysis(attempt,unit,group) {
 }
 
 // Opt-in summary map; all other units keep their existing summary renderer.
+function gTopicMap60(unit) {
+  const map = unit.summary.topicMap;
+  const [persons, participles, period, pronouns, news, checks] = map.cards;
+  const examples = card => (card.examples || []).slice(0, 1).map(([es, ru]) =>
+    `<div class="gposter60-example"><strong lang="es">${esc(es)}</strong><small>${esc(ru)}</small></div>`).join("");
+  const chips = card => `<ul class="gposter60-chips">${(card.chips || []).map(t =>
+    `<li lang="es">${esc(t)}</li>`).join("")}</ul>`;
+  const picture = card => {
+    const art = Number.isInteger(card.illustrationSection) ? unit.sections[card.illustrationSection]?.illustration : null;
+    return art ? `<img class="gposter60-picture" src="${esc(art.image)}" alt="${esc(art.alt)}" width="112" height="112" loading="lazy" decoding="async">` : "";
+  };
+  return `<section class="gposter60" aria-label="Карта-постер юнита ${unit.number}">
+    <header class="gposter60-heading">
+      <p class="gposter60-kicker"><span aria-hidden="true">✦</span> Юнит ${unit.number} / Карта темы</p>
+      <h3>${esc(unit.title)} <span>· pretérito perfecto</span></h3>
+      <p>${esc(map.lead)}</p>
+    </header>
+    <section class="gposter60-core" aria-labelledby="gposter60-core-title">
+      <div class="gposter60-core-copy">
+        <span class="gposter60-overline">Главная формула</span>
+        <h4 id="gposter60-core-title">Два слова — одно время</h4>
+        <p class="gposter60-core-example" lang="es">${esc(unit.summary.rows[0][2])}</p>
+        <small>Меняется <b lang="es">haber</b>, причастие остаётся неизменным.</small>
+      </div>
+      <div class="gposter60-equation" aria-label="${esc(map.formula.map(item => item[0]).join(" плюс "))}">
+        ${map.formula.map(([word, label], i) =>
+          `${i ? '<span class="gposter60-plus" aria-hidden="true">+</span>' : ''}<div class="gposter60-token"><strong lang="es">${esc(word)}</strong><span>${esc(label)}</span></div>`).join("")}
+      </div>
+    </section>
+    <div class="gposter60-connector" aria-hidden="true"><span></span></div>
+    <div class="gposter60-foundations">
+      <article class="gposter60-module gposter60-persons" aria-labelledby="gposter60-persons">
+        <div class="gposter60-module-heading"><span class="gposter60-pictogram" aria-hidden="true">◉</span><div><small>01 / Лицо</small><h4 id="gposter60-persons">${esc(persons.title)}</h4></div></div>
+        <div class="gposter60-person-grid">${persons.pairs.map(([who, form]) => `<div><span lang="es">${esc(who)}</span><strong lang="es">${esc(form)}</strong></div>`).join("")}</div>
+        <p class="gposter60-module-note">${esc(persons.note)}</p>
+      </article>
+      <article class="gposter60-module gposter60-participles" aria-labelledby="gposter60-participles">
+        <div class="gposter60-module-heading"><span class="gposter60-pictogram" aria-hidden="true">✎</span><div><small>02 / Действие</small><h4 id="gposter60-participles">${esc(participles.title)}</h4></div></div>
+        <div class="gposter60-formations">${participles.pairs.slice(0, 2).map(([from, to]) => `<div><span lang="es">${esc(from)}</span><b aria-hidden="true">→</b><strong lang="es">${esc(to)}</strong></div>`).join("")}</div>
+        <p class="gposter60-mini-label">Особые формы</p>
+        <div class="gposter60-irregular">${participles.pairs.slice(2).map(([from, to]) => `<span lang="es">${esc(from)} <b>→ ${esc(to)}</b></span>`).join("")}</div>
+        <p class="gposter60-module-note">${esc(participles.note)}</p>
+      </article>
+    </div>
+    <div class="gposter60-connector gposter60-connector-short" aria-hidden="true"><span></span></div>
+    <article class="gposter60-pronouns" aria-labelledby="gposter60-pronouns">
+      <div class="gposter60-module-heading"><span class="gposter60-pictogram" aria-hidden="true">↳</span><div><small>03 / Порядок слов</small><h4 id="gposter60-pronouns">${esc(pronouns.title)}</h4></div></div>
+      <div class="gposter60-pronoun-forms">${pronouns.pairs.map(([label, pattern]) => `<div><small>${esc(label)}</small><strong lang="es">${esc(pattern)}</strong></div>`).join("")}</div>
+      <p class="gposter60-module-note">${esc(pronouns.note)}</p>
+    </article>
+    <div class="gposter60-uses-label"><span aria-hidden="true">↓</span> Связь с настоящим <span aria-hidden="true">↓</span></div>
+    <div class="gposter60-uses">
+      <article class="gposter60-use gposter60-period" aria-labelledby="gposter60-period">
+        <div class="gposter60-module-heading"><span class="gposter60-pictogram" aria-hidden="true">▣</span><div><small>04 / Когда?</small><h4 id="gposter60-period">${esc(period.title)}</h4></div></div>
+        ${chips(period)}
+        <div class="gposter60-use-example">${picture(period)}${examples(period)}</div>
+        <p class="gposter60-module-note">${esc(period.text)} ${esc(period.note)}</p>
+      </article>
+      <article class="gposter60-use gposter60-news" aria-labelledby="gposter60-news">
+        <div class="gposter60-module-heading"><span class="gposter60-pictogram" aria-hidden="true">✧</span><div><small>05 / Что произошло?</small><h4 id="gposter60-news">${esc(news.title)}</h4></div></div>
+        ${chips(news)}
+        <div class="gposter60-use-example">${picture(news)}${examples(news)}</div>
+        <p class="gposter60-module-note">${esc(news.note)}</p>
+      </article>
+    </div>
+    <aside class="gposter60-remember" aria-label="Запомните главное">
+      <span class="gposter60-remember-mark" aria-hidden="true">✓</span>
+      <div><h4>Запомните главное</h4><p>${esc(map.takeaway)}</p><small>${esc(checks.note)} ${esc(checks.pairs[2][1])}</small></div>
+    </aside>
+  </section>`;
+}
+
 function gTopicMap(unit) {
+  if (unit.number === 60) return gTopicMap60(unit);
   const map=unit.summary.topicMap, tones=['violet','peach','mint','blue','rose'];
   const examples=pairs=>(pairs || []).map(([es,ru])=>`<div class="gmap-example"><strong lang="es">${esc(es)}</strong><span>${esc(ru)}</span></div>`).join('');
   const cards=map.cards.map((card,index)=>{
