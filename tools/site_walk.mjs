@@ -48,7 +48,13 @@ async function act(page, mistakes) {
     const listenOff = document.querySelector('.listen.off [data-noaudio]');
     if (listenOff) { listenOff.click(); return 'noaudio'; }
     switch (st.type) {
-      case 'intro': case 'word': case 'theory': case 'task': case 'deferred': click('[data-primary]'); return st.type;
+      case 'intro': case 'word': case 'theory': case 'task': case 'deferred': case 'chatlog': click('[data-primary]'); return st.type;
+      case 'compose': {
+        const f = document.querySelector('#coans');
+        const put = v => { f.value = v; f.dispatchEvent(new Event('input', { bubbles: true })); };
+        if (mistakes && !s.tries) { put('xxx'); click('[data-primary]'); return 'compose-wrong'; }
+        put(st.sample); click('[data-primary]'); return 'compose';
+      }
       case 'mc': {
         if (mistakes && !st.retry && !s.tried) { s.tried = true; click(`[data-opt="${(st.correct + 1) % st.options.length}"]`); return 'mc-wrong'; }
         click(`[data-opt="${st.correct}"]`); return 'mc';

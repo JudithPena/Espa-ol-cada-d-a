@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import re
 
-from .course import FEATURES, GRADED_BLOCKS, RULE_TARGETS, SITE_ONLY_BLOCKS, SOURCE_BLOCKS, Course, Lesson
+from .course import FEATURES, GRADED_BLOCKS, OPEN_BLOCKS, RULE_TARGETS, SITE_ONLY_BLOCKS, SOURCE_BLOCKS, Course, Lesson
 from .lexicon import SCENARIO_TEXTS, Issue, Lexicon, generated_forms, lesson_texts
 from .markup import checkable, plain
 from .tokens import spanish_words
@@ -47,6 +47,9 @@ def _graded_texts(block) -> list[str]:
         texts += [o for it in d["items"] for o in it["options"]]
     if block.type == "build":
         texts += [x for it in d["items"] for x in it["extra"]]
+    if block.type == "chat":
+        texts += [o for it in d["items"] if it["kind"] == "choose" for o in it["options"]]
+        texts += [x for it in d["items"] if it["kind"] == "build" for x in it["extra"]]
     return texts
 
 
@@ -90,8 +93,73 @@ def _block_issues(lesson: Lesson, block) -> list[str]:
                     out.append(f"build: другой порядок должен состоять из тех же плиток — {alt!r}")
             if {_tile(x) for x in it["extra"]} & {_tile(x) for x in words}:
                 out.append(f"build: лишняя плитка совпадает со словом фразы — {it['extra']!r}")
+    elif t == "compose":
+        for it in d["items"]:
+            out += _compose_issues(it, "compose")
+    elif t == "chat":
+        for n, it in enumerate(d["items"], 1):
+            where = f"chat, ход {n}"
+            if it["kind"] == "choose":
+                keys = [_exact(o) for o in it["options"]]
+                if not 2 <= len(keys) <= MAX_OPTIONS or len(set(keys)) != len(keys):
+                    out.append(f"{where}: нужно от 2 до {MAX_OPTIONS} разных вариантов")
+            elif it["kind"] == "build":
+                words = it["es"].split()
+                if not 2 <= len(words) <= 10:
+                    out.append(f"{where}: во фразе нужно от 2 до 10 слов — {it['es']!r}")
+                for alt in it["alt"]:
+                    if sorted(map(_tile, alt.split())) != sorted(map(_tile, words)):
+                        out.append(f"{where}: другой порядок должен состоять из тех же плиток — {alt!r}")
+                if {_tile(x) for x in it["extra"]} & {_tile(x) for x in words}:
+                    out.append(f"{where}: лишняя плитка совпадает со словом фразы — {it['extra']!r}")
+            elif it["kind"] == "compose":
+                out += _compose_issues(it, where)
+            if it["kind"] != "build" and not it["task"]:
+                out.append(f"{where}: нужно условие по-русски (task): что ученик должен сказать")
     elif t == "learn":
         pass
+    return out
+
+
+def _flat(text: str) -> str:
+    """Как страница сравнивает письмо с признаками: без регистра, знаков и ударений (ñ остаётся)."""
+    text = re.sub(r"[¿¡?!.,;:«»\"“”'…()\[\]—–-]", " ", plain(text).lower())
+    return " " + " ".join(text.translate(str.maketrans("áéíóú", "aeiou")).split()) + " "
+
+
+def compose_passes(it: dict, text: str) -> list[bool]:
+    """Какие условия письма выполняет текст (как на странице): длина, предложения, признаки."""
+    flat = _flat(text)
+    has = lambda p: _flat(p) in flat
+    out = []
+    n = len(flat.split())
+    if it["words"]:
+        out.append(it["words"][0] <= n <= it["words"][1])
+    if it["sentences"]:
+        out.append(len([x for x in re.split(r"[.!?…]+", plain(text)) if x.strip()]) >= it["sentences"])
+    for c in it["checks"]:
+        if c["if"] and not any(has(p) for p in c["if"]):
+            out.append(True)
+            continue
+        ok = True
+        if c["any"]:
+            ok = ok and any(has(p) for p in c["any"])
+        if c["all"]:
+            ok = ok and all(has(p) for p in c["all"])
+        if c["starts"]:
+            ok = ok and any(flat.startswith(_flat(p).rstrip() + " ") for p in c["starts"])
+        if c["re"]:
+            ok = ok and bool(re.search(c["re"], flat.strip()))
+        out.append(ok)
+    return out
+
+
+def _compose_issues(it: dict, where: str) -> list[str]:
+    out = []
+    if not (it["checks"] or it["words"] or it["sentences"]):
+        out.append(f"{where}: у письма нет ни одного условия (checks, words, sentences) — проверять нечего")
+    if not all(compose_passes(it, it["sample"])):
+        out.append(f"{where}: образец не выполняет собственные условия — «{plain(it['sample'])[:50]}»")
     return out
 
 
@@ -107,7 +175,7 @@ def _img_issues(block) -> list[str]:
 def _tasks(lesson: Lesson):
     """Задания урока для проверки ссылок: (номер блока, блок, поля вопроса или None для пар и групп, где)."""
     for k, block in enumerate(lesson.blocks):
-        if block.type in ("choose", "write", "build"):
+        if block.type in ("choose", "write", "build", "compose", "chat"):
             for n, it in enumerate(block.data["items"], 1):
                 yield k, block, it.get("meta") or {}, f"{block.type}, вопрос {n}"
         elif block.type in ("match", "sort"):
@@ -124,7 +192,7 @@ def _ref_issues(lesson: Lesson, skills: dict, index: dict[str, int]) -> list[str
             if bid in ids:
                 out.append(f"id «{bid}» стоит у двух блоков")
             ids[bid] = k
-            if block.type not in SOURCE_BLOCKS | RULE_TARGETS:
+            if block.type not in SOURCE_BLOCKS | RULE_TARGETS | {"chat"}:   # у разговора id — имя его ленты
                 out.append(f"id «{bid}» у блока {block.type}: id ставят источникам и объяснениям")
     def skill_issues(tags, where, k=None):
         for tag in tags or []:
@@ -191,6 +259,8 @@ def _strict_issues(lesson: Lesson) -> list[str]:
         if not seen_source or block.type not in GRADED_BLOCKS:
             continue
         bound = block.meta.get("source") or block.meta.get("free")
+        if block.type == "chat":   # разговор сам себе источник: его ходы идут подряд и вне разговора не задаются
+            continue
         if block.type in ("match", "sort"):
             if not bound:
                 out.append(f"{block.type} «{block.data['title']}» после источника: укажите source: id или free: true")
@@ -229,6 +299,13 @@ def _asked_texts(lesson: Lesson) -> list[str]:
             out += [x for _, xs in d["groups"] for x in xs]
         elif block.type == "build":
             out += [it["es"] for it in d["items"]]
+        elif block.type == "compose":
+            out += [it["q"] for it in d["items"]]
+        elif block.type == "chat":
+            for it in d["items"]:
+                out += [it["line"][1], it["task"]]
+                out += [it["es"]] if it["kind"] == "build" else it["answers"] if it["kind"] == "write" else it["options"][:1] if it["kind"] == "choose" else []
+            out += [line[1] for line in d["end"]]
     out += [t for q in lesson.quiz for t in (q.question, q.options[q.correct])]
     return [f" {_key(t)} " for t in out if t]
 
@@ -364,7 +441,8 @@ def _skill_material(course: Course) -> list[str]:
     for lesson in course.lessons:
         for k, block, meta, _ in _tasks(lesson):
             tags = meta.get("skill") or block.meta.get("skill") or []
-            free = not (meta.get("source") or (block.meta.get("source") and not meta.get("free")))
+            # открытые задания (письмо, разговор) в повторение навыков не идут: материалом не считаются
+            free = block.type not in OPEN_BLOCKS and not (meta.get("source") or (block.meta.get("source") and not meta.get("free")))
             for tag in tags:
                 used[tag] = used.get(tag, False) or free
     return [f"skills.yaml: у навыка «{tag}» нет ни одного самостоятельного задания (без source) — повторять нечего"

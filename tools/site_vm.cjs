@@ -21,7 +21,7 @@ d = site_data(load_course("content/site"), load_cards("content"), units=${spec})
 for L in d["lessons"]:
     for w in L["words"]:
         w.pop("img", None)
-print(json.dumps({k: d[k] for k in ("lessons", "units", "intervals", "skills") if k in d}, ensure_ascii=False))
+print(json.dumps({k: d[k] for k in ("lessons", "units", "intervals", "skills", "forms") if k in d}, ensure_ascii=False))
 `], {cwd: ROOT, maxBuffer: 256 * 1024 * 1024}).toString());
 }
 
@@ -84,6 +84,7 @@ function context(data, storage = new Map(), opts = {}) {
 
 // Сигнатура шагов урока для карт слайдов (docs/site_slide_maps/README.md): T(блоки) — экран объяснения, W — карточка
 // слова, C — выбор, I — ввод, M — пары, S — группы, B — сборка фразы, F — «Мастер фраз», Q — тест, V — вопрос на слово;
+// O — письмо по признакам (compose); HB / HI / HC / HO — ход разговора (chat) сборкой, вводом, выбором, письмом, HL — лента разговора;
 // @id — источник задания, ~ — на слух, R: — повторение, ×N — N шагов подряд.
 // Шаг повторения (блок review) — просто «R»: его задание выбирается из навыков, которым пора, и меняется от раза к разу.
 const SIG_CODE = `function stepSig(st) {
@@ -91,7 +92,10 @@ const SIG_CODE = `function stepSig(st) {
   const pre = "";
   const src = st.src != null ? "@" + (LESSONS[st.li]?.blocks[st.src]?.id || st.src) : "";
   const ear = st.say ? "~" : "";
+  if (st.type === "chatlog") return "HL";
+  if (st.chat) return "H" + ({ build: "B", write: "I", mc: "C", compose: "O" })[st.type];
   switch (st.type) {
+    case "compose": return "O" + src;
     case "intro": return "intro";
     case "theory": return "T(" + st.blocks.map(b => b.t).join("+") + ")";
     case "word": return "W";

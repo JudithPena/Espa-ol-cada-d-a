@@ -36,6 +36,7 @@ CAST: dict[str, tuple[str, str, str]] = {
     "Karina": ("f", F2 + "@+10Hz", "karina"),
     "Profesora": ("f", F1 + "@-8Hz", "profesora"),
     "Recepcionista": ("f", F1 + "@-4Hz", "recepcionista"),
+    "Secretaria": ("f", F2 + "@-4Hz", "secretaria"),
     "Dependienta": ("f", F2, "dependienta"),
     "Médica": ("f", F2 + "@-8Hz", "medica"),
     "Madre": ("f", F1 + "@-12Hz", "madre"),
@@ -73,6 +74,14 @@ def cast(speakers: list[str]) -> dict[str, dict]:
     return out
 RATE = "-5%"
 AUDIO_DIR = "a"
+# Сколько допустимых ответов ввода озвучиваем: шаблон ответа разворачивается в десятки вариантов,
+# записи нужны только самым частым (первым); остальные после проверки не звучат.
+MAX_SPOKEN = 16      # обычный перечень ответов — все
+MANY_SPOKEN = 6      # перечень длиннее MAX_SPOKEN (шаблон) — только первые
+
+
+def _spoken(answers: list) -> list:
+    return answers if len(answers) <= MAX_SPOKEN else answers[:MANY_SPOKEN]
 
 
 def _clean(text) -> str:
@@ -146,9 +155,31 @@ def audio_texts(data: dict) -> dict[str, tuple[str, str]]:
             elif t == "write":
                 for it in b["items"]:
                     add(it.get("say"))
-                    for a in it["a"]:                       # звучит тот ответ, который ученик ввёл
+                    for a in _spoken(it["a"]):          # звучит тот ответ, который ученик ввёл
                         if _spanish(a):
                             add(a)
+            elif t == "compose":
+                for it in b["items"]:
+                    add(it.get("sample"))
+            elif t == "chat":   # реплики собеседника — его голосом; ответы ученика звучат после проверки
+                voice = b["cast"][b["who"]]["v"]
+                for line in [it["line"] for it in b["items"]] + b["end"]:
+                    add(line[3], voice, key=f"@{voice}|{_clean(line[3])}")
+                for it in b["items"]:
+                    if it["kind"] == "build":
+                        for es in [it["es"], *it.get("alt", [])]:
+                            add(es)
+                            for tok in es.split(" "):
+                                add(tok)
+                    elif it["kind"] == "write":
+                        for a in _spoken(it["a"]):
+                            if _spanish(a):
+                                add(a)
+                    elif it["kind"] == "choose":
+                        if _spanish(it["o"][0][1]):
+                            add(it["o"][0][1])
+                    else:
+                        add(it.get("sample"))
             elif t == "match":
                 for left, right, say_l, say_r in b["pairs"]:
                     add(say_l)

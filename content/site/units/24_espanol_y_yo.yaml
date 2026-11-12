@@ -1,0 +1,1248 @@
+id: espanol_y_yo
+number: 24
+level: A2
+title: El español y yo — испанский и я
+goals:
+  - рассказать, как давно и зачем вы учите испанский
+  - сказать, что вы умеете, что знаете и что вам трудно
+  - заполнить анкету и продиктовать фамилию по буквам
+  - записаться в языковую школу и поговорить на языковом обмене
+
+# Первая тема A2 (проект — docs/a2_pilot_blueprint.md). Возвращает A1 в новых формах работы: длинное
+# аудирование, разговор по шагам (chat), письмо о себе с проверкой по признакам (compose).
+lessons:
+  - id: intercambio
+    kind: listening
+    title: Языковой обмен
+    goal: понять на слух разговор о том, кто как давно и зачем учит язык
+    version: 2
+    # Карта экранов: docs/site_slide_maps/24_espanol_y_yo.md
+    allow: [cuando, Normal]
+    vocab:
+      - "📍 desde [дэ́здэ] — с (какого-то момента) :: Vivo en Madrid desde enero. — Я живу в Мадриде с января."
+      - "⏳ desde hace [дэ́здэ а́θэ] — уже (столько-то времени) :: Estudio inglés desde hace dos años. — Я учу английский уже два года."
+      - "🕰 ¿Cuánto tiempo hace que...? [куа́нто тье́мпо а́θэ кэ] — как давно...? :: ¿Cuánto tiempo hace que estudias español? — Как давно ты учишь испанский?"
+      - "🗣 el idioma [идьо́ма] — язык (на котором говорят) :: ¿Qué idioma estudias? — Какой язык ты учишь?"
+      - "🧩 necesitar [нэθэсита́р] — нуждаться; быть нужным :: Necesito el inglés para mi trabajo. — Мне нужен английский для работы."
+      - "👄 la pronunciación [пронунθьяθьо́н] — произношение :: La pronunciación es difícil. — Произношение трудное."
+      - "⚡ rápido [ра́пидо] — быстро :: Hablas muy rápido. — Ты говоришь очень быстро."
+    blocks:
+      - "Мадрид, вечер языкового обмена. Ирина пришла впервые и знакомится с Диего. Послушайте разговор два раза: текста пока нет."
+      - dialogue:
+          id: intercambio
+          hidden: true
+          lines:
+            - "Diego: ¡Hola! ¿Eres nueva aquí? | Привет! Ты здесь новенькая?"
+            - "Irina: Sí, es mi primer intercambio. Me llamo Irina. | Да, это мой первый обмен. Меня зовут Ирина."
+            - "Diego: Yo soy Diego. Encantado. ¿De dónde eres? | А я Диего. Очень приятно. Откуда ты?"
+            - "Irina: Soy ucraniana, de Leópolis, pero vivo en Madrid desde enero. | Я украинка, из Львова, но с января живу в Мадриде."
+            - "Diego: ¡Hablas muy bien! ¿Cuánto tiempo hace que estudias español? | Ты очень хорошо говоришь! Как давно ты учишь испанский?"
+            - "Irina: Gracias. Hace un año que estudio español. ¿Y tú? ¿Qué idioma estudias? | Спасибо. Я учу испанский уже год. А ты? Какой язык ты учишь?"
+            - "Diego: Yo estudio inglés desde hace dos años. Necesito el inglés para mi trabajo. | Я учу английский уже два года. Английский нужен мне для работы."
+            - "Irina: ¿Y te gusta? | И тебе нравится?"
+            - "Diego: Sí, pero la pronunciación es muy difícil. ¿Y tú? ¿Por qué estudias español? | Да, но произношение очень трудное. А ты? Почему ты учишь испанский?"
+            - "Irina: Porque vivo aquí y quiero hablar con la gente. Y también para ver series en español. | Потому что я здесь живу и хочу разговаривать с людьми. И ещё чтобы смотреть сериалы на испанском."
+            - "Diego: ¿Y qué es difícil para ti? | А что трудно для тебя?"
+            - "Irina: Entender a la gente cuando habla rápido. | Понимать людей, когда они говорят быстро."
+            - "Diego: Normal. Mira, tenemos que hablar mucho. ¿Hablamos media hora en español y media hora en inglés? | Это нормально. Слушай, нам нужно много разговаривать. Поговорим полчаса по-испански и полчаса по-английски?"
+            - "Irina: ¡Vale! ¡Perfecto! | Давай! Отлично!"
+      - choose:
+          title: Что вы поняли?
+          source: intercambio
+          items:
+            - q: "¿De dónde es Irina?"
+              options: "De Leópolis. | De Madrid. | De Odesa."
+              explain: "Irina: Soy ucraniana, de Leópolis, pero vivo en Madrid."
+            - q: "¿Qué idioma estudia Diego?"
+              options: "Inglés. | Ucraniano. | Español."
+              explain: "Diego: Yo estudio inglés."
+      - learn: [desde, desde hace, "¿Cuánto tiempo hace que...?", el idioma]
+      - text:
+          id: notice
+          text: "В разговоре прозвучали два способа сказать, как давно что-то продолжается. Сравните их."
+      - examples:
+          items:
+            - "Vivo en Madrid **desde** enero. — Я живу в Мадриде **с** января."
+            - "**Hace** un año **que** estudio español. — Я учу испанский **уже** год."
+            - "Estudio inglés **desde hace** dos años. — Я учу английский **уже** два года."
+      - choose:
+          title: Детали разговора
+          source: intercambio
+          skill: desde_hace
+          items:
+            - q: "¿Desde cuándo vive Irina en Madrid?"
+              options: "Desde enero. | Desde hace un año. | Desde septiembre."
+              explain: "Irina: Vivo en Madrid desde enero. А год — это сколько она учит испанский."
+            - q: "¿Cuánto tiempo hace que Diego estudia inglés?"
+              options: "Dos años. | Un año. | Dos meses."
+              explain: "Diego: Yo estudio inglés desde hace dos años."
+      - choose:
+          title: Послушайте
+          free: true
+          skill: desde_hace
+          rule: notice
+          items:
+            - say: "Estudio inglés desde hace dos años."
+              options: "Я учу английский уже два года. | Я учил английский два года назад. | Я буду учить английский два года."
+              explain: "Desde hace dos años — «уже два года»: действие продолжается, глагол estudio — в настоящем времени."
+              noaudio: {q: "Что значит «Estudio inglés desde hace dos años»?", options: "Я учу английский уже два года. | Я учил английский два года назад. | Я буду учить английский два года."}
+      - learn: [necesitar, la pronunciación, rápido]
+      - choose:
+          title: Детали разговора
+          source: intercambio
+          items:
+            - q: "¿Para qué necesita Diego el inglés?"
+              options: "Para su trabajo. | Para ver series. | Para hablar con la gente."
+              explain: "Diego: Necesito el inglés para mi trabajo. Сериалы и разговоры с людьми — это причины Ирины."
+            - q: "¿Qué es difícil para Irina?"
+              options: "Entender a la gente cuando habla rápido. | La pronunciación. | Hablar inglés."
+              explain: "Irina: Entender a la gente cuando habla rápido. Произношение трудно для Диего."
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          free: true
+          skill: desde_hace
+          rule: notice
+          items:
+            - say: "Hace un año que estudio español."
+              a: "Hace un año que estudio español"
+              explain: "Hace un año que… — «уже год, как…»."
+              noaudio: {q: "Напишите по-испански: «Я учу испанский уже год». Начните с Hace.", a: "Hace un año que estudio español"}
+              mistakes:
+                "hace un ano que estudio español": "Посмотрите на букву `ñ`: **año** — «год»."
+                "hace un año estudio español": "Не хватает слова **que**: Hace un año **que** estudio español."
+      - sort:
+          title: Кто это сказал?
+          source: intercambio
+          groups:
+            "Irina": ["Es mi primer intercambio.", "Quiero hablar con la gente."]
+            "Diego": ["Necesito el inglés para mi trabajo.", "La pronunciación es muy difícil."]
+      - choose:
+          title: Что ответить?
+          free: true
+          rule: none
+          items:
+            - lines: ["Diego: ¿Hablamos media hora en español y media hora en inglés?"]
+              q: "Вы согласны."
+              options: "¡Vale! ¡Perfecto! | Lo siento, no puedo. | Otro día."
+              explain: "Согласие — ¡Vale! Два других ответа — отказ."
+
+  - id: desde_hace
+    kind: grammar
+    title: "Desde, desde hace, hace… que"
+    goal: сказать, с какого времени и как долго вы что-то делаете
+    version: 2
+    vocab:
+      - "🔤 el verbo [бэ́рбо] — глагол :: «Vivir» es un verbo. — «Vivir» — это глагол."
+    blocks:
+      - compare:
+          id: desde
+          title: С какого момента и как долго
+          cards:
+            - head: desde + момент
+              say: false
+              label: с какого момента
+              tone: blue
+              ex: ["Vivo en Madrid desde enero. — Я живу в Мадриде с января.", "Estoy en casa desde las ocho. — Я дома с восьми."]
+            - head: desde hace + срок
+              say: false
+              label: уже сколько времени
+              tone: sun
+              ex: ["Estudio inglés desde hace dos años. — Я учу английский уже два года.", "Vivo aquí desde hace un mes. — Я живу здесь уже месяц."]
+            - head: hace + срок + que
+              say: false
+              label: то же, срок в начале
+              tone: mint
+              ex: ["Hace un año que estudio español. — Я учу испанский уже год."]
+          note: "Действие ещё продолжается, поэтому глагол стоит **в настоящем времени**: _Vivo en Madrid desde enero_ — «Я живу в Мадриде с января»."
+      - learn: [el verbo]
+      - choose:
+          title: Найдите глагол
+          rule: none
+          items:
+            - q: "Hace un año que **estudio** español. Какое слово здесь — el verbo?"
+              options: "estudio | año | español"
+              explain: "El verbo — глагол: estudio («учу»). Он стоит в настоящем времени."
+      - sort:
+          title: Момент или срок?
+          skill: desde_hace
+          groups:
+            "desde… (момент)": [enero, el lunes, las ocho, "2024"]
+            "desde hace… (срок)": [un año, dos meses, tres días, una semana]
+      - write:
+          title: desde или desde hace?
+          format: desde или desde hace
+          skill: desde_hace
+          items:
+            - q: "Vivo en Valencia ___ tres años."
+              a: "desde hace"
+              explain: "Три года — это срок: desde hace tres años."
+              mistakes:
+                "desde": "Три года — это срок, а не момент: **desde hace** tres años."
+                "hace": "Перед сроком в середине фразы нужны оба слова: **desde hace**."
+            - q: "Trabajo aquí ___ septiembre."
+              a: "desde"
+              explain: "Сентябрь — это момент начала: desde septiembre."
+              mistakes:
+                "desde hace": "Сентябрь — момент, а не срок: просто **desde** septiembre."
+            - q: "Estudiamos español ___ seis meses."
+              a: "desde hace"
+              explain: "Шесть месяцев — срок: desde hace seis meses."
+              mistakes:
+                "desde": "Шесть месяцев — это срок: **desde hace** seis meses."
+            - q: "Carlos está en casa ___ las siete."
+              a: "desde"
+              explain: "Семь часов — момент: desde las siete."
+              mistakes:
+                "desde hace": "Семь часов — момент, а не срок: **desde** las siete."
+      - compare:
+          id: preguntas
+          slide: new
+          title: Как спросить
+          cards:
+            - head: ¿Desde cuándo…?
+              label: с какого времени?
+              tone: blue
+              ex: ["¿Desde cuándo vives aquí? — С какого времени ты здесь живёшь?", "Desde enero. — С января."]
+            - head: ¿Cuánto tiempo hace que…?
+              label: как давно?
+              tone: sun
+              ex: ["¿Cuánto tiempo hace que vives aquí? — Как давно ты здесь живёшь?", "Hace un año. — Уже год."]
+          note: "Короткого ответа достаточно: _Desde enero._ _Hace un año._"
+      - choose:
+          title: Что ответить?
+          skill: desde_hace
+          items:
+            - lines: ["Ana: ¿Cuánto tiempo hace que vives en Madrid?"]
+              q: "Вы живёте здесь два года."
+              options: "Hace dos años. | Desde dos años. | Hace dos años que."
+              explain: "Короткий ответ о сроке — Hace dos años. Desde без hace нужен перед моментом: desde enero."
+            - say: "Vivo aquí desde hace tres meses."
+              options: "Я живу здесь уже три месяца. | Я жил здесь три месяца. | Я приеду сюда через три месяца."
+              explain: "Desde hace tres meses — «уже три месяца»; глагол vivo — в настоящем времени."
+              noaudio: {q: "Что значит «Vivo aquí desde hace tres meses»?", options: "Я живу здесь уже три месяца. | Я жил здесь три месяца. | Я приеду сюда через три месяца."}
+      - build:
+          title: Соберите фразу
+          skill: desde_hace
+          items:
+            - es: "Hace seis meses que estudio español."
+              ru: "Я учу испанский уже шесть месяцев."
+              extra: [desde]
+            - es: "¿Desde cuándo vives aquí?"
+              ru: "С какого времени ты здесь живёшь?"
+              extra: [hace]
+      - write:
+          title: Скажите по-другому
+          format: начните с Hace
+          skill: desde_hace
+          items:
+            - q: "Estudio inglés desde hace dos años."
+              a: "Hace dos años que estudio inglés"
+              explain: "Срок переходит в начало: Hace dos años que…"
+              mistakes:
+                "hace dos años estudio inglés": "После срока нужно **que**: Hace dos años **que** estudio inglés."
+            - q: "Trabajo en un hospital desde hace un mes."
+              a: "Hace un mes que trabajo en un hospital"
+              explain: "Hace un mes que… — «уже месяц, как…»."
+              mistakes:
+                "hace un mes trabajo en un hospital": "После срока нужно **que**: Hace un mes **que** trabajo en un hospital."
+      - write:
+          title: Исправьте ошибку
+          format: вся фраза без ошибки
+          skill: desde_hace
+          items:
+            - q: "Vivo en Madrid `desde hace` enero."
+              a: "Vivo en Madrid desde enero"
+              explain: "Январь — момент начала, поэтому просто desde."
+            - q: "Estudio español `desde` un año."
+              a: "Estudio español desde hace un año | Hace un año que estudio español"
+              explain: "Год — это срок: desde hace un año."
+      - compose:
+          title: О себе
+          skill: desde_hace
+          rule: desde
+          items:
+            - q: "¿Cuánto tiempo hace que estudias español? Ответьте о себе одной фразой."
+              format: "Hace … que estudio español"
+              words: [2, 14]
+              checks:
+                - label: "есть hace или desde"
+                  any: [hace, desde]
+                - label: "назван срок или момент: un año, dos meses, enero…"
+                  re: "(dia|dias|semana|semanas|mes|meses|año|años|enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)"
+              sample: "Hace un año que estudio español."
+              sample_ru: "Я учу испанский уже год."
+    quiz:
+      - q: "Vivo aquí ___ 2020."
+        options: "desde | desde hace | hace"
+        explain: "2020 год — момент начала: desde 2020."
+        skill: desde_hace
+      - q: "___ dos años que estudio español."
+        options: "Hace | Desde | Desde hace"
+        explain: "В начале фразы перед сроком — Hace… que."
+        skill: desde_hace
+
+  - id: para_que
+    kind: grammar
+    title: "¿Por qué? ¿Para qué?"
+    goal: объяснить, почему и для чего вы учите испанский
+    version: 2
+    vocab:
+      - "🎯 ¿Para qué? [па́ра кэ] — для чего? зачем? :: ¿Para qué estudias español? — Для чего ты учишь испанский?"
+      - "🎭 la cultura [культу́ра] — культура :: Me gusta la cultura española. — Мне нравится испанская культура."
+      - "🔮 el futuro [футу́ро] — будущее :: Estudio para mi futuro. — Я учусь ради своего будущего."
+      - "📈 mejorar [мэхора́р] — улучшать; становиться лучше :: Quiero mejorar mi español. — Я хочу улучшить свой испанский."
+    blocks:
+      - "Ирина назвала сразу и причину, и цель. Чем отличаются эти два ответа?"
+      - examples:
+          items:
+            - "Estudio español **porque vivo** aquí. — Я учу испанский, **потому что живу** здесь."
+            - "Estudio español **para ver** series. — Я учу испанский, **чтобы смотреть** сериалы."
+      - compare:
+          id: para_porque
+          title: Причина и цель
+          cards:
+            - head: porque + глагол в личной форме
+              say: false
+              label: "причина — ¿Por qué?"
+              tone: blue
+              ex: ["Estudio español porque vivo en España. — …потому что живу в Испании.", "Estudio español porque me gusta el idioma. — …потому что мне нравится язык."]
+            - head: para + инфинитив
+              say: false
+              label: "цель — ¿Para qué?"
+              tone: sun
+              ex: ["Estudio español para viajar. — …чтобы путешествовать.", "Estudio español para hablar con la gente. — …чтобы разговаривать с людьми."]
+      - learn: ["¿Para qué?", la cultura, el futuro, mejorar]
+      - sort:
+          title: Причина или цель?
+          skill: para_porque
+          groups:
+            "porque…": [vivo en España, me gusta la cultura, mi novia es española, necesito el español en el trabajo]
+            "para…": [viajar, trabajar en España, hablar con mis amigos, ver películas]
+      - write:
+          title: porque или para?
+          format: porque или para
+          skill: para_porque
+          items:
+            - q: "Estudio español ___ quiero vivir en Sevilla."
+              a: "porque"
+              explain: "Quiero — глагол в личной форме, это причина: porque quiero."
+              mistakes:
+                "para": "После **para** стоит инфинитив (para vivir). Здесь личная форма quiero — значит, **porque**."
+            - q: "Estudio español ___ entender a mis amigos."
+              a: "para"
+              explain: "Entender — инфинитив, это цель: para entender."
+              mistakes:
+                "porque": "После **porque** нужна личная форма (porque quiero). Перед инфинитивом entender — **para**."
+            - q: "Estudio español ___ me encanta el idioma."
+              a: "porque"
+              explain: "Me encanta — личная форма, это причина."
+              mistakes:
+                "para": "После **para** — инфинитив. Здесь me encanta — причина: **porque**."
+            - q: "Estudio español ___ mejorar mi futuro."
+              a: "para"
+              explain: "Mejorar — инфинитив, это цель: para mejorar."
+              mistakes:
+                "porque": "Перед инфинитивом mejorar — **para**."
+      - write:
+          title: Исправьте ошибку
+          format: вся фраза без ошибки
+          skill: para_porque
+          items:
+            - q: "Estudio español para `viajo` por España."
+              a: "Estudio español para viajar por España"
+              explain: "После para — инфинитив: para viajar."
+      - choose:
+          title: Послушайте
+          skill: para_porque
+          items:
+            - say: "Estudio español para trabajar en México."
+              options: "Чтобы работать в Мексике. | Потому что работаю в Мексике. | Чтобы путешествовать по Мексике."
+              explain: "Para trabajar — «чтобы работать»: цель."
+              noaudio: {q: "Estudio español para trabajar en México. — Зачем?", options: "Чтобы работать в Мексике. | Потому что работаю в Мексике. | Чтобы путешествовать по Мексике."}
+            - say: "Estudio inglés porque lo necesito en el trabajo."
+              options: "Потому что он нужен мне на работе. | Чтобы найти работу. | Потому что мне нравится работа."
+              explain: "Porque lo necesito — «потому что он мне нужен»: причина."
+              noaudio: {q: "Estudio inglés porque lo necesito en el trabajo. — Почему?", options: "Потому что он нужен мне на работе. | Чтобы найти работу. | Потому что мне нравится работа."}
+      - build:
+          title: Соберите фразу
+          skill: para_porque
+          items:
+            - "¿Para qué estudias español? — Для чего ты учишь испанский?"
+            - es: "Estudio español porque me encanta la cultura."
+              ru: "Я учу испанский, потому что обожаю культуру."
+              extra: [para]
+      - compose:
+          title: О себе
+          skill: para_porque
+          rule: para_porque
+          items:
+            - q: "¿Por qué o para qué estudias español? Напишите одну-две фразы о себе."
+              format: "Estudio español para… / porque…"
+              words: [3, 25]
+              checks:
+                - label: "есть porque или para"
+                  any: [porque, para]
+                - label: "после para — инфинитив (-ar, -er, -ir)"
+                  if: [para]
+                  re: "para (no )?(me |te |se |nos )?\\w+(ar|er|ir|arme|erme|irme)\\b"
+              sample: "Estudio español para viajar por España y porque me gusta mucho el idioma."
+              sample_ru: "Я учу испанский, чтобы путешествовать по Испании, и потому что мне очень нравится язык."
+    quiz:
+      - q: "Estudio español ___ hablar con mi familia."
+        options: "para | porque | por qué"
+        explain: "Hablar — инфинитив, это цель: para hablar."
+        skill: para_porque
+      - q: "— ¿Por qué estudias inglés? — ___ lo necesito en el trabajo."
+        options: "Porque | Para | Por qué"
+        explain: "На вопрос ¿Por qué? отвечают porque — одним словом и без знака ударения."
+        skill: para_porque
+
+  - id: saber_conocer
+    kind: grammar
+    title: "Saber y conocer: два «знать»"
+    goal: сказать, что вы умеете, что знаете и с чем знакомы
+    version: 2
+    allow: [San]
+    forms: [otros, otras]
+    vocab:
+      - "🧠 saber [сабэ́р] — знать; уметь :: ¿Sabes cocinar? — Ты умеешь готовить?"
+      - "🤷 No sé. [но сэ] — не знаю. :: No sé dónde está. — Я не знаю, где это."
+      - "🎸 tocar [тока́р] — играть (на инструменте); трогать :: Sé tocar la guitarra. — Я умею играть на гитаре."
+      - "🚗 conducir [кондуθи́р] — водить машину :: No sé conducir. — Я не умею водить."
+    blocks:
+      - "Ирина и Диего идут гулять. В их разговоре два разных глагола переводятся как «знать». Какие?"
+      - dialogue:
+          id: mercado
+          title: По дороге на рынок
+          lines:
+            - "Diego: ¿Conoces bien Madrid? | Ты хорошо знаешь Мадрид?"
+            - "Irina: No muy bien. Conozco el centro, pero no conozco otros barrios. | Не очень. Я знаю центр, но не знаю других районов."
+            - "Diego: ¿Sabes dónde está el mercado de San Miguel? | Ты знаешь, где находится рынок Сан-Мигель?"
+            - "Irina: No, no sé. ¿Está lejos? | Нет, не знаю. Это далеко?"
+            - "Diego: No, está muy cerca. Allí hay comida muy buena. ¿Sabes cocinar? | Нет, совсем близко. Там очень хорошая еда. Ты умеешь готовить?"
+            - "Irina: Sí, sé cocinar comida ucraniana. ¡Vamos! | Да, я умею готовить украинскую еду. Пойдём!"
+      - learn: [saber, No sé., tocar, conducir]
+      - choose:
+          title: Поняли?
+          source: mercado
+          items:
+            - q: "¿Irina sabe dónde está el mercado?"
+              options: "No, no sabe. | Sí, está muy cerca. | Sí, conoce el mercado."
+              explain: "Irina: No, no sé. — Ирина не знает; что рынок близко, говорит Диего."
+            - q: "¿Qué sabe hacer Irina?"
+              options: "Cocinar comida ucraniana. | Tocar la guitarra. | Conducir."
+              explain: "Irina: Sí, sé cocinar comida ucraniana."
+      - compare:
+          id: saber_conocer
+          title: Saber или conocer?
+          cards:
+            - head: saber + инфинитив
+              say: false
+              label: уметь
+              tone: blue
+              ex: ["Sé nadar. — Я умею плавать.", "¿Sabes cocinar? — Ты умеешь готовить?"]
+            - head: saber + что, где, как
+              say: false
+              label: знать факт
+              tone: sun
+              ex: ["No sé dónde está. — Я не знаю, где это.", "¿Sabes cómo se llama? — Ты знаешь, как его зовут?"]
+            - head: conocer + место или человек
+              say: false
+              label: быть знакомым
+              tone: mint
+              ex: ["Conozco Madrid. — Я знаю Мадрид.", "Conozco a Diego. — Я знаком с Диего."]
+      - conjugation:
+          verb: saber
+          ru: знать, уметь
+          forms: [sé, sabes, sabe, sabemos, sabéis, saben]
+      - more:
+          title: А conocer?
+          text: "У **conocer** неправильная только форма «я»: **conozco**. Остальные — как у comer: _conoces, conoce, conocemos, conocéis, conocen_. Перед человеком ставится **a**: _Conozco **a** Diego_."
+      - sort:
+          title: Saber или conocer?
+          free: true
+          skill: saber_conocer
+          rule: saber_conocer
+          groups:
+            "saber": [nadar, tocar la guitarra, dónde vive Ana, cómo se llama]
+            "conocer": [Sevilla, a tu hermano, este restaurante, a la profesora]
+      - write:
+          title: Вставьте форму глагола
+          format: saber или conocer в нужной форме
+          free: true
+          skill: saber_conocer
+          rule: saber_conocer
+          items:
+            - q: "(yo) No ___ dónde están mis llaves."
+              a: "sé"
+              explain: "Знать факт — saber; форма «я» — sé."
+              mistakes:
+                "se": "**sé** — «я знаю» — пишется со знаком ударения; `se` без знака — возвратное местоимение."
+                "conozco": "Где лежат ключи — это факт, а не знакомство: **sé**."
+            - q: "¿(tú) ___ a mi amigo Carlos?"
+              a: "conoces"
+              explain: "Быть знакомым с человеком — conocer: ¿Conoces a Carlos?"
+              mistakes:
+                "sabes": "С человеком — **conocer**: ¿Conoces a Carlos?"
+            - q: "(yo) ___ Barcelona muy bien."
+              a: "conozco"
+              explain: "Знать город — conocer; форма «я» — conozco."
+              mistakes:
+                "conoco": "Форма «я» — **conozco**, с буквами `zc`."
+                "sé": "Город знают глаголом **conocer**: conozco Barcelona."
+            - q: "Mis padres no ___ hablar inglés."
+              a: "saben"
+              explain: "Уметь — saber + инфинитив: no saben hablar."
+              mistakes:
+                "conocen": "Уметь что-то делать — **saber**: no saben hablar."
+            - q: "¿(vosotros) ___ cocinar?"
+              a: "sabéis"
+              explain: "Уметь — saber: ¿Sabéis cocinar?"
+      - compare:
+          id: saber_poder
+          slide: new
+          title: Не умею или не могу?
+          cards:
+            - head: No sé nadar.
+              label: не умею
+              tone: blue
+              text: Никогда не учился.
+            - head: Hoy no puedo nadar.
+              label: сегодня не могу
+              tone: sun
+              text: Умею, но что-то мешает.
+      - choose:
+          title: Что вы скажете?
+          free: true
+          skill: saber_conocer
+          items:
+            - q: "Вы умеете плавать, но сегодня болит нога."
+              options: "Sé nadar, pero hoy no puedo. | Puedo nadar, pero hoy no sé. | Conozco nadar, pero hoy no puedo."
+              explain: "Умею — sé nadar; сегодня мешает нога — no puedo."
+            - lines: ["Diego: ¿Sabes dónde está la estación?"]
+              q: "Вы не знаете."
+              options: "No, no sé. Lo siento. | No, no conozco. Lo siento. | No, no puedo. Lo siento."
+              explain: "На вопрос ¿Sabes…? о факте отвечают No sé."
+            - say: "¿Conoces a mi hermana?"
+              options: "Ты знаком с моей сестрой? | Ты знаешь, где моя сестра? | Ты умеешь, как моя сестра?"
+              explain: "Conocer a + человек — «быть знакомым»."
+              noaudio: {q: "Что значит «¿Conoces a mi hermana?»", options: "Ты знаком с моей сестрой? | Ты знаешь, где моя сестра? | Ты умеешь, как моя сестра?"}
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: saber_conocer
+          items:
+            - "¿Sabes tocar la guitarra? — Ты умеешь играть на гитаре?"
+            - es: "No conozco a tu hermana."
+              ru: "Я не знаком с твоей сестрой."
+              extra: [sé]
+            - es: "No sé conducir."
+              ru: "Я не умею водить машину."
+              extra: [conozco]
+      - compose:
+          title: О себе
+          free: true
+          skill: saber_conocer
+          rule: saber_conocer
+          items:
+            - q: "¿Qué sabes hacer? Напишите, что вы умеете и чего не умеете."
+              format: "Sé… / No sé…"
+              words: [2, 20]
+              checks:
+                - label: "есть Sé + действие"
+                  re: "\\bse (muy bien |bien |un poco )?\\w+(ar|er|ir)\\b"
+              sample: "Sé cocinar y nadar, pero no sé tocar la guitarra."
+              sample_ru: "Я умею готовить и плавать, но не умею играть на гитаре."
+    quiz:
+      - q: "— ¿___ a Lucía? — Sí, es mi amiga."
+        options: "Conoces | Sabes | Puedes"
+        explain: "Быть знакомым с человеком — conocer a."
+        skill: saber_conocer
+        free: true
+      - q: "No ___ conducir."
+        options: "sé | conozco | soy"
+        explain: "Уметь — saber + инфинитив: no sé conducir."
+        skill: saber_conocer
+        free: true
+
+  - id: me_cuesta
+    kind: vocab
+    title: "Me cuesta… Трудности и советы"
+    goal: сказать, что вам трудно, и дать простой совет
+    version: 2
+    vocab:
+      - "😓 me cuesta [мэ куэ́ста] — мне трудно, мне тяжело даётся :: Me cuesta la pronunciación. — Мне трудно даётся произношение."
+      - "❌ el error [эрро́р] — ошибка :: No tengo miedo de los errores. — Я не боюсь ошибок."
+      - "💭 recordar [рэкорда́р] — помнить, запоминать {forms: recuerdo recuerdas recuerda recuerdan} :: No recuerdo la palabra. — Я не помню это слово."
+      - "🫥 olvidar [ольвида́р] — забывать :: Olvido las palabras nuevas. — Я забываю новые слова."
+      - "💡 el consejo [консэ́хо] — совет :: ¿Tienes un consejo? — У тебя есть совет?"
+      - "🏅 lo mejor es... [ло мэхо́р эс] — лучше всего… :: Lo mejor es practicar todos los días. — Лучше всего практиковаться каждый день."
+      - "🛠 útil [у́тиль] — полезный :: Es un consejo muy útil. — Это очень полезный совет."
+      - "🙂 fácil [фа́θиль] — лёгкий, простой :: El español no es fácil. — Испанский — не простой язык."
+    blocks:
+      - rule:
+          id: me_cuesta
+          text: |
+            Что вам трудно? — **Me cuesta** + действие или вещь: _Me cuesta la pronunciación._ _Me cuesta entender a la gente._
+            Если трудных вещей несколько — **me cuestan**: _Me cuestan los verbos._ Это работает как **me gusta / me gustan**.
+            Глагол **costar** вы знаете по вопросу _¿Cuánto cuesta?_: трудное тоже «стоит» усилий.
+      - learn: [me cuesta, el error, recordar, olvidar]
+      - write:
+          title: cuesta или cuestan?
+          format: cuesta или cuestan
+          skill: me_cuesta
+          items:
+            - q: "Me ___ la gramática."
+              a: "cuesta"
+              explain: "Одна вещь — cuesta."
+              mistakes:
+                "cuestan": "La gramática — одна вещь: me **cuesta**."
+            - q: "Me ___ las palabras largas."
+              a: "cuestan"
+              explain: "Слов много — cuestan."
+              mistakes:
+                "cuesta": "Las palabras — много вещей: me **cuestan**."
+            - q: "¿Te ___ hablar por teléfono?"
+              a: "cuesta"
+              explain: "Действие (инфинитив) — всегда cuesta."
+              mistakes:
+                "cuestan": "Перед действием (hablar) — **cuesta**, как me gusta hablar."
+            - q: "A Tom le ___ los verbos."
+              a: "cuestan"
+              explain: "Los verbos — много: le cuestan."
+              mistakes:
+                "cuesta": "Los verbos — много вещей: le **cuestan**."
+      - choose:
+          title: Послушайте
+          skill: me_cuesta
+          items:
+            - say: "Me cuesta recordar las palabras nuevas."
+              options: "Мне трудно запоминать новые слова. | Мне трудно произносить новые слова. | Я не люблю новые слова."
+              explain: "Me cuesta — «мне трудно», recordar — «запоминать, помнить»."
+              noaudio: {q: "Что значит «Me cuesta recordar las palabras nuevas»?", options: "Мне трудно запоминать новые слова. | Мне трудно произносить новые слова. | Я не люблю новые слова."}
+            - say: "Siempre olvido los verbos."
+              options: "Я всегда забываю глаголы. | Я всегда помню глаголы. | Я никогда не забываю глаголы."
+              explain: "Olvidar — «забывать»: olvido — «я забываю»."
+              noaudio: {q: "Что значит «Siempre olvido los verbos»?", options: "Я всегда забываю глаголы. | Я всегда помню глаголы. | Я никогда не забываю глаголы."}
+      - learn: [el consejo, lo mejor es..., útil, fácil]
+      - compare:
+          id: consejo
+          title: Как дать совет
+          cards:
+            - head: Tienes que + инфинитив
+              say: false
+              label: тебе нужно
+              tone: blue
+              ex: ["Tienes que hablar más. — Тебе нужно больше говорить."]
+            - head: Puedes + инфинитив
+              say: false
+              label: ты можешь
+              tone: sun
+              ex: ["Puedes ver series. — Ты можешь смотреть сериалы."]
+            - head: Lo mejor es + инфинитив
+              say: false
+              label: лучше всего
+              tone: mint
+              ex: ["Lo mejor es practicar todos los días. — Лучше всего практиковаться каждый день."]
+      - match:
+          title: Проблема — совет
+          skill: consejo
+          pairs:
+            - "Me cuesta la pronunciación. — Puedes escuchar música y cantar."
+            - "Olvido las palabras. — Lo mejor es leer mucho."
+            - "No entiendo a la gente. — Tienes que escuchar más español."
+            - "Me cuesta hablar. — Lo mejor es practicar con amigos."
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "útil — полезный"
+            - "fácil — лёгкий"
+            - "difícil — трудный"
+            - "el error — ошибка"
+            - "el consejo — совет"
+      - build:
+          title: Соберите фразу
+          skill: consejo
+          items:
+            - es: "Lo mejor es hablar mucho y no tener miedo."
+              ru: "Лучше всего много говорить и не бояться."
+            - es: "Tienes que escuchar más español."
+              ru: "Тебе нужно больше слушать испанский."
+              extra: [es]
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: me_cuesta
+          rule: me_cuesta
+          items:
+            - q: "Мне трудно понимать фильмы."
+              a: "Me cuesta entender las películas | (A mí) me cuesta entender (las) películas"
+              explain: "Me cuesta + инфинитив: me cuesta entender."
+              mistakes:
+                "me cuestan entender las películas": "Перед действием (entender) — **cuesta**: me cuesta entender."
+            - q: "Тебе нужно больше читать."
+              a: "Tienes que leer más | (Tú) tienes que leer más"
+              skill: consejo
+              rule: consejo
+              explain: "Tienes que + инфинитив: tienes que leer."
+              mistakes:
+                "tienes leer más": "Между tienes и инфинитивом нужно **que**: tienes **que** leer."
+      - compose:
+          title: О себе
+          skill: me_cuesta
+          rule: me_cuesta
+          items:
+            - q: "¿Qué te cuesta más en español? Напишите одну фразу о себе."
+              format: "Me cuesta… / Me cuestan…"
+              words: [3, 20]
+              checks:
+                - label: "начинается с Me cuesta или Me cuestan"
+                  starts: [me cuesta, me cuestan, a mí me cuesta, a mí me cuestan]
+              sample: "Me cuesta entender a la gente cuando habla rápido."
+              sample_ru: "Мне трудно понимать людей, когда они говорят быстро."
+    allow: [cuando]
+    quiz:
+      - q: "Me ___ los verbos."
+        options: "cuestan | cuesta | cuesto"
+        explain: "Los verbos — много вещей: me cuestan."
+        skill: me_cuesta
+      - q: "Другу трудно говорить по-испански. Какой совет вы дадите?"
+        options: "Lo mejor es practicar con amigos. | Me cuesta practicar con amigos. | No sé practicar con amigos."
+        explain: "Совет — Lo mejor es + инфинитив. Me cuesta — «мне трудно», это не совет."
+        skill: consejo
+
+  - id: datos
+    kind: vocab
+    title: Анкета и алфавит
+    goal: заполнить анкету и продиктовать фамилию по буквам
+    version: 2
+    allow: [Koval, irina, ana, lopez, Oleg]
+    # названия букв и сами буквы — материал урока (экран алфавита): с этого урока они известны
+    forms: [be, ce, de, efe, ge, hache, i, jota, ka, ele, eme, ene, eñe, pe, cu, erre, ese, te, u, uve, doble, equis, ye, zeta,
+            b, c, d, f, g, h, j, k, l, m, n, ñ, p, q, r, s, t, v, w, x, z, ch]
+    vocab:
+      - "🪪 el nombre [но́мбрэ] — имя :: ¿Cuál es tu nombre? — Какое у тебя имя?"
+      - "👪 el apellido [апэйи́до] — фамилия :: Mi apellido es Koval. — Моя фамилия — Коваль."
+      - "🎂 la edad [эда́д] — возраст"
+      - "🌍 la nacionalidad [наθьоналида́д] — гражданство, национальность"
+      - "🏠 la dirección [дирэкθьо́н] — адрес :: ¿Cuál es tu dirección? — Какой у тебя адрес?"
+      - "📧 el correo electrónico [корре́о электро́нико] — электронная почта"
+      - "🔡 deletrear [дэлэтрэа́р] — произносить по буквам :: ¿Puede deletrear su apellido? — Можете продиктовать фамилию по буквам?"
+      - "🔠 la letra [ле́тра] — буква :: La letra hache no se lee. — Буква h не читается."
+      - "📎 la arroba [арро́ба] — знак @ («собака»)"
+    blocks:
+      - "Ирина записывается в языковую школу. Посмотрите на её анкету."
+      - table:
+          id: ficha
+          title: Анкета
+          rows:
+            - ["Nombre", "Irina"]
+            - ["Apellido", "Koval"]
+            - ["Edad", "28 años"]
+            - ["Nacionalidad", "ucraniana"]
+            - ["Dirección", "calle Mayor, 12, Madrid"]
+            - ["Correo electrónico", "irina.koval@correo.es"]
+            - ["Teléfono", "650 281 973"]
+      - learn: [el nombre, el apellido, la edad, la nacionalidad, la dirección, el correo electrónico]
+      - match:
+          title: Что в какой строке?
+          rule: ficha
+          skill: datos_personales
+          pairs:
+            - "Nombre — Irina"
+            - "Apellido — Koval"
+            - "Nacionalidad — ucraniana"
+            - "Dirección — calle Mayor, 12"
+            - "Edad — 28 años"
+      - choose:
+          title: Что это?
+          rule: ficha
+          skill: datos_personales
+          items:
+            - q: "irina.koval@correo.es"
+              options: "el correo electrónico | la dirección | el apellido"
+              explain: "Correo electrónico — электронная почта. La dirección — обычный адрес: улица и дом."
+            - q: "calle Mayor, 12, Madrid"
+              options: "la dirección | la nacionalidad | el correo electrónico"
+              explain: "La dirección — адрес: улица, дом, город."
+      - text:
+          id: abc
+          slide: new
+          text: "Фамилию и почту в Испании часто просят продиктовать **по буквам**. У каждой буквы есть название. Нажмите на букву и послушайте."
+      - compare:
+          style: small
+          cards:
+            - {head: a, label: A}
+            - {head: be, label: B}
+            - {head: ce, label: C}
+            - {head: de, label: D}
+            - {head: e, label: E}
+            - {head: efe, label: F}
+            - {head: ge, label: G}
+            - {head: hache, label: H}
+            - {head: i, label: I}
+      - compare:
+          style: small
+          join: true
+          cards:
+            - {head: jota, label: J}
+            - {head: ka, label: K}
+            - {head: ele, label: L}
+            - {head: eme, label: M}
+            - {head: ene, label: N}
+            - {head: eñe, label: Ñ}
+            - {head: o, label: O}
+            - {head: pe, label: P}
+            - {head: cu, label: Q}
+      - compare:
+          style: small
+          join: true
+          cards:
+            - {head: erre, label: R}
+            - {head: ese, label: S}
+            - {head: te, label: T}
+            - {head: u, label: U}
+            - {head: uve, label: V}
+            - {head: uve doble, label: W}
+            - {head: equis, label: X}
+            - {head: ye, label: Y}
+            - {head: zeta, label: Z}
+          note: "Запомните те, что звучат неожиданно: **ge** — G, **jota** — J, **hache** — H, **uve** — V, **ye** — Y, **zeta** — Z, **equis** — X."
+      - choose:
+          title: Какая это буква?
+          rule: abc
+          skill: deletrear
+          items:
+            - say: "jota"
+              options: "J | G | H"
+              explain: "Jota — буква J. Буква G называется ge, буква H — hache."
+              noaudio: {q: "Какая буква называется «jota»?", options: "J | G | H"}
+            - say: "uve"
+              options: "V | B | U"
+              explain: "Uve — буква V. Буква B называется be."
+              noaudio: {q: "Какая буква называется «uve»?", options: "V | B | U"}
+            - say: "hache"
+              options: "H | A | Ch"
+              explain: "Hache — буква H; сама она не читается."
+              noaudio: {q: "Какая буква называется «hache»?", options: "H | A | Ch"}
+            - say: "ge"
+              options: "G | J | Y"
+              explain: "Ge — буква G. Буква J — jota, буква Y — ye."
+              noaudio: {q: "Какая буква называется «ge»?", options: "G | J | Y"}
+      - learn: [deletrear, la letra, la arroba]
+      - choose:
+          title: Буквы
+          rule: abc
+          skill: deletrear
+          items:
+            - q: "¿Cuántas letras tiene la palabra «hola»?"
+              options: "Cuatro. | Tres. | Cinco."
+              explain: "H-o-l-a: cuatro letras. Буква h пишется, хотя и не читается."
+      - "В адресе почты точка — **punto**, знак @ — **arroba**: _ana punto lopez arroba correo punto es_ — это ana.lopez@correo.es."
+      - write:
+          title: Запишите фамилию
+          format: фамилия буквами
+          skill: deletrear
+          rule: abc
+          items:
+            - say: "ka, o, uve, a, ele"
+              a: "Koval"
+              explain: "Ka — K, o — O, uve — V, a — A, ele — L."
+              noaudio: {q: "Запишите фамилию: ka, o, uve, a, ele", a: "Koval"}
+            - say: "erre, u, i, zeta"
+              a: "Ruiz"
+              explain: "Erre — R, u — U, i — I, zeta — Z."
+              noaudio: {q: "Запишите фамилию: erre, u, i, zeta", a: "Ruiz"}
+      - write:
+          title: Продиктуйте по буквам
+          format: названия букв через запятую
+          skill: deletrear
+          rule: abc
+          items:
+            - q: "¿Cómo se escribe «Torres»? Deletrea la palabra."
+              a: "te, o, erre, erre, e, ese | te, o, doble erre, e, ese"
+              explain: "T — te, O — o, R — erre, E — e, S — ese."
+              mistakes:
+                "te o ere ere e ese": "Буква R называется **erre**, с двумя r."
+            - q: "Вас зовут Олег Коваль. Secretaria: ¿Puede deletrear su apellido?"
+              a: "ka, o, uve, a, ele | (Sí,) ka, o, uve, a, ele"
+              explain: "Koval: ka, o, uve, a, ele."
+              mistakes:
+                "ka o be a ele": "Буква V называется **uve**; **be** — это B."
+      - choose:
+          title: Какой это адрес?
+          skill: deletrear
+          rule: abc
+          items:
+            - say: "ana punto lopez arroba correo punto es"
+              options: "ana.lopez@correo.es | ana_lopez@correo.es | analopez@correo.com"
+              explain: "Punto — точка, arroba — @: ana.lopez@correo.es."
+              noaudio: {q: "Какой это адрес: «ana punto lopez arroba correo punto es»?", options: "ana.lopez@correo.es | ana_lopez@correo.es | analopez@correo.com"}
+      - compose:
+          title: Анкета о себе
+          skill: datos_personales
+          rule: ficha
+          items:
+            - q: "Напишите о себе три фразы: имя и фамилия, возраст, откуда вы."
+              format: "Me llamo… Tengo… años. Soy de…"
+              words: [6, 30]
+              sentences: 3
+              checks:
+                - label: "имя: Me llamo… или Soy…"
+                  any: [me llamo, soy, mi nombre es]
+                - label: "возраст: Tengo … años"
+                  all: [tengo, años]
+                - label: "откуда: Soy de… или Soy + национальность"
+                  any: [soy de, soy ucraniano, soy ucraniana, soy]
+              sample: "Me llamo Oleg Koval. Tengo treinta años. Soy de Ucrania."
+              sample_ru: "Меня зовут Олег Коваль. Мне тридцать лет. Я из Украины."
+    quiz:
+      - q: Что такое «el apellido»?
+        options: "фамилия | имя | адрес"
+        explain: "El apellido — фамилия, el nombre — имя, la dirección — адрес."
+        skill: datos_personales
+      - q: "Какую фамилию диктуют: «ele, o, pe, e, zeta»?"
+        options: "López | Gómez | Pérez"
+        explain: "Ele — L, o — O, pe — P, e — E, zeta — Z: López."
+        skill: deletrear
+
+  - id: lectura
+    kind: reading
+    title: "Tres estudiantes, tres historias"
+    goal: понять три истории учеников и написать свою
+    version: 2
+    allow: [América, Latina, cuando]
+    vocab:
+      - "🎵 la canción [канθьо́н] — песня {pl: canciones} :: Escucho canciones en español. — Я слушаю песни на испанском."
+      - "🧑‍🤝‍🧑 el compañero / la compañera [компанье́ро, компанье́ра] — товарищ, коллега, одноклассник :: Practico con mis compañeros de clase. — Я практикуюсь с одногруппниками."
+      - "🔁 a menudo [а мэну́до] — часто :: Veo series a menudo. — Я часто смотрю сериалы."
+      - "📜 la historia [исто́рья] — история, рассказ :: Es una historia muy bonita. — Это очень красивая история."
+    blocks:
+      - learn: [la canción, el compañero / la compañera, a menudo, la historia]
+      - "Три ученика рассказывают, зачем им испанский и что им трудно."
+      - reading:
+          id: historias
+          title: Tres estudiantes, tres historias
+          text: |
+            Olga tiene treinta y cuatro años y es de Odesa. Vive en Valencia desde hace tres años. Estudia español porque trabaja en un hospital y necesita hablar con la gente. Le cuesta la gramática, pero entiende casi todo. Practica todos los días con sus compañeros de trabajo.
+
+            Tom es inglés y tiene veinte años. Hace seis meses que estudia español en la universidad. Quiere aprender español para viajar por América Latina. Le cuestan mucho los verbos. Para practicar, ve series a menudo y escucha canciones en español.
+
+            Li es de China y vive en Madrid desde septiembre. Estudia español para trabajar en un restaurante. Ya sabe cocinar muy bien, pero todavía no conoce bien la ciudad. Le cuesta la pronunciación: ¡la erre es muy difícil! Su consejo: «Lo mejor es hablar mucho y no tener miedo de los errores».
+          translation: |
+            Ольге тридцать четыре года, она из Одессы. Она живёт в Валенсии уже три года. Учит испанский, потому что работает в больнице и ей нужно разговаривать с людьми. Ей трудно даётся грамматика, но она понимает почти всё. Каждый день практикуется с коллегами.
+
+            Том — англичанин, ему двадцать лет. Он учит испанский в университете уже шесть месяцев. Он хочет выучить испанский, чтобы путешествовать по Латинской Америке. Ему очень трудно даются глаголы. Для практики он часто смотрит сериалы и слушает песни на испанском.
+
+            Ли из Китая и с сентября живёт в Мадриде. Он учит испанский, чтобы работать в ресторане. Он уже очень хорошо умеет готовить, но ещё плохо знает город. Ему трудно даётся произношение: звук «р» очень трудный! Его совет: «Лучше всего много говорить и не бояться ошибок».
+      - sort:
+          title: "¿Quién?"
+          source: historias
+          groups:
+            "Olga": [vive en Valencia, trabaja en un hospital]
+            "Tom": [estudia en la universidad, ve series a menudo]
+            "Li": [sabe cocinar muy bien, vive en Madrid desde septiembre]
+      - choose:
+          title: Что сказано в тексте?
+          source: historias
+          items:
+            - q: "¿Cuánto tiempo hace que Tom estudia español?"
+              options: "Seis meses. | Tres años. | Desde septiembre."
+              explain: "Hace seis meses que estudia español en la universidad."
+              skill: desde_hace
+            - q: "¿Para qué estudia español Li?"
+              options: "Para trabajar en un restaurante. | Para viajar por América Latina. | Porque trabaja en un hospital."
+              explain: "Estudia español para trabajar en un restaurante. Путешествовать хочет Том, а в больнице работает Ольга."
+              skill: para_porque
+            - q: "¿Qué le cuesta a Olga?"
+              options: "La gramática. | La pronunciación. | Los verbos."
+              explain: "Le cuesta la gramática, pero entiende casi todo."
+              skill: me_cuesta
+            - q: "¿Quién practica español en el trabajo?"
+              options: "Olga. | Tom. | Li."
+              explain: "Olga: Practica todos los días con sus compañeros de trabajo."
+      - write:
+          title: Ответьте по тексту
+          format: короткий ответ по-испански
+          source: historias
+          items:
+            - q: "¿Desde cuándo vive Li en Madrid?"
+              a: "Desde septiembre | (Li) vive en Madrid desde septiembre | Vive (en Madrid) desde septiembre"
+              explain: "Li … vive en Madrid desde septiembre."
+              skill: desde_hace
+            - q: "Как в тексте сказано «не бояться ошибок»?"
+              a: "no tener miedo de los errores"
+              explain: "Lo mejor es hablar mucho y no tener miedo de los errores."
+      - choose:
+          title: Новые слова
+          free: true
+          rule: none
+          items:
+            - say: "Escucho canciones a menudo."
+              options: "Я часто слушаю песни. | Я иногда пою песни. | Я никогда не слушаю песни."
+              explain: "A menudo — «часто», canciones — «песни»."
+              noaudio: {q: "Что значит «Escucho canciones a menudo»?", options: "Я часто слушаю песни. | Я иногда пою песни. | Я никогда не слушаю песни."}
+            - q: "Mis ___ de clase son de China y de Italia."
+              options: "compañeros | consejos | errores"
+              explain: "Compañeros de clase — одногруппники."
+            - q: "La ___ de Olga es muy bonita: vive en Valencia y trabaja en un hospital."
+              options: "historia | letra | dirección"
+              explain: "La historia — история, рассказ о человеке."
+      - compose:
+          title: Mi historia
+          free: true
+          rule: none
+          skill: [desde_hace, para_porque, me_cuesta]
+          items:
+            - q: "Напишите свою историю, 4–5 фраз: кто вы и откуда · давно ли учите испанский · зачем · что вам трудно · что вам помогает."
+              format: "Me llamo… Hace … que estudio español…"
+              words: [25, 90]
+              sentences: 4
+              checks:
+                - label: "давно ли: есть desde или hace"
+                  any: [desde, hace]
+                - label: "зачем: есть para или porque"
+                  any: [para, porque]
+                - label: "что трудно: me cuesta или me cuestan"
+                  any: [me cuesta, me cuestan]
+              sample: "Me llamo Irina y soy de Leópolis. Hace un año que estudio español. Estudio español porque vivo en Madrid y para hablar con la gente. Me cuesta entender a la gente cuando habla rápido. Para practicar, veo series en español."
+              sample_ru: "Меня зовут Ирина, я из Львова. Я учу испанский уже год. Учу испанский, потому что живу в Мадриде, и чтобы разговаривать с людьми. Мне трудно понимать людей, когда они говорят быстро. Для практики я смотрю сериалы на испанском."
+
+  - id: mision
+    kind: practice
+    title: Запись в школу и языковой обмен
+    goal: записаться в языковую школу и рассказать о себе на языковом обмене
+    version: 2
+    allow: [Koval, Oleg, cuando]
+    blocks:
+      - mission:
+          id: escuela
+          title: Языковая школа
+          text: "Вы — Олег Коваль, вам тридцать лет, вы из Украины и учите испанский год. Вы приехали в Мадрид и хотите заниматься в языковой школе. Сначала — разговор с секретарём: она говорит на «вы»."
+      - chat:
+          id: secretaria
+          title: В школе
+          with: Secretaria
+          skill: datos_personales
+          turns:
+            - say: "Buenos días. ¿Quiere estudiar español aquí? | Добрый день. Хотите учить испанский у нас?"
+              build: "Sí, quiero estudiar español."
+              ru: "Да, я хочу учить испанский."
+            - say: "Muy bien. ¿Cómo se llama? | Очень хорошо. Как вас зовут?"
+              task: "Назовите имя и фамилию: Олег Коваль."
+              write: "Me llamo Oleg Koval | (Yo) soy Oleg Koval | Oleg Koval | Mi nombre es Oleg Koval"
+              format: имя и фамилия
+            - say: "¿Puede deletrear su apellido? | Можете продиктовать фамилию по буквам?"
+              task: "Продиктуйте по буквам: Koval."
+              write: "ka, o, uve, a, ele | (Sí, claro:) ka, o, uve, a, ele"
+              format: названия букв
+              skill: deletrear
+              mistakes:
+                "ka o be a ele": "Буква V называется **uve**; **be** — это B."
+            - say: "¿Cuántos años tiene? | Сколько вам лет?"
+              task: "Вам тридцать лет."
+              write: "Tengo treinta años | Treinta (años) | Tengo 30 años | 30 (años)"
+              format: возраст
+              mistakes:
+                "soy treinta años": "Возраст — с глаголом **tener**: Tengo treinta años."
+            - say: "¿De dónde es? | Откуда вы?"
+              task: "Вы из Украины."
+              write: "Soy de Ucrania | (Yo) soy [ucraniano/ucraniana] | De Ucrania"
+              format: откуда вы
+            - say: "¿Cuánto tiempo hace que estudia español? | Как давно вы учите испанский?"
+              task: "Вы учите испанский год."
+              write: "Hace un año | Hace un año que estudio español | Estudio español desde hace un año | Desde hace un año | Un año"
+              format: срок
+              skill: desde_hace
+              mistakes:
+                "desde un año": "Перед сроком — **desde hace**: desde hace un año. Или коротко: Hace un año."
+            - say: "¿Y para qué necesita el español? | А для чего вам нужен испанский?"
+              task: "Ответьте от себя: для чего или почему вы учите испанский."
+              skill: para_porque
+              compose:
+                format: "Para… / Porque…"
+                words: [2, 20]
+                checks:
+                  - label: "есть para или porque"
+                    any: [para, porque]
+                sample: "Para trabajar en España."
+                sample_ru: "Чтобы работать в Испании."
+            - say: "Perfecto. Muchas gracias. | Прекрасно. Большое спасибо."
+      - "Вечером школа присылает вам аудио. Послушайте его: текста нет."
+      - dialogue:
+          id: mensaje
+          hidden: true
+          title: Сообщение из школы
+          lines:
+            - "Secretaria: Buenas tardes. Su clase empieza el lunes a las diez. La profesora se llama Carmen. ¡Hasta el lunes! | Добрый день. Ваше занятие начинается в понедельник в десять. Преподавательницу зовут Кармен. До понедельника!"
+      - choose:
+          title: Что в сообщении?
+          source: mensaje
+          items:
+            - q: "¿Cuándo empieza la clase?"
+              options: "El lunes a las diez. | El martes a las diez. | El lunes a las dos."
+              explain: "Su clase empieza el lunes a las diez."
+            - q: "¿Cómo se llama la profesora?"
+              options: "Carmen. | Elena. | Marta."
+              explain: "La profesora se llama Carmen."
+      - mission:
+          id: tarde
+          title: Языковой обмен
+          text: "Вечером вы идёте на языковой обмен. С вами знакомится Диего. Теперь разговор на «ты» — и о вас самих: отвечайте от себя."
+      - chat:
+          id: diego
+          title: На языковом обмене
+          with: Diego
+          turns:
+            - say: "¡Hola! ¿Cuánto tiempo hace que estudias español? | Привет! Как давно ты учишь испанский?"
+              task: "Ответьте о себе: как давно вы учите испанский."
+              skill: desde_hace
+              compose:
+                format: "Hace … que estudio español"
+                words: [2, 14]
+                checks:
+                  - label: "есть hace или desde"
+                    any: [hace, desde]
+                sample: "Hace un año que estudio español."
+                sample_ru: "Я учу испанский уже год."
+            - say: "¿Y por qué estudias español? | А почему ты учишь испанский?"
+              task: "Назовите свою причину или цель."
+              skill: para_porque
+              compose:
+                format: "Porque… / Para…"
+                words: [2, 25]
+                checks:
+                  - label: "есть porque или para"
+                    any: [porque, para]
+                sample: "Porque me gusta el idioma y para viajar."
+                sample_ru: "Потому что мне нравится язык, и чтобы путешествовать."
+            - say: "¿Qué te cuesta más? | Что тебе даётся труднее всего?"
+              task: "Скажите, что вам трудно."
+              skill: me_cuesta
+              compose:
+                format: "Me cuesta… / Me cuestan…"
+                words: [3, 20]
+                checks:
+                  - label: "начинается с Me cuesta или Me cuestan"
+                    starts: [me cuesta, me cuestan, a mí me cuesta, a mí me cuestan]
+                sample: "Me cuesta entender a la gente cuando habla rápido."
+                sample_ru: "Мне трудно понимать людей, когда они говорят быстро."
+            - say: "A mí me cuesta la pronunciación del inglés. ¿Tienes un consejo? | А мне трудно даётся английское произношение. У тебя есть совет?"
+              task: "Дайте Диего совет."
+              skill: consejo
+              compose:
+                format: "Tienes que… / Puedes… / Lo mejor es…"
+                words: [3, 20]
+                checks:
+                  - label: "совет: Tienes que, Puedes или Lo mejor es"
+                    any: [tienes que, puedes, lo mejor es]
+                sample: "Lo mejor es escuchar canciones en inglés y cantar."
+                sample_ru: "Лучше всего слушать песни на английском и петь."
+            - say: "¡Gracias, es un consejo muy útil! ¿Sabes hablar otros idiomas? | Спасибо, это очень полезный совет! Ты умеешь говорить на других языках?"
+              task: "Ответьте о себе: Sí, sé hablar… или No, no sé."
+              skill: saber_conocer
+              compose:
+                format: "Sí, sé hablar… / No, no sé"
+                words: [2, 15]
+                checks:
+                  - label: "есть sé"
+                    re: "\\bse\\b"
+                sample: "Sí, sé hablar ucraniano e inglés."
+                sample_ru: "Да, я умею говорить по-украински и по-английски."
+            - say: "¡Qué bien! ¿Hablamos media hora en español y media hora en inglés? | Здорово! Поговорим полчаса по-испански и полчаса по-английски?"
+              task: "Вы согласны."
+              choose: "¡Vale! ¡Perfecto! | Lo siento, no puedo. | Otro día."
+              explain: "Согласие — ¡Vale! ¡Perfecto!"
+            - say: "¡Genial! | Отлично!"
+
+  - id: quiz
+    kind: quiz
+    title: "Тест: El español y yo"
+    goal: проверить цели темы — срок и цель, saber и conocer, трудности, советы, анкета
+    version: 2
+    check: soft
+    allow: [García]
+    blocks:
+      - "Это тест по теме «El español y yo»: двенадцать заданий."
+      - cando:
+          - "сказать, как давно и с какого времени: desde, desde hace, hace… que"
+          - "объяснить причину и цель: porque, para + инфинитив"
+          - "различать saber и conocer"
+          - "сказать, что вам трудно, и дать совет"
+          - "понять фамилию, продиктованную по буквам"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          rule: none
+          skill: desde_hace
+          items:
+            - say: "Vivo en Madrid desde enero."
+              a: "Vivo en Madrid desde enero"
+              noaudio: {q: "Напишите по-испански: «Я живу в Мадриде с января».", a: "Vivo en Madrid desde enero"}
+      - choose:
+          title: Послушайте
+          rule: none
+          items:
+            - say: "Hace dos años que estudio inglés."
+              options: "Я учу английский уже два года. | Я учил английский два года назад. | Я буду учить английский два года."
+              skill: desde_hace
+              noaudio: {q: "Что значит «Hace dos años que estudio inglés»?", options: "Я учу английский уже два года. | Я учил английский два года назад. | Я буду учить английский два года."}
+            - say: "ge, a, erre, ce, i, a"
+              options: "García | Jarcía | Garzía"
+              skill: deletrear
+              explain: "Ge — G, ce — C: García."
+              noaudio: {q: "Какую фамилию диктуют: «ge, a, erre, ce, i, a»?", options: "García | Jarcía | Garzía"}
+      - write:
+          title: Вставьте слово
+          format: одно или два слова
+          rule: none
+          items:
+            - q: "Estudio español ___ seis meses."
+              a: "desde hace"
+              skill: desde_hace
+              explain: "Шесть месяцев — срок: desde hace."
+            - q: "(yo) No ___ dónde está el banco."
+              a: "sé"
+              skill: saber_conocer
+              explain: "Знать факт — saber: no sé."
+      - write:
+          title: Скажите по-другому
+          format: начните с Hace
+          rule: none
+          skill: desde_hace
+          items:
+            - q: "Vivo aquí desde hace un año."
+              a: "Hace un año que vivo aquí"
+      - write:
+          title: Дайте совет
+          format: фраза по-испански
+          rule: none
+          skill: consejo
+          items:
+            - q: "Скажите по-испански: «Лучше всего — много говорить»."
+              a: "Lo mejor es hablar mucho"
+      - build:
+          title: Соберите вопрос
+          rule: none
+          skill: desde_hace
+          items:
+            - "¿Cuánto tiempo hace que estudias español? — Как давно ты учишь испанский?"
+    quiz:
+      - q: "Estudio español ___ trabajar en Sevilla."
+        options: "para | porque | por qué"
+        explain: "Перед инфинитивом (trabajar) — para: цель."
+        skill: para_porque
+      - q: "¿___ a mi hermano?"
+        options: "Conoces | Sabes | Puedes"
+        explain: "Быть знакомым с человеком — conocer a."
+        skill: saber_conocer
+      - q: "A Olga le ___ la gramática."
+        options: "cuesta | cuestan | cuesto"
+        explain: "La gramática — одна вещь: le cuesta."
+        skill: me_cuesta
+      - q: Что такое «la dirección»?
+        options: "адрес | фамилия | почта"
+        explain: "La dirección — адрес; фамилия — el apellido, почта — el correo electrónico."
+        skill: datos_personales

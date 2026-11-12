@@ -564,7 +564,42 @@ def _write(d) -> dict:
     } for it in d["items"]]}
 
 
+def _compose_item(it) -> dict:
+    """Письмо: условия проверяет страница по тексту без регистра, знаков и ударений; «неверно» не бывает."""
+    return {"q": _html(it["q"]), "format": it["format"], "words": it["words"], "sentences": it["sentences"],
+            "checks": [{"label": _html(c["label"]), **{k: [plain(x) for x in c[k]] for k in ("any", "all", "starts", "if") if c[k]},
+                        **({"re": c["re"]} if c["re"] else {})} for c in it["checks"]],
+            "sample": plain(it["sample"]), "sampleRu": _html(it["sample_ru"]), "explain": _html(it["explain"]),
+            **_task_meta(it.get("meta") or {})}
+
+
+def _chat(d) -> dict:
+    """Разговор по шагам: у каждого хода реплика собеседника и ответ ученика — в виде обычного задания
+    (сборка, ввод, выбор) или письма; страница показывает ленту разговора над заданием."""
+    voices = cast([d["who"]])
+    line = lambda ln: [ln[0], _html(ln[1]), _html(ln[2]), plain(ln[1])]
+    items = []
+    for it in d["items"]:
+        meta = it.get("meta") or {}
+        turn = {"kind": it["kind"], "line": line(it["line"]), "task": _html(it["task"]), "explain": _html(it["explain"]),
+                "mistakes": {plain(k): _html(v) for k, v in meta.get("mistakes", {}).items()}, **_task_meta(meta)}
+        if it["kind"] == "build":
+            turn.update(es=plain(it["es"]), ru=plain(it["ru"]), alt=[plain(a) for a in it["alt"]], extra=[plain(x) for x in it["extra"]])
+        elif it["kind"] == "write":
+            turn.update(a=[plain(a) for a in it["answers"]], show=_html(it["answers"][0]), format=it["format"],
+                        chars=any(_SPECIAL.search(a) for a in it["answers"]))
+        elif it["kind"] == "choose":
+            turn.update(o=[[_html(o), plain(o)] for o in it["options"]])
+        else:
+            turn.update({k: v for k, v in _compose_item(it).items() if k not in ("q", "explain")})
+        items.append(turn)
+    return {"t": "chat", "title": _html(d["title"]), "who": d["who"], "cast": voices, "items": items,
+            "end": [line(ln) for ln in d["end"]]}
+
+
 SCENARIO = {
+    "compose": lambda d: {"t": "compose", "title": _html(d["title"]), "items": [_compose_item(it) for it in d["items"]]},
+    "chat": _chat,
     "learn": lambda d: {"t": "learn", "words": [plain(es) for es in d]},
     "choose": _choose,
     "write": _write,

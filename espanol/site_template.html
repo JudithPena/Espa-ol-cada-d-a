@@ -574,6 +574,24 @@ main { padding-block: 16px 110px; }
 .pfoot.shown .fb h3 { color: var(--ink); }
 .fb .fix { display: block; font-size: 13px; font-weight: 700; color: var(--muted); }
 .wfield.almost { border-color: var(--sun); background: var(--sun-soft); }
+/* A2: письмо по признакам и разговор по шагам */
+.cofield { font-size: 18px; line-height: 1.45; min-height: 112px; resize: vertical; width: 100%; font-family: inherit; }
+.cofield.right { border-color: var(--good); background: var(--good-soft); }
+.cofield.almost { border-color: var(--sun); background: var(--sun-soft); }
+.cocheck { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 15px; }
+.cocheck li.ok { color: var(--good); font-weight: 700; }
+.cocheck li.no { color: var(--muted); }
+.counk { margin: 0; font-size: 14px; color: var(--muted); }
+.cosample { display: grid; gap: 6px; background: var(--accent-soft); border-radius: 14px; padding: 12px 14px; }
+.cosample .lbl { font-size: 12px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.cosample .es { font-size: 17px; font-weight: 700; }
+.cosample .tr { font-size: 14px; color: var(--muted); }
+.cosample .row2 { display: flex; gap: 8px; align-items: flex-start; justify-content: space-between; }
+.conv { margin: 4px 0 10px; }
+.conv .bubble .tr { flex-basis: 100%; font-size: 13px; color: var(--muted); }
+.conv.all { margin-bottom: 14px; }
+.convmore summary { font-size: 13px; font-weight: 700; color: var(--muted); cursor: pointer; padding: 6px 0; min-height: 32px; }
+.convmore[open] summary { margin-bottom: 6px; }
 .srcbox { display: grid; gap: 8px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
 .srcbox > .btn { justify-self: start; }
 .srcbox details.src summary { cursor: pointer; font-weight: 800; font-size: 14px; color: var(--accent); min-height: 36px; display: flex; align-items: center; }
@@ -1202,7 +1220,9 @@ const isCurrent = i => isDone(i) && verOf(i) >= (LESSONS[i].version || 1);
 const isOutdated = i => isDone(i) && !P.done[LESSONS[i].id].joined && !isCurrent(i);
 // Темы, которые ещё прорабатываются, на основном сайте закрыты для всех (site_open_units в course.yaml).
 const unitClosed = i => !COURSE.preview && Array.isArray(COURSE.openUnits) && !COURSE.openUnits.includes(LESSONS[i]?.unit);
-const isOpen = i => !unitClosed(i) && (COURSE.preview || P.openAll || i === 0 || isDone(i - 1) || isDone(i));
+// Уровни после A1 открыты независимо: первый урок уровня доступен и тому, кто пришёл с готовым A1 (внутри уровня — по порядку).
+const levelStart = i => i > 0 && levelOf(i) !== levelOf(i - 1) && !["A0", "A1"].includes(levelOf(i));
+const isOpen = i => !unitClosed(i) && (COURSE.preview || P.openAll || i === 0 || isDone(i - 1) || isDone(i) || levelStart(i));
 const currentIndex = () => { const i = LESSONS.findIndex((_, k) => !isDone(k)); return i < 0 ? LESSONS.length - 1 : i; };
 const knownPool = upto => [...WORDS.values()].filter(w => w.li <= upto);
 const dueWords = () => { const t = dayNum(); return Object.entries(P.words).filter(([es, s]) => s.due <= t && WORDS.has(es)).map(([es]) => WORDS.get(es)); };
@@ -1641,7 +1661,7 @@ function authoredScreens(L) {
 /* ================================================================ сценарий урока (уроки сайта с блоками learn…) */
 // Урок со сценарием показывает блоки в том порядке, в каком их поставил автор: порция слов → пример →
 // задания → ещё слова → диалог → миссия. Урок без learn идёт прежним путём (startLesson ниже).
-const STEP_BLOCKS = new Set(["learn", "choose", "write", "match", "sort", "build", "recap", "review"]);
+const STEP_BLOCKS = new Set(["learn", "choose", "write", "match", "sort", "build", "recap", "review", "compose", "chat"]);
 const ARTS = new Set(["el", "la", "los", "las", "un", "una", "unos", "unas"]);
 // Слова, где знак ударения меняет смысл: без него ответ неверен, а не «почти» (tú «ты» — tu «твой»).
 const ACCENT_MEANING = new Set(["sí", "tú", "él", "mí", "té", "sé", "dé", "más", "aún", "qué", "quién", "quiénes", "cuál", "cuáles",
@@ -1675,6 +1695,113 @@ function blockSteps(b, li) {
   if (b.t === "build") return b.items.map(it => ({ type: "build", title: b.title, es: it.es, ru: it.ru, alt: it.alt, extra: it.extra,
            key: `${LESSONS[li]?.id}|${norm(it.es)}`, ...refsOf(it, li, b) }));
   return [];
+}
+// Открытые задания (A2+): письмо с проверкой по признакам (compose) и разговор по шагам (chat). В повторение навыков
+// они не идут (skillPool берёт только blockSteps): ответ свой у каждого ученика, а разговор без своих ходов не понять.
+function composeStep(b, it, li) {
+  return { type: "compose", title: b.title, q: it.q, format: it.format, words: it.words, sentences: it.sentences, checks: it.checks || [],
+           sample: it.sample, sampleRu: it.sampleRu, explain: it.explain, key: `${LESSONS[li]?.id}|co|${norm(String(it.q).replace(/<[^>]*>/g, " "))}`, ...refsOf(it, li, b) };
+}
+function openSteps(b, li, k) {
+  if (b.t === "compose") return b.items.map(it => composeStep(b, it, li));
+  const id = `${LESSONS[li]?.id}#${b.id || k}`, n = b.items.length;
+  const steps = b.items.map((it, t) => {
+    const chat = { id, k: t, n, who: b.who, cast: b.cast, title: b.title }, base = { chat, line: it.line, title: b.title, explain: it.explain, ...refsOf(it, li, b) };
+    const key = `${id}|${t}`;
+    if (it.kind === "build") return { ...base, type: "build", es: it.es, ru: it.ru, task: it.task, alt: it.alt, extra: it.extra, key };
+    if (it.kind === "write") return { ...base, type: "write", accents: "soft", chars: it.chars, q: it.task, a: it.a, show: it.show, format: it.format, mistakes: it.mistakes || {}, key };
+    if (it.kind === "choose") {
+      const order = shuffle(it.o.map((_, j) => j));
+      return { ...base, type: "mc", mode: "choose", q: it.task, html: true, options: order.map(j => it.o[j][0]), plain: order.map(j => it.o[j][1]),
+               correct: order.indexOf(0), mistakes: it.mistakes || {}, key };
+    }
+    return { ...base, type: "compose", q: it.task, format: it.format, words: it.words, sentences: it.sentences, checks: it.checks || [], sample: it.sample, sampleRu: it.sampleRu, key };
+  });
+  steps.push({ type: "chatlog", chat: { id, k: n, n, who: b.who, cast: b.cast, title: b.title }, end: b.end || [], li });
+  return steps;
+}
+// Лента разговора: реплики собеседника и ответы ученика (свой верный ответ или образец), по ходам.
+const chatVoice = st => st.chat?.cast?.[st.chat.who] || {};
+function chatRecord(st, s) {
+  const own = ["good", "helped"].includes(s.result);
+  let me = st.type === "build" ? st.es : st.type === "mc" ? st.plain[st.correct]
+    : st.type === "write" ? (own && s.match ? s.match : st.a[0])
+    : own && s.passed ? String(s.value || "").trim() : st.sample;
+  ((S.chats ||= {})[st.chat.id] ||= [])[st.chat.k] = { line: st.line, me, model: !(own && (st.type !== "compose" || s.passed)) };
+}
+function convHTML(st, all = false) {
+  if (!st.chat) return "";
+  const c = chatVoice(st), log = S.chats?.[st.chat.id] || [];
+  const partner = ([who, es, ru, sp], tr) => {
+    const play = canSay(sp, c.v) ? `<button class="play lplay" data-say="${esc(sp)}" data-voice="${esc(c.v || "")}" aria-label="Послушать реплику">▶</button>` : "";
+    return `<div class="msg t0">${avaHTML(c.a)}<span class="who">${esc(who)}</span><div class="bubble"><span class="es">${es}</span>${play}${tr && ru ? `<span class="tr">${ru}</span>` : ""}</div></div>`;
+  };
+  const mine = t => `<div class="msg t1 r"><span class="ava" aria-hidden="true">${AVA_ICON}</span><span class="who">Вы</span><div class="bubble"><span class="es">${esc(t)}</span></div></div>`;
+  const turn = k => { const r = log[k]; return r ? partner(r.line, all) + mine(r.me) : ""; };
+  if (all) return `<div class="mini-dlg conv all">${[...Array(st.chat.n).keys()].map(turn).join("")}${(st.end || []).map(l => partner(l, true)).join("")}</div>`;
+  // Перед заданием — только предыдущий обмен репликами и новая реплика собеседника: начало разговора свёрнуто,
+  // чтобы поле ответа оставалось на экране.
+  const k = st.chat.k, early = [...Array(Math.max(0, k - 1)).keys()].map(turn).join("");
+  return `<div class="mini-dlg conv">${early ? `<details class="convmore"><summary>Начало разговора</summary><div class="mini-dlg">${early}</div></details>` : ""}${k ? turn(k - 1) : ""}${partner(st.line, !!S.state?.result)}</div>`;
+}
+// Письмо: условия автора (длина, число предложений, признаки) по тексту без регистра, знаков и ударений.
+// «Неверно» не бывает: либо все условия выполнены, либо видно, чего не хватает, а после второй попытки — образец.
+const coFlat = t => ` ${wFlat(wNorm(t))} `;
+function composeChecks(st, text) {
+  const flat = coFlat(text), has = p => flat.includes(coFlat(p)), n = flat.trim() ? flat.trim().split(" ").length : 0, out = [];
+  if (st.words) out.push({ label: `${st.words[0]}–${st.words[1]} ${plural(st.words[1], "слово", "слова", "слов")} (сейчас ${n})`, ok: n >= st.words[0] && n <= st.words[1] });
+  if (st.sentences) out.push({ label: `не меньше ${st.sentences} ${plural(st.sentences, "предложения", "предложений", "предложений")}`,
+                               ok: String(text).split(/[.!?…]+/).filter(x => x.trim()).length >= st.sentences });
+  for (const c of st.checks) {
+    let ok = true;
+    if (!(c.if && !c.if.some(has))) {
+      if (c.any) ok = ok && c.any.some(has);
+      if (c.all) ok = ok && c.all.every(has);
+      if (c.starts) ok = ok && c.starts.some(p => flat.startsWith(coFlat(p)));
+      if (c.re) { try { ok = ok && new RegExp(c.re, "u").test(flat.trim()); } catch (e) { ok = false; } }
+    }
+    out.push({ label: c.label, ok });
+  }
+  return out;
+}
+// Слова, которых нет в курсе: не ошибка, а повод проверить написание (имена и числа не в счёт).
+function composeUnknown(text) {
+  const out = [];
+  String(text).replace(/(^|[.!?¿¡…]\s*)?([\p{L}]+)/gu, (m, start, w) => {
+    const low = w.toLowerCase();
+    if (start === undefined && w[0] !== low[0]) return m;   // имя собственное в середине фразы
+    if (!FORMS[low] && !FORMS[wFlat(low)] && !COMMON_ES.has(low) && w.length > 1 && !out.includes(low)) out.push(low);
+    return m;
+  });
+  return out.slice(0, 6);
+}
+const COMMON_ES = new Set("a al con de del e el en la las lo los o u un una unos unas y que por para pero mi mis tu tus su sus me te se nos os le les es no sí si".split(" "));
+function composeCheck() {
+  const st = S.steps[S.at], s = S.state;
+  if (s.result || !wNorm(s.value)) return;
+  s.tries = (s.tries || 0) + 1;
+  s.fb = composeChecks(st, s.value); s.passed = s.fb.every(c => c.ok);
+  if (s.passed) return answer(s.tries === 1, st, { solved: true, requeue: false });
+  if (s.tries < 2) { s.flash = true; render(); sfx("almost"); const f = $("#coans"); if (f && !matchMedia("(pointer: coarse)").matches) f.focus({ preventScroll: true }); return; }
+  answer(false, st, { solved: true, helped: true, requeue: false });
+}
+function composeGive() {
+  const st = S.steps[S.at], s = S.state;
+  if (s.result) return;
+  s.fb = wNorm(s.value) ? composeChecks(st, s.value) : null; s.passed = false;
+  answer(false, st, { revealed: true, requeue: false });
+}
+function composeHTML(st) {
+  const s = S.state, done = !!s.result, chars = ["á", "é", "í", "ó", "ú", "ü", "ñ", "¿", "¡"];
+  const list = s.fb ? `<ul class="cocheck" role="status">${s.fb.map(c => `<li class="${c.ok ? "ok" : "no"}">${c.ok ? "✓" : "○"} ${c.label}</li>`).join("")}</ul>` : "";
+  const unk = done && wNorm(s.value) ? composeUnknown(s.value) : [];
+  return `<div class="wbox"><textarea class="field cofield ${done ? (s.passed ? "right" : "") : s.flash ? "almost" : ""}" id="coans" rows="4" ${done ? "disabled" : ""}
+      autocomplete="off" autocapitalize="sentences" autocorrect="off" spellcheck="false" lang="es" placeholder="${esc(st.format || "Напишите по-испански")}" aria-label="${esc(st.format || "Ваш текст")}">${esc(s.value || "")}</textarea>
+    ${done ? "" : `<div class="chars" role="group" aria-label="Испанские буквы и знаки">${chars.map(c => `<button type="button" data-wchar="${c}" aria-label="Вставить ${c}">${c}</button>`).join("")}</div>`}
+    ${s.fb && !done ? `<div class="wwhy" role="status">Почти готово. Дополните текст: не хватает отмеченного ○.</div>` : ""}${list}
+    ${unk.length ? `<p class="counk">Этих слов нет в курсе — проверьте, что они написаны верно: <b>${unk.map(esc).join(", ")}</b></p>` : ""}
+    ${done ? `<div class="cosample"><span class="lbl">Образец</span><div class="row2"><span class="es">${esc(st.sample)}</span>${canSay(st.sample) ? playBtn(st.sample) : ""}</div>${st.sampleRu ? `<span class="tr">${st.sampleRu}</span>` : ""}
+      <span class="muted">Ваш вариант может быть другим: сравните, какие слова и конструкции совпали.</span></div>` : ""}</div>`;
 }
 // Задание к источнику (диалогу, тексту, миссии своего урока): без него не ответить, поэтому оно не уходит
 // ни в конец урока, ни в повторение. У ещё не перестроенных уроков — прежняя метка ctx.
@@ -1844,7 +1971,7 @@ function startScript(i) {
     if (b.t === "learn") { b.words.forEach(es => { const w = L.words.find(x => x.es === es); if (w) steps.push({ type: "word", word: w }); }); continue; }
     if (b.t === "recap") { steps.push(...recapSteps(i, b, asked)); continue; }
     if (b.t === "review") { steps.push(...reviewSteps(i, b)); continue; }
-    const made = b.t === "exercise" ? exerciseSteps(L, pool, b).slice(0, 6) : blockSteps(b, i);
+    const made = b.t === "exercise" ? exerciseSteps(L, pool, b).slice(0, 6) : ["compose", "chat"].includes(b.t) ? openSteps(b, i, sc.k) : blockSteps(b, i);
     made.forEach(st => { if (mission) st.mission = mission; });
     steps.push(...made);
   }
@@ -1961,14 +2088,14 @@ function writeHintHTML(st, s) {
 }
 function focusWrite() { const f = $("#wans"); if (f && !matchMedia("(pointer: coarse)").matches) f.focus({ preventScroll: true }); }
 function wInsert(ch) {
-  const f = $("#wans");
+  const f = $("#wans") || $("#coans");
   if (!f || f.disabled) return;
   const a = f.selectionStart ?? f.value.length, b = f.selectionEnd ?? a;
   f.value = f.value.slice(0, a) + ch + f.value.slice(b);
   f.setSelectionRange(a + ch.length, a + ch.length); f.focus();
   S.state.value = f.value; wSync();
 }
-function wSync() { const btn = $("[data-primary]"); if (btn && S.steps[S.at]?.type === "write") btn.disabled = !wNorm(S.state.value); }
+function wSync() { const btn = $("[data-primary]"); if (btn && ["write", "compose"].includes(S.steps[S.at]?.type)) btn.disabled = !wNorm(S.state.value); }
 
 // Пары: нажали слева, потом справа (или наоборот). Неверная пара мигает, ошибки считаются.
 function matchPick(side, k) {
@@ -2113,7 +2240,8 @@ function chatHTML(st) {
     return `<div class="msg t${n % 4}${n % 2 ? " r" : ""}">${avaHTML(c.a)}<span class="who">${esc(who)}</span><div class="bubble"><span class="es">${es}</span>${play}</div></div>`;
   }).join("")}<div class="msg gap${names.length % 2 ? " r" : ""}"><span class="ava" aria-hidden="true">${AVA_ICON}</span><span class="who">Вы</span><div class="bubble">…</div></div></div>`;
 }
-const kickerOf = (st, fallback) => `<span class="kicker">${st.noaudioUsed ? "🔇 Без звука · " : ""}${st.review ? `🔁 Повторим${SKILLS[st.reviewTag] ? ": " + esc(SKILLS[st.reviewTag].title) : ""} · ` : st.mission ? `🎯 ${st.mission} · ` : ""}${st.title || fallback}</span>`;
+const kickerOf = (st, fallback) => st.chat ? `<span class="kicker">💬 ${st.chat.title || "Разговор"} · ${Math.min(st.chat.k + 1, st.chat.n)} из ${st.chat.n}</span>`
+  : `<span class="kicker">${st.noaudioUsed ? "🔇 Без звука · " : ""}${st.review ? `🔁 Повторим${SKILLS[st.reviewTag] ? ": " + esc(SKILLS[st.reviewTag].title) : ""} · ` : st.mission ? `🎯 ${st.mission} · ` : ""}${st.title || fallback}</span>`;
 const wordPic = es => { const w = WORDS.get(es); return w?.img ? `<img class="qpic" src="${w.img}" alt="">` : ""; };
 
 let S = null;   // текущее занятие
@@ -2151,7 +2279,7 @@ function startReview(list) {
   render(); enterStep();
 }
 
-const isGraded = st => ["mc", "build", "mf", "write", "match", "sort"].includes(st.type);
+const isGraded = st => ["mc", "build", "mf", "write", "match", "sort", "compose"].includes(st.type);
 const NEXT_MODE = { rec: "prod", prod: "listen", listen: "rec" };
 
 // Самостоятельная ошибка возвращается в конце урока в другом виде, как в Busuu: «Что значит» → «Как по-испански»
@@ -2181,6 +2309,7 @@ function answer(ok, st, { requeue = true, solved = ok, helped = false, revealed 
   helped = helped || !!s.peek || !!s.helps;
   s.result = revealed ? "revealed" : solved ? (helped ? "helped" : "good") : "bad";
   if (ok && helped) ok = false;
+  if (st.chat) { requeue = false; chatRecord(st, s); }
   const outcome = ok ? "first" : s.result === "good" ? "fixed" : s.result;
   if (!st.retry && !S.seen.has(st)) {
     S.seen.add(st); S.graded++; if (ok) S.firstTry++; if (outcome === "fixed") S.fixed++;
@@ -2210,6 +2339,7 @@ function answer(ok, st, { requeue = true, solved = ok, helped = false, revealed 
 function solvedSay(st) {
   const s = S.state;
   if (st.type === "build") return (s.cands?.[0] || tokens(st)).join(" ");
+  if (st.type === "compose") return "";
   if (st.type === "mf") return st.es;
   if (st.type === "write") return /[А-Яа-яЁё]/.test(s.match || "") ? "" : s.match || "";
   if (st.type === "mc" && st.mode === "choose") { const o = st.plain[st.correct]; return /[А-Яа-яЁё]/.test(o) ? "" : o; }
@@ -2267,6 +2397,8 @@ function enterStep() {
   if (S.noAudio) { if (isListen(st) && !st.noaudioUsed) useNoAudio(); return; }
   if (!S.state) render();
   if (st.type === "word") say(st.word.say);
+  if (st.chat && st.line) say(st.line[3], { voice: chatVoice(st).v });
+  if (st.type === "chatlog") (st.end || []).forEach((l, k) => say(l[3], { voice: chatVoice(st).v, queue: k > 0 }));
   if (st.type === "mc" && (st.mode === "listen" || st.mode === "rec")) say(st.say);
   if (st.type === "mc" && st.mode === "choose" && st.say) sayStep(st.say);
   if (st.type === "write" && st.say) sayStep(st.say);
@@ -3071,7 +3203,7 @@ function stepBody(st) {
       else if (st.mode === "rec") prompt = `<span class="kicker">Что значит</span><div class="q"><span>${esc(st.word.emoji)} ${esc(st.word.es)}</span>${playBtn(st.say)}</div>`;
       else if (st.mode === "prod") prompt = `<span class="kicker">Как по-испански</span><div class="q">${esc(st.word.ru)}</div>`;
       else if (st.mode === "choose") prompt = `${srcPanel(st)}${kickerOf(st, st.say ? "Послушайте и выберите" : st.lines?.length ? "Что ответить?" : "Выберите ответ")}
-        ${st.img ? wordPic(st.img) : ""}${st.q && st.lines?.length ? `<div class="q qtext">${st.q}</div>` : ""}${st.lines?.length ? chatHTML(st) : ""}
+        ${st.img ? wordPic(st.img) : ""}${convHTML(st)}${st.q && st.lines?.length ? `<div class="q qtext">${st.q}</div>` : ""}${st.lines?.length ? chatHTML(st) : ""}
         ${st.say ? listenHTML(st.say) : ""}
         ${st.q && !st.lines?.length ? `<div class="q qtext">${st.q}</div>` : ""}`;
       else prompt = `<span class="kicker">Послушайте и выберите</span><div class="listen"><div class="row2">${playBtn(st.say, "big")}${slowBtn(st.say)}</div></div>`;
@@ -3087,7 +3219,7 @@ function stepBody(st) {
     }
     case "build": {
       const s = S.state;
-      return `<div class="prompt">${srcPanel(st)}${kickerOf(st, "Соберите фразу")}<div class="q" style="font-size:19px">${esc(st.ru)}</div></div>
+      return `<div class="prompt">${srcPanel(st)}${kickerOf(st, "Соберите фразу")}${convHTML(st)}<div class="q" style="font-size:19px">${st.task || esc(st.ru)}</div></div>
         <div class="answer-line">${(s.cands?.[0] || tokens(st)).slice(0, s.n).map(w => `<span class="tok">${esc(w)}</span>`).join("")}</div>
         <div class="bank">${s.tiles.map((t, k) => `<button class="tok ${s.used[k] ? "used" : ""} ${s.flash === k ? "bad" : ""} ${s.hint === k ? "hint" : ""}" data-pick="${k}" ${s.result || s.used[k] ? "disabled" : ""}>${esc(t)}</button>`).join("")}</div>`;
     }
@@ -3100,7 +3232,7 @@ function stepBody(st) {
     case "write": {
       const s = S.state, done = !!s.result, cls = done ? (s.result === "good" ? "right" : s.result === "helped" ? "almost" : "wrong") : s.flash ? "wrong" : "";
       const chars = ["á", "é", "í", "ó", "ú", "ü", "ñ"];
-      const head = `${srcPanel(st)}${kickerOf(st, st.say ? "Послушайте и напишите" : "Напишите")}${st.img ? wordPic(st.img) : ""}
+      const head = `${srcPanel(st)}${kickerOf(st, st.say ? "Послушайте и напишите" : "Напишите")}${st.img ? wordPic(st.img) : ""}${convHTML(st)}
           ${st.say ? listenHTML(st.say) : ""}
           ${st.q ? `<div class="q qtext">${st.q}</div>` : ""}`;
       if (st.say && !audioOK(st) && !done) return `<div class="prompt">${head}</div>`;
@@ -3127,6 +3259,11 @@ function stepBody(st) {
         <div class="sgroups">${st.groups.map(([name], g) => `<button class="sg${s.flash === g ? " bad" : ""}${s.hint === g ? " hint" : ""}" data-sg="${g}" ${s.result ? "disabled" : ""}>
           <b>${name}${s.hint === g ? " 👈" : ""}</b><span class="sg-items">${s.placed[g].map(x => `<i>${esc(x)}</i>`).join("")}</span></button>`).join("")}</div>`;
     }
+    case "compose":
+      return `<div class="prompt">${srcPanel(st)}${kickerOf(st, "Напишите своими словами")}${convHTML(st)}${st.q ? `<div class="q qtext">${st.q}</div>` : ""}</div>${composeHTML(st)}`;
+    case "chatlog":
+      return `<div class="prompt"><span class="kicker">💬 ${st.chat.title || "Разговор"} · весь разговор</span></div>${convHTML(st, true)}
+        <p class="muted">Прочитайте разговор целиком. ${(S.chats?.[st.chat.id] || []).some(r => r?.model) ? "Там, где ответ не получился, стоит образец." : "Все ответы — ваши."}</p>`;
     case "deferred":
       return `<div class="prompt"><span class="kicker">🔇 Без звука</span><div class="q qtext">Это задание проверяет понимание на слух. Оно отложено до звука и в итог урока не входит.</div></div>
         <button class="btn ghost wide" data-audio-on>🔊 Звук снова есть</button>`;
@@ -3213,16 +3350,17 @@ function stepFoot(st) {
     if (st.type === "mc" && !solved && s.pick != null && st.mistakes?.[st.plain?.[s.pick]]) right += `<span class="ex">${st.mistakes[st.plain[s.pick]]}</span>`;
     const ex = st.explain ? `<span class="ex">${st.explain}</span>` : "";
     const praise = ["Отлично!", "Верно!", "¡Muy bien!", "¡Perfecto!"][Math.floor(Math.random() * 4)];
-    const title = good ? (s.almost ? "Почти! Не хватает знака ударения" : st.type === "write" && s.tries > 1 ? "Верно со второй попытки" : praise)
-      : helped ? "Готово с подсказкой"
-      : shown ? "Ответ показан"
+    const co = st.type === "compose";
+    const title = good ? (s.almost ? "Почти! Не хватает знака ударения" : st.type === "write" && s.tries > 1 ? "Верно со второй попытки" : co && s.tries > 1 ? "Готово: все условия выполнены" : praise)
+      : helped ? (co ? "Сравните с образцом" : "Готово с подсказкой")
+      : shown ? (co ? "Образец" : "Ответ показан")
       : "Ошибка";
     const again = s.requeued === "near" ? `<span class="ex">Посмотрите ${srcOf(st)?.t === "reading" ? "текст" : "диалог"} ещё раз — вопрос повторится сразу.</span>`
       : s.requeued === "end" ? `<span class="ex">Это задание вернётся в конце урока.</span>` : "";
-    const rule = !good || (st.type === "write" && s.tries > 1) ? ruleHTML(st) : "";
+    const rule = !good || (["write", "compose"].includes(st.type) && s.tries > 1) ? ruleHTML(st) : "";
     const cls = good ? "good" : helped ? "almost" : shown ? "shown" : "bad";
     return `<div class="pfoot ${cls}"><div class="wrap">
-      <div class="fb"><h3>${title}</h3>${solved ? fixNote(st, s) : ""}${right}${ex}${again}${rule}</div>
+      <div class="fb"><h3>${title}</h3>${solved && !co ? fixNote(st, s) : ""}${right}${ex}${again}${rule}</div>
       <button class="btn wide ${good ? "good" : solved ? "" : shown ? "" : "bad"}" data-next>Продолжить</button></div></div>`;
   }
   if (st.type === "build" || st.type === "mf") {
@@ -3234,6 +3372,8 @@ function stepFoot(st) {
       <button class="btn ghost" data-whint>${(s.helps || 0) >= 2 ? "Показать ответ" : "Подсказка"}</button><button class="btn" data-primary ${wNorm(s.value) ? "" : "disabled"}>Проверить</button></div></div></div>`;
   }
   if (st.type === "match" || st.type === "sort") return "";
+  if (st.type === "compose") return `<div class="pfoot"><div class="wrap"><div class="two">
+      <button class="btn ghost" data-cosample>Показать образец</button><button class="btn" data-primary ${wNorm(s.value) ? "" : "disabled"}>Проверить</button></div></div></div>`;
   let label = "Дальше", dis = "";
   if (st.type === "intro") label = "Начать";
   if (st.type === "mc") return "";   // ответ — нажатием на вариант
@@ -3247,7 +3387,7 @@ function playerView() {
     S.state = { n: 0, err: 0, miss: 0, helps: 0, here: 0 };
     if (st.type === "build") Object.assign(S.state, { tiles: Array.isArray(st.alt) ? buildTiles(st) : shuffle(tokens(st)), used: [], cands: [st.es, ...(st.alt || [])].map(x => x.split(" ")) });
     if (st.type === "mf") mfSkip(st, S.state);
-    if (st.type === "write") Object.assign(S.state, { value: "", tries: 0 });
+    if (st.type === "write" || st.type === "compose") Object.assign(S.state, { value: "", tries: 0 });
     if (st.type === "match") Object.assign(S.state, { left: shuffle(st.pairs.map((_, k) => k)), done: [], sel: null, bad: null });
     if (st.type === "match") S.state.right = matchOrder(st.pairs.length).map(k => S.state.left[k]);
     if (st.type === "sort") Object.assign(S.state, { order: shuffle(st.groups.flatMap(([, items], g) => items.map(it => [it, g]))), k: 0, placed: st.groups.map(() => []) });
@@ -3516,6 +3656,7 @@ function primary() {
   if (s.result) return next();
   if (st.type === "mc") { if (s.pick != null) answer(s.pick === st.correct, st); return; }
   if (st.type === "write") return writeCheck();
+  if (st.type === "compose") return composeCheck();
   if (["build", "mf", "match", "sort"].includes(st.type)) return;
   next();
 }
@@ -3784,6 +3925,7 @@ document.addEventListener("click", e => {
   if ("srcTr" in d) { const box = el.closest(".srcbox")?.querySelector(".dlg"); const on = el.getAttribute("aria-pressed") !== "true";
     el.setAttribute("aria-pressed", on); box?.classList.toggle("hide-tr", !on); return; }
   if ("whint" in d && s && !s.result) return writeHint();
+  if ("cosample" in d && s && !s.result) return composeGive();
   if (d.opt != null && !s.result) { s.pick = +d.opt; return answer(s.pick === st.correct, st); }
   if (d.pick != null && !s.result) return buildPick(+d.pick);
   if (d.m && !s.result) { const [side, k] = d.m.split(":"); return matchPick(side, +k); }
@@ -3816,7 +3958,7 @@ document.addEventListener("input", e => {
     return;
   }
   if (e.target.id === "letter") { const v = e.target.value; e.target.value = ""; return mfLetter(v.slice(-1)); }
-  if (e.target.id === "wans" && S?.state && !S.state.result) { S.state.value = e.target.value; S.state.flash = false; return wSync(); }
+  if ((e.target.id === "wans" || e.target.id === "coans") && S?.state && !S.state.result) { S.state.value = e.target.value; S.state.flash = false; return wSync(); }
   if (e.target.id === "wsearch") {
     view.q = e.target.value; const pos = e.target.selectionStart; render();
     const f = $("#wsearch"); f.focus(); f.setSelectionRange(pos, pos);
@@ -3847,6 +3989,7 @@ document.addEventListener("keydown", e => {
   }
   if (!S || S.kind === "result") return;
   const st = S.steps[S.at], s = S.state;
+  if (e.key === "Enter" && e.target.id === "coans") return;   // в письме Enter — новая строка
   if (e.key === "Enter" && !e.shiftKey) {
     e.preventDefault();
     const btn = $("[data-primary], [data-next]"); if (btn && !btn.disabled) primary();

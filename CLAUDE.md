@@ -104,6 +104,18 @@ Telegram-курс испанского с нуля до A1: канал **@espano
 - В `.claude/settings.json`: основная модель Sonnet, советник Opus (`advisorModel`) — Opus зовут на развилках
   и перед тем, как объявить задачу готовой. Сменить: `/model`, `/advisor`; выключить: `/advisor off`.
 
+## Курс A2 на сайте (с 12 ноября 2026)
+
+- Автор попросил сделать уровень A2 по аудиту и карте (`docs/a2_c2_curriculum_map.md`). Ход работы, статус тем и
+  договорённости по содержанию — `docs/a2_build_progress.md`: с него начинается продолжение.
+- Темы A2 — `content/site/units/24_…` и дальше (`level: A2`, id темы без цифр). Новые возможности только для A2+:
+  шаблоны ответов `(…)` и `[a/b]`, блок `compose` (письмо по признакам: «неверно» не бывает, после ответа — образец),
+  блок `chat` (разговор по шагам с лентой), темы `preterite`, `preterite_irregular`, `imperfect`, `imperative` для `unlocks`.
+  Правила — раздел «Блоки и возможности уровня A2» в `docs/site_lessons_guide.md`.
+- Карта экранов темы A2 собирается из сценария: `node tools/site_map_gen.cjs --unit N --write`; новые id уроков —
+  `python tools/site_ids_snapshot.py`; тесты — `tests/test_site_a2.py` и тесты «A2:» в `tests/site_course.test.cjs`.
+- Первый урок A2 открыт и без пройденного A1; внутри уровня — по порядку.
+
 ## Сайт курса (прототип)
 
 - `python -m espanol site` собирает `site/index.html` (в `.gitignore`): курс в духе Busuu — уроки по порядку,
