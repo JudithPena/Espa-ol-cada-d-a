@@ -1270,6 +1270,16 @@ html.grammar-playing, html.grammar-playing body { overflow: hidden; }
 @media(prefers-reduced-motion:reduce){.gm60 *{transition:none!important;animation:none!important}}
 @media print{.gm60-paper{box-shadow:none}.gm60-context,.gm60-topology,.gm60-ribbon{break-inside:avoid}}
 
+
+/* Unit 60 final QA: directional links on tablet and a legible orb caption on phones. */
+@media(min-width:681px) and (max-width:990px){
+ .gm60-topology::before{content:"";position:absolute;top:271px;left:calc(50% - 1px);width:2px;height:24px;background:#b294d9;z-index:0;}
+ .gm60-topology::after{content:"";position:absolute;top:292px;left:25%;right:25%;height:24px;border:2px solid #b294d9;border-bottom:none;border-radius:15px 15px 0 0;opacity:.8;z-index:0;}
+}
+@media(max-width:680px){
+ .gm60-orb-foot{max-width:164px;font-size:10px;line-height:1.18;margin-top:5px;}
+}
+
 /* Unit 60: art-directed refinement / compact mobile edition. Only .gm60 descendants. */
 .gm60-wires .gm60-connect-left,.gm60-wires .gm60-connect-right{
  stroke:#9467c5;stroke-width:3.5;stroke-dasharray:none;opacity:.94;
