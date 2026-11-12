@@ -222,7 +222,7 @@
         ]
       ],
       "notes": [
-        "Сравни «construí» (yo) и «construyó» (ella): y появляется в третьем лице, а ударение на í в других лицах зависит от модели глагола. Не добавляй лишний знак: «leyó», а не «leyó́»."
+        "Сравни «construí» (yo) и «construyó» (ella): y появляется в третьем лице. Пиши «leyó» с ударением на ó, но «leyeron» без него."
       ],
       "check": {
         "id": "check-2",
@@ -427,7 +427,7 @@
             "options": [
               "quisieron",
               "querieron",
-              "quisieroń"
+              "quiseron"
             ]
           },
           {
@@ -1191,13 +1191,20 @@
           ],
           "explain": "Обе формы правильных глаголов предыдущего юнита: ella se casó, se rompió. Не все глаголы в упражнении должны иметь особую основу.",
           "sourceRef": "59.1.9",
-          "learningAction": "смысловой контраст",
-          "interaction": "gap-choice",
-          "options": [
-            "casó rompió",
-            "casó rompieron",
-            "casé rompió"
-          ]
+          "learningAction": "применение данных",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "inputFormat": {
+            "instruction": "В каждом пропуске введи одну форму; возвратное se уже напечатано.",
+            "placeholder": "Форма прошедшего"
+          }
         },
         {
           "context": "Сеньора узнала о болезни, только когда врач ей сказал.",
@@ -1446,13 +1453,13 @@
         "placeholder": "Форма глагола"
       },
       "preview": {
-        "source": "En 1902, Cuba ___ oficialmente una república independiente.",
+        "source": "Cuba ___ como república el 20 de mayo de 1902.",
         "sentenceParts": [
-          "En 1902, Cuba ",
-          " oficialmente una república independiente."
+          "Cuba ",
+          " como república el 20 de mayo de 1902."
         ],
-        "answer": "se convirtió en",
-        "translation": "В 1902 году Куба официально стала независимой республикой.",
+        "answer": "se independizó",
+        "translation": "Куба стала независимой республикой 20 мая 1902 года.",
         "targetPrefix": ""
       },
       "questions": [
