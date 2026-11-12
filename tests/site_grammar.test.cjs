@@ -1303,7 +1303,7 @@ test('171 grammar exercises require real corrections that spend remaining lives'
   assert.equal(run(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id===${JSON.stringify(group.id)})).errors`),2);
   count++;
  }
- assert.equal(count,195);
+ assert.equal(count,199);
 });
 
 test('correction queue and drafts survive reload and keep the next section locked',()=>{
@@ -1432,7 +1432,7 @@ test('every accepted alternative in mini-checks is offered and any one correct c
    }
   }
  }
- assert.equal(checked,22); // Fable 5: extra mini-check alternatives are validated
+ assert.equal(checked,24); // Fable 5: extra mini-check alternatives are validated
 });
 
 test('grammar list gives each theme a distinct icon and marks only fully completed themes',()=>{
