@@ -24,7 +24,7 @@ from .markup import checkable, plain, to_html
 from .site_audio import cast
 from .tokens import spanish_words
 from .wordcards import WordCard
-from .grammar import load_grammar, write_theory_illustrations
+from .grammar import load_grammar, load_grammar_sections, write_theory_illustrations
 
 TEMPLATE = Path(__file__).with_name("site_template.html")
 
@@ -1075,7 +1075,8 @@ def site_data(course: Course, cards: dict[str, WordCard], units: set[int] | None
         "lessons": lessons,
         "videos": [video_data(v) for v in videos or []],
         "books": load_books(),
-        "grammar": load_grammar(),
+        "grammar": (grammar := load_grammar()),
+        "grammarSections": load_grammar_sections(grammar),
         "forms": word_forms(course),
         "phrases": word_phrases(course),
         "avatars": avatars(),
