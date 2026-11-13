@@ -10,8 +10,8 @@
 
 ## Сейчас
 
-- Готово тем: **17 из 19**. Уроков A2: **130**, новых слов и выражений: **451**.
-- В работе: тема 41 — El mundo hispano.
+- Готово тем: **18 из 19**. Уроков A2: **137**, новых слов и выражений: **469**.
+- В работе: тема 42 — Итог A2.
 
 ## Темы
 
@@ -34,8 +34,8 @@
 | 38 | Mi trabajo, mis estudios | empezar a, dejar de, volver a, seguir + герундий; desde… hasta, durante; резюме | 7 | 21 | ✅ готово |
 | 39 | La gente | ser / estar с прилагательными; parecerse, llevarse bien; me parece; характер и чувства | 7 | 21 | ✅ готово |
 | 40 | Planes y deseos | pensar + инфинитив, me gustaría; si + настоящее; планы и праздники | 7 | 18 | ✅ готово |
-| 41 | El mundo hispano | повторение времён; se dice, se come; Испания и Америка | — | — | ⏭ следующая |
-| 42 | Итог A2 | рассказ о поездке 100–120 слов и итог уровня (check: control) | — | — | ⬜ не начата |
+| 41 | El mundo hispano | повторение времён; se dice, se come; Испания и Америка | 7 | 18 | ✅ готово |
+| 42 | Итог A2 | рассказ о поездке 100–120 слов и итог уровня (check: control) | — | — | ⏭ следующая |
 
 «Готово» значит: `python -m espanol validate` без ошибок, тесты курса проходят, каждый урок темы пройден в браузере
 на 320, 390 и 430 px в трёх режимах (верно, с ошибками, без звука), карта экранов записана, тема отправлена в ветку.
@@ -79,6 +79,7 @@
 | 13.11.2026 | Тема 38 «Mi trabajo, mis estudios» (7 уроков): собеседование Ли на слух, empezar a / dejar de / volver a / seguir + герундий, сроки desde… hasta / de… a / durante, учёба (carrera, aprobar, suspender), письмо Ольги, миссия «Собеседование», резюме. |
 | 13.11.2026 | Тема 39 «La gente» (7 уроков): характер (alegre, generoso, paciente), llevarse bien, parecerse, ser / estar с прилагательными (es aburrido / está aburrido), me cae bien, me parece, отношения (nos conocimos, se separaron), соседка Тома, миссия «Рассказ о человеке». |
 | 13.11.2026 | Тема 40 «Planes y deseos» (7 уроков): планы на лето (pensar + инфинитив, tener ganas de, reservar, ahorrar), si + настоящее, мечты (soñar con, algún día, esperar), праздники Испании (Navidad, Nochevieja, Reyes, puente), текст о двенадцати виноградинах, миссия «План отпуска». |
+| 13.11.2026 | Тема 41 «El mundo hispano» (7 уроков): испанский Испании и Мексики на слух (coche / carro, móvil / celular, vosotros / ustedes), se come / se celebra / ¿cómo se dice?, география (en el norte, al sur de…, millones de habitantes), все времена A2 вместе, текст Диего о Мексике, миссия «Презентация страны» с Томом. |
 
 ## Что не проверено
 
