@@ -22,7 +22,8 @@
 | 13 | M | пять пар | значения | — | — | — |
 | 14–16 | I ×3 | «я устала», «сестра болеет», «мы заняты» | воспроизвести | правило | итог | — |
 
-Сигнатура: `T(text) W×4 C×3 T(tip) W×4 M I×3`
+Сигнатура: `T(text) W×4 C×3 T(tip) W×4 M I×3 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** выбор «как вы себя чувствуете» — от лица Пабло (ответ в мужском роде не навязывается ученице, U11-01, SYS-09); на слух: Hoy estoy muy cansada; Pablo está enfermo (U11-02). Версия 3.
 
 ## Урок `ser_estar/gramatica` — «Ser или estar?»
 
@@ -40,7 +41,8 @@
 | 6–7 | C ×2 | Hoy Pablo ___ aburrido; siempre ___ serio | ser / estar | правила | узнавание | — |
 | 8–13 | I ×6 | soy, estoy, es, está, somos, están | воспроизвести | правило | итог | — |
 
-Сигнатура: `T(text+examples+compare) S W×2 T(text+examples) C×2 I×6`
+Сигнатура: `T(text+examples+compare) S W×2 T(text+examples) C×2 I×6 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Mi hermana es simpática, pero hoy está triste; ¿Dónde estás ahora? (U11-02). Версия 3.
 
 ## Урок `ser_estar/dialogo` — «¿Qué te pasa?»
 
@@ -60,7 +62,8 @@
 | 14–15 | C ×2 (реплика) | ¿Qué te pasa? — вы заболели; ¡Tengo un piso nuevo! — ответ | ответить | — | — | — |
 | 14 | B | Estoy cansado porque trabajo mucho | причина | porque | итог | — |
 
-Сигнатура: `W×3 T(compare) C×2 W×2 T(dialogue+more) C@pablo×4 C×2 B`
+Сигнатура: `W×3 T(compare) C×2 W×2 T(dialogue+more) C@pablo×4 C×2 B C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** «Пабло заболел. Что он ответит?» вместо «Вы заболели» (SYS-09); на слух: ¿Qué te pasa?; Estoy contento porque… Версия 3.
 
 ## Урок `ser_estar/practica` — «Ser и estar на практике»
 
@@ -93,4 +96,5 @@
 | 2 | M | contento, enfermo, ocupado, ahora, siempre | значения | тема | разминка | — |
 | 3–7 | Q ×5 | estoy cansada; es profesora; está la universidad; ¿Por qué?; es alto | применить тему | тема | итог | — |
 
-Сигнатура: `T(text+cando) M Q×5`
+Сигнатура: `T(text+cando) M I×2 Q×5`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ввод: «Сегодня я очень занят(а)», «Почему ты грустный?» (SYS-03). Версия 3.

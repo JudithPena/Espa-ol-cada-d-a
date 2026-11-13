@@ -22,7 +22,8 @@
 | 11–13 | C ×3 (картинка) | ванная, кухня, балкон | назвать | — | узнавание | — |
 | 14–16 | I ×3 | большая гостиная; моя спальня маленькая; нет балкона | воспроизвести | согласование | итог | — |
 
-Сигнатура: `T(text+more) W×4 C W×4 C×3 I×3`
+Сигнатура: `T(text+more) W×4 C W×4 C×3 I×3 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: El piso tiene dos dormitorios; La cocina es grande (SYS-04). Версия 3.
 
 ## Урок `casa/vocab2` — «Мебель и техника»
 
@@ -40,7 +41,8 @@
 | 13 | I | «В спальне кровать и шкаф» | hay | hay | — | — |
 | 14 | B | En el salón hay un sofá y una tele | hay | урок | итог | — |
 
-Сигнатура: `W×4 C×2 W×3 C×2 M I B`
+Сигнатура: `W×4 C×2 W×3 C×2 M I B C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Hay una ducha en el baño; Hay una tele en la cocina (SYS-04). Версия 3.
 
 ## Урок `casa/estar` — «¿Dónde está? Глагол estar»
 
@@ -60,7 +62,8 @@
 | 12–13 | C ×2 (картинка) | где кот: под / рядом | предлог | таблица | узнавание | — |
 | 14–15 | I ×2 | кот под кроватью; книга на диване | ответить фразой | правила 1–2 | итог | — |
 
-Сигнатура: `T(text+examples) W×2 T(rule+conjugation) I×3 W×3 T(table+note) C×2 I×2`
+Сигнатура: `T(text+examples) W×2 T(rule+conjugation) I×3 W×3 T(table+note) C×2 I×2 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Estamos en casa; ¿Dónde está el libro? (SYS-04). Версия 3.
 
 ## Урок `casa/preposiciones` — «Перед, за, между»
 
@@ -78,7 +81,8 @@
 | 9–10 | C, C~ | Kiev ___ Madrid; на слух «cerca de la universidad» | близко / далеко | — | — | — (без звука: фраза записана) |
 | 11–13 | I ×3 | кот за диваном; стул перед окном; ванная между кухней и спальней | воспроизвести | правило | итог | — |
 
-Сигнатура: `T(text) W×3 C×2 W×2 C C~ I×3`
+Сигнатура: `T(text) W×3 C×2 W×2 C C~ I×3 C~`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ещё одно задание на слух: La silla está detrás de la mesa (SYS-04). Версия 3.
 
 ## Урок `casa/hay_esta` — «Hay или está?»
 
@@ -95,7 +99,8 @@
 | 8–9 | W ×2 | aquí, allí | — | — | второй виток | — |
 | 10 | C (реплика) | ¿hay un baño aquí? — он там | está + allí | правило | итог | — |
 
-Сигнатура: `T(text+examples+compare) I×6 W×2 C`
+Сигнатура: `T(text+examples+compare) I×6 W×2 C C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Aquí está el baño (≠ здесь есть ванная); Las llaves están allí (SYS-04). Версия 3.
 
 ## Урок `casa/lectura` — «Mi piso»
 
@@ -117,7 +122,8 @@
 | 16–17 | C ×2 (реплика) | сколько комнат; где ванная | hay / está | тема | миссия | `diego` |
 | 18 | I | ¿Tienes balcón? — нет | ответить | тема | итог | — (самостоятельное) |
 
-Сигнатура: `W×4 M W×2 C T(reading+more) C@sara×5 T(mission) C@diego×2 I`
+Сигнатура: `W×4 M W×2 C T(reading+more) C@sara×5 T(mission) C@diego×2 I C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Mi piso es pequeño, pero muy bonito; Vivo en el centro (SYS-04). Версия 3.
 
 ## Урок `casa/escucha` — «¿Dónde están mis llaves?»
 
@@ -134,7 +140,8 @@
 | 3–4 | C ×2 | с кем говорит Пабло; что он ищет | понять | разговор | — | `keys` |
 | 4–6 | Q ×3 | где ключи; что на столе; чьи очки | детали | разговор | итог | `keys` |
 
-Сигнатура: `W T(text+dialogue) C@keys×2 Q@keys×3`
+Сигнатура: `W T(text+dialogue) C@keys×2 I~ Q@keys×3`
+- **13.11.2026, ремонт по аудиту MYTHOS:** диктант вопроса Пабло: Mamá, ¿dónde están mis llaves? (SYS-04). Версия 3.
 
 ## Урок `casa/ficha` — «Анкета» (добавлен 13.11.2026, аудит MYTHOS, PRG-03, SYS-12)
 
@@ -170,4 +177,5 @@
 | 2 | M | la cocina, el armario, al lado de, cerca de, cómodo | значения | тема | разминка | — |
 | 3–7 | Q ×5 | están; hay; del; estamos; entre | применить тему | тема | итог | — |
 
-Сигнатура: `T(text+cando) M Q×5`
+Сигнатура: `T(text+cando) M I×2 Q×5`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ввод: описать квартиру, спросить, где ключи (SYS-03). Версия 3.

@@ -12,16 +12,12 @@ lessons:
     kind: vocab
     title: Уровень A1 — больше испанского
     goal: понимать испанские названия частей урока
-    version: 2
+    version: 3
     vocab:
       - "📖 la lección [лэкθьо́н] — урок"
       - "🗂 el tema [тэ́ма] — тема"
       - "📚 el vocabulario [бокабула́рьо] — лексика, словарный запас"
       - "📐 la gramática [грама́тика] — грамматика"
-      - "💬 el diálogo [дья́лого] — диалог"
-      - "📖 la lectura [лэкту́ра] — чтение"
-      - "✍️ la práctica [пра́ктика] — практика"
-      - "🧠 el test [тэст] — тест {pl: los tests}"
     blocks:
       - "🎉 **Добро пожаловать на уровень A1!** Испанского становится больше. Начнём со слов, которыми называют части урока."
       - learn: [la lección, el tema, el vocabulario, la gramática]
@@ -39,27 +35,14 @@ lessons:
               explain: "Tema — исключение: на -a, но мужского рода."
             - q: "___ gramática"
               options: "la | el"
-      - learn: [el diálogo, la lectura, la práctica, el test]
       - match:
           title: Соедините пары
           rule: none
           pairs:
             - "la lección — урок"
+            - "el tema — тема"
             - "el vocabulario — лексика"
-            - "el diálogo — диалог"
-            - "la lectura — чтение"
-            - "la práctica — практика"
-      - tip: "**práctica** и **practica** различаются только ударением. Со значком — существительное «практика»: _la práctica_. Без значка — глагол «тренируется», «тренируйся»: _Ana practica español._"
-      - choose:
-          title: Со значком или без?
-          skill: accent_meaning
-          items:
-            - q: "Ana ___ español en casa."
-              options: "practica | práctica"
-              explain: "Здесь нужен глагол «тренируется» — без значка: practica."
-            - q: "la ___ de gramática"
-              options: "práctica | practica"
-              explain: "После la — существительное «практика», со значком: práctica."
+            - "la gramática — грамматика"
       - write:
           title: Traduce
           format: слова по-испански
@@ -67,20 +50,30 @@ lessons:
           skill: class_words
           items:
             - "урок грамматики => la lección de gramática | una lección de gramática"
-            - "тест по лексике => el test de vocabulario | un test de vocabulario"
+            - "тема урока => el tema de la lección"
       - build:
           title: Соберите фразу
           rule: none
           skill: class_words
           items:
             - "¿Cuál es el tema de la lección? — Какая тема урока?"
+      - choose:
+          title: Послушайте и выберите
+          skill: class_words
+          items:
+            - say: "El tema de la lección es la familia."
+              options: "Тема урока — семья. | Тема урока — грамматика. | Урок о семье — завтра."
+              noaudio: {q: "Что значит «El tema de la lección es la familia.»?", options: "Тема урока — семья. | Тема урока — грамматика. | Урок о семье — завтра."}
+            - say: "Es una lección de vocabulario."
+              options: "Это урок лексики. | Это урок грамматики. | Это тема урока."
+              noaudio: {q: "Что значит «Es una lección de vocabulario.»?", options: "Это урок лексики. | Это урок грамматики. | Это тема урока."}
     forms: [problema, idioma]
 
   - id: vocab1
     kind: vocab
     title: Внешность
     goal: описать внешность — высокий, светловолосый, красивый
-    version: 2
+    version: 3
     vocab:
       - "🧑 el chico / la chica [чи́ко, чи́ка] — парень, мальчик / девушка, девочка"
       - "🦒 alto/a [а́льто, а́льта] — высокий / высокая"
@@ -133,6 +126,16 @@ lessons:
             - "Девушка очень красивая. => La chica es muy guapa"
           rule: adj_o_a
           skill: adj_gender
+      - choose:
+          title: Послушайте и выберите
+          skill: adj_gender
+          items:
+            - say: "Ana es baja y morena."
+              options: "Ана невысокая и темноволосая. | Ана высокая и темноволосая. | Ана невысокая и светловолосая."
+              noaudio: {q: "Что значит «Ana es baja y morena.»?", options: "Ана невысокая и темноволосая. | Ана высокая и темноволосая. | Ана невысокая и светловолосая."}
+            - say: "El chico es alto y rubio."
+              options: "Парень высокий и светловолосый. | Девушка высокая и светловолосая. | Парень невысокий и светловолосый."
+              noaudio: {q: "Что значит «El chico es alto y rubio.»?", options: "Парень высокий и светловолосый. | Девушка высокая и светловолосая. | Парень невысокий и светловолосый."}
 
   - id: vocab2
     kind: vocab
@@ -187,7 +190,7 @@ lessons:
     kind: grammar
     title: "Alto, alta, altos, altas"
     goal: согласовать прилагательное — alto, alta, altos, altas
-    version: 2
+    version: 3
     vocab:
       - "❓ ¿Cómo es...? [ко́мо эс] — какой (какая) он / она? :: ¿Cómo es tu hermana? — Какая твоя сестра?"
       - "➕ muy [муй] — очень"
@@ -251,12 +254,22 @@ lessons:
             - "Он довольно серьёзный. => Es bastante serio | Él es bastante serio"
           rule: none
           skill: adj_gender
+      - choose:
+          title: Послушайте и выберите
+          skill: adj_agreement
+          items:
+            - say: "Mis hermanas son muy simpáticas."
+              options: "Мои сёстры очень симпатичные. | Мои братья очень симпатичные. | Моя сестра очень симпатичная."
+              noaudio: {q: "Что значит «Mis hermanas son muy simpáticas.»?", options: "Мои сёстры очень симпатичные. | Мои братья очень симпатичные. | Моя сестра очень симпатичная."}
+            - say: "¿Cómo es tu madre?"
+              options: "Какая твоя мама? | Как дела у твоей мамы? | Где твоя мама?"
+              noaudio: {q: "Что значит «¿Cómo es tu madre?»?", options: "Какая твоя мама? | Как дела у твоей мамы? | Где твоя мама?"}
 
   - id: colores
     kind: vocab
     title: Цвета
     goal: сказать, какого цвета предмет
-    version: 2
+    version: 3
     vocab:
       - "🎨 ¿De qué color es? [дэ кэ коло́р эс] — какого это цвета? {forms: color colores}"
       - "🔴 rojo/a [ро́хо, ро́ха] — красный"
@@ -307,6 +320,16 @@ lessons:
               explain: "Queso мужского рода — amarillo."
             - q: "☕ ¿De qué color es el café?"
               options: "Es negro o marrón. | Es negra o marrona. | Es verde."
+      - choose:
+          title: Послушайте и выберите
+          skill: adj_agreement
+          items:
+            - say: "La mochila es roja."
+              options: "Рюкзак красный. | Рюкзак жёлтый. | Рюкзак белый."
+              noaudio: {q: "Что значит «La mochila es roja.»?", options: "Рюкзак красный. | Рюкзак жёлтый. | Рюкзак белый."}
+            - say: "Las sillas son blancas."
+              options: "Стулья белые. | Стул белый. | Стулья чёрные."
+              noaudio: {q: "Что значит «Las sillas son blancas.»?", options: "Стулья белые. | Стул белый. | Стулья чёрные."}
 
   - id: ojos
     kind: grammar
@@ -387,7 +410,7 @@ lessons:
     kind: reading
     title: Mi mejor amiga
     goal: понять описание человека
-    version: 2
+    version: 3
     vocab:
       - "🥇 mejor [мэхо́р] — лучший {pos: adj} :: mi mejor amigo — мой лучший друг"
     blocks:
@@ -425,6 +448,17 @@ lessons:
               options: "Es periodista. | Es estudiante. | Es profesor."
             - q: "¿Cómo es Laura?"
               options: "Inteligente y divertida, pero un poco tímida. | Seria y antipática. | Baja y rubia."
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          skill: appearance
+          items:
+            - say: "Mi mejor amiga es de Málaga."
+              options: "Моя лучшая подруга из Малаги. | Моя лучшая подруга живёт в Малаге. | Моя сестра из Малаги."
+              noaudio: {q: "Что значит «Mi mejor amiga es de Málaga.»?", options: "Моя лучшая подруга из Малаги. | Моя лучшая подруга живёт в Малаге. | Моя сестра из Малаги."}
+            - say: "Vive en Madrid, pero es de Málaga."
+              options: "Живёт в Мадриде, но она из Малаги. | Живёт в Малаге, но она из Мадрида. | Живёт и работает в Мадриде."
+              noaudio: {q: "Что значит «Vive en Madrid, pero es de Málaga.»?", options: "Живёт в Мадриде, но она из Малаги. | Живёт в Малаге, но она из Мадрида. | Живёт и работает в Мадриде."}
     quiz:
       - q: ¿Cómo es el pelo de Laura?
         options: "largo y castaño | corto y rubio | largo y negro"
@@ -439,7 +473,7 @@ lessons:
     kind: listening
     title: ¿Quién es quién?
     goal: понять на слух описание людей
-    version: 2
+    version: 3
     blocks:
       - "Карина описывает трёх человек со свадебной фотографии. Послушайте её рассказ."
       - dialogue:
@@ -456,6 +490,21 @@ lessons:
           items:
             - q: "¿Cómo es el padre de Karina?"
               options: "Serio, pero muy simpático. | Muy divertido. | Tímido y antipático."
+      - write:
+          title: Послушайте и допишите
+          source: karina
+          skill: appearance
+          items:
+            - q: "Karina: El chico alto y rubio es mi hermano ___."
+              a: "Óscar"
+              format: имя
+      - choose:
+          title: Кто это?
+          source: karina
+          skill: appearance
+          items:
+            - q: "Какая Клара?"
+              options: "темноволосая, с длинными волосами | светловолосая, с короткими волосами | невысокая, в очках"
     allow: [Karina]
     quiz:
       - q: ¿Cómo es Óscar?
@@ -472,7 +521,7 @@ lessons:
     kind: quiz
     title: Описание людей
     goal: описать внешность и характер, согласовать прилагательное и назвать цвета
-    version: 2
+    version: 3
     check: soft
     blocks:
       - "Сегодня у нас тест по теме «Описание людей»."
@@ -490,6 +539,18 @@ lessons:
             - "divertido — весёлый"
             - "el pelo — волосы"
             - "blanco — белый"
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          items:
+            - q: "Опишите Пабло: «Он высокий и темноволосый»."
+              a: "Es alto y moreno | (Pablo) es alto y moreno | (Él) es alto y moreno"
+              skill: appearance
+              mistakes: {"es alta y morena": "Пабло — мужчина: **alto** y **moreno**."}
+            - q: "Скажите, что у вас зелёные глаза."
+              a: "Tengo los ojos verdes | (Yo) tengo los ojos verdes"
+              skill: appearance
+              mistakes: {"tengo ojos verdes": "Глаза — с артиклем: tengo **los** ojos verdes."}
     quiz:
       - q: "Mis hermanas son muy ___"
         options: "simpáticas | simpáticos | simpática"

@@ -188,6 +188,10 @@ def _pron_issue(es: str, pron: str) -> str | None:
     return None
 
 
+_SUBJECT_START = {"el", "la", "los", "las", "mi", "mis", "tu", "tus", "su", "sus", "nuestro", "nuestra", "nuestros", "nuestras",
+                  "vuestro", "vuestra", "vuestros", "vuestras", "este", "esta", "estos", "estas"}
+
+
 def warnings(course: Course, lexicon: Lexicon | None = None) -> list[tuple[str, Issue]]:
     """Предупреждения о содержании заданий: (ключ, Issue)."""
     lexicon = lexicon or Lexicon(course)
@@ -213,7 +217,11 @@ def warnings(course: Course, lexicon: Lexicon | None = None) -> list[tuple[str, 
         for b, it in writes:
             first, q = (it["answers"][0] if it["answers"] else ""), plain(it["q"])
             quote = re.match(r"Как .*сказано", q) or not re.search(r"[А-Яа-яЁё]", q)   # цитата из текста, исправление ошибки
-            if len(spanish_words(first)) >= 3 and len(it["answers"]) == 1 and not it.get("say") and not it.get("answer") and not quote:
+            # Подлежащее названо существительным или именем (Mi padre es serio, Carlos es camarero): другого
+            # естественного порядка у такой фразы нет — один ответ здесь не упущение.
+            words = spanish_words(first)
+            named = bool(words) and (words[0].lower() in _SUBJECT_START or (words[0][:1].isupper() and words[0] in course.names))
+            if len(words) >= 3 and len(it["answers"]) == 1 and not it.get("say") and not it.get("answer") and not quote and not named:
                 add(f"single|{plain(it['q'])[:40]}", f"ввод «{plain(it['q'])[:40]}»: у фразы один допустимый ответ — "
                                                      "проверьте местоимение, порядок слов, краткий ответ (шаблон ответа)")
         for key, msg in _tense_issues(lesson, lexicon, forms):

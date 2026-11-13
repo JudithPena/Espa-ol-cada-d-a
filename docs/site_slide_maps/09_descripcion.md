@@ -28,7 +28,8 @@ tener los ojos / el pelo; `accent_meaning` — práctica / practica.
 | 17–18 | I ×2 | урок грамматики; тест по лексике | воспроизвести | de | — | — |
 | 19 | B | ¿Cuál es el tema de la lección? | вопрос | урок | итог | — |
 
-Сигнатура: `T(text) W×4 T(rule) C×2 W×4 M T(tip) C×2 I×2 B`
+Сигнатура: `T(text) W×4 T(rule) C×2 M I×2 B C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** 4 слова вместо 8 (U09-01, PRG-08): el diálogo, la lectura, la práctica, el test нигде больше не нужны — убраны с их заданиями; на слух: El tema de la lección es la familia; Es una lección de vocabulario. Версия 3.
 
 ## Урок `descripcion/vocab1` — «Внешность»
 
@@ -48,7 +49,8 @@ tener los ojos / el pelo; `accent_meaning` — práctica / practica.
 | 13 | S | Пабло / Ана / оба | род прилагательного | правило | узнавание | — |
 | 14–16 | I ×3 | «Он высокий», «Она блондинка», «Девушка очень красивая» | воспроизвести | правило | итог | — |
 
-Сигнатура: `T(text) W×4 T(compare+more) C×2 W×4 S I×3`
+Сигнатура: `T(text) W×4 T(compare+more) C×2 W×4 S I×3 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Ana es baja y morena; El chico es alto y rubio (SYS-04). Версия 3.
 
 ## Урок `descripcion/vocab2` — «Характер»
 
@@ -88,7 +90,8 @@ tener los ojos / el pelo; `accent_meaning` — práctica / practica.
 | 14 | B | Tengo unas amigas muy divertidas | порядок и согласование | правила | — | — |
 | 15 | I | «Он довольно серьёзный» | bastante | — | итог | — |
 
-Сигнатура: `T(text+examples+rule) S I×5 W×3 T(note) C T(rule) B I`
+Сигнатура: `T(text+examples+rule) S I×5 W×3 T(note) C T(rule) B I C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Mis hermanas son muy simpáticas; ¿Cómo es tu madre? (SYS-04). Версия 3.
 
 ## Урок `descripcion/colores` — «Цвета»
 
@@ -108,7 +111,8 @@ tener los ojos / el pelo; `accent_meaning` — práctica / practica.
 | 13–15 | I ×3 | sillas (blanco), mochila (rojo), llaves (azul) | согласовать цвет | правило | ввод | — |
 | 16–17 | C ×2 | какого цвета сыр, кофе | цвет и род | правило | итог | — |
 
-Сигнатура: `W×4 I×2 W×4 T(text) M I×3 C×2`
+Сигнатура: `W×4 I×2 W×4 T(text) M I×3 C×2 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: La mochila es roja; Las sillas son blancas (SYS-04). Версия 3.
 
 ## Урок `descripcion/ojos` — «Глаза и волосы»
 
@@ -147,7 +151,8 @@ tener los ojos / el pelo; `accent_meaning` — práctica / practica.
 | 3–6 | C ×4 | кто такая Лаура (mejor amiga); цвет глаз Лауры; кто Уго; какая Лаура | понять текст | текст | вопросы к тексту | `laura` |
 | 6–7 | Q ×2 | какие волосы у Лауры; какой Уго | понять текст | текст | итог | `laura` |
 
-Сигнатура: `W T(reading) C@laura×4 Q@laura×2`
+Сигнатура: `W T(reading) C@laura×4 C~×2 Q@laura×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Mi mejor amiga es de Málaga; Vive en Madrid, pero es de Málaga (SYS-04). Версия 3.
 
 ## Урок `descripcion/escucha` — «¿Quién es quién?»
 
@@ -161,7 +166,8 @@ tener los ojos / el pelo; `accent_meaning` — práctica / practica.
 | 2 | C | какой отец Карины | понять на слух | рассказ | — | `karina` |
 | 3–5 | Q ×3 | какой Оскар; кто Клара; кто носит очки | детали | рассказ | итог | `karina` |
 
-Сигнатура: `T(text+dialogue) C@karina Q@karina×3`
+Сигнатура: `T(text+dialogue) C@karina I@karina C@karina Q@karina×3`
+- **13.11.2026, ремонт по аудиту MYTHOS:** пропуск по услышанному (имя брата Карины) и «Какая Клара?» по описанию (U09-04). Версия 3.
 
 ## Урок `descripcion/quiz` — «Описание людей» (тест темы, `check: soft`)
 
@@ -174,4 +180,5 @@ tener los ojos / el pelo; `accent_meaning` — práctica / practica.
 | 2 | M | rubio, delgado, divertido, el pelo, blanco | значения | тема | разминка | — |
 | 3–7 | Q ×5 | simpáticas; ojos verdes; ¿Cómo es tu madre?; pelo corto; jóvenes | применить тему | тема | итог | — |
 
-Сигнатура: `T(text+cando) M Q×5`
+Сигнатура: `T(text+cando) M I×2 Q×5`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ввод: описать Пабло, сказать о цвете глаз (SYS-03). Версия 3.

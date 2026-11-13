@@ -12,7 +12,7 @@ lessons:
     kind: vocab
     title: Как вы себя чувствуете?
     goal: рассказать, как вы себя чувствуете сегодня
-    version: 2
+    version: 3
     vocab:
       - "📅 hoy [ой] — сегодня :: Hoy estoy bien. — Сегодня у меня всё хорошо."
       - "😴 cansado/a [канса́до, канса́да] — уставший"
@@ -29,11 +29,11 @@ lessons:
           title: "¿Cómo estás?"
           skill: estar_state
           items:
-            - q: "😴 Вы не спали всю ночь."
+            - q: "😴 Пабло не спал всю ночь. Что он скажет?"
               options: "Estoy cansado. | Estoy contento. | Estoy triste."
-            - q: "😢 Ваш лучший друг уехал в другую страну."
+            - q: "😢 Лучший друг Пабло уехал в другую страну. Что он скажет?"
               options: "Estoy triste. | Estoy contento. | Estoy cansado."
-            - q: "😃 У вас отличная новость."
+            - q: "😃 У Пабло отличная новость. Что он скажет?"
               options: "Estoy contento. | Estoy cansado. | Estoy triste."
       - tip:
           id: agree
@@ -59,12 +59,22 @@ lessons:
             - "Мы очень заняты. => Estamos muy ocupados | Estamos muy ocupadas"
           rule: agree
           skill: estar_state
+      - choose:
+          title: Послушайте и выберите
+          skill: estar_state
+          items:
+            - say: "Hoy estoy muy cansada."
+              options: "Сегодня я очень устала. | Сегодня я очень занята. | Сегодня я очень довольна."
+              noaudio: {q: "Что значит «Hoy estoy muy cansada.»?", options: "Сегодня я очень устала. | Сегодня я очень занята. | Сегодня я очень довольна."}
+            - say: "Pablo está enfermo."
+              options: "Пабло болеет. | Пабло устал. | Пабло нервничает."
+              noaudio: {q: "Что значит «Pablo está enfermo.»?", options: "Пабло болеет. | Пабло устал. | Пабло нервничает."}
 
   - id: gramatica
     kind: grammar
     title: Ser или estar?
     goal: выбрать ser или estar
-    version: 2
+    version: 3
     vocab:
       - "⏰ ahora [ао́ра] — сейчас :: Ahora estoy en casa. — Сейчас я дома."
       - "♾ siempre [сьэ́мпрэ] — всегда"
@@ -126,12 +136,22 @@ lessons:
             - "Hoy mi hermana ___ triste. => está"
             - "Nosotros ___ estudiantes. => somos"
             - "¿Dónde ___ tus padres? => están"
+      - choose:
+          title: Послушайте и выберите
+          skill: ser_estar
+          items:
+            - say: "Mi hermana es simpática, pero hoy está triste."
+              options: "Моя сестра симпатичная, но сегодня грустная. | Моя сестра грустная, но сегодня симпатичная. | Моя сестра всегда грустная."
+              noaudio: {q: "Что значит «Mi hermana es simpática, pero hoy está triste.»?", options: "Моя сестра симпатичная, но сегодня грустная. | Моя сестра грустная, но сегодня симпатичная. | Моя сестра всегда грустная."}
+            - say: "¿Dónde estás ahora?"
+              options: "Где ты сейчас? | Как ты сейчас? | Кто ты?"
+              noaudio: {q: "Что значит «¿Dónde estás ahora?»?", options: "Где ты сейчас? | Как ты сейчас? | Кто ты?"}
 
   - id: dialogo
     kind: dialogue
     title: ¿Qué te pasa?
     goal: спросить, что случилось, и объяснить причину
-    version: 2
+    version: 3
     vocab:
       - "❓ ¿Qué te pasa? [кэ тэ па́са] — что с тобой? что случилось?"
       - "❓ ¿Por qué? [пор кэ] — почему?"
@@ -200,7 +220,7 @@ lessons:
           rule: none
           items:
             - lines: ["Ana: ¿Qué te pasa?"]
-              q: "Вы заболели."
+              q: "Пабло заболел. Что он ответит?"
               options: "Estoy enfermo. | Estoy contento. | ¡Qué bien!"
               explain: "¿Qué te pasa? — «что с тобой?»: отвечают, что случилось."
             - lines: ["Ana: ¡Tengo un piso nuevo!"]
@@ -214,6 +234,17 @@ lessons:
             - es: "Estoy cansado porque trabajo mucho."
               ru: "Я устал, потому что много работаю."
               extra: [qué]
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          skill: porque
+          items:
+            - say: "¿Qué te pasa?"
+              options: "Что с тобой? | Как тебя зовут? | Где ты?"
+              noaudio: {q: "Что значит «¿Qué te pasa?»?", options: "Что с тобой? | Как тебя зовут? | Где ты?"}
+            - say: "Estoy contento porque tengo un piso nuevo."
+              options: "Я рад, потому что у меня новая квартира. | Я рад, потому что у меня новая работа. | Я устал, потому что у меня новая квартира."
+              noaudio: {q: "Что значит «Estoy contento porque tengo un piso nuevo.»?", options: "Я рад, потому что у меня новая квартира. | Я рад, потому что у меня новая работа. | Я устал, потому что у меня новая квартира."}
     forms: [vaya]
 
   - id: practica
@@ -277,7 +308,7 @@ lessons:
     kind: quiz
     title: Ser и estar
     goal: рассказать о самочувствии, выбрать ser или estar и объяснить причину
-    version: 2
+    version: 3
     check: soft
     blocks:
       - "Это тест по теме «Состояния. Ser и estar»."
@@ -294,6 +325,18 @@ lessons:
             - "ocupado — занятой"
             - "ahora — сейчас"
             - "siempre — всегда"
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          items:
+            - q: "Скажите: «Сегодня я очень занят(а)»."
+              a: "Hoy estoy muy ocupado | Hoy estoy muy ocupada | Estoy muy [ocupado/ocupada] hoy"
+              skill: estar_state
+              mistakes: {"hoy soy muy ocupado": "Состояние сейчас — **estoy**: Hoy estoy muy ocupado."}
+            - q: "Спросите друга: «Почему ты грустный?»"
+              a: "¿Por qué estás triste? | ¿Por qué tú estás triste?"
+              skill: porque
+              mistakes: {"porque estas triste": "Вопрос «почему?» — два слова со значком: **¿Por qué…?**", "por que eres triste": "Состояние сейчас — **estás** triste."}
     quiz:
       - q: "Hoy ___ muy cansada."
         options: "estoy | soy | es"
