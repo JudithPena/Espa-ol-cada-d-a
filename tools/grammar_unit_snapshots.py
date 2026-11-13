@@ -9,7 +9,8 @@
 и tests/test_grammar_theory_dedup.py (теория, проверки, упражнения, маршрут), и
 собирает tests/data/grammar_before_unitNN.json — хеши файлов всех предыдущих юнитов.
 С --rework снимок предыдущих юнитов не пересоздаётся; вместо этого хеш файла
-доработанного юнита обновляется в снимках более поздних юнитов.
+доработанного юнита обновляется во всех снимках grammar_before_*.json
+(более поздних юнитов и grammar_before_possessives.json).
 Порядок работы — docs/grammar/GRAMMAR_UNIT_GUIDE.md, разделы 19 и 21.
 """
 import argparse
@@ -79,7 +80,7 @@ def main() -> int:
         source = next(GRAMMAR.glob(f"{args.unit:03d}_*.json"))
         current = hashlib.sha256(source.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
         changed = 0
-        for path in sorted(DATA.glob("grammar_before_unit*.json")):
+        for path in sorted(DATA.glob("grammar_before_*.json")):
             later = json.loads(path.read_text(encoding="utf-8"))
             if later.get(source.name) not in (None, current):
                 later[source.name] = current
