@@ -247,3 +247,45 @@ def test_rebuilt_course_standard(site):
             continue
         longest = sum(1 for it in items if (lens := [len(plain(o)) for o in it["options"]])[0] == max(lens) and lens.count(max(lens)) == 1)
         assert longest / len(items) <= 0.6, f"тема {unit.number}: верный вариант самый длинный в {longest} из {len(items)}"
+
+
+def test_no_new_content_warnings(site):
+    """Аудит MYTHOS, этап 4: новых предупреждений о содержании заданий нет (их исправляют в уроке), а снятые
+    удалены из content/site/lint_baseline.json (python tools/lint_baseline.py)."""
+    from espanol.content_lint import baseline, warnings
+
+    found = {key for key, _ in warnings(site, Lexicon(site))}
+    known = baseline()
+    assert not sorted(found - known), "новые предупреждения: исправьте урок"
+    assert not sorted(known - found), "предупреждение снято — обновите список: python tools/lint_baseline.py"
+
+
+def test_content_lint_catches_audit_errors(tmp_path):
+    """Проверки ловят ошибки из реестра аудита: настоящая форма другого времени в неверном варианте (comimos),
+    транскрипция без согласной ([бальо́н]), цитата evidence, которой нет в источнике, перегруженный урок."""
+    from espanol.content_lint import _pron_issue, evidence_issues, warnings
+
+    assert _pron_issue("el balcón", "бальо́н") == "к"
+    assert _pron_issue("el balcón", "балько́н") is None
+    assert _pron_issue("el invierno", "имбьэ́рно") is None
+    assert _pron_issue("la Nochevieja", "ночэбье́ха") is None
+    assert _pron_issue("celebrar", "θэлэбра́р") is None
+    words = ["comer — есть", "el restaurante — ресторан", "nosotros — мы", "en — в", "la casa — дом", "ellos — они",
+             "el pan — хлеб", "el agua — вода", "la mesa — стол"]
+    unit = {"id": "u", "number": 0, "level": "A1", "title": "t", "lessons": [
+        {"id": "w", "kind": "vocab", "version": 2, "vocab": words, "blocks": [{"learn": [w.split(" — ")[0] for w in words]}]},
+        {"id": "q", "kind": "quiz", "version": 2, "check": "soft", "blocks": [
+            {"dialogue": {"id": "d", "lines": ["Ana: Comemos en un restaurante. | Мы едим в ресторане."]}},
+            {"choose": {"source": "d", "items": [{"q": "¿Dónde comen?", "options": "En un restaurante. | En casa.",
+                                                   "evidence": "Comemos en casa."}]}}],
+         "quiz": [{"q": "Nosotros ___ en un restaurante.", "options": "comemos | comimos | comen"}]}]}
+    (tmp_path / "units").mkdir()
+    (tmp_path / "course.yaml").write_text(yaml.safe_dump({"title": "t", "names": {"female": ["Ana"]}}, allow_unicode=True), encoding="utf-8")
+    (tmp_path / "skills.yaml").write_text("{}", encoding="utf-8")
+    (tmp_path / "units" / "00_u.yaml").write_text(yaml.safe_dump(unit, allow_unicode=True), encoding="utf-8")
+    course = load_course(tmp_path)
+    issues = evidence_issues(course.lessons[1])
+    assert issues and "нет в источнике" in issues[0]
+    keys = [k for k, _ in warnings(course)]
+    assert "u/q|tense|comimos" in keys
+    assert "u/w|words" in keys

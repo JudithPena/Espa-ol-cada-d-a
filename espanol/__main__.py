@@ -120,6 +120,18 @@ def cmd_validate(args, settings) -> int:
     from .scenario import screen_warnings
     for w in screen_warnings(site):
         print("⚠️ Сайт:", w)
+    # Содержание заданий (аудит MYTHOS, этап 4): цитата evidence — ошибка; остальное — предупреждения, известные
+    # у прежних уроков записаны в content/site/lint_baseline.json и снимаются по мере правок.
+    from .content_lint import BASELINE, baseline, evidence_issues, warnings as content_warnings
+    from .lexicon import Issue
+    problems += [f"Сайт: {Issue(lesson, msg)}" for lesson in site.lessons for msg in evidence_issues(lesson)]
+    known, found = baseline(), content_warnings(site, site_lexicon)
+    for key, issue in found:
+        if key not in known:
+            print("⚠️ Сайт:", issue)
+    left = sum(1 for key, _ in found if key in known)
+    if left:
+        print(f"ℹ️ Известных предупреждений о содержании заданий: {left} ({BASELINE.relative_to(Path.cwd()) if BASELINE.is_relative_to(Path.cwd()) else BASELINE})")
     for p in problems:
         print("❌", p)
     words = len(course.items)

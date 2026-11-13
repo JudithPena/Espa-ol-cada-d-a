@@ -231,6 +231,10 @@ def lesson_distractors(lesson: Lesson) -> list[tuple[str, str]]:
                     for k in ((it.get("meta") or {}).get("mistakes") or {})]
             out += [(f"блок choose, неверный вариант без звука", o) for it in block.data["items"]
                     if block.type == "choose" and it.get("noaudio") for o in it["noaudio"]["options"][1:]]
+    # TST-03 (аудит MYTHOS): неверные варианты теста урока сайта (перестроенного, version ≥ 2) проверяются так же,
+    # как у блоков choose. Уроки канала (content/units) уже вышли — их тесты не трогаем.
+    if lesson.version >= 2:
+        out += [("тест урока, неверный вариант", o) for q in lesson.quiz for k, o in enumerate(q.options) if k != q.correct]
     return out
 
 

@@ -96,7 +96,7 @@ SOURCE_BLOCKS = {"dialogue", "reading", "mission"}
 RULE_TARGETS = {"rule", "tip", "note", "text", "compare", "table", "list", "examples", "conjugation", "more"}
 # Служебные поля блока урока сайта (docs/site_lessons_guide.md): id блока, граница экрана, источник,
 # правило и навык задания. В уроках канала их нет, рендер канала их не видит (Block.meta).
-META_KEYS = ("id", "slide", "source", "free", "rule", "skill")
+META_KEYS = ("id", "slide", "source", "free", "rule", "skill", "evidence")
 CHECKS = ("", "control", "soft")
 
 DEFAULT_SETTINGS: dict[str, Any] = {
@@ -449,6 +449,8 @@ def _meta(spec: dict, where: str) -> dict:
         meta["free"] = bool(meta["free"])
     if "skill" in meta:
         meta["skill"] = [str(x).strip() for x in _items(meta["skill"]) if str(x).strip()]
+    if "evidence" in meta:   # цитата из источника, из которой следует ответ (аудит MYTHOS, TST-01)
+        meta["evidence"] = [str(x).strip() for x in _items(meta["evidence"]) if str(x).strip()]
     if meta.get("source") and meta.get("free"):
         raise ContentError(f"{where}: у задания либо source, либо free")
     return meta
