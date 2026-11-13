@@ -147,23 +147,23 @@
         "instruction": "",
         "questions": [
           {
-            "prompt": "___ es Julia.",
+            "prompt": "___ es mi hermana Marta.",
             "answers": [
               "esta"
             ],
-            "explain": "Представляем Хулию, которая рядом с нами: esta.",
+            "explain": "Представляем сестру, которая стоит рядом с нами: esta.",
             "options": [
               "esta",
               "esa",
               "aquella"
             ],
-            "translation": "Хулия стоит рядом с тобой.",
+            "translation": "Марта стоит рядом с тобой.",
             "sourceRef": "mini",
             "context": "Выбери слово по подсказке.",
             "distance": "near"
           },
           {
-            "prompt": "¿De quién es ___ bolso?",
+            "prompt": "¿Cuánto cuesta ___ bolso?",
             "answers": [
               "ese"
             ],
@@ -251,13 +251,13 @@
             "context": "Выбери слово по подсказке."
           },
           {
-            "prompt": "Nací en 1983. ___ mismo año nació Ana.",
+            "prompt": "Me casé en 2010. ___ mismo año compramos la casa.",
             "answers": [
               "ese",
               "aquel"
             ],
-            "explain": "Возвращаемся к 1983 году: ese mismo año. Aquel тоже допустимо при взгляде издалека.",
-            "translation": "Ана родилась в том же году.",
+            "explain": "Возвращаемся к 2010 году: ese mismo año. Aquel тоже допустимо при взгляде издалека.",
+            "translation": "В том же году мы купили дом.",
             "sourceRef": "mini",
             "context": "Выбери слово по подсказке.",
             "options": [
@@ -329,21 +329,21 @@
         "instruction": "",
         "questions": [
           {
-            "prompt": "¿Qué es ___?",
+            "prompt": "¿Para qué sirve ___ que tienes en la mano?",
             "answers": [
-              "esto"
+              "eso"
             ],
-            "explain": "Не называем предмет в руке говорящего: esto.",
+            "explain": "Предмет в руке у собеседника, и мы не знаем, что это: eso.",
             "options": [
-              "esto",
-              "este",
-              "esta"
+              "eso",
+              "ese",
+              "esa"
             ],
-            "translation": "Ты держишь незнакомый предмет и спрашиваешь, что это.",
+            "translation": "Ты видишь у друга в руке незнакомый предмет и спрашиваешь, для чего он.",
             "context": "Дополни предложение."
           },
           {
-            "prompt": "___ libro es mío.",
+            "prompt": "___ libro es muy bueno.",
             "answers": [
               "este"
             ],

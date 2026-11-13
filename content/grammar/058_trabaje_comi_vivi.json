@@ -343,8 +343,8 @@
         "instruction": "Соедини формы с тем, кто совершил действие в истории.",
         "questions": [
           {
-            "context": "Девушка рассказывает, как ночью подошла к окну.",
-            "prompt": "Me ___ a la ventana.",
+            "context": "Девушка рассказывает, как медленно подошла к машине.",
+            "prompt": "Me ___ al coche despacio.",
             "answers": [
               "acerqué"
             ],
@@ -359,12 +359,12 @@
             "interaction": "choice"
           },
           {
-            "context": "Человек увидел незнакомца, а незнакомец заметил его.",
-            "prompt": "La figura me ___ desde la calle.",
+            "context": "Девушка увидела собаку, а собака заметила её.",
+            "prompt": "El perro me ___ desde el jardín.",
             "answers": [
               "vio"
             ],
-            "explain": "Подлежащее figura — ella; ver → vio.",
+            "explain": "Подлежащее perro — él; ver → vio.",
             "sourceRef": "extra",
             "learningAction": "выбор по контексту",
             "options": [

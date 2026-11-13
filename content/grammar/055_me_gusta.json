@@ -107,12 +107,12 @@
         "instruction": "Определи, кому и сколько вещей нравится, и выбери форму.",
         "questions": [
           {
-            "context": "Ты говоришь, что тебе нравятся кошки.",
-            "prompt": "Me ___ los gatos.",
+            "context": "Ты говоришь, что тебе нравятся фильмы ужасов.",
+            "prompt": "Me ___ las películas de miedo.",
             "answers": [
               "gustan"
             ],
-            "explain": "Нравятся несколько кошек — gustan. Gusto значило бы «я нравлюсь».",
+            "explain": "Нравятся несколько фильмов — gustan. Gusto значило бы «я нравлюсь».",
             "sourceRef": "extra",
             "learningAction": "выбор по контексту",
             "options": [
@@ -121,7 +121,7 @@
               "gustan"
             ],
             "interaction": "gap-choice",
-            "translation": "Мне нравятся кошки."
+            "translation": "Мне нравятся фильмы ужасов."
           },
           {
             "context": "Ты рассказываешь, что твой брат любит готовить.",
@@ -217,23 +217,23 @@
           },
           {
             "context": "Что значит вопрос?",
-            "prompt": "¿Le gusta a usted el pescado?",
+            "prompt": "¿Le gusta a usted bailar?",
             "answers": [
-              "Вам нравится рыба?"
+              "Вам нравится танцевать?"
             ],
             "explain": "A usted уточняет, что le — это «Вам».",
             "sourceRef": "extra",
             "learningAction": "понимание реплики",
             "options": [
-              "Ему нравится рыба?",
-              "Вам нравится рыба?",
-              "Ей нравится рыба?"
+              "Ему нравится танцевать?",
+              "Вам нравится танцевать?",
+              "Ей нравится танцевать?"
             ],
             "interaction": "choice"
           },
           {
-            "context": "Ты подчёркиваешь, что вам с друзьями очень нравится опера.",
-            "prompt": "___ nos encanta la ópera.",
+            "context": "Ты подчёркиваешь, что вам с друзьями очень нравится путешествовать.",
+            "prompt": "___ nos gusta mucho viajar.",
             "answers": [
               "A nosotros"
             ],
@@ -246,7 +246,7 @@
               "Para nosotros"
             ],
             "interaction": "gap-choice",
-            "translation": "Нам очень нравится опера."
+            "translation": "Нам очень нравится путешествовать."
           }
         ]
       }
@@ -308,8 +308,8 @@
         "instruction": "Выбери форму глагола или значение фразы.",
         "questions": [
           {
-            "context": "У тебя болят ноги.",
-            "prompt": "Me ___ los pies.",
+            "context": "У Педро болят ноги.",
+            "prompt": "A Pedro le ___ las piernas.",
             "answers": [
               "duelen"
             ],
@@ -322,7 +322,7 @@
               "duelen"
             ],
             "interaction": "gap-choice",
-            "translation": "У меня болят ноги."
+            "translation": "У Педро болят ноги."
           },
           {
             "context": "Ты предлагаешь другу сходить в кино.",
@@ -343,17 +343,17 @@
           },
           {
             "context": "Что значит фраза?",
-            "prompt": "No me importa esperar.",
+            "prompt": "A Luis no le importa trabajar los sábados.",
             "answers": [
-              "Я не против подождать."
+              "Луис не против работать по субботам."
             ],
-            "explain": "No me importa — мне не трудно, я не против.",
+            "explain": "No le importa — ему не трудно, он не против.",
             "sourceRef": "extra",
             "learningAction": "понимание реплики",
             "options": [
-              "Мне не нравится ждать.",
-              "Я не против подождать.",
-              "Мне неинтересно ждать."
+              "Луису не нравится работать по субботам.",
+              "Луис не против работать по субботам.",
+              "Луису неинтересно работать по субботам."
             ],
             "interaction": "choice"
           }
@@ -418,12 +418,12 @@
             "interaction": "choice"
           },
           {
-            "context": "Брюки тебе велики.",
-            "prompt": "Estos pantalones te ___ grandes.",
+            "context": "Сапоги тебе малы.",
+            "prompt": "Estas botas te ___ pequeñas.",
             "answers": [
               "quedan"
             ],
-            "explain": "Брюки — pantalones, множественное число: quedan. Te показывает, кому.",
+            "explain": "Сапоги — botas, множественное число: quedan. Te показывает, кому.",
             "sourceRef": "extra",
             "learningAction": "выбор по контексту",
             "options": [
@@ -432,15 +432,15 @@
               "quedan"
             ],
             "interaction": "gap-choice",
-            "translation": "Эти брюки тебе велики."
+            "translation": "Эти сапоги тебе малы."
           },
           {
-            "context": "Подруга примеряет шляпу, и она ей очень идёт.",
-            "prompt": "Ese sombrero te ___ muy bien.",
+            "context": "Подруга примеряет платье этого цвета, и он ей очень идёт.",
+            "prompt": "Ese color te ___ fenomenal.",
             "answers": [
               "sienta"
             ],
-            "explain": "Шляпа одна — sienta. Глагол согласуется с вещью, а не с тем, кому она идёт.",
+            "explain": "Цвет один — sienta. Глагол согласуется с вещью, а не с тем, кому она идёт.",
             "sourceRef": "extra",
             "learningAction": "выбор по контексту",
             "options": [
@@ -449,7 +449,7 @@
               "sienta"
             ],
             "interaction": "gap-choice",
-            "translation": "Эта шляпа тебе очень идёт."
+            "translation": "Этот цвет тебе потрясающе идёт."
           }
         ]
       }

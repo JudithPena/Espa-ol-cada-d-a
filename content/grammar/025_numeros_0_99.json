@@ -392,12 +392,12 @@
             ]
           },
           {
-            "prompt": "Tengo ___ libras.",
+            "prompt": "Hay ___ alumnas en la clase.",
             "answers": [
               "treinta y una"
             ],
-            "explain": "Libras — женский род: treinta y una.",
-            "context": "У меня 31 фунт.",
+            "explain": "Alumnas — женский род: treinta y una.",
+            "context": "В классе 31 ученица.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -472,12 +472,12 @@
         "instruction": "Выбери ответ по ситуации.",
         "questions": [
           {
-            "prompt": "01:00 → ___",
+            "prompt": "01:10 → ___",
             "answers": [
-              "la una en punto"
+              "la una y diez"
             ],
-            "explain": "Один час — la una; en punto подчёркивает точное время.",
-            "context": "На часах ровно час.",
+            "explain": "Один час — la una, а минуты после часа добавляем через y: la una y diez.",
+            "context": "На часах 1:10.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -489,18 +489,18 @@
               "ñ"
             ],
             "options": [
-              "las una en punto",
-              "la una en punto",
-              "la uno en punto"
+              "las una y diez",
+              "la una y diez",
+              "la uno y diez"
             ]
           },
           {
-            "prompt": "04:45 → ___",
+            "prompt": "09:45 → ___",
             "answers": [
-              "las cinco menos cuarto"
+              "las diez menos cuarto"
             ],
-            "explain": "До пяти осталось 15 минут: las cinco menos cuarto. Las cuatro menos cuarto — 3:45.",
-            "context": "Без четверти пять.",
+            "explain": "До десяти осталось 15 минут: las diez menos cuarto. Las nueve menos cuarto — 8:45.",
+            "context": "Без четверти десять.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -512,9 +512,9 @@
               "ñ"
             ],
             "options": [
-              "las cuatro menos cuarto",
-              "las cinco y cuarto",
-              "las cinco menos cuarto"
+              "las nueve menos cuarto",
+              "las diez y cuarto",
+              "las diez menos cuarto"
             ]
           }
         ]
@@ -571,11 +571,11 @@
             ]
           },
           {
-            "prompt": "31 → ___",
+            "prompt": "41 → ___",
             "answers": [
-              "treinta y uno"
+              "cuarenta y uno"
             ],
-            "explain": "Самостоятельно называем число treinta y uno; un нужен перед существительным.",
+            "explain": "Самостоятельно называем число cuarenta y uno; un нужен перед существительным.",
             "context": "Назови этот блок телефона одним числом.",
             "sourceRef": "extra",
             "inputChars": [
@@ -588,9 +588,9 @@
               "ñ"
             ],
             "options": [
-              "treinta y un",
-              "tres uno",
-              "treinta y uno"
+              "cuarenta y un",
+              "cuatro uno",
+              "cuarenta y uno"
             ]
           }
         ]
