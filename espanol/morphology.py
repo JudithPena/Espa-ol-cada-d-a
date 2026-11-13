@@ -396,6 +396,24 @@ def imperfect(infinitive: str) -> list[str]:
     return [stem + e for e in ("ía", "ías", "ía", "íamos", "íais", "ían")]
 
 
+# Основы condicional, отличные от инфинитива (те же, что у будущего времени).
+CONDITIONAL_STEMS = {"tener": "tendr", "poder": "podr", "querer": "querr", "saber": "sabr", "poner": "pondr",
+                     "salir": "saldr", "venir": "vendr", "decir": "dir", "hacer": "har", "haber": "habr",
+                     "caber": "cabr", "valer": "valdr"}
+# Производные с той же особой основой: proponer → propondría, mantener → mantendría, deshacer → desharía.
+_CONDITIONAL_COMPOUNDS = ("poner", "tener", "venir", "hacer", "salir")
+
+
+def conditional(infinitive: str) -> list[str]:
+    """Шесть форм condicional simple: hablaría, comería, podría, tendría, oiría."""
+    base = split_verb(infinitive)[0]
+    stem = CONDITIONAL_STEMS.get(base)
+    if stem is None:
+        root = next((r for r in _CONDITIONAL_COMPOUNDS if base.endswith(r) and base != r), None)
+        stem = base[: -len(root)] + CONDITIONAL_STEMS[root] if root else base.replace("ír", "ir")
+    return [stem + e for e in ("ía", "ías", "ía", "íamos", "íais", "ían")]
+
+
 def imperative(infinitive: str, info: dict | None = None) -> list[str]:
     """Утвердительный императив: tú, usted, vosotros, ustedes."""
     info = verb_info(infinitive) if info is None else info

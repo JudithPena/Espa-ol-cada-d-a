@@ -57,6 +57,7 @@ FEATURES = {
     "preterite_irregular": "pretérito indefinido с особой основой (tuve, hice, fui, dije…)",
     "imperfect": "pretérito imperfecto",
     "imperative": "утвердительный императив (tú, usted, vosotros, ustedes)",
+    "conditional": "condicional simple (me gustaría, podrías, deberías, tendría)",
 }
 
 BLOCK_TYPES = {

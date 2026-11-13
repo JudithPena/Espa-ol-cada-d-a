@@ -62,6 +62,8 @@ def generated_forms(item: VocabItem, features: frozenset[str] | set[str]) -> set
                 out.update(morph.imperfect(inf))
             if "imperative" in features:
                 out.update(morph.imperative(inf, info))
+            if "conditional" in features:
+                out.update(morph.conditional(inf))
     return {f.lower() for f in out}
 
 

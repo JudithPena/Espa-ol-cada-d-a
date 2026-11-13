@@ -120,6 +120,16 @@ def test_later_word_check_ignores_grammar_forms_and_hidden_mistakes():
     assert lex.first_taught["fumar"].id == "de_pequeno/antes_ahora"
 
 
+def test_conditional_forms(site):
+    assert m.conditional("gustar")[0] == "gustaría"
+    assert m.conditional("poder") == ["podría", "podrías", "podría", "podríamos", "podríais", "podrían"]
+    assert m.conditional("tener")[1] == "tendrías" and m.conditional("decir")[0] == "diría"
+    assert m.conditional("deber")[1] == "deberías" and m.conditional("oír")[0] == "oiría"
+    assert m.conditional("proponer")[0] == "propondría" and m.conditional("quedarse")[0] == "quedaría"
+    hablar = {item.es: item for item in site.items}["hablar"]
+    assert "hablaría" in generated_forms(hablar, {"conditional"}) and "hablaría" not in generated_forms(hablar, set())
+
+
 # ---------------------------------------------------------------- письмо и разговор
 
 COMPOSE = {"compose": {"title": "О себе", "free": True, "items": [{

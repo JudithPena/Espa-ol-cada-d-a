@@ -260,7 +260,9 @@ a: "Hace un año | (Yo) estudio español desde hace un año | [Tienes que/Puedes
 
 `preterite` — indefinido правильных глаголов и глаголов с чередованием (hablé, pidió, leyó); `preterite_irregular` —
 особые основы (tuve, hice, fui, dije); `imperfect` — imperfecto; `imperative` — утвердительный императив (habla,
-hable, hablad, hablen). До `unlocks` отдельные формы открывайте через `forms:` урока или `{forms: …}` слова.
+hable, hablad, hablen); `conditional` — condicional (hablaría, podría, tendría, diría). До `unlocks` отдельные формы
+открывайте через `forms:` урока или `{forms: …}` слова. Формы с местоимением на конце (dime, pruébala, quédese)
+движок не выводит: перечисляйте их в `forms:` урока.
 
 ### Вход в уровень и карты экранов
 
