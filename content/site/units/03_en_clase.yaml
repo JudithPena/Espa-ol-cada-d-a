@@ -12,7 +12,7 @@ lessons:
     kind: vocab
     title: Задания по-испански
     goal: понять задание на испанском — escucha, lee, escribe, traduce
-    version: 2
+    version: 3
     # Карта экранов: docs/site_slide_maps/03_en_clase.md
     vocab:
       - "👂 escucha [эску́ча] — послушай, слушай :: Escucha, por favor. — Послушай, пожалуйста."
@@ -45,14 +45,18 @@ lessons:
             - "traduce — переведи"
             - "responde — ответь"
       - choose:
-          title: Что нужно сделать?
+          title: "Послушайте: что нужно сделать?"
           rule: none
           skill: class_commands
           items:
-            - q: "Lee y traduce."
+            - say: "Lee y traduce."
+              q: "Что нужно сделать?"
               options: "Прочитай и переведи. | Послушай и повтори. | Напиши и переведи."
-            - q: "Escribe y responde."
+              noaudio: {q: "Что значит «Lee y traduce.»?", options: "Прочитай и переведи. | Послушай и повтори. | Напиши и переведи."}
+            - say: "Escribe y responde."
+              q: "Что нужно сделать?"
               options: "Напиши и ответь. | Прочитай и ответь. | Напиши и переведи."
+              noaudio: {q: "Что значит «Escribe y responde.»?", options: "Напиши и ответь. | Прочитай и ответь. | Напиши и переведи."}
       - write:
           title: Как это сказать?
           format: две команды по-испански
@@ -70,7 +74,7 @@ lessons:
     kind: vocab
     title: Слова для занятий
     goal: понимать слова на уроке — вопрос, ответ, текст, перевод
-    version: 2
+    version: 3
     vocab:
       - "🔤 la palabra [пала́бра] — слово"
       - "❓ la pregunta [прэгу́нта] — вопрос"
@@ -104,13 +108,17 @@ lessons:
             - "el repaso — повторение"
             - "la palabra — слово"
       - choose:
-          title: Что нужно сделать?
+          title: "Послушайте: что нужно сделать?"
           skill: class_commands
           items:
-            - q: "Lee el texto."
+            - say: "Lee el texto."
+              q: "Что нужно сделать?"
               options: "Прочитай текст. | Напиши текст. | Переведи текст."
-            - q: "Escribe la palabra."
+              noaudio: {q: "Что значит «Lee el texto.»?", options: "Прочитай текст. | Напиши текст. | Переведи текст."}
+            - say: "Escribe la palabra."
+              q: "Что нужно сделать?"
               options: "Напиши слово. | Прочитай слово. | Повтори слово."
+              noaudio: {q: "Что значит «Escribe la palabra.»?", options: "Напиши слово. | Прочитай слово. | Повтори слово."}
       - write:
           title: Напишите с артиклем
           format: el или la + слово
@@ -197,6 +205,19 @@ lessons:
             - q: "Вы хотите узнать, как по-испански «спасибо»."
               options: "¿Cómo se dice «спасибо» en español? | ¿Qué significa «спасибо»? | ¿Cómo se escribe «спасибо»?"
               explain: "Как сказать по-испански — ¿Cómo se dice... en español? А ¿Qué significa...? спрашивают о значении испанского слова."
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          skill: ask_in_class
+          items:
+            - say: "Más despacio, por favor."
+              q: "О чём вас просят?"
+              options: "Говорить помедленнее. | Повторить ещё раз. | Написать слово."
+              noaudio: {q: "Что значит «Más despacio, por favor»?", options: "Говорить помедленнее. | Повторить ещё раз. | Написать слово."}
+            - say: "¿Cómo se escribe?"
+              q: "Что у вас спросили?"
+              options: "Как это пишется? | Что это значит? | Как сказать по-испански?"
+              noaudio: {q: "Что значит «¿Cómo se escribe?»?", options: "Как это пишется? | Что это значит? | Как сказать по-испански?"}
       - build:
           title: Соберите фразу
           free: true
@@ -352,19 +373,23 @@ lessons:
     kind: practice
     title: Practica en español
     goal: понять задание по-испански и спросить о незнакомом слове
-    version: 3
+    version: 4
     vocab:
       - "🏋️ practica [пра́ктика] — тренируйся, практикуйся"
     # Практикум начинается заданием; карточка practica — перед миссией.
     blocks:
       - choose:
-          title: Lee y traduce
+          title: Escucha y traduce
           skill: class_commands
           items:
-            - q: "Escucha y repite la palabra."
+            - say: "Escucha y repite la palabra."
+              q: "Что нужно сделать?"
               options: "Послушай и повтори слово. | Прочитай и повтори слово. | Послушай и переведи слово."
-            - q: "Lee el texto y responde."
+              noaudio: {q: "Что значит «Escucha y repite la palabra.»?", options: "Послушай и повтори слово. | Прочитай и повтори слово. | Послушай и переведи слово."}
+            - say: "Lee el texto y responde."
+              q: "Что нужно сделать?"
               options: "Прочитай текст и ответь. | Напиши текст и ответь. | Прочитай текст и переведи."
+              noaudio: {q: "Что значит «Lee el texto y responde.»?", options: "Прочитай текст и ответь. | Напиши текст и ответь. | Прочитай текст и переведи."}
       - write:
           title: Traduce
           format: фраза по-испански
@@ -375,7 +400,7 @@ lessons:
               mistakes:
                 "no entendo": "Почти: в этом слове после `t` — `ie`: entiendo."
             - q: "Ещё раз, пожалуйста."
-              a: "Otra vez, por favor"
+              a: "Otra vez, por favor | Por favor, otra vez"
               mistakes:
                 "mas despacio por favor": "Más despacio — «помедленнее». «Ещё раз» — **otra vez**."
       - build:

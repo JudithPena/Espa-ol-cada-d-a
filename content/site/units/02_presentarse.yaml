@@ -12,7 +12,7 @@ lessons:
     kind: vocab
     title: Как тебя зовут?
     goal: представиться, спросить имя и ответить «очень приятно»
-    version: 2
+    version: 3
     # Карта экранов: docs/site_slide_maps/02_presentarse.md
     vocab:
       - "🏷 me llamo... [мэ лья́мо] — меня зовут... :: Hola, me llamo Ana. — Привет, меня зовут Ана."
@@ -104,6 +104,22 @@ lessons:
               q: "Вы — Пабло."
               options: "Igualmente. | Encantada. | Por favor."
               explain: "На «очень приятно» отвечают igualmente — «взаимно». Пабло мог бы сказать и encantado, но не encantada."
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          items:
+            - say: "Encantada."
+              q: "Кто это сказал?"
+              options: "женщина | мужчина"
+              explain: "Encantad**a** говорит женщина, encantad**o** — мужчина."
+              skill: encantado
+              noaudio: {q: "Кто говорит «Encantada» — мужчина или женщина?", options: "женщина | мужчина"}
+            - say: "¿Cómo se llama usted?"
+              q: "Как к вам обратились?"
+              options: "на «вы» | на «ты»"
+              explain: "¿Cómo se llama usted? — вежливо, на «вы»; на «ты» — ¿Cómo te llamas?"
+              skill: me_llamo
+              noaudio: {q: "«¿Cómo se llama usted?» — это на «ты» или на «вы»?", options: "на «вы» | на «ты»"}
       - build:
           title: Соберите фразу
           free: true
@@ -136,7 +152,7 @@ lessons:
     kind: grammar
     title: "Я, ты, он, она: глагол ser"
     goal: сказать, кто есть кто, — soy, eres, es
-    version: 3
+    version: 4
     vocab:
       - "🙋 yo [йо] — я"
       - "👨 él [эль] — он"
@@ -231,6 +247,17 @@ lessons:
               explain: "О другом человеке говорят es: Es Carlos — «Это Карлос». Soy Carlos сказал бы сам Карлос."
               skill: ser_forms
               rule: ser
+      - choose:
+          title: Послушайте и выберите
+          items:
+            - say: "Ella se llama María."
+              options: "Её зовут Мария. | Меня зовут Мария. | Тебя зовут Мария."
+              skill: me_llamo
+              noaudio: {q: "Что значит «Ella se llama María»?", options: "Её зовут Мария. | Меня зовут Мария. | Тебя зовут Мария."}
+            - say: "¿Quién es?"
+              options: "Кто это? | Как тебя зовут? | Как дела?"
+              skill: ser_forms
+              noaudio: {q: "Что значит «¿Quién es?»?", options: "Кто это? | Как тебя зовут? | Как дела?"}
       - write:
           title: Скажите, как её зовут
           format: короткая фраза
@@ -372,7 +399,7 @@ lessons:
     kind: quiz
     title: Знакомство
     goal: представиться, спросить имя на «ты» и на «вы» и сказать, кто есть кто
-    version: 2
+    version: 3
     check: soft
     blocks:
       - "Это тест по теме «Знакомство»."
@@ -390,6 +417,18 @@ lessons:
             - "¿Quién es? — кто это?"
             - "mucho gusto — очень приятно"
             - "él — он"
+      - write:
+          title: Ответьте
+          format: фраза по-испански
+          items:
+            - q: "Вы — Ана. Pablo: Hola, me llamo Pablo. ¿Y tú? — Представьтесь и скажите, что вам очень приятно."
+              a: "Me llamo Ana. Encantada | (Hola, )me llamo Ana. [Encantada/Mucho gusto] | [Encantada/Mucho gusto]. Me llamo Ana"
+              skill: encantado
+              mistakes: {"me llamo ana encantado": "Ана — женщина: **encantada**."}
+            - q: "Спросите пожилую сеньору, как её зовут (вежливо)."
+              a: "¿Cómo se llama usted? | ¿Cómo se llama?"
+              skill: me_llamo
+              mistakes: {"como te llamas": "С пожилой сеньорой — на «вы»: **¿Cómo se llama usted?**"}
     quiz:
       - q: Как сказать «Меня зовут Ана»?
         options: "Me llamo Ana. | Soy llamo Ana. | Me llamas Ana."

@@ -30,7 +30,8 @@
 | 12–13 | C ×2 | Lee y traduce; Escribe y responde | понять задание из двух команд | пары | применение | — |
 | 14 | I | «Послушай и повтори» по-испански | воспроизвести | escucha, repite | итог | — |
 
-Сигнатура: `T(text) W×3 C×2 W×3 T(tip) M C×2 I`
+Сигнатура: `T(text) W×3 C×2 W×3 T(tip) M C~×2 I`
+- **13.11.2026, ремонт по аудиту MYTHOS:** «Что нужно сделать?» — на слух (Lee y traduce, Escribe y responde), без звука — текстом (SYS-04). Версия 3.
 
 ## Урок `en_clase/vocab2` — «Слова для занятий»
 
@@ -53,7 +54,8 @@
 | 11–12 | C ×2 | Lee el texto; Escribe la palabra | команда + слово | тема | применение | — |
 | 13–15 | I ×3 | вопрос, перевод, задание — с артиклем | воспроизвести с артиклем | слова | итог | — |
 
-Сигнатура: `T(text+more) W×3 C W×4 M C×2 I×3`
+Сигнатура: `T(text+more) W×3 C W×4 M C~×2 I×3`
+- **13.11.2026, ремонт по аудиту MYTHOS:** «Что нужно сделать?» — на слух (Lee el texto, Escribe la palabra) (SYS-04). Версия 3.
 
 ## Урок `en_clase/dialogue` — «Если вы не поняли»
 
@@ -81,7 +83,8 @@
 | 14–16 | C ×3 (реплика, ситуация) | не понимаю, что значит mochila; не знаю, как пишется «Málaga»; как сказать «спасибо» по-испански | выбрать вопрос | note | применение | — |
 | 17 | B | собрать «No entiendo. Otra vez, por favor.» | воспроизвести | урок | итог | — |
 
-Сигнатура: `T(text) W×4 C×3 W×3 T(dialogue) C@lesson×2 T(note) C×3 B`
+Сигнатура: `T(text) W×4 C×3 W×3 T(dialogue) C@lesson×2 T(note) C×3 C~×2 B`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Más despacio, por favor; ¿Cómo se escribe? (SYS-04).
 
 ## Урок `en_clase/alfabeto` — «Алфавит» (добавлен 13.11.2026, аудит MYTHOS, PRG-04, U00-03)
 
@@ -135,7 +138,8 @@
 | 12 | I | ¿Cómo se dice «сыр» en español? — ответьте (queso, el queso, se dice queso) | воспроизвести | el queso | миссия | `school` |
 | 13 | C (реплика) | не расслышали слово — попросите повторить (против ¿Qué significa…?, ¿Cómo se escribe?) | попросить повторить | otra vez | миссия | `school` |
 
-Сигнатура: `C×2 I×2 B W C T(mission) C@school×3 I@school C@school`
+Сигнатура: `C~×2 I×2 B W C T(mission) C@school×3 I@school C@school`
+- **13.11.2026, ремонт по аудиту MYTHOS:** «Lee y traduce» — на слух («Escucha y traduce»); «Ещё раз, пожалуйста» принимает и Por favor, otra vez (TST-02). Версия 4.
 
 ## Урок `en_clase/quiz` — «Язык занятий» (тест темы, `check: soft`)
 

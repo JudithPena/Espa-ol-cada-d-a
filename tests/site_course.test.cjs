@@ -800,7 +800,7 @@ test('тема 02: старое прохождение listening, dialogue и gr
   const run = context(site, new Map([['espanol-cada-dia.v1', JSON.stringify({done, ver, xp: 60})]]));
   for (const id of ids) {
     const i = idx(run, id);
-    assert.equal(run(`LESSONS[${i}].version`), 3, id);
+    assert.ok(run(`LESSONS[${i}].version`) >= 3, id);   // ремонт по аудиту MYTHOS поднимает версии дальше
     assert.equal(run(`isDone(${i}) && isOutdated(${i})`), true, id);
     assert.equal(run(`P.done[${JSON.stringify(id)}].stars`), 3, id);
   }

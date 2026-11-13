@@ -37,7 +37,8 @@ es; `accent_meaning` — значок ´ меняет смысл (él / el, sí 
 | 16 | T: mission `meet` | «Познакомьтесь на вечеринке: вы — Пабло» | ситуация | урок | итог | — |
 | 17 | I | Ана: Hola, me llamo Ana. ¿Y tú? — представьтесь и скажите «очень приятно» | связная реплика | весь урок | итоговая ситуация | `meet` |
 
-Сигнатура: `T(text+dialogue) W×3 T(compare) C×3 I W×3 T(compare) C×2 B T(mission) I@meet`
+Сигнатура: `T(text+dialogue) W×3 T(compare) C×3 I W×3 T(compare) C×2 C~×2 B T(mission) I@meet`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Encantada — кто сказал (мужчина / женщина); ¿Cómo se llama usted? — на «ты» или на «вы» (SYS-04). Версия 3.
 
 ## Урок `presentarse/grammar` — «Я, ты, он, она: глагол ser»
 
@@ -65,7 +66,8 @@ es; `accent_meaning` — значок ´ меняет смысл (él / el, sí 
 | 17–19 | C ×3 | ¿Cómo ___ llamas?; Él ___ llama; Ана показывает фото: ¿Quién es? | формы llamarse, es | таблицы | узнавание | — |
 | 20 | I | «Её зовут Лусия.» → Se llama Lucía | воспроизвести se llama | таблица llamarse | итог | — |
 
-Сигнатура: `T(text+examples) W×4 T(rule+table) I×4 T(compare) C×2 W×2 T(table+more+more) C×3 I`
+Сигнатура: `T(text+examples) W×4 T(rule+table) I×4 T(compare) C×2 W×2 T(table+more+more) C×3 C~×2 I`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Ella se llama María; ¿Quién es? (SYS-04). Версия 4.
 
 ## Урок `presentarse/dialogue` — «На вечеринке»
 
@@ -126,4 +128,5 @@ es; `accent_meaning` — значок ´ меняет смысл (él / el, sí 
 | 2 | M | пять пар | значения фраз | тема | разминка | — |
 | 3–7 | Q ×5 | меня зовут Ана; Tú ___ Pablo; Ella ___ Lucía; как Ана скажет «очень приятно»; как вежливо спросить имя | применить тему | тема | итог | — |
 
-Сигнатура: `T(text+cando) M Q×5`
+Сигнатура: `T(text+cando) M I×2 Q×5`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ввод: представиться (Ана, encantada) и вежливо спросить имя сеньоры (SYS-03). Версия 3.
