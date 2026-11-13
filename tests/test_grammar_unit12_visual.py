@@ -51,3 +51,22 @@ def test_unit12_first_mini_check_covers_all_three_distances_without_changing_exi
     assert "gdistance-dot" in player  # Legacy distance display preserved outside unit 12.
     styles = (Path(__file__).resolve().parents[1] / "espanol/site_template.html").read_text(encoding="utf-8")
     assert ".gdistance-illustrated .gdistance-art" in styles
+
+
+def test_unit12_approved_distance_artwork_is_shipped_as_a_static_asset():
+    import hashlib
+    root = Path(__file__).resolve().parents[1]
+    image = root / "content/art/grammar/unit12_distance_triptych.webp"
+    content = image.read_bytes()
+    assert content.startswith(b"RIFF")
+    assert content[8:12] == b"WEBP"
+    assert hashlib.sha256(content).hexdigest() == "c7a39c7434de735a027d85d5abad63c51caafda72cf76d42cb64df9be04f763c"
+    player = (root / "espanol/grammar_player.js").read_text(encoding="utf-8")
+    assert "function gDistanceArt(key)" in player
+    assert "gdistance-art-${scene}" in player
+    assert '<svg class="gdistance-art"' not in player
+    css = (root / "espanol/site_template.html").read_text(encoding="utf-8")
+    assert 'url("g/unit12_distance_triptych.webp")' in css
+    assert ".gdistance-art-listener" in css and ".gdistance-art-far" in css
+    site = (root / "espanol/site.py").read_text(encoding="utf-8")
+    assert 'shutil.copyfile(artwork, destination)' in site
