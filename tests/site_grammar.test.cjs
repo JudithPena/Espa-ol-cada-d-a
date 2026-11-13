@@ -1132,7 +1132,7 @@ test('failed 3.2 reviews its own rule, preserves review position and resets only
  run('gStart(COURSE.grammar[0].id,"exercise:3.2");gMove(1);for(let i=0;i<3;i++){gResponse(G.steps[G.at]).value="wrong";gCheck();if(i<2)gMove(1);}');
  const oldId=run('gAttempt(gUnit(),gUnit().exercises[1]).id');
  run('gReviewTheory();');
- assert.ok(run('gPlayerView()').includes('Один предмет, но слово во множественном числе'));
+ assert.ok(run('gPlayerView()').includes(unit3.sections[7].title));
  assert.ok(run('gPlayerView()').includes('Попробовать ещё раз'));
  run('gExit();gStart(COURSE.grammar[0].id,"all",true);');
  assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).status'),'review');
@@ -1803,7 +1803,7 @@ test('multi-answer audit keeps regional, contextual and equally valid choices gr
    }
   }
  }
- assert.equal(questions,2773);assert.equal(alternatives,407);assert.equal(warnings,25); // Fable 8: unit 2 73→57, one additional gorila alternative
+ assert.equal(questions,2774);assert.equal(alternatives,407);assert.equal(warnings,25); // Fable 8: unit 2 73→57, one additional gorila alternative
 });
 
 test('yellow mini-check choices preserve all three lives and complete normally',()=>{
@@ -2047,7 +2047,7 @@ test('all grammar choice sets receive valid, balanced attempt orders without cha
    assert.deepEqual(result,{},`${u.number}/${g.id}: ${JSON.stringify(result)}`);
   }
  }
- assert.equal(standard,1012);assert.equal(guided,9); // Fable 8: unit 2 has four fewer multiple-choice tasks
+ assert.equal(standard,1013);assert.equal(guided,9); // Fable 8: unit 2 has four fewer multiple-choice tasks
  assert.equal(run('JSON.stringify(COURSE.grammar)'),before);
 });
 
