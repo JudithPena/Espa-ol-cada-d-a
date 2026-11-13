@@ -229,9 +229,9 @@
     {
       "title": "Открыто, закрыто, чисто и грязно",
       "paragraphs": [
-        "У вещей тоже бывает **состояние**: `La ventana está abierta` — окно открыто; `La sopa está caliente` — суп горячий; `La casa está sucia` — дом грязный. Мы говорим, в каком состоянии вещь, а не из чего она сделана.",
-        "Форму прилагательного согласуем с **названием вещи**: `La puerta está cerrada` — дверь закрыта; `Los platos están limpios` — тарелки чистые. Для нескольких предметов меняются и глагол, и прилагательное.",
-        "`La televisión está apagada` означает «телевизор выключен». `El cielo está nublado` — «небо облачное». Состояние не обязано быстро меняться: estar выбираем по смыслу фразы, а не по секундомеру."
+        "У вещей тоже бывает **состояние**: `La caja de galletas está abierta` — коробка печенья открыта; `La sopa está caliente` — суп горячий; `La casa está sucia` — дом грязный. Мы говорим, в каком состоянии вещь, а не из чего она сделана.",
+        "Форму прилагательного согласуем с **названием вещи**: `La farmacia está cerrada hoy` — аптека сегодня закрыта; `Las sábanas están limpias` — простыни чистые. Для нескольких предметов меняются и глагол, и прилагательное.",
+        "`Las luces están apagadas` означает «свет выключен». `El día está gris` — «день пасмурный». Состояние не обязано быстро меняться: estar выбираем по смыслу фразы, а не по секундомеру."
       ],
       "check": {
         "id": "check-3",
@@ -292,22 +292,22 @@
       "schemes": [
         {
           "label": "Состояние изменилось",
-          "from": "La ventana está abierta.",
-          "to": "La ventana está cerrada.",
-          "note": "Окно открыто → окно закрыто. Ventana — женский род."
+          "from": "La caja de galletas está abierta.",
+          "to": "La caja de galletas está cerrada.",
+          "note": "Коробка печенья открыта → закрыта. Caja — женский род."
         },
         {
           "label": "Один предмет и несколько",
-          "from": "El plato está limpio.",
-          "to": "Los platos están limpios.",
-          "note": "Тарелка чистая → тарелки чистые. Меняются обе формы."
+          "from": "La sábana está limpia.",
+          "to": "Las sábanas están limpias.",
+          "note": "Простыня чистая → простыни чистые. Меняются обе формы."
         }
       ]
     },
     {
       "title": "Отвечаем о себе и о других",
       "paragraphs": [
-        "Вопрос и ответ могут требовать **разных форм**: `¿Cómo está usted? — Estoy bien, gracias` — как Вы? — хорошо, спасибо. Собеседник спрашивает на usted, а ты отвечаешь о себе, поэтому estoy.",
+        "Вопрос и ответ могут требовать **разных форм**: `¿Cómo están ustedes? — Estamos bien, gracias` — как у вас дела? — хорошо, спасибо. Собеседник спрашивает на ustedes, а вы отвечаете о себе, поэтому estamos.",
         "В отрицании **no стоит перед estar**: `No estoy cansado` — я не устал. Если говоришь о другом человеке, лицо не меняется: `¿Dónde está Luisa? — Está en casa` — где Луиса? — она дома.",
         "Сравни **`¿Dónde está?` — «где?»** и **`¿Cómo está?` — «как себя чувствует / в каком состоянии?»**. В коротком ответе `Está bien` — «всё хорошо / ему или ей хорошо» — слово bien не меняется по роду и числу: `Estamos bien`."
       ],
@@ -372,12 +372,12 @@
           "title": "Звонок другу",
           "lines": [
             [
-              "¿Estás cansado?",
-              "Ты устал?"
+              "¿Estás enfadado?",
+              "Ты сердишься?"
             ],
             [
-              "No, no estoy cansado. Estoy aburrido.",
-              "Нет, я не устал. Мне скучно."
+              "No, no estoy enfadado. Estoy preocupado.",
+              "Нет, я не сержусь. Я волнуюсь."
             ]
           ]
         }
@@ -1068,14 +1068,14 @@
         }
       ],
       "preview": {
-        "source": "La puerta ___.",
+        "source": "El bar ___.",
         "sentenceParts": [
-          "La puerta ",
+          "El bar ",
           "."
         ],
-        "answer": "está abierta",
+        "answer": "está cerrado",
         "targetPrefix": "",
-        "translation": "Дверь открыта."
+        "translation": "Бар закрыт."
       },
       "instruction": "Подбери описание по ситуации: abierta, cerrada, sucios, nublado, apagada или limpios.",
       "inlineAnswer": true,
@@ -1281,14 +1281,14 @@
         }
       ],
       "preview": {
-        "source": "¿Cómo está usted? —___ bien.",
+        "source": "¿Cómo estáis? —___ muy bien.",
         "sentenceParts": [
-          "¿Cómo está usted? —",
-          " bien."
+          "¿Cómo estáis? —",
+          " muy bien."
         ],
-        "answer": "Estoy",
+        "answer": "Estamos",
         "targetPrefix": "",
-        "translation": "Как Вы? — Хорошо."
+        "translation": "Как вы? — Очень хорошо."
       },
       "instruction": "Ответь от лица указанного собеседника. Обрати внимание на смену лица в диалоге.",
       "inlineAnswer": true,

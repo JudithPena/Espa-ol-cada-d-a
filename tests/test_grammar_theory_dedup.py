@@ -38,10 +38,10 @@ def test_theory_keeps_varied_presentations_and_distinctive_rules():
                 3: ['champúes', 'cómic', 'gafas'], 4: ['una pequeña águila', 'una águila'],
                 5: ['Quiero ser bailarina', 'protestantes'], 6: ['la otra aula', 'las aulas'],
                 7: ['de Ana', 'bombones'], 8: ['El Salvador', 'El Cairo', 'la India'],
-                9: ['Hoy es', 'a la semana'], 10: ['jugar fútbol', 'He comprado una televisión'],
-                11: ['pelo corto', 'lo'], 12: ['esta agua', 'В воспоминаниях нередко возможны оба варианта.'], 13: ['persona encantadora', 'charlatán'],
-                14: ['nicaragüense', 'iranís'], 15: ['más bueno', 'más viejo', 'que mí'],
-                16: ['No soy tan fuerte como tú', 'igual de'], 17: ['el libro más viejo', 'que he leído']}
+                9: ['Hoy es', 'a la semana'], 10: ['jugar fútbol', 'Me han regalado una televisión'],
+                11: ['de la barba', 'lo'], 12: ['esta agua', 'В воспоминаниях нередко возможны оба варианта.'], 13: ['persona tranquila', 'charlatán'],
+                14: ['nicaragüense', 'marroquís'], 15: ['más bueno', 'más viejo', 'que mí'],
+                16: ['Luis no es tan ordenado como tú', 'igual de'], 17: ['el libro más viejo', 'que he leído']}
     for number, phrases in required.items():
         text = json.dumps([{k: v for k, v in s.items() if k not in {'check', 'illustration'}} for s in units[number-1]['sections']], ensure_ascii=False)
         for phrase in phrases:

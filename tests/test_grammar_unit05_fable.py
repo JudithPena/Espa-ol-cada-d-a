@@ -29,7 +29,7 @@ def test_unit5_theory_matches_sections_and_never_teaches_article_absolutes():
     u = unit5()
     assert [g["theorySections"] for g in u["exercises"]] == [[0, 1], [0, 1], [2]]
     text = " ".join(" ".join(s["paragraphs"]) for s in u["sections"])
-    for example in ["Es profesora de español", "Son protestantes", "Son socialistas",
+    for example in ["Es profesora de música", "Son protestantes", "Son socialistas",
                     "Compro manzanas", "Compro unas manzanas", "Es cantante"]:
         assert example.lower() in text.lower()
     assert all(not any(t in q["prompt"].lower() for t in ["se ha hecho", " era ", " fue "])
