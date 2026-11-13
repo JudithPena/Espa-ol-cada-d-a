@@ -29,7 +29,8 @@ vez?, una vez, nunca, he estado en.
 | 18 | T: note `nada_entre` + more | no, ya, me — перед haber; Латинская Америка | порядок слов | — | к выбору | — |
 | 19–21 | C ×3 | todavía no he comido; ya hemos visto; me he levantado | порядок слов | заметка | итог | — |
 
-Сигнатура: `W×3 T(text+examples+conjugation+compare) I×6 T(header+table+text) I×4 W×2 T(note+more) C×3`
+Сигнатура: `W×3 T(text+examples+conjugation+compare) I×6 T(header+table+text) I×4 W×2 T(note+more) C×3 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Esta mañana he comido fruta; Todavía no he visto la película (SYS-04). Версия 3.
 
 ## Урок `experiencias/experiencia` — «¿Has estado en España?»
 
@@ -53,7 +54,8 @@ vez?, una vez, nunca, he estado en.
 | 14 | I | ¿Has visto el mar? | nunca | тема | миссия | `interview` |
 | 15 | B | Este año he estudiado mucho español | рассказать | тема | миссия | `interview` |
 
-Сигнатура: `W×2 T(text+compare) W×2 T(note) C×2 I×2 T(mission) C@interview×2 I@interview B`
+Сигнатура: `W×2 T(text+compare) W×2 T(note) C×2 I×2 T(mission) C@interview×2 I@interview B C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: ¿Has estado alguna vez en España?; He probado la paella muchas veces (SYS-04). Версия 3.
 
 ## Урок `experiencias/lectura` — «Мой год с испанским»
 
@@ -72,7 +74,8 @@ vez?, una vez, nunca, he estado en.
 | 7 | S | ya ha… / va a… | прошлое и планы | текст | — | `my_year` |
 | 8–9 | Q ×2 | хорошо ли говорит; куда поедет | понять текст | текст | итог | `my_year` |
 
-Сигнатура: `W×2 T(text+reading+more) C@my_year×3 S Q@my_year×2`
+Сигнатура: `W×2 T(text+reading+more) C@my_year×3 S C~×2 Q@my_year×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Este año he aprendido mucho; Ahora entiendo casi todo (SYS-04). Версия 3.
 
 ## Урок `experiencias/quiz` — «Прошедшее время» (тест темы, `check: soft`)
 
@@ -85,4 +88,5 @@ vez?, una vez, nunca, he estado en.
 | 2 | M | esta semana, ya, probar, el mar, entender | значения | тема | разминка | — |
 | 3–7 | Q ×5 | he trabajado; hecho; has; nunca he estado; he comido | применить тему | тема | итог | — |
 
-Сигнатура: `T(text+cando) M Q×5`
+Сигнатура: `T(text+cando) M I×2 Q×5`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ввод: «Я уже позавтракал», «Ты когда-нибудь был в Мадриде?» (SYS-03). Версия 3.

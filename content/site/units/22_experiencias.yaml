@@ -12,7 +12,7 @@ lessons:
     kind: grammar
     title: "He comido: прошедшее время"
     goal: рассказать, что вы сделали сегодня — he comido, he visto
-    version: 2
+    version: 3
     unlocks: [participle]
     vocab:
       - "🔧 haber [абэ́р] — вспомогательный глагол (иметь)"
@@ -109,11 +109,21 @@ lessons:
               options: "Ya hemos visto esta película. | Hemos ya visto esta película. | Ya hemos vido esta película."
             - q: "Сегодня я встал в семь."
               options: "Hoy me he levantado a las siete. | Hoy he me levantado a las siete. | Hoy he levantado me a las siete."
+      - choose:
+          title: Послушайте и выберите
+          skill: perfect
+          items:
+            - say: "Esta mañana he comido fruta."
+              options: "Сегодня утром я ел фрукты. | Сегодня утром я ем фрукты. | Сегодня вечером я ел фрукты."
+              noaudio: {q: "Что значит «Esta mañana he comido fruta.»?", options: "Сегодня утром я ел фрукты. | Сегодня утром я ем фрукты. | Сегодня вечером я ел фрукты."}
+            - say: "Todavía no he visto la película."
+              options: "Я ещё не посмотрел фильм. | Я уже посмотрел фильм. | Я никогда не смотрел фильмы."
+              noaudio: {q: "Что значит «Todavía no he visto la película.»?", options: "Я ещё не посмотрел фильм. | Я уже посмотрел фильм. | Я никогда не смотрел фильмы."}
   - id: experiencia
     kind: grammar
     title: ¿Has estado en España?
     goal: спросить о жизненном опыте и ответить — «да, два раза», «нет, никогда»
-    version: 2
+    version: 3
     vocab:
       - "❓ alguna vez [алгу́на бэθ] — когда-нибудь :: ¿Has estado alguna vez en España? — Ты когда-нибудь был в Испании?"
       - "🔁 una vez / muchas veces [у́на бэθ, му́час бэ́θэс] — один раз / много раз"
@@ -189,12 +199,23 @@ lessons:
             - es: "Este año he estudiado mucho español."
               ru: "Ana: ¿Y el español? — «В этом году я много занимался испанским»."
               extra: [estudiando]
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          skill: experience
+          items:
+            - say: "¿Has estado alguna vez en España?"
+              options: "Ты когда-нибудь был в Испании? | Ты был в Испании вчера? | Ты хочешь поехать в Испанию?"
+              noaudio: {q: "Что значит «¿Has estado alguna vez en España?»?", options: "Ты когда-нибудь был в Испании? | Ты был в Испании вчера? | Ты хочешь поехать в Испанию?"}
+            - say: "He probado la paella muchas veces."
+              options: "Я много раз пробовал паэлью. | Я один раз пробовал паэлью. | Я никогда не пробовал паэлью."
+              noaudio: {q: "Что значит «He probado la paella muchas veces.»?", options: "Я много раз пробовал паэлью. | Я один раз пробовал паэлью. | Я никогда не пробовал паэлью."}
 
   - id: lectura
     kind: reading
     title: Мой год с испанским
     goal: понять текст о том, чему научился человек, и что он собирается делать
-    version: 2
+    version: 3
     vocab:
       - "🥇 primer [примэ́р] — первый (перед сущ. м. р.) :: mi primer año — мой первый год"
       - "💡 entender [энтэндэ́р] — понимать (`e → ie`) :: Ya entiendo mucho. — Я уже многое понимаю."
@@ -241,6 +262,17 @@ lessons:
           groups:
             "✅ ya ha…": [estudiado español, leído textos, escuchado música]
             "🔜 va a…": [viajar a España, probar las tapas]
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          skill: perfect
+          items:
+            - say: "Este año he aprendido mucho."
+              options: "В этом году я многому научился. | В прошлом году я многому научился. | В этом году я мало учился."
+              noaudio: {q: "Что значит «Este año he aprendido mucho.»?", options: "В этом году я многому научился. | В прошлом году я многому научился. | В этом году я мало учился."}
+            - say: "Ahora entiendo casi todo."
+              options: "Теперь я понимаю почти всё. | Теперь я понимаю мало. | Теперь я всё говорю."
+              noaudio: {q: "Что значит «Ahora entiendo casi todo.»?", options: "Теперь я понимаю почти всё. | Теперь я понимаю мало. | Теперь я всё говорю."}
     forms: [preguntar]
     quiz:
       - q: ¿Habla muy bien español?
@@ -254,7 +286,7 @@ lessons:
     kind: quiz
     title: Прошедшее время
     goal: рассказать, что вы сделали сегодня, спросить об опыте и образовать причастия
-    version: 2
+    version: 3
     check: soft
     blocks:
       - "Это тест по теме «Что вы сделали сегодня?»."
@@ -271,6 +303,17 @@ lessons:
             - "probar — пробовать"
             - "el mar — море"
             - "entender — понимать"
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          items:
+            - q: "Скажите: «Я уже позавтракал»"
+              a: "Ya he desayunado | (Yo) ya he desayunado | He desayunado ya"
+              skill: perfect
+              mistakes: {"ya desayune": "Сегодняшнее — **he desayunado** (haber + причастие)."}
+            - q: "Спросите: «Ты когда-нибудь был в Мадриде?»"
+              a: "¿Has estado alguna vez en Madrid? | ¿Alguna vez has estado en Madrid? | ¿Has estado en Madrid alguna vez?"
+              skill: experience
     quiz:
       - q: "Hoy ___ mucho. (я работал)"
         options: "he trabajado | ha trabajado | he trabajando"

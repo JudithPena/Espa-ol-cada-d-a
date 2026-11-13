@@ -55,7 +55,8 @@ A1. Итог A1 (`final/examen`) — контроль: порог 80 %, балл
 | 8 | S | estar + герундий, haber, ir a, tener que | найти конструкции | темы 19–22 | — | `madrid` |
 | 9–10 | Q ×2 | что обожает Наталья; во сколько ужинают | понять текст | текст | итог | `madrid` |
 
-Сигнатура: `W×2 T(text+reading+more) C@madrid×5 S Q@madrid×2`
+Сигнатура: `W×2 T(text+reading+more) C@madrid×5 S C~×2 Q@madrid×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Mañana vamos a ir a Toledo; Hoy hace mucho calor (SYS-04).
 
 ## Урок `final/examen` — «Итоговый тест A1» (`check: control`)
 
@@ -88,4 +89,5 @@ A1. Итог A1 (`final/examen`) — контроль: порог 80 %, балл
 | 5 | T: header + list | повторять, смотреть, говорить, DELE, A2 | что дальше | — | — | — |
 | 6–7 | C ×2 | ¡Muchas gracias!; ¡Mucha suerte! | ответить | — | итог | — |
 
-Сигнатура: `T(text) W×2 T(cando) T(header+list) C×2`
+Сигнатура: `T(text) W×2 T(cando) T(header+list) C×2 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: ¡Enhorabuena!, ¡Mucha suerte! Версия 3.

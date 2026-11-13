@@ -30,7 +30,8 @@ estoy trabajando; `phone_call` — ¿Diga?, soy…, luego te llamo.
 | 15 | T: header + compare `now_habit` + tip `reflexive_estar` | привычка — обычное настоящее; сейчас — estar + герундий; me estoy duchando — местоимение перед estar (аудит MYTHOS, U21-01) | правило 3 | настоящее | к выбору | — |
 | 16–17 | C ×2 | Ahora mismo estoy tomando; se está levantando | сейчас; возвратный | правила | итог | — |
 
-Сигнатура: `W×3 T(text+examples+compare) I×6 T(header+table+text) I×2 C T(header+compare+tip) C×2`
+Сигнатура: `W×3 T(text+examples+compare) I×6 T(header+table+text) I×2 C T(header+compare+tip) C×2 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Estoy esperando el autobús; Ahora mismo estamos comiendo (SYS-04). Версия 3.
 
 ## Урок `ahora/practica` — «¿Qué están haciendo?»
 
@@ -70,7 +71,8 @@ estoy trabajando; `phone_call` — ¿Diga?, soy…, luego te llamo.
 | 6–9 | C ×4 | как Ана отвечает; кто ужинает; что предлагает Пабло; что Ана говорит в конце | понять | разговор | вопросы к разговору | `llamada` |
 | 10–12 | Q ×3 | что делает Ана; почему занимается Лусия; что делает брат | детали | разговор | итог | `llamada` |
 
-Сигнатура: `W×4 T(note+text+dialogue) C@llamada×4 Q@llamada×3`
+Сигнатура: `W×4 T(note+text+dialogue) C@llamada×4 C~×2 Q@llamada×3`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: ¿Diga?; Luego te llamo (SYS-04). Версия 3.
 
 ## Урок `ahora/quiz` — «Прямо сейчас» (тест темы, `check: soft`)
 
@@ -83,4 +85,5 @@ estoy trabajando; `phone_call` — ¿Diga?, soy…, luego te llamo.
 | 2 | M | ahora mismo, esperar, examen, oye, en este momento | значения | тема | разминка | — |
 | 3–7 | Q ×5 | estoy leyendo; durmiendo; están jugando; ¿Diga?; como | применить тему | тема | итог | — |
 
-Сигнатура: `T(text+cando) M Q×5`
+Сигнатура: `T(text+cando) M I×2 Q×5`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ввод: «Сейчас я готовлю ужин», «Что ты делаешь?» (SYS-03). Версия 3.

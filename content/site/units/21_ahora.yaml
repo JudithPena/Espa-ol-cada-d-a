@@ -12,7 +12,7 @@ lessons:
     kind: grammar
     title: "Estoy hablando: что происходит сейчас"
     goal: сказать, что вы делаете прямо сейчас — estoy hablando
-    version: 2
+    version: 3
     unlocks: [gerund]
     vocab:
       - "⚡ ahora mismo [ао́ра ми́смо] — прямо сейчас"
@@ -111,6 +111,16 @@ lessons:
               explain: "Местоимение возвратного глагола ставится перед estar: Pablo se está levantando."
               rule: reflexive_estar
               skill: estar_gerund
+      - choose:
+          title: Послушайте и выберите
+          skill: estar_gerund
+          items:
+            - say: "Estoy esperando el autobús."
+              options: "Я жду автобус. | Я жду поезд. | Они ждут автобус."
+              noaudio: {q: "Что значит «Estoy esperando el autobús.»?", options: "Я жду автобус. | Я жду поезд. | Они ждут автобус."}
+            - say: "Ahora mismo estamos comiendo."
+              options: "Мы прямо сейчас едим. | Мы обычно едим в это время. | Они прямо сейчас едят."
+              noaudio: {q: "Что значит «Ahora mismo estamos comiendo.»?", options: "Мы прямо сейчас едим. | Мы обычно едим в это время. | Они прямо сейчас едят."}
 
   - id: practica
     kind: practice
@@ -169,7 +179,7 @@ lessons:
     kind: listening
     title: Телефонный звонок
     goal: ответить на звонок и понять на слух, кто что делает
-    version: 2
+    version: 3
     vocab:
       - "📞 ¿Diga? [ди́га] — алло? (ответ на звонок)"
       - "📝 el examen [экса́мэн] — экзамен {pl: exámenes}"
@@ -208,6 +218,17 @@ lessons:
               options: "Oye, ¿quedamos mañana? | Oye, ¿vamos al cine? | Oye, ¿cenamos en tu casa?"
             - q: "Что Ана говорит в конце разговора?"
               options: "Luego te llamo. | Lo siento, no puedo. | ¡Que te mejores!"
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          skill: phone_call
+          items:
+            - say: "¿Diga?"
+              options: "Алло? | Скажи ещё раз? | Говори громче?"
+              noaudio: {q: "Что значит «¿Diga?»?", options: "Алло? | Скажи ещё раз? | Говори громче?"}
+            - say: "Luego te llamo."
+              options: "Я тебе потом позвоню. | Позвони мне потом. | Я тебе сейчас позвоню."
+              noaudio: {q: "Что значит «Luego te llamo.»?", options: "Я тебе потом позвоню. | Позвони мне потом. | Я тебе сейчас позвоню."}
     quiz:
       - q: ¿Qué está haciendo Ana?
         options: "Está cocinando. | Está estudiando. | Está durmiendo."
@@ -223,7 +244,7 @@ lessons:
     kind: quiz
     title: Прямо сейчас
     goal: рассказать, что происходит прямо сейчас, образовать герундий и ответить на звонок
-    version: 2
+    version: 3
     check: soft
     blocks:
       - "Это тест по теме «Прямо сейчас»."
@@ -240,6 +261,17 @@ lessons:
             - "el examen — экзамен"
             - "oye — слушай"
             - "en este momento — в данный момент"
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          items:
+            - q: "Скажите: «Сейчас я готовлю ужин»"
+              a: "Ahora estoy cocinando la cena | Estoy cocinando la cena (ahora) | Ahora mismo estoy cocinando la cena"
+              skill: estar_gerund
+              mistakes: {"ahora cocino la cena": "Прямо сейчас — **estar + герундий**: estoy cocinando."}
+            - q: "Спросите по телефону: «Что ты делаешь?»"
+              a: "¿Qué estás haciendo? | ¿Qué haces?"
+              skill: estar_gerund
     quiz:
       - q: "Ahora mismo ___ un libro. (я читаю)"
         options: "estoy leyendo | estoy leendo | soy leyendo"

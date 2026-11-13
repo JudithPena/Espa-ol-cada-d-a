@@ -186,6 +186,17 @@ lessons:
             "✅ esta semana (haber)": [hemos visto, hemos paseado]
             "🔜 planes (ir a)": [vamos a ir, voy a volver]
             "❗ tener que": [tenemos que volver]
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          skill: weather
+          items:
+            - say: "Mañana vamos a ir a Toledo."
+              options: "Завтра мы поедем в Толедо. | Вчера мы были в Толедо. | Завтра мы поедем в Мадрид."
+              noaudio: {q: "Что значит «Mañana vamos a ir a Toledo.»?", options: "Завтра мы поедем в Толедо. | Вчера мы были в Толедо. | Завтра мы поедем в Мадрид."}
+            - say: "Hoy hace mucho calor."
+              options: "Сегодня очень жарко. | Сегодня очень холодно. | Сегодня немного жарко."
+              noaudio: {q: "Что значит «Hoy hace mucho calor.»?", options: "Сегодня очень жарко. | Сегодня очень холодно. | Сегодня немного жарко."}
     forms: [eso]
     quiz:
       - q: ¿Qué le encanta a Natalia?
@@ -262,7 +273,7 @@ lessons:
     kind: finale
     title: ¡Enhorabuena!
     goal: увидеть, чему вы научились за курс, и выбрать, что делать дальше
-    version: 2
+    version: 3
     vocab:
       - "🎉 ¡Enhorabuena! [энорабуэ́на] — поздравляю! поздравляем!"
       - "🍀 ¡Mucha suerte! [му́ча суэ́ртэ] — удачи!"
@@ -294,3 +305,13 @@ lessons:
               options: "¡Muchas gracias! | ¡Que te mejores! | Lo siento."
             - q: "Как пожелать другу удачи?"
               options: "¡Mucha suerte! | ¡Que te mejores! | ¡Enhorabuena!"
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          items:
+            - say: "¡Enhorabuena!"
+              options: "Поздравляю! | Удачи! | Спасибо!"
+              noaudio: {q: "Что значит «¡Enhorabuena!»?", options: "Поздравляю! | Удачи! | Спасибо!"}
+            - say: "¡Mucha suerte!"
+              options: "Удачи! | Поздравляю! | До встречи!"
+              noaudio: {q: "Что значит «¡Mucha suerte!»?", options: "Удачи! | Поздравляю! | До встречи!"}
