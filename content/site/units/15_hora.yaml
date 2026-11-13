@@ -12,7 +12,7 @@ lessons:
     kind: vocab
     title: Дни недели
     goal: назвать дни недели и сказать «в понедельник» и «по понедельникам»
-    version: 2
+    version: 3
     vocab:
       - "1️⃣ el lunes [лу́нэс] — понедельник"
       - "2️⃣ el martes [ма́ртэс] — вторник"
@@ -74,7 +74,7 @@ lessons:
               a: "los domingos"
               mistakes: {"los domingo": "domingo во множественном получает -s: **los domingos**.", "el domingo": "el domingo — «в это воскресенье». По воскресеньям — **los domingos**."}
             - q: "Сегодня понедельник."
-              a: "Hoy es lunes"
+              a: "Hoy es lunes | Es lunes"
               format: фраза по-испански
               rule: none
               mistakes: {"hoy es el lunes": "После **hoy es** день называют без артикля: Hoy es lunes."}
@@ -83,7 +83,7 @@ lessons:
     kind: grammar
     title: ¿Qué hora es?
     goal: сказать и понять на слух, который час
-    version: 2
+    version: 3
     vocab:
       - "🕐 ¿Qué hora es? [кэ о́ра эс] — который час?"
       - "⏱ la hora [о́ра] — час; время (на часах)"
@@ -137,6 +137,12 @@ lessons:
             - q: "10:15"
               a: "Son las diez y cuarto | Son las diez y quince"
               explain: "В Испании обычно говорят **y cuarto**; y quince тоже верно."
+            - q: "4:25"
+              a: "Son las cuatro y veinticinco"
+              explain: "Десятки и 21–29 вы знаете с темы «Числа»: y veinticinco — «двадцать пять минут»."
+            - q: "6:35"
+              a: "Son las siete menos veinticinco"
+              explain: "После половины — минуты до следующего часа: без двадцати пяти семь."
             - q: "5:45"
               a: "Son las seis menos cuarto"
               explain: "После половины минуты вычитают из следующего часа: шесть без четверти."
@@ -157,7 +163,7 @@ lessons:
     kind: grammar
     title: ¿A qué hora...?
     goal: сказать, во сколько что-то начинается и заканчивается
-    version: 2
+    version: 3
     vocab:
       - "❓ ¿A qué hora...? [а кэ о́ра] — во сколько...? :: ¿A qué hora comes? — Во сколько ты обедаешь?"
       - "📚 la clase [кла́сэ] — урок, занятие"
@@ -216,7 +222,7 @@ lessons:
           skill: a_que_hora
           items:
             - q: "Я завтракаю в семь утра."
-              a: "Desayuno a las siete de la mañana"
+              a: "Desayuno a las siete de la mañana | (Yo) desayuno a las siete( de la mañana)"
               mistakes: {"desayuno a las siete por la mañana": "С точным временем — **de la mañana**: a las siete de la mañana."}
             - q: "Занятие заканчивается в час."
               a: "La clase termina a la una"
@@ -230,12 +236,22 @@ lessons:
             - es: "¿A qué hora empieza la película?"
               ru: "Во сколько начинается фильм?"
               extra: [en]
+      - choose:
+          title: Послушайте и выберите
+          skill: a_que_hora
+          items:
+            - say: "Ceno a las nueve de la noche."
+              options: "Я ужинаю в девять вечера. | Я ужинаю в девять утра. | Я обедаю в девять вечера."
+              noaudio: {q: "Что значит «Ceno a las nueve de la noche.»?", options: "Я ужинаю в девять вечера. | Я ужинаю в девять утра. | Я обедаю в девять вечера."}
+            - say: "¿A qué hora terminas?"
+              options: "Во сколько ты заканчиваешь? | Во сколько ты начинаешь? | Сколько сейчас времени?"
+              noaudio: {q: "Что значит «¿A qué hora terminas?»?", options: "Во сколько ты заканчиваешь? | Во сколько ты начинаешь? | Сколько сейчас времени?"}
 
   - id: horarios
     kind: dialogue
     title: Часы работы
     goal: узнать часы работы и понять ответ
-    version: 2
+    version: 3
     vocab:
       - "🔒 cerrar [θэрра́р] — закрывать(ся) {forms: cierra cierran}"
       - "🟢 abierto/a [абьэ́рто, абьэ́рта] — открытый, открыто"
@@ -302,6 +318,17 @@ lessons:
           items:
             - lines: ["Recepcionista: No, los domingos está cerrada."]
               options: "Vale, gracias. ¡Hasta el sábado! | ¡Qué bien! Voy el domingo. | De nada."
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          skill: opening_hours
+          items:
+            - say: "El museo está cerrado los lunes."
+              options: "По понедельникам музей закрыт. | По понедельникам музей открыт. | По воскресеньям музей закрыт."
+              noaudio: {q: "Что значит «El museo está cerrado los lunes.»?", options: "По понедельникам музей закрыт. | По понедельникам музей открыт. | По воскресеньям музей закрыт."}
+            - say: "Abre de lunes a viernes."
+              options: "Открыто с понедельника по пятницу. | Открыто с пятницы по понедельник. | Закрыто с понедельника по пятницу."
+              noaudio: {q: "Что значит «Abre de lunes a viernes.»?", options: "Открыто с понедельника по пятницу. | Открыто с пятницы по понедельник. | Закрыто с понедельника по пятницу."}
     forms: [siesta]
 
   - id: escucha
@@ -338,7 +365,7 @@ lessons:
     kind: quiz
     title: Время и дни недели
     goal: назвать дни недели, сказать, который час, и договориться о времени
-    version: 2
+    version: 3
     check: soft
     blocks:
       - "Тест по теме «Время и дни недели»."
@@ -355,6 +382,18 @@ lessons:
             - "en punto — ровно"
             - "terminar — заканчивать(ся)"
             - "cerrado — закрыто"
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          items:
+            - q: "Скажите: «Занятие начинается в девять утра»."
+              a: "La clase empieza a las nueve( de la mañana)"
+              skill: a_que_hora
+              mistakes: {"la clase empieza en las nueve": "«Во сколько» — **a las**: a las nueve."}
+            - q: "Спросите: «Во сколько закрывается аптека?»"
+              a: "¿A qué hora cierra la farmacia? | ¿La farmacia a qué hora cierra?"
+              skill: a_que_hora
+              mistakes: {"a que hora cerra la farmacia": "у cerrar `e` меняется на `ie`: **cierra**."}
     quiz:
       - q: Как сказать «1:00»?
         options: "Es la una. | Son las una. | Es una."

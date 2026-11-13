@@ -12,7 +12,7 @@ lessons:
     kind: vocab
     title: Утро
     goal: рассказать, что вы делаете утром
-    version: 2
+    version: 3
     vocab:
       - "⏰ despertarse [дэспэрта́рсэ] — просыпаться {forms: despierto} :: Me despierto a las siete. — Я просыпаюсь в семь."
       - "🛏 levantarse [лэбанта́рсэ] — вставать :: Me levanto a las siete y cuarto. — Я встаю в четверть восьмого."
@@ -50,10 +50,10 @@ lessons:
           skill: daily_routine
           items:
             - q: "Я чищу зубы."
-              a: "Me lavo los dientes"
+              a: "Me lavo los dientes | (Yo) me lavo los dientes"
               mistakes: {"lavo los dientes": "Зубы чистят себе — нужно **me**: Me lavo los dientes.", "me lavo mis dientes": "О частях тела говорят с артиклем, а не с mi: me lavo **los** dientes."}
             - q: "Я выхожу из дома в восемь."
-              a: "Salgo de casa a las ocho"
+              a: "Salgo de casa a las ocho | (Yo) salgo de casa a las ocho | A las ocho salgo de casa"
               rule: none
               mistakes: {"salo de casa a las ocho": "У salir форма «я» — **salgo**.", "me salgo de casa a las ocho": "salir не возвратный: **Salgo** de casa."}
       - build:
@@ -68,7 +68,7 @@ lessons:
     kind: grammar
     title: "Me levanto, te levantas: возвратные глаголы"
     goal: сказать, кто что делает утром — me, te, se, nos, os
-    version: 2
+    version: 3
     unlocks: [reflexive]
     vocab:
       - "💇 peinarse [пэйна́рсэ] — причёсываться"
@@ -109,12 +109,35 @@ lessons:
               options: "levantarme | me levantar | levantarse"
               explain: "В инфинитиве местоимение в конце и по лицу: levantarme — «встать (мне)»."
               rule: reflexive
+      - write:
+          title: Напишите форму
+          format: местоимение и глагол
+          rule: reflexive
+          skill: reflexive
+          items:
+            - q: "tú / ducharse"
+              a: "te duchas"
+              mistakes: {"duchas": "Возвратный глагол — с местоимением: **te** duchas."}
+            - q: "ellos / levantarse"
+              a: "se levantan"
+            - q: "nosotros / ducharse"
+              a: "nos duchamos"
+      - choose:
+          title: Послушайте и выберите
+          skill: reflexive
+          items:
+            - say: "Nos levantamos a las siete."
+              options: "Мы встаём в семь. | Они встают в семь. | Мы ложимся в семь."
+              noaudio: {q: "Что значит «Nos levantamos a las siete.»?", options: "Мы встаём в семь. | Они встают в семь. | Мы ложимся в семь."}
+            - say: "Me ducho por la mañana."
+              options: "Я принимаю душ утром. | Я принимаю душ вечером. | Он принимает душ утром."
+              noaudio: {q: "Что значит «Me ducho por la mañana.»?", options: "Я принимаю душ утром. | Я принимаю душ вечером. | Он принимает душ утром."}
 
   - id: irregulares
     kind: grammar
     title: "Quiero, puedo, pido: чередование в корне"
     goal: сказать «хочу, могу, прошу» — глаголы с чередованием в корне
-    version: 2
+    version: 3
     unlocks: [present_stem]
     vocab:
       - "⭐ preferir [прэфэри́р] — предпочитать"
@@ -182,11 +205,34 @@ lessons:
             - q: "Vosotros ___ mucho."
               options: "dormís | duermís | duermen"
               explain: "У vosotros ударение на окончании — корень не меняется: dormís."
+      - write:
+          title: "`e` → `i`"
+          format: форма глагола
+          rule: boot
+          skill: stem_change
+          items:
+            - q: "yo / pedir"
+              a: "pido"
+              mistakes: {"pedo": "`e` → `i` под ударением: **pido**."}
+            - q: "nosotros / pedir"
+              a: "pedimos"
+              mistakes: {"pidimos": "У nosotros ударение на окончании — корень не меняется: **pedimos**."}
+      - choose:
+          title: Послушайте и выберите
+          skill: stem_change
+          items:
+            - say: "No puedo ir hoy."
+              options: "Я не могу пойти сегодня. | Я не хочу идти сегодня. | Ты не можешь пойти сегодня."
+              noaudio: {q: "Что значит «No puedo ir hoy.»?", options: "Я не могу пойти сегодня. | Я не хочу идти сегодня. | Ты не можешь пойти сегодня."}
+            - say: "¿Prefieres té o café?"
+              options: "Ты предпочитаешь чай или кофе? | Ты хочешь чай или кофе? | Он предпочитает чай или кофе?"
+              noaudio: {q: "Что значит «¿Prefieres té o café?»?", options: "Ты предпочитаешь чай или кофе? | Ты хочешь чай или кофе? | Он предпочитает чай или кофе?"}
+
   - id: orden
     kind: vocab
     title: Сначала, потом, иногда
     goal: связно рассказать о дне — сначала, потом, иногда, никогда
-    version: 2
+    version: 3
     vocab:
       - "🌄 temprano [тэмпра́но] — рано"
       - "➡️ luego [луэ́го] — потом, затем"
@@ -231,15 +277,25 @@ lessons:
           skill: sequence
           items:
             - q: "Я встаю рано."
-              a: "Me levanto temprano"
+              a: "Me levanto temprano | (Yo) me levanto temprano | Temprano me levanto"
               rule: none
               mistakes: {"levanto temprano": "levantarse — возвратный: **me** levanto."}
             - q: "После работы я иду в парк."
               a: "Después de trabajar, voy al parque | Después de trabajar voy al parque | Después del trabajo, voy al parque | Después del trabajo voy al parque | Voy al parque después de trabajar"
               rule: antes_de
               mistakes: {"después de trabajo voy al parque": "Можно **después de trabajar** (глагол в начальной форме) или **después del trabajo**."}
-            - "Иногда мы ужинаем поздно. => A veces cenamos tarde"
-            - {q: "Сегодня я ужинаю позже.", a: "Hoy ceno más tarde", rule: none}
+            - "Иногда мы ужинаем поздно. => A veces cenamos tarde | (Nosotros) a veces cenamos tarde | Cenamos tarde a veces"
+            - {q: "Сегодня я ужинаю позже.", a: "Hoy ceno más tarde | Hoy (yo) ceno más tarde | Hoy [ceno más tarde/más tarde ceno]", rule: none}
+      - choose:
+          title: Послушайте и выберите
+          skill: sequence
+          items:
+            - say: "A veces leo antes de dormir."
+              options: "Иногда я читаю перед сном. | Я всегда читаю перед сном. | Иногда я читаю после работы."
+              noaudio: {q: "Что значит «A veces leo antes de dormir.»?", options: "Иногда я читаю перед сном. | Я всегда читаю перед сном. | Иногда я читаю после работы."}
+            - say: "Después de cenar, veo la tele."
+              options: "После ужина я смотрю телевизор. | Перед ужином я смотрю телевизор. | После обеда я смотрю телевизор."
+              noaudio: {q: "Что значит «Después de cenar, veo la tele.»?", options: "После ужина я смотрю телевизор. | Перед ужином я смотрю телевизор. | После обеда я смотрю телевизор."}
 
   - id: lectura
     kind: reading
@@ -298,7 +354,7 @@ lessons:
     kind: practice
     title: Расскажите о своём дне
     goal: рассказать о своём обычном дне
-    version: 2
+    version: 3
     blocks:
       - write:
           title: Вставьте форму глагола
@@ -356,7 +412,7 @@ lessons:
     kind: quiz
     title: Мой день
     goal: рассказать о распорядке дня, спрягать возвратные глаголы и глаголы с чередованием
-    version: 2
+    version: 3
     check: soft
     blocks:
       - "Тест по теме «Мой день»."
@@ -373,6 +429,18 @@ lessons:
             - "pedir — просить"
             - "a veces — иногда"
             - "temprano — рано"
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          items:
+            - q: "Скажите: «Я встаю в семь и принимаю душ»."
+              a: "Me levanto a las siete y me ducho | (Yo) me levanto a las siete y me ducho | A las siete me levanto y me ducho"
+              skill: reflexive
+              mistakes: {"levanto a las siete y ducho": "Возвратные глаголы — с местоимением: **me** levanto, **me** ducho."}
+            - q: "Скажите: «Мы ложимся поздно»."
+              a: "Nos acostamos tarde | (Nosotros) nos acostamos tarde"
+              skill: stem_change
+              mistakes: {"nos acuestamos tarde": "У nosotros корень не меняется: **acostamos**."}
     quiz:
       - q: "Nosotros ___ levantamos a las siete."
         options: "nos | se | os"
@@ -430,7 +498,7 @@ lessons:
           items:
             - {q: "Счёт, пожалуйста.", a: "La cuenta, por favor", skill: order_food}
             - q: "Сейчас без четверти три."
-              a: "Son las tres menos cuarto"
+              a: "Son las tres menos cuarto | Ahora son las tres menos cuarto"
               skill: time
               mistakes: {"son las dos menos cuarto": "Dos menos cuarto — это 1:45. Без четверти три — **Son las tres menos cuarto**."}
       - build:

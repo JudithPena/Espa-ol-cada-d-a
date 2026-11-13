@@ -12,7 +12,7 @@ lessons:
     kind: vocab
     title: Одежда
     goal: назвать одежду и описать её цвет
-    version: 2
+    version: 3
     vocab:
       - "👚 la ropa [ро́па] — одежда"
       - "👔 la camisa [ками́са] — рубашка"
@@ -22,12 +22,6 @@ lessons:
       - "👗 el vestido [бэсти́до] — платье"
       - "🧶 el jersey [хэрсэ́й] — свитер {pl: jerséis}"
       - "👞 los zapatos [θапа́тос] — туфли, ботинки"
-      - "🧥 la chaqueta [чакэ́та] — куртка, пиджак"
-      - "🧥 el abrigo [абри́го] — пальто"
-      - "👖 los vaqueros [бакэ́рос] — джинсы"
-      - "👟 las zapatillas [θапати́йяс] — кроссовки; тапочки"
-      - "🩶 gris [грис] — серый {pos: adj}"
-      - "📏 la talla [та́йя] — размер (одежды)"
     blocks:
       - learn: [la ropa, la camisa, la camiseta, los pantalones, la falda]
       - choose:
@@ -36,15 +30,15 @@ lessons:
           items:
             - q: "Llevo una camiseta blanca."
               options: "На мне белая футболка. | На мне белая рубашка. | На мне белая юбка."
-      - learn: [el vestido, el jersey, los zapatos, la chaqueta, el abrigo]
+      - learn: [el vestido, el jersey, los zapatos]
       - match:
           title: Соедините пары
           pairs:
             - "el vestido — платье"
             - "el jersey — свитер"
             - "los zapatos — туфли"
-            - "la chaqueta — куртка"
-            - "el abrigo — пальто"
+            - "la ropa — одежда"
+            - "la camiseta — футболка"
       - rule:
           id: color_after
           text: |
@@ -59,16 +53,6 @@ lessons:
           items:
             - q: "Ana lleva una falda ___. (красную)"
               options: "roja | rojo | rojas"
-      - learn: [los vaqueros, las zapatillas, gris, la talla]
-      - match:
-          title: Соедините пары
-          rule: none
-          pairs:
-            - "la ropa — одежда"
-            - "los vaqueros — джинсы"
-            - "las zapatillas — кроссовки"
-            - "la talla — размер"
-            - "la camiseta — футболка"
       - write:
           title: Traduce
           format: вещь и цвет по-испански
@@ -82,12 +66,16 @@ lessons:
               a: "unos pantalones azules | los pantalones azules"
               mistakes: {"unos pantalones azul": "Брюки — во множественном: **azules**.", "los pantalones azul": "Брюки — во множественном: **azules**."}
             - "чёрное платье => un vestido negro | el vestido negro"
-            - q: "серая куртка"
-              a: "una chaqueta gris | la chaqueta gris"
-              mistakes: {"una chaqueta grisa": "gris по родам не меняется: una chaqueta **gris**."}
-            - q: "белые кроссовки"
-              a: "unas zapatillas blancas | las zapatillas blancas"
-              mistakes: {"unas zapatillas blancos": "zapatillas — женского рода: **blancas**."}
+      - choose:
+          title: Послушайте и выберите
+          skill: clothes
+          items:
+            - say: "Llevo un vestido verde."
+              options: "На мне зелёное платье. | На мне зелёная юбка. | На мне синее платье."
+              noaudio: {q: "Что значит «Llevo un vestido verde.»?", options: "На мне зелёное платье. | На мне зелёная юбка. | На мне синее платье."}
+            - say: "Los zapatos son negros."
+              options: "Туфли чёрные. | Туфли коричневые. | Брюки чёрные."
+              noaudio: {q: "Что значит «Los zapatos son negros.»?", options: "Туфли чёрные. | Туфли коричневые. | Брюки чёрные."}
     forms: [suéter, chamarra, campera, jeans]
 
   - id: numeros
@@ -180,13 +168,35 @@ lessons:
     kind: grammar
     title: "Este, ese, aquel"
     goal: показать на вещь — этот, тот, вон тот
-    version: 2
+    version: 3
     vocab:
+      - "🧥 la chaqueta [чакэ́та] — куртка, пиджак"
+      - "🧥 el abrigo [абри́го] — пальто"
+      - "👖 los vaqueros [бакэ́рос] — джинсы"
+      - "👟 las zapatillas [θапати́йяс] — кроссовки; тапочки"
       - "👇 este/esta [э́стэ, э́ста] — этот, эта (рядом со мной) {pos: adj, pl: estos estas}"
       - "👉 ese/esa [э́сэ, э́са] — этот, тот (рядом с вами) {pos: adj, pl: esos esas}"
       - "🔭 aquel/aquella [акэ́ль, акэ́йя] — тот, та (далеко) {pos: adj, pl: aquellos aquellas}"
       - "📍 ahí [аи́] — там (рядом с вами)"
     blocks:
+      - learn: [la chaqueta, el abrigo, los vaqueros, las zapatillas]
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "la chaqueta — куртка"
+            - "el abrigo — пальто"
+            - "los vaqueros — джинсы"
+            - "las zapatillas — кроссовки"
+      - write:
+          title: Traduce
+          format: вещь и цвет по-испански
+          rule: none
+          skill: [clothes, adj_agreement]
+          items:
+            - q: "белые кроссовки"
+              a: "unas zapatillas blancas | las zapatillas blancas"
+              mistakes: {"unas zapatillas blancos": "zapatillas — женского рода: **blancas**."}
       - learn: [este/esta, ese/esa, aquel/aquella, ahí]
       - "В магазине всё время показывают на вещи. Чем отличаются три слова?"
       - compare:
@@ -236,6 +246,16 @@ lessons:
             - lines: ["Dependienta: ¿Qué camisa quiere?"]
               q: "Вы показываете на рубашку далеко, на витрине."
               options: "Aquella camisa. | Esta camisa. | Esa camisa."
+      - choose:
+          title: Послушайте и выберите
+          skill: demonstratives
+          items:
+            - say: "Aquella chaqueta es muy bonita."
+              options: "Вон та куртка очень красивая. | Эта куртка очень красивая. | Вон те куртки очень красивые."
+              noaudio: {q: "Что значит «Aquella chaqueta es muy bonita.»?", options: "Вон та куртка очень красивая. | Эта куртка очень красивая. | Вон те куртки очень красивые."}
+            - say: "Quiero estos vaqueros."
+              options: "Я хочу эти джинсы. | Я хочу те джинсы. | Я хочу эти кроссовки."
+              noaudio: {q: "Что значит «Quiero estos vaqueros.»?", options: "Я хочу эти джинсы. | Я хочу те джинсы. | Я хочу эти кроссовки."}
     forms: [eso]
 
   - id: precios
@@ -250,6 +270,8 @@ lessons:
       - "💸 caro/a [ка́ро, ка́ра] — дорогой"
       - "🏷 barato/a [бара́то, бара́та] — дешёвый"
       - "🪙 el céntimo [θэ́нтимо] — цент (сотая часть евро)"
+      - "🩶 gris [грис] — серый {pos: adj}"
+      - "📏 la talla [та́йя] — размер (одежды)"
     blocks:
       - learn: ["¿Cuánto cuesta...?", costar, el precio]
       - text:
@@ -270,7 +292,22 @@ lessons:
           items:
             - q: "Estos zapatos son muy ___. (дорогие)"
               options: "caros | caras | baratos"
-      - learn: [el céntimo]
+      - learn: [el céntimo, gris, la talla]
+      - write:
+          title: Traduce
+          format: вещь и цвет по-испански
+          rule: none
+          skill: [clothes, adj_agreement]
+          items:
+            - q: "серая куртка"
+              a: "una chaqueta gris | la chaqueta gris"
+              mistakes: {"una chaqueta grisa": "gris по родам не меняется: una chaqueta **gris**."}
+      - choose:
+          title: Что спросить?
+          skill: prices
+          items:
+            - q: "Вы хотите узнать размер покупателя (вежливо)."
+              options: "¿Qué talla tiene? | ¿Cuánto cuesta? | ¿Qué color tiene?"
       - write:
           title: Спросите цену
           format: вопрос по-испански
@@ -425,7 +462,7 @@ lessons:
     kind: quiz
     title: Покупки
     goal: назвать одежду, понять цены, показать на вещь и купить её
-    version: 2
+    version: 3
     check: soft
     blocks:
       - "Тест по теме «Покупки»."
@@ -443,6 +480,18 @@ lessons:
             - "barato — дешёвый"
             - "mil — тысяча"
             - "la tarjeta — карта"
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          items:
+            - q: "Скажите: «Мне нравится эта рубашка»."
+              a: "Me gusta esta camisa | (A mí) me gusta esta camisa"
+              skill: demonstratives
+              mistakes: {"me gusta este camisa": "camisa — женского рода: **esta** camisa."}
+            - q: "Спросите продавца: «Сколько стоят эти туфли?»"
+              a: "¿Cuánto cuestan estos zapatos? | ¿Cuánto cuestan los zapatos?"
+              skill: prices
+              mistakes: {"cuanto cuesta estos zapatos": "Туфли — их несколько: **cuestan**."}
     quiz:
       - q: "¿Cuánto ___ estos zapatos?"
         options: "cuestan | cuesta | costan"

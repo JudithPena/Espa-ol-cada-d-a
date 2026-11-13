@@ -26,6 +26,7 @@ pido; `sequence` — primero, luego, antes de, a veces, nunca.
 | 14 | B | Me levanto, me ducho y me visto | утро целиком | правило | итог | — |
 
 Сигнатура: `T(text) W×3 C~ W×4 T(tip) M I×2 B`
+- **13.11.2026, ремонт по аудиту MYTHOS:** больше допустимых ответов (Yo…, другой порядок) — TST-02. Версия 3.
 
 ## Урок `rutina/reflexivos` — «Me levanto, te levantas: возвратные глаголы»
 
@@ -44,7 +45,8 @@ pido; `sequence` — primero, luego, antes de, a veces, nunca.
 | 10 | T: note `lavar` | me lavo / lavo el coche | без me | правило | к выбору | — |
 | 11–12 | C ×2 | Lavo el coche; quiero levantarme | me или без; инфинитив | правило, заметка | итог | — |
 
-Сигнатура: `W×2 T(text+conjugation+rule) I×6 T(note) C×2`
+Сигнатура: `W×2 T(text+conjugation+rule) I×6 T(note) C×2 I×3 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** полная форма вводом: te duchas, se levantan, nos duchamos (U16-03); на слух: Nos levantamos a las siete; Me ducho por la mañana. Версия 3.
 
 ## Урок `rutina/irregulares` — «Quiero, puedo, pido: чередование в корне»
 
@@ -67,7 +69,8 @@ pido; `sequence` — primero, luego, antes de, a veces, nunca.
 | 15 | T: conjugation + rule `boot` + more | pido … piden; сапожок; tener, empezar… | правило | таблицы | к выбору | — |
 | 16–17 | C ×2 | piden; dormís | применить | правило | итог | — |
 
-Сигнатура: `T(text+conjugation) W I×2 W×4 T(conjugation) I×4 W T(conjugation+rule+more) C×2`
+Сигнатура: `T(text+conjugation) W I×2 W×4 T(conjugation) I×4 W T(conjugation+rule+more) C×2 I×2 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** e → i вводом: pido, pedimos (U16-02); на слух: No puedo ir hoy; ¿Prefieres té o café? Версия 3.
 
 ## Урок `rutina/orden` — «Сначала, потом, иногда»
 
@@ -92,7 +95,8 @@ pido; `sequence` — primero, luego, antes de, a veces, nunca.
 | 14 | C | Он никогда не завтракает | nunca | правило 2 | — | — |
 | 15–18 | I ×4 | встаю рано; после работы; иногда ужинаем поздно; ужинаю позже | воспроизвести | правила 1–2 | итог | — |
 
-Сигнатура: `T(text) W×4 C W×2 T(rule) C W×2 T(rule) C I×4`
+Сигнатура: `T(text) W×4 C W×2 T(rule) C W×2 T(rule) C I×4 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: A veces leo antes de dormir; Después de cenar, veo la tele; больше допустимых ответов. Версия 3.
 
 ## Урок `rutina/lectura` — «Обычный день»
 
@@ -127,6 +131,7 @@ pido; `sequence` — primero, luego, antes de, a veces, nunca.
 | 10 | I | ¿A qué hora te acuestas? | me acuesto | тема | миссия | `ana_day` |
 
 Сигнатура: `I×5 T(mission) C@ana_day I@ana_day B I@ana_day`
+- **13.11.2026, ремонт по аудиту MYTHOS:** «Без четверти три» — и Ahora son las tres menos cuarto (TST-02). Версия 3.
 
 ## Урок `rutina/quiz` — «Мой день» (тест темы, `check: soft`)
 
@@ -140,7 +145,8 @@ pido; `sequence` — primero, luego, antes de, a veces, nunca.
 | 2 | M | despertarse, el diente, pedir, a veces, temprano | значения | тема | разминка | — |
 | 3–7 | Q ×5 | nos; vuelves; podemos; antes de dormir; se afeita | применить тему | тема | итог | — |
 
-Сигнатура: `T(cando) M Q×5`
+Сигнатура: `T(cando) M I×2 Q×5`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ввод: «Я встаю в семь и принимаю душ», «Мы ложимся поздно» (SYS-03). Версия 3.
 
 ## Урок `rutina/repaso` — «Повторение» (темы 13–16)
 

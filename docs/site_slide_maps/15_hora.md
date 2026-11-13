@@ -26,6 +26,7 @@
 | 15–17 | I ×3 | в среду; по воскресеньям; сегодня понедельник | воспроизвести | правило | итог | — |
 
 Сигнатура: `T(text) W×4 C W×4 M T(compare) C C~ I×3`
+- **13.11.2026, ремонт по аудиту MYTHOS:** «Сегодня понедельник» — и Es lunes (TST-02). Версия 3.
 
 ## Урок `hora/hora` — «¿Qué hora es?»
 
@@ -48,7 +49,8 @@
 | 13–17 | I ×5 | 7:00, 1:30, 10:15, 5:45, 3:50 словами | воспроизвести | правила 1–2 | ввод | — |
 | 18 | C~ | на слух «Son las nueve menos cuarto» | время на слух | правило 2 | итог | — (без звука: фраза записана) |
 
-Сигнатура: `T(text+examples) W×3 T(rule) C×2 W×4 T(compare) I×5 C~`
+Сигнатура: `T(text+examples) W×3 T(rule) C×2 W×4 T(compare) I×7 C~`
+- **13.11.2026, ремонт по аудиту MYTHOS:** время с минутами 21–29: 4:25 — y veinticinco, 6:35 — menos veinticinco (U15-02; десятки теперь в теме 04). Версия 3.
 
 ## Урок `hora/a_que_hora` — «¿A qué hora...?»
 
@@ -72,7 +74,8 @@
 | 16–17 | I ×2 | завтракаю в семь утра; занятие заканчивается в час | воспроизвести | правила 1–2 | ввод | — |
 | 18 | B | ¿A qué hora empieza la película? | вопрос | правило 1 | итог | — |
 
-Сигнатура: `T(text+examples) W×4 T(rule+note) C W×3 T(compare) C×4 I×2 B`
+Сигнатура: `T(text+examples) W×4 T(rule+note) C W×3 T(compare) C×4 I×2 B C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Ceno a las nueve de la noche; ¿A qué hora terminas? (SYS-04); больше допустимых ответов. Версия 3.
 
 ## Урок `hora/horarios` — «Часы работы»
 
@@ -95,7 +98,8 @@
 | 14 | I | «А в воскресенье она открыта?» | спросить | abierta | миссия | `library` |
 | 15 | C (реплика) | No, los domingos está cerrada | закончить разговор | — | миссия | `library` |
 
-Сигнатура: `W×3 C×2 W×2 T(text+dialogue+culture) C@museo×3 T(mission) C@library I@library C@library`
+Сигнатура: `W×3 C×2 W×2 T(text+dialogue+culture) C@museo×3 T(mission) C@library I@library C@library C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: El museo está cerrado los lunes; Abre de lunes a viernes (SYS-04). Версия 3.
 
 ## Урок `hora/escucha` — «Который час?»
 
@@ -123,4 +127,5 @@
 | 2 | M | el jueves, la semana, en punto, terminar, cerrado | значения | тема | разминка | — |
 | 3–7 | Q ×5 | es la una; 10:45; los sábados; a las nueve; после miércoles | применить тему | тема | итог | — |
 
-Сигнатура: `T(text+cando) M Q×5`
+Сигнатура: `T(text+cando) M I×2 Q×5`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ввод: «Занятие начинается в девять», «Во сколько закрывается аптека?» (SYS-03). Версия 3.

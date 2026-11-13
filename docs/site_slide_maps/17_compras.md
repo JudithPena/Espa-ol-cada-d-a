@@ -29,7 +29,8 @@ cuesta?, cuesta / cuestan, caro, barato; `shopping` — talla, me queda, me lo l
 | 19 | M | ropa, vaqueros, zapatillas, talla, camiseta | значения | — | — | — |
 | 20–24 | I ×5 | белая рубашка; синие брюки; чёрное платье; серая куртка; белые кроссовки | воспроизвести | правило | итог | — |
 
-Сигнатура: `W×5 C W×5 M T(rule+more) C W×4 M I×5`
+Сигнатура: `W×5 C W×3 M T(rule+more) C I×3 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** 8 слов вместо 14 (U17-02, SYS-10): la chaqueta, el abrigo, los vaqueros, las zapatillas — в «Este, ese, aquel», gris и la talla — в «¿Cuánto cuesta?»; на слух: Llevo un vestido verde; Los zapatos son negros. Версия 3.
 
 ## Урок `compras/numeros` — «Сотни и тысяча» (переделан 13.11.2026, аудит MYTHOS, PRG-02, U17-04)
 
@@ -67,7 +68,8 @@ cuesta?, cuesta / cuestan, caro, barato; `shopping` — talla, me queda, me lo l
 | 11 | C | «esa falda» — где? | ahí | правило | — | — |
 | 12 | C (реплика) | ¿Qué camisa quiere? — aquella | выбрать | правило | итог | — |
 
-Сигнатура: `W×4 T(text+compare+more) I×5 C×2`
+Сигнатура: `W×4 M I W×4 T(text+compare+more) I×5 C×2 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** первым циклом — куртка, пальто, джинсы, кроссовки; на слух: Aquella chaqueta…; Quiero estos vaqueros. Версия 3.
 
 ## Урок `compras/precios` — «¿Cuánto cuesta?»
 
@@ -89,7 +91,8 @@ cuesta?, cuesta / cuestan, caro, barato; `shopping` — talla, me queda, me lo l
 | 13 | M | precio, caro, barato, céntimo | значения | — | — | — |
 | 14–16 | C~ ×3 | на слух 150 €, 75 €, 1,80 € | цены на слух | сотни | итог | — (без звука: фраза записана) |
 
-Сигнатура: `W×3 T(text) C×2 W×2 C W I×2 M C~×3`
+Сигнатура: `W×3 T(text) C×2 W×2 C W×3 I C I×2 M C~×3`
+- **13.11.2026, ремонт по аудиту MYTHOS:** + gris, la talla: «серая куртка», «¿Qué talla tiene?».
 
 ## Урок `compras/tienda` — «В магазине одежды»
 
@@ -130,4 +133,5 @@ cuesta?, cuesta / cuestan, caro, barato; `shopping` — talla, me queda, me lo l
 | 2 | M | falda, abrigo, barato, mil, tarjeta | значения | тема | разминка | — |
 | 3–7 | Q ×5 | cuestan; esta camisa; quinientos; me queda grande; cuarenta y siete | применить тему | тема | итог | — |
 
-Сигнатура: `T(cando) M Q×5`
+Сигнатура: `T(cando) M I×2 Q×5`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ввод: «Мне нравится эта рубашка», «Сколько стоят эти туфли?» (SYS-03). Версия 3.
