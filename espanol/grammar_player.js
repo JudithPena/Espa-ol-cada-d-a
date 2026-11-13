@@ -947,40 +947,10 @@ function gClock(clock) {
   return `<div class="gclock" role="img" aria-label="Часы: ${time}"><svg viewBox="0 0 160 160" aria-hidden="true"><circle class="gclock-face" cx="80" cy="80" r="74"/>${Array.from({length:12},(_,i)=>{const angle=(i+1)*Math.PI/6; return `<text x="${80+59*Math.sin(angle)}" y="${80-59*Math.cos(angle)}">${i+1}</text>`;}).join('')}<path class="gclock-hour" d="M80 80V43" transform="rotate(${clock.hour%12*30+clock.minute/2} 80 80)"/><path class="gclock-minute" d="M80 80V28" transform="rotate(${clock.minute*6} 80 80)"/><circle cx="80" cy="80" r="4" fill="currentColor"/></svg><span>${time}</span></div>`;
 }
 function gDistanceArt(key) {
-  // Decorative, self-contained vector scenes. Meaning is also provided as visible text.
-  if (key==='near') return `<svg class="gdistance-art" viewBox="0 0 180 105" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-    <rect width="180" height="105" rx="12" fill="#eaf4ed"/><path d="M0 91 Q90 78 180 92 L180 105 H0Z" fill="#d6e9d9"/>
-    <path d="M26 93 Q31 58 62 55 Q87 58 92 93Z" fill="#78a985"/><path d="M40 58 Q35 38 44 23 Q60 12 72 27 Q79 42 74 60Z" fill="#5c3c36"/>
-    <ellipse cx="58" cy="39" rx="16" ry="19" fill="#f2bb94"/><path d="M42 34 Q41 17 57 18 Q74 19 75 34 Q65 27 56 29 L44 37Z" fill="#50332e"/>
-    <path d="M53 42 h2 m11 0 h2" stroke="#52362e" stroke-width="2.4" stroke-linecap="round"/><path d="M56 49 q5 5 10 0" stroke="#9f6149" stroke-width="1.6" fill="none"/>
-    <path d="M78 73 Q94 59 105 69 L110 79 Q99 89 85 88Z" fill="#f2bb94"/>
-    <rect x="92" y="55" width="54" height="37" rx="5" fill="#3566b7" stroke="#214a8e" stroke-width="2"/>
-    <path d="M102 59 v28 M105 64 h32 M105 70 h28" stroke="#c6d8fa" stroke-width="2" stroke-linecap="round"/>
-    <path d="M146 58 q7 1 7 9 v19 q0 6-7 7" stroke="#244c91" stroke-width="2" fill="none"/>
-    <path d="M20 96 H160" stroke="#8db89d" stroke-width="3" stroke-linecap="round"/>
-  </svg>`;
-  if (key==='listener') return `<svg class="gdistance-art" viewBox="0 0 180 105" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-    <rect width="180" height="105" rx="12" fill="#eaf0fc"/><path d="M0 91 Q90 81 180 91 V105 H0Z" fill="#d2def5"/>
-    <path d="M36 94 Q44 59 74 59 Q106 59 112 94Z" fill="#5178b2"/><path d="M58 62 L74 78 L90 61" fill="#ebf0fb"/>
-    <ellipse cx="74" cy="40" rx="18" ry="20" fill="#eebb96"/><path d="M55 35 Q54 16 73 17 Q96 18 93 37 L88 33 Q73 27 62 35Z" fill="#3f343a"/>
-    <path d="M65 43 h2 m14 0 h2" stroke="#393139" stroke-width="2.5" stroke-linecap="round"/><path d="M67 50 q7 5 14 0" stroke="#9c624d" stroke-width="1.6" fill="none"/>
-    <path d="M100 78 Q116 63 125 67 L131 79 Q123 89 111 90Z" fill="#eebb96"/>
-    <circle cx="138" cy="63" r="12" fill="none" stroke="#8d9cae" stroke-width="5"/><path d="M138 75 v17 m0-7 h15 m-3 0 v-5" stroke="#8d9cae" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M20 96 H160" stroke="#b0bfdf" stroke-width="3" stroke-linecap="round"/>
-  </svg>`;
-  return `<svg class="gdistance-art" viewBox="0 0 180 105" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-    <rect width="180" height="105" rx="12" fill="#f8f1e7"/><path d="M0 94 H180 V105 H0Z" fill="#e9dcc8"/>
-    <path d="M25 96 L63 48 H117 L156 96" fill="#f1e9da" stroke="#d0bfa5" stroke-width="1.6"/>
-    <rect x="64" y="20" width="52" height="58" rx="3" fill="#bd8d66"/><rect x="69" y="25" width="42" height="48" fill="#f7e9cf"/>
-    <path d="M69 41 H111 M69 56 H111" stroke="#ae7958" stroke-width="4"/>
-    <rect x="73" y="27" width="8" height="12" rx="1" fill="#6ca08c"/><rect x="84" y="29" width="8" height="10" rx="1" fill="#8c9bd5"/>
-    <rect x="94" y="25" width="12" height="14" rx="2" fill="#e27c52" stroke="#c15c37" stroke-width="1.5"/>
-    <rect x="73" y="44" width="12" height="9" rx="1" fill="#d2ad69"/><rect x="88" y="44" width="15" height="9" rx="1" fill="#75b5a0"/>
-    <rect x="78" y="59" width="25" height="10" rx="1" fill="#7e9ebf"/>
-    <path d="M29 94 Q31 75 48 72 Q65 75 66 94Z" fill="#6c9a81"/><circle cx="48" cy="65" r="11" fill="#efbf9e"/><path d="M37 63 q0-14 13-12 q10 2 9 12" fill="#6c4a37"/>
-    <path d="M116 94 Q120 74 137 72 Q153 75 156 94Z" fill="#607db1"/><circle cx="137" cy="65" r="11" fill="#e9b893"/><path d="M126 62 q1-13 13-12 q10 1 10 13" fill="#48404a"/>
-    <path d="M84 82 l6-7 6 7" stroke="#d4a25d" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-  </svg>`;
+  // Unit 12: approved illustrated scenes from one lightweight triptych.
+  // Text labels remain visible for accessibility and the same clues work on mobile.
+  const scene = ['near','listener','far'].includes(key) ? key : 'near';
+  return `<span class="gdistance-art gdistance-art-${scene}" aria-hidden="true"></span>`;
 }
 function gDistance(distance, illustrated = false) {
   if (!distance) return "";
