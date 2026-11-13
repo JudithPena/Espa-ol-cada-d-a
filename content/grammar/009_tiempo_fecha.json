@@ -623,12 +623,12 @@
           }
         },
         {
-          "prompt": "Se casa el martes, ___ 13 de julio.",
+          "prompt": "Las clases empiezan en ___ septiembre.",
           "answers": [
             "Без артикля"
           ],
-          "explain": "Перед числом после дня недели второй артикль не нужен.",
-          "sourceRef": "9.2.4",
+          "explain": "После en перед названием месяца артикль не нужен: en septiembre.",
+          "sourceRef": "extra",
           "context": "Дополни предложение.",
           "interaction": "article-input",
           "inputFormat": {
@@ -651,12 +651,12 @@
           }
         },
         {
-          "prompt": "La fiesta es el domingo a ___ siete.",
+          "prompt": "El curso empieza el lunes, ___ 3 de marzo.",
           "answers": [
-            "las"
+            "Без артикля"
           ],
-          "explain": "Время: a las siete.",
-          "sourceRef": "9.2.5",
+          "explain": "Перед числом после дня недели второй артикль не нужен.",
+          "sourceRef": "extra",
           "context": "Дополни предложение.",
           "interaction": "article-input",
           "inputFormat": {
@@ -679,12 +679,12 @@
           }
         },
         {
-          "prompt": "Hoy es jueves, ___ 4 de octubre.",
+          "prompt": "Comemos a ___ dos.",
           "answers": [
-            "Без артикля"
+            "las"
           ],
-          "explain": "Число после дня недели без второго артикля.",
-          "sourceRef": "9.2.6",
+          "explain": "Время: a las dos.",
+          "sourceRef": "extra",
           "context": "Дополни предложение.",
           "interaction": "article-input",
           "inputFormat": {
@@ -693,12 +693,12 @@
           }
         },
         {
-          "prompt": "Hoy es jueves, 4 de ___ octubre.",
+          "prompt": "Vamos al cine ___ domingos.",
           "answers": [
-            "Без артикля"
+            "los"
           ],
-          "explain": "Перед названием месяца артикль здесь не нужен.",
-          "sourceRef": "9.2.6",
+          "explain": "Каждое воскресенье, по привычке: los domingos.",
+          "sourceRef": "extra",
           "context": "Дополни предложение.",
           "interaction": "article-input",
           "inputFormat": {
@@ -763,13 +763,13 @@
           }
         },
         {
-          "prompt": "Nací el 2 de ___ diciembre.",
+          "prompt": "Te llamo ___ viernes.",
           "answers": [
-            "Без артикля"
+            "el"
           ],
-          "explain": "Перед месяцем после de артикля нет.",
-          "sourceRef": "9.2.9",
-          "context": "Дополни предложение.",
+          "explain": "Один звонок в ближайшую пятницу: el viernes.",
+          "sourceRef": "extra",
+          "context": "Ты позвонишь один раз, в ближайшую пятницу.",
           "interaction": "article-input",
           "inputFormat": {
             "instruction": "Впиши только артикль. Остальную часть предложения не переписывай. Если артикль не нужен, нажми «Без артикля».",
