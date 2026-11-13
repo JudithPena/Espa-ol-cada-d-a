@@ -2554,9 +2554,17 @@ function quizRefs(L, i, st) {
 const ACC_OFF = { á: "a", é: "e", í: "i", ó: "o", ú: "u" };
 function wordAnswers(es) {
   const out = new Set();
-  for (const part of String(es).replace(/\s+/g, " ").trim().split(/\s+\/\s+/)) {   // «el profesor / la profesora»
+  let parts = String(es).replace(/\s+/g, " ").trim().split(/\s+\/\s+/);             // «el profesor / la profesora»
+  const last = parts[parts.length - 1].split(" ");
+  if (parts.length > 1 && last.length > 1 && parts.slice(0, -1).every(p => !p.includes(" ")))   // «nos / os / les gusta»
+    parts = parts.map((p, k) => k === parts.length - 1 ? p : `${p} ${last.slice(1).join(" ")}`);
+  for (const part of parts) {
     const art = part.match(/^(el\/la|los\/las|un\/una)\s+(.+)$/i);                    // «el/la estudiante»
     if (art) { art[1].split("/").forEach(a => out.add(`${a} ${art[2]}`)); continue; }
+    const pl = part.match(/^(.+)os\/as$/);                                              // «doscientos/as»
+    if (pl) { out.add(pl[1] + "os"); out.add(pl[1] + "as"); continue; }
+    const pair = part.match(/^([^\s/]+)\/([^\s/]{2,})$/);                                // «este/esta», «aquel/aquella»
+    if (pair && !/^as?$/.test(pair[2])) { out.add(pair[1]); out.add(pair[2]); continue; }
     const fem = part.match(/^(.*?)\/a$/);                                               // «encantado/a», «alemán/a»
     if (fem) {
       const m = fem[1];

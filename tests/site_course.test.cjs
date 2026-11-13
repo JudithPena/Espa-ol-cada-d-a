@@ -115,6 +115,13 @@ test('ENG-10: word review asks to type the word from stage 3; forms like encanta
   assert.deepEqual(J(run, 'wordAnswers("alemán/a")'), ['alemán', 'alemana']);
   assert.deepEqual(J(run, 'wordAnswers("el/la estudiante")'), ['el estudiante', 'la estudiante']);
   assert.deepEqual(J(run, 'wordAnswers("el profesor / la profesora")'), ['el profesor', 'la profesora']);
+  assert.deepEqual(J(run, 'wordAnswers("nos / os / les gusta")'), ['nos gusta', 'os gusta', 'les gusta']);
+  assert.deepEqual(J(run, 'wordAnswers("este/esta")'), ['este', 'esta']);
+  assert.deepEqual(J(run, 'wordAnswers("aquel/aquella")'), ['aquel', 'aquella']);
+  assert.deepEqual(J(run, 'wordAnswers("doscientos/as")'), ['doscientos', 'doscientas']);
+  // Ни у одного слова курса (все уровни) в принятом ответе не осталось «/», «…», скобок.
+  const odd = J(run, `LESSONS.flatMap(L => L.words).map(w => wordWrite(w)).filter(q => q && q.a.some(a => /[/…()\\[\\]]|\\.\\.\\./.test(a))).map(q => q.show)`);
+  assert.deepEqual(odd, []);
   assert.equal(run('wordWrite(WORDS.get(LESSONS.flatMap(L => L.words).find(w => w.es.includes("...")).es))'), null, 'фраза с многоточием — не для ввода');
   const w = J(run, 'LESSONS.flatMap(L => L.words).find(w => w.es === "el libro")');
   run(`Math.random = () => 0.5; P.words["el libro"] = {s: 3, due: 0}; startReview([WORDS.get("el libro")])`);

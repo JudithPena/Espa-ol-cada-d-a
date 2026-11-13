@@ -287,6 +287,8 @@ def _asked_texts(lesson: Lesson) -> list[str]:
     """Тексты, которые урок спрашивает: верные варианты и вопросы, ответы ввода, пары, группы, фразы."""
     out = []
     for block in lesson.blocks:
+        if block.meta.get("bank"):   # банк повторения в уроке не показывается — слово урока он не проверяет
+            continue
         d = block.data
         if block.type == "choose":
             # реплика собеседника тоже проверяет слово: чтобы ответить на «¿Quién es?», его надо понять
