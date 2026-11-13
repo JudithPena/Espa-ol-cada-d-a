@@ -62,7 +62,8 @@
 | 7–8 | I ×2 | «Мне семь лет», «Ей девять лет» | воспроизвести | правило | ввод | — |
 | 9–10 | B ×2 | ¿Cuántos años tiene usted?; El perro tiene tres años | порядок слов | урок | итог | — |
 
-Сигнатура: `T(text+examples) W×3 T(rule+table+note) C I×2 B×2`
+Сигнатура: `T(text+examples) W×3 T(rule+table+note) C C~×2 I×2 B×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Tengo nueve años; ¿Cuántos años tienes? (SYS-04). Версия 3.
 
 ## Урок `numeros/vocab3` — «Числа от 11 до 15 и 20»
 
@@ -176,4 +177,5 @@
 | 2 | M | veinte, once, el año, el teléfono, mi | значения | тема | разминка | — |
 | 3–7 | Q ×5 | catorce; ¿Cuántos años tienes?; siete y ocho; «твой номер»; как пишется 16 | применить тему | тема | итог | — |
 
-Сигнатура: `T(text+cando) M Q×5`
+Сигнатура: `T(text+cando) M I I~ Q×5`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ввод возраста и число 15 на слух цифрами (U04-03, SYS-03). Версия 3.

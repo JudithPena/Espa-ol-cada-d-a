@@ -108,7 +108,7 @@ lessons:
     kind: grammar
     title: ¿Cuántos años tienes?
     goal: спросить, сколько человеку лет, и сказать свой возраст
-    version: 2
+    version: 3
     vocab:
       - "🤲 tener [тэнэ́р] — иметь {forms: tengo tienes tiene}"
       - "📆 el año [а́ньо] — год {forms: años}"
@@ -142,6 +142,17 @@ lessons:
               q: "Вам девять лет, вы на уроке в школе."
               options: "Tengo nueve años. | Tienes nueve años. | Soy nueve años."
               explain: "О себе — tengo. Возраст «имеют», поэтому не soy."
+      - choose:
+          title: Послушайте и выберите
+          skill: [tener_age, numbers_ear]
+          items:
+            - say: "Tengo nueve años."
+              q: "Сколько лет?"
+              options: "9 | 7 | 10"
+              noaudio: {q: "«Tengo nueve años.» Сколько лет?", options: "9 | 7 | 10"}
+            - say: "¿Cuántos años tienes?"
+              options: "Сколько тебе лет? | Как тебя зовут? | Откуда ты?"
+              noaudio: {q: "Что значит «¿Cuántos años tienes?»?", options: "Сколько тебе лет? | Как тебя зовут? | Откуда ты?"}
       - write:
           title: Traduce
           format: фраза о возрасте по-испански
@@ -523,7 +534,7 @@ lessons:
     kind: quiz
     title: Числа и возраст
     goal: считать до двадцати, сказать возраст и продиктовать номер телефона
-    version: 2
+    version: 3
     check: soft
     blocks:
       - "Это тест по теме «Числа и возраст»."
@@ -540,6 +551,21 @@ lessons:
             - "el año — год"
             - "el teléfono — телефон"
             - "mi — мой"
+      - write:
+          title: Ответьте
+          items:
+            - q: "Lucía: ¿Cuántos años tienes? — Вам двадцать лет."
+              a: "Tengo veinte años | (Yo) tengo veinte años | Veinte( años)"
+              format: ответ по-испански
+              skill: tener_age
+              mistakes: {"soy veinte años": "Возраст «имеют»: **tengo** veinte años."}
+            - say: "quince"
+              q: "Запишите число цифрами."
+              a: "15"
+              answer: number
+              format: число цифрами
+              skill: numbers_ear
+              noaudio: {q: "Запишите цифрами: quince", a: "15"}
     quiz:
       - q: Какое это число — «catorce»?
         options: "14 | 4 | 40"

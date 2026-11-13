@@ -30,6 +30,7 @@
 | 16 | B | ¿De dónde es usted, señora? | вежливый вопрос | usted | итог | — |
 
 Сигнатура: `T(text) W×3 T(examples) C W×4 T(tip) C~×2 I×2 B`
+- **13.11.2026, ремонт по аудиту MYTHOS:** «Инес из Франции» вместо Аны (Ана — украинка, таблица персонажей); принимается и Es de Francia (TST-02).
 
 ## Урок `paises/vocab2` — «Ещё страны»
 
@@ -47,7 +48,8 @@
 | 11 | C (реплика) | вы тоже из Украины | yo también | tip | узнавание | — |
 | 12 | I | Marco es de Italia y Clara ___ | воспроизвести | tip | итог | — |
 
-Сигнатура: `W×5 M C×2 W T(tip) C I`
+Сигнатура: `W×5 M C×2 W C~×2 T(tip) C I`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Soy de Alemania; Tom es de Inglaterra (SYS-04). Версия 3.
 
 ## Урок `paises/nacionalidad` — «Национальности: ucraniano — ucraniana»
 
@@ -73,7 +75,8 @@
 | 20 | T: header + compare | + -a на согласную; francés → francesa без значка | правило 2 | ударение | к вводу | — |
 | 21–24 | I ×4 (строго) | española, francesa, alemán, inglesa | ввести со значком и без | правило 2 | итог | — |
 
-Сигнатура: `T(text+examples) W×4 T(compare+more) I×4 W×3 T(note) C×3 W×4 T(header+compare) I×4`
+Сигнатура: `T(text+examples) W×4 T(compare+more) I×4 W×3 T(note) C×3 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** 7 слов вместо 11 (SYS-10, U05-02): национальности на согласную (español, francés, alemán, inglés) — в уроке idiomas; на слух: Olga es ucraniana, Él es mexicano; в упражнениях — разовые имена (Paula, Javier, Julia, Daniel) вместо постоянных героев. Версия 3.
 
 ## Урок `paises/idiomas` — «¿Hablas español?»
 
@@ -97,7 +100,8 @@
 | 17–18 | I ×2 | «Да, немного», «Я не говорю по-китайски» | воспроизвести | правило hablar | ввод | — |
 | 19 | B | Hablo inglés, pero no hablo francés | связная фраза | урок | итог | — |
 
-Сигнатура: `T(text+examples) W×4 T(rule+table) C I×3 W×3 T(note) C×2 I×2 B`
+Сигнатура: `W×4 T(header+compare) I×4 T(text+examples) W T(rule+table) C I×3 W×3 T(note) C×2 I×2 C~×2 B`
+- **13.11.2026, ремонт по аудиту MYTHOS:** 8 слов: в начале — национальности на согласную (+ -a, francés → francesa) из урока nacionalidad; карточки el español / el ucraniano / el inglés убраны — язык = национальность м. р. с el (правило 1); на слух: ¿Hablas alemán?, Hablo inglés y un poco de español; больше допустимых ответов (TST-02). Версия 3.
 
 ## Урок `paises/lectura` — «Друзья со всего мира»
 
@@ -116,7 +120,8 @@
 | 7–10 | C ×4 | где живёт Иван; Софья мексиканка?; Пьер говорит по-украински?; Sofía es ___ de Iván | понять текст | текст | вопросы к тексту | `amigos` |
 | 11–12 | Q ×2 | откуда Софья; где живёт Пьер | понять текст | текст | итог | `amigos` |
 
-Сигнатура: `W×4 C T(reading+note) C@amigos×4 Q@amigos×2`
+Сигнатура: `W×4 C T(reading+note) C@amigos×4 C~×2 Q@amigos×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: ¿Dónde vives?; Vivo en Madrid, pero soy de Kiev (SYS-04). Версия 3.
 
 ## Урок `paises/dialogo` — «В языковой школе»
 
@@ -148,7 +153,8 @@
 | 2 | M | ¿De dónde eres?, también, Italia, pero, un poco | значения | тема | разминка | — |
 | 3–7 | Q ×5 | ucraniana; francés; español e inglés; ¿Dónde vives?; с большой буквы | применить тему | тема | итог | — |
 
-Сигнатура: `T(text+cando) M Q×5`
+Сигнатура: `T(text+cando) M I×2 Q×5`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ввод: «Я украинка, из Киева», «Ты говоришь по-английски?» (SYS-03). Версия 3.
 
 ## Урок `paises/repaso` — «Большое повторение»
 
