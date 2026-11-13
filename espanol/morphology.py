@@ -55,6 +55,8 @@ VERBS: dict[str, dict] = {
     "ver": _v(present="veo ves ve vemos veis ven", participle="visto"),
     "oír": _v(present="oigo oyes oye oímos oís oyen", gerund="oyendo", participle="oído"),
     "reír": _v(present="río ríes ríe reímos reís ríen", gerund="riendo", participle="reído"),
+    "sonreír": _v(present="sonrío sonríes sonríe sonreímos sonreís sonríen", gerund="sonriendo", participle="sonreído"),
+    "freír": _v(present="frío fríes fríe freímos freís fríen", gerund="friendo", participle="frito"),
     # неправильная только форма yo
     "saber": _v(yo="sé"),
     "conocer": _v(yo="conozco"),
@@ -364,7 +366,7 @@ def preterite(infinitive: str, info: dict | None = None) -> list[str]:
         third = "hizo" if base == "hacer" else st + "o"
         plural3 = st + ("eron" if st.endswith("j") else "ieron")
         return [st + "e", st + "iste", third, st + "imos", st + "isteis", plural3]
-    if base in ("reír", "sonreír"):
+    if base in ("reír", "sonreír", "freír"):
         pre = base[:-4]
         return [pre + f for f in ("reí", "reíste", "rio", "reímos", "reísteis", "rieron")]
     if conj == "ar":
@@ -389,7 +391,7 @@ def imperfect(infinitive: str) -> list[str]:
         return list(IMPERFECT_FULL[base])
     if conj == "ar":
         return [stem + e for e in ("aba", "abas", "aba", "ábamos", "abais", "aban")]
-    if base in ("oír", "reír", "sonreír"):
+    if base in ("oír", "reír", "sonreír", "freír"):
         stem = base[:-2]
     return [stem + e for e in ("ía", "ías", "ía", "íamos", "íais", "ían")]
 

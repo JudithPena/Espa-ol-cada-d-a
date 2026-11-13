@@ -42,8 +42,8 @@
 ## Урок `que_paso/fondo` — «Llovía y perdí el autobús»
 
 - **Цель:** рассказать о случае в прошлом двумя временами.
-- **Длина:** 18 шагов, около 8 минут. **Новая лексика:** el paraguas, mojado/a.
-- **Интерактив:** выбор 6, ввод 5, сборка 2, письмо 1; на слух и с голосом собеседника — 1. **Самостоятельное воспроизведение:** ввод, сборка и письмо — 8 заданий.
+- **Длина:** 20 шагов, около 8 минут. **Новая лексика:** la lluvia, el paraguas, mojado/a.
+- **Интерактив:** выбор 7, ввод 5, сборка 2, письмо 1; на слух и с голосом собеседника — 1. **Самостоятельное воспроизведение:** ввод, сборка и письмо — 8 заданий.
 
 | Шаг | Экран / тип блока | Что видит или делает ученик | Источник |
 |---|---|---|---|
@@ -51,22 +51,24 @@
 | 2 | C: выбор | Cuando salí de casa, ya ___ mucho. → llovía | — |
 | 3 | C: выбор | Estaba en el parque cuando ___ a Pablo. → vi | — |
 | 4 | C: выбор | Eran las ocho y no ___ nadie en la calle. → había | — |
-| 5 | W | новое слово: el paraguas — зонт | — |
-| 6 | W | новое слово: mojado/a — мокрый | — |
-| 7 | T: note | Cuando + indefinido — момент события: Cuando salí, vi a Ana. Обстановка вокруг этого моме… | — |
-| 8 | I: ввод | Cuando (yo, salir) ___ de casa, llovía mucho. → salí | — |
-| 9 | I: ввод | Cuando salí de casa, ya (llover) ___ mucho. → llovía | — |
-| 10 | I: ввод | No (yo, tener) ___ paraguas y llegué muy mojado. → tenía | — |
-| 11 | I: ввод | (Ser) ___ las nueve cuando llegó el jefe. → Eran | — |
-| 12 | C~: выбор на слух | на слух «Cuando llegué a la estación, el tren ya…» → Когда я пришёл на вокзал, поезда уже не… | — |
-| 13 | B: сборка | Cuando salí de casa, ya llovía mucho. | — |
-| 14 | B: сборка | No tenía paraguas y llegué muy mojado. | — |
-| 15 | I: ввод | Шёл дождь, и я опоздал на автобус. → Llovía y perdí el autobús | — |
-| 16 | O: письмо по признакам | Вспомните день, когда что-то пошло не так. Какая была погод…; образец: Era lunes y llovía mucho. No tenía para… | — |
-| 17 | Q: тест | Cuando llegué a la fiesta, ya ___ mucha gente. → había | — |
-| 18 | Q: тест | Что значит «el paraguas»? → зонт | — |
+| 5 | W | новое слово: la lluvia — дождь | — |
+| 6 | W | новое слово: el paraguas — зонт | — |
+| 7 | W | новое слово: mojado/a — мокрый | — |
+| 8 | T: note | Cuando + indefinido — момент события: Cuando salí, vi a Ana. Обстановка вокруг этого моме… | — |
+| 9 | I: ввод | Cuando (yo, salir) ___ de casa, llovía mucho. → salí | — |
+| 10 | I: ввод | Cuando salí de casa, ya (llover) ___ mucho. → llovía | — |
+| 11 | I: ввод | No (yo, tener) ___ paraguas y llegué muy mojado. → tenía | — |
+| 12 | I: ввод | (Ser) ___ las nueve cuando llegó el jefe. → Eran | — |
+| 13 | C~: выбор на слух | на слух «Cuando llegué a la estación, el tren ya…» → Когда я пришёл на вокзал, поезда уже не… | — |
+| 14 | B: сборка | Cuando salí de casa, ya llovía mucho. | — |
+| 15 | B: сборка | No tenía paraguas y llegué muy mojado. | — |
+| 16 | I: ввод | Шёл дождь, и я опоздал на автобус. → Llovía y perdí el autobús | — |
+| 17 | O: письмо по признакам | Вспомните день, когда что-то пошло не так. Какая была погод…; образец: Era lunes y llovía mucho. No tenía para… | — |
+| 18 | Q: тест | Cuando llegué a la fiesta, ya ___ mucha gente. → había | — |
+| 19 | Q: тест | Что значит «el paraguas»? → зонт | — |
+| 20 | Q: тест | Con tanta ___ no puedo salir: no tengo paraguas. → lluvia | — |
 
-Сигнатура: `T(text+compare) C×3 W×2 T(note) I×4 C~ B×2 I O Q×2`
+Сигнатура: `T(text+compare) C×3 W×3 T(note) I×4 C~ B×2 I O Q×3`
 
 ## Урок `que_paso/estaba` — «Estaba cocinando cuando sonó el teléfono»
 
@@ -162,12 +164,12 @@
 
 - **Цель:** понять чужую историю, объяснить опоздание и рассказать о случае из жизни.
 - **Длина:** 15 шагов, около 13 минут. **Новая лексика:** нет.
-- **Интерактив:** выбор 6, ввод 4, письмо 2; на слух и с голосом собеседника — 5. **Самостоятельное воспроизведение:** ввод, сборка и письмо — 6 заданий.
+- **Интерактив:** выбор 5, ввод 3, сборка 2, письмо 2; на слух и с голосом собеседника — 5. **Самостоятельное воспроизведение:** ввод, сборка и письмо — 7 заданий.
 
 | Шаг | Экран / тип блока | Что видит или делает ученик | Источник |
 |---|---|---|---|
-| 1 | I: ввод | El taxi / caro / el autobús (+) → El taxi es más caro que el autobús | — |
-| 2 | C: выбор | Mi piso no es ___ grande como tu piso. → tan | — |
+| 1 | B: сборка | Antes había menos tráfico que ahora. | — |
+| 2 | B: сборка | Ya no tengo tanto tiempo como antes. | — |
 | 3 | T: dialogue | Сообщение от Пабло | — |
 | 4 | C: выбор | ¿Dónde estaba Pablo? → En la playa. | `audio_pablo` |
 | 5 | C: выбор | ¿Qué estaban haciendo? → Jugaban al fútbol. | `audio_pablo` |

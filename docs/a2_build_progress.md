@@ -23,6 +23,8 @@
 | Шаблоны ответов `(…)`, `[a/b]` | `espanol/course.py` (`_expand`, `_alts`) | перечень допустимых ответов не пишется вручную (реестр: SYS-02, ENG-03) |
 | Блок `compose` — письмо по признакам | `course.py`, `scenario.py` (`compose_passes`), `site.py`, шаблон страницы (`composeCheck`, `composeHTML`) | ответ от себя без вердикта «неверно»; образец после ответа |
 | Признаки письма без ударений (13 ноября) | `course.py` (`_NO_ACCENTS` в `_compose_item`), тест `test_compose_regex_ignores_accents_like_the_text` | текст ученика сравнивается без ударений, а `re` их сохранял: признаки с `ía`, `más`, `éramos` в темах 30–31 не срабатывали; теперь выражение приводится к тому же виду |
+| Формы freír, sonreír (13 ноября) | `espanol/morphology.py`, тест `test_freir_and_sonreir_forms` | было «freo, free, freyó»; теперь frío, fríe, frio, frito, императив fríe / fría |
+| Проверка «слово вводится позже» в неверных вариантах (13 ноября) | `espanol/lexicon.py` (`first_taught`), тест `test_later_word_check_ignores_grammar_forms_and_hidden_mistakes` | смотрит только на явно введённые слова и видимые варианты: формы, выведенные по грамматике (trabaje после императива), и ключи `mistakes` («hace lluvia») её не задевают |
 | Блок `chat` — разговор по шагам | там же (`openSteps`, `convHTML`, `chatRecord`) | диалог, где ученик отвечает на реплики; лента разговора |
 | Вход в уровень | `isOpen`, `levelStart` в шаблоне | первый урок A2 открыт без A1 |
 | Карта экранов из сценария | `tools/site_map_gen.cjs` | карта темы A2 и «Сигнатура» для теста |

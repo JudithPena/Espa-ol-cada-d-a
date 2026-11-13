@@ -242,6 +242,9 @@ class Lexicon:
         self.known_at: list[frozenset[str]] = []
         self.features_at: list[frozenset[str]] = []
         self.first_seen: dict[str, Lesson] = {}
+        # Слова, которые урок вводит явно (карточка, forms, спряжение), без форм, выведенных по грамматике:
+        # «trabaje» после императива — форма знакомого глагола, а не новое слово.
+        self.first_taught: dict[str, Lesson] = {}
         self.names = set(course.names)
         self.items = course.items
         self._build()
@@ -252,6 +255,7 @@ class Lexicon:
         items: list[VocabItem] = []
         for lesson in self.course.lessons:
             before = set(known)
+            taught: set[str] = set()
             new_features = set(lesson.unlocks) - features
             features |= new_features
             if new_features:
@@ -259,12 +263,16 @@ class Lexicon:
                     known |= generated_forms(item, new_features)
             for item in lesson.vocab:
                 items.append(item)
+                taught |= item.base_forms()
                 known |= item.base_forms()
                 known |= generated_forms(item, features)
+            taught |= set(lesson.forms) | conjugation_forms(lesson)
             known |= set(lesson.forms)
             known |= conjugation_forms(lesson)
             for form in known - before:
                 self.first_seen[form] = lesson
+            for form in taught:
+                self.first_taught.setdefault(form, lesson)
             self.known_at.append(frozenset(known))
             self.features_at.append(frozenset(features))
 
@@ -297,8 +305,10 @@ class Lexicon:
             hint = f" (вводится позже: урок {later.number})" if later else ""
             issues.append(Issue(lesson, f"незнакомое слово «{word}»{hint} — {where}"))
         for where, text in lesson_distractors(lesson):
+            if "ожидаемая ошибка" in where:
+                continue   # ключи mistakes ученик не видит: в них слово «из будущего» ничего не подсказывает
             for word in self.unknown_words(text, lesson):
-                later = self.first_seen.get(word.lower())
+                later = self.first_taught.get(word.lower())
                 if later and later.index > lesson.index:
                     issues.append(Issue(lesson, f"слово «{word}» вводится позже (урок {later.number}) — {where}: «{plain(text)[:60]}»"))
         return issues

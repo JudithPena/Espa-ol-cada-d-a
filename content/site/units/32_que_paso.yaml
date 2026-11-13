@@ -130,6 +130,7 @@ lessons:
     goal: рассказать о случае в прошлом двумя временами
     version: 2
     vocab:
+      - "🌧 la lluvia [лью́бья] — дождь :: Con la lluvia hay mucho tráfico. — В дождь на дорогах много машин."
       - "☂️ el paraguas [пара́гуас] — зонт {pl: los paraguas} :: No tenía paraguas. — У меня не было зонта."
       - "💧 mojado/a [моха́до, моха́да] — мокрый :: Llegué a casa muy mojado. — Я пришёл домой совсем мокрый."
     blocks:
@@ -164,7 +165,7 @@ lessons:
             - q: "Eran las ocho y no ___ nadie en la calle."
               options: "había | hubo | hay"
               explain: "Обстановка — había."
-      - learn: [el paraguas, mojado/a]
+      - learn: [la lluvia, el paraguas, mojado/a]
       - note:
           id: cuando
           text: "**Cuando** + indefinido — момент события: _Cuando salí, vi a Ana_. Обстановка вокруг этого момента — в imperfecto: _Cuando salí, llovía_ — «когда я вышел, шёл дождь»."
@@ -247,7 +248,11 @@ lessons:
         skill: fondo_hechos
       - q: "Что значит «el paraguas»?"
         options: "зонт | дождь | плащ"
-        explain: "El paraguas — зонт: No tenía paraguas."
+        explain: "El paraguas — зонт; дождь — la lluvia."
+      - q: "Con tanta ___ no puedo salir: no tengo paraguas."
+        options: "lluvia | gente | tráfico"
+        explain: "Дождь — la lluvia."
+        skill: fondo_hechos
 
   - id: estaba
     kind: grammar

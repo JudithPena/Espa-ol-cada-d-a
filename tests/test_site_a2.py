@@ -102,6 +102,24 @@ def test_answer_template_errors():
         _alts(" ".join("[a/b/c/d]" for _ in range(6)))
 
 
+def test_freir_and_sonreir_forms():
+    from espanol import morphology as m
+    assert m.present("freír") == ["frío", "fríes", "fríe", "freímos", "freís", "fríen"]
+    assert m.preterite("freír") == ["freí", "freíste", "frio", "freímos", "freísteis", "frieron"]
+    assert m.imperfect("freír")[0] == "freía"
+    assert m.imperative("freír") == ["fríe", "fría", "freíd", "frían"]
+    assert m.gerund("freír") == "friendo" and m.participle("freír") == "frito"
+    assert m.present("sonreír")[0] == "sonrío" and m.preterite("sonreír")[2] == "sonrio"
+
+
+def test_later_word_check_ignores_grammar_forms_and_hidden_mistakes():
+    """«trabaje» появляется с императивом как форма знакомого глагола: это не «новое слово» для неверных вариантов,
+    а ключи mistakes ученик не видит вовсе (A1: «hace lluvia», «ayer trabaje todo el dia»)."""
+    lex = Lexicon(load_course(CONTENT / "site"))
+    assert "trabaje" in lex.first_seen and "trabaje" not in lex.first_taught
+    assert lex.first_taught["fumar"].id == "de_pequeno/antes_ahora"
+
+
 # ---------------------------------------------------------------- письмо и разговор
 
 COMPOSE = {"compose": {"title": "О себе", "free": True, "items": [{

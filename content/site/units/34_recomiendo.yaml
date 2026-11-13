@@ -1,0 +1,786 @@
+id: recomiendo
+number: 34
+level: A2
+title: Te lo recomiendo — советую
+goals:
+  - понять и дать инструкцию: рецепт, совет, просьба
+  - сказать, что делать: habla, come, haz, pon (tú) и hable, coma, haga (usted)
+  - сказать, кому, и не повторять предмет: le, les, lo, la, se lo
+  - посоветовать: tienes que, es mejor, te recomiendo
+
+# Тема 11 карты A2: императив утвердительный (tú, usted); le / les, se lo; tienes que; рецепты и советы.
+# Миссия — объяснить рецепт. Вежливое условное (deberías, podrías) — тема 36; отрицательный императив — B1.
+lessons:
+  - id: tortilla
+    kind: listening
+    title: "¿Cómo haces la tortilla?"
+    goal: понять на слух рецепт и инструкции
+    version: 2
+    # Карта экранов: docs/site_slide_maps/34_recomiendo.md
+    unlocks: [imperative]
+    vocab:
+      - "🥔 pelar [пэла́р] — чистить (овощи, фрукты) :: Pela las patatas. — Почисти картошку."
+      - "🔪 cortar [корта́р] — резать :: Corta la cebolla. — Нарежь лук."
+      - "🍳 freír [фрэи́р] — жарить {forms: frito frita} :: Fríe las patatas. — Обжарь картошку."
+      - "🍳 la sartén [сартэ́н] — сковорода {pl: las sartenes} :: Pon aceite en la sartén. — Налей масла на сковороду."
+      - "🥣 mezclar [мэθкла́р] — смешивать :: Mezcla los huevos con las patatas. — Смешай яйца с картошкой."
+      - "🍽 el plato [пла́то] — тарелка; блюдо :: La tortilla es mi plato favorito. — Тортилья — моё любимое блюдо."
+    forms: [córtalas, mézclalos, pruébala, dime]
+    blocks:
+      - "Ирина спрашивает повара Ли, как приготовить тортилью — испанский омлет с картошкой. Послушайте два раза: текста пока нет."
+      - dialogue:
+          id: receta
+          hidden: true
+          lines:
+            - "Irina: Li, tú eres cocinero. ¿Cómo haces la tortilla de patatas? | Ли, ты же повар. Как ты делаешь тортилью с картошкой?"
+            - "Li: Es muy fácil. Primero, pela cuatro patatas y córtalas en trozos pequeños. | Это очень просто. Сначала почисти четыре картофелины и нарежь их мелкими кусочками."
+            - "Irina: ¿Y la cebolla? | А лук?"
+            - "Li: Corta también una cebolla. Después, fríe las patatas y la cebolla en una sartén con mucho aceite. | Нарежь и одну луковицу. Потом обжарь картошку с луком на сковороде в большом количестве масла."
+            - "Irina: ¿Cuántos huevos pongo? | Сколько яиц класть?"
+            - "Li: Seis, con un poco de sal. Mézclalos con las patatas y pon todo otra vez en la sartén. | Шесть, с щепоткой соли. Смешай их с картошкой и снова выложи всё на сковороду."
+            - "Irina: ¿Y luego? | А потом?"
+            - "Li: Luego, espera cinco minutos. ¡Y ya está! Pruébala y dime qué tal. | Потом подожди пять минут. И готово! Попробуй и скажи, как получилось."
+      - choose:
+          title: Что вы поняли?
+          source: receta
+          items:
+            - q: "Что Ирина хочет приготовить?"
+              options: "Una tortilla de patatas. | Una paella. | Una sopa."
+              explain: "Irina: ¿Cómo haces la tortilla de patatas?"
+            - q: "Сколько нужно яиц?"
+              options: "Seis. | Cuatro. | Dos."
+              explain: "Irina: ¿Cuántos huevos pongo? — Li: Seis, con un poco de sal."
+      - learn: [pelar, cortar, freír, la sartén, mezclar, el plato]
+      - choose:
+          title: Детали рецепта
+          source: receta
+          items:
+            - q: "С чего Ли советует начать?"
+              options: "Pelar y cortar las patatas. | Poner los huevos en la nevera. | Comprar una sartén nueva."
+              explain: "Li: Primero, pela cuatro patatas y córtalas en trozos pequeños."
+            - q: "Где жарить картошку с луком?"
+              options: "En una sartén con mucho aceite. | En una sartén sin aceite. | En un plato con sal."
+              explain: "Li: …fríe las patatas y la cebolla en una sartén con mucho aceite."
+            - q: "Что сделать с яйцами?"
+              options: "Mezclar los huevos con las patatas. | Freír los huevos solos. | Poner los huevos en un plato."
+              explain: "Li: Mézclalos con las patatas…"
+            - q: "Что Ли просит сделать в конце?"
+              options: "Probar la tortilla. | Comprar más huevos. | Esperar una hora."
+              explain: "Li: Pruébala y dime qué tal."
+      - text:
+          id: notice
+          slide: new
+          text: "Ли даёт **инструкции**: pela, corta, fríe, pon, espera, prueba. Это повелительное наклонение — imperativo; здесь оно для «ты». Испанцы так дают рецепты, советы и просьбы: это не грубо."
+      - examples:
+          items:
+            - "**Pela** las patatas. — Почисти картошку."
+            - "**Corta** una cebolla. — Нарежь луковицу."
+            - "**Pon** todo en la sartén. — Выложи всё на сковороду."
+      - match:
+          title: Глагол и инструкция
+          free: true
+          skill: imperativo_tu
+          rule: notice
+          pairs:
+            - "pelar — pela"
+            - "cortar — corta"
+            - "freír — fríe"
+            - "poner — pon"
+            - "probar — prueba"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          free: true
+          skill: imperativo_tu
+          rule: notice
+          items:
+            - say: "Pon las patatas en la sartén."
+              a: "Pon las patatas en la sartén"
+              explain: "Pon — «положи», инструкция для «ты»."
+              noaudio: {q: "Напишите по-испански: «Положи картошку на сковороду» (на «ты»).", a: "Pon las patatas en la sartén"}
+      - choose:
+          title: Послушайте
+          free: true
+          skill: imperativo_tu
+          rule: notice
+          items:
+            - say: "Prueba la tortilla y dime qué tal."
+              options: "Попробуй тортилью и скажи, как тебе. | Я попробовал тортилью: она отличная. | Попробуй приготовить тортилью сам."
+              explain: "Prueba — «попробуй»; dime — «скажи мне»."
+              noaudio: {q: "Что значит «Prueba la tortilla y dime qué tal»?", options: "Попробуй тортилью и скажи, как тебе. | Я попробовал тортилью: она отличная. | Попробуй приготовить тортилью сам."}
+      - choose:
+          title: Какое слово?
+          free: true
+          rule: none
+          items:
+            - q: "La tortilla de patatas es mi ___ favorito."
+              options: "plato | vaso | trozo"
+              explain: "Plato — и тарелка, и блюдо."
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: imperativo_tu
+          rule: notice
+          items:
+            - es: "Primero, pela las patatas y corta la cebolla."
+              ru: "Сначала почисти картошку и нарежь лук."
+              extra: [pelas]
+            - es: "Después, fríe todo en una sartén."
+              ru: "Потом обжарь всё на сковороде."
+
+  - id: imperativo_tu
+    kind: grammar
+    title: "Habla, come, escribe — и haz, pon, ven"
+    goal: дать инструкцию или совет на «ты»
+    version: 2
+    vocab:
+      - "➕ añadir [аньяди́р] — добавить :: Añade un poco de sal. — Добавь немного соли."
+      - "🔥 caliente [калье́нтэ] — горячий :: La sopa está muy caliente. — Суп очень горячий."
+      - "🤝 ayudar [аюда́р] — помогать :: ¿Me ayudas con la cena? — Поможешь мне с ужином?"
+      - "💡 la luz [луθ] — свет {pl: las luces} :: Hay mucha luz en el salón. — В гостиной много света."
+      - "🔌 apagar [апага́р] — выключить :: Apaga la luz, por favor. — Выключи свет, пожалуйста."
+    blocks:
+      - "Инструкция на «ты» почти всегда совпадает с формой «он, она» настоящего времени: _habla_, _come_, _escribe_."
+      - learn: [añadir, caliente, ayudar, la luz, apagar]
+      - table:
+          id: imp_tu
+          title: Imperativo для «ты»
+          rows:
+            - ["-ar → **-a**", "Habla más despacio. — Говори медленнее."]
+            - ["-er → **-e**", "Come algo caliente. — Поешь чего-нибудь горячего."]
+            - ["-ir → **-e**", "Escribe tu nombre. — Напиши своё имя."]
+            - ["с чередованием, как в настоящем", "Prueba esto. — Попробуй это. Cierra la ventana. — Закрой окно."]
+      - write:
+          title: Дайте инструкцию
+          format: одна форма глагола
+          skill: imperativo_tu
+          rule: imp_tu
+          items:
+            - q: "(hablar) ___ más despacio, por favor."
+              a: "Habla"
+              explain: "Hablar → habla."
+            - q: "(escribir) ___ tu nombre aquí."
+              a: "Escribe"
+              explain: "Escribir → escribe."
+            - q: "(cerrar) ___ la ventana: hace frío."
+              a: "Cierra"
+              explain: "Как в настоящем: cierra."
+              mistakes:
+                "cerra": "У cerrar чередование, как в настоящем: **cierra**."
+            - q: "(añadir) ___ un poco de sal a la sopa."
+              a: "Añade"
+              explain: "Añadir → añade."
+            - q: "(apagar) ___ la luz, por favor."
+              a: "Apaga"
+              explain: "Apagar → apaga."
+      - table:
+          id: imp_irreg
+          slide: new
+          title: Восемь особых форм
+          rows:
+            - ["decir → **di**", "Di la verdad. — Скажи правду."]
+            - ["hacer → **haz**", "Haz los deberes. — Сделай уроки."]
+            - ["ir → **ve**", "Ve a la farmacia. — Сходи в аптеку."]
+            - ["poner → **pon**", "Pon la mesa. — Накрой на стол."]
+            - ["salir → **sal**", "Sal temprano: hay mucho tráfico. — Выходи пораньше: много машин."]
+            - ["ser → **sé**", "Sé puntual. — Будь пунктуальным."]
+            - ["tener → **ten**", "Ten siempre agua en el coche. — Держи в машине воду."]
+            - ["venir → **ven**", "Ven aquí. — Иди сюда."]
+      - write:
+          title: Особые формы
+          format: одна форма глагола
+          skill: imperativo_tu
+          rule: imp_irreg
+          items:
+            - q: "(venir) ___ a mi casa esta noche."
+              a: "Ven"
+              explain: "Venir → ven."
+              mistakes:
+                "viene": "Это особая форма: **ven**."
+            - q: "(hacer) ___ los deberes ahora."
+              a: "Haz"
+              explain: "Hacer → haz."
+              mistakes:
+                "hace": "Это особая форма: **haz**."
+            - q: "(poner) ___ la mesa, por favor."
+              a: "Pon"
+              explain: "Poner → pon."
+            - q: "(decir) ___ la verdad."
+              a: "Di"
+              explain: "Decir → di."
+            - q: "(salir) ___ de casa a las ocho."
+              a: "Sal"
+              explain: "Salir → sal."
+      - choose:
+          title: Выберите форму
+          skill: imperativo_tu
+          rule: imp_irreg
+          items:
+            - q: "¡Pablo, ___ aquí! Necesito ayuda."
+              options: "ven | viene | vienes"
+              explain: "Venir → ven."
+            - q: "___ al supermercado y compra pan, por favor."
+              options: "Ve | Va | Vas"
+              explain: "Ir → ve."
+            - say: "Apaga la luz y cierra la puerta, por favor."
+              options: "Выключи свет и закрой дверь, пожалуйста. | Включи свет и открой дверь, пожалуйста. | Свет выключен, а дверь закрыта."
+              explain: "Apaga — «выключи»; cierra — «закрой»."
+              noaudio: {q: "Что значит «Apaga la luz y cierra la puerta, por favor»?", options: "Выключи свет и закрой дверь, пожалуйста. | Включи свет и открой дверь, пожалуйста. | Свет выключен, а дверь закрыта."}
+      - build:
+          title: Соберите фразу
+          skill: imperativo_tu
+          rule: imp_irreg
+          items:
+            - es: "Haz los deberes y después sal con tus amigos."
+              ru: "Сделай уроки, а потом иди гулять с друзьями."
+              extra: [hace]
+            - es: "Ven a casa y ayuda a tu hermano."
+              ru: "Приходи домой и помоги брату."
+      - compose:
+          title: Советы другу
+          skill: imperativo_tu
+          rule: imp_tu
+          items:
+            - q: "Друг впервые едет в ваш город. Дайте ему три совета на «ты»: что посетить, что попробовать, что взять с собой."
+              format: "Visita… Prueba… Lleva…"
+              words: [10, 50]
+              sentences: 2
+              checks:
+                - label: "инструкции на «ты»: visita, prueba, lleva, ve, haz…"
+                  re: "\\b(ve|ven|haz|pon|sal|ten|di|sé|visita|prueba|come|bebe|compra|toma|lleva|pasea|mira|sube|habla|escribe|llama|busca|reserva|camina|usa)\\b"
+              sample: "Visita el centro por la mañana. Prueba la comida del mercado y lleva siempre agua: en verano hace mucho calor."
+              sample_ru: "Сходи в центр утром. Попробуй еду на рынке и всегда носи с собой воду: летом очень жарко."
+    quiz:
+      - q: "___ la verdad, por favor."
+        options: "Di | Dice | Dime la"
+        explain: "Decir → di."
+        skill: imperativo_tu
+      - q: "La sopa está muy ___: espera un poco."
+        options: "caliente | fría | apagada"
+        explain: "Нужно подождать — суп горячий: caliente."
+
+  - id: imperativo_usted
+    kind: grammar
+    title: "Pase, rellene, firme: на «вы»"
+    goal: понять и дать вежливую инструкцию на «вы»
+    version: 2
+    vocab:
+      - "📝 rellenar [рэльэна́р] — заполнить (бланк) :: Rellene este formulario. — Заполните этот бланк."
+      - "✍️ firmar [фирма́р] — подписать :: Firme aquí, por favor. — Подпишите здесь, пожалуйста."
+      - "📄 el formulario [формула́рьо] — бланк, анкета :: El formulario está en internet. — Бланк есть в интернете."
+    blocks:
+      - learn: [rellenar, firmar, el formulario]
+      - "Ирина пришла в языковую школу записаться на курс."
+      - dialogue:
+          id: oficina
+          lines:
+            - "Secretaria: Buenos días. Pase, pase. ¿Qué necesita? | Доброе утро. Проходите, проходите. Что вам нужно?"
+            - "Irina: Quiero estudiar español en esta escuela. | Я хочу учить испанский в этой школе."
+            - "Secretaria: Muy bien. Rellene este formulario, por favor, y firme aquí. | Хорошо. Заполните, пожалуйста, этот бланк и подпишите здесь."
+            - "Irina: ¿Con este bolígrafo? | Этой ручкой?"
+            - "Secretaria: Sí. Y espere un momento: ahora viene la profesora. | Да. И подождите минутку: сейчас придёт преподавательница."
+      - text:
+          id: usted
+          slide: new
+          text: "Секретарь говорит Ирине на «вы»: **pase**, **rellene**, **firme**, **espere**. У этих форм гласная «меняется»: у глаголов на -ar — **-e**, на -er и -ir — **-a**. Основа — от формы «я»: _hago_ → **haga**, _pongo_ → **ponga**, _vengo_ → **venga**."
+      - table:
+          id: imp_usted
+          title: Imperativo для «вы» (usted, ustedes)
+          rows:
+            - ["-ar: hablo → **hable**, **hablen**", "Hable más despacio, por favor. — Говорите медленнее, пожалуйста."]
+            - ["-er: como → **coma**, **coman**", "Coma algo. — Поешьте что-нибудь."]
+            - ["-ir: escribo → **escriba**, **escriban**", "Escriba su nombre. — Напишите своё имя."]
+            - ["от особой формы «я»", "hago → haga, pongo → ponga, tengo → tenga, vengo → venga, digo → diga, salgo → salga"]
+            - ["совсем особые", "ir → vaya, ser → sea, estar → esté"]
+      - note:
+          id: diga
+          text: "Вы уже знаете один такой императив: **¿Diga?** — «Говорите!», так отвечают по телефону."
+      - write:
+          title: Скажите на «вы»
+          format: одна форма глагола
+          free: true
+          skill: imperativo_usted
+          rule: imp_usted
+          items:
+            - q: "(pasar) ___, por favor: el médico le espera."
+              a: "Pase"
+              explain: "Pasar → pase."
+              mistakes:
+                "pasa": "Pasa — на «ты». На «вы» — **pase**."
+            - q: "(rellenar) ___ este formulario."
+              a: "Rellene"
+              explain: "Rellenar → rellene."
+            - q: "(venir) ___ mañana a las diez."
+              a: "Venga"
+              explain: "Vengo → venga."
+              mistakes:
+                "vene": "Основа — от формы «я» (vengo): **venga**."
+            - q: "(hacer) ___ el favor de esperar aquí."
+              a: "Haga"
+              explain: "Hago → haga."
+            - q: "(ir) ___ a la segunda planta."
+              a: "Vaya"
+              explain: "Ir → vaya."
+      - choose:
+          title: На «ты» или на «вы»?
+          free: true
+          skill: imperativo_usted
+          rule: imp_usted
+          items:
+            - q: "Señor García, ___ aquí, por favor."
+              options: "firme | firma | firmas"
+              explain: "Señor García — на «вы»: firme."
+            - q: "Ana, ___ la ventana, que hace calor."
+              options: "abre | abra | abres"
+              explain: "Ana — на «ты»: abre."
+            - q: "Señores, ___ por aquí, por favor."
+              options: "pasen | pase | pasan"
+              explain: "Señores — ustedes: pasen."
+            - say: "Pase, por favor, y espere aquí un momento."
+              options: "Проходите, пожалуйста, и подождите здесь минутку. | Проходи и жди меня здесь. | Он прошёл и ждёт здесь."
+              explain: "Pase, espere — вежливые инструкции на «вы»."
+              noaudio: {q: "Что значит «Pase, por favor, y espere aquí un momento»?", options: "Проходите, пожалуйста, и подождите здесь минутку. | Проходи и жди меня здесь. | Он прошёл и ждёт здесь."}
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: imperativo_usted
+          rule: imp_usted
+          items:
+            - es: "Rellene el formulario y firme aquí, por favor."
+              ru: "Заполните бланк и подпишите здесь, пожалуйста."
+              extra: [rellena]
+      - compose:
+          title: Вы — администратор
+          free: true
+          skill: imperativo_usted
+          rule: imp_usted
+          items:
+            - q: "Вы работаете в гостинице. Гость только что приехал. Дайте ему две-три инструкции на «вы»."
+              format: "Rellene… Suba… Llame…"
+              words: [8, 45]
+              sentences: 2
+              checks:
+                - label: "инструкции на «вы»: rellene, firme, suba, espere, llame…"
+                  re: "\\b(pase|espere|rellene|firme|suba|tome|llame|venga|vaya|haga|ponga|diga|deje|lleve|escriba|coma|desayune|baje|use|mire|busque)\\b"
+              sample: "Rellene este formulario y firme aquí. Suba a la segunda planta y deje la maleta en la habitación. Si necesita algo, llame a este número."
+              sample_ru: "Заполните этот бланк и подпишите здесь. Поднимитесь на третий этаж и оставьте чемодан в номере. Если что-то понадобится, звоните по этому номеру."
+    quiz:
+      - q: "Señora, ___ su nombre aquí, por favor."
+        options: "escriba | escribe | escribes"
+        explain: "Señora — на «вы»: escriba."
+        skill: imperativo_usted
+        free: true
+      - q: "Что значит «Firme aquí»?"
+        options: "Подпишите здесь. | Заполните здесь. | Ждите здесь."
+        explain: "Firmar — подписать."
+        free: true
+
+  - id: se_lo
+    kind: grammar
+    title: "Le, les — и se lo"
+    goal: сказать, кому что дарите или даёте, не повторяя предмет
+    version: 2
+    vocab:
+      - "🎁 regalar [рэгала́р] — дарить :: Le regalo flores a mi madre. — Я дарю маме цветы."
+      - "🤲 prestar [прэста́р] — одалживать, давать на время :: ¿Me prestas tu bici? — Одолжишь мне велосипед?"
+      - "↩️ devolver [дэбольбэ́р] — возвращать (вещь) :: Mañana te devuelvo el libro. — Завтра верну тебе книгу."
+      - "🌷 la flor [флор] — цветок {pl: las flores} :: Estas flores son para ti. — Эти цветы тебе."
+    forms: [cómpralo, cómprala, pruébalo, pruébala, dime, llámame, escríbeme, ayúdame]
+    blocks:
+      - learn: [regalar, prestar, devolver, la flor]
+      - table:
+          id: le_les
+          title: Кому?
+          rows:
+            - ["**le** — ему, ей, вам (usted)", "Le regalo flores a mi madre. — Я дарю маме цветы."]
+            - ["**les** — им, вам (ustedes)", "Les escribo a mis abuelos. — Я пишу бабушке с дедушкой."]
+      - note:
+          id: a_mi_madre
+          text: "Испанцы часто говорят «кому» дважды: _**Le** regalo flores **a mi madre**_. Это не ошибка, а обычная речь: le — «ей», a mi madre уточняет, кому."
+      - choose:
+          title: Le или les?
+          skill: le_les
+          rule: le_les
+          items:
+            - q: "___ presto mi coche a Pablo."
+              options: "Le | Les | Lo"
+              explain: "Pablo — один человек: le."
+            - q: "___ escribo un mensaje a mis padres."
+              options: "Les | Le | Los"
+              explain: "Mis padres — несколько человек: les."
+            - q: "¿Qué ___ regalas a tu hermana?"
+              options: "le | la | les"
+              explain: "Кому? — сестре: le."
+      - table:
+          id: se_lo
+          slide: new
+          title: "Le + lo = se lo"
+          rows:
+            - ["le / les + lo, la, los, las → **se** lo, **se** la…", "¿Le prestas el coche a Pablo? — Sí, **se lo** presto. — Да, одалживаю (его ему)."]
+            - ["сначала «кому», потом «что»", "¿Les regalas flores a tus padres? — Sí, **se las** regalo."]
+      - write:
+          title: Ответьте с se lo, se la…
+          format: два слова
+          skill: le_les
+          rule: se_lo
+          items:
+            - q: "¿Le devuelves el libro a Ana? — Sí, ___ devuelvo mañana."
+              a: "se lo"
+              explain: "Le + lo → se lo."
+              mistakes:
+                "le lo": "Le перед lo меняется на **se**: se lo devuelvo."
+            - q: "¿Les prestas la bici a tus amigos? — Sí, ___ presto."
+              a: "se la"
+              explain: "La bici — la: se la presto."
+            - q: "¿Le regalas flores a tu madre? — Sí, ___ regalo."
+              a: "se las"
+              explain: "Las flores — las: se las regalo."
+      - note:
+          id: pegado
+          slide: new
+          text: "С инструкцией местоимение пишется **слитно, в конце**: _cómpralo_, _pruébala_, _dime_, _llámame_, _ayúdame_. Ударение остаётся на месте, поэтому часто появляется знак: _compra_ → _cómpralo_, _prueba_ → _pruébala_."
+      - choose:
+          title: Выберите вариант
+          skill: le_les
+          rule: pegado
+          items:
+            - q: "— ¿Puedo probar la sopa? — Sí, claro, ___."
+              options: "pruébala | la prueba | prueba la"
+              explain: "Местоимение — слитно в конце: pruébala."
+            - q: "— Este jersey es muy bonito. — Sí, ___: no es caro."
+              options: "cómpralo | lo compra | compra lo"
+              explain: "Местоимение — слитно в конце: cómpralo."
+            - say: "Llámame mañana y dime qué tal el examen."
+              options: "Позвони мне завтра и скажи, как прошёл экзамен. | Я позвоню тебе завтра после экзамена. | Позвони завтра преподавателю насчёт экзамена."
+              explain: "Llámame — «позвони мне»; dime — «скажи мне»."
+              noaudio: {q: "Что значит «Llámame mañana y dime qué tal el examen»?", options: "Позвони мне завтра и скажи, как прошёл экзамен. | Я позвоню тебе завтра после экзамена. | Позвони завтра преподавателю насчёт экзамена."}
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: le_les
+          rule: pegado
+          items:
+            - q: "Позвони мне завтра."
+              a: "Llámame mañana | Mañana llámame"
+              explain: "Llama + me → llámame."
+              mistakes:
+                "me llama mañana": "В инструкции местоимение — в конце и слитно: **llámame**."
+            - q: "Я дарю бабушке цветы."
+              a: "Le regalo flores a mi abuela | A mi abuela le regalo flores | Le regalo unas flores a mi abuela"
+              explain: "Кому — le; a mi abuela уточняет."
+      - build:
+          title: Соберите фразу
+          skill: le_les
+          rule: se_lo
+          items:
+            - es: "¿El libro? Mañana se lo devuelvo a Ana."
+              ru: "Книга? Завтра верну её Ане."
+              extra: [le]
+      - compose:
+          title: Подарки
+          skill: le_les
+          rule: le_les
+          items:
+            - q: "Что вы дарите близким на праздники? Напишите две-три фразы: кому и что."
+              format: "A mi madre le regalo…"
+              words: [8, 45]
+              sentences: 2
+              checks:
+                - label: "кому: le…, les…"
+                  any: [le, les, se lo, se la, se los, se las]
+              sample: "A mi madre le regalo flores, porque le encantan. A mis abuelos les compro un libro de fotos de la familia."
+              sample_ru: "Маме я дарю цветы: она их обожает. Бабушке и дедушке покупаю книгу с семейными фотографиями."
+    quiz:
+      - q: "¿Le prestas tu coche a Pablo? — No, no ___ presto."
+        options: "se lo | le lo | se le"
+        explain: "Le + lo → se lo."
+        skill: le_les
+      - q: "— ¿Qué le regalas a tu padre? — ___ regalo un libro."
+        options: "Le | Lo | Les"
+        explain: "Кому — отцу: le."
+        skill: le_les
+
+  - id: lectura
+    kind: reading
+    title: "Gazpacho andaluz"
+    goal: понять рецепт и записать свой
+    version: 2
+    vocab:
+      - "📋 los ingredientes [ингрэдье́нтэс] — продукты для блюда, ингредиенты :: Estos son los ingredientes. — Вот продукты."
+      - "🥒 el pepino [пэпи́но] — огурец :: Pela el pepino. — Почисти огурец."
+      - "🍶 el vinagre [бина́грэ] — уксус :: Añade un poco de vinagre. — Добавь немного уксуса."
+      - "🌀 la batidora [батидо́ра] — блендер :: Pon todo en la batidora. — Положи всё в блендер."
+      - "🌀 batir [бати́р] — взбивать, перемалывать :: Bate todo dos minutos. — Взбей всё две минуты."
+      - "🍽 servir [сэрби́р] — подавать (на стол) :: Sírvelo muy frío. — Подавай очень холодным."
+      - "🍅 el gazpacho [гаспа́чо] — гаспачо, холодный суп из помидоров :: En verano tomo mucho gazpacho. — Летом я ем много гаспачо."
+    forms: [ponlo, sírvelo]
+    allow: [andaluz]
+    blocks:
+      - learn: [los ingredientes, el pepino, el vinagre, el gazpacho]
+      - learn: [la batidora, batir, servir]
+      - "Ли публикует в блоге рецепт летнего холодного супа из Андалусии."
+      - reading:
+          id: gazpacho
+          title: Gazpacho andaluz
+          text: |
+            Ingredientes: un kilo de tomates, un pepino, un pimiento verde, un diente de ajo, medio vaso de aceite, un poco de vinagre, sal y un trozo de pan.
+
+            Primero, lava bien las verduras. Pela el pepino y corta los tomates, el pimiento y el pepino en trozos. Después, pon todo en la batidora con el ajo, el pan, el aceite, el vinagre y la sal. Bate todo dos minutos.
+
+            Prueba el gazpacho y, si quieres, añade un poco más de sal o de vinagre. Al final, ponlo en la nevera dos horas. Sírvelo muy frío, en vasos o en platos. ¡Es perfecto para el verano!
+          translation: |
+            Продукты: килограмм помидоров, огурец, зелёный перец, зубчик чеснока, полстакана масла, немного уксуса, соль и кусок хлеба.
+
+            Сначала хорошо помой овощи. Почисти огурец и нарежь кусками помидоры, перец и огурец. Потом положи всё в блендер вместе с чесноком, хлебом, маслом, уксусом и солью. Взбивай всё две минуты.
+
+            Попробуй гаспачо и, если хочешь, добавь ещё немного соли или уксуса. В конце поставь его в холодильник на два часа. Подавай очень холодным — в стаканах или в тарелках. Идеально для лета!
+      - choose:
+          title: Что сказано в рецепте?
+          source: gazpacho
+          items:
+            - q: "¿Qué no está en los ingredientes?"
+              options: "Huevos. | Pepino. | Ajo."
+              explain: "Ingredientes: tomates, pepino, pimiento, ajo, aceite, vinagre, sal y pan — huevos нет."
+            - q: "¿Qué hay que pelar?"
+              options: "El pepino. | Los tomates. | El pimiento."
+              explain: "Pela el pepino y corta los tomates, el pimiento y el pepino en trozos."
+            - q: "¿Cuánto tiempo hay que batir todo?"
+              options: "Dos minutos. | Dos horas. | Cinco minutos."
+              explain: "Bate todo dos minutos."
+            - q: "¿Qué hay que hacer al final?"
+              options: "Poner el gazpacho en la nevera dos horas. | Freír el gazpacho en una sartén. | Servir el gazpacho muy caliente."
+              explain: "Al final, ponlo en la nevera dos horas."
+              skill: imperativo_tu
+            - q: "¿Cómo se sirve el gazpacho?"
+              options: "Muy frío. | Muy caliente. | Con huevo."
+              explain: "Sírvelo muy frío, en vasos o en platos."
+      - sort:
+          title: Что сначала, что потом?
+          source: gazpacho
+          skill: imperativo_tu
+          groups:
+            "сначала": ["lava las verduras", "pela el pepino", "corta los tomates"]
+            "потом": ["bate todo", "prueba el gazpacho", "ponlo en la nevera"]
+      - write:
+          title: Ответьте по тексту
+          format: короткий ответ по-испански
+          source: gazpacho
+          items:
+            - q: "¿Qué puedes añadir al final, si quieres?"
+              a: "Un poco más de sal o de vinagre | Un poco más de sal o vinagre | Más sal o vinagre | Sal o vinagre"
+              explain: "…si quieres, añade un poco más de sal o de vinagre."
+            - q: "Как в рецепте сказано «Положи всё в блендер»?"
+              a: "Pon todo en la batidora"
+              explain: "Pon — особая форма poner."
+              skill: imperativo_tu
+      - choose:
+          title: Послушайте
+          free: true
+          rule: none
+          items:
+            - say: "Pon todo en la batidora y bate dos minutos."
+              options: "Положи всё в блендер и взбивай две минуты. | Положи всё в холодильник на два часа. | Взбей яйца и положи их на сковороду."
+              explain: "Pon — «положи»; bate — «взбивай»."
+              skill: imperativo_tu
+              noaudio: {q: "Что значит «Pon todo en la batidora y bate dos minutos»?", options: "Положи всё в блендер и взбивай две минуты. | Положи всё в холодильник на два часа. | Взбей яйца и положи их на сковороду."}
+      - compose:
+          title: Ваш рецепт
+          free: true
+          rule: none
+          skill: imperativo_tu
+          items:
+            - q: "Напишите рецепт простого блюда, которое вы любите: продукты и 4–5 шагов на «ты»."
+              format: "Ingredientes: … Primero, corta… Después, pon…"
+              words: [25, 100]
+              sentences: 3
+              checks:
+                - label: "продукты: ingredientes, kilo, gramos…"
+                  any: [ingredientes, kilo, kilos, gramos, litro, vaso, huevos, patatas, tomates, cebolla, arroz, pollo]
+                - label: "шаги: primero, después, luego, al final"
+                  any: [primero, después, luego, al final]
+                - label: "инструкции на «ты»: corta, pon, añade, mezcla…"
+                  re: "\\b(corta|pela|pon|añade|mezcla|fríe|bate|lava|prueba|sirve|cocina|haz|deja|espera|toma|come|calienta|echa)\\b"
+              sample: "Ingredientes: tres huevos, un tomate, un poco de queso y sal. Primero, corta el tomate en trozos. Después, mezcla los huevos con la sal y el queso. Luego, pon todo en una sartén con un poco de aceite. Al final, sírvelo caliente."
+              sample_ru: "Продукты: три яйца, помидор, немного сыра и соль. Сначала нарежь помидор кусочками. Потом смешай яйца с солью и сыром. Затем выложи всё на сковороду с небольшим количеством масла. В конце подавай горячим."
+
+  - id: mision
+    kind: practice
+    title: Объяснить рецепт
+    goal: понять поручения и по шагам объяснить рецепт другу
+    version: 2
+    forms: [fríelas]
+    blocks:
+      - review:
+          title: Вспомним
+          skills: [proponer, quedar_cita, estar_ahora]
+          n: 2
+      - "Ли прислал голосовое сообщение. Послушайте: текста нет."
+      - dialogue:
+          id: audio_li
+          hidden: true
+          title: Сообщение от Ли
+          lines:
+            - "Li: Hola, soy Li. Mañana hacemos la cena en mi casa. Por favor, compra dos kilos de patatas y una docena de huevos. Ven a las seis y lleva tu sartén grande: mi sartén es muy pequeña. Y llama a Pablo: la cena es a las nueve. ¡Hasta mañana! | Привет, это Ли. Завтра ужинаем у меня. Купи, пожалуйста, два килограмма картошки и десяток яиц. Приходи к шести и захвати свою большую сковороду: моя совсем маленькая. А! И позвони Пабло: ужин в девять. До завтра!"
+      - choose:
+          title: Что просит Ли?
+          source: audio_li
+          items:
+            - q: "¿Qué hay que comprar?"
+              options: "Patatas y huevos. | Tomates y pan. | Aceite y sal."
+              explain: "…compra dos kilos de patatas y una docena de huevos."
+              skill: imperativo_tu
+            - q: "¿A qué hora hay que ir a casa de Li?"
+              options: "A las seis. | A las nueve. | A las ocho."
+              explain: "Ven a las seis…"
+            - q: "¿Qué hay que llevar?"
+              options: "Una sartén grande. | Una batidora. | Flores para Li."
+              explain: "…lleva tu sartén grande."
+            - q: "¿A quién hay que llamar?"
+              options: "A Pablo. | A Lucía. | A Diego."
+              explain: "Y llama a Pablo: la cena es a las nueve."
+      - mission:
+          id: receta_amigo
+          title: Объяснить рецепт
+          text: "Том хочет приготовить тортилью и звонит вам. Объясните по шагам, на «ты»."
+      - chat:
+          id: tom
+          title: Рецепт по телефону
+          with: Tom
+          turns:
+            - say: "¡Hola! Quiero hacer una tortilla de patatas. ¿Qué compro? | Привет! Хочу сделать тортилью с картошкой. Что купить?"
+              task: "Скажите: купи картошку, лук и шесть яиц."
+              skill: imperativo_tu
+              write: "Compra patatas, [cebolla/una cebolla] y seis huevos | Compra seis huevos, patatas y [cebolla/una cebolla]"
+              format: инструкция
+              mistakes:
+                "compras patatas cebolla y seis huevos": "Инструкция на «ты» — **compra**, без -s."
+            - say: "Vale. ¿Y qué hago primero? | Хорошо. А что делать сначала?"
+              task: "Скажите: сначала почисти и нарежь картошку."
+              skill: imperativo_tu
+              write: "Primero(,) pela y corta las patatas | Primero(,) pela las patatas y córtalas | Pela y corta las patatas"
+              format: первый шаг
+            - say: "¿Y después? | А потом?"
+              task: "Скажите: обжарь картошку с луком на сковороде."
+              skill: imperativo_tu
+              write: "Fríe las patatas [con/y] la cebolla en [la/una] sartén | Después(,) fríe las patatas [con/y] la cebolla en [la/una] sartén | Fríelas con la cebolla en [la/una] sartén"
+              format: второй шаг
+              mistakes:
+                "frie las patatas con la cebolla en la sartén": "Почти: в fríe нужен знак ударения — fr**í**e."
+            - say: "¿Cuánto aceite pongo? | Сколько масла класть?"
+              task: "Ответьте: много."
+              skill: imperativo_tu
+              choose: "Pon mucho aceite. | Pones mucho aceite. | Ponga mucho aceite."
+              explain: "Тому — на «ты»: pon. Ponga — на «вы»."
+            - say: "¿Y los huevos? | А яйца?"
+              task: "Скажите от себя, что делать с яйцами: одна-две инструкции."
+              skill: imperativo_tu
+              compose:
+                format: "Bate… Mezcla…"
+                words: [3, 25]
+                checks:
+                  - label: "инструкция на «ты»: bate, mezcla, pon, añade…"
+                    re: "\\b(bate|mezcla|mezclalos|pon|ponlos|añade|fríe|prueba|echa)\\b"
+                sample: "Bate los huevos con sal y mézclalos con las patatas."
+                sample_ru: "Взбей яйца с солью и смешай с картошкой."
+            - say: "¡Gracias! Mañana te llevo un trozo. | Спасибо! Завтра принесу тебе кусочек."
+      - compose:
+          title: Записка соседу
+          free: true
+          rule: none
+          skill: [imperativo_tu, le_les]
+          items:
+            - q: "Вы уезжаете на два дня. Напишите соседу по квартире записку на «ты»: что купить, что сделать дома и кому позвонить."
+              format: "Hola, Pablo: compra… Llama a…"
+              words: [15, 70]
+              sentences: 2
+              checks:
+                - label: "инструкции на «ты»: compra, haz, pon, llama…"
+                  re: "\\b(compra|haz|pon|llama|lleva|deja|abre|cierra|apaga|cocina|lava|escribe|di|dile|ve|ven|saca|limpia)\\b"
+                - label: "кому позвонить: llama a…"
+                  any: [llama a]
+              sample: "Hola, Pablo: compra pan y leche, por favor. Haz arroz para la cena y apaga la luz del salón por la noche. Y llama a Lucía: es su cumpleaños."
+              sample_ru: "Привет, Пабло! Купи, пожалуйста, хлеба и молока. Свари рис на ужин и вечером выключай свет в гостиной. И позвони Лусии: у неё день рождения."
+
+  - id: quiz
+    kind: quiz
+    title: "Тест: Te lo recomiendo"
+    goal: проверить цели темы — инструкции на «ты» и «вы», le / les, se lo
+    version: 2
+    check: soft
+    forms: [fríelas]
+    blocks:
+      - "Это тест по теме «Te lo recomiendo»: двенадцать заданий."
+      - cando:
+          - "понять и дать инструкцию: рецепт, совет, просьба"
+          - "сказать, что делать, на «ты» и на «вы»: pon, haz, ven — ponga, haga, venga"
+          - "сказать, кому: le, les, se lo"
+          - "дать совет: te recomiendo, tienes que, es mejor"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          rule: none
+          skill: imperativo_tu
+          items:
+            - say: "Corta la cebolla y pon todo en la sartén."
+              a: "Corta la cebolla y pon todo en la sartén"
+              noaudio: {q: "Напишите по-испански: «Нарежь лук и выложи всё на сковороду».", a: "Corta la cebolla y pon todo en la sartén"}
+      - choose:
+          title: Послушайте
+          rule: none
+          items:
+            - say: "Rellene el formulario y firme aquí, por favor."
+              options: "Заполните бланк и подпишите здесь, пожалуйста. | Я заполнил бланк и подписал его. | Заполни бланк и отдай его мне."
+              skill: imperativo_usted
+              noaudio: {q: "Что значит «Rellene el formulario y firme aquí, por favor»?", options: "Заполните бланк и подпишите здесь, пожалуйста. | Я заполнил бланк и подписал его. | Заполни бланк и отдай его мне."}
+            - say: "¿Me prestas tu paraguas? Mañana te lo devuelvo."
+              options: "Одолжишь зонт? Завтра верну. | Подаришь мне зонт? Завтра заберу. | Верни мне зонт завтра, пожалуйста."
+              skill: le_les
+              noaudio: {q: "Что значит «¿Me prestas tu paraguas? Mañana te lo devuelvo»?", options: "Одолжишь зонт? Завтра верну. | Подаришь мне зонт? Завтра заберу. | Верни мне зонт завтра, пожалуйста."}
+      - write:
+          title: Вставьте форму
+          format: одна форма
+          rule: none
+          items:
+            - q: "(tú, venir) ___ aquí, por favor."
+              a: "Ven"
+              skill: imperativo_tu
+            - q: "(usted, pasar) ___, la médica le espera."
+              a: "Pase"
+              skill: imperativo_usted
+            - q: "(tú, hacer) ___ la cena hoy, por favor."
+              a: "Haz"
+              skill: imperativo_tu
+            - q: "¿Le prestas el libro a Ana? — Sí, ___ presto."
+              a: "se lo"
+              skill: le_les
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          rule: none
+          items:
+            - q: "Скажи мне правду."
+              a: "Dime la verdad"
+              skill: le_les
+              mistakes:
+                "me di la verdad": "В инструкции местоимение — в конце и слитно: **dime**."
+            - q: "Подпишите здесь, пожалуйста."
+              a: "Firme aquí(,) por favor | Por favor(,) firme aquí"
+              skill: imperativo_usted
+              mistakes:
+                "firma aquí por favor": "Firma — на «ты». На «вы» — **firme**."
+      - build:
+          title: Соберите фразу
+          rule: none
+          skill: imperativo_tu
+          items:
+            - es: "Pela las patatas y fríelas con la cebolla."
+              ru: "Почисти картошку и обжарь её с луком."
+              extra: [pelas]
+    quiz:
+      - q: "Señora, ___ aquí un momento, por favor."
+        options: "espere | espera | esperas"
+        explain: "Señora — на «вы»: espere."
+        skill: imperativo_usted
+      - q: "Что значит «la sartén»?"
+        options: "сковорода | кастрюля | тарелка"
+        explain: "La sartén — сковорода; тарелка — el plato."
