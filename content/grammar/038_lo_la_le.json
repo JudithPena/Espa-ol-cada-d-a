@@ -32,12 +32,12 @@
         "instruction": "Выбери ответ по ситуации.",
         "questions": [
           {
-            "prompt": "Necesito el diccionario. ___ necesito.",
+            "prompt": "Busco el móvil. ___ busco.",
             "answers": [
               "Lo"
             ],
-            "explain": "Diccionario — вещь мужского рода. Le не заменяет предмет.",
-            "context": "Мне нужен словарь.",
+            "explain": "Móvil — вещь мужского рода. Le не заменяет предмет.",
+            "context": "Я ищу мобильный.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -55,12 +55,12 @@
             ]
           },
           {
-            "prompt": "Veo a Julia. ___ veo.",
+            "prompt": "Espero a Carmen. ___ espero.",
             "answers": [
               "La"
             ],
-            "explain": "Заменяем саму Юлию, а не получателя подарка.",
-            "context": "Вижу Юлию; рассказываешь о ней в третьем лице.",
+            "explain": "Заменяем саму Кармен — ту, кого ждём, а не получателя подарка.",
+            "context": "Жду Кармен; рассказываешь о ней в третьем лице.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -140,12 +140,12 @@
             ]
           },
           {
-            "prompt": "Les he dejado el coche. → ___ he dejado.",
+            "prompt": "Les he prestado el libro. → ___ he prestado.",
             "answers": [
               "Se lo"
             ],
-            "explain": "Les превращается в se перед lo; coche — lo.",
-            "context": "Я одолжил им машину.",
+            "explain": "Les превращается в se перед lo; libro — lo.",
+            "context": "Я одолжил им книгу.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -274,12 +274,12 @@
         "instruction": "Выбери ответ по ситуации.",
         "questions": [
           {
-            "prompt": "¿Sabes que Marta se muda? —Sí, ___ sé.",
+            "prompt": "¿Crees que va a llover? —No, no ___ creo.",
             "answers": [
               "lo"
             ],
-            "explain": "Lo заменяет всё сообщение о переезде, а не Марту.",
-            "context": "Ты знаешь, что Марта переезжает?",
+            "explain": "Lo заменяет всю мысль о дожде.",
+            "context": "Думаешь, пойдёт дождь?",
             "sourceRef": "extra",
             "inputChars": [
               "á",

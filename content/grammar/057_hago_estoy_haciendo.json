@@ -264,12 +264,12 @@
             "interaction": "choice"
           },
           {
-            "context": "Луис сейчас одет в синий пиджак.",
-            "prompt": "Luis ___ una chaqueta azul.",
+            "context": "Луис сейчас в солнечных очках.",
+            "prompt": "Luis ___ gafas de sol.",
             "answers": [
               "lleva"
             ],
-            "explain": "При описании одежды на человеке естественно lleva.",
+            "explain": "При описании одежды и аксессуаров на человеке естественно lleva.",
             "sourceRef": "extra",
             "learningAction": "выбор по контексту",
             "options": [
@@ -280,18 +280,18 @@
             "interaction": "choice"
           },
           {
-            "context": "Друг спрашивает, откуда ты идёшь, без акцента на процессе.",
-            "prompt": "—¿De dónde ___? —Del mercado.",
+            "context": "Друг спрашивает, куда ты идёшь, без акцента на процессе.",
+            "prompt": "—¿Adónde ___? —A la playa.",
             "answers": [
-              "vienes"
+              "vas"
             ],
-            "explain": "Нейтральный вопрос о происхождении: vienes; progresivo возможен при другой коммуникативной задаче.",
+            "explain": "Нейтральный вопрос о направлении: vas. С глаголами движения обычно хватает presente; progresivo возможен при другой коммуникативной задаче.",
             "sourceRef": "extra",
             "learningAction": "выбор по контексту",
             "options": [
-              "vienes",
-              "estás viniendo",
-              "viniste"
+              "vas",
+              "estás yendo",
+              "fuiste"
             ],
             "interaction": "choice"
           }

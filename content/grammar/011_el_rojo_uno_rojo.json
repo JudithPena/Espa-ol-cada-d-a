@@ -41,11 +41,11 @@
         "instruction": "",
         "questions": [
           {
-            "prompt": "Necesito un cuaderno. Quiero ___ pequeño.",
+            "prompt": "Necesito un bolígrafo. Quiero ___ azul.",
             "answers": [
               "uno"
             ],
-            "explain": "Любой подходящий блокнот: uno pequeño. Существительное cuaderno не повторяем.",
+            "explain": "Подойдёт любая синяя ручка: uno azul. Существительное bolígrafo не повторяем.",
             "options": [
               "uno",
               "un",
@@ -129,11 +129,11 @@
         "instruction": "",
         "questions": [
           {
-            "prompt": "¿Qué gafas quieres? ___ de la derecha.",
+            "prompt": "¿Qué botas te gustan? ___ de piel.",
             "answers": [
               "las"
             ],
-            "explain": "Gafas — женский род, множественное число: las de la derecha.",
+            "explain": "Botas — женский род, множественное число: las de piel.",
             "options": [
               "las",
               "los",
@@ -143,11 +143,11 @@
             "context": "Дополни предложение."
           },
           {
-            "prompt": "¿Quién es Alberto? ___ del pelo corto.",
+            "prompt": "¿Quién es tu profesor? ___ de las gafas.",
             "answers": [
               "el"
             ],
-            "explain": "Имеется в виду el chico: el del pelo corto.",
+            "explain": "Имеется в виду el profesor: el de las gafas.",
             "options": [
               "los",
               "el",
@@ -215,11 +215,11 @@
         "instruction": "",
         "questions": [
           {
-            "prompt": "___ importante es ser feliz.",
+            "prompt": "___ difícil es empezar.",
             "answers": [
               "lo"
             ],
-            "explain": "Говорим о том, что важно вообще: lo importante.",
+            "explain": "Говорим о том, что трудно вообще: lo difícil.",
             "options": [
               "lo",
               "la",
@@ -228,11 +228,11 @@
             "context": "Дополни предложение."
           },
           {
-            "prompt": "Hay dos coches. Prefiero ___ pequeño.",
+            "prompt": "Hay dos sofás. Me gusta ___ grande.",
             "answers": [
               "el"
             ],
-            "explain": "Выбираем один конкретный coche: el pequeño.",
+            "explain": "Выбираем один конкретный sofá: el grande.",
             "options": [
               "la",
               "el",
@@ -283,11 +283,11 @@
           "interaction": "gap-choice"
         },
         {
-          "prompt": "¿Qué zapatos prefieres, los negros o ___ blancos?",
+          "prompt": "Tengo dos gatos. ___ negro se llama Tom.",
           "answers": [
-            "los"
+            "el"
           ],
-          "explain": "Слово zapatos не повторяем: los blancos.",
+          "explain": "Конкретный кот из двух: el gato negro.",
           "options": [
             "una",
             "uno",
@@ -296,7 +296,7 @@
             "la",
             "las"
           ],
-          "sourceRef": "11.1.1",
+          "sourceRef": "extra",
           "context": "Дополни предложение.",
           "interaction": "gap-choice"
         },
@@ -433,11 +433,11 @@
           "interaction": "gap-choice"
         },
         {
-          "prompt": "¿Las verdes o ___ rojas?",
+          "prompt": "En esta tienda hay muchas camisas. ___ azules son más baratas.",
           "answers": [
             "las"
           ],
-          "explain": "Пропущено manzanas: las rojas.",
+          "explain": "Конкретные рубашки этого магазина: las camisas azules.",
           "options": [
             "las",
             "los",
@@ -446,7 +446,7 @@
             "uno",
             "el"
           ],
-          "sourceRef": "11.1.7",
+          "sourceRef": "extra",
           "context": "Дополни предложение.",
           "interaction": "gap-choice"
         },
@@ -692,11 +692,11 @@
           "interaction": "gap-choice"
         },
         {
-          "prompt": "¿Las caras o ___ baratas?",
+          "prompt": "De todas estas fotos, me gustan más ___ antiguas.",
           "answers": [
             "las"
           ],
-          "explain": "Подразумевается las naranjas baratas.",
+          "explain": "Конкретные фотографии: las fotos antiguas.",
           "options": [
             "el",
             "los",
@@ -704,8 +704,8 @@
             "lo",
             "la"
           ],
-          "sourceRef": "11.3.2",
-          "context": "Продолжи выбор апельсинов: дорогие или дешёвые?",
+          "sourceRef": "extra",
+          "context": "Дополни предложение.",
           "interaction": "gap-choice"
         },
         {
@@ -803,11 +803,11 @@
           "interaction": "gap-choice"
         },
         {
-          "prompt": "¿Los largos o ___ cortos?",
+          "prompt": "Estos vasos están sucios. ¿Dónde están ___ limpios?",
           "answers": [
             "los"
           ],
-          "explain": "Подразумевается los pendientes cortos.",
+          "explain": "Конкретные чистые стаканы: los vasos limpios.",
           "options": [
             "lo",
             "los",
@@ -815,8 +815,8 @@
             "las",
             "el"
           ],
-          "sourceRef": "11.3.8",
-          "context": "Продолжи выбор серёг: длинные или короткие?",
+          "sourceRef": "extra",
+          "context": "Дополни предложение.",
           "interaction": "gap-choice"
         },
         {

@@ -150,12 +150,12 @@
         "instruction": "Определи, что названо — момент или отрезок, и выбери ответ.",
         "questions": [
           {
-            "context": "Ты учишь немецкий уже два года.",
-            "prompt": "Estudio alemán ___ dos años.",
+            "context": "Ты живёшь в этом районе уже пять месяцев.",
+            "prompt": "Vivo en este barrio ___ cinco meses.",
             "answers": [
               "desde hace"
             ],
-            "explain": "Dos años — отрезок времени, поэтому desde hace.",
+            "explain": "Cinco meses — отрезок времени, поэтому desde hace.",
             "sourceRef": "extra",
             "learningAction": "выбор по контексту",
             "options": [
@@ -163,15 +163,15 @@
               "desde hace"
             ],
             "interaction": "gap-choice",
-            "translation": "Я учу немецкий уже два года."
+            "translation": "Я живу в этом районе уже пять месяцев."
           },
           {
-            "context": "Ты работаешь в этой фирме с 2019 года.",
-            "prompt": "Trabajo en esta empresa ___ 2019.",
+            "context": "Ты знаком с Лаурой с 2015 года.",
+            "prompt": "Conozco a Laura ___ 2015.",
             "answers": [
               "desde"
             ],
-            "explain": "2019 — момент начала, поэтому desde.",
+            "explain": "2015 — момент начала, поэтому desde.",
             "sourceRef": "extra",
             "learningAction": "выбор по контексту",
             "options": [
@@ -179,21 +179,21 @@
               "desde"
             ],
             "interaction": "gap-choice",
-            "translation": "Я работаю в этой фирме с 2019 года."
+            "translation": "Я знаю Лауру с 2015 года."
           },
           {
             "context": "Что значит фраза?",
-            "prompt": "No veo a mis primos desde hace un año.",
+            "prompt": "No como carne desde hace un mes.",
             "answers": [
-              "Я уже год не вижу своих двоюродных братьев."
+              "Я уже месяц не ем мясо."
             ],
-            "explain": "No + presente + desde hace un año: уже год не вижу.",
+            "explain": "No + presente + desde hace un mes: уже месяц не ем.",
             "sourceRef": "extra",
             "learningAction": "понимание реплики",
             "options": [
-              "Я вижу двоюродных братьев раз в год.",
-              "Я уже год не вижу своих двоюродных братьев.",
-              "Через год я увижу двоюродных братьев."
+              "Я ем мясо раз в месяц.",
+              "Я уже месяц не ем мясо.",
+              "Через месяц я буду есть мясо."
             ],
             "interaction": "choice"
           }
@@ -239,8 +239,8 @@
         "instruction": "Выбери слово или вопрос с hace … que.",
         "questions": [
           {
-            "context": "Ты работаешь здесь уже два года и начинаешь фразу со времени.",
-            "prompt": "___ dos años que trabajo aquí.",
+            "context": "Ты учишь английский уже полгода и начинаешь фразу со времени.",
+            "prompt": "___ seis meses que estudio inglés.",
             "answers": [
               "Hace"
             ],
@@ -253,7 +253,7 @@
               "Desde hace"
             ],
             "interaction": "gap-choice",
-            "translation": "Я работаю здесь уже два года."
+            "translation": "Я учу английский уже полгода."
           },
           {
             "context": "Как спросить коллегу, сколько времени он здесь работает?",

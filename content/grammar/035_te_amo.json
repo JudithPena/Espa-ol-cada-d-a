@@ -187,11 +187,11 @@
             ]
           },
           {
-            "prompt": "¿Me recuerdas? —Sí, ___ recuerdo.",
+            "prompt": "¿Me oyes? —Sí, ___ oigo.",
             "answers": [
               "te"
             ],
-            "explain": "В ответе называем собеседника: te recuerdo — я тебя помню.",
+            "explain": "В ответе называем собеседника: te oigo — я тебя слышу.",
             "context": "Собеседники обращаются друг к другу на ты.",
             "sourceRef": "extra",
             "inputChars": [
@@ -278,12 +278,12 @@
             ]
           },
           {
-            "prompt": "Вставь «нас»: Elena ___ conoce.",
+            "prompt": "Вставь «нас»: El profesor ___ ayuda.",
             "answers": [
               "nos"
             ],
-            "explain": "Elena знает нас: nos conoce. Nosotros — «мы», а не «нас».",
-            "context": "Мы — те, кого знает Елена.",
+            "explain": "Преподаватель помогает нам: nos ayuda. Nosotros — «мы», а не «нас».",
+            "context": "Мы — те, кому помогает преподаватель.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -343,12 +343,12 @@
         "instruction": "Выбери ответ по ситуации.",
         "questions": [
           {
-            "prompt": "A mí no ___ conocen.",
+            "prompt": "A mí ___ invitan siempre a sus fiestas.",
             "answers": [
               "me"
             ],
-            "explain": "После выделенного a mí сохраняем me: a mí no me conocen.",
-            "context": "Меня они не знают.",
+            "explain": "После выделенного a mí сохраняем me: a mí me invitan.",
+            "context": "Меня они всегда приглашают на свои праздники.",
             "sourceRef": "extra",
             "inputChars": [
               "á",

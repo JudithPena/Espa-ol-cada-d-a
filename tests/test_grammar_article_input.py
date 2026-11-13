@@ -4,6 +4,8 @@ from pathlib import Path
 import pytest
 from espanol.grammar import load_grammar
 
+NO_REPEAT_REPLACED = {('6.4', 5), ('9.2', 5), ('9.2', 7), ('9.2', 9), ('9.2', 10), ('9.2', 15)}
+
 
 def test_article_input_audit_keeps_a_mixed_progression_and_all_question_answers():
     units = load_grammar()
@@ -19,6 +21,11 @@ def test_article_input_audit_keeps_a_mixed_progression_and_all_question_answers(
         unit = units[change['unit'] - 1]
         group = next(g for g in unit['exercises'] if g['id'] == change['group'])
         q = group['questions'][change['question'] - 1]
+        # 13.11.2026: these repeated the previous sentence with its answer already
+        # filled in, so they were replaced by new sentences on the same topic.
+        if (change['group'], change['question']) in NO_REPEAT_REPLACED:
+            assert q['interaction'] == 'article-input' and q['sourceRef'] == 'extra'
+            continue
         for key in ('prompt', 'answers', 'explain', 'translation', 'sourceRef', 'answerWarnings'):
             assert q.get(key) == change['before'].get(key), (group['id'], key)
         assert not q.get('options') and q['interaction'] == 'article-input'

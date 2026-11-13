@@ -19,12 +19,12 @@
         "instruction": "Выбери форму по ситуации.",
         "questions": [
           {
-            "prompt": "___ están vacías.",
+            "prompt": "___ están limpias.",
             "answers": [
-              "todas las cajas"
+              "todas las tazas"
             ],
-            "explain": "Пусты все коробки; cajas — женский род, несколько: todas las cajas.",
-            "context": "Все пять коробок пусты. Выбери сочетание с названием предмета.",
+            "explain": "Чистые все чашки; tazas — женский род, несколько: todas las tazas.",
+            "context": "Все шесть чашек чистые. Выбери сочетание с названием предмета.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -36,18 +36,18 @@
               "ñ"
             ],
             "options": [
-              "todas las cajas",
-              "algunas cajas",
-              "ninguna caja"
+              "todas las tazas",
+              "algunas tazas",
+              "ninguna taza"
             ]
           },
           {
-            "prompt": "___ está podrida.",
+            "prompt": "___ está rota.",
             "answers": [
-              "ninguna pera"
+              "ninguna silla"
             ],
-            "explain": "Ни одной испорченной груши: ninguna pera. Единственное число: está.",
-            "context": "Все груши свежие.",
+            "explain": "Ни одного сломанного стула: ninguna silla. Единственное число: está.",
+            "context": "Все стулья целые.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -59,9 +59,9 @@
               "ñ"
             ],
             "options": [
-              "una pera",
-              "ninguna pera",
-              "algunas peras"
+              "una silla",
+              "ninguna silla",
+              "algunas sillas"
             ]
           }
         ]
@@ -114,12 +114,12 @@
         "instruction": "Выбери форму по ситуации.",
         "questions": [
           {
-            "prompt": "___ mi familia habla español.",
+            "prompt": "___ la clase habla inglés.",
             "answers": [
               "toda"
             ],
-            "explain": "Familia — женский род, единственное число: toda mi familia.",
-            "context": "Вся моя семья говорит по-испански.",
+            "explain": "Clase — женский род, единственное число: toda la clase.",
+            "context": "Весь класс говорит по-английски.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -214,12 +214,12 @@
             ]
           },
           {
-            "prompt": "No tengo ___ coche.",
+            "prompt": "No hay ___ banco en esta calle.",
             "answers": [
               "ningún"
             ],
-            "explain": "Перед coche нужна сокращённая форма ningún; no уже стоит перед глаголом.",
-            "context": "У меня нет ни одной машины.",
+            "explain": "Перед banco нужна сокращённая форма ningún; no уже стоит перед глаголом.",
+            "context": "На этой улице нет ни одного банка.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -282,12 +282,12 @@
         "instruction": "Выбери форму по ситуации.",
         "questions": [
           {
-            "prompt": "___ mis amigas vive en Lima.",
+            "prompt": "___ mis hermanas es médica.",
             "answers": [
               "una de"
             ],
-            "explain": "Выделяем одну подругу: una de mis amigas.",
-            "context": "Одна из моих подруг живёт в Лиме.",
+            "explain": "Выделяем одну сестру: una de mis hermanas.",
+            "context": "Одна из моих сестёр — врач.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -305,12 +305,12 @@
             ]
           },
           {
-            "prompt": "¿___ ustedes habla quechua?",
+            "prompt": "¿___ ustedes tiene coche?",
             "answers": [
               "alguno de"
             ],
-            "explain": "После alguno ставим de перед ustedes; habla согласовано с alguno.",
-            "context": "Кто-нибудь из вас говорит на кечуа?",
+            "explain": "После alguno ставим de перед ustedes; tiene согласовано с alguno.",
+            "context": "Есть ли у кого-нибудь из вас машина?",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -359,12 +359,12 @@
         "instruction": "Выбери форму по ситуации.",
         "questions": [
           {
-            "prompt": "___ de nosotros ha estado allí.",
+            "prompt": "___ de nosotros sabe nadar.",
             "answers": [
               "ninguno"
             ],
-            "explain": "Отрицательное подлежащее перед ha: ninguno, без дополнительного no.",
-            "context": "Никто из нас там не был.",
+            "explain": "Отрицательное подлежащее перед sabe: ninguno, без дополнительного no.",
+            "context": "Никто из нас не умеет плавать.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -382,12 +382,12 @@
             ]
           },
           {
-            "prompt": "___ ha venido ninguno.",
+            "prompt": "___ ha llamado ninguno.",
             "answers": [
               "no"
             ],
-            "explain": "Ninguno стоит после глагола, поэтому перед ha venido нужно no.",
-            "context": "Никто не пришёл.",
+            "explain": "Ninguno стоит после глагола, поэтому перед ha llamado нужно no.",
+            "context": "Никто не позвонил.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
