@@ -14,7 +14,7 @@ lessons:
     kind: vocab
     title: ¿Qué es esto?
     goal: спросить «Что это?» и назвать пять вещей
-    version: 2
+    version: 3
     vocab:
       - "❓ ¿Qué es esto? [кэ эс э́сто] — что это? :: ¿Qué es esto? Es un libro. — Что это? Это книга."
       - "📕 el libro [ли́бро] — книга"
@@ -79,12 +79,23 @@ lessons:
             - img: la llave
               a: "Es una llave"
               mistakes: {"es un llave": "Перед llave — **una**, как в примере: Es una llave.", "una llave": "Ответьте целой фразой: **Es** una llave — «Это ключ»."}
+      - choose:
+          title: Послушайте и выберите
+          skill: que_es_esto
+          items:
+            - say: "Es una llave."
+              q: "Что это?"
+              options: "Это ключ. | Это рюкзак. | Это книга."
+              noaudio: {q: "Что значит «Es una llave.»?", options: "Это ключ. | Это рюкзак. | Это книга."}
+            - say: "¿Es un libro? No, es un cuaderno."
+              options: "Это книга? Нет, это тетрадь. | Это тетрадь? Нет, это книга. | Это книга? Да, это книга."
+              noaudio: {q: "Что значит «¿Es un libro? No, es un cuaderno.»?", options: "Это книга? Нет, это тетрадь. | Это тетрадь? Нет, это книга. | Это книга? Да, это книга."}
 
   - id: genero
     kind: grammar
     title: "Мужской и женский род: el, la, un, una"
     goal: выбрать el или la, un или una по роду слова
-    version: 2
+    version: 3
     vocab:
       - "🍽️ la mesa [мэ́са] — стол"
       - "🪑 la silla [си́лья] — стул"
@@ -211,6 +222,18 @@ lessons:
             - {q: "___ día", a: el, rule: exceptions}
             - {q: "___ silla", a: la, rule: o_a}
             - {q: "___ foto", a: la, rule: exceptions}
+      - choose:
+          title: Послушайте и выберите
+          skill: gender
+          items:
+            - say: "la silla"
+              q: "Какое слово вы услышали?"
+              options: "la silla | el silla | una silla"
+              noaudio: {q: "Что значит «la silla»?", options: "la silla | el silla | una silla"}
+            - say: "el mapa"
+              q: "Какое слово вы услышали?"
+              options: "el mapa | la mapa | un mapa"
+              noaudio: {q: "Что значит «el mapa»?", options: "el mapa | la mapa | un mapa"}
 
   - id: vocab2
     kind: vocab
@@ -408,7 +431,7 @@ lessons:
     kind: reading
     title: ¿Qué hay en la mochila?
     goal: понять короткое описание и сказать, что где есть
-    version: 2
+    version: 3
     vocab:
       - "🍼 la botella [ботэ́лья] — бутылка"
       - "👓 las gafas [га́фас] — очки"
@@ -459,6 +482,17 @@ lessons:
           groups:
             "✅ hay": [unas llaves, unas gafas, una botella, un móvil]
             "❌ no hay": [dinero, ordenador]
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          skill: hay
+          items:
+            - say: "En la mochila hay dos cuadernos."
+              options: "В рюкзаке две тетради. | В рюкзаке нет тетрадей. | В рюкзаке три тетради."
+              noaudio: {q: "Что значит «En la mochila hay dos cuadernos.»?", options: "В рюкзаке две тетради. | В рюкзаке нет тетрадей. | В рюкзаке три тетради."}
+            - say: "No hay dinero."
+              options: "Денег нет. | Деньги есть. | Денег много."
+              noaudio: {q: "Что значит «No hay dinero.»?", options: "Денег нет. | Деньги есть. | Денег много."}
     quiz:
       - q: ¿Cuántos bolígrafos hay en la mochila?
         options: "tres | dos | uno"
@@ -549,7 +583,7 @@ lessons:
     kind: quiz
     title: Вещи вокруг нас
     goal: назвать вещи с артиклем, образовать множественное число и сказать, что где есть
-    version: 2
+    version: 3
     check: soft
     blocks:
       - "Это тест по теме «Вещи вокруг нас». Проверьте, что вы запомнили."
@@ -567,6 +601,16 @@ lessons:
             - "la ventana — окно"
             - "las gafas — очки"
             - "¿Qué es esto? — что это?"
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          items:
+            - q: "Скажите: «В рюкзаке есть книга и два ключа»."
+              a: "En la mochila hay un libro y dos llaves | Hay un libro y dos llaves en la mochila"
+              skill: hay
+            - q: "Вам показывают ключи и спрашивают: ¿Qué es esto? Ответьте."
+              a: "Son unas llaves | Son llaves | Son las llaves"
+              skill: plural
     quiz:
       - q: Какой артикль у слова «día»?
         options: "el | la"

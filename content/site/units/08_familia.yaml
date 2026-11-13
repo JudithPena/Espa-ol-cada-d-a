@@ -12,7 +12,7 @@ lessons:
     kind: vocab
     title: Моя семья
     goal: назвать родственников и сказать, кто у вас есть
-    version: 2
+    version: 3
     vocab:
       - "👨‍👩‍👧 la familia [фами́лья] — семья"
       - "👨 el padre [па́дрэ] — отец"
@@ -22,12 +22,6 @@ lessons:
       - "👫 los padres [па́дрэс] — родители"
       - "❓ ¿Tienes hermanos? [тьэ́нэс эрма́нос] — у тебя есть братья и сёстры?"
       - "👴 el abuelo / la abuela [абуэ́ло, абуэ́ла] — дедушка / бабушка"
-      - "🧔 el tío / la tía [ти́о, ти́а] — дядя / тётя"
-      - "🧒 el primo / la prima [при́мо, при́ма] — двоюродный брат / сестра"
-      - "💍 el marido [мари́до] — муж"
-      - "👩 la mujer [мухэ́р] — жена; женщина"
-      - "💑 el novio / la novia [но́бьо, но́бья] — парень / девушка (в паре); жених / невеста"
-      - "🐱 el gato [га́то] — кот, кошка"
     blocks:
       - "О семье в испаноязычном мире говорят много и охотно — это одна из главных тем для разговора."
       - learn: [la familia, el padre, la madre, el hermano / la hermana, el hijo / la hija]
@@ -73,7 +67,7 @@ lessons:
               a: "Tengo un hermano | Yo tengo un hermano"
               mistakes: {"tengo una hermano": "Hermano — мужского рода: **un** hermano.", "tengo hermano": "Нужен артикль: tengo **un** hermano.", "hay un hermano": "«У меня есть» — **tengo**: Tengo un hermano. Hay говорят о предметах, которые где-то лежат."}
             - "У тебя есть дети? => ¿Tienes hijos? | Tienes hijos | ¿Tú tienes hijos?"
-      - learn: [el abuelo / la abuela, el tío / la tía, el primo / la prima]
+      - learn: [el abuelo / la abuela]
       - write:
           title: "¿Quién es?"
           format: mi + слово
@@ -81,6 +75,42 @@ lessons:
           skill: family
           items:
             - "el padre de mi padre => mi abuelo"
+            - "la madre de mi madre => mi abuela"
+      - choose:
+          title: Послушайте и выберите
+          skill: family
+          items:
+            - say: "Mis padres viven en Madrid."
+              options: "Мои родители живут в Мадриде. | Мой отец живёт в Мадриде. | Мои братья живут в Мадриде."
+              noaudio: {q: "Что значит «Mis padres viven en Madrid.»?", options: "Мои родители живут в Мадриде. | Мой отец живёт в Мадриде. | Мои братья живут в Мадриде."}
+            - say: "¿Tienes hijos?"
+              options: "У тебя есть дети? | У тебя есть братья и сёстры? | У тебя есть родители?"
+              noaudio: {q: "Что значит «¿Tienes hijos?»?", options: "У тебя есть дети? | У тебя есть братья и сёстры? | У тебя есть родители?"}
+
+  - id: posesivos
+    kind: grammar
+    title: "Ещё родные. Мой, твой, наш. Глагол tener"
+    goal: назвать ещё родных и сказать «мой, твой, наш» и «у нас есть»
+    version: 3
+    vocab:
+      - "🏠 nuestro/a [нуэ́стро, нуэ́стра] — наш, наша"
+      - "🏡 vuestro/a [буэ́стро, буэ́стра] — ваш, ваша (группе, неформально)"
+      - "🧔 el tío / la tía [ти́о, ти́а] — дядя / тётя"
+      - "🧒 el primo / la prima [при́мо, при́ма] — двоюродный брат / сестра"
+      - "💍 el marido [мари́до] — муж"
+      - "👩 la mujer [мухэ́р] — жена; женщина"
+      - "💑 el novio / la novia [но́бьо, но́бья] — парень / девушка (в паре); жених / невеста"
+      - "🐱 el gato [га́то] — кот, кошка"
+    forms: [tus, sus]
+    blocks:
+      - "Ещё несколько слов о семье."
+      - learn: [el tío / la tía, el primo / la prima]
+      - write:
+          title: "¿Quién es?"
+          format: mi + слово
+          rule: none
+          skill: family
+          items:
             - "la hermana de mi madre => mi tía"
             - "el hijo de mi tío => mi primo"
       - learn: [el marido, la mujer, el novio / la novia, el gato]
@@ -99,17 +129,6 @@ lessons:
               options: "У моей бабушки есть кот. | У моего дедушки есть кот. | У моей бабушки есть собака."
               rule: none
               noaudio: {q: "Что значит «Mi abuela tiene un gato»?", options: "У моей бабушки есть кот. | У моего дедушки есть кот. | У моей бабушки есть собака."}
-
-  - id: posesivos
-    kind: grammar
-    title: "Мой, твой, наш. Глагол tener"
-    goal: сказать «мой, твой, наш» и «у нас есть»
-    version: 2
-    vocab:
-      - "🏠 nuestro/a [нуэ́стро, нуэ́стра] — наш, наша"
-      - "🏡 vuestro/a [буэ́стро, буэ́стра] — ваш, ваша (группе, неформально)"
-    forms: [tus, sus]
-    blocks:
       - "Посмотрите на пары. Что происходит со словами **mi, tu, su**, когда людей или предметов много?"
       - examples:
           items:
@@ -173,6 +192,13 @@ lessons:
             - "Nosotros ___ dos hijos. => tenemos"
             - "¿Ellos ___ un gato? => tienen"
             - "¿Vosotros ___ hermanos? => tenéis"
+      - choose:
+          title: Послушайте и выберите
+          skill: possessives
+          items:
+            - say: "Su marido es médico."
+              options: "Её муж — врач. | Мой муж — врач. | Её брат — врач."
+              noaudio: {q: "Что значит «Su marido es médico.»?", options: "Её муж — врач. | Мой муж — врач. | Её брат — врач."}
 
   - id: lectura
     kind: reading
@@ -236,6 +262,17 @@ lessons:
               skill: family
             - q: "¿Cuántos años tiene Carmen?"
               options: "Tiene veinte años. | Tiene diecisiete años. | Tiene diez años."
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          skill: family
+          items:
+            - say: "Mi hermano mayor se llama Pablo."
+              options: "Моего старшего брата зовут Пабло. | Моего младшего брата зовут Пабло. | Моего двоюродного брата зовут Пабло."
+              noaudio: {q: "Что значит «Mi hermano mayor se llama Pablo.»?", options: "Моего старшего брата зовут Пабло. | Моего младшего брата зовут Пабло. | Моего двоюродного брата зовут Пабло."}
+            - say: "Mis abuelos viven en Sevilla."
+              options: "Мои бабушка и дедушка живут в Севилье. | Мои родители живут в Севилье. | Мои дяди живут в Севилье."
+              noaudio: {q: "Что значит «Mis abuelos viven en Sevilla.»?", options: "Мои бабушка и дедушка живут в Севилье. | Мои родители живут в Севилье. | Мои дяди живут в Севилье."}
     allow: [Rufo]
     quiz:
       - q: ¿Cuántos años tiene Álex?
@@ -251,7 +288,7 @@ lessons:
     kind: dialogue
     title: ¿Quién es?
     goal: показать семейное фото и рассказать, кто есть кто
-    version: 2
+    version: 3
     vocab:
       - "👀 mira [ми́ра] — смотри, посмотри"
     blocks:
@@ -302,6 +339,17 @@ lessons:
             - lines: ["Lucía: ¿Tienes hermanos?"]
               q: "У вас есть сестра Марта."
               options: "Sí, tengo una hermana, Marta. | Sí, tienes una hermana, Marta. | Sí, es mi hermano Marta."
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          skill: family
+          items:
+            - say: "El perro de mi abuelo se llama Rufo."
+              options: "Собаку моего дедушки зовут Руфо. | Кота моего дедушки зовут Руфо. | Моего дедушку зовут Руфо."
+              noaudio: {q: "Что значит «El perro de mi abuelo se llama Rufo.»?", options: "Собаку моего дедушки зовут Руфо. | Кота моего дедушки зовут Руфо. | Моего дедушку зовут Руфо."}
+            - say: "¿Tienes hermanos, Lucía?"
+              options: "У тебя есть братья или сёстры, Лусия? | У тебя есть двоюродные братья, Лусия? | У тебя есть дети, Лусия?"
+              noaudio: {q: "Что значит «¿Tienes hermanos, Lucía?»?", options: "У тебя есть братья или сёстры, Лусия? | У тебя есть двоюродные братья, Лусия? | У тебя есть дети, Лусия?"}
       - build:
           title: Соберите фразу
           free: true
@@ -317,7 +365,7 @@ lessons:
     kind: listening
     title: Семья Ольги
     goal: понять на слух рассказ о семье
-    version: 2
+    version: 3
     blocks:
       - "Послушайте рассказ Ольги два раза: текста пока нет. В заданиях его можно открыть как подсказку."
       - dialogue:
@@ -326,7 +374,7 @@ lessons:
           lines:
             - "Olga: Hola, me llamo Olga. Soy ucraniana, de Odesa, pero vivo en Valencia. | Привет, меня зовут Ольга. Я украинка, из Одессы, но живу в Валенсии."
             - "Olga: Mi marido se llama Sergio. Es médico y trabaja en un hospital. | Моего мужа зовут Сергей. Он врач, работает в больнице."
-            - "Olga: Tenemos dos hijos: Iván y Natalia. Iván tiene ocho años y Natalia tiene cinco. | У нас двое детей — Иван и Наталья. Ивану восемь лет, Наталье пять."
+            - "Olga: Tenemos dos hijos: Mario y Sara. Mario tiene ocho años y Sara tiene cinco. | У нас двое детей — Марио и Сара. Марио восемь лет, Саре пять."
             - "Olga: Mis padres viven en Odesa. Mi madre es profesora y mi padre es ingeniero. | Мои родители живут в Одессе. Мама учительница, папа инженер."
       - choose:
           title: Responde
@@ -339,14 +387,24 @@ lessons:
               options: "Es médico. | Es ingeniero. | Es profesor."
               explain: "Mi marido se llama Sergio. Es médico y trabaja en un hospital."
               skill: profession
+      - write:
+          title: Послушайте и запишите
+          free: true
+          format: фраза по-испански
+          skill: family
+          items:
+            - say: "Mis padres viven en Odesa."
+              q: "Запишите фразу Ольги."
+              a: "Mis padres viven en Odesa"
+              noaudio: {q: "Напишите по-испански: «Мои родители живут в Одессе».", a: "Mis padres viven en Odesa"}
     quiz:
       - q: ¿Cómo se llama el marido de Olga?
         source: olga
-        options: "Sergio | Iván | Antonio"
+        options: "Sergio | Mario | Antonio"
       - q: ¿Cuántos hijos tienen Olga y Sergio?
         source: olga
         options: "dos | tres | uno"
-      - q: ¿Cuántos años tiene Natalia?
+      - q: ¿Cuántos años tiene Sara?
         source: olga
         options: "cinco | ocho | quince"
       - q: ¿Dónde viven los padres de Olga?
@@ -357,7 +415,7 @@ lessons:
     kind: quiz
     title: Семья
     goal: назвать членов семьи, сказать «мой, наш» и рассказать о своей семье
-    version: 2
+    version: 3
     check: soft
     blocks:
       - "Сегодня у нас тест по теме «Семья»."
@@ -374,6 +432,17 @@ lessons:
             - "el hijo — сын"
             - "el marido — муж"
             - "mayor — старший"
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          items:
+            - q: "Скажите: «У меня два брата и сестра»."
+              a: "Tengo dos hermanos y una hermana | (Yo) tengo dos hermanos y una hermana"
+              skill: family
+            - q: "Скажите: «Наши родители живут в Валенсии»."
+              a: "Nuestros padres viven en Valencia | Nuestro padre y nuestra madre viven en Valencia"
+              skill: possessives
+              mistakes: {"nuestras padres viven en valencia": "los padres — мужского рода: **nuestros** padres."}
     quiz:
       - q: Что значит «los padres»?
         options: "родители | отцы | братья"

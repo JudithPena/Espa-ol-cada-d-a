@@ -32,7 +32,8 @@
 | 26 | T: note | mujer — «жена» и «женщина» | значение | — | — | — |
 | 27–30 | C ×3, C~ | La mujer de Carlos…; Ana y su marido…; ¿Tienes novia?; на слух «Mi abuela tiene un gato» | понять | порция 4 | итог | — (без звука: фраза записана) |
 
-Сигнатура: `T(text) W×5 T(tip) M W×2 T(rule) C×3 I×2 W×3 I×3 W×4 T(note) C×3 C~`
+Сигнатура: `T(text) W×5 T(tip) M W×2 T(rule) C×3 I×2 W I×2 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** 8 слов вместо 14 (U08-01, SYS-10): дядя, тётя, двоюродные, муж, жена, парень / девушка, кот — в уроке posesivos; на слух: Mis padres viven en Madrid; ¿Tienes hijos? Версия 3.
 
 ## Урок `familia/posesivos` — «Мой, твой, наш. Глагол tener»
 
@@ -54,7 +55,8 @@
 | 14 | T: header + conjugation + examples | tener полностью | правило 3 | tengo, tiene | к вводу | — |
 | 15–17 | I ×3 | tenemos, tienen, tenéis | формы tener | таблица | итог | — |
 
-Сигнатура: `T(text+examples+rule) I×3 W×2 T(rule) C×2 I×2 T(note) C T(header+conjugation+examples) I×3`
+Сигнатура: `T(text) W×2 I×2 W×4 T(note) C×3 C~ T(text+examples+rule) I×3 W×2 T(rule) C×2 I×2 T(note) C T(header+conjugation+examples) I×3 C~`
+- **13.11.2026, ремонт по аудиту MYTHOS:** первым циклом — 6 слов из урока vocab1 (tío, primo, marido, mujer, novio, gato) с заданиями «¿Quién es?» и «Traduce»; на слух: Su marido es médico. Версия 3.
 
 ## Урок `familia/lectura` — «La familia de Álex»
 
@@ -70,7 +72,8 @@
 | 5–10 | C ×6 | кем работает отец; где живут бабушка и дедушка; Диего и Софья — братья?; кто такой Пабло; кто младший в семье; сколько лет Кармен (с 13.11 рассказ ведёт младший брат Пабло Алекс — аудит MYTHOS, U08-07) | понять текст | текст | вопросы к тексту | `pablo` |
 | 11–12 | Q ×2 | сколько лет Алексу; у кого собака | понять текст | текст | итог | `pablo` |
 
-Сигнатура: `W×2 C T(reading) C@pablo×6 Q@pablo×2`
+Сигнатура: `W×2 C T(reading) C@pablo×6 C~×2 Q@pablo×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Mi hermano mayor se llama Pablo; Mis abuelos viven en Sevilla (SYS-04).
 
 ## Урок `familia/dialogo` — «¿Quién es?»
 
@@ -89,7 +92,8 @@
 | 8 | C (реплика) | ¿Tienes hermanos? — у вас сестра Марта | ответить | tener | — | — |
 | 9 | B | Mira, es la casa de mi abuela | связная фраза | del / de la | итог | — |
 
-Сигнатура: `W T(text+dialogue) C@photos×2 T(note) C×3 B`
+Сигнатура: `W T(text+dialogue) C@photos×2 T(note) C×3 C~×2 B`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: El perro de mi abuelo se llama Rufo; ¿Tienes hermanos, Lucía? (SYS-04). Версия 3.
 
 ## Урок `familia/escucha` — «Семья Ольги»
 
@@ -104,7 +108,8 @@
 | 2–3 | C ×2 | где живёт Ольга; кем работает Сергей | детали на слух | рассказ | — | `olga` |
 | 4–7 | Q ×4 | как зовут мужа; сколько детей; сколько лет Наталье; где живут родители | детали на слух | рассказ | итог | `olga` |
 
-Сигнатура: `T(text+dialogue) C@olga×2 Q@olga×4`
+Сигнатура: `T(text+dialogue) C@olga×2 I~ Q@olga×4`
+- **13.11.2026, ремонт по аудиту MYTHOS:** дети Ольги — Марио и Сара (не имена постоянных героев); диктант фразы Mis padres viven en Odesa (U08-06). Версия 3.
 
 ## Урок `familia/quiz` — «Семья» (тест темы, `check: soft`)
 
@@ -117,7 +122,8 @@
 | 2 | M | el abuelo, la tía, el hijo, el marido, mayor | значения | тема | разминка | — |
 | 3–7 | Q ×5 | los padres; mis abuelos; tenemos; la prima; nuestra casa | применить тему | тема | итог | — |
 
-Сигнатура: `T(text+cando) M Q×5`
+Сигнатура: `T(text+cando) M I×2 Q×5`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ввод: «У меня два брата и сестра», «Наши родители живут в Валенсии» (SYS-03). Версия 3.
 
 ## Урок `familia/repaso` — «Итоги уровня A0» (`check: control`)
 

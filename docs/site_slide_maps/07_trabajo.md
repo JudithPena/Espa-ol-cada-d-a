@@ -26,7 +26,8 @@
 | 13 | S | Пабло / Ана / оба | род профессии | правило 2 | узнавание | — |
 | 14–16 | I ×3 | «Я программист», «Она врач», «Карлос официант» | воспроизвести | правила 1–2 | итог | — |
 
-Сигнатура: `T(text+examples) W×4 T(rule) C×2 W×3 T(tip) S I×3`
+Сигнатура: `T(text+examples) W×4 T(rule) C×2 W×3 T(tip) S I×3 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Ella es médica; Soy camarero (SYS-04); «Карлос официант» принимает и Es camarero. Версия 3.
 
 ## Урок `trabajo/vocab2` — «¿Dónde trabajas?»
 
@@ -67,7 +68,8 @@
 | 16 | T: header + conjugation + text | ser: somos, sois, son | правило 3 | soy, eres, es | к выбору | — |
 | 17–19 | C ×3 | somos / sois / son | выбрать форму ser | правило 3 | итог | — |
 
-Сигнатура: `T(text+examples) W×5 T(compare+compare) C×3 T(header+rule+conjugation+more) I×4 T(header+conjugation+text) C×3`
+Сигнатура: `T(text+examples) W×5 T(compare+compare) C×3 T(header+rule+conjugation+more) I×4 T(header+conjugation+text) C×3 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Nosotros trabajamos…; ¿Vosotros habláis inglés? (SYS-04). Версия 3.
 
 ## Урок `trabajo/lectura` — «Mis amigos y su trabajo»
 
@@ -83,7 +85,8 @@
 | 8–12 | C ×5 | где работает Хавьер; кто Роса; где живут Лаура и Кармен; Марта «trabaja mucho»; Диего работает или учится | понять текст | текст | вопросы к тексту | `marta` |
 | 13–14 | Q ×2 | где работают Лаура и Кармен; что изучает Марта | понять текст | текст | итог | `marta` |
 
-Сигнатура: `W×5 M T(reading+more) C@marta×5 Q@marta×2`
+Сигнатура: `W×5 M T(reading+more) C@marta×5 C~×2 Q@marta×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Rosa es enfermera…; Trabajo mucho (SYS-04). Версия 3.
 
 ## Урок `trabajo/dialogo` — «¿Sois estudiantes?»
 
@@ -122,7 +125,8 @@
 | 16 | C (реплика) | ¿Y vosotras? — за себя и Лусию | nosotras | тема | миссия | `dorm` |
 | 17 | B | «Мы с Лусией слушаем музыку и готовим» | связная фраза | -ar | итог | — (самостоятельное) |
 
-Сигнатура: `I×3 T(text) W×2 I×6 T(mission) C@dorm I@dorm C@dorm B`
+Сигнатура: `I×3 T(text) W×2 I×6 C~×2 T(mission) C@dorm I@dorm C@dorm B`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Ellos escuchan música; Cocino en casa (SYS-04). Версия 3.
 
 ## Урок `trabajo/quiz` — «Профессии и работа» (тест темы, `check: soft`)
 
@@ -135,4 +139,5 @@
 | 2 | M | médico, la escuela, el restaurante, ingeniera, ellos | значения | тема | разминка | — |
 | 3–7 | Q ×5 | trabajamos; Soy profesora; habláis; ustedes; son | применить тему | тема | итог | — |
 
-Сигнатура: `T(text+cando) M Q×5`
+Сигнатура: `T(text+cando) M I×2 Q×5`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ввод: «Я программист и работаю в офисе», «Вы говорите по-испански?» (vosotros) (SYS-03). Версия 3.

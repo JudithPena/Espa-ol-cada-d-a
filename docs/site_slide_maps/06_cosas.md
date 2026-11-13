@@ -29,7 +29,8 @@
 | 14 | C (картинка + реплика) | Ana: ¿Es un libro? — нет, тетрадь | ответить | образец | применение | — |
 | 15–17 | I ×3 | ¿Qué es esto? — по картинке | воспроизвести | образец | итог | — |
 
-Сигнатура: `T(text) W×4 T(examples) C×2 W×3 T(examples+tip) M C I×3`
+Сигнатура: `T(text) W×4 T(examples) C×2 W×3 T(examples+tip) M C I×3 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Es una llave; ¿Es un libro? No, es un cuaderno (SYS-04). Версия 3.
 
 ## Урок `cosas/genero` — «Мужской и женский род: el, la, un, una»
 
@@ -59,7 +60,8 @@
 | 21 | C (картинка) | ¿Es un libro o un cuaderno? | понять «o» | o | — | — |
 | 22–25 | I ×4 | ___ cuaderno / día / silla / foto | ввести el / la | правила 1, 3 | итог | — |
 
-Сигнатура: `T(text) W×2 T(compare) S T(compare) W×3 T(compare) I×5 T(header+table+examples+more) C×3 W C I×4`
+Сигнатура: `T(text) W×2 T(compare) S T(compare) W×3 T(compare) I×5 T(header+table+examples+more) C×3 W C I×4 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: la silla, el mapa — какое слово с каким артиклем (SYS-04). Версия 3.
 
 ## Урок `cosas/vocab2` — «В комнате»
 
@@ -122,7 +124,8 @@
 | 9 | S | hay / no hay | понять текст | текст | — | `mochila` |
 | 10–11 | Q ×2 | сколько ручек; чего нет | понять текст | текст | итог | `mochila` |
 
-Сигнатура: `W×3 C T(reading+note) C@mochila×3 S Q@mochila×2`
+Сигнатура: `W×3 C T(reading+note) C@mochila×3 S C~×2 Q@mochila×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: En la mochila hay dos cuadernos; No hay dinero (SYS-04). Версия 3.
 
 ## Урок `cosas/practica` — «el, la, los, las»
 
@@ -156,4 +159,5 @@
 | 2 | M | la mesa, el móvil, la ventana, las gafas, ¿Qué es esto? | значения | тема | разминка | — |
 | 3–7 | Q ×5 | артикль día; lápices; relojes; hay; unas llaves | применить тему | тема | итог | — |
 
-Сигнатура: `T(text+cando) M Q×5`
+Сигнатура: `T(text+cando) M I×2 Q×5`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ввод: «В рюкзаке книга и два ключа», «Son unas llaves» (SYS-03). Версия 3.

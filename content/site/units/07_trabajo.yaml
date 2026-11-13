@@ -12,7 +12,7 @@ lessons:
     kind: vocab
     title: ¿A qué te dedicas?
     goal: спросить, кем человек работает, и назвать профессию
-    version: 2
+    version: 3
     vocab:
       - "💼 ¿A qué te dedicas? [а кэ тэ дэди́кас] — чем ты занимаешься? кем работаешь?"
       - "👨‍🏫 el profesor / la profesora [профэсо́р, профэсо́ра] — преподаватель, учитель(ница)"
@@ -72,6 +72,16 @@ lessons:
             - q: "Карлос официант."
               a: "Carlos es camarero"
               mistakes: {"carlos es un camarero": "После ser профессию называют без артикля: **Carlos es camarero**."}
+      - choose:
+          title: Послушайте и выберите
+          skill: profession
+          items:
+            - say: "Ella es médica."
+              options: "Она врач. | Он врач. | Она учительница."
+              noaudio: {q: "Что значит «Ella es médica.»?", options: "Она врач. | Он врач. | Она учительница."}
+            - say: "Soy camarero."
+              options: "Я официант. | Я официантка. | Он официант."
+              noaudio: {q: "Что значит «Soy camarero.»?", options: "Я официант. | Я официантка. | Он официант."}
 
   - id: vocab2
     kind: vocab
@@ -136,7 +146,7 @@ lessons:
     kind: grammar
     title: "Мы, вы, они: глаголы на -ar"
     goal: сказать «мы работаем», «вы говорите», «они учатся»
-    version: 2
+    version: 3
     unlocks: [present_ar]
     vocab:
       - "👫 nosotros / nosotras [носо́трос, носо́трас] — мы"
@@ -228,12 +238,22 @@ lessons:
               options: "sois | son | somos"
             - q: "Ellas ___ médicas."
               options: "son | sois | es"
+      - choose:
+          title: Послушайте и выберите
+          skill: present_ar
+          items:
+            - say: "Nosotros trabajamos en una oficina."
+              options: "Мы работаем в офисе. | Они работают в офисе. | Вы работаете в офисе."
+              noaudio: {q: "Что значит «Nosotros trabajamos en una oficina.»?", options: "Мы работаем в офисе. | Они работают в офисе. | Вы работаете в офисе."}
+            - say: "¿Vosotros habláis inglés?"
+              options: "Вы (друзья) говорите по-английски? | Они говорят по-английски? | Мы говорим по-английски?"
+              noaudio: {q: "Что значит «¿Vosotros habláis inglés?»?", options: "Вы (друзья) говорите по-английски? | Они говорят по-английски? | Мы говорим по-английски?"}
 
   - id: lectura
     kind: reading
     title: Mis amigos y su trabajo
     goal: понять текст о том, кто где работает
-    version: 2
+    version: 3
     vocab:
       - "📰 el/la periodista [пэрьоди́ста] — журналист(ка)"
       - "⚖️ el abogado / la abogada [абога́до, абога́да] — юрист, адвокат"
@@ -293,6 +313,17 @@ lessons:
               explain: "Trabajo mucho — «я много работаю». Muy ставят перед словом-описанием: muy bien."
             - q: "¿Diego trabaja o estudia?"
               options: "Estudia y también trabaja. | Estudia, pero no trabaja. | Trabaja, pero no estudia."
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          skill: profession
+          items:
+            - say: "Rosa es enfermera y trabaja en un hospital."
+              options: "Роса медсестра и работает в больнице. | Роса врач и работает в больнице. | Роса медсестра и работает в школе."
+              noaudio: {q: "Что значит «Rosa es enfermera y trabaja en un hospital.»?", options: "Роса медсестра и работает в больнице. | Роса врач и работает в больнице. | Роса медсестра и работает в школе."}
+            - say: "Trabajo mucho."
+              options: "Я много работаю. | Я много учусь. | Я немного работаю."
+              noaudio: {q: "Что значит «Trabajo mucho.»?", options: "Я много работаю. | Я много учусь. | Я немного работаю."}
     forms: [viven]
     quiz:
       - q: ¿Dónde trabajan Laura y Carmen?
@@ -365,7 +396,7 @@ lessons:
     kind: practice
     title: Глаголы на -ar
     goal: рассказать, кто чем занимается, — работаем, учимся, готовим
-    version: 2
+    version: 3
     vocab:
       - "🎧 escuchar [эскуча́р] — слушать :: Escucho música. — Я слушаю музыку."
       - "🍳 cocinar [коθина́р] — готовить (еду)"
@@ -391,6 +422,16 @@ lessons:
             - "ellos / hablar => hablan"
             - "vosotras / escuchar => escucháis"
             - "usted / trabajar => trabaja"
+      - choose:
+          title: Послушайте и выберите
+          skill: present_ar
+          items:
+            - say: "Ellos escuchan música."
+              options: "Они слушают музыку. | Мы слушаем музыку. | Они готовят."
+              noaudio: {q: "Что значит «Ellos escuchan música.»?", options: "Они слушают музыку. | Мы слушаем музыку. | Они готовят."}
+            - say: "Cocino en casa."
+              options: "Я готовлю дома. | Ты готовишь дома. | Я работаю дома."
+              noaudio: {q: "Что значит «Cocino en casa.»?", options: "Я готовлю дома. | Ты готовишь дома. | Я работаю дома."}
       - mission:
           id: dorm
           title: Знакомство в общежитии
@@ -428,7 +469,7 @@ lessons:
     kind: quiz
     title: Профессии и работа
     goal: сказать, кем и где вы работаете, и спрягать глаголы на -ar
-    version: 2
+    version: 3
     check: soft
     blocks:
       - "Это тест по теме «Профессии и работа». Проверьте, что вы запомнили."
@@ -445,6 +486,17 @@ lessons:
             - "el restaurante — ресторан"
             - "la ingeniera — инженер (женщина)"
             - "ellos — они"
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          items:
+            - q: "Скажите: «Я программист и работаю в офисе»."
+              a: "Soy programador y trabajo en una oficina | (Yo) soy [programador/programadora] y trabajo en una oficina"
+              skill: profession
+              mistakes: {"soy un programador y trabajo en una oficina": "Профессию после ser называют без артикля: **soy programador**."}
+            - q: "Спросите друзей (на «ты», группе): «Вы говорите по-испански?»"
+              a: "¿Habláis español? | ¿Vosotros habláis español?"
+              skill: present_ar
     quiz:
       - q: "Nosotros ___ en una oficina."
         options: "trabajamos | trabajan | trabajáis"
