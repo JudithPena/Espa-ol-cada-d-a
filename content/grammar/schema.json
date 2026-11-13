@@ -160,6 +160,24 @@
           "items": {
             "$ref": "#/$defs/scheme"
           }
+        },
+        "distanceMap": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "note": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "title",
+            "note"
+          ],
+          "additionalProperties": false
         }
       },
       "additionalProperties": false,
