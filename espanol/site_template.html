@@ -813,6 +813,26 @@ main { padding-block: 16px 110px; }
 .gdistance-person { font-weight: 700; }
 .gdistance-dot { font-size: 25px; line-height: 1; }
 .gdistance-zone small { font-size: 12px; }
+
+/* Visual distance clues for unit 12: real mini-scenes instead of abstract dots. */
+.gdistance-illustrated { gap:10px; margin:12px 0 18px; }
+.gdistance-illustrated .gdistance-zone { gap:7px; padding:10px 9px 12px; border:2px solid var(--line); background:var(--surface); border-radius:17px; transition:background-color .15s ease,border-color .15s ease; }
+.gdistance-illustrated .gdistance-zone.is-active { border-color:var(--accent); background:var(--accent-soft); box-shadow:0 3px 12px rgb(40 73 177 / .1); }
+.gdistance-illustrated .gdistance-person { color:var(--ink); font-size:15px; font-weight:800; }
+.gdistance-illustrated .gdistance-zone.is-active .gdistance-person { color:var(--accent); }
+.gdistance-illustrated .gdistance-art { display:block; width:100%; max-width:184px; height:auto; aspect-ratio:180/105; border-radius:12px; overflow:hidden; }
+.gdistance-illustrated .gdistance-zone small { color:var(--muted); line-height:1.35; font-size:12px; }
+@media (max-width:600px) {
+  .gdistance-illustrated { gap:6px; margin:8px 0 12px; }
+  .gdistance-illustrated .gdistance-zone { gap:5px; padding:7px 4px 9px; border-radius:12px; }
+  .gdistance-illustrated .gdistance-person { font-size:13px; }
+  .gdistance-illustrated .gdistance-art { border-radius:8px; }
+  .gdistance-illustrated .gdistance-zone small { font-size:10px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .gdistance-illustrated .gdistance-zone { transition:none; }
+}
+
 .gscene { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); align-items: center; gap: 22px; margin: 16px 0 22px; padding: 14px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); }
 .gscene-image-only { grid-template-columns: minmax(0,1fr); width: 100%; max-width: 640px; padding: 8px; justify-self: center; }
 .gscene-image-only .gscene-image img { height: min(30dvh,240px); aspect-ratio: auto; object-fit: contain; }
