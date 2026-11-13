@@ -63,13 +63,13 @@
 ## Урок `fin_de_nivel/proyecto` — «Рассказ о поездке»
 
 - **Цель:** рассказать о своей поездке в разговоре и письменно — итоговый проект A2.
-- **Длина:** 10 шагов, около 10 минут. **Новая лексика:** нет.
-- **Интерактив:** выбор 1, ввод 1, сборка 1, письмо 5; на слух и с голосом собеседника — 5. **Самостоятельное воспроизведение:** ввод, сборка и письмо — 7 заданий.
+- **Длина:** 10 шагов, около 11 минут. **Новая лексика:** нет.
+- **Интерактив:** ввод 2, сборка 1, письмо 5; на слух и с голосом собеседника — 6. **Самостоятельное воспроизведение:** ввод, сборка и письмо — 8 заданий.
 
 | Шаг | Экран / тип блока | Что видит или делает ученик | Источник |
 |---|---|---|---|
 | 1 | B: сборка | Nos entendemos sin problemas: es la misma lengua. | — |
-| 2 | C: выбор | En Argentina se ___ mucha carne. → come | — |
+| 2 | I~: диктант | на слух «En Galicia llueve mucho, pero se come m…» → En Galicia llueve mucho, pero se come m… | — |
 | 3 | T: mission | Рассказ о поездке | — |
 | 4 | H: ход разговора (письмо) | Diego: ¿Cuál es el mejor viaje de tu vida? ¿Adónde fuist… → ответить от себя; образец: Fui a Valencia el verano pasado con mi … | — |
 | 5 | H: ход разговора (письмо) | Diego: ¿Y cómo era? ¿Qué tiempo hacía? → ответить от себя; образец: Era una ciudad muy bonita, con playa. H… | — |
@@ -117,7 +117,7 @@
 | 26 | C: выбор | ¿Qué propone Olga a Irina y a Diego? → Dormir en su casa después de la cena. | `olga` |
 | 27 | C: выбор | ¿Cómo es el piso nuevo de Olga? → Más grande que el antiguo. | `olga` |
 | 28 | C: выбор | ¿Qué le pide Olga a Irina? → Devolver el libro. | `olga` |
-| 29 | B: сборка | Te recomiendo visitar el centro por la mañana. | — |
+| 29 | B: сборка | Por la mañana te recomiendo visitar el centro. | — |
 | 30 | B: сборка | Cuando llegamos, estaba lloviendo. | — |
 
 Сигнатура: `T(text) T(text+dialogue) C@segovia×5 I~×2 I×6 C×8 T(text+reading) C@olga×4 B×2`
