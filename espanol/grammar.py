@@ -246,3 +246,27 @@ def load_grammar(directory: Path = GRAMMAR, *, schema_check: bool | None = None)
     if set(policies) != applied_policy_units:
         raise ValueError(f'accent policy references unknown units: {sorted(set(policies) - applied_policy_units)}')
     return units
+
+
+def load_grammar_sections(units: list[dict], path: Path = GRAMMAR / "sections.json") -> list[dict]:
+    """Murphy-style contents: thematic sections with real units and «скоро» entries.
+
+    A real unit file always replaces a planned entry with the same number, so a new
+    unit appears in its section without touching the catalog's order.
+    """
+    catalog = json.loads(path.read_text(encoding="utf-8"))
+    real = {unit["number"]: unit["id"] for unit in units}
+    planned = {}
+    for entry in catalog["planned"]:
+        if entry["number"] in planned or not entry.get("title") or not entry.get("subtitle"):
+            raise ValueError(f"{path}: bad planned unit {entry.get('number')}")
+        planned[entry["number"]] = {"number": entry["number"], "title": entry["title"], "subtitle": entry["subtitle"]}
+    listed = [n for section in catalog["sections"] for n in section["units"]]
+    if len(listed) != len(set(listed)) or listed != sorted(listed):
+        raise ValueError(f"{path}: every unit must be listed once, in book order")
+    missing = [n for n in real if n not in listed] + [n for n in listed if n not in real and n not in planned]
+    if missing:
+        raise ValueError(f"{path}: units without a section or title: {sorted(missing)}")
+    return [{"title": s["title"], "es": s.get("es", ""),
+             "units": [{"id": real[n]} if n in real else planned[n] for n in s["units"]]}
+            for s in catalog["sections"]]

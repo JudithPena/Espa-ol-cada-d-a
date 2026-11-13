@@ -2913,3 +2913,18 @@ test('summary map labels, examples and image alternatives are escaped',()=>{
  assert.ok(html.includes('&lt;img'));assert.ok(html.includes('&lt;script&gt;'));
  assert.ok(!html.includes('<script>'));assert.ok(!html.includes('<b>перевод</b>'));
 });
+
+test('grammar list is split into Murphy-style sections with locked «скоро» units',()=>{
+ const run=context([unit,unit2]);
+ run(`COURSE.grammarSections=[{title:'Род и число',es:'Sustantivos',units:[{id:'${unit.id}'},{id:'${unit2.id}'}]},{title:'Будущее время',es:'Futuro',units:[{number:67,title:'Trabajaré, comeré, viviré',subtitle:'Futuro simple'}]}];view.grammar=null;`);
+ const html=run('grammarView()');
+ assert.ok(html.includes('Пройдено тем: 0 из 2 · ещё 1 тема скоро'));
+ assert.ok(html.includes('id="gsec-0"')&&html.includes('id="gsec-1"')&&html.includes('data-gsec="1"'));
+ assert.ok(html.indexOf('Род и число')<html.indexOf(`data-grammar="${unit.id}"`));
+ assert.ok(html.indexOf('Будущее время',html.indexOf('gsec-1'))<html.indexOf('67. <span lang="es">Trabajaré'));
+ const soon=html.slice(html.indexOf('class="mcard gsoon"'));
+ assert.ok(!soon.slice(0,soon.indexOf('</div>')).includes('data-grammar'));
+ // Юнит без раздела не теряется.
+ run(`COURSE.grammarSections=[COURSE.grammarSections[1]];`);
+ assert.ok(run('grammarView()').includes(`data-grammar="${unit.id}"`)&&run('grammarView()').includes('Другое'));
+});

@@ -733,12 +733,41 @@ function gUnitComplete(unit) {
   const routes=gRoutes(unit);
   return routes.length>0 && routes.every(route=>gRouteDone(unit,route));
 }
+function gUnitCard(u) {
+  const done=gUnitComplete(u);
+  return `<button class="mcard ${done?'gcomplete':''}" data-grammar="${esc(u.id)}"><span class="mi" aria-hidden="true">${G_UNIT_ICONS[u.id] || '📖'}</span><span><b>${u.number}. ${esc(u.title)}</b><small>${esc(u.subtitle)}</small>${done?'<span class="gcompleted-badge"><span aria-hidden="true">✓</span> Пройдено</span>':''}</span><span aria-hidden="true">›</span></button>`;
+}
+function gSoonCard(p) {
+  return `<div class="mcard gsoon" aria-disabled="true"><span class="mi" aria-hidden="true">🔒</span><span><b>${p.number}. <span lang="es">${esc(p.title)}</span></b><small>${esc(p.subtitle)}</small><span class="gsoon-badge">скоро</span></span></div>`;
+}
+/* Разделы как у Мёрфи (content/grammar/sections.json): готовые юниты и «скоро» по темам. */
+function gListView(units) {
+  const head = `<button class="btn ghost sm back" data-tab="home">← Главная</button><h2>📐 Грамматика</h2>`;
+  const sections = COURSE.grammarSections;
+  const doneCount = units.filter(gUnitComplete).length;
+  if (!sections?.length) return `${head}<p class="muted">Пройдено тем: ${doneCount} из ${units.length}</p><div class="menu">${units.map(gUnitCard).join("")}</div>`;
+  const byId = new Map(units.map(u => [u.id, u])), listed = new Set();
+  const groups = sections.map(s => ({...s, items: s.units.map(e => {
+    if (!e.id) return {soon: e};
+    const u = byId.get(e.id); if (u) listed.add(u.id); return u ? {unit: u} : null;
+  }).filter(Boolean)}));
+  const rest = units.filter(u => !listed.has(u.id));
+  if (rest.length) groups.push({title: "Другое", es: "", items: rest.map(u => ({unit: u}))});
+  const soon = groups.reduce((n, g) => n + g.items.filter(i => i.soon).length, 0);
+  const toc = `<details class="gtoc-wrap"><summary>Содержание · ${groups.length} ${plural(groups.length, "раздел", "раздела", "разделов")}</summary><nav class="gtoc" aria-label="Разделы грамматики">${groups.map((g, i) => {
+    const ready = g.items.filter(x => x.unit).length;
+    return `<button class="gtoc-item ${ready ? '' : 'gtoc-soon'}" data-gsec="${i}"><span class="gtoc-n">${i + 1}</span><span>${esc(g.title)}</span></button>`;
+  }).join("")}</nav></details>`;
+  const body = groups.map((g, i) => {
+    const ready = g.items.filter(x => x.unit), done = ready.filter(x => gUnitComplete(x.unit)).length;
+    const count = !ready.length ? 'скоро' : ready.length === g.items.length ? `${done} из ${ready.length} пройдено` : `готово ${ready.length} из ${g.items.length} · пройдено ${done}`;
+    return `<section class="gsec" id="gsec-${i}"><h3 class="gsec-title"><span class="gsec-n">${i + 1}</span><span>${esc(g.title)}${g.es ? `<small lang="es">${esc(g.es)}</small>` : ''}<span class="gsec-count">${count}</span></span></h3><div class="menu">${g.items.map(x => x.unit ? gUnitCard(x.unit) : gSoonCard(x.soon)).join("")}</div></section>`;
+  }).join("");
+  return `${head}<p class="muted">Пройдено тем: ${doneCount} из ${units.length}${soon ? ` · ещё ${soon} ${plural(soon, "тема", "темы", "тем")} скоро` : ''}</p>${toc}${body}`;
+}
 function grammarView() {
   const units = COURSE.grammar || [], unit = units.find(u => u.id === view.grammar);
-  if (!unit) return `<button class="btn ghost sm back" data-tab="home">← Главная</button><h2>📐 Грамматика</h2><p class="muted">Пройдено тем: ${units.filter(gUnitComplete).length} из ${units.length}</p><div class="menu">${units.map(u => {
-    const done=gUnitComplete(u);
-    return `<button class="mcard ${done?'gcomplete':''}" data-grammar="${esc(u.id)}"><span class="mi" aria-hidden="true">${G_UNIT_ICONS[u.id] || '📖'}</span><span><b>${u.number}. ${esc(u.title)}</b><small>${esc(u.subtitle)}</small>${done?'<span class="gcompleted-badge"><span aria-hidden="true">✓</span> Пройдено</span>':''}</span><span aria-hidden="true">›</span></button>`;
-  }).join("")}</div>`;
+  if (!unit) return gListView(units);
   const saved = gSaved(), resume = saved?.unit === unit.id && !saved.ended && saved.steps?.[saved.at];
   const row = (route, title, subtitle, group) => {
     const best = group && P.grammar?.[grammarKey(unit, group)];

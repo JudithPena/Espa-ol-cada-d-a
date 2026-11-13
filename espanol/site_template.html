@@ -1078,6 +1078,21 @@ html.grammar-playing, html.grammar-playing body { overflow: hidden; }
 .gfamily .gtree .gtree-person img { width: 100%; margin-bottom: 3px; }
 .gfamily .gtree .gtree-person figcaption { position: relative; left: 50%; transform: translateX(-50%); width: max-content; white-space: nowrap; font-size: clamp(10px, 2.5vw, 13px); }
 .mcard.gcomplete { background: var(--good-soft); border-color: var(--good); }
+.gtoc-wrap { margin: 14px 0 4px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+.gtoc-wrap > summary { min-height: 44px; padding: 11px 16px; font-weight: 700; cursor: pointer; }
+.gtoc { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 12px 12px; }
+.gtoc-item { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 6px 12px 6px 6px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); font-size: 14px; text-align: left; }
+.gtoc-item.gtoc-soon { color: var(--muted); }
+.gtoc-n, .gsec-n { display: inline-grid; place-items: center; min-width: 26px; height: 26px; border-radius: 50%; background: var(--accent-soft); font-size: 13px; font-weight: 800; }
+.gsec { margin-top: 26px; scroll-margin-top: 84px; }
+.gsec-title { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: center; margin: 0; font-size: 18px; }
+.gsec-title small { display: block; font-size: 13px; font-weight: 400; font-style: italic; color: var(--muted); }
+.gsec-count { display: block; margin-top: 2px; font-size: 12px; font-weight: 700; color: var(--muted); }
+.mcard.gsoon { padding: 10px 16px; background: var(--bg); box-shadow: none; color: var(--muted); }
+.mcard.gsoon .mi { font-size: 18px; opacity: .6; }
+.mcard.gsoon b { font-size: 15px; color: var(--muted); }
+.mcard.gsoon small { font-size: 13px; }
+.gsoon-badge { display: inline-block; margin: 4px 0 0 4px; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line); font-size: 12px; }
 .gcompleted-badge { display: flex; align-items: center; gap: 5px; width: fit-content; margin-top: 8px; color: var(--good); font-size: 14px; font-weight: 800; }
 .mcard.glocked { opacity: .58; box-shadow: none; }
 .gstage-label { display: inline-flex; margin-bottom: 6px; padding: 3px 9px; border-radius: 7px; background: var(--accent-soft); color: var(--ink); font-size: 14px; font-weight: 800; }
@@ -4204,6 +4219,7 @@ document.addEventListener("click", e => {
   if (d.gvalue != null && G) return gPickValue(d.gvalue);
   if (d.gpick != null && G) return gPick(+d.gpick);
   if (d.gchar && G) return gInsertChar(el);
+  if (d.gsec != null) { document.getElementById(`gsec-${d.gsec}`)?.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start"}); return; }
   if (d.grammar) { view.grammar = d.grammar; view.tab = "grammar"; render(); window.scrollTo(0, 0); return; }
   if ("grammarList" in d) { gSave(); G = null; view.grammar = null; view.tab = "grammar"; render(); window.scrollTo(0, 0); return; }
   if (d.gretry) {
