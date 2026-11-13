@@ -574,6 +574,35 @@ main { padding-block: 16px 110px; }
 .pctx .pgoal { display: block; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .pfoot.shown { background: var(--sunken); border-color: transparent; }
 .pfoot.shown .fb h3 { color: var(--ink); }
+/* Аудит MYTHOS, этап Э8. UX-01: зоны нажатия в уроке не меньше 40–44 px — рисунок прежний, растёт область нажатия
+   (у круглых «Послушать» — прозрачная рамка вокруг круга). UX-02: панель ответа не выше трети окна, при высоте окна
+   меньше 700 px — компактные отступы. UX-03: шапка 13 px, по нажатию — полностью, с целью урока. Проверка —
+   node tools/site_walk.mjs --unit N --measure (окно 360×640). */
+.x { min-width: 44px; min-height: 44px; display: inline-grid; place-items: center; margin: -10px -8px; padding: 0; }
+.x.prev { margin-left: -14px; }
+.play, .play.slow { width: 44px; height: 44px; padding: 3px; background-clip: content-box; margin: -3px; }
+.exl .play { width: 44px; height: 44px; padding: 7px; margin: -7px; }
+.play.big { width: 72px; height: 72px; padding: 0; margin: 0; }
+.exw { min-height: 40px; align-content: center; }
+.cmp-head { min-height: 40px; min-width: 40px; }
+.dlg-head { min-height: 44px; align-items: center; }
+.dlg-tr, .btn.sm { min-height: 40px; }
+.tok { min-width: 44px; min-height: 44px; }
+.pctx { font-size: 13px; }
+.pctx-b { display: block; width: 100%; min-height: 40px; border: 0; background: none; padding: 0; margin: 0; font: inherit; color: inherit;
+          text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; }
+.pctx.full .pctx-b, .pctx.full .pgoal { white-space: normal; overflow: visible; }
+.pfoot .fb { max-height: max(72px, calc(33dvh - 90px)); overflow-y: auto; }
+@media (max-height: 699px) {
+  .ptop .wrap { padding-block: 6px; }
+  .pbody .wrap { padding-block: 6px 16px; gap: 12px; }
+  .pfoot .wrap { padding-block: 8px; gap: 8px; }
+  .pfoot .fb { max-height: max(64px, calc(33dvh - 76px)); }
+  .pfoot .fb h3 { font-size: 16px; }
+}
+.result .rgoal { margin: -4px 0 0; }
+.panel.topics details summary { cursor: pointer; font-weight: 700; padding: 8px 10px; border-radius: 10px; background: var(--good-soft); min-height: 40px; }
+.panel.topics details[open] summary { margin-bottom: 6px; }
 .fb .fix { display: block; font-size: 13px; font-weight: 700; color: var(--muted); }
 .wfield.almost { border-color: var(--sun); background: var(--sun-soft); }
 /* A2: письмо по признакам и разговор по шагам */
@@ -600,7 +629,7 @@ main { padding-block: 16px 110px; }
 .srcbox details.src[open] { max-height: 36vh; overflow-y: auto; }
 .srcbox .dlg { margin-top: 6px; }
 .srcbox p { margin: 6px 0; }
-.linkbtn { background: none; border: 0; padding: 6px 4px; font: inherit; font-size: 14px; font-weight: 700; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; min-height: 36px; }
+.linkbtn { background: none; border: 0; padding: 6px 4px; font: inherit; font-size: 14px; font-weight: 700; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; min-height: 40px; }
 .listen.off { background: var(--sunken); border-radius: var(--r); padding: 12px; text-align: center; }
 .listen.off p { margin: 0 0 8px; font-weight: 700; }
 .whint { background: var(--accent-soft); border-radius: 12px; padding: 8px 12px; font-weight: 700; font-size: 15px; overflow-wrap: anywhere; }
@@ -2304,7 +2333,9 @@ function srcPanel(st) {
   const hidden = b.t === "dialogue" && b.hidden && !done && !s.peek && !S.noAudio;
   const what = b.t === "dialogue" ? "диалог" : b.t === "reading" ? "текст" : "условие миссии";
   const audible = !S.noAudio && (b.t === "dialogue" ? b.lines.some(l => canSay(l[3], b.cast?.[l[0]]?.v)) : b.t === "reading" && canSay(b.say));
-  const open = s.srcOpen ?? (b.t === "mission" || WIDE?.matches);
+  // Условие миссии раскрыто, если экран высокий; на низком (меньше 700 px — UX-02) свёрнуто: его только что показал
+  // экран миссии, а задание должно помещаться без прокрутки.
+  const open = s.srcOpen ?? ((b.t === "mission" && !SHORT?.matches) || WIDE?.matches);
   const body = b.t === "dialogue" ? dialogueHTML({ ...b, hidden }, false)
     : b.t === "reading" ? `<div class="reading hide-tr"><div class="text">${b.html}</div>${b.tr && done ? `<div class="tr">${b.tr}</div>` : ""}</div>`
     : `<p>${b.html}</p>`;
@@ -2316,7 +2347,7 @@ function srcPanel(st) {
       ${done && b.t === "dialogue" ? `<button class="btn ghost sm" data-src-tr aria-pressed="false">Перевод</button>` : ""}
     </details></aside>`;
 }
-const WIDE = matchMedia?.("(min-width: 900px)");
+const WIDE = matchMedia?.("(min-width: 900px)"), SHORT = matchMedia?.("(max-height: 699px)");
 
 /* ================================================================ звук в заданиях на слух */
 // Задание на слух нельзя засчитать, если его нельзя послушать. Нет записи и испанского голоса, запись не загрузилась
@@ -2419,10 +2450,36 @@ function quizRefs(L, i, st) {
   const q = L.quiz.find(x => x.q === st.q);
   return q ? { li: i, src: q.src, free: !!q.free, rule: q.rule || [], skill: q.skill || [], key: `${L.id}|${norm(q.q)}` } : { li: i };
 }
+// Повторение слов (аудит MYTHOS, ENG-10): ступени 0–1 — «Что значит?», 2 — «Как по-испански?» или на слух, с 3-й —
+// ввод слова (существительное — с артиклем), иногда на слух. Ошибка снимает две ступени (grade).
+const ACC_OFF = { á: "a", é: "e", í: "i", ó: "o", ú: "u" };
+function wordAnswers(es) {
+  const out = new Set();
+  for (const part of String(es).replace(/\s+/g, " ").trim().split(/\s+\/\s+/)) {   // «el profesor / la profesora»
+    const art = part.match(/^(el\/la|los\/las|un\/una)\s+(.+)$/i);                    // «el/la estudiante»
+    if (art) { art[1].split("/").forEach(a => out.add(`${a} ${art[2]}`)); continue; }
+    const fem = part.match(/^(.*?)\/a$/);                                               // «encantado/a», «alemán/a»
+    if (fem) {
+      const m = fem[1];
+      out.add(m);
+      out.add(/o$/.test(m) ? m.slice(0, -1) + "a" : m.replace(/([áéíóú])([^aeiouáéíóú]*)$/, (_, v, c) => ACC_OFF[v] + c) + "a");
+      continue;
+    }
+    out.add(part);
+  }
+  return [...out];
+}
+function wordWrite(w) {
+  if (/\.\.\.|…/.test(w.es)) return null;     // «me llamo...», «¿Cómo se dice... en español?» — не для ввода
+  const noun = /^(el|la|los|las)[\s/]/i.test(w.es);
+  return { type: "write", word: w, q: `«${esc(w.ru)}» — по-испански`, a: wordAnswers(w.es), show: esc(w.es), accents: "soft",
+           format: noun ? "слово с артиклем" : "слово или фраза по-испански", mistakes: {}, key: `review|${norm(w.es)}`, skill: [] };
+}
 function startReview(list) {
   const pool = knownPool(LESSONS.length);
   const steps = shuffle(list).slice(0, 15).map(w => {
     const st = P.words[w.es]?.s || 0;
+    if (st >= 3 && Math.random() >= .3) { const q = wordWrite(w); if (q) return q; }
     return wordQuestion(w, pool, st >= 2 ? (Math.random() < .3 ? "listen" : "prod") : "rec");
   }).filter(Boolean);
   if (!steps.length) return toast("Пока нечего повторять");
@@ -3545,7 +3602,7 @@ function stepFoot(st) {
     const cls = good ? "good" : helped ? "almost" : shown ? "shown" : "bad";
     return `<div class="pfoot ${cls}"><div class="wrap">
       <div class="fb"><h3>${title}</h3>${solved && !co ? fixNote(st, s) : ""}${right}${ex}${again}${rule}</div>
-      <button class="btn wide ${good ? "good" : solved ? "" : shown ? "" : "bad"}" data-next>Продолжить</button></div></div>`;
+      <button class="btn wide ${good ? "good" : ""}" data-next>Продолжить</button></div></div>`;
   }
   if (st.type === "build" || st.type === "mf") {
     return `<div class="pfoot"><div class="wrap"><button class="btn ghost wide" data-hint>${st.type === "mf" ? "Не знаю — открыть слово" : "Подсказка"}</button></div></div>`;
@@ -3583,7 +3640,7 @@ function playerView() {
   const total = S.steps.length, pct = Math.round(S.at / total * 100);
   return `<div class="player">
     <div class="ptop"><div class="wrap"><button class="x" data-quit aria-label="Выйти из урока">×</button>${prevIndex() >= 0 ? '<button class="x prev" data-prev aria-label="Назад">←</button>' : ""}<div class="bar"><i style="width:${pct}%"></i></div><span class="pcount">${S.at + 1}/${total}</span></div>
-      <div class="wrap pctx">${ctx}</div></div>
+      <div class="wrap pctx"><button class="pctx-b" data-ctx aria-expanded="false" aria-label="Тема, урок и цель — показать полностью">${ctx}</button></div></div>
     <div class="pbody"><div class="wrap">${stepBody(st)}</div></div>
     ${stepFoot(st)}
   </div>`;
@@ -3599,15 +3656,19 @@ function resultView() {
   if (!r.graded) return `<div class="wrap result"><span class="medal">🔇</span><h2>${lesson ? "Урок не засчитан" : "Повторение не засчитано"}</h2>
     <p class="muted">Здесь нечего было проверить без звука: задания на слух отложены. Пройдите урок, когда звук заработает.</p>${again}${home}</div>`;
   const control = r.check && lesson;
-  const topicsHTML = control && r.topics.length ? `<div class="panel topics"><b>По темам</b><ul>${r.topics.map(t =>
-    `<li class="${!t.wrong ? "ok" : t.weak ? "weak" : "mid"}"><span>${!t.wrong ? "✓" : t.weak ? "✗" : "↻"} ${esc(t.title)} — верно ${t.n - t.wrong} из ${t.n}</span>${t.wrong && t.li >= 0 ? `<button class="btn ghost sm" data-lesson="${t.li}" data-free>Урок ${LESSONS[t.li].n}</button>` : ""}</li>`).join("")}</ul></div>` : "";
+  // «По темам» (UX-05): темы с ошибками — сразу, темы без ошибок — свёрнутым списком, если их больше трёх.
+  const topicRow = t => `<li class="${!t.wrong ? "ok" : t.weak ? "weak" : "mid"}"><span>${!t.wrong ? "✓" : t.weak ? "✗" : "↻"} ${esc(t.title)} — верно ${t.n - t.wrong} из ${t.n}</span>${t.wrong && t.li >= 0 ? `<button class="btn ghost sm" data-lesson="${t.li}" data-free>Урок ${LESSONS[t.li].n}</button>` : ""}</li>`;
+  const missed = control ? r.topics.filter(t => t.wrong) : [], clean = control ? r.topics.filter(t => !t.wrong) : [];
+  const cleanHTML = clean.length > 3 ? `<details><summary>✓ ${missed.length ? "Без ошибок" : "Все темы без ошибок"} — ${clean.length} ${plural(clean.length, "тема", "темы", "тем")}</summary><ul>${clean.map(topicRow).join("")}</ul></details>`
+    : clean.length ? `<ul>${clean.map(topicRow).join("")}</ul>` : "";
+  const topicsHTML = control && r.topics.length ? `<div class="panel topics"><b>По темам</b>${missed.length ? `<ul>${missed.map(topicRow).join("")}</ul>` : ""}${cleanHTML}</div>` : "";
   const failed = control && r.score < PASS;   // как в finish(): по точному баллу, а не по округлённым процентам
   const title = !lesson ? "Повторение закончено!" : failed ? "Нужно повторить" : r.check === "control" ? `${esc(L.title)}: сдано!` : `Урок ${L.n} пройден!`;
   const lead = failed ? `<p class="verdict">Результат ${pct}&nbsp;% — нужно ${PASS * 100}&nbsp;%. ${r.check === "control" ? "Следующий урок откроется, когда итог будет сдан." : "Урок засчитан, но эти темы стоит повторить."}</p>`
     : control ? `<p class="verdict">Результат ${pct}&nbsp;% (нужно ${PASS * 100}&nbsp;%).</p>` : "";
   return `<div class="wrap result${failed ? " retry" : ""}">
     <span class="medal">${failed ? "💪" : r.stars === 3 ? "🏆" : r.stars === 2 ? "🎉" : "💪"}</span>
-    <h2>${title}</h2>${lead}
+    <h2>${title}</h2>${lesson && L.goal && !(r.passed && !failed) ? `<p class="muted rgoal">🎯 ${esc(L.goal)}</p>` : ""}${lead}
     ${failed ? "" : `<span class="stars-big" aria-label="${r.stars} из 3">${"★".repeat(r.stars)}${"☆".repeat(3 - r.stars)}</span>`}
     <div class="cells"><div class="cell"><b>+${r.xp}</b><span>опыта</span></div><div class="cell"><b>${Math.round(r.acc * 100)}%</b><span>с первой попытки</span></div><div class="cell"><b>${streakNow()} 🔥</b><span>дней подряд</span></div></div>
     ${r.noaudio && lesson && r.passed ? `<div class="panel noaudio"><b>🔇 Пройдено без звука</b><span class="muted">Задания на слух не проверены: пройдите урок со звуком, чтобы подтвердить аудирование.</span></div>` : ""}
@@ -3952,6 +4013,7 @@ document.addEventListener("click", e => {
   const el = e.target.closest("button, .spoiler, [data-say], [data-line]");
   if (!el) return;
   const d = el.dataset;
+  if ("ctx" in d) { const open = el.closest(".pctx").classList.toggle("full"); return el.setAttribute("aria-expanded", String(open)); }
   if ("retryData" in d) return dataRetry?.();
   if ("refreshData" in d) return location.reload();
   if (d.tab) dataLeave();

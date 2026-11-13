@@ -108,6 +108,29 @@ test('приёмка 5: typed mistakes get a precise reason — author map first
   assert.match(why(['Yo soy Ana'], 'yo eres ana'), /другая форма глагола/);
 });
 
+// ENG-10: с третьей ступени слово повторяется вводом (существительное — с артиклем), ошибка снимает две ступени.
+test('ENG-10: word review asks to type the word from stage 3; forms like encantado/a are accepted', () => {
+  const run = context(site);
+  assert.deepEqual(J(run, 'wordAnswers("encantado/a")'), ['encantado', 'encantada']);
+  assert.deepEqual(J(run, 'wordAnswers("alemán/a")'), ['alemán', 'alemana']);
+  assert.deepEqual(J(run, 'wordAnswers("el/la estudiante")'), ['el estudiante', 'la estudiante']);
+  assert.deepEqual(J(run, 'wordAnswers("el profesor / la profesora")'), ['el profesor', 'la profesora']);
+  assert.equal(run('wordWrite(WORDS.get(LESSONS.flatMap(L => L.words).find(w => w.es.includes("...")).es))'), null, 'фраза с многоточием — не для ввода');
+  const w = J(run, 'LESSONS.flatMap(L => L.words).find(w => w.es === "el libro")');
+  run(`Math.random = () => 0.5; P.words["el libro"] = {s: 3, due: 0}; startReview([WORDS.get("el libro")])`);
+  assert.equal(run('S.steps[0].type'), 'write');
+  assert.match(run('S.steps[0].format'), /с артиклем/);
+  assert.equal(J(run, 'writeResult(S.steps[0], "el libro").ok'), true);
+  assert.equal(J(run, 'writeResult(S.steps[0], "libro").ok'), false, 'без артикля — не верно');
+  // Ошибка — минус две ступени.
+  run('S.state = {value: "x", tries: 0, n: 0, err: 0, miss: 0, helps: 0, here: 0}; S.state.value = "la libra"; writeCheck(); S.state.value = "la libra"; writeCheck()');
+  assert.equal(run('P.words["el libro"].s'), 1);
+  // Ступень 1 — по-прежнему выбор «Что значит?».
+  run(`P.words["el libro"] = {s: 1, due: 0}; startReview([WORDS.get("el libro")])`);
+  assert.equal(run('S.steps[0].type + ":" + S.steps[0].mode'), 'mc:rec');
+  assert.ok(w);
+});
+
 test('ENG-04: ответы цифрами сравниваются по смыслу — время, телефон, число, дата', () => {
   const run = context(site);
   const r = (a, typed, as) => J(run, `writeResult(${JSON.stringify({a, accents: 'soft', as})}, ${JSON.stringify(typed)})`);
