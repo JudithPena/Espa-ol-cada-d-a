@@ -795,8 +795,8 @@ test('приёмка 8 на реальных уроках: numeros/dictado и ho
   }
 });
 
-test('приёмка 10 на реальных итогах: familia/repaso и final/examen — контроль с порогом и слабыми темами', () => {
-  for (const id of ['familia/repaso', 'final/examen']) {
+test('приёмка 10 на реальных итогах: familia/repaso, final/examen и fin_de_nivel/examen — контроль с порогом и слабыми темами', () => {
+  for (const id of ['familia/repaso', 'final/examen', 'fin_de_nivel/examen']) {
     const run = context(site);
     const i = idx(run, id);
     assert.equal(run(`LESSONS[${i}].check`), 'control', `${id}: нет check: control`);
