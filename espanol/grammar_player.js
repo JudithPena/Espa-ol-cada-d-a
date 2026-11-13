@@ -783,12 +783,34 @@ function gOpenArt() {
   dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
   document.body.appendChild(dialog); dialog.showModal();
 }
+function gDemonstrativesDistance(section) {
+  const groups = section.wordGroups || [];
+  const table = section.table;
+  if (groups.length !== 3 || !table || table.rows?.length !== 3) {
+    return gArtFigure(section.illustration) + (groups.length ? grammarWordGroups(groups) : '');
+  }
+  const meta = [
+    {form:'este', position:'Рядом со мной', marker:'1'},
+    {form:'ese', position:'Рядом с собеседником', marker:'2'},
+    {form:'aquel', position:'Далеко от нас', marker:'3'}
+  ];
+  const stops=meta.map((m,i)=>`<div class="gdist-stop gdist-stop-${i+1}"><span class="gdist-dot">${m.marker}</span><strong lang="es">${m.form}</strong><span>${esc(m.position)}</span></div>`).join('');
+  const examples=groups.map((g,i)=>`<div class="gdist-example-row"><div class="gdist-example-name"><span class="gdist-example-number">${i+1}</span><div><strong lang="es">${meta[i].form}</strong><small>${esc(g.title)}</small></div></div><ul>${g.words.map(([es,ru])=>`<li><b lang="es">${esc(es)}</b><span>${esc(ru)}</span></li>`).join('')}</ul></div>`).join('');
+  const art=section.illustration;
+  const scene=art ? `<button class="gdist-scene" data-gart aria-label="Увеличить иллюстрацию с тремя расстояниями"><img src="${esc(art.image)}" alt="${esc(art.alt)}" width="1200" height="800" decoding="async"><span aria-hidden="true">⤢</span></button>` : '';
+  return `<section class="gdist" aria-label="Схема расстояний для este, ese, aquel">
+    <header class="gdist-header"><span class="gdist-eyebrow">Наглядная схема</span><h3>${esc(section.distanceMap.title)}</h3></header>
+    <div class="gdist-top">${scene}<div class="gdist-visual"><p class="gdist-guide">Смотри, где находится предмет относительно тебя и собеседника:</p><div class="gdist-axis" aria-label="Рядом со мной — este, рядом с собеседником — ese, далеко — aquel">${stops}</div><div class="gdist-direction" aria-hidden="true"><span>близко</span><span>дальше →</span></div></div></div>
+    <div class="gdist-detail"><div class="gdist-examples"><h4>Покажи на предмет</h4>${examples}</div><div class="gdist-forms"><h4>Формы по роду и числу</h4><p>Расстояние выбрали — теперь подбери форму к существительному.</p>${gTheoryTable(table)}</div></div>
+    <p class="gdist-tip"><span aria-hidden="true">✦</span>${esc(section.distanceMap.note)}</p>
+  </section>`;
+}
 function gTheory(section) {
-  const art=gArtFigure(section.illustration), formsFirst=section.presentation==='paradigm' && section.table;
+  const art=section.distanceMap ? gDemonstrativesDistance(section) : gArtFigure(section.illustration), formsFirst=section.presentation==='paradigm' && section.table;
   const copy=section.paragraphs.map((p,i)=>`<p class="gtheory-paragraph${i?'':' is-lead'}">${gTheoryText(p)}</p>`);
   return `<article class="gtheory gtheory-${esc(section.presentation || 'examples')}"><div class="gtheory-copy">${copy[0] || ''}${section.formulas ? `<div class="gformulas" aria-label="Модель правила">${section.formulas.map(f=>`<div>${gTheoryText(f)}</div>`).join('')}</div>`:''}</div>${formsFirst?'':art}
     ${section.dialogues ? gTheoryDialogues(section.dialogues) : ''}
-    ${section.wordGroups ? grammarWordGroups(section.wordGroups) : ""}${section.schemes ? `<div${section.schemeGrid ? ' class="gsummary-cards"' : ""}>${grammarSchemes(section.schemes)}</div>` : ""}${section.table ? gTheoryTable(section.table) : ""}${formsFirst?art:''}
+    ${section.wordGroups && !section.distanceMap ? grammarWordGroups(section.wordGroups) : ""}${section.schemes ? `<div${section.schemeGrid ? ' class="gsummary-cards"' : ""}>${grammarSchemes(section.schemes)}</div>` : ""}${section.table && !section.distanceMap ? gTheoryTable(section.table) : ""}${formsFirst?art:''}
     ${section.agreement ? `<div class="gagreement">${section.agreement.map(w => `<div><small>${esc(w.label)}</small><b>${esc(w.from)}</b><span>↓</span><b>${esc(w.to)}</b></div>`).join("")}</div>` : ""}
     <div class="gtheory-copy">${copy.slice(1).join('')}</div><div class="gtheory-examples">${(section.examples || []).map(([es,ru]) => `<div class="gexample">${playBtn(es)} <b lang="es">${esc(es)}</b><small>${esc(ru)}</small></div>`).join("")}</div>
     ${section.notes?.length ? `<aside class="gnotes"><b>Обрати внимание</b>${section.notes.map(n => `<p>${esc(n)}</p>`).join("")}</aside>` : ""}</article>`;
