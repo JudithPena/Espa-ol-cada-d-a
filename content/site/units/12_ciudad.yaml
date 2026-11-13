@@ -48,9 +48,9 @@ lessons:
           skill: city_places
           items:
             - q: "Где покупают лекарства?"
-              options: "En la farmacia. | En el banco. | En el museo."
+              options: "En la farmacia. | En el banco. | En la parada."
             - q: "Где садятся на поезд?"
-              options: "En la estación. | En la farmacia. | En el museo."
+              options: "En la estación. | En el museo. | En la farmacia."
             - q: "Где ждут автобус?"
               options: "En la parada. | En el banco. | En el museo."
       - learn: [el cine, el bar, la biblioteca, el mercado, el aeropuerto]
@@ -207,11 +207,11 @@ lessons:
           format: фраза по-испански
           items:
             - q: "Я еду на работу на автобусе."
-              a: "Voy al trabajo en autobús"
+              a: "Voy al trabajo en autobús | (Yo) voy [al trabajo en autobús/en autobús al trabajo]"
               rule: en_transport
               mistakes: {"voy al trabajo en el autobús": "Перед транспортом артикль не ставят: **en autobús**.", "voy a el trabajo en autobús": "a + el сливаются: **al** trabajo."}
             - q: "Мы идём в парк пешком."
-              a: "Vamos al parque a pie"
+              a: "Vamos al parque a pie | ([Nosotros/Nosotras]) vamos [al parque a pie/a pie al parque]"
               rule: a_pie
               mistakes: {"vamos al parque en pie": "Пешком — **a pie**."}
           skill: transport

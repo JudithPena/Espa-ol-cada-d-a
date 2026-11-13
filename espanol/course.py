@@ -554,6 +554,7 @@ def _options(raw: Any) -> list[str]:
 
 
 MAX_ANSWERS = 96
+ANSWER_KINDS = ("number", "time", "phone", "date")
 
 
 def _expand(text: str) -> list[str]:
@@ -798,18 +799,26 @@ def _scenario_block(btype: str, value: Any, w: str) -> Block:
         for it in _items(spec.get("items")):
             if isinstance(it, dict):
                 q, answers = str(it.get("q") or "").strip(), _alts(it.get("a"))
-                extra = {k: str(it.get(k) or "").strip() for k in ("explain", "say", "format", "img")}
+                extra = {k: str(it.get(k) or "").strip() for k in ("explain", "say", "format", "img", "answer")}
                 extra["meta"], extra["noaudio"] = _item_meta(it, w), _noaudio(it.get("noaudio"), "write", w)
             else:
                 q, found, a = str(it).partition(" => ")
                 if not found:
                     raise ContentError(f"{w}: строка ввода — «вопрос => ответ | другой ответ»: {it!r}")
                 q, answers = q.strip(), _alts(a)
-                extra = {"explain": "", "say": "", "format": "", "img": "", "meta": {"mistakes": {}}, "noaudio": None}
+                extra = {"explain": "", "say": "", "format": "", "img": "", "answer": "", "meta": {"mistakes": {}}, "noaudio": None}
             items.append({"q": q, "answers": answers, **extra})
         accents = str(spec.get("accents") or "soft")
         if accents not in ("soft", "strict"):
             raise ContentError(f"{w}: accents — soft или strict")
+        # answer: number | time | phone | date — ответ цифрами сравнивается по смыслу (03:30 = 3:30, 648 20 71 93 = 648207193).
+        kind = str(spec.get("answer") or "").strip()
+        for it in items:
+            it["answer"] = it["answer"] or kind
+            if it["answer"] and it["answer"] not in ANSWER_KINDS:
+                raise ContentError(f"{w}: answer — {', '.join(ANSWER_KINDS)}")
+            if it["answer"] and not any(re.search(r"\d", a) for a in it["answers"]):
+                raise ContentError(f"{w}: answer: {it['answer']} — нужен ответ цифрами: {it['q'][:40]!r}")
         return Block(btype, {**head, "format": str(spec.get("format") or "").strip(), "accents": accents, "items": items})
     if btype == "match":
         pairs = []

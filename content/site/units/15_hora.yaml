@@ -134,7 +134,9 @@ lessons:
               a: "Es la una y media"
               rule: es_son
               mistakes: {"son las una y media": "Час один — **Es la una** y media."}
-            - "10:15 => Son las diez y cuarto"
+            - q: "10:15"
+              a: "Son las diez y cuarto | Son las diez y quince"
+              explain: "В Испании обычно говорят **y cuarto**; y quince тоже верно."
             - q: "5:45"
               a: "Son las seis menos cuarto"
               explain: "После половины минуты вычитают из следующего часа: шесть без четверти."
@@ -311,6 +313,7 @@ lessons:
       - write:
           title: Послушайте и запишите
           format: время цифрами, например 7:30
+          answer: time
           skill: time_ear
           items:
             - say: "Son las tres y media."

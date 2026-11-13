@@ -270,7 +270,7 @@ lessons:
           source: photos
           items:
             - q: "¿Quién es Rufo?"
-              options: "El perro del abuelo de Pablo. | El gato de Pablo. | El primo de Lucía."
+              options: "El perro de su abuelo. | El gato de Pablo. | El primo de Lucía."
             - q: "¿Lucía tiene hermanos?"
               options: "No, pero tiene cuatro primos. | Sí, tiene cuatro hermanos. | Sí, tiene una hermana."
               explain: "Lucía: No, no tengo hermanos. Pero tengo cuatro primos."
@@ -322,7 +322,7 @@ lessons:
             - "Olga: Hola, me llamo Olga. Soy ucraniana, de Odesa, pero vivo en Valencia. | Привет, меня зовут Ольга. Я украинка, из Одессы, но живу в Валенсии."
             - "Olga: Mi marido se llama Sergio. Es médico y trabaja en un hospital. | Моего мужа зовут Сергей. Он врач, работает в больнице."
             - "Olga: Tenemos dos hijos: Iván y Natalia. Iván tiene ocho años y Natalia tiene cinco. | У нас двое детей — Иван и Наталья. Ивану восемь лет, Наталье пять."
-            - "Olga: Mis padres viven en Odesa. Mi madre es profesora y mi padre es ingeniero. | Мои родители живут в Одессы. Мама учительница, папа инженер."
+            - "Olga: Mis padres viven en Odesa. Mi madre es profesora y mi padre es ingeniero. | Мои родители живут в Одессе. Мама учительница, папа инженер."
       - choose:
           title: Responde
           source: olga
@@ -475,6 +475,7 @@ lessons:
             - say: "seis, cuatro, ocho, dos, cero, siete, uno, nueve, tres"
               q: "Запишите номер Аны цифрами."
               a: "648207193 | 648 207 193 | 6 4 8 2 0 7 1 9 3"
+              answer: phone
               format: цифры
               noaudio: {q: "Ана пишет номер словами: seis, cuatro, ocho, dos, cero, siete, uno, nueve, tres. Запишите его цифрами.", a: "648207193 | 648 207 193 | 6 4 8 2 0 7 1 9 3"}
       - build:

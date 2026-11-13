@@ -51,7 +51,7 @@ lessons:
               mistakes: {"hace lluvia": "Для дождя — свой глагол, без hace: **llueve**.", "hace llueve": "Для дождя hace не нужен: **llueve**."}
             - "🌨🥶 => Nieva y hace frío | Hace frío y nieva"
             - {q: "💨", a: "Hace viento | Hoy hace viento", rule: hace}
-            - {q: "🌤", a: "Hace buen tiempo | Hoy hace buen tiempo", rule: hace}
+            - {q: "🌤 Хорошая погода", a: "Hace buen tiempo | Hoy hace buen tiempo", rule: hace}
       - tip:
           id: mucho_calor
           text: "«Очень жарко» — **hace mucho calor**, а не `muy calor`: **calor** — существительное «жара», перед ним ставится **mucho**. Так же _hace mucho frío_, _hace mucho viento_."
@@ -125,7 +125,7 @@ lessons:
               a: "En invierno nieva"
               mistakes: {"en el invierno nieva": "«Когда» — **en** без артикля: en invierno."}
             - q: "Моё любимое время года — лето."
-              a: "Mi estación favorita es el verano"
+              a: "Mi estación (del año) favorita es el verano | El verano es mi estación (del año) favorita"
               mistakes: {"mi estación favorita es verano": "О самом времени года — с артиклем: **el verano**."}
             - q: "Осенью пасмурно."
               a: "En otoño está nublado"
@@ -166,10 +166,16 @@ lessons:
               options: "marzo | abril | enero"
             - q: "Какой месяц идёт перед febrero?"
               options: "enero | marzo | abril"
-            - q: "Какой месяц идёт после marzo?"
-              options: "abril | enero | febrero"
             - q: "¿Cuántos meses hay en un año?"
               options: "Doce. | Diez. | Once."
+      - write:
+          title: Напишите
+          format: месяц по-испански
+          skill: dates
+          items:
+            - q: "Какой месяц идёт после marzo?"
+              a: "abril"
+              mistakes: {"febrero": "febrero — перед marzo, а после него — **abril**."}
       - learn: [mayo, junio, julio, agosto]
       - choose:
           title: Послушайте и выберите
@@ -218,6 +224,7 @@ lessons:
       - write:
           title: Послушайте и запишите цифрами
           format: число и месяц цифрами, например 5.3
+          answer: date
           rule: none
           skill: [dates, numbers_ear]
           items:

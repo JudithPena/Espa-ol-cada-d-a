@@ -102,6 +102,11 @@ export async function handleSite(request, env) {
           return json(request, { error: "bad json" }, 400);
         }
         if (!progress || typeof progress !== "object" || Array.isArray(progress)) return json(request, { error: "bad progress" }, 400);
+        // Запись, сброшенная позже (resetAt), или записанная новой схемой не затирается копией старой вкладки или
+        // устройства: в ответ — 409 и сохранённая запись, страница её примет. Без полей — как у прежних страниц (0 и 1).
+        const stored = await env.SRS.get(key, "json");
+        if (stored && ((Number(stored.resetAt) || 0) > (Number(progress.resetAt) || 0) || (Number(stored.schema) || 1) > (Number(progress.schema) || 1)))
+          return json(request, { error: "stale", progress: stored }, 409);
         await env.SRS.put(key, JSON.stringify(progress));
         return json(request, { ok: true });
       }

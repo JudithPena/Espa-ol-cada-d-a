@@ -317,7 +317,7 @@ lessons:
           lines:
             - "Lucía: Hola, ¿sois estudiantes? | Привет, вы студенты?"
             - "Diego: Sí, somos estudiantes. Estudiamos en la universidad. ¿Y vosotras? | Да, мы студенты. Учимся в университете. А вы?"
-            - "Lucía: Nosotras trabajamos. Yo soy enfermera y ella es abogada. | Мы работаем. Я медсестра, а она юрист."
+            - "Lucía: Nosotras trabajamos. Yo soy enfermera y Elena es abogada. | Мы работаем. Я медсестра, а Елена юрист."
             - "Diego: ¿Dónde trabajáis? | Где вы работаете?"
             - "Elena: Lucía trabaja en un hospital y yo trabajo en una oficina. | Лусия работает в больнице, а я в офисе."
             - "Diego: ¿Y habláis inglés? | А вы говорите по-английски?"
@@ -329,7 +329,7 @@ lessons:
           items:
             - q: "¿Qué es Elena?"
               options: "Es abogada. | Es enfermera. | Es estudiante."
-              explain: "Lucía: Yo soy enfermera y ella es abogada. — Елена юрист."
+              explain: "Lucía: Yo soy enfermera y Elena es abogada."
             - q: "¿Dónde trabaja Lucía?"
               options: "En un hospital. | En una oficina. | En la universidad."
             - q: "¿Qué estudian Diego y su amigo?"
@@ -407,7 +407,7 @@ lessons:
           skill: trabajar_en
           items:
             - q: "Pablo: ¿Dónde estudias?"
-              a: "Estudio en la universidad | En la universidad | Estudio en la universidad de Madrid"
+              a: "Estudio en la universidad | (Yo) estudio en [la universidad/la universidad de Madrid/una universidad de Madrid/Madrid] | En [la universidad/la universidad de Madrid/una universidad de Madrid/Madrid]"
               format: ответ по-испански
       - choose:
           source: dorm
@@ -451,7 +451,7 @@ lessons:
         explain: "Если говорят nosotros, то у глагола на -ar окончание -amos: trabajamos, hablamos."
         skill: present_ar
       - q: Как сказать «Я учительница»?
-        options: "Soy profesora. | Soy una profesora. | Estoy profesora."
+        options: "Soy profesora. | Soy una profesora. | Soy profesor."
         explain: "Если профессию называют после глагола ser, то артикль не ставится: Soy profesora. Es médico."
         skill: profession
       - q: "¿Vosotros ___ inglés?"

@@ -124,6 +124,11 @@ lessons:
               rule: vowels
               skill: vowels
               noaudio: {q: "Напишите по-испански слово, которое читается [ла ка́са].", a: "la casa | casa"}
+      - write:
+          title: Послушайте и напишите со знаком ударения
+          format: слово по-испански
+          accents: strict
+          items:
             - say: "la música"
               a: "la música | música"
               rule: stress

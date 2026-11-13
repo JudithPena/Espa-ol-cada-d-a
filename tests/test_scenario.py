@@ -10,7 +10,7 @@ from espanol.course import SITE_ONLY_BLOCKS, ContentError, load_course, parse_bl
 from espanol.lexicon import Lexicon
 from espanol.scenario import channel_issues, check
 from espanol.site import site_data
-from espanol.site_audio import audio_texts
+from espanol.site_audio import _spoken, audio_texts
 from espanol.wordcards import load_cards
 
 CONTENT = Path(__file__).resolve().parent.parent / "content"
@@ -181,7 +181,7 @@ def test_scenario_audio(site):
             elif t == "write":
                 for it in b["items"]:
                     want |= {clean(it["say"])} - {""}
-                    want |= {clean(a) for a in it["a"] if spanish(a)}
+                    want |= {clean(a) for a in _spoken(it["a"]) if spanish(a)}   # длинный шаблон — первые варианты
             elif t == "match":
                 want |= {clean(x) for p in b["pairs"] for x in p[2:] if x}
             elif t == "sort":

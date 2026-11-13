@@ -300,8 +300,9 @@ lessons:
           skill: bueno_bien
           items:
             - q: "Суп очень хороший."
-              a: "La sopa es muy buena"
-              mistakes: {"la sopa es muy bien": "«Хороший» — это **buena**: она согласуется с la sopa. bien — «хорошо», о том, как что-то делают.", "la sopa es muy bueno": "la sopa — женского рода: **buena**."}
+              a: "La sopa es muy buena | La sopa está muy buena"
+              explain: "О блюде вообще — **es** muy buena; о том, какой суп на вкус сейчас, говорят и **está** muy buena."
+              mistakes: {"la sopa está muy bien": "«Хороший» — это **buena**: она согласуется с la sopa. bien — «хорошо», о том, как что-то делают.", "la sopa es muy bien": "«Хороший» — это **buena**: она согласуется с la sopa. bien — «хорошо», о том, как что-то делают.", "la sopa es muy bueno": "la sopa — женского рода: **buena**."}
 
   - id: bar
     kind: dialogue
@@ -369,7 +370,7 @@ lessons:
           skill: order_food
           items:
             - q: "Camarero: ¿Algo más? ¿Quiere comer algo? — Попросите бутерброд с сыром."
-              a: "Un bocadillo de queso, por favor | Sí, un bocadillo de queso, por favor | Quiero un bocadillo de queso | Para mí, un bocadillo de queso, por favor"
+              a: "Un bocadillo de queso, por favor | (Sí, )[un/quiero un/para mí, un] bocadillo de queso(, por favor)"
               format: фраза по-испански
       - build:
           source: breakfast
@@ -461,7 +462,7 @@ lessons:
             - "la cuenta — счёт"
     quiz:
       - q: "Nosotros ___ en un restaurante."
-        options: "comemos | comimos | comen"
+        options: "comemos | coméis | comen"
         explain: "У глаголов на -er форма «мы» заканчивается на -emos, поэтому с nosotros нужна форма comemos."
         skill: present_er_ir
       - q: "¿Dónde ___ (vosotros)?"

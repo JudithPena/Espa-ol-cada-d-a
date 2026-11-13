@@ -191,6 +191,8 @@ main { padding-block: 16px 110px; }
 .btn.wide { width: 100%; }
 .btn.sm { padding: 6px 12px; font-size: 14px; border-radius: 10px; }
 .btn.ghost { background: var(--surface); color: var(--ink); border: 1px solid var(--line); box-shadow: none; }
+.reports { margin: 8px 0 12px; padding-left: 18px; display: grid; gap: 8px; font-size: 14px; }
+.fb .btn.report { display: block; width: auto; margin-top: 10px; min-height: 40px; padding: 8px 14px; font-size: 14px; font-weight: 600; }
 .btn.good { background: var(--good); color: var(--on-accent); }
 .btn.bad { background: var(--bad); color: var(--on-accent); }
 .play { flex: none; width: 38px; height: 38px; border-radius: 50%; border: 0; background: var(--accent-soft); color: var(--accent); display: inline-grid; place-items: center; font-size: 16px; }
@@ -1131,7 +1133,8 @@ const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { c
 const pad = n => String(n).padStart(2, "0");
 const dayStr = (d = new Date()) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 const dayNum = (s = dayStr()) => Math.round(Date.parse(s + "T12:00:00Z") / 864e5);
-const numDay = n => new Date(n * 864e5).toISOString().slice(0, 10);
+// dayNum считает от полудня и округляет вверх (день D даёт D + 1), поэтому обратно — n − 1: numDay(dayNum(s)) === s.
+const numDay = n => new Date((n - 1) * 864e5).toISOString().slice(0, 10);
 const plural = (n, one, few, many) => { const m10 = n % 10, m100 = n % 100; return m10 === 1 && m100 !== 11 ? one : m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20) ? few : many; };
 const words = n => `${n} ${plural(n, "слово", "слова", "слов")}`;
 
@@ -1139,10 +1142,47 @@ const words = n => `${n} ${plural(n, "слово", "слова", "слов")}`;
 const KEY = "espanol-cada-dia.v1";
 // done — пройденные уроки (любой версии: открывают следующий урок, звёзды, опыт); ver — пройденная версия содержания
 // урока (запись без неё — версия 1); skills — повторение конструкций; ctl — попытки итогов A0 и A1.
-const fresh = () => ({ done: {}, ver: {}, skills: {}, ctl: {}, grammar: {}, grammarRead: {}, xp: 0, days: {}, streak: { n: 0, best: 0, last: "" }, words: {}, goal: 30, openAll: false, sound: true });
+// resetAt — время последнего сброса (мс): запись, сброшенная позже, при синхронизации побеждает целиком.
+// reports — ответы ввода, которые ученик считает верными («Мой ответ тоже верный?»), не больше 50.
+const fresh = () => ({ schema: 2, resetAt: 0, done: {}, ver: {}, skills: {}, ctl: {}, grammar: {}, grammarRead: {}, xp: 0, days: {}, streak: { n: 0, best: 0, last: "" }, words: {}, reports: [], goal: 30, openAll: false, sound: true });
+// Запись прогресса в хранилище и на сервере — схема 2, сжатая: записи уроков, слов и навыков — массивами, дни — рядом
+// чисел опыта. В памяти страница держит прежние объекты; pack/unpack работают только на границе (браузер, сервер).
+// Запись без schema — прежний формат (объекты), читается как есть. Поле, которого нет в массиве, хранится объектом.
+const dn = s => s ? dayNum(s) : 0, nd = n => n ? numDay(n) : "";
+const fits = (o, keys) => o && typeof o === "object" && !Array.isArray(o) && Object.keys(o).every(k => keys.includes(k));
+const packs = {
+  done: [["stars", "acc", "at", "joined"], o => [o.stars || 0, o.acc || 0, dn(o.at), ...(o.joined ? [1] : [])],
+         a => ({ stars: a[0], acc: a[1], at: nd(a[2]), ...(a[3] ? { joined: true } : {}) })],
+  ver: [["v", "stars", "acc", "at", "noaudio"], o => [o.v || 0, o.stars || 0, o.acc || 0, dn(o.at), ...(o.noaudio ? [o.noaudio] : [])],
+        a => ({ v: a[0], stars: a[1], acc: a[2], at: nd(a[3]), ...(a[4] ? { noaudio: a[4] } : {}) })],
+  words: [["s", "due", "t"], o => [o.s || 0, o.due || 0, ...(o.t ? [o.t] : [])], a => ({ s: a[0], due: a[1], ...(a[2] ? { t: a[2] } : {}) })],
+  skills: [["s", "due", "ok", "err", "n", "last", "seen"], o => [o.s || 0, o.due || 0, o.ok || 0, o.err || 0, o.n || 0, dn(o.last), ...(o.seen || [])],
+           a => ({ s: a[0], due: a[1], ok: a[2], err: a[3], n: a[4], ...(a[5] ? { last: nd(a[5]) } : {}), seen: a.slice(6) })],
+};
+// Версия урока, у которой звёзды, точность и дата те же, что у прохождения (обычный случай), — одним числом v.
+const sameRun = (o, d) => d && fits(o, ["v", "stars", "acc", "at"]) && o.stars === d.stars && o.acc === d.acc && o.at === d.at && Number.isInteger(o.v);
+function pack(p) {
+  const out = { ...p, schema: 2 };
+  for (const [field, [keys, to]] of Object.entries(packs))
+    out[field] = Object.fromEntries(Object.entries(p[field] || {}).map(([k, o]) => [k,
+      field === "ver" && sameRun(o, (p.done || {})[k]) ? o.v : fits(o, keys) && (field !== "done" || o.joined === undefined || o.joined === true) ? to(o) : o]));
+  const days = Object.keys(p.days || {}).filter(d => /^\d{4}-\d\d-\d\d$/.test(d)).map(dayNum).sort((x, y) => x - y);
+  if (days.length && days.length === Object.keys(p.days).length && days[days.length - 1] - days[0] < 4000)
+    out.days = [days[0], ...Array.from({ length: days[days.length - 1] - days[0] + 1 }, (_, k) => p.days[numDay(days[0] + k)] || 0)];
+  return out;
+}
+function unpack(r) {
+  if (!r || typeof r !== "object" || (r.schema || 1) < 2) return r;
+  const out = { ...r };
+  for (const [field, [, , from]] of Object.entries(packs))
+    out[field] = Object.fromEntries(Object.entries(r[field] || {}).map(([k, a]) => [k, Array.isArray(a) ? from(a)
+      : field === "ver" && typeof a === "number" ? { v: a, stars: out.done[k]?.stars, acc: out.done[k]?.acc, at: out.done[k]?.at } : a]));
+  if (Array.isArray(r.days)) out.days = Object.fromEntries(r.days.slice(1).map((x, k) => [numDay(r.days[0] + k), x]).filter(([, x]) => x));
+  return out;
+}
 let P = fresh();
-try { P = Object.assign(fresh(), JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) { /* без хранилища — прогресс только до перезагрузки */ }
-const saveLocal = () => { try { localStorage.setItem(KEY, JSON.stringify(P)); } catch (e) {} };
+try { P = Object.assign(fresh(), unpack(JSON.parse(localStorage.getItem(KEY) || "{}"))); } catch (e) { /* без хранилища — прогресс только до перезагрузки */ }
+const saveLocal = () => { try { localStorage.setItem(KEY, JSON.stringify(pack(P))); } catch (e) {} };
 const save = () => { saveLocal(); markDirty(); };
 
 /* ================================================================ вход через Telegram и копия прогресса на сервере */
@@ -1157,8 +1197,13 @@ let token = store.get(TOKEN_KEY);
 const sync = { dirty: false, timer: 0, last: 0, sent: "", busy: false };
 
 // Объединение двух копий: только «объединить» и «взять большее», поэтому повторная синхронизация ничего не раздувает.
+// Сброс прогресса — исключение: если копии сброшены в разное время, побеждает целиком та, что сброшена позже, —
+// иначе старая копия сервера или другого устройства вернула бы сброшенное. У слова побеждает последний ответ (t),
+// а не бо́льшая ступень: ошибка в повторении не «вспоминается» из старой копии.
 function mergeProgress(a, b) {
   b = b || {};
+  const ra = a.resetAt || 0, rb = b.resetAt || 0;
+  if (ra !== rb) return ra > rb ? { ...a } : { ...b };
   const pristine = !Object.keys(a.done || {}).length && !(a.xp > 0) && !Object.keys(a.words || {}).length;
   const out = pristine ? { ...a, ...b } : { ...b, ...a };   // настройки: в пустом браузере берём сохранённые
   out.done = { ...(b.done || {}) };
@@ -1166,9 +1211,9 @@ function mergeProgress(a, b) {
   out.words = { ...(b.words || {}) };
   for (const [w, s] of Object.entries(a.words || {})) {
     const o = out.words[w];
-    if (!o || (s.s || 0) > (o.s || 0) || ((s.s || 0) === (o.s || 0) && (s.due || 0) >= (o.due || 0))) out.words[w] = s;
+    const ta = s.t || 0, tb = o ? o.t || 0 : 0;
+    if (!o || ta > tb || (ta === tb && ((s.s || 0) > (o.s || 0) || ((s.s || 0) === (o.s || 0) && (s.due || 0) >= (o.due || 0))))) out.words[w] = s;
   }
-  out.xp = Math.max(a.xp || 0, b.xp || 0);
   out.grammar = { ...(b.grammar || {}) };
   out.grammarRead = { ...(b.grammarRead || {}), ...(a.grammarRead || {}) };
   for (const [id, result] of Object.entries(a.grammar || {})) {
@@ -1176,6 +1221,11 @@ function mergeProgress(a, b) {
   }
   out.days = { ...(b.days || {}) };
   for (const [d, v] of Object.entries(a.days || {})) out.days[d] = Math.max(v, out.days[d] || 0);
+  // Опыт: занятия на двух устройствах в разные дни складываются (по дням), а не берётся бо́льший из двух итогов.
+  out.xp = Math.max(a.xp || 0, b.xp || 0, Object.values(out.days).reduce((x, y) => x + (+y || 0), 0));
+  const rep = [...(b.reports || []), ...(a.reports || [])];
+  out.reports = rep.filter((r, k) => rep.findIndex(x => x.k === r.k && x.a === r.a) === k).slice(-50);
+  out.resetAt = ra; out.schema = 2;
   // Версии уроков, навыки и попытки итогов: из двух записей берём «бо́льшую», поэтому повтор ничего не меняет.
   const better = (x, y, cmp) => { const o = { ...(y || {}) }; for (const [k, v] of Object.entries(x || {})) if (!o[k] || cmp(v, o[k]) >= 0) o[k] = v; return o; };
   out.ver = better(a.ver, b.ver, (x, y) => (x.v || 0) - (y.v || 0) || (x.stars || 0) - (y.stars || 0) || String(x.at || "").localeCompare(String(y.at || "")));
@@ -1187,6 +1237,13 @@ function mergeProgress(a, b) {
 }
 
 function logout(msg) { token = ""; store.set(TOKEN_KEY, ""); store.set(NAME_KEY, ""); if (msg) toast(msg); }
+// Сброс: новая пустая запись с отметкой времени и сразу на сервер — не через 5 минут, иначе синхронизация вернёт старое.
+function resetProgress() {
+  const keep = { goal: P.goal, sound: P.sound, autoDlg: P.autoDlg, dlgRate: P.dlgRate };
+  P = Object.assign(fresh(), Object.fromEntries(Object.entries(keep).filter(([, v]) => v !== undefined)), { resetAt: Date.now() });
+  if (typeof grammarAttempts !== "undefined") { grammarAttempts.clear(); grammarDrafts.clear(); store.set(G_SESSION_KEY, ""); store.set(G_ATTEMPTS_KEY, ""); }
+  save(); push(true);
+}
 function markDirty() {
   if (!token) return;
   sync.dirty = true;
@@ -1204,9 +1261,10 @@ async function syncNow(render_ = true) {
   sync.busy = true;
   try {
     const { progress } = await api("/site/progress");
-    P = Object.assign(fresh(), mergeProgress(P, progress));
+    P = Object.assign(fresh(), mergeProgress(P, unpack(progress)));
     saveLocal();
-    sync.sent = JSON.stringify(progress || null) === JSON.stringify(P) ? JSON.stringify(P) : sync.sent;
+    const mine = JSON.stringify(pack(P));
+    sync.sent = JSON.stringify(progress || null) === mine ? mine : sync.sent;
     sync.busy = false;
     await push(true);
     if (render_ && !S) render();
@@ -1214,12 +1272,20 @@ async function syncNow(render_ = true) {
 }
 async function push(force = false, keepalive = false) {
   if (!token || (!force && !sync.dirty)) return;
-  const body = JSON.stringify(P);
+  const body = JSON.stringify(pack(P));
   if (body === sync.sent) { sync.dirty = false; return; }
   if (keepalive && body.length > 60000) keepalive = false;
   try {
     const r = await fetch(API + "/site/progress", { method: "PUT", keepalive, body, headers: { "Content-Type": "application/json", Authorization: "Bearer " + token } });
     if (r.status === 401) return logout("Войдите снова: срок входа закончился");
+    // На сервере запись сброшена позже, чем эта (сброс на другом устройстве): берём её, а свою не отправляем.
+    if (r.status === 409) {
+      const { progress } = await r.json();
+      P = Object.assign(fresh(), mergeProgress(P, unpack(progress)));
+      saveLocal(); sync.sent = JSON.stringify(pack(P)); sync.dirty = false; clearTimeout(sync.timer); sync.timer = 0;
+      if (!S) render();
+      return;
+    }
     if (r.ok) { sync.sent = body; sync.dirty = false; sync.last = Date.now(); clearTimeout(sync.timer); sync.timer = 0; }
   } catch (e) { /* повторим при следующем изменении */ }
 }
@@ -1291,11 +1357,15 @@ function addXP(x) {
   }
 }
 
-// Повторение по интервалам курса: верно — следующая ступень, ошибка — снова завтра.
+// Повторение по интервалам курса: верно — следующая ступень, ошибка — на две ступени ниже и снова завтра
+// (не с нуля: одна ошибка не отменяет месяцы повторения). t — минута последнего ответа: по ней синхронизация
+// выбирает более свежую запись слова.
+const nowMin = () => Math.round(Date.now() / 6e4);
 function grade(es, ok) {
   const s = P.words[es] || { s: 0, due: 0 };
   if (ok) { s.due = dayNum() + INTERVALS[Math.min(s.s, INTERVALS.length - 1)]; s.s = Math.min(s.s + 1, INTERVALS.length); }
-  else { s.s = 0; s.due = dayNum() + 1; }
+  else { s.s = Math.max(0, s.s - 2); s.due = dayNum() + 1; }
+  s.t = nowMin();
   P.words[es] = s;
 }
 
@@ -1890,6 +1960,9 @@ function skillPool(upto = LESSONS.length) {
   return out;
 }
 const skillDue = tag => { const r = P.skills[tag]; return !r || r.due <= dayNum(); };
+// Недавно показанные задания навыка помним коротким хешем ключа (запись прогресса компактнее); прежние записи — полным ключом.
+const keyHash = k => { let h = 0; for (const c of String(k)) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h.toString(36); };
+const wasSeen = (seen, key) => seen.includes(keyHash(key)) || seen.includes(key);
 // Задания для повторения: навыки, которым пора, — не больше perTag на навык; недавно показанные — в последнюю очередь.
 function pickSkillSteps(tags, n, perTag = 2, upto = LESSONS.length) {
   const pool = skillPool(upto), out = [], used = new Set();
@@ -1897,7 +1970,7 @@ function pickSkillSteps(tags, n, perTag = 2, upto = LESSONS.length) {
     for (const tag of tags) {
       if (out.length >= n) break;
       const seen = P.skills[tag]?.seen || [];
-      const cand = shuffle(pool.filter(x => x.tag === tag && !used.has(x.key))).sort((a, b) => seen.includes(a.key) - seen.includes(b.key));
+      const cand = shuffle(pool.filter(x => x.tag === tag && !used.has(x.key))).sort((a, b) => wasSeen(seen, a.key) - wasSeen(seen, b.key));
       if (!cand.length) continue;
       used.add(cand[0].key);
       const fresh = cand[0].step.type === "mc" ? { ...cand[0].step, ...reshuffle(cand[0].step) } : { ...cand[0].step };
@@ -1938,7 +2011,7 @@ function updateSkills(outcomes) {
     else { r.s = Math.max(0, r.s - 1); gap = 1; }
     if (r.err / Math.max(1, r.ok + r.err) > 0.4) gap = Math.min(gap, 7);   // трудный навык — не реже раза в неделю
     r.due = today + gap; r.n++; r.last = dayStr();
-    r.seen = [...new Set([...list.map(o => o.key).filter(Boolean), ...(r.seen || [])])].slice(0, 6);
+    r.seen = [...new Set([...list.map(o => o.key).filter(Boolean).map(keyHash), ...(r.seen || [])])].slice(0, 6);
     P.skills[tag] = r;
   }
 }
@@ -2086,20 +2159,34 @@ function writeWhy(st, typed) {
       }
       if (gw[k].length >= 4 && lev(flatW(aw[k]), flatW(gw[k])) === 1) return `Почти: проверьте, как пишется слово «${gw[k]}».`;
     }
-    if ([...aw].map(flatW).sort().join(" ") === [...gw].map(flatW).sort().join(" ")) return "Все слова верные, но порядок другой.";
+    if ([...aw].map(flatW).sort().join(" ") === [...gw].map(flatW).sort().join(" ")) return "Слова верные, но в принятых ответах другой порядок — сравните с образцом.";
   }
   // Число слов называем, только если ни один допустимый ответ не совпадает по длине с ответом ученика.
   const lens = st.a.map(x => wNorm(x).split(" ").length);
   if (!lens.includes(gw.length)) {
-    if (gw.length < Math.min(...lens)) return "Не хватает слова.";
-    if (gw.length > Math.max(...lens)) return "Есть лишнее слово.";
+    if (gw.length < Math.min(...lens)) return "Не хватает слова — сравните с образцом.";
+    if (gw.length > Math.max(...lens)) return "В ответе лишнее слово — сравните с образцом.";
   }
   return "Пока не так.";
 }
+// Ответ цифрами (answer: number | time | phone | date): сравниваем смысл, а не запись. Время — час по 12-часовому
+// циферблату и минуты (3:30 = 03:30 = 3.30 = 15:30 = 330), телефон и число — только цифры (648 20 71 93 = 648207193),
+// дата — день и месяц (3.5 = 03/05).
+const AS_NORM = {
+  number: t => t.replace(/\D/g, ""), phone: t => t.replace(/\D/g, ""),
+  time: t => { const d = t.match(/\d+/g) || []; let [h, m] = d.length >= 2 ? d : d[0]?.length >= 3 ? [d[0].slice(0, -2), d[0].slice(-2)] : [d[0], "0"];
+               return h === undefined || +m > 59 ? "" : `${+h % 12}:${+m}`; },
+  date: t => { const d = t.match(/\d+/g) || []; return d.length >= 2 ? `${+d[0]}.${+d[1]}` : ""; },
+};
 function writeResult(st, typed) {
   const got = wNorm(typed);
   const exact = st.a.find(x => wNorm(x) === got);
   if (exact) return { ok: true, match: exact };
+  const norm = AS_NORM[st.as];
+  if (norm && /\d/.test(typed) && norm(typed)) {
+    const same = st.a.find(x => /\d/.test(x) && norm(x) === norm(typed));
+    if (same) return { ok: true, match: same };
+  }
   if (st.accents !== "strict") {
     const near = st.a.find(x => wFlat(wNorm(x)) === wFlat(got) && !accentChangesMeaning(x, typed));
     if (near) return { ok: true, almost: true, match: near };
@@ -2115,6 +2202,12 @@ function writeCheck() {
   s.why = r.why;
   if (s.tries < 2) { s.flash = true; render(); sfx(false); focusWrite(); return; }
   answer(false, st);
+}
+function addReport(st, typed) {
+  const L = S.kind === "lesson" ? LESSONS[S.li] : null, a = String(typed || "").trim().slice(0, 200);
+  const r = { k: st.key || "", l: L ? L.id : "", q: String(st.q || "").replace(/<[^>]*>/g, "").slice(0, 160), a, m: String(st.a?.[0] || ""), d: dayStr() };
+  P.reports = [...(P.reports || []).filter(x => !(x.k === r.k && x.a === r.a)), r].slice(-50);
+  save();
 }
 function writeGive() {
   const st = S.steps[S.at], s = S.state;
@@ -2391,7 +2484,11 @@ function solvedSay(st) {
   if (st.type === "build") return (s.cands?.[0] || tokens(st)).join(" ");
   if (st.type === "compose") return "";
   if (st.type === "mf") return st.es;
-  if (st.type === "write") return /[А-Яа-яЁё]/.test(s.match || "") ? "" : s.match || "";
+  if (st.type === "write") {
+    // Шаблон ответа даёт десятки вариантов, записаны первые: прозвучит принятый вариант, а без записи — образец.
+    const m = /[А-Яа-яЁё]/.test(s.match || "") ? "" : s.match || "";
+    return !m || audioId(m) || !Object.keys(AUDIO).length ? m : st.a.find(x => audioId(x)) || m;
+  }
   if (st.type === "mc" && st.mode === "choose") { const o = st.plain[st.correct]; return /[А-Яа-яЁё]/.test(o) ? "" : o; }
   return st.mode === "prod" || st.mode === "listen" ? st.word?.say : "";
 }
@@ -2485,7 +2582,7 @@ function finish() {
       const keepFull = pv && pv.v === v && !pv.noaudio;   // уже пройден со звуком — пометка «без звука» не нужна
       P.ver[L.id] = { v, stars: Math.max(stars, pv && pv.v === v ? pv.stars || 0 : 0), acc: Math.round(acc * 100), at: dayStr(),
                       ...(noaudio && !keepFull ? { noaudio } : {}) };
-      L.words.filter(w => w.srs).forEach(w => { if (!P.words[w.es]) { P.words[w.es] = { s: 0, due: dayNum() + INTERVALS[0] }; learned.push(w); } });
+      L.words.filter(w => w.srs).forEach(w => { if (!P.words[w.es]) { P.words[w.es] = { s: 0, due: dayNum() + INTERVALS[0], t: nowMin() }; learned.push(w); } });
     } else if (n) xp = 5 + S.firstTry;   // попытка итога: опыт за работу, но урок не засчитан
   } else if (n) {
     xp = 5 + S.firstTry * 2;
@@ -2493,6 +2590,8 @@ function finish() {
   updateSkills(S.outcomes.filter(o => !o.noaudio));
   if (xp) addXP(xp);
   save();
+  // Конец занятия — сразу копия на сервер (не чаще раза в минуту): при закрытии страницы досылать почти нечего.
+  if (token && Date.now() - sync.last > 60e3) push(true);
   S = { kind: "result", from: S.kind, li: S.li, xp, acc, stars, learned, passed, graded: n, score, check: S.check, noaudio,
         topics: topics(S.outcomes), fixed: S.fixed };
   render();
@@ -3145,6 +3244,14 @@ function skillsPanel() {
     `<div><b>Тема ${U.number}. ${esc(U.title)}</b><ul>${ls.map(i => `<li>✓ ${esc(LESSONS[i].goal)}${P.ver[LESSONS[i].id]?.noaudio ? ` <small class="muted">(без звука — пройти со звуком)</small>` : ""}</li>`).join("")}</ul></div>`).join("")}</div>
     ${old ? `<span class="muted">Ещё ${old} ${plural(old, "урок обновлён", "урока обновлены", "уроков обновлены")}: эти умения подтвердятся после новой версии.</span>` : ""}</section>`;
 }
+// Спорные ответы ввода, отмеченные учеником: вопрос, его ответ и принятый образец — чтобы дополнить ответы курса.
+function reportsPanel() {
+  const list = P.reports || [];
+  if (!list.length) return "";
+  return `<section class="panel"><h2>Спорные ответы</h2><span class="muted">Ответы, которые вы отметили как верные. Пришлите их автору курса — верные добавим в принятые.</span>
+    <ul class="reports">${list.slice().reverse().map(r => `<li><small class="muted">${esc(r.d)} · ${esc(r.l)}</small><br>${esc(r.q)}<br>Ваш ответ: <b lang="es">${esc(r.a)}</b> · образец: <span lang="es">${esc(r.m)}</span></li>`).join("")}</ul>
+    <button class="btn ghost" data-reports-clear>Очистить список</button></section>`;
+}
 function statsView() {
   const doneN = LESSONS.filter((_, i) => isDone(i)).length, learned = Object.keys(P.words).length;
   const strong = Object.values(P.words).filter(s => s.s >= 3).length, current = LESSONS.filter((_, i) => isCurrent(i)).length;
@@ -3163,6 +3270,7 @@ function statsView() {
     <div class="level-bar"><div class="lb"><span>Сегодня</span><span>${todayXP()} из ${P.goal} опыта</span></div><div class="bar sun"><i style="width:${Math.min(100, todayXP() / P.goal * 100)}%"></i></div></div>
   </section>
   ${skillsPanel()}
+  ${reportsPanel()}
   ${accountPanel()}
   <section class="panel settings"><h2>Настройки</h2>
     <div class="row"><span>Звуки ответов</span><button class="switch" data-sound aria-pressed="${P.sound !== false}" aria-label="Звуки ответов"></button></div>
@@ -3289,6 +3397,7 @@ function stepBody(st) {
       return `<div class="prompt">${head}</div>
         <div class="wbox"><input class="field wfield ${cls}" id="wans" type="text" value="${esc(s.value || "")}" ${done ? "disabled" : ""}
             autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" lang="es" enterkeyhint="done"
+            ${st.as ? `inputmode="${{ phone: "tel", number: "numeric" }[st.as] || "decimal"}"` : ""}
             placeholder="${esc(st.format || "Ответ")}" aria-label="${esc(st.format || "Ответ")}">
           ${done || !st.chars ? "" : `<div class="chars" role="group" aria-label="Испанские буквы">${chars.map(c => `<button type="button" data-wchar="${c}" aria-label="Вставить ${c}">${c}</button>`).join("")}</div>`}
           ${s.why && !done ? `<div class="wwhy" role="status">${whyHTML(s.why)} Попробуйте ещё раз.</div>${ruleHTML(st)}` : ""}
@@ -3398,6 +3507,11 @@ function stepFoot(st) {
     if (["build", "mf"].includes(st.type)) right = `<span class="ans">${esc(st.type === "build" ? (s.cands?.[0] || tokens(st)).join(" ") : st.es)}</span><span class="ex">${esc(st.ru)}</span>`;
     if (st.type === "write" && (!good || s.almost)) right = `<span class="ans">${solved ? "Правильно" : "Верно"}: ${solved ? esc(s.match) : st.show}</span>${!solved && s.why && !s.gave ? `<span class="ex">${whyHTML(s.why)}</span>` : ""}`;
     if (st.type === "mc" && !solved && s.pick != null && st.mistakes?.[st.plain?.[s.pick]]) right += `<span class="ex">${st.mistakes[st.plain[s.pick]]}</span>`;
+    // Спорный ответ: ученик может отметить, что его вариант тоже верный. Оценка не меняется — ответ попадает
+    // в список «Спорные ответы» (вкладка «Прогресс»), автор дополняет допустимые ответы.
+    if (st.type === "write" && !solved && !s.gave && wNorm(s.value || ""))
+      right += s.reported ? `<span class="ex">✓ Ответ сохранён в «Спорных ответах»: если он верный, его добавят в принятые.</span>`
+        : `<button class="btn ghost report" data-report>Мой ответ тоже верный?</button>`;
     const ex = st.explain ? `<span class="ex">${st.explain}</span>` : "";
     const praise = ["Отлично!", "Верно!", "¡Muy bien!", "¡Perfecto!"][Math.floor(Math.random() * 4)];
     const co = st.type === "compose";
@@ -3763,7 +3877,7 @@ function joinFrom(n) {
     if (!P.done[L.id]) { P.done[L.id] = { stars: 1, acc: 0, at: dayStr(), joined: true }; lessons++; }
     L.words.filter(w => w.srs && !P.words[w.es]).forEach(w => queue.push(w));
   }
-  queue.reverse().forEach((w, k) => { P.words[w.es] = { s: 1, due: dayNum() + 1 + Math.floor(k / JOIN_PER_DAY) }; });
+  queue.reverse().forEach((w, k) => { P.words[w.es] = { s: 1, due: dayNum() + 1 + Math.floor(k / JOIN_PER_DAY), t: nowMin() }; });
   P.joined = true; save();
   return { lessons, words: queue.length };
 }
@@ -3918,7 +4032,7 @@ document.addEventListener("click", e => {
     const r = joinFrom(+$("#joinfrom").value); closeSheet(); view.tab = "course"; render();
     return toast(r.lessons ? `Пройдено уроков: ${r.lessons}, слов в повторении: ${r.words}` : "Начнём с первого урока");
   }
-  if (d.add) { P.words[d.add] = { s: 0, due: dayNum() + INTERVALS[0] }; save(); closeSheet(); return toast("Слово добавлено: повторим завтра"); }
+  if (d.add) { P.words[d.add] = { s: 0, due: dayNum() + INTERVALS[0], t: nowMin() }; save(); closeSheet(); return toast("Слово добавлено: повторим завтра"); }
   if (d.say != null) return say(d.say, { slow: "slow" in d, voice: d.voice || null });
   if ("dlgAll" in d) return dlgMain();
   if ("dlgPick" in d) return dlgPick(el.closest("[data-dlg]"));
@@ -3959,9 +4073,10 @@ document.addEventListener("click", e => {
   if ("autoDlg" in d) { P.autoDlg = P.autoDlg === false; save(); render(); return; }
   if ("sound" in d) { P.sound = P.sound === false; save(); render(); if (P.sound) sfx(true); return; }
   if ("openall" in d) { P.openAll = !P.openAll; save(); render(); return; }
+  if ("reportsClear" in d) { P.reports = []; save(); render(); return; }
   if (d.reset) {
     if (d.reset === "ask") view.confirmReset = true;
-    else { if (d.reset === "yes") { P = fresh(); grammarAttempts.clear(); grammarDrafts.clear(); store.set(G_SESSION_KEY, ""); store.set(G_ATTEMPTS_KEY, ""); save(); toast("Прогресс сброшен"); } view.confirmReset = false; }
+    else { if (d.reset === "yes") { resetProgress(); toast("Прогресс сброшен"); } view.confirmReset = false; }
     return render();
   }
   if (!S || S.kind === "result") return;
@@ -3982,6 +4097,7 @@ document.addEventListener("click", e => {
   if (d.sg != null && !s.result) return sortPick(+d.sg);
   if (d.wchar && !s.result) return wInsert(d.wchar);
   if ("wgive" in d) return writeGive();
+  if ("report" in d && s?.result && !s.reported) { addReport(st, s.value); s.reported = true; return render(); }
   if ("hint" in d && !s.result) return hint();
   if ("primary" in d || "next" in d) return primary();
 });

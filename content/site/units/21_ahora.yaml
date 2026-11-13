@@ -97,6 +97,9 @@ lessons:
               tone: rose
               ex: ["Ahora mismo estamos jugando al fútbol.", "En este momento estoy esperando a Pablo."]
           note: "Часто — оба в одной фразе: _Normalmente trabajo en la oficina, pero hoy estoy trabajando en casa._"
+      - tip:
+          id: reflexive_estar
+          text: "У возвратного глагола местоимение ставится **перед estar**: _Me estoy duchando._ _Nos estamos levantando._"
       - choose:
           title: Выберите
           items:
@@ -106,7 +109,7 @@ lessons:
             - q: "Pablo ___ levantando. (возвратный глагол)"
               options: "se está | está se | se es"
               explain: "Местоимение возвратного глагола ставится перед estar: Pablo se está levantando."
-              rule: none
+              rule: reflexive_estar
               skill: estar_gerund
 
   - id: practica
@@ -121,7 +124,7 @@ lessons:
           skill: estar_gerund
           items:
             - "🏊 Pablo => Está nadando | Pablo está nadando"
-            - {q: "📖 Ana", a: "Está leyendo | Ana está leyendo", mistakes: {"está leendo": "leer → **leyendo**."}}
+            - {q: "📖 Ana", a: "Está leyendo | (Ana) está [leyendo/estudiando]", mistakes: {"está leendo": "leer → **leyendo**."}}
             - {q: "😴 el gato", a: "Está durmiendo | El gato está durmiendo", mistakes: {"está dormiendo": "dormir → **durmiendo**."}}
             - "🍳 mis padres => Están cocinando | Mis padres están cocinando"
             - "💃 nosotras => Estamos bailando | Nosotras estamos bailando"

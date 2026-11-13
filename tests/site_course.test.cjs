@@ -102,10 +102,122 @@ test('приёмка 5: typed mistakes get a precise reason — author map first
   // «Не хватает слова» не говорим, если другой допустимый ответ той же длины.
   assert.doesNotMatch(why(['Hola, buenos días', 'Buenos días'], 'buenos tardes'), /Не хватает/);
   assert.match(why(['Me llamo Lucía'], 'me llamo'), /Не хватает слова/);
-  assert.match(why(['Me llamo Lucía'], 'llamo me lucía'), /порядок другой/);
+  assert.match(why(['Me llamo Lucía'], 'llamo me lucía'), /другой порядок — сравните с образцом/);
   assert.match(why(['Muchas gracias'], 'muchas grasias'), /как пишется слово «grasias»/);
   run('FORMS["soy"] = "ser"; FORMS["eres"] = "ser"; WORDS.set("ser", {es: "ser", pos: "verb"})');
   assert.match(why(['Yo soy Ana'], 'yo eres ana'), /другая форма глагола/);
+});
+
+test('ENG-04: ответы цифрами сравниваются по смыслу — время, телефон, число, дата', () => {
+  const run = context(site);
+  const r = (a, typed, as) => J(run, `writeResult(${JSON.stringify({a, accents: 'soft', as})}, ${JSON.stringify(typed)})`);
+  for (const t of ['3:30', '03:30', '3.30', '3 30', '330', '15:30']) assert.equal(r(['3:30'], t, 'time').ok, true, t);
+  assert.equal(r(['3:30'], '3:40', 'time').ok, false);
+  assert.equal(r(['3:30'], '03:30').ok, false, 'без answer: time — как раньше, по тексту');
+  for (const t of ['648 20 71 93', '648-207-193', '648207193']) assert.equal(r(['648 207 193'], t, 'phone').ok, true, t);
+  assert.equal(r(['648 207 193'], '648 207 194', 'phone').ok, false);
+  assert.equal(r(['3.5'], '03/05', 'date').ok, true);
+  assert.equal(r(['27'], '2 7', 'number').ok, true);
+  assert.equal(r(['27'], 'veintisiete', 'number').ok, false);
+});
+
+test('ENG-07, A8: спорный ответ можно отметить — оценка не меняется, ответ попадает в «Спорные ответы»', () => {
+  const run = context(site);
+  const step = {type: 'write', a: ['Un café, por favor'], q: 'Попросите кофе', show: 'Un café, por favor', key: 'u/l#1.1'};
+  session(run, step, {value: '', tries: 0, n: 0, err: 0, miss: 0, helps: 0, here: 0});
+  run('S.state.value = "Quiero café"; writeCheck(); S.state.value = "Quiero café"; writeCheck()');
+  assert.equal(run('S.state.result'), 'bad');
+  assert.match(run('stepFoot(S.steps[S.at])'), /Мой ответ тоже верный\?/);
+  run('addReport(S.steps[S.at], S.state.value); S.state.reported = true');
+  assert.equal(run('S.outcomes[0].outcome'), 'bad', 'оценка не меняется');
+  assert.deepEqual(J(run, 'P.reports.map(r => [r.k, r.a, r.m])'), [['u/l#1.1', 'Quiero café', 'Un café, por favor']]);
+  run('addReport(S.steps[S.at], "Quiero café")');
+  assert.equal(run('P.reports.length'), 1, 'повтор не дублируется');
+  assert.match(run('reportsPanel()'), /Спорные ответы[\s\S]*Quiero café/);
+  assert.match(run('stepFoot(S.steps[S.at])'), /Ответ сохранён/);
+});
+
+test('ENG-01, ENG-02, ENG-05, ENG-12: сброс не отменяется старой копией, ошибка в слове не теряется, опыт по дням', () => {
+  const run = context(site);
+  const old = {done: {'saludos/vocab1': {stars: 3, acc: 90, at: '2026-11-01'}}, words: {hola: {s: 3, due: 20500}}, xp: 120,
+    days: {'2026-11-01': 120}, skills: {greeting_time: {s: 2, due: 20500, ok: 3, err: 0, n: 2, seen: []}}};
+  // 1. Сброс + старая копия сервера: сброшенное не возвращается.
+  run('resetProgress()');
+  const reset = J(run, 'P');
+  assert.ok(reset.resetAt > 0 && !Object.keys(reset.done).length);
+  const m1 = J(run, `mergeProgress(P, ${JSON.stringify(old)})`);
+  assert.deepEqual([Object.keys(m1.done).length, Object.keys(m1.words).length, m1.xp], [0, 0, 0]);
+  // 2. Сброс + старое устройство: его копия (без resetAt) сливается с записью сервера после сброса — побеждает сброс.
+  const m2 = J(run, `mergeProgress(${JSON.stringify(old)}, ${JSON.stringify(reset)})`);
+  assert.equal(Object.keys(m2.done).length, 0);
+  assert.equal(m2.resetAt, reset.resetAt);
+  // 3. Ошибка в слове (ступень снизилась) + на сервере старая высокая ступень: побеждает последний ответ.
+  run(`P = Object.assign(fresh(), ${JSON.stringify(old)}); grade("hola", false)`);
+  const after = J(run, 'P.words.hola');
+  assert.equal(after.s, 1, 'ошибка — на две ступени ниже, а не с нуля');
+  assert.ok(after.t > 0);
+  assert.equal(J(run, `mergeProgress(P, ${JSON.stringify(old)})`).words.hola.s, 1);
+  assert.equal(J(run, `mergeProgress(${JSON.stringify(old)}, P)`).words.hola.s, 1);
+  // 4. Опыт с двух устройств в разные дни складывается.
+  const a = {...old, xp: 150, days: {'2026-11-01': 120, '2026-11-02': 30}}, b = {...old, xp: 170, days: {'2026-11-01': 120, '2026-11-03': 50}};
+  assert.equal(J(run, `mergeProgress(${JSON.stringify(a)}, ${JSON.stringify(b)})`).xp, 200);
+  // 5. Запись без schema (прежний формат) читается; сжатая запись разворачивается без потерь.
+  const rich = J(run, `Object.assign(fresh(), ${JSON.stringify({...old, ver: {'saludos/vocab1': {v: 3, stars: 2, acc: 80, at: '2026-11-02', noaudio: 1}},
+    done: {...old.done, 'saludos/vocab2': {stars: 1, acc: 0, at: '2026-11-02', joined: true}}, words: {hola: {s: 3, due: 20500, t: 29380000}},
+    skills: {greeting_time: {s: 2, due: 20500, ok: 3, err: 1, n: 2, last: '2026-11-02', seen: ['a#1.1', 'b#2.2']}}})})`);
+  const packed = J(run, `pack(${JSON.stringify(rich)})`);
+  assert.equal(packed.schema, 2);
+  assert.ok(Array.isArray(packed.done['saludos/vocab1']) && Array.isArray(packed.days));
+  assert.deepEqual(J(run, `unpack(${JSON.stringify(packed)})`), {...rich, schema: 2});
+  assert.deepEqual(J(run, `unpack(${JSON.stringify(old)})`), old, 'прежний формат — как есть');
+  const storage = new Map([['espanol-cada-dia.v1', JSON.stringify(packed)]]);
+  const run2 = context(site, storage);
+  assert.equal(run2('P.done["saludos/vocab1"].stars'), 3);
+  assert.equal(run2('P.words.hola.t'), 29380000);
+  assert.equal(run2('P.days["2026-11-01"]'), 120);
+  // Размер: 1000 слов, 300 уроков и 180 навыков — сжатая запись заметно меньше прежней (после A0–A2 ≈ 67 КБ вместо 115).
+  const big = J(run, `(() => { const p = fresh(); for (let i = 0; i < 300; i++) { p.done["unit/lesson" + i] = {stars: 3, acc: 92, at: "2026-11-13"};
+    p.ver["unit/lesson" + i] = {v: 2, stars: 3, acc: 92, at: "2026-11-13"}; } for (let i = 0; i < 1000; i++) p.words["palabra" + i] = {s: 4, due: 20800, t: 29380000};
+    for (let i = 0; i < 180; i++) p.skills["skill_" + i] = {s: 3, due: 20800, ok: 12, err: 3, n: 6, last: "2026-11-13", seen: ["unit/lesson1#3.1", "unit/lesson2#5.2"]};
+    return [JSON.stringify(p).length, JSON.stringify(pack(p)).length]; })()`);
+  assert.ok(big[1] < big[0] * 0.65, String(big));
+});
+
+test('ENG-01: сброс уходит на сервер сразу, ответ 409 — принять запись сервера', async () => {
+  const calls = [];
+  let reply = () => ({status: 200, ok: true, json: async () => ({ok: true})});
+  const fetch = async (url, init = {}) => { calls.push([url, init.method || 'GET', init.body]); return reply(); };
+  const storage = new Map([['espanol-cada-dia.token', 'tok']]);
+  const run = context({...site, api: 'https://bot.example'}, storage, {fetch});
+  run('resetProgress()');
+  await new Promise(r => setImmediate(r));
+  const put = calls.find(c => c[1] === 'PUT');
+  assert.ok(put, 'сброс отправлен сразу');
+  assert.ok(JSON.parse(put[2]).resetAt > 0);
+  // Другое устройство сбросило позже: сервер отвечает 409 с той записью — страница её принимает.
+  const server = {schema: 2, resetAt: Date.now() + 1000, xp: 7, done: {}, words: {}, days: {}};
+  reply = () => ({status: 409, ok: false, json: async () => ({progress: server})});
+  run('P.xp = 99; sync.sent = ""; push(true)');
+  await new Promise(r => setTimeout(r, 0));
+  await new Promise(r => setImmediate(r));
+  assert.equal(run('P.xp'), 7);
+  assert.equal(run('P.resetAt'), server.resetAt);
+});
+
+// TST-02: правильные ответы, которые аудит нашёл отвергнутыми, — регрессионный набор: каждый обязан приниматься.
+test('TST-02: правильные ответы из реестра аудита принимаются (tests/data/accepted_answers.json)', () => {
+  const list = JSON.parse(fs.readFileSync(path.join(ROOT, 'tests/data/accepted_answers.json'), 'utf8'));
+  const run = context(site), strip = x => String(x || '').replace(/<[^>]*>/g, '');
+  const bad = [];
+  for (const {id, lesson, q, say, answers} of list) {
+    const L = site.lessons.find(x => x.id === lesson);
+    assert.ok(L, `${id}: нет урока ${lesson}`);
+    const items = L.blocks.filter(b => b.t === 'write').flatMap(b => b.items.map(it => ({...it, accents: b.accents})));
+    const it = items.find(x => (q && strip(x.q).includes(q)) || (say && strip(x.say).includes(say)));
+    assert.ok(it, `${id}: в ${lesson} нет задания «${q || say}»`);
+    for (const a of answers) if (!J(run, `writeResult(${JSON.stringify(it)}, ${JSON.stringify(a)}).ok`)) bad.push(`${id} ${lesson}: ${a}`);
+  }
+  assert.deepEqual(bad, []);
 });
 
 test('write: second attempt after a reason, answer shown after two misses, progressive hints', () => {

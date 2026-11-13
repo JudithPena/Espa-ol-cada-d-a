@@ -557,7 +557,7 @@ def _write(d) -> dict:
     return {"t": "write", "title": _html(d["title"]), "accents": d["accents"], "chars": chars, "items": [{
         "q": _html(it["q"]), "a": [plain(a) for a in it["answers"]], "show": _html(it["answers"][0]),
         "explain": _html(it["explain"]), "say": plain(it["say"]), "format": it["format"] or d["format"],
-        "img": _img(it["img"]), **_task_meta(it.get("meta") or {}),
+        "img": _img(it["img"]), **_task_meta(it.get("meta") or {}), **({"as": it["answer"]} if it.get("answer") else {}),
         # пояснение к ожидаемой ошибке ввода: ключ — ответ ученика (страница сравнивает без регистра и ударений)
         "mistakes": {plain(k): _html(v) for k, v in (it.get("meta") or {}).get("mistakes", {}).items()},
         **({"noaudio": noaudio(it["noaudio"], it["format"] or d["format"])} if it.get("noaudio") else {}),

@@ -66,7 +66,8 @@ septiembre; `muy_mucho` — muy или mucho. Повторяется `numbers_ea
 |---|---|---|---|---|---|---|
 | 1 | T: text `en_mes` | с маленькой буквы; en enero | вход | — | — | — |
 | 2–7 | W ×6 | mes, ¿Cuándo?, enero, febrero, marzo, abril | порция 1 | — | — | — |
-| 8–11 | C ×4 | после / перед febrero; после marzo; сколько месяцев | порядок | — | — | — |
+| 8–10 | C ×3 | после / перед febrero; сколько месяцев | порядок | — | — | — |
+| 11 | I | месяц после marzo словом (аудит MYTHOS, U18-04: не третий выбор из того же набора) | порядок | — | — | — |
 | 12–15 | W ×4 | mayo, junio, julio, agosto | порция 2 | — | — | — |
 | 16 | C~ | на слух «Voy a España en julio» | понять | en + месяц | — | — (без звука: фраза записана) |
 | 17–20 | W ×4 | septiembre, octubre, noviembre, diciembre | порция 3 | — | — | — |
@@ -77,7 +78,7 @@ septiembre; `muy_mucho` — muy или mucho. Повторяется `numbers_ea
 | 28–30 | C ×3 | en septiembre; ¿Cuándo es tu cumpleaños?; ¿Qué fecha es hoy? | en / el | правило | — | — |
 | 31–32 | I~ ×2 | на слух 14.11, 3.5 | дата на слух | числа | итог | — (без звука: дата словами) |
 
-Сигнатура: `T(text) W×6 C×4 W×4 C~ W×4 M W×2 T(rule) I×3 C×3 I~×2`
+Сигнатура: `T(text) W×6 C×3 I W×4 C~ W×4 M W×2 T(rule) I×3 C×3 I~×2`
 
 ## Урок `tiempo/muy_mucho` — «Muy или mucho?»
 

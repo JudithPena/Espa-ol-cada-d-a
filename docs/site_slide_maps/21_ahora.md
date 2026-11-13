@@ -27,10 +27,10 @@ estoy trabajando; `phone_call` — ¿Diga?, soy…, luego te llamo.
 | 11 | T: header + table `especial` + text | leyendo, durmiendo, pidiendo, yendo | особые формы | правило 1 | к вводу | — |
 | 12–13 | I ×2 | leyendo, durmiendo | особые формы | таблица | ввод | — |
 | 14 | C | está pidiendo | e → i | таблица | — | — |
-| 15 | T: header + compare `now_habit` | привычка — обычное настоящее; сейчас — estar + герундий | правило 3 | настоящее | к выбору | — |
+| 15 | T: header + compare `now_habit` + tip `reflexive_estar` | привычка — обычное настоящее; сейчас — estar + герундий; me estoy duchando — местоимение перед estar (аудит MYTHOS, U21-01) | правило 3 | настоящее | к выбору | — |
 | 16–17 | C ×2 | Ahora mismo estoy tomando; se está levantando | сейчас; возвратный | правила | итог | — |
 
-Сигнатура: `W×3 T(text+examples+compare) I×6 T(header+table+text) I×2 C T(header+compare) C×2`
+Сигнатура: `W×3 T(text+examples+compare) I×6 T(header+table+text) I×2 C T(header+compare+tip) C×2`
 
 ## Урок `ahora/practica` — «¿Qué están haciendo?»
 

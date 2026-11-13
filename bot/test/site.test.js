@@ -64,6 +64,27 @@ test("вход → прогресс сохраняется и читается; 
   assert.equal((await call("/site/progress", { headers: { Authorization: "Bearer bad-token", Origin: ORIGIN } })).status, 401);
 });
 
+test("сброс и новая схема: старая копия не затирает запись, в ответ 409 и сохранённое", async () => {
+  const { token } = await (await call("/site/login", asJson(login()))).json();
+  const auth = { Authorization: `Bearer ${token}`, Origin: ORIGIN };
+  const put = (data) => call("/site/progress", { method: "PUT", headers: auth, body: JSON.stringify(data) });
+  // Прежняя страница без новых полей пишет как раньше.
+  assert.equal((await put({ xp: 90, done: { a: { stars: 3 } } })).status, 200);
+  // Сброс на одном устройстве: пустая запись с отметкой — принимается.
+  const reset = { schema: 2, resetAt: 1000, xp: 0, done: {} };
+  assert.equal((await put(reset)).status, 200);
+  // Второе устройство со старой копией (сброса не видело) — 409 и сброшенная запись в теле.
+  const stale = await put({ schema: 2, resetAt: 0, xp: 90, done: { a: [3, 100, 20400] } });
+  assert.equal(stale.status, 409);
+  assert.deepEqual((await stale.json()).progress, reset);
+  // Старая вкладка без schema поверх записи схемы 2 — тоже 409.
+  assert.equal((await put({ resetAt: 1000, xp: 90 })).status, 409);
+  // Та же или более поздняя отметка — обычная запись.
+  assert.equal((await put({ schema: 2, resetAt: 1000, xp: 15 })).status, 200);
+  assert.equal(JSON.parse(kv.get("site:42")).xp, 15);
+  assert.equal((await put({ schema: 2, resetAt: 2000, xp: 0 })).status, 200);
+});
+
 test("подделанный вход не получает токен", async () => {
   const bad = { ...login(), id: 7 };
   assert.equal((await call("/site/login", asJson(bad))).status, 401);
