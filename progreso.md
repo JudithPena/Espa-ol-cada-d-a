@@ -10,8 +10,8 @@
 
 ## Сейчас
 
-- Готово тем: **9 из 19**. Уроков A2: **71**, новых слов и выражений: **280**.
-- В работе: тема 33 — ¿Quedamos?
+- Готово тем: **10 из 19**. Уроков A2: **78**, новых слов и выражений: **301**.
+- В работе: тема 34 — Te lo recomiendo.
 
 ## Темы
 
@@ -26,8 +26,8 @@
 | 30 | Cuando era pequeño | pretérito imperfecto: формы, привычки; antes / ahora; ya no, todavía | 7 | 26 | ✅ готово |
 | 31 | Cómo era | imperfecto в описании; más / menos… que, tan… como, mejor / peor | 8 | 31 | ✅ готово |
 | 32 | ¿Qué pasó? | indefinido и imperfecto вместе; cuando, de repente, entonces, al final; estaba + герундий | 7 | 25 | ✅ готово |
-| 33 | ¿Quedamos? | предложить, согласиться, отказаться: ¿Te apetece…?, ¿Por qué no…?, es que… | — | — | ⏭ следующая |
-| 34 | Te lo recomiendo | императив (tú, usted); le / les, se lo; рецепты и советы | — | — | ⬜ не начата |
+| 33 | ¿Quedamos? | предложить, согласиться, отказаться: ¿Te apetece…?, ¿Por qué no…?, es que… | 7 | 21 | ✅ готово |
+| 34 | Te lo recomiendo | императив (tú, usted); le / les, se lo; рецепты и советы | — | — | ⏭ следующая |
 | 35 | Por la ciudad + КТ-2 | дорога, разрешение и просьба: ¿Puedo…?, ¿Te importa…?; se безличное; контрольная точка 2 | — | — | ⬜ не начата |
 | 36 | Me encuentro mal | симптомы и советы: me gustaría, podrías, deberías; врач и аптека | — | — | ⬜ не начата |
 | 37 | De compras | el más…, -ísimo; este / ese без существительного; el mío / la mía; обмен покупки | — | — | ⬜ не начата |
@@ -67,6 +67,7 @@
 | 13.11.2026 | Тема 30 «Cuando era pequeño» (7 уроков): imperfecto — привычки и описание в прошлом, antes / ahora, ya no / todavía; новый персонаж — бабушка (Abuela). |
 | 13.11.2026 | Тема 31 «Cómo era» (8 уроков): imperfecto в описании мест и людей, más / menos… que, mejor / peor, mayor / menor, tan… como, tanto como, los de antes / los de ahora. |
 | 13.11.2026 | Тема 32 «¿Qué pasó?» (7 уроков): imperfecto и indefinido в рассказе, estaba + герундий, mientras, связки (de repente, entonces, al final). Исправлено: признаки письма с ударениями (ía, más) в темах 30–31 не срабатывали — выражения теперь сравниваются без ударений, как текст. |
+| 13.11.2026 | Тема 33 «¿Quedamos?» (7 уроков): ¿Te apetece…?, ¿Por qué no…?, ¿Qué tal si…?, отказ с es que…, quedar a / en / con, ¿te viene bien…?, estar + герундий по телефону (oír, colgar, cobertura). |
 
 ## Что не проверено
 
