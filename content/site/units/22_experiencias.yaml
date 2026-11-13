@@ -11,15 +11,14 @@ lessons:
   - id: perfecto
     kind: grammar
     title: "He comido: прошедшее время"
-    goal: рассказать, что вы сделали сегодня — he comido, he visto
+    goal: рассказать, что вы сделали сегодня и на этой неделе — he trabajado, hemos comido
     version: 3
+    # Аудит MYTHOS, U22-01: неправильные причастия, ya / todavía no и порядок слов — в следующем уроке experiencias/hecho_visto.
     unlocks: [participle]
     vocab:
       - "🔧 haber [абэ́р] — вспомогательный глагол (иметь)"
       - "🌅 esta mañana [э́ста манья́на] — сегодня утром"
       - "🗓 esta semana [э́ста сэма́на] — на этой неделе"
-      - "✅ ya [йа] — уже :: Ya he comido. — Я уже поел."
-      - "⏳ todavía no [тодаби́а но] — ещё не :: Todavía no he comido. — Я ещё не ел."
     blocks:
       - learn: [haber, esta mañana, esta semana]
       - "Первое прошедшее время! Из каких двух слов состоит глагол в каждой фразе?"
@@ -27,7 +26,7 @@ lessons:
           items:
             - "Hoy he trabajado mucho. — Сегодня я много работал."
             - "¿Has comido? — Ты поел?"
-            - "Esta semana hemos visto dos películas. — На этой неделе мы посмотрели два фильма."
+            - "Esta semana hemos cenado en un restaurante. — На этой неделе мы ужинали в ресторане."
       - conjugation:
           verb: haber
           ru: вспомогательный глагол
@@ -71,7 +70,29 @@ lessons:
               a: "hemos comido"
               mistakes: {"hemos comiendo": "Нужно причастие: hemos **comido**."}
             - "Esta mañana (yo) ___ (desayunar) en un bar. => he desayunado"
-      - header: Неправильные причастия
+      - choose:
+          title: Послушайте и выберите
+          skill: perfect
+          items:
+            - say: "Esta mañana he comido fruta."
+              options: "Сегодня утром я ел фрукты. | Сегодня утром я ем фрукты. | Сегодня вечером я ел фрукты."
+              noaudio: {q: "Что значит «Esta mañana he comido fruta.»?", options: "Сегодня утром я ел фрукты. | Сегодня утром я ем фрукты. | Сегодня вечером я ел фрукты."}
+            - say: "Esta semana hemos trabajado mucho."
+              options: "На этой неделе мы много работали. | На этой неделе мы много работаем. | На прошлой неделе мы много работали."
+              noaudio: {q: "Что значит «Esta semana hemos trabajado mucho.»?", options: "На этой неделе мы много работали. | На этой неделе мы много работаем. | На прошлой неделе мы много работали."}
+
+  - id: hecho_visto
+    kind: grammar
+    title: "Hecho, visto. Ya и todavía no"
+    goal: сказать, что вы уже сделали и чего ещё не сделали — he hecho, ya, todavía no
+    version: 2
+    # Аудит MYTHOS, U22-01: вторая часть прежнего урока experiencias/perfecto — неправильные причастия, ya / todavía no,
+    # место no, ya и возвратного местоимения перед haber.
+    vocab:
+      - "✅ ya [йа] — уже :: Ya he comido. — Я уже поел."
+      - "⏳ todavía no [тодаби́а но] — ещё не :: Todavía no he comido. — Я ещё не ел."
+    blocks:
+      - "Пять частых глаголов образуют причастие не по правилу — их запоминают."
       - table:
           id: irregular
           title: Неправильные причастия
@@ -85,6 +106,7 @@ lessons:
       - write:
           title: Образуйте причастие
           format: причастие
+          rule: irregular
           skill: participle
           items:
             - {q: "hacer", a: "hecho", mistakes: {"hacido": "hacer — неправильное: **hecho**."}}
@@ -101,6 +123,7 @@ lessons:
 
       - choose:
           title: Как сказать?
+          rule: nada_entre
           skill: perfect
           items:
             - q: "Я ещё не ел."
@@ -113,9 +136,9 @@ lessons:
           title: Послушайте и выберите
           skill: perfect
           items:
-            - say: "Esta mañana he comido fruta."
-              options: "Сегодня утром я ел фрукты. | Сегодня утром я ем фрукты. | Сегодня вечером я ел фрукты."
-              noaudio: {q: "Что значит «Esta mañana he comido fruta.»?", options: "Сегодня утром я ел фрукты. | Сегодня утром я ем фрукты. | Сегодня вечером я ел фрукты."}
+            - say: "Ya he hecho la tarea."
+              options: "Я уже сделал задание. | Я ещё не сделал задание. | Я делаю задание."
+              noaudio: {q: "Что значит «Ya he hecho la tarea.»?", options: "Я уже сделал задание. | Я ещё не сделал задание. | Я делаю задание."}
             - say: "Todavía no he visto la película."
               options: "Я ещё не посмотрел фильм. | Я уже посмотрел фильм. | Я никогда не смотрел фильмы."
               noaudio: {q: "Что значит «Todavía no he visto la película.»?", options: "Я ещё не посмотрел фильм. | Я уже посмотрел фильм. | Я никогда не смотрел фильмы."}

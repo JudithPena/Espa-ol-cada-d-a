@@ -1,36 +1,51 @@
 # Тема 22 «Что вы сделали сегодня?» · A1 — карта экранов
 
 Цель темы: рассказать, что вы сделали сегодня и на этой неделе (haber + причастие), образовать причастия, в том числе
-неправильные, спросить о жизненном опыте и ответить.
+неправильные (отдельный урок `experiencias/hecho_visto` — с 13 ноября 2026), спросить о жизненном опыте и ответить.
 
 Навыки: `participle` — hablado, comido, hecho, visto; `perfect` — he comido, ya, todavía no; `experience` — ¿alguna
 vez?, una vez, nunca, he estado en.
 
 ## Урок `experiencias/perfecto` — «He comido: прошедшее время»
 
-- **Длина:** 21 шаг, 9 минут. **Новая лексика:** haber, esta mañana, esta semana, ya, todavía no.
-- **Порядок (три витка):** три слова → «из каких двух слов состоит глагол?», примеры, haber и haber + причастие →
-  ввод причастий и haber + причастие → пять неправильных причастий → ввод → ya, todavía no → ничего между haber и
-  причастием (свёрнуто: Латинская Америка) → выбор.
+- **Длина:** 12 шагов, 6 минут. **Новая лексика:** haber, esta mañana, esta semana.
+- **Порядок (два витка):** три слова → «из каких двух слов состоит глагол?», примеры, haber и haber + причастие →
+  ввод правильных причастий и haber + причастие → на слух.
 - **Убрано / объединено:** вопрос с примерами и правило были двумя экранами, разделёнными карточками слов, — теперь
-  слова первыми, а вопрос, примеры, таблица haber и правило на одном экране; esta mañana и ya проверялись только
-  автодобавкой — теперь ввод «Esta mañana ___ (desayunar)» и выбор «Мы уже видели этот фильм»; пояснения к «comado»,
-  «ha estudiado», «hemos comiendo», «hacido», «vido», «escribido», «volvido».
+  слова первыми, а вопрос, примеры, таблица haber и правило на одном экране; пояснения к «comado», «ha estudiado»,
+  «hemos comiendo».
+- **13.11.2026, ремонт по аудиту MYTHOS (U22-01):** урок нёс пять целей сразу (haber, правильные и неправильные
+  причастия, ya / todavía no, порядок слов) — неправильные причастия, ya / todavía no и порядок слов перенесены в
+  следующий урок `experiencias/hecho_visto`; пример «hemos visto» заменён на «hemos cenado» (visto — во втором уроке).
 
 | Шаг | Экран / тип блока | Что видит или делает ученик | Учебная цель | Что должен уже знать | Связь с предыдущим/следующим | Источник |
 |---|---|---|---|---|---|---|
 | 1–3 | W ×3 | haber, esta mañana, esta semana | — | — | урок начинается словами | — |
-| 4 | T: text + examples + conjugation + compare `perfect` | he trabajado; he … han; -ado / -ido | правило 1 | hoy, esta | открытие и правило | — |
-| 5–7 | I ×3 | trabajado, comido, vivido | причастие | правило 1 | ввод | — |
-| 8–10 | I ×3 | he estudiado; hemos comido; he desayunado | haber + причастие | правило 1 | ввод | — |
-| 11 | T: header + table `irregular` + text | hecho, visto, escrito, vuelto, abierto | неправильные | правило 1 | к вводу | — |
-| 12–15 | I ×4 | hecho, visto, escrito, vuelto | неправильные | таблица | ввод | — |
-| 16–17 | W ×2 | ya, todavía no | — | — | третий виток | — |
-| 18 | T: note `nada_entre` + more | no, ya, me — перед haber; Латинская Америка | порядок слов | — | к выбору | — |
-| 19–21 | C ×3 | todavía no he comido; ya hemos visto; me he levantado | порядок слов | заметка | итог | — |
+| 4 | T: text + examples + conjugation + compare `perfect` | he trabajado; he … han; -ado / -ido | правило | hoy, esta | открытие и правило | — |
+| 5–7 | I ×3 | trabajado, comido, vivido | причастие | правило | ввод | — |
+| 8–10 | I ×3 | he estudiado; hemos comido; he desayunado | haber + причастие | правило | ввод | — |
+| 11–12 | C~ ×2 | Esta mañana he comido fruta; Esta semana hemos trabajado mucho | понять на слух | правило | итог | — (без звука: фраза записана) |
 
-Сигнатура: `W×3 T(text+examples+conjugation+compare) I×6 T(header+table+text) I×4 W×2 T(note+more) C×3 C~×2`
-- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Esta mañana he comido fruta; Todavía no he visto la película (SYS-04). Версия 3.
+Сигнатура: `W×3 T(text+examples+conjugation+compare) I×6 C~×2`
+
+## Урок `experiencias/hecho_visto` — «Hecho, visto. Ya и todavía no»
+
+- **Длина:** 13 шагов, 6 минут. **Новая лексика:** ya, todavía no. **Повторяется:** haber + причастие.
+- **Порядок (два витка):** «пять глаголов — не по правилу», таблица и примеры → ввод неправильных причастий → ya,
+  todavía no → ничего между haber и причастием (свёрнуто: Латинская Америка) → выбор → на слух.
+- **13.11.2026, новый урок (аудит MYTHOS, U22-01):** вторая половина прежнего `experiencias/perfecto`; пояснения к
+  «hacido», «vido», «escribido», «volvido»; задания привязаны к таблице `irregular` и заметке `nada_entre`.
+
+| Шаг | Экран / тип блока | Что видит или делает ученик | Учебная цель | Что должен уже знать | Связь с предыдущим/следующим | Источник |
+|---|---|---|---|---|---|---|
+| 1 | T: text + table `irregular` + text | hecho, visto, escrito, vuelto, abierto | неправильные причастия | haber + причастие | открытие | — |
+| 2–5 | I ×4 | hecho, visto, escrito, vuelto | неправильные | таблица | ввод | — |
+| 6–7 | W ×2 | ya, todavía no | — | — | второй виток | — |
+| 8 | T: note `nada_entre` + more | no, ya, me — перед haber; Латинская Америка | порядок слов | — | к выбору | — |
+| 9–11 | C ×3 | todavía no he comido; ya hemos visto; me he levantado | порядок слов | заметка | — | — |
+| 12–13 | C~ ×2 | Todavía no he visto la película; Ya he hecho la tarea | понять на слух | ya, todavía no | итог | — (без звука: фраза записана) |
+
+Сигнатура: `T(text+table+text) I×4 W×2 T(note+more) C×3 C~×2`
 
 ## Урок `experiencias/experiencia` — «¿Has estado en España?»
 

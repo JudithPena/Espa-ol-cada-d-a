@@ -138,7 +138,7 @@ def test_lesson_ids_and_order_unchanged(site):
     assert [lesson.id for lesson in site.lessons] == ids
     assert len(site.units) == len({i.split('/')[0] for i in ids})   # темы A2 дописываются в конец списка
     # Уроки, вставленные внутрь темы при ремонте A0–A1 (аудит MYTHOS), не сдвигают прежние id: их порядок прежний.
-    inserted = {"numeros/decenas", "en_clase/alfabeto", "casa/ficha", "comida/frutas"}
+    inserted = {"numeros/decenas", "en_clase/alfabeto", "casa/ficha", "comida/frutas", "experiencias/hecho_visto"}
     assert inserted <= set(ids)
 
 
