@@ -31,25 +31,25 @@ cuesta?, cuesta / cuestan, caro, barato; `shopping` — talla, me queda, me lo l
 
 Сигнатура: `W×5 C W×5 M T(rule+more) C W×4 M I×5`
 
-## Урок `compras/numeros` — «Числа до 100»
+## Урок `compras/numeros` — «Сотни и тысяча» (переделан 13.11.2026, аудит MYTHOS, PRG-02, U17-04)
 
-- **Длина:** 20 шагов, 7 минут. **Новая лексика:** treinta … noventa, cien.
-- **Порядок:** десятки на -enta → четыре числа → на слух → четыре числа → 21–29, 31–99 с y, cien → ввод словами →
-  на слух цифрами.
-- **Убрано / объединено:** treinta и cien проверялись только автодобавкой — теперь ввод «31», «100»; пояснения к
-  «cuarentaicinco», «veinte y siete»; на слух — с альтернативой (число записано словами).
+- **Длина:** 15 шагов, 6 минут. **Новая лексика:** mil; сотни — формы (ciento, doscientos/as … novecientos).
+- **Что изменилось:** десятки переехали в тему 04 (`numeros/decenas`); сюда из урока `precios` перенесены сотни,
+  и добавлен женский род сотен (doscientas camisetas).
+- **Порядок:** десятки в ценах на слух → таблица сотен и правило (cien / ciento, quinientos, -as) → mil → ввод словами
+  (500, 150, 700, 200 футболок) → цены на слух → цифрами на слух.
 
 | Шаг | Экран / тип блока | Что видит или делает ученик | Учебная цель | Что должен уже знать | Связь с предыдущим/следующим | Источник |
 |---|---|---|---|---|---|---|
-| 1 | T: text `enta` | десятки на -enta, кроме veinte, treinta | вход | числа до 20 | — | — |
-| 2–5 | W ×4 | treinta, cuarenta, cincuenta, sesenta | — | — | — | — |
-| 6–7 | C~ ×2 | на слух cincuenta, cuarenta | различить 50 / 15 | — | — | — (без звука: число словами) |
-| 8–11 | W ×4 | setenta, ochenta, noventa, cien | — | — | второй виток | — |
-| 12 | T: rule `tens_y` | 21–29 одним словом; 31–99 с y; cien | правило | — | к вводу | — |
-| 13–18 | I ×6 | 45, 27, 31, 63, 99, 100 словами | воспроизвести | правило | ввод | — |
-| 19–20 | I~ ×2 | на слух 72, 85 | понять на слух | правило | итог | — (без звука: число словами) |
+| 1 | T: text | десятки — с темы 04 | вход | десятки | — | — |
+| 2–3 | C~ ×2 | Son cuarenta y cinco / noventa y nueve euros | десятки на слух | десятки | повторение | — (без звука: фраза записана) |
+| 4 | T: table `hundreds` + rule `cientos` | 101 … 1000; ciento; quinientos; doscientas | правило | десятки | к вводу | — |
+| 5 | W | mil | — | — | — | — |
+| 6–9 | I ×4 | 500, 150, 700, «200 футболок» словами | воспроизвести | правило | ввод | — |
+| 10–11 | C~ ×2 | 150 €, 1200 € на слух | цены на слух | правило | — | — (без звука) |
+| 12–13 | I~ ×2 | 340, 590 цифрами на слух (`answer: number`) | понять на слух | — | итог | — (без звука) |
 
-Сигнатура: `T(text) W×4 C~×2 W×4 T(rule) I×6 I~×2`
+Сигнатура: `T(text) C~×2 T(table+rule) W I×4 C~×2 I~×2`
 
 ## Урок `compras/demostrativos` — «Este, ese, aquel»
 
@@ -71,14 +71,11 @@ cuesta?, cuesta / cuestan, caro, barato; `shopping` — talla, me queda, me lo l
 
 ## Урок `compras/precios` — «¿Cuánto cuesta?»
 
-- **Длина:** 19 шагов, 8 минут. **Новая лексика:** ¿Cuánto cuesta...?, costar, el precio, caro/a, barato/a, el céntimo,
-  mil.
-- **Порядок (три витка):** три слова → cuesta / cuestan → выбор → caro, barato → выбор → céntimo, mil → таблица сотен
-  и правило → ввод словами → пары → цены на слух.
-- **Убрано / объединено:** правило cuesta / cuestan стояло до слов, поэтому выбор не мог на него сослаться —
-  перенесено к заданию; таблица и правило — один экран; ¿Cuánto cuesta...?, el precio, barato, el céntimo, mil
-  проверялись только автодобавкой — теперь вопрос «Как спросить „Сколько стоит этот свитер?“» и пары; пояснения к
-  «cincocientos», «cien cincuenta», «sietecientos».
+- **Длина:** 14 шагов, 6 минут. **Новая лексика:** ¿Cuánto cuesta...?, costar, el precio, caro/a, barato/a, el céntimo.
+- **Порядок (три витка):** три слова → cuesta / cuestan → выбор → caro, barato → выбор → céntimo → спросить цену
+  вводом → пары → цены на слух.
+- **13.11.2026 (аудит MYTHOS):** сотни и mil перенесены в `compras/numeros`; вместо них — ввод «Сколько стоит эта
+  рубашка / эти брюки?» (cuesta / cuestan).
 
 | Шаг | Экран / тип блока | Что видит или делает ученик | Учебная цель | Что должен уже знать | Связь с предыдущим/следующим | Источник |
 |---|---|---|---|---|---|---|
@@ -87,13 +84,12 @@ cuesta?, cuesta / cuestan, caro, barato; `shopping` — talla, me queda, me lo l
 | 5–6 | C ×2 | cuestan; как спросить цену | cuesta / cuestan | правило 1 | узнавание | — |
 | 7–8 | W ×2 | caro/a, barato/a | — | — | второй виток | — |
 | 9 | C | Estos zapatos son muy caros | согласовать | adj_agreement | — | — |
-| 10–11 | W ×2 | céntimo, mil | — | — | третий виток | — |
-| 12 | T: table `hundreds` + rule `cientos` | 101 … 1000; cien / ciento; quinientos | правило 2 | десятки | к вводу | — |
-| 13–15 | I ×3 | 500, 150, 700 словами | воспроизвести | правило 2 | ввод | — |
-| 16 | M | precio, caro, barato, céntimo, mil | значения | — | — | — |
-| 17–19 | C~ ×3 | на слух 150 €, 75 €, 1,80 € | цены на слух | правило 2 | итог | — (без звука: фраза записана) |
+| 10 | W | céntimo | — | — | третий виток | — |
+| 11–12 | I ×2 | спросить цену рубашки и брюк | воспроизвести | правило 1 | ввод | — |
+| 13 | M | precio, caro, barato, céntimo | значения | — | — | — |
+| 14–16 | C~ ×3 | на слух 150 €, 75 €, 1,80 € | цены на слух | сотни | итог | — (без звука: фраза записана) |
 
-Сигнатура: `W×3 T(text) C×2 W×2 C W×2 T(table+rule) I×3 M C~×3`
+Сигнатура: `W×3 T(text) C×2 W×2 C W I×2 M C~×3`
 
 ## Урок `compras/tienda` — «В магазине одежды»
 
@@ -117,10 +113,11 @@ cuesta?, cuesta / cuestan, caro, barato; `shopping` — talla, me queda, me lo l
 | 14 | T: mission `jacket` | серая куртка, размер 40, платите картой | ситуация | — | итог | — |
 | 15–16 | C ×2 (реплика) | ¿Qué busca?; ¿Qué talla tiene? | ответить | тема | миссия | `jacket` |
 | 17 | I | ¿Qué tal? — немного велика | me queda grande | тема | миссия | `jacket` |
+| 18–20 | W, C, I | necesitar (аудит MYTHOS, PRG-05): «Мне нужна куртка» выбором; попросить размер поменьше вводом | necesito | -ar | миссия | — / `jacket` |
 | 18 | C~ | на слух «Esta cuesta cincuenta y nueve euros» | цена на слух | числа | миссия | `jacket` (без звука: фраза записана) |
 | 19 | B | Me la llevo. ¿Puedo pagar con tarjeta? | закончить покупку | тема | миссия | `jacket` |
 
-Сигнатура: `W×3 C×2 W×4 T(text+dialogue+note) C@clara×2 C T(mission) C@jacket×2 I@jacket C~@jacket B`
+Сигнатура: `W×3 C×2 W×4 T(text+dialogue+note) C@clara×2 C T(mission) C@jacket×2 I@jacket W C I@jacket C~@jacket B`
 
 ## Урок `compras/quiz` — «Покупки» (тест темы, `check: soft`)
 

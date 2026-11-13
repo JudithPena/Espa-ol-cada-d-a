@@ -372,7 +372,7 @@ main { padding-block: 16px 110px; }
 .cmp-lead, .cmp-note { margin: 0; color: var(--muted); font-size: 15px; }
 .cmp-row { display: grid; gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .cmp-row.n1 { grid-template-columns: 1fr; }
-.cmp.small .cmp-row.n3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cmp.small .cmp-row.n3, .cmp.small .cmp-row:not(.n1):not(.n2):not(.n4) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .cmp-card { display: grid; gap: 6px; align-content: start; padding: 12px; border-radius: 14px; background: var(--surface); box-shadow: var(--shadow); }
 .cmp-card.blue { background: var(--accent-soft); box-shadow: none; }
 .cmp-card.sun { background: var(--sun-soft); box-shadow: none; }

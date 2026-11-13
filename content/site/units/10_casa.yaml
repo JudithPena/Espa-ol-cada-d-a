@@ -410,6 +410,124 @@ lessons:
         source: keys
         options: "No, son de su madre. | Sí, son de Pablo. | No, son de su padre."
 
+  - id: ficha
+    kind: dialogue
+    title: Анкета
+    goal: заполнить анкету — имя, фамилия, адрес, телефон, почта — и написать о себе
+    version: 2
+    # Аудит MYTHOS (PRG-03, SYS-12): дескриптор A1 «заполнить анкету с личными данными» в курсе не был закрыт.
+    # Урок в теме «Мой дом» (A1): адрес рядом с домом; слова анкеты — уровня A1, книги A1 их по-прежнему разбирают.
+    allow: [Petrenko, petrenko, ivan, Alcalá, Navarro, navarro, diego, Guadalajara, punto]
+    vocab:
+      - "🪪 el nombre [но́мбрэ] — имя :: Nombre: Iván. — Имя: Иван."
+      - "🛣 la calle [ка́йе] — улица :: la calle Alcalá — улица Алькала"
+      - "🏠 la dirección [дирэкθьо́н] — адрес :: ¿Y la dirección? — А адрес?"
+      - "📧 el correo electrónico [корре́о элэктро́нико] — электронная почта"
+      - "📎 la arroba [арро́ба] — знак @ («собака»)"
+      - "🌍 la nacionalidad [наθьоналида́д] — гражданство, национальность"
+      - "🎂 la edad [эда́д] — возраст"
+    blocks:
+      - "В языковой школе, в гостинице или в банке просят заполнить анкету. Вот анкета Ивана."
+      - table:
+          id: ficha
+          title: Анкета
+          rows:
+            - ["Nombre", "Iván"]
+            - ["Apellido", "Petrenko"]
+            - ["Nacionalidad", "ucraniano"]
+            - ["Dirección", "calle Alcalá, 15, Madrid"]
+            - ["Teléfono", "612 345 789"]
+            - ["Correo electrónico", "ivan.petrenko@correo.es"]
+      - learn: [el nombre, la nacionalidad, la calle, la dirección]
+      - match:
+          title: Что в какой строке?
+          rule: ficha
+          skill: datos_personales
+          pairs:
+            - "Nombre — Iván"
+            - "Apellido — Petrenko"
+            - "Nacionalidad — ucraniano"
+            - "Dirección — calle Alcalá, 15"
+      - learn: [el correo electrónico, la arroba, la edad]
+      - text:
+          id: correo
+          text: "Адрес почты диктуют так: точка — **punto**, знак @ — **arroba**. _ivan punto petrenko arroba correo punto es_ — это ivan.petrenko@correo.es."
+      - choose:
+          title: Послушайте и выберите
+          rule: correo
+          skill: datos_personales
+          items:
+            - say: "diego punto navarro arroba correo punto es"
+              q: "Какой адрес почты продиктовали?"
+              options: "diego.navarro@correo.es | diego_navarro@correo.es | diegonavarro@correo.com"
+              explain: "punto — точка, arroba — @: diego.navarro@correo.es."
+              noaudio: {q: "Какой это адрес: «diego punto navarro arroba correo punto es»?", options: "diego.navarro@correo.es | diego_navarro@correo.es | diegonavarro@correo.com"}
+      - "Диего записывается на курс английского. Послушайте разговор с администратором и заполните его анкету."
+      - dialogue:
+          id: recepcion
+          title: В языковой школе
+          hidden: true
+          lines:
+            - "Recepcionista: Buenos días. ¿Cómo te llamas? | Доброе утро. Как тебя зовут?"
+            - "Diego: Me llamo Diego. Diego Navarro. | Меня зовут Диего. Диего Наварро."
+            - "Recepcionista: ¿De dónde eres, Diego? | Откуда ты, Диего?"
+            - "Diego: Soy mexicano, de Guadalajara. Pero vivo en Madrid. | Я мексиканец, из Гвадалахары. Но живу в Мадриде."
+            - "Recepcionista: ¿Y la dirección? | А адрес?"
+            - "Diego: Calle Alcalá, quince. | Улица Алькала, пятнадцать."
+            - "Recepcionista: ¿Cuál es tu número de teléfono? | Какой у тебя номер телефона?"
+            - "Diego: Seis, uno, cinco, dos, tres, ocho, cero, cuatro, siete. | Шесть, один, пять, два, три, восемь, ноль, четыре, семь."
+            - "Recepcionista: ¿Y tu correo electrónico? | А твоя электронная почта?"
+            - "Diego: Diego punto navarro arroba correo punto es. | Diego точка navarro, собака, correo точка es."
+            - "Recepcionista: Muy bien. ¿Cuántos años tienes? | Хорошо. Сколько тебе лет?"
+            - "Diego: Treinta y dos. | Тридцать два."
+            - "Recepcionista: ¡Gracias, Diego! | Спасибо, Диего!"
+      - write:
+          title: Анкета Диего
+          source: recepcion
+          skill: datos_personales
+          items:
+            - q: "Apellido:"
+              a: "Navarro"
+              format: фамилия
+            - q: "Nacionalidad:"
+              a: "mexicano"
+              format: национальность
+              mistakes: {"mexicana": "Диего — мужчина: **mexicano**.", "méxico": "Нужна национальность, а не страна: **mexicano**."}
+            - q: "Dirección:"
+              a: "Calle Alcalá(,) [15/quince] | Calle Alcalá(,) número [15/quince]"
+              format: улица и номер дома
+            - q: "Teléfono:"
+              a: "615 238 047"
+              answer: phone
+              format: цифры
+            - q: "Correo electrónico:"
+              a: "diego.navarro@correo.es"
+              format: адрес почты
+              mistakes: {"diego navarro correo es": "Точка — **punto** (`.`), «собака» — **arroba** (`@`): diego.navarro@correo.es."}
+            - q: "Edad:"
+              a: "32 | treinta y dos | 32 años | treinta y dos años"
+              format: возраст
+      - compose:
+          title: Ваша анкета
+          free: true
+          skill: datos_personales
+          items:
+            - q: "Напишите о себе для анкеты языковой школы: как вас зовут, откуда вы, где живёте и на каких языках говорите."
+              format: "Me llamo… Soy de… Vivo en… Hablo…"
+              words: [8, 40]
+              sentences: 3
+              checks:
+                - label: "имя: me llamo…"
+                  any: [me llamo]
+                - label: "откуда вы: soy de… или soy + национальность"
+                  any: [soy de, soy]
+                - label: "где живёте: vivo en…"
+                  any: [vivo en]
+                - label: "языки: hablo…"
+                  any: [hablo]
+              sample: "Me llamo Olga. Soy de Ucrania, de Odesa. Vivo en Valencia. Hablo ucraniano, inglés y un poco de español."
+              sample_ru: "Меня зовут Ольга. Я из Украины, из Одессы. Живу в Валенсии. Говорю по-украински, по-английски и немного по-испански."
+
   - id: quiz
     kind: quiz
     title: Мой дом

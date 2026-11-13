@@ -872,7 +872,7 @@ test('тема 03: старое прохождение dialogue, practice и qui
   const run = context(site, new Map([['espanol-cada-dia.v1', JSON.stringify({done, ver, xp: 70})]]));
   for (const id of ids) {
     const i = idx(run, id);
-    assert.equal(run(`LESSONS[${i}].version`), 3, id);
+    assert.ok(run(`LESSONS[${i}].version`) >= 3, id);   // en_clase/dialogue — 4 с 13.11 (No sé, аудит MYTHOS)
     assert.equal(run(`isDone(${i}) && isOutdated(${i})`), true, id);
     assert.equal(run(`P.done[${JSON.stringify(id)}].stars`), 3, id);
   }

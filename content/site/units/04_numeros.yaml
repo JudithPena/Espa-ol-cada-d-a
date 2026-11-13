@@ -260,6 +260,124 @@ lessons:
               skill: numbers_ear
               noaudio: {q: "Какое это число: «diecisiete»?", options: "17 | 16 | 7"}
 
+  - id: decenas
+    kind: vocab
+    title: Десятки до 100
+    goal: назвать любое число до ста — и возраст взрослого человека
+    version: 2
+    # Аудит MYTHOS (PRG-02, U04-01): десятки 30–100 раньше вводились только в теме 17 — до неё нельзя было
+    # назвать свой возраст. Урок вставлен в тему 04; в теме 17 остались сотни и цены.
+    vocab:
+      - "3️⃣0️⃣ treinta [трэ́йнта] — тридцать {pos: num}"
+      - "4️⃣0️⃣ cuarenta [куарэ́нта] — сорок {pos: num}"
+      - "5️⃣0️⃣ cincuenta [θинкуэ́нта] — пятьдесят {pos: num}"
+      - "6️⃣0️⃣ sesenta [сэсэ́нта] — шестьдесят {pos: num}"
+      - "7️⃣0️⃣ setenta [сэтэ́нта] — семьдесят {pos: num}"
+      - "8️⃣0️⃣ ochenta [очэ́нта] — восемьдесят {pos: num}"
+      - "9️⃣0️⃣ noventa [нобэ́нта] — девяносто {pos: num}"
+      - "💯 cien [θьен] — сто {pos: num}"
+    forms: [veintiuno, veintiún, veintidós, veintitrés, veinticuatro, veinticinco, veintiséis, veintisiete, veintiocho, veintinueve]
+    blocks:
+      - text:
+          id: enta
+          text: "Почти все десятки заканчиваются на `-enta`: cuarenta, cincuenta, sesenta. Кроме 20 и 30: veinte и treinta."
+      - learn: [treinta, cuarenta, cincuenta, sesenta]
+      - choose:
+          title: Послушайте и выберите
+          rule: enta
+          skill: numbers_ear
+          items:
+            - say: "cincuenta"
+              options: "50 | 15 | 5"
+              noaudio: {q: "Какое это число: cincuenta?", options: "50 | 15 | 5"}
+            - say: "cuarenta"
+              options: "40 | 14 | 4"
+              noaudio: {q: "Какое это число: cuarenta?", options: "40 | 14 | 4"}
+      - learn: [setenta, ochenta, noventa, cien]
+      - match:
+          title: Соедините пары
+          rule: none
+          skill: tens
+          pairs:
+            - "30 — treinta"
+            - "60 — sesenta"
+            - "70 — setenta"
+            - "80 — ochenta"
+            - "90 — noventa"
+            - "100 — cien"
+      - rule:
+          id: tens_y
+          text: |
+            1. 21–29 — одним словом, как 16–19: veintiuno, veintidós, veintitrés… veintinueve.
+            2. 31–99 — три слова, десятки и единицы соединяет **y**: treinta **y** uno, cuarenta **y** cinco.
+            3. 100 — **cien**: _cien años_.
+            4. Перед словом мужского рода **uno** теряет `-o`: _veintiún años_, _treinta y un años_.
+      - choose:
+          title: Послушайте и выберите
+          rule: tens_y
+          skill: numbers_ear
+          items:
+            - say: "veinticinco"
+              options: "25 | 52 | 35"
+              noaudio: {q: "Какое это число: veinticinco?", options: "25 | 52 | 35"}
+            - say: "sesenta y siete"
+              options: "67 | 76 | 57"
+              noaudio: {q: "Какое это число: sesenta y siete?", options: "67 | 76 | 57"}
+      - write:
+          title: Напишите словами
+          format: число словами
+          rule: tens_y
+          skill: tens
+          items:
+            - q: "45"
+              a: "cuarenta y cinco"
+              mistakes: {"cuarentaicinco": "31–99 — три слова: cuarenta **y** cinco.", "cuarenta cinco": "Десятки и единицы соединяет **y**: cuarenta y cinco."}
+            - q: "27"
+              a: "veintisiete"
+              mistakes: {"veinte y siete": "21–29 — одним словом: **veintisiete**."}
+            - "31 => treinta y uno"
+            - "63 => sesenta y tres"
+            - "99 => noventa y nueve"
+            - "100 => cien"
+      - write:
+          title: Послушайте и запишите цифрами
+          format: число цифрами
+          answer: number
+          skill: numbers_ear
+          items:
+            - say: "setenta y dos"
+              a: "72"
+              noaudio: {q: "Запишите цифрами: setenta y dos", a: "72"}
+            - say: "ochenta y cinco"
+              a: "85"
+              noaudio: {q: "Запишите цифрами: ochenta y cinco", a: "85"}
+            - say: "veintitrés"
+              a: "23"
+              noaudio: {q: "Запишите цифрами: veintitrés", a: "23"}
+      - choose:
+          title: Что ответить?
+          rule: tens_y
+          skill: tener_age
+          items:
+            - lines: ["Pablo: ¿Cuántos años tienes?"]
+              q: "Вам тридцать один год."
+              options: "Tengo treinta y un años. | Tengo treinta y uno años. | Tengo treinta uno años."
+              explain: "Перед años **uno** теряет `-o`: treinta y un años, veintiún años."
+      - write:
+          title: Ответьте
+          format: ответ по-испански
+          rule: tens_y
+          skill: tener_age
+          items:
+            - q: "Pablo: ¿Cuántos años tienes? — Вам тридцать два года."
+              a: "Tengo treinta y dos años | (Yo) tengo treinta y dos años | Treinta y dos( años)"
+              mistakes: {"tengo treinta dos años": "Десятки и единицы соединяет **y**: treinta **y** dos."}
+            - q: "Lucía: ¿Cuántos años tiene el señor García? — Ему пятьдесят шесть."
+              a: "Tiene cincuenta y seis años | (El señor García) tiene cincuenta y seis años | Cincuenta y seis( años)"
+            - q: "Ana: ¿Cuántos años tienes? — Вам двадцать один год."
+              a: "Tengo veintiún años | (Yo) tengo veintiún años | Veintiún años | Veintiuno"
+              mistakes: {"tengo veintiuno años": "Перед años **uno** теряет `-o`: **veintiún** años.", "tengo veinte y uno años": "21 — одним словом, а перед años без -o: **veintiún** años."}
+
   - id: telefono
     kind: dialogue
     title: Номер телефона

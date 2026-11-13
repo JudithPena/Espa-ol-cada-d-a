@@ -91,70 +91,90 @@ lessons:
     forms: [suéter, chamarra, campera, jeans]
 
   - id: numeros
-    kind: vocab
-    title: Числа до 100
-    goal: назвать возраст и цену до ста и понять их на слух
-    version: 2
+    kind: grammar
+    title: Сотни и тысяча
+    goal: назвать цену до тысячи и понять её на слух
+    version: 3
+    # Аудит MYTHOS (PRG-02, U17-04): десятки перенесены в тему 04 (numeros/decenas); здесь — десятки в ценах,
+    # сотни (раньше в уроке precios) и женский род сотен (doscientas camisetas).
     vocab:
-      - "3️⃣0️⃣ treinta [трэ́йнта] — тридцать {pos: num}"
-      - "4️⃣0️⃣ cuarenta [куарэ́нта] — сорок {pos: num}"
-      - "5️⃣0️⃣ cincuenta [θинкуэ́нта] — пятьдесят {pos: num}"
-      - "6️⃣0️⃣ sesenta [сэсэ́нта] — шестьдесят {pos: num}"
-      - "7️⃣0️⃣ setenta [сэтэ́нта] — семьдесят {pos: num}"
-      - "8️⃣0️⃣ ochenta [очэ́нта] — восемьдесят {pos: num}"
-      - "9️⃣0️⃣ noventa [нобэ́нта] — девяносто {pos: num}"
-      - "💯 cien [θьен] — сто {pos: num}"
-    forms: [veintiuno, veintidós, veintitrés, veinticuatro, veinticinco, veintiséis, veintisiete, veintiocho, veintinueve]
+      - "🔢 mil [миль] — тысяча {pos: num}"
+    forms: [ciento, doscientos, doscientas, trescientos, trescientas, cuatrocientos, quinientos, quinientas, seiscientos, setecientos, ochocientos, novecientos]
     blocks:
-      - text:
-          id: enta
-          text: "Почти все десятки заканчиваются на `-enta`: cuarenta, cincuenta, sesenta. Кроме 20 и 30: veinte и treinta."
-      - learn: [treinta, cuarenta, cincuenta, sesenta]
+      - "Десятки вы знаете с темы «Числа и возраст». В магазине нужны и числа побольше."
       - choose:
           title: Послушайте и выберите
-          rule: enta
-          skill: numbers_ear
+          skill: [numbers_ear, tens]
           items:
-            - say: "cincuenta"
-              options: "50 | 15 | 5"
-              noaudio: {q: "Какое это число: cincuenta?", options: "50 | 15 | 5"}
-            - say: "cuarenta"
-              options: "40 | 14 | 4"
-              noaudio: {q: "Какое это число: cuarenta?", options: "40 | 14 | 4"}
-      - learn: [setenta, ochenta, noventa, cien]
+            - say: "Son cuarenta y cinco euros."
+              options: "45 € | 54 € | 40 €"
+              noaudio: {q: "Сколько это: «Son cuarenta y cinco euros»?", options: "45 € | 54 € | 40 €"}
+            - say: "Son noventa y nueve euros."
+              options: "99 € | 19 € | 90 €"
+              noaudio: {q: "Сколько это: «Son noventa y nueve euros»?", options: "99 € | 19 € | 90 €"}
+      - table:
+          id: hundreds
+          title: Сотни
+          rows:
+            - ["101", "ciento uno"]
+            - ["200", "doscientos"]
+            - ["300", "trescientos"]
+            - ["400", "cuatrocientos"]
+            - ["500", "**quinientos**"]
+            - ["600", "seiscientos"]
+            - ["700", "**setecientos**"]
+            - ["800", "ochocientos"]
+            - ["900", "**novecientos**"]
+            - ["1000", "mil"]
       - rule:
-          id: tens_y
+          id: cientos
           text: |
-            1. 21–29 — одним словом: veintiuno, veintidós, veintitrés… veintinueve.
-            2. 31–99 — три слова, десятки и единицы соединяет **y**: treinta **y** uno, cuarenta **y** cinco.
-            3. 100 — **cien**: _cien euros_, _cien años_.
+            1. Ровно сто — **cien**; если дальше есть число — **ciento**: _ciento uno_, _ciento veinte_.
+            2. Остальные сотни: число + `-cientos`: _doscientos_, _trescientos_.
+            3. Выделенные сотни — не по правилу: **quinientos**, **setecientos**, **novecientos**.
+            4. Со словом женского рода сотни меняют окончание на `-as`: _doscientas camisetas_, _quinientas faldas_.
+      - learn: [mil]
       - write:
           title: Напишите словами
           format: число словами
+          rule: cientos
           skill: big_numbers
           items:
-            - q: "45"
-              a: "cuarenta y cinco"
-              mistakes: {"cuarentaicinco": "31–99 — три слова: cuarenta **y** cinco.", "cuarenta cinco": "Десятки и единицы соединяет **y**: cuarenta y cinco."}
-            - q: "27"
-              a: "veintisiete"
-              mistakes: {"veinte y siete": "21–29 — одним словом: **veintisiete**."}
-            - "31 => treinta y uno"
-            - "63 => sesenta y tres"
-            - "99 => noventa y nueve"
-            - "100 => cien"
+            - q: "500"
+              a: "quinientos"
+              mistakes: {"cincocientos": "500 — не по правилу: **quinientos**."}
+            - q: "150"
+              a: "ciento cincuenta"
+              mistakes: {"cien cincuenta": "Если после ста есть число — **ciento**: ciento cincuenta."}
+            - q: "700"
+              a: "setecientos"
+              mistakes: {"sietecientos": "700 — не по правилу: **setecientos**."}
+            - q: "200 футболок"
+              a: "doscientas camisetas"
+              mistakes: {"doscientos camisetas": "camiseta — женского рода: **doscientas** camisetas."}
+      - choose:
+          title: Послушайте и выберите
+          rule: cientos
+          skill: [numbers_ear, big_numbers]
+          items:
+            - say: "Son ciento cincuenta euros."
+              options: "150 € | 115 € | 105 €"
+              noaudio: {q: "Сколько это: «Son ciento cincuenta euros»?", options: "150 € | 115 € | 105 €"}
+            - say: "Son mil doscientos euros."
+              options: "1200 € | 1020 € | 200 €"
+              noaudio: {q: "Сколько это: «Son mil doscientos euros»?", options: "1200 € | 1020 € | 200 €"}
       - write:
           title: Послушайте и запишите цифрами
           format: число цифрами
           answer: number
-          skill: numbers_ear
+          skill: [numbers_ear, big_numbers]
           items:
-            - say: "setenta y dos"
-              a: "72"
-              noaudio: {q: "Запишите цифрами: setenta y dos", a: "72"}
-            - say: "ochenta y cinco"
-              a: "85"
-              noaudio: {q: "Запишите цифрами: ochenta y cinco", a: "85"}
+            - say: "trescientos cuarenta"
+              a: "340"
+              noaudio: {q: "Запишите цифрами: trescientos cuarenta", a: "340"}
+            - say: "quinientos noventa"
+              a: "590"
+              noaudio: {q: "Запишите цифрами: quinientos noventa", a: "590"}
 
   - id: demostrativos
     kind: grammar
@@ -222,7 +242,7 @@ lessons:
     kind: grammar
     title: ¿Cuánto cuesta?
     goal: спросить цену и понять ответ на слух
-    version: 2
+    version: 3
     vocab:
       - "💶 ¿Cuánto cuesta...? [куа́нто куэ́ста] — сколько стоит...? :: ¿Cuánto cuesta esta camiseta? — Сколько стоит эта футболка?"
       - "💰 costar [коста́р] — стоить"
@@ -230,8 +250,6 @@ lessons:
       - "💸 caro/a [ка́ро, ка́ра] — дорогой"
       - "🏷 barato/a [бара́то, бара́та] — дешёвый"
       - "🪙 el céntimo [θэ́нтимо] — цент (сотая часть евро)"
-      - "🔢 mil [миль] — тысяча {pos: num}"
-    forms: [ciento, doscientos, doscientas, trescientos, cuatrocientos, quinientos, seiscientos, setecientos, ochocientos, novecientos]
     blocks:
       - learn: ["¿Cuánto cuesta...?", costar, el precio]
       - text:
@@ -252,41 +270,19 @@ lessons:
           items:
             - q: "Estos zapatos son muy ___. (дорогие)"
               options: "caros | caras | baratos"
-      - learn: [el céntimo, mil]
-      - table:
-          id: hundreds
-          title: Сотни
-          rows:
-            - ["101", "ciento uno"]
-            - ["200", "doscientos"]
-            - ["300", "trescientos"]
-            - ["400", "cuatrocientos"]
-            - ["500", "**quinientos**"]
-            - ["600", "seiscientos"]
-            - ["700", "**setecientos**"]
-            - ["800", "ochocientos"]
-            - ["900", "**novecientos**"]
-            - ["1000", "mil"]
-      - rule:
-          id: cientos
-          text: |
-            1. Ровно сто — **cien**; если дальше есть число — **ciento**: _ciento uno_, _ciento veinte_.
-            2. Остальные сотни: число + `-cientos`: _doscientos_, _trescientos_.
-            3. Выделенные сотни — не по правилу: **quinientos**, **setecientos**, **novecientos**.
+      - learn: [el céntimo]
       - write:
-          title: Напишите словами
-          format: число словами
-          skill: big_numbers
+          title: Спросите цену
+          format: вопрос по-испански
+          rule: cuesta
+          skill: prices
           items:
-            - q: "500"
-              a: "quinientos"
-              mistakes: {"cincocientos": "500 — не по правилу: **quinientos**."}
-            - q: "150"
-              a: "ciento cincuenta"
-              mistakes: {"cien cincuenta": "Если после ста есть число — **ciento**: ciento cincuenta."}
-            - q: "700"
-              a: "setecientos"
-              mistakes: {"sietecientos": "700 — не по правилу: **setecientos**."}
+            - q: "Сколько стоит эта рубашка?"
+              a: "¿Cuánto cuesta esta camisa? | ¿Cuánto cuesta la camisa?"
+              mistakes: {"cuanto cuestan esta camisa": "Одна вещь — **cuesta**: ¿Cuánto cuesta esta camisa?"}
+            - q: "Сколько стоят эти брюки?"
+              a: "¿Cuánto cuestan estos pantalones? | ¿Cuánto cuestan los pantalones?"
+              mistakes: {"cuanto cuesta estos pantalones": "Брюки — los pantalones, их несколько: **cuestan**."}
       - match:
           title: Соедините пары
           rule: none
@@ -295,7 +291,6 @@ lessons:
             - "caro — дорогой"
             - "barato — дешёвый"
             - "el céntimo — цент"
-            - "mil — тысяча"
       - choose:
           title: Послушайте и выберите
           skill: [numbers_ear, prices]
@@ -314,7 +309,7 @@ lessons:
     kind: dialogue
     title: В магазине одежды
     goal: купить вещь — спросить размер, примерить, заплатить
-    version: 2
+    version: 3
     vocab:
       - "🪞 probarse [проба́рсэ] — примерять :: ¿Puedo probarme esta camisa? — Можно примерить эту рубашку?"
       - "🚪 el probador [пробадо́р] — примерочная"
@@ -323,6 +318,7 @@ lessons:
       - "🛍 me lo llevo / me la llevo [мэ ло льэ́бо] — беру (это)"
       - "💳 pagar [пага́р] — платить"
       - "💳 la tarjeta [тархэ́та] — карта (банковская)"
+      - "🧩 necesitar [нэθэсита́р] — нуждаться; быть нужным :: Necesito una talla más pequeña. — Мне нужен размер поменьше."
     blocks:
       - learn: [probarse, el probador, claro]
       - choose:
@@ -391,6 +387,24 @@ lessons:
             - q: "Dependienta: ¿Qué tal? — Скажите, что куртка вам немного велика."
               a: "Me queda un poco grande | Me queda grande"
               format: фраза по-испански
+      - learn: [necesitar]
+      - choose:
+          title: Выберите
+          free: true
+          skill: necesitar
+          items:
+            - q: "Как сказать «Мне нужна куртка»?"
+              options: "Necesito una chaqueta. | Necesita una chaqueta. | Necesito un chaqueta."
+              explain: "О себе — **necesito**; la chaqueta — женского рода: una chaqueta."
+      - write:
+          source: jacket
+          skill: necesitar
+          items:
+            - q: "Попросите размер поменьше: «Мне нужен размер поменьше»."
+              a: "Necesito una talla más pequeña | (Yo) necesito una talla más pequeña | ¿Tiene una talla más pequeña?"
+              format: фраза по-испански
+              mistakes: {"necesito un talla mas pequeña": "la talla — женского рода: **una** talla más **pequeña**.", "necesito una talla mas pequeño": "talla — женского рода: más **pequeña**."}
+              explain: "necesitar — правильный глагол на -ar: necesito, necesitas, necesita."
       - choose:
           source: jacket
           skill: numbers_ear

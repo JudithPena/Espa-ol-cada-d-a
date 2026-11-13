@@ -23,7 +23,6 @@ lessons:
       - "⏳ desde hace [дэ́здэ а́θэ] — уже (столько-то времени) :: Estudio inglés desde hace dos años. — Я учу английский уже два года."
       - "🕰 ¿Cuánto tiempo hace que...? [куа́нто тье́мпо а́θэ кэ] — как давно...? :: ¿Cuánto tiempo hace que estudias español? — Как давно ты учишь испанский?"
       - "🗣 el idioma [идьо́ма] — язык (на котором говорят) :: ¿Qué idioma estudias? — Какой язык ты учишь?"
-      - "🧩 necesitar [нэθэсита́р] — нуждаться; быть нужным :: Necesito el inglés para mi trabajo. — Мне нужен английский для работы."
       - "👄 la pronunciación [пронунθьяθьо́н] — произношение :: La pronunciación es difícil. — Произношение трудное."
       - "⚡ rápido [ра́пидо] — быстро :: Hablas muy rápido. — Ты говоришь очень быстро."
     blocks:
@@ -86,7 +85,7 @@ lessons:
               options: "Я учу английский уже два года. | Я учил английский два года назад. | Я буду учить английский два года."
               explain: "Desde hace dos años — «уже два года»: действие продолжается, глагол estudio — в настоящем времени."
               noaudio: {q: "Что значит «Estudio inglés desde hace dos años»?", options: "Я учу английский уже два года. | Я учил английский два года назад. | Я буду учить английский два года."}
-      - learn: [necesitar, la pronunciación, rápido]
+      - learn: [la pronunciación, rápido]
       - choose:
           title: Детали разговора
           source: intercambio
@@ -407,7 +406,6 @@ lessons:
     forms: [otros, otras]
     vocab:
       - "🧠 saber [сабэ́р] — знать; уметь :: ¿Sabes cocinar? — Ты умеешь готовить?"
-      - "🤷 No sé. [но сэ] — не знаю. :: No sé dónde está. — Я не знаю, где это."
       - "🎸 tocar [тока́р] — играть (на инструменте); трогать :: Sé tocar la guitarra. — Я умею играть на гитаре."
       - "🚗 conducir [кондуθи́р] — водить машину :: No sé conducir. — Я не умею водить."
     blocks:
@@ -422,7 +420,7 @@ lessons:
             - "Irina: No, no sé. ¿Está lejos? | Нет, не знаю. Это далеко?"
             - "Diego: No, está muy cerca. Allí hay comida muy buena. ¿Sabes cocinar? | Нет, совсем близко. Там очень хорошая еда. Ты умеешь готовить?"
             - "Irina: Sí, sé cocinar comida ucraniana. ¡Vamos! | Да, я умею готовить украинскую еду. Пойдём!"
-      - learn: [saber, No sé., tocar, conducir]
+      - learn: [saber, tocar, conducir]
       - choose:
           title: Поняли?
           source: mercado
@@ -723,15 +721,8 @@ lessons:
     forms: [be, ce, de, efe, ge, hache, i, jota, ka, ele, eme, ene, eñe, pe, cu, erre, ese, te, u, uve, doble, equis, ye, zeta,
             b, c, d, f, g, h, j, k, l, m, n, ñ, p, q, r, s, t, v, w, x, z, ch]
     vocab:
-      - "🪪 el nombre [но́мбрэ] — имя :: ¿Cuál es tu nombre? — Какое у тебя имя?"
-      - "👪 el apellido [апэйи́до] — фамилия :: Mi apellido es Koval. — Моя фамилия — Коваль."
-      - "🎂 la edad [эда́д] — возраст"
-      - "🌍 la nacionalidad [наθьоналида́д] — гражданство, национальность"
-      - "🏠 la dirección [дирэкθьо́н] — адрес :: ¿Cuál es tu dirección? — Какой у тебя адрес?"
-      - "📧 el correo electrónico [корре́о электро́нико] — электронная почта"
       - "🔡 deletrear [дэлэтрэа́р] — произносить по буквам :: ¿Puede deletrear su apellido? — Можете продиктовать фамилию по буквам?"
-      - "🔠 la letra [ле́тра] — буква :: La letra hache no se lee. — Буква h не читается."
-      - "📎 la arroba [арро́ба] — знак @ («собака»)"
+      - "🔠 la letra [лэ́тра] — буква :: La letra hache no se lee. — Буква h не читается."
     blocks:
       - "Ирина записывается в языковую школу. Посмотрите на её анкету."
       - table:
@@ -745,7 +736,6 @@ lessons:
             - ["Dirección", "calle Mayor, 12, Madrid"]
             - ["Correo electrónico", "irina.koval@correo.es"]
             - ["Teléfono", "650 281 973"]
-      - learn: [el nombre, el apellido, la edad, la nacionalidad, la dirección, el correo electrónico]
       - match:
           title: Что в какой строке?
           rule: ficha
@@ -831,7 +821,7 @@ lessons:
               options: "G | J | Y"
               explain: "Ge — буква G. Буква J — jota, буква Y — ye."
               noaudio: {q: "Какая буква называется «ge»?", options: "G | J | Y"}
-      - learn: [deletrear, la letra, la arroba]
+      - learn: [deletrear, la letra]
       - choose:
           title: Буквы
           rule: abc

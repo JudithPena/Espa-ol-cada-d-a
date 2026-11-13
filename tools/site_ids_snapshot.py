@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Снимок id уроков сайта (tests/data/site_lesson_ids.json): по id хранится прогресс учеников.
 
-    python tools/site_ids_snapshot.py        — дописать в конец новые уроки (новые темы уровня)
+    python tools/site_ids_snapshot.py        — записать новые уроки (новые темы уровня или урок внутри темы)
 
-Менять или переставлять уже записанные id нельзя: инструмент только дописывает и падает, если прежний
-порядок не совпал с курсом.
+Менять, удалять или переставлять уже записанные id нельзя: прогресс учеников хранится по ним. Новый урок
+можно вставить и внутрь темы (аудит MYTHOS: «Десятки до 100» в теме 04) — прежние id должны остаться
+в том же порядке; инструмент падает, если это не так.
 """
 import json
 import sys
@@ -18,7 +19,7 @@ from espanol.course import load_course  # noqa: E402
 path = ROOT / "tests" / "data" / "site_lesson_ids.json"
 old = json.loads(path.read_text(encoding="utf-8"))
 ids = [lesson.id for lesson in load_course(ROOT / "content" / "site").lessons]
-if ids[:len(old)] != old:
+if [i for i in ids if i in set(old)] != old:
     sys.exit("id или порядок прежних уроков изменились — снимок не обновлён")
 path.write_text("[\n" + ",\n".join(json.dumps(i, ensure_ascii=False) for i in ids) + "\n]\n", encoding="utf-8")
 print(f"уроков в снимке: {len(old)} → {len(ids)}")

@@ -123,18 +123,19 @@ lessons:
     kind: dialogue
     title: Если вы не поняли
     goal: сказать, что не понимаете, попросить повторить и объяснить слово
-    version: 3
+    version: 4
     allow: [mochila]   # в «Что ответить?» ученик нарочно не знает этого слова: оно вводится позже
     vocab:
       - "🤷 No entiendo. [но энтьэ́ндо] — я не понимаю."
+      - "🤔 No sé. [но сэ] — не знаю."
       - "🔁 Otra vez, por favor. [о́тра бэθ пор фабо́р] — ещё раз, пожалуйста."
       - "🐢 Más despacio, por favor. [мас дэспа́θьо пор фабо́р] — помедленнее, пожалуйста."
       - "🗣 ¿Cómo se dice... en español? [ко́мо сэ ди́θэ эн эспанъо́ль] — как сказать ... по-испански? :: ¿Cómo se dice «спасибо» en español? — Как сказать «спасибо» по-испански?"
       - "❔ ¿Qué significa...? [кэ сигнифи́ка] — что значит...? :: ¿Qué significa «perro»? — Что значит «perro»?"
       - "🔡 ¿Cómo se escribe? [ко́мо сэ эскри́бэ] — как это пишется?"
     blocks:
-      - "Эти шесть фраз — спасательный круг: с ними можно учиться прямо в разговоре."
-      - learn: [No entiendo., "Otra vez, por favor.", "Más despacio, por favor."]
+      - "Эти фразы — спасательный круг: с ними можно учиться прямо в разговоре."
+      - learn: [No entiendo., No sé., "Otra vez, por favor.", "Más despacio, por favor."]
       - choose:
           title: Что вы скажете?
           skill: ask_in_class
@@ -145,6 +146,9 @@ lessons:
             - q: "Вы хотите услышать фразу ещё раз."
               options: "Otra vez, por favor. | Más despacio, por favor. | Muchas gracias."
               explain: "Otra vez — «ещё раз»."
+            - q: "Вам задали вопрос. Вы его поняли, но ответа не знаете."
+              options: "No sé. | No entiendo. | Otra vez, por favor."
+              explain: "No entiendo — «не понимаю» (вопрос, слово); No sé — «не знаю» (ответ)."
       - learn: ["¿Cómo se dice... en español?", "¿Qué significa...?", "¿Cómo se escribe?"]
       - dialogue:
           id: lesson
@@ -201,6 +205,148 @@ lessons:
           items:
             - es: "No entiendo. Otra vez, por favor."
               ru: "Я не понимаю. Ещё раз, пожалуйста."
+
+  - id: alfabeto
+    kind: vocab
+    title: Алфавит
+    goal: назвать букву по-испански и записать фамилию, которую диктуют по буквам
+    version: 2
+    # Аудит MYTHOS (PRG-04, U00-03): вопрос ¿Cómo se escribe? есть с этой темы, а названий букв не было.
+    allow: [a, e, i, o, u, be, ce, de, efe, ge, hache, jota, ka, ele, eme, ene, eñe, pe, cu, erre, ese, te, uve, doble, equis, griega, ye, zeta, Kovalenko, Ruiz, Vega, Hugo]
+    vocab:
+      - "🪪 el apellido [апэйи́до] — фамилия :: ¿Y el apellido? — Vega. — А фамилия? — Вега."
+    blocks:
+      - "В Испании имя, фамилию и адрес часто диктуют по буквам. У каждой буквы есть название — нажмите, чтобы послушать."
+      - compare:
+          style: small
+          title: "`A` — `I`"
+          cards:
+            - {head: a, label: "`A a`"}
+            - {head: be, label: "`B b`"}
+            - {head: ce, label: "`C c`"}
+            - {head: de, label: "`D d`"}
+            - {head: e, label: "`E e`"}
+            - {head: efe, label: "`F f`"}
+            - {head: ge, label: "`G g`"}
+            - {head: hache, label: "`H h`"}
+            - {head: i, label: "`I i`"}
+      - choose:
+          title: Как называется буква?
+          skill: alphabet
+          items:
+            - q: "Как называется буква `H`?"
+              options: "hache | jota | ge"
+              explain: "`h` не читается, но название у неё есть: hache."
+            - say: "ge"
+              q: "Какую букву назвали?"
+              options: "`G` | `J` | `H`"
+              noaudio: {q: "Какая буква называется «ge»?", options: "`G` | `J` | `H`"}
+      - compare:
+          style: small
+          title: "`J` — `Q`"
+          cards:
+            - {head: jota, label: "`J j`"}
+            - {head: ka, label: "`K k`"}
+            - {head: ele, label: "`L l`"}
+            - {head: eme, label: "`M m`"}
+            - {head: ene, label: "`N n`"}
+            - {head: eñe, label: "`Ñ ñ`"}
+            - {head: o, label: "`O o`"}
+            - {head: pe, label: "`P p`"}
+            - {head: cu, label: "`Q q`"}
+      - choose:
+          title: Как называется буква?
+          skill: alphabet
+          items:
+            - q: "Как называется буква `Ñ`?"
+              options: "eñe | ene | eme"
+            - say: "jota"
+              q: "Какую букву назвали?"
+              options: "`J` | `G` | `H`"
+              noaudio: {q: "Какая буква называется «jota»?", options: "`J` | `G` | `H`"}
+      - compare:
+          style: small
+          title: "`R` — `Z`"
+          cards:
+            - {head: erre, label: "`R r`"}
+            - {head: ese, label: "`S s`"}
+            - {head: te, label: "`T t`"}
+            - {head: u, label: "`U u`"}
+            - {head: uve, label: "`V v`"}
+            - {head: uve doble, label: "`W w`"}
+            - {head: equis, label: "`X x`"}
+            - {head: i griega, label: "`Y y`"}
+            - {head: zeta, label: "`Z z`"}
+          note: "Букву **y** называют и **ye**. Две буквы `rr` диктуют по одной: _pe, e, erre, erre, o_ — perro."
+      - choose:
+          title: ¿Cómo se escribe?
+          skill: alphabet
+          items:
+            - q: "¿Cómo se escribe «hola»?"
+              options: "hache, o, ele, a | o, ele, a | jota, o, ele, a"
+              explain: "`h` не читается, но пишется: hache, o, ele, a."
+            - q: "Как называется буква `V`?"
+              options: "uve | be | u"
+              explain: "`b` и `v` звучат одинаково, а называются по-разному: be и uve."
+      - learn: [el apellido]
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "el apellido — фамилия"
+            - "¿Cómo se escribe? — как это пишется?"
+      - "Ольга записывается на курс в языковой школе. Секретарь просит продиктовать фамилию."
+      - dialogue:
+          id: secretaria
+          title: В секретариате школы
+          hidden: true
+          lines:
+            - "Secretaria: Buenos días. ¿Cómo te llamas? | Доброе утро. Как тебя зовут?"
+            - "Olga: Me llamo Olga. Olga Kovalenko. | Меня зовут Ольга. Ольга Коваленко."
+            - "Secretaria: ¿Y el apellido? ¿Cómo se escribe? | А фамилия? Как она пишется?"
+            - "Olga: Ka, o, uve, a, ele, e, ene, ka, o. | К, О, В, А, Л, Е, Н, К, О."
+            - "Secretaria: Más despacio, por favor. | Помедленнее, пожалуйста."
+            - "Olga: Ka… o… uve… a… ele… e… ene… ka… o. | К… О… В… А… Л… Е… Н… К… О."
+            - "Secretaria: ¡Muy bien! Gracias, Olga. | Отлично! Спасибо, Ольга."
+      - write:
+          title: Запишите фамилию
+          source: secretaria
+          skill: alphabet
+          format: фамилия латиницей
+          items:
+            - q: "Как пишется фамилия Ольги?"
+              a: "Kovalenko"
+              mistakes: {"kobalenko": "Ольга говорит **uve** — это `v`: Kovalenko.", "covalenko": "Первая буква — **ka**: `k`."}
+      - choose:
+          title: Responde
+          source: secretaria
+          items:
+            - q: "О чём секретарь просит Ольгу?"
+              options: "Говорить помедленнее. | Сказать имя ещё раз. | Написать фамилию самой."
+              evidence: "Más despacio, por favor."
+      - write:
+          title: Послушайте и напишите
+          format: фамилия латиницей
+          free: true
+          skill: alphabet
+          items:
+            - say: "erre, u, i, zeta"
+              q: "Какую фамилию продиктовали?"
+              a: "Ruiz"
+              noaudio: {q: "Фамилию диктуют так: erre, u, i, zeta. Напишите её.", a: "Ruiz"}
+            - say: "uve, e, ge, a"
+              q: "Какую фамилию продиктовали?"
+              a: "Vega"
+              mistakes: {"bega": "Сказали **uve** — это `v`: Vega."}
+              noaudio: {q: "Фамилию диктуют так: uve, e, ge, a. Напишите её.", a: "Vega"}
+      - build:
+          title: Продиктуйте по буквам
+          free: true
+          skill: alphabet
+          items:
+            - es: "hache, u, ge, o"
+              ru: "Продиктуйте имя «Hugo» по буквам."
+              extra: [jota, uve]
 
   - id: practice
     kind: practice

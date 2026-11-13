@@ -9,7 +9,7 @@
 ## Урок `espanol_y_yo/intercambio` — «Языковой обмен»
 
 - **Цель:** понять на слух разговор о том, кто как давно и зачем учит язык.
-- **Длина:** 19 шагов, около 7 минут. **Новая лексика:** desde, desde hace, ¿Cuánto tiempo hace que...?, el idioma, necesitar, la pronunciación, rápido.
+- **Длина:** 18 шагов, около 7 минут. **Новая лексика:** desde, desde hace, ¿Cuánto tiempo hace que...?, el idioma, la pronunciación, rápido.
 - **Интерактив:** выбор 8, ввод 1, группы 1; на слух и с голосом собеседника — 2. **Самостоятельное воспроизведение:** ввод, сборка и письмо — 1 заданий.
 
 | Шаг | Экран / тип блока | Что видит или делает ученик | Источник |
@@ -25,16 +25,15 @@
 | 9 | C: выбор | ¿Desde cuándo vive Irina en Madrid? → Desde enero. | `intercambio` |
 | 10 | C: выбор | ¿Cuánto tiempo hace que Diego estudia inglés? → Dos años. | `intercambio` |
 | 11 | C~: выбор на слух | на слух «Estudio inglés desde hace dos años.» → Я учу английский уже два года. | — |
-| 12 | W | новое слово: necesitar — нуждаться; быть нужным | — |
-| 13 | W | новое слово: la pronunciación — произношение | — |
-| 14 | W | новое слово: rápido — быстро | — |
-| 15 | C: выбор | ¿Para qué necesita Diego el inglés? → Para su trabajo. | `intercambio` |
-| 16 | C: выбор | ¿Qué es difícil para Irina? → Entender a la gente cuando habla rápido. | `intercambio` |
-| 17 | I~: диктант | на слух «Hace un año que estudio español.» → Hace un año que estudio español | — |
-| 18 | S: группы | Кто это сказал?: Irina / Diego | `intercambio` |
-| 19 | C: выбор | Вы согласны. → ¡Vale! ¡Perfecto! | — |
+| 12 | W | новое слово: la pronunciación — произношение | — |
+| 13 | W | новое слово: rápido — быстро | — |
+| 14 | C: выбор | ¿Para qué necesita Diego el inglés? → Para su trabajo. | `intercambio` |
+| 15 | C: выбор | ¿Qué es difícil para Irina? → Entender a la gente cuando habla rápido. | `intercambio` |
+| 16 | I~: диктант | на слух «Hace un año que estudio español.» → Hace un año que estudio español | — |
+| 17 | S: группы | Кто это сказал?: Irina / Diego | `intercambio` |
+| 18 | C: выбор | Вы согласны. → ¡Vale! ¡Perfecto! | — |
 
-Сигнатура: `T(text+dialogue) C@intercambio×2 W×4 T(text+examples) C@intercambio×2 C~ W×3 C@intercambio×2 I~ S C`
+Сигнатура: `T(text+dialogue) C@intercambio×2 W×4 T(text+examples) C@intercambio×2 C~ W×2 C@intercambio×2 I~ S C`
 
 ## Урок `espanol_y_yo/desde_hace` — «Desde, desde hace, hace… que»
 
@@ -99,37 +98,36 @@
 ## Урок `espanol_y_yo/saber_conocer` — «Saber y conocer: два «знать»»
 
 - **Цель:** сказать, что вы умеете, что знаете и с чем знакомы.
-- **Длина:** 24 шага, около 11 минут. **Новая лексика:** saber, No sé., tocar, conducir.
+- **Длина:** 23 шага, около 10 минут. **Новая лексика:** saber, tocar, conducir.
 - **Интерактив:** выбор 7, ввод 5, сборка 3, группы 1, письмо 1; на слух и с голосом собеседника — 1. **Самостоятельное воспроизведение:** ввод, сборка и письмо — 9 заданий.
 
 | Шаг | Экран / тип блока | Что видит или делает ученик | Источник |
 |---|---|---|---|
 | 1 | T: text + dialogue | Ирина и Диего идут гулять. В их разговоре два разных глагола переводятся как «знать». Как… | — |
 | 2 | W | новое слово: saber — знать; уметь | — |
-| 3 | W | новое слово: No sé. — не знаю. | — |
-| 4 | W | новое слово: tocar — играть (на инструменте); трогать | — |
-| 5 | W | новое слово: conducir — водить машину | — |
-| 6 | C: выбор | ¿Irina sabe dónde está el mercado? → No, no sabe. | `mercado` |
-| 7 | C: выбор | ¿Qué sabe hacer Irina? → Cocinar comida ucraniana. | `mercado` |
-| 8 | T: compare + conjugation + more | Saber или conocer? | — |
-| 9 | S: группы | Saber или conocer?: saber / conocer | — |
-| 10 | I: ввод | (yo) No ___ dónde están mis llaves. → sé | — |
-| 11 | I: ввод | ¿(tú) ___ a mi amigo Carlos? → conoces | — |
-| 12 | I: ввод | (yo) ___ Barcelona muy bien. → conozco | — |
-| 13 | I: ввод | Mis padres no ___ hablar inglés. → saben | — |
-| 14 | I: ввод | ¿(vosotros) ___ cocinar? → sabéis | — |
-| 15 | T: compare | Не умею или не могу? | — |
-| 16 | C: выбор | Вы умеете плавать, но сегодня болит нога. → Sé nadar, pero hoy no puedo. | — |
-| 17 | C: выбор | Вы не знаете. → No, no sé. Lo siento. | — |
-| 18 | C~: выбор на слух | на слух «¿Conoces a mi hermana?» → Ты знаком с моей сестрой? | — |
-| 19 | B: сборка | ¿Sabes tocar la guitarra? | — |
-| 20 | B: сборка | No conozco a tu hermana. | — |
-| 21 | B: сборка | No sé conducir. | — |
-| 22 | O: письмо по признакам | ¿Qué sabes hacer? Напишите, что вы умеете и чего не умеете.; образец: Sé cocinar y nadar, pero no sé tocar la… | — |
-| 23 | Q: тест | — ¿___ a Lucía? — Sí, es mi amiga. → Conoces | — |
-| 24 | Q: тест | No ___ conducir. → sé | — |
+| 3 | W | новое слово: tocar — играть (на инструменте); трогать | — |
+| 4 | W | новое слово: conducir — водить машину | — |
+| 5 | C: выбор | ¿Irina sabe dónde está el mercado? → No, no sabe. | `mercado` |
+| 6 | C: выбор | ¿Qué sabe hacer Irina? → Cocinar comida ucraniana. | `mercado` |
+| 7 | T: compare + conjugation + more | Saber или conocer? | — |
+| 8 | S: группы | Saber или conocer?: saber / conocer | — |
+| 9 | I: ввод | (yo) No ___ dónde están mis llaves. → sé | — |
+| 10 | I: ввод | ¿(tú) ___ a mi amigo Carlos? → conoces | — |
+| 11 | I: ввод | (yo) ___ Barcelona muy bien. → conozco | — |
+| 12 | I: ввод | Mis padres no ___ hablar inglés. → saben | — |
+| 13 | I: ввод | ¿(vosotros) ___ cocinar? → sabéis | — |
+| 14 | T: compare | Не умею или не могу? | — |
+| 15 | C: выбор | Вы умеете плавать, но сегодня болит нога. → Sé nadar, pero hoy no puedo. | — |
+| 16 | C: выбор | Вы не знаете. → No, no sé. Lo siento. | — |
+| 17 | C~: выбор на слух | на слух «¿Conoces a mi hermana?» → Ты знаком с моей сестрой? | — |
+| 18 | B: сборка | ¿Sabes tocar la guitarra? | — |
+| 19 | B: сборка | No conozco a tu hermana. | — |
+| 20 | B: сборка | No sé conducir. | — |
+| 21 | O: письмо по признакам | ¿Qué sabes hacer? Напишите, что вы умеете и чего не умеете.; образец: Sé cocinar y nadar, pero no sé tocar la… | — |
+| 22 | Q: тест | — ¿___ a Lucía? — Sí, es mi amiga. → Conoces | — |
+| 23 | Q: тест | No ___ conducir. → sé | — |
 
-Сигнатура: `T(text+dialogue) W×4 C@mercado×2 T(compare+conjugation+more) S I×5 T(compare) C×2 C~ B×3 O Q×2`
+Сигнатура: `T(text+dialogue) W×3 C@mercado×2 T(compare+conjugation+more) S I×5 T(compare) C×2 C~ B×3 O Q×2`
 
 ## Урок `espanol_y_yo/me_cuesta` — «Me cuesta… Трудности и советы»
 
@@ -170,41 +168,34 @@
 ## Урок `espanol_y_yo/datos` — «Анкета и алфавит»
 
 - **Цель:** заполнить анкету и продиктовать фамилию по буквам.
-- **Длина:** 28 шагов, около 11 минут. **Новая лексика:** el nombre, el apellido, la edad, la nacionalidad, la dirección, el correo electrónico, deletrear, la letra, la arroba.
+- **Длина:** 21 шаг, около 9 минут. **Новая лексика:** deletrear, la letra.
 - **Интерактив:** выбор 10, ввод 4, пары 1, письмо 1; на слух и с голосом собеседника — 7. **Самостоятельное воспроизведение:** ввод, сборка и письмо — 5 заданий.
 
 | Шаг | Экран / тип блока | Что видит или делает ученик | Источник |
 |---|---|---|---|
 | 1 | T: text + table | Ирина записывается в языковую школу. Посмотрите на её анкету. | — |
-| 2 | W | новое слово: el nombre — имя | — |
-| 3 | W | новое слово: el apellido — фамилия | — |
-| 4 | W | новое слово: la edad — возраст | — |
-| 5 | W | новое слово: la nacionalidad — гражданство, национальность | — |
-| 6 | W | новое слово: la dirección — адрес | — |
-| 7 | W | новое слово: el correo electrónico — электронная почта | — |
-| 8 | M: пары | Что в какой строке?: 5 пар (Nombre — Irina…) | — |
-| 9 | C: выбор | irina.koval@correo.es → el correo electrónico | — |
-| 10 | C: выбор | calle Mayor, 12, Madrid → la dirección | — |
-| 11 | T: text + compare + compare + compare | Фамилию и почту в Испании часто просят продиктовать по буквам. У каждой буквы есть назван… | — |
-| 12 | C~: выбор на слух | на слух «jota» → J | — |
-| 13 | C~: выбор на слух | на слух «uve» → V | — |
-| 14 | C~: выбор на слух | на слух «hache» → H | — |
-| 15 | C~: выбор на слух | на слух «ge» → G | — |
-| 16 | W | новое слово: deletrear — произносить по буквам | — |
-| 17 | W | новое слово: la letra — буква | — |
-| 18 | W | новое слово: la arroba — знак @ («собака») | — |
-| 19 | C: выбор | ¿Cuántas letras tiene la palabra «hola»? → Cuatro. | — |
-| 20 | T: text | В адресе почты точка — punto, знак @ — arroba: ana punto lopez arroba correo punto es — э… | — |
-| 21 | I~: диктант | на слух «ka, o, uve, a, ele» → Koval | — |
-| 22 | I~: диктант | на слух «erre, u, i, zeta» → Ruiz | — |
-| 23 | I: ввод | ¿Cómo se escribe «Torres»? Deletrea la palabra. → te, o, erre, erre, e, ese | — |
-| 24 | I: ввод | Вас зовут Олег Коваль. Secretaria: ¿Puede deletrear su apel… → ka, o, uve, a, ele | — |
-| 25 | C~: выбор на слух | на слух «ana punto lopez arroba correo punto es» → ana.lopez@correo.es | — |
-| 26 | O: письмо по признакам | Напишите о себе три фразы: имя и фамилия, возраст, откуда в…; образец: Me llamo Oleg Koval. Tengo treinta años… | — |
-| 27 | Q: тест | Что такое «el apellido»? → фамилия | — |
-| 28 | Q: тест | Какую фамилию диктуют: «ele, o, pe, e, zeta»? → López | — |
+| 2 | M: пары | Что в какой строке?: 5 пар (Nombre — Irina…) | — |
+| 3 | C: выбор | irina.koval@correo.es → el correo electrónico | — |
+| 4 | C: выбор | calle Mayor, 12, Madrid → la dirección | — |
+| 5 | T: text + compare + compare + compare | Фамилию и почту в Испании часто просят продиктовать по буквам. У каждой буквы есть назван… | — |
+| 6 | C~: выбор на слух | на слух «jota» → J | — |
+| 7 | C~: выбор на слух | на слух «uve» → V | — |
+| 8 | C~: выбор на слух | на слух «hache» → H | — |
+| 9 | C~: выбор на слух | на слух «ge» → G | — |
+| 10 | W | новое слово: deletrear — произносить по буквам | — |
+| 11 | W | новое слово: la letra — буква | — |
+| 12 | C: выбор | ¿Cuántas letras tiene la palabra «hola»? → Cuatro. | — |
+| 13 | T: text | В адресе почты точка — punto, знак @ — arroba: ana punto lopez arroba correo punto es — э… | — |
+| 14 | I~: диктант | на слух «ka, o, uve, a, ele» → Koval | — |
+| 15 | I~: диктант | на слух «erre, u, i, zeta» → Ruiz | — |
+| 16 | I: ввод | ¿Cómo se escribe «Torres»? Deletrea la palabra. → te, o, erre, erre, e, ese | — |
+| 17 | I: ввод | Вас зовут Олег Коваль. Secretaria: ¿Puede deletrear su apel… → ka, o, uve, a, ele | — |
+| 18 | C~: выбор на слух | на слух «ana punto lopez arroba correo punto es» → ana.lopez@correo.es | — |
+| 19 | O: письмо по признакам | Напишите о себе три фразы: имя и фамилия, возраст, откуда в…; образец: Me llamo Oleg Koval. Tengo treinta años… | — |
+| 20 | Q: тест | Что такое «el apellido»? → фамилия | — |
+| 21 | Q: тест | Какую фамилию диктуют: «ele, o, pe, e, zeta»? → López | — |
 
-Сигнатура: `T(text+table) W×6 M C×2 T(text+compare+compare+compare) C~×4 W×3 C T(text) I~×2 I×2 C~ O Q×2`
+Сигнатура: `T(text+table) M C×2 T(text+compare+compare+compare) C~×4 W×2 C T(text) I~×2 I×2 C~ O Q×2`
 
 ## Урок `espanol_y_yo/lectura` — «Tres estudiantes, tres historias»
 
