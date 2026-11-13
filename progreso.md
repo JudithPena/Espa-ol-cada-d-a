@@ -10,8 +10,8 @@
 
 ## Сейчас
 
-- Готово тем: **11 из 19**. Уроков A2: **85**, новых слов и выражений: **327**.
-- В работе: тема 35 — Por la ciudad + КТ-2.
+- Готово тем: **12 из 19**. Уроков A2: **94**, новых слов и выражений: **351**.
+- В работе: тема 36 — Me encuentro mal.
 
 ## Темы
 
@@ -28,8 +28,8 @@
 | 32 | ¿Qué pasó? | indefinido и imperfecto вместе; cuando, de repente, entonces, al final; estaba + герундий | 7 | 26 | ✅ готово |
 | 33 | ¿Quedamos? | предложить, согласиться, отказаться: ¿Te apetece…?, ¿Por qué no…?, es que… | 7 | 21 | ✅ готово |
 | 34 | Te lo recomiendo | императив (tú, usted); le / les, se lo; рецепты и советы | 7 | 25 | ✅ готово |
-| 35 | Por la ciudad + КТ-2 | дорога, разрешение и просьба: ¿Puedo…?, ¿Te importa…?; se безличное; контрольная точка 2 | — | — | ⏭ следующая |
-| 36 | Me encuentro mal | симптомы и советы: me gustaría, podrías, deberías; врач и аптека | — | — | ⬜ не начата |
+| 35 | Por la ciudad + КТ-2 | дорога, разрешение и просьба: ¿Puedo…?, ¿Te importa…?; se безличное; контрольная точка 2 | 9 | 24 | ✅ готово |
+| 36 | Me encuentro mal | симптомы и советы: me gustaría, podrías, deberías; врач и аптека | — | — | ⏭ следующая |
 | 37 | De compras | el más…, -ísimo; este / ese без существительного; el mío / la mía; обмен покупки | — | — | ⬜ не начата |
 | 38 | Mi trabajo, mis estudios | empezar a, dejar de, volver a, seguir + герундий; desde… hasta, durante; резюме | — | — | ⬜ не начата |
 | 39 | La gente | ser / estar с прилагательными; parecerse, llevarse bien; me parece; характер и чувства | — | — | ⬜ не начата |
@@ -71,6 +71,7 @@
 | 13.11.2026 | Тема 32 «¿Qué pasó?» (7 уроков): imperfecto и indefinido в рассказе, estaba + герундий, mientras, связки (de repente, entonces, al final). Исправлено: признаки письма с ударениями (ía, más) в темах 30–31 не срабатывали — выражения теперь сравниваются без ударений, как текст. |
 | 13.11.2026 | Тема 33 «¿Quedamos?» (7 уроков): ¿Te apetece…?, ¿Por qué no…?, ¿Qué tal si…?, отказ с es que…, quedar a / en / con, ¿te viene bien…?, estar + герундий по телефону (oír, colgar, cobertura). |
 | 13.11.2026 | Тема 34 «Te lo recomiendo» (7 уроков): императив на «ты» и «вы», le / les, se lo, местоимения после императива; рецепты тортильи и гаспачо; новый голос — Ли. В теме 32 возвращено слово lluvia. Движок: формы freír, проверка «слово позже» без форм по грамматике и скрытых ключей mistakes. |
+| 13.11.2026 | Тема 35 «Por la ciudad» (9 уроков) с контрольной точкой 2 по темам 30–35: дорога на «ты» и «вы» (sigue / siga, al lado de, enfrente de), метро (línea, bajarse, transbordo), ¿Puedo…?, ¿Te importa…?, se безличное; новая роль — турист. |
 
 ## Что не проверено
 
