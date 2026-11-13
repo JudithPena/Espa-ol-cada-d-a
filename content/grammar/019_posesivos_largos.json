@@ -18,12 +18,12 @@
         "instruction": "Выбери ответ по ситуации.",
         "questions": [
           {
-            "prompt": "Esta maleta es ___.",
+            "prompt": "—¿Es tuyo este bolso? —Sí, es ___.",
             "answers": [
-              "mía"
+              "mío"
             ],
-            "explain": "Maleta — женский род, один предмет; владелец говорит о себе: mía.",
-            "context": "Владелец чемодана отвечает: «Он мой».",
+            "explain": "Bolso — мужской род, один предмет; владелец говорит о себе: mío.",
+            "context": "Владелица сумки отвечает: «Да, мой».",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -35,18 +35,18 @@
               "ñ"
             ],
             "options": [
-              "mío",
               "mía",
+              "mío",
               "mías"
             ]
           },
           {
-            "prompt": "Estas llaves son ___.",
+            "prompt": "Estas gafas son ___.",
             "answers": [
               "tuyas"
             ],
-            "explain": "Ключи принадлежат собеседнику на tú; llaves — женский род, несколько.",
-            "context": "Скажи другу: «Эти ключи твои».",
+            "explain": "Очки принадлежат собеседнику на tú; gafas — женский род, множественное число.",
+            "context": "Скажи другу: «Эти очки твои».",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -195,12 +195,12 @@
         "instruction": "Выбери ответ по ситуации.",
         "questions": [
           {
-            "prompt": "___ es pintor.",
+            "prompt": "___ trabaja en un banco.",
             "answers": [
               "un amigo mío"
             ],
-            "explain": "Подлежащее перед es: un amigo mío.",
-            "context": "Скажи: «Один мой друг — художник».",
+            "explain": "Подлежащее перед trabaja: un amigo mío.",
+            "context": "Скажи: «Один мой друг работает в банке».",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -218,13 +218,13 @@
             ]
           },
           {
-            "prompt": "Raquel es ___.",
+            "prompt": "Lola es ___.",
             "answers": [
-              "prima nuestra",
-              "una prima nuestra"
+              "vecina nuestra",
+              "una vecina nuestra"
             ],
-            "explain": "После ser допустимы prima nuestra и una prima nuestra.",
-            "context": "Ракель — наша двоюродная сестра.",
+            "explain": "После ser допустимы vecina nuestra и una vecina nuestra.",
+            "context": "Лола — наша соседка.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -236,9 +236,9 @@
               "ñ"
             ],
             "options": [
-              "prima nuestra",
-              "una prima nuestra",
-              "primo nuestro"
+              "vecina nuestra",
+              "una vecina nuestra",
+              "vecino nuestro"
             ]
           }
         ]

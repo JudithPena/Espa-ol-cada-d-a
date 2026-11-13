@@ -50,7 +50,7 @@
         "instruction": "Выбери прилагательное по испанскому существительному. В последнем вопросе смотри на слово persona.",
         "questions": [
           {
-            "prompt": "Una casa ___.",
+            "prompt": "Una ventana ___.",
             "answers": [
               "pequeña"
             ],
@@ -60,8 +60,8 @@
               "pequeña",
               "pequeñas"
             ],
-            "explain": "`Casa` — женский род, единственное число. Для `pequeño` нужна форма `pequeña`, без окончания множественного числа.",
-            "context": "Описание одного дома.",
+            "explain": "`Ventana` — женский род, единственное число. Для `pequeño` нужна форма `pequeña`, без окончания множественного числа.",
+            "context": "Описание одного окна.",
             "sourceRef": "13.1.1",
             "interaction": "gap-choice",
             "clues": [
@@ -94,24 +94,24 @@
             ]
           },
           {
-            "prompt": "Don Santiago es una persona ___.",
+            "prompt": "Mi abuelo es una persona muy ___.",
             "answers": [
-              "encantadora"
+              "trabajadora"
             ],
             "options": [
-              "encantador",
-              "encantadoras",
-              "encantadora",
-              "encantadores"
+              "trabajador",
+              "trabajadoras",
+              "trabajadora",
+              "trabajadores"
             ],
-            "explain": "`Persona` всегда женского рода, хотя дон Сантьяго — мужчина. Поэтому `una persona encantadora`, а не `encantador`.",
-            "context": "Описание дона Сантьяго.",
+            "explain": "`Persona` всегда женского рода, хотя дедушка — мужчина. Поэтому `una persona muy trabajadora`, а не `trabajador`.",
+            "context": "Описание дедушки.",
             "sourceRef": "extra",
             "interaction": "gap-choice",
             "clues": [
               [
-                "encantador",
-                "очаровательный"
+                "trabajador",
+                "трудолюбивый"
               ]
             ]
           }
@@ -204,23 +204,23 @@
             "interaction": "choice"
           },
           {
-            "prompt": "Unas chicas ___.",
+            "prompt": "Unas vecinas ___.",
             "answers": [
-              "alegres"
+              "amables"
             ],
             "options": [
-              "alegre",
-              "alegres",
-              "alegras"
+              "amable",
+              "amables",
+              "amablas"
             ],
-            "explain": "`Alegre` не различает род, но во множественном числе становится `alegres`: `unas chicas alegres`. Форма `alegras` неверна.",
-            "context": "Описывают нескольких девушек.",
+            "explain": "`Amable` не различает род, но во множественном числе становится `amables`: `unas vecinas amables`. Форма `amablas` неверна.",
+            "context": "Описывают нескольких соседок.",
             "sourceRef": "13.1.2",
             "interaction": "gap-choice",
             "clues": [
               [
-                "alegre",
-                "весёлый"
+                "amable",
+                "любезный"
               ]
             ]
           },
@@ -323,7 +323,7 @@
         "instruction": "Выбери форму по её положению относительно существительного и по роду.",
         "questions": [
           {
-            "prompt": "Es un ___ profesor.",
+            "prompt": "Mi tío es un ___ cocinero.",
             "answers": [
               "buen"
             ],
@@ -332,13 +332,13 @@
               "buen",
               "buena"
             ],
-            "explain": "`Profesor` мужского рода единственного числа; перед ним `bueno` теряет `-o`: `un buen profesor`. После существительного было бы `profesor bueno`.",
-            "context": "Говорят о преподавателе.",
+            "explain": "`Cocinero` мужского рода единственного числа; перед ним `bueno` теряет `-o`: `un buen cocinero`. После существительного было бы `cocinero bueno`.",
+            "context": "Говорят о дяде-поваре.",
             "sourceRef": "13.3.4",
             "interaction": "gap-choice"
           },
           {
-            "prompt": "Es un ___ ejemplo.",
+            "prompt": "Es un ___ restaurante.",
             "answers": [
               "mal"
             ],
@@ -347,13 +347,13 @@
               "mala",
               "mal"
             ],
-            "explain": "Перед `ejemplo` (мужской род, ед. число) `malo` сокращается до `mal`: `un mal ejemplo`. После слова нужна полная форма `malo`.",
-            "context": "Обсуждают плохой пример.",
+            "explain": "Перед `restaurante` (мужской род, ед. число) `malo` сокращается до `mal`: `un mal restaurante`. После слова нужна полная форма `malo`.",
+            "context": "Обсуждают плохой ресторан.",
             "sourceRef": "extra",
             "interaction": "gap-choice"
           },
           {
-            "prompt": "Es una ___ idea.",
+            "prompt": "Es una ___ noticia.",
             "answers": [
               "mala"
             ],
@@ -362,8 +362,8 @@
               "malo",
               "mala"
             ],
-            "explain": "`Idea` — женского рода, поэтому перед ним сохраняется полная форма `mala`: `una mala idea`. `Mal` здесь не подходит.",
-            "context": "Оценивают предложенную идею.",
+            "explain": "`Noticia` — женского рода, поэтому перед ним сохраняется полная форма `mala`: `una mala noticia`. `Mal` здесь не подходит.",
+            "context": "Оценивают новость.",
             "sourceRef": "extra",
             "interaction": "gap-choice"
           }

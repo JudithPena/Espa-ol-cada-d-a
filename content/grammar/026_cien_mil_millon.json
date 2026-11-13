@@ -191,12 +191,12 @@
             ]
           },
           {
-            "prompt": "2 000 000 euros → ___ euros",
+            "prompt": "3 000 000 habitantes → ___ habitantes",
             "answers": [
-              "dos millones de"
+              "tres millones de"
             ],
-            "explain": "После целых миллионов перед euros нужна de.",
-            "context": "Два миллиона евро.",
+            "explain": "После целых миллионов перед habitantes нужна de.",
+            "context": "Три миллиона жителей.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -208,9 +208,9 @@
               "ñ"
             ],
             "options": [
-              "dos millones",
-              "dos millones de",
-              "dos millón de"
+              "tres millones",
+              "tres millones de",
+              "tres millón de"
             ]
           }
         ]
@@ -253,12 +253,12 @@
         "instruction": "Выбери ответ по ситуации.",
         "questions": [
           {
-            "prompt": "301 euros → ___ euros",
+            "prompt": "501 euros → ___ euros",
             "answers": [
-              "trescientos un"
+              "quinientos un"
             ],
-            "explain": "Euros — мужской род: trescientos un. Uno перед euros сокращается.",
-            "context": "Запиши 301 евро.",
+            "explain": "Euros — мужской род: quinientos un. Uno перед euros сокращается.",
+            "context": "Запиши 501 евро.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -270,18 +270,18 @@
               "ñ"
             ],
             "options": [
-              "trescientos uno",
-              "trescientas una",
-              "trescientos un"
+              "quinientos uno",
+              "quinientas una",
+              "quinientos un"
             ]
           },
           {
-            "prompt": "1421 coronas → ___ coronas",
+            "prompt": "1231 personas → ___ personas",
             "answers": [
-              "mil cuatrocientas veintiuna"
+              "mil doscientas treinta y una"
             ],
-            "explain": "Coronas — женский род: и сотни, и окончание veintiuna согласуем с ним.",
-            "context": "Выбери форму для 1421 кроны.",
+            "explain": "Personas — женский род: и сотни, и окончание treinta y una согласуем с ним.",
+            "context": "Выбери форму для 1231 человека.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -293,9 +293,9 @@
               "ñ"
             ],
             "options": [
-              "mil cuatrocientos veintiún",
-              "mil cuatrocientas veintiuna",
-              "mil cuatrocientas veintiuno"
+              "mil doscientos treinta y un",
+              "mil doscientas treinta y una",
+              "mil doscientas treinta y uno"
             ]
           }
         ]
@@ -414,11 +414,11 @@
         "instruction": "Выбери ответ по ситуации.",
         "questions": [
           {
-            "prompt": "2008 → ___",
+            "prompt": "2006 → ___",
             "answers": [
-              "dos mil ocho"
+              "dos mil seis"
             ],
-            "explain": "2008 читаем dos mil ocho. Слово y между mil и ocho не нужно.",
+            "explain": "2006 читаем dos mil seis. Слово y между mil и seis не нужно.",
             "context": "Выбери правильное чтение года.",
             "sourceRef": "extra",
             "inputChars": [
@@ -431,18 +431,18 @@
               "ñ"
             ],
             "options": [
-              "dos mil y ocho",
-              "veinte ocho",
-              "dos mil ocho"
+              "dos mil y seis",
+              "veinte seis",
+              "dos mil seis"
             ]
           },
           {
-            "prompt": "12/03/2003 → ___",
+            "prompt": "15/07/2011 → ___",
             "answers": [
-              "doce de marzo de dos mil tres"
+              "quince de julio de dos mil once"
             ],
             "explain": "В полной дате de стоит и перед месяцем, и перед годом.",
-            "context": "Двенадцатое марта 2003 года.",
+            "context": "Пятнадцатое июля 2011 года.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -454,9 +454,9 @@
               "ñ"
             ],
             "options": [
-              "doce marzo dos mil tres",
-              "doce de marzo de dos mil tres",
-              "doce de marzo de dos mil y tres"
+              "quince julio dos mil once",
+              "quince de julio de dos mil once",
+              "quince de julio de dos mil y once"
             ]
           }
         ]

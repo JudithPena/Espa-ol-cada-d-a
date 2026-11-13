@@ -36,11 +36,11 @@
         "instruction": "Выбери ответ по ситуации.",
         "questions": [
           {
-            "prompt": "Da el libro a Ana. Замени и книгу, и получателя.",
+            "prompt": "Da el regalo a Pedro. Замени и подарок, и получателя.",
             "answers": [
               "Dáselo"
             ],
-            "explain": "Получатель le → se перед lo; el libro → lo. Всё присоединяется к da.",
+            "explain": "Получатель le → se перед lo; el regalo → lo. Всё присоединяется к da.",
             "context": "Форма команды: da — дай.",
             "sourceRef": "extra",
             "inputChars": [
@@ -59,12 +59,12 @@
             ]
           },
           {
-            "prompt": "Выбери отрицательную команду: «Не давай ей это».",
+            "prompt": "Выбери отрицательную команду: «Не говори ему это».",
             "answers": [
-              "No se lo des"
+              "No se lo digas"
             ],
-            "explain": "В отрицательной команде местоимения перед des.",
-            "context": "Форма отрицательной команды уже дана: des.",
+            "explain": "В отрицательной команде местоимения стоят перед digas.",
+            "context": "Форма отрицательной команды уже дана: digas.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -76,9 +76,9 @@
               "ñ"
             ],
             "options": [
-              "No déselo",
-              "No des se lo",
-              "No se lo des"
+              "No díselo",
+              "No digas se lo",
+              "No se lo digas"
             ]
           }
         ]
@@ -141,12 +141,12 @@
         "instruction": "Выбери ответ по ситуации.",
         "questions": [
           {
-            "prompt": "He olvidado comprar el pan. He olvidado ___.",
+            "prompt": "Quiero leer esta novela. Quiero ___.",
             "answers": [
-              "comprarlo"
+              "leerla"
             ],
-            "explain": "Pan — мужской род: lo; после comprar пишем слитно.",
-            "context": "Хлеб купить забыли.",
+            "explain": "Novela — женский род: la; после leer пишем слитно.",
+            "context": "Роман хочется прочитать.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -158,9 +158,9 @@
               "ñ"
             ],
             "options": [
-              "comprar lo",
-              "comprarlo",
-              "lo comprar"
+              "leer la",
+              "leerla",
+              "la leer"
             ]
           },
           {

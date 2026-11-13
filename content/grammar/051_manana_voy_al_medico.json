@@ -95,32 +95,32 @@
         "questions": [
           {
             "context": "Когда это будет?",
-            "prompt": "El sábado juego al tenis con mi hermano.",
+            "prompt": "El viernes ceno con mis padres.",
             "answers": [
-              "В ближайшую субботу: так договорились."
+              "В ближайшую пятницу: так договорились."
             ],
-            "explain": "El sábado — одна ближайшая суббота. Каждую субботу было бы los sábados.",
+            "explain": "El viernes — одна ближайшая пятница. Каждую пятницу было бы los viernes.",
             "sourceRef": "extra",
             "learningAction": "понимание реплики",
             "options": [
-              "Каждую субботу: это привычка.",
-              "В ближайшую субботу: так договорились.",
-              "В прошлую субботу."
+              "Каждую пятницу: это привычка.",
+              "В ближайшую пятницу: так договорились.",
+              "В прошлую пятницу."
             ],
             "interaction": "choice"
           },
           {
-            "context": "Луис вернётся на следующей неделе. Как это сказать?",
-            "prompt": "Luis regresa ___.",
+            "context": "Родители вернутся в следующем месяце. Как это сказать?",
+            "prompt": "Mis padres vuelven ___.",
             "answers": [
-              "la semana que viene"
+              "el mes que viene"
             ],
-            "explain": "La semana que viene — на следующей неделе. Todos los días и siempre говорят о привычке.",
+            "explain": "El mes que viene — в следующем месяце. Todos los días и siempre говорят о привычке.",
             "sourceRef": "extra",
             "learningAction": "выбор по контексту",
             "options": [
               "todos los días",
-              "la semana que viene",
+              "el mes que viene",
               "siempre"
             ],
             "interaction": "choice"
@@ -274,7 +274,7 @@
           },
           {
             "context": "Ты объясняешь дорогу пожилому сеньору на «Вы».",
-            "prompt": "___ usted todo recto y luego gira a la derecha.",
+            "prompt": "___ usted recto hasta el semáforo.",
             "answers": [
               "Sigue"
             ],
@@ -287,11 +287,11 @@
               "Sigo"
             ],
             "interaction": "gap-choice",
-            "translation": "Идите прямо, а потом поверните направо."
+            "translation": "Идите прямо до светофора."
           },
           {
             "context": "Что показывает слово luego в инструкции?",
-            "prompt": "Primero cortas el pan y luego lo pones en la mesa.",
+            "prompt": "Primero lavas la fruta y luego la cortas.",
             "answers": [
               "Что это следующий шаг."
             ],

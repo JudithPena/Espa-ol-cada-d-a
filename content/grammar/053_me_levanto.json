@@ -120,8 +120,8 @@
         "instruction": "Определи, кто действует, и выбери местоимение или форму с ним.",
         "questions": [
           {
-            "context": "Ты рассказываешь, во сколько встаёшь по понедельникам.",
-            "prompt": "Los lunes ___ levanto a las seis.",
+            "context": "Ты рассказываешь, когда ложишься спать по воскресеньям.",
+            "prompt": "Los domingos ___ acuesto tarde.",
             "answers": [
               "me"
             ],
@@ -131,10 +131,10 @@
               "se"
             ],
             "interaction": "gap-choice",
-            "explain": "Ты говоришь о себе, форма levanto — yo, поэтому местоимение me. Te — для tú, se — для él или usted.",
+            "explain": "Ты говоришь о себе, форма acuesto — yo, поэтому местоимение me. Te — для tú, se — для él или usted.",
             "sourceRef": "extra",
             "learningAction": "выбор по контексту",
-            "translation": "По понедельникам я встаю в шесть."
+            "translation": "По воскресеньям я ложусь поздно."
           },
           {
             "context": "В какой фразе отрицание стоит правильно?",

@@ -239,12 +239,12 @@
         "instruction": "Выбери ответ по ситуации.",
         "questions": [
           {
-            "prompt": "Одна дверь закрыта: La puerta ___.",
+            "prompt": "Магазин открыт: La tienda del barrio ___.",
             "answers": [
-              "está cerrada"
+              "está abierta"
             ],
-            "explain": "Puerta — женский род, единственное число: está cerrada.",
-            "context": "Дополни описание двери.",
+            "explain": "Tienda — женский род, единственное число: está abierta.",
+            "context": "Дополни описание магазина.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -257,9 +257,9 @@
             ],
             "learningAction": "распознавание",
             "options": [
-              "está cerrado",
-              "están cerradas",
-              "está cerrada"
+              "está abierto",
+              "están abiertas",
+              "está abierta"
             ]
           },
           {
@@ -341,12 +341,12 @@
             ]
           },
           {
-            "prompt": "Выбери вопрос к ответу «Está en el armario».",
+            "prompt": "Выбери вопрос к ответу «Está en el garaje».",
             "answers": [
-              "¿Dónde está la chaqueta?"
+              "¿Dónde está la bicicleta?"
             ],
-            "explain": "En el armario называет место, значит вопрос dónde.",
-            "context": "Куртка в шкафу.",
+            "explain": "En el garaje называет место, значит вопрос dónde.",
+            "context": "Велосипед в гараже.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -359,9 +359,9 @@
             ],
             "learningAction": "распознавание",
             "options": [
-              "¿Cómo está la chaqueta?",
-              "¿Dónde está la chaqueta?",
-              "¿Quién es la chaqueta?"
+              "¿Cómo está la bicicleta?",
+              "¿Dónde está la bicicleta?",
+              "¿Quién es la bicicleta?"
             ]
           }
         ]

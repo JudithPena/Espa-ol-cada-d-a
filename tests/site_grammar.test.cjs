@@ -883,7 +883,7 @@ test('the group-name mini-check keeps errors and repeats them without losing liv
  unlockUntil(run,'section:8');
  run(`gStart(COURSE.grammar[0].id,'all',true);`);
  assert.equal(run('gAttempt(gUnit(),gUnit().sections[8].check).errors'),1);
- for(const wrong of ['madres','alumnos']){
+ for(const wrong of ['tías','alumnos']){
   const html=run('gPlayerView()');
   assert.ok(!html.includes('id="g-answer"') && html.includes('data-gpick'));
   assert.ok(html.includes('Выбери правильный ответ.'));

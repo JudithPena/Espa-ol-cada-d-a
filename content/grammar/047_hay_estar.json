@@ -18,12 +18,12 @@
         "instruction": "Выбери ответ по ситуации.",
         "questions": [
           {
-            "prompt": "Hay un restaurante nuevo. ___ en la calle Apodaca.",
+            "prompt": "Hay una panadería nueva. ___ enfrente de mi casa.",
             "answers": [
               "Está"
             ],
-            "explain": "Во второй фразе говорим об уже названном ресторане.",
-            "context": "Во второй фразе не вводим другой ресторан.",
+            "explain": "Во второй фразе говорим об уже названной пекарне.",
+            "context": "Во второй фразе не вводим другую пекарню.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -134,11 +134,11 @@
             ]
           },
           {
-            "prompt": "¿Dónde están mis herramientas? Что уже известно?",
+            "prompt": "¿Dónde está mi bicicleta? Что уже известно?",
             "answers": [
-              "Что ищут свои конкретные инструменты."
+              "Что ищут свой конкретный велосипед."
             ],
-            "explain": "Mis позволяет определить предметы; неизвестно только место.",
+            "explain": "Mi позволяет определить предмет; неизвестно только место.",
             "context": "Прочитай смысл притяжательного.",
             "sourceRef": "extra",
             "inputChars": [
@@ -152,9 +152,9 @@
             ],
             "learningAction": "понимание вопроса",
             "options": [
-              "Что инструментов, возможно, вообще нет.",
-              "Что ищут свои конкретные инструменты.",
-              "Что ищут любую мастерскую."
+              "Что велосипеда, возможно, вообще нет.",
+              "Что ищут свой конкретный велосипед.",
+              "Что ищут любой велосипедный магазин."
             ]
           }
         ],
@@ -198,12 +198,12 @@
         "instruction": "Выбери ответ по ситуации.",
         "questions": [
           {
-            "prompt": "Hay dos piscinas. ___ en las afueras.",
+            "prompt": "Hay tres parques. ___ cerca del río.",
             "answers": [
               "Están"
             ],
-            "explain": "Во второй фразе речь об уже названных двух бассейнах: están.",
-            "context": "Укажи местонахождение обоих бассейнов.",
+            "explain": "Во второй фразе речь об уже названных трёх парках: están.",
+            "context": "Укажи местонахождение всех парков.",
             "sourceRef": "extra",
             "inputChars": [
               "á",
@@ -222,11 +222,11 @@
             ]
           },
           {
-            "prompt": "¿Hay leche? —Sí, hay un litro. ___ en la nevera.",
+            "prompt": "¿Hay queso? —Sí, hay un trozo. ___ en el frigorífico.",
             "answers": [
               "Está"
             ],
-            "explain": "Уже названное молоко или один литр — единственное число, está.",
+            "explain": "Речь об уже названном сыре, одном куске — единственное число, está.",
             "context": "Теперь сообщаем его место.",
             "sourceRef": "extra",
             "inputChars": [
@@ -286,11 +286,11 @@
         "instruction": "Выбери ответ по ситуации.",
         "questions": [
           {
-            "prompt": "¿Dónde ___ mis llaves?",
+            "prompt": "Las llaves del coche, ¿dónde ___?",
             "answers": [
               "están"
             ],
-            "explain": "Ищем свои конкретные ключи: множественное число, están.",
+            "explain": "Ищем конкретные ключи от машины: множественное число, están.",
             "context": "Ключи есть, но ты не помнишь, где они.",
             "sourceRef": "extra",
             "inputChars": [
@@ -310,12 +310,12 @@
             ]
           },
           {
-            "prompt": "¿Qué ___ en esa caja?",
+            "prompt": "¿Qué ___ en el cajón?",
             "answers": [
               "hay"
             ],
             "explain": "Спрашиваем, что находится внутри; содержимое ещё не названо.",
-            "context": "Не знаешь содержимого коробки.",
+            "context": "Не знаешь, что лежит в ящике.",
             "sourceRef": "extra",
             "inputChars": [
               "á",

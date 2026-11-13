@@ -47,11 +47,11 @@
             ]
           },
           {
-            "prompt": "Ana выше Luis: Ana es más alta ___ Luis.",
+            "prompt": "Elena быстрее Pedro: Elena es más rápida ___ Pedro.",
             "answers": [
               "que"
             ],
-            "explain": "Когда называем, с кем сравниваем, ставим que: más alta que Luis.",
+            "explain": "Когда называем, с кем сравниваем, ставим que: más rápida que Pedro.",
             "options": [
               "de",
               "que",
@@ -139,7 +139,7 @@
             ]
           },
           {
-            "prompt": "Luis работает усерднее Pablo: Luis es ___ trabajador que Pablo.",
+            "prompt": "Pablo работает усерднее Óscar: Pablo es ___ trabajador que Óscar.",
             "answers": [
               "más"
             ],
@@ -270,22 +270,22 @@
         "instruction": "",
         "questions": [
           {
-            "prompt": "Eva 24 года, Javi 20: Eva es ___ que Javi.",
+            "prompt": "Sara 30 лет, Hugo 27: Sara es ___ que Hugo.",
             "answers": [
               "mayor"
             ],
-            "explain": "Ева старше: mayor que Javi.",
+            "explain": "Сара старше: mayor que Hugo.",
             "options": [
               "mayor",
               "menor"
             ]
           },
           {
-            "prompt": "Luisa 19 лет, Clara 25: Luisa es ___ que Clara.",
+            "prompt": "Nico 8 лет, Tomás 12: Nico es ___ que Tomás.",
             "answers": [
               "menor"
             ],
-            "explain": "Луиса младше Клары: menor que Clara.",
+            "explain": "Нико младше Томаса: menor que Tomás.",
             "options": [
               "mayor",
               "menor"
@@ -355,35 +355,35 @@
         "instruction": "",
         "questions": [
           {
-            "prompt": "Marta es menos ___ que Raúl. (trabajador)",
+            "prompt": "Irene es menos ___ que Jorge. (hablador)",
             "answers": [
-              "trabajadora"
+              "habladora"
             ],
-            "explain": "Описываем Марту: trabajadora. Род Raúl не влияет на эту форму.",
+            "explain": "Описываем Ирене: habladora. Род Jorge не влияет на эту форму.",
             "options": [
-              "trabajador",
-              "trabajadora",
-              "trabajadoras"
+              "hablador",
+              "habladora",
+              "habladoras"
             ]
           },
           {
-            "prompt": "Estas camisas son más ___. (caro)",
+            "prompt": "Estas sillas son más ___. (cómodo)",
             "answers": [
-              "caras"
+              "cómodas"
             ],
-            "explain": "Camisas — женский род, множественное число: caras.",
+            "explain": "Sillas — женский род, множественное число: cómodas.",
             "options": [
-              "caro",
-              "caros",
-              "caras"
+              "cómodo",
+              "cómodos",
+              "cómodas"
             ]
           },
           {
-            "prompt": "Estas camisas son ___. — Эти рубашки хуже.",
+            "prompt": "Estas naranjas son ___. — Эти апельсины хуже.",
             "answers": [
               "peores"
             ],
-            "explain": "Для нескольких рубашек нужна форма peores. Отдельного окончания женского рода у peor нет.",
+            "explain": "Для нескольких апельсинов нужна форма peores. Отдельного окончания женского рода у peor нет.",
             "options": [
               "peores",
               "peoras",
@@ -429,11 +429,11 @@
         "instruction": "",
         "questions": [
           {
-            "prompt": "Ты сильнее меня: Eres más fuerte que ___.",
+            "prompt": "Мой брат старше меня: Mi hermano es mayor que ___.",
             "answers": [
               "yo"
             ],
-            "explain": "После que в этом сравнении говорим yo: más fuerte que yo.",
+            "explain": "После que в этом сравнении говорим yo: mayor que yo.",
             "options": [
               "mí",
               "yo",
@@ -441,7 +441,7 @@
             ]
           },
           {
-            "prompt": "Я выше тебя: Soy más alto que ___.",
+            "prompt": "Ана работает больше тебя: Ana trabaja más que ___.",
             "answers": [
               "tú"
             ],
@@ -503,37 +503,37 @@
         "instruction": "",
         "questions": [
           {
-            "prompt": "Дом слишком дорогой. Хочу подешевле: Quiero una casa ___.",
+            "prompt": "Машина слишком дорогая. Хочу подешевле: Quiero un coche ___.",
             "answers": [
-              "más barata"
+              "más barato"
             ],
-            "explain": "Barata — дешёвая. Más barata — дешевле. Сравниваем с уже названным домом.",
+            "explain": "Barato — дешёвый. Más barato — дешевле. Сравниваем с уже названной машиной.",
             "options": [
-              "más barata",
-              "menos barata"
+              "más barato",
+              "menos barato"
             ]
           },
           {
-            "prompt": "Десерт слишком сладкий. Хочу менее сладкий: Prefiero uno ___.",
+            "prompt": "Суп слишком острый. Хочу менее острый: Prefiero una sopa ___.",
             "answers": [
-              "menos dulce"
+              "menos picante"
             ],
-            "explain": "Сладости должно быть меньше: menos dulce.",
+            "explain": "Остроты должно быть меньше: menos picante.",
             "options": [
-              "más dulce",
-              "menos dulce"
+              "más picante",
+              "menos picante"
             ]
           },
           {
-            "prompt": "Брюки слишком большие. Нужны поменьше: Necesito unos ___.",
+            "prompt": "Туфли слишком маленькие. Нужны побольше: Necesito unos zapatos ___.",
             "answers": [
-              "más pequeños"
+              "más grandes"
             ],
-            "explain": "Pantalones — мужской род, множественное число: más pequeños.",
+            "explain": "Zapatos — множественное число, поэтому grandes. Нужны туфли побольше, значит más.",
             "options": [
-              "más pequeñas",
-              "más pequeños",
-              "más pequeño"
+              "más grande",
+              "más grandes",
+              "menos grandes"
             ]
           }
         ]

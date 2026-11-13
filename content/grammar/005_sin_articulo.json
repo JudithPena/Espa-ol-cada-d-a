@@ -46,7 +46,7 @@
         "instruction": "Выбери форму или предложение, подходящее по смыслу. «Без артикля» = ничего не вставлять.",
         "questions": [
           {
-            "prompt": "— ¿A qué te dedicas? — Soy ___ abogado.",
+            "prompt": "— ¿En qué trabajas? — Soy ___ fontanero.",
             "answers": [
               "Без артикля"
             ],
@@ -54,7 +54,7 @@
               "Без артикля",
               "un"
             ],
-            "explain": "Собеседник спрашивает о работе; `soy abogado` называет профессию. `Soy un abogado` возможно при иной подаче, но в нейтральном ответе обычно без артикля.",
+            "explain": "Собеседник спрашивает о работе; `soy fontanero` называет профессию. `Soy un fontanero` возможно при иной подаче, но в нейтральном ответе обычно без артикля.",
             "context": "Разговор при знакомстве."
           },
           {
@@ -124,7 +124,7 @@
         "instruction": "Выбери вариант по смыслу испанской фразы; уточнение и оценка не одно и то же.",
         "questions": [
           {
-            "prompt": "Laura es ___ actriz muy famosa.",
+            "prompt": "Laura es ___ cantante muy conocida.",
             "answers": [
               "una"
             ],
@@ -132,11 +132,11 @@
               "una",
               "Без артикля"
             ],
-            "explain": "`Muy famosa` характеризует актрису: `una actriz muy famosa`. Это не просто название её занятия.",
-            "context": "Сведения об актрисе Лауре."
+            "explain": "`Muy conocida` характеризует певицу: `una cantante muy conocida`. Это не просто название её занятия.",
+            "context": "Сведения о певице Лауре."
           },
           {
-            "prompt": "Elena es ___ profesora de español.",
+            "prompt": "Elena es ___ médica de familia.",
             "answers": [
               "Без артикля"
             ],
@@ -144,11 +144,11 @@
               "una",
               "Без артикля"
             ],
-            "explain": "`De español` сообщает, что именно преподаёт Елена. Здесь это название специальности: `es profesora de español`. Не всякое дополнение требует `una`.",
-            "context": "Рассказывают о преподавательнице Елене."
+            "explain": "`De familia` сообщает, какой Елена врач. Это название её специальности: `es médica de familia`. Не всякое дополнение требует `una`.",
+            "context": "Рассказывают о враче Елене."
           },
           {
-            "prompt": "Diego es ___ músico muy bueno.",
+            "prompt": "Diego es ___ cocinero excelente.",
             "answers": [
               "un"
             ],
@@ -156,8 +156,8 @@
               "un",
               "Без артикля"
             ],
-            "explain": "`Muy bueno` — оценка музыканта: `un músico muy bueno`; `es músico` без оценки обычно употребляется без артикля.",
-            "context": "Друг характеризует Диего."
+            "explain": "`Excelente` — оценка повара: `un cocinero excelente`; `es cocinero` без оценки обычно употребляется без артикля.",
+            "context": "Друг хвалит Диего."
           }
         ],
         "revision": 3
@@ -236,19 +236,19 @@
         "instruction": "Выбери подходящий вариант. Если допустимы два ответа, правильными считаются оба.",
         "questions": [
           {
-            "prompt": "En casa no tomo ___ azúcar.",
+            "prompt": "Nunca bebo ___ leche.",
             "answers": [
               "Без артикля"
             ],
             "options": [
               "Без артикля",
-              "un"
+              "una"
             ],
-            "explain": "`Azúcar` обозначает продукт в целом, не отдельную порцию: `no tomo azúcar`. `Un azúcar` в особых ситуациях может обозначать пакетик или порцию.",
+            "explain": "`Leche` обозначает продукт в целом, а не отдельную порцию или пакет: `nunca bebo leche`.",
             "context": "Разговор о питании."
           },
           {
-            "prompt": "Necesito ___ cuaderno para clase.",
+            "prompt": "Llueve mucho. Necesito ___ paraguas.",
             "answers": [
               "un"
             ],
@@ -256,8 +256,8 @@
               "un",
               "Без артикля"
             ],
-            "explain": "`Cuaderno` — исчисляемый предмет в единственном числе. Нужна одна тетрадь: `un cuaderno`. Просто опустить артикль здесь нельзя.",
-            "context": "Собирают вещи на урок."
+            "explain": "`Paraguas` — исчисляемый предмет. Нужен один зонт: `un paraguas`. Просто опустить артикль здесь нельзя.",
+            "context": "Собираются выйти из дома."
           },
           {
             "prompt": "Compramos ___ flores.",

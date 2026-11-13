@@ -90,11 +90,11 @@
         "questions": [
           {
             "context": "Сара рассказывает о себе.",
-            "prompt": "Hoy ___ preparado la comida.",
+            "prompt": "Hoy ___ limpiado la cocina.",
             "answers": [
               "he"
             ],
-            "explain": "Сара говорит «я»: yo he. Причастие preparado уже написано, поэтому выбираешь только haber.",
+            "explain": "Сара говорит «я»: yo he. Причастие limpiado уже написано, поэтому выбираешь только haber.",
             "sourceRef": "extra",
             "learningAction": "выбор по контексту",
             "options": [
@@ -440,18 +440,18 @@
             "interaction": "choice"
           },
           {
-            "context": "Ты спрашиваешь о только что случившемся.",
-            "prompt": "¿Qué ___?",
+            "context": "Ты только что оставил кофе на столе, а чашка уже пустая.",
+            "prompt": "¿Quién ___ mi café?",
             "answers": [
-              "ha pasado"
+              "ha tomado"
             ],
-            "explain": "В общем вопросе «что случилось?» событие выражается формой третьего лица ha pasado.",
+            "explain": "Спрашиваем, кто это сделал: после quién глагол стоит в третьем лице — ha tomado.",
             "sourceRef": "extra",
             "learningAction": "выбор по контексту",
             "options": [
-              "ha pasado",
-              "has pasado",
-              "hemos pasado"
+              "ha tomado",
+              "has tomado",
+              "hemos tomado"
             ],
             "interaction": "gap-choice"
           }
