@@ -10,8 +10,8 @@
 
 ## Сейчас
 
-- Готово тем: **16 из 19**. Уроков A2: **123**, новых слов и выражений: **433**.
-- В работе: тема 40 — Planes y deseos.
+- Готово тем: **17 из 19**. Уроков A2: **130**, новых слов и выражений: **451**.
+- В работе: тема 41 — El mundo hispano.
 
 ## Темы
 
@@ -33,8 +33,8 @@
 | 37 | De compras | el más…, -ísimo; este / ese без существительного; el mío / la mía; обмен покупки | 8 | 21 | ✅ готово |
 | 38 | Mi trabajo, mis estudios | empezar a, dejar de, volver a, seguir + герундий; desde… hasta, durante; резюме | 7 | 21 | ✅ готово |
 | 39 | La gente | ser / estar с прилагательными; parecerse, llevarse bien; me parece; характер и чувства | 7 | 21 | ✅ готово |
-| 40 | Planes y deseos | pensar + инфинитив, me gustaría; si + настоящее; планы и праздники | — | — | ⏭ следующая |
-| 41 | El mundo hispano | повторение времён; se dice, se come; Испания и Америка | — | — | ⬜ не начата |
+| 40 | Planes y deseos | pensar + инфинитив, me gustaría; si + настоящее; планы и праздники | 7 | 18 | ✅ готово |
+| 41 | El mundo hispano | повторение времён; se dice, se come; Испания и Америка | — | — | ⏭ следующая |
 | 42 | Итог A2 | рассказ о поездке 100–120 слов и итог уровня (check: control) | — | — | ⬜ не начата |
 
 «Готово» значит: `python -m espanol validate` без ошибок, тесты курса проходят, каждый урок темы пройден в браузере
@@ -78,6 +78,7 @@
 | 13.11.2026 | Тема 37 «De compras» (8 уроков): обмен покупки (quería cambiar, me queda estrecho, el tique), el más… de / el mejor, -ísimo, выбор без существительного (este, el azul, el de rayas, ¿cuál?), el mío / el tuyo / el suyo, техника и гарантия, отзывы покупателей. Движок: -ísimo. |
 | 13.11.2026 | Тема 38 «Mi trabajo, mis estudios» (7 уроков): собеседование Ли на слух, empezar a / dejar de / volver a / seguir + герундий, сроки desde… hasta / de… a / durante, учёба (carrera, aprobar, suspender), письмо Ольги, миссия «Собеседование», резюме. |
 | 13.11.2026 | Тема 39 «La gente» (7 уроков): характер (alegre, generoso, paciente), llevarse bien, parecerse, ser / estar с прилагательными (es aburrido / está aburrido), me cae bien, me parece, отношения (nos conocimos, se separaron), соседка Тома, миссия «Рассказ о человеке». |
+| 13.11.2026 | Тема 40 «Planes y deseos» (7 уроков): планы на лето (pensar + инфинитив, tener ganas de, reservar, ahorrar), si + настоящее, мечты (soñar con, algún día, esperar), праздники Испании (Navidad, Nochevieja, Reyes, puente), текст о двенадцати виноградинах, миссия «План отпуска». |
 
 ## Что не проверено
 

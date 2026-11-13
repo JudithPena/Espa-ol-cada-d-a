@@ -1,0 +1,673 @@
+id: planes_deseos
+number: 40
+level: A2
+title: Planes y deseos — планы и желания
+goals:
+  - рассказать о планах на отпуск и праздники
+  - сказать, чего хочется и о чём мечтаете
+  - поставить условие: «если…, то…»
+  - понять, как в Испании празднуют Новый год и Рождество
+
+# Тема 17 карты A2: pensar + инфинитив, me gustaría; si + настоящее; планы, праздники. Миссия — план отпуска.
+# В A1 (тема 19) уже были voy a + инфинитив, tengo que, quedar; в теме 36 — me gustaría.
+lessons:
+  - id: verano
+    kind: listening
+    title: "¿Qué piensas hacer en verano?"
+    goal: понять на слух разговор о планах на лето
+    version: 2
+    # Карта экранов: docs/site_slide_maps/40_planes_deseos.md
+    vocab:
+      - "💭 pensar [пэнса́р] — думать; собираться (pensar + инфинитив) :: Pienso ir a Mallorca en verano. — Летом я собираюсь на Майорку."
+      - "😋 tener ganas de [тэнэ́р га́нас дэ] — очень хотеть :: Tengo ganas de ver a mi familia. — Мне очень хочется увидеть семью."
+      - "📅 reservar [рэсэрба́р] — бронировать :: Reservé el hotel por internet. — Я забронировал гостиницу через интернет."
+      - "🐷 ahorrar [аорра́р] — копить, экономить :: Este año quiero ahorrar dinero. — В этом году хочу накопить денег."
+      - "🌠 el deseo [дэсэ́о] — желание :: Mi deseo es viajar por el mundo. — Моё желание — путешествовать по миру."
+    forms: [cómprame]
+    blocks:
+      - "Диего и Ирина говорят о лете. Послушайте разговор два раза: текста пока нет."
+      - dialogue:
+          id: planes_verano
+          hidden: true
+          lines:
+            - "Diego: Irina, ¿qué piensas hacer en verano? | Ирина, что ты собираешься делать летом?"
+            - "Irina: Pienso ir a Mallorca con Olga, si encontramos vuelos baratos. ¿Y tú? | Думаю поехать на Майорку с Ольгой, если найдём дешёвые билеты. А ты?"
+            - "Diego: Tengo muchas ganas de ver a mi familia. Me gustaría ir a México en agosto, pero los vuelos son carísimos. | Очень хочется увидеть семью. Я бы поехал в Мексику в августе, но билеты страшно дорогие."
+            - "Irina: ¿Y por qué no reservas ahora? En enero son más baratos. | А почему не забронируешь сейчас? В январе они дешевле."
+            - "Diego: Es verdad. Si encuentro algo barato esta semana, lo reservo. Y voy a ahorrar un poco cada mes. | Это правда. Если найду что-то дешёвое на этой неделе, забронирую. И буду понемногу откладывать каждый месяц."
+            - "Irina: ¡Buena idea! Y si vas a México, cómprame un recuerdo. | Хорошая мысль! И если поедешь в Мексику, купи мне сувенир."
+            - "Diego: ¡Claro! | Конечно!"
+      - choose:
+          title: Что вы поняли?
+          source: planes_verano
+          items:
+            - q: "Куда Ирина собирается летом?"
+              options: "A Mallorca. | A México. | A Granada."
+              explain: "Ирина называет Mallorca."
+            - q: "Чего очень хочется Диего?"
+              options: "Ver a su familia. | Ir a la playa. | Comprar un regalo."
+              explain: "Diego: Tengo muchas ganas de ver a mi familia."
+      - learn: [pensar, tener ganas de, reservar, ahorrar, el deseo]
+      - choose:
+          title: Детали разговора
+          source: planes_verano
+          items:
+            - q: "¿Con quién va a ir Irina a Mallorca?"
+              options: "Con Olga. | Con Diego. | Con su familia."
+              explain: "Irina: Pienso ir a Mallorca con Olga."
+            - q: "¿Qué problema tienen los vuelos a México?"
+              options: "Son carísimos. | No hay vuelos en agosto. | Son muy largos."
+              explain: "Diego: …los vuelos son carísimos."
+            - q: "¿Cuándo son más baratos los vuelos?"
+              options: "En enero. | En agosto. | En verano."
+              explain: "Irina: En enero son más baratos."
+            - q: "¿Qué va a hacer Diego si encuentra algo barato?"
+              options: "Lo va a reservar. | Lo va a pensar. | Va a llamar a su familia."
+              explain: "Diego: Si encuentro algo barato esta semana, lo reservo."
+      - text:
+          id: notice
+          slide: new
+          text: "О планах говорят по-разному: **pienso** ir — «собираюсь», **tengo ganas de** ver — «очень хочется», **me gustaría** ir — «я бы поехал». А условие — **si** + настоящее время: _si encuentro algo barato, lo reservo_."
+      - examples:
+          items:
+            - "**Pienso** ir a Mallorca. — Я собираюсь на Майорку."
+            - "**Tengo ganas de** ver a mi familia. — Мне очень хочется увидеть семью."
+            - "**Si** encuentro algo barato, lo reservo. — Если найду что-то дешёвое, забронирую."
+      - match:
+          title: Соедините пары
+          free: true
+          rule: none
+          pairs:
+            - "pensar — собираться (что-то сделать)"
+            - "tener ganas de — очень хотеть"
+            - "reservar — бронировать"
+            - "ahorrar — копить"
+            - "el deseo — желание"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          free: true
+          skill: planes
+          rule: notice
+          items:
+            - say: "Pienso ir a la playa si hace buen tiempo."
+              a: "Pienso ir a la playa si hace buen tiempo"
+              explain: "Pienso ir — «собираюсь пойти»; si hace buen tiempo — «если будет хорошая погода»."
+              noaudio: {q: "Напишите по-испански: «Я собираюсь на пляж, если будет хорошая погода» (с pensar).", a: "Pienso ir a la playa si hace buen tiempo"}
+      - choose:
+          title: Что ответить?
+          free: true
+          skill: planes
+          rule: notice
+          items:
+            - lines: ["Lucía: ¿Qué piensas hacer este fin de semana?"]
+              q: "Скажите, что собираетесь отдохнуть дома."
+              options: "Pienso descansar en casa. | Pienso que descanso en casa. | Pienso de descansar en casa."
+              explain: "Собираюсь — pensar + инфинитив, без предлога."
+            - say: "Tengo muchas ganas de ver el mar."
+              options: "Мне очень хочется увидеть море. | Я давно видел море. | Мне не хочется на море."
+              explain: "Tengo ganas de — «очень хочется»."
+              noaudio: {q: "Что значит «Tengo muchas ganas de ver el mar»?", options: "Мне очень хочется увидеть море. | Я давно видел море. | Мне не хочется на море."}
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: planes
+          rule: notice
+          items:
+            - es: "Este año quiero ahorrar para ir a México."
+              ru: "В этом году я хочу накопить на поездку в Мексику."
+              extra: [por]
+            - es: "Si encuentro un vuelo barato, lo reservo."
+              ru: "Если найду дешёвый билет, забронирую."
+
+  - id: si
+    kind: grammar
+    title: "Si llueve, nos quedamos en casa"
+    goal: поставить условие и сказать, что будет
+    version: 2
+    vocab:
+      - "↩️ si no [си но] — если нет; иначе :: Llámame esta tarde; si no, te llamo yo. — Позвони мне сегодня; если нет — позвоню я."
+      - "🎯 seguro/a [сэгу́ро, сэгу́ра] — уверенный; надёжный :: ¿Estás seguro? — Ты уверен?"
+    blocks:
+      - learn: [si no, seguro/a]
+      - table:
+          id: si
+          title: "Si + настоящее время"
+          rows:
+            - ["si + настоящее, настоящее", "Si llueve, nos quedamos en casa. — Если пойдёт дождь, мы останемся дома."]
+            - ["si + настоящее, ir a + инфинитив", "Si tengo dinero, voy a viajar. — Если будут деньги, поеду путешествовать."]
+            - ["si + настоящее, инструкция", "Si tienes tiempo, llámame. — Если будет время, позвони мне."]
+      - note:
+          id: si_presente
+          text: "После **si** в таком условии — настоящее время, даже если речь о будущем: _si **llueve** mañana_ — «если завтра пойдёт дождь». Если условие стоит первым, после него ставят запятую."
+      - choose:
+          title: Выберите форму
+          skill: si_presente
+          rule: si_presente
+          items:
+            - q: "Si ___ buen tiempo, vamos a la playa."
+              options: "hace | hizo | hacía"
+              explain: "После si — настоящее время: hace."
+            - q: "Si tienes tiempo, ___ a mi casa esta noche."
+              options: "ven | vienes a | viniste"
+              explain: "Si + настоящее, инструкция: ven."
+            - q: "Llega antes de las ocho; si ___, perdemos el tren."
+              options: "no | sí | nunca"
+              explain: "Si no — «если нет, иначе»."
+            - q: "Si mañana ___, no voy a salir."
+              options: "llueve | llovió | llovía"
+              explain: "Si + настоящее даже о будущем: llueve."
+            - say: "Si encuentro un piso más barato, me cambio de barrio."
+              options: "Если найду квартиру подешевле, перееду в другой район. | Я нашёл квартиру подешевле и переехал. | Если бы я нашёл квартиру, я бы переехал."
+              explain: "Si encuentro — «если найду»; me cambio — «перееду»."
+              noaudio: {q: "Что значит «Si encuentro un piso más barato, me cambio de barrio»?", options: "Если найду квартиру подешевле, перееду в другой район. | Я нашёл квартиру подешевле и переехал. | Если бы я нашёл квартиру, я бы переехал."}
+      - write:
+          title: Поставьте глагол
+          format: одна форма глагола
+          skill: si_presente
+          rule: si
+          items:
+            - q: "Si (tú, estar) ___ cansado, descansa un poco."
+              a: "estás"
+              explain: "После si — настоящее время: estás."
+            - q: "Si (nosotros, tener) ___ dinero, vamos a viajar a México."
+              a: "tenemos"
+              explain: "Si + настоящее: tenemos."
+            - q: "Llámame esta tarde; si ___, te llamo yo mañana."
+              a: "no"
+              explain: "Si no — «если нет»: Llámame esta tarde; si no, te llamo yo."
+            - q: "Si (llover) ___, vamos al cine."
+              a: "llueve"
+              explain: "Si + настоящее: llueve."
+              mistakes:
+                "llueva": "После si в таком условии — настоящее время: **llueve**."
+      - build:
+          title: Соберите фразу
+          skill: si_presente
+          rule: si
+          items:
+            - es: "Si tienes tiempo, llámame esta noche."
+              ru: "Если будет время, позвони мне сегодня вечером."
+              extra: [tendrás]
+            - es: "Llámame hoy; si no, te llamo yo."
+              ru: "Позвони мне сегодня; если нет — позвоню я."
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: si_presente
+          rule: si
+          items:
+            - q: "Если будет хорошая погода, мы пойдём в парк."
+              a: "Si hace buen tiempo, vamos al parque | Si hace buen tiempo, vamos a ir al parque"
+              explain: "Si + hace…"
+              mistakes:
+                "si hará buen tiempo vamos al parque": "После si — настоящее время: si **hace** buen tiempo."
+      - compose:
+          title: Если…
+          skill: si_presente
+          rule: si
+          items:
+            - q: "Напишите два условия о своих планах: что вы сделаете, если будет время, деньги или хорошая погода."
+              format: "Si tengo tiempo… Si hace buen tiempo…"
+              words: [10, 50]
+              sentences: 2
+              checks:
+                - label: "si + настоящее: si tengo, si hace…"
+                  re: "\\bsi (tengo|tenemos|hace|llueve|puedo|podemos|encuentro|hay|estoy|vienes|tienes|quieres)\\b"
+              sample: "Si tengo tiempo el sábado, voy a visitar a mis padres. Si hace buen tiempo, vamos a comer en el campo."
+              sample_ru: "Если в субботу будет время, съезжу к родителям. Если будет хорошая погода, пообедаем на природе."
+    quiz:
+      - q: "Si ___ tiempo, te llamo."
+        options: "tengo | tuve | tenía"
+        explain: "Si + настоящее: tengo."
+        skill: si_presente
+      - q: "— ¿Estás ___? — Sí, claro."
+        options: "seguro | idea | segura de"
+        explain: "Уверен — seguro."
+
+  - id: deseos
+    kind: grammar
+    title: "Me gustaría, sueño con…"
+    goal: сказать о желаниях и мечтах
+    version: 2
+    vocab:
+      - "🌙 soñar [соньа́р] — мечтать (soñar con — мечтать о); видеть сон :: Sueño con vivir en la playa. — Я мечтаю жить у моря."
+      - "📅 algún día [альгу́н ди́а] — когда-нибудь :: Algún día voy a ir a México. — Когда-нибудь я поеду в Мексику."
+    blocks:
+      - learn: [soñar, algún día]
+      - "Esperar вы знаете как «ждать». С инфинитивом это ещё и «надеяться»: _Espero aprobar_ — «надеюсь сдать»."
+      - table:
+          id: deseos
+          title: Желания и мечты
+          rows:
+            - ["quiero + инфинитив — хочу", "Quiero aprender a cocinar. — Хочу научиться готовить."]
+            - ["me gustaría + инфинитив — хотел бы", "Me gustaría vivir en Barcelona. — Я бы хотел жить в Барселоне."]
+            - ["tengo ganas de + инфинитив — очень хочется", "Tengo ganas de ver a mis amigos. — Очень хочется увидеть друзей."]
+            - ["espero + инфинитив — надеюсь", "Espero encontrar trabajo este año. — Надеюсь найти работу в этом году."]
+            - ["sueño con + инфинитив — мечтаю", "Sueño con tener una casa en el campo. — Мечтаю о доме за городом."]
+      - note:
+          id: con
+          text: "Soñar — **con**: _sueño con viajar_; tener ganas — **de**: _tengo ganas de viajar_. С quiero, me gustaría, espero, pienso — инфинитив без предлога."
+      - choose:
+          title: Выберите предлог
+          skill: deseos
+          rule: con
+          items:
+            - q: "Sueño ___ vivir en una casa grande."
+              options: "con | de | a"
+              explain: "Soñar con."
+            - q: "Tengo ganas ___ ir de vacaciones."
+              options: "de | con | —"
+              explain: "Tener ganas de."
+            - q: "Espero ___ aprobar el examen."
+              options: "— | de | a"
+              explain: "Esperar + инфинитив без предлога."
+            - say: "Algún día me gustaría vivir cerca del mar."
+              options: "Когда-нибудь я хотел бы жить у моря. | Однажды я жил у моря. | Мне не нравится жить у моря."
+              explain: "Algún día — «когда-нибудь»; me gustaría vivir — «хотел бы жить»."
+              noaudio: {q: "Что значит «Algún día me gustaría vivir cerca del mar»?", options: "Когда-нибудь я хотел бы жить у моря. | Однажды я жил у моря. | Мне не нравится жить у моря."}
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: deseos
+          rule: deseos
+          items:
+            - q: "Я мечтаю жить в Испании."
+              a: "Sueño con vivir en España | (Yo) sueño con vivir en España"
+              explain: "Soñar con + инфинитив."
+              mistakes:
+                "sueño de vivir en españa": "Soñar — с предлогом **con**: sueño con vivir…"
+            - q: "Надеюсь найти работу."
+              a: "Espero encontrar trabajo | Espero encontrar un trabajo"
+              explain: "Esperar + инфинитив."
+      - build:
+          title: Соберите фразу
+          skill: deseos
+          rule: deseos
+          items:
+            - es: "Algún día me gustaría vivir en el campo."
+              ru: "Когда-нибудь я хотел бы жить за городом."
+              extra: [gusta]
+      - compose:
+          title: Мои мечты
+          skill: [deseos, planes]
+          rule: deseos
+          items:
+            - q: "О чём вы мечтаете? Что хотели бы сделать когда-нибудь? Две-три фразы."
+              format: "Sueño con… Algún día me gustaría… Espero…"
+              words: [10, 50]
+              sentences: 2
+              checks:
+                - label: "мечта или желание: sueño con, me gustaría, quiero, espero…"
+                  any: [sueño con, me gustaría, quiero, espero, tengo ganas de]
+              sample: "Sueño con tener una casa pequeña cerca del mar. Algún día me gustaría hablar español muy bien. Este año espero aprobar el examen."
+              sample_ru: "Мечтаю о маленьком доме у моря. Когда-нибудь хотел бы очень хорошо говорить по-испански. В этом году надеюсь сдать экзамен."
+    quiz:
+      - q: "Mi hermano sueña ___ viajar por todo el mundo."
+        options: "con | de | en"
+        explain: "Soñar con."
+        skill: deseos
+      - q: "Что значит «algún día»?"
+        options: "когда-нибудь | однажды в прошлом | каждый день"
+        explain: "Algún día — когда-нибудь (в будущем)."
+        skill: deseos
+
+  - id: fiestas
+    kind: dialogue
+    title: "¿Cómo celebráis la Navidad?"
+    goal: рассказать о праздниках и выходных
+    version: 2
+    vocab:
+      - "🎄 la Navidad [набида́д] — Рождество :: En Navidad cenamos con toda la familia. — На Рождество ужинаем всей семьёй."
+      - "🎆 la Nochevieja [ночэбье́ха] — новогодняя ночь (31 декабря) :: ¿Dónde pasas la Nochevieja? — Где встречаешь Новый год?"
+      - "👑 los Reyes Magos [рэ́йэс ма́гос] — волхвы; праздник 6 января :: Los niños esperan a los Reyes Magos. — Дети ждут волхвов."
+      - "🎉 celebrar [θэлэбра́р] — праздновать :: ¿Cómo celebras tu cumpleaños? — Как ты празднуешь день рождения?"
+      - "🌉 el puente [пуэ́нтэ] — мост; длинные выходные :: En diciembre hay un puente. — В декабре длинные выходные."
+      - "🍇 las uvas [у́бас] — виноград {forms: uva} :: En Nochevieja comemos doce uvas. — В новогоднюю ночь едим двенадцать виноградин."
+    forms: [comerlas]
+    blocks:
+      - learn: [la Navidad, la Nochevieja, los Reyes Magos, celebrar, el puente, las uvas]
+      - "Том спрашивает Лусию об испанских праздниках."
+      - dialogue:
+          id: navidad
+          lines:
+            - "Tom: Lucía, ¿cómo celebráis la Navidad en España? | Лусия, как вы празднуете Рождество в Испании?"
+            - "Lucía: El veinticuatro de diciembre cenamos con toda la familia. Es una cena muy larga. | Двадцать четвёртого декабря ужинаем всей семьёй. Ужин очень долгий."
+            - "Tom: ¿Y en Nochevieja? | А в новогоднюю ночь?"
+            - "Lucía: En Nochevieja comemos doce uvas a las doce de la noche. ¡Hay que comerlas muy rápido! | В новогоднюю ночь едим двенадцать виноградин в полночь. Их нужно есть очень быстро!"
+            - "Tom: ¿Y cuándo abrís los regalos? | А когда открываете подарки?"
+            - "Lucía: Muchos niños abren los regalos el seis de enero: es el día de los Reyes Magos. | Многие дети открывают подарки шестого января: это день волхвов."
+            - "Tom: ¿Y tienes vacaciones? | А у тебя будут выходные?"
+            - "Lucía: Pocas. Pero en diciembre hay dos puentes y pienso ir a la montaña. | Немного. Но в декабре двое длинных выходных, и я собираюсь в горы."
+      - choose:
+          title: Что сказано?
+          source: navidad
+          skill: fiestas
+          items:
+            - q: "¿Qué hace la familia de Lucía el veinticuatro de diciembre?"
+              options: "Cenan todos juntos. | Comen doce uvas. | Abren los regalos."
+              explain: "Lucía: El veinticuatro de diciembre cenamos con toda la familia."
+            - q: "¿Qué comen en Nochevieja a las doce?"
+              options: "Doce uvas. | Una cena muy larga. | Fruta y queso."
+              explain: "Lucía: En Nochevieja comemos doce uvas a las doce de la noche."
+            - q: "¿Cuándo abren muchos niños los regalos?"
+              options: "El seis de enero. | El veinticuatro de diciembre. | El uno de enero."
+              explain: "Lucía: Muchos niños abren los regalos el seis de enero."
+            - q: "¿Qué piensa hacer Lucía en los puentes de diciembre?"
+              options: "Ir a la montaña. | Ir a la playa. | Trabajar en casa."
+              explain: "Lucía: …pienso ir a la montaña."
+              skill: planes
+      - note:
+          id: puente
+          slide: new
+          text: "**El puente** — «мост», но в Испании так называют и длинные выходные: если праздник во вторник, многие берут выходной и в понедельник. _Este puente pienso ir a la playa._"
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          free: true
+          skill: fiestas
+          rule: puente
+          items:
+            - q: "Как вы празднуете Рождество? (вопрос к семье, на «вы» во мн. ч. — vosotros)"
+              a: "¿Cómo celebráis la Navidad?"
+              explain: "Vosotros — celebráis."
+            - q: "В эти длинные выходные я собираюсь в горы."
+              a: "Este puente pienso ir a la montaña | Pienso ir a la montaña este puente"
+              explain: "Este puente — «в эти длинные выходные»."
+      - choose:
+          title: Послушайте
+          free: true
+          skill: fiestas
+          rule: puente
+          items:
+            - say: "En Nochevieja comemos doce uvas con la familia."
+              options: "В новогоднюю ночь мы едим двенадцать виноградин с семьёй. | На Рождество мы дарим двенадцать подарков. | Мы празднуем Новый год с друзьями на площади."
+              explain: "Nochevieja — новогодняя ночь; doce uvas — двенадцать виноградин."
+              noaudio: {q: "Что значит «En Nochevieja comemos doce uvas con la familia»?", options: "В новогоднюю ночь мы едим двенадцать виноградин с семьёй. | На Рождество мы дарим двенадцать подарков. | Мы празднуем Новый год с друзьями на площади."}
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: fiestas
+          rule: puente
+          items:
+            - es: "Los niños abren los regalos el día de Reyes."
+              ru: "Дети открывают подарки в день волхвов."
+      - compose:
+          title: Праздник у нас
+          free: true
+          skill: [fiestas, planes]
+          rule: puente
+          items:
+            - q: "Расскажите, как у вас празднуют Новый год или другой праздник: когда, с кем, что едят, что делают."
+              format: "En mi país celebramos… Cenamos… Pienso…"
+              words: [15, 70]
+              sentences: 2
+              checks:
+                - label: "праздник: celebramos, la Navidad, la Nochevieja, el cumpleaños…"
+                  any: [celebramos, celebro, celebran, navidad, nochevieja, año nuevo, cumpleaños, fiesta]
+              sample: "En Ucrania celebramos el Año Nuevo con toda la familia. Cenamos muchos platos y a las doce abrimos una botella. Este año pienso celebrar la Nochevieja en Madrid con mis amigos."
+              sample_ru: "В Украине мы встречаем Новый год всей семьёй. Готовим много блюд, а в полночь открываем бутылку. В этом году собираюсь встречать его в Мадриде с друзьями."
+
+  - id: lectura
+    kind: reading
+    title: "Las doce uvas"
+    goal: понять текст о новогодней традиции
+    version: 2
+    vocab:
+      - "🔔 la campanada [кампана́да] — удар колокола, часов :: Se oyen las doce campanadas. — Слышны двенадцать ударов часов."
+      - "🕛 la medianoche [мэдьяно́чэ] — полночь :: A medianoche comemos las uvas. — В полночь мы едим виноград."
+      - "📜 la tradición [традиθьо́н] — традиция :: Es una tradición muy antigua. — Это очень старая традиция."
+    blocks:
+      - learn: [la campanada, la medianoche, la tradición]
+      - "Текст из учебного журнала об одной новогодней традиции."
+      - reading:
+          id: uvas
+          title: Las doce uvas
+          text: |
+            En España, la última noche del año se llama Nochevieja. Mucha gente la pasa en casa con la familia y ve en la tele la Puerta del Sol de Madrid.
+
+            A medianoche se oyen las doce campanadas del reloj de la Puerta del Sol. Con cada campanada, la gente come una uva. Si comes las doce a tiempo, vas a tener suerte todo el año. ¡Pero no es fácil: hay que comer muy rápido!
+
+            Es una tradición de hace más de cien años. Después de las uvas, todos dicen «¡Feliz Año Nuevo!», y muchos jóvenes salen de fiesta hasta la mañana.
+          translation: |
+            В Испании последняя ночь года называется Nochevieja. Многие проводят её дома с семьёй и смотрят по телевизору площадь Пуэрта-дель-Соль в Мадриде.
+
+            В полночь часы на Пуэрта-дель-Соль бьют двенадцать раз. С каждым ударом люди съедают по виноградине. Если успеешь съесть все двенадцать, весь год будет удачным. Но это непросто: есть нужно очень быстро!
+
+            Этой традиции больше ста лет. После винограда все говорят «С Новым годом!», а многие молодые люди идут гулять до утра.
+      - choose:
+          title: Что сказано в тексте?
+          source: uvas
+          items:
+            - q: "¿Dónde pasa mucha gente la Nochevieja?"
+              options: "En casa, con la familia. | En la Puerta del Sol. | En un restaurante."
+              explain: "Mucha gente la pasa en casa con la familia…"
+            - q: "¿Qué pasa si comes las doce uvas a tiempo?"
+              options: "Vas a tener suerte todo el año. | Vas a comer muy rápido. | Vas a salir de fiesta."
+              explain: "Si comes las doce a tiempo, vas a tener suerte todo el año."
+              skill: si_presente
+            - q: "¿Cuántos años tiene la tradición?"
+              options: "Más de cien. | Unos veinte. | Más de mil."
+              explain: "Es una tradición de hace más de cien años."
+            - q: "¿Qué hacen muchos jóvenes después?"
+              options: "Salen de fiesta hasta la mañana. | Duermen. | Comen más uvas."
+              explain: "…muchos jóvenes salen de fiesta hasta la mañana."
+              skill: fiestas
+      - write:
+          title: Ответьте по тексту
+          format: короткий ответ по-испански
+          source: uvas
+          items:
+            - q: "¿Cuántas campanadas se oyen a medianoche?"
+              a: "Doce | Doce campanadas | Se oyen doce campanadas"
+              explain: "A medianoche se oyen las doce campanadas."
+            - q: "¿Qué dice la gente después de las uvas?"
+              a: "¡Feliz Año Nuevo! | Feliz Año Nuevo"
+              explain: "…todos dicen «¡Feliz Año Nuevo!»."
+      - choose:
+          title: Послушайте
+          free: true
+          rule: none
+          items:
+            - say: "Si comes las doce uvas a tiempo, vas a tener suerte."
+              options: "Если успеешь съесть двенадцать виноградин, тебе повезёт. | Если ешь виноград медленно, тебе повезёт. | Двенадцать виноградин едят, чтобы не опоздать."
+              explain: "Si comes… vas a tener suerte — «если съешь…, тебе повезёт»."
+              skill: si_presente
+              noaudio: {q: "Что значит «Si comes las doce uvas a tiempo, vas a tener suerte»?", options: "Если успеешь съесть двенадцать виноградин, тебе повезёт. | Если ешь виноград медленно, тебе повезёт. | Двенадцать виноградин едят, чтобы не опоздать."}
+      - compose:
+          title: Ваша традиция
+          free: true
+          rule: none
+          skill: [fiestas, si_presente]
+          items:
+            - q: "Расскажите о новогодней или праздничной традиции вашей страны: что делают и что, по поверью, будет, если…"
+              format: "En mi país, en Nochevieja… Si…, vas a…"
+              words: [15, 70]
+              sentences: 2
+              checks:
+                - label: "традиция: en Nochevieja, en Navidad, la gente…"
+                  any: [nochevieja, navidad, año nuevo, la gente, tradición, celebramos]
+                - label: "si + настоящее"
+                  re: "\\bsi \\w+"
+              sample: "En mi país, en Nochevieja la gente cena mucho y a las doce todos abren los regalos. Si llevas ropa nueva esa noche, vas a tener un buen año."
+              sample_ru: "В моей стране в новогоднюю ночь много едят, а в полночь все открывают подарки. Если надеть в эту ночь что-то новое, год будет хорошим."
+
+  - id: mision
+    kind: practice
+    title: План отпуска
+    goal: договориться о поездке и написать план отпуска
+    version: 2
+    forms: [resérvalo]
+    blocks:
+      - review:
+          title: Вспомним
+          skills: [caracter, ser_estar_adj, caer_parecer]
+          n: 2
+      - "Ольга прислала голосовое сообщение. Послушайте: текста нет."
+      - dialogue:
+          id: audio_olga
+          hidden: true
+          title: Сообщение от Ольги
+          lines:
+            - "Olga: ¡Hola, Irina! He encontrado un hotel en Mallorca: cincuenta euros la noche, muy cerca de la playa. Yo prefiero ir del diez al diecisiete de julio. Si te parece bien, lo reservo hoy. ¡Tengo muchas ganas de ir! | Привет, Ирина! Я нашла гостиницу на Майорке: пятьдесят евро за ночь, совсем рядом с пляжем. Я бы поехала с десятого по семнадцатое июля. Если ты не против, забронирую сегодня. Мне очень хочется поехать!"
+      - choose:
+          title: Что в сообщении?
+          source: audio_olga
+          items:
+            - q: "¿Cuánto cuesta el hotel?"
+              options: "Cincuenta euros la noche. | Quince euros la noche. | Cincuenta euros la semana."
+              explain: "…cincuenta euros la noche."
+            - q: "¿Qué días prefiere Olga?"
+              options: "Del diez al diecisiete de julio. | Del diecisiete al diez de agosto. | Del uno al diez de julio."
+              explain: "Yo prefiero ir del diez al diecisiete de julio."
+              skill: plazos
+            - q: "¿Qué va a hacer Olga si a Irina le parece bien?"
+              options: "Reservar el hotel hoy. | Comprar los billetes mañana. | Llamar al hotel."
+              explain: "Si te parece bien, lo reservo hoy."
+              skill: si_presente
+      - mission:
+          id: plan
+          title: План отпуска
+          text: "Вечером Ольга звонит, чтобы обсудить поездку."
+      - chat:
+          id: olga_chat
+          title: Разговор с Ольгой
+          with: Olga
+          turns:
+            - say: "¿Has oído mi mensaje? ¿Qué te parece el hotel? | Ты слышала моё сообщение? Как тебе гостиница?"
+              task: "Скажите, что гостиница кажется вам отличной."
+              skill: caer_parecer
+              write: "Me parece genial | Me parece muy bien | Me parece perfecto | El hotel me parece genial"
+              format: мнение
+            - say: "¿Y te viene bien del diez al diecisiete de julio? | А тебе удобно с десятого по семнадцатое июля?"
+              task: "Ответьте: да, если на работе дадут отпуск в июле, — скажите это через si: «если у меня будет отпуск в июле»."
+              skill: si_presente
+              write: "Sí, si tengo vacaciones en julio | Sí, si tengo vacaciones en el trabajo | Si tengo vacaciones en julio, sí"
+              format: условие
+              mistakes:
+                "sí si tendré vacaciones en julio": "После si — настоящее время: si **tengo** vacaciones."
+            - say: "Vale. Entonces, ¿reservo el hotel? | Хорошо. Тогда бронировать гостиницу?"
+              task: "Скажите: да, забронируй её."
+              skill: imperativo_tu
+              write: "Sí, resérvalo | Sí, resérvalo(,) por favor | Sí, resérvalo hoy"
+              format: ответ
+              mistakes:
+                "sí reservalo": "Почти: нужен знак ударения — res**é**rvalo."
+            - say: "¿Y qué piensas hacer allí? | А что ты собираешься там делать?"
+              task: "Ответьте от себя: что собираетесь делать (pienso…, me gustaría…, tengo ganas de…)."
+              skill: planes
+              compose:
+                format: "Pienso… Me gustaría… Tengo ganas de…"
+                words: [3, 30]
+                checks:
+                  - label: "планы: pienso, me gustaría, tengo ganas de, quiero…"
+                    any: [pienso, me gustaría, tengo ganas de, quiero, voy a]
+                sample: "Pienso nadar mucho y me gustaría visitar Palma."
+                sample_ru: "Собираюсь много плавать и хотела бы посмотреть Пальму."
+            - say: "¡Yo tengo muchas ganas de ir! | Мне очень хочется поехать!"
+              task: "Скажите, что вам тоже."
+              skill: planes
+              choose: "¡Yo también! | ¡Yo tampoco! | ¡A mí no!"
+              explain: "Тоже (в утверждении) — yo también; tampoco — «тоже нет»."
+            - say: "¡Va a ser genial! | Будет здорово!"
+      - compose:
+          title: План отпуска
+          free: true
+          rule: none
+          skill: [planes, si_presente, deseos]
+          items:
+            - q: "Напишите план отпуска, 60–100 слов: куда и когда вы поедете · с кем · что собираетесь делать · чего очень хочется · что сделаете, если будет плохая погода."
+              format: "Este verano pienso ir a… del… al… con… Tengo ganas de… Si llueve…"
+              words: [45, 130]
+              sentences: 4
+              checks:
+                - label: "куда и когда: pienso ir a…, voy a ir…"
+                  any: [pienso ir, voy a ir, me gustaría ir, vamos a ir, pensamos ir]
+                - label: "желание: tengo ganas de, me gustaría…"
+                  any: [tengo ganas de, me gustaría, sueño con, espero]
+                - label: "условие: si…"
+                  re: "\\bsi \\w+"
+              sample: "Este verano pienso ir a Mallorca con mi amiga Olga, del diez al diecisiete de julio. Ya hemos reservado un hotel cerca de la playa. Tengo muchas ganas de nadar en el mar y de comer pescado fresco. También me gustaría visitar Palma y su catedral. Si llueve, vamos a ir a los museos o a un café del centro."
+              sample_ru: "Этим летом собираюсь на Майорку с подругой Ольгой, с десятого по семнадцатое июля. Мы уже забронировали гостиницу у пляжа. Очень хочется поплавать в море и поесть свежей рыбы. Ещё хотела бы посмотреть Пальму и её собор. Если пойдёт дождь, пойдём в музеи или в кафе в центре."
+
+  - id: quiz
+    kind: quiz
+    title: "Тест: Planes y deseos"
+    goal: проверить цели темы — планы, желания, si + настоящее, праздники
+    version: 2
+    check: soft
+    blocks:
+      - "Это тест по теме «Planes y deseos»: двенадцать заданий."
+      - cando:
+          - "рассказать о планах на отпуск и праздники"
+          - "сказать, чего хочется и о чём мечтаете"
+          - "поставить условие: si + настоящее время"
+          - "понять, как в Испании празднуют Новый год и Рождество"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          rule: none
+          skill: si_presente
+          items:
+            - say: "Si hace buen tiempo, vamos a la playa."
+              a: "Si hace buen tiempo, vamos a la playa"
+              noaudio: {q: "Напишите по-испански: «Если будет хорошая погода, пойдём на пляж».", a: "Si hace buen tiempo, vamos a la playa | Si hace buen tiempo vamos a la playa"}
+      - choose:
+          title: Послушайте
+          rule: none
+          items:
+            - say: "Pienso ahorrar para viajar a México en Navidad."
+              options: "Я собираюсь копить, чтобы поехать в Мексику на Рождество. | Я накопил и съездил в Мексику на Рождество. | Я думаю о Мексике, но не поеду."
+              skill: planes
+              noaudio: {q: "Что значит «Pienso ahorrar para viajar a México en Navidad»?", options: "Я собираюсь копить, чтобы поехать в Мексику на Рождество. | Я накопил и съездил в Мексику на Рождество. | Я думаю о Мексике, но не поеду."}
+            - say: "Sueño con vivir algún día cerca del mar."
+              options: "Я мечтаю когда-нибудь жить у моря. | Мне снилось, что я живу у моря. | Однажды я жил у моря."
+              skill: deseos
+              noaudio: {q: "Что значит «Sueño con vivir algún día cerca del mar»?", options: "Я мечтаю когда-нибудь жить у моря. | Мне снилось, что я живу у моря. | Однажды я жил у моря."}
+      - write:
+          title: Вставьте слово или форму
+          format: одно слово
+          rule: none
+          items:
+            - q: "Si (tú, tener) ___ tiempo, llámame."
+              a: "tienes"
+              skill: si_presente
+            - q: "Tengo ganas ___ ver a mis padres."
+              a: "de"
+              skill: deseos
+            - q: "Sueño ___ tener una casa en el campo."
+              a: "con"
+              skill: deseos
+            - q: "¿Dónde vas a pasar la ___? — En casa, con las doce uvas."
+              a: "Nochevieja"
+              skill: fiestas
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          rule: none
+          items:
+            - q: "Летом я собираюсь на Майорку. (с pensar)"
+              a: "En verano pienso ir a Mallorca | Pienso ir a Mallorca en verano"
+              skill: planes
+            - q: "Если пойдёт дождь, останемся дома."
+              a: "Si llueve, nos quedamos en casa | Si llueve, vamos a quedarnos en casa"
+              skill: si_presente
+              mistakes:
+                "si lloverá nos quedamos en casa": "После si — настоящее время: si **llueve**."
+      - build:
+          title: Соберите фразу
+          rule: none
+          skill: planes
+          items:
+            - es: "Este puente pienso ir a la montaña con mis amigos."
+              ru: "В эти длинные выходные собираюсь в горы с друзьями."
+              extra: [de]
+    quiz:
+      - q: "Si ___ mucho dinero, voy a viajar por todo el mundo."
+        options: "ahorro | ahorré | ahorraba"
+        explain: "Si + настоящее: ahorro."
+        skill: si_presente
+      - q: "Что значит «el puente» в разговоре о выходных?"
+        options: "длинные выходные | мост через реку | праздничный ужин"
+        explain: "El puente — и мост, и длинные выходные."
+        skill: fiestas
