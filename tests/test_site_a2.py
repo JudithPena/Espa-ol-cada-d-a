@@ -120,6 +120,19 @@ def test_compose_checks_match_the_page_rules():
     assert compose_passes(it, "Me gusta mucho el idioma") == [True, False, True]            # условие if не сработало → не мешает
 
 
+def test_compose_regex_ignores_accents_like_the_text():
+    """Текст ученика сравнивается без ударений: выражение с ударениями должно находить и «vivía», и «vivia»."""
+    item = {"compose": {"title": "О себе", "free": True, "items": [{
+        "q": "Где вы жили?", "checks": [{"label": "imperfecto", "re": r"\b\w+(aba|ía)\b|\b(éramos|íbamos)\b"}],
+        "sample": "Vivía en Kiev."}]}}
+    it = parse_block(item, "t").data["items"][0]
+    assert "í" not in it["checks"][0]["re"] and "é" not in it["checks"][0]["re"]
+    assert all(compose_passes(it, "Vivía en Kiev."))
+    assert all(compose_passes(it, "Vivia en Kiev"))                 # ученик забыл ударение — признак всё равно есть
+    assert all(compose_passes(it, "Íbamos al mar."))
+    assert compose_passes(it, "Vivo en Kiev.") == [False]
+
+
 def test_compose_sample_must_pass_its_own_checks():
     bad = {"compose": {"items": [{"q": "Зачем?", "checks": [{"label": "есть para", "any": ["para"]}], "sample": "Porque sí."}]}}
     with pytest.raises(ContentError):

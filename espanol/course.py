@@ -657,6 +657,9 @@ def _noaudio(raw: Any, btype: str, where: str) -> dict | None:
 CHECK_KEYS = ("any", "all", "starts")
 
 
+_NO_ACCENTS = str.maketrans("áéíóúÁÉÍÓÚ", "aeiouAEIOU")
+
+
 def _compose_item(it: Any, w: str) -> dict:
     """Пункт направляемого письма: q — задание, checks — признаки (label + any / all / starts / re, if — условие),
     words: [мин, макс], sentences — минимум предложений, sample — образец, sample_ru — его перевод."""
@@ -666,8 +669,10 @@ def _compose_item(it: Any, w: str) -> dict:
     for c in _items(it.get("checks")):
         if not isinstance(c, dict) or not str(c.get("label") or "").strip():
             raise ContentError(f"{w}: у признака нужен label")
-        # \w в браузере не знает ñ и ü, а в Python знает: приводим к одному набору букв (текст уже без ударений)
-        check = {"label": str(c["label"]).strip(), "re": str(c.get("re") or "").strip().replace("\\w", "[a-zñü0-9]"),
+        # \w в браузере не знает ñ и ü, а в Python знает: приводим к одному набору букв. Текст ученика сравнивается
+        # без ударений (как на странице), поэтому и из выражения ударения убираем: «\w+ía» ищет «vivia».
+        check = {"label": str(c["label"]).strip(),
+                 "re": str(c.get("re") or "").strip().replace("\\w", "[a-zñü0-9]").translate(_NO_ACCENTS),
                  "if": [str(x).strip() for x in _items(c.get("if"))]}
         for key in (*CHECK_KEYS, "if"):
             if any(isinstance(x, bool) for x in _items(c.get(key))):   # YAML читает no / sí без кавычек как false / true

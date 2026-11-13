@@ -565,7 +565,7 @@ lessons:
               sentences: 2
               checks:
                 - label: "раньше: imperfecto (vivía, jugaba, era, iba…)"
-                  re: "\\b\\w+(aba|ía)\\b|\\b(era|iba)\\b"
+                  re: "\\b\\w+(aba|abas|aban|ábamos)\\b|\\b(era|eras|eran|éramos|iba|ibas|iban|íbamos|había|tenía|tenías|tenían|teníamos|vivía|vivías|vivían|vivíamos|hacía|hacían|hacíamos|quería|podía|sabía|salía|salíamos|comía|comíamos|veía|veían|veíamos|leía|escribía|llovía|prefería|dormía|volvía|volvíamos|conocía|ponía|corría|corríamos|bebía|aprendía)\\b"
                 - label: "больше не: ya no…"
                   any: ["ya no"]
                 - label: "всё ещё: todavía…"
@@ -803,7 +803,7 @@ lessons:
                 - label: "начало: Cuando tenía diez años…"
                   any: ["cuando tenía", "tenía diez años", "a los diez años"]
                 - label: "imperfecto: vivía, era, jugaba, iba…"
-                  re: "\\b\\w+(aba|ía)\\b|\\b(era|iba|éramos|íbamos)\\b"
+                  re: "\\b\\w+(aba|abas|aban|ábamos)\\b|\\b(era|eras|eran|éramos|iba|ibas|iban|íbamos|había|tenía|tenías|tenían|teníamos|vivía|vivías|vivían|vivíamos|hacía|hacían|hacíamos|quería|podía|sabía|salía|salíamos|comía|comíamos|veía|veían|veíamos|leía|escribía|llovía|prefería|dormía|volvía|volvíamos|conocía|ponía|corría|corríamos|bebía|aprendía)\\b"
                 - label: "сравнение с сегодня: ya no, todavía или ahora"
                   any: ["ya no", todavía, ahora]
               sample: "Cuando tenía diez años, vivía en Odesa con mis padres y mi hermano. Era un niño bastante tímido, pero en casa era muy travieso. Después de la escuela jugaba al fútbol con mis vecinos o veía dibujos animados. En verano íbamos al mar. Ahora vivo en Madrid y ya no juego al fútbol, pero todavía me gustan los dibujos animados."
