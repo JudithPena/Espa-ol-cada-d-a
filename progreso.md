@@ -10,8 +10,8 @@
 
 ## Сейчас
 
-- Готово тем: **6 из 19**. Уроков A2: **49**, новых слов и выражений: **198**.
-- В работе: тема 30 — Cuando era pequeño.
+- Готово тем: **7 из 19**. Уроков A2: **56**, новых слов и выражений: **224**.
+- В работе: тема 31 — Cómo era.
 
 ## Темы
 
@@ -23,8 +23,8 @@
 | 27 | Hoy y ayer | perfecto и indefinido; ya, todavía no; неправильные причастия; опыт и подробности | 7 | 19 | ✅ готово |
 | 28 | De viaje | вокзал, аэропорт, гостиница; lo, la, los, las; ir / irse; предлоги пути | 8 | 40 | ✅ готово |
 | 29 | En el mercado + КТ-1 | количества и меры; algo / nada, alguno / ninguno; ¿Me pone…?; контрольная точка 1 | 9 | 38 | ✅ готово |
-| 30 | Cuando era pequeño | pretérito imperfecto: формы, привычки; antes / ahora; ya no, todavía | — | — | ⏭ следующая |
-| 31 | Cómo era | imperfecto в описании; más / menos… que, tan… como, mejor / peor | — | — | ⬜ не начата |
+| 30 | Cuando era pequeño | pretérito imperfecto: формы, привычки; antes / ahora; ya no, todavía | 7 | 26 | ✅ готово |
+| 31 | Cómo era | imperfecto в описании; más / menos… que, tan… como, mejor / peor | — | — | ⏭ следующая |
 | 32 | ¿Qué pasó? | indefinido и imperfecto вместе; cuando, de repente, entonces, al final; estaba + герундий | — | — | ⬜ не начата |
 | 33 | ¿Quedamos? | предложить, согласиться, отказаться: ¿Te apetece…?, ¿Por qué no…?, es que… | — | — | ⬜ не начата |
 | 34 | Te lo recomiendo | императив (tú, usted); le / les, se lo; рецепты и советы | — | — | ⬜ не начата |
@@ -63,6 +63,7 @@
 | 12.11.2026 | Тема 27 «Hoy y ayer» (7 уроков). |
 | 12.11.2026 | Тема 28 «De viaje» (8 уроков). Заведён этот файл. |
 | 12.11.2026 | Тема 29 «En el mercado» (9 уроков) с контрольной точкой 1 по темам 24–29. |
+| 13.11.2026 | Тема 30 «Cuando era pequeño» (7 уроков): imperfecto — привычки и описание в прошлом, antes / ahora, ya no / todavía; новый персонаж — бабушка (Abuela). |
 
 ## Что не проверено
 
