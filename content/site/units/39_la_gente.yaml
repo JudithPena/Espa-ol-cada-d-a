@@ -1,0 +1,730 @@
+id: la_gente
+number: 39
+level: A2
+title: La gente — люди
+goals:
+  - описать характер и настроение человека
+  - различать «какой он» и «как он сейчас»: ser и estar
+  - сказать, как вы ладите и на кого похожи
+  - дать оценку: кто вам нравится и что вы думаете о людях
+
+# Тема 16 карты A2: ser / estar с прилагательными; parecerse, llevarse bien; me parece + прилагательное;
+# характер и чувства. Миссия — рассказ о друге. В A1 (темы 9, 11) уже были внешность, simpático, tímido,
+# divertido, contento, cansado, ser / estar.
+lessons:
+  - id: amiga
+    kind: listening
+    title: "Nos llevamos muy bien"
+    goal: понять на слух рассказ о друге
+    version: 2
+    # Карта экранов: docs/site_slide_maps/39_la_gente.md
+    vocab:
+      - "🤝 llevarse bien [льэба́рсэ бьэн] — ладить :: Me llevo muy bien con mi hermana. — Я очень хорошо лажу с сестрой."
+      - "👯 parecerse [парэθэ́рсэ] — быть похожим :: Me parezco a mi madre. — Я похож на маму."
+      - "🎁 generoso/a [хэнэро́со, хэнэро́са] — щедрый :: Es muy generosa con sus amigos. — Она очень щедрая с друзьями."
+      - "🧘 paciente [паθье́нтэ] — терпеливый :: Mi profesor es muy paciente. — Мой учитель очень терпеливый."
+      - "😄 alegre [але́грэ] — весёлый, жизнерадостный {forms: alegres} :: Es una chica muy alegre. — Она очень весёлая девушка."
+      - "🧠 el carácter [кара́ктэр] — характер :: Tiene buen carácter. — У него хороший характер."
+    forms: [parezco, pareces, parece, parecemos, parecen]
+    blocks:
+      - "Диего спрашивает Ирину о её подруге. Послушайте разговор два раза: текста пока нет."
+      - dialogue:
+          id: natalia
+          hidden: true
+          lines:
+            - "Diego: Irina, ¿quién es la chica de la foto? | Ирина, кто эта девушка на фото?"
+            - "Irina: Es Natalia, mi mejor amiga. Nos conocemos desde la escuela. | Это Наталья, моя лучшая подруга. Мы знаем друг друга со школы."
+            - "Diego: ¿Y cómo es? | А какая она?"
+            - "Irina: Es muy alegre y generosa: siempre ayuda a todo el mundo. Y es más paciente que yo. | Она очень весёлая и щедрая: всегда всем помогает. И терпеливее меня."
+            - "Diego: ¿Os parecéis? | Вы похожи?"
+            - "Irina: No mucho: ella es rubia y alta. Pero tenemos el mismo carácter, por eso nos llevamos tan bien. | Не очень: она светлая и высокая. Но характер у нас одинаковый, поэтому мы так хорошо ладим."
+            - "Diego: ¿Y qué tal está ahora? | А как у неё сейчас дела?"
+            - "Irina: Un poco triste: ella vive en Odesa y no nos vemos mucho. | Немного грустит: она живёт в Одессе, и мы редко видимся."
+      - choose:
+          title: Что вы поняли?
+          source: natalia
+          items:
+            - q: "Кто такая Наталья?"
+              options: "Su mejor amiga. | Su hermana. | Su compañera de trabajo."
+              explain: "Irina: Es Natalia, mi mejor amiga."
+            - q: "С каких пор они знакомы?"
+              options: "Desde la escuela. | Desde el año pasado. | Desde la universidad."
+              explain: "Irina: Nos conocemos desde la escuela."
+      - learn: [llevarse bien, parecerse, generoso/a, paciente, alegre, el carácter]
+      - choose:
+          title: Детали разговора
+          source: natalia
+          items:
+            - q: "¿Cómo es Natalia?"
+              options: "Alegre, generosa y paciente. | Seria, tímida y trabajadora. | Alegre, pero muy impaciente."
+              explain: "Irina: Es muy alegre y generosa… Y es más paciente que yo."
+            - q: "¿Se parecen?"
+              options: "No mucho: Natalia es rubia y alta. | Sí, mucho: las dos son rubias y muy altas. | No: Natalia es morena y baja."
+              explain: "Irina: No mucho: ella es rubia y alta."
+            - q: "¿Por qué se llevan tan bien?"
+              options: "Porque tienen el mismo carácter. | Porque viven en la misma ciudad. | Porque trabajan juntas."
+              explain: "Irina: …tenemos el mismo carácter, por eso nos llevamos tan bien."
+            - q: "¿Cómo está Natalia ahora?"
+              options: "Un poco triste. | Muy alegre y muy contenta. | Muy nerviosa."
+              explain: "Irina: Un poco triste: ella vive en Odesa y no nos vemos mucho."
+      - text:
+          id: notice
+          slide: new
+          text: "Ирина говорит о характере с **ser**: _es alegre_, _es paciente_. А о настроении сейчас — с **estar**: _está un poco triste_. **Llevarse bien** и **parecerse** — возвратные: _nos llevamos bien_, _¿os parecéis?_"
+      - examples:
+          items:
+            - "Natalia **es** muy alegre. — Наталья очень весёлая (по характеру)."
+            - "Ahora **está** un poco triste. — Сейчас ей немного грустно."
+            - "**Nos llevamos** muy bien. — Мы очень хорошо ладим."
+      - match:
+          title: Соедините пары
+          free: true
+          rule: none
+          pairs:
+            - "generoso — щедрый"
+            - "paciente — терпеливый"
+            - "alegre — весёлый"
+            - "el carácter — характер"
+            - "llevarse bien — ладить"
+            - "parecerse — быть похожим"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          free: true
+          skill: caracter
+          rule: notice
+          items:
+            - say: "Nos llevamos muy bien porque tenemos el mismo carácter."
+              a: "Nos llevamos muy bien porque tenemos el mismo carácter"
+              explain: "Llevarse bien — «ладить»."
+              noaudio: {q: "Напишите по-испански: «Мы очень хорошо ладим, потому что у нас одинаковый характер».", a: "Nos llevamos muy bien porque tenemos el mismo carácter"}
+      - choose:
+          title: Что ответить?
+          free: true
+          skill: caracter
+          rule: notice
+          items:
+            - lines: ["Diego: ¿Te pareces a tu padre?"]
+              q: "Скажите: да, очень."
+              options: "Sí, me parezco mucho a él. | Sí, me parece mucho a mi padre. | Sí, parezco mucho a él."
+              explain: "Parecerse — возвратный: me parezco a…"
+            - say: "Mi hermano es muy paciente, pero hoy está muy nervioso."
+              options: "Мой брат очень терпеливый, но сегодня он очень нервничает. | Мой брат очень нервный, но сегодня спокойный. | Мой брат сегодня очень терпелив."
+              explain: "Es paciente — характер; está nervioso — состояние сейчас."
+              noaudio: {q: "Что значит «Mi hermano es muy paciente, pero hoy está muy nervioso»?", options: "Мой брат очень терпеливый, но сегодня он очень нервничает. | Мой брат очень нервный, но сегодня спокойный. | Мой брат сегодня очень терпелив."}
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: caracter
+          rule: notice
+          items:
+            - es: "Me llevo muy bien con mi hermana."
+              ru: "Я очень хорошо лажу с сестрой."
+              extra: [llevamos]
+            - es: "Es una chica alegre y generosa."
+              ru: "Она весёлая и щедрая девушка."
+
+  - id: ser_estar
+    kind: grammar
+    title: "Es aburrido o está aburrido?"
+    goal: "различать характер и состояние: ser и estar"
+    version: 2
+    vocab:
+      - "🧠 listo/a [ли́сто, ли́ста] — умный (ser); готовый (estar) :: Es muy lista. — Она очень умная. Ya estoy listo. — Я уже готов."
+      - "😟 preocupado/a [прэокупа́до, прэокупа́да] — обеспокоенный :: Estoy preocupada por mi hijo. — Я волнуюсь за сына."
+      - "😠 enfadado/a [энфада́до, энфада́да] — сердитый :: ¿Por qué estás enfadado? — Почему ты сердишься?"
+      - "😌 orgulloso/a [оргульо́со, оргульо́са] — гордый :: Estoy muy orgullosa de ti. — Я очень горжусь тобой."
+    blocks:
+      - learn: [listo/a, preocupado/a, enfadado/a, orgulloso/a]
+      - compare:
+          id: ser_estar
+          title: Ser и estar с прилагательными
+          cards:
+            - head: ser
+              say: false
+              label: "какой человек вообще: характер"
+              tone: blue
+              ex: ["Ana es muy alegre. — Ана очень весёлая (по характеру)."]
+            - head: estar
+              say: false
+              label: "какой он сейчас: настроение, состояние"
+              tone: sun
+              ex: ["Ana está triste hoy. — Ане сегодня грустно."]
+      - choose:
+          title: Ser или estar?
+          skill: ser_estar_adj
+          rule: ser_estar
+          items:
+            - q: "Mi abuelo ___ muy generoso: siempre nos ayuda."
+              options: "es | está | estaba"
+              explain: "Характер — ser."
+            - q: "Hoy no puedo salir: ___ muy cansada."
+              options: "estoy | soy | somos"
+              explain: "Состояние сейчас — estar."
+            - q: "¿Por qué ___ enfadado? ¿Qué ha pasado?"
+              options: "estás | eres | estamos"
+              explain: "Сердиться — состояние: estás enfadado."
+      - table:
+          id: cambia
+          slide: new
+          title: Меняется смысл
+          rows:
+            - ["ser aburrido — скучный (человек, фильм)", "estar aburrido — скучать (сейчас)"]
+            - ["ser listo — умный", "estar listo — готовый"]
+            - ["ser malo — плохой", "estar malo — больной (разг.)"]
+            - ["ser rico — богатый", "estar rico — вкусный (о еде)"]
+      - choose:
+          title: Что это значит?
+          skill: ser_estar_adj
+          rule: cambia
+          items:
+            - q: "La paella ___ muy rica."
+              options: "está | es | estaban"
+              explain: "Вкусная (сейчас, эта паэлья) — está rica."
+            - q: "Esta película ___ aburrida: no me gusta."
+              options: "es | está | estoy"
+              explain: "Скучный фильм — es aburrida."
+            - q: "¿___ listo? Nos vamos ya."
+              options: "Estás | Eres | Estabais"
+              explain: "Готов — estar listo."
+            - say: "Mi hermana es muy lista, pero hoy está preocupada por el examen."
+              options: "Моя сестра очень умная, но сегодня волнуется из-за экзамена. | Моя сестра готова к экзамену и не волнуется. | Моя сестра волнуется, потому что она не очень умная."
+              explain: "Es lista — умная; está preocupada — волнуется сейчас."
+              noaudio: {q: "Что значит «Mi hermana es muy lista, pero hoy está preocupada por el examen»?", options: "Моя сестра очень умная, но сегодня волнуется из-за экзамена. | Моя сестра готова к экзамену и не волнуется. | Моя сестра волнуется, потому что она не очень умная."}
+      - write:
+          title: Ser или estar
+          format: одна форма
+          skill: ser_estar_adj
+          rule: cambia
+          items:
+            - q: "Mi madre (estar) ___ muy orgullosa de mí."
+              a: "está"
+              explain: "Чувство сейчас — estar."
+              mistakes:
+                "es": "Гордость сейчас — чувство: **está** orgullosa."
+            - q: "Tom (ser) ___ muy listo: aprende rápido."
+              a: "es"
+              explain: "Умный — ser listo."
+              mistakes:
+                "está": "Está listo — «готов». Умный — **es** listo."
+            - q: "Los niños (estar) ___ aburridos: quieren salir."
+              a: "están"
+              explain: "Скучают сейчас — están aburridos."
+      - build:
+          title: Соберите фразу
+          skill: ser_estar_adj
+          rule: ser_estar
+          items:
+            - es: "Normalmente es muy alegre, pero hoy está triste."
+              ru: "Обычно он очень весёлый, но сегодня грустный."
+              extra: [son]
+      - compose:
+          title: О себе
+          skill: ser_estar_adj
+          rule: ser_estar
+          items:
+            - q: "Опишите себя: какой вы по характеру и какое у вас настроение сегодня. Две фразы."
+              format: "Soy… Hoy estoy…"
+              words: [6, 40]
+              sentences: 2
+              checks:
+                - label: "характер: soy…"
+                  any: [soy]
+                - label: "состояние сейчас: estoy…"
+                  any: [estoy]
+              sample: "Soy bastante tranquila y paciente. Hoy estoy un poco cansada, pero contenta: es viernes."
+              sample_ru: "Я довольно спокойная и терпеливая. Сегодня я немного устала, но довольна: пятница."
+    quiz:
+      - q: "Esta sopa ___ muy rica."
+        options: "está | es | estoy"
+        explain: "Вкусная (о еде) — estar rico."
+        skill: ser_estar_adj
+      - q: "Mi jefe ___ muy serio, pero simpático."
+        options: "es | está | estuvo"
+        explain: "Характер — ser."
+        skill: ser_estar_adj
+
+  - id: me_cae
+    kind: grammar
+    title: "Me cae bien, me parece simpático"
+    goal: сказать, кто вам нравится как человек и что вы о ком думаете
+    version: 2
+    vocab:
+      - "😊 caer bien / caer mal [каэ́р бьэн, маль] — нравиться / не нравиться (о людях) :: Tu hermano me cae muy bien. — Твой брат мне очень симпатичен."
+      - "🤔 parecer [парэθэ́р] — казаться :: Me parece muy simpático. — Он мне кажется очень симпатичным."
+      - "🗣 sincero/a [синθэ́ро, синθэ́ра] — искренний, честный :: Es una amiga muy sincera. — Она очень искренняя подруга."
+      - "🎩 educado/a [эдука́до, эдука́да] — вежливый, воспитанный :: Tus hijos son muy educados. — Твои дети очень вежливые."
+    blocks:
+      - learn: ["caer bien / caer mal", parecer, sincero/a, educado/a]
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "caer bien — нравиться (о людях)"
+            - "caer mal — не нравиться (о людях)"
+            - "parecer — казаться"
+            - "sincero — искренний"
+            - "educado — вежливый"
+      - table:
+          id: como_gustar
+          title: Как gustar
+          rows:
+            - ["me cae bien / me caen bien", "Ana me cae muy bien. — Ана мне очень нравится (как человек)."]
+            - ["me parece + прилагательное", "Tu jefe me parece muy serio. — Твой начальник кажется мне очень серьёзным."]
+            - ["me parece que…", "Me parece que está enfadado. — Мне кажется, что он сердится."]
+      - note:
+          id: cae_bien
+          text: "О людях испанцы чаще говорят не _me gusta_, а **me cae bien**: _me gusta_ о человеке звучит как «он мне нравится» в романтическом смысле. Как и gustar: _me cae bien Ana_, но _me caen bien tus amigos_."
+      - choose:
+          title: Выберите форму
+          skill: caer_parecer
+          rule: como_gustar
+          items:
+            - q: "Tus amigos me ___ muy bien."
+              options: "caen | cae | caigo"
+              explain: "Tus amigos — мн. ч.: me caen."
+            - q: "¿Qué te ___ mi novio?"
+              options: "parece | pareces | parezco"
+              explain: "Что ты думаешь о… — ¿Qué te parece…?"
+            - q: "Me parece ___ no está contento con su trabajo."
+              options: "que | de | como"
+              explain: "Me parece que… — «мне кажется, что…»"
+            - say: "Tu compañero me cae bien: es muy educado y sincero."
+              options: "Твой коллега мне симпатичен: он очень вежливый и искренний. | Твой коллега мне не нравится: он невежливый и не очень искренний. | Мне кажется, твой коллега не очень искренний."
+              explain: "Me cae bien — «он мне симпатичен»."
+              noaudio: {q: "Что значит «Tu compañero me cae bien: es muy educado y sincero»?", options: "Твой коллега мне симпатичен: он очень вежливый и искренний. | Твой коллега мне не нравится: он невежливый и не очень искренний. | Мне кажется, твой коллега не очень искренний."}
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: caer_parecer
+          rule: como_gustar
+          items:
+            - q: "Твоя сестра мне очень нравится (как человек)."
+              a: "Tu hermana me cae muy bien | Me cae muy bien tu hermana"
+              explain: "О людях — me cae bien."
+              mistakes:
+                "tu hermana me caes muy bien": "Сестра — она: me **cae** bien."
+            - q: "Он кажется мне очень серьёзным."
+              a: "Me parece muy serio | (Él) me parece muy serio"
+              explain: "Me parece + прилагательное."
+            - q: "Мне кажется, что она грустит."
+              a: "Me parece que está triste | Me parece que (ella) está triste"
+              explain: "Me parece que + estar."
+      - build:
+          title: Соберите фразу
+          skill: caer_parecer
+          rule: cae_bien
+          items:
+            - es: "Tus amigos me caen muy bien."
+              ru: "Твои друзья мне очень нравятся."
+              extra: [cae]
+      - compose:
+          title: Ваше мнение
+          skill: caer_parecer
+          rule: como_gustar
+          items:
+            - q: "Расскажите о двух людях из вашей жизни: кто вам симпатичен и каким он вам кажется."
+              format: "Mi vecino me cae… Me parece…"
+              words: [8, 45]
+              sentences: 2
+              checks:
+                - label: "me cae / me caen…"
+                  any: [me cae, me caen]
+                - label: "me parece…"
+                  any: [me parece, me parecen]
+              sample: "Mi nueva compañera de trabajo me cae muy bien: es alegre y educada. Mi vecino me parece un poco serio, pero es muy amable."
+              sample_ru: "Моя новая коллега мне очень симпатична: она весёлая и вежливая. Сосед кажется мне немного серьёзным, но он очень любезный."
+    quiz:
+      - q: "Tus padres me ___ muy bien."
+        options: "caen | cae | gustan mucho"
+        explain: "О людях, мн. ч. — me caen bien."
+        skill: caer_parecer
+      - q: "¿Qué te ___ la nueva profesora?"
+        options: "parece | parecen | pareces"
+        explain: "¿Qué te parece + ед. ч.?"
+        skill: caer_parecer
+
+  - id: pareja
+    kind: dialogue
+    title: "¿Cómo os conocisteis?"
+    goal: "рассказать об отношениях: знакомство, ссоры, свадьба"
+    version: 2
+    vocab:
+      - "💑 la pareja [парэ́ха] — пара; партнёр :: Vivo con mi pareja. — Я живу со своим партнёром."
+      - "😍 enamorarse [энаморарсэ] — влюбиться :: Me enamoré de él en un viaje. — Я влюбилась в него в поездке."
+      - "🗯 discutir [дискути́р] — спорить, ссориться :: A veces discutimos, pero nos queremos. — Иногда мы ссоримся, но любим друг друга."
+      - "💔 separarse [сэпара́рсэ] — расстаться, развестись :: Mis tíos se separaron el año pasado. — Мои дядя и тётя развелись в прошлом году."
+      - "🤞 la confianza [конфья́нθа] — доверие :: En una pareja, la confianza es muy importante. — В паре очень важно доверие."
+    blocks:
+      - learn: [la pareja, enamorarse, discutir, separarse, la confianza]
+      - "Олга спрашивает Лусию о её женихе Пабло."
+      - dialogue:
+          id: lucia_pablo
+          lines:
+            - "Olga: Lucía, ¿cómo os conocisteis Pablo y tú? | Лусия, как вы с Пабло познакомились?"
+            - "Lucía: En un viaje a Granada, hace cuatro años. Estábamos en el mismo grupo. | В поездке в Гранаду, четыре года назад. Мы были в одной группе."
+            - "Olga: ¿Y te enamoraste el primer día? | И ты влюбилась в первый же день?"
+            - "Lucía: ¡No! Al principio me parecía un poco serio. Pero luego me cayó muy bien: es muy sincero y divertido. | Нет! Сначала он мне казался немного серьёзным. Но потом очень понравился: он очень искренний и весёлый."
+            - "Olga: ¿Y nunca discutís? | И вы никогда не ссоритесь?"
+            - "Lucía: Claro que sí, a veces. Pero tenemos mucha confianza y siempre hablamos de todo. | Конечно, иногда. Но мы очень доверяем друг другу и всегда обо всём говорим."
+            - "Olga: ¡Qué bonito! ¿Y cuándo es la boda? | Как мило! А когда свадьба?"
+            - "Lucía: En junio. ¡Te invito! | В июне. Приглашаю тебя!"
+      - choose:
+          title: Что сказано?
+          source: lucia_pablo
+          skill: relaciones
+          items:
+            - q: "¿Dónde se conocieron Lucía y Pablo?"
+              options: "En un viaje a Granada. | En el trabajo. | En la universidad."
+              explain: "Lucía: En un viaje a Granada, hace cuatro años."
+            - q: "¿Qué le parecía Pablo al principio?"
+              options: "Un poco serio. | Muy divertido. | Muy tímido."
+              explain: "Lucía: Al principio me parecía un poco serio."
+              skill: caer_parecer
+            - q: "¿Discuten a veces?"
+              options: "Sí, a veces, pero hablan de todo. | No, nunca. | Sí, todos los días."
+              explain: "Lucía: Claro que sí, a veces. Pero… siempre hablamos de todo."
+            - q: "¿Cuándo es la boda?"
+              options: "En junio. | En enero. | El año que viene."
+              explain: "Lucía: En junio."
+      - note:
+          id: reciprocos
+          slide: new
+          text: "«Друг друга» по-испански — возвратное местоимение во множественном числе: **nos** conocimos — «мы познакомились», **os** conocisteis — «вы познакомились», **se** separaron — «они расстались»."
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          free: true
+          skill: relaciones
+          rule: reciprocos
+          items:
+            - q: "Мы познакомились в Мадриде."
+              a: "Nos conocimos en Madrid | (Nosotros) nos conocimos en Madrid"
+              explain: "Познакомились — nos conocimos."
+              mistakes:
+                "conocimos en madrid": "«Познакомились друг с другом» — с местоимением: **nos** conocimos."
+            - q: "Они расстались в прошлом году."
+              a: "Se separaron el año pasado | El año pasado se separaron"
+              explain: "Расстались — se separaron."
+      - choose:
+          title: Послушайте
+          free: true
+          skill: relaciones
+          rule: reciprocos
+          items:
+            - say: "Nos conocimos en un viaje y nos enamoramos ese mismo verano."
+              options: "Мы познакомились в поездке и влюбились тем же летом. | Мы ездили в поездку и тем же летом поссорились. | Мы познакомились давно, а влюбились друг в друга гораздо позже."
+              explain: "Nos enamoramos — «мы влюбились»; ese mismo verano — «тем же летом»."
+              noaudio: {q: "Что значит «Nos conocimos en un viaje y nos enamoramos ese mismo verano»?", options: "Мы познакомились в поездке и влюбились тем же летом. | Мы ездили в поездку и тем же летом поссорились. | Мы познакомились давно, а влюбились друг в друга гораздо позже."}
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: relaciones
+          rule: reciprocos
+          items:
+            - es: "En una pareja, la confianza es muy importante."
+              ru: "В паре очень важно доверие."
+      - compose:
+          title: Как они познакомились
+          free: true
+          skill: [relaciones, fondo_hechos]
+          rule: reciprocos
+          items:
+            - q: "Расскажите, как познакомились вы с другом или подругой (или ваши родители): где, когда, какое было первое впечатление."
+              format: "Nos conocimos en… Al principio me parecía…"
+              words: [15, 70]
+              sentences: 2
+              checks:
+                - label: "знакомство: nos conocimos, se conocieron…"
+                  any: [nos conocimos, se conocieron, os conocisteis]
+                - label: "впечатление: me parecía…, me cayó bien…"
+                  any: [me parecía, me pareció, me cayó, me caía, era]
+              sample: "Mi mejor amigo y yo nos conocimos en el instituto, hace quince años. Al principio me parecía muy serio, pero luego me cayó muy bien: es generoso y muy divertido."
+              sample_ru: "Мы с лучшим другом познакомились в школе пятнадцать лет назад. Сначала он казался мне очень серьёзным, но потом очень понравился: он щедрый и очень весёлый."
+
+  - id: lectura
+    kind: reading
+    title: "Mi compañera de piso"
+    goal: понять рассказ о человеке и написать о своём друге
+    version: 2
+    vocab:
+      - "🏠 el compañero / la compañera de piso [компанье́ро дэ пи́со] — сосед, соседка по квартире :: Mi compañera de piso es de Italia. — Моя соседка по квартире из Италии."
+      - "🎭 la amistad [амиста́д] — дружба :: Nuestra amistad es muy importante para mí. — Наша дружба очень важна для меня."
+    blocks:
+      - learn: [el compañero / la compañera de piso, la amistad]
+      - "Том пишет в блоге о соседке по квартире."
+      - reading:
+          id: sara
+          title: Mi compañera de piso
+          text: |
+            Vivo en Madrid con Sara, mi compañera de piso. Es de Valencia y estudia en la universidad. Al principio no nos llevábamos muy bien: ella se levantaba muy temprano y yo escuchaba música por la noche. Discutíamos mucho por la cocina.
+
+            Pero poco a poco la conocí mejor. Sara es muy sincera y generosa: cuando estoy enfermo, me hace la comida, y siempre me ayuda con el español. Es más paciente que mis profesores.
+
+            Ahora somos muy buenos amigos. No nos parecemos nada: ella es tranquila y yo soy muy nervioso. Pero me cae genial. Este año ella está un poco preocupada por los exámenes, por eso yo cocino y lavo los platos. ¡Nuestra amistad me ha cambiado!
+          translation: |
+            Я живу в Мадриде с Сарой, соседкой по квартире. Она из Валенсии и учится в университете. Сначала мы не очень ладили: она вставала очень рано, а я слушал музыку по ночам. Мы часто ссорились из-за кухни.
+
+            Но постепенно я узнал её лучше. Сара очень искренняя и щедрая: когда я болею, она готовит мне еду и всегда помогает с испанским. Она терпеливее моих преподавателей.
+
+            Теперь мы очень хорошие друзья. Мы совсем не похожи: она спокойная, а я очень нервный. Но она мне страшно нравится. В этом году она немного волнуется из-за экзаменов, поэтому готовлю и мою посуду я. Наша дружба меня изменила!
+      - choose:
+          title: Что пишет Том?
+          source: sara
+          items:
+            - q: "¿Quién es Sara?"
+              options: "La compañera de piso de Tom. | La novia de Tom. | La profesora de Tom."
+              explain: "Vivo en Madrid con Sara, mi compañera de piso."
+            - q: "¿Qué ha cambiado a Tom?"
+              options: "Su amistad con Sara. | Su trabajo. | La universidad."
+              explain: "¡Nuestra amistad me ha cambiado!"
+            - q: "¿Por qué discutían al principio?"
+              options: "Por la cocina. | Por el dinero. | Por los exámenes."
+              explain: "Discutíamos mucho por la cocina."
+              skill: relaciones
+            - q: "¿Cómo es Sara?"
+              options: "Sincera, generosa y paciente. | Nerviosa y muy seria. | Seria y un poco antipática."
+              explain: "Sara es muy sincera y generosa… Es más paciente que mis profesores."
+              skill: caracter
+            - q: "¿Se parecen Tom y Sara?"
+              options: "No: ella es tranquila y él es nervioso. | Sí, mucho. | Sí: los dos son muy tranquilos."
+              explain: "No nos parecemos nada: ella es tranquila y yo soy muy nervioso."
+              skill: caracter
+            - q: "¿Cómo está Sara este año?"
+              options: "Un poco preocupada por los exámenes. | Muy enfadada con Tom por la música de la noche. | Muy aburrida."
+              explain: "Este año ella está un poco preocupada por los exámenes."
+              skill: ser_estar_adj
+      - sort:
+          title: Характер или состояние?
+          source: sara
+          skill: ser_estar_adj
+          groups:
+            "es": ["sincera", "generosa", "tranquila"]
+            "está": ["preocupada", "enfermo (Tom)"]
+      - write:
+          title: Ответьте по тексту
+          format: короткий ответ по-испански
+          source: sara
+          items:
+            - q: "¿Dónde estudia Sara?"
+              a: "En la universidad | Estudia en la universidad"
+              explain: "Es de Valencia y estudia en la universidad."
+            - q: "Как Том говорит, что Сара ему очень нравится?"
+              a: "me cae genial"
+              explain: "Me cae genial — «она мне страшно нравится»."
+              skill: caer_parecer
+      - choose:
+          title: Послушайте
+          free: true
+          rule: none
+          items:
+            - say: "Al principio no nos llevábamos bien, pero ahora somos muy buenos amigos."
+              options: "Сначала мы не ладили, но теперь мы очень хорошие друзья. | Сначала мы дружили, а теперь поссорились. | Мы всегда были хорошими друзьями."
+              explain: "No nos llevábamos bien — «мы не ладили»."
+              skill: caracter
+              noaudio: {q: "Что значит «Al principio no nos llevábamos bien, pero ahora somos muy buenos amigos»?", options: "Сначала мы не ладили, но теперь мы очень хорошие друзья. | Сначала мы дружили, а теперь поссорились. | Мы всегда были хорошими друзьями."}
+      - compose:
+          title: Мой друг
+          free: true
+          rule: none
+          skill: [caracter, ser_estar_adj, caer_parecer]
+          items:
+            - q: "Напишите о друге или подруге, 50–90 слов: как вы познакомились · какой у него характер · похожи ли вы · ладите ли · как у него дела сейчас."
+              format: "Mi mejor amiga se llama… Nos conocimos… Es… Nos llevamos… Ahora está…"
+              words: [40, 120]
+              sentences: 4
+              checks:
+                - label: "характер: es…"
+                  any: [es, son]
+                - label: "состояние: está…"
+                  any: [está, están]
+                - label: "отношения: nos llevamos, nos parecemos, me cae…"
+                  any: [nos llevamos, nos parecemos, me cae, nos conocimos, nos conocemos]
+              sample: "Mi mejor amiga se llama Marta. Nos conocimos en la universidad hace diez años. Es muy alegre y generosa, pero un poco nerviosa. No nos parecemos mucho: yo soy más tranquila. Pero nos llevamos genial y hablamos todos los días. Ahora está muy contenta: tiene un trabajo nuevo en Barcelona."
+              sample_ru: "Мою лучшую подругу зовут Марта. Мы познакомились в университете десять лет назад. Она очень весёлая и щедрая, но немного нервная. Мы не очень похожи: я спокойнее. Но мы отлично ладим и разговариваем каждый день. Сейчас она очень довольна: у неё новая работа в Барселоне."
+
+  - id: mision
+    kind: practice
+    title: Рассказ о человеке
+    goal: понять рассказ о новом знакомом и рассказать о своём
+    version: 2
+    forms: [conocerla]
+    blocks:
+      - review:
+          title: Вспомним
+          skills: [experiencia_trabajo, perifrasis, plazos]
+          n: 2
+      - "Диего прислал голосовое сообщение. Послушайте: текста нет."
+      - dialogue:
+          id: audio_jefe
+          hidden: true
+          title: Сообщение от Диего
+          lines:
+            - "Diego: ¡Hola! Te cuento: tengo un jefe nuevo. Se llama Andrés y me cae muy bien. Al principio me parecía un poco serio, pero es muy divertido. Es muy paciente y nunca está enfadado. ¡Y se parece mucho a mi padre! | Привет! Рассказываю: у меня новый начальник. Его зовут Андрес, и он мне очень нравится. Сначала казался немного серьёзным, но он очень весёлый. Очень терпеливый и никогда не сердится. И очень похож на моего папу!"
+      - choose:
+          title: Что в сообщении?
+          source: audio_jefe
+          items:
+            - q: "¿Quién es Andrés?"
+              options: "El nuevo jefe de Diego. | Su nuevo compañero de piso. | El padre de Diego."
+              explain: "Tengo un jefe nuevo. Se llama Andrés."
+            - q: "¿Qué le parecía Andrés al principio?"
+              options: "Un poco serio. | Muy divertido. | Muy impaciente."
+              explain: "Al principio me parecía un poco serio."
+              skill: caer_parecer
+            - q: "¿A quién se parece Andrés?"
+              options: "Al padre de Diego. | A Diego. | A su hermano."
+              explain: "¡Y se parece mucho a mi padre!"
+              skill: caracter
+      - mission:
+          id: companera
+          title: Рассказ о человеке
+          text: "Лусия спрашивает о вашей новой коллеге. Расскажите о ней."
+      - chat:
+          id: lucia_chat
+          title: Разговор с Лусией
+          with: Lucía
+          turns:
+            - say: "¿Qué tal tu nueva compañera de trabajo? | Как твоя новая коллега?"
+              task: "Скажите, что она вам очень нравится как человек."
+              skill: caer_parecer
+              write: "Me cae muy bien | Me cae genial | Me cae muy bien(,) es muy simpática"
+              format: впечатление
+              mistakes:
+                "me gusta mucho": "О коллеге лучше **me cae muy bien**: me gusta о человеке звучит романтично."
+            - say: "¿Y cómo es? | А какая она?"
+              task: "Ответьте от себя: опишите её характер."
+              skill: caracter
+              compose:
+                format: "Es muy… y un poco…"
+                words: [3, 25]
+                checks:
+                  - label: "характер: es…"
+                    any: [es]
+                sample: "Es muy sincera y trabajadora, pero un poco seria."
+                sample_ru: "Она очень искренняя и трудолюбивая, но немного серьёзная."
+            - say: "¿Y os lleváis bien? | Вы ладите?"
+              task: "Скажите: да, очень хорошо."
+              skill: caracter
+              write: "Sí, nos llevamos muy bien | Sí, nos llevamos genial | Sí, muy bien"
+              format: ответ
+              mistakes:
+                "sí llevamos muy bien": "Llevarse — возвратный: **nos** llevamos bien."
+            - say: "Ayer me pareció un poco triste. ¿Y hoy? | Вчера она показалась мне немного грустной. А сегодня?"
+              task: "Скажите, что сегодня она очень довольна."
+              skill: ser_estar_adj
+              choose: "Hoy está muy contenta. | Hoy es muy contenta. | Hoy está muy contento."
+              explain: "Состояние сейчас — estar; о ней — contenta."
+            - say: "¿Se parece a alguien que conoces? | Она похожа на кого-нибудь из твоих знакомых?"
+              task: "Ответьте от себя: на кого похожа или нет."
+              skill: caracter
+              compose:
+                format: "Sí, se parece a… / No, no se parece a nadie."
+                words: [3, 25]
+                checks:
+                  - label: "se parece…"
+                    any: [se parece, parece]
+                sample: "Sí, se parece un poco a mi hermana: las dos son muy alegres."
+                sample_ru: "Да, немного похожа на мою сестру: обе очень весёлые."
+            - say: "¡Qué bien! Me gustaría conocerla. | Здорово! Хотела бы с ней познакомиться."
+      - compose:
+          title: Ищу соседа по квартире
+          free: true
+          rule: none
+          skill: [caracter, ser_estar_adj]
+          items:
+            - q: "Вы отвечаете на объявление «Busco compañero de piso». Опишите себя, 40–80 слов: какой у вас характер · с кем вы хорошо ладите · что вам не нравится · чем вы заняты сейчас."
+              format: "Hola: me llamo… Soy… Me llevo bien con… No me gusta…"
+              words: [30, 100]
+              sentences: 3
+              checks:
+                - label: "характер: soy…"
+                  any: [soy]
+                - label: "отношения: me llevo bien, me caen bien…"
+                  any: [me llevo bien, me llevo mal, me caen bien, me cae bien, me llevo genial]
+                - label: "сейчас: estoy…"
+                  any: [estoy, ahora]
+              sample: "Hola: me llamo Irina y tengo treinta años. Soy tranquila y muy sincera. Me llevo bien con todo el mundo y me encanta cocinar para mis amigos. No me gusta la música alta por la noche. Ahora estoy buscando piso porque trabajo en el centro."
+              sample_ru: "Привет! Меня зовут Ирина, мне тридцать. Я спокойная и очень искренняя. Лажу со всеми и обожаю готовить для друзей. Не люблю громкую музыку по ночам. Сейчас ищу квартиру, потому что работаю в центре."
+
+  - id: quiz
+    kind: quiz
+    title: "Тест: La gente"
+    goal: проверить цели темы — характер, ser / estar, me cae bien, отношения
+    version: 2
+    check: soft
+    blocks:
+      - "Это тест по теме «La gente»: двенадцать заданий."
+      - cando:
+          - "описать характер и настроение человека"
+          - "различать ser и estar с прилагательными"
+          - "сказать, как вы ладите и на кого похожи"
+          - "дать оценку: me cae bien, me parece…"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          rule: none
+          skill: caer_parecer
+          items:
+            - say: "Tu hermano me cae muy bien: es muy generoso."
+              a: "Tu hermano me cae muy bien: es muy generoso"
+              noaudio: {q: "Напишите по-испански: «Твой брат мне очень нравится: он очень щедрый».", a: "Tu hermano me cae muy bien: es muy generoso | Tu hermano me cae muy bien, es muy generoso"}
+      - choose:
+          title: Послушайте
+          rule: none
+          items:
+            - say: "Normalmente es muy tranquila, pero hoy está nerviosa."
+              options: "Обычно она очень спокойная, но сегодня нервничает. | Она всегда очень нервная, но сегодня почему-то спокойная. | Сегодня она спокойная, как обычно."
+              skill: ser_estar_adj
+              noaudio: {q: "Что значит «Normalmente es muy tranquila, pero hoy está nerviosa»?", options: "Обычно она очень спокойная, но сегодня нервничает. | Она всегда очень нервная, но сегодня почему-то спокойная. | Сегодня она спокойная, как обычно."}
+            - say: "Me parezco mucho a mi madre, pero no nos llevamos muy bien."
+              options: "Я очень похож на маму, но мы не очень ладим. | Мама мне очень нравится, и мы хорошо ладим. | Я не похож на маму, но мы хорошо ладим."
+              skill: caracter
+              noaudio: {q: "Что значит «Me parezco mucho a mi madre, pero no nos llevamos muy bien»?", options: "Я очень похож на маму, но мы не очень ладим. | Мама мне очень нравится, и мы хорошо ладим. | Я не похож на маму, но мы хорошо ладим."}
+      - write:
+          title: Вставьте форму
+          format: одно слово
+          rule: none
+          items:
+            - q: "Esta paella (estar) ___ riquísima."
+              a: "está"
+              skill: ser_estar_adj
+            - q: "Mi profesor (ser) ___ muy paciente."
+              a: "es"
+              skill: ser_estar_adj
+            - q: "Tus amigos me (caer) ___ muy bien."
+              a: "caen"
+              skill: caer_parecer
+            - q: "Mi hermana y yo nos (llevar) ___ muy bien."
+              a: "llevamos"
+              skill: caracter
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          rule: none
+          items:
+            - q: "Я похож на отца."
+              a: "Me parezco a mi padre | (Yo) me parezco a mi padre"
+              skill: caracter
+              mistakes:
+                "parezco a mi padre": "Parecerse — возвратный: **me** parezco a mi padre."
+            - q: "Мы познакомились в университете."
+              a: "Nos conocimos en la universidad"
+              skill: relaciones
+      - build:
+          title: Соберите фразу
+          rule: none
+          skill: ser_estar_adj
+          items:
+            - es: "Mi madre está muy orgullosa de mí."
+              ru: "Мама мной очень гордится."
+              extra: [es]
+    quiz:
+      - q: "¿Qué te ___ mi nuevo novio?"
+        options: "parece | pareces | parecen"
+        explain: "¿Qué te parece + ед. ч.?"
+        skill: caer_parecer
+      - q: "¿Qué significa «discutir»?"
+        options: "спорить, ссориться | обсуждать | расставаться"
+        explain: "Discutir — спорить, ссориться; расставаться — separarse."
+        skill: relaciones
