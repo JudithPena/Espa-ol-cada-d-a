@@ -32,6 +32,10 @@ def test_audit_covers_all_units_and_offers_every_accepted_choice():
         elif unit['number'] == 8:
             # Stage 7 supersedes the 68-question historical choice audit.
             assert record['reviewed'] == 68 and total == 58
+        elif unit['number'] == 12:
+            # The dated audit counted two questions in check-a. Unit 12 now checks
+            # all three distances while preserving the original audit snapshot.
+            assert record['reviewed'] == 37 and total == 38
         else:
             assert total == record['reviewed']
         for group in groups(unit):
