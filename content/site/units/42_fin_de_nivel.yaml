@@ -1,0 +1,562 @@
+id: fin_de_nivel
+number: 42
+level: A2
+title: Итог A2
+goals:
+  - повторить весь уровень A2 в одной поездке
+  - прочитать рассказ о поездке и написать свой — 100–120 слов
+  - сдать итоговый тест уровня A2
+
+# Тема 19 карты A2: итоговый проект (рассказ о поездке 100–120 слов) и итог уровня.
+# Как в docs/a2_c2_curriculum_strategy.md (раздел 7): закрытая часть — урок examen (check: control, порог 80 %),
+# открытая часть — урок proyecto: письмо проверяется по признакам и в балл итога не входит.
+lessons:
+  - id: repaso
+    kind: review
+    title: "Большое повторение A2: выходные в Саламанке"
+    goal: провести выходные в Саламанке — от вокзала до звонка другу — на материале всего уровня
+    version: 2
+    # Карта экранов: docs/site_slide_maps/42_fin_de_nivel.md
+    blocks:
+      - "Новых слов нет: всё, что нужно, вы уже знаете. Проведите выходные в Саламанке — шесть ситуаций подряд."
+      - mission:
+          id: estacion
+          title: Вокзал
+          text: "Пятница. Вы на вокзале в Мадриде и покупаете билет до Саламанки."
+      - choose:
+          source: estacion
+          items:
+            - lines: ["Empleado: Buenas tardes. ¿Adónde va?"]
+              q: "Вам нужен билет туда и обратно до Саламанки, на сегодня."
+              options: "Un billete de ida y vuelta para Salamanca, para hoy. | Un billete de ida para Salamanca, para hoy. | Dos billetes de ida y vuelta para Salamanca, para mañana."
+              explain: "Туда и обратно — de ida y vuelta."
+              skill: billete
+            - say: "El tren sale a las cinco y cuarto del andén tres."
+              q: "Когда и откуда отправляется поезд?"
+              options: "в четверть шестого, с третьей платформы | без четверти шесть, с третьей платформы | в четверть шестого, с тринадцатой платформы"
+              explain: "Las cinco y cuarto — четверть шестого; el andén tres — третья платформа."
+              skill: horario
+              noaudio: {q: "Когда и откуда отправляется поезд: «El tren sale a las cinco y cuarto del andén tres»?", options: "в четверть шестого, с третьей платформы | без четверти шесть, с третьей платформы | в четверть шестого, с тринадцатой платформы"}
+      - mission:
+          id: hotel
+          title: Гостиница
+          text: "Вечером вы приезжаете в гостиницу. Потом оказывается, что в номере не работает душ."
+      - choose:
+          source: hotel
+          items:
+            - lines: ["Recepcionista: Buenas noches. ¿Tiene usted reserva?"]
+              q: "Ответьте: да, вы забронировали двухместный номер на две ночи."
+              options: "Sí, he reservado una habitación doble para dos noches. | Sí, reservo una habitación doble para dos noches. | Sí, voy a reservar una habitación doble para dos noches."
+              explain: "Бронь уже сделана — he reservado."
+              skill: hotel
+      - write:
+          source: hotel
+          skill: hotel
+          items:
+            - q: "Позвоните на ресепшен и скажите: «В моём номере не работает душ»."
+              a: "En mi habitación no funciona la ducha | [En mi habitación no funciona la ducha/(En mi habitación) la ducha no funciona/La ducha de mi habitación no funciona/No funciona la ducha (de mi habitación)]"
+              format: фраза по-испански
+              explain: "No funciona — не работает."
+              mistakes:
+                "en mi habitación no funciona el ducha": "La ducha — женского рода: **la** ducha."
+      - mission:
+          id: camino
+          title: Дорога
+          text: "Суббота, утро. Вы спрашиваете у сеньоры, как пройти на Пласа Майор."
+      - build:
+          source: camino
+          skill: se_impersonal
+          items:
+            - es: "Perdone, ¿cómo se va a la Plaza Mayor?"
+              ru: "Вежливо спросите: «Извините, как пройти на Пласа Майор?»"
+              extra: [vas]
+      - choose:
+          source: camino
+          skill: direcciones
+          items:
+            - say: "Siga todo recto y gire a la izquierda en el segundo semáforo. Está a cinco minutos andando."
+              q: "Как пройти?"
+              options: "прямо, у второго светофора налево, пять минут пешком | прямо, у второго светофора направо, пять минут на автобусе | налево у первого светофора, потом прямо, пятнадцать минут пешком"
+              explain: "Siga todo recto — идите прямо; gire a la izquierda — поверните налево."
+              noaudio: {q: "Как пройти: «Siga todo recto y gire a la izquierda en el segundo semáforo. Está a cinco minutos andando»?", options: "прямо, у второго светофора налево, пять минут пешком | прямо, у второго светофора направо, пять минут на автобусе | налево у первого светофора, потом прямо, пятнадцать минут пешком"}
+      - mission:
+          id: farmacia
+          title: Аптека
+          text: "После обеда вам плохо: болит живот. Вы заходите в аптеку."
+      - choose:
+          source: farmacia
+          items:
+            - lines: ["Farmacéutico: Buenas tardes. ¿Qué le pasa?"]
+              options: "Me encuentro mal: me duele el estómago. | Estoy muy mal: me duelen mucho el estómago. | Me encuentro mal: duelo el estómago."
+              explain: "Me duele + одна часть тела: me duele el estómago."
+              skill: sintomas
+            - lines: ["Farmacéutico: Debería beber mucha agua y descansar un poco."]
+              q: "Что советует фармацевт?"
+              options: "пить много воды и немного отдохнуть | выпить таблетку и погулять | ничего не есть и не пить до самого вечера"
+              explain: "Debería — «вам следовало бы», совет."
+              skill: condicional
+      - mission:
+          id: tienda
+          title: Магазин
+          text: "Вчера вы купили брату рубашку, но она ему мала. Вы возвращаетесь в магазин."
+      - write:
+          source: tienda
+          skill: devolver
+          items:
+            - q: "Скажите продавцу: «Я хотел(а) бы поменять эту рубашку: она маленькая»."
+              a: "Quería cambiar esta camisa: es pequeña | [Quería/Quiero/Me gustaría] cambiar esta camisa (porque) es (muy) pequeña | Quería cambiar esta camisa (porque) le queda pequeña"
+              format: фраза по-испански
+              explain: "Quería cambiar… — вежливо: «я хотел бы поменять»."
+      - choose:
+          source: tienda
+          items:
+            - lines: ["Dependiente: ¿Tiene usted el tique?"]
+              options: "Sí, aquí lo tiene. | Sí, aquí la tiene. | Sí, aquí le tiene."
+              explain: "El tique — мужской род: lo tiene."
+              skill: lo_la
+      - mission:
+          id: llamada
+          title: Звонок Диего
+          text: "Вечером звонит Диего: он хочет знать, как прошли выходные."
+      - choose:
+          source: llamada
+          items:
+            - lines: ["Diego: ¿Qué has hecho hoy?"]
+              options: "He visitado la universidad y he comido en la Plaza Mayor. | Visitaba la universidad todos los días y comía en la plaza. | Voy a visitar la universidad y voy a comer en la plaza."
+              explain: "Hoy — perfecto: he visitado, he comido."
+              skill: perf_indef
+            - lines: ["Diego: ¿Y qué te parece Salamanca? ¿Es más bonita que Madrid?"]
+              options: "Es tan bonita como Madrid, pero más tranquila. | Es tan bonita que Madrid, pero más tranquila. | Es más bonita como Madrid, pero tan tranquila."
+              explain: "Tan… como — «такой же… как»; más… que — «более… чем»."
+              skill: tan_como
+      - write:
+          source: llamada
+          skill: si_presente
+          items:
+            - q: "Diego: ¿Y qué vas a hacer mañana? — «Если будет хорошая погода, пойду в парк»."
+              a: "Si hace buen tiempo, voy a ir al parque | Si hace [buen tiempo/sol] (mañana) [voy a ir/voy] al parque | (Mañana) [voy a ir/voy] al parque si hace buen tiempo | Mañana si hace buen tiempo [voy a ir/voy] al parque"
+              format: фраза по-испански
+              explain: "Si + настоящее: si hace buen tiempo."
+              mistakes:
+                "si hará buen tiempo voy a ir al parque": "После si — настоящее время: si **hace** buen tiempo."
+
+  - id: lectura
+    kind: reading
+    title: "Un viaje inolvidable"
+    goal: прочитать рассказ о поездке и найти в нём все времена A2
+    version: 2
+    vocab:
+      - "🌟 inolvidable [инольбида́блэ] — незабываемый {forms: inolvidables} :: Fue un viaje inolvidable. — Это была незабываемая поездка."
+      - "🫙 lleno/a [ье́но, ье́на] — полный, заполненный :: La calle estaba llena de gente. — Улица была полна людей."
+    blocks:
+      - learn: [inolvidable, lleno/a]
+      - "Ирина пишет в блог о поездке в Кордову."
+      - reading:
+          id: cordoba
+          title: Un viaje inolvidable
+          text: |
+            El mes pasado fui a Córdoba con mi amiga Olga. Salimos de Madrid el viernes por la tarde y llegamos a las diez de la noche. Nuestro hotel era una casa antigua con un patio lleno de flores.
+
+            El sábado por la mañana visitamos la Mezquita. Hacía muchísimo calor y había muchos turistas, pero el edificio era precioso. Mientras hacíamos fotos, Olga perdió su cartera. ¡Qué susto! Por suerte, un camarero muy amable la encontró y nos la devolvió.
+
+            Por la noche cenamos en un bar del centro. Córdoba es más pequeña y más tranquila que Madrid, y la comida es más barata.
+
+            Fue un viaje inolvidable. Compré recuerdos para toda la familia, y esta semana he hablado del viaje con todos mis compañeros. Si vais a Córdoba, os recomiendo ir en primavera: hace menos calor y los patios están llenos de flores.
+          translation: |
+            В прошлом месяце я ездила в Кордову с подругой Ольгой. Мы выехали из Мадрида в пятницу днём и приехали в десять вечера. Наша гостиница была старинным домом с двориком, полным цветов.
+
+            В субботу утром мы осмотрели Мескиту. Было ужасно жарко и было много туристов, но здание было прекрасным. Пока мы фотографировали, Ольга потеряла кошелёк. Вот мы испугались! К счастью, очень любезный официант нашёл его и вернул нам.
+
+            Вечером мы ужинали в баре в центре. Кордова меньше и спокойнее Мадрида, и еда там дешевле.
+
+            Это была незабываемая поездка. Я купила сувениры всей семье, а на этой неделе рассказала о поездке всем коллегам. Если поедете в Кордову, советую ехать весной: не так жарко, и дворики полны цветов.
+      - choose:
+          title: Что пишет Ирина?
+          source: cordoba
+          items:
+            - q: "¿Cuándo llegaron a Córdoba?"
+              options: "El viernes por la noche. | El sábado por la mañana. | El viernes por la mañana."
+              explain: "…llegamos a las diez de la noche."
+              skill: pret_ar
+            - q: "¿Cómo era el hotel?"
+              options: "Una casa antigua con un patio. | Un hotel muy grande, moderno y caro. | Una casa nueva cerca del río."
+              explain: "Nuestro hotel era una casa antigua con un patio…"
+              skill: describir_pasado
+            - q: "¿Qué pasó mientras hacían fotos?"
+              options: "Olga perdió su cartera. | Empezó a llover. | Un camarero les hizo una foto."
+              explain: "Mientras hacíamos fotos, Olga perdió su cartera."
+              skill: fondo_hechos
+            - q: "¿Cómo es Córdoba para Irina?"
+              options: "Más pequeña y más tranquila que Madrid. | Más grande y más cara que Madrid. | Tan grande como Madrid, pero más barata."
+              explain: "Córdoba es más pequeña y más tranquila que Madrid…"
+              skill: comparar
+            - q: "¿Cuándo es mejor ir a Córdoba?"
+              options: "En primavera. | En agosto, en vacaciones. | En invierno."
+              explain: "…os recomiendo ir en primavera."
+      - sort:
+          title: Как было или что случилось?
+          source: cordoba
+          skill: fondo_hechos
+          groups:
+            "как было (фон)": ["el hotel era una casa antigua", "hacía muchísimo calor", "había muchos turistas"]
+            "что случилось (событие)": ["Olga perdió su cartera", "un camarero la encontró", "cenamos en un bar del centro"]
+      - write:
+          title: Ответьте по тексту
+          format: короткий ответ по-испански
+          source: cordoba
+          items:
+            - q: "Как в тексте сказано «Это была незабываемая поездка»?"
+              a: "Fue un viaje inolvidable"
+              explain: "Fue — оценка законченной поездки."
+              skill: fui_fue
+            - q: "¿Qué compró Irina para su familia?"
+              a: "Recuerdos | (Compró) recuerdos (para toda la familia)"
+              explain: "Compré recuerdos para toda la familia."
+      - choose:
+          title: Послушайте
+          free: true
+          rule: none
+          items:
+            - say: "Los patios de Córdoba están llenos de flores."
+              options: "Дворики Кордовы полны цветов. | В Кордове нет двориков с цветами. | Во двориках Кордовы продают цветы."
+              explain: "Lleno de… — полный чего-то."
+              noaudio: {q: "Что значит «Los patios de Córdoba están llenos de flores»?", options: "Дворики Кордовы полны цветов. | В Кордове нет двориков с цветами. | Во двориках Кордовы продают цветы."}
+
+  - id: proyecto
+    kind: practice
+    title: Рассказ о поездке
+    goal: рассказать о своей поездке в разговоре и письменно — итоговый проект A2
+    version: 2
+    blocks:
+      - review:
+          title: Вспомним
+          skills: [hispano, se_pasiva, geografia]
+          n: 2
+      - mission:
+          id: mi_viaje
+          title: Рассказ о поездке
+          text: "Вечером звонит Диего: он хочет услышать о вашей лучшей поездке — куда вы ездили, как там было и что случилось."
+      - chat:
+          id: diego_viaje
+          title: Разговор с Диего
+          with: Diego
+          turns:
+            - say: "¿Cuál es el mejor viaje de tu vida? ¿Adónde fuiste? | Какая поездка была лучшей в твоей жизни? Куда ты ездила?"
+              task: "Ответьте от себя: куда, когда и с кем вы ездили."
+              skill: pret_irregular
+              compose:
+                format: "Fui a… en… con…"
+                words: [4, 30]
+                checks:
+                  - label: "что сделали: fui, viajé, estuve…"
+                    any: [fui, fuimos, viajé, viajamos, estuve, estuvimos, pasé, pasamos]
+                sample: "Fui a Valencia el verano pasado con mi hermano."
+                sample_ru: "Я ездила в Валенсию прошлым летом с братом."
+            - say: "¿Y cómo era? ¿Qué tiempo hacía? | А как там было? Какая была погода?"
+              task: "Опишите место и погоду: era…, hacía…, había…"
+              skill: describir_pasado
+              compose:
+                format: "Era… Hacía… Había…"
+                words: [5, 35]
+                checks:
+                  - label: "как было: era, hacía, había…"
+                    any: [era, eran, hacía, había, estaba, estaban, tenía, tenían]
+                sample: "Era una ciudad muy bonita, con playa. Hacía sol, pero no hacía mucho calor."
+                sample_ru: "Это был очень красивый город с пляжем. Было солнечно, но не слишком жарко."
+            - say: "¿Pasó algo especial? | Случилось что-нибудь особенное?"
+              task: "Расскажите, что случилось: mientras…, de repente…"
+              skill: fondo_hechos
+              compose:
+                format: "Mientras… de repente…"
+                words: [6, 40]
+                checks:
+                  - label: "фон: mientras, cuando, estaba…"
+                    any: [mientras, cuando, estaba, estábamos, de repente]
+                  - label: "событие: empezó, perdí, conocimos…"
+                    any: [empezó, perdí, perdió, perdimos, conocí, conocimos, vi, vimos, encontré, encontramos, pasó, me caí, tuve, tuvimos, comimos, entramos]
+                sample: "Mientras paseábamos por la playa, de repente empezó a llover y entramos en un restaurante."
+                sample_ru: "Пока мы гуляли по пляжу, вдруг пошёл дождь, и мы зашли в ресторан."
+            - say: "¡Qué bien! Yo también quiero ir. ¿Qué me recomiendas? | Здорово! Я тоже хочу поехать. Что посоветуешь?"
+              task: "Посоветуйте Диего на «ты»: что посмотреть, что попробовать."
+              skill: imperativo_tu
+              compose:
+                format: "Te recomiendo… Prueba… Visita…"
+                words: [4, 35]
+                checks:
+                  - label: "совет на «ты»: te recomiendo, prueba, visita…"
+                    any: [te recomiendo, prueba, visita, ve a, ve al, reserva, come, lleva, deberías, tienes que]
+                sample: "Te recomiendo ir en primavera. Prueba la paella y visita el centro."
+                sample_ru: "Советую ехать весной. Попробуй паэлью и сходи в центр."
+            - say: "¿Y te gustaría volver? | А тебе хотелось бы вернуться?"
+              task: "Ответьте: да, вам бы очень хотелось вернуться в следующем году."
+              skill: deseos
+              write: "Sí, me gustaría mucho volver el año que viene | Sí, me gustaría (mucho) volver [el año que viene/el próximo año] | Sí, [el año que viene/el próximo año] me gustaría (mucho) volver | Sí, me gustaría (mucho) volver"
+              format: ответ
+              mistakes:
+                "sí me gusta volver el año que viene": "Желание — condicional: me **gustaría** volver."
+            - say: "¡Entonces la próxima vez vamos juntos! | Тогда в следующий раз поедем вместе!"
+      - compose:
+          title: Рассказ о поездке
+          free: true
+          rule: none
+          skill: [tiempos_a2, fondo_hechos, comparar, imperativo_tu]
+          items:
+            - q: "Итоговый проект A2. Напишите рассказ о поездке, 100–120 слов: куда, когда и с кем вы ездили · каким было место и какая была погода · что случилось · сравните это место со своим городом · что посоветуете другу и хотели бы вы вернуться."
+              format: "El verano pasado fui a… Era… Hacía… Un día, mientras… Es más… que… Te recomiendo… Me gustaría volver…"
+              words: [85, 160]
+              sentences: 7
+              checks:
+                - label: "что сделали: fui, visitamos, comimos…"
+                  any: [fui, fuimos, viajé, viajamos, visité, visitamos, estuve, estuvimos, llegué, llegamos, comí, comimos, vi, vimos, conocí, conocimos, pasé, pasamos]
+                - label: "как было: era, hacía, había…"
+                  any: [era, eran, hacía, había, estaba, estaban, tenía, tenían]
+                - label: "что случилось на фоне: mientras, de repente…"
+                  any: [mientras, de repente, cuando]
+                - label: "сравнение: más / menos… que, tan… como"
+                  re: "\\b(más|menos)\\b.*\\bque\\b|\\btan\\b.*\\bcomo\\b|\\b(mejor|peor)\\b"
+                - label: "совет и желание: te recomiendo, me gustaría…"
+                  any: [recomiendo, me gustaría, tengo ganas de, voy a volver, pienso volver, visita, prueba]
+              sample: "El verano pasado fui a Valencia con mi hermano. Llegamos un viernes por la mañana y nos quedamos cuatro días en un hotel cerca de la playa. Era una ciudad muy bonita y alegre, y hacía sol todos los días. Un día, mientras paseábamos por la playa, de repente empezó a llover. Entramos en un restaurante pequeño y comimos la mejor paella de nuestra vida. Valencia es más pequeña que Madrid, pero tiene mar, y la comida es más barata. Fue un viaje inolvidable. Si vas a Valencia, te recomiendo probar la paella cerca de la playa. Me gustaría volver el año que viene con toda la familia."
+              sample_ru: "Прошлым летом я ездила в Валенсию с братом. Мы приехали в пятницу утром и провели четыре дня в гостинице у пляжа. Город был очень красивым и весёлым, и каждый день светило солнце. Однажды, когда мы гуляли по пляжу, вдруг пошёл дождь. Мы зашли в маленький ресторан и съели лучшую паэлью в нашей жизни. Валенсия меньше Мадрида, но там есть море, и еда дешевле. Это была незабываемая поездка. Если поедешь в Валенсию, советую попробовать паэлью у пляжа. Мне хотелось бы вернуться в следующем году всей семьёй."
+
+  - id: examen
+    kind: final
+    title: Итоговый тест A2
+    goal: "проверить весь уровень: слух, чтение и формы"
+    version: 2
+    # Контроль уровня A2: закрытая часть, порог 80 %, ошибки не переспрашиваются, у каждого задания — навык
+    # (экран результата показывает слабые темы со ссылками на уроки). Ввод — только короткие формы;
+    # фразы целиком — сборкой и выбором. Письма и разговора здесь нет: они в уроке proyecto и в балл не входят.
+    check: control
+    blocks:
+      - "Итоговый тест уровня A2: слух, чтение и формы — двадцать семь заданий. Чтобы завершить уровень, нужно 80 %. Ошибки здесь не переспрашиваются: результат покажет, какие темы стоит повторить."
+      - text:
+          slide: new
+          text: "**Слух.** Ирина рассказывает Диего о выходных. Послушайте разговор два раза: текста нет."
+      - dialogue:
+          id: segovia
+          hidden: true
+          title: Выходные в Сеговии
+          lines:
+            - "Diego: ¡Hola, Irina! ¿Qué tal el fin de semana? | Привет, Ирина! Как выходные?"
+            - "Irina: Genial. He estado en Segovia con Olga. | Отлично. Я была в Сеговии с Ольгой."
+            - "Diego: ¡Qué bien! ¿Y qué tal el tiempo? | Здорово! А как погода?"
+            - "Irina: Hacía frío, pero no llovía. Hemos visitado la catedral y hemos comido en un restaurante muy famoso. | Было холодно, но дождя не было. Мы осмотрели собор и пообедали в очень известном ресторане."
+            - "Diego: ¿Y volvisteis el domingo? | И вы вернулись в воскресенье?"
+            - "Irina: Sí, pero el autobús llegó con una hora de retraso. Mientras esperábamos, empezó a nevar. | Да, но автобус пришёл с опозданием на час. Пока мы ждали, пошёл снег."
+            - "Diego: ¡Qué mala suerte! Oye, ¿te apetece ir al cine el jueves? | Вот не повезло! Слушай, хочешь сходить в кино в четверг?"
+            - "Irina: El jueves no puedo, es que tengo clase. ¿Qué tal el viernes? | В четверг не могу: у меня занятие. Как насчёт пятницы?"
+            - "Diego: Perfecto. Si no hay entradas, te llamo. | Отлично. Если билетов не будет, я тебе позвоню."
+      - choose:
+          title: Что вы поняли?
+          source: segovia
+          items:
+            - q: "¿Dónde ha estado Irina?"
+              options: "En Segovia, con Olga. | En Segovia, con Diego. | En Toledo, con Olga."
+              explain: "Irina: He estado en Segovia con Olga."
+              skill: perfect
+            - q: "¿Qué tiempo hacía?"
+              options: "Frío, pero no llovía. | Calor, pero llovía mucho. | Sol y muchísimo calor."
+              explain: "Irina: Hacía frío, pero no llovía."
+              skill: imperfecto_uso
+            - q: "¿Qué pasó el domingo?"
+              options: "El autobús llegó tarde y empezó a nevar. | Perdieron el autobús y volvieron en tren. | El autobús salió una hora antes."
+              explain: "…el autobús llegó con una hora de retraso. Mientras esperábamos, empezó a nevar."
+              skill: fondo_hechos
+            - q: "¿Por qué no puede ir Irina al cine el jueves?"
+              options: "Porque tiene clase. | Porque trabaja hasta muy tarde. | Porque está enferma."
+              explain: "Irina: El jueves no puedo, es que tengo clase."
+              skill: rechazar
+            - q: "¿Qué va a hacer Diego si no hay entradas?"
+              options: "Llamar a Irina. | Comprar entradas para el jueves. | Ir al cine solo."
+              explain: "Diego: Si no hay entradas, te llamo."
+              skill: si_presente
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          free: true
+          rule: none
+          items:
+            - say: "Cuando era pequeña, vivía en un pueblo cerca del mar."
+              a: "Cuando era pequeña, vivía en un pueblo cerca del mar"
+              skill: imperfecto_er_ir
+              noaudio: {q: "Напишите по-испански: «Когда я была маленькой, я жила в деревне у моря».", a: "Cuando era pequeña, vivía en un pueblo cerca del mar | [Cuando era pequeña/De pequeña/De niña] vivía en un pueblo cerca del mar"}
+            - say: "Si tienes tiempo, ven a mi casa el sábado."
+              a: "Si tienes tiempo, ven a mi casa el sábado"
+              skill: imperativo_tu
+              noaudio: {q: "Напишите по-испански: «Если у тебя будет время, приходи ко мне в субботу».", a: "Si tienes tiempo, ven a mi casa el sábado | Si tienes tiempo [ven a mi casa el sábado/ven a casa el sábado/el sábado ven a mi casa] | [Ven a mi casa el sábado/Ven a casa el sábado] si tienes tiempo"}
+      - write:
+          title: Вставьте форму
+          format: одно или два слова
+          free: true
+          rule: none
+          items:
+            - q: "Ayer (nosotros, ir) ___ al cine."
+              a: "fuimos | (nosotros) fuimos"
+              explain: "Ayer — indefinido; ir: fui, fuiste, fue, fuimos."
+              skill: fui_fue
+            - q: "De niño (yo, jugar) ___ en la calle con mis amigos."
+              a: "jugaba | (yo) jugaba"
+              explain: "Как было в детстве — imperfecto: jugaba."
+              skill: imperfecto_ar
+            - q: "¿(Tú, estar) ___ alguna vez en México?"
+              a: "Has estado | (tú) has estado (alguna vez)"
+              explain: "Опыт «когда-нибудь» — perfecto: has estado."
+              skill: perfect
+              mistakes:
+                "estuviste": "Опыт «когда-нибудь» в Испании — perfecto: **has estado**."
+            - q: "Mi hermana es ___ alta como yo."
+              a: "tan"
+              explain: "Tan… como — «такая же… как»."
+              skill: tan_como
+            - q: "¿Le has comprado el regalo a tu madre? — Sí, ya ___ he comprado."
+              a: "se lo | se lo (he comprado)"
+              explain: "Le + lo → se lo."
+              skill: le_les
+              mistakes:
+                "le lo": "Le и lo вместе не ставят: **se lo**."
+            - q: "Si (llover) ___ mañana, nos quedamos en casa."
+              a: "llueve"
+              explain: "После si — настоящее время: si llueve."
+              skill: si_presente
+              mistakes:
+                "lloverá": "После si — настоящее время: si **llueve**."
+      - choose:
+          title: Выберите вариант
+          free: true
+          rule: none
+          items:
+            - q: "Mientras ___ la tele, sonó el teléfono."
+              options: "veía | vi | he visto"
+              explain: "Mientras — фон, на котором что-то случилось: imperfecto, veía."
+              skill: fondo_hechos
+            - q: "Señora, ___ la segunda calle a la derecha."
+              options: "tome | toma | tomas"
+              explain: "На «вы» (usted): tome."
+              skill: imperativo_usted
+            - q: "Buenos días, ___ reservar una mesa para dos, por favor."
+              options: "me gustaría | me gustó | me gustaba"
+              explain: "Вежливая просьба — condicional: me gustaría."
+              skill: condicional
+            - q: "Estos zapatos cuestan trescientos euros: son ___."
+              options: "carísimos | carísimas | muy carísimos"
+              explain: "Los zapatos — мужской род, мн. ч.: carísimos. Muy с -ísimo не ставят."
+              skill: superlativo
+            - q: "Esta maleta no es mía, es ___."
+              options: "tuya | tu | tuyo"
+              explain: "La maleta — женский род: tuya."
+              skill: posesivos
+            - q: "Hoy Pablo ___ muy nervioso: tiene un examen."
+              options: "está | es | estuvo"
+              explain: "Состояние сейчас — estar: está nervioso."
+              skill: ser_estar_adj
+            - q: "En España ___ muy tarde: a las diez o a las once."
+              options: "se cena | se cenan | cenan se"
+              explain: "Se cena — «ужинают» (вообще, обычно)."
+              skill: se_pasiva
+            - q: "Estudio español ___ hace tres años."
+              options: "desde | hace | por"
+              explain: "Desde hace tres años — «уже три года»."
+              skill: desde_hace
+      - text:
+          slide: new
+          text: "**Чтение.** Ольга пишет Ирине."
+      - reading:
+          id: olga
+          title: Mensaje de Olga
+          text: |
+            ¡Hola, Irina! ¿Qué tal por Madrid? Yo estoy muy cansada: esta semana he trabajado muchísimo en el hospital.
+
+            El sábado que viene es mi cumpleaños y voy a hacer una cena en casa. Si podéis venir, Diego y tú podéis dormir aquí: mi piso nuevo es más grande que el antiguo. Li va a cocinar: ¡cocina mejor que nadie!
+
+            Otra cosa: necesito el libro que te dejé para un examen. ¿Me lo puedes devolver?
+
+            Un beso,
+            Olga
+          translation: |
+            Привет, Ирина! Как там в Мадриде? А я очень устала: на этой неделе ужасно много работала в больнице.
+
+            В следующую субботу у меня день рождения, и я устраиваю ужин дома. Если сможете приехать, вы с Диего можете переночевать у меня: моя новая квартира больше старой. Готовить будет Ли — он готовит лучше всех!
+
+            И ещё: мне нужна для экзамена книга, которую я тебе давала. Можешь мне её вернуть?
+
+            Целую,
+            Ольга
+      - choose:
+          title: Что пишет Ольга?
+          source: olga
+          items:
+            - q: "¿Por qué está cansada Olga?"
+              options: "Ha trabajado mucho esta semana. | Ha estado enferma toda la semana. | Ha preparado una cena muy grande para la fiesta."
+              explain: "…esta semana he trabajado muchísimo en el hospital."
+              skill: perfect
+            - q: "¿Qué propone Olga a Irina y a Diego?"
+              options: "Dormir en su casa después de la cena. | Cenar juntos en un restaurante de Madrid. | Ir al hospital a ver a sus compañeros."
+              explain: "Si podéis venir, Diego y tú podéis dormir aquí."
+              skill: proponer
+            - q: "¿Cómo es el piso nuevo de Olga?"
+              options: "Más grande que el antiguo. | Más pequeño que el antiguo. | Tan grande como el antiguo."
+              explain: "…mi piso nuevo es más grande que el antiguo."
+              skill: comparar
+            - q: "¿Qué le pide Olga a Irina?"
+              options: "Devolver el libro. | Comprar algo de comida y bebida para la cena. | Cocinar con Li."
+              explain: "¿Me lo puedes devolver?"
+              skill: le_les
+      - build:
+          title: Соберите фразу
+          free: true
+          rule: none
+          items:
+            - es: "Por la mañana te recomiendo visitar el centro."
+              ru: "Посоветуйте другу: «Утром советую тебе осмотреть центр»."
+              alt: ["Te recomiendo visitar el centro por la mañana."]
+              extra: [visita]
+              skill: consejo
+            - es: "Cuando llegamos, estaba lloviendo."
+              ru: "Когда мы приехали, шёл дождь."
+              alt: ["Estaba lloviendo cuando llegamos."]
+              extra: [estuvo]
+              skill: estaba_gerundio
+
+  - id: fin
+    kind: finale
+    title: "¡Enhorabuena! Уровень A2"
+    goal: увидеть, чему вы научились на уровне A2, и выбрать, что делать дальше
+    version: 2
+    vocab:
+      - "🏆 ¡Lo has conseguido! [ло ас консэги́до] — у тебя получилось! ты добился своего!"
+      - "💪 ¡Sigue así! [си́гэ аси́] — так держать! продолжай в том же духе!"
+    blocks:
+      - "**¡Enhorabuena!** Вы прошли уровень **A2**: девятнадцать тем, больше ста сорока уроков и почти пятьсот новых слов и выражений. Теперь вы умеете рассказывать о прошлом, сравнивать, советовать и договариваться."
+      - learn: ["¡Lo has conseguido!", "¡Sigue así!"]
+      - cando:
+          - "рассказать о прошлом — что сделали, как было раньше и что случилось: _Ayer fui al médico. De niña vivía en Kiev. Mientras paseaba, empezó a llover._"
+          - "сравнить людей, места и времена: _Antes había menos coches que ahora._"
+          - "договориться о встрече, предложить и вежливо отказаться: _¿Quedamos el viernes? El jueves no puedo, es que tengo clase._"
+          - "дать совет и инструкцию, объяснить дорогу: _Deberías descansar. Gire a la derecha._"
+          - "объясниться у врача и в аптеке, вернуть покупку: _Me encuentro mal. Quería cambiar esta camisa._"
+          - "рассказать о работе, учёбе, планах и мечтах: _Pienso estudiar en España. Me gustaría vivir cerca del mar._"
+          - "рассказать о своей стране и понять, чем испанский Испании отличается от мексиканского: _En México se dice «carro»._"
+      - header:
+          slide: new
+          text: Что дальше?
+      - list:
+          - "🔁 **Повторяйте**: во вкладке «Повторить» — слова и «Фразы и конструкции» уровней A0–A2."
+          - "📚 **Читайте**: адаптированные книги уровня A2 и «Разбор книг» на главной."
+          - "🎬 **Смотрите и слушайте**: сериалы и видео с испанскими субтитрами; на главной есть «Разбор видео»."
+          - "💬 **Говорите**: в языковом обмене вы уже можете рассказать о себе, о прошлом и о планах."
+          - "📝 **Проверьте уровень**: Институт Сервантеса проводит международный экзамен DELE A2. Этот курс — хорошая подготовка, но сам по себе он сертификата не даёт."
+          - "🚀 **Дальше — B1**: сослагательное наклонение, будущее время, связный рассказ и письма."
+      - choose:
+          title: Последнее задание
+          rule: none
+          items:
+            - lines: ["Profesora: ¡Enhorabuena! Ya has terminado las lecciones de A2."]
+              options: "¡Muchas gracias! | ¡Que te mejores! | Lo siento mucho."
+              explain: "На поздравление отвечают «¡Muchas gracias!»."
+            - q: "Как сказать другу «У тебя получилось!»?"
+              options: "¡Lo has conseguido! | ¡Sigue así! | ¡Mucha suerte!"
+              explain: "¡Lo has conseguido! — «у тебя получилось»."
+            - q: "Как сказать «Так держать!»?"
+              options: "¡Sigue así! | ¡Lo has conseguido! | ¡Que te mejores!"
+              explain: "¡Sigue así! — «так держать, продолжай в том же духе»."

@@ -1,0 +1,776 @@
+id: que_paso
+number: 32
+level: A2
+title: ¿Qué pasó? — что случилось
+goals:
+  - рассказать историю: обстановка — imperfecto, события — indefinido
+  - сказать, что вы делали, когда что-то случилось: estaba + герундий
+  - связать рассказ: cuando, de repente, entonces, al final
+  - выслушать чужую историю и отреагировать
+
+# Тема 9 карты A2: indefinido и imperfecto вместе; cuando, de repente, entonces, al final; estaba + герундий;
+# случаи и происшествия. Миссия — рассказ о происшествии.
+lessons:
+  - id: la_cartera
+    kind: listening
+    title: "¿Qué te pasó?"
+    goal: понять на слух рассказ о происшествии
+    version: 2
+    # Карта экранов: docs/site_slide_maps/32_que_paso.md
+    vocab:
+      - "👛 la cartera [картэ́ра] — кошелёк, бумажник :: No encuentro la cartera. — Не могу найти кошелёк."
+      - "🦹 robar [роба́р] — украсть :: Me robaron la cartera. — У меня украли кошелёк."
+      - "👮 la policía [полиθи́а] — полиция :: Fui a la policía. — Я пошёл в полицию."
+      - "⚡ de repente [дэ рэпэ́нтэ] — вдруг :: De repente, vi a Pablo. — Вдруг я увидел Пабло."
+      - "➡️ entonces [энто́нθэс] — тогда, и тут :: Entonces llamé a mi madre. — Тогда я позвонил маме."
+      - "🏁 al final [аль фина́ль] — в конце концов, в итоге :: Al final, no pasó nada. — В итоге ничего не случилось."
+      - "🍀 por suerte [пор суэ́ртэ] — к счастью :: Por suerte, tenía el móvil. — К счастью, телефон был со мной."
+      - "😱 el susto [су́сто] — испуг :: ¡Qué susto! — Как страшно! Вот это испуг!"
+    blocks:
+      - "Диего рассказывает Ирине, что с ним случилось вчера. Послушайте разговор два раза: текста пока нет."
+      - dialogue:
+          id: cartera
+          hidden: true
+          lines:
+            - "Irina: Diego, ¿qué te pasó ayer? | Диего, что у тебя вчера случилось?"
+            - "Diego: ¡Me robaron la cartera! Estaba en el metro, había mucha gente y yo escuchaba música. | У меня украли кошелёк! Я был в метро, народу было много, а я слушал музыку."
+            - "Irina: ¿Y no viste nada? | И ты ничего не видел?"
+            - "Diego: No. Cuando salí del metro, de repente vi que no tenía la cartera. | Нет. Когда я вышел из метро, вдруг увидел, что кошелька нет."
+            - "Irina: ¡Qué susto! ¿Y qué hiciste? | Вот это испуг! И что ты сделал?"
+            - "Diego: Entonces fui a la policía. Por suerte, una señora encontró la cartera en la calle y la llevó allí. | Тогда я пошёл в полицию. К счастью, одна женщина нашла кошелёк на улице и отнесла его туда."
+            - "Irina: ¿Y estaba todo? | И всё было на месте?"
+            - "Diego: Sí, todo. Al final, solo fue un susto. | Да, всё. В итоге я просто испугался."
+      - choose:
+          title: Что вы поняли?
+          source: cartera
+          items:
+            - q: "Где был Диего, когда у него украли кошелёк?"
+              options: "En el metro. | En un café. | En la calle."
+              explain: "Diego: Estaba en el metro, había mucha gente…"
+            - q: "Что он делал в метро?"
+              options: "Escuchaba música. | Leía un libro. | Hablaba por teléfono."
+              explain: "Diego: …y yo escuchaba música."
+      - learn: [la cartera, robar, la policía, de repente]
+      - choose:
+          title: Что было дальше?
+          source: cartera
+          items:
+            - q: "Когда Диего увидел, что кошелька нет?"
+              options: "Cuando salió del metro. | Cuando estaba en el metro. | Cuando llegó a casa."
+              explain: "Diego: Cuando salí del metro, de repente vi que no tenía la cartera."
+            - q: "Что он сделал?"
+              options: "Fue a la policía. | Llamó a Irina. | Volvió al metro."
+              explain: "Diego: …fui a la policía."
+      - learn: [entonces, al final, por suerte, el susto]
+      - choose:
+          title: Чем всё закончилось?
+          source: cartera
+          items:
+            - q: "Кто нашёл кошелёк?"
+              options: "Una señora. | Un chico del metro. | Irina."
+              explain: "Diego: Por suerte, una señora encontró la cartera en la calle."
+            - q: "Что Диего потерял в итоге?"
+              options: "Nada. | Todo el dinero. | El móvil."
+              explain: "Diego: Sí, todo. Al final, solo fue un susto."
+            - q: "Какой фразой Диего подводит итог истории?"
+              options: "Al final, solo fue un susto. | Por suerte, fui a la policía. | De repente, vi que no tenía la cartera."
+              explain: "Al final — «в итоге»: так заканчивают рассказ."
+      - text:
+          id: notice
+          slide: new
+          text: "Диего рассказывает историю двумя временами: что было **вокруг** — в imperfecto (estaba en el metro, había mucha gente, escuchaba música), что **случилось** — в indefinido (salí, vi, fui)."
+      - examples:
+          items:
+            - "**Estaba** en el metro y **había** mucha gente. — Я был в метро, народу было много."
+            - "Cuando **salí** del metro, de repente **vi**… — Когда я вышел из метро, вдруг увидел…"
+            - "Entonces **fui** a la policía. — Тогда я пошёл в полицию."
+      - sort:
+          title: Обстановка или событие?
+          source: cartera
+          skill: fondo_hechos
+          rule: notice
+          groups:
+            "обстановка": ["estaba en el metro", "había mucha gente", "escuchaba música"]
+            "событие": ["salí del metro", "fui a la policía", "una señora encontró la cartera"]
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          free: true
+          skill: fondo_hechos
+          rule: notice
+          items:
+            - say: "De repente vi que no tenía la cartera."
+              a: "De repente vi que no tenía la cartera"
+              explain: "Vi — событие, no tenía — положение дел."
+              noaudio: {q: "Напишите по-испански: «Вдруг я увидел, что кошелька нет» (буквально: «что у меня не было кошелька»).", a: "De repente vi que no tenía la cartera"}
+      - choose:
+          title: Что ответить?
+          free: true
+          rule: none
+          items:
+            - lines: ["Diego: ¡Me robaron la cartera en el metro!"]
+              q: "Отреагируйте и спросите, что было."
+              options: "¡Qué susto! ¿Y qué hiciste? | ¡Qué suerte! ¿Y qué hiciste? | ¡Qué bien! ¿Y qué hiciste?"
+              explain: "¡Qué susto! — «вот это испуг!»; ¡Qué suerte! — «как повезло!»."
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: fondo_hechos
+          rule: notice
+          items:
+            - es: "Entonces fui a la policía."
+              ru: "Тогда я пошёл в полицию."
+              extra: [iba]
+            - es: "Por suerte, una señora encontró la cartera."
+              ru: "К счастью, одна женщина нашла кошелёк."
+
+  - id: fondo
+    kind: grammar
+    title: "Llovía y perdí el autobús"
+    goal: рассказать о случае в прошлом двумя временами
+    version: 2
+    vocab:
+      - "🌧 la lluvia [лью́бья] — дождь :: Con la lluvia hay mucho tráfico. — В дождь на дорогах много машин."
+      - "☂️ el paraguas [пара́гуас] — зонт {pl: los paraguas} :: No tenía paraguas. — У меня не было зонта."
+      - "💧 mojado/a [моха́до, моха́да] — мокрый :: Llegué a casa muy mojado. — Я пришёл домой совсем мокрый."
+    blocks:
+      - "В рассказе о прошлом два времени делят работу: imperfecto описывает обстановку — каким всё было, что происходило; indefinido называет события — что случилось."
+      - compare:
+          id: dos_tiempos
+          title: Обстановка и события
+          cards:
+            - head: imperfecto
+              say: false
+              label: "обстановка: как было"
+              tone: sun
+              text: "era, estaba, había, hacía, llovía, tenía"
+              ex: ["Llovía y hacía frío. — Шёл дождь, было холодно."]
+            - head: indefinido
+              say: false
+              label: "события: что случилось"
+              tone: blue
+              text: "salí, llegué, vi, perdí, fui"
+              ex: ["Perdí el autobús. — Я опоздал на автобус."]
+      - choose:
+          title: Обстановка или событие?
+          skill: fondo_hechos
+          rule: dos_tiempos
+          items:
+            - q: "Cuando salí de casa, ya ___ mucho."
+              options: "llovía | llovió | llueve"
+              explain: "Дождь уже шёл, когда я вышел, — обстановка: llovía."
+            - q: "Estaba en el parque cuando ___ a Pablo."
+              options: "vi | veía | veo"
+              explain: "Встреча — событие: vi."
+            - q: "Eran las ocho y no ___ nadie en la calle."
+              options: "había | hubo | hay"
+              explain: "Обстановка — había."
+      - learn: [la lluvia, el paraguas, mojado/a]
+      - note:
+          id: cuando
+          text: "**Cuando** + indefinido — момент события: _Cuando salí, vi a Ana_. Обстановка вокруг этого момента — в imperfecto: _Cuando salí, llovía_ — «когда я вышел, шёл дождь»."
+      - write:
+          title: Поставьте глагол
+          format: одна форма глагола
+          accents: strict
+          skill: fondo_hechos
+          rule: cuando
+          items:
+            - q: "Cuando (yo, salir) ___ de casa, llovía mucho."
+              a: "salí"
+              explain: "Выход из дома — событие: salí."
+              mistakes:
+                "salía": "Выход — событие, а не обстановка: **salí**."
+            - q: "Cuando salí de casa, ya (llover) ___ mucho."
+              a: "llovía"
+              explain: "Дождь уже шёл — обстановка: llovía."
+              mistakes:
+                "llovió": "Дождь уже шёл в тот момент — обстановка: **llovía**."
+            - q: "No (yo, tener) ___ paraguas y llegué muy mojado."
+              a: "tenía"
+              explain: "Положение дел — tenía."
+            - q: "(Ser) ___ las nueve cuando llegó el jefe."
+              a: "Eran"
+              explain: "Время в рассказе — обстановка: eran las nueve."
+              mistakes:
+                "fueron": "Время в рассказе — **eran** las nueve."
+      - choose:
+          title: Послушайте
+          skill: fondo_hechos
+          rule: dos_tiempos
+          items:
+            - say: "Cuando llegué a la estación, el tren ya no estaba."
+              options: "Когда я пришёл на вокзал, поезда уже не было. | Когда я пришёл на вокзал, поезд ещё стоял. | Я пришёл на вокзал, и поезд уехал позже."
+              explain: "Ya no estaba — «уже не было»: поезд ушёл раньше."
+              noaudio: {q: "Что значит «Cuando llegué a la estación, el tren ya no estaba»?", options: "Когда я пришёл на вокзал, поезда уже не было. | Когда я пришёл на вокзал, поезд ещё стоял. | Я пришёл на вокзал, и поезд уехал позже."}
+      - build:
+          title: Соберите фразу
+          skill: fondo_hechos
+          rule: cuando
+          items:
+            - es: "Cuando salí de casa, ya llovía mucho."
+              ru: "Когда я вышел из дома, уже шёл сильный дождь."
+              extra: [llovió]
+            - es: "No tenía paraguas y llegué muy mojado."
+              ru: "У меня не было зонта, и я пришёл совсем мокрый."
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: fondo_hechos
+          rule: dos_tiempos
+          items:
+            - q: "Шёл дождь, и я опоздал на автобус."
+              a: "Llovía y perdí el autobús | Estaba lloviendo y perdí el autobús"
+              explain: "Дождь — обстановка (llovía), опоздание — событие (perdí)."
+              mistakes:
+                "llovió y perdí el autobús": "Дождь шёл в это время — обстановка: **llovía**."
+                "llovía y perdía el autobús": "Опоздал — событие: **perdí**."
+      - compose:
+          title: О себе
+          skill: fondo_hechos
+          rule: dos_tiempos
+          items:
+            - q: "Вспомните день, когда что-то пошло не так. Какая была погода, где вы были — и что случилось? Две-три фразы."
+              format: "Era… Llovía… Perdí…"
+              words: [10, 50]
+              sentences: 2
+              checks:
+                - label: "обстановка: era, estaba, había, llovía…"
+                  re: "\\b\\w+(aba|abas|aban|ábamos)\\b|\\b(era|eras|eran|éramos|iba|ibas|iban|íbamos|había|tenía|tenías|tenían|teníamos|vivía|vivías|vivían|vivíamos|hacía|hacían|hacíamos|quería|podía|sabía|salía|salíamos|comía|comíamos|veía|veían|veíamos|leía|escribía|llovía|prefería|dormía|volvía|volvíamos|conocía|ponía|corría|corríamos|bebía|aprendía)\\b"
+                - label: "событие: perdí, llegué, fui, vi…"
+                  any: [fui, fue, fuimos, fueron, estuve, estuvo, tuve, tuvo, hice, hizo, vi, vio, vimos, dije, dijo, pude, vine, vino, perdí, perdió, perdimos, llegué, llegó, salí, salió, salimos, empecé, empezó, encontré, encontró, olvidé, olvidó, llamé, llamó, volví, volvió, pasó, compré, tomé]
+              sample: "Era lunes y llovía mucho. No tenía paraguas, perdí el autobús y llegué a la oficina muy mojada."
+              sample_ru: "Был понедельник, шёл сильный дождь. Зонта у меня не было, я опоздала на автобус и пришла на работу совсем мокрая."
+    quiz:
+      - q: "Cuando llegué a la fiesta, ya ___ mucha gente."
+        options: "había | hubo | hay"
+        explain: "Что было, когда я пришёл, — обстановка: había."
+        skill: fondo_hechos
+      - q: "Что значит «el paraguas»?"
+        options: "зонт | дождь | плащ"
+        explain: "El paraguas — зонт; дождь — la lluvia."
+      - q: "Con tanta ___ no puedo salir: no tengo paraguas."
+        options: "lluvia | gente | tráfico"
+        explain: "Дождь — la lluvia."
+        skill: fondo_hechos
+
+  - id: estaba
+    kind: grammar
+    title: "Estaba cocinando cuando sonó el teléfono"
+    goal: сказать, что вы делали, когда что-то случилось
+    version: 2
+    vocab:
+      - "🔔 sonar [сона́р] — звонить, звенеть (о телефоне, звонке) :: Sonó el teléfono. — Зазвонил телефон."
+      - "🚪 el timbre [ти́мбрэ] — звонок (в дверь) :: De repente sonó el timbre. — Вдруг позвонили в дверь."
+      - "⏱ mientras [мьэ́нтрас] — пока, в то время как :: Mientras cocinaba, escuchaba música. — Пока я готовил, я слушал музыку."
+      - "🤕 caerse [каэ́рсэ] — упасть :: Me caí en la calle. — Я упал на улице."
+      - "📞 contestar [контэста́р] — ответить (на звонок, вопрос) :: No contesté el teléfono. — Я не ответил на звонок."
+      - "🪜 las escaleras [эскалэ́рас] — лестница :: Me caí en las escaleras. — Я упал на лестнице."
+    blocks:
+      - "Чтобы сказать, что вы **как раз делали**, когда что-то случилось, берут **estaba** + герундий: _Estaba cocinando cuando sonó el teléfono_ — «Я готовил, когда зазвонил телефон»."
+      - learn: [sonar, el timbre, mientras, caerse, contestar, las escaleras]
+      - table:
+          id: estaba_gerundio
+          title: Действие в процессе и событие
+          rows:
+            - ["**estaba** + герундий", "Estaba cocinando cuando sonó el teléfono. — Я готовил, когда зазвонил телефон."]
+            - ["**mientras** + imperfecto", "Mientras cocinaba, escuchaba música. — Пока готовил, слушал музыку."]
+            - ["**cuando** + indefinido", "Cuando sonó el teléfono, contesté. — Когда зазвонил телефон, я ответил."]
+      - note:
+          id: gerundio
+          text: "Герундий вы уже знаете: -ar → **-ando** (cocinando), -er, -ir → **-iendo** (comiendo, viviendo), особые — leyendo, durmiendo. В прошлом меняется только estar: **estaba**, estabas, estaba, estábamos, estabais, estaban. Возвратное местоимение — перед estaba: _Me estaba duchando_."
+      - write:
+          title: Что они делали?
+          format: estaba + герундий
+          skill: estaba_gerundio
+          rule: gerundio
+          items:
+            - q: "Yo (cocinar) ___ cuando sonó el teléfono."
+              a: "estaba cocinando"
+              explain: "Готовил в тот момент — estaba cocinando."
+              mistakes:
+                "cociné": "Готовка шла в тот момент — **estaba cocinando**."
+            - q: "Ana (dormir) ___ cuando llegaron sus padres."
+              a: "estaba durmiendo"
+              explain: "Dormir — особый герундий: durmiendo."
+              mistakes:
+                "estaba dormiendo": "У dormir особый герундий: **durmiendo**."
+            - q: "Nosotros (ver) ___ una película cuando sonó el timbre."
+              a: "estábamos viendo"
+              explain: "Nosotros — estábamos; ver — viendo."
+              mistakes:
+                "estabamos viendo": "В форме «мы» нужен знак ударения: est**á**bamos."
+            - q: "¿Qué (tú, hacer) ___ ayer a las ocho?"
+              a: "estabas haciendo"
+              explain: "Tú — estabas; hacer — haciendo."
+      - choose:
+          title: Выберите форму
+          skill: estaba_gerundio
+          rule: estaba_gerundio
+          items:
+            - q: "Estaba en la ducha cuando ___ el timbre."
+              options: "sonó | sonaba | suena"
+              explain: "Звонок — событие: sonó."
+            - q: "Me caí mientras ___ por las escaleras."
+              options: "subía | subí | subo"
+              explain: "Mientras — действие в процессе: subía."
+            - say: "Mientras yo trabajaba, mi hermano dormía."
+              options: "Пока я работал, брат спал. | Когда я начал работать, брат уснул. | Я работал, потому что брат спал."
+              explain: "Mientras — «пока»: два действия шли одновременно."
+              noaudio: {q: "Что значит «Mientras yo trabajaba, mi hermano dormía»?", options: "Пока я работал, брат спал. | Когда я начал работать, брат уснул. | Я работал, потому что брат спал."}
+      - build:
+          title: Соберите фразу
+          skill: estaba_gerundio
+          rule: estaba_gerundio
+          items:
+            - es: "Me estaba duchando cuando sonó el teléfono."
+              ru: "Я был в душе, когда зазвонил телефон."
+              extra: [sonaba]
+            - es: "No contesté porque estaba conduciendo."
+              ru: "Я не ответил, потому что был за рулём."
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: estaba_gerundio
+          rule: estaba_gerundio
+          items:
+            - q: "Я читал, когда позвонил Пабло."
+              a: "Estaba leyendo cuando llamó Pablo | Estaba leyendo cuando Pablo llamó | Leía cuando llamó Pablo | Leía cuando Pablo llamó"
+              explain: "Чтение шло — estaba leyendo; звонок — событие: llamó."
+              mistakes:
+                "estaba leyendo cuando llamaba pablo": "Звонок — событие: **llamó**."
+                "estaba leiendo cuando llamó pablo": "У leer герундий с y: **leyendo**."
+      - compose:
+          title: О себе
+          skill: estaba_gerundio
+          rule: estaba_gerundio
+          items:
+            - q: "¿Qué estabas haciendo ayer a las ocho de la tarde? ¿Pasó algo? Две фразы."
+              format: "Ayer a las ocho estaba…"
+              words: [8, 45]
+              sentences: 2
+              checks:
+                - label: "estaba + герундий: estaba cocinando…"
+                  re: "\\b(estaba|estábamos)\\b \\w+(ando|iendo|yendo)\\b"
+              sample: "Ayer a las ocho estaba cocinando. Mientras cocinaba, me llamó mi madre y hablamos media hora."
+              sample_ru: "Вчера в восемь я готовил ужин. Пока я готовил, позвонила мама, и мы полчаса разговаривали."
+    quiz:
+      - q: "¿Qué hacías cuando te llamé? — ___ en el supermercado."
+        options: "Estaba | Estuve | Estoy"
+        explain: "Где был в тот момент — обстановка: estaba."
+        skill: estaba_gerundio
+      - q: "Mientras mi madre ___, yo ponía la mesa."
+        options: "cocinaba | cocinó | cocina"
+        explain: "Mientras — оба действия в процессе: cocinaba."
+        skill: estaba_gerundio
+
+  - id: historia
+    kind: grammar
+    title: "Un día… De repente… Al final…"
+    goal: связно рассказать историю и отреагировать на чужую
+    version: 2
+    vocab:
+      - "📅 un día [ун ди́а] — однажды :: Un día, mi perro se fue de casa. — Однажды моя собака ушла из дома."
+      - "🗣 contar [конта́р] — рассказывать :: Te cuento qué me pasó. — Расскажу тебе, что со мной случилось."
+      - "😩 ¡qué mala suerte! [кэ ма́ла суэ́ртэ] — как не повезло! :: ¿Perdiste el tren? ¡Qué mala suerte! — Ты опоздал на поезд? Как не повезло!"
+      - "😮‍💨 menos mal [мэ́нос маль] — хорошо ещё, что…; слава богу :: Menos mal que tenías paraguas. — Хорошо, что у тебя был зонт."
+    blocks:
+      - "У хорошей истории есть начало, неожиданный поворот и конец. Испанцы связывают их короткими словами."
+      - table:
+          id: conectores
+          title: Как рассказать историю
+          rows:
+            - ["начало", "**Un día**… — однажды…; **El sábado pasado**… — в прошлую субботу…"]
+            - ["по порядку", "**Primero**… **Luego**… **Después**… — сначала… потом… после…"]
+            - ["неожиданно", "**De repente**… — вдруг…"]
+            - ["и тут, поэтому", "**Entonces**… — тогда…, и тут…"]
+            - ["конец", "**Al final**… — в итоге…; **Por fin**… — наконец-то…"]
+      - learn: [un día, contar, ¡qué mala suerte!, menos mal]
+      - choose:
+          title: Какое слово подходит?
+          skill: conectores
+          rule: conectores
+          items:
+            - q: "Esperamos el autobús una hora. ___ llegó, pero era otro."
+              options: "Por fin | De repente | Primero"
+              explain: "Долго ждали — и наконец: por fin."
+            - q: "Estaba leyendo en el parque y, ___, empezó a llover."
+              options: "de repente | por fin | primero"
+              explain: "Неожиданно — de repente."
+            - q: "No tenía las llaves. ___ llamé a mi vecina."
+              options: "Entonces | Mientras | Antes"
+              explain: "Что сделал из-за этого — entonces."
+            - q: "Perdí el tren y llegué tarde al trabajo… ___, fue un día muy malo."
+              options: "Al final | Un día | Mientras"
+              explain: "Итог — al final."
+      - note:
+          id: reacciones
+          slide: new
+          text: "Слушая историю, испанцы не молчат. Испуг — **¡Qué susto!** Неудача — **¡Qué mala suerte!** Хорошо закончилось — **¡Menos mal!** Хотите продолжения — **¿Y qué pasó?**, **¿Y luego?**, **¿Y entonces?**"
+      - choose:
+          title: Что ответить?
+          skill: conectores
+          rule: reacciones
+          items:
+            - lines: ["Ana: Te cuento qué me pasó: ayer perdí el último tren y volví a casa a pie."]
+              q: "Посочувствуйте неудаче."
+              options: "¡Qué mala suerte! | ¡Menos mal! | ¡Qué bien!"
+              explain: "Неудача — ¡Qué mala suerte!"
+            - lines: ["Pablo: Me caí en las escaleras, pero no me pasó nada."]
+              q: "Порадуйтесь, что всё обошлось."
+              options: "¡Menos mal! | ¡Qué mala suerte! | ¡Genial!"
+              explain: "Обошлось — ¡Menos mal!"
+            - say: "Por fin llegó el autobús, pero era otro."
+              options: "Наконец пришёл автобус, но не тот. | Вдруг пришёл нужный автобус. | Автобус так и не пришёл, все ждали."
+              explain: "Por fin — «наконец»; era otro — «был другой, не тот»."
+              noaudio: {q: "Что значит «Por fin llegó el autobús, pero era otro»?", options: "Наконец пришёл автобус, но не тот. | Вдруг пришёл нужный автобус. | Автобус так и не пришёл, все ждали."}
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: conectores
+          rule: conectores
+          items:
+            - q: "Вдруг зазвонил телефон."
+              a: "De repente sonó el teléfono | De repente(,) el teléfono sonó"
+              explain: "Вдруг — de repente; звонок — событие: sonó."
+              mistakes:
+                "de repente sonaba el teléfono": "Звонок — событие: **sonó**."
+            - q: "Наконец я нашёл ключи."
+              a: "Por fin encontré las llaves | Por fin encontré mis llaves | Por fin las encontré"
+              explain: "Наконец — por fin; нашёл — encontré."
+      - build:
+          title: Соберите историю
+          skill: conectores
+          rule: conectores
+          items:
+            - es: "Un día, mientras paseaba por el parque, encontré una cartera."
+              ru: "Однажды, когда я гулял в парке, я нашёл кошелёк."
+              extra: [encontraba]
+            - es: "Entonces la llevé a la policía."
+              ru: "Тогда я отнёс его в полицию."
+      - compose:
+          title: Короткая история
+          skill: [conectores, fondo_hechos]
+          rule: conectores
+          items:
+            - q: "Расскажите короткую историю, настоящую или придуманную, в три-четыре фразы. Начните с Un día… и используйте de repente и al final или por fin."
+              format: "Un día… De repente… Al final…"
+              words: [20, 80]
+              sentences: 3
+              checks:
+                - label: "начало: un día, el sábado pasado, ayer…"
+                  any: [un día, el sábado pasado, ayer, una vez, el verano pasado, el año pasado]
+                - label: "поворот: de repente"
+                  any: [de repente]
+                - label: "конец: al final, por fin, entonces"
+                  any: [al final, por fin, entonces]
+              sample: "Un día estaba en el parque con mi perro. Hacía sol y había mucha gente. De repente, mi perro vio un gato y se fue corriendo. Lo busqué una hora y, al final, lo encontré en casa de mi vecina."
+              sample_ru: "Однажды я был в парке с собакой. Светило солнце, народу было много. Вдруг пёс увидел кошку и убежал. Я искал его час и в итоге нашёл у соседки."
+    quiz:
+      - q: "Esperé el autobús media hora y ___ llegó."
+        options: "por fin | de repente | mientras"
+        explain: "После долгого ожидания — por fin."
+        skill: conectores
+      - q: "— Me caí, pero no me pasó nada. — ¡___!"
+        options: "Menos mal | Qué mala suerte | Qué susto tengo"
+        explain: "Всё обошлось — ¡Menos mal!"
+        skill: conectores
+
+  - id: lectura
+    kind: reading
+    title: "Un día de mala suerte"
+    goal: понять рассказ о неудачном дне и ответить автору
+    version: 2
+    vocab:
+      - "⏰ el despertador [дэспэртадо́р] — будильник :: El despertador no sonó. — Будильник не зазвонил."
+      - "😴 dormirse [дорми́рсэ] — проспать; заснуть :: Me dormí y llegué tarde. — Я проспал и опоздал."
+      - "❗ importante [импорта́нтэ] — важный :: Tenía un examen importante. — У меня был важный экзамен."
+      - "😖 horrible [орри́блэ] — ужасный :: Fue un día horrible. — Это был ужасный день."
+      - "🚪 entrar [энтра́р] — входить, войти :: Entré en la clase. — Я вошёл в аудиторию."
+    blocks:
+      - learn: [el despertador, dormirse, importante, horrible, entrar]
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "el despertador — будильник"
+            - "dormirse — проспать"
+            - "importante — важный"
+            - "horrible — ужасный"
+            - "entrar — входить"
+      - "Том, студент из Англии, пишет в блоге о своём неудачном понедельнике."
+      - reading:
+          id: mala_suerte
+          title: Un día de mala suerte
+          text: |
+            El lunes pasado fue un día horrible. Tenía un examen muy importante a las nueve, pero el despertador no sonó y me dormí. Cuando me desperté, ¡eran las ocho y media!
+
+            Salí de casa muy rápido. Llovía mucho y, claro, no tenía paraguas. Mientras corría a la parada del autobús, me caí en la calle y se rompió la pantalla de mi móvil.
+
+            Por fin llegué a la universidad, muy mojado y muy nervioso. Entré en la clase y, de repente, vi que no había nadie. Entonces llegó un compañero y me dijo: «¿No has leído el mensaje de la profesora? Hoy no hay examen: está enferma».
+
+            Al final volví a casa, me duché y dormí toda la mañana. El examen fue el jueves… y todo salió bien.
+          translation: |
+            Прошлый понедельник был ужасным днём. В девять у меня был очень важный экзамен, но будильник не зазвонил, и я проспал. Когда я проснулся, было полдевятого!
+
+            Я быстро вышел из дома. Шёл сильный дождь, и, конечно, зонта у меня не было. Пока я бежал на остановку, я упал на улице, и у телефона разбился экран.
+
+            Наконец я добрался до университета, весь мокрый и очень взволнованный. Вошёл в аудиторию и вдруг увидел, что там никого нет. Тут пришёл однокурсник и сказал: «Ты не читал сообщение преподавательницы? Сегодня экзамена нет: она заболела».
+
+            В итоге я вернулся домой, принял душ и проспал всё утро. Экзамен был в четверг… и всё прошло хорошо.
+      - choose:
+          title: Что сказано в тексте?
+          source: mala_suerte
+          items:
+            - q: "¿Por qué se durmió Tom?"
+              options: "Porque el despertador no sonó. | Porque estaba enfermo. | Porque llovía mucho."
+              explain: "…el despertador no sonó y me dormí."
+            - q: "¿Qué pasó mientras corría a la parada?"
+              options: "Se cayó en la calle. | Perdió el autobús y fue a la universidad a pie. | Vio a la profesora en la calle."
+              explain: "Mientras corría a la parada del autobús, me caí en la calle."
+              skill: estaba_gerundio
+            - q: "¿Qué vio cuando entró en la clase?"
+              options: "Que no había nadie. | Que todos estaban en el examen. | Que la profesora estaba enferma."
+              explain: "Entré en la clase y, de repente, vi que no había nadie."
+              skill: fondo_hechos
+            - q: "¿Cuándo fue el examen al final?"
+              options: "El jueves. | El lunes. | El martes."
+              explain: "El examen fue el jueves… y todo salió bien."
+      - sort:
+          title: Обстановка или событие?
+          source: mala_suerte
+          skill: fondo_hechos
+          groups:
+            "обстановка": ["llovía mucho", "no tenía paraguas", "eran las ocho y media"]
+            "событие": ["el despertador no sonó", "me caí en la calle", "volví a casa"]
+      - write:
+          title: Ответьте по тексту
+          format: короткий ответ по-испански
+          source: mala_suerte
+          items:
+            - q: "¿Qué hora era cuando Tom se despertó?"
+              a: "Eran las ocho y media | Las ocho y media"
+              explain: "Cuando me desperté, ¡eran las ocho y media!"
+              skill: fondo_hechos
+            - q: "Как в тексте сказано «Тут пришёл однокурсник»?"
+              a: "Entonces llegó un compañero"
+              explain: "Entonces — «тогда, и тут»."
+              skill: conectores
+      - choose:
+          title: Послушайте
+          free: true
+          rule: none
+          items:
+            - say: "El despertador no sonó y me dormí."
+              options: "Будильник не зазвонил, и я проспал. | Будильник зазвонил, но я спал дальше. | Я проснулся раньше будильника."
+              explain: "No sonó — «не зазвонил»; me dormí — «я проспал»."
+              noaudio: {q: "Что значит «El despertador no sonó y me dormí»?", options: "Будильник не зазвонил, и я проспал. | Будильник зазвонил, но я спал дальше. | Я проснулся раньше будильника."}
+      - compose:
+          title: Ответ Тому
+          free: true
+          rule: none
+          skill: [conectores, fondo_hechos]
+          items:
+            - q: "Напишите Тому комментарий: отреагируйте на его историю и коротко расскажите похожий случай из своей жизни. Три-четыре фразы."
+              format: "¡Qué mala suerte, Tom! A mí también…"
+              words: [15, 70]
+              sentences: 2
+              checks:
+                - label: "реакция: ¡Qué mala suerte!, ¡Qué susto!, ¡Menos mal!"
+                  any: [qué mala suerte, qué susto, menos mal]
+                - label: "ваш случай: что случилось (perdí, me caí, llegué…)"
+                  any: [fui, fue, estuve, tuve, hice, vi, perdí, perdió, llegué, llegó, salí, olvidé, me dormí, me caí, se rompió, no sonó, pasó, encontré]
+              sample: "¡Qué mala suerte, Tom! A mí también me pasó una vez: me dormí y perdí el tren a Sevilla. Al final llegué tarde, pero por suerte mis amigos me esperaron."
+              sample_ru: "Как не повезло, Том! Со мной тоже однажды такое было: я проспал и опоздал на поезд в Севилью. В итоге приехал поздно, но, к счастью, друзья меня дождались."
+
+  - id: mision
+    kind: practice
+    title: Рассказ о происшествии
+    goal: понять чужую историю, объяснить опоздание и рассказать о случае из жизни
+    version: 2
+    blocks:
+      - review:
+          title: Вспомним
+          skills: [comparar, tan_como, describir_pasado]
+          n: 2
+      - "Пабло прислал голосовое сообщение. Послушайте: текста нет."
+      - dialogue:
+          id: audio_pablo
+          hidden: true
+          title: Сообщение от Пабло
+          lines:
+            - "Pablo: ¡Hola! Te cuento qué me pasó el sábado. Estaba en la playa con mis amigos. Hacía mucho sol y estábamos jugando al fútbol. | Привет! Расскажу, что со мной случилось в субботу. Я был на пляже с друзьями. Было очень солнечно, мы играли в футбол."
+            - "Pablo: De repente, un perro llegó corriendo y se fue con nuestra pelota. Corrimos detrás de él, pero era muy rápido. | Вдруг прибежала собака и унесла наш мяч. Мы побежали за ней, но она была очень быстрая."
+            - "Pablo: Al final, el perro volvió con la pelota y jugó al fútbol con nosotros toda la tarde. ¡Fue muy divertido! | В итоге собака вернулась с мячом и весь вечер играла с нами в футбол. Было очень весело!"
+      - choose:
+          title: Что в сообщении?
+          source: audio_pablo
+          items:
+            - q: "¿Dónde estaba Pablo?"
+              options: "En la playa. | En el parque. | En casa de un amigo."
+              explain: "Estaba en la playa con mis amigos."
+            - q: "¿Qué estaban haciendo?"
+              options: "Jugaban al fútbol. | Tomaban el sol. | Comían en la playa."
+              explain: "…estábamos jugando al fútbol."
+              skill: estaba_gerundio
+            - q: "¿Qué hizo el perro?"
+              options: "Se fue con la pelota. | Se comió un bocadillo. | Se cayó al agua."
+              explain: "…un perro llegó corriendo y se fue con nuestra pelota."
+            - q: "¿Cómo terminó la historia?"
+              options: "El perro jugó con ellos. | El perro no volvió nunca. | Pablo perdió la pelota."
+              explain: "Al final, el perro volvió con la pelota y jugó al fútbol con nosotros."
+              skill: conectores
+      - mission:
+          id: retraso
+          title: Рассказ о происшествии
+          text: "Вчера вы опоздали к Лусии на ужин на целый час. Сегодня она звонит и спрашивает, что случилось."
+      - chat:
+          id: lucia
+          title: Опоздание
+          with: Lucía
+          turns:
+            - say: "¡Ayer te esperamos una hora! ¿Qué te pasó? | Вчера мы ждали тебя целый час! Что случилось?"
+              task: "Скажите, что опоздали на автобус."
+              skill: fondo_hechos
+              write: "(Ayer) perdí el autobús | Lo siento, perdí el autobús | Perdí el autobús, lo siento | Es que perdí el autobús"
+              format: что случилось
+              mistakes:
+                "perdía el autobús": "Опоздание — событие: **perdí**."
+            - say: "¿Y por qué no me llamaste? | А почему ты мне не позвонил?"
+              task: "Объясните: у телефона села батарея."
+              skill: fondo_hechos
+              write: "No tenía batería | [El/Mi] móvil no tenía batería | Porque no tenía batería | Porque [el/mi] móvil no tenía batería"
+              format: объяснение
+              mistakes:
+                "no tuve batería": "Положение дел — **tenía**: no tenía batería."
+            - say: "¿Y cómo viniste al final? | А как ты в итоге добрался?"
+              task: "Скажите, что пришли пешком, а шёл сильный дождь."
+              skill: fondo_hechos
+              write: "Vine a pie y llovía mucho | Vine a pie y estaba lloviendo mucho | Vine a pie(,) pero llovía mucho"
+              format: как добрались
+              mistakes:
+                "vine a pie y llovió mucho": "Дождь шёл, пока вы шли, — обстановка: **llovía**."
+            - say: "¡Qué mala suerte! ¿Y pasó algo más? | Как не повезло! А ещё что-нибудь случилось?"
+              task: "Расскажите от себя, что ещё случилось по дороге."
+              skill: estaba_gerundio
+              compose:
+                format: "Sí, mientras… / Sí, cuando…"
+                words: [3, 30]
+                checks:
+                  - label: "что случилось: me caí, perdí, vi…"
+                    any: [me caí, perdí, vi, se rompió, llegué, encontré, olvidé, tuve, fui, pasó, me robaron]
+                sample: "Sí, mientras corría, me caí en la calle."
+                sample_ru: "Да, пока я бежал, я упал на улице."
+            - say: "¡Qué susto! ¿Y estás bien? | Вот это испуг! Ты в порядке?"
+              task: "Ответьте, что да: к счастью, ничего страшного не случилось."
+              skill: fondo_hechos
+              choose: "Sí, por suerte no me pasó nada. | Sí, por suerte no me pasaba nada. | Sí, por suerte no me pasa nada."
+              explain: "Обошлось — это итог, событие: no me pasó nada."
+            - say: "¡Menos mal! Bueno, el sábado cenamos otra vez, ¿vale? | Слава богу! Ну что, в субботу ужинаем снова, договорились?"
+      - compose:
+          title: Рассказ о происшествии
+          free: true
+          rule: none
+          skill: [fondo_hechos, estaba_gerundio, conectores]
+          items:
+            - q: "Напишите 5–7 фраз о случае из жизни — настоящем или придуманном: где вы были и что делали · что случилось · что вы сделали · чем всё закончилось. Используйте estaba + герундий, de repente, entonces, al final."
+              format: "El verano pasado estaba en… De repente… Entonces… Al final…"
+              words: [40, 130]
+              sentences: 4
+              checks:
+                - label: "обстановка: estaba, había, hacía…"
+                  re: "\\b\\w+(aba|abas|aban|ábamos)\\b|\\b(era|eran|había|hacía|tenía|tenían|llovía|iba|íbamos)\\b"
+                - label: "события: fui, vi, perdí, encontré…"
+                  any: [fui, fue, fuimos, estuve, tuve, hice, vi, vimos, perdí, perdió, llegué, llegó, salí, olvidé, encontré, encontró, me caí, se cayó, se rompió, llamé, volví, pasó, me robaron, sonó]
+                - label: "связки: de repente, entonces, al final, por suerte"
+                  any: [de repente, entonces, al final, por fin, por suerte]
+              sample: "El verano pasado estaba de vacaciones en Málaga. Un día, mientras nadaba en el mar, de repente vi que mi bolso ya no estaba en la playa. Entonces fui a la policía. Por suerte, un chico encontró el bolso y lo llevó allí. Al final, solo fue un susto."
+              sample_ru: "Прошлым летом я отдыхал в Малаге. Однажды, пока я плавал в море, вдруг увидел, что моей сумки на пляже больше нет. Тогда я пошёл в полицию. К счастью, один парень нашёл сумку и отнёс её туда. В итоге я просто испугался."
+
+  - id: quiz
+    kind: quiz
+    title: "Тест: ¿Qué pasó?"
+    goal: проверить цели темы — рассказ о происшествии двумя временами
+    version: 2
+    check: soft
+    forms: [duchándome]
+    blocks:
+      - "Это тест по теме «¿Qué pasó?»: двенадцать заданий."
+      - cando:
+          - "рассказать историю: обстановка — imperfecto, события — indefinido"
+          - "сказать, что вы делали, когда что-то случилось: estaba + герундий"
+          - "связать рассказ: cuando, de repente, entonces, al final"
+          - "отреагировать на чужую историю"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          rule: none
+          skill: estaba_gerundio
+          items:
+            - say: "Estaba cocinando cuando sonó el teléfono."
+              a: "Estaba cocinando cuando sonó el teléfono"
+              noaudio: {q: "Напишите по-испански: «Я готовил, когда зазвонил телефон».", a: "Estaba cocinando cuando sonó el teléfono | Cocinaba cuando sonó el teléfono"}
+      - choose:
+          title: Послушайте
+          rule: none
+          items:
+            - say: "Cuando llegué, todos estaban durmiendo."
+              options: "Когда я пришёл, все спали. | Когда я пришёл, все уснули. | Я пришёл, потому что все спали."
+              skill: estaba_gerundio
+              noaudio: {q: "Что значит «Cuando llegué, todos estaban durmiendo»?", options: "Когда я пришёл, все спали. | Когда я пришёл, все уснули. | Я пришёл, потому что все спали."}
+            - say: "Por suerte, una señora encontró mi cartera."
+              options: "К счастью, одна женщина нашла мой кошелёк. | К сожалению, одна женщина взяла мой кошелёк. | Одна женщина искала свой кошелёк."
+              skill: conectores
+              noaudio: {q: "Что значит «Por suerte, una señora encontró mi cartera»?", options: "К счастью, одна женщина нашла мой кошелёк. | К сожалению, одна женщина взяла мой кошелёк. | Одна женщина искала свой кошелёк."}
+      - write:
+          title: Поставьте глагол
+          format: одна или две формы глагола
+          accents: strict
+          rule: none
+          items:
+            - q: "Cuando (yo, llegar) ___ a casa, mi hermano dormía."
+              a: "llegué"
+              skill: fondo_hechos
+              mistakes:
+                "llegaba": "Приход — событие: **llegué**."
+            - q: "Cuando llegué a casa, mi hermano (dormir) ___."
+              a: "dormía | estaba durmiendo"
+              skill: fondo_hechos
+              mistakes:
+                "durmió": "Брат спал в тот момент — **dormía** или estaba durmiendo."
+            - q: "(Hacer) ___ mucho frío cuando salimos."
+              a: "Hacía"
+              skill: fondo_hechos
+            - q: "Mientras yo (ducharse) ___, sonó el timbre."
+              a: "me duchaba | me estaba duchando | estaba duchándome"
+              skill: estaba_gerundio
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          rule: none
+          items:
+            - q: "Вдруг я увидел Пабло."
+              a: "De repente vi a Pablo"
+              skill: conectores
+              mistakes:
+                "de repente vi pablo": "Перед человеком — **a**: vi a Pablo."
+            - q: "У меня украли кошелёк."
+              a: "Me robaron la cartera | Me han robado la cartera"
+              skill: fondo_hechos
+      - build:
+          title: Соберите фразу
+          rule: none
+          skill: conectores
+          items:
+            - es: "Al final, solo fue un susto."
+              ru: "В итоге я просто испугался."
+              extra: [era]
+    quiz:
+      - q: "Me caí ___ subía por las escaleras."
+        options: "mientras | entonces | al final"
+        explain: "Mientras — «пока»: действие в процессе."
+        skill: estaba_gerundio
+      - q: "¿Qué ___ cuando te llamé? No contestaste."
+        options: "hacías | hiciste | haces"
+        explain: "Что делал в тот момент — hacías."
+        skill: fondo_hechos

@@ -1,0 +1,729 @@
+id: mundo_hispano
+number: 41
+level: A2
+title: El mundo hispano — испаноязычный мир
+goals:
+  - понять, чем испанский в Испании отличается от испанского в Латинской Америке
+  - рассказать, что где говорят, едят и празднуют: se dice, se come
+  - описать страну: где она, какая природа, сколько людей
+  - рассказать о своей стране, используя все пройденные времена
+
+# Тема 18 карты A2: повторение времён; se dice, se come; различия Испании и Америки; география, традиции.
+# Миссия — презентация своей страны. Курс учит норме Испании; слова Латинской Америки здесь — для понимания.
+lessons:
+  - id: palabras
+    kind: listening
+    title: "¿En México se dice «coche»?"
+    goal: понять на слух разговор о словах Испании и Мексики
+    version: 2
+    # Карта экранов: docs/site_slide_maps/41_mundo_hispano.md
+    vocab:
+      - "🗣 el acento [аθэ́нто] — акцент; знак ударения :: Diego tiene acento mexicano. — У Диего мексиканский акцент."
+      - "↔️ la diferencia [дифэрэ́нθья] — разница :: ¿Cuál es la diferencia? — В чём разница?"
+      - "👅 la lengua [ле́нгуа] — язык; язык (орган) :: El español es la lengua de veinte países. — Испанский — язык двадцати стран."
+      - "🤩 interesante [интэрэса́нтэ] — интересный :: ¡Qué interesante! — Как интересно!"
+      - "🟰 mismo/a [ми́смо, ми́сма] — тот же самый, один и тот же :: Hablamos la misma lengua. — Мы говорим на одном языке."
+      - "🌎 hispano/a [испа́но, испа́на] — испаноязычный (об Испании и Латинской Америке) :: El mundo hispano es muy grande. — Испаноязычный мир очень большой."
+    blocks:
+      - "Лусия и Диего сравнивают слова Испании и Мексики. Послушайте разговор два раза: текста пока нет."
+      - dialogue:
+          id: carro
+          hidden: true
+          lines:
+            - "Lucía: Diego, ¿en México se dice «coche»? | Диего, в Мексике говорят «coche»?"
+            - "Diego: No, en México decimos «carro». Y el móvil es el «celular». | Нет, в Мексике говорим «carro». А мобильный — «celular»."
+            - "Lucía: ¡Qué interesante! ¿Y el ordenador? | Как интересно! А компьютер?"
+            - "Diego: La computadora. Y el zumo es el «jugo». Pero nos entendemos sin problemas: es la misma lengua. | Computadora. А сок — jugo. Но мы понимаем друг друга без проблем: это один язык."
+            - "Lucía: Es verdad. La mayor diferencia es el acento. | Правда. Самая большая разница — акцент."
+            - "Diego: Y en México no se dice «vosotros»: siempre decimos «ustedes». | А в Мексике не говорят «vosotros»: всегда говорим «ustedes»."
+            - "Lucía: ¡Por eso nos dices «ustedes» a mis amigos y a mí! | Так вот почему ты говоришь мне с друзьями «ustedes»!"
+      - choose:
+          title: Что вы поняли?
+          source: carro
+          items:
+            - q: "Как в Мексике называют машину?"
+              options: "Carro. | Coche. | Celular."
+              explain: "Diego: En México decimos «carro»."
+            - q: "А мобильный телефон?"
+              options: "Celular. | Móvil. | Computadora."
+              explain: "Diego: Y el móvil es el «celular»."
+      - learn: [el acento, la diferencia, la lengua, mismo/a]
+      - choose:
+          title: Детали разговора
+          source: carro
+          items:
+            - q: "¿Cómo se dice «zumo» en México?"
+              options: "Jugo. | Carro. | Celular."
+              explain: "Diego: Y el zumo es el «jugo»."
+            - q: "¿Se entienden Lucía y Diego?"
+              options: "Sí, sin problemas: es la misma lengua. | No, muy poco. | Solo cuando hablan inglés."
+              explain: "Diego: Pero nos entendemos sin problemas: es la misma lengua."
+            - q: "Para Lucía, ¿cuál es la mayor diferencia?"
+              options: "El acento. | Las palabras. | La gramática."
+              explain: "Lucía: La mayor diferencia es el acento."
+            - q: "¿Qué no se dice en México?"
+              options: "Vosotros. | Ustedes. | Nosotros."
+              explain: "Diego: En México no se dice «vosotros»."
+      - learn: [interesante, hispano/a]
+      - match:
+          title: Соедините пары
+          free: true
+          rule: none
+          pairs:
+            - "el acento — акцент"
+            - "la diferencia — разница"
+            - "la lengua — язык"
+            - "mismo — тот же самый"
+            - "interesante — интересный"
+            - "hispano — испаноязычный"
+      - compare:
+          id: espana_mexico
+          slide: new
+          title: Испания и Мексика
+          cards:
+            - head: "coche, móvil, ordenador, zumo, vosotros"
+              label: "в Испании (так учит наш курс)"
+              tone: sun
+              ex: ["¿Tenéis coche? — У вас (у вас всех) есть машина?"]
+            - head: "carro, celular, computadora, jugo, ustedes"
+              label: "в Мексике и многих странах Америки"
+              tone: blue
+              ex: ["¿Ustedes tienen carro? — У вас есть машина?"]
+          note: "Это один язык: испанцы и мексиканцы понимают друг друга без проблем. Различаются некоторые слова и акцент."
+      - sort:
+          title: Испания или Мексика?
+          free: true
+          skill: hispano
+          rule: espana_mexico
+          groups:
+            "в Испании": ["el coche", "el móvil", "el zumo", "el ordenador"]
+            "в Мексике": ["el carro", "el celular", "el jugo", "la computadora"]
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          free: true
+          skill: hispano
+          rule: espana_mexico
+          items:
+            - say: "En México se dice «carro» y en España, «coche»."
+              a: "En México se dice carro y en España coche | En México se dice «carro» y en España, «coche»"
+              explain: "Se dice — «говорят»."
+              noaudio: {q: "Напишите по-испански: «В Мексике говорят carro, а в Испании — coche».", a: "En México se dice carro y en España coche | En México se dice carro y en España se dice coche"}
+      - choose:
+          title: Послушайте
+          free: true
+          skill: hispano
+          rule: espana_mexico
+          items:
+            - say: "La mayor diferencia no son las palabras: es el acento."
+              options: "Главная разница не в словах, а в акценте. | Слова и акцент совсем разные. | Разницы нет ни в словах, ни в акценте."
+              explain: "La mayor diferencia — «самая большая разница»."
+              noaudio: {q: "Что значит «La mayor diferencia no son las palabras: es el acento»?", options: "Главная разница не в словах, а в акценте. | Слова и акцент совсем разные. | Разницы нет ни в словах, ни в акценте."}
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: hispano
+          rule: espana_mexico
+          items:
+            - es: "Nos entendemos sin problemas: es la misma lengua."
+              ru: "Мы понимаем друг друга без проблем: это один язык."
+              extra: [idiomas]
+
+  - id: se_dice
+    kind: grammar
+    title: "Se dice, se come, se celebra"
+    goal: "рассказать, что принято в стране: что едят, как говорят, что празднуют"
+    version: 2
+    vocab:
+      - "💬 hispanohablante [испаноабла́нтэ] — говорящий по-испански; испаноязычный {forms: hispanohablantes} :: Hay más de veinte países hispanohablantes. — Испаноязычных стран больше двадцати."
+      - "⭐ típico/a [ти́пико, ти́пика] — типичный, традиционный :: La paella es un plato típico de Valencia. — Паэлья — традиционное блюдо Валенсии."
+      - "🌽 el maíz [маи́θ] — кукуруза :: En México se come mucho maíz. — В Мексике едят много кукурузы."
+    blocks:
+      - learn: [hispanohablante, típico/a, el maíz]
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "hispanohablante — говорящий по-испански"
+            - "típico — традиционный"
+            - "el maíz — кукуруза"
+      - table:
+          id: se_pasiva
+          title: "Se + глагол: что принято"
+          rows:
+            - ["se + глагол (ед. ч.)", "En México se come mucho maíz. — В Мексике едят много кукурузы."]
+            - ["se + глагол (мн. ч.)", "En España se comen doce uvas en Nochevieja. — В Испании в новогоднюю ночь едят двенадцать виноградин."]
+            - ["¿Cómo se dice…?", "¿Cómo se dice «coche» en México? — Как в Мексике говорят «машина»?"]
+            - ["se celebra", "El Día de Reyes se celebra el seis de enero. — День волхвов празднуют шестого января."]
+      - note:
+          id: se_numero
+          text: "Как в вывесках (тема 35): глагол согласуется с тем, что едят или празднуют: _se come pan_, но _se comen tapas_; _se celebra la Navidad_, но _se celebran muchas fiestas_."
+      - choose:
+          title: Выберите форму
+          skill: se_pasiva
+          rule: se_numero
+          items:
+            - q: "En Argentina se ___ mucha carne."
+              options: "come | comen | comes"
+              explain: "Mucha carne — ед. ч.: se come."
+            - q: "En España se ___ tapas en los bares."
+              options: "comen | come | comemos"
+              explain: "Tapas — мн. ч.: se comen."
+            - q: "¿Cómo se ___ «móvil» en México?"
+              options: "dice | dicen | decimos"
+              explain: "¿Cómo se dice…?"
+            - say: "En España se cena muy tarde: a las nueve o a las diez."
+              options: "В Испании ужинают очень поздно: в девять или в десять. | В Испании ужинают рано: в шесть. | В Испании не ужинают, а только обедают."
+              explain: "Se cena — «ужинают»."
+              noaudio: {q: "Что значит «En España se cena muy tarde: a las nueve o a las diez»?", options: "В Испании ужинают очень поздно: в девять или в десять. | В Испании ужинают рано: в шесть. | В Испании не ужинают, а только обедают."}
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: se_pasiva
+          rule: se_pasiva
+          items:
+            - q: "В Испании ужинают очень поздно."
+              a: "En España se cena muy tarde"
+              explain: "Se cena — «ужинают»."
+            - q: "В Мексике говорят «celular»."
+              a: "En México se dice celular | En México se dice «celular»"
+              explain: "Se dice — «говорят»."
+            - q: "Паэлья — традиционное блюдо Валенсии."
+              a: "La paella es un plato típico de Valencia"
+              explain: "Típico — традиционный, типичный."
+      - build:
+          title: Соберите фразу
+          skill: se_pasiva
+          rule: se_numero
+          items:
+            - es: "En Nochevieja se comen doce uvas."
+              ru: "В новогоднюю ночь едят двенадцать виноградин."
+              extra: [come]
+      - compose:
+          title: В моей стране
+          skill: se_pasiva
+          rule: se_pasiva
+          items:
+            - q: "Расскажите, что принято в вашей стране: что едят, когда обедают или ужинают, что празднуют. Две-три фразы с se."
+              format: "En mi país se come… Se celebra…"
+              words: [10, 50]
+              sentences: 2
+              checks:
+                - label: "se come, se celebra, se dice…"
+                  re: "\\bse (come|comen|cena|celebra|celebran|dice|bebe|habla|hablan|toma|hace)\\b"
+              sample: "En Ucrania se come mucha sopa y mucho pan. Se cena a las siete. El Año Nuevo se celebra con toda la familia."
+              sample_ru: "В Украине едят много супа и хлеба. Ужинают в семь. Новый год празднуют всей семьёй."
+    quiz:
+      - q: "En España se ___ muchas fiestas en verano."
+        options: "celebran | celebra | celebramos"
+        explain: "Muchas fiestas — мн. ч.: se celebran."
+        skill: se_pasiva
+      - q: "La tortilla de patatas es un plato ___ de España."
+        options: "típico | típica | hispanohablante"
+        explain: "Plato — мужской род: típico."
+
+  - id: geografia
+    kind: grammar
+    title: "En el norte, en la costa"
+    goal: описать, где страна и какая в ней природа
+    version: 2
+    vocab:
+      - "🏖 la costa [ко́ста] — побережье :: Valencia está en la costa. — Валенсия на побережье."
+      - "🏞 el río [ри́о] — река :: El río pasa por el centro de la ciudad. — Река течёт через центр города."
+      - "🏜 el desierto [дэсье́рто] — пустыня :: En el norte de México hay desiertos. — На севере Мексики есть пустыни."
+      - "🌋 el volcán [болька́н] — вулкан {pl: los volcanes} :: El Teide es un volcán. — Тейде — вулкан."
+      - "👥 el habitante [абита́нтэ] — житель :: Madrid tiene más de tres millones de habitantes. — В Мадриде больше трёх миллионов жителей."
+      - "🔢 el millón [мильо́н] — миллион {pl: los millones} :: España tiene unos cuarenta y ocho millones de habitantes. — В Испании около сорока восьми миллионов жителей."
+    blocks:
+      - learn: [la costa, el río, el desierto, el volcán, el habitante, el millón]
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "la costa — побережье"
+            - "el río — река"
+            - "el desierto — пустыня"
+            - "el volcán — вулкан"
+            - "el habitante — житель"
+            - "el millón — миллион"
+      - table:
+          id: donde_esta
+          title: Где это?
+          rows:
+            - ["en el norte, en el sur, en el este, en el oeste", "Bilbao está en el norte de España. — Бильбао на севере Испании."]
+            - ["en el centro", "Madrid está en el centro de España. — Мадрид в центре Испании."]
+            - ["en la costa", "Málaga está en la costa, en el sur. — Малага на побережье, на юге."]
+            - ["al norte de… — севернее чего-то", "México está al sur de Estados Unidos. — Мексика к югу от США."]
+      - note:
+          id: millones
+          text: "После **millón / millones** нужен **de**: _un millón **de** habitantes_, _tres millones **de** euros_. А mil — без de: _mil habitantes_."
+      - choose:
+          title: Где это?
+          skill: geografia
+          rule: donde_esta
+          items:
+            - q: "Bilbao está ___ norte de España."
+              options: "en el | al | de"
+              explain: "Внутри страны — en el norte de…"
+            - q: "México está ___ sur de Estados Unidos."
+              options: "al | en el | del"
+              explain: "Снаружи, по отношению к другой стране — al sur de…"
+            - q: "Madrid tiene más de tres millones ___ habitantes."
+              options: "de | — | en"
+              explain: "Millones de…"
+              skill: geografia
+            - say: "En las islas Canarias hay volcanes y playas muy bonitas."
+              options: "На Канарских островах есть вулканы и очень красивые пляжи. | На Канарских островах нет пляжей, только вулканы. | Канарские острова находятся на севере."
+              explain: "Islas Canarias — Канарские острова; volcanes — вулканы."
+              noaudio: {q: "Что значит «En las islas Canarias hay volcanes y playas muy bonitas»?", options: "На Канарских островах есть вулканы и очень красивые пляжи. | На Канарских островах нет пляжей, только вулканы. | Канарские острова находятся на севере."}
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: geografia
+          rule: millones
+          items:
+            - q: "Валенсия на побережье, на востоке Испании."
+              a: "Valencia está en la costa, en el este de España | Valencia está en la costa este de España"
+              explain: "En la costa, en el este de…"
+            - q: "В Мексике больше ста миллионов жителей."
+              a: "México tiene más de cien millones de habitantes | En México hay más de cien millones de habitantes"
+              explain: "Millones de habitantes."
+              mistakes:
+                "méxico tiene más de cien millones habitantes": "После millones нужен **de**: millones de habitantes."
+      - build:
+          title: Соберите фразу
+          skill: geografia
+          rule: donde_esta
+          items:
+            - es: "El Teide es la montaña más alta de España."
+              ru: "Тейде — самая высокая гора Испании."
+              extra: [en]
+      - compose:
+          title: Моя страна на карте
+          skill: geografia
+          rule: donde_esta
+          items:
+            - q: "Опишите свою страну: где она, где столица, есть ли море, горы, реки, сколько примерно жителей."
+              format: "Mi país está en… La capital… Tiene… millones de habitantes."
+              words: [12, 60]
+              sentences: 2
+              checks:
+                - label: "где: en el norte, en el centro, al sur de…"
+                  any: [en el norte, en el sur, en el este, en el oeste, en el centro, al norte, al sur, al este, al oeste, en la costa]
+                - label: "жители: millones de habitantes"
+                  any: [millones, millón, habitantes]
+              sample: "Ucrania está en el este de Europa. La capital, Kiev, está en el centro y tiene un río muy grande. En el sur hay costa y playas. Tiene más de treinta millones de habitantes."
+              sample_ru: "Украина находится на востоке Европы. Столица, Киев, — в центре, через неё течёт большая река. На юге есть побережье и пляжи. Жителей — больше тридцати миллионов."
+    quiz:
+      - q: "Sevilla está ___ sur de España."
+        options: "en el | al | del"
+        explain: "Внутри страны — en el sur."
+        skill: geografia
+      - q: "Francia está ___ norte de España."
+        options: "al | en el | del"
+        explain: "Другая страна, снаружи — al norte de…"
+        skill: geografia
+
+  - id: tiempos
+    kind: grammar
+    title: "Todos los tiempos juntos"
+    goal: выбрать нужное время в рассказе о стране и о себе
+    version: 2
+    blocks:
+      - "В A2 вы прошли шесть способов говорить о времени. В рассказе о стране и о себе они встречаются вместе."
+      - table:
+          id: tiempos
+          title: Какое время?
+          rows:
+            - ["presente — вообще, обычно, сейчас", "En México se come mucho maíz. — В Мексике едят много кукурузы."]
+            - ["perfecto — сегодня, на этой неделе, в жизни", "Este año he viajado mucho. — В этом году я много путешествовал."]
+            - ["indefinido — тогда-то, один раз", "En 2019 fui a México. — В 2019 году я ездил в Мексику."]
+            - ["imperfecto — как было, обычно раньше", "De niño vivía en un pueblo. — В детстве я жил в деревне."]
+            - ["ir a + инфинитив — планы", "El año que viene voy a ir a Argentina. — В следующем году я поеду в Аргентину."]
+            - ["condicional — желание, совет", "Me gustaría vivir en Barcelona. — Я бы хотел жить в Барселоне."]
+      - choose:
+          title: Выберите время
+          skill: tiempos_a2
+          rule: tiempos
+          items:
+            - q: "En dos mil diecinueve ___ a México por primera vez."
+              options: "fui | iba | he ido"
+              explain: "Год — разовое событие в прошлом: fui."
+            - q: "Cuando ___ pequeño, pasaba los veranos en la playa."
+              options: "era | fui | he sido"
+              explain: "Как было в детстве — era."
+            - q: "Esta semana ___ dos películas mexicanas."
+              options: "he visto | vi | veía"
+              explain: "Esta semana — perfecto: he visto."
+            - q: "El año que viene ___ a estudiar en Argentina."
+              options: "voy | fui | iba"
+              explain: "Планы — ir a + инфинитив: voy a estudiar."
+            - q: "Algún día me ___ vivir un año en Latinoamérica."
+              options: "gustaría | gustó | gustaba"
+              explain: "Желание на будущее — me gustaría."
+      - write:
+          title: Поставьте глагол
+          format: одна-две формы глагола
+          skill: tiempos_a2
+          rule: tiempos
+          items:
+            - q: "Ayer (yo, conocer) ___ a un chico de Colombia."
+              a: "conocí"
+              explain: "Ayer — indefinido: conocí."
+            - q: "De niña (yo, vivir) ___ cerca del mar."
+              a: "vivía"
+              explain: "Как было — imperfecto: vivía."
+            - q: "Hoy (nosotros, comer) ___ en un restaurante mexicano."
+              a: "hemos comido"
+              explain: "Hoy — perfecto: hemos comido."
+              mistakes:
+                "comimos": "Hoy в Испании — perfecto: **hemos comido**."
+            - q: "En Colombia (hablar) ___ español."
+              a: "se habla | hablan"
+              explain: "Вообще, всегда — presente: se habla."
+      - choose:
+          title: Послушайте
+          skill: tiempos_a2
+          rule: tiempos
+          items:
+            - say: "Cuando era pequeña vivía en Kiev, pero hace cinco años me fui a Madrid."
+              options: "В детстве я жила в Киеве, но пять лет назад уехала в Мадрид. | Я живу в Киеве уже пять лет, а в детстве жила в Мадриде. | Через пять лет я уеду из Киева в Мадрид."
+              explain: "Vivía — как было; me fui hace cinco años — разовое событие."
+              noaudio: {q: "Что значит «Cuando era pequeña vivía en Kiev, pero hace cinco años me fui a Madrid»?", options: "В детстве я жила в Киеве, но пять лет назад уехала в Мадрид. | Я живу в Киеве уже пять лет, а в детстве жила в Мадриде. | Через пять лет я уеду из Киева в Мадрид."}
+      - build:
+          title: Соберите фразу
+          skill: tiempos_a2
+          rule: tiempos
+          items:
+            - es: "El año que viene voy a viajar a Colombia."
+              ru: "В следующем году я поеду в Колумбию."
+              extra: [fui]
+      - compose:
+          title: Моя история с испанским
+          skill: tiempos_a2
+          rule: tiempos
+          items:
+            - q: "Расскажите в четыре фразы: когда вы начали учить испанский, как было раньше, что сделали за этот год и что планируете дальше."
+              format: "Empecé a… Antes… Este año he… El año que viene voy a…"
+              words: [20, 80]
+              sentences: 4
+              checks:
+                - label: "indefinido: empecé, fui…"
+                  any: [empecé, fui, empezó, conocí, llegué, estudié]
+                - label: "perfecto: he…, hemos…"
+                  any: [he, hemos, ha]
+                - label: "планы: voy a…"
+                  any: [voy a, vamos a, pienso, me gustaría]
+              sample: "Empecé a estudiar español hace dos años. Antes no sabía nada y tenía miedo de hablar. Este año he leído un libro en español y he hablado mucho con mis vecinos. El año que viene voy a hacer un examen de español."
+              sample_ru: "Я начал учить испанский два года назад. Раньше я ничего не знал и боялся говорить. В этом году прочитал книгу на испанском и много говорил с соседями. В следующем году буду сдавать экзамен по испанскому."
+    quiz:
+      - q: "En dos mil quince ___ a vivir a España."
+        options: "vine | venía | he venido"
+        explain: "Год — разовое событие: vine."
+        skill: tiempos_a2
+      - q: "Antes, en mi pueblo no ___ internet."
+        options: "había | hubo | ha habido"
+        explain: "Как было раньше — había."
+        skill: tiempos_a2
+
+  - id: lectura
+    kind: reading
+    title: "Mi país: México"
+    goal: понять рассказ о стране и сравнить со своей
+    version: 2
+    allow: [tacos]   # блюдо из рассказа Диего: понятно из перевода, отдельной карточкой не вводим
+    vocab:
+      - "🏛 la pirámide [пира́мидэ] — пирамида :: En México hay pirámides muy antiguas. — В Мексике есть очень древние пирамиды."
+      - "💀 el Día de Muertos [ди́а дэ муэ́ртос] — День мёртвых (праздник памяти в Мексике) :: El Día de Muertos se celebra en noviembre. — День мёртвых празднуют в ноябре."
+      - "✨ especial [эспэθья́ль] — особый :: Es una fiesta muy especial. — Это очень особенный праздник."
+    blocks:
+      - learn: [la pirámide, el Día de Muertos, especial]
+      - "Диего пишет для блога школы рассказ о своей стране."
+      - reading:
+          id: mexico
+          title: Mi país, México
+          text: |
+            México está al sur de Estados Unidos y tiene más de cien millones de habitantes. La capital es la Ciudad de México, una de las ciudades más grandes del mundo. En mi país hay de todo: playas en el Caribe, desiertos en el norte, volcanes y montañas. En el sur hay pirámides muy antiguas.
+
+            La comida mexicana es muy famosa. Se come mucho maíz: nuestras tortillas son de maíz, no de huevo y patata como en España. Mi plato favorito son los tacos de mi madre.
+
+            La fiesta más especial es el Día de Muertos, el uno y el dos de noviembre. Las familias recuerdan a sus muertos con flores, comida y música. No es una fiesta triste: ¡es muy alegre! Cuando era pequeño, la celebraba con mis abuelos, y todavía me encanta.
+          translation: |
+            Мексика находится к югу от США, в ней больше ста миллионов жителей. Столица — Мехико, один из самых больших городов мира. В моей стране есть всё: пляжи на Карибском море, пустыни на севере, вулканы и горы. На юге — очень древние пирамиды.
+
+            Мексиканская кухня очень известна. Едят много кукурузы: наши тортильи — из кукурузы, а не из яиц и картошки, как в Испании. Моё любимое блюдо — мамины такос.
+
+            Самый особенный праздник — День мёртвых, первого и второго ноября. Семьи вспоминают своих умерших с цветами, едой и музыкой. Это не грустный праздник: он очень весёлый! В детстве я праздновал его с бабушкой и дедушкой и до сих пор его очень люблю.
+      - choose:
+          title: Что пишет Диего?
+          source: mexico
+          items:
+            - q: "¿Dónde está México?"
+              options: "Al sur de Estados Unidos. | Al norte de Estados Unidos. | En el sur de España."
+              explain: "México está al sur de Estados Unidos."
+              skill: geografia
+            - q: "¿Qué hay en el norte de México?"
+              options: "Desiertos. | Pirámides. | Playas del Caribe."
+              explain: "…desiertos en el norte…"
+              skill: geografia
+            - q: "¿De qué son las tortillas mexicanas?"
+              options: "De maíz. | De huevo y patata. | De pan."
+              explain: "…nuestras tortillas son de maíz, no de huevo y patata como en España."
+              skill: se_pasiva
+            - q: "¿Cuál es la fiesta más especial para Diego?"
+              options: "El Día de Muertos. | La Navidad. | El Año Nuevo."
+              explain: "La fiesta más especial es el Día de Muertos…"
+            - q: "¿Cómo es el Día de Muertos para Diego?"
+              options: "Una fiesta alegre. | Una fiesta muy triste. | Una fiesta solo para niños."
+              explain: "No es una fiesta triste: ¡es muy alegre!"
+      - sort:
+          title: Испания или Мексика?
+          source: mexico
+          skill: hispano
+          groups:
+            "Испания": ["tortilla de huevo y patata", "doce uvas en Nochevieja"]
+            "Мексика": ["tortillas de maíz", "el Día de Muertos", "pirámides antiguas"]
+      - write:
+          title: Ответьте по тексту
+          format: короткий ответ по-испански
+          source: mexico
+          items:
+            - q: "¿Cuándo se celebra el Día de Muertos?"
+              a: "El uno y el dos de noviembre | En noviembre | El 1 y el 2 de noviembre"
+              explain: "…el uno y el dos de noviembre."
+            - q: "Как в тексте сказано «В детстве я праздновал его с бабушкой и дедушкой»?"
+              a: "Cuando era pequeño, la celebraba con mis abuelos"
+              explain: "Imperfecto — как было обычно в детстве."
+              skill: tiempos_a2
+      - choose:
+          title: Послушайте
+          free: true
+          rule: none
+          items:
+            - say: "En México hay de todo: playas, desiertos y volcanes."
+              options: "В Мексике есть всё: пляжи, пустыни и вулканы. | В Мексике нет ни пляжей, ни вулканов. | В Мексике только пустыни."
+              explain: "Hay de todo — «есть всё»."
+              skill: geografia
+              noaudio: {q: "Что значит «En México hay de todo: playas, desiertos y volcanes»?", options: "В Мексике есть всё: пляжи, пустыни и вулканы. | В Мексике нет ни пляжей, ни вулканов. | В Мексике только пустыни."}
+      - compose:
+          title: Сравните
+          free: true
+          rule: none
+          skill: [hispano, se_pasiva]
+          items:
+            - q: "Сравните Мексику из текста Диего со своей страной: что похоже, что отличается. Три-четыре фразы."
+              format: "En México… En mi país… pero…"
+              words: [20, 80]
+              sentences: 3
+              checks:
+                - label: "сравнение: más / menos… que, tan… como, pero…"
+                  any: [más, menos, tan, tanto, pero, también, tampoco, igual]
+                - label: "se come, se celebra…"
+                  re: "\\bse (come|comen|celebra|celebran|dice|habla|bebe|cena)\\b"
+              sample: "México es mucho más grande que mi país, pero los dos tenemos montañas y playas. En Ucrania no se come tanto maíz: se come más pan. Nosotros también recordamos a nuestros muertos, pero es un día más triste."
+              sample_ru: "Мексика намного больше моей страны, но и у нас есть горы и пляжи. В Украине едят не так много кукурузы — больше хлеба. Мы тоже вспоминаем умерших, но этот день у нас грустнее."
+
+  - id: mision
+    kind: practice
+    title: Презентация страны
+    goal: "рассказать о своей стране: где она, что там едят и празднуют"
+    version: 2
+    blocks:
+      - review:
+          title: Вспомним
+          skills: [planes, si_presente, deseos]
+          n: 2
+      - "Том прислал голосовое сообщение. Послушайте: текста нет."
+      - dialogue:
+          id: audio_tom
+          hidden: true
+          title: Сообщение от Тома
+          lines:
+            - "Tom: ¡Hola, Irina! Soy Tom. ¿Sabes que el viernes en clase cada uno va a hablar de su país? Son cinco minutos: dónde está, cuántos habitantes tiene, qué se come y qué se celebra. Yo voy a hablar de Inglaterra, pero todavía no he empezado. ¿Te llamo esta tarde y practicamos juntos? | Привет, Ирина! Это Том. Знаешь, что в пятницу на занятии каждый будет рассказывать о своей стране? Пять минут: где она, сколько в ней жителей, что едят и что празднуют. Я буду рассказывать об Англии, но ещё не начинал. Позвоню тебе вечером, потренируемся вместе?"
+      - choose:
+          title: Что в сообщении?
+          source: audio_tom
+          items:
+            - q: "¿Qué van a hacer el viernes en clase?"
+              options: "Hablar de su país. | Hacer un examen. | Ver una película mexicana."
+              explain: "…el viernes en clase cada uno va a hablar de su país."
+            - q: "¿Cuánto tiempo tiene que hablar cada uno?"
+              options: "Cinco minutos. | Quince minutos. | Una hora."
+              explain: "Son cinco minutos…"
+            - q: "¿Ha empezado Tom su presentación?"
+              options: "No, todavía no. | Sí, ya la ha terminado. | Sí, la empezó ayer."
+              explain: "…pero todavía no he empezado."
+              skill: tiempos_a2
+      - mission:
+          id: presentacion
+          title: Презентация страны
+          text: "Вечером Том звонит, чтобы потренироваться. Сначала он хочет послушать о вашей стране."
+      - chat:
+          id: tom_chat
+          title: Разговор с Томом
+          with: Tom
+          turns:
+            - say: "Empieza tú. ¿Dónde está tu país? | Начни ты. Где твоя страна?"
+              task: "Ответьте от себя: где ваша страна (en el este de Europa, al sur de…)."
+              skill: geografia
+              compose:
+                format: "Mi país está en…"
+                words: [3, 30]
+                checks:
+                  - label: "где: en el este de…, al sur de…"
+                    any: [en el norte, en el sur, en el este, en el oeste, en el centro, al norte, al sur, al este, al oeste, en la costa]
+                sample: "Mi país, Ucrania, está en el este de Europa."
+                sample_ru: "Моя страна, Украина, находится на востоке Европы."
+            - say: "¿Y cuántos habitantes tiene? | А сколько в ней жителей?"
+              task: "Ответьте примерно: сколько миллионов жителей."
+              skill: geografia
+              compose:
+                format: "Tiene unos… millones de habitantes."
+                words: [3, 20]
+                checks:
+                  - label: "millones de habitantes"
+                    any: [millones de, millón de]
+                sample: "Tiene más de treinta millones de habitantes."
+                sample_ru: "Больше тридцати миллионов жителей."
+            - say: "¿Y qué se come en tu país? | А что едят в твоей стране?"
+              task: "Расскажите, что у вас едят и пьют: se come…, se toma…"
+              skill: se_pasiva
+              compose:
+                format: "En mi país se come…"
+                words: [3, 30]
+                checks:
+                  - label: "se come, se toma…"
+                    re: "\\bse (come|comen|toma|toman|bebe|beben|cena)\\b"
+                sample: "Se come mucha sopa y mucho pan, y se toma mucho té."
+                sample_ru: "Едят много супа и хлеба, пьют много чая."
+            - say: "¡Qué interesante! ¿Y qué fiesta te gusta más? | Как интересно! А какой праздник тебе нравится больше всего?"
+              task: "Назовите праздник: как его празднуют (se celebra…) и как вы праздновали его в детстве."
+              skill: tiempos_a2
+              compose:
+                format: "Me gusta más… Se celebra… Cuando era pequeño/a…"
+                words: [8, 45]
+                checks:
+                  - label: "se celebra…"
+                    re: "\\bse celebran?\\b"
+                  - label: "в детстве: cuando era…, celebraba…"
+                    any: [cuando era, de niño, de niña, de pequeño, de pequeña, celebraba, celebrábamos, íbamos, iba]
+                sample: "Me gusta más el Año Nuevo. Se celebra en casa, con toda la familia y mucha comida. Cuando era pequeña, lo celebraba en casa de mis abuelos."
+                sample_ru: "Больше всего я люблю Новый год. Его празднуют дома, всей семьёй и с большим количеством еды. В детстве я встречала его у бабушки с дедушкой."
+            - say: "Oye, Diego dice que en México no se dice «zumo». ¿Cómo se dice allí? | Слушай, Диего говорит, что в Мексике не говорят «zumo». А как там говорят?"
+              task: "Ответьте: там говорят «jugo»."
+              skill: hispano
+              write: "Allí se dice «jugo» | Se dice jugo | En México se dice jugo | Jugo"
+              format: ответ
+            - say: "¿Y tú has estado alguna vez en Latinoamérica? | А ты когда-нибудь была в Латинской Америке?"
+              task: "Ответьте: нет, никогда, но вам бы очень хотелось поехать в Мексику."
+              skill: tiempos_a2
+              write: "No, nunca, pero me gustaría (mucho) ir a México | No, nunca he estado, pero me gustaría (mucho) ir a México | No, nunca, pero me gustaría (mucho) viajar a México"
+              format: ответ
+              mistakes:
+                "no nunca pero me gusta ir a méxico": "Желание — condicional: me **gustaría** ir a México."
+            - say: "¡Gracias por tu ayuda! Nos vemos el viernes. | Спасибо за помощь! Увидимся в пятницу."
+      - compose:
+          title: Презентация страны
+          free: true
+          rule: none
+          skill: [geografia, se_pasiva, tiempos_a2]
+          items:
+            - q: "Напишите презентацию своей страны, 80–110 слов: где она и какая там природа · сколько жителей · что едят и что празднуют · что вы любили там в детстве · что посоветуете посмотреть."
+              format: "Mi país está en… Tiene… millones de habitantes. Se come… Se celebra… Cuando era pequeño/a… Os recomiendo…"
+              words: [65, 150]
+              sentences: 5
+              checks:
+                - label: "где: está en el…, al sur de…"
+                  any: [en el norte, en el sur, en el este, en el oeste, en el centro, al norte, al sur, al este, al oeste, en la costa]
+                - label: "что принято: se come, se celebra…"
+                  re: "\\bse (come|comen|celebra|celebran|dice|habla|bebe|cena|toma)\\b"
+                - label: "прошлое: cuando era…, pasaba, fui…"
+                  any: [cuando era, de niño, de niña, de pequeño, de pequeña, pasaba, vivía, iba, celebraba, fui, he estado, he visto]
+                - label: "совет: os recomiendo, tenéis que…"
+                  any: [recomiendo, tenéis que, tienes que, tiene que, deberíais, deberías, podéis, hay que]
+              sample: "Mi país es Ucrania. Está en el este de Europa y tiene más de treinta millones de habitantes. La capital, Kiev, está en el centro y tiene un río enorme. En el sur hay costa y playas, y en el oeste, montañas. Se come mucha sopa, pan y patatas, y el Año Nuevo se celebra con toda la familia. Cuando era pequeña, pasaba los veranos en el pueblo de mis abuelos: nadaba en el río y comía fruta todo el día. Os recomiendo visitar Leópolis: es una ciudad antigua y muy especial."
+              sample_ru: "Моя страна — Украина. Она находится на востоке Европы, в ней больше тридцати миллионов жителей. Столица, Киев, — в центре, через неё течёт огромная река. На юге есть побережье и пляжи, на западе — горы. Едят много супа, хлеба и картошки, а Новый год празднуют всей семьёй. В детстве я проводила лето в деревне у бабушки с дедушкой: купалась в реке и целый день ела фрукты. Советую съездить во Львов: это старинный и совершенно особенный город."
+
+  - id: quiz
+    kind: quiz
+    title: "Тест: El mundo hispano"
+    goal: проверить цели темы — испанский в разных странах, se come, география, времена
+    version: 2
+    check: soft
+    blocks:
+      - "Это тест по теме «El mundo hispano»: двенадцать заданий."
+      - cando:
+          - "понять, чем испанский Испании отличается от испанского Мексики"
+          - "рассказать, что принято в стране: se come, se celebra"
+          - "описать, где страна и какая в ней природа"
+          - "выбрать нужное время в рассказе о стране и о себе"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          rule: none
+          skill: se_pasiva
+          items:
+            - say: "En Galicia llueve mucho, pero se come muy bien."
+              a: "En Galicia llueve mucho, pero se come muy bien"
+              noaudio: {q: "Напишите по-испански: «В Галисии много дождей, но там очень хорошо едят».", a: "En Galicia llueve mucho, pero se come muy bien | En Galicia llueve mucho pero se come muy bien"}
+      - choose:
+          title: Послушайте
+          rule: none
+          items:
+            - say: "En el norte de México hay desiertos y en el sur, pirámides muy antiguas."
+              options: "На севере Мексики пустыни, а на юге — древние пирамиды. | На юге Мексики пустыни, а на севере — очень древние пирамиды. | В Мексике нет ни пустынь, ни пирамид."
+              skill: geografia
+              noaudio: {q: "Что значит «En el norte de México hay desiertos y en el sur, pirámides muy antiguas»?", options: "На севере Мексики пустыни, а на юге — древние пирамиды. | На юге Мексики пустыни, а на севере — очень древние пирамиды. | В Мексике нет ни пустынь, ни пирамид."}
+            - say: "Cuando era pequeño, celebraba el Día de Muertos con mis abuelos."
+              options: "В детстве я праздновал День мёртвых с бабушкой и дедушкой. | В этом году я впервые праздновал День мёртвых. | Бабушка с дедушкой никогда не праздновали со мной День мёртвых."
+              skill: tiempos_a2
+              noaudio: {q: "Что значит «Cuando era pequeño, celebraba el Día de Muertos con mis abuelos»?", options: "В детстве я праздновал День мёртвых с бабушкой и дедушкой. | В этом году я впервые праздновал День мёртвых. | Бабушка с дедушкой никогда не праздновали со мной День мёртвых."}
+      - write:
+          title: Вставьте слово или форму
+          format: одно слово
+          rule: none
+          items:
+            - q: "En México no se dice «vosotros»: siempre se dice ___."
+              a: "ustedes"
+              skill: hispano
+            - q: "Ucrania tiene más de treinta millones ___ habitantes."
+              a: "de"
+              skill: geografia
+            - q: "En Andalucía se (comer) ___ muchas tapas."
+              a: "comen"
+              skill: se_pasiva
+              mistakes:
+                "come": "Muchas tapas — мн. ч.: se **comen**."
+            - q: "Ayer (yo, ver) ___ una película mexicana."
+              a: "vi"
+              skill: tiempos_a2
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          rule: none
+          items:
+            - q: "Мой город на севере страны."
+              a: "Mi ciudad está en el norte del país | Mi ciudad está en el norte de mi país"
+              skill: geografia
+            - q: "Вчера мы ужинали в мексиканском ресторане."
+              a: "Ayer cenamos en un restaurante mexicano"
+              skill: tiempos_a2
+              mistakes:
+                "ayer hemos cenado en un restaurante mexicano": "Ayer — indefinido: **cenamos**."
+      - build:
+          title: Соберите фразу
+          rule: none
+          skill: hispano
+          items:
+            - es: "Hay más de veinte países hispanohablantes."
+              ru: "Испаноязычных стран больше двадцати."
+              extra: [que]
+    quiz:
+      - q: "¿Cómo se dice «ordenador» en México?"
+        options: "computadora | celular | carro"
+        explain: "Ordenador — в Мексике computadora."
+        skill: hispano
+      - q: "El año pasado ___ a Colombia por primera vez."
+        options: "fui | iba | he ido"
+        explain: "El año pasado — разовое событие: fui."
+        skill: tiempos_a2

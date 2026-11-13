@@ -1,0 +1,1049 @@
+id: de_viaje
+number: 28
+level: A2
+title: De viaje — в поездке
+goals:
+  - купить билет на поезд и понять расписание
+  - понять объявление на вокзале и в аэропорту
+  - заселиться в гостиницу и решить небольшую проблему
+  - не повторять слово: lo, la, los, las
+
+# Тема 5 карты A2: вокзал, аэропорт, гостиница; lo, la, los, las; ir / irse; предлоги a, de, en, por, para.
+lessons:
+  - id: estacion
+    kind: listening
+    title: "Un billete para Sevilla"
+    goal: купить билет на поезд и понять расписание
+    version: 2
+    # Карта экранов: docs/site_slide_maps/28_de_viaje.md
+    vocab:
+      - "🎫 el billete [бийе́тэ] — билет (на транспорт) :: Un billete para Sevilla, por favor. — Один билет до Севильи, пожалуйста."
+      - "🔁 de ida y vuelta [дэ и́да и буэ́льта] — туда и обратно :: Un billete de ida y vuelta. — Билет туда и обратно."
+      - "🚉 el andén [андэ́н] — платформа, перрон {pl: andenes} :: El tren sale del andén cinco. — Поезд отправляется с пятой платформы."
+      - "🗓 el horario [ора́рьо] — расписание :: ¿Dónde está el horario de trenes? — Где расписание поездов?"
+      - "🛫 la salida [сали́да] — отправление; выход :: La salida es a las diez. — Отправление в десять."
+      - "🛬 la llegada [йега́да] — прибытие :: La llegada es a las doce y media. — Прибытие в половине первого."
+      - "⏱ el minuto [мину́то] — минута :: El tren sale en diez minutos. — Поезд отправляется через десять минут."
+      - "👋 ¡Buen viaje! [буэ́н бья́хэ] — счастливого пути!"
+    blocks:
+      - "Ирина покупает билет на вокзале в Мадриде. Послушайте разговор два раза: текста пока нет."
+      - dialogue:
+          id: taquilla
+          hidden: true
+          lines:
+            - "Irina: Buenos días. Un billete para Sevilla, por favor. | Добрый день. Один билет до Севильи, пожалуйста."
+            - "Empleado: ¿Para hoy? | На сегодня?"
+            - "Irina: No, para mañana por la mañana. | Нет, на завтра на утро."
+            - "Empleado: Hay un tren a las ocho y media y otro a las diez. | Есть поезд в половине девятого и ещё один в десять."
+            - "Irina: El de las diez, por favor. | Тот, что в десять, пожалуйста."
+            - "Empleado: ¿De ida o de ida y vuelta? | В одну сторону или туда и обратно?"
+            - "Irina: De ida y vuelta. Vuelvo el domingo por la tarde. | Туда и обратно. Возвращаюсь в воскресенье днём."
+            - "Empleado: Muy bien. Son setenta y cuatro euros. ¿Paga con tarjeta? | Хорошо. С вас семьдесят четыре евро. Платите картой?"
+            - "Irina: Sí. ¿De qué andén sale el tren? | Да. С какой платформы отправляется поезд?"
+            - "Empleado: Del andén cinco. Aquí tiene su billete. ¡Buen viaje! | С пятой платформы. Вот ваш билет. Счастливого пути!"
+      - choose:
+          title: Что вы поняли?
+          source: taquilla
+          items:
+            - q: "¿Adónde va Irina?"
+              options: "A Sevilla. | A Valencia. | A Granada."
+              explain: "Irina называет город в первой же фразе: …para Sevilla."
+            - q: "¿Cuándo viaja?"
+              options: "Mañana por la mañana. | Hoy. | El domingo."
+              explain: "Irina: No, para mañana por la mañana. В воскресенье она возвращается."
+      - learn: [el billete, de ida y vuelta, el andén, "¡Buen viaje!"]
+      - choose:
+          title: Детали разговора
+          source: taquilla
+          skill: billete
+          items:
+            - q: "¿A qué hora sale su tren?"
+              options: "A las diez. | A las ocho y media. | A las cinco."
+              explain: "Irina: El de las diez, por favor. Пять — это номер платформы."
+            - q: "¿Qué billete compra?"
+              options: "De ida y vuelta. | De ida. | Dos billetes de ida."
+              explain: "Irina: De ida y vuelta. Vuelvo el domingo."
+            - q: "¿Cuánto cuesta el billete?"
+              options: "Setenta y cuatro euros. | Sesenta y cuatro euros. | Setenta euros."
+              explain: "Empleado: Son setenta y cuatro euros."
+            - q: "¿De qué andén sale el tren?"
+              options: "Del cinco. | Del diez. | Del cuatro."
+              explain: "Empleado: Del andén cinco."
+      - learn: [el horario, la salida, la llegada, el minuto]
+      - match:
+          title: Соедините пары
+          free: true
+          rule: none
+          pairs:
+            - "la salida — отправление"
+            - "la llegada — прибытие"
+            - "el horario — расписание"
+            - "el andén — платформа"
+            - "el billete — билет"
+            - "el minuto — минута"
+      - "Вот расписание утренних поездов из Мадрида."
+      - table:
+          id: horario
+          title: Horario
+          rows:
+            - ["**Tren para**", "**Salida**", "**Llegada**", "**Andén**"]
+            - ["Sevilla", "08:30", "11:02", "3"]
+            - ["Valencia", "09:15", "11:05", "7"]
+            - ["Barcelona", "09:40", "12:10", "2"]
+            - ["Sevilla", "10:00", "12:35", "5"]
+      - choose:
+          title: Посмотрите в расписание
+          free: true
+          skill: horario
+          rule: horario
+          items:
+            - q: "¿A qué hora llega a Sevilla el tren de las diez?"
+              options: "12:35 | 11:02 | 12:10"
+              explain: "Строка Sevilla — Salida 10:00 — Llegada 12:35."
+            - q: "¿De qué andén sale el tren para Valencia?"
+              options: "Del siete. | Del cinco. | Del dos."
+              explain: "Valencia — Andén 7."
+            - q: "Son las nueve y media. ¿Qué tren sale en diez minutos?"
+              options: "El de Barcelona. | El de Valencia. | El de Sevilla."
+              explain: "9:30 + 10 minutos = 9:40: это поезд на Барселону."
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          free: true
+          skill: billete
+          rule: none
+          items:
+            - say: "Un billete de ida y vuelta, por favor."
+              a: "Un billete de ida y vuelta, por favor"
+              noaudio: {q: "Напишите по-испански: «Один билет туда и обратно, пожалуйста».", a: "Un billete de ida y vuelta, por favor | Por favor, un billete de ida y vuelta"}
+      - choose:
+          title: Что ответить?
+          free: true
+          skill: billete
+          rule: none
+          items:
+            - lines: ["Empleado: ¿De ida o de ida y vuelta?"]
+              q: "Вам нужен билет только туда."
+              options: "De ida, por favor. | De ida y vuelta, por favor. | Del andén cinco, por favor."
+              explain: "Только туда — de ida."
+            - lines: ["Empleado: Aquí tiene su billete. ¡Buen viaje!"]
+              q: "Поблагодарите."
+              options: "Muchas gracias. | De nada. | Igualmente."
+              explain: "Вам дали билет и пожелали хорошей дороги — muchas gracias. Igualmente подошло бы, если бы кассир тоже уезжал."
+      - build:
+          title: Соберите вопрос
+          free: true
+          skill: billete
+          rule: none
+          items:
+            - "¿De qué andén sale el tren para Sevilla? — С какой платформы отправляется поезд на Севилью?"
+      - write:
+          title: Спросите по-испански
+          format: вопрос по-испански
+          free: true
+          skill: horario
+          rule: none
+          items:
+            - q: "Во сколько отправляется поезд на Валенсию?"
+              a: "¿A qué hora sale el tren para Valencia? | ¿A qué hora sale el tren a Valencia? | ¿A qué hora sale el tren de Valencia?"
+              explain: "¿A qué hora sale…? — «во сколько отправляется?»; el tren para Valencia — «поезд на Валенсию»."
+              mistakes:
+                "qué hora sale el tren para valencia": "«Во сколько» — **¿A qué hora…?**, с предлогом a."
+
+  - id: lo_la
+    kind: grammar
+    title: "Lo, la, los, las"
+    goal: заменить уже названную вещь коротким словом — lo tengo, no la encuentro
+    version: 2
+    forms: [comprarlo, buscarla]
+    vocab:
+      - "🧳 la maleta [мале́та] — чемодан :: Mi maleta es azul. — Мой чемодан синий."
+      - "🛂 el pasaporte [пасапо́ртэ] — паспорт :: ¿Tienes el pasaporte? — Паспорт у тебя?"
+      - "🔎 encontrar [энконтра́р] — находить :: No encuentro mis llaves. — Я не могу найти ключи."
+      - "📥 dejar [дэха́р] — оставлять; давать на время :: He dejado el móvil en casa. — Я оставил телефон дома."
+      - "👜 el bolso [бо́льсо] — сумка :: Las llaves están en mi bolso. — Ключи в моей сумке."
+    blocks:
+      - "Лусия и Пабло собираются в поездку. Какими короткими словами они заменяют вещи, чтобы не повторяться?"
+      - dialogue:
+          id: maletas
+          title: Перед выходом
+          lines:
+            - "Lucía: ¿Tienes los billetes? | Билеты у тебя?"
+            - "Pablo: Sí, los tengo en la mochila. | Да, они у меня в рюкзаке."
+            - "Lucía: ¿Y tu pasaporte? | А твой паспорт?"
+            - "Pablo: No lo encuentro. ¿Lo has visto? | Не могу его найти. Ты его видела?"
+            - "Lucía: Sí, lo has dejado en la mesa. ¿Y mi maleta? | Да, ты оставил его на столе. А мой чемодан?"
+            - "Pablo: La he llevado al coche esta mañana. | Я отнёс его в машину сегодня утром."
+      - learn: [la maleta, el pasaporte, encontrar, dejar, el bolso]
+      - choose:
+          title: Поняли?
+          source: maletas
+          items:
+            - q: "¿Dónde están los billetes?"
+              options: "En la mochila. | En la mesa. | En el coche."
+              explain: "Pablo: Sí, los tengo en la mochila."
+            - q: "¿Dónde ha dejado Pablo el pasaporte?"
+              options: "En la mesa. | En la mochila. | En la maleta."
+              explain: "Lucía: Lo has dejado en la mesa."
+      - compare:
+          id: lo_la
+          slide: new
+          title: Вместо названной вещи
+          lead: "Короткое слово стоит **перед глаголом** и согласуется с вещью, которую заменяет."
+          cards:
+            - head: lo
+              label: el billete
+              tone: blue
+              ex: ["Lo tengo. — Он у меня."]
+            - head: la
+              label: la maleta
+              tone: rose
+              ex: ["No la encuentro. — Не могу его найти."]
+            - head: los
+              label: los billetes
+              tone: blue
+              ex: ["Los he comprado. — Я их купил."]
+            - head: las
+              label: las llaves
+              tone: rose
+              ex: ["¿Las has visto? — Ты их видел?"]
+          note: "Отрицание **no** стоит перед этим словом: _No lo tengo_. Во времени «he comprado» — перед **he**: _Lo he comprado_. Так же говорят о людях: _¿Conoces a Carmen? — Sí, la conozco._"
+      - more:
+          title: А с инфинитивом?
+          text: "Если есть инфинитив, слово можно поставить в начало или прикрепить к инфинитиву — смысл один: _Lo voy a comprar_ = _Voy a comprarlo_; _La tengo que buscar_ = _Tengo que buscarla_."
+      - sort:
+          title: Каким словом заменить?
+          free: true
+          skill: lo_la
+          rule: lo_la
+          groups:
+            "lo": [el pasaporte, el bolso]
+            "la": [la maleta, la tarjeta]
+            "los": [los billetes, los zapatos]
+            "las": [las gafas, las llaves]
+      - write:
+          title: Вставьте lo, la, los или las
+          format: lo, la, los или las
+          free: true
+          skill: lo_la
+          rule: lo_la
+          items:
+            - q: "— ¿Tienes la maleta? — Sí, ___ tengo."
+              a: "la"
+              explain: "La maleta → la."
+              mistakes:
+                "lo": "La maleta — женского рода: **la** tengo."
+            - q: "— ¿Has comprado los billetes? — Sí, ___ he comprado."
+              a: "los"
+              explain: "Los billetes → los."
+            - q: "— ¿Ves el andén? — No, no ___ veo."
+              a: "lo"
+              explain: "El andén → lo."
+              mistakes:
+                "la": "El andén — мужского рода: no **lo** veo."
+            - q: "— ¿Dónde están las llaves? — No ___ encuentro."
+              a: "las"
+              explain: "Las llaves → las."
+            - q: "— ¿Conoces a mis padres? — No, no ___ conozco."
+              a: "los"
+              explain: "Mis padres → los."
+            - q: "— ¿Conoces a Carmen? — Sí, ___ conozco."
+              a: "la"
+              explain: "Carmen — женщина: la conozco."
+      - choose:
+          title: Где стоит слово?
+          free: true
+          skill: lo_la
+          rule: lo_la
+          items:
+            - q: "Какая фраза правильная?"
+              options: "No lo tengo. | No tengo lo. | Lo no tengo."
+              explain: "Сначала no, потом lo, потом глагол: No lo tengo."
+            - say: "No la encuentro."
+              options: "Я не могу её найти. | Я не хочу её искать. | Я её не жду."
+              explain: "Encontrar — «находить»: no la encuentro."
+              noaudio: {q: "Что значит «No la encuentro»?", options: "Я не могу её найти. | Я не хочу её искать. | Я её не жду."}
+            - lines: ["Lucía: ¿Has visto mi bolso?"]
+              q: "Вы видели его на диване."
+              options: "Sí, lo he visto en el sofá. | Sí, la he visto en el sofá. | Sí, he visto lo en el sofá."
+              explain: "El bolso → lo; слово стоит перед he."
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: lo_la
+          rule: lo_la
+          items:
+            - es: "No encuentro mi pasaporte."
+              ru: "Я не могу найти свой паспорт."
+              rule: none
+            - es: "¿Dónde lo has dejado?"
+              ru: "Где ты его оставил?"
+              extra: [la]
+      - write:
+          title: Скажите по-испански
+          format: короткая фраза
+          free: true
+          skill: lo_la
+          rule: lo_la
+          items:
+            - q: "О билетах: «Я купил их вчера»."
+              a: "Los compré ayer | Ayer los compré | (Yo) los compré ayer"
+              explain: "Los billetes → los; слово стоит перед глаголом."
+              mistakes:
+                "compré los ayer": "Слово стоит перед глаголом: **Los compré** ayer."
+                "lo compré ayer": "Билетов несколько: **los** compré."
+            - q: "О чемодане (la maleta): «Я его не вижу»."
+              a: "No la veo | (Yo) no la veo"
+              explain: "La maleta → la; no — перед la."
+              mistakes:
+                "no lo veo": "La maleta — женского рода: no **la** veo."
+                "no veo la": "Слово стоит перед глаголом: no **la veo**."
+    quiz:
+      - q: "— ¿Tienes las llaves? — Sí, ___ tengo en el bolso."
+        options: "las | los | la"
+        explain: "Las llaves → las."
+        skill: lo_la
+        free: true
+      - q: "— ¿Has dejado el pasaporte en el hotel? — No, ___ en la maleta."
+        options: "lo tengo | tengo lo | la tengo"
+        explain: "El pasaporte → lo, перед глаголом: lo tengo."
+        skill: lo_la
+        free: true
+
+  - id: aeropuerto
+    kind: listening
+    title: En el aeropuerto
+    goal: понять объявление о рейсе и зарегистрироваться на рейс
+    version: 2
+    allow: [UX, VY, IB, Atención]
+    vocab:
+      - "✈️ el vuelo [буэ́ло] — рейс; полёт :: Mi vuelo sale a las diez. — Мой рейс вылетает в десять."
+      - "🎯 el destino [дэсти́но] — место назначения :: el vuelo con destino a Madrid — рейс в Мадрид"
+      - "🧳 el equipaje [экипа́хэ] — багаж :: ¿Tiene equipaje? — У вас есть багаж?"
+      - "🏷 facturar [фактура́р] — сдавать в багаж; регистрировать :: Quiero facturar una maleta. — Я хочу сдать чемодан."
+      - "🎟 la tarjeta de embarque [тархэ́та дэ эмба́ркэ] — посадочный талон"
+      - "🚪 la puerta de embarque [пуэ́рта дэ эмба́ркэ] — выход на посадку :: ¿Cuál es la puerta de embarque? — Какой выход на посадку?"
+      - "⏰ el retraso [рэтра́со] — опоздание, задержка :: El vuelo tiene una hora de retraso. — Рейс задерживается на час."
+      - "🚫 cancelado/a [канθэла́до, канθэла́да] — отменённый :: El vuelo está cancelado. — Рейс отменён."
+    blocks:
+      - learn: [el vuelo, el destino, la puerta de embarque, el retraso, cancelado/a]
+      - "Табло вылетов в аэропорту Валенсии."
+      - table:
+          id: salidas
+          title: Salidas
+          rows:
+            - ["**Vuelo**", "**Destino**", "**Salida**", "**Puerta**", ""]
+            - ["`UX 1045`", "Madrid", "10:40", "`B12`", ""]
+            - ["`VY 2231`", "Barcelona", "11:05", "`A4`", "con retraso"]
+            - ["`IB 3920`", "Sevilla", "11:30", "`C7`", "cancelado"]
+      - choose:
+          title: Посмотрите на табло
+          skill: aeropuerto
+          rule: salidas
+          items:
+            - q: "¿De qué puerta sale el vuelo con destino a Madrid?"
+              options: "De la B12. | De la A4. | De la C7."
+              explain: "Madrid — Puerta B12."
+            - q: "¿Qué vuelo está cancelado?"
+              options: "El de Sevilla. | El de Barcelona. | El de Madrid."
+              explain: "Sevilla — cancelado. Рейс на Барселону только задерживается."
+      - "А теперь объявления. Послушайте их два раза: текста нет."
+      - dialogue:
+          id: avisos
+          hidden: true
+          title: Объявления
+          lines:
+            - "Megafonía: Atención, por favor. El vuelo UX 1045 con destino a Madrid sale de la puerta B12. | Внимание, пожалуйста. Рейс UX 1045 в Мадрид отправляется от выхода B12."
+            - "Megafonía: El vuelo VY 2231 con destino a Barcelona tiene una hora de retraso. | Рейс VY 2231 в Барселону задерживается на час."
+            - "Megafonía: El vuelo IB 3920 con destino a Sevilla está cancelado. | Рейс IB 3920 в Севилью отменён."
+      - choose:
+          title: Что объявили?
+          source: avisos
+          skill: aeropuerto
+          items:
+            - q: "¿Cuánto retraso tiene el vuelo a Barcelona?"
+              options: "Una hora. | Media hora. | Diez minutos."
+              explain: "…con destino a Barcelona tiene una hora de retraso."
+            - q: "¿Qué pasa con el vuelo a Sevilla?"
+              options: "Está cancelado. | Tiene retraso. | Sale de otra puerta."
+              explain: "El vuelo … con destino a Sevilla está cancelado."
+            - q: "Su vuelo sale a las 11:05 y tiene una hora de retraso. ¿A qué hora sale ahora?"
+              options: "A las doce y cinco. | A las once y cinco. | A las diez y cinco."
+              explain: "11:05 + una hora = 12:05."
+      - learn: [el equipaje, facturar, la tarjeta de embarque]
+      - "У стойки регистрации."
+      - dialogue:
+          id: mostrador
+          title: Регистрация на рейс
+          lines:
+            - "Empleado: Buenos días. Su pasaporte, por favor. | Добрый день. Ваш паспорт, пожалуйста."
+            - "Irina: Aquí lo tiene. | Вот он."
+            - "Empleado: ¿Va a facturar equipaje? | Будете сдавать багаж?"
+            - "Irina: Sí, una maleta. El bolso lo llevo conmigo. | Да, один чемодан. Сумку я беру с собой."
+            - "Empleado: Muy bien. Aquí tiene su tarjeta de embarque. Puerta B12. | Хорошо. Вот ваш посадочный талон. Выход B12."
+            - "Irina: Gracias. ¿El vuelo sale a su hora? | Спасибо. Рейс вылетает вовремя?"
+            - "Empleado: Sí, no hay retraso. ¡Buen viaje! | Да, задержки нет. Счастливого пути!"
+      - choose:
+          title: Поняли?
+          source: mostrador
+          skill: aeropuerto
+          items:
+            - q: "¿Qué equipaje factura Irina?"
+              options: "Una maleta. | Un bolso. | Una maleta y un bolso."
+              explain: "Irina: Sí, una maleta. El bolso lo llevo conmigo."
+            - q: "¿Tiene retraso su vuelo?"
+              options: "No, sale a su hora. | Sí, una hora. | Está cancelado."
+              explain: "Empleado: Sí, no hay retraso."
+      - match:
+          title: Соедините пары
+          free: true
+          rule: none
+          pairs:
+            - "el vuelo — рейс"
+            - "el equipaje — багаж"
+            - "la tarjeta de embarque — посадочный талон"
+            - "la puerta de embarque — выход на посадку"
+            - "el retraso — задержка"
+            - "cancelado — отменён"
+      - choose:
+          title: Что ответить?
+          free: true
+          skill: aeropuerto
+          rule: none
+          items:
+            - lines: ["Empleado: ¿Va a facturar equipaje?"]
+              q: "У вас только сумка, сдавать нечего."
+              options: "No, solo llevo un bolso. | Sí, una maleta. | No, no tengo pasaporte."
+              explain: "Сдавать нечего — No; solo llevo un bolso — «у меня только сумка»."
+            - lines: ["Empleado: Su pasaporte, por favor."]
+              q: "Дайте паспорт."
+              options: "Aquí lo tiene. | Aquí la tiene. | Aquí los tiene."
+              explain: "El pasaporte → lo: Aquí lo tiene."
+              skill: lo_la
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          free: true
+          skill: aeropuerto
+          rule: none
+          items:
+            - q: "Я хочу сдать в багаж один чемодан."
+              a: "Quiero facturar una maleta | (Yo) quiero facturar una maleta | Quiero facturar [la/esta/mi] maleta"
+              explain: "Facturar una maleta — «сдать чемодан в багаж»."
+            - q: "Спросите: «Какой выход на посадку?»"
+              a: "¿Cuál es la puerta de embarque? | ¿Qué puerta de embarque es? | ¿De qué puerta sale (el vuelo)?"
+              explain: "¿Cuál es…? — «какой?»: ¿Cuál es la puerta de embarque?"
+    forms: [conmigo, solo]
+    quiz:
+      - q: "El vuelo tiene dos horas de ___."
+        options: "retraso | equipaje | destino"
+        explain: "Tener retraso — «задерживаться»."
+        skill: aeropuerto
+        free: true
+      - q: "Что такое «la tarjeta de embarque»?"
+        options: "посадочный талон | выход на посадку | банковская карта"
+        explain: "La tarjeta de embarque — посадочный талон; выход на посадку — la puerta de embarque."
+        skill: aeropuerto
+        free: true
+
+  - id: ir_irse
+    kind: grammar
+    title: "Voy, me voy: ir, irse и предлоги пути"
+    goal: сказать, куда вы едете, откуда, на чём и когда уезжаете
+    version: 2
+    vocab:
+      - "🚪 irse [и́рсэ] — уходить, уезжать :: Me voy mañana. — Я уезжаю завтра."
+      - "↪️ pasar por [паса́р пор] — проезжать через; заходить {forms: paso pasas pasa pasamos pasan} :: El tren pasa por Córdoba. — Поезд идёт через Кордову."
+      - "🛩 el avión [абьо́н] — самолёт {pl: aviones} :: Vamos a Canarias en avión. — Мы летим на Канары самолётом."
+      - "➡️ directo/a [дирэ́кто, дирэ́кта] — прямой :: Es un vuelo directo. — Это прямой рейс."
+    blocks:
+      - compare:
+          id: ir_irse
+          title: Ехать или уезжать?
+          cards:
+            - head: Voy a Sevilla.
+              label: "ir a — еду куда-то"
+              tone: blue
+              ex: ["Mañana vamos a la playa. — Завтра мы едем на пляж."]
+            - head: Me voy.
+              label: "irse — ухожу, уезжаю отсюда"
+              tone: sun
+              ex: ["¿Ya te vas? — Ты уже уходишь?", "Se fue ayer. — Он уехал вчера."]
+          note: "**Irse** — тот же глагол ir с местоимением: _me voy, te vas, se va, nos vamos, os vais, se van_. Главное в нём — что человек покидает место."
+      - learn: [irse]
+      - choose:
+          title: Ir или irse?
+          skill: ir_irse
+          rule: ir_irse
+          items:
+            - q: "Es muy tarde. ¡___!"
+              options: "Me voy | Voy | Voy a"
+              explain: "«Ухожу отсюда» — me voy."
+            - q: "Este verano ___ a Italia."
+              options: "voy | me voy de | se va"
+              explain: "Названо, куда: voy a Italia."
+            - q: "— ¿Dónde está Carlos? — ___ hace una hora."
+              options: "Se fue | Fue | Se va"
+              explain: "«Он ушёл» час назад — se fue."
+            - say: "¿Ya te vas?"
+              options: "Ты уже уходишь? | Ты уже идёшь? | Ты уже пришёл?"
+              explain: "Te vas — «ты уходишь» (irse)."
+              noaudio: {q: "Что значит «¿Ya te vas?»", options: "Ты уже уходишь? | Ты уже идёшь? | Ты уже пришёл?"}
+      - table:
+          id: preposiciones
+          slide: new
+          title: Предлоги пути
+          rows:
+            - ["**a**", "куда", "Voy **a** Sevilla."]
+            - ["**de**", "откуда", "Salgo **de** Madrid."]
+            - ["**en**", "на чём; где", "Viajo **en** tren. Estoy **en** el hotel."]
+            - ["**por**", "через, по", "El tren pasa **por** Córdoba. Paseo **por** el centro."]
+            - ["**para**", "в сторону (о транспорте)", "el tren **para** Sevilla"]
+      - learn: [pasar por, directo/a, el avión]
+      - write:
+          title: Вставьте предлог
+          format: a, de, en, por или para
+          skill: preposiciones_viaje
+          rule: preposiciones
+          items:
+            - q: "Mañana voy ___ Sevilla."
+              a: "a"
+              explain: "Куда — a."
+              mistakes:
+                "en": "Куда — предлог **a**: voy a Sevilla. En — «где»: estoy en Sevilla."
+            - q: "Salgo ___ Madrid a las diez."
+              a: "de"
+              explain: "Откуда — de."
+            - q: "Siempre viajo ___ tren."
+              a: "en"
+              explain: "На чём — en: en tren, en avión, en coche."
+              mistakes:
+                "con": "С транспортом — **en**: en tren."
+            - q: "El tren no es directo: pasa ___ Córdoba."
+              a: "por"
+              explain: "Через — por."
+            - q: "¿A qué hora sale el tren ___ Valencia?"
+              a: "para | a"
+              explain: "Поезд «в сторону» города — para Valencia."
+              mistakes:
+                "de": "El tren de Valencia — это поезд **из** Валенсии. Поезд туда — **para** Valencia."
+            - q: "Ahora estamos ___ el aeropuerto."
+              a: "en"
+              explain: "Где — en."
+              mistakes:
+                "a": "Где — предлог **en**: estamos en el aeropuerto."
+      - choose:
+          title: Послушайте
+          skill: ir_irse
+          rule: ir_irse
+          items:
+            - say: "Se fueron ayer por la mañana."
+              options: "Они уехали вчера утром. | Они приехали вчера утром. | Они уезжают завтра утром."
+              explain: "Se fueron — «они уехали» (irse в прошедшем времени)."
+              noaudio: {q: "Что значит «Se fueron ayer por la mañana»?", options: "Они уехали вчера утром. | Они приехали вчера утром. | Они уезжают завтра утром."}
+            - q: "¿El vuelo es directo? — No, ___ Madrid."
+              options: "pasa por | se va de | sale a"
+              explain: "Не прямой — значит, идёт через Мадрид: pasa por Madrid."
+              skill: preposiciones_viaje
+              rule: preposiciones
+      - build:
+          title: Соберите фразу
+          skill: ir_irse
+          rule: ir_irse
+          items:
+            - es: "Mañana me voy a Sevilla en tren."
+              ru: "Завтра я уезжаю в Севилью на поезде."
+              alt: ["Me voy a Sevilla en tren mañana.", "Me voy mañana a Sevilla en tren."]
+            - es: "Este vuelo no pasa por Madrid: es directo."
+              ru: "Этот рейс не идёт через Мадрид: он прямой."
+              skill: preposiciones_viaje
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: ir_irse
+          rule: ir_irse
+          items:
+            - q: "Я уезжаю завтра."
+              a: "Me voy mañana | Mañana me voy | (Yo) me voy mañana"
+              explain: "Уезжать — irse: me voy."
+              mistakes:
+                "voy mañana": "«Уезжаю» (отсюда) — **me voy**: без me получается «еду завтра» — и хочется спросить, куда."
+            - q: "Мы едем в Валенсию на машине."
+              a: "Vamos a Valencia en coche | (Nosotros) vamos a Valencia en coche | Vamos en coche a Valencia"
+              explain: "Куда — a, на чём — en."
+              skill: preposiciones_viaje
+              rule: preposiciones
+              mistakes:
+                "vamos en valencia en coche": "Куда — **a** Valencia; en — только про транспорт: en coche."
+      - compose:
+          title: О себе
+          skill: preposiciones_viaje
+          rule: preposiciones
+          items:
+            - q: "¿Cómo vas al trabajo o a clase? Напишите две фразы: на чём едете, откуда и во сколько выходите, через что проезжаете."
+              format: "Voy al trabajo en… Salgo de casa a las…"
+              words: [7, 40]
+              sentences: 2
+              checks:
+                - label: "куда: voy a… / voy al…"
+                  any: [voy a, voy al, vamos a, vamos al]
+                - label: "на чём: en metro, en coche… или a pie"
+                  any: [en metro, en autobús, en coche, en tren, en bici, a pie, en taxi]
+                - label: "откуда или через что: salgo de… / paso por…"
+                  any: [salgo de, paso por, salimos de, pasamos por]
+              sample: "Voy al trabajo en metro. Salgo de casa a las ocho y paso por el centro."
+              sample_ru: "Я езжу на работу на метро. Выхожу из дома в восемь и проезжаю через центр."
+    quiz:
+      - q: "Viajamos ___ avión."
+        options: "en | con | por"
+        explain: "На чём — en: en avión."
+        skill: preposiciones_viaje
+      - q: "— ¿Te quedas? — No, ___: mañana trabajo."
+        options: "me voy | voy | fui"
+        explain: "«Ухожу» — me voy."
+        skill: ir_irse
+
+  - id: hotel
+    kind: dialogue
+    title: En el hotel
+    goal: заселиться в гостиницу и сказать, что что-то не работает
+    version: 2
+    allow: [Koval, Oleg]
+    forms: [tercero, tercera, tercer, cuarta, quinta]
+    vocab:
+      - "📒 la reserva [рэсэ́рба] — бронь, бронирование :: Tengo una reserva. — У меня есть бронь."
+      - "🏷 a nombre de [а но́мбрэ дэ] — на имя :: una reserva a nombre de Ana López — бронь на имя Аны Лопес"
+      - "🛏 individual / doble [индибидуа́ль, до́бле] — одноместный / двухместный :: una habitación doble — двухместный номер"
+      - "✅ incluido/a [инклуи́до, инклуи́да] — включённый (в цену) :: El desayuno está incluido. — Завтрак включён."
+      - "🏢 la planta [пла́нта] — этаж :: Mi habitación está en la segunda planta. — Мой номер на втором этаже."
+      - "🛗 el ascensor [асθэнсо́р] — лифт {pl: ascensores} :: ¿Hay ascensor? — Есть лифт?"
+      - "⚙️ funcionar [фунθьона́р] — работать (о технике) :: La ducha no funciona. — Душ не работает."
+      - "🔄 cambiar [камбья́р] — менять :: ¿Puedo cambiar de habitación? — Можно поменять номер?"
+    blocks:
+      - "Ирина приехала в Севилью и заселяется в гостиницу."
+      - dialogue:
+          id: recepcion
+          title: У стойки
+          lines:
+            - "Recepcionista: Buenas tardes. ¿Tiene una reserva? | Добрый день. У вас есть бронь?"
+            - "Irina: Sí, a nombre de Irina Koval. | Да, на имя Ирины Коваль."
+            - "Recepcionista: Un momento… Aquí está. Una habitación individual para dos noches, ¿verdad? | Минуту… Вот она. Одноместный номер на две ночи, верно?"
+            - "Irina: Sí. ¿El desayuno está incluido? | Да. Завтрак включён?"
+            - "Recepcionista: Sí, es de siete a diez, en la planta baja. | Да, с семи до десяти, на первом этаже."
+            - "Irina: Perfecto. ¿Hay ascensor? | Прекрасно. Лифт есть?"
+            - "Recepcionista: Claro, está al lado de la puerta. Su habitación es la 305, en la tercera planta. | Конечно, он рядом с дверью. Ваш номер 305, на третьем этаже."
+            - "Irina: Muchas gracias. | Большое спасибо."
+            - "Recepcionista: Aquí tiene la llave. ¿Me deja su pasaporte, por favor? | Вот ключ. Дадите ваш паспорт, пожалуйста?"
+            - "Irina: Sí, aquí lo tiene. | Да, вот он."
+      - learn: [la reserva, a nombre de, individual / doble, incluido/a, la planta, el ascensor]
+      - choose:
+          title: Поняли?
+          source: recepcion
+          skill: hotel
+          items:
+            - q: "¿Para cuántas noches es la reserva?"
+              options: "Para dos noches. | Para tres noches. | Para una noche."
+              explain: "Una habitación individual para dos noches."
+            - q: "¿Dónde es el desayuno?"
+              options: "En la planta baja. | En la tercera planta. | En la habitación."
+              explain: "Es de siete a diez, en la planta baja. На третьем этаже — номер."
+            - q: "¿Qué número tiene la habitación?"
+              options: "305 | 350 | 503"
+              explain: "Su habitación es la 305 — trescientos cinco."
+            - q: "¿Qué le piden a Irina?"
+              options: "El pasaporte. | La tarjeta. | La llave."
+              explain: "¿Me deja su pasaporte, por favor? Ключ она, наоборот, даёт."
+      - note:
+          id: plantas
+          text: "Этажи считают порядковыми словами: _la primera planta, la segunda, la tercera, la cuarta, la quinta_. **La planta baja** — этаж на уровне улицы; первый этаж по-испански — тот, что над ним."
+      - choose:
+          title: Что сказать?
+          free: true
+          skill: hotel
+          rule: none
+          items:
+            - lines: ["Recepcionista: ¿Tiene una reserva?"]
+              q: "У вас бронь на имя Олега Коваля."
+              options: "Sí, a nombre de Oleg Koval. | Sí, me llamo la reserva. | Sí, el nombre es reserva."
+              explain: "Бронь «на имя» — a nombre de…"
+            - say: "Su habitación está en la segunda planta."
+              options: "Ваш номер на втором этаже. | Ваш номер на первом этаже. | Ваш номер рядом с лифтом."
+              explain: "La segunda planta — «второй этаж»."
+              noaudio: {q: "Что значит «Su habitación está en la segunda planta»?", options: "Ваш номер на втором этаже. | Ваш номер на первом этаже. | Ваш номер рядом с лифтом."}
+            - q: "Вас двое. Какой номер вы попросите?"
+              options: "Una habitación doble. | Una habitación individual. | Una planta doble."
+              explain: "Doble — на двоих, individual — на одного."
+      - "Через час Ирина снова у стойки."
+      - dialogue:
+          id: problema
+          slide: new
+          title: Проблема
+          lines:
+            - "Irina: Perdone, la ducha de mi habitación no funciona. | Извините, в моём номере не работает душ."
+            - "Recepcionista: Lo siento mucho. ¿Quiere cambiar de habitación? | Мне очень жаль. Хотите поменять номер?"
+            - "Irina: Sí, por favor. | Да, пожалуйста."
+            - "Recepcionista: Tiene la 207, en la segunda planta. Aquí tiene la llave. | У вас 207-й, на втором этаже. Вот ключ."
+      - learn: [funcionar, cambiar]
+      - choose:
+          title: Поняли?
+          source: problema
+          skill: hotel
+          items:
+            - q: "¿Qué problema tiene Irina?"
+              options: "La ducha no funciona. | No hay ascensor. | No encuentra la llave."
+              explain: "Irina: La ducha de mi habitación no funciona."
+            - q: "¿Qué habitación tiene ahora?"
+              options: "La 207. | La 305. | La 270."
+              explain: "Tiene la 207, en la segunda planta."
+      - match:
+          title: Соедините пары
+          free: true
+          rule: none
+          pairs:
+            - "la reserva — бронь"
+            - "la planta — этаж"
+            - "el ascensor — лифт"
+            - "incluido — включён"
+            - "funcionar — работать"
+            - "cambiar — менять"
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: hotel
+          rule: none
+          items:
+            - "Tengo una reserva a nombre de Ana López. — У меня бронь на имя Аны Лопес."
+            - es: "¿El desayuno está incluido?"
+              ru: "Завтрак включён?"
+              alt: ["¿Está incluido el desayuno?"]
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          free: true
+          skill: hotel
+          rule: none
+          items:
+            - q: "Телевизор не работает."
+              a: "La tele no funciona | No funciona la tele | La televisión no funciona | No funciona la televisión"
+              explain: "О технике — funcionar: no funciona."
+              mistakes:
+                "la tele no trabaja": "Trabajar — о людях. О технике — **funcionar**: la tele no funciona."
+            - q: "Спросите: «Можно поменять номер?»"
+              a: "¿Puedo cambiar de habitación? | ¿Puedo cambiar la habitación? | ¿Podemos cambiar de habitación?"
+              explain: "Cambiar de habitación — «поменять номер»."
+    quiz:
+      - q: "Tengo una reserva ___ Carlos Ruiz."
+        options: "a nombre de | con nombre | de llamar"
+        explain: "Бронь на имя — a nombre de."
+        skill: hotel
+        free: true
+      - q: "El ascensor no ___: tenemos que subir a pie."
+        options: "funciona | trabaja | cambia"
+        explain: "О технике — funcionar."
+        skill: hotel
+        free: true
+
+  - id: lectura
+    kind: reading
+    title: "Opiniones: dos hoteles"
+    goal: понять отзывы о гостиницах и написать свой
+    version: 2
+    allow: [Luna]
+    vocab:
+      - "✨ limpio/a [ли́мпьо, ли́мпья] — чистый :: La habitación está muy limpia. — Номер очень чистый."
+      - "🧹 sucio/a [су́θьо, су́θья] — грязный :: El baño está sucio. — Ванная грязная."
+      - "🔊 el ruido [руи́до] — шум :: Hay mucho ruido en la calle. — На улице очень шумно."
+      - "🤝 amable [ама́бле] — любезный, приветливый :: El camarero es muy amable. — Официант очень любезный."
+      - "👍 recomendar [рэкомэнда́р] — советовать, рекомендовать :: Te recomiendo este hotel. — Советую тебе эту гостиницу."
+      - "🛎 el/la recepcionista [рэθэпθьони́ста] — администратор гостиницы"
+      - "💬 la opinión [опиньо́н] — мнение; отзыв {pl: opiniones} :: Hay muchas opiniones de este hotel. — Об этой гостинице много отзывов."
+    blocks:
+      - learn: [limpio/a, sucio/a, el ruido, amable]
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "limpio — чистый"
+            - "sucio — грязный"
+            - "el ruido — шум"
+            - "amable — любезный"
+      - learn: [recomendar, el/la recepcionista, la opinión]
+      - choose:
+          title: Новые слова
+          rule: none
+          items:
+            - q: "— ¿Conoces un buen hotel en Sevilla? — Sí, te ___ el Hotel Sol."
+              options: "recomiendo | encuentro | dejo"
+              explain: "Recomendar — «советовать»: te recomiendo."
+            - q: "He leído muchas ___ de este hotel: a todos les gusta."
+              options: "opiniones | reservas | llegadas"
+              explain: "Las opiniones — отзывы."
+      - "Перед поездкой Ирина читает отзывы о двух гостиницах Севильи."
+      - reading:
+          id: opiniones
+          title: Opiniones
+          text: |
+            **Hotel Sol.** Olga, de Valencia:
+            Estuvimos tres noches en este hotel y nos gustó mucho. La habitación es pequeña, pero muy limpia y tranquila. El desayuno está incluido y es muy bueno. La recepcionista fue muy amable: nos recomendó un restaurante cerca del hotel. El centro está a diez minutos a pie. ¡Lo recomiendo!
+
+            **Hotel Luna.** Tom, de Londres:
+            El hotel está en el centro, pero mi habitación no me gustó. La ducha no funcionó el primer día y me cambiaron de habitación por la tarde. Por la noche hubo mucho ruido en la calle y no pude dormir. El desayuno no está incluido: cuesta ocho euros. No voy a volver.
+          translation: |
+            **Отель «Соль».** Ольга, из Валенсии:
+            Мы провели в этой гостинице три ночи, и нам очень понравилось. Номер маленький, но очень чистый и тихий. Завтрак включён, и он очень хороший. Администратор была очень любезна: посоветовала нам ресторан рядом с гостиницей. До центра десять минут пешком. Рекомендую!
+
+            **Отель «Луна».** Том, из Лондона:
+            Гостиница в центре, но мой номер мне не понравился. В первый день не работал душ, и днём меня переселили в другой номер. Ночью на улице было очень шумно, и я не мог уснуть. Завтрак не включён: он стоит восемь евро. Больше не приеду.
+      - sort:
+          title: О какой гостинице это сказано?
+          source: opiniones
+          groups:
+            "Hotel Sol": [desayuno incluido, habitación limpia, recepcionista amable]
+            "Hotel Luna": [ruido por la noche, la ducha no funcionó, desayuno a ocho euros]
+      - choose:
+          title: Что сказано в отзывах?
+          source: opiniones
+          items:
+            - q: "¿Cuántas noches estuvo Olga en el hotel?"
+              options: "Tres. | Dos. | Diez."
+              explain: "Estuvimos tres noches en este hotel. Десять — это минуты до центра."
+            - q: "¿Qué hizo la recepcionista del Hotel Sol?"
+              options: "Recomendó un restaurante. | Cambió la habitación. | Preparó el desayuno."
+              explain: "La recepcionista fue muy amable: nos recomendó un restaurante cerca del hotel."
+            - q: "¿Por qué Tom no pudo dormir?"
+              options: "Porque hubo mucho ruido en la calle. | Porque la habitación es pequeña. | Porque la ducha no funcionó."
+              explain: "Por la noche hubo mucho ruido en la calle y no pude dormir. Душ — другая его проблема."
+            - q: "¿Quién recomienda su hotel?"
+              options: "Olga. | Tom. | Olga y Tom."
+              explain: "Olga: ¡Lo recomiendo! Tom: No voy a volver."
+      - write:
+          title: Ответьте по отзывам
+          format: короткий ответ по-испански
+          source: opiniones
+          items:
+            - q: "¿Cuánto cuesta el desayuno en el Hotel Luna?"
+              a: "Ocho euros | Cuesta ocho euros | 8 euros | Cuesta 8 euros"
+              explain: "El desayuno no está incluido: cuesta ocho euros."
+            - q: "Как Ольга пишет «Рекомендую (эту гостиницу)!»?"
+              a: "Lo recomiendo"
+              explain: "El hotel → lo: ¡Lo recomiendo!"
+              skill: lo_la
+      - choose:
+          title: Послушайте
+          free: true
+          rule: none
+          items:
+            - say: "La habitación es pequeña, pero muy limpia."
+              options: "Номер маленький, но очень чистый. | Номер большой, но очень грязный. | Номер маленький и очень шумный."
+              explain: "Pequeña — «маленькая», limpia — «чистая»."
+              noaudio: {q: "Что значит «La habitación es pequeña, pero muy limpia»?", options: "Номер маленький, но очень чистый. | Номер большой, но очень грязный. | Номер маленький и очень шумный."}
+            - q: "El baño está muy ___: quiero cambiar de habitación."
+              options: "sucio | limpio | amable"
+              explain: "Менять номер хочется, когда ванная грязная — sucio."
+      - compose:
+          title: Ваш отзыв
+          free: true
+          rule: none
+          skill: hotel
+          items:
+            - q: "Напишите отзыв о гостинице или квартире, где вы останавливались, — настоящий или выдуманный, 4–5 фраз: сколько ночей · какой номер · что понравилось или нет · советуете ли вы это место."
+              format: "Estuve … noches en… La habitación…"
+              words: [25, 100]
+              sentences: 3
+              checks:
+                - label: "сколько были: estuve / estuvimos … noches (días)"
+                  any: [estuve, estuvimos]
+                - label: "какое место: limpio, tranquilo, pequeño, ruido, amable…"
+                  any: [limpio, limpia, sucio, sucia, tranquilo, tranquila, ruido, amable, cómodo, cómoda, bonito, bonita, pequeño, pequeña, grande, caro, barato]
+                - label: "итог: lo recomiendo, me gustó…"
+                  any: [lo recomiendo, la recomiendo, no lo recomiendo, me gustó, nos gustó, no me gustó, voy a volver]
+              sample: "Estuve dos noches en el Hotel Sol de Sevilla. La habitación es pequeña, pero limpia y tranquila. El desayuno está incluido. La recepcionista es muy amable. Lo recomiendo."
+              sample_ru: "Я провёл две ночи в отеле «Соль» в Севилье. Номер маленький, но чистый и тихий. Завтрак включён. Администратор очень любезная. Рекомендую."
+
+  - id: mision
+    kind: practice
+    title: Билет и заселение
+    goal: купить билет на вокзале и заселиться в гостиницу
+    version: 2
+    allow: [Koval, Oleg, Atención]
+    blocks:
+      - review:
+          title: Вспомним
+          skills: [perf_indef, participios, experiencia_detalle]
+          n: 2
+      - mission:
+          id: taquilla
+          title: На вокзале
+          text: "Вы — Олег Коваль. Вам нужно в Валенсию: завтра утром туда, а обратно позже. Купите билет в кассе."
+      - chat:
+          id: empleado
+          title: В кассе
+          with: Empleado
+          skill: billete
+          turns:
+            - say: "Buenos días. ¿Adónde viaja? | Добрый день. Куда едете?"
+              task: "Вам нужно в Валенсию."
+              write: "A Valencia | A Valencia, por favor | Voy a Valencia | (Quiero) un billete para Valencia(, por favor) | Un billete a Valencia(, por favor)"
+              format: куда
+              mistakes:
+                "en valencia": "Куда — с предлогом **a**: a Valencia."
+            - say: "¿Para cuándo? | На когда?"
+              task: "На завтра, на утро."
+              write: "Para mañana por la mañana | Mañana por la mañana | Para mañana"
+              format: когда
+            - say: "Hay un tren a las nueve y cuarto y otro a las once. ¿Cuál prefiere? | Есть поезд в девять пятнадцать и ещё один в одиннадцать. Какой предпочитаете?"
+              task: "Вы выбираете поезд в девять пятнадцать."
+              choose: "El de las nueve y cuarto. | El de las once. | El de las nueve y media."
+              explain: "Y cuarto — «пятнадцать минут»: las nueve y cuarto — 9:15."
+              skill: horario
+            - say: "¿De ida o de ida y vuelta? | В одну сторону или туда и обратно?"
+              build: "De ida y vuelta, por favor."
+              ru: "Туда и обратно, пожалуйста."
+            - say: "Son cuarenta y dos euros. | С вас сорок два евро."
+              task: "Спросите, с какой платформы отправляется поезд."
+              write: "¿De qué andén sale (el tren)? | ¿De qué andén sale el tren para Valencia?"
+              format: вопрос
+              mistakes:
+                "qué andén sale el tren": "«С какой платформы» — **¿De qué andén…?**, с предлогом de."
+            - say: "Del andén tres. ¡Buen viaje! | С третьей платформы. Счастливого пути!"
+      - "Вы уже на вокзале. Звучит объявление. Послушайте его два раза: текста нет."
+      - dialogue:
+          id: aviso
+          hidden: true
+          title: Объявление на вокзале
+          lines:
+            - "Megafonía: Atención, por favor. El tren con destino a Valencia tiene veinte minutos de retraso. Sale del andén siete. | Внимание, пожалуйста. Поезд на Валенсию задерживается на двадцать минут. Он отправляется с седьмой платформы."
+      - choose:
+          title: Что объявили?
+          source: aviso
+          skill: horario
+          items:
+            - q: "¿Qué pasa con el tren a Valencia?"
+              options: "Tiene veinte minutos de retraso. | Está cancelado. | Sale diez minutos antes."
+              explain: "…tiene veinte minutos de retraso."
+            - q: "¿De qué andén sale ahora?"
+              options: "Del siete. | Del tres. | Del veinte."
+              explain: "Sale del andén siete — не с третьей, как сказали в кассе."
+      - mission:
+          id: llegada
+          title: В гостинице
+          text: "Вечером вы в гостинице в Валенсии. У вас бронь на имя Олега Коваля: одноместный номер на две ночи. Администратор что-то перепутала — поправьте её."
+      - chat:
+          id: recepcion
+          title: Заселение
+          with: Recepcionista
+          skill: hotel
+          turns:
+            - say: "Buenas noches. ¿Tiene una reserva? | Добрый вечер. У вас есть бронь?"
+              task: "Да, на имя Олега Коваля."
+              write: "Sí, a nombre de Oleg Koval | Sí, tengo una reserva a nombre de Oleg Koval | A nombre de Oleg Koval | Tengo una reserva a nombre de Oleg Koval"
+              format: на чьё имя
+            - say: "Una habitación doble para tres noches, ¿verdad? | Двухместный номер на три ночи, верно?"
+              task: "Нет: одноместный номер на две ночи."
+              write: "No, individual para dos noches | No, una habitación individual para dos noches | No, una individual para dos noches | No, (es) individual(,) para dos noches"
+              format: какой номер и на сколько
+              mistakes:
+                "no doble para dos noches": "Номер на одного — **individual**."
+            - say: "Perdone. Aquí está: individual, dos noches. ¿Me deja su pasaporte? | Простите. Вот она: одноместный, две ночи. Дадите ваш паспорт?"
+              task: "Дайте паспорт."
+              choose: "Sí, aquí lo tiene. | Sí, aquí la tiene. | Sí, aquí los tiene."
+              explain: "El pasaporte → lo: aquí lo tiene."
+              skill: lo_la
+            - say: "Gracias. Su habitación es la 412, en la cuarta planta. | Спасибо. Ваш номер 412, на четвёртом этаже."
+              task: "Спросите, включён ли завтрак."
+              write: "¿El desayuno está incluido? | ¿Está incluido el desayuno?"
+              format: вопрос
+            - say: "Sí, es de siete a diez, en la planta baja. | Да, с семи до десяти, на первом этаже."
+              task: "Задайте ещё один вопрос о гостинице — любой: ¿Hay…? ¿Dónde está…? ¿A qué hora…?"
+              compose:
+                format: "¿Hay…? / ¿Dónde está…? / ¿A qué hora…?"
+                words: [2, 15]
+                checks:
+                  - label: "вопрос начинается с Hay, Dónde, A qué hora, Puedo, Cuánto или Tiene"
+                    starts: [hay, dónde, a qué hora, puedo, cuánto, tiene, tienen, cuál, cómo, el, la, está]
+                sample: "¿Hay ascensor?"
+                sample_ru: "Есть лифт?"
+            - say: "Claro. ¡Buenas noches! | Конечно. Доброй ночи!"
+
+  - id: quiz
+    kind: quiz
+    title: "Тест: De viaje"
+    goal: проверить цели темы — билет, расписание, гостиница, lo / la, предлоги
+    version: 2
+    check: soft
+    blocks:
+      - "Это тест по теме «De viaje»: тринадцать заданий."
+      - cando:
+          - "купить билет: de ida y vuelta, ¿de qué andén sale?"
+          - "понять объявление: retraso, cancelado, puerta de embarque"
+          - "заселиться в гостиницу: reserva a nombre de…, incluido, no funciona"
+          - "заменить вещь словом lo, la, los, las"
+          - "выбрать предлог: a, de, en, por, para"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          rule: none
+          skill: horario
+          items:
+            - say: "El tren sale del andén cinco."
+              a: "El tren sale del andén cinco | El tren sale del andén 5"
+              noaudio: {q: "Напишите по-испански: «Поезд отправляется с пятой платформы» (с платформы пять).", a: "El tren sale del andén cinco | El tren sale del andén 5"}
+      - choose:
+          title: Послушайте
+          rule: none
+          items:
+            - say: "El vuelo con destino a Madrid tiene dos horas de retraso."
+              options: "Рейс в Мадрид задерживается на два часа. | Рейс из Мадрида прибыл два часа назад. | Рейс в Мадрид отменён."
+              skill: aeropuerto
+              noaudio: {q: "Что значит «El vuelo con destino a Madrid tiene dos horas de retraso»?", options: "Рейс в Мадрид задерживается на два часа. | Рейс из Мадрида прибыл два часа назад. | Рейс в Мадрид отменён."}
+            - say: "Tengo una reserva a nombre de Ana López."
+              options: "У меня бронь на имя Аны Лопес. | Меня зовут Ана Лопес. | Я ищу Ану Лопес."
+              skill: hotel
+              noaudio: {q: "Что значит «Tengo una reserva a nombre de Ana López»?", options: "У меня бронь на имя Аны Лопес. | Меня зовут Ана Лопес. | Я ищу Ану Лопес."}
+      - write:
+          title: Вставьте слово
+          format: одно слово
+          rule: none
+          items:
+            - q: "— ¿Tienes los billetes? — Sí, ___ tengo."
+              a: "los"
+              skill: lo_la
+            - q: "— ¿Has visto mi maleta? — No, no ___ he visto."
+              a: "la"
+              skill: lo_la
+            - q: "Salimos ___ Madrid a las ocho."
+              a: "de"
+              skill: preposiciones_viaje
+            - q: "El tren pasa ___ Córdoba."
+              a: "por"
+              skill: preposiciones_viaje
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          rule: none
+          items:
+            - q: "Душ не работает."
+              a: "La ducha no funciona | No funciona la ducha"
+              skill: hotel
+            - q: "Я уезжаю завтра."
+              a: "Me voy mañana | Mañana me voy | (Yo) me voy mañana"
+              skill: ir_irse
+      - build:
+          title: Соберите фразу
+          rule: none
+          skill: billete
+          items:
+            - "Un billete de ida y vuelta para Sevilla. — Билет туда и обратно до Севильи."
+    quiz:
+      - q: "Viajamos ___ tren."
+        options: "en | a | por"
+        explain: "На чём — en: en tren."
+        skill: preposiciones_viaje
+      - q: "El vuelo está ___: hoy no sale."
+        options: "cancelado | incluido | directo"
+        explain: "Не вылетает совсем — cancelado."
+        skill: aeropuerto
+      - q: "— ¿El desayuno está incluido? — No, ___ ocho euros."
+        options: "cuesta | funciona | cambia"
+        explain: "Не включён — значит, стоит отдельно: cuesta ocho euros."
+        skill: hotel

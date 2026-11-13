@@ -1,0 +1,856 @@
+id: hoy_y_ayer
+number: 27
+level: A2
+title: Hoy y ayer — сегодня и вчера
+goals:
+  - выбирать между «he comido» и «comí» по слову времени
+  - рассказать, что вы уже сделали и чего ещё не сделали
+  - расспросить об опыте и уточнить подробности — «¿Has estado…? — Sí, estuve en 2019»
+  - написать открытку из поездки
+
+# Тема 4 карты A2: pretérito perfecto и indefinido в контрасте; ya, todavía no, alguna vez, nunca; поездки и опыт.
+lessons:
+  - id: granada
+    kind: listening
+    title: "¿Qué tal en Granada?"
+    goal: понять на слух, что человек сделал сегодня, а что — вчера
+    version: 2
+    # Карта экранов: docs/site_slide_maps/27_hoy_y_ayer.md
+    vocab:
+      - "🎁 el regalo [рэга́ло] — подарок :: He comprado un regalo para mi madre. — Я купил подарок маме."
+      - "🏛 el monumento [монумэ́нто] — памятник, достопримечательность :: La Alhambra es un monumento muy famoso. — Альгамбра — очень известный памятник."
+      - "🧳 el/la turista [тури́ста] — турист, туристка :: Hay muchos turistas. — Здесь много туристов."
+      - "⏳ todavía [тодаби́а] — ещё, до сих пор :: Todavía estoy en Granada. — Я ещё в Гранаде."
+      - "⌚ tener tiempo [тэнэ́р тье́мпо] — иметь время, успевать :: Hoy no he tenido tiempo. — Сегодня я не успел."
+    blocks:
+      - "Лусия с подругой уехала в Гранаду. Ей звонит Карлос. Послушайте разговор два раза: текста пока нет."
+      - dialogue:
+          id: llamada
+          hidden: true
+          lines:
+            - "Carlos: ¡Hola, Lucía! ¿Qué tal en Granada? | Привет, Лусия! Как там в Гранаде?"
+            - "Lucía: ¡Genial! Llegamos ayer por la tarde. | Отлично! Мы приехали вчера днём."
+            - "Carlos: ¿Y qué habéis hecho hoy? | И что вы сегодня делали?"
+            - "Lucía: Esta mañana hemos visitado la Alhambra. Es un monumento increíble, pero hay muchos turistas. | Сегодня утром мы посетили Альгамбру. Это потрясающий памятник, но там много туристов."
+            - "Carlos: ¿Y habéis probado las tapas? | А тапас вы попробовали?"
+            - "Lucía: ¡Claro! Anoche cenamos en un bar de tapas. Comimos muy bien. | Конечно! Вчера вечером мы ужинали в тапас-баре. Очень вкусно поели."
+            - "Carlos: ¿Ya has comprado mi regalo? | Ты уже купила мне подарок?"
+            - "Lucía: Todavía no. Hoy no he tenido tiempo. | Ещё нет. Сегодня я не успела."
+            - "Carlos: ¿Cuándo volvéis? | Когда вы возвращаетесь?"
+            - "Lucía: El domingo. Mañana vamos a ver la catedral. ¡Hasta el domingo! | В воскресенье. Завтра пойдём смотреть собор. До воскресенья!"
+      - choose:
+          title: Что вы поняли?
+          source: llamada
+          items:
+            - q: "¿Dónde está Lucía?"
+              options: "En Granada. | En Sevilla. | En Madrid."
+              explain: "Carlos: ¿Qué tal en Granada?"
+            - q: "¿Cuándo vuelve Lucía?"
+              options: "El domingo. | Mañana. | Esta tarde."
+              explain: "Lucía: El domingo. Завтра они только идут в собор."
+      - learn: [el regalo, el monumento, el/la turista, todavía, tener tiempo]
+      - match:
+          title: Соедините пары
+          free: true
+          rule: none
+          pairs:
+            - "el regalo — подарок"
+            - "el monumento — памятник"
+            - "el turista — турист"
+            - "todavía — ещё"
+            - "tener tiempo — иметь время"
+      - choose:
+          title: Детали разговора
+          source: llamada
+          skill: perf_indef
+          items:
+            - q: "¿Cuándo llegaron a Granada?"
+              options: "Ayer por la tarde. | Esta mañana. | Anoche."
+              explain: "Lucía: Llegamos ayer por la tarde."
+            - q: "¿Qué han hecho esta mañana?"
+              options: "Han visitado la Alhambra. | Han visto la catedral. | Han comprado regalos."
+              explain: "Esta mañana hemos visitado la Alhambra. Собор — завтра, подарок ещё не куплен."
+            - q: "¿Cuándo cenaron en un bar de tapas?"
+              options: "Anoche. | Hoy. | El domingo."
+              explain: "Anoche cenamos en un bar de tapas."
+            - q: "¿Ha comprado Lucía el regalo de Carlos?"
+              options: "No, todavía no. | Sí, lo compró ayer. | Sí, esta mañana."
+              explain: "Lucía: Todavía no. Hoy no he tenido tiempo."
+      - text:
+          id: notice
+          slide: new
+          text: "В одном разговоре — два прошедших времени. Какое выбрать, подсказывает слово времени. Сравните."
+      - examples:
+          items:
+            - "**Esta mañana** hemos visitado la Alhambra. — **Сегодня утром** мы посетили Альгамбру."
+            - "**Hoy** no he tenido tiempo. — **Сегодня** я не успела."
+            - "Llegamos **ayer**. — Мы приехали **вчера**."
+            - "**Anoche** cenamos en un bar. — **Вчера вечером** мы ужинали в баре."
+      - sort:
+          title: Сегодня или вчера?
+          source: llamada
+          skill: perf_indef
+          groups:
+            "сегодня: he…, hemos…": ["Hemos visitado la Alhambra.", "No he tenido tiempo."]
+            "вчера: -é, -amos": ["Llegamos por la tarde.", "Cenamos en un bar de tapas."]
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          free: true
+          skill: perf_indef
+          rule: notice
+          items:
+            - say: "Hoy no he tenido tiempo."
+              a: "Hoy no he tenido tiempo"
+              explain: "He tenido — «у меня (сегодня) было»: tener → tenido."
+              noaudio: {q: "Напишите по-испански: «Сегодня у меня не было времени».", a: "Hoy no he tenido tiempo"}
+      - choose:
+          title: Что ответить?
+          free: true
+          skill: perf_indef
+          rule: notice
+          items:
+            - lines: ["Carlos: ¿Ya has comprado el regalo?"]
+              q: "Вы ещё не купили."
+              options: "Todavía no. | Sí, todavía. | No, nunca."
+              explain: "«Ещё нет» — todavía no. Nunca — «никогда»."
+            - lines: ["Carlos: ¿Qué has hecho hoy?"]
+              q: "Сегодня вы посетили музей."
+              options: "He visitado un museo. | Visité un museo ayer. | Voy a visitar un museo."
+              explain: "О сегодняшнем дне — he visitado."
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: perf_indef
+          rule: notice
+          items:
+            - "¿Qué habéis hecho hoy? — Что вы сегодня делали?"
+            - es: "Todavía no he comprado el regalo."
+              ru: "Я ещё не купил подарок."
+              alt: ["No he comprado el regalo todavía."]
+
+  - id: participios
+    kind: grammar
+    title: "He dicho, he vuelto, he roto"
+    goal: рассказать, что вы уже сделали сегодня, с неправильными причастиями
+    version: 2
+    vocab:
+      - "💥 romper [ромпэ́р] — ломать, разбивать, рвать :: He roto un vaso. — Я разбил стакан."
+      - "🥛 el vaso [ба́со] — стакан :: Un vaso de agua, por favor. — Стакан воды, пожалуйста."
+    blocks:
+      - "Время «he comido» вы знаете: **haber** + причастие. У нескольких частых глаголов причастие неправильное — его нужно запомнить."
+      - table:
+          id: irregulares
+          title: Неправильные причастия
+          rows:
+            - ["hacer", "**hecho**", "He hecho la compra."]
+            - ["ver", "**visto**", "¿Has visto mi móvil?"]
+            - ["decir", "**dicho**", "No me ha dicho la verdad."]
+            - ["volver", "**vuelto**", "Todavía no ha vuelto."]
+            - ["escribir", "**escrito**", "He escrito un mensaje."]
+            - ["abrir", "**abierto**", "¿Quién ha abierto la ventana?"]
+            - ["romper", "**roto**", "He roto un vaso."]
+      - learn: [romper, el vaso]
+      - match:
+          title: Глагол — причастие
+          skill: participios
+          rule: irregulares
+          pairs:
+            - "decir — dicho"
+            - "volver — vuelto"
+            - "romper — roto"
+            - "escribir — escrito"
+            - "abrir — abierto"
+            - "hacer — hecho"
+      - write:
+          title: Вставьте причастие
+          format: причастие
+          skill: participios
+          rule: irregulares
+          items:
+            - q: "Hoy he (escribir) ___ tres mensajes."
+              a: "escrito"
+              explain: "Escribir → escrito."
+              mistakes:
+                "escribido": "У escribir причастие неправильное: **escrito**."
+            - q: "¿Has (ver) ___ mis llaves?"
+              a: "visto"
+              explain: "Ver → visto."
+              mistakes:
+                "vido": "У ver причастие неправильное: **visto**."
+            - q: "Carlos todavía no ha (volver) ___."
+              a: "vuelto"
+              explain: "Volver → vuelto."
+              mistakes:
+                "volvido": "У volver причастие неправильное: **vuelto**."
+            - q: "¿Quién ha (abrir) ___ la puerta?"
+              a: "abierto"
+              explain: "Abrir → abierto."
+              mistakes:
+                "abrido": "У abrir причастие неправильное: **abierto**."
+            - q: "¡He (romper) ___ un vaso!"
+              a: "roto"
+              explain: "Romper → roto."
+              mistakes:
+                "rompido": "У romper причастие неправильное: **roto**."
+            - q: "No me has (decir) ___ la verdad."
+              a: "dicho"
+              explain: "Decir → dicho."
+              mistakes:
+                "decido": "У decir причастие неправильное: **dicho**."
+      - compare:
+          id: ya
+          slide: new
+          title: Уже, ещё нет, никогда
+          cards:
+            - head: Ya he comido.
+              label: уже
+              tone: mint
+            - head: Todavía no he comido.
+              label: ещё не
+              tone: sun
+            - head: Nunca he estado en México.
+              label: никогда
+              tone: blue
+          note: "**Ya**, **todavía no** и **nunca** стоят перед глаголом, а между _he_ и причастием ничего не ставится: _Ya he comido_, а не «he ya comido»."
+      - choose:
+          title: Послушайте
+          skill: participios
+          rule: ya
+          items:
+            - say: "Todavía no ha vuelto del trabajo."
+              options: "Он ещё не вернулся с работы. | Он уже вернулся с работы. | Он никогда не возвращается с работы."
+              explain: "Todavía no ha vuelto — «ещё не вернулся»."
+              noaudio: {q: "Что значит «Todavía no ha vuelto del trabajo»?", options: "Он ещё не вернулся с работы. | Он уже вернулся с работы. | Он никогда не возвращается с работы."}
+            - say: "¿Ya has hecho la compra?"
+              options: "Ты уже сходил за продуктами? | Ты ещё не сходил за продуктами? | Ты пойдёшь за продуктами?"
+              explain: "¿Ya has hecho…? — «ты уже сделал…?»."
+              noaudio: {q: "Что значит «¿Ya has hecho la compra?»", options: "Ты уже сходил за продуктами? | Ты ещё не сходил за продуктами? | Ты пойдёшь за продуктами?"}
+            - q: "Где стоит ya?"
+              options: "Ya he visto esta película. | He ya visto esta película. | He visto ya esta película no."
+              explain: "Ya — перед he: между he и причастием ничего не ставят."
+      - build:
+          title: Соберите фразу
+          skill: participios
+          rule: ya
+          items:
+            - es: "Todavía no he escrito el mensaje."
+              ru: "Я ещё не написал сообщение."
+              alt: ["No he escrito el mensaje todavía."]
+            - es: "¿Quién ha roto este vaso?"
+              ru: "Кто разбил этот стакан?"
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: participios
+          rule: ya
+          items:
+            - q: "Я уже сделал задание."
+              a: "Ya he hecho la tarea | (Yo) ya he hecho la tarea | He hecho la tarea ya"
+              explain: "Ya + he hecho."
+              mistakes:
+                "ya he hacido la tarea": "У hacer причастие неправильное: **hecho**."
+                "he ya hecho la tarea": "Между he и причастием ничего не ставят: **Ya he hecho**."
+            - q: "Он ещё не вернулся."
+              a: "Todavía no ha vuelto | (Él) todavía no ha vuelto | No ha vuelto todavía"
+              explain: "Todavía no + ha vuelto."
+              mistakes:
+                "todavía no ha volvido": "У volver причастие неправильное: **vuelto**."
+      - compose:
+          title: О себе
+          skill: participios
+          rule: ya
+          items:
+            - q: "¿Qué has hecho hoy? Напишите две фразы: что вы сегодня уже сделали и чего ещё не сделали."
+              format: "Hoy ya he… Todavía no he…"
+              words: [6, 35]
+              sentences: 2
+              checks:
+                - label: "уже сделали: ya he… или hoy he…"
+                  any: [ya he, hoy he, he]
+                - label: "ещё не сделали: todavía no he…"
+                  any: [todavía no he, no he]
+              sample: "Hoy ya he desayunado y he trabajado. Todavía no he hecho la compra."
+              sample_ru: "Сегодня я уже позавтракал и поработал. За продуктами ещё не сходил."
+    quiz:
+      - q: "¿Has ___ a tus padres hoy?"
+        options: "visto | vido | veído"
+        explain: "Ver → visto."
+        skill: participios
+      - q: "Какая фраза правильная?"
+        options: "Todavía no he vuelto. | No he todavía vuelto. | Todavía no he volvido."
+        explain: "Todavía no стоит перед he; причастие от volver — vuelto."
+        skill: participios
+
+  - id: contraste
+    kind: grammar
+    title: "Hoy he comido — ayer comí"
+    goal: выбрать прошедшее время по слову времени
+    version: 2
+    vocab:
+      - "📈 últimamente [ультимамэ́нтэ] — в последнее время :: Últimamente he trabajado mucho. — В последнее время я много работаю."
+      - "⏱ hasta ahora [а́ста ао́ра] — до сих пор, пока что :: Hasta ahora no he tenido problemas. — Пока у меня не было проблем."
+      - "📆 el otro día [эль о́тро ди́а] — на днях, недавно :: El otro día vi a Carlos. — На днях я видел Карлоса."
+      - "⚠️ el problema [пробле́ма] — проблема (мужского рода!) :: No hay problema. — Нет проблем."
+    blocks:
+      - compare:
+          id: dos_tiempos
+          title: Какое время выбрать
+          cards:
+            - head: he comido
+              say: false
+              label: период ещё идёт
+              tone: sun
+              text: "hoy, esta mañana, esta semana, este año, últimamente, hasta ahora"
+              ex: ["Hoy he comido paella. — Сегодня я ел паэлью."]
+            - head: comí
+              say: false
+              label: период закончился
+              tone: blue
+              text: "ayer, anoche, el lunes, la semana pasada, en 2020, hace dos días, el otro día"
+              ex: ["Ayer comí paella. — Вчера я ел паэлью."]
+          note: "«Сегодня» ещё не закончилось, «эта неделя» тоже — поэтому **he comido**. «Вчера» и «прошлая неделя» уже позади — поэтому **comí**."
+      - learn: [últimamente, hasta ahora, el otro día, el problema]
+      - sort:
+          title: С каким временем?
+          skill: perf_indef
+          groups:
+            "he comido": [hoy, esta semana, este año, últimamente, hasta ahora]
+            "comí": [ayer, anoche, el otro día, la semana pasada, hace dos días]
+      - choose:
+          title: Выберите форму
+          skill: perf_indef
+          items:
+            - q: "Ayer ___ a Carlos en el metro."
+              options: "vi | he visto | veo"
+              explain: "Ayer — период закончился: vi."
+            - q: "Esta semana ___ mucho."
+              options: "he trabajado | trabajé | trabajo"
+              explain: "Esta semana ещё идёт: he trabajado."
+            - q: "En 2019 ___ a México."
+              options: "fui | he ido | voy"
+              explain: "En 2019 — год закончился: fui."
+            - q: "Este año ___ dos veces a la playa."
+              options: "he ido | fui | voy"
+              explain: "Este año ещё идёт: he ido."
+            - q: "Hasta ahora no he tenido ___ con el coche."
+              options: "problemas | regalos | turistas"
+              explain: "No he tenido problemas — «у меня не было проблем»."
+              rule: none
+            - q: "Últimamente no ___ a mis amigos."
+              options: "he visto | vi | veo"
+              explain: "Últimamente — «в последнее время», период не закрыт: he visto."
+      - write:
+          title: Скажите о другом дне
+          format: одна форма глагола (одно или два слова)
+          skill: perf_indef
+          items:
+            - q: "Hoy he comido en casa. → Ayer ___ en casa."
+              a: "comí"
+              explain: "Ayer → comí."
+              mistakes:
+                "he comido": "Ayer — период закончился: **comí**."
+            - q: "Ayer vi una película. → Esta semana ___ dos películas."
+              a: "he visto"
+              explain: "Esta semana → he visto."
+              mistakes:
+                "vi": "Esta semana ещё идёт: **he visto**."
+            - q: "El lunes fui al médico. → Hoy ___ al médico."
+              a: "he ido"
+              explain: "Hoy → he ido: причастие от ir — ido."
+              mistakes:
+                "fui": "Hoy ещё не закончилось: **he ido**."
+            - q: "Esta mañana he hablado con Ana. → Anoche ___ con Ana."
+              a: "hablé"
+              explain: "Anoche → hablé."
+              mistakes:
+                "he hablado": "Anoche — период закончился: **hablé**."
+      - choose:
+          title: Послушайте
+          skill: perf_indef
+          items:
+            - say: "Esta semana he tenido mucho trabajo."
+              options: "На этой неделе у меня было много работы. | На прошлой неделе у меня было много работы. | На следующей неделе у меня будет много работы."
+              explain: "Esta semana + he tenido: неделя ещё идёт."
+              noaudio: {q: "Что значит «Esta semana he tenido mucho trabajo»?", options: "На этой неделе у меня было много работы. | На прошлой неделе у меня было много работы. | На следующей неделе у меня будет много работы."}
+            - say: "El otro día fui a una exposición."
+              options: "На днях я ходил на выставку. | Сегодня я ходил на выставку. | На днях я пойду на выставку."
+              explain: "El otro día — «на днях» в прошлом: fui."
+              noaudio: {q: "Что значит «El otro día fui a una exposición»?", options: "На днях я ходил на выставку. | Сегодня я ходил на выставку. | На днях я пойду на выставку."}
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: perf_indef
+          items:
+            - q: "Сегодня я не завтракал."
+              a: "Hoy no he desayunado | (Yo) hoy no he desayunado | No he desayunado hoy"
+              explain: "Hoy → no he desayunado."
+              mistakes:
+                "hoy no desayuné": "В Испании о сегодняшнем дне говорят **he desayunado**: день ещё не закончился."
+            - q: "Вчера я не завтракал."
+              a: "Ayer no desayuné | (Yo) ayer no desayuné | No desayuné ayer"
+              explain: "Ayer → no desayuné."
+              mistakes:
+                "ayer no he desayunado": "Ayer — период закончился: **desayuné**."
+      - compose:
+          title: О себе
+          skill: perf_indef
+          rule: dos_tiempos
+          items:
+            - q: "Напишите две фразы: что вы делали вчера и что сделали сегодня."
+              format: "Ayer… Hoy he…"
+              words: [6, 35]
+              sentences: 2
+              checks:
+                - label: "вчера: ayer или anoche"
+                  any: [ayer, anoche]
+                - label: "сегодня: hoy, esta mañana или esta tarde"
+                  any: [hoy, esta mañana, esta tarde]
+                - label: "о сегодняшнем — he + причастие"
+                  re: "\\bhe \\w+(ado|ido|to|cho)\\b"
+              sample: "Ayer trabajé hasta las ocho. Hoy he descansado y he leído un libro."
+              sample_ru: "Вчера я работал до восьми. Сегодня я отдыхал и читал книгу."
+    quiz:
+      - q: "Anoche ___ una película muy buena."
+        options: "vimos | hemos visto | vemos"
+        explain: "Anoche — период закончился: vimos."
+        skill: perf_indef
+      - q: "Hoy ___ temprano."
+        options: "me he levantado | me levanté | me levanto mañana"
+        explain: "Hoy ещё идёт: me he levantado."
+        skill: perf_indef
+
+  - id: experiencias
+    kind: dialogue
+    title: "¿Has estado alguna vez en…?"
+    goal: расспросить об опыте и уточнить, когда и как это было
+    version: 2
+    vocab:
+      - "🗺 el país [паи́с] — страна {pl: países} :: España es un país muy bonito. — Испания — очень красивая страна."
+      - "✈️ el extranjero [экстранхэ́ро] — заграница :: Nunca he vivido en el extranjero. — Я никогда не жил за границей."
+      - "🏝 la isla [и́сла] — остров :: Mallorca es una isla. — Майорка — это остров."
+      - "⛰ subir [суби́р] — подниматься :: Subimos a una montaña muy alta. — Мы поднялись на очень высокую гору."
+      - "🔢 varios / varias [ба́рьос, ба́рьяс] — несколько :: He estado allí varias veces. — Я был там несколько раз."
+    blocks:
+      - "Ирина и Диего говорят о путешествиях."
+      - dialogue:
+          id: viajes
+          title: Где ты был?
+          lines:
+            - "Diego: ¿Has estado alguna vez en México? | Ты когда-нибудь была в Мексике?"
+            - "Irina: No, nunca. Pero he estado en muchos países. | Нет, никогда. Но я была во многих странах."
+            - "Diego: ¿Sí? ¿Dónde has estado? | Да? И где ты была?"
+            - "Irina: He estado en Italia, en Francia y en China. A China fui en 2019, con mi hermana. | Я была в Италии, во Франции и в Китае. В Китай я ездила в 2019 году с сестрой."
+            - "Diego: ¡Qué bien! ¿Y qué tal fue? | Здорово! И как всё прошло?"
+            - "Irina: Increíble. Estuvimos dos semanas y subimos a una montaña muy alta. | Потрясающе. Мы пробыли там две недели и поднялись на очень высокую гору."
+            - "Diego: Yo no he viajado mucho al extranjero. Pero he estado en una isla de Canarias. | А я мало ездил за границу. Зато был на одном из Канарских островов."
+            - "Irina: ¿Y te gustó? | И тебе понравилось?"
+            - "Diego: Me encantó. Fui por primera vez hace cinco años y he vuelto varias veces. | Очень. Впервые я съездил туда пять лет назад и возвращался несколько раз."
+      - learn: [el país, el extranjero, la isla, subir, varios / varias]
+      - choose:
+          title: Поняли?
+          source: viajes
+          skill: experiencia_detalle
+          items:
+            - q: "¿Ha estado Irina en México?"
+              options: "No, nunca. | Sí, una vez. | Sí, varias veces."
+              explain: "Irina: No, nunca. Pero he estado en muchos países."
+            - q: "¿Cuándo fue Irina a China?"
+              options: "En 2019. | El año pasado. | Hace cinco años."
+              explain: "A China fui en 2019, con mi hermana. Пять лет назад Диего впервые съездил на остров."
+            - q: "¿Qué hicieron en China?"
+              options: "Subieron a una montaña muy alta. | Estuvieron en una isla. | Visitaron una catedral."
+              explain: "Estuvimos dos semanas y subimos a una montaña muy alta."
+            - q: "¿Cuántas veces ha estado Diego en la isla?"
+              options: "Varias veces. | Una vez. | Nunca."
+              explain: "Fui por primera vez hace cinco años y he vuelto varias veces."
+      - compare:
+          id: detalle
+          slide: new
+          title: Сначала опыт, потом подробности
+          cards:
+            - head: He estado en China.
+              label: "опыт вообще — когда, не важно"
+              tone: sun
+            - head: Fui en 2019.
+              label: "подробность — когда именно"
+              tone: blue
+          note: "Спрашивают и отвечают об опыте в **perfecto**: _¿Has estado en…? — Sí, he estado._ Как только называют время, место или подробности, переходят на **indefinido**: _Fui en 2019. Estuvimos dos semanas. Me gustó mucho._"
+      - choose:
+          title: Что ответить?
+          free: true
+          skill: experiencia_detalle
+          rule: detalle
+          items:
+            - lines: ["Diego: ¿Has estado alguna vez en Italia?"]
+              q: "Вы были там в 2020 году."
+              options: "Sí, estuve en 2020. | Sí, he estado en 2020. | Sí, estoy en 2020."
+              explain: "Назван год — подробность: estuve en 2020."
+            - lines: ["Diego: ¿Has probado la paella?"]
+              q: "Вы никогда её не пробовали."
+              options: "No, nunca la he probado. | No, nunca la probé ayer. | No, no la pruebo nunca."
+              explain: "Опыт «вообще» — perfecto: nunca la he probado."
+            - say: "Nunca he vivido en el extranjero."
+              options: "Я никогда не жил за границей. | Я больше не живу за границей. | Я никогда не поеду за границу."
+              explain: "Nunca he vivido — «никогда не жил»; el extranjero — «заграница»."
+              noaudio: {q: "Что значит «Nunca he vivido en el extranjero»?", options: "Я никогда не жил за границей. | Я больше не живу за границей. | Я никогда не поеду за границу."}
+      - write:
+          title: Уточните, когда это было
+          format: одна форма глагола
+          accents: strict
+          free: true
+          skill: experiencia_detalle
+          rule: detalle
+          items:
+            - q: "— ¿Has probado la paella? — Sí, la (probar) ___ el sábado."
+              a: "probé"
+              explain: "El sábado — подробность: probé."
+              mistakes:
+                "he probado": "Назван день (el sábado) — значит, **probé**."
+            - q: "— ¿Has estado en Barcelona? — Sí, (estar) ___ allí el año pasado."
+              a: "estuve"
+              explain: "El año pasado — подробность: estuve."
+              mistakes:
+                "he estado": "Назван год (el año pasado) — значит, **estuve**."
+            - q: "— ¿Has visto esta película? — Sí, la (ver) ___ anoche."
+              a: "vi"
+              explain: "Anoche — подробность: vi."
+              mistakes:
+                "he visto": "Названо время (anoche) — значит, **vi**."
+      - match:
+          title: Соедините пары
+          free: true
+          rule: none
+          pairs:
+            - "el país — страна"
+            - "el extranjero — заграница"
+            - "la isla — остров"
+            - "subir — подниматься"
+            - "varias veces — несколько раз"
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: experiencia_detalle
+          rule: detalle
+          items:
+            - "¿Has estado alguna vez en una isla? — Ты когда-нибудь был на острове?"
+            - es: "He estado en muchos países."
+              ru: "Я был во многих странах."
+              extra: [estuve]
+      - compose:
+          title: О себе
+          free: true
+          skill: experiencia_detalle
+          rule: detalle
+          items:
+            - q: "¿En qué países o ciudades has estado? ¿Cuándo fuiste? Напишите две-три фразы."
+              format: "He estado en… Fui en…"
+              words: [8, 45]
+              sentences: 2
+              checks:
+                - label: "опыт: he estado en…"
+                  any: [he estado]
+                - label: "подробность: fui, fuimos, estuve или estuvimos"
+                  any: [fui, fuimos, estuve, estuvimos]
+              sample: "He estado en Italia y en Francia. A Italia fui en 2018 con mi familia. Estuvimos una semana."
+              sample_ru: "Я был в Италии и во Франции. В Италию я ездил в 2018 году с семьёй. Мы пробыли там неделю."
+    quiz:
+      - q: "— ¿Has estado en Sevilla? — Sí, ___ en 2021."
+        options: "estuve | he estado | estoy"
+        explain: "Назван год — indefinido: estuve."
+        skill: experiencia_detalle
+        free: true
+      - q: "Nunca ___ en una isla."
+        options: "he estado | estuve ayer | estoy"
+        explain: "Опыт вообще, с nunca — perfecto: he estado."
+        skill: experiencia_detalle
+        free: true
+
+  - id: lectura
+    kind: reading
+    title: "Una semana en Andalucía"
+    goal: понять письмо из путешествия и написать открытку
+    version: 2
+    vocab:
+      - "🎭 el espectáculo [эспэкта́куло] — представление, шоу :: Vimos un espectáculo increíble. — Мы посмотрели потрясающее представление."
+      - "💃 el flamenco [фламэ́нко] — фламенко :: Me encanta el flamenco. — Я обожаю фламенко."
+      - "✨ precioso/a [прэθьо́со, прэθьо́са] — прекрасный, очень красивый :: Sevilla es una ciudad preciosa. — Севилья — прекрасный город."
+    blocks:
+      - learn: [el espectáculo, el flamenco, precioso/a]
+      - "Лусия пишет Пабло из Севильи."
+      - reading:
+          id: andalucia
+          title: Una semana en Andalucía
+          text: |
+            ¡Hola, Pablo!
+
+            Te escribo desde Sevilla. Esta semana hemos visto muchas cosas. El lunes llegamos a Granada y visitamos la Alhambra. El martes fuimos a Córdoba en tren: es una ciudad antigua y preciosa. Allí comimos en un restaurante muy famoso.
+
+            Ayer llegamos a Sevilla. Por la noche vimos un espectáculo de flamenco. ¡Me encantó!
+
+            Hoy hemos paseado por el centro y hemos subido a la Giralda. Hace mucho calor: ¡treinta y ocho grados! Todavía no hemos visto la catedral: vamos mañana. Y todavía no he comprado regalos, pero he hecho muchas fotos.
+
+            Volvemos el domingo. ¿Y tú? ¿Qué has hecho esta semana?
+
+            Un abrazo,
+            Lucía
+          translation: |
+            Привет, Пабло!
+
+            Пишу тебе из Севильи. На этой неделе мы много всего увидели. В понедельник приехали в Гранаду и посетили Альгамбру. Во вторник поехали в Кордову на поезде: это старинный и прекрасный город. Там мы пообедали в очень известном ресторане.
+
+            Вчера мы приехали в Севилью. Вечером посмотрели представление фламенко. Мне очень понравилось!
+
+            Сегодня мы гуляли по центру и поднялись на Хиральду. Очень жарко: тридцать восемь градусов! Собор мы ещё не видели: пойдём завтра. И подарков я ещё не купила, зато сделала много фотографий.
+
+            Возвращаемся в воскресенье. А ты? Что ты делал на этой неделе?
+
+            Обнимаю,
+            Лусия
+      - choose:
+          title: Что сказано в письме?
+          source: andalucia
+          skill: perf_indef
+          items:
+            - q: "¿Qué hicieron el martes?"
+              options: "Fueron a Córdoba. | Visitaron la Alhambra. | Llegaron a Sevilla."
+              explain: "El martes fuimos a Córdoba en tren. Альгамбра была в понедельник, Севилья — вчера."
+            - q: "¿Qué vio Lucía ayer por la noche?"
+              options: "Un espectáculo de flamenco. | La catedral. | Una exposición de fotos."
+              explain: "Por la noche vimos un espectáculo de flamenco."
+            - q: "¿Qué han hecho hoy?"
+              options: "Han paseado por el centro. | Han visto la catedral. | Han comprado regalos."
+              explain: "Hoy hemos paseado por el centro y hemos subido a la Giralda. Собор и подарки — ещё нет."
+            - q: "¿Cuándo vuelven?"
+              options: "El domingo. | Mañana. | El martes."
+              explain: "Volvemos el domingo."
+      - sort:
+          title: Уже сделали или ещё нет?
+          source: andalucia
+          groups:
+            "ya": [visitar la Alhambra, subir a la Giralda, hacer fotos]
+            "todavía no": [ver la catedral, comprar regalos]
+      - write:
+          title: Ответьте по письму
+          format: короткий ответ по-испански
+          source: andalucia
+          items:
+            - q: "¿Cómo fueron a Córdoba?"
+              a: "En tren | Fueron en tren | Fueron a Córdoba en tren"
+              explain: "El martes fuimos a Córdoba en tren."
+            - q: "Как в письме сказано «мы ещё не видели собор»?"
+              a: "Todavía no hemos visto la catedral"
+              explain: "Todavía no hemos visto la catedral: vamos mañana."
+              skill: participios
+      - choose:
+          title: Послушайте
+          free: true
+          rule: none
+          items:
+            - say: "Es una ciudad antigua y preciosa."
+              options: "Это старинный и прекрасный город. | Это новый и красивый город. | Это большой и известный город."
+              explain: "Antigua — «старинная», preciosa — «прекрасная»."
+              noaudio: {q: "Что значит «Es una ciudad antigua y preciosa»?", options: "Это старинный и прекрасный город. | Это новый и красивый город. | Это большой и известный город."}
+      - compose:
+          title: Открытка
+          free: true
+          rule: none
+          skill: [perf_indef, participios]
+          items:
+            - q: "Вы в путешествии — настоящем или выдуманном. Напишите другу открытку, 5–6 фраз: где вы · что было вчера или в первый день · что вы сделали сегодня · чего ещё не сделали."
+              format: "¡Hola! Te escribo desde…"
+              words: [30, 120]
+              sentences: 4
+              checks:
+                - label: "вчера или день недели: ayer, anoche, el lunes…"
+                  any: [ayer, anoche, el lunes, el martes, el miércoles, el jueves, el viernes, el sábado, el domingo]
+                - label: "сегодня: hoy или esta mañana + he… / hemos…"
+                  re: "\\b(he|hemos) \\w+(ado|ido|to|cho)\\b"
+                - label: "ещё нет: todavía no…"
+                  any: [todavía no]
+              sample: "¡Hola, Ana! Te escribo desde Valencia. Llegué ayer por la tarde y cené paella. Hoy he paseado por el centro y he visto la catedral. Todavía no he ido a la playa. Vuelvo el domingo. Un abrazo."
+              sample_ru: "Привет, Ана! Пишу тебе из Валенсии. Я приехал вчера днём и поужинал паэльей. Сегодня гулял по центру и видел собор. На пляж ещё не ходил. Возвращаюсь в воскресенье. Обнимаю."
+
+  - id: mision
+    kind: practice
+    title: Расскажите о поездке
+    goal: рассказать подруге о поездке и о том, где вы уже бывали
+    version: 2
+    blocks:
+      - review:
+          title: Вспомним
+          skills: [hace_atras, pret_irregular_dos, etapas]
+          n: 2
+      - "Диего звонит из поездки и оставляет аудио. Послушайте его два раза: текста нет."
+      - dialogue:
+          id: barcelona
+          hidden: true
+          title: Аудио от Диего
+          lines:
+            - "Diego: ¡Hola! Te llamo desde Barcelona. Llegué el viernes por la noche. Ayer vi la Sagrada Familia: es preciosa. Hoy he ido a la playa y he comido paella. Todavía no he visitado el museo Picasso. Voy mañana por la mañana, y por la tarde vuelvo a Madrid. | Привет! Звоню тебе из Барселоны. Я приехал в пятницу вечером. Вчера видел Саграда Фамилия: она прекрасна. Сегодня ходил на пляж и ел паэлью. В музее Пикассо я ещё не был. Пойду завтра утром, а днём возвращаюсь в Мадрид."
+      - choose:
+          title: Что рассказал Диего?
+          source: barcelona
+          skill: perf_indef
+          items:
+            - q: "¿Cuándo llegó Diego a Barcelona?"
+              options: "El viernes por la noche. | Ayer. | Esta mañana."
+              explain: "Llegué el viernes por la noche."
+            - q: "¿Qué ha hecho hoy?"
+              options: "Ha ido a la playa. | Ha visto la Sagrada Familia. | Ha visitado el museo Picasso."
+              explain: "Hoy he ido a la playa y he comido paella. Саграда Фамилия была вчера, музей — ещё нет."
+            - q: "¿Qué no ha visitado todavía?"
+              options: "El museo Picasso. | La Sagrada Familia. | La playa."
+              explain: "Todavía no he visitado el museo Picasso."
+      - mission:
+          id: vuelta
+          title: Вы вернулись из Севильи
+          text: "Вы провели выходные в Севилье: приехали в пятницу, посетили собор и видели фламенко, купили сувениры и сегодня утром вернулись. Подруга Ана расспрашивает вас."
+      - chat:
+          id: ana
+          title: После поездки
+          with: Ana
+          skill: perf_indef
+          turns:
+            - say: "¡Hola! ¿Ya has vuelto de Sevilla? | Привет! Ты уже вернулся из Севильи?"
+              build: "Sí, he vuelto esta mañana."
+              ru: "Да, я вернулся сегодня утром."
+            - say: "¿Y qué tal el viaje? | И как поездка?"
+              task: "Вам очень понравилось."
+              choose: "¡Fue increíble! | ¡Fui increíble! | ¡He increíble!"
+              explain: "Поездка — «она»: fue increíble."
+              skill: fui_fue
+            - say: "¿Cuándo llegaste a Sevilla? | Когда ты приехал в Севилью?"
+              task: "Вы приехали в пятницу."
+              write: "El viernes | Llegué el viernes | Llegué a Sevilla el viernes"
+              format: когда
+              mistakes:
+                "he llegado el viernes": "Назван день, и он уже прошёл: **llegué** el viernes."
+            - say: "¿Y qué hiciste allí? | И что ты там делал?"
+              task: "Вы посетили собор и видели фламенко."
+              write: "Visité la catedral y vi un espectáculo de flamenco | Visité la catedral y vi flamenco | Visité la catedral y vi el flamenco"
+              format: что вы делали
+              mistakes:
+                "he visitado la catedral y he visto un espectáculo de flamenco": "Это было в прошлые выходные, там и тогда: **visité** и **vi**."
+            - say: "¿Has comprado algo? | Ты что-нибудь купил?"
+              task: "Да, вы купили сувениры."
+              write: "Sí, he comprado recuerdos | Sí, he comprado unos recuerdos | He comprado (unos) recuerdos | Sí, compré (unos) recuerdos | Sí, recuerdos"
+              format: что вы купили
+            - say: "Yo nunca he estado en Sevilla. ¿Y tú? ¿Has estado alguna vez en el extranjero? | А я никогда не была в Севилье. А ты? Ты когда-нибудь был за границей?"
+              task: "Ответьте от себя: были ли вы за границей."
+              skill: experiencia_detalle
+              compose:
+                format: "Sí, he estado en… / No, nunca…"
+                words: [2, 25]
+                checks:
+                  - label: "начинается с Sí или No"
+                    starts: ["sí", "no"]
+                  - label: "опыт: he estado… или nunca"
+                    any: [he estado, nunca]
+                sample: "Sí, he estado en Italia y en Francia."
+                sample_ru: "Да, я был в Италии и во Франции."
+            - say: "¡Qué bien! | Здорово!"
+      - compose:
+          title: Мои путешествия
+          free: true
+          rule: none
+          skill: [experiencia_detalle, perf_indef]
+          items:
+            - q: "Расскажите о городе или стране, где вы были, 4–5 фраз: где вы были · когда ездили и с кем · что видели и что понравилось · где вы ещё не были, но хотите побывать."
+              format: "He estado en… Fui en…"
+              words: [30, 120]
+              sentences: 4
+              checks:
+                - label: "опыт: he estado en…"
+                  any: [he estado]
+                - label: "подробности: fui, fuimos, estuve, estuvimos"
+                  any: [fui, fuimos, estuve, estuvimos]
+                - label: "оценка: fue…, me gustó… или me encantó…"
+                  any: [fue, me gustó, me gustaron, me encantó, me encantaron]
+                - label: "где ещё не были: todavía no… или nunca…"
+                  any: [todavía no, nunca]
+              sample: "He estado en Italia. Fui en 2019 con mi familia. Visitamos Roma y comimos muy bien. Me encantó la ciudad: es antigua y preciosa. Todavía no he estado en México, pero quiero ir."
+              sample_ru: "Я был в Италии. Ездил в 2019 году с семьёй. Мы посетили Рим и очень вкусно ели. Город мне очень понравился: он старинный и прекрасный. В Мексике я ещё не был, но хочу поехать."
+
+  - id: quiz
+    kind: quiz
+    title: "Тест: Hoy y ayer"
+    goal: проверить цели темы — выбор прошедшего времени и рассказ об опыте
+    version: 2
+    check: soft
+    blocks:
+      - "Это тест по теме «Hoy y ayer»: тринадцать заданий."
+      - cando:
+          - "выбрать время по слову: hoy he comido / ayer comí"
+          - "сказать, что уже сделано и что ещё нет: ya, todavía no"
+          - "неправильные причастия: dicho, vuelto, escrito, roto"
+          - "опыт и подробности: he estado en… — fui en 2019"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          rule: none
+          skill: participios
+          items:
+            - say: "Todavía no he visto la catedral."
+              a: "Todavía no he visto la catedral"
+              noaudio: {q: "Напишите по-испански: «Я ещё не видел собор».", a: "Todavía no he visto la catedral | No he visto la catedral todavía"}
+      - choose:
+          title: Послушайте
+          rule: none
+          items:
+            - say: "He estado en muchos países."
+              options: "Я был во многих странах. | Я живу во многих странах. | Я хочу побывать во многих странах."
+              skill: experiencia_detalle
+              noaudio: {q: "Что значит «He estado en muchos países»?", options: "Я был во многих странах. | Я живу во многих странах. | Я хочу побывать во многих странах."}
+            - say: "El otro día rompí un vaso."
+              options: "На днях я разбил стакан. | Сегодня я разбил стакан. | Я никогда не разбивал стаканов."
+              skill: perf_indef
+              noaudio: {q: "Что значит «El otro día rompí un vaso»?", options: "На днях я разбил стакан. | Сегодня я разбил стакан. | Я никогда не разбивал стаканов."}
+      - write:
+          title: Поставьте глагол в нужное время
+          format: форма глагола (одно или два слова)
+          accents: strict
+          rule: none
+          items:
+            - q: "Ayer (yo, ir) ___ al museo."
+              a: "fui"
+              skill: perf_indef
+            - q: "Esta semana (yo, ver) ___ dos películas."
+              a: "he visto"
+              skill: perf_indef
+            - q: "Carlos todavía no (volver) ___."
+              a: "ha vuelto"
+              skill: participios
+            - q: "En 2020 (nosotros, estar) ___ en Italia."
+              a: "estuvimos"
+              skill: perf_indef
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          rule: none
+          items:
+            - q: "Я уже купил подарок."
+              a: "Ya he comprado el regalo | Ya he comprado un regalo | (Yo) ya he comprado [el/un] regalo | He comprado [el/un] regalo ya"
+              skill: participios
+            - q: "Я никогда не был в Мексике."
+              a: "Nunca he estado en México | No he estado nunca en México | (Yo) nunca he estado en México | No he estado en México nunca"
+              skill: experiencia_detalle
+      - build:
+          title: Соберите вопрос
+          rule: none
+          skill: experiencia_detalle
+          items:
+            - "¿Has estado alguna vez en el extranjero? — Ты когда-нибудь был за границей?"
+    quiz:
+      - q: "— ¿Has visto esta película? — Sí, la ___ el sábado."
+        options: "vi | he visto | veo"
+        explain: "Назван день — indefinido: vi."
+        skill: experiencia_detalle
+      - q: "¿Quién ha ___ la ventana?"
+        options: "abierto | abrido | abrió"
+        explain: "Abrir → abierto."
+        skill: participios
+      - q: "С каким словом говорят «he trabajado»?"
+        options: "esta semana | la semana pasada | anoche"
+        explain: "Esta semana ещё идёт — perfecto. La semana pasada и anoche — indefinido."
+        skill: perf_indef

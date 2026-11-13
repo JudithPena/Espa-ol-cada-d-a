@@ -1,0 +1,1048 @@
+id: ayer
+number: 25
+level: A2
+title: "¿Qué hiciste ayer? — что ты делал вчера"
+goals:
+  - рассказать, что вы делали вчера и в выходные
+  - спросить другого, как прошли выходные, и оценить — «было здорово»
+  - образовывать прошедшее время (pretérito indefinido) правильных глаголов и ir, ser, hacer, estar, tener
+  - написать другу сообщение о выходных
+
+# Тема 2 карты A2 (docs/a2_c2_curriculum_map.md): pretérito indefinido — правильные глаголы, ir / ser, hacer, estar, tener;
+# маркеры ayer, anoche, el sábado pasado. Особые основы остальных глаголов (pude, vine, dije…) — в теме 26.
+lessons:
+  - id: finde
+    kind: listening
+    title: "¿Qué tal el fin de semana?"
+    goal: понять на слух рассказ о выходных и спросить «что ты делал?»
+    version: 2
+    # Карта экранов: docs/site_slide_maps/25_ayer.md
+    # формы прошедшего времени из разговора: до правила они даются готовыми словами
+    forms: [hice, fuiste, fuimos, nadé, comí, descansé, trabajé, visteis, vimos, gustó, saliste, cené, acosté]
+    vocab:
+      - "⏪ ayer [айе́р] — вчера :: Ayer fui al cine. — Вчера я ходил в кино."
+      - "🌃 anoche [ано́че] — вчера вечером; прошлой ночью :: Anoche cené en casa. — Вчера вечером я ужинал дома."
+      - "⏮ anteayer [антэайе́р] — позавчера :: Anteayer fui al médico. — Позавчера я ходил к врачу."
+      - "📆 pasado/a [паса́до, паса́да] — прошлый :: El sábado pasado fui a la playa. — В прошлую субботу я ездил на пляж."
+      - "❓ ¿Qué hiciste? [кэ иθи́стэ] — что ты делал? что ты сделал? :: ¿Qué hiciste ayer? — Что ты делал вчера?"
+      - "🚶 fui [фуи́] — я ходил, я ездил :: El sábado fui a la playa. — В субботу я ездил на пляж."
+    blocks:
+      - "Понедельник, утро в офисе. Лусия и Пабло рассказывают друг другу о выходных. Послушайте разговор два раза: текста пока нет."
+      - dialogue:
+          id: lunes
+          hidden: true
+          lines:
+            - "Pablo: ¡Hola, Lucía! ¿Qué tal el fin de semana? | Привет, Лусия! Как выходные?"
+            - "Lucía: ¡Muy bien! El sábado fui a la playa con mis amigas. | Отлично! В субботу я ездила на пляж с подругами."
+            - "Pablo: ¡Qué bien! ¿Y qué hiciste allí? | Здорово! И что ты там делала?"
+            - "Lucía: Nadé mucho, comí paella y descansé. ¿Y tú? ¿Qué hiciste? | Много плавала, ела паэлью и отдыхала. А ты? Что ты делал?"
+            - "Pablo: El sábado trabajé todo el día. Pero ayer fui al cine con Ana. | В субботу я весь день работал. Но вчера ходил в кино с Аной."
+            - "Lucía: ¿Qué película visteis? | Какой фильм вы смотрели?"
+            - "Pablo: Vimos una película española. Me gustó mucho. | Мы посмотрели испанский фильм. Мне очень понравился."
+            - "Lucía: ¿Y anoche? ¿Saliste? | А вчера вечером? Ты куда-нибудь ходил?"
+            - "Pablo: No, anoche cené en casa y me acosté temprano. | Нет, вчера вечером я поужинал дома и рано лёг спать."
+      - choose:
+          title: Что вы поняли?
+          source: lunes
+          items:
+            - q: "Куда Лусия ездила в субботу?"
+              options: "A la playa. | Al cine. | A la montaña."
+              explain: "Лусия говорит о субботе: a la playa con mis amigas."
+            - q: "С кем Пабло ходил в кино?"
+              options: "Con Ana. | Con Lucía. | Con sus amigas."
+              explain: "Пабло называет Ану: al cine con Ana. С подругами ездила на пляж Лусия."
+      - learn: [ayer, anoche, anteayer, pasado/a]
+      - text:
+          id: notice
+          text: "Всё это уже случилось и закончилось — вчера, в субботу. Для таких событий в испанском есть отдельное прошедшее время. Посмотрите на глаголы."
+      - examples:
+          items:
+            - "El sábado **fui** a la playa. — В субботу я **ездила** на пляж."
+            - "Ayer **fui** al cine. — Вчера я **ходил** в кино."
+            - "Anoche **cené** en casa. — Вчера вечером я **поужинал** дома."
+      - sort:
+          title: Когда это?
+          free: true
+          skill: past_markers
+          rule: notice
+          groups:
+            "уже прошло": [ayer, anoche, el sábado pasado, la semana pasada]
+            "сейчас или впереди": [hoy, ahora mismo, mañana, la semana que viene]
+      - match:
+          title: Соедините пары
+          free: true
+          skill: past_markers
+          rule: none
+          pairs:
+            - "ayer — вчера"
+            - "anoche — вчера вечером"
+            - "anteayer — позавчера"
+            - "el sábado pasado — в прошлую субботу"
+            - "la semana pasada — на прошлой неделе"
+            - "el año pasado — в прошлом году"
+      - learn: ["¿Qué hiciste?", fui]
+      - choose:
+          title: Детали разговора
+          source: lunes
+          items:
+            - q: "Что Пабло делал в субботу?"
+              options: "Работал весь день. | Ходил в кино. | Ездил на пляж."
+              explain: "Pablo: El sábado trabajé todo el día."
+            - q: "Когда Пабло ходил в кино?"
+              options: "Ayer. | Anoche. | El sábado."
+              explain: "Pablo: Pero ayer fui al cine con Ana. В субботу он работал, а вчера вечером был дома."
+            - q: "Что Пабло делал вчера вечером?"
+              options: "Поужинал дома и рано лёг спать. | Ходил в кино с Аной. | Работал допоздна."
+              explain: "Pablo: Anoche cené en casa y me acosté temprano."
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          free: true
+          skill: fui_fue
+          rule: notice
+          items:
+            - say: "Ayer fui al cine."
+              a: "Ayer fui al cine"
+              explain: "Fui — «я ходил»; al = a + el."
+              noaudio: {q: "Напишите по-испански: «Вчера я ходил в кино».", a: "Ayer fui al cine | Fui al cine ayer"}
+      - choose:
+          title: Что ответить?
+          free: true
+          skill: fui_fue
+          rule: notice
+          items:
+            - lines: ["Lucía: ¿Qué hiciste el sábado?"]
+              q: "В субботу вы ездили на пляж."
+              options: "Fui a la playa. | Voy a la playa. | Voy a ir a la playa."
+              explain: "Fui — это уже было. Voy — «иду сейчас», voy a ir — «собираюсь пойти»."
+            - say: "¿Qué hiciste anoche?"
+              options: "Что ты делал вчера вечером? | Что ты делаешь сегодня вечером? | Что ты будешь делать завтра?"
+              explain: "¿Qué hiciste? — «что ты делал?», anoche — «вчера вечером»."
+              noaudio: {q: "Что значит «¿Qué hiciste anoche?»", options: "Что ты делал вчера вечером? | Что ты делаешь сегодня вечером? | Что ты будешь делать завтра?"}
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: fui_fue
+          rule: none
+          items:
+            - "¿Qué hiciste ayer? — Что ты делал вчера?"
+            - es: "El sábado pasado fui a la montaña."
+              ru: "В прошлую субботу я ездил в горы."
+              alt: ["Fui a la montaña el sábado pasado."]
+              extra: [voy]
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          free: true
+          skill: fui_fue
+          rule: notice
+          items:
+            - q: "Вчера я ходил в музей."
+              a: "Ayer fui al museo | Fui al museo ayer | (Yo) ayer fui al museo"
+              explain: "Fui al museo: a + el = al."
+              mistakes:
+                "ayer voy al museo": "Voy — настоящее время. О вчерашнем — **fui**."
+                "ayer fui a el museo": "a + el сливаются: fui **al** museo."
+                "ayer fui en el museo": "Куда — с предлогом **a**: fui **al** museo."
+      - sort:
+          title: Кто это сказал?
+          source: lunes
+          groups:
+            "Lucía": ["Fui a la playa con mis amigas.", "Nadé mucho y comí paella."]
+            "Pablo": ["Trabajé todo el día.", "Anoche cené en casa."]
+
+  - id: verbos_ar
+    kind: grammar
+    title: "Hablé, hablaste, habló: глаголы на -ar"
+    goal: рассказать о вчерашнем дне глаголами на -ar — trabajé, cené, descansé
+    version: 2
+    unlocks: [preterite]
+    forms: [toda, todas, encantó, encantaron]
+    vocab:
+      - "🛬 llegar [йега́р] — приезжать, приходить :: Ayer llegué tarde a casa. — Вчера я поздно пришёл домой."
+      - "🕰 pasar [паса́р] — проводить (время); происходить :: Pasé el domingo en casa. — Я провёл воскресенье дома."
+      - "🏡 quedarse [кэда́рсэ] — оставаться :: Anoche me quedé en casa. — Вчера вечером я остался дома."
+      - "💌 invitar [инбита́р] — приглашать :: Ana me invitó a su fiesta. — Ана пригласила меня на вечеринку."
+      - "🥾 la excursión [экскурсьо́н] — экскурсия, поход {pl: excursiones} :: El sábado fui de excursión. — В субботу я ходил в поход."
+      - "🎤 el concierto [конθье́рто] — концерт :: Fui a un concierto. — Я ходил на концерт."
+    blocks:
+      - "Пабло рассказывал о субботе и вечере. Что общего у глаголов в его фразах?"
+      - examples:
+          items:
+            - "El sábado **trabajé** todo el día. — В субботу я **работал** весь день."
+            - "Anoche **cené** en casa. — Вчера вечером я **поужинал** дома."
+            - "Lucía **nadó** mucho. — Лусия много **плавала**."
+      - conjugation:
+          id: ar
+          verb: hablar
+          ru: "говорить — в прошлом (pretérito indefinido)"
+          forms: [hablé, hablaste, habló, hablamos, hablasteis, hablaron]
+      - note:
+          id: acento
+          text: "Ударение падает на окончание, поэтому в формах «я» и «он, она» нужен знак: **hablé**, **habló**. Без него получится настоящее время: `hablo` — «я говорю», а **habló** — «он говорил»."
+      - more:
+          title: Почему llegué, а не `llegé`?
+          text: |
+            В форме «я» некоторые глаголы меняют букву, чтобы звук остался прежним:
+            **-gar → -gué**: _llegar → llegué_, _pagar → pagué_, _jugar → jugué_.
+            **-car → -qué**: _buscar → busqué_, _practicar → practiqué_, _tocar → toqué_.
+            **-zar → -cé**: _empezar → empecé_.
+            Остальные формы обычные: _llegaste, llegó, llegamos…_
+      - write:
+          title: Поставьте глагол в прошедшее время
+          format: одна форма глагола
+          accents: strict
+          skill: pret_ar
+          rule: ar
+          items:
+            - q: "Ayer (yo, trabajar) ___ mucho."
+              a: "trabajé"
+              explain: "Yo — окончание -é: trabajé."
+              mistakes:
+                "trabaje": "В форме «я» нужен знак ударения: trabaj**é**."
+                "trabajo": "Trabajo — настоящее время. Вчера — **trabajé**."
+            - q: "¿(tú, cenar) ___ en casa anoche?"
+              a: "cenaste"
+              explain: "Tú — окончание -aste: cenaste."
+              mistakes:
+                "cenas": "Cenas — настоящее время. Вчера вечером — **cenaste**."
+            - q: "Lucía (hablar) ___ con su madre ayer."
+              a: "habló"
+              explain: "Él, ella — окончание -ó: habló."
+              mistakes:
+                "hablo": "Без знака это «я говорю». «Она говорила» — habl**ó**."
+                "habla": "Habla — настоящее время. Вчера — **habló**."
+            - q: "El sábado (nosotros, desayunar) ___ en un bar."
+              a: "desayunamos"
+              explain: "Nosotros — -amos: форма такая же, как в настоящем; время подсказывает el sábado."
+            - q: "¿(vosotros, comprar) ___ el pan?"
+              a: "comprasteis"
+              explain: "Vosotros — окончание -asteis: comprasteis."
+            - q: "Mis amigos (estudiar) ___ toda la tarde."
+              a: "estudiaron"
+              explain: "Ellos — окончание -aron: estudiaron."
+              mistakes:
+                "estudian": "Estudian — настоящее время. В прошлом — **estudiaron**."
+      - choose:
+          title: Сейчас или вчера?
+          skill: pret_ar
+          rule: acento
+          items:
+            - say: "Habló con el jefe."
+              options: "Он поговорил с начальником. | Я говорю с начальником. | Он говорит с начальником."
+              explain: "Habló — ударение на конце: «он поговорил». Hablo — «я говорю»."
+              noaudio: {q: "Что значит «Habló con el jefe»?", options: "Он поговорил с начальником. | Я говорю с начальником. | Он говорит с начальником."}
+            - q: "Какая фраза — о прошлом?"
+              options: "Compré un libro. | Compro un libro. | Voy a comprar un libro."
+              explain: "Compré — прошедшее время: «я купил». Compro — «покупаю», voy a comprar — «собираюсь купить»."
+      - learn: [llegar, pasar, quedarse]
+      - write:
+          title: Форма «я»
+          format: одна форма глагола
+          accents: strict
+          skill: pret_ar
+          rule: acento
+          items:
+            - q: "Ayer (yo, llegar) ___ tarde al trabajo."
+              a: "llegué"
+              explain: "Llegar → llegué: буква u сохраняет звук [г]."
+              mistakes:
+                "llegé": "Перед `e` нужна `u`, иначе читалось бы [х]: lleg**u**é."
+                "llegue": "В форме «я» нужен знак ударения: llegu**é**."
+            - q: "El domingo (yo, quedarse) me ___ en casa."
+              a: "quedé"
+              explain: "Quedarse → me quedé: местоимение me стоит перед глаголом."
+            - q: "Anoche (yo, pasar) ___ dos horas en el parque."
+              a: "pasé"
+              explain: "Pasar → pasé."
+      - learn: [invitar, la excursión, el concierto]
+      - note:
+          id: gusto
+          text: "«Мне понравилось» — тоже прошедшее время: **Me gustó** la película. Если понравилось несколько вещей — **Me gustaron** las canciones. Так же **me encantó** и **me encantaron** — «очень понравилось»."
+      - choose:
+          title: Выберите форму
+          skill: pret_ar
+          rule: gusto
+          items:
+            - q: "El concierto me ___ mucho."
+              options: "gustó | gustaron | gusté"
+              explain: "Концерт один — me gustó."
+            - q: "Las canciones me ___ mucho."
+              options: "gustaron | gustó | gustamos"
+              explain: "Песен много — me gustaron."
+            - lines: ["Ana: El sábado fui de excursión a la montaña."]
+              q: "Спросите, с кем."
+              options: "¿Con quién fuiste? | ¿Con quién vas? | ¿Quién eres?"
+              explain: "О прошлом — fuiste: «с кем ты ходила?»."
+              skill: fui_fue
+      - build:
+          title: Соберите фразу
+          skill: pret_ar
+          rule: ar
+          items:
+            - es: "Ana me invitó a un concierto."
+              ru: "Ана пригласила меня на концерт."
+              extra: [invita]
+            - es: "Anoche me quedé en casa y descansé."
+              ru: "Вчера вечером я остался дома и отдыхал."
+              alt: ["Anoche descansé y me quedé en casa."]
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: pret_ar
+          rule: ar
+          items:
+            - q: "Вчера я работал весь день."
+              a: "Ayer trabajé todo el día | Trabajé todo el día ayer | (Yo) ayer trabajé todo el día"
+              explain: "Trabajé — «я работал»."
+              mistakes:
+                "ayer trabajo todo el día": "Trabajo — настоящее время. Вчера — **trabajé**."
+                "ayer trabaje todo el dia": "В форме «я» нужен знак ударения: trabaj**é**. И знак в слове d**í**a."
+            - q: "Мы поужинали в ресторане."
+              a: "Cenamos en un restaurante | Cenamos en el restaurante | (Nosotros) cenamos en [un/el] restaurante"
+              explain: "Cenamos — «мы поужинали»: форма как в настоящем времени."
+      - compose:
+          title: О себе
+          skill: pret_ar
+          rule: ar
+          items:
+            - q: "¿Qué hiciste ayer? Напишите две фразы о вчерашнем дне с глаголами на -ar: trabajar, estudiar, cocinar, cenar, hablar, descansar…"
+              format: "Ayer trabajé… Después…"
+              words: [5, 30]
+              sentences: 2
+              checks:
+                - label: "есть глагол в форме «я»: trabajé, estudié, cené, hablé…"
+                  any: [trabajé, estudié, cociné, cené, hablé, descansé, desayuné, compré, escuché, tomé, paseé, llegué, practiqué, visité, nadé, bailé, canté, viajé, quedé, pasé, jugué, toqué, busqué, pagué, esperé, levanté, acosté, duché, empecé, terminé, invité, necesité, olvidé]
+              sample: "Ayer trabajé hasta las seis. Después cené con mi familia y descansé."
+              sample_ru: "Вчера я работал до шести. Потом поужинал с семьёй и отдыхал."
+    quiz:
+      - q: "Ayer mis padres ___ en un restaurante."
+        options: "cenaron | cenan | cenó"
+        explain: "Mis padres — они: -aron. Cenan — настоящее время, cenó — «он поужинал»."
+        skill: pret_ar
+      - q: "Какая форма значит «он говорил»?"
+        options: "habló | hablo | hablé"
+        explain: "Habló — он, она; hablé — я; hablo — «я говорю» сейчас."
+        skill: pret_ar
+
+  - id: verbos_er_ir
+    kind: grammar
+    title: "Comí, comiste, comió: глаголы на -er и -ir"
+    goal: рассказать о прошлом глаголами на -er и -ir — comí, salí, volví, vi
+    version: 2
+    vocab:
+      - "⚽ el partido [парти́до] — матч, игра :: Anoche vi el partido. — Вчера вечером я смотрел матч."
+      - "🏆 ganar [гана́р] — выигрывать; зарабатывать :: Mi equipo ganó. — Моя команда выиграла."
+      - "😞 perder [пэрдэ́р] — проигрывать; терять :: Perdimos el partido. — Мы проиграли матч."
+      - "👥 el equipo [эки́по] — команда :: Es mi equipo favorito. — Это моя любимая команда."
+      - "📩 el mensaje [мэнса́хэ] — сообщение :: Recibí tu mensaje. — Я получил твоё сообщение."
+      - "📬 recibir [рэθиби́р] — получать :: Ayer recibí un mensaje de Ana. — Вчера я получил сообщение от Аны."
+      - "🎟 la entrada [энтра́да] — входной билет; вход :: Compré dos entradas para el concierto. — Я купил два билета на концерт."
+    blocks:
+      - "У глаголов на -er и -ir окончания прошедшего времени общие. Сравните с настоящим."
+      - conjugation:
+          id: er_ir
+          verb: comer
+          ru: "есть — в прошлом; так же vivir, salir, escribir"
+          forms: [comí, comiste, comió, comimos, comisteis, comieron]
+      - compare:
+          id: ar_er
+          style: small
+          title: Сравните окончания
+          cards:
+            - head: hablé
+              label: "-ar: я"
+            - head: comí
+              label: "-er, -ir: я"
+            - head: habló
+              label: "-ar: он, она"
+            - head: comió
+              label: "-er, -ir: он, она"
+          note: "У глаголов на -ir форма «мы» совпадает с настоящим временем: **vivimos** — «мы живём» и «мы жили». У глаголов на -er — нет: _comemos_ — «едим», **comimos** — «мы поели»."
+      - write:
+          title: Поставьте глагол в прошедшее время
+          format: одна форма глагола
+          accents: strict
+          skill: pret_er_ir
+          rule: er_ir
+          items:
+            - q: "Ayer (yo, comer) ___ en casa de mis padres."
+              a: "comí"
+              explain: "Yo — окончание -í: comí."
+              mistakes:
+                "comi": "В форме «я» нужен знак ударения: com**í**."
+                "como": "Como — настоящее время. Вчера — **comí**."
+                "comé": "Окончание -é — у глаголов на -ar. У comer — com**í**."
+            - q: "¿A qué hora (tú, salir) ___ de casa?"
+              a: "saliste"
+              explain: "Tú — окончание -iste: saliste."
+            - q: "Carlos (volver) ___ a casa muy tarde."
+              a: "volvió"
+              explain: "Él — окончание -ió: volvió. В прошедшем времени корень не меняется: не vuelv-."
+              mistakes:
+                "vuelvió": "Чередование `o → ue` есть только в настоящем времени. В прошлом — **volvió**."
+                "volvio": "Нужен знак ударения: volvi**ó**."
+            - q: "El sábado (nosotros, comer) ___ paella."
+              a: "comimos"
+              explain: "Nosotros — -imos: comimos (в настоящем — comemos)."
+              mistakes:
+                "comemos": "Comemos — настоящее время. В прошлом — **comimos**."
+            - q: "Mis amigos (escribir) ___ en español."
+              a: "escribieron"
+              explain: "Ellos — окончание -ieron: escribieron."
+            - q: "¿(vosotros, beber) ___ vino en la cena?"
+              a: "bebisteis"
+              explain: "Vosotros — окончание -isteis: bebisteis."
+      - learn: [el partido, ganar, perder, el equipo]
+      - conjugation:
+          id: ver
+          verb: ver
+          ru: "видеть, смотреть — в прошлом: без знаков ударения"
+          highlight: false
+          forms: [vi, viste, vio, vimos, visteis, vieron]
+      - choose:
+          title: Выберите форму
+          skill: pret_er_ir
+          rule: ver
+          items:
+            - q: "Anoche (yo) ___ el partido en casa."
+              options: "vi | veo | vio"
+              explain: "Vi — «я посмотрел». Veo — настоящее время, vio — «он посмотрел»."
+            - q: "Mi equipo ___ el partido: tres a cero."
+              options: "ganó | gano | ganaron"
+              explain: "Mi equipo — одна команда, «он»: ganó."
+              skill: pret_ar
+            - say: "Perdimos el partido."
+              options: "Мы проиграли матч. | Мы проигрываем матч. | Они проиграли матч."
+              explain: "Perdimos — «мы проиграли»; «мы проигрываем» — perdemos."
+              noaudio: {q: "Что значит «Perdimos el partido»?", options: "Мы проиграли матч. | Мы проигрываем матч. | Они проиграли матч."}
+      - learn: [el mensaje, recibir, la entrada]
+      - match:
+          title: Вопрос — ответ
+          skill: pret_er_ir
+          rule: er_ir
+          pairs:
+            - "¿Recibiste mi mensaje? — Sí, lo recibí anoche."
+            - "¿A qué hora volviste? — Volví a las once."
+            - "¿Dónde comisteis? — Comimos en un bar."
+            - "¿Qué bebió Pablo? — Bebió agua."
+            - "¿Visteis el partido? — Sí, lo vimos en casa."
+      - build:
+          title: Соберите фразу
+          skill: pret_er_ir
+          rule: er_ir
+          items:
+            - es: "Compré dos entradas para el concierto."
+              ru: "Я купил два билета на концерт."
+              skill: pret_ar
+            - es: "Anoche salí con mis compañeros de trabajo."
+              ru: "Вчера вечером я ходил гулять с коллегами."
+              alt: ["Salí con mis compañeros de trabajo anoche."]
+              extra: [salgo]
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: pret_er_ir
+          rule: er_ir
+          items:
+            - q: "Вчера я получил сообщение от Аны."
+              a: "Ayer recibí un mensaje de Ana | Recibí un mensaje de Ana ayer | (Yo) ayer recibí un mensaje de Ana"
+              explain: "Recibir → recibí."
+              mistakes:
+                "ayer recibo un mensaje de ana": "Recibo — настоящее время. Вчера — **recibí**."
+            - q: "Мы вернулись домой в десять."
+              a: "Volvimos a casa a las diez | (Nosotros) volvimos a casa a las diez"
+              explain: "Volver → volvimos: корень в прошедшем времени не меняется."
+              mistakes:
+                "volvemos a casa a las diez": "Volvemos — настоящее время. В прошлом — **volvimos**."
+      - compose:
+          title: О себе
+          skill: pret_er_ir
+          rule: er_ir
+          items:
+            - q: "Что вы ели, пили, видели или читали вчера? Напишите две фразы с глаголами comer, beber, ver, leer, salir, volver, escribir."
+              format: "Ayer comí… Anoche vi…"
+              words: [5, 30]
+              sentences: 2
+              checks:
+                - label: "есть глагол в форме «я»: comí, bebí, vi, leí, salí, volví, escribí…"
+                  any: [comí, bebí, vi, leí, salí, volví, escribí, recibí, aprendí, abrí, corrí, dormí, perdí, conocí, entendí, viví]
+              sample: "Ayer comí pescado con ensalada. Anoche vi una película y leí un poco."
+              sample_ru: "Вчера я ел рыбу с салатом. Вечером посмотрел фильм и немного почитал."
+    quiz:
+      - q: "Ayer (yo) ___ a casa a las ocho."
+        options: "volví | vuelvo | volvió"
+        explain: "Yo — volví. Vuelvo — настоящее время, volvió — «он вернулся»."
+        skill: pret_er_ir
+      - q: "¿Qué ___ ustedes en el restaurante?"
+        options: "comieron | comisteis | comió"
+        explain: "Ustedes — как ellos: comieron."
+        skill: pret_er_ir
+
+  - id: ir_ser
+    kind: grammar
+    title: "Fui, fue: глаголы ir и ser"
+    goal: сказать, куда вы ходили, и оценить — «было здорово»
+    version: 2
+    vocab:
+      - "🏘 el pueblo [пуэ́бло] — деревня, городок :: Fuimos a un pueblo de la montaña. — Мы ездили в горную деревню."
+      - "🌾 el campo [ка́мпо] — сельская местность, природа за городом :: Pasé el domingo en el campo. — Я провёл воскресенье за городом."
+      - "🖼 la exposición [экспосиθьо́н] — выставка {pl: exposiciones} :: Vimos una exposición de fotos. — Мы посмотрели выставку фотографий."
+      - "🤩 increíble [инкрэи́бле] — невероятный, потрясающий :: El concierto fue increíble. — Концерт был потрясающий."
+      - "💬 ¿Qué tal fue? [кэ таль фуэ́] — как всё прошло? :: ¿Qué tal fue la fiesta? — Как прошла вечеринка?"
+    blocks:
+      - "Самые нужные глаголы в прошедшем времени неправильные. Форму **fui** вы уже знаете. Вот остальные формы глагола ir."
+      - conjugation:
+          id: ir
+          verb: ir
+          ru: "ходить, ездить — в прошлом"
+          highlight: false
+          forms: [fui, fuiste, fue, fuimos, fuisteis, fueron]
+      - compare:
+          id: ir_ser
+          style: small
+          title: Один набор форм — два глагола
+          cards:
+            - head: Fui al cine.
+              label: "ir: я ходил"
+            - head: Fue genial.
+              label: "ser: было здорово"
+          note: "У глаголов **ir** и **ser** формы прошедшего времени одинаковые. Различить легко: после _fui a…_ стоит место — это ir; _fue_ + «какой» — это ser."
+      - learn: [el pueblo, el campo, "¿Qué tal fue?"]
+      - write:
+          title: Вставьте форму ir или ser
+          format: одна форма глагола
+          skill: fui_fue
+          rule: ir
+          items:
+            - q: "El domingo (nosotros, ir) ___ al campo."
+              a: "fuimos"
+              explain: "Nosotros — fuimos."
+            - q: "¿Adónde (tú, ir) ___ ayer?"
+              a: "fuiste"
+              explain: "Tú — fuiste."
+              mistakes:
+                "fuistes": "В форме «ты» на конце нет `s`: **fuiste**."
+            - q: "Mis padres (ir) ___ a un pueblo de la montaña."
+              a: "fueron"
+              explain: "Ellos — fueron."
+            - q: "La película (ser) ___ muy divertida."
+              a: "fue"
+              explain: "Ser, она — fue: «фильм был очень весёлый»."
+              mistakes:
+                "fué": "Короткие формы fue и fui пишутся без знака ударения."
+      - choose:
+          title: Ir или ser?
+          skill: fui_fue
+          rule: ir_ser
+          items:
+            - q: "Ayer **fui** al médico. Какой это глагол?"
+              options: "ir — «ходил» | ser — «был»"
+              explain: "Fui al… — куда: это ir."
+            - q: "La fiesta **fue** muy divertida. Какой это глагол?"
+              options: "ser — «была» | ir — «ходила»"
+              explain: "Fue + какая (divertida) — это ser."
+      - learn: [la exposición, increíble]
+      - choose:
+          title: Что сказать?
+          skill: fui_fue
+          rule: ir_ser
+          items:
+            - lines: ["Ana: Ayer fui a una exposición de fotos."]
+              q: "Спросите, как всё прошло."
+              options: "¿Qué tal fue? | ¿Qué tal estás? | ¿Qué hiciste?"
+              explain: "¿Qué tal fue? — «как всё прошло?». ¿Qué tal estás? — «как ты?»."
+            - lines: ["Pablo: ¿Qué tal fue el concierto?"]
+              q: "Вам очень понравилось."
+              options: "Fue increíble. | Fui increíble. | Fueron increíble."
+              explain: "Концерт — «он»: fue increíble. Fui — «я был»."
+      - choose:
+          title: Послушайте
+          skill: fui_fue
+          rule: ir
+          items:
+            - say: "¿Adónde fuiste el domingo?"
+              options: "Куда ты ездил в воскресенье? | Куда ты едешь в воскресенье? | Где ты был в воскресенье?"
+              explain: "Fuiste — «ты ездил»; adónde — «куда»."
+              noaudio: {q: "Что значит «¿Adónde fuiste el domingo?»", options: "Куда ты ездил в воскресенье? | Куда ты едешь в воскресенье? | Где ты был в воскресенье?"}
+      - build:
+          title: Соберите фразу
+          skill: fui_fue
+          rule: ir
+          items:
+            - es: "El sábado fuimos a una exposición de fotos."
+              ru: "В субботу мы ходили на выставку фотографий."
+              alt: ["Fuimos a una exposición de fotos el sábado."]
+              extra: [fue]
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: fui_fue
+          rule: ir_ser
+          items:
+            - q: "Концерт был потрясающий."
+              a: "El concierto fue increíble"
+              explain: "Концерт — «он»: fue."
+              mistakes:
+                "el concierto fui increíble": "Fui — форма «я». Концерт — «он»: **fue**."
+                "el concierto es increíble": "Es — настоящее время. Концерт уже прошёл: **fue**."
+      - compose:
+          title: О себе
+          skill: fui_fue
+          rule: ir_ser
+          items:
+            - q: "¿Adónde fuiste el fin de semana pasado y qué tal fue? Напишите две фразы."
+              format: "Fui a… Fue…"
+              words: [4, 30]
+              checks:
+                - label: "куда: fui a… или fuimos a…"
+                  any: [fui a, fui al, fuimos a, fuimos al, fui de, fuimos de]
+                - label: "оценка: fue…"
+                  any: [fue]
+              sample: "Fui a la playa con mis amigos. Fue genial."
+              sample_ru: "Я ездил на пляж с друзьями. Было здорово."
+    quiz:
+      - q: "El concierto ___ increíble."
+        options: "fue | fui | fueron"
+        explain: "Концерт — «он», ser: fue increíble."
+        skill: fui_fue
+      - q: "— ¿Adónde ___ ayer? — Fui al cine."
+        options: "fuiste | fue | fui"
+        explain: "Вопрос к «ты»: fuiste. В ответе — fui."
+        skill: fui_fue
+
+  - id: irregulares
+    kind: grammar
+    title: "Hice, estuve, tuve"
+    goal: сказать, что вы делали, где были и что вам пришлось сделать
+    version: 2
+    blocks:
+      - "Ещё три частых глагола с особыми формами: hacer, estar и tener. Форму **hiciste** вы знаете по вопросу _¿Qué hiciste?_"
+      - conjugation:
+          id: hacer
+          verb: hacer
+          ru: "делать — в прошлом"
+          highlight: false
+          forms: [hice, hiciste, hizo, hicimos, hicisteis, hicieron]
+      - conjugation:
+          id: estar
+          verb: estar
+          ru: "быть, находиться — в прошлом"
+          highlight: false
+          forms: [estuve, estuviste, estuvo, estuvimos, estuvisteis, estuvieron]
+      - conjugation:
+          id: tener
+          verb: tener
+          ru: "иметь — в прошлом; tuve que… — «мне пришлось»"
+          highlight: false
+          forms: [tuve, tuviste, tuvo, tuvimos, tuvisteis, tuvieron]
+      - note:
+          id: sin_tilde
+          text: "У этих трёх глаголов новая основа (**hic-**, **estuv-**, **tuv-**) и общие окончания без знаков ударения: -e, -iste, -o, -imos, -isteis, -ieron. В форме «он» у hacer пишется `z`: **hizo**."
+      - write:
+          title: Поставьте глагол в прошедшее время
+          format: одна форма глагола
+          skill: pret_irregular
+          rule: sin_tilde
+          items:
+            - q: "Ayer (yo, hacer) ___ la cena."
+              a: "hice"
+              explain: "Yo — hice."
+              mistakes:
+                "hací": "У hacer особая основа: **hice**, а не `hací`."
+            - q: "¿Qué (hacer) ___ Pablo el sábado?"
+              a: "hizo"
+              explain: "Él — hizo, с буквой z."
+              mistakes:
+                "hico": "В форме «он» пишется `z`: **hizo** — иначе читалось бы [ико]."
+            - q: "El fin de semana (yo, estar) ___ en casa de mis abuelos."
+              a: "estuve"
+              explain: "Yo — estuve."
+              mistakes:
+                "esté": "У estar особая основа: **estuve**."
+            - q: "¿Dónde (tú, estar) ___ anoche?"
+              a: "estuviste"
+              explain: "Tú — estuviste."
+            - q: "Ayer (yo, tener) ___ mucho trabajo."
+              a: "tuve"
+              explain: "Yo — tuve."
+              mistakes:
+                "tení": "У tener особая основа: **tuve**."
+            - q: "Ana no fue a la fiesta: (tener) ___ que estudiar."
+              a: "tuvo"
+              explain: "Ella — tuvo: tuvo que estudiar — «ей пришлось заниматься»."
+      - sort:
+          title: Какой это глагол?
+          skill: pret_irregular
+          rule: sin_tilde
+          groups:
+            "ir": [fui al cine, fuimos a la playa]
+            "estar": [estuve en casa, estuvo enfermo]
+            "hacer": [hice la cena, no hicimos nada]
+            "tener": [tuve un examen, tuvieron que trabajar]
+      - choose:
+          title: Послушайте
+          skill: pret_irregular
+          items:
+            - say: "El sábado estuvimos en un pueblo muy bonito."
+              options: "В субботу мы были в очень красивом городке. | В субботу мы поедем в очень красивый городок. | В субботу они были в очень красивом городке."
+              explain: "Estuvimos — «мы были»."
+              noaudio: {q: "Что значит «El sábado estuvimos en un pueblo muy bonito»?", options: "В субботу мы были в очень красивом городке. | В субботу мы поедем в очень красивый городок. | В субботу они были в очень красивом городке."}
+            - say: "Tuve que trabajar todo el domingo."
+              options: "Мне пришлось работать всё воскресенье. | Я хочу работать в воскресенье. | У меня есть работа в воскресенье."
+              explain: "Tuve que + инфинитив — «мне пришлось»."
+              noaudio: {q: "Что значит «Tuve que trabajar todo el domingo»?", options: "Мне пришлось работать всё воскресенье. | Я хочу работать в воскресенье. | У меня есть работа в воскресенье."}
+      - build:
+          title: Соберите фразу
+          skill: pret_irregular
+          items:
+            - es: "El domingo no hice nada."
+              ru: "В воскресенье я ничего не делал."
+              alt: ["No hice nada el domingo."]
+            - es: "¿Dónde estuviste el fin de semana pasado?"
+              ru: "Где ты был в прошлые выходные?"
+              extra: [fuiste]
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: pret_irregular
+          items:
+            - q: "В субботу я был дома."
+              a: "El sábado estuve en casa | Estuve en casa el sábado | (Yo) el sábado estuve en casa"
+              explain: "«Был где-то» — estuve."
+              mistakes:
+                "el sábado fui en casa": "«Был где-то» — **estuve**: estuve en casa. А fui a… — «ходил, ездил куда-то»."
+                "el sábado estoy en casa": "Estoy — настоящее время. О субботе — **estuve**."
+            - q: "Мне пришлось работать."
+              a: "Tuve que trabajar | (Yo) tuve que trabajar"
+              explain: "Tuve que + инфинитив."
+              mistakes:
+                "tuve trabajar": "Между tuve и инфинитивом нужно **que**: tuve **que** trabajar."
+                "tengo que trabajar": "Tengo que — «мне нужно» сейчас. «Пришлось» — **tuve que**."
+      - compose:
+          title: О себе
+          skill: pret_irregular
+          rule: sin_tilde
+          items:
+            - q: "¿Dónde estuviste y qué hiciste el fin de semana pasado? Напишите две-три фразы."
+              format: "El sábado fui… El domingo estuve…"
+              words: [6, 40]
+              sentences: 2
+              checks:
+                - label: "есть fui, estuve, hice или tuve (или форма «мы»)"
+                  any: [fui, estuve, hice, tuve, fuimos, estuvimos, hicimos, tuvimos]
+              sample: "El sábado fui al campo con mi familia. El domingo estuve en casa y no hice nada."
+              sample_ru: "В субботу я ездил за город с семьёй. В воскресенье был дома и ничего не делал."
+    quiz:
+      - q: "Ayer ___ que trabajar hasta las diez."
+        options: "tuve | estuve | fui"
+        explain: "«Пришлось» — tuve que + инфинитив."
+        skill: pret_irregular
+      - q: "¿Qué ___ Pablo el sábado?"
+        options: "hizo | hice | hiciste"
+        explain: "Pablo — «он»: hizo."
+        skill: pret_irregular
+
+  - id: lectura
+    kind: reading
+    title: "Un fin de semana en Toledo"
+    goal: понять письмо о выходных и написать о своих
+    version: 2
+    vocab:
+      - "⛪ la catedral [катэдра́ль] — собор {pl: catedrales} :: Visitamos la catedral. — Мы посетили собор."
+      - "🏛 antiguo/a [анти́гуо, анти́гуа] — старинный, древний :: Toledo es una ciudad muy antigua. — Толедо — очень древний город."
+      - "🎁 el recuerdo [рэкуэ́рдо] — сувенир; воспоминание :: Compré un recuerdo para mi madre. — Я купил сувенир для мамы."
+      - "🏁 por último [пор у́льтимо] — напоследок, в конце :: Por último tomamos un café. — Напоследок мы выпили кофе."
+      - "🛒 hacer la compra [аθэ́р ла ко́мпра] — ходить за продуктами :: El domingo hice la compra. — В воскресенье я сходил за продуктами."
+      - "🤗 un abrazo [абра́θо] — обнимаю (в конце письма) :: Un abrazo, Irina. — Обнимаю, Ирина."
+    blocks:
+      - learn: [la catedral, antiguo/a, el recuerdo, por último, hacer la compra, un abrazo]
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "la catedral — собор"
+            - "antiguo — старинный"
+            - "el recuerdo — сувенир"
+            - "por último — напоследок"
+            - "hacer la compra — ходить за продуктами"
+            - "un abrazo — обнимаю"
+      - "Ирина пишет подруге Ольге о выходных."
+      - reading:
+          id: toledo
+          title: Un fin de semana en Toledo
+          text: |
+            ¡Hola, Olga! ¿Qué tal? Este fin de semana fue genial.
+
+            El sábado fui a Toledo con Diego y sus amigos. Fuimos en tren y llegamos a las diez. Primero visitamos la catedral: es muy antigua y muy bonita. Después paseamos por el centro y comimos en un restaurante pequeño. ¡La comida fue increíble! Por la tarde vimos una exposición y yo compré un recuerdo para mi madre. Por último tomamos un café en una plaza y volvimos a Madrid a las nueve.
+
+            El domingo me quedé en casa. Por la mañana hice la compra, cociné y estudié español. Por la noche vi una película con mi compañera de piso. Me acosté temprano porque hoy tengo clase.
+
+            ¿Y tú? ¿Qué hiciste? ¿Trabajaste el sábado?
+
+            Un abrazo,
+            Irina
+          translation: |
+            Привет, Ольга! Как дела? Эти выходные были отличные.
+
+            В субботу я ездила в Толедо с Диего и его друзьями. Мы поехали на поезде и приехали в десять. Сначала посетили собор: он очень старинный и очень красивый. Потом гуляли по центру и пообедали в маленьком ресторане. Еда была потрясающая! Днём мы посмотрели выставку, и я купила сувенир для мамы. Напоследок выпили кофе на площади и вернулись в Мадрид в девять.
+
+            В воскресенье я осталась дома. Утром сходила за продуктами, готовила и учила испанский. Вечером посмотрела фильм с соседкой по квартире. Легла рано, потому что сегодня у меня занятие.
+
+            А ты? Что ты делала? Работала в субботу?
+
+            Обнимаю,
+            Ирина
+      - choose:
+          title: Что сказано в письме?
+          source: toledo
+          items:
+            - q: "¿Adónde fue Irina el sábado?"
+              options: "A Toledo. | A la playa. | A un pueblo de la montaña."
+              explain: "El sábado fui a Toledo con Diego y sus amigos."
+              skill: fui_fue
+            - q: "¿Cómo fueron a Toledo?"
+              options: "En tren. | En coche. | En autobús."
+              explain: "Fuimos en tren y llegamos a las diez."
+            - q: "¿Qué hicieron primero?"
+              options: "Visitaron la catedral. | Comieron en un restaurante. | Vieron una exposición."
+              explain: "Primero visitamos la catedral. Ресторан и выставка были позже."
+              skill: pret_ar
+            - q: "¿Qué compró Irina?"
+              options: "Un recuerdo para su madre. | Dos entradas para un concierto. | Un libro antiguo."
+              explain: "Yo compré un recuerdo para mi madre."
+            - q: "¿Qué hizo Irina el domingo por la noche?"
+              options: "Vio una película. | Estudió español. | Hizo la compra."
+              explain: "Por la noche vi una película. За продуктами она ходила и занималась испанским утром."
+              skill: pret_irregular
+            - q: "¿Por qué se acostó temprano?"
+              options: "Porque hoy tiene clase. | Porque estuvo enferma. | Porque trabajó todo el día."
+              explain: "Me acosté temprano porque hoy tengo clase."
+      - write:
+          title: Ответьте по письму
+          format: короткий ответ по-испански
+          source: toledo
+          items:
+            - q: "¿A qué hora llegaron a Toledo?"
+              a: "A las diez | Llegaron (a Toledo) a las diez | A las 10"
+              explain: "Fuimos en tren y llegamos a las diez."
+            - q: "Как в письме сказано «мы вернулись в Мадрид»?"
+              a: "volvimos a Madrid"
+              explain: "Por último tomamos un café en una plaza y volvimos a Madrid a las nueve."
+              skill: pret_er_ir
+      - choose:
+          title: Послушайте
+          free: true
+          rule: none
+          items:
+            - say: "Por último visitamos una catedral muy antigua."
+              options: "Напоследок мы посетили очень старинный собор. | Сначала мы посетили очень старинный собор. | Напоследок мы купили старинный сувенир."
+              explain: "Por último — «напоследок», la catedral — «собор», antigua — «старинная»."
+              noaudio: {q: "Что значит «Por último visitamos una catedral muy antigua»?", options: "Напоследок мы посетили очень старинный собор. | Сначала мы посетили очень старинный собор. | Напоследок мы купили старинный сувенир."}
+      - compose:
+          title: Mi fin de semana
+          free: true
+          rule: none
+          skill: [fui_fue, pret_ar, pret_irregular]
+          items:
+            - q: "Напишите о своих выходных, 4–5 фраз: куда вы ходили или где были · что делали сначала и потом · как всё прошло."
+              format: "El sábado fui… Primero… Después… Fue…"
+              words: [25, 100]
+              sentences: 4
+              checks:
+                - label: "когда: el sábado, el domingo, ayer, anoche…"
+                  any: [el sábado, el domingo, el viernes, ayer, anoche, el fin de semana]
+                - label: "где были: fui, fuimos, estuve, estuvimos или me quedé"
+                  any: [fui, fuimos, estuve, estuvimos, me quedé, nos quedamos]
+                - label: "порядок: primero, después, luego или por último"
+                  any: [primero, después, luego, por último, más tarde]
+                - label: "оценка: fue…, me gustó… или lo pasé…"
+                  any: [fue, me gustó, me gustaron, me encantó, lo pasé, lo pasamos]
+              sample: "El sábado fui al campo con mis amigos. Primero paseamos por un pueblo antiguo. Después comimos en un restaurante pequeño. Fue un día genial. El domingo me quedé en casa y descansé."
+              sample_ru: "В субботу я ездил за город с друзьями. Сначала мы гуляли по старинной деревне. Потом пообедали в маленьком ресторане. Был отличный день. В воскресенье я остался дома и отдыхал."
+
+  - id: mision
+    kind: practice
+    title: Как прошли выходные?
+    goal: рассказать коллеге о выходных и ответить другу сообщением
+    version: 2
+    blocks:
+      - review:
+          title: Вспомним
+          skills: [desde_hace, saber_conocer, para_porque]
+          n: 2
+      - mission:
+          id: oficina
+          title: Понедельник в офисе
+          text: "Понедельник, утро. В субботу вы ездили с друзьями в Толедо, а в воскресенье остались дома и ничего не делали. Коллега Лусия расспрашивает вас о выходных."
+      - chat:
+          id: lucia
+          title: В офисе
+          with: Lucía
+          skill: fui_fue
+          turns:
+            - say: "¡Hola! ¿Qué tal el fin de semana? | Привет! Как выходные?"
+              build: "Muy bien, gracias. ¿Y tú?"
+              ru: "Очень хорошо, спасибо. А ты?"
+            - say: "Bien, muy tranquilo. ¿Qué hiciste el sábado? | Хорошо, очень спокойно. Что ты делал в субботу?"
+              task: "В субботу вы ездили в Толедо с друзьями."
+              write: "Fui a Toledo con mis amigos | El sábado fui a Toledo con mis amigos | Fui a Toledo con [unos/los] amigos | Fui a Toledo | El sábado fui a Toledo"
+              format: куда и с кем
+              mistakes:
+                "voy a toledo con mis amigos": "Voy — настоящее время. О субботе — **fui**."
+                "fui en toledo con mis amigos": "Куда — с предлогом **a**: fui **a** Toledo."
+            - say: "¡Qué bien! ¿Y qué tal fue? | Здорово! И как всё прошло?"
+              task: "Вам очень понравилось."
+              choose: "Fue genial. | Fui genial. | Estuve genial."
+              explain: "Поездка — «она»: fue genial. Fui и estuve — формы «я»."
+            - say: "¿Y qué visitasteis? | А что вы посетили?"
+              task: "Вы с друзьями посетили собор и музей."
+              skill: pret_ar
+              write: "Visitamos la catedral y un museo | Visitamos la catedral y el museo | La catedral y [un/el] museo"
+              format: что вы посетили
+              mistakes:
+                "visitasteis la catedral y un museo": "Visitasteis — «вы посетили». О себе с друзьями — **visitamos**."
+                "visité la catedral y un museo": "Вы были с друзьями, поэтому «мы»: **visitamos**."
+            - say: "¿Y el domingo? ¿Qué hiciste? | А в воскресенье? Что ты делал?"
+              task: "В воскресенье вы остались дома и ничего не делали."
+              skill: pret_irregular
+              write: "Me quedé en casa y no hice nada | El domingo me quedé en casa y no hice nada | Estuve en casa y no hice nada | El domingo estuve en casa y no hice nada | Me quedé en casa | No hice nada | El domingo no hice nada | Estuve en casa"
+              format: где были и что делали
+              mistakes:
+                "me quedo en casa y no hago nada": "Это настоящее время. О воскресенье — **me quedé** и **no hice** nada."
+            - say: "Yo también. ¿Viste el partido anoche? | Я тоже. Ты смотрел вчера матч?"
+              task: "Ответьте от себя: что вы делали вчера вечером."
+              skill: pret_er_ir
+              compose:
+                format: "Sí, … / No, …"
+                words: [2, 25]
+                checks:
+                  - label: "начинается с Sí или No"
+                    starts: ["sí", "no"]
+                  - label: "есть глагол в прошедшем времени: vi, cené, salí, me acosté…"
+                    any: [vi, vimos, cené, salí, acosté, leí, estudié, trabajé, quedé, estuve, fui, hice, descansé, cociné]
+                sample: "No, no vi el partido. Cené y me acosté temprano."
+                sample_ru: "Нет, матч я не смотрел. Поужинал и рано лёг спать."
+            - say: "¡Fue un partido increíble! | Матч был потрясающий!"
+      - "Днём Диего присылает вам аудио. Послушайте его: текста нет."
+      - dialogue:
+          id: audio
+          hidden: true
+          title: Аудио от Диего
+          lines:
+            - "Diego: ¡Hola! Soy Diego. El sábado fui a un concierto con Irina. Fue increíble: tocaron canciones muy antiguas. Después cenamos en un restaurante mexicano y volví a casa muy tarde. ¿Y tú? ¿Qué hiciste el fin de semana? | Привет! Это Диего. В субботу я ходил на концерт с Ириной. Было потрясающе: играли очень старые песни. Потом мы поужинали в мексиканском ресторане, и я вернулся домой очень поздно. А ты? Что ты делал в выходные?"
+      - choose:
+          title: Что рассказал Диего?
+          source: audio
+          items:
+            - q: "¿Adónde fue Diego el sábado?"
+              options: "A un concierto. | A una exposición. | A un partido."
+              explain: "El sábado fui a un concierto con Irina."
+            - q: "¿Qué tal fue el concierto?"
+              options: "Increíble. | Aburrido. | Regular."
+              explain: "Fue increíble: tocaron canciones muy antiguas."
+            - q: "¿Qué hicieron después del concierto?"
+              options: "Cenaron en un restaurante mexicano. | Volvieron a casa temprano. | Fueron al cine."
+              explain: "Después cenamos en un restaurante mexicano y volví a casa muy tarde."
+      - compose:
+          title: Ответьте Диего
+          source: audio
+          skill: [fui_fue, pret_irregular]
+          items:
+            - q: "Напишите Диего сообщение о своих выходных — настоящих или выдуманных, 4–5 фраз."
+              format: "¡Hola, Diego! El sábado…"
+              words: [25, 100]
+              sentences: 3
+              checks:
+                - label: "когда: el sábado, el domingo, ayer, anoche…"
+                  any: [el sábado, el domingo, el viernes, ayer, anoche, el fin de semana]
+                - label: "где были: fui, fuimos, estuve, estuvimos или me quedé"
+                  any: [fui, fuimos, estuve, estuvimos, me quedé, nos quedamos]
+                - label: "оценка: fue…, me gustó… или lo pasé…"
+                  any: [fue, me gustó, me gustaron, me encantó, lo pasé, lo pasamos]
+              sample: "¡Hola, Diego! El sábado fui a la playa con mi familia. Nadamos mucho y comimos paella. Fue un día genial. El domingo estuve en casa y vi una película."
+              sample_ru: "Привет, Диего! В субботу я ездил на пляж с семьёй. Мы много плавали и ели паэлью. Был отличный день. В воскресенье я был дома и посмотрел фильм."
+
+  - id: quiz
+    kind: quiz
+    title: "Тест: ¿Qué hiciste ayer?"
+    goal: проверить цели темы — рассказ о вчерашнем дне и выходных
+    version: 2
+    check: soft
+    blocks:
+      - "Это тест по теме «¿Qué hiciste ayer?»: тринадцать заданий."
+      - cando:
+          - "сказать, когда это было: ayer, anoche, el sábado pasado"
+          - "рассказать о прошлом правильными глаголами: trabajé, comí, salí"
+          - "сказать, куда ходили и где были: fui, estuve, hice, tuve que"
+          - "спросить и оценить: ¿Qué tal fue? — Fue genial"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          rule: none
+          skill: fui_fue
+          items:
+            - say: "El sábado fuimos a la playa."
+              a: "El sábado fuimos a la playa"
+              noaudio: {q: "Напишите по-испански: «В субботу мы ездили на пляж».", a: "El sábado fuimos a la playa | Fuimos a la playa el sábado"}
+      - choose:
+          title: Послушайте
+          rule: none
+          items:
+            - say: "Anoche me quedé en casa."
+              options: "Вчера вечером я остался дома. | Сегодня вечером я останусь дома. | Вчера вечером он остался дома."
+              skill: pret_ar
+              noaudio: {q: "Что значит «Anoche me quedé en casa»?", options: "Вчера вечером я остался дома. | Сегодня вечером я останусь дома. | Вчера вечером он остался дома."}
+            - say: "¿Qué tal fue la fiesta?"
+              options: "Как прошла вечеринка? | Когда будет вечеринка? | Где была вечеринка?"
+              skill: fui_fue
+              noaudio: {q: "Что значит «¿Qué tal fue la fiesta?»", options: "Как прошла вечеринка? | Когда будет вечеринка? | Где была вечеринка?"}
+      - write:
+          title: Поставьте глагол в прошедшее время
+          format: одна форма глагола
+          accents: strict
+          rule: none
+          items:
+            - q: "Ayer (yo, llegar) ___ tarde."
+              a: "llegué"
+              skill: pret_ar
+            - q: "Pablo (volver) ___ a las once."
+              a: "volvió"
+              skill: pret_er_ir
+            - q: "¿Qué (tú, hacer) ___ ayer?"
+              a: "hiciste"
+              skill: pret_irregular
+            - q: "El domingo (nosotros, estar) ___ en el campo."
+              a: "estuvimos"
+              skill: pret_irregular
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          rule: none
+          skill: pret_er_ir
+          items:
+            - q: "Вчера вечером я смотрел фильм."
+              a: "Anoche vi una película | Vi una película anoche | Ayer por la noche vi una película"
+      - build:
+          title: Соберите вопрос
+          rule: none
+          skill: fui_fue
+          items:
+            - "¿Qué hiciste el fin de semana pasado? — Что ты делал в прошлые выходные?"
+    quiz:
+      - q: "El concierto ___ increíble."
+        options: "fue | fui | estuve"
+        explain: "Концерт — «он», ser: fue."
+        skill: fui_fue
+      - q: "Mis amigos ___ el partido en un bar."
+        options: "vieron | vio | visteis"
+        explain: "Mis amigos — они: vieron."
+        skill: pret_er_ir
+      - q: Какое слово значит «вчера вечером»?
+        options: "anoche | anteayer | ayer"
+        explain: "Anoche — вчера вечером, ayer — вчера, anteayer — позавчера."
+        skill: past_markers
+      - q: "Ayer ___ que trabajar hasta las diez."
+        options: "tuve | estuve | fui"
+        explain: "«Пришлось» — tuve que + инфинитив."
+        skill: pret_irregular

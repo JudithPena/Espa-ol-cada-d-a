@@ -35,7 +35,7 @@ def test_deployment_budgets_and_lazy_catalogs(deployed):
     out, shell, _ = deployed
     report = check_budget(out)
     assert report['html_bytes'] < 1_500_000
-    assert set(shell['resources']['levels']) == {'A0', 'A1'}
+    assert set(shell['resources']['levels']) == {'A0', 'A1', 'A2'}   # A2 — с 12 ноября 2026
     assert all('blocks' not in L and 'quiz' not in L for L in shell['lessons'])
     assert all('questions' not in g for u in shell['grammar'] for g in u['exercises'])
     assert shell['books'] == []

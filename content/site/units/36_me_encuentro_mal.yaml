@@ -1,0 +1,730 @@
+id: me_encuentro_mal
+number: 36
+level: A2
+title: Me encuentro mal — мне нехорошо
+goals:
+  - рассказать, что болит и как вы себя чувствуете
+  - понять совет врача и посоветовать самому
+  - вежливо попросить: me gustaría, ¿podría…?
+  - купить лекарство в аптеке
+
+# Тема 13 карты A2: вежливое условное — me gustaría, podrías, deberías; doler (повторение); здоровье, аптека.
+# Миссия — приём у врача и аптека. В A1 (тема 20) уже были тело, doler, tener fiebre, el resfriado, la pastilla,
+# tome, la receta, ¡Que se mejore!
+lessons:
+  - id: consulta
+    kind: listening
+    title: "¿Qué le pasa?"
+    goal: понять на слух разговор у врача
+    version: 2
+    # Карта экранов: docs/site_slide_maps/36_me_encuentro_mal.md
+    unlocks: [conditional]
+    vocab:
+      - "🤒 encontrarse [энконтра́рсэ] — чувствовать себя :: Hoy me encuentro mal. — Сегодня мне нехорошо."
+      - "😷 la tos [тос] — кашель :: Tengo mucha tos. — У меня сильный кашель."
+      - "🤧 la gripe [гри́пэ] — грипп :: Tengo la gripe. — У меня грипп."
+      - "🧴 el jarabe [хара́бэ] — сироп (лекарство) :: Tome este jarabe para la tos. — Принимайте этот сироп от кашля."
+      - "😣 el dolor [доло́р] — боль :: Tengo dolor de garganta. — У меня болит горло."
+      - "😵 mareado/a [марэа́до, марэа́да] — с головокружением :: Estoy mareada. — У меня кружится голова."
+      - "☝️ deber [дэбэ́р] — быть должным (debería — стоило бы) :: Deberías descansar. — Тебе стоило бы отдохнуть."
+    blocks:
+      - "Том заболел и пришёл к врачу. Послушайте разговор два раза: текста пока нет."
+      - dialogue:
+          id: medica
+          hidden: true
+          lines:
+            - "Médica: Buenos días. Pase, pase. ¿Qué le pasa? | Доброе утро. Проходите, проходите. Что с вами?"
+            - "Tom: Me encuentro muy mal. Tengo tos y mucho dolor de garganta. | Мне очень плохо. Кашель и сильно болит горло."
+            - "Médica: ¿Desde cuándo? | С каких пор?"
+            - "Tom: Desde el lunes. Y anoche tuve fiebre: treinta y ocho y medio. | С понедельника. А вчера вечером была температура: тридцать восемь с половиной."
+            - "Médica: ¿Le duele la cabeza? ¿Está mareado? | Голова болит? Кружится?"
+            - "Tom: Me duele un poco la cabeza, pero no estoy mareado. | Голова немного болит, но не кружится."
+            - "Médica: Es la gripe. Debería quedarse en casa tres o cuatro días y beber mucha agua. Tome este jarabe para la tos tres veces al día. | Это грипп. Вам стоило бы побыть дома три-четыре дня и пить много воды. Принимайте этот сироп от кашля три раза в день."
+            - "Tom: Muchas gracias. | Большое спасибо."
+            - "Médica: De nada. ¡Que se mejore! | Не за что. Выздоравливайте!"
+      - choose:
+          title: Что вы поняли?
+          source: medica
+          items:
+            - q: "Что болит у Тома?"
+              options: "La garganta. | El estómago. | La espalda."
+              explain: "Том говорит о горле — garganta."
+            - q: "С какого дня он болеет?"
+              options: "Desde el lunes. | Desde ayer. | Desde el domingo."
+              explain: "Tom: Desde el lunes."
+      - learn: [encontrarse, la tos, la gripe, el jarabe, el dolor, mareado/a]
+      - learn: [deber]
+      - choose:
+          title: Детали разговора
+          source: medica
+          items:
+            - q: "¿Tuvo fiebre Tom anoche?"
+              options: "Sí, treinta y ocho y medio. | No, no tuvo fiebre. | Sí, treinta y siete."
+              explain: "Tom: Anoche tuve fiebre: treinta y ocho y medio."
+            - q: "¿Está mareado?"
+              options: "No, solo le duele un poco la cabeza. | Sí, mucho. | No, pero le duele el estómago."
+              explain: "Tom: Me duele un poco la cabeza, pero no estoy mareado."
+            - q: "¿Qué tiene Tom?"
+              options: "La gripe. | Un resfriado. | Dolor de estómago."
+              explain: "Médica: Es la gripe."
+            - q: "¿Qué debería hacer Tom?"
+              options: "Quedarse en casa y beber mucha agua. | Ir al trabajo y descansar después. | Tomar el jarabe una vez a la semana."
+              explain: "Médica: Debería quedarse en casa tres o cuatro días y beber mucha agua."
+      - text:
+          id: notice
+          slide: new
+          text: "Врач советует вежливо: **debería** quedarse en casa — «вам стоило бы остаться дома». Это **condicional** — форма для мягких советов и вежливых просьб."
+      - examples:
+          items:
+            - "**Debería** quedarse en casa. — Вам стоило бы остаться дома."
+            - "**Me gustaría** un jarabe para la tos. — Я бы хотел сироп от кашля."
+            - "¿**Podría** repetir? — Не могли бы вы повторить?"
+      - match:
+          title: Соедините пары
+          free: true
+          rule: none
+          pairs:
+            - "la tos — кашель"
+            - "la gripe — грипп"
+            - "el jarabe — сироп"
+            - "el dolor — боль"
+            - "mareado — с головокружением"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          free: true
+          skill: sintomas
+          rule: none
+          items:
+            - say: "Me encuentro mal: tengo tos y fiebre."
+              a: "Me encuentro mal: tengo tos y fiebre"
+              explain: "Me encuentro mal — «мне нехорошо»."
+              noaudio: {q: "Напишите по-испански: «Мне нехорошо: у меня кашель и температура».", a: "Me encuentro mal: tengo tos y fiebre | Me encuentro mal, tengo tos y fiebre"}
+      - choose:
+          title: Что ответить врачу?
+          free: true
+          skill: sintomas
+          rule: none
+          items:
+            - lines: ["Médica: ¿Qué le pasa?"]
+              q: "Скажите, что вам нехорошо и болит голова."
+              options: "Me encuentro mal y me duele la cabeza. | Me encuentro mal y me duelo la cabeza. | Me encuentro mal y tengo la cabeza."
+              explain: "Болит — me duele la cabeza: doler работает как gustar."
+            - say: "Tome este jarabe tres veces al día."
+              options: "Принимайте этот сироп три раза в день. | Купите этот сироп в аптеке. | Этот сироп нужно пить раз в три дня."
+              explain: "Tome — «принимайте»; tres veces al día — «три раза в день»."
+              noaudio: {q: "Что значит «Tome este jarabe tres veces al día»?", options: "Принимайте этот сироп три раза в день. | Купите этот сироп в аптеке. | Этот сироп нужно пить раз в три дня."}
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: sintomas
+          rule: none
+          items:
+            - es: "Tengo tos y me duele la garganta."
+              ru: "У меня кашель и болит горло."
+              extra: [duelo]
+            - es: "Hoy me encuentro mejor, pero estoy un poco mareado."
+              ru: "Сегодня мне лучше, но немного кружится голова."
+
+  - id: condicional
+    kind: grammar
+    title: "Me gustaría, ¿podría…?, deberías"
+    goal: вежливо попросить и мягко посоветовать
+    version: 2
+    vocab:
+      - "🗣 aconsejar [аконсэха́р] — советовать :: El médico me aconseja descansar. — Врач советует мне отдохнуть."
+    blocks:
+      - "Condicional делает речь мягче: не «хочу», а «я бы хотел»; не «можешь?», а «не мог бы ты?»; не «ты должен», а «тебе стоило бы»."
+      - learn: [aconsejar]
+      - table:
+          id: usos
+          title: Вежливая просьба и мягкий совет
+          rows:
+            - ["me gustaría + инфинитив", "Me gustaría hablar con la médica. — Я бы хотел поговорить с врачом."]
+            - ["¿podría(s) + инфинитив?", "¿Podrías cerrar la ventana? — Не мог бы ты закрыть окно?"]
+            - ["debería(s) + инфинитив", "Deberías descansar más. — Тебе стоило бы больше отдыхать."]
+      - table:
+          id: formas
+          slide: new
+          title: Как образуется condicional
+          rows:
+            - ["инфинитив + -ía, -ías, -ía, -íamos, -íais, -ían", "hablaría, comería, viviría"]
+            - ["poder → podr-", "podría, podrías, podríamos"]
+            - ["tener → tendr-, querer → querr-", "tendría, querría"]
+            - ["hacer → har-, decir → dir-", "haría, diría"]
+            - ["salir → saldr-, venir → vendr-, poner → pondr-, saber → sabr-", "saldría, vendría, pondría, sabría"]
+      - write:
+          title: Поставьте в condicional
+          format: одна форма глагола
+          accents: strict
+          skill: condicional
+          rule: formas
+          items:
+            - q: "Me (gustar) ___ un café, por favor."
+              a: "gustaría"
+              explain: "Gustar → me gustaría."
+              mistakes:
+                "gustaria": "Нужен знак ударения: gustar**í**a."
+            - q: "(tú, deber) ___ dormir más."
+              a: "Deberías"
+              explain: "Tú — deberías."
+            - q: "¿(usted, poder) ___ hablar más despacio?"
+              a: "Podría"
+              explain: "Poder → `podr-` + `-ía`: podría."
+              mistakes:
+                "podería": "У poder особая основа: **podría**."
+            - q: "¿(tú, poder) ___ ayudarme con la maleta?"
+              a: "Podrías"
+              explain: "Tú — podrías."
+            - q: "Yo no (decir) ___ eso."
+              a: "diría"
+              explain: "Decir → `dir-` + `-ía`: diría."
+      - choose:
+          title: Как сказать вежливо?
+          skill: condicional
+          rule: usos
+          items:
+            - q: "Вы в магазине. Как вежливо сказать, что хотите посмотреть свитер?"
+              options: "Me gustaría ver ese jersey. | Me gusta ver ese jersey. | Me gustó ver ese jersey."
+              explain: "Я бы хотел — me gustaría."
+            - q: "Как спросить у друга совета?"
+              options: "¿Qué me aconsejas? | ¿Qué me aconsejo? | ¿Qué te aconsejas?"
+              explain: "Ты мне советуешь — me aconsejas."
+            - q: "Друг всё время устаёт. Как мягко посоветовать ему больше спать?"
+              options: "Deberías dormir más. | Debes a dormir más. | Dormirías más."
+              explain: "Мягкий совет — deberías + инфинитив."
+            - say: "Deberías ir al médico: tienes muy mala cara."
+              options: "Тебе стоило бы сходить к врачу: ты плохо выглядишь. | Тебе нужно было сходить к врачу вчера. | Ты ходил к врачу? Выглядишь лучше."
+              explain: "Deberías ir — «тебе стоило бы пойти»; tener mala cara — «плохо выглядеть»."
+              noaudio: {q: "Что значит «Deberías ir al médico: tienes muy mala cara»?", options: "Тебе стоило бы сходить к врачу: ты плохо выглядишь. | Тебе нужно было сходить к врачу вчера. | Ты ходил к врачу? Выглядишь лучше."}
+      - build:
+          title: Соберите фразу
+          skill: condicional
+          rule: usos
+          items:
+            - es: "Me gustaría hablar con la médica, por favor."
+              ru: "Я бы хотел поговорить с врачом, пожалуйста."
+              extra: [gusta]
+            - es: "¿Podrías hablar más despacio?"
+              ru: "Не мог бы ты говорить помедленнее?"
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: condicional
+          rule: usos
+          items:
+            - q: "Тебе стоило бы отдохнуть."
+              a: "Deberías descansar | (Tú) deberías descansar"
+              explain: "Мягкий совет — deberías."
+            - q: "Не могли бы вы мне помочь? (на «вы»)"
+              a: "¿Podría ayudarme? | ¿Me podría ayudar? | ¿Podría ayudarme, por favor? | ¿Me podría ayudar, por favor?"
+              explain: "Вежливая просьба — ¿podría…?"
+              mistakes:
+                "podrías ayudarme": "Podrías — на «ты». На «вы» — **¿Podría…?**"
+      - compose:
+          title: Вежливо
+          skill: condicional
+          rule: usos
+          items:
+            - q: "Напишите две вежливые просьбы и один мягкий совет — с me gustaría, ¿podría(s)…? и deberías."
+              format: "Me gustaría… ¿Podrías…? Deberías…"
+              words: [10, 50]
+              sentences: 2
+              checks:
+                - label: "me gustaría…"
+                  any: [gustaría]
+                - label: "¿podría…? или ¿podrías…?"
+                  any: [podría, podrías]
+                - label: "debería(s)…"
+                  any: [debería, deberías, deberíamos]
+              sample: "Me gustaría una mesa para dos. ¿Podrías llamar al restaurante? Y deberías salir antes: hay mucho tráfico."
+              sample_ru: "Я бы хотел столик на двоих. Не мог бы ты позвонить в ресторан? И тебе стоило бы выйти пораньше: много машин."
+    quiz:
+      - q: "Me ___ ir a la playa este fin de semana."
+        options: "gustaría | gusto | gustarías"
+        explain: "Я бы хотел — me gustaría."
+        skill: condicional
+      - q: "¿___ cerrar la puerta, por favor? (на «ты»)"
+        options: "Podrías | Podría | Puedería"
+        explain: "Tú — podrías."
+        skill: condicional
+
+  - id: consejos
+    kind: dialogue
+    title: "Deberías descansar"
+    goal: понять совет о здоровье и дать совет другу
+    version: 2
+    vocab:
+      - "🥗 sano/a [са́но, са́на] — здоровый; полезный :: Como sano: mucha fruta y verdura. — Я питаюсь здорово: много фруктов и овощей."
+      - "❤️ la salud [салу́д] — здоровье :: El deporte es bueno para la salud. — Спорт полезен для здоровья."
+      - "🏃 el ejercicio [эхэрθи́θьо] — физические упражнения :: Hago ejercicio tres veces por semana. — Я занимаюсь спортом три раза в неделю."
+      - "🤯 el estrés [эстрэ́с] — стресс :: Tengo mucho estrés en el trabajo. — У меня много стресса на работе."
+    blocks:
+      - learn: [sano/a, la salud, el ejercicio, el estrés]
+      - "Диего жалуется Ольге — она медсестра."
+      - dialogue:
+          id: olga
+          lines:
+            - "Diego: Olga, esta semana duermo muy mal y siempre estoy cansado. | Ольга, на этой неделе я очень плохо сплю и всё время уставший."
+            - "Olga: ¿Tienes mucho trabajo? | У тебя много работы?"
+            - "Diego: Sí, mucho. Y tomo cinco cafés al día. | Да, много. И пью пять чашек кофе в день."
+            - "Olga: Es el estrés. No deberías tomar tanto café. Y deberías hacer ejercicio: es muy bueno para la salud. | Это стресс. Тебе не стоило бы пить столько кофе. И тебе стоило бы заниматься спортом: это очень полезно для здоровья."
+            - "Diego: Es que no tengo tiempo… | Просто у меня нет времени…"
+            - "Olga: Entonces pasea media hora al día. Y apaga el móvil una hora antes de dormir. Es importante dormir ocho horas. | Тогда гуляй полчаса в день. И выключай телефон за час до сна. Важно спать восемь часов."
+      - choose:
+          title: Что советует Ольга?
+          source: olga
+          skill: consejos_salud
+          items:
+            - q: "¿Qué problema tiene Diego?"
+              options: "Duerme mal y está cansado. | Le duele la cabeza. | Tiene fiebre y tos."
+              explain: "Diego: Esta semana duermo muy mal y siempre estoy cansado."
+            - q: "¿Qué no debería hacer Diego?"
+              options: "Tomar tanto café. | Hacer ejercicio. | Dormir ocho horas."
+              explain: "Olga: No deberías tomar tanto café."
+            - q: "¿Qué tiene que hacer una hora antes de dormir?"
+              options: "Apagar el móvil. | Tomar un café. | Pasear media hora."
+              explain: "Olga: Y apaga el móvil una hora antes de dormir."
+      - table:
+          id: aconsejar
+          slide: new
+          title: Как посоветовать
+          rows:
+            - ["deberías + инфинитив — мягко", "Deberías hacer ejercicio. — Тебе стоило бы заниматься спортом."]
+            - ["no deberías + инфинитив", "No deberías tomar tanto café. — Не стоило бы пить столько кофе."]
+            - ["tienes que + инфинитив — твёрдо", "Tienes que ir al médico. — Тебе нужно к врачу."]
+            - ["es importante + инфинитив", "Es importante dormir ocho horas. — Важно спать восемь часов."]
+            - ["императив — прямо", "Pasea media hora al día. — Гуляй полчаса в день."]
+      - choose:
+          title: Какой совет подходит?
+          free: true
+          skill: consejos_salud
+          rule: aconsejar
+          items:
+            - lines: ["Ana: Siempre tengo mucho estrés en el trabajo."]
+              q: "Посоветуйте ей больше отдыхать."
+              options: "Deberías descansar más. | Deberías trabajar más. | Descansaste mucho."
+              explain: "Мягкий совет — deberías + инфинитив."
+            - lines: ["Pablo: Me duele mucho la muela desde hace una semana."]
+              q: "Скажите твёрдо, что ему нужно к врачу."
+              options: "Tienes que ir al médico. | Podrías ir al cine. | Me gustaría ir al médico."
+              explain: "Твёрдый совет — tienes que…"
+            - say: "Es importante comer sano y hacer ejercicio."
+              options: "Важно правильно питаться и заниматься спортом. | Важно много есть и мало двигаться. | Здоровая еда важнее спорта."
+              explain: "Comer sano — «правильно питаться»; hacer ejercicio — «заниматься спортом»."
+              noaudio: {q: "Что значит «Es importante comer sano y hacer ejercicio»?", options: "Важно правильно питаться и заниматься спортом. | Важно много есть и мало двигаться. | Здоровая еда важнее спорта."}
+      - write:
+          title: Посоветуйте
+          format: совет по-испански
+          free: true
+          skill: consejos_salud
+          rule: aconsejar
+          items:
+            - q: "Другу: «Тебе не стоило бы пить столько кофе»."
+              a: "No deberías tomar tanto café | No deberías beber tanto café"
+              explain: "No deberías + инфинитив; tanto café."
+              mistakes:
+                "no deberías tomar tan café": "Перед существительным — **tanto**: tanto café."
+            - q: "Другу: «Тебе стоило бы заниматься спортом»."
+              a: "Deberías hacer ejercicio | Deberías hacer deporte"
+              explain: "Hacer ejercicio — заниматься физическими упражнениями."
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: consejos_salud
+          rule: aconsejar
+          items:
+            - es: "El deporte es muy bueno para la salud."
+              ru: "Спорт очень полезен для здоровья."
+              extra: [sano]
+      - compose:
+          title: Совет другу
+          free: true
+          skill: consejos_salud
+          rule: aconsejar
+          items:
+            - q: "Друг пишет: «Всё время устаю и плохо сплю». Дайте ему два-три совета: deberías, tienes que, es importante или императив."
+              format: "Deberías… Es importante… No deberías…"
+              words: [10, 50]
+              sentences: 2
+              checks:
+                - label: "совет: deberías, tienes que, es importante…"
+                  any: [deberías, debería, tienes que, es importante, lo mejor es]
+              sample: "Deberías dormir más y hacer ejercicio. No deberías tomar café por la tarde. Y es importante apagar el móvil antes de dormir."
+              sample_ru: "Тебе стоило бы больше спать и заниматься спортом. Не стоит пить кофе после обеда. И важно выключать телефон перед сном."
+
+  - id: farmacia
+    kind: dialogue
+    title: "¿Tiene algo para la tos?"
+    goal: купить лекарство и понять, как его принимать
+    version: 2
+    vocab:
+      - "🧴 la crema [кре́ма] — крем, мазь :: Ponte esta crema dos veces al día. — Мажь этот крем два раза в день."
+      - "💧 las gotas [го́тас] — капли :: Tome diez gotas antes de dormir. — Принимайте десять капель перед сном."
+      - "🙅 no hace falta [но а́θэ фа́льта] — не нужно :: No hace falta receta. — Рецепт не нужен."
+      - "🩹 la tirita [тири́та] — пластырь :: ¿Tiene tiritas? — У вас есть пластыри?"
+    forms: [ponte]
+    blocks:
+      - learn: [la crema, las gotas, no hace falta, la tirita]
+      - "Ирина в аптеке."
+      - dialogue:
+          id: en_la_farmacia
+          lines:
+            - "Farmacéutico: Buenas tardes. ¿Qué necesita? | Добрый день. Что вам нужно?"
+            - "Irina: Buenas tardes. Me gustaría algo para el dolor de cabeza. | Добрый день. Мне бы что-нибудь от головной боли."
+            - "Farmacéutico: ¿Tiene fiebre? | У вас температура?"
+            - "Irina: No, solo dolor de cabeza. | Нет, только голова болит."
+            - "Farmacéutico: Tome estas pastillas: una cada ocho horas, después de comer. | Вот эти таблетки: по одной каждые восемь часов, после еды."
+            - "Irina: ¿Necesito receta? | Нужен рецепт?"
+            - "Farmacéutico: No, para estas no hace falta. | Нет, для этих не нужен."
+            - "Irina: Muy bien. ¿Y tiene tiritas? | Хорошо. А пластыри у вас есть?"
+            - "Farmacéutico: Sí, claro. Son seis euros con cincuenta. | Да, конечно. С вас шесть евро пятьдесят."
+      - choose:
+          title: Что сказано в аптеке?
+          source: en_la_farmacia
+          skill: farmacia
+          items:
+            - q: "¿Qué le pasa a Irina?"
+              options: "Le duele la cabeza. | Tiene fiebre. | Tiene tos."
+              explain: "Irina: Me gustaría algo para el dolor de cabeza. … No, solo dolor de cabeza."
+            - q: "¿Cómo tiene que tomar las pastillas?"
+              options: "Una cada ocho horas, después de comer. | Dos cada ocho horas, antes de comer. | Una al día, antes de dormir."
+              explain: "Farmacéutico: …una cada ocho horas, después de comer."
+            - q: "¿Necesita receta?"
+              options: "No, no hace falta. | Sí, siempre. | Solo para las tiritas."
+              explain: "Farmacéutico: No, para estas no hace falta."
+            - q: "¿Qué más compra Irina?"
+              options: "Tiritas. | Gotas. | Una crema."
+              explain: "Irina: ¿Y tiene tiritas?"
+            - q: "¿Cuánto paga Irina?"
+              options: "Seis euros con cincuenta. | Ocho euros. | Seis euros."
+              explain: "Farmacéutico: Son seis euros con cincuenta."
+      - note:
+          id: para
+          slide: new
+          text: "«От чего» лекарство — **para**: _algo para la tos_, _pastillas para el dolor de cabeza_. Как часто — **cada**: _cada ocho horas_ — «каждые восемь часов»; _dos veces al día_ — «два раза в день»."
+      - write:
+          title: Скажите в аптеке
+          format: фраза по-испански
+          free: true
+          skill: farmacia
+          rule: para
+          items:
+            - q: "Мне бы хотелось что-нибудь от кашля."
+              a: "Me gustaría algo para la tos | Me gustaría algo para la tos, por favor | ¿Tiene algo para la tos?"
+              explain: "От кашля — para la tos."
+              mistakes:
+                "me gustaría algo de la tos": "«От чего» — **para**: algo para la tos."
+            - q: "Принимайте одну таблетку каждые восемь часов. (на «вы»)"
+              a: "Tome una pastilla cada ocho horas"
+              explain: "Каждые восемь часов — cada ocho horas."
+      - choose:
+          title: Послушайте
+          free: true
+          skill: farmacia
+          rule: para
+          items:
+            - q: "Tome diez ___ antes de dormir."
+              options: "gotas | tiritas | cremas"
+              explain: "Капли — las gotas."
+            - say: "Ponte esta crema dos veces al día."
+              options: "Мажь этот крем два раза в день. | Купи этот крем через два дня. | Этот крем нужно мазать раз в два дня."
+              explain: "Dos veces al día — «два раза в день»."
+              noaudio: {q: "Что значит «Ponte esta crema dos veces al día»?", options: "Мажь этот крем два раза в день. | Купи этот крем через два дня. | Этот крем нужно мазать раз в два дня."}
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: farmacia
+          rule: para
+          items:
+            - es: "¿Tiene algo para el dolor de cabeza?"
+              ru: "У вас есть что-нибудь от головной боли?"
+              extra: [por]
+      - compose:
+          title: В аптеке
+          free: true
+          skill: [farmacia, condicional]
+          rule: para
+          items:
+            - q: "Вы в аптеке. Опишите, что у вас болит, вежливо попросите лекарство и спросите, нужен ли рецепт."
+              format: "Me gustaría algo para… ¿Necesito receta?"
+              words: [8, 45]
+              checks:
+                - label: "вежливая просьба: me gustaría…, ¿tiene…?"
+                  any: [gustaría, tiene, podría]
+                - label: "от чего: para…"
+                  any: [para]
+              sample: "Buenos días. Me duele mucho la garganta. Me gustaría algo para la tos. ¿Necesito receta?"
+              sample_ru: "Добрый день. У меня сильно болит горло. Мне бы что-нибудь от кашля. Нужен рецепт?"
+
+  - id: lectura
+    kind: reading
+    title: "Consejos para el invierno"
+    goal: понять советы о здоровье и добавить свой
+    version: 2
+    vocab:
+      - "🦠 contagiar [контахья́р] — заразить :: Con gripe puedes contagiar a tus compañeros. — С гриппом можно заразить коллег."
+      - "🍊 la vitamina [битами́на] — витамин :: Las naranjas tienen mucha vitamina C. — В апельсинах много витамина C."
+      - "⭐ sobre todo [со́брэ то́до] — особенно, прежде всего :: Lávate las manos, sobre todo antes de comer. — Мой руки, особенно перед едой."
+    forms: [lávate, quédate]
+    blocks:
+      - learn: [contagiar, la vitamina, sobre todo]
+      - "Ольга, медсестра, пишет в блоге больницы."
+      - reading:
+          id: invierno
+          title: Consejos para el invierno
+          text: |
+            Soy enfermera y en invierno veo a mucha gente con gripe o resfriado. Aquí tenéis mis consejos.
+
+            Primero, lávate las manos a menudo, sobre todo antes de comer. Segundo, come fruta y verdura todos los días: las naranjas tienen mucha vitamina C. Tercero, duerme siete horas o más. Cuarto, haz ejercicio, pero no cuando tienes fiebre.
+
+            Y una cosa más: si tienes gripe, quédate en casa. No deberías ir al trabajo, porque puedes contagiar a tus compañeros. Si te encuentras muy mal o tienes fiebre alta más de tres días, ve al médico.
+          translation: |
+            Я медсестра, и зимой вижу много людей с гриппом или простудой. Вот мои советы.
+
+            Во-первых, часто мойте руки, особенно перед едой. Во-вторых, ешьте фрукты и овощи каждый день: в апельсинах много витамина C. В-третьих, спите семь часов или больше. В-четвёртых, занимайтесь спортом, но не тогда, когда у вас температура.
+
+            И ещё одно: если у вас грипп, оставайтесь дома. Не стоит ходить на работу, потому что можно заразить коллег. Если вам очень плохо или высокая температура держится больше трёх дней, идите к врачу.
+      - choose:
+          title: Что советует Ольга?
+          source: invierno
+          items:
+            - q: "¿Cuándo es importante lavarse las manos?"
+              options: "Sobre todo antes de comer. | Sobre todo después de dormir. | Solo por la noche."
+              explain: "…lávate las manos a menudo, sobre todo antes de comer."
+            - q: "¿Por qué son buenas las naranjas?"
+              options: "Tienen mucha vitamina C. | Son baratas. | Se comen en invierno."
+              explain: "…las naranjas tienen mucha vitamina C."
+            - q: "¿Qué no deberías hacer si tienes gripe?"
+              options: "Ir al trabajo. | Quedarte en casa. | Dormir mucho."
+              explain: "No deberías ir al trabajo, porque puedes contagiar a tus compañeros."
+              skill: consejos_salud
+            - q: "¿Cuándo hay que ir al médico?"
+              options: "Si tienes fiebre alta más de tres días. | Si tienes un poco de tos. | Si no duermes ocho horas."
+              explain: "Si te encuentras muy mal o tienes fiebre alta más de tres días, ve al médico."
+      - sort:
+          title: Стоит или не стоит?
+          source: invierno
+          skill: consejos_salud
+          groups:
+            "стоит": ["lavarse las manos", "comer fruta y verdura", "dormir siete horas"]
+            "не стоит": ["ir al trabajo con gripe", "hacer ejercicio con fiebre"]
+      - write:
+          title: Ответьте по тексту
+          format: короткий ответ по-испански
+          source: invierno
+          items:
+            - q: "¿Cuántas horas hay que dormir?"
+              a: "Siete horas o más | Siete o más | Siete horas"
+              explain: "…duerme siete horas o más."
+            - q: "Как в тексте сказано «оставайся дома»?"
+              a: "quédate en casa"
+              explain: "Quédate — инструкция на «ты» от quedarse."
+              skill: imperativo_tu
+      - choose:
+          title: Послушайте
+          free: true
+          rule: none
+          items:
+            - say: "Si tienes gripe, quédate en casa: puedes contagiar a tus compañeros."
+              options: "Если у тебя грипп, оставайся дома: можешь заразить коллег. | Если у тебя грипп, иди на работу и предупреди коллег. | У коллег грипп, поэтому оставайся дома."
+              explain: "Contagiar — «заразить»."
+              noaudio: {q: "Что значит «Si tienes gripe, quédate en casa: puedes contagiar a tus compañeros»?", options: "Если у тебя грипп, оставайся дома: можешь заразить коллег. | Если у тебя грипп, иди на работу и предупреди коллег. | У коллег грипп, поэтому оставайся дома."}
+      - compose:
+          title: Ваш совет
+          free: true
+          rule: none
+          skill: consejos_salud
+          items:
+            - q: "Добавьте к блогу Ольги свой совет на зиму: что делать и чего не делать. Две-три фразы."
+              format: "Es importante… Deberías… No deberías…"
+              words: [10, 50]
+              sentences: 2
+              checks:
+                - label: "совет: deberías, es importante, tienes que, императив…"
+                  any: [deberías, debería, es importante, tienes que, lo mejor es, bebe, come, duerme, haz, toma, lávate]
+              sample: "Es importante beber mucha agua, también en invierno. Y deberías salir a pasear cuando hace sol."
+              sample_ru: "Важно пить много воды — и зимой тоже. А ещё стоит выходить гулять, когда солнечно."
+
+  - id: mision
+    kind: practice
+    title: У врача
+    goal: записаться к врачу, описать симптомы и понять, что делать
+    version: 2
+    forms: [quédese, quedarme]
+    blocks:
+      - review:
+          title: Вспомним
+          skills: [direcciones, metro, se_impersonal]
+          n: 2
+      - "Вам звонят из поликлиники и оставляют сообщение. Послушайте: текста нет."
+      - dialogue:
+          id: centro_salud
+          hidden: true
+          title: Сообщение из поликлиники
+          lines:
+            - "Secretaria: Buenos días, le llamo del centro de salud. Su cita con la médica es mañana, martes, a las diez y media. Por favor, llegue diez minutos antes. Si no puede venir, llame al número nueve, uno, dos, tres, cuatro, cinco, seis, siete, ocho. Gracias. | Доброе утро, звоню из поликлиники. Ваш приём у врача завтра, во вторник, в половине одиннадцатого. Пожалуйста, приходите на десять минут раньше. Если не сможете прийти, позвоните по номеру 912 345 678. Спасибо."
+      - choose:
+          title: Что в сообщении?
+          source: centro_salud
+          items:
+            - q: "¿Cuándo es la cita?"
+              options: "Mañana, martes, a las diez y media. | Hoy a las diez y media. | El martes a las diez menos cuarto."
+              explain: "Su cita con la médica es mañana, martes, a las diez y media."
+              skill: quedar_cita
+            - q: "¿Qué hay que hacer?"
+              options: "Llegar diez minutos antes. | Llamar diez minutos antes. | Llevar la receta."
+              explain: "Por favor, llegue diez minutos antes."
+              skill: imperativo_usted
+            - q: "¿Qué hay que hacer si no puede ir?"
+              options: "Llamar por teléfono. | Escribir un mensaje. | Ir otro día."
+              explain: "Si no puede venir, llame al número…"
+      - mission:
+          id: medico
+          title: У врача
+          text: "На следующий день вы у врача. Опишите, что с вами, и поймите, что делать."
+      - chat:
+          id: consulta_medico
+          title: Приём
+          with: Médico
+          turns:
+            - say: "Buenos días. Pase. ¿Qué le pasa? | Доброе утро. Проходите. Что с вами?"
+              task: "Скажите, что вам нехорошо и болит живот."
+              skill: sintomas
+              write: "Me encuentro mal y me duele el estómago | No me encuentro bien y me duele el estómago | Me encuentro mal(,) me duele el estómago"
+              format: что с вами
+              mistakes:
+                "me encuentro mal y me duelo el estómago": "Doler работает как gustar: **me duele** el estómago."
+            - say: "¿Desde cuándo? | С каких пор?"
+              task: "С субботы."
+              skill: sintomas
+              write: "Desde el sábado | Me duele desde el sábado"
+              format: с каких пор
+              mistakes:
+                "desde sábado": "С днём недели нужен артикль: desde **el** sábado."
+            - say: "¿Tiene fiebre? | Температура есть?"
+              task: "Ответьте от себя: есть ли температура и что ещё вас беспокоит."
+              skill: sintomas
+              compose:
+                format: "No, no tengo fiebre, pero…"
+                words: [3, 25]
+                checks:
+                  - label: "симптомы: fiebre, tos, mareado, me duele…"
+                    any: [fiebre, tos, mareado, mareada, me duele, me duelen, cansado, cansada, no tengo]
+                sample: "No, no tengo fiebre, pero estoy un poco mareado."
+                sample_ru: "Нет, температуры нет, но немного кружится голова."
+            - say: "Debería comer poco y beber mucha agua. Y tome estas pastillas antes de cada comida. | Вам стоило бы есть поменьше и пить много воды. И принимайте эти таблетки перед каждой едой."
+              task: "Вежливо попросите повторить, как принимать таблетки."
+              skill: condicional
+              write: "¿Podría repetir, por favor? | Perdone, ¿podría repetir? | ¿Me lo podría repetir, por favor?"
+              format: вежливая просьба
+              mistakes:
+                "podrías repetir por favor": "К врачу — на «вы»: **¿Podría…?**"
+            - say: "Claro: una pastilla antes de cada comida, tres días. | Конечно: по одной таблетке перед каждой едой, три дня."
+              task: "Спросите, можно ли вам идти на работу."
+              skill: permiso
+              choose: "¿Puedo ir a trabajar? | ¿Puede ir a trabajar? | ¿Podrías ir a trabajar?"
+              explain: "Разрешение для себя — ¿Puedo…?"
+            - say: "Mejor no: quédese en casa dos días. ¡Que se mejore! | Лучше не надо: побудьте дома два дня. Выздоравливайте!"
+      - compose:
+          title: Сообщение на работу
+          free: true
+          rule: none
+          skill: [sintomas, condicional]
+          items:
+            - q: "Напишите начальнице или преподавателю, что заболели: что с вами, что сказал врач и когда вернётесь. 40–70 слов."
+              format: "Hola, Marta: hoy no puedo ir… Me encuentro mal: … El médico me ha dicho que…"
+              words: [30, 90]
+              sentences: 3
+              checks:
+                - label: "что с вами: me encuentro mal, me duele, tengo fiebre…"
+                  any: [me encuentro mal, no me encuentro bien, me duele, me duelen, tengo fiebre, tengo tos, tengo la gripe, gripe]
+                - label: "что сказал врач: el médico, la médica, debería…"
+                  any: [el médico, la médica, debería, tengo que, me ha dicho]
+                - label: "когда вернётесь: el lunes, mañana, la semana que viene…"
+                  any: [el lunes, el martes, el miércoles, el jueves, el viernes, mañana, la semana que viene, vuelvo, en dos días, en tres días]
+              sample: "Hola, Marta: hoy no puedo ir a la oficina. Me encuentro muy mal: tengo fiebre y me duele mucho la garganta. He ido al médico y me ha dicho que es la gripe y que debería quedarme en casa tres días. Vuelvo el lunes. Un abrazo, Pablo."
+              sample_ru: "Привет, Марта! Сегодня не смогу прийти в офис. Мне очень плохо: температура и сильно болит горло. Я был у врача: он сказал, что это грипп и мне стоило бы побыть дома три дня. Вернусь в понедельник. Обнимаю, Пабло."
+
+  - id: quiz
+    kind: quiz
+    title: "Тест: Me encuentro mal"
+    goal: проверить цели темы — симптомы, советы, вежливое условное, аптека
+    version: 2
+    check: soft
+    blocks:
+      - "Это тест по теме «Me encuentro mal»: двенадцать заданий."
+      - cando:
+          - "рассказать, что болит и как вы себя чувствуете"
+          - "понять совет врача и посоветовать самому: deberías, tienes que"
+          - "вежливо попросить: me gustaría, ¿podría…?"
+          - "купить лекарство: algo para…, cada ocho horas"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          rule: none
+          skill: sintomas
+          items:
+            - say: "Tengo tos y me duele mucho la cabeza."
+              a: "Tengo tos y me duele mucho la cabeza"
+              noaudio: {q: "Напишите по-испански: «У меня кашель и сильно болит голова».", a: "Tengo tos y me duele mucho la cabeza | Tengo tos y me duele la cabeza mucho"}
+      - choose:
+          title: Послушайте
+          rule: none
+          items:
+            - say: "Deberías quedarte en casa y beber mucha agua."
+              options: "Тебе стоило бы остаться дома и пить много воды. | Ты остался дома и пил много воды. | Мне стоило бы остаться дома."
+              skill: consejos_salud
+              noaudio: {q: "Что значит «Deberías quedarte en casa y beber mucha agua»?", options: "Тебе стоило бы остаться дома и пить много воды. | Ты остался дома и пил много воды. | Мне стоило бы остаться дома."}
+            - say: "Tome una pastilla cada ocho horas, después de comer."
+              options: "Принимайте по таблетке каждые восемь часов, после еды. | Принимайте восемь таблеток в день перед едой. | Принимайте таблетку один раз, в восемь часов."
+              skill: farmacia
+              noaudio: {q: "Что значит «Tome una pastilla cada ocho horas, después de comer»?", options: "Принимайте по таблетке каждые восемь часов, после еды. | Принимайте восемь таблеток в день перед едой. | Принимайте таблетку один раз, в восемь часов."}
+      - write:
+          title: Вставьте форму
+          format: одна форма
+          accents: strict
+          rule: none
+          items:
+            - q: "Me (gustar) ___ algo para la tos."
+              a: "gustaría"
+              skill: condicional
+            - q: "¿(usted, poder) ___ hablar más despacio?"
+              a: "Podría"
+              skill: condicional
+            - q: "(tú, deber) ___ hacer más ejercicio."
+              a: "Deberías"
+              skill: consejos_salud
+            - q: "Me (doler) ___ las piernas."
+              a: "duelen"
+              skill: sintomas
+              mistakes:
+                "duele": "Las piernas — множественное число: me **duelen**."
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          rule: none
+          items:
+            - q: "Мне нехорошо."
+              a: "Me encuentro mal | No me encuentro bien"
+              skill: sintomas
+            - q: "Рецепт не нужен."
+              a: "No hace falta receta | No hace falta la receta"
+              skill: farmacia
+      - build:
+          title: Соберите фразу
+          rule: none
+          skill: condicional
+          items:
+            - es: "Me gustaría algo para el dolor de garganta."
+              ru: "Мне бы что-нибудь от боли в горле."
+              extra: [gusta]
+    quiz:
+      - q: "Tengo ___: me duele la garganta y tengo fiebre."
+        options: "la gripe | la tirita | el jarabe"
+        explain: "Грипп — la gripe."
+        skill: sintomas
+      - q: "Если есть стресс и ты плохо спишь, тебе стоило бы… — ___ hacer ejercicio."
+        options: "Deberías | Debías | Deberás"
+        explain: "Мягкий совет — deberías."
+        skill: consejos_salud

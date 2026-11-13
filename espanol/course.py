@@ -52,6 +52,13 @@ FEATURES = {
     "reflexive": "возвратные глаголы (инфинитив с местоимением)",
     "gerund": "герундий (estar + gerundio)",
     "participle": "причастие (pretérito perfecto)",
+    # A2
+    "preterite": "pretérito indefinido правильных глаголов (и глаголов с чередованием)",
+    "preterite_irregular": "pretérito indefinido с особой основой (tuve, hice, fui, dije…)",
+    "imperfect": "pretérito imperfecto",
+    "imperative": "утвердительный императив (tú, usted, vosotros, ustedes)",
+    "conditional": "condicional simple (me gustaría, podrías, deberías, tendría)",
+    "superlative": "абсолютная степень на -ísimo (carísimo, riquísimo, facilísimo)",
 }
 
 BLOCK_TYPES = {
@@ -70,12 +77,17 @@ BLOCK_TYPES = {
     "more",      # «Почему? / Подробнее»: свёрнутое пояснение на экране предыдущего блока
     "recap",     # проверка слов урока, которых не коснулись задания (и «Мастер фраз»), там, где решил автор
     "review",    # запланированное повторение навыков прошлых уроков (content/site/skills.yaml)
+    "compose",   # направляемое письмо: несколько фраз от себя, проверка по признакам и образец (без «неверно»)
+    "chat",      # разговор по шагам: реплика собеседника → ответ ученика (сборка, ввод, выбор, письмо)
 }
 
 # Блоки, которых в уроках канала быть не может (validate проверяет content/units).
-SITE_ONLY_BLOCKS = {"compare", "learn", "choose", "write", "match", "sort", "build", "mission", "more", "recap", "review"}
+SITE_ONLY_BLOCKS = {"compare", "learn", "choose", "write", "match", "sort", "build", "mission", "more", "recap", "review",
+                    "compose", "chat"}
 # Задания сценария, которые проверяет страница (у каждого — правильный ответ).
-GRADED_BLOCKS = {"choose", "write", "match", "sort", "build"}
+GRADED_BLOCKS = {"choose", "write", "match", "sort", "build", "compose", "chat"}
+# Открытые задания: проверяются по признакам, в повторение навыков не идут.
+OPEN_BLOCKS = {"compose", "chat"}
 # Блоки, с которыми урок идёт по сценарию (Lesson.scripted).
 SCRIPT_BLOCKS = GRADED_BLOCKS | {"learn", "mission"}
 # Источники контекста: задание после них проверяет понимание (source) или самостоятельное (free).
@@ -541,9 +553,68 @@ def _options(raw: Any) -> list[str]:
     return [str(o).strip() for o in _items(raw) if str(o).strip()]
 
 
+MAX_ANSWERS = 96
+
+
+def _expand(text: str) -> list[str]:
+    """Шаблон ответа → варианты: «(Yo) vivo [en/a] Madrid» — круглые скобки — необязательная часть,
+    квадратные — одно из перечисленного через «/». Вложенность допускается."""
+    def seq(i: int, stop: str) -> tuple[list[str], int]:
+        out = [""]
+        while i < len(text) and text[i] not in stop:
+            ch = text[i]
+            if ch in "([":
+                close = ")" if ch == "(" else "]"
+                parts, i = alt(i + 1, close)
+                if i >= len(text) or text[i] != close:
+                    raise ContentError(f"в шаблоне ответа не закрыта скобка: {text!r}")
+                i += 1
+                if ch == "(":
+                    parts = parts + [""]
+                out = [a + b for a in out for b in parts]
+            else:
+                out = [a + ch for a in out]
+                i += 1
+            if len(out) > MAX_ANSWERS * 4:
+                raise ContentError(f"шаблон ответа даёт слишком много вариантов: {text!r}")
+        return out, i
+
+    def alt(i: int, close: str) -> tuple[list[str], int]:
+        parts: list[str] = []
+        while True:
+            got, i = seq(i, "/" + close)
+            parts += got
+            if i < len(text) and text[i] == "/":
+                i += 1
+                continue
+            return parts, i
+
+    got, i = seq(0, "")
+    first = re.search(r"[^\W\d_]", text)
+    upper = bool(first and first.group().isupper())
+    out = []
+    for g in got:
+        g = re.sub(r"\s+([,.!?;:])", r"\1", " ".join(g.split()))
+        g = re.sub(r"^[,;:]\s*", "", g)
+        g = re.sub(r"([¿¡])\s+", r"\1", g)
+        if upper:
+            g = re.sub(r"[^\W\d_]", lambda m: m.group().upper(), g, count=1)
+        if g and g not in out:
+            out.append(g)
+    return out
+
+
 def _alts(raw: Any) -> list[str]:
-    """Допустимые ответы: «el libro | un libro» или список."""
-    return _options(raw)
+    """Допустимые ответы: «el libro | un libro» или список. Шаблоны «(Yo) vivo [en/a] …» разворачиваются
+    в варианты при сборке (docs/site_lessons_guide.md, «Шаблоны ответов»)."""
+    out: list[str] = []
+    for item in _options(raw):
+        for v in (_expand(item) if re.search(r"[(\[]", item) else [item]):
+            if v not in out:
+                out.append(v)
+    if len(out) > MAX_ANSWERS:
+        raise ContentError(f"слишком много вариантов ответа ({len(out)}): {str(raw)[:60]!r}")
+    return out
 
 
 def _line(raw: Any, where: str) -> tuple[str, str, str]:
@@ -585,6 +656,53 @@ def _noaudio(raw: Any, btype: str, where: str) -> dict | None:
     return out
 
 
+CHECK_KEYS = ("any", "all", "starts")
+
+
+_NO_ACCENTS = str.maketrans("áéíóúÁÉÍÓÚ", "aeiouAEIOU")
+
+
+def _compose_item(it: Any, w: str) -> dict:
+    """Пункт направляемого письма: q — задание, checks — признаки (label + any / all / starts / re, if — условие),
+    words: [мин, макс], sentences — минимум предложений, sample — образец, sample_ru — его перевод."""
+    if not isinstance(it, dict) or not str(it.get("q") or "").strip():
+        raise ContentError(f"{w}: у письма нужен q (задание)")
+    checks = []
+    for c in _items(it.get("checks")):
+        if not isinstance(c, dict) or not str(c.get("label") or "").strip():
+            raise ContentError(f"{w}: у признака нужен label")
+        # \w в браузере не знает ñ и ü, а в Python знает: приводим к одному набору букв. Текст ученика сравнивается
+        # без ударений (как на странице), поэтому и из выражения ударения убираем: «\w+ía» ищет «vivia».
+        check = {"label": str(c["label"]).strip(),
+                 "re": str(c.get("re") or "").strip().replace("\\w", "[a-zñü0-9]").translate(_NO_ACCENTS),
+                 "if": [str(x).strip() for x in _items(c.get("if"))]}
+        for key in (*CHECK_KEYS, "if"):
+            if any(isinstance(x, bool) for x in _items(c.get(key))):   # YAML читает no / sí без кавычек как false / true
+                raise ContentError(f"{w}: в признаке «{check['label']}» слова no, yes, on, off пишите в кавычках")
+        for key in CHECK_KEYS:
+            check[key] = [str(x).strip() for x in _items(c.get(key))]
+        if not (check["re"] or any(check[k] for k in CHECK_KEYS)):
+            raise ContentError(f"{w}: у признака «{check['label']}» нужен any, all, starts или re")
+        if check["re"]:
+            try:
+                re.compile(check["re"])
+            except re.error as exc:
+                raise ContentError(f"{w}: ошибка в re признака «{check['label']}»: {exc}") from exc
+        checks.append(check)
+    words = it.get("words")
+    if words is not None:
+        if not (isinstance(words, (list, tuple)) and len(words) == 2 and all(isinstance(x, int) for x in words) and 0 < words[0] <= words[1]):
+            raise ContentError(f"{w}: words — [минимум, максимум] слов")
+        words = [int(words[0]), int(words[1])]
+    sample = str(it.get("sample") or "").strip()
+    if not sample:
+        raise ContentError(f"{w}: у письма нужен образец (sample)")
+    return {"q": str(it["q"]).strip(), "format": str(it.get("format") or "").strip(), "words": words,
+            "sentences": int(it.get("sentences") or 0), "checks": checks, "sample": sample,
+            "sample_ru": str(it.get("sample_ru") or "").strip(), "explain": str(it.get("explain") or "").strip(),
+            "meta": _item_meta(it, w)}
+
+
 def _scenario_block(btype: str, value: Any, w: str) -> Block:
     """Блоки сценария урока сайта (learn, choose, write, match, sort, build, mission, more, recap, review)."""
     spec = value if isinstance(value, dict) else None
@@ -611,6 +729,53 @@ def _scenario_block(btype: str, value: Any, w: str) -> Block:
             raise ContentError(f"{w}: нужен text")
         title = spec.get("title") or ("Подробнее" if btype == "more" else "")
         return Block(btype, {"title": str(title).strip(), "text": str(spec["text"]).strip()})
+    if btype == "compose":
+        if spec is None:
+            raise ContentError(f"{w}: нужен словарь с items")
+        items = [_compose_item(it, w) for it in _items(spec.get("items") or ([spec] if spec.get("sample") else []))]
+        if not items:
+            raise ContentError(f"{w}: нужен хотя бы один пункт (q, checks, sample)")
+        return Block(btype, {"title": str(spec.get("title") or "").strip(), "items": items})
+    if btype == "chat":
+        if spec is None or not _items(spec.get("turns")):
+            raise ContentError(f"{w}: нужен список turns")
+        who = str(spec.get("with") or "").strip()
+        if not who:
+            raise ContentError(f"{w}: нужен собеседник (with: Имя)")
+        items, end = [], []
+        for t in _items(spec["turns"]):
+            if not isinstance(t, dict) or not t.get("say"):
+                raise ContentError(f"{w}: у хода нужна реплика собеседника say: «испанский | перевод»")
+            es, _, ru = str(t["say"]).partition(" | ")
+            line = (who, es.strip(), ru.strip())
+            kinds = [k for k in ("build", "write", "choose", "compose") if k in t]
+            if not kinds:
+                end.append(line)
+                continue
+            if len(kinds) > 1 or end:
+                raise ContentError(f"{w}: у хода один вид ответа (build, write, choose или compose); реплики без ответа — только в конце")
+            kind = kinds[0]
+            item: dict = {"kind": kind, "line": line, "task": str(t.get("task") or "").strip(),
+                          "explain": str(t.get("explain") or "").strip(), "meta": _item_meta(t, w)}
+            if kind == "build":
+                b = t["build"] if isinstance(t["build"], dict) else {"es": t["build"]}
+                item.update(es=str(b["es"]).strip(), ru=str(b.get("ru") or t.get("ru") or "").strip(),
+                            alt=_alts(b.get("alt")), extra=[str(x).strip() for x in _items(b.get("extra"))])
+            elif kind == "write":
+                item.update(answers=_alts(t["write"]), format=str(t.get("format") or "").strip())
+                if not item["answers"]:
+                    raise ContentError(f"{w}: у хода с write нет ответа")
+            elif kind == "choose":
+                item.update(options=_options(t["choose"]))
+            else:
+                c = t["compose"] if isinstance(t["compose"], dict) else {}
+                item.update(_compose_item({**c, "q": item["task"] or "—"}, w))
+                item["task"] = item["task"] or ""
+                item["meta"] = _item_meta(t, w)
+            items.append(item)
+        if not items:
+            raise ContentError(f"{w}: в разговоре нет ни одного ответа ученика")
+        return Block(btype, {"title": str(spec.get("title") or "").strip(), "who": who, "items": items, "end": end})
     if btype == "sort" and spec is not None and "groups" not in spec:   # sort: {el: [...], la: [...]}
         spec = {"title": spec.get("title"), "groups": {k: v for k, v in spec.items() if k != "title"}}
     if spec is None:

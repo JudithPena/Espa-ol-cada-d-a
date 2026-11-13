@@ -136,7 +136,7 @@ def test_lesson_ids_and_order_unchanged(site):
     """Прогресс учеников хранится по id уроков: перестройка их не меняет и не переставляет."""
     ids = json.loads((Path(__file__).parent / "data" / "site_lesson_ids.json").read_text(encoding="utf-8"))
     assert [lesson.id for lesson in site.lessons] == ids
-    assert len(site.units) == 24
+    assert len(site.units) == len({i.split('/')[0] for i in ids})   # темы A2 дописываются в конец списка
 
 
 def test_site_data_of_scenario(site):

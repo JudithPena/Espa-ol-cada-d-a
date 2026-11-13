@@ -1,0 +1,895 @@
+id: de_pequeno
+number: 30
+level: A2
+title: Cuando era pequeño — когда я был маленьким
+goals:
+  - рассказать, как вы жили и что обычно делали в детстве
+  - описать себя и свою школу в прошлом
+  - сравнить «раньше» и «сейчас» — ya no, todavía
+  - отличать привычку в прошлом (jugaba) от разового события (jugué)
+
+# Тема 7 карты A2: pretérito imperfecto — формы и привычка; antes / ahora; ya no, todavía; детство и школа.
+# Imperfecto в описании и сравнения — тема 31; оба прошедших времени в одном рассказе — тема 32.
+lessons:
+  - id: infancia
+    kind: listening
+    title: "¿Cómo era tu vida?"
+    goal: понять на слух рассказ о детстве
+    version: 2
+    # Карта экранов: docs/site_slide_maps/30_de_pequeno.md
+    unlocks: [imperfect]
+    vocab:
+      - "🕰 cuando [куа́ндо] — когда (в рассказе, не в вопросе) :: Cuando era pequeño, vivía en un pueblo. — Когда я был маленьким, я жил в деревне."
+      - "⏪ antes [а́нтэс] — раньше :: Antes la vida era más tranquila. — Раньше жизнь была спокойнее."
+      - "🏘 el vecino / la vecina [бэθи́но, бэθи́на] — сосед, соседка :: Mis vecinos eran mis amigos. — Мои соседи были моими друзьями."
+      - "📺 los dibujos animados [дибу́хос анима́дос] — мультфильмы :: Veía dibujos animados. — Я смотрел мультики."
+      - "🧸 el juguete [хугэ́тэ] — игрушка :: No tenía muchos juguetes. — У меня было мало игрушек."
+      - "😊 feliz [фэли́θ] — счастливый {forms: felices} :: Era un niño feliz. — Я был счастливым ребёнком."
+    blocks:
+      - "Ирина расспрашивает Диего о его детстве в Мексике. Послушайте разговор два раза: текста пока нет."
+      - dialogue:
+          id: recuerdos
+          hidden: true
+          lines:
+            - "Irina: Diego, ¿cómo era tu vida cuando eras pequeño? | Диего, какой была твоя жизнь, когда ты был маленьким?"
+            - "Diego: Muy tranquila. Vivía en un pueblo de México con mis padres y mis abuelos. | Очень спокойной. Я жил в мексиканской деревне с родителями и бабушкой с дедушкой."
+            - "Irina: ¿Tenías muchos amigos? | У тебя было много друзей?"
+            - "Diego: Sí, todos mis vecinos eran mis amigos. Jugábamos al fútbol en la calle todas las tardes. | Да, все мои соседи были моими друзьями. Мы каждый вечер играли в футбол на улице."
+            - "Irina: ¿Y veías mucho la tele? | А телевизор ты много смотрел?"
+            - "Diego: No mucho. Solo los sábados por la mañana veía dibujos animados. | Не очень. Только по субботам утром смотрел мультики."
+            - "Irina: ¿Tenías muchos juguetes? | У тебя было много игрушек?"
+            - "Diego: No, pero tenía una bici roja. Iba a la escuela en bici. | Нет, но у меня был красный велосипед. Я ездил на нём в школу."
+            - "Irina: ¿Eras feliz? | Ты был счастлив?"
+            - "Diego: Sí, muy feliz. Antes la vida era más tranquila. | Да, очень. Раньше жизнь была спокойнее."
+      - choose:
+          title: Что вы поняли?
+          source: recuerdos
+          items:
+            - q: "Где Диего жил в детстве?"
+              options: "En un pueblo de México. | En la capital de México. | En Madrid."
+              explain: "Diego называет un pueblo de México."
+            - q: "С кем он жил?"
+              options: "Con sus padres y sus abuelos. | Con sus tíos. | Con su hermano mayor."
+              explain: "Diego: …con mis padres y mis abuelos."
+      - learn: [cuando, antes, el vecino / la vecina, los dibujos animados, el juguete, feliz]
+      - choose:
+          title: Детали разговора
+          source: recuerdos
+          items:
+            - q: "Кто были друзья Диего?"
+              options: "Sus vecinos. | Sus primos. | Sus compañeros de trabajo."
+              explain: "Diego: Todos mis vecinos eran mis amigos."
+            - q: "Когда Диего смотрел мультики?"
+              options: "Los sábados por la mañana. | Todas las tardes. | Los domingos por la noche."
+              explain: "Diego: Solo los sábados por la mañana veía dibujos animados. Каждый вечер он играл в футбол."
+            - q: "На чём он ездил в школу?"
+              options: "En bici. | En autobús. | A pie."
+              explain: "Diego: Tenía una bici roja. Iba a la escuela en bici."
+            - q: "Какой, по словам Диего, была жизнь раньше?"
+              options: "Más tranquila. | Más difícil. | Más aburrida."
+              explain: "Diego: Antes la vida era más tranquila."
+      - text:
+          id: notice
+          slide: new
+          text: "Диего говорит не о разовых событиях, а о том, как всё было **обычно**: жил, играл каждый вечер, был счастлив. Для этого в испанском есть ещё одно прошедшее время."
+      - examples:
+          items:
+            - "**Vivía** en un pueblo. — Я **жил** в деревне."
+            - "**Jugábamos** al fútbol todas las tardes. — Мы **играли** в футбол каждый вечер."
+            - "**Era** muy feliz. — Я **был** очень счастлив."
+      - sort:
+          title: Один раз или обычно?
+          free: true
+          skill: imperfecto_uso
+          rule: notice
+          groups:
+            "один раз": ["Ayer jugué al fútbol.", "El sábado vi una película."]
+            "обычно, раньше": ["De niño jugaba al fútbol.", "Los sábados veía dibujos animados."]
+      - match:
+          title: Соедините пары
+          free: true
+          rule: none
+          pairs:
+            - "antes — раньше"
+            - "el vecino — сосед"
+            - "el juguete — игрушка"
+            - "los dibujos animados — мультфильмы"
+            - "feliz — счастливый"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          free: true
+          skill: imperfecto_uso
+          rule: notice
+          items:
+            - say: "Cuando era pequeño, vivía en un pueblo."
+              a: "Cuando era pequeño, vivía en un pueblo"
+              explain: "Era — «я был», vivía — «я жил»."
+              noaudio: {q: "Напишите по-испански: «Когда я был маленьким, я жил в деревне». Начните с Cuando era.", a: "Cuando era pequeño, vivía en un pueblo | Cuando era pequeña, vivía en un pueblo"}
+      - choose:
+          title: Что ответить?
+          free: true
+          skill: imperfecto_uso
+          rule: notice
+          items:
+            - lines: ["Irina: ¿Eras feliz de niño?"]
+              q: "Да, очень."
+              options: "Sí, era muy feliz. | Sí, soy muy feliz de niño. | Sí, es muy feliz."
+              explain: "О себе в детстве — era: «я был»."
+            - say: "Antes vivía cerca del mar."
+              options: "Раньше я жил рядом с морем. | Сейчас я живу рядом с морем. | Вчера я был на море."
+              explain: "Antes — «раньше»; vivía — «жил» (долго, обычно)."
+              noaudio: {q: "Что значит «Antes vivía cerca del mar»?", options: "Раньше я жил рядом с морем. | Сейчас я живу рядом с морем. | Вчера я был на море."}
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: imperfecto_uso
+          rule: notice
+          items:
+            - "Antes la vida era más tranquila. — Раньше жизнь была спокойнее."
+            - es: "Cuando era pequeño, tenía una bici roja."
+              ru: "Когда я был маленьким, у меня был красный велосипед."
+
+  - id: verbos_ar
+    kind: grammar
+    title: "Jugaba, jugabas, jugaba: глаголы на -ar"
+    goal: рассказать, что вы обычно делали в детстве, глаголами на -ar
+    version: 2
+    vocab:
+      - "🖍 dibujar [дибуха́р] — рисовать :: De niña dibujaba mucho. — В детстве я много рисовала."
+      - "⚽ la pelota [пэло́та] — мяч :: Jugábamos con una pelota. — Мы играли с мячом."
+      - "🪆 la muñeca [мунье́ка] — кукла :: Mi hermana jugaba con muñecas. — Моя сестра играла в куклы."
+      - "🚲 montar en bici [монта́р эн би́θи] — кататься на велосипеде {forms: monto montas monta montaba montábamos montaban} :: Montaba en bici todos los días. — Я каждый день катался на велосипеде."
+    blocks:
+      - "У всех глаголов на -ar это время образуется одинаково — без единого исключения."
+      - conjugation:
+          id: aba
+          verb: jugar
+          ru: "играть — раньше, обычно (pretérito imperfecto)"
+          forms: [jugaba, jugabas, jugaba, jugábamos, jugabais, jugaban]
+      - note:
+          id: yo_el
+          text: "Формы «я» и «он, она» **совпадают**: _jugaba_ — «я играл» и «он играл»; кто именно, ясно из разговора. Знак ударения — только в форме «мы»: _jugábamos_. Корень не меняется: _juego_, но **jugaba**; _empiezo_, но **empezaba**."
+      - write:
+          title: Поставьте глагол в imperfecto
+          format: одна форма глагола
+          accents: strict
+          skill: imperfecto_ar
+          rule: aba
+          items:
+            - q: "De niño (yo, jugar) ___ al fútbol todos los días."
+              a: "jugaba"
+              explain: "Yo — -aba: jugaba."
+              mistakes:
+                "juegaba": "В imperfecto корень не меняется: **jugaba**."
+                "jugué": "Jugué — один раз. «Каждый день» — привычка: **jugaba**."
+            - q: "¿(tú, estudiar) ___ mucho en la escuela?"
+              a: "estudiabas"
+              explain: "Tú — -abas: estudiabas."
+            - q: "Mi hermana (bailar) ___ muy bien."
+              a: "bailaba"
+              explain: "Ella — -aba: bailaba."
+            - q: "Mis padres (trabajar) ___ en una tienda."
+              a: "trabajaban"
+              explain: "Ellos — -aban: trabajaban."
+            - q: "Mis amigos y yo (hablar) ___ mucho por teléfono."
+              a: "hablábamos"
+              explain: "Nosotros — -ábamos, со знаком ударения."
+              mistakes:
+                "hablabamos": "В форме «мы» нужен знак ударения: habl**á**bamos."
+            - q: "¿(vosotros, cantar) ___ en la escuela?"
+              a: "cantabais"
+              explain: "Vosotros — -abais: cantabais."
+      - learn: [dibujar, la pelota, la muñeca, montar en bici]
+      - compare:
+          id: marcas
+          slide: new
+          title: Слова-подсказки
+          cards:
+            - head: jugaba
+              say: false
+              label: "обычно, много раз"
+              tone: sun
+              text: "antes, de niño, siempre, todos los días, a menudo, los sábados"
+              ex: ["De niño jugaba al fútbol. — В детстве я играл в футбол."]
+            - head: jugué
+              say: false
+              label: "один раз, тогда-то"
+              tone: blue
+              text: "ayer, el sábado, una vez, en 2010, hace dos años"
+              ex: ["Ayer jugué al fútbol. — Вчера я играл в футбол."]
+      - sort:
+          title: С каким временем?
+          skill: imperfecto_uso
+          rule: marcas
+          groups:
+            "jugaba": [de niño, todos los días, antes, a menudo]
+            "jugué": [ayer, una vez, el sábado pasado, hace dos años]
+      - choose:
+          title: Выберите форму
+          skill: imperfecto_uso
+          rule: marcas
+          items:
+            - q: "Ayer ___ al fútbol con mis compañeros."
+              options: "jugué | jugaba | juego"
+              explain: "Ayer — один раз: jugué."
+            - q: "De niño ___ al fútbol todos los días."
+              options: "jugaba | jugué | juego"
+              explain: "De niño, todos los días — привычка: jugaba."
+            - q: "Antes mi madre ___ en un hospital; ahora trabaja en una farmacia."
+              options: "trabajaba | trabajó | trabaja"
+              explain: "Antes — как было раньше: trabajaba."
+            - say: "De niña montaba en bici todos los días."
+              options: "В детстве я каждый день каталась на велосипеде. | Вчера я каталась на велосипеде. | Я каждый день катаюсь на велосипеде."
+              explain: "De niña … todos los días — привычка в прошлом: montaba."
+              noaudio: {q: "Что значит «De niña montaba en bici todos los días»?", options: "В детстве я каждый день каталась на велосипеде. | Вчера я каталась на велосипеде. | Я каждый день катаюсь на велосипеде."}
+      - build:
+          title: Соберите фразу
+          skill: imperfecto_ar
+          rule: aba
+          items:
+            - es: "Mi hermana jugaba con muñecas y yo con una pelota."
+              ru: "Моя сестра играла в куклы, а я — с мячом."
+            - es: "Antes escuchábamos música todas las tardes."
+              ru: "Раньше мы слушали музыку каждый вечер."
+              extra: [escuchamos]
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: imperfecto_ar
+          rule: aba
+          items:
+            - q: "В детстве я много рисовал."
+              a: "De niño dibujaba mucho | De niña dibujaba mucho | Cuando era [pequeño/pequeña](,) dibujaba mucho | De [niño/niña] yo dibujaba mucho | Dibujaba mucho de [niño/niña]"
+              explain: "Привычка в прошлом — dibujaba."
+              mistakes:
+                "de niño dibujé mucho": "Dibujé — один раз. «В детстве, много» — привычка: **dibujaba**."
+            - q: "Раньше мы работали вместе с Аной."
+              a: "Antes trabajábamos con Ana | Antes Ana y yo trabajábamos (juntos) | (Nosotros) antes trabajábamos con Ana"
+              explain: "Nosotros — trabajábamos."
+              mistakes:
+                "antes trabajamos con ana": "Trabajamos — «работаем» или «поработали». «Раньше работали» — **trabajábamos**."
+      - compose:
+          title: О себе
+          skill: imperfecto_ar
+          rule: aba
+          items:
+            - q: "¿A qué jugabas de niño? Напишите две фразы о том, что вы обычно делали в детстве."
+              format: "De niño jugaba… También…"
+              words: [6, 35]
+              sentences: 2
+              checks:
+                - label: "глагол на -aba: jugaba, montaba, dibujaba, cantaba…"
+                  re: "\\b\\w+aba\\b|\\b\\w+abamos\\b"
+              sample: "De niño jugaba al fútbol con mis vecinos. También montaba en bici y dibujaba mucho."
+              sample_ru: "В детстве я играл в футбол с соседями. Ещё катался на велосипеде и много рисовал."
+    forms: [juntos]
+    quiz:
+      - q: "Cuando era pequeña, mi abuela me ___ canciones."
+        options: "cantaba | cantó | canta"
+        explain: "Привычка в детстве: cantaba."
+        skill: imperfecto_ar
+      - q: "Какая форма значит «мы играли (раньше, обычно)»?"
+        options: "jugábamos | jugamos | jugaban"
+        explain: "Nosotros в imperfecto — jugábamos; jugaban — «они играли»."
+        skill: imperfecto_ar
+
+  - id: verbos_er_ir
+    kind: grammar
+    title: "Comía, vivía — и era, iba, veía"
+    goal: рассказать, каким вы были, где жили и куда ходили в детстве
+    version: 2
+    vocab:
+      - "🏞 había [аби́а] — было, имелось (от hay) :: En mi barrio había un parque. — В моём районе был парк."
+      - "🍬 el caramelo [карамэ́ло] — конфета :: Mi abuelo me compraba caramelos. — Дедушка покупал мне конфеты."
+      - "🥪 la merienda [мэрье́нда] — полдник :: La merienda era a las cinco. — Полдник был в пять."
+      - "😈 travieso/a [трабье́со, трабье́са] — озорной, непослушный :: Era un niño muy travieso. — Я был очень озорным ребёнком."
+    blocks:
+      - "У глаголов на -er и -ir окончания общие, и везде — `í` со знаком ударения."
+      - conjugation:
+          id: ia
+          verb: comer
+          ru: "есть — раньше, обычно; так же vivir, tener, hacer"
+          forms: [comía, comías, comía, comíamos, comíais, comían]
+      - write:
+          title: Поставьте глагол в imperfecto
+          format: одна форма глагола
+          accents: strict
+          skill: imperfecto_er_ir
+          rule: ia
+          items:
+            - q: "De niño (yo, vivir) ___ en un pueblo."
+              a: "vivía"
+              explain: "Yo — -ía: vivía."
+              mistakes:
+                "vivia": "Нужен знак ударения: viv**í**a."
+                "viví": "Viví — законченный срок. «В детстве жил» как фон — **vivía**."
+            - q: "¿(tú, tener) ___ muchos juguetes?"
+              a: "tenías"
+              explain: "Tú — -ías: tenías."
+            - q: "Mi abuela (hacer) ___ un pan increíble."
+              a: "hacía"
+              explain: "Ella — -ía: hacía. В imperfecto hacer — правильный."
+              mistakes:
+                "hizo": "Hizo — один раз. «Пекла обычно» — **hacía**."
+            - q: "Los domingos (nosotros, comer) ___ en casa de mis abuelos."
+              a: "comíamos"
+              explain: "Nosotros — -íamos: comíamos."
+            - q: "Mis hermanos (dormir) ___ en una habitación pequeña."
+              a: "dormían"
+              explain: "Ellos — -ían: dormían. Корень не меняется."
+              mistakes:
+                "duermían": "В imperfecto корень не меняется: **dormían**."
+      - table:
+          id: tres
+          slide: new
+          title: Только три неправильных глагола
+          rows:
+            - ["**ser**", "era, eras, era, éramos, erais, eran"]
+            - ["**ir**", "iba, ibas, iba, íbamos, ibais, iban"]
+            - ["**ver**", "veía, veías, veía, veíamos, veíais, veían"]
+      - learn: [había, el caramelo, la merienda, travieso/a]
+      - note:
+          id: habia
+          text: "**Hay** в этом времени — **había**, и оно не меняется по числам: _Había un parque_ — «был парк», _Había muchos niños_ — «было много детей»."
+      - write:
+          title: Вставьте ser, ir, ver или haber
+          format: одна форма глагола
+          accents: strict
+          skill: imperfecto_er_ir
+          rule: tres
+          items:
+            - q: "De pequeño (yo, ser) ___ muy travieso."
+              a: "era"
+              explain: "Ser, yo — era."
+              mistakes:
+                "fui": "Fui — «я был» один раз или «ходил». Каким я был в детстве — **era**."
+            - q: "Todos los veranos (nosotros, ir) ___ a la playa."
+              a: "íbamos"
+              explain: "Ir, nosotros — íbamos."
+              mistakes:
+                "ibamos": "В форме «мы» нужен знак ударения: **í**bamos."
+            - q: "Los sábados mis hermanos (ver) ___ dibujos animados."
+              a: "veían"
+              explain: "Ver, ellos — veían."
+            - q: "En mi calle (haber) ___ dos tiendas."
+              a: "había"
+              explain: "Hay → había, без изменения по числам."
+              mistakes:
+                "habían": "Había не меняется по числам: **había** dos tiendas."
+            - q: "¿Cómo (ser) ___ tu escuela?"
+              a: "era"
+              explain: "Ser, él — era."
+      - choose:
+          title: Послушайте
+          skill: imperfecto_er_ir
+          rule: tres
+          items:
+            - say: "Cuando tenía diez años, iba a la escuela a pie."
+              options: "Когда мне было десять лет, я ходил в школу пешком. | Десять лет назад я пошёл в школу. | Мне десять лет, и я хожу в школу пешком."
+              explain: "Cuando tenía diez años — «когда мне было десять лет»; iba — «ходил»."
+              noaudio: {q: "Что значит «Cuando tenía diez años, iba a la escuela a pie»?", options: "Когда мне было десять лет, я ходил в школу пешком. | Десять лет назад я пошёл в школу. | Мне десять лет, и я хожу в школу пешком."}
+            - say: "En mi barrio no había ningún parque."
+              options: "В моём районе не было ни одного парка. | В моём районе нет ни одного парка. | В моём районе был один парк."
+              explain: "No había ningún… — «не было ни одного»."
+              noaudio: {q: "Что значит «En mi barrio no había ningún parque»?", options: "В моём районе не было ни одного парка. | В моём районе нет ни одного парка. | В моём районе был один парк."}
+            - q: "Mi abuelo siempre me ___ caramelos después de la merienda."
+              options: "compraba | compró | compra"
+              explain: "Siempre, в детстве — привычка: compraba."
+              skill: imperfecto_uso
+      - build:
+          title: Соберите фразу
+          skill: imperfecto_er_ir
+          rule: tres
+          items:
+            - es: "Cuando tenía diez años, vivía en Odesa."
+              ru: "Когда мне было десять лет, я жил в Одессе."
+            - es: "En mi barrio había un parque muy grande."
+              ru: "В моём районе был очень большой парк."
+              alt: ["Había un parque muy grande en mi barrio."]
+              extra: [hay]
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: imperfecto_er_ir
+          rule: tres
+          items:
+            - q: "Я был очень застенчивым ребёнком. (говорит мужчина)"
+              a: "Era un niño muy tímido | (Yo) era un niño muy tímido | De niño era muy tímido"
+              explain: "Каким был — era."
+              mistakes:
+                "fui un niño muy tímido": "Описание в прошлом — **era**, а не fui."
+            - q: "Каждое лето мы ездили к морю."
+              a: "Todos los veranos íbamos al mar | Íbamos al mar todos los veranos | Todos los veranos íbamos a la playa | Cada verano íbamos al mar"
+              explain: "Каждое лето — привычка: íbamos."
+              mistakes:
+                "todos los veranos fuimos al mar": "Fuimos — один раз. «Каждое лето» — привычка: **íbamos**."
+      - compose:
+          title: О себе
+          skill: imperfecto_er_ir
+          rule: tres
+          items:
+            - q: "¿Cómo eras de niño? ¿Dónde vivías? Напишите две-три фразы."
+              format: "De niño era… Vivía en…"
+              words: [7, 40]
+              sentences: 2
+              checks:
+                - label: "каким были: era…"
+                  any: [era]
+                - label: "где жили: vivía… или vivíamos…"
+                  any: [vivía, vivíamos]
+              sample: "De niño era bastante tímido, pero muy travieso en casa. Vivía en Kiev con mis padres y mi hermana."
+              sample_ru: "В детстве я был довольно застенчивым, но дома очень озорным. Я жил в Киеве с родителями и сестрой."
+    forms: [cada]
+    quiz:
+      - q: "De niños, mi hermano y yo ___ muy traviesos."
+        options: "éramos | fuimos | somos"
+        explain: "Какими были в детстве — éramos."
+        skill: imperfecto_er_ir
+      - q: "En mi escuela ___ muchos niños."
+        options: "había | habían | hay"
+        explain: "Hay в прошлом — había, без множественного числа."
+        skill: imperfecto_er_ir
+
+  - id: antes_ahora
+    kind: grammar
+    title: "Antes y ahora: ya no, todavía"
+    goal: сравнить, как было раньше и как сейчас
+    version: 2
+    vocab:
+      - "🔚 ya no [я но] — уже не, больше не :: Ya no vivo con mis padres. — Я больше не живу с родителями."
+      - "✉️ la carta [ка́рта] — письмо (на бумаге) :: Antes escribíamos cartas. — Раньше мы писали письма."
+      - "🎮 el videojuego [бидэохуэ́го] — видеоигра :: Mi hijo juega a los videojuegos. — Мой сын играет в видеоигры."
+      - "🔀 diferente [дифэрэ́нтэ] — другой, не такой :: Ahora mi vida es muy diferente. — Теперь моя жизнь совсем другая."
+      - "🚬 fumar [фума́р] — курить :: Antes fumaba mucho. — Раньше я много курил."
+      - "🏋 el gimnasio [химна́сьо] — спортзал :: Ahora voy al gimnasio. — Теперь я хожу в спортзал."
+    blocks:
+      - "Чтобы сравнить прошлое и настоящее, ставим рядом два времени: как было — в imperfecto, как есть — в настоящем."
+      - compare:
+          id: antes_ahora
+          title: "Antes и ahora"
+          cards:
+            - head: antes
+              label: "как было: imperfecto"
+              tone: sun
+              ex: ["Antes vivía en Kiev. — Раньше я жил в Киеве."]
+            - head: ahora
+              label: "как есть: настоящее время"
+              tone: blue
+              ex: ["Ahora vivo en Madrid. — Сейчас я живу в Мадриде."]
+      - learn: [ya no, la carta, el videojuego, diferente, fumar, el gimnasio]
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "la carta — письмо"
+            - "el videojuego — видеоигра"
+            - "fumar — курить"
+            - "el gimnasio — спортзал"
+            - "diferente — другой, не такой"
+      - choose:
+          title: Раньше или сейчас?
+          skill: ya_no_todavia
+          rule: antes_ahora
+          items:
+            - q: "Antes ___ cartas a mis amigos; ahora les escribo mensajes."
+              options: "escribía | escribo | escribí"
+              explain: "Antes — как было раньше: escribía."
+            - q: "De niño no hacía deporte; ahora ___ al gimnasio tres veces por semana."
+              options: "voy | iba | fui"
+              explain: "Ahora — как есть сейчас: voy."
+            - say: "Antes no había móviles."
+              options: "Раньше не было мобильных телефонов. | Сейчас нет мобильных телефонов. | Раньше у меня не было мобильного."
+              explain: "No había — «не было вообще»; «у меня не было» — no tenía."
+              noaudio: {q: "Что значит «Antes no había móviles»?", options: "Раньше не было мобильных телефонов. | Сейчас нет мобильных телефонов. | Раньше у меня не было мобильного."}
+      - compare:
+          id: ya_no
+          slide: new
+          title: "Ya no и todavía"
+          cards:
+            - head: ya no
+              label: "раньше да, сейчас нет"
+              tone: rose
+              ex: ["Ya no fumo. — Я больше не курю."]
+            - head: todavía
+              label: "и раньше, и сейчас"
+              tone: mint
+              ex: ["Todavía vivo aquí. — Я всё ещё живу здесь."]
+          note: "Оба обычно стоят перед глаголом. Не путайте: **todavía no** — «ещё не» (будет потом), **ya no** — «уже не» (было раньше)."
+      - write:
+          title: Вставьте ya no или todavía
+          format: ya no или todavía
+          skill: ya_no_todavia
+          rule: ya_no
+          items:
+            - q: "Antes Pablo fumaba mucho. Ahora no fuma: Pablo ___ fuma."
+              a: "ya no"
+              explain: "Раньше да, сейчас нет — ya no."
+              mistakes:
+                "todavía no": "Todavía no — «ещё не»: так говорят о том, что будет потом. Раньше курил, теперь нет — **ya no**."
+            - q: "Ana vivía en Sevilla y ahora también vive allí: Ana ___ vive en Sevilla."
+              a: "todavía"
+              explain: "И раньше, и сейчас — todavía."
+              mistakes:
+                "ya": "Ya — «уже». И раньше, и сейчас — **todavía**."
+            - q: "De niño jugaba a los videojuegos, pero ahora no: ___ juego a los videojuegos."
+              a: "ya no"
+              explain: "Раньше да, сейчас нет — ya no."
+            - q: "Mi abuela tiene ochenta años y ___ monta en bici todos los días."
+              a: "todavía"
+              explain: "И раньше, и сейчас — todavía."
+      - build:
+          title: Соберите фразу
+          skill: ya_no_todavia
+          rule: ya_no
+          items:
+            - es: "Ya no vivo con mis padres."
+              ru: "Я больше не живу с родителями."
+              extra: [todavía]
+            - es: "Antes escribíamos cartas y ahora escribimos mensajes."
+              ru: "Раньше мы писали письма, а теперь пишем сообщения."
+      - choose:
+          title: Послушайте
+          skill: ya_no_todavia
+          rule: ya_no
+          items:
+            - say: "Mi barrio es muy diferente: ya no hay tiendas pequeñas."
+              options: "Мой район стал совсем другим: маленьких магазинов больше нет. | Мой район почти не изменился: маленькие магазины всё ещё есть. | В моём районе никогда не было маленьких магазинов."
+              explain: "Ya no hay — «больше нет»: раньше были, а теперь нет."
+              noaudio: {q: "Что значит «Mi barrio es muy diferente: ya no hay tiendas pequeñas»?", options: "Мой район стал совсем другим: маленьких магазинов больше нет. | Мой район почти не изменился: маленькие магазины всё ещё есть. | В моём районе никогда не было маленьких магазинов."}
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: ya_no_todavia
+          rule: antes_ahora
+          items:
+            - q: "Раньше я много курил, а теперь хожу в спортзал."
+              a: "Antes fumaba mucho y ahora voy al gimnasio | Antes fumaba mucho, pero ahora voy al gimnasio | Antes fumaba mucho, ahora voy al gimnasio | Yo antes fumaba mucho y ahora voy al gimnasio"
+              explain: "Как было — fumaba, как есть — voy."
+              mistakes:
+                "antes fumé mucho y ahora voy al gimnasio": "Как было раньше, обычно, — **fumaba**."
+            - q: "Я больше не играю в видеоигры."
+              a: "Ya no juego a (los) videojuegos | Ya no juego videojuegos | Yo ya no juego a los videojuegos"
+              explain: "«Больше не» — ya no перед глаголом."
+              mistakes:
+                "todavía no juego a los videojuegos": "Todavía no — «ещё не». «Больше не» — **ya no**."
+      - compose:
+          title: О себе
+          skill: ya_no_todavia
+          rule: ya_no
+          items:
+            - q: "¿Qué hacías antes y ya no haces? ¿Qué haces todavía? Напишите две-три фразы."
+              format: "Antes… Ya no… Todavía…"
+              words: [8, 45]
+              sentences: 2
+              checks:
+                - label: "раньше: imperfecto (vivía, jugaba, era, iba…)"
+                  re: "\\b\\w+(aba|abas|aban|ábamos)\\b|\\b(era|eras|eran|éramos|iba|ibas|iban|íbamos|había|tenía|tenías|tenían|teníamos|vivía|vivías|vivían|vivíamos|hacía|hacían|hacíamos|quería|podía|sabía|salía|salíamos|comía|comíamos|veía|veían|veíamos|leía|escribía|llovía|prefería|dormía|volvía|volvíamos|conocía|ponía|corría|corríamos|bebía|aprendía)\\b"
+                - label: "больше не: ya no…"
+                  any: ["ya no"]
+                - label: "всё ещё: todavía…"
+                  any: [todavía]
+              sample: "Antes fumaba y no hacía deporte. Ya no fumo: ahora voy al gimnasio. Todavía escribo cartas a mi abuela."
+              sample_ru: "Раньше я курил и не занимался спортом. Теперь я не курю: хожу в спортзал. А бабушке я всё ещё пишу письма."
+    quiz:
+      - q: "Antes iba mucho al cine, pero ___ voy: no tengo tiempo."
+        options: "ya no | todavía | ya"
+        explain: "Раньше ходил, сейчас нет — ya no."
+        skill: ya_no_todavia
+      - q: "Как сказать «Я всё ещё живу с родителями»?"
+        options: "Todavía vivo con mis padres. | Ya no vivo con mis padres. | Antes vivía con mis padres."
+        explain: "И раньше, и сейчас — todavía."
+        skill: ya_no_todavia
+
+  - id: lectura
+    kind: reading
+    title: "Mi escuela"
+    goal: понять рассказ о школе и написать о своей
+    version: 2
+    vocab:
+      - "📚 la asignatura [асигнату́ра] — школьный предмет :: Mi asignatura favorita era la historia. — Моим любимым предметом была история."
+      - "➗ las matemáticas [матэма́тикас] — математика :: Las matemáticas eran difíciles. — Математика была трудной."
+      - "📏 estricto/a [эстри́кто, эстри́кта] — строгий, строгая :: La profesora era muy estricta. — Учительница была очень строгой."
+      - "📝 los deberes [дэбэ́рэс] — домашнее задание (в школе) :: Hacía los deberes en la cocina. — Я делал уроки на кухне."
+      - "🔔 el recreo [рэкрэ́о] — перемена :: En el recreo comíamos un bocadillo. — На перемене мы ели бутерброд."
+      - "🏫 el patio [па́тьо] — школьный двор :: Jugábamos en el patio. — Мы играли во дворе."
+    blocks:
+      - learn: [la asignatura, las matemáticas, estricto/a, los deberes, el recreo, el patio]
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "la asignatura — школьный предмет"
+            - "los deberes — домашнее задание"
+            - "el recreo — перемена"
+            - "el patio — школьный двор"
+            - "estricto — строгий"
+      - "Ольга вспоминает свою школу в Одессе."
+      - reading:
+          id: escuela
+          title: Mi escuela
+          text: |
+            Cuando era pequeña, vivía en Odesa con mis padres, mi hermano y mi abuela. Mi escuela estaba muy cerca de casa, y por eso iba a pie con mi vecina Natalia. Las clases empezaban a las ocho y media.
+
+            Mi asignatura favorita era la historia, pero las matemáticas no me gustaban nada. La profesora de matemáticas era muy estricta y nos ponía muchos deberes. En el recreo comíamos un bocadillo y jugábamos en el patio.
+
+            Después de clase, comía con mi abuela y hacía los deberes en la cocina. Los fines de semana veía dibujos animados con mi hermano.
+
+            Ahora vivo en Valencia y trabajo en un hospital. Ya no veo a Natalia, pero todavía hablamos por teléfono todas las semanas. ¡Y todavía me gusta la historia!
+          translation: |
+            Когда я была маленькой, я жила в Одессе с родителями, братом и бабушкой. Школа была совсем рядом с домом, поэтому я ходила туда пешком с соседкой Натальей. Уроки начинались в половине девятого.
+
+            Моим любимым предметом была история, а математику я совсем не любила. Учительница математики была очень строгой и задавала нам много домашних заданий. На перемене мы ели бутерброды и играли во дворе.
+
+            После уроков я обедала с бабушкой и делала уроки на кухне. По выходным смотрела с братом мультики.
+
+            Сейчас я живу в Валенсии и работаю в больнице. С Натальей мы больше не видимся, но всё ещё каждую неделю говорим по телефону. И история мне всё ещё нравится!
+      - choose:
+          title: Что сказано в тексте?
+          source: escuela
+          items:
+            - q: "¿Cómo iba Olga a la escuela?"
+              options: "A pie, con su vecina. | En autobús, con su madre. | En bici, con su hermano."
+              explain: "…iba a pie con mi vecina Natalia."
+            - q: "¿Cómo era la profesora de matemáticas?"
+              options: "Muy estricta. | Muy simpática. | Muy tímida."
+              explain: "La profesora de matemáticas era muy estricta."
+            - q: "¿Qué hacían en el recreo?"
+              options: "Comían un bocadillo y jugaban en el patio. | Hacían los deberes de matemáticas en la cocina. | Veían dibujos animados con sus hermanos."
+              explain: "En el recreo comíamos un bocadillo y jugábamos en el patio."
+              skill: imperfecto_er_ir
+            - q: "¿Qué hace Olga ahora?"
+              options: "Trabaja en un hospital de Valencia. | Es profesora de historia en una escuela. | Vive con su abuela en Odesa."
+              explain: "Ahora vivo en Valencia y trabajo en un hospital."
+      - sort:
+          title: Antes, todavía или ahora?
+          source: escuela
+          skill: ya_no_todavia
+          groups:
+            "antes": ["vivía en Odesa", "veía a Natalia"]
+            "todavía": ["habla con Natalia por teléfono", "le gusta la historia"]
+            "ahora": ["vive en Valencia", "trabaja en un hospital"]
+      - write:
+          title: Ответьте по тексту
+          format: короткий ответ по-испански
+          source: escuela
+          items:
+            - q: "¿Dónde hacía Olga los deberes?"
+              a: "En la cocina | Los hacía en la cocina | Hacía los deberes en la cocina"
+              explain: "…comía con mi abuela y hacía los deberes en la cocina."
+            - q: "Как в тексте сказано «С Натальей я больше не вижусь»?"
+              a: "Ya no veo a Natalia"
+              explain: "Ya no veo a Natalia — «я больше не вижу Наталью»."
+              skill: ya_no_todavia
+      - choose:
+          title: Послушайте
+          free: true
+          rule: none
+          items:
+            - say: "Mi asignatura favorita era la historia."
+              options: "Моим любимым предметом была история. | Мой любимый предмет — история. | Историю я никогда не любила."
+              explain: "Era — «была»: речь о прошлом."
+              skill: imperfecto_er_ir
+              noaudio: {q: "Что значит «Mi asignatura favorita era la historia»?", options: "Моим любимым предметом была история. | Мой любимый предмет — история. | Историю я никогда не любила."}
+      - compose:
+          title: Моя школа
+          free: true
+          rule: none
+          skill: [imperfecto_er_ir, imperfecto_ar]
+          items:
+            - q: "¿Cómo era tu escuela? Напишите 4–5 фраз: где она была и как вы туда ходили · какой предмет вы любили · каким был учитель · что вы делали на перемене."
+              format: "Mi escuela estaba… Iba…"
+              words: [25, 100]
+              sentences: 3
+              checks:
+                - label: "где и как: estaba…, iba…"
+                  any: [estaba, iba, íbamos]
+                - label: "предмет: asignatura, matemáticas, historia…"
+                  any: [asignatura, matemáticas, historia, inglés, español, música, deporte, dibujo]
+                - label: "учитель или перемена: profesor, profesora, recreo"
+                  any: [profesor, profesora, profesores, profesoras, recreo]
+              sample: "Mi escuela estaba en el centro de Kiev y yo iba en autobús. Mi asignatura favorita era el inglés. El profesor de inglés era muy simpático, pero nos ponía muchos deberes. En el recreo jugábamos al fútbol en el patio."
+              sample_ru: "Моя школа была в центре Киева, и я ездил туда на автобусе. Любимым предметом был английский. Учитель английского был очень приятным, но задавал нам много домашних заданий. На перемене мы играли во дворе в футбол."
+
+  - id: mision
+    kind: practice
+    title: Каким я был в десять лет
+    goal: понять рассказ о детстве и рассказать о своём
+    version: 2
+    blocks:
+      - review:
+          title: Вспомним
+          skills: [pret_irregular, experiencia_detalle, algo_nada]
+          n: 2
+      - "Вы в гостях у подруги Лусии. Её бабушка вспоминает детство. Послушайте: текста нет."
+      - dialogue:
+          id: pueblo
+          hidden: true
+          title: Детство бабушки
+          lines:
+            - "Abuela: Cuando yo tenía diez años, vivía en un pueblo pequeño de Andalucía. No teníamos tele. Tampoco teníamos coche, pero éramos muy felices. | Когда мне было десять лет, я жила в маленькой деревне в Андалусии. Телевизора у нас не было. Машины тоже, но мы были очень счастливы."
+            - "Abuela: Por la mañana iba a la escuela y por la tarde trabajaba en el campo con mi padre. Los domingos íbamos todos a la plaza a bailar. | Утром я ходила в школу, а днём работала в поле с отцом. По воскресеньям мы все ходили на площадь танцевать."
+            - "Abuela: Ahora en el pueblo ya no vive casi nadie, pero yo todavía voy todos los veranos. | Сейчас в деревне почти никто не живёт, но я всё ещё езжу туда каждое лето."
+      - choose:
+          title: Что вы поняли?
+          source: pueblo
+          items:
+            - q: "¿Tenían tele en casa?"
+              options: "No, no tenían. | Sí, pero no la veían. | Sí, la veían los domingos."
+              explain: "No teníamos tele."
+            - q: "¿Qué hacía por la tarde?"
+              options: "Trabajaba en el campo con su padre. | Iba a la escuela con su hermano. | Bailaba en la plaza con sus amigas del pueblo."
+              explain: "…por la tarde trabajaba en el campo con mi padre."
+              skill: imperfecto_ar
+            - q: "¿Va todavía al pueblo?"
+              options: "Sí, todos los veranos. | No, ya no va nunca. | Sí, todos los domingos a bailar."
+              explain: "…pero yo todavía voy todos los veranos."
+              skill: ya_no_todavia
+      - mission:
+          id: diez_anos
+          title: Каким я был в десять лет
+          text: "Теперь бабушка расспрашивает вас. Отвечайте о себе."
+      - chat:
+          id: abuela
+          title: В гостях
+          with: Abuela
+          turns:
+            - say: "Y tú, ¿dónde vivías cuando tenías diez años? | А ты? Где ты жил(а), когда тебе было десять лет?"
+              task: "Ответьте от себя: где и с кем вы жили."
+              skill: imperfecto_er_ir
+              compose:
+                format: "Vivía en…"
+                words: [2, 20]
+                checks:
+                  - label: "где жили: vivía… или vivíamos…"
+                    any: [vivía, vivíamos]
+                sample: "Vivía en Odesa con mis padres y mi hermano."
+                sample_ru: "Я жил в Одессе с родителями и братом."
+            - say: "¿Y cómo eras a esa edad? | А каким ты был(а) в том возрасте?"
+              task: "Опишите себя в детстве."
+              skill: imperfecto_er_ir
+              compose:
+                format: "Era…"
+                words: [2, 20]
+                checks:
+                  - label: "каким были: era…"
+                    any: [era]
+                sample: "Era bastante tímido, pero muy travieso en casa."
+                sample_ru: "Я был довольно застенчивым, но дома очень озорным."
+            - say: "¿Y a qué jugabas con tus amigos? | А во что ты играл(а) с друзьями?"
+              task: "Расскажите, во что вы обычно играли."
+              skill: imperfecto_ar
+              compose:
+                format: "Jugábamos…"
+                words: [2, 20]
+                checks:
+                  - label: "во что играли: jugaba…, jugábamos…"
+                    any: [jugaba, jugábamos]
+                sample: "Jugábamos al fútbol en la calle todas las tardes."
+                sample_ru: "Мы каждый вечер играли в футбол на улице."
+            - say: "¿Y todavía vives con tus padres? | А ты всё ещё живёшь с родителями?"
+              task: "Ответьте, что уже нет: теперь вы живёте в Мадриде."
+              skill: ya_no_todavia
+              write: "No, ya no. Ahora vivo en Madrid | Ya no. Ahora vivo en Madrid | No, ya no vivo con [ellos/mis padres]. Ahora vivo en Madrid | No, ahora vivo en Madrid"
+              format: ответ
+              mistakes:
+                "no todavía no ahora vivo en madrid": "Todavía no — «ещё нет»: так говорят о том, что будет потом. Раньше да, сейчас нет — **ya no**."
+            - say: "Yo de pequeña era muy traviesa: ¡no estudiaba nada! | Я в детстве была очень озорной: совсем не училась!"
+              task: "Спросите на «вы», нравилась ли ей школа."
+              skill: imperfecto_uso
+              write: "¿Le gustaba la escuela? | ¿(Y) a usted le gustaba la escuela? | ¿No le gustaba la escuela?"
+              format: вопрос
+              mistakes:
+                "te gustaba la escuela": "К бабушке подруги обращаются на «вы»: **¿Le gustaba** la escuela?"
+                "le gustó la escuela": "Gustó — о разовом. Как было обычно, — **gustaba**."
+            - say: "No mucho. ¡Prefería jugar en la calle! | Не очень. Мне больше нравилось играть на улице!"
+              task: "Скажите, что раньше жизнь была спокойнее."
+              skill: imperfecto_uso
+              choose: "Antes la vida era más tranquila. | Antes la vida fue más tranquila. | Ahora la vida es más tranquila."
+              explain: "Как было раньше, описывают в imperfecto: era."
+            - say: "¡Es verdad! Bueno, ¿quieres más café? | Это правда! Ну что, хочешь ещё кофе?"
+      - compose:
+          title: Каким я был в десять лет
+          free: true
+          rule: none
+          skill: [imperfecto_uso, ya_no_todavia]
+          items:
+            - q: "Напишите 5–6 фраз «Cuando tenía diez años…»: где и с кем вы жили · каким вы были · что обычно делали после школы и летом · что изменилось: ya no, todavía."
+              format: "Cuando tenía diez años, vivía…"
+              words: [30, 120]
+              sentences: 4
+              checks:
+                - label: "начало: Cuando tenía diez años…"
+                  any: ["cuando tenía", "tenía diez años", "a los diez años"]
+                - label: "imperfecto: vivía, era, jugaba, iba…"
+                  re: "\\b\\w+(aba|abas|aban|ábamos)\\b|\\b(era|eras|eran|éramos|iba|ibas|iban|íbamos|había|tenía|tenías|tenían|teníamos|vivía|vivías|vivían|vivíamos|hacía|hacían|hacíamos|quería|podía|sabía|salía|salíamos|comía|comíamos|veía|veían|veíamos|leía|escribía|llovía|prefería|dormía|volvía|volvíamos|conocía|ponía|corría|corríamos|bebía|aprendía)\\b"
+                - label: "сравнение с сегодня: ya no, todavía или ahora"
+                  any: ["ya no", todavía, ahora]
+              sample: "Cuando tenía diez años, vivía en Odesa con mis padres y mi hermano. Era un niño bastante tímido, pero en casa era muy travieso. Después de la escuela jugaba al fútbol con mis vecinos o veía dibujos animados. En verano íbamos al mar. Ahora vivo en Madrid y ya no juego al fútbol, pero todavía me gustan los dibujos animados."
+              sample_ru: "Когда мне было десять лет, я жил в Одессе с родителями и братом. Я был довольно застенчивым ребёнком, но дома очень озорным. После школы играл с соседями в футбол или смотрел мультики. Летом мы ездили на море. Сейчас я живу в Мадриде и больше не играю в футбол, но мультики мне всё ещё нравятся."
+
+  - id: quiz
+    kind: quiz
+    title: "Тест: Cuando era pequeño"
+    goal: проверить цели темы — привычки и описание в прошлом, antes / ahora, ya no, todavía
+    version: 2
+    check: soft
+    blocks:
+      - "Это тест по теме «Cuando era pequeño»: двенадцать заданий."
+      - cando:
+          - "рассказать, где жили и что обычно делали в детстве: vivía, jugaba, iba"
+          - "описать себя и школу в прошлом: era, tenía, había"
+          - "сравнить раньше и сейчас: antes / ahora, ya no, todavía"
+          - "отличить привычку (jugaba) от разового события (jugué)"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          rule: none
+          skill: imperfecto_uso
+          items:
+            - say: "De niña iba a la escuela a pie."
+              a: "De niña iba a la escuela a pie"
+              noaudio: {q: "Напишите по-испански: «В детстве я ходила в школу пешком» (говорит женщина).", a: "De [niña/pequeña] iba a la escuela a pie | Cuando era pequeña(,) iba a la escuela a pie"}
+      - choose:
+          title: Послушайте
+          rule: none
+          items:
+            - say: "Antes vivíamos en el centro, pero ya no."
+              options: "Раньше мы жили в центре, но теперь нет. | Мы всё ещё живём в центре. | Раньше мы никогда не жили в центре."
+              skill: ya_no_todavia
+              noaudio: {q: "Что значит «Antes vivíamos en el centro, pero ya no»?", options: "Раньше мы жили в центре, но теперь нет. | Мы всё ещё живём в центре. | Раньше мы никогда не жили в центре."}
+            - say: "Cuando era pequeño, veía dibujos animados todas las tardes."
+              options: "В детстве я каждый вечер смотрел мультики. | Вчера вечером я смотрел мультики. | Я каждый вечер смотрю мультики."
+              skill: imperfecto_uso
+              noaudio: {q: "Что значит «Cuando era pequeño, veía dibujos animados todas las tardes»?", options: "В детстве я каждый вечер смотрел мультики. | Вчера вечером я смотрел мультики. | Я каждый вечер смотрю мультики."}
+      - write:
+          title: Поставьте глагол
+          format: одна форма глагола
+          accents: strict
+          rule: none
+          items:
+            - q: "Mi abuelo (tener) ___ una tienda de fruta."
+              a: "tenía"
+              skill: imperfecto_er_ir
+            - q: "Antes (yo, trabajar) ___ en un banco; ahora soy profesor."
+              a: "trabajaba"
+              skill: imperfecto_ar
+            - q: "Ayer (yo, jugar) ___ al fútbol con Pablo."
+              a: "jugué"
+              skill: imperfecto_uso
+              mistakes:
+                "jugaba": "Ayer — один раз: **jugué**."
+            - q: "En mi pueblo (haber) ___ una escuela muy pequeña."
+              a: "había"
+              skill: imperfecto_er_ir
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          rule: none
+          items:
+            - q: "Я больше не курю."
+              a: "Ya no fumo | Yo ya no fumo"
+              skill: ya_no_todavia
+              mistakes:
+                "todavía no fumo": "Todavía no — «ещё не». «Больше не» — **ya no**."
+            - q: "В детстве я жил в деревне."
+              a: "De [niño/niña/pequeño/pequeña] vivía en un pueblo | Cuando era [pequeño/pequeña/niño/niña](,) vivía en un pueblo | Vivía en un pueblo de [niño/niña/pequeño/pequeña]"
+              skill: imperfecto_er_ir
+              mistakes:
+                "de niño viví en un pueblo": "Как было в детстве, — **vivía**."
+      - build:
+          title: Соберите фразу
+          rule: none
+          skill: ya_no_todavia
+          items:
+            - es: "Todavía vivo en el mismo barrio."
+              ru: "Я всё ещё живу в том же районе."
+              extra: [ya]
+    quiz:
+      - q: "Cuando tenía ocho años, ___ en bici todos los días."
+        options: "montaba | monté | monto"
+        explain: "Todos los días в детстве — привычка: montaba."
+        skill: imperfecto_ar
+      - q: "Что значит «los deberes» в рассказе о школе?"
+        options: "домашнее задание | школьные предметы | перемена"
+        explain: "Los deberes — домашнее задание; предмет — la asignatura, перемена — el recreo."

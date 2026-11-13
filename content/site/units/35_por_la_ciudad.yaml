@@ -1,0 +1,1035 @@
+id: por_la_ciudad
+number: 35
+level: A2
+title: Por la ciudad — по городу
+goals:
+  - спросить и объяснить дорогу на «ты» и на «вы»
+  - доехать на метро и сделать пересадку
+  - попросить разрешения и о небольшой услуге
+  - понять вывески и правила
+
+# Тема 12 карты A2: императив в указаниях; ¿Puedo…?, ¿Puedes…?, ¿Te importa…?; se безличное; город, транспорт, услуги.
+# Миссия — турист спрашивает дорогу, вы объясняете. В A1 (тема 12) уже были perdone, todo recto, a la derecha,
+# a la izquierda, primero / segundo. После темы — контрольная точка 2 по темам 30–35.
+lessons:
+  - id: perdone
+    kind: listening
+    title: "Perdone, ¿cómo voy al museo?"
+    goal: понять на слух, как пройти
+    version: 2
+    # Карта экранов: docs/site_slide_maps/35_por_la_ciudad.md
+    vocab:
+      - "➡️ seguir [сэги́р] — продолжать (путь), идти дальше :: Siga todo recto. — Идите прямо."
+      - "↪️ girar [хира́р] — повернуть :: Gire a la derecha. — Поверните направо."
+      - "📐 la esquina [эски́на] — угол (улицы) :: La farmacia está en la esquina. — Аптека на углу."
+      - "🚦 el semáforo [сэма́форо] — светофор :: Cruce en el semáforo. — Переходите на светофоре."
+      - "🚸 cruzar [круθа́р] — переходить (улицу) :: Cruza la calle. — Перейди улицу."
+      - "🔁 enfrente de [энфрэ́нтэ дэ] — напротив :: El museo está enfrente de un parque. — Музей напротив парка."
+    blocks:
+      - "Том в Мадриде ищет музей Прадо и спрашивает дорогу у прохожей. Послушайте два раза: текста пока нет."
+      - dialogue:
+          id: prado
+          hidden: true
+          lines:
+            - "Tom: Perdone, ¿el Museo del Prado está lejos? | Извините, музей Прадо далеко?"
+            - "Carmen: No, está muy cerca: a diez minutos a pie. | Нет, совсем близко: десять минут пешком."
+            - "Tom: ¿Y cómo voy? | А как мне пройти?"
+            - "Carmen: Siga todo recto por esta calle hasta el semáforo. Allí cruce la calle y gire a la derecha. En la esquina hay una farmacia. | Идите прямо по этой улице до светофора. Там перейдите улицу и поверните направо. На углу будет аптека."
+            - "Tom: ¿A la derecha en el semáforo? | Направо у светофора?"
+            - "Carmen: Sí. Luego tome la segunda calle a la izquierda. El museo está al final de la calle, enfrente de un parque. | Да. Потом сверните на вторую улицу налево. Музей в конце улицы, напротив парка."
+            - "Tom: Muchas gracias. | Большое спасибо."
+            - "Carmen: De nada. ¡Adiós! | Не за что. До свидания!"
+      - choose:
+          title: Что вы поняли?
+          source: prado
+          items:
+            - q: "Далеко ли музей?"
+              options: "No, está a diez minutos a pie. | Sí, está muy lejos. | Está a diez minutos en metro."
+              explain: "Carmen: No, está muy cerca: a diez minutos a pie."
+            - q: "Как Кармен обращается к Тому?"
+              options: "На «вы». | На «ты». | Не обращается, только показывает рукой."
+              explain: "Кармен говорит с незнакомым человеком и выбирает формы для «вы»."
+      - learn: [seguir, girar, la esquina, el semáforo, cruzar, enfrente de]
+      - choose:
+          title: Маршрут
+          source: prado
+          skill: direcciones
+          items:
+            - q: "¿Hasta dónde tiene que seguir todo recto?"
+              options: "Hasta el semáforo. | Hasta el parque. | Hasta la farmacia."
+              explain: "Siga todo recto por esta calle hasta el semáforo."
+            - q: "¿Qué hay en la esquina?"
+              options: "Una farmacia. | Un banco. | Un parque."
+              explain: "En la esquina hay una farmacia."
+            - q: "¿Qué calle tiene que tomar después?"
+              options: "La segunda a la izquierda. | La primera a la derecha. | La segunda a la derecha."
+              explain: "Luego tome la segunda calle a la izquierda."
+            - q: "¿Dónde está el museo?"
+              options: "Al final de la calle, enfrente de un parque. | Al lado de la farmacia, en la esquina de la calle. | Detrás del parque, cerca del semáforo."
+              explain: "El museo está al final de la calle, enfrente de un parque."
+      - compare:
+          id: tu_usted
+          slide: new
+          title: Дорогу объясняют на «ты» и на «вы»
+          cards:
+            - head: "sigue, cruza, gira, toma"
+              label: "другу — на «ты»"
+              tone: blue
+              ex: ["Sigue todo recto y gira a la derecha. — Иди прямо и поверни направо."]
+            - head: "siga, cruce, gire, tome"
+              label: "незнакомому — на «вы»"
+              tone: sun
+              ex: ["Siga todo recto y gire a la derecha. — Идите прямо и поверните направо."]
+          note: "Кармен говорит с незнакомым человеком — на «вы». В Испании на улице часто говорят и на «ты», особенно молодые: оба варианта правильные."
+      - sort:
+          title: «Ты» или «вы»?
+          free: true
+          skill: direcciones
+          rule: tu_usted
+          groups:
+            "tú": ["sigue", "cruza", "gira", "toma"]
+            "usted": ["siga", "cruce", "gire", "tome"]
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          free: true
+          skill: direcciones
+          rule: tu_usted
+          items:
+            - say: "Siga todo recto hasta el semáforo."
+              a: "Siga todo recto hasta el semáforo"
+              explain: "Siga — «идите» на «вы»."
+              noaudio: {q: "Напишите по-испански на «вы»: «Идите прямо до светофора».", a: "Siga todo recto hasta el semáforo | Siga recto hasta el semáforo"}
+      - choose:
+          title: Послушайте
+          free: true
+          skill: direcciones
+          rule: tu_usted
+          items:
+            - say: "Gira a la izquierda en la esquina."
+              options: "Поверни налево на углу. | Поверните направо на углу. | Угол слева от тебя."
+              explain: "Gira — «поверни» (на «ты»); a la izquierda — «налево»."
+              noaudio: {q: "Что значит «Gira a la izquierda en la esquina»?", options: "Поверни налево на углу. | Поверните направо на углу. | Угол слева от тебя."}
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: direcciones
+          rule: tu_usted
+          items:
+            - es: "Cruce la calle y gire a la derecha."
+              ru: "Перейдите улицу и поверните направо."
+              extra: [gira]
+            - es: "El museo está enfrente de un parque."
+              ru: "Музей напротив парка."
+
+  - id: indicaciones
+    kind: grammar
+    title: "Al lado de, enfrente de, entre…"
+    goal: объяснить дорогу и сказать, где что находится
+    version: 2
+    vocab:
+      - "🛣 la avenida [абэни́да] — проспект :: Cruza la avenida. — Перейди проспект."
+      - "⭐ principal [принθипа́ль] — главный :: Es la calle principal. — Это главная улица."
+      - "ℹ️ la oficina de turismo [офиθи́на дэ тури́смо] — туристический офис :: La oficina de turismo está en la plaza. — Туристический офис на площади."
+    blocks:
+      - learn: [la avenida, principal, la oficina de turismo]
+      - table:
+          id: camino
+          title: Как объяснить дорогу
+          rows:
+            - ["прямо", "Sigue / Siga todo recto. — Иди(те) прямо."]
+            - ["повернуть", "Gira / Gire a la derecha. — Поверни(те) направо."]
+            - ["свернуть на улицу", "Toma / Tome la primera calle a la izquierda. — Сверни(те) на первую улицу налево."]
+            - ["перейти", "Cruza / Cruce la avenida. — Перейди(те) проспект."]
+            - ["до", "Sigue hasta el semáforo. — Иди до светофора."]
+      - write:
+          title: Скажите на «вы»
+          format: одна форма глагола
+          skill: direcciones
+          rule: camino
+          items:
+            - q: "Sigue todo recto. → (usted) ___ todo recto."
+              a: "Siga"
+              explain: "Sigo → siga."
+              mistakes:
+                "sigue": "Sigue — на «ты». На «вы» — **siga**."
+            - q: "Cruza la avenida. → (usted) ___ la avenida."
+              a: "Cruce"
+              explain: "Cruzar → cruce: перед e пишется c."
+              mistakes:
+                "cruze": "Перед e пишется c: **cruce**."
+            - q: "Gira a la izquierda. → (usted) ___ a la izquierda."
+              a: "Gire"
+              explain: "Girar → gire."
+            - q: "Toma la segunda calle. → (usted) ___ la segunda calle."
+              a: "Tome"
+              explain: "Tomar → tome."
+      - table:
+          id: donde
+          slide: new
+          title: Где находится
+          rows:
+            - ["al lado de", "El banco está al lado de la farmacia. — Банк рядом с аптекой."]
+            - ["enfrente de", "La parada está enfrente del hotel. — Остановка напротив гостиницы."]
+            - ["entre … y …", "El café está entre el banco y el cine. — Кафе между банком и кинотеатром."]
+            - ["al final de", "El museo está al final de la calle. — Музей в конце улицы."]
+            - ["en la esquina", "Hay una farmacia en la esquina. — На углу есть аптека."]
+      - note:
+          id: del
+          text: "После de артикль el сливается: **de + el = del** — _enfrente del hotel_, _al lado del banco_. С la — без слияния: _al lado de la farmacia_."
+      - choose:
+          title: Где это?
+          skill: direcciones
+          rule: donde
+          items:
+            - q: "El café está ___ el banco y el cine."
+              options: "entre | enfrente de | al final de"
+              explain: "Между двумя местами — entre … y …"
+            - q: "La parada está ___ hotel, al otro lado de la calle."
+              options: "enfrente del | entre el | al final del"
+              explain: "Через дорогу — enfrente del hotel."
+            - q: "Hay una farmacia ___ esquina."
+              options: "en la | a la | de la"
+              explain: "На углу — en la esquina."
+            - say: "La oficina de turismo está al lado del museo."
+              options: "Туристический офис рядом с музеем. | Туристический офис напротив музея. | Музей в туристическом офисе."
+              explain: "Al lado de — «рядом с»."
+              noaudio: {q: "Что значит «La oficina de turismo está al lado del museo»?", options: "Туристический офис рядом с музеем. | Туристический офис напротив музея. | Музей в туристическом офисе."}
+      - build:
+          title: Соберите фразу
+          skill: direcciones
+          rule: donde
+          items:
+            - es: "La oficina de turismo está en la avenida principal."
+              ru: "Туристический офис — на главном проспекте."
+            - es: "Toma la primera calle a la izquierda."
+              ru: "Сверни на первую улицу налево."
+              extra: [tome]
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: direcciones
+          rule: donde
+          items:
+            - q: "Банк напротив гостиницы."
+              a: "El banco está enfrente del hotel"
+              explain: "De + el = del."
+              mistakes:
+                "el banco está enfrente de el hotel": "De + el сливаются: **del** hotel."
+      - compose:
+          title: О себе
+          skill: direcciones
+          rule: camino
+          items:
+            - q: "Объясните другу на «ты», как пройти от вашего дома до ближайшего магазина или кафе. Две-три фразы."
+              format: "Sal de casa y gira… Sigue todo recto hasta…"
+              words: [10, 50]
+              sentences: 2
+              checks:
+                - label: "инструкции: sigue, gira, toma, cruza, sal…"
+                  re: "\\b(sigue|gira|toma|cruza|sal|ve|camina|pasa|baja|sube)\\b"
+                - label: "где: al lado de, enfrente de, entre, al final de, en la esquina…"
+                  any: [al lado de, al lado del, enfrente de, enfrente del, entre, al final de, al final del, en la esquina, detrás de, delante de, cerca de]
+              sample: "Sal de casa y gira a la derecha. Sigue todo recto hasta el semáforo y cruza la calle. El café está en la esquina, al lado del banco."
+              sample_ru: "Выйди из дома и поверни направо. Иди прямо до светофора и перейди улицу. Кафе на углу, рядом с банком."
+    quiz:
+      - q: "El cine está ___ final de la calle."
+        options: "al | en el | a"
+        explain: "В конце — al final de."
+        skill: direcciones
+      - q: "Señora, ___ la avenida y gire a la izquierda."
+        options: "cruce | cruza | cruzas"
+        explain: "Señora — на «вы»: cruce."
+        skill: direcciones
+
+  - id: metro
+    kind: dialogue
+    title: "¿Qué línea va a Sol?"
+    goal: спросить и объяснить, как доехать на метро
+    version: 2
+    vocab:
+      - "〰️ la línea [ли́нэа] — линия (метро) :: Toma la línea uno. — Садись на первую линию."
+      - "🚪 bajarse [баха́рсэ] — выходить (из транспорта) :: Bájate en Sol. — Выходи на Соль."
+      - "🔀 hacer transbordo [асэ́р трансбо́рдо] — сделать пересадку :: Hay que hacer transbordo en Sol. — В Соль нужна пересадка."
+      - "🚶 andando [анда́ндо] — пешком (разг.) :: Desde allí puedes ir andando. — Оттуда можно дойти пешком."
+    forms: [bájate, bájese]
+    blocks:
+      - learn: [la línea, bajarse, hacer transbordo, andando]
+      - "Ирина объясняет Тому, как доехать до площади Пуэрта-дель-Соль."
+      - dialogue:
+          id: linea
+          lines:
+            - "Tom: Irina, ¿qué línea va a Sol? | Ирина, какая линия идёт до Соль?"
+            - "Irina: Desde aquí, toma la línea uno. Son cuatro paradas. | Отсюда садись на первую линию. Четыре остановки."
+            - "Tom: ¿Tengo que hacer transbordo? | Нужна пересадка?"
+            - "Irina: No, es directo. Bájate en Sol y sal por la salida de la calle Mayor. | Нет, напрямую. Выходи на Соль и выходи через выход на улицу Майор."
+            - "Tom: ¿Y desde Sol al restaurante? | А от Соль до ресторана?"
+            - "Irina: Puedes ir andando: está a cinco minutos. | Можно пешком: пять минут."
+      - choose:
+          title: Что сказано?
+          source: linea
+          skill: metro
+          items:
+            - q: "¿Qué línea tiene que tomar Tom?"
+              options: "La línea uno. | La línea cuatro. | La línea dos."
+              explain: "Irina: Desde aquí, toma la línea uno."
+            - q: "¿Cuántas paradas son?"
+              options: "Cuatro. | Una. | Cinco."
+              explain: "Irina: Son cuatro paradas."
+            - q: "¿Tiene que hacer transbordo?"
+              options: "No, es directo. | Sí, en Sol. | Sí, dos veces."
+              explain: "Irina: No, es directo."
+            - q: "¿Dónde se baja Tom?"
+              options: "En Sol. | En la línea uno. | En el restaurante."
+              explain: "Irina: Bájate en Sol."
+            - q: "¿Cómo va de Sol al restaurante?"
+              options: "Andando. | En autobús. | En taxi."
+              explain: "Irina: Puedes ir andando: está a cinco minutos."
+      - note:
+          id: bajarse
+          slide: new
+          text: "**Bajarse** — «выходить из транспорта», **subir** — «садиться». В инструкции местоимение пишется слитно: _bájate_ (ты), _bájese_ (вы). О расстоянии говорят с **estar a**: _Está a cinco minutos_."
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          free: true
+          skill: metro
+          rule: bajarse
+          items:
+            - q: "Выходи на Соль. (на «ты»)"
+              a: "Bájate en Sol"
+              explain: "Bajarse → bájate."
+              mistakes:
+                "bajate en sol": "Почти: в bájate нужен знак ударения — b**á**jate."
+            - q: "Это в десяти минутах пешком."
+              a: "Está a diez minutos a pie | Está a diez minutos andando"
+              explain: "Расстояние — estar a…"
+              mistakes:
+                "es a diez minutos a pie": "Расстояние — с **estar**: está a diez minutos."
+      - choose:
+          title: Послушайте
+          free: true
+          skill: metro
+          rule: bajarse
+          items:
+            - say: "Toma la línea dos y haz transbordo en Sol."
+              options: "Садись на вторую линию и сделай пересадку на Соль. | Садись на первую линию и выходи на Соль. | Вторая линия не идёт до Соль."
+              explain: "Toma la línea dos — «садись на вторую линию»; haz transbordo — «сделай пересадку»."
+              noaudio: {q: "Что значит «Toma la línea dos y haz transbordo en Sol»?", options: "Садись на вторую линию и сделай пересадку на Соль. | Садись на первую линию и выходи на Соль. | Вторая линия не идёт до Соль."}
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: metro
+          rule: bajarse
+          items:
+            - es: "Son cuatro paradas: bájate en Sol."
+              ru: "Четыре остановки: выходи на Соль."
+      - compose:
+          title: О себе
+          free: true
+          skill: metro
+          rule: bajarse
+          items:
+            - q: "Объясните другу на «ты», как доехать от вашего дома до центра города: какой транспорт, где выйти, нужна ли пересадка."
+              format: "Toma el autobús… Bájate en…"
+              words: [8, 45]
+              checks:
+                - label: "транспорт: toma la línea…, el autobús, el metro…"
+                  any: [toma, línea, metro, autobús, tren, a pie, andando, en bici]
+                - label: "где выйти или пересесть: bájate, haz transbordo…"
+                  any: [bájate, baja, haz transbordo, transbordo, parada, para]
+              sample: "Toma el metro, la línea tres, y bájate en la cuarta parada. No tienes que hacer transbordo. Desde allí, el centro está a cinco minutos andando."
+              sample_ru: "Садись в метро на третью линию и выходи на четвёртой остановке. Пересадка не нужна. Оттуда до центра пять минут пешком."
+    quiz:
+      - q: "En Sol tienes que hacer ___ a la línea tres."
+        options: "transbordo | parada | línea"
+        explain: "Пересадка — hacer transbordo."
+        skill: metro
+        free: true
+      - q: "La estación está ___ cinco minutos a pie."
+        options: "a | en | de"
+        explain: "Расстояние — estar a…"
+        skill: metro
+        free: true
+
+  - id: permiso
+    kind: grammar
+    title: "¿Puedo…? ¿Te importa…?"
+    goal: попросить разрешения и о небольшой услуге
+    version: 2
+    vocab:
+      - "🙏 ¿te importa…? [тэ импо́рта] — тебе не трудно…?, ты не против…? :: ¿Te importa cerrar la puerta? — Тебе не трудно закрыть дверь?"
+      - "✅ por supuesto [пор супуэ́сто] — разумеется, конечно :: — ¿Puedo pasar? — Por supuesto. — Можно войти? — Конечно."
+      - "🚫 prohibido/a [проиби́до, проиби́да] — запрещённый :: Está prohibido fumar. — Курить запрещено."
+      - "🅿️ aparcar [апарка́р] — парковаться :: ¿Se puede aparcar aquí? — Здесь можно парковаться?"
+      - "🔁 repetir [рэпэти́р] — повторять :: ¿Puede repetir, por favor? — Повторите, пожалуйста."
+    forms: [ayudarme]
+    blocks:
+      - learn: ["¿te importa…?", por supuesto, prohibido/a, aparcar, repetir]
+      - table:
+          id: pedir
+          title: Как попросить
+          rows:
+            - ["¿Puedo + инфинитив? — разрешение", "¿Puedo abrir la ventana? — Можно открыть окно?"]
+            - ["¿Se puede + инфинитив? — так можно?", "¿Se puede pagar con tarjeta? — Можно расплатиться картой?"]
+            - ["¿Puedes / Puede + инфинитив? — просьба", "¿Puede repetir, por favor? — Повторите, пожалуйста."]
+            - ["¿Te importa / Le importa + инфинитив?", "¿Te importa cerrar la puerta? — Тебе не трудно закрыть дверь?"]
+      - choose:
+          title: Как попросить?
+          skill: permiso
+          rule: pedir
+          items:
+            - q: "Вы в гостях, в комнате жарко. Как попросить разрешения открыть окно?"
+              options: "¿Puedo abrir la ventana? | ¿Puedes abrir la ventana? | ¿Se abre la ventana?"
+              explain: "Разрешение для себя — ¿Puedo…?"
+            - q: "Вы не расслышали продавца. Как попросить повторить, на «вы»?"
+              options: "¿Puede repetir, por favor? | ¿Puedo repetir, por favor? | ¿Repito, por favor?"
+              explain: "Просьба к другому на «вы» — ¿Puede…?"
+            - lines: ["Tom: ¿Puedo pasar?"]
+              q: "Разрешите."
+              options: "Por supuesto. | Está prohibido. | No, claro que no."
+              explain: "Разрешить — Por supuesto или Sí, claro."
+            - q: "¿Se puede aparcar aquí? — No, lo siento, está ___."
+              options: "prohibido | importa | supuesto"
+              explain: "Нельзя — está prohibido."
+      - table:
+          id: responder_permiso
+          slide: new
+          title: Как ответить
+          rows:
+            - ["да", "Sí, claro. — Да, конечно. Por supuesto. — Разумеется."]
+            - ["на ¿Te importa…?", "No, no me importa. / No, claro que no. — Нет, не трудно (то есть «да, сделаю»)."]
+            - ["нет", "Lo siento, no se puede: está prohibido. — Извините, нельзя: это запрещено."]
+      - note:
+          id: importa
+          text: "Осторожно: на **¿Te importa…?** согласие звучит как «нет»: _No, no me importa_ — «мне не трудно». А _Sí, me importa_ — это отказ."
+      - choose:
+          title: Что ответить?
+          skill: permiso
+          rule: importa
+          items:
+            - lines: ["Ana: ¿Te importa cerrar la puerta?"]
+              q: "Согласитесь."
+              options: "No, claro que no. | Sí, me importa. | No puedo, lo siento."
+              explain: "Согласие на ¿Te importa…? — No, claro que no."
+            - say: "¿Te importa hablar más despacio?"
+              options: "Тебе не трудно говорить помедленнее? | Ты можешь говорить быстрее? | Мне не важно, как ты говоришь."
+              explain: "¿Te importa…? — «тебе не трудно…?»"
+              noaudio: {q: "Что значит «¿Te importa hablar más despacio?»", options: "Тебе не трудно говорить помедленнее? | Ты можешь говорить быстрее? | Мне не важно, как ты говоришь."}
+      - write:
+          title: Попросите по-испански
+          format: вопрос по-испански
+          skill: permiso
+          rule: pedir
+          items:
+            - q: "Можно мне заплатить картой?"
+              a: "¿Puedo pagar con tarjeta? | ¿Se puede pagar con tarjeta?"
+              explain: "Разрешение — ¿Puedo…? или ¿Se puede…?"
+            - q: "Вы можете мне помочь? (на «вы»)"
+              a: "¿Me puede ayudar? | ¿Puede ayudarme? | ¿Me puede ayudar, por favor? | ¿Puede ayudarme, por favor?"
+              explain: "Просьба на «вы» — ¿Puede…?"
+              mistakes:
+                "me puedes ayudar": "Puedes — на «ты». На «вы» — **¿Me puede ayudar?**"
+            - q: "Тебе не трудно повторить?"
+              a: "¿Te importa repetir? | ¿Te importa repetir, por favor?"
+              explain: "¿Te importa + инфинитив?"
+      - build:
+          title: Соберите фразу
+          skill: permiso
+          rule: responder_permiso
+          items:
+            - es: "Lo siento, aquí está prohibido aparcar."
+              ru: "Извините, здесь парковаться запрещено."
+              extra: [importa]
+      - compose:
+          title: Две просьбы
+          skill: permiso
+          rule: pedir
+          items:
+            - q: "Напишите две вежливые просьбы: соседу по квартире (на «ты») и незнакомому человеку на улице (на «вы»)."
+              format: "Pablo, ¿te importa…? Perdone, ¿puede…?"
+              words: [8, 45]
+              sentences: 2
+              checks:
+                - label: "просьба на «ты»: ¿puedes…?, ¿te importa…?"
+                  any: [puedes, te importa]
+                - label: "просьба на «вы»: ¿puede…?, ¿le importa…?"
+                  any: [puede, le importa]
+              sample: "Pablo, ¿te importa cerrar la ventana? Hace frío. Perdone, ¿puede repetir, por favor? No le oigo bien."
+              sample_ru: "Пабло, тебе не трудно закрыть окно? Холодно. Извините, повторите, пожалуйста? Я вас плохо слышу."
+    quiz:
+      - q: "— ¿Te importa ayudarme? — No, ___."
+        options: "claro que no | sí, me importa | está prohibido"
+        explain: "Согласие на ¿Te importa…? — No, claro que no."
+        skill: permiso
+      - q: "Señor, ¿___ repetir, por favor?"
+        options: "puede | puedo | puedes"
+        explain: "Просьба на «вы» — ¿puede…?"
+        skill: permiso
+
+  - id: se_impersonal
+    kind: grammar
+    title: "Se habla español, se vende piso"
+    goal: понять вывески и объявления и сказать, что где можно
+    version: 2
+    vocab:
+      - "💰 vender [бэндэ́р] — продавать :: Mi vecino vende su coche. — Мой сосед продаёт машину."
+      - "🔑 alquilar [алькила́р] — снимать, сдавать (в аренду) :: Alquilamos un piso en el centro. — Мы снимаем квартиру в центре."
+      - "🪧 el cartel [карте́ль] — вывеска, объявление {pl: los carteles} :: ¿Qué dice el cartel? — Что написано на вывеске?"
+    blocks:
+      - learn: [vender, alquilar, el cartel]
+      - "Вывески и объявления часто начинаются с **se**: так говорят, что здесь делают или что здесь можно."
+      - table:
+          id: se
+          title: "Se + глагол"
+          rows:
+            - ["se + глагол", "Aquí se habla inglés. — Здесь говорят по-английски."]
+            - ["¿Cómo se va…?", "¿Cómo se va a la estación? — Как пройти к вокзалу?"]
+            - ["(no) se puede + инфинитив", "No se puede aparcar aquí. — Здесь нельзя парковаться."]
+            - ["se + глагол во мн. ч.", "Se venden bicis. — Продаются велосипеды. Se alquilan pisos. — Сдаются квартиры."]
+      - note:
+          id: se_plural
+          text: "Если то, что продают или сдают, во множественном числе, глагол тоже во множественном: _se vende un piso_, но _se venden pisos_. А se puede не меняется: _se puede aparcar_."
+      - match:
+          title: Что написано на вывеске?
+          skill: se_impersonal
+          rule: se
+          pairs:
+            - "Se habla inglés — здесь говорят по-английски"
+            - "Se vende — продаётся"
+            - "Se alquila — сдаётся"
+            - "No se puede fumar — курить нельзя"
+            - "Prohibido aparcar — парковка запрещена"
+      - choose:
+          title: Выберите форму
+          skill: se_impersonal
+          rule: se_plural
+          items:
+            - q: "Se ___ pisos en el centro."
+              options: "alquilan | alquila | alquilamos"
+              explain: "Pisos — множественное число: se alquilan."
+            - q: "Aquí no se ___ fumar."
+              options: "puede | pueden | podemos"
+              explain: "Se puede + инфинитив — всегда в единственном числе."
+            - q: "El cartel dice «Se alquila». ¿Qué significa?"
+              options: "Сдаётся. | Продаётся. | Закрыто."
+              explain: "Alquilar — сдавать или снимать."
+            - q: "Perdone, ¿cómo se ___ al aeropuerto?"
+              options: "va | van | vamos"
+              explain: "¿Cómo se va…? — как добраться."
+            - say: "En esta tienda se alquilan bicis por horas."
+              options: "В этом магазине можно взять велосипед напрокат на несколько часов. | В этом магазине продаются велосипеды. | В этом магазине чинят велосипеды."
+              explain: "Se alquilan — «сдаются напрокат»."
+              noaudio: {q: "Что значит «En esta tienda se alquilan bicis por horas»?", options: "В этом магазине можно взять велосипед напрокат на несколько часов. | В этом магазине продаются велосипеды. | В этом магазине чинят велосипеды."}
+      - write:
+          title: Напишите вывеску или вопрос
+          format: фраза по-испански
+          skill: se_impersonal
+          rule: se
+          items:
+            - q: "Здесь говорят по-испански."
+              a: "Aquí se habla español | Se habla español aquí | Se habla español"
+              explain: "Se + habla."
+            - q: "Продаётся машина."
+              a: "Se vende coche | Se vende un coche"
+              explain: "Se + vende."
+              mistakes:
+                "se venden coche": "Машина одна — глагол в единственном числе: **se vende**."
+            - q: "Как пройти к вокзалу?"
+              a: "¿Cómo se va a la estación?"
+              explain: "¿Cómo se va a…?"
+      - build:
+          title: Соберите фразу
+          skill: se_impersonal
+          rule: se
+          items:
+            - es: "No se puede aparcar delante de la puerta."
+              ru: "Перед дверью парковаться нельзя."
+              extra: [pueden]
+      - compose:
+          title: Правила дома
+          skill: se_impersonal
+          rule: se
+          items:
+            - q: "Какие правила у вас дома или на работе? Напишите две-три фразы: что можно и что нельзя."
+              format: "En mi casa se puede… No se puede…"
+              words: [8, 45]
+              sentences: 2
+              checks:
+                - label: "можно: se puede…"
+                  any: [se puede, se pueden]
+                - label: "нельзя: no se puede…, está prohibido…"
+                  any: [no se puede, no se pueden, prohibido]
+              sample: "En mi casa no se puede fumar. Se puede escuchar música, pero no muy alta después de las diez."
+              sample_ru: "У меня дома курить нельзя. Музыку слушать можно, но после десяти — негромко."
+    quiz:
+      - q: "Se ___ bicis por horas."
+        options: "alquilan | alquila | alquilo"
+        explain: "Bicis — множественное число: se alquilan."
+        skill: se_impersonal
+      - q: "Что значит «Se vende»?"
+        options: "Продаётся. | Сдаётся. | Закрыто."
+        explain: "Vender — продавать."
+
+  - id: lectura
+    kind: reading
+    title: "Cómo llegar a mi casa"
+    goal: понять объяснение дороги в письме и ответить
+    version: 2
+    vocab:
+      - "⛪ la iglesia [игле́сья] — церковь :: Mi casa está enfrente de la iglesia. — Мой дом напротив церкви."
+      - "🏛 el ayuntamiento [аюнтамье́нто] — мэрия :: El ayuntamiento está en la plaza. — Мэрия на площади."
+      - "🚪 el portal [порта́ль] — подъезд, вход в дом :: Te espero en el portal. — Жду тебя у подъезда."
+    blocks:
+      - learn: [la iglesia, el ayuntamiento, el portal]
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "la iglesia — церковь"
+            - "el ayuntamiento — мэрия"
+            - "el portal — подъезд"
+      - "Ольга пишет двоюродной сестре Наталье, как дойти до её квартиры в Валенсии."
+      - reading:
+          id: camino
+          title: Cómo llegar a mi casa
+          text: |
+            ¡Hola, Natalia! Llegar a mi casa desde la estación del Norte es muy fácil.
+
+            Al salir de la estación, gira a la derecha y sigue todo recto por la avenida. En la segunda esquina hay un banco: allí cruza la calle. Toma la primera calle a la izquierda y sigue hasta una plaza pequeña con una iglesia. Mi casa está enfrente de la iglesia, al lado de una farmacia: es el número ocho.
+
+            También puedes tomar el metro, pero es solo una parada y la estación de metro está un poco lejos. Andando son quince minutos.
+
+            En el portal, toca el timbre del tercero B y sube en el ascensor. ¡Te espero con la cena!
+
+            Un beso,
+            Olga
+          translation: |
+            Привет, Наталья! Дойти до меня от Северного вокзала очень просто.
+
+            Выйдя из вокзала, поверни направо и иди прямо по проспекту. На втором углу будет банк: там перейди улицу. Сверни на первую улицу налево и иди до маленькой площади с церковью. Мой дом напротив церкви, рядом с аптекой: номер восемь.
+
+            Можно и на метро, но это всего одна остановка, а станция метро довольно далеко. Пешком — пятнадцать минут.
+
+            У подъезда позвони в квартиру «третий Б» и поднимайся на лифте. Жду тебя с ужином!
+
+            Целую,
+            Ольга
+      - choose:
+          title: Что сказано в письме?
+          source: camino
+          items:
+            - q: "¿Qué tiene que hacer Natalia al salir de la estación?"
+              options: "Girar a la derecha. | Girar a la izquierda. | Tomar el metro."
+              explain: "Al salir de la estación, gira a la derecha."
+              skill: direcciones
+            - q: "¿Qué hay en la segunda esquina?"
+              options: "Un banco. | Una iglesia. | Una farmacia."
+              explain: "En la segunda esquina hay un banco."
+            - q: "¿Dónde está la casa de Olga?"
+              options: "Enfrente de la iglesia, al lado de una farmacia. | Al lado de la iglesia, enfrente de un banco. | En la avenida, al lado de la estación de metro."
+              explain: "Mi casa está enfrente de la iglesia, al lado de una farmacia."
+              skill: direcciones
+            - q: "¿Cuántos minutos son andando?"
+              options: "Quince. | Cinco. | Cincuenta."
+              explain: "Andando son quince minutos."
+              skill: metro
+      - write:
+          title: Ответьте по тексту
+          format: короткий ответ по-испански
+          source: camino
+          items:
+            - q: "¿En qué piso vive Olga?"
+              a: "En el tercero | En el tercero B | Tercero B | En el tercero, B"
+              explain: "…toca el timbre del tercero B."
+            - q: "Как в письме сказано «поднимись на лифте»?"
+              a: "sube en el ascensor"
+              explain: "Sube — инструкция на «ты» от subir."
+              skill: imperativo_tu
+      - choose:
+          title: Послушайте
+          free: true
+          rule: none
+          items:
+            - say: "Al salir de la estación, gira a la derecha."
+              options: "Выйдя из вокзала, поверни направо. | Перед вокзалом поверни налево. | Вокзал справа, когда выходишь."
+              explain: "Al salir — «выйдя, когда выйдешь»; gira a la derecha — «поверни направо»."
+              skill: direcciones
+              noaudio: {q: "Что значит «Al salir de la estación, gira a la derecha»?", options: "Выйдя из вокзала, поверни направо. | Перед вокзалом поверни налево. | Вокзал справа, когда выходишь."}
+      - compose:
+          title: Ответ Ольге
+          free: true
+          rule: none
+          skill: [permiso, direcciones]
+          items:
+            - q: "Вы — Наталья. Ответьте Ольге: поблагодарите, скажите, во сколько приедете, и попросите о чём-нибудь (¿Puedes…?, ¿Te importa…?)."
+              format: "¡Gracias, Olga! Llego a las… ¿Te importa…?"
+              words: [10, 50]
+              checks:
+                - label: "спасибо"
+                  any: [gracias]
+                - label: "когда приедете: a las…"
+                  any: [a las, a la una]
+                - label: "просьба: ¿puedes…?, ¿te importa…?"
+                  any: [puedes, te importa, puedo]
+              sample: "¡Gracias, Olga! Llego a las siete. ¿Te importa salir al portal? Tengo una maleta muy grande."
+              sample_ru: "Спасибо, Ольга! Приеду в семь. Тебе не трудно выйти к подъезду? У меня очень большой чемодан."
+
+  - id: mision
+    kind: practice
+    title: Турист спрашивает дорогу
+    goal: понять объявление в метро и объяснить дорогу туристу
+    version: 2
+    blocks:
+      - review:
+          title: Вспомним
+          skills: [imperativo_tu, imperativo_usted, le_les]
+          n: 2
+      - "Вы едете в метро. Послушайте объявление: текста нет."
+      - dialogue:
+          id: anuncio
+          hidden: true
+          title: Объявление в метро
+          lines:
+            - "Megafonía: Próxima parada: Sol. Puede hacer transbordo a las líneas dos y tres. Salida por la derecha. | Следующая станция — Соль. Пересадка на вторую и третью линии. Выход справа."
+      - choose:
+          title: Что объявили?
+          source: anuncio
+          skill: metro
+          items:
+            - q: "¿Cuál es la próxima parada?"
+              options: "Sol. | Retiro. | Prado."
+              explain: "Próxima parada: Sol."
+            - q: "¿A qué líneas puede hacer transbordo?"
+              options: "A la dos y a la tres. | A la uno y a la dos. | A ninguna."
+              explain: "Puede hacer transbordo a las líneas dos y tres."
+            - q: "¿Por dónde es la salida?"
+              options: "Por la derecha. | Por la izquierda. | Por delante."
+              explain: "Salida por la derecha."
+      - mission:
+          id: turista
+          title: Турист спрашивает дорогу
+          text: "Вы выходите из метро. К вам обращается турист — объясните ему дорогу на «вы»."
+      - chat:
+          id: turista_chat
+          title: На улице
+          with: Turista
+          turns:
+            - say: "Perdone, ¿hay una farmacia por aquí? | Извините, здесь поблизости есть аптека?"
+              task: "Скажите, что да: на углу, рядом с банком."
+              skill: direcciones
+              write: "Sí, en la esquina(,) al lado del banco | Sí, hay una en la esquina(,) al lado del banco | Sí, está en la esquina(,) al lado del banco"
+              format: где
+              mistakes:
+                "sí en la esquina al lado de el banco": "De + el сливаются: al lado **del** banco."
+            - say: "Gracias. ¿Y para ir al Museo del Prado? | Спасибо. А как пройти к музею Прадо?"
+              task: "Объясните на «вы»: идите прямо до светофора."
+              skill: direcciones
+              write: "Siga todo recto hasta el semáforo | Siga recto hasta el semáforo"
+              format: инструкция на «вы»
+              mistakes:
+                "sigue todo recto hasta el semáforo": "Туристу — на «вы»: **siga**."
+            - say: "¿Y después? | А потом?"
+              task: "Скажите: перейдите улицу и поверните налево."
+              skill: imperativo_usted
+              write: "Cruce la calle y gire a la izquierda | Después(,) cruce la calle y gire a la izquierda | Luego(,) cruce la calle y gire a la izquierda"
+              format: инструкция на «вы»
+              mistakes:
+                "cruza la calle y gira a la izquierda": "Туристу — на «вы»: **cruce**, **gire**."
+            - say: "¿Está lejos? | Это далеко?"
+              task: "Ответьте: нет, десять минут пешком."
+              skill: metro
+              choose: "No, está a diez minutos a pie. | No, está en diez minutos a pie. | No, es a diez minutos a pie."
+              explain: "Расстояние — estar a: está a diez minutos."
+            - say: "¿Se puede ir en autobús? | А на автобусе можно?"
+              task: "Ответьте от себя: можно ли и как."
+              skill: se_impersonal
+              compose:
+                format: "Sí, se puede: tome…"
+                words: [3, 30]
+                checks:
+                  - label: "se puede, tome, el autobús…"
+                    any: [se puede, puede, tome, autobús, línea, parada]
+                sample: "Sí, se puede: tome el autobús en esa parada y bájese en la tercera."
+                sample_ru: "Да, можно: садитесь на автобус на той остановке и выходите на третьей."
+            - say: "¡Muchas gracias! Es usted muy amable. | Большое спасибо! Вы очень любезны."
+      - compose:
+          title: Как дойти до моего дома
+          free: true
+          rule: none
+          skill: [direcciones, metro, imperativo_tu]
+          items:
+            - q: "Друг впервые едет к вам. Напишите на «ты», как добраться от метро, вокзала или остановки до вашего дома: транспорт, улицы, что рядом с домом."
+              format: "Toma la línea… Bájate en… Al salir, gira…"
+              words: [30, 110]
+              sentences: 3
+              checks:
+                - label: "транспорт: toma…, línea, autobús, metro, andando…"
+                  any: [toma, línea, metro, autobús, tren, andando, a pie, parada]
+                - label: "дорога: sigue, gira, cruza…"
+                  re: "\\b(sigue|gira|cruza|toma|sal|camina|sube|baja|bájate|ve)\\b"
+                - label: "ориентир: al lado de, enfrente de, en la esquina…"
+                  any: [al lado de, al lado del, enfrente de, enfrente del, entre, al final de, al final del, en la esquina, detrás de, delante de, cerca de]
+              sample: "Toma el metro, la línea uno, y bájate en la tercera parada. Al salir, gira a la izquierda y sigue todo recto hasta el semáforo. Cruza la avenida: mi casa está enfrente de un supermercado, al lado de un café. Toca el timbre del segundo A."
+              sample_ru: "Садись в метро на первую линию и выходи на третьей остановке. На выходе поверни налево и иди прямо до светофора. Перейди проспект: мой дом напротив супермаркета, рядом с кафе. Позвони во второй А."
+
+  - id: quiz
+    kind: quiz
+    title: "Тест: Por la ciudad"
+    goal: проверить цели темы — дорога, метро, просьбы, вывески
+    version: 2
+    check: soft
+    blocks:
+      - "Это тест по теме «Por la ciudad»: двенадцать заданий."
+      - cando:
+          - "спросить и объяснить дорогу на «ты» и на «вы»"
+          - "доехать на метро: línea, parada, hacer transbordo"
+          - "попросить разрешения и об услуге: ¿Puedo…?, ¿Puede…?, ¿Te importa…?"
+          - "понять вывески: se puede, se habla, se vende"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          rule: none
+          skill: direcciones
+          items:
+            - say: "Toma la segunda calle a la derecha."
+              a: "Toma la segunda calle a la derecha"
+              noaudio: {q: "Напишите по-испански на «ты»: «Сверни на вторую улицу направо».", a: "Toma la segunda calle a la derecha"}
+      - choose:
+          title: Послушайте
+          rule: none
+          items:
+            - say: "El banco está entre la farmacia y el cine."
+              options: "Банк между аптекой и кинотеатром. | Банк напротив аптеки. | Аптека между банком и кинотеатром."
+              skill: direcciones
+              noaudio: {q: "Что значит «El banco está entre la farmacia y el cine»?", options: "Банк между аптекой и кинотеатром. | Банк напротив аптеки. | Аптека между банком и кинотеатром."}
+            - say: "¿Le importa cerrar la ventana, por favor?"
+              options: "Вам не трудно закрыть окно, пожалуйста? | Можно мне закрыть окно? | Окно закрыто, не беспокойтесь."
+              skill: permiso
+              noaudio: {q: "Что значит «¿Le importa cerrar la ventana, por favor?»", options: "Вам не трудно закрыть окно, пожалуйста? | Можно мне закрыть окно? | Окно закрыто, не беспокойтесь."}
+      - write:
+          title: Вставьте слово или форму
+          format: одно слово
+          rule: none
+          items:
+            - q: "Señora, (cruzar) ___ la avenida y gire a la derecha."
+              a: "cruce"
+              skill: direcciones
+            - q: "La farmacia está enfrente ___ hotel."
+              a: "del"
+              skill: direcciones
+            - q: "En Sol tienes que hacer ___ a la línea tres."
+              a: "transbordo"
+              skill: metro
+            - q: "Se ___ pisos en esta calle."
+              a: "alquilan | venden"
+              skill: se_impersonal
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          rule: none
+          items:
+            - q: "Можно мне открыть окно?"
+              a: "¿Puedo abrir la ventana? | ¿Se puede abrir la ventana?"
+              skill: permiso
+            - q: "Выходи на третьей остановке. (на «ты»)"
+              a: "Bájate en la tercera parada"
+              skill: metro
+              mistakes:
+                "bajate en la tercera parada": "Почти: в bájate нужен знак ударения — b**á**jate."
+      - build:
+          title: Соберите фразу
+          rule: none
+          skill: se_impersonal
+          items:
+            - es: "Perdone, ¿cómo se va a la estación?"
+              ru: "Извините, как пройти к вокзалу?"
+              extra: [van]
+    quiz:
+      - q: "— ¿Te importa esperar un momento? — No, ___."
+        options: "claro que no | sí, me importa | está prohibido"
+        explain: "Согласие на ¿Te importa…? — No, claro que no."
+        skill: permiso
+      - q: "Что значит «el semáforo»?"
+        options: "светофор | перекрёсток | угол"
+        explain: "El semáforo — светофор; угол — la esquina."
+
+  - id: control
+    kind: final
+    title: "Контрольная точка 2"
+    goal: проверить вторую треть уровня — прошлое в описании и рассказе, встречи, инструкции и дорога
+    version: 2
+    check: soft
+    blocks:
+      - "Контрольная точка по темам 30–35. Здесь нет нового: проверяем, что вы уже умеете. Результат подскажет, какие темы стоит повторить."
+      - cando:
+          - "описать, как было раньше, и сравнить с тем, что сейчас"
+          - "рассказать о случае: что было вокруг и что произошло"
+          - "предложить встречу, отказаться, договориться"
+          - "дать инструкцию и объяснить дорогу"
+      - text:
+          slide: new
+          text: "Том рассказывает Ирине о поездке в Толедо. Послушайте разговор два раза: текста нет."
+      - dialogue:
+          id: toledo
+          hidden: true
+          title: Поездка в Толедо
+          lines:
+            - "Irina: ¡Hola, Tom! ¿Qué tal el sábado en Toledo? | Привет, Том! Как суббота в Толедо?"
+            - "Tom: Muy bien, pero tuve un pequeño problema. | Отлично, но была небольшая проблема."
+            - "Irina: ¿Qué te pasó? | Что случилось?"
+            - "Tom: Estaba paseando por el centro y, de repente, empezó a llover. No tenía paraguas y entré en un café. | Я гулял по центру, и вдруг пошёл дождь. Зонта у меня не было, и я зашёл в кафе."
+            - "Tom: Allí conocí a una señora muy simpática. Cuando era joven, vivía en Madrid, en mi barrio. | Там я познакомился с очень милой женщиной. В молодости она жила в Мадриде, в моём районе."
+            - "Irina: ¿Y cómo era el barrio entonces? | И каким тогда был район?"
+            - "Tom: Ella dice que era más tranquilo que ahora y que no había tantos coches. | Она говорит, что спокойнее, чем сейчас, и машин было не так много."
+            - "Irina: ¡Qué bien! ¿Te apetece volver a Toledo? | Здорово! Хочешь вернуться в Толедо?"
+            - "Tom: Sí. ¿Por qué no vamos juntos el sábado que viene? | Да. Может, поедем вместе в следующую субботу?"
+            - "Irina: Vale. ¡Pero lleva paraguas! | Давай. Только возьми зонт!"
+      - choose:
+          title: Что вы поняли?
+          source: toledo
+          items:
+            - q: "¿Qué estaba haciendo Tom cuando empezó a llover?"
+              options: "Paseaba por el centro. | Comía en un café. | Visitaba un museo."
+              skill: estaba_gerundio
+            - q: "¿Por qué entró en un café?"
+              options: "Porque llovía y no tenía paraguas. | Porque tenía mucha hambre. | Porque había quedado con una señora."
+              skill: fondo_hechos
+            - q: "¿Dónde vivía la señora cuando era joven?"
+              options: "En Madrid, en el barrio de Tom. | En Toledo, en el centro. | En un pueblo de Andalucía."
+              skill: imperfecto_er_ir
+            - q: "¿Cómo era el barrio antes?"
+              options: "Más tranquilo y con menos coches. | Más ruidoso y más caro. | Igual que ahora."
+              skill: comparar
+            - q: "¿Qué propone Tom?"
+              options: "Ir juntos a Toledo el sábado. | Ir a un café en Madrid. | Comprar un paraguas."
+              skill: proponer
+            - q: "¿Qué tiene que llevar Tom?"
+              options: "Un paraguas. | Las entradas. | Un mapa de Toledo."
+              skill: imperativo_tu
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          free: true
+          rule: none
+          items:
+            - say: "Antes había menos coches que ahora."
+              a: "Antes había menos coches que ahora"
+              skill: comparar
+              noaudio: {q: "Напишите по-испански: «Раньше машин было меньше, чем сейчас».", a: "Antes había menos coches que ahora | Antes había menos coches"}
+            - say: "Gire a la derecha en el semáforo."
+              a: "Gire a la derecha en el semáforo"
+              skill: direcciones
+              noaudio: {q: "Напишите по-испански на «вы»: «Поверните направо у светофора».", a: "Gire a la derecha en el semáforo"}
+      - write:
+          title: Вставьте слово или форму
+          format: одно или два слова
+          free: true
+          rule: none
+          items:
+            - q: "De niño (yo, jugar) ___ al fútbol todos los días."
+              a: "jugaba"
+              skill: imperfecto_ar
+            - q: "Estaba en casa cuando (sonar) ___ el teléfono."
+              a: "sonó"
+              skill: fondo_hechos
+            - q: "Mi hermano es ___ alto como mi padre."
+              a: "tan"
+              skill: tan_como
+            - q: "(tú, venir) ___ a mi casa a las ocho."
+              a: "Ven"
+              skill: imperativo_tu
+            - q: "¿Le prestas el coche a Pablo? — Sí, ___ presto."
+              a: "se lo"
+              skill: le_les
+            - q: "Antes fumaba, pero ___ fumo."
+              a: "ya no"
+              skill: ya_no_todavia
+      - choose:
+          title: Выберите вариант
+          free: true
+          rule: none
+          items:
+            - q: "Este café es ___ que el café de la oficina."
+              options: "mejor | más bueno | bien"
+              skill: mejor_peor
+            - q: "No puedo ir: ___ tengo que trabajar."
+              options: "es que | porque es | por qué"
+              skill: rechazar
+            - q: "Señor, ___ este formulario, por favor."
+              options: "rellene | rellena | rellenas"
+              skill: imperativo_usted
+            - q: "Se ___ habitaciones en este hotel."
+              options: "alquilan | alquila | alquilo"
+              skill: se_impersonal
+      - "Диего пишет из Мексики."
+      - reading:
+          id: diego
+          title: Mensaje de Diego
+          text: |
+            ¡Hola! ¿Qué tal por Madrid? Yo estoy en México, en casa de mis padres. Mi pueblo ha cambiado mucho: antes era muy pequeño y tranquilo, y ahora hay un centro comercial enorme.
+
+            Ayer, mientras paseaba por la plaza, vi a mi profesora de la escuela. Está igual que antes: alta, delgada y muy simpática.
+
+            Si vienes a México, ven a mi pueblo y prueba la comida de mi madre: es mejor que la comida de los restaurantes.
+
+            Un abrazo,
+            Diego
+          translation: |
+            Привет! Как там в Мадриде? Я в Мексике, у родителей. Мой посёлок очень изменился: раньше он был маленьким и тихим, а теперь здесь огромный торговый центр.
+
+            Вчера, когда я гулял по площади, увидел свою школьную учительницу. Она всё такая же: высокая, худая и очень приветливая.
+
+            Если приедешь в Мексику, приезжай ко мне в посёлок и попробуй мамину еду: она лучше, чем в ресторанах.
+
+            Обнимаю,
+            Диего
+      - choose:
+          title: Что написал Диего?
+          source: diego
+          items:
+            - q: "¿Cómo era el pueblo de Diego antes?"
+              options: "Pequeño y tranquilo. | Grande y moderno. | Ruidoso y caro."
+              skill: describir_pasado
+            - q: "¿Qué hacía Diego cuando vio a su profesora?"
+              options: "Paseaba por la plaza. | Comía con sus padres. | Estaba en la escuela."
+              skill: estaba_gerundio
+            - q: "¿Qué le recomienda Diego?"
+              options: "Probar la comida de su madre. | Visitar el centro comercial. | Llamar a su profesora."
+              skill: imperativo_tu
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          free: true
+          rule: none
+          items:
+            - q: "Раньше я жил в Киеве, а сейчас живу в Мадриде."
+              a: "Antes vivía en Kiev y ahora vivo en Madrid | Antes vivía en Kiev, pero ahora vivo en Madrid | Antes vivía en Kiev, ahora vivo en Madrid"
+              skill: ya_no_todavia
+            - q: "Хочешь пойти в кино в субботу?"
+              a: "¿Te apetece ir al cine el sábado? | ¿Quieres ir al cine el sábado?"
+              skill: proponer
+            - q: "Идите прямо и поверните налево. (на «вы»)"
+              a: "Siga todo recto y gire a la izquierda | Siga recto y gire a la izquierda"
+              skill: direcciones
+      - compose:
+          title: Место из детства
+          free: true
+          rule: none
+          skill: [describir_pasado, fondo_hechos, comparar, imperativo_tu]
+          items:
+            - q: "Напишите 80–100 слов о месте из вашего детства: каким оно было · что там однажды случилось · каким оно стало сейчас (сравните) · что вы посоветуете там посмотреть или сделать (на «ты»)."
+              format: "Cuando era pequeño, pasaba los veranos en… Un día… Ahora… Si vas allí, visita…"
+              words: [60, 160]
+              sentences: 5
+              checks:
+                - label: "как было: era, había, vivía…"
+                  re: "\\b\\w+(aba|abas|aban|ábamos)\\b|\\b(era|eras|eran|éramos|iba|ibas|iban|íbamos|había|tenía|tenían|teníamos|vivía|vivíamos|hacía|quería|podía|salía|comía|veía|veíamos|llovía|volvía|corría|bebía)\\b"
+                - label: "что случилось: fui, vi, empezó, pasó…"
+                  any: [fui, fue, fuimos, estuve, tuve, hice, vi, vimos, empezó, pasó, conocí, encontré, perdí, llegué, me caí, nos quedamos, llovió]
+                - label: "сравнение: más / menos … que, tan … como"
+                  re: "\\b(más|menos)\\b.*\\bque\\b|\\b(tan|tanto|tanta|tantos|tantas)\\b.*\\bcomo\\b|\\b(mejor|peor)\\b"
+                - label: "совет на «ты»: visita, prueba, ve…"
+                  re: "\\b(visita|prueba|ve|ven|haz|toma|come|mira|sube|pasea|lleva|busca|compra)\\b"
+              sample: "Cuando era pequeña, pasaba los veranos en el pueblo de mis abuelos. Era un pueblo muy tranquilo: había pocas casas, una plaza y muchos árboles. Un día, mientras jugaba con mis primos en la plaza, de repente empezó a llover y nos quedamos toda la tarde en casa de una vecina. Ahora el pueblo es más grande que antes y hay más tráfico, pero no es tan bonito como entonces. Si vas allí, visita la plaza y prueba el pan de la panadería: es el mejor del mundo."
+              sample_ru: "Когда я была маленькой, я проводила лето в деревне у бабушки с дедушкой. Деревня была очень тихой: несколько домов, площадь и много деревьев. Однажды, когда мы с двоюродными братьями играли на площади, вдруг пошёл дождь, и мы весь вечер просидели у соседки. Теперь деревня больше, чем раньше, и машин больше, но она уже не такая красивая, как тогда. Если поедешь туда, сходи на площадь и попробуй хлеб из пекарни: он лучший в мире."

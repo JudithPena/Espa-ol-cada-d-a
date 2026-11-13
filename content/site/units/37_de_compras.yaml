@@ -1,0 +1,794 @@
+id: de_compras
+number: 37
+level: A2
+title: De compras — за покупками
+goals:
+  - поменять или вернуть покупку
+  - сравнить и выбрать самое лучшее
+  - выбрать вещь, не повторяя её название
+  - сказать, чья это вещь
+
+# Тема 14 карты A2: el más…, -ísimo; este / ese без существительного; el mío / la mía; одежда, техника.
+# Миссия — обмен покупки. В A1 (тема 17) уже были одежда, este / ese / aquel перед существительным, precios,
+# probarse, me queda bien / grande, me lo llevo, pagar con tarjeta.
+lessons:
+  - id: cambiar
+    kind: listening
+    title: "Quería cambiar esta chaqueta"
+    goal: понять на слух обмен покупки в магазине
+    version: 2
+    # Карта экранов: docs/site_slide_maps/37_de_compras.md
+    vocab:
+      - "🧾 el tique [ти́кэ] — чек (в магазине пишут и `ticket`) :: ¿Tiene el tique? — Чек у вас есть?"
+      - "🤏 estrecho/a [эстрэ́чо, эстрэ́ча] — узкий, тесный :: La chaqueta me queda estrecha. — Куртка мне тесная."
+      - "↔️ ancho/a [а́нчо, а́нча] — широкий, свободный :: Los pantalones me quedan anchos. — Брюки мне широки."
+      - "💳 la caja [ка́ха] — касса :: Pase por caja, por favor. — Пройдите на кассу, пожалуйста."
+      - "🛍 el dependiente / la dependienta [дэпэндье́нтэ, дэпэндье́нта] — продавец, продавщица :: La dependienta es muy amable. — Продавщица очень любезная."
+    blocks:
+      - "Ирина пришла в магазин поменять куртку. Послушайте разговор два раза: текста пока нет."
+      - dialogue:
+          id: chaqueta
+          hidden: true
+          lines:
+            - "Dependienta: Hola, buenas tardes. ¿Qué necesita? | Здравствуйте. Что вам нужно?"
+            - "Irina: Hola. Quería cambiar esta chaqueta. La compré el sábado, pero me queda estrecha. | Здравствуйте. Я хотела бы поменять эту куртку. Купила в субботу, но она мне тесная."
+            - "Dependienta: ¿Tiene el tique? | Чек у вас есть?"
+            - "Irina: Sí, aquí está. Es la treinta y ocho. ¿Tiene la cuarenta? | Да, вот он. Это тридцать восьмой размер. А сороковой у вас есть?"
+            - "Dependienta: En negro, no. Pero tenemos esta en azul y esa en gris, en la cuarenta. | В чёрном нет. Но есть вот эта в синем и та в сером, сорокового размера."
+            - "Irina: Me pruebo la azul… Sí, esta me queda muy bien. Me la llevo. | Примерю синюю… Да, эта сидит очень хорошо. Беру."
+            - "Dependienta: Muy bien. Pase por caja, por favor. | Хорошо. Пройдите, пожалуйста, на кассу."
+      - choose:
+          title: Что вы поняли?
+          source: chaqueta
+          items:
+            - q: "Что Ирина хочет сделать?"
+              options: "Cambiar una chaqueta. | Comprar unos pantalones. | Devolver un jersey."
+              explain: "Irina: Quería cambiar esta chaqueta."
+            - q: "Когда она купила куртку?"
+              options: "El sábado. | Ayer. | Hace un mes."
+              explain: "Irina: La compré el sábado."
+      - learn: [el tique, estrecho/a, ancho/a, la caja, el dependiente / la dependienta]
+      - choose:
+          title: Детали разговора
+          source: chaqueta
+          items:
+            - q: "¿Qué problema tiene la chaqueta?"
+              options: "Le queda estrecha. | Le queda ancha. | Está rota."
+              explain: "Irina: …me queda estrecha."
+            - q: "¿Qué pide la dependienta?"
+              options: "El tique. | La tarjeta. | El nombre de Irina."
+              explain: "Dependienta: ¿Tiene el tique?"
+            - q: "¿Qué chaqueta se lleva Irina?"
+              options: "La azul, en la talla cuarenta. | La negra, en la talla cuarenta. | La gris, en la treinta y ocho."
+              explain: "Irina: Me pruebo la azul… Sí, esta me queda muy bien. Me la llevo."
+            - q: "¿Adónde tiene que ir al final?"
+              options: "A la caja. | Al probador. | A otra tienda."
+              explain: "Dependienta: Pase por caja, por favor."
+      - text:
+          id: notice
+          slide: new
+          text: "Ирина говорит **quería cambiar** — imperfecto звучит мягче, чем quiero: «я бы хотела». А продавщица не повторяет слово chaqueta: **esta** en azul, **esa** en gris, и Ирина отвечает: **la azul**."
+      - examples:
+          items:
+            - "**Quería** cambiar esta chaqueta. — Я бы хотела поменять эту куртку."
+            - "Tenemos **esta** en azul y **esa** en gris. — Есть вот эта в синем и та в сером."
+            - "Me pruebo **la azul**. — Примерю синюю."
+      - match:
+          title: Соедините пары
+          free: true
+          rule: none
+          pairs:
+            - "el tique — чек"
+            - "estrecho — тесный"
+            - "ancho — широкий"
+            - "la caja — касса"
+            - "el dependiente — продавец"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          free: true
+          skill: devolver
+          rule: notice
+          items:
+            - say: "Quería cambiar estos pantalones: me quedan anchos."
+              a: "Quería cambiar estos pantalones: me quedan anchos"
+              explain: "Me quedan anchos — «мне широки»."
+              noaudio: {q: "Напишите по-испански: «Я бы хотел поменять эти брюки: они мне широки».", a: "Quería cambiar estos pantalones: me quedan anchos | Quería cambiar estos pantalones, me quedan anchos"}
+      - choose:
+          title: Что сказать?
+          free: true
+          skill: devolver
+          rule: notice
+          items:
+            - lines: ["Dependiente: Hola, ¿qué necesita?"]
+              q: "Вежливо скажите, что хотели бы вернуть этот свитер."
+              options: "Quería devolver este jersey. | Quiero que devuelvo este jersey. | Devolví este jersey."
+              explain: "Вежливо — quería + инфинитив."
+            - say: "La talla cuarenta me queda un poco estrecha."
+              options: "Сороковой размер мне немного тесен. | Сороковой размер мне велик. | Сорокового размера нет."
+              explain: "Me queda estrecha — «мне тесно»."
+              noaudio: {q: "Что значит «La talla cuarenta me queda un poco estrecha»?", options: "Сороковой размер мне немного тесен. | Сороковой размер мне велик. | Сорокового размера нет."}
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: devolver
+          rule: notice
+          items:
+            - es: "Quería cambiar esta chaqueta: me queda estrecha."
+              ru: "Я бы хотела поменять эту куртку: она мне тесная."
+              extra: [quiero]
+            - es: "¿Tiene el tique? Pase por caja, por favor."
+              ru: "Чек у вас есть? Пройдите на кассу, пожалуйста."
+
+  - id: el_mas
+    kind: grammar
+    title: "El más barato, carísimo"
+    goal: выбрать лучшее и сказать «очень-очень»
+    version: 2
+    unlocks: [superlative]
+    vocab:
+      - "👔 elegante [элега́нтэ] — элегантный :: Es el vestido más elegante de la tienda. — Это самое элегантное платье в магазине."
+      - "⭐ la calidad [калида́д] — качество :: Es caro, pero de muy buena calidad. — Дорого, но очень хорошего качества."
+      - "🏷 las rebajas [рэба́хас] — распродажа (сезонная) :: En enero hay rebajas. — В январе распродажи."
+      - "😋 rico/a [ри́ко, ри́ка] — вкусный (о еде); богатый :: La paella está muy rica. — Паэлья очень вкусная."
+    blocks:
+      - learn: [elegante, la calidad, las rebajas, rico/a]
+      - table:
+          id: el_mas
+          title: Самый
+          rows:
+            - ["el / la + más + прилагательное + de", "Es la tienda más barata del barrio. — Это самый дешёвый магазин в районе."]
+            - ["el / la + menos + прилагательное + de", "Es el móvil menos caro de la tienda. — Это самый недорогой телефон в магазине."]
+            - ["el mejor / el peor + de", "Es el mejor restaurante de la ciudad. — Это лучший ресторан в городе."]
+      - note:
+          id: de
+          text: "После «самый» место называют с **de**, а не en: _la más barata **del** barrio_ — «самая дешёвая в районе»."
+      - choose:
+          title: Выберите слово
+          skill: superlativo
+          rule: el_mas
+          items:
+            - q: "Es la camisa ___ cara de la tienda."
+              options: "más | mejor | muy"
+              explain: "Самая дорогая — la más cara."
+            - q: "Es el ___ restaurante de la ciudad: la comida es increíble."
+              options: "mejor | más bueno | más"
+              explain: "Лучший — el mejor."
+            - q: "Es caro, pero de muy buena ___."
+              options: "calidad | rebaja | talla"
+              explain: "Хорошего качества — de buena calidad."
+            - q: "Madrid es la ciudad más grande ___ España."
+              options: "de | en | que"
+              explain: "После «самый» — de: la más grande de España."
+      - table:
+          id: isimo
+          slide: new
+          title: "-ísimo — «очень-очень»"
+          rows:
+            - ["caro → carísimo", "Este abrigo es carísimo. — Это пальто страшно дорогое."]
+            - ["barato → baratísimo", "En rebajas todo está baratísimo. — На распродаже всё очень дёшево."]
+            - ["bueno → buenísimo", "La sopa está buenísima. — Суп очень вкусный."]
+            - ["rico → riquísimo, largo → larguísimo", "Перед -ísimo `c` → `qu`, `g` → `gu`."]
+            - ["fácil → facilísimo", "Знак ударения уходит: всё ударение на -ísimo."]
+      - write:
+          title: Скажите «очень-очень»
+          format: одно слово
+          accents: strict
+          skill: superlativo
+          rule: isimo
+          items:
+            - q: "Este jersey es (caro) ___."
+              a: "carísimo"
+              explain: "Caro → carísimo."
+              mistakes:
+                "carisimo": "Нужен знак ударения: car**í**simo."
+            - q: "La sopa está (bueno) ___."
+              a: "buenísima"
+              explain: "La sopa — женский род: buenísima."
+              mistakes:
+                "buenísimo": "La sopa — женский род: buen**ísima**."
+            - q: "El examen fue (fácil) ___."
+              a: "facilísimo"
+              explain: "Fácil → facilísimo: знак ударения уходит."
+              mistakes:
+                "fácilísimo": "Ударение одно — на -ísimo: **facilísimo**."
+            - q: "Las tapas de este bar están (rico) ___."
+              a: "riquísimas"
+              explain: "Rico → riquísimo: `c` → `qu`."
+              mistakes:
+                "ricísimas": "Перед -ísimo `c` → `qu`: **riquísimas**."
+      - choose:
+          title: Послушайте
+          skill: superlativo
+          rule: isimo
+          items:
+            - say: "Este abrigo es carísimo, pero es el mejor de la tienda."
+              options: "Это пальто очень дорогое, но лучшее в магазине. | Это пальто дешёвое и лучшее в магазине. | Это пальто дороже всех, но хуже всех."
+              explain: "Carísimo — «очень дорогой»; el mejor de la tienda — «лучший в магазине»."
+              noaudio: {q: "Что значит «Este abrigo es carísimo, pero es el mejor de la tienda»?", options: "Это пальто очень дорогое, но лучшее в магазине. | Это пальто дешёвое и лучшее в магазине. | Это пальто дороже всех, но хуже всех."}
+      - build:
+          title: Соберите фразу
+          skill: superlativo
+          rule: el_mas
+          items:
+            - es: "Es la tienda más barata del barrio."
+              ru: "Это самый дешёвый магазин в районе."
+              extra: [en]
+            - es: "En rebajas todo está baratísimo."
+              ru: "На распродаже всё очень дёшево."
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: superlativo
+          rule: de
+          items:
+            - q: "Это самое элегантное платье в магазине."
+              a: "Es el vestido más elegante de la tienda"
+              explain: "Самый — el más…; в магазине — de la tienda."
+              mistakes:
+                "es el vestido más elegante en la tienda": "После «самый» — **de**: de la tienda."
+      - compose:
+          title: Лучшее в моём городе
+          skill: superlativo
+          rule: el_mas
+          items:
+            - q: "Расскажите о лучшем в вашем городе: лучший ресторан, самый красивый парк, самое дешёвое место для покупок. Две-три фразы."
+              format: "El mejor restaurante de mi ciudad… El parque más bonito…"
+              words: [12, 60]
+              sentences: 2
+              checks:
+                - label: "самый: el mejor, la más…, el más…"
+                  any: [el mejor, la mejor, los mejores, las mejores, el más, la más, los más, las más, el menos, la menos]
+              sample: "El mejor restaurante de mi ciudad está en el centro: la comida está buenísima. El parque más bonito es el Retiro, y la calle más barata para comprar ropa es la calle del mercado."
+              sample_ru: "Лучший ресторан моего города — в центре: еда там очень вкусная. Самый красивый парк — Ретиро, а самая дешёвая улица для покупок одежды — улица у рынка."
+    quiz:
+      - q: "Es el móvil ___ barato de la tienda."
+        options: "más | muy | mucho"
+        explain: "Самый дешёвый — el más barato."
+        skill: superlativo
+      - q: "Esta paella está (rico) ___."
+        options: "riquísima | ricísima | muy riquísima"
+        explain: "Rico → riquísima: `c` → `qu`."
+        skill: superlativo
+
+  - id: cual
+    kind: grammar
+    title: "¿Cuál prefieres? — El azul"
+    goal: выбрать вещь, не повторяя её название
+    version: 2
+    vocab:
+      - "〰️ de rayas [дэ ра́яс] — в полоску :: Me gusta la camisa de rayas. — Мне нравится рубашка в полоску."
+      - "🏁 de cuadros [дэ куа́дрос] — в клетку :: Busco una falda de cuadros. — Ищу юбку в клетку."
+      - "🌸 rosa [ро́са] — розовый :: Me llevo la camiseta rosa. — Беру розовую футболку."
+    forms: [cuáles]
+    blocks:
+      - learn: [de rayas, de cuadros, rosa]
+      - table:
+          id: sin_nombre
+          title: Без существительного
+          rows:
+            - ["este, ese, aquel", "¿Qué jersey te gusta? — Este. — Какой свитер тебе нравится? — Этот."]
+            - ["el / la + цвет или прилагательное", "¿La camisa blanca o la azul? — La azul. — Белую рубашку или синюю? — Синюю."]
+            - ["el / la + de…", "Me gusta el de rayas. — Мне нравится тот, что в полоску."]
+      - note:
+          id: cual
+          text: "**¿Cuál?** — «какой из них?», когда выбирают из нескольких; во множественном числе — **¿Cuáles?** _¿Cuál prefieres, este o ese?_ А с существительным спрашивают **¿Qué…?**: _¿Qué talla tiene?_"
+      - choose:
+          title: Выберите слово
+          skill: sin_nombre
+          rule: sin_nombre
+          items:
+            - q: "— ¿Qué zapatos te gustan? — ___ negros."
+              options: "Los | Las | El"
+              explain: "Los zapatos — los negros."
+            - q: "— ¿La falda de rayas o la de cuadros? — ___ de cuadros."
+              options: "La | El | Lo"
+              explain: "La falda — la de cuadros."
+            - q: "¿___ prefieres, este o ese?"
+              options: "Cuál | Qué | Cómo"
+              explain: "Выбор из нескольких — ¿Cuál?"
+      - write:
+          title: Ответьте без существительного
+          format: два-три слова
+          skill: sin_nombre
+          rule: sin_nombre
+          items:
+            - q: "— ¿Qué camiseta quieres? — Белую."
+              a: "La blanca"
+              explain: "La camiseta → la blanca."
+              mistakes:
+                "el blanco": "Camiseta — женский род: **la blanca**."
+            - q: "— ¿Qué pantalones te pruebas? — Чёрные."
+              a: "Los negros"
+              explain: "Los pantalones → los negros."
+            - q: "Мне нравится та, что в полоску (о рубашке)."
+              a: "Me gusta la de rayas"
+              explain: "La camisa → la de rayas."
+      - choose:
+          title: Послушайте
+          skill: sin_nombre
+          rule: sin_nombre
+          items:
+            - say: "No me gusta este, prefiero el de cuadros."
+              options: "Этот мне не нравится, я предпочитаю тот, что в клетку. | Мне нравится этот, в клетку. | Мне не нравятся вещи в клетку."
+              explain: "El de cuadros — «тот, что в клетку»."
+              noaudio: {q: "Что значит «No me gusta este, prefiero el de cuadros»?", options: "Этот мне не нравится, я предпочитаю тот, что в клетку. | Мне нравится этот, в клетку. | Мне не нравятся вещи в клетку."}
+      - build:
+          title: Соберите фразу
+          skill: sin_nombre
+          rule: cual
+          items:
+            - es: "¿Cuál prefieres, la azul o la rosa?"
+              ru: "Какую выбираешь: синюю или розовую?"
+              extra: [qué]
+      - compose:
+          title: В магазине с другом
+          skill: sin_nombre
+          rule: sin_nombre
+          items:
+            - q: "Вы с другом выбираете одежду. Спросите, какая вещь ему нравится, и скажите, какую берёте вы, — не повторяя название вещи."
+              format: "¿Cuál te gusta más? Yo me llevo el…"
+              words: [8, 45]
+              sentences: 2
+              checks:
+                - label: "вопрос: ¿Cuál…?"
+                  any: [cuál, cuáles]
+                - label: "без существительного: el azul, la de rayas, este…"
+                  any: [el de, la de, los de, las de, este, esta, ese, esa, el azul, la azul, el negro, la negra, el blanco, la blanca, el rojo, la roja, el verde, la verde, el gris, la gris, la rosa, el rosa]
+              sample: "¿Cuál te gusta más, la camisa blanca o la de rayas? Yo me llevo la de rayas: es más bonita."
+              sample_ru: "Какая тебе больше нравится — белая рубашка или в полоску? Я беру в полоску: она красивее."
+    quiz:
+      - q: "— ¿Qué chaqueta te llevas? — ___ gris."
+        options: "La | El | Lo"
+        explain: "La chaqueta — la gris."
+        skill: sin_nombre
+      - q: "¿___ son tus zapatos, los negros o los marrones?"
+        options: "Cuáles | Cuál | Qué"
+        explain: "Выбор во множественном числе — ¿Cuáles?"
+        skill: sin_nombre
+
+  - id: mio_tuyo
+    kind: grammar
+    title: "Es mío. ¿Y el tuyo?"
+    goal: сказать, чья это вещь, не повторяя её
+    version: 2
+    vocab:
+      - "🙋 mío/a [ми́о, ми́а] — мой (без существительного) :: Este móvil es mío. — Этот телефон мой."
+      - "👉 tuyo/a [ту́йо, ту́я] — твой (без существительного) :: ¿Es tuya esta maleta? — Это твой чемодан?"
+      - "👥 suyo/a [су́йо, су́я] — его, её, их; ваш (usted) :: Esta maleta no es mía: es suya. — Этот чемодан не мой: он её."
+    blocks:
+      - learn: [mío/a, tuyo/a, suyo/a]
+      - table:
+          id: posesivos
+          title: Чьё?
+          rows:
+            - ["мой", "el mío, la mía, los míos, las mías"]
+            - ["твой", "el tuyo, la tuya, los tuyos, las tuyas"]
+            - ["его, её, их; ваш (usted)", "el suyo, la suya, los suyos, las suyas"]
+            - ["наш, ваш (vosotros)", "el nuestro, la nuestra…; el vuestro, la vuestra…"]
+      - note:
+          id: es_mio
+          text: "После ser артикль обычно не нужен: _Este móvil es **mío**_ — «этот телефон мой». С артиклем говорят, когда сравнивают или выбирают: _Mi coche es blanco y **el tuyo** es rojo_."
+      - write:
+          title: Вставьте местоимение
+          format: одно-два слова
+          skill: posesivos
+          rule: posesivos
+          items:
+            - q: "— ¿Es tu bolígrafo? — Sí, es ___."
+              a: "mío"
+              explain: "После ser — без артикля: es mío."
+              mistakes:
+                "el mío": "После ser артикль обычно не нужен: es **mío**."
+            - q: "Mi coche es blanco y ___ (твой) es rojo."
+              a: "el tuyo"
+              explain: "Сравниваем — с артиклем: el tuyo."
+            - q: "Mis padres viven en Madrid. ¿Y ___ (твои)?"
+              a: "los tuyos"
+              explain: "Los padres → los tuyos."
+            - q: "Esta maleta no es de Ana: ___ (её) es azul."
+              a: "la suya"
+              explain: "La maleta de Ana → la suya."
+      - choose:
+          title: Выберите форму
+          skill: posesivos
+          rule: es_mio
+          items:
+            - q: "— ¿Estas llaves son tuyas? — Sí, son ___."
+              options: "mías | mía | míos"
+              explain: "Las llaves — женский род, мн. ч.: mías."
+            - q: "Mi piso es pequeño, pero ___ es enorme."
+              options: "el suyo | su | suyo"
+              explain: "Сравнение — с артиклем: el suyo."
+            - say: "Tu móvil es más nuevo que el mío."
+              options: "Твой телефон новее моего. | Мой телефон новее твоего. | У тебя мой новый телефон."
+              explain: "El mío — «мой» (телефон)."
+              noaudio: {q: "Что значит «Tu móvil es más nuevo que el mío»?", options: "Твой телефон новее моего. | Мой телефон новее твоего. | У тебя мой новый телефон."}
+      - build:
+          title: Соберите фразу
+          skill: posesivos
+          rule: es_mio
+          items:
+            - es: "Esta maleta no es mía: es suya."
+              ru: "Этот чемодан не мой: он его."
+              extra: [la]
+      - compose:
+          title: Моё и твоё
+          skill: [posesivos, comparar]
+          rule: es_mio
+          items:
+            - q: "Сравните свою вещь с вещью друга: телефон, машину, квартиру. Две фразы с el mío / el tuyo."
+              format: "Mi móvil es… el tuyo es…"
+              words: [8, 40]
+              sentences: 2
+              checks:
+                - label: "mío, tuyo, suyo…"
+                  any: [mío, mía, míos, mías, tuyo, tuya, tuyos, tuyas, suyo, suya, nuestro, nuestra]
+              sample: "Mi móvil es más viejo que el tuyo, pero la batería del mío dura más. Tu piso es más grande, pero el mío está en el centro."
+              sample_ru: "Мой телефон старее твоего, но батарея у моего держит дольше. Твоя квартира больше, зато моя — в центре."
+    quiz:
+      - q: "— ¿De quién es esta chaqueta? — Es ___ (моя)."
+        options: "mía | la mía | mi"
+        explain: "После ser — без артикля: es mía."
+        skill: posesivos
+      - q: "Tus zapatos son negros y ___ son marrones (мои)."
+        options: "los míos | mis | míos"
+        explain: "Сравнение — с артиклем: los míos."
+        skill: posesivos
+
+  - id: tecnica
+    kind: dialogue
+    title: "Ya no funcionan"
+    goal: вернуть или поменять технику, которая сломалась
+    version: 2
+    vocab:
+      - "💻 el portátil [порта́тиль] — ноутбук :: Mi portátil es muy lento. — Мой ноутбук очень медленный."
+      - "🔌 el cargador [каргадо́р] — зарядка, зарядное устройство :: ¿Tienes un cargador para el móvil? — У тебя есть зарядка для телефона?"
+      - "🛡 la garantía [гаранти́а] — гарантия :: Tiene dos años de garantía. — На него гарантия два года."
+      - "🎧 los auriculares [аурикула́рэс] — наушники :: Estos auriculares no funcionan. — Эти наушники не работают."
+    forms: [ayudarle]
+    blocks:
+      - learn: [el portátil, el cargador, la garantía, los auriculares]
+      - "Диего вернулся в магазин техники."
+      - dialogue:
+          id: auriculares
+          lines:
+            - "Dependiente: Buenos días. ¿En qué puedo ayudarle? | Доброе утро. Чем могу помочь?"
+            - "Diego: Hola. Compré estos auriculares hace una semana y ya no funcionan. | Здравствуйте. Я купил эти наушники неделю назад, а они уже не работают."
+            - "Dependiente: ¿Tiene el tique? | Чек есть?"
+            - "Diego: Sí, aquí está. | Да, вот."
+            - "Dependiente: Tienen dos años de garantía. ¿Quiere otros iguales o prefiere el dinero? | На них гарантия два года. Хотите такие же или вернуть деньги?"
+            - "Diego: Prefiero otros, pero de mejor calidad. ¿Cuáles son los mejores? | Лучше другие, но качественнее. Какие самые лучшие?"
+            - "Dependiente: Estos son buenísimos, pero cuestan treinta euros más. | Эти очень хорошие, но стоят на тридцать евро дороже."
+            - "Diego: Vale, me los llevo. ¿Y tienen cargadores para el portátil? | Хорошо, беру. А зарядки для ноутбука у вас есть?"
+            - "Dependiente: Sí, están allí, al lado de los móviles. | Да, вон там, рядом с телефонами."
+      - choose:
+          title: Что сказано?
+          source: auriculares
+          skill: devolver
+          items:
+            - q: "¿Qué problema tienen los auriculares?"
+              options: "Ya no funcionan. | Le quedan pequeños. | Son muy caros."
+              explain: "Diego: …y ya no funcionan."
+            - q: "¿Cuántos años de garantía tienen?"
+              options: "Dos años. | Una semana. | Un año."
+              explain: "Dependiente: Tienen dos años de garantía."
+            - q: "¿Qué prefiere Diego?"
+              options: "Otros auriculares de mejor calidad. | Su dinero. | Unos auriculares iguales."
+              explain: "Diego: Prefiero otros, pero de mejor calidad."
+            - q: "¿Dónde están los cargadores?"
+              options: "Al lado de los móviles. | En la caja. | En otra tienda."
+              explain: "Dependiente: Sí, están allí, al lado de los móviles."
+      - note:
+          id: ya_no_funciona
+          slide: new
+          text: "Если вещь сломалась, говорят: **no funciona** — «не работает», **está roto/a** — «сломан(а)». **Ya no funciona** — «уже не работает» (раньше работала)."
+      - write:
+          title: Скажите в магазине
+          format: фраза по-испански
+          free: true
+          skill: devolver
+          rule: ya_no_funciona
+          items:
+            - q: "Я купил этот ноутбук неделю назад, и он уже не работает."
+              a: "Compré este portátil hace una semana y ya no funciona | Compré este portátil hace una semana(,) y ya no funciona"
+              explain: "Hace una semana — неделю назад; ya no funciona — уже не работает."
+              mistakes:
+                "compré este portátil hace una semana y ya no funcionan": "Portátil — один: ya no **funciona**."
+            - q: "Зарядка сломана."
+              a: "El cargador está roto"
+              explain: "Сломан — está roto."
+              mistakes:
+                "el cargador es roto": "Состояние — с **estar**: está roto."
+      - choose:
+          title: Послушайте
+          free: true
+          skill: devolver
+          rule: ya_no_funciona
+          items:
+            - say: "Este portátil tiene dos años de garantía."
+              options: "На этот ноутбук гарантия два года. | Этому ноутбуку два года. | Этот ноутбук сломался через два года."
+              explain: "Dos años de garantía — «гарантия два года»."
+              noaudio: {q: "Что значит «Este portátil tiene dos años de garantía»?", options: "На этот ноутбук гарантия два года. | Этому ноутбуку два года. | Этот ноутбук сломался через два года."}
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: devolver
+          rule: ya_no_funciona
+          items:
+            - es: "Estos auriculares ya no funcionan."
+              ru: "Эти наушники уже не работают."
+              extra: [funciona]
+
+  - id: lectura
+    kind: reading
+    title: "Opiniones de clientes"
+    goal: понять отзывы о покупке и написать свой
+    version: 2
+    vocab:
+      - "🧑‍💼 el cliente / la clienta [клье́нтэ, клье́нта] — покупатель, клиент :: Los clientes están contentos. — Покупатели довольны."
+      - "⭐ la estrella [эстрэ́йя] — звезда :: El hotel tiene cinco estrellas. — У гостиницы пять звёзд."
+    blocks:
+      - learn: [el cliente / la clienta, la estrella]
+      - "Отзывы покупателей о ноутбуке в интернет-магазине."
+      - reading:
+          id: opiniones
+          title: Opiniones de clientes
+          text: |
+            Cinco estrellas. Lucía: Es el mejor portátil que he tenido. Es ligerísimo y la batería dura muchísimo: diez horas. ¡Y no es carísimo! Lo llevo a la universidad todos los días.
+
+            Tres estrellas. Pablo: La pantalla es buenísima, pero el portátil es un poco lento y hace mucho ruido. Mi portátil de antes era más rápido.
+
+            Una estrella. Ana: ¡Horrible! Lo compré hace un mes y ya no funciona. La tienda me lo ha cambiado, pero el nuevo tiene el mismo problema. Quiero mi dinero.
+          translation: |
+            Пять звёзд. Лусия: Это лучший ноутбук из всех, что у меня были. Очень лёгкий, и батарея держит очень долго — десять часов. И он совсем не дорогой! Ношу его в университет каждый день.
+
+            Три звезды. Пабло: Экран отличный, но ноутбук немного медленный и сильно шумит. Мой прежний был быстрее.
+
+            Одна звезда. Ана: Ужасно! Купила месяц назад, а он уже не работает. Магазин мне его поменял, но у нового та же проблема. Хочу вернуть деньги.
+      - choose:
+          title: Что пишут покупатели?
+          source: opiniones
+          items:
+            - q: "¿A quién le gusta más el portátil?"
+              options: "A Lucía. | A Pablo. | A Ana."
+              explain: "Lucía: Es el mejor portátil que he tenido. — пять звёзд."
+              skill: superlativo
+            - q: "¿Cuántas estrellas tiene la opinión de Pablo?"
+              options: "Tres. | Cinco. | Una."
+              explain: "Tres estrellas. Pablo: …"
+            - q: "¿Qué clienta quiere su dinero?"
+              options: "Ana. | Lucía. | Ninguna."
+              explain: "Ana: Quiero mi dinero."
+            - q: "¿Cuánto dura la batería, para Lucía?"
+              options: "Diez horas. | Dos horas. | Un mes."
+              explain: "…la batería dura muchísimo: diez horas."
+            - q: "¿Qué no le gusta a Pablo?"
+              options: "Es lento y hace mucho ruido. | La pantalla es mala. | Es carísimo."
+              explain: "Pablo: …es un poco lento y hace mucho ruido."
+            - q: "¿Qué quiere Ana?"
+              options: "Su dinero. | Otro portátil igual. | Un cargador nuevo."
+              explain: "Ana: Quiero mi dinero."
+              skill: devolver
+      - write:
+          title: Ответьте по тексту
+          format: короткий ответ по-испански
+          source: opiniones
+          items:
+            - q: "¿Cómo era el portátil de antes de Pablo?"
+              a: "Más rápido | Era más rápido | Su portátil de antes era más rápido"
+              explain: "Mi portátil de antes era más rápido."
+              skill: comparar
+            - q: "Как Лусия говорит, что батарея держит очень долго?"
+              a: "la batería dura muchísimo"
+              explain: "Muchísimo — «очень-очень много»."
+              skill: superlativo
+      - choose:
+          title: Послушайте
+          free: true
+          rule: none
+          items:
+            - say: "Es el mejor portátil que he tenido: ligerísimo y rapidísimo."
+              options: "Это лучший ноутбук из всех, что у меня были: очень лёгкий и очень быстрый. | Это мой первый ноутбук: лёгкий и быстрый. | У меня был ноутбук получше, но тяжелее."
+              explain: "El mejor que he tenido — «лучший из тех, что у меня были»."
+              skill: superlativo
+              noaudio: {q: "Что значит «Es el mejor portátil que he tenido: ligerísimo y rapidísimo»?", options: "Это лучший ноутбук из всех, что у меня были: очень лёгкий и очень быстрый. | Это мой первый ноутбук: лёгкий и быстрый. | У меня был ноутбук получше, но тяжелее."}
+      - compose:
+          title: Ваш отзыв
+          free: true
+          rule: none
+          skill: [superlativo, comparar]
+          items:
+            - q: "Напишите отзыв о вещи, которую вы купили: сколько звёзд, что хорошо, что плохо, советуете ли. Три-пять фраз."
+              format: "Cuatro estrellas. Es el mejor… pero… Lo recomiendo."
+              words: [20, 80]
+              sentences: 3
+              checks:
+                - label: "оценка: estrellas"
+                  any: [estrella, estrellas]
+                - label: "самый, -ísimo: el mejor, carísimo…"
+                  re: "\\b(el|la|los|las) (mejor|mejores|peor|peores|más|menos)\\b|\\b\\w+ísim(o|a|os|as)\\b"
+                - label: "совет: lo recomiendo, no lo recomiendo…"
+                  any: [recomiendo, recomendamos, deberías, compra]
+              sample: "Cuatro estrellas. Compré estos auriculares hace un mes. Son comodísimos y se oyen muy bien, pero la batería dura poco: solo cinco horas. Son más baratos que otros, por eso los recomiendo."
+              sample_ru: "Четыре звезды. Купил эти наушники месяц назад. Очень удобные, слышно отлично, но батарея держит мало — всего пять часов. Они дешевле других, поэтому советую."
+
+  - id: mision
+    kind: practice
+    title: Обмен покупки
+    goal: понять объявление о распродаже и поменять покупку
+    version: 2
+    allow: [Atención]
+    blocks:
+      - review:
+          title: Вспомним
+          skills: [condicional, farmacia, consejos_salud]
+          n: 2
+      - "Вы в большом магазине одежды. Послушайте объявление: текста нет."
+      - dialogue:
+          id: anuncio_rebajas
+          hidden: true
+          title: Объявление в магазине
+          lines:
+            - "Megafonía: Atención, señores clientes: hoy empiezan las rebajas. Los abrigos están a cuarenta euros y los jerséis, a quince. La tienda cierra a las diez de la noche. | Внимание, уважаемые покупатели: сегодня начинаются распродажи. Пальто — по сорок евро, свитеры — по пятнадцать. Магазин закрывается в десять вечера."
+      - choose:
+          title: Что объявили?
+          source: anuncio_rebajas
+          items:
+            - q: "¿Qué empieza hoy?"
+              options: "Las rebajas. | Un concierto. | Una exposición."
+              explain: "…hoy empiezan las rebajas."
+            - q: "¿Cuánto cuestan los jerséis?"
+              options: "Quince euros. | Cuarenta euros. | Diez euros."
+              explain: "…y los jerséis, a quince."
+              skill: precios
+            - q: "¿A qué hora cierra la tienda?"
+              options: "A las diez de la noche. | A las nueve de la noche. | A las diez de la mañana."
+              explain: "La tienda cierra a las diez de la noche."
+      - mission:
+          id: zapatos
+          title: Обмен покупки
+          text: "Вчера вы купили туфли, но они вам тесны. Поменяйте их."
+      - chat:
+          id: dependiente
+          title: В обувном
+          with: Dependiente
+          turns:
+            - say: "Hola, buenos días. ¿Qué necesita? | Здравствуйте. Что вам нужно?"
+              task: "Скажите вежливо, что хотели бы поменять эти туфли."
+              skill: devolver
+              write: "Quería cambiar estos zapatos | Quería cambiar estos zapatos(,) por favor | Me gustaría cambiar estos zapatos(,) por favor | Me gustaría cambiar estos zapatos"
+              format: просьба
+              mistakes:
+                "quería cambiar estas zapatos": "Zapatos — мужской род: **estos** zapatos."
+            - say: "¿Qué problema tienen? | Что с ними не так?"
+              task: "Скажите, что они вам тесные."
+              skill: devolver
+              write: "Me quedan estrechos | Me quedan un poco estrechos | Me quedan pequeños | Son un poco estrechos"
+              format: проблема
+              mistakes:
+                "me queda estrechos": "Zapatos — мн. ч.: me **quedan** estrechos."
+            - say: "¿Tiene el tique? | Чек есть?"
+              task: "Ответьте: да, вот он."
+              skill: devolver
+              choose: "Sí, aquí está. | Sí, aquí es. | Sí, está aquí lo."
+              explain: "Где — estar: aquí está."
+            - say: "Tenemos estos en negro y esos en marrón, en el cuarenta y dos. | У нас есть эти в чёрном и те в коричневом, сорок второго размера."
+              task: "Скажите, что предпочитаете чёрные."
+              skill: sin_nombre
+              write: "Prefiero los negros | Me gustan más los negros | Los negros(,) por favor"
+              format: выбор
+              mistakes:
+                "prefiero las negras": "Zapatos — мужской род: **los negros**."
+            - say: "¿Se los prueba? | Примерите?"
+              task: "Ответьте от себя: как сидят и что берёте."
+              skill: sin_nombre
+              compose:
+                format: "Sí… Me quedan… Me los llevo."
+                words: [3, 25]
+                checks:
+                  - label: "me quedan…, me los llevo…"
+                    any: [me quedan, me los llevo, me llevo, son]
+                sample: "Sí. Me quedan muy bien: me los llevo."
+                sample_ru: "Да. Сидят отлично: беру."
+            - say: "Perfecto. Pase por caja, por favor. | Отлично. Пройдите, пожалуйста, на кассу."
+      - compose:
+          title: Отзыв о магазине
+          free: true
+          rule: none
+          skill: [devolver, superlativo, posesivos]
+          items:
+            - q: "Напишите отзыв о магазине, где вы меняли покупку: что купили, какая была проблема, как вам помогли и советуете ли этот магазин. 40–80 слов."
+              format: "Ayer compré… pero… La dependienta… Es la mejor tienda del barrio."
+              words: [30, 100]
+              sentences: 4
+              checks:
+                - label: "что случилось: compré…, me quedaban…, no funcionaba…"
+                  any: [compré, me quedaban, me quedaba, no funcionaba, estaba roto, cambié]
+                - label: "оценка: el mejor, la más…, -ísimo"
+                  re: "\\b(el|la|los|las) (mejor|mejores|peor|peores|más|menos)\\b|\\b\\w+ísim(o|a|os|as)\\b"
+                - label: "совет: lo recomiendo…"
+                  any: [recomiendo, deberías, compra, ve]
+              sample: "Ayer compré unos zapatos en la tienda de mi barrio, pero me quedaban estrechos. Hoy he vuelto y la dependienta me los ha cambiado en cinco minutos. Ha sido amabilísima. Es la mejor tienda del barrio: los precios son buenos y la calidad es altísima. ¡La recomiendo!"
+              sample_ru: "Вчера купил туфли в магазине в своём районе, но они были тесными. Сегодня вернулся, и продавщица поменяла их за пять минут. Она была очень любезна. Это лучший магазин в районе: цены хорошие, качество очень высокое. Советую!"
+
+  - id: quiz
+    kind: quiz
+    title: "Тест: De compras"
+    goal: проверить цели темы — обмен, el más / -ísimo, выбор без существительного, el mío
+    version: 2
+    check: soft
+    blocks:
+      - "Это тест по теме «De compras»: двенадцать заданий."
+      - cando:
+          - "поменять или вернуть покупку"
+          - "сравнить и выбрать: el más…, el mejor, carísimo"
+          - "указать на вещь без существительного: este, el azul, el de rayas"
+          - "сказать, чьё это: el mío, la tuya, los suyos"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          rule: none
+          skill: devolver
+          items:
+            - say: "Quería cambiar esta camisa: me queda ancha."
+              a: "Quería cambiar esta camisa: me queda ancha"
+              noaudio: {q: "Напишите по-испански: «Я бы хотел поменять эту рубашку: она мне широка».", a: "Quería cambiar esta camisa: me queda ancha | Quería cambiar esta camisa, me queda ancha"}
+      - choose:
+          title: Послушайте
+          rule: none
+          items:
+            - say: "Es la tienda más barata de la ciudad."
+              options: "Это самый дешёвый магазин в городе. | Это очень дорогой магазин. | В городе дешёвые магазины."
+              skill: superlativo
+              noaudio: {q: "Что значит «Es la tienda más barata de la ciudad»?", options: "Это самый дешёвый магазин в городе. | Это очень дорогой магазин. | В городе дешёвые магазины."}
+            - say: "Mi móvil es negro; el tuyo es blanco."
+              options: "Мой телефон чёрный, а твой белый. | Твой телефон чёрный, а мой белый. | У меня чёрный и белый телефоны."
+              skill: posesivos
+              noaudio: {q: "Что значит «Mi móvil es negro; el tuyo es blanco»?", options: "Мой телефон чёрный, а твой белый. | Твой телефон чёрный, а мой белый. | У меня чёрный и белый телефоны."}
+      - write:
+          title: Вставьте слово
+          format: одно слово
+          rule: none
+          items:
+            - q: "Este reloj es (caro) ___."
+              a: "carísimo"
+              skill: superlativo
+            - q: "Es el restaurante más famoso ___ Madrid."
+              a: "de"
+              skill: superlativo
+            - q: "— ¿Qué falda te llevas? — La ___ rayas."
+              a: "de"
+              skill: sin_nombre
+            - q: "— ¿Son tuyas estas gafas? — Sí, son ___."
+              a: "mías"
+              skill: posesivos
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          rule: none
+          items:
+            - q: "Наушники уже не работают."
+              a: "Los auriculares ya no funcionan | Ya no funcionan los auriculares"
+              skill: devolver
+            - q: "Это лучший ноутбук в магазине."
+              a: "Es el mejor portátil de la tienda"
+              skill: superlativo
+              mistakes:
+                "es el mejor portátil en la tienda": "После «лучший» — **de**: de la tienda."
+      - build:
+          title: Соберите фразу
+          rule: none
+          skill: sin_nombre
+          items:
+            - es: "No me gusta esta; prefiero la de cuadros."
+              ru: "Эта мне не нравится; лучше та, что в клетку."
+              extra: [el]
+    quiz:
+      - q: "Los zapatos me ___ estrechos."
+        options: "quedan | queda | quedo"
+        explain: "Zapatos — мн. ч.: me quedan."
+        skill: devolver
+      - q: "Что значит «el cargador»?"
+        options: "зарядка | наушники | чек"
+        explain: "El cargador — зарядное устройство; наушники — los auriculares, чек — el tique."

@@ -1,9 +1,10 @@
-"""Морфология испанского языка уровня A0–A1.
+"""Морфология испанского языка уровня A0–A2.
 
 Модуль умеет образовывать формы слов, которые нужны валидатору словаря:
 множественное число существительных, род и число прилагательных,
 спряжение глаголов в настоящем времени (включая отклоняющиеся),
-герундий и причастие. Правила покрывают лексику курса; для редких
+герундий и причастие, а для A2 — pretérito indefinido, pretérito imperfecto
+и утвердительный императив. Правила покрывают лексику курса; для редких
 исключений в словаре можно указать формы явно.
 """
 
@@ -36,8 +37,9 @@ REFLEXIVE_PRONOUNS = ("me", "te", "se", "nos", "os")
 
 
 def _v(**kw) -> dict:
-    if "present" in kw:
-        kw["present"] = kw["present"].split()
+    for key in ("present", "preterite", "imperfect"):
+        if key in kw:
+            kw[key] = kw[key].split()
     return kw
 
 
@@ -53,9 +55,16 @@ VERBS: dict[str, dict] = {
     "ver": _v(present="veo ves ve vemos veis ven", participle="visto"),
     "oír": _v(present="oigo oyes oye oímos oís oyen", gerund="oyendo", participle="oído"),
     "reír": _v(present="río ríes ríe reímos reís ríen", gerund="riendo", participle="reído"),
+    "sonreír": _v(present="sonrío sonríes sonríe sonreímos sonreís sonríen", gerund="sonriendo", participle="sonreído"),
+    "freír": _v(present="frío fríes fríe freímos freís fríen", gerund="friendo", participle="frito"),
     # неправильная только форма yo
     "saber": _v(yo="sé"),
     "conocer": _v(yo="conozco"),
+    "reconocer": _v(yo="reconozco"),
+    "nacer": _v(yo="nazco"),
+    "crecer": _v(yo="crezco"),
+    "agradecer": _v(yo="agradezco"),
+    "desaparecer": _v(yo="desaparezco"),
     "parecer": _v(yo="parezco"),
     "conducir": _v(yo="conduzco"),
     "traducir": _v(yo="traduzco"),
@@ -284,3 +293,160 @@ def reflexive_infinitives(infinitive: str) -> list[str]:
     if not reflexive:
         return []
     return [base + p for p in REFLEXIVE_PRONOUNS]
+
+
+# ---------------------------------------------------------------- A2: прошедшие времена и императив
+
+PRETERITE_ENDINGS = {
+    "ar": ("é", "aste", "ó", "amos", "asteis", "aron"),
+    "er": ("í", "iste", "ió", "imos", "isteis", "ieron"),
+    "ir": ("í", "iste", "ió", "imos", "isteis", "ieron"),
+}
+# Особые основы indefinido (тема preterite_irregular): окончания -e, -iste, -o, -imos, -isteis, -ieron без ударений.
+PRETERITE_STEMS = {
+    "estar": "estuv", "tener": "tuv", "poder": "pud", "poner": "pus", "saber": "sup", "andar": "anduv",
+    "venir": "vin", "querer": "quis", "hacer": "hic", "haber": "hub", "caber": "cup",
+    "decir": "dij", "traer": "traj", "conducir": "conduj", "traducir": "traduj", "producir": "produj",
+}
+PRETERITE_FULL = {
+    "ser": "fui fuiste fue fuimos fuisteis fueron".split(),
+    "ir": "fui fuiste fue fuimos fuisteis fueron".split(),
+    "dar": "di diste dio dimos disteis dieron".split(),
+    "ver": "vi viste vio vimos visteis vieron".split(),
+}
+IMPERFECT_FULL = {
+    "ser": "era eras era éramos erais eran".split(),
+    "ir": "iba ibas iba íbamos ibais iban".split(),
+    "ver": "veía veías veía veíamos veíais veían".split(),
+}
+IMPERATIVE_TU = {
+    "decir": "di", "hacer": "haz", "ir": "ve", "poner": "pon", "salir": "sal", "ser": "sé", "tener": "ten", "venir": "ven",
+}
+# Формы usted (настоящее сослагательного), которые не выводятся из формы yo.
+IMPERATIVE_USTED = {"ir": "vaya", "ser": "sea", "estar": "esté", "dar": "dé", "saber": "sepa", "haber": "haya", "ver": "vea"}
+
+
+def is_preterite_irregular(infinitive: str) -> bool:
+    base = split_verb(infinitive)[0]
+    return base in PRETERITE_STEMS or base in PRETERITE_FULL
+
+
+def _spell_e(stem: str) -> str:
+    """Основа перед -e / -é: busc → busqu, lleg → llegu, empez → empec, averigu → averigü."""
+    if stem.endswith("c"):
+        return stem[:-1] + "qu"
+    if stem.endswith("gu"):
+        return stem[:-2] + "gü"
+    if stem.endswith("g"):
+        return stem + "u"
+    if stem.endswith("z"):
+        return stem[:-1] + "c"
+    return stem
+
+
+def _third_stem(stem: str, conj: str, change: str | None) -> str:
+    """Основа 3-го лица indefinido у глаголов на -ir с чередованием: pedir → pid-, dormir → durm-."""
+    if conj != "ir" or not change:
+        return stem
+    if change in ("ie", "i"):
+        i = stem.rfind("e")
+        return stem if i < 0 else stem[:i] + "i" + stem[i + 1:]
+    i = stem.rfind("o")
+    return stem if i < 0 else stem[:i] + "u" + stem[i + 1:]
+
+
+def preterite(infinitive: str, info: dict | None = None) -> list[str]:
+    """Шесть форм pretérito indefinido."""
+    info = verb_info(infinitive) if info is None else info
+    base, conj, stem, _ = split_verb(infinitive)
+    if base in PRETERITE_FULL:
+        return list(PRETERITE_FULL[base])
+    if base in PRETERITE_STEMS:
+        st = PRETERITE_STEMS[base]
+        third = "hizo" if base == "hacer" else st + "o"
+        plural3 = st + ("eron" if st.endswith("j") else "ieron")
+        return [st + "e", st + "iste", third, st + "imos", st + "isteis", plural3]
+    if base in ("reír", "sonreír", "freír"):
+        pre = base[:-4]
+        return [pre + f for f in ("reí", "reíste", "rio", "reímos", "reísteis", "rieron")]
+    if conj == "ar":
+        forms = [stem + e for e in PRETERITE_ENDINGS["ar"]]
+        forms[0] = _spell_e(stem) + "é"
+        return forms
+    if stem and stem[-1] in "aeoí" or base in ("oír",) or (stem.endswith("u") and not stem.endswith(("gu", "qu"))):
+        # leer → leí, leíste, leyó, leímos, leísteis, leyeron; construir → construyó
+        s0 = stem.rstrip("í") if base == "oír" else stem
+        strong = s0[-1] in "aeo"
+        return [s0 + "í", s0 + ("íste" if strong else "iste"), s0 + "yó", s0 + ("ímos" if strong else "imos"),
+                s0 + ("ísteis" if strong else "isteis"), s0 + "yeron"]
+    third = _third_stem(stem, conj, info.get("stem"))
+    ends = PRETERITE_ENDINGS[conj]
+    return [stem + ends[0], stem + ends[1], third + ends[2], stem + ends[3], stem + ends[4], third + ends[5]]
+
+
+def imperfect(infinitive: str) -> list[str]:
+    """Шесть форм pretérito imperfecto."""
+    base, conj, stem, _ = split_verb(infinitive)
+    if base in IMPERFECT_FULL:
+        return list(IMPERFECT_FULL[base])
+    if conj == "ar":
+        return [stem + e for e in ("aba", "abas", "aba", "ábamos", "abais", "aban")]
+    if base in ("oír", "reír", "sonreír", "freír"):
+        stem = base[:-2]
+    return [stem + e for e in ("ía", "ías", "ía", "íamos", "íais", "ían")]
+
+
+def superlative(adjective: str) -> list[str]:
+    """Абсолютная степень на -ísimo: caro → carísimo, rico → riquísimo, largo → larguísimo, feliz → felicísimo,
+    fácil → facilísimo, amable → amabilísimo. Четыре формы: -ísimo, -ísima, -ísimos, -ísimas."""
+    word = strip_accents(adjective.lower())
+    if word.endswith("ble"):
+        stem = word[:-3] + "bil"
+    else:
+        stem = word[:-1] if word[-1:] in "aeo" else word
+        if stem.endswith("c"):
+            stem = stem[:-1] + "qu"
+        elif stem.endswith("g"):
+            stem = stem[:-1] + "gu"
+        elif stem.endswith("z"):
+            stem = stem[:-1] + "c"
+    return [stem + e for e in ("ísimo", "ísima", "ísimos", "ísimas")]
+
+
+# Основы condicional, отличные от инфинитива (те же, что у будущего времени).
+CONDITIONAL_STEMS = {"tener": "tendr", "poder": "podr", "querer": "querr", "saber": "sabr", "poner": "pondr",
+                     "salir": "saldr", "venir": "vendr", "decir": "dir", "hacer": "har", "haber": "habr",
+                     "caber": "cabr", "valer": "valdr"}
+# Производные с той же особой основой: proponer → propondría, mantener → mantendría, deshacer → desharía.
+_CONDITIONAL_COMPOUNDS = ("poner", "tener", "venir", "hacer", "salir")
+
+
+def conditional(infinitive: str) -> list[str]:
+    """Шесть форм condicional simple: hablaría, comería, podría, tendría, oiría."""
+    base = split_verb(infinitive)[0]
+    stem = CONDITIONAL_STEMS.get(base)
+    if stem is None:
+        root = next((r for r in _CONDITIONAL_COMPOUNDS if base.endswith(r) and base != r), None)
+        stem = base[: -len(root)] + CONDITIONAL_STEMS[root] if root else base.replace("ír", "ir")
+    return [stem + e for e in ("ía", "ías", "ía", "íamos", "íais", "ían")]
+
+
+def imperative(infinitive: str, info: dict | None = None) -> list[str]:
+    """Утвердительный императив: tú, usted, vosotros, ustedes."""
+    info = verb_info(infinitive) if info is None else info
+    base, conj, stem, _ = split_verb(infinitive)
+    pres = present(base, info)
+    tu = IMPERATIVE_TU.get(base, pres[2])
+    if base in IMPERATIVE_USTED:
+        usted = IMPERATIVE_USTED[base]
+    else:
+        yo = pres[0]
+        root = yo[:-1] if yo.endswith("o") else stem
+        usted = (_spell_e(root) + "e") if conj == "ar" else root + "a"
+        if conj != "ar" and root.endswith("c") and not yo.endswith("zco"):
+            usted = root[:-1] + "za"   # vencer → venza
+        if conj != "ar" and root.endswith("gu"):
+            usted = root[:-1] + "a"    # seguir: sigo → siga
+    ustedes = {"dé": "den", "esté": "estén"}.get(usted, usted + "n")
+    vosotros = base[:-1] + "d"
+    return [tu, usted, vosotros, ustedes]

@@ -1,0 +1,925 @@
+id: como_era
+number: 31
+level: A2
+title: Cómo era — каким всё было
+goals:
+  - описать место и человека в прошлом: era, tenía, había, llevaba
+  - сравнить места, людей и вещи: más / menos… que
+  - сказать, что одинаково, а что нет
+  - рассказать, как изменился ваш город
+
+# Тема 8 карты A2: imperfecto в описании; más / menos… que, tan… como, mejor / peor; дом, город, техника.
+# Миссия — «мой город раньше и теперь». Imperfecto и indefinido вместе в рассказе — тема 32.
+lessons:
+  - id: mi_barrio
+    kind: listening
+    title: "¿Cómo era tu barrio?"
+    goal: понять на слух, каким был район раньше и каким стал
+    version: 2
+    # Карта экранов: docs/site_slide_maps/31_como_era.md
+    vocab:
+      - "🏢 el edificio [эдифи́θьо] — здание :: Antes aquí no había edificios altos. — Раньше здесь не было высоких зданий."
+      - "🆕 moderno/a [модэ́рно, модэ́рна] — современный :: Es un barrio muy moderno. — Это очень современный район."
+      - "🏭 la fábrica [фа́брика] — фабрика, завод :: Mi abuelo trabajaba en una fábrica. — Мой дедушка работал на фабрике."
+      - "🔊 ruidoso/a [руидо́со, руидо́са] — шумный :: Mi calle era muy ruidosa. — Моя улица была очень шумной."
+      - "🚗 el tráfico [тра́фико] — движение машин :: Ahora hay mucho tráfico. — Сейчас очень много машин."
+      - "🌳 el árbol [а́рболь] — дерево :: En mi calle había muchos árboles. — На моей улице было много деревьев."
+    blocks:
+      - "Лусия показывает Ирине район, где выросла. Послушайте разговор два раза: текста пока нет."
+      - dialogue:
+          id: antes_aqui
+          hidden: true
+          lines:
+            - "Irina: ¿Tú vivías aquí de pequeña? | Ты жила здесь в детстве?"
+            - "Lucía: Sí, en esta calle. Pero el barrio era muy diferente. | Да, на этой улице. Но район был совсем другим."
+            - "Irina: ¿Cómo era? | Каким он был?"
+            - "Lucía: Era más tranquilo que ahora. Había menos tráfico y muchos árboles. | Спокойнее, чем сейчас. Машин было меньше, а деревьев много."
+            - "Irina: ¿Y esos edificios modernos? | А эти современные здания?"
+            - "Lucía: Antes aquí había una fábrica vieja. Mi abuelo trabajaba allí. | Раньше здесь была старая фабрика. Мой дедушка там работал."
+            - "Irina: ¿Y qué te gusta más, el barrio de antes o el de ahora? | А что тебе больше нравится: район, каким он был, или нынешний?"
+            - "Lucía: Ahora es más bonito, pero también más ruidoso y más caro. Para mí, antes era mejor. | Сейчас он красивее, но и шумнее, и дороже. По-моему, раньше было лучше."
+      - choose:
+          title: Что вы поняли?
+          source: antes_aqui
+          items:
+            - q: "Где Лусия жила в детстве?"
+              options: "En esta calle. | En otro barrio. | En un pueblo."
+              explain: "Lucía: Sí, en esta calle."
+            - q: "Каким, по словам Лусии, был район раньше?"
+              options: "Más tranquilo. | Más bonito. | Más caro."
+              explain: "Lucía: Era más tranquilo que ahora."
+      - learn: [el edificio, moderno/a, la fábrica, ruidoso/a, el tráfico, el árbol]
+      - choose:
+          title: Детали разговора
+          source: antes_aqui
+          items:
+            - q: "Что было на месте современных зданий?"
+              options: "Una fábrica vieja. | Un parque con muchos árboles. | Una escuela pequeña."
+              explain: "Lucía: Antes aquí había una fábrica vieja."
+            - q: "Кто работал на фабрике?"
+              options: "Su abuelo. | Su padre. | Lucía."
+              explain: "Lucía: Mi abuelo trabajaba allí."
+            - q: "Каким стал район сейчас?"
+              options: "Más bonito, pero más ruidoso. | Más tranquilo y más barato. | Más moderno, pero menos caro."
+              explain: "Lucía: Ahora es más bonito, pero también más ruidoso y más caro."
+            - q: "Когда, по мнению Лусии, было лучше?"
+              options: "Antes. | Ahora. | No lo sabe."
+              explain: "Lucía: Para mí, antes era mejor."
+      - text:
+          id: notice
+          slide: new
+          text: "Лусия **сравнивает**: район был спокойнее, чем сейчас; машин было меньше; раньше было лучше. Для сравнения в испанском есть **más** — «более», **menos** — «менее» и **que** — «чем»."
+      - examples:
+          items:
+            - "Era **más** tranquilo **que** ahora. — Он был спокойнее, чем сейчас."
+            - "Había **menos** tráfico. — Машин было меньше."
+            - "Antes era **mejor**. — Раньше было лучше."
+      - sort:
+          title: Как было и как стало
+          source: antes_aqui
+          rule: notice
+          groups:
+            "antes": ["había una fábrica", "había menos tráfico", "era más tranquilo"]
+            "ahora": ["hay edificios modernos", "es más ruidoso", "es más caro"]
+      - match:
+          title: Соедините пары
+          free: true
+          rule: none
+          pairs:
+            - "el edificio — здание"
+            - "la fábrica — фабрика"
+            - "el árbol — дерево"
+            - "el tráfico — движение машин"
+            - "ruidoso — шумный"
+            - "moderno — современный"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          free: true
+          skill: comparar
+          rule: notice
+          items:
+            - say: "Antes el barrio era más tranquilo."
+              a: "Antes el barrio era más tranquilo"
+              explain: "Más tranquilo — «спокойнее»."
+              noaudio: {q: "Напишите по-испански: «Раньше район был спокойнее».", a: "Antes el barrio era más tranquilo | El barrio era más tranquilo antes"}
+      - choose:
+          title: Что ответить?
+          free: true
+          skill: comparar
+          rule: notice
+          items:
+            - lines: ["Irina: ¿Cómo era tu calle?"]
+              q: "Скажите, что она была шумнее, чем сейчас."
+              options: "Era más ruidosa que ahora. | Es más ruidosa que antes. | Era menos ruidosa que ahora."
+              explain: "Как было — era; «шумнее, чем сейчас» — más ruidosa que ahora."
+            - say: "Ahora hay más edificios y menos árboles."
+              options: "Теперь здесь больше зданий и меньше деревьев. | Раньше здесь было больше зданий и меньше деревьев. | Теперь здесь меньше зданий и больше деревьев."
+              explain: "Ahora hay — «теперь есть»; más edificios — «больше зданий», menos árboles — «меньше деревьев»."
+              noaudio: {q: "Что значит «Ahora hay más edificios y menos árboles»?", options: "Теперь здесь больше зданий и меньше деревьев. | Раньше здесь было больше зданий и меньше деревьев. | Теперь здесь меньше зданий и больше деревьев."}
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: comparar
+          rule: notice
+          items:
+            - es: "Antes había menos tráfico que ahora."
+              ru: "Раньше машин было меньше, чем сейчас."
+              extra: [más]
+            - "Ahora el barrio es más ruidoso que antes. — Теперь район шумнее, чем раньше."
+
+  - id: mas_menos
+    kind: grammar
+    title: "Más grande que, menos caro que"
+    goal: сравнить места, вещи и людей
+    version: 2
+    vocab:
+      - "🐢 lento/a [ле́нто, ле́нта] — медленный :: El autobús es más lento que el metro. — Автобус медленнее, чем метро."
+      - "👎 malo/a [ма́ло, ма́ла] — плохой :: El café de aquí es malo. — Кофе здесь плохой."
+      - "📉 peor [пэо́р] — хуже :: Mi inglés es peor que mi español. — Мой английский хуже, чем мой испанский."
+      - "👶 menor [мэно́р] — младше :: Mi hermana es menor que yo. — Моя сестра младше меня."
+    forms: [rápida, rápidos, rápidas]
+    blocks:
+      - "Чтобы сравнить, ставим **más** или **menos** перед прилагательным, а после него — **que**."
+      - table:
+          id: mas_que
+          title: Как сравнивать
+          rows:
+            - ["**más** … **que**", "Madrid es **más** grande **que** Valencia. — Мадрид больше Валенсии."]
+            - ["**menos** … **que**", "El autobús es **menos** caro **que** el taxi. — Автобус дешевле такси."]
+            - ["глагол + **más que**, **menos que**", "Ana trabaja **más que** yo. — Ана работает больше меня."]
+      - note:
+          id: que_yo
+          text: "После **que** — _yo_ и _tú_, как в начале фразы: _Mi hermano es más alto que yo_. Прилагательное согласуется с тем, о ком говорят: _Mi hermana es más alta que yo_."
+      - write:
+          title: Сравните
+          format: фраза по-испански
+          skill: comparar
+          rule: mas_que
+          items:
+            - q: "Madrid / grande / Valencia (+)"
+              a: "Madrid es más grande que Valencia"
+              explain: "(+) — más … que."
+            - q: "El taxi / caro / el autobús (+)"
+              a: "El taxi es más caro que el autobús"
+              explain: "(+) — más … que."
+            - q: "Mi hermana / alto / yo (+)"
+              a: "Mi hermana es más alta que yo"
+              explain: "Hermana — женский род: más alta."
+              mistakes:
+                "mi hermana es más alto que yo": "О сестре — женский род: más **alta**."
+                "mi hermana es más alta que mí": "После que — **yo**: más alta que yo."
+            - q: "El autobús / cómodo / el tren (−)"
+              a: "El autobús es menos cómodo que el tren"
+              explain: "(−) — menos … que."
+      - learn: [lento/a, malo/a, peor, menor]
+      - choose:
+          title: Más или menos?
+          skill: comparar
+          rule: mas_que
+          items:
+            - q: "El metro es muy rápido; el autobús es ___ rápido que el metro."
+              options: "menos | más | mejor"
+              explain: "Автобус медленнее метро: menos rápido."
+            - q: "El tren es más ___ que el avión."
+              options: "lento | lenta | lentos"
+              explain: "El tren — мужской род, единственное число: lento."
+      - table:
+          id: mejor_peor
+          slide: new
+          title: Особые формы
+          rows:
+            - ["bueno → **mejor**", "Este café es **mejor** que el café de casa. — Этот кофе лучше, чем дома."]
+            - ["malo → **peor**", "Mi inglés es **peor** que mi español. — Мой английский хуже моего испанского."]
+            - ["старше → **mayor**", "Mi hermano es **mayor** que yo. — Мой брат старше меня."]
+            - ["младше → **menor**", "Mi hermana es **menor** que yo. — Моя сестра младше меня."]
+      - note:
+          id: no_mas_bueno
+          text: "О качестве обычно говорят не «más bueno» и «más malo», а **mejor** и **peor**. **Mayor que** уже значит «старше, чем»: más перед ним не ставят."
+      - choose:
+          title: Выберите форму
+          skill: mejor_peor
+          rule: mejor_peor
+          items:
+            - q: "Mi hermano tiene veinte años y yo treinta: él es ___ que yo."
+              options: "menor | mayor | peor"
+              explain: "Двадцать меньше, чем тридцать: брат младше — menor."
+            - q: "Este restaurante es muy bueno: es ___ que el restaurante de ayer."
+              options: "mejor | más bueno | peor"
+              explain: "О качестве — mejor."
+            - say: "Mi hermana es menor que yo."
+              options: "Моя сестра младше меня. | Моя сестра старше меня. | Моя сестра ниже меня."
+              explain: "Menor — «младше», mayor — «старше»; «ниже» — más baja."
+              noaudio: {q: "Что значит «Mi hermana es menor que yo»?", options: "Моя сестра младше меня. | Моя сестра старше меня. | Моя сестра ниже меня."}
+      - choose:
+          title: Какое слово?
+          rule: none
+          items:
+            - q: "El café de este bar es muy ___: no me gusta nada."
+              options: "malo | mala | peor"
+              explain: "El café — мужской род: malo."
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: mejor_peor
+          rule: mejor_peor
+          items:
+            - q: "Мой испанский хуже, чем мой английский."
+              a: "Mi español es peor que mi inglés"
+              explain: "Хуже — peor."
+              mistakes:
+                "mi español es más malo que mi inglés": "О качестве — **peor**, а не «más malo»."
+            - q: "Мой брат старше меня."
+              a: "Mi hermano es mayor que yo"
+              explain: "Старше — mayor."
+              mistakes:
+                "mi hermano es más mayor que yo": "Mayor уже значит «старше»: **mayor que yo**."
+                "mi hermano es mayor que mí": "После que — **yo**: mayor que yo."
+      - build:
+          title: Соберите фразу
+          skill: comparar
+          rule: mas_que
+          items:
+            - es: "El autobús es más lento que el metro."
+              ru: "Автобус медленнее, чем метро."
+              extra: [como]
+            - es: "Ana trabaja más que yo."
+              ru: "Ана работает больше меня."
+              extra: [mí]
+      - compose:
+          title: О себе
+          skill: [comparar, mejor_peor]
+          rule: mejor_peor
+          items:
+            - q: "Сравните себя с братом, сестрой или другом: кто старше, кто выше, кто лучше готовит. Напишите две-три фразы."
+              format: "Mi hermana es mayor que yo…"
+              words: [8, 45]
+              sentences: 2
+              checks:
+                - label: "сравнение: más, menos, mayor, menor, mejor, peor"
+                  any: [más, menos, mayor, menor, mejor, peor]
+                - label: "с кем: … que yo, que mi hermano…"
+                  any: [que]
+              sample: "Mi hermana es mayor que yo, pero yo soy más alto. Ella cocina mejor que yo, y yo hablo más idiomas."
+              sample_ru: "Моя сестра старше меня, но я выше. Она готовит лучше меня, а я знаю больше языков."
+    quiz:
+      - q: "Mi hermano es más alto ___ yo."
+        options: "que | como | de"
+        explain: "Más … que."
+        skill: comparar
+      - q: "Mi español no es muy bueno: es ___ que mi inglés."
+        options: "peor | más malo | menor"
+        explain: "Хуже — peor; menor — «младше»."
+        skill: mejor_peor
+
+  - id: tan_como
+    kind: grammar
+    title: "Tan grande como, tanto como"
+    goal: сказать, что одинаково, а что нет
+    version: 2
+    vocab:
+      - "🟰 tan [тан] — так, такой (tan … como — такой же…, как) :: Mi hermano es tan alto como yo. — Мой брат такого же роста, как я."
+      - "🔢 tanto/a [та́нто, та́нта] — столько (tanto … como — столько же…, сколько) :: No tengo tanto tiempo como antes. — У меня нет столько времени, сколько раньше."
+      - "⚖️ igual [игуа́ль] — одинаковый {forms: iguales} :: Las dos casas son iguales. — Оба дома одинаковые."
+      - "🤝 parecido/a [парэθи́до, парэθи́да] — похожий :: Tu pueblo es parecido a mi pueblo. — Твоя деревня похожа на мою."
+    blocks:
+      - "Когда сравнивают одинаковое, говорят **tan … como** — «такой же…, как». С отрицанием это мягкий способ сказать «меньше»."
+      - learn: [tan, tanto/a, igual, parecido/a]
+      - table:
+          id: tan_como
+          title: Одинаково или нет
+          rows:
+            - ["**tan** + прилагательное + **como**", "Mi hermano es **tan** alto **como** yo. — Брат такого же роста, как я."]
+            - ["**no tan** … **como**", "Valencia no es **tan** grande **como** Madrid. — Валенсия не такая большая, как Мадрид."]
+            - ["**tanto, tanta, tantos, tantas** + существительное", "No hay **tantos** coches **como** en Madrid. — Машин не так много, как в Мадриде."]
+            - ["глагол + **tanto como**", "Ya no leo **tanto como** antes. — Я уже не читаю столько, сколько раньше."]
+      - note:
+          id: tanto
+          text: "Перед прилагательным — **tan**, перед существительным — **tanto** в нужном роде и числе: _tanto tiempo_, _tanta gente_, _tantos coches_, _tantas tiendas_. После глагола — **tanto como**."
+      - choose:
+          title: Tan или tanto?
+          skill: tan_como
+          rule: tanto
+          items:
+            - q: "Mi piso no es ___ grande como tu piso."
+              options: "tan | tanto | tanta"
+              explain: "Перед прилагательным (grande) — tan."
+            - q: "En mi pueblo no hay ___ gente como en Madrid."
+              options: "tanta | tanto | tan"
+              explain: "Gente — женский род: tanta gente."
+            - q: "Antes no había ___ coches como ahora."
+              options: "tantos | tantas | tan"
+              explain: "Coches — мужской род, множественное число: tantos."
+            - q: "Ya no trabajo ___ como antes."
+              options: "tanto | tan | tanta"
+              explain: "После глагола — tanto como."
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: tan_como
+          rule: tan_como
+          items:
+            - q: "Моя сестра такого же роста, как я."
+              a: "Mi hermana es tan alta como yo"
+              explain: "Tan alta como yo: о сестре — alta."
+              mistakes:
+                "mi hermana es tan alto como yo": "О сестре — женский род: tan **alta** como yo."
+                "mi hermana es tan alta que yo": "После tan — **como**, а не que."
+            - q: "Мой район не такой шумный, как центр."
+              a: "Mi barrio no es tan ruidoso como el centro"
+              explain: "No tan … como."
+            - q: "У меня нет столько времени, сколько раньше."
+              a: "No tengo tanto tiempo como antes | Ya no tengo tanto tiempo como antes"
+              explain: "Перед существительным — tanto: tanto tiempo."
+              mistakes:
+                "no tengo tan tiempo como antes": "Перед существительным — **tanto**: tanto tiempo."
+      - choose:
+          title: Послушайте
+          skill: tan_como
+          rule: tan_como
+          items:
+            - say: "Mi pueblo no es tan bonito como tu pueblo."
+              options: "Моя деревня не такая красивая, как твоя. | Моя деревня такая же красивая, как твоя. | Твоя деревня не такая красивая, как моя."
+              explain: "No es tan bonito como — «не такой красивый, как»."
+              noaudio: {q: "Что значит «Mi pueblo no es tan bonito como tu pueblo»?", options: "Моя деревня не такая красивая, как твоя. | Моя деревня такая же красивая, как твоя. | Твоя деревня не такая красивая, как моя."}
+            - q: "Что значит «Las dos ciudades son muy parecidas, pero no son iguales»?"
+              options: "Эти два города очень похожи, но не одинаковые. | Эти два города совсем разные. | Эти два города одинаковые."
+              explain: "Parecidas — «похожие», iguales — «одинаковые»."
+      - build:
+          title: Соберите фразу
+          skill: tan_como
+          rule: tan_como
+          items:
+            - es: "Valencia no es tan grande como Madrid."
+              ru: "Валенсия не такая большая, как Мадрид."
+              extra: [que]
+            - es: "Ya no leo tanto como antes."
+              ru: "Я уже не читаю столько, сколько раньше."
+              extra: [tan]
+      - compose:
+          title: О себе
+          skill: tan_como
+          rule: tan_como
+          items:
+            - q: "Сравните ваш город с другим: что там так же, а что не так. Напишите две-три фразы с tan… como или tanto… como."
+              format: "Mi ciudad no es tan… como…"
+              words: [8, 45]
+              sentences: 2
+              checks:
+                - label: "tan … como или tanto … como"
+                  re: "\\b(tan|tanto|tanta|tantos|tantas)\\b.*\\bcomo\\b"
+              sample: "Mi ciudad no es tan grande como Madrid, pero es tan bonita como Madrid. En mi ciudad no hay tantos turistas como aquí."
+              sample_ru: "Мой город не такой большой, как Мадрид, но такой же красивый. В моём городе не так много туристов, как здесь."
+    quiz:
+      - q: "En verano no hace ___ calor en Bilbao como en Sevilla."
+        options: "tanto | tan | tanta"
+        explain: "Calor — существительное мужского рода: tanto calor."
+        skill: tan_como
+      - q: "Mi hermano es ___ alto como mi padre."
+        options: "tan | tanto | más"
+        explain: "Tan + прилагательное + como."
+        skill: tan_como
+
+  - id: personas
+    kind: grammar
+    title: "Era alto y llevaba bigote"
+    goal: описать, как выглядел и каким был человек раньше
+    version: 2
+    vocab:
+      - "🧔 la barba [ба́рба] — борода :: Mi abuelo tenía barba. — У дедушки была борода."
+      - "👨 el bigote [биго́тэ] — усы :: Mi padre llevaba bigote. — Папа носил усы."
+      - "👨‍🦲 calvo/a [ка́льбо, ка́льба] — лысый :: Ahora mi tío está calvo. — Сейчас мой дядя лысый."
+      - "➰ rizado/a [риθа́до, риθа́да] — кудрявый :: Tenía el pelo rizado. — У меня были кудрявые волосы."
+      - "➖ liso/a [ли́со, ли́са] — прямой (о волосах) :: Ahora tengo el pelo liso. — Сейчас у меня прямые волосы."
+      - "🧑 de joven [дэ хо́бэн] — в молодости :: De joven mi abuela era muy guapa. — В молодости бабушка была очень красивой."
+    blocks:
+      - learn: [la barba, el bigote, calvo/a, rizado/a, liso/a, de joven]
+      - "Ирина показывает Диего старую фотографию."
+      - dialogue:
+          id: foto
+          lines:
+            - "Irina: Mira, esta foto es de 1975. Este es mi abuelo de joven. | Смотри, это фото 1975 года. Это мой дедушка в молодости."
+            - "Diego: ¡Qué guapo! Era muy alto, ¿no? | Какой красивый! Он был очень высоким, да?"
+            - "Irina: Sí, era alto y delgado. Tenía el pelo negro y rizado, y llevaba bigote. | Да, высоким и худым. У него были чёрные кудрявые волосы, и он носил усы."
+            - "Diego: ¿Y ahora? | А сейчас?"
+            - "Irina: Ahora está calvo y tiene barba blanca. Pero todavía es muy simpático. | Сейчас он лысый и с белой бородой. Но он всё такой же приветливый."
+            - "Diego: ¿Y esta chica con gafas? | А эта девушка в очках?"
+            - "Irina: Es mi abuela. De joven tenía el pelo largo y liso. | Это моя бабушка. В молодости у неё были длинные прямые волосы."
+      - choose:
+          title: Что вы поняли?
+          source: foto
+          items:
+            - q: "¿Cómo era el abuelo de Irina de joven?"
+              options: "Alto y delgado, con bigote. | Bajo y calvo, con barba blanca. | Alto, con el pelo largo y liso."
+              explain: "Irina: Era alto y delgado… y llevaba bigote."
+            - q: "¿Cómo es ahora?"
+              options: "Calvo, con barba blanca. | Alto, con el pelo rizado. | Delgado y con bigote."
+              explain: "Irina: Ahora está calvo y tiene barba blanca."
+            - q: "¿Quién lleva gafas en la foto?"
+              options: "La abuela. | El abuelo. | Irina."
+              explain: "Diego: ¿Y esta chica con gafas? — Irina: Es mi abuela."
+            - q: "¿Cómo tenía el pelo la abuela de joven?"
+              options: "Largo y liso. | Corto y rizado. | Negro y rizado."
+              explain: "Irina: De joven tenía el pelo largo y liso."
+      - table:
+          id: retrato
+          slide: new
+          title: Как описать человека в прошлом
+          rows:
+            - ["**era** + какой", "Era alto y delgado. — Он был высоким и худым."]
+            - ["**tenía** + волосы, глаза, возраст", "Tenía el pelo rizado. — У него были кудрявые волосы."]
+            - ["**llevaba** + очки, усы, одежда", "Llevaba gafas. — Он носил очки."]
+      - note:
+          id: ahora_esta
+          text: "Внешность и характер в прошлом описывают в imperfecto. А о том, как человек выглядит **сейчас**, после перемен, часто говорят с **estar**: _Ahora está calvo_ — «теперь он лысый»."
+      - choose:
+          title: Выберите глагол
+          free: true
+          skill: describir_pasado
+          rule: retrato
+          items:
+            - q: "Mi abuela ___ los ojos verdes."
+              options: "tenía | llevaba | era"
+              explain: "Глаза — tenía: tenía los ojos verdes."
+            - q: "De joven mi padre ___ muy delgado."
+              options: "era | tenía | llevaba"
+              explain: "Какой был — era."
+            - q: "En la foto Ana ___ un vestido rojo."
+              options: "llevaba | era | estaba"
+              explain: "Одежда — llevaba."
+            - say: "De joven mi padre tenía el pelo largo y llevaba barba."
+              options: "В молодости у папы были длинные волосы и борода. | Сейчас у папы длинные волосы и борода. | В молодости папа был лысым и с бородой."
+              explain: "De joven — «в молодости»; tenía el pelo largo — «были длинные волосы»."
+              noaudio: {q: "Что значит «De joven mi padre tenía el pelo largo y llevaba barba»?", options: "В молодости у папы были длинные волосы и борода. | Сейчас у папы длинные волосы и борода. | В молодости папа был лысым и с бородой."}
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          free: true
+          skill: describir_pasado
+          rule: retrato
+          items:
+            - q: "Мой дедушка был высоким и худым."
+              a: "Mi abuelo era alto y delgado"
+              explain: "Каким был — era."
+              mistakes:
+                "mi abuelo fue alto y delgado": "Описание в прошлом — **era**."
+            - q: "У неё были кудрявые волосы."
+              a: "(Ella) tenía el pelo rizado | (Ella) llevaba el pelo rizado"
+              explain: "Волосы — tenía el pelo…"
+              mistakes:
+                "tenía el pelo rizada": "Rizado относится к el pelo: el pelo **rizado**."
+            - q: "В молодости бабушка носила очки."
+              a: "De joven mi abuela llevaba gafas | Mi abuela llevaba gafas de joven | De joven mi abuela tenía gafas"
+              explain: "Очки — llevaba gafas."
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: describir_pasado
+          rule: retrato
+          items:
+            - es: "Mi abuelo era alto y llevaba bigote."
+              ru: "Мой дедушка был высоким и носил усы."
+              extra: [fue]
+            - es: "De joven tenía el pelo negro y rizado."
+              ru: "В молодости у него были чёрные кудрявые волосы."
+      - compose:
+          title: Человек из детства
+          free: true
+          skill: describir_pasado
+          rule: retrato
+          items:
+            - q: "Опишите человека из вашего детства — учителя, соседа, бабушку или дедушку: каким он был и как выглядел. Две-три фразы."
+              format: "Mi abuelo era… Tenía… Llevaba…"
+              words: [10, 50]
+              sentences: 2
+              checks:
+                - label: "каким был: era…"
+                  any: [era]
+                - label: "как выглядел: tenía… или llevaba…"
+                  any: [tenía, llevaba]
+              sample: "Mi profesora de inglés era joven y muy simpática. Tenía el pelo rubio y rizado, y siempre llevaba vestidos de colores."
+              sample_ru: "Моя учительница английского была молодой и очень приветливой. У неё были светлые кудрявые волосы, и она всегда носила яркие платья."
+    quiz:
+      - q: "De joven mi tío ___ el pelo muy largo."
+        options: "tenía | era | estaba"
+        explain: "Волосы — tenía el pelo…"
+        skill: describir_pasado
+        free: true
+      - q: "Что значит «Ahora está calvo»?"
+        options: "Теперь он лысый. | Теперь он с бородой. | Теперь он кудрявый."
+        explain: "Calvo — «лысый»."
+        free: true
+
+  - id: tecnologia
+    kind: dialogue
+    title: "Los móviles de antes"
+    goal: сравнить вещи раньше и сейчас
+    version: 2
+    vocab:
+      - "🏋️ pesado/a [пэса́до, пэса́да] — тяжёлый :: Mi primer móvil era muy pesado. — Мой первый мобильный был очень тяжёлым."
+      - "🪶 ligero/a [лихэ́ро, лихэ́ра] — лёгкий (по весу) :: Los móviles de ahora son más ligeros. — Нынешние мобильные легче."
+      - "📱 la pantalla [панта́йя] — экран :: La pantalla era muy pequeña. — Экран был очень маленьким."
+      - "📷 la cámara [ка́мара] — камера, фотоаппарат :: Mi móvil no tenía cámara. — В моём мобильном не было камеры."
+      - "🔋 la batería [батэри́а] — батарея, аккумулятор :: La batería duraba una semana. — Батарея держала неделю."
+      - "⏳ durar [дура́р] — длиться, держаться :: La película dura dos horas. — Фильм длится два часа."
+    blocks:
+      - learn: [pesado/a, ligero/a, la pantalla, la cámara, la batería, durar]
+      - "Пабло нашёл в шкафу свой первый мобильный и показывает его Тому."
+      - dialogue:
+          id: movil
+          lines:
+            - "Tom: ¿Qué es esto? ¿Un móvil? | Что это? Мобильник?"
+            - "Pablo: Sí, era mi primer móvil, de 2003. | Да, это был мой первый мобильный, 2003 года."
+            - "Tom: ¡Qué pequeño! Pero es muy pesado. | Какой маленький! Но тяжёлый."
+            - "Pablo: Sí, era más pesado que los móviles de ahora, y la pantalla era muy pequeña. No tenía cámara. Tampoco tenía internet. | Да, он был тяжелее нынешних, и экран был совсем маленький. Камеры не было. Интернета тоже."
+            - "Tom: ¿Y qué hacías con él? | А что ты с ним делал?"
+            - "Pablo: Llamar y escribir mensajes. ¡Y la batería duraba una semana! | Звонил и писал сообщения. А батарея держала неделю!"
+            - "Tom: Los de ahora son más rápidos, pero la batería no dura tanto. | Нынешние быстрее, но батарея держит не так долго."
+      - choose:
+          title: Что сказано в разговоре?
+          source: movil
+          items:
+            - q: "¿De qué año es el primer móvil de Pablo?"
+              options: "De 2003. | De 2013. | De 1993."
+              explain: "Pablo: Era mi primer móvil, de 2003."
+            - q: "¿Cómo era el móvil?"
+              options: "Pequeño y pesado. | Grande y ligero. | Pequeño y ligero."
+              explain: "Tom: ¡Qué pequeño! Pero es muy pesado."
+            - q: "¿Tenía cámara?"
+              options: "No, no tenía. | Sí, una cámara pequeña. | Sí, pero no funcionaba."
+              explain: "Pablo: No tenía cámara."
+            - q: "¿Qué hacía Pablo con el móvil?"
+              options: "Llamaba y escribía mensajes. | Hacía fotos y veía películas. | Leía y escuchaba música."
+              explain: "Pablo: Llamar y escribir mensajes."
+            - q: "¿Qué era mejor en los móviles de antes?"
+              options: "La batería. | La pantalla. | La cámara."
+              explain: "Pablo: ¡La batería duraba una semana! Tom: …la batería no dura tanto."
+              skill: tan_como
+      - note:
+          id: los_de
+          slide: new
+          text: "Чтобы не повторять слово, говорят **los de ahora** — «нынешние», **los de antes** — «прежние»: _Los móviles de ahora son más rápidos que **los de antes**_. Артикль — в роде и числе слова, которое убрали: _la pantalla de ahora_ → **la de ahora**."
+      - choose:
+          title: Выберите форму
+          source: movil
+          skill: comparar
+          rule: los_de
+          items:
+            - q: "Los móviles de antes eran más ___ que los de ahora."
+              options: "pesados | ligeros | pesadas"
+              explain: "Pablo: Era más pesado que los móviles de ahora. Móviles — мужской род: pesados."
+            - q: "Las pantallas de ahora son más grandes que ___ de antes."
+              options: "las | los | la"
+              explain: "Las pantallas → las de antes."
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          free: true
+          skill: comparar
+          rule: los_de
+          items:
+            - q: "Нынешние мобильные легче, чем прежние."
+              a: "Los móviles de ahora son más ligeros que los de antes | Los de ahora son más ligeros que los de antes"
+              explain: "Más ligeros que los de antes."
+              mistakes:
+                "los móviles de ahora son más ligeros que las de antes": "Móviles — мужской род: **los** de antes."
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          free: true
+          rule: none
+          items:
+            - q: "Фильм длится два часа."
+              a: "La película dura dos horas"
+              explain: "Durar — правильный глагол: dura."
+      - choose:
+          title: Послушайте
+          free: true
+          skill: comparar
+          rule: los_de
+          items:
+            - say: "Mi primer ordenador era más lento, pero la batería duraba más."
+              options: "Мой первый компьютер был медленнее, но батарея держала дольше. | Мой первый компьютер был быстрее, но батарея держала меньше. | Мой новый компьютер медленнее, но батарея держит дольше."
+              explain: "Era más lento — «был медленнее»; duraba más — «держала дольше»."
+              noaudio: {q: "Что значит «Mi primer ordenador era más lento, pero la batería duraba más»?", options: "Мой первый компьютер был медленнее, но батарея держала дольше. | Мой первый компьютер был быстрее, но батарея держала меньше. | Мой новый компьютер медленнее, но батарея держит дольше."}
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: comparar
+          rule: los_de
+          items:
+            - es: "La pantalla era más pequeña que la de ahora."
+              ru: "Экран был меньше нынешнего."
+              extra: [el]
+      - compose:
+          title: Раньше и сейчас
+          free: true
+          skill: [comparar, tan_como]
+          rule: los_de
+          items:
+            - q: "Вспомните ваш первый телефон, компьютер или телевизор: каким он был? Сравните его с тем, что у вас сейчас. Две-три фразы."
+              format: "Mi primer móvil era… Los de ahora son…"
+              words: [10, 50]
+              sentences: 2
+              checks:
+                - label: "как было: era, tenía, había…"
+                  any: [era, eran, tenía, tenían, duraba, había]
+                - label: "сравнение: más, menos, tan, tanto, mejor, peor"
+                  any: [más, menos, tan, tanto, mejor, peor]
+              sample: "Mi primer móvil era pequeño y no tenía cámara. Los de ahora son más rápidos y tienen una pantalla grande, pero la batería no dura tanto."
+              sample_ru: "Мой первый мобильный был маленьким, без камеры. Нынешние быстрее и с большим экраном, но батарея держит не так долго."
+
+  - id: lectura
+    kind: reading
+    title: "Mi ciudad, antes y ahora"
+    goal: понять рассказ о том, как изменился город, и ответить автору
+    version: 2
+    vocab:
+      - "🐘 enorme [эно́рмэ] — огромный :: Ahora mi ciudad es enorme. — Теперь мой город огромный."
+      - "🏙 el rascacielos [раскаθьэ́лос] — небоскрёб {pl: los rascacielos} :: Hay muchos rascacielos. — Там много небоскрёбов."
+      - "🛍 el centro comercial [θэ́нтро комэрθья́ль] — торговый центр {pl: los centros comerciales} :: Mis padres tienen un restaurante en un centro comercial. — У моих родителей ресторан в торговом центре."
+      - "🌫 la contaminación [контаминаθьо́н] — загрязнение :: En la ciudad hay mucha contaminación. — В городе сильно загрязнён воздух."
+      - "💨 el aire [а́йрэ] — воздух :: El aire no está tan limpio como antes. — Воздух не такой чистый, как раньше."
+    blocks:
+      - learn: [enorme, el rascacielos, el centro comercial, la contaminación, el aire]
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "enorme — огромный"
+            - "el rascacielos — небоскрёб"
+            - "el centro comercial — торговый центр"
+            - "la contaminación — загрязнение"
+            - "el aire — воздух"
+      - "Повар Ли пишет в блоге о городе, где вырос."
+      - reading:
+          id: ciudad
+          title: Mi ciudad, antes y ahora
+          text: |
+            Nací en una ciudad del sur de China. Cuando yo era pequeño, mi ciudad era mucho más pequeña y tranquila que ahora. Casi todo el mundo iba en bici y había muy pocos coches. Las casas eran bajas y viejas, y en mi calle había un mercado enorme. Mis padres tenían allí un restaurante pequeño.
+
+            Ahora mi ciudad es enorme. Hay rascacielos, centros comerciales y metro. La vida es más cómoda que antes, pero también más cara. Hay mucho tráfico y mucha contaminación: el aire no está tan limpio como antes.
+
+            Mis padres todavía tienen el restaurante, pero ya no está en el mercado: ahora está en un centro comercial. Cuando vuelvo, mi ciudad es como otra ciudad. ¿Es mejor o peor? No lo sé. Es diferente.
+          translation: |
+            Я родился в городе на юге Китая. Когда я был маленьким, мой город был гораздо меньше и спокойнее, чем сейчас. Почти все ездили на велосипедах, а машин было совсем мало. Дома были низкие и старые, а на моей улице был огромный рынок. У моих родителей там был маленький ресторан.
+
+            Теперь мой город огромный. Там небоскрёбы, торговые центры и метро. Жить стало удобнее, но и дороже. Много машин и сильное загрязнение: воздух не такой чистый, как раньше.
+
+            У родителей всё ещё есть ресторан, но он больше не на рынке: теперь он в торговом центре. Когда я приезжаю, мой город кажется другим. Лучше он или хуже? Не знаю. Он другой.
+      - choose:
+          title: Что сказано в тексте?
+          source: ciudad
+          items:
+            - q: "¿Cómo iba la gente antes?"
+              options: "Casi todos en bici. | Casi todos en coche. | Casi todos en metro."
+              explain: "Casi todo el mundo iba en bici y había muy pocos coches."
+            - q: "¿Dónde estaba antes el restaurante de sus padres?"
+              options: "En el mercado de su calle. | En un centro comercial. | En un rascacielos del centro."
+              explain: "En mi calle había un mercado enorme. Mis padres tenían allí un restaurante pequeño."
+            - q: "¿Cómo es la vida ahora?"
+              options: "Más cómoda, pero más cara. | Más barata y más tranquila. | Tan cómoda como antes."
+              explain: "La vida es más cómoda que antes, pero también más cara."
+              skill: comparar
+            - q: "Para Li, ¿su ciudad ahora es mejor o peor?"
+              options: "No lo sabe: es diferente. | Es mucho mejor. | Es mucho peor."
+              explain: "¿Es mejor o peor? No lo sé. Es diferente."
+              skill: mejor_peor
+      - sort:
+          title: Antes или ahora?
+          source: ciudad
+          groups:
+            "antes": ["muy pocos coches", "casas bajas y viejas", "un mercado enorme"]
+            "ahora": ["rascacielos", "mucho tráfico", "centros comerciales"]
+      - write:
+          title: Ответьте по тексту
+          format: короткий ответ по-испански
+          source: ciudad
+          items:
+            - q: "¿Cómo está el aire ahora?"
+              a: "No está tan limpio como antes | El aire no está tan limpio como antes | No tan limpio como antes | Menos limpio que antes"
+              explain: "El aire no está tan limpio como antes."
+              skill: tan_como
+            - q: "Как в тексте сказано «гораздо меньше и спокойнее, чем сейчас»?"
+              a: "mucho más pequeña y tranquila que ahora"
+              explain: "Mucho más — «гораздо более»: mucho más pequeña y tranquila que ahora."
+              skill: comparar
+      - choose:
+          title: Послушайте
+          free: true
+          rule: none
+          items:
+            - say: "En el centro hay mucho tráfico y mucha contaminación."
+              options: "В центре много машин и сильно загрязнён воздух. | В центре мало машин и чистый воздух. | В центре много машин, но воздух чистый."
+              explain: "Mucho tráfico — «много машин»; mucha contaminación — «сильное загрязнение»."
+              noaudio: {q: "Что значит «En el centro hay mucho tráfico y mucha contaminación»?", options: "В центре много машин и сильно загрязнён воздух. | В центре мало машин и чистый воздух. | В центре много машин, но воздух чистый."}
+      - compose:
+          title: Комментарий к блогу
+          free: true
+          rule: none
+          skill: [comparar, mejor_peor]
+          items:
+            - q: "Напишите Ли комментарий: где вам нравится жить больше — в большом городе или в маленьком — и почему. Три-четыре фразы."
+              format: "Hola, Li: a mí me gustan más…"
+              words: [15, 70]
+              sentences: 2
+              checks:
+                - label: "что нравится больше: me gusta más…, prefiero…"
+                  any: [me gusta más, me gustan más, prefiero, mejor]
+                - label: "почему: porque…"
+                  any: [porque]
+                - label: "сравнение: más / menos … que, tan … como"
+                  any: [más, menos, tan, tanto, tanta, tantos, tantas]
+              sample: "Hola, Li: a mí me gustan más las ciudades pequeñas, porque son más tranquilas y más baratas. Pero en las ciudades grandes hay más trabajo y más cosas que hacer."
+              sample_ru: "Привет, Ли! Мне больше нравятся маленькие города: они спокойнее и дешевле. Но в больших городах больше работы и больше чем заняться."
+
+  - id: mision
+    kind: practice
+    title: Мой город раньше и теперь
+    goal: рассказать, как изменился ваш город, и сравнить его с другим
+    version: 2
+    blocks:
+      - review:
+          title: Вспомним
+          skills: [imperfecto_er_ir, ya_no_todavia, algo_nada]
+          n: 2
+      - "Диего прислал вам голосовое сообщение из Мексики. Послушайте: текста нет."
+      - dialogue:
+          id: audio_diego
+          hidden: true
+          title: Сообщение от Диего
+          lines:
+            - "Diego: ¡Hola! Estoy en México, en casa de mis padres. Mi pueblo está muy cambiado. Antes había solo una calle y una tienda; ahora hay un supermercado enorme y mucho tráfico. ¡Pero la comida de mi madre es tan buena como antes! | Привет! Я в Мексике, у родителей. Мой посёлок сильно изменился. Раньше была одна улица и один магазин, а теперь огромный супермаркет и много машин. Но мамина еда такая же вкусная, как раньше!"
+      - choose:
+          title: Что в сообщении?
+          source: audio_diego
+          items:
+            - q: "¿Dónde está Diego?"
+              options: "En casa de sus padres, en México. | En su casa de Madrid. | En un supermercado de México."
+              explain: "Estoy en México, en casa de mis padres."
+            - q: "¿Qué había antes en su pueblo?"
+              options: "Solo una calle y una tienda. | Un supermercado enorme. | Mucho tráfico."
+              explain: "Antes había solo una calle y una tienda."
+              skill: imperfecto_er_ir
+            - q: "¿Cómo es la comida de su madre?"
+              options: "Tan buena como antes. | Peor que antes. | Mejor que antes."
+              explain: "¡La comida de mi madre es tan buena como antes!"
+              skill: tan_como
+      - mission:
+          id: mi_ciudad
+          title: Мой город раньше и теперь
+          text: "Вечером Диего звонит и расспрашивает о вашем городе. Отвечайте о себе."
+      - chat:
+          id: diego
+          title: Разговор с Диего
+          with: Diego
+          turns:
+            - say: "Oye, ¿y cómo era tu ciudad hace veinte años? | Слушай, а каким был твой город двадцать лет назад?"
+              task: "Ответьте от себя: каким был город и что там было."
+              skill: describir_pasado
+              compose:
+                format: "Era… Había…"
+                words: [3, 25]
+                checks:
+                  - label: "как было: era…, había…, tenía…"
+                    any: [era, había, tenía]
+                sample: "Era más pequeña y más tranquila. Había muchos parques."
+                sample_ru: "Он был меньше и спокойнее. Там было много парков."
+            - say: "¿Y ahora? ¿Ha cambiado mucho? | А сейчас? Сильно изменился?"
+              task: "Скажите, что изменилось: сравните с тем, что было."
+              skill: comparar
+              compose:
+                format: "Sí, ahora es más… / hay más…"
+                words: [3, 25]
+                checks:
+                  - label: "сравнение: más, menos, tan, tanto…"
+                    any: [más, menos, tan, tanto, tanta, tantos, tantas, mejor, peor]
+                sample: "Sí, ahora es más grande y hay más tráfico."
+                sample_ru: "Да, теперь он больше, и машин больше."
+            - say: "¿Y es tan grande como Madrid? | А он такой же большой, как Мадрид?"
+              task: "Скажите, что нет: он не такой большой, как Мадрид."
+              skill: tan_como
+              write: "No, no es tan grande como Madrid | No, mi ciudad no es tan grande como Madrid | No, es más pequeña que Madrid | No, es menos grande que Madrid"
+              format: ответ
+              mistakes:
+                "no no es tan grande que madrid": "После tan — **como**: tan grande como Madrid."
+                "no no es tanto grande como madrid": "Перед прилагательным — **tan**: tan grande como Madrid."
+            - say: "¿Y dónde prefieres vivir, allí o aquí? | А где тебе больше нравится жить — там или здесь?"
+              task: "Ответьте от себя и объясните почему."
+              skill: mejor_peor
+              compose:
+                format: "Prefiero… porque…"
+                words: [3, 25]
+                checks:
+                  - label: "выбор: prefiero…, me gusta más…"
+                    any: [prefiero, me gusta más, mejor]
+                sample: "Prefiero vivir aquí, porque hay más trabajo."
+                sample_ru: "Мне больше нравится жить здесь: тут больше работы."
+            - say: "¡Yo prefiero mi pueblo! En México la comida es mejor. | А мне больше нравится мой посёлок! В Мексике еда лучше."
+              task: "Не соглашайтесь: скажите, что для вас испанская еда такая же вкусная, как мексиканская."
+              skill: tan_como
+              choose: "Para mí, la comida de España es tan buena como la comida de México. | Para mí, la comida de España es tan buena que la comida de México. | Para mí, la comida de España es tanto buena como la comida de México."
+              explain: "Tan + прилагательное + como."
+            - say: "¡Vale, vale! Las dos son muy buenas. | Ладно, ладно! Обе очень хорошие."
+      - compose:
+          title: Мой город раньше и теперь
+          free: true
+          rule: none
+          skill: [describir_pasado, comparar, tan_como]
+          items:
+            - q: "Напишите 5–7 фраз о своём городе или посёлке: каким он был, когда вы были маленьким · что там было и чего не было · что изменилось сейчас · где лучше, по-вашему."
+              format: "Cuando yo era pequeño, mi ciudad era… Ahora…"
+              words: [40, 130]
+              sentences: 4
+              checks:
+                - label: "как было: era, había, tenía…"
+                  any: [era, había, tenía, eran, tenían]
+                - label: "сравнение: más / menos … que или tan … como"
+                  re: "\\b(más|menos)\\b.*\\bque\\b|\\b(tan|tanto|tanta|tantos|tantas)\\b.*\\bcomo\\b|\\b(mejor|peor|mayor|menor)\\b"
+                - label: "как сейчас: ahora…"
+                  any: [ahora, hoy]
+              sample: "Cuando yo era pequeño, mi ciudad era más pequeña y más tranquila que ahora. Había muchos parques y pocos coches, y no había centros comerciales. Ahora es una ciudad moderna: hay edificios altos, metro y mucho tráfico. La vida es más cómoda, pero también más cara. Para mí, antes era mejor, pero todavía me gusta mucho mi ciudad."
+              sample_ru: "Когда я был маленьким, мой город был меньше и спокойнее, чем сейчас. Было много парков и мало машин, а торговых центров не было. Теперь это современный город: высокие дома, метро и много машин. Жить удобнее, но и дороже. По-моему, раньше было лучше, но я всё ещё очень люблю свой город."
+
+  - id: quiz
+    kind: quiz
+    title: "Тест: Cómo era"
+    goal: проверить цели темы — описание в прошлом и сравнения
+    version: 2
+    check: soft
+    blocks:
+      - "Это тест по теме «Cómo era»: двенадцать заданий."
+      - cando:
+          - "описать место и человека в прошлом: era, tenía, había, llevaba"
+          - "сравнить: más / menos… que, tan… como, tanto como"
+          - "сказать mejor / peor, mayor / menor"
+          - "рассказать, как изменился город"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          rule: none
+          skill: comparar
+          items:
+            - say: "Antes mi barrio era más tranquilo que ahora."
+              a: "Antes mi barrio era más tranquilo que ahora"
+              noaudio: {q: "Напишите по-испански: «Раньше мой район был спокойнее, чем сейчас».", a: "Antes mi barrio era más tranquilo que ahora | Mi barrio era más tranquilo antes que ahora"}
+      - choose:
+          title: Послушайте
+          rule: none
+          items:
+            - say: "Mi hermano es mayor que yo, pero yo soy más alto."
+              options: "Брат старше меня, но я выше. | Брат младше меня, но выше. | Брат старше и выше меня."
+              skill: mejor_peor
+              noaudio: {q: "Что значит «Mi hermano es mayor que yo, pero yo soy más alto»?", options: "Брат старше меня, но я выше. | Брат младше меня, но выше. | Брат старше и выше меня."}
+            - say: "En mi pueblo no hay tantos coches como aquí."
+              options: "В моей деревне не так много машин, как здесь. | В моей деревне столько же машин, сколько здесь. | Здесь меньше машин, чем в моей деревне."
+              skill: tan_como
+              noaudio: {q: "Что значит «En mi pueblo no hay tantos coches como aquí»?", options: "В моей деревне не так много машин, как здесь. | В моей деревне столько же машин, сколько здесь. | Здесь меньше машин, чем в моей деревне."}
+      - write:
+          title: Вставьте слово
+          format: одно слово
+          rule: none
+          items:
+            - q: "El tren es más rápido ___ el autobús."
+              a: "que"
+              skill: comparar
+            - q: "Mi ciudad no es ___ grande como Madrid."
+              a: "tan"
+              skill: tan_como
+            - q: "Este café es muy bueno: es ___ que el café de casa."
+              a: "mejor"
+              skill: mejor_peor
+              mistakes:
+                "más bueno": "О качестве — **mejor**."
+            - q: "De joven mi abuelo (llevar) ___ bigote."
+              a: "llevaba"
+              skill: describir_pasado
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          rule: none
+          items:
+            - q: "Раньше в моём районе было меньше машин."
+              a: "Antes en mi barrio había menos coches | Antes había menos coches en mi barrio | En mi barrio antes había menos coches | Antes en mi barrio había menos tráfico | Antes había menos tráfico en mi barrio"
+              skill: comparar
+              mistakes:
+                "antes en mi barrio había menos coches que": "Если не с чем сравнивать, que не нужен: había menos coches."
+            - q: "У неё были длинные прямые волосы."
+              a: "(Ella) tenía el pelo largo y liso | (Ella) llevaba el pelo largo y liso"
+              skill: describir_pasado
+      - build:
+          title: Соберите фразу
+          rule: none
+          skill: tan_como
+          items:
+            - es: "Ya no tengo tanto tiempo como antes."
+              ru: "У меня уже нет столько времени, сколько раньше."
+              extra: [tan]
+    quiz:
+      - q: "Las casas de antes eran ___ modernas que las de ahora."
+        options: "menos | tan | tanto"
+        explain: "Менее современные, чем… — menos … que."
+        skill: comparar
+      - q: "Что значит «el rascacielos»?"
+        options: "небоскрёб | торговый центр | фабрика"
+        explain: "El rascacielos — небоскрёб; торговый центр — el centro comercial, фабрика — la fábrica."

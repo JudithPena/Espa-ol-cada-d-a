@@ -1,0 +1,714 @@
+id: mi_trabajo
+number: 38
+level: A2
+title: Mi trabajo, mis estudios — работа и учёба
+goals:
+  - рассказать о своём опыте работы и учёбе
+  - сказать, когда начали, перестали, снова начали и что продолжаете делать
+  - указать сроки: с… по…, в течение
+  - пройти собеседование и написать короткое резюме
+
+# Тема 15 карты A2: empezar a, dejar de, volver a, seguir + герундий; desde… hasta, durante; работа, образование.
+# Миссия — короткое резюме и рассказ о себе на собеседовании.
+lessons:
+  - id: entrevista
+    kind: listening
+    title: "¿Desde cuándo trabaja como cocinero?"
+    goal: понять на слух собеседование
+    version: 2
+    # Карта экранов: docs/site_slide_maps/38_mi_trabajo.md
+    vocab:
+      - "🤝 la entrevista [энтрэби́ста] — собеседование; интервью :: Mañana tengo una entrevista de trabajo. — Завтра у меня собеседование."
+      - "📄 el currículum [курри́кулум] — резюме :: He leído su currículum. — Я прочитала ваше резюме."
+      - "🧰 la experiencia [экспэрье́нθья] — опыт :: Tengo experiencia en hoteles. — У меня есть опыт работы в гостиницах."
+      - "🌙 el turno [ту́рно] — смена :: Trabajo en el turno de noche. — Я работаю в ночную смену."
+      - "⏳ durante [дура́нтэ] — в течение :: Durante tres años trabajé en un hotel. — Три года я работал в гостинице."
+      - "📚 los estudios [эсту́дьос] — учёба, образование :: Terminé mis estudios en 2015. — Я закончил учёбу в 2015 году."
+    blocks:
+      - "Ли пришёл на собеседование в ресторан. Послушайте разговор два раза: текста пока нет."
+      - dialogue:
+          id: cocinero
+          hidden: true
+          lines:
+            - "Carmen: Buenos días, Li. Pase, por favor. He leído su currículum. ¿Desde cuándo trabaja como cocinero? | Доброе утро, Ли. Проходите. Я прочитала ваше резюме. С какого времени вы работаете поваром?"
+            - "Li: Empecé a trabajar en una cocina en dos mil doce, en China. | Я начал работать на кухне в две тысячи двенадцатом году, в Китае."
+            - "Carmen: ¿Y en España? | А в Испании?"
+            - "Li: Llegué en dos mil dieciocho. Trabajé en un hotel de Valencia desde dos mil dieciocho hasta dos mil veintiuno. Después estuve dos años en un restaurante del centro. | Приехал в две тысячи восемнадцатом. Работал в гостинице в Валенсии с восемнадцатого по двадцать первый год. Потом два года был в ресторане в центре."
+            - "Carmen: ¿Y por qué dejó de trabajar allí? | А почему вы перестали там работать?"
+            - "Li: Porque el restaurante cerró. Ahora sigo buscando trabajo y, por las tardes, estudio español. | Потому что ресторан закрылся. Сейчас я всё ещё ищу работу, а по вечерам учу испанский."
+            - "Carmen: Necesitamos un cocinero para el turno de noche. ¿Tiene experiencia con la comida española? | Нам нужен повар в ночную смену. У вас есть опыт с испанской кухней?"
+            - "Li: Sí, durante tres años hice tortillas y paellas en el hotel. | Да, три года готовил тортильи и паэлью в гостинице."
+            - "Carmen: Perfecto. ¿Puede empezar el lunes? | Отлично. Можете начать в понедельник?"
+            - "Li: ¡Claro! | Конечно!"
+      - choose:
+          title: Что вы поняли?
+          source: cocinero
+          items:
+            - q: "Кем работает Ли?"
+              options: "Es cocinero. | Es camarero. | Es profesor."
+              explain: "Carmen: ¿Desde cuándo trabaja como cocinero?"
+            - q: "Где он работал с 2018 по 2021 год?"
+              options: "En un hotel de Valencia. | En un restaurante de China. | En una escuela."
+              explain: "Li: Trabajé en un hotel de Valencia desde dos mil dieciocho hasta dos mil veintiuno."
+      - learn: [la entrevista, el currículum, la experiencia, el turno, durante, los estudios]
+      - choose:
+          title: Детали разговора
+          source: cocinero
+          items:
+            - q: "¿Cuándo empezó Li a trabajar en una cocina?"
+              options: "En dos mil doce. | En dos mil dieciocho. | En dos mil veintiuno."
+              explain: "Li: Empecé a trabajar en una cocina en dos mil doce."
+            - q: "¿Por qué dejó de trabajar en el restaurante?"
+              options: "Porque el restaurante cerró. | Porque no le gustaba. | Porque empezó a estudiar."
+              explain: "Li: Porque el restaurante cerró."
+            - q: "¿Qué estudios hace Li ahora?"
+              options: "Estudia español por las tardes. | Estudia cocina en la universidad. | No estudia nada."
+              explain: "Li: …por las tardes, estudio español."
+            - q: "¿Para qué turno necesitan un cocinero?"
+              options: "Para el turno de noche. | Para el turno de mañana. | Para los fines de semana."
+              explain: "Carmen: Necesitamos un cocinero para el turno de noche."
+      - text:
+          id: notice
+          slide: new
+          text: "Ли рассказывает об опыте: **empecé a** trabajar — «начал работать», **dejó de** trabajar — «перестал работать», **sigo** buscando — «всё ещё ищу». А сроки — **desde** 2018 **hasta** 2021, **durante** tres años."
+      - examples:
+          items:
+            - "**Empecé a** trabajar en 2012. — Я начал работать в 2012 году."
+            - "**Sigo** buscando trabajo. — Я всё ещё ищу работу."
+            - "**Durante** tres años hice paellas. — Три года я готовил паэлью."
+      - match:
+          title: Соедините пары
+          free: true
+          rule: none
+          pairs:
+            - "la entrevista — собеседование"
+            - "el currículum — резюме"
+            - "la experiencia — опыт"
+            - "el turno — смена"
+            - "durante — в течение"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          free: true
+          skill: experiencia_trabajo
+          rule: notice
+          items:
+            - say: "Trabajé en un hotel desde 2018 hasta 2021."
+              a: "Trabajé en un hotel desde 2018 hasta 2021 | Trabajé en un hotel desde dos mil dieciocho hasta dos mil veintiuno"
+              explain: "Desde… hasta… — «с… по…»."
+              noaudio: {q: "Напишите по-испански: «Я работал в гостинице с 2018 по 2021 год» (годы — цифрами).", a: "Trabajé en un hotel desde 2018 hasta 2021"}
+      - choose:
+          title: Что ответить?
+          free: true
+          skill: experiencia_trabajo
+          rule: notice
+          items:
+            - lines: ["Carmen: ¿Tiene experiencia en restaurantes?"]
+              q: "Скажите, что да: два года работали официантом."
+              options: "Sí, trabajé dos años como camarero. | Sí, trabajo dos años como camarero. | Sí, durante camarero dos años."
+              explain: "Законченный опыт — trabajé dos años."
+            - say: "Durante tres años trabajé en el turno de noche."
+              options: "Три года я работал в ночную смену. | Я три раза работал ночью. | Я буду работать ночью три года."
+              explain: "Durante tres años — «в течение трёх лет»."
+              noaudio: {q: "Что значит «Durante tres años trabajé en el turno de noche»?", options: "Три года я работал в ночную смену. | Я три раза работал ночью. | Я буду работать ночью три года."}
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: experiencia_trabajo
+          rule: notice
+          items:
+            - es: "Ahora sigo buscando trabajo."
+              ru: "Сейчас я всё ещё ищу работу."
+              extra: [buscar]
+            - es: "Tengo experiencia en hoteles y restaurantes."
+              ru: "У меня есть опыт работы в гостиницах и ресторанах."
+
+  - id: perifrasis
+    kind: grammar
+    title: "Empezar a, dejar de, volver a, seguir"
+    goal: сказать, когда вы начали, перестали, снова начали и что продолжаете
+    version: 2
+    vocab:
+      - "▶️ empezar a [эмпэθа́р а] — начать (что-то делать) :: Empecé a estudiar español el año pasado. — Я начал учить испанский в прошлом году."
+      - "⏹ dejar de [дэха́р дэ] — перестать :: Dejé de fumar hace dos años. — Я бросил курить два года назад."
+      - "🔁 volver a [больбэ́р а] — снова (сделать) :: Volví a estudiar a los treinta años. — Я снова пошёл учиться в тридцать лет."
+    blocks:
+      - learn: [empezar a, dejar de, volver a]
+      - match:
+          title: Соедините пары
+          rule: none
+          pairs:
+            - "empezar a — начать"
+            - "dejar de — перестать"
+            - "volver a — снова (сделать)"
+      - "**Seguir** вы знаете по дороге (_sigue todo recto_). С герундием он значит «продолжать, всё ещё»: _Sigo viviendo en Madrid_ — «я всё ещё живу в Мадриде»."
+      - table:
+          id: perifrasis
+          title: Начать, перестать, снова, продолжать
+          rows:
+            - ["empezar **a** + инфинитив", "Empecé a trabajar a los veinte años. — Я начал работать в двадцать лет."]
+            - ["dejar **de** + инфинитив", "Dejé de fumar. — Я бросил курить."]
+            - ["volver **a** + инфинитив", "Volví a estudiar. — Я снова стал учиться."]
+            - ["seguir + герундий", "Sigo trabajando en el hotel. — Я всё ещё работаю в гостинице."]
+      - note:
+          id: preposiciones
+          text: "Предлог — часть выражения: empezar **a**, volver **a**, dejar **de**. А после seguir — герундий без предлога: _sigo estudiando_, а не «sigo a estudiar»."
+      - choose:
+          title: Выберите предлог или форму
+          skill: perifrasis
+          rule: preposiciones
+          items:
+            - q: "Empecé ___ estudiar español en 2023."
+              options: "a | de | —"
+              explain: "Empezar a + инфинитив."
+            - q: "Mi padre dejó ___ fumar el año pasado."
+              options: "de | a | en"
+              explain: "Dejar de + инфинитив."
+            - q: "Sigo ___ en el mismo barrio."
+              options: "viviendo | vivir | a vivir"
+              explain: "Seguir + герундий: sigo viviendo."
+            - say: "Dejé de trabajar en la fábrica y volví a estudiar."
+              options: "Я ушёл с фабрики и снова начал учиться. | Я продолжаю работать на фабрике и учиться. | Я начал работать на фабрике после учёбы."
+              explain: "Dejé de trabajar — «перестал работать»; volví a estudiar — «снова начал учиться»."
+              noaudio: {q: "Что значит «Dejé de trabajar en la fábrica y volví a estudiar»?", options: "Я ушёл с фабрики и снова начал учиться. | Я продолжаю работать на фабрике и учиться. | Я начал работать на фабрике после учёбы."}
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: perifrasis
+          rule: perifrasis
+          items:
+            - q: "Я начал работать в двадцать лет."
+              a: "Empecé a trabajar a los veinte años | (Yo) empecé a trabajar a los veinte años | A los veinte años empecé a trabajar"
+              explain: "Empezar a + инфинитив; в двадцать лет — a los veinte años."
+              mistakes:
+                "empecé trabajar a los veinte años": "Нужен предлог: empecé **a** trabajar."
+            - q: "Я бросил курить."
+              a: "Dejé de fumar | (Yo) dejé de fumar | He dejado de fumar"
+              explain: "Dejar de + инфинитив."
+              mistakes:
+                "dejé fumar": "Нужен предлог: dejé **de** fumar."
+            - q: "Я всё ещё учу испанский."
+              a: "Sigo estudiando español | (Yo) sigo estudiando español | Todavía estudio español"
+              explain: "Seguir + герундий."
+              mistakes:
+                "sigo a estudiar español": "После seguir — герундий без предлога: sigo **estudiando**."
+            - q: "Вчера снова пошёл дождь."
+              a: "Ayer volvió a llover"
+              explain: "Volver a + инфинитив — «снова»."
+      - build:
+          title: Соберите фразу
+          skill: perifrasis
+          rule: perifrasis
+          items:
+            - es: "A los treinta años volví a estudiar."
+              ru: "В тридцать лет я снова стал учиться."
+              extra: [de]
+      - compose:
+          title: О себе
+          skill: perifrasis
+          rule: perifrasis
+          items:
+            - q: "Расскажите о себе: когда вы начали учить испанский, что перестали делать, что снова начали и что продолжаете. Три фразы."
+              format: "Empecé a… Dejé de… Sigo…"
+              words: [12, 60]
+              sentences: 2
+              checks:
+                - label: "empezar a…"
+                  any: [empecé a, empezó a, empezamos a]
+                - label: "dejar de… или volver a…"
+                  any: [dejé de, he dejado de, volví a, he vuelto a]
+                - label: "seguir + герундий: sigo…"
+                  re: "\\b(sigo|seguimos|sigue)\\b \\w+(ando|iendo|yendo)\\b"
+              sample: "Empecé a estudiar español hace dos años. Dejé de ir al gimnasio porque no tengo tiempo, pero volví a nadar el verano pasado. Sigo viviendo en Kiev."
+              sample_ru: "Я начал учить испанский два года назад. Перестал ходить в спортзал, потому что нет времени, но прошлым летом снова начал плавать. Я всё ещё живу в Киеве."
+    quiz:
+      - q: "¿Cuándo empezaste ___ trabajar aquí?"
+        options: "a | de | en"
+        explain: "Empezar a + инфинитив."
+        skill: perifrasis
+      - q: "Mi hermano sigue ___ en el mismo banco."
+        options: "trabajando | trabajar | a trabajar"
+        explain: "Seguir + герундий."
+        skill: perifrasis
+
+  - id: plazos
+    kind: grammar
+    title: "Desde… hasta, de… a, durante"
+    goal: назвать сроки работы и учёбы
+    version: 2
+    vocab:
+      - "🏢 la empresa [эмпрэ́са] — компания, фирма :: Trabajo en una empresa de turismo. — Я работаю в туристической компании."
+      - "📝 el contrato [контра́то] — договор, контракт :: Tengo un contrato de un año. — У меня контракт на год."
+      - "💶 el sueldo [суэ́льдо] — зарплата :: El sueldo es bueno. — Зарплата хорошая."
+      - "👔 responsable [рэспонса́блэ] — ответственный :: Mi jefa es muy responsable. — Моя начальница очень ответственная."
+    blocks:
+      - learn: [la empresa, el contrato, el sueldo, responsable]
+      - table:
+          id: plazos
+          title: Сроки
+          rows:
+            - ["desde… hasta… — законченный срок", "Trabajé allí desde 2018 hasta 2021. — Я работал там с 2018 по 2021 год."]
+            - ["desde… — и до сих пор", "Trabajo aquí desde 2022. — Я работаю здесь с 2022 года."]
+            - ["de… a… — часы, дни", "Trabajo de nueve a cinco, de lunes a viernes. — Я работаю с девяти до пяти, с понедельника по пятницу."]
+            - ["durante + срок", "Durante dos años viví en Sevilla. — Два года я жил в Севилье."]
+      - note:
+          id: tiempo_verbal
+          text: "С **desde… hasta** срок закончен — indefinido: _trabajé_. С одним **desde** работа продолжается — настоящее время: _trabajo aquí desde 2022_."
+      - choose:
+          title: Выберите слово
+          skill: plazos
+          rule: plazos
+          items:
+            - q: "Trabajé en esa empresa ___ 2015 hasta 2019."
+              options: "desde | de | durante"
+              explain: "Desde… hasta…"
+            - q: "La tienda abre ___ nueve a nueve."
+              options: "de | desde | durante"
+              explain: "Часы — de… a…"
+            - q: "___ tres años viví en Londres."
+              options: "Durante | Desde | Hasta"
+              explain: "Срок целиком — durante."
+            - q: "Tengo un ___ de un año con la empresa."
+              options: "contrato | sueldo | turno"
+              explain: "Договор — el contrato."
+            - q: "Ana siempre llega a la hora y hace bien su trabajo: es muy ___."
+              options: "responsable | lenta | mala"
+              explain: "Ответственная — responsable."
+            - q: "Vivo en Madrid ___ 2021."
+              options: "desde | durante | de"
+              explain: "С какого момента и до сих пор — desde."
+      - write:
+          title: Поставьте глагол
+          format: одна форма глагола
+          accents: strict
+          skill: plazos
+          rule: tiempo_verbal
+          items:
+            - q: "Desde 2015 hasta 2019 (yo, trabajar) ___ en un banco."
+              a: "trabajé"
+              explain: "Срок закончен — indefinido: trabajé."
+              mistakes:
+                "trabajo": "Срок закончен (hasta 2019) — **trabajé**."
+            - q: "Desde 2022 (yo, trabajar) ___ en esta empresa."
+              a: "trabajo"
+              explain: "Работа продолжается — настоящее время: trabajo."
+              mistakes:
+                "trabajé": "Без hasta работа продолжается сейчас — **trabajo**."
+      - choose:
+          title: Послушайте
+          skill: plazos
+          rule: plazos
+          items:
+            - say: "Trabajo de lunes a viernes, de ocho a tres."
+              options: "Я работаю с понедельника по пятницу, с восьми до трёх. | Я работаю по понедельникам и пятницам, с восьми. | Я работал с понедельника по пятницу до трёх."
+              explain: "De lunes a viernes — «с понедельника по пятницу»; de ocho a tres — «с восьми до трёх»."
+              noaudio: {q: "Что значит «Trabajo de lunes a viernes, de ocho a tres»?", options: "Я работаю с понедельника по пятницу, с восьми до трёх. | Я работаю по понедельникам и пятницам, с восьми. | Я работал с понедельника по пятницу до трёх."}
+      - build:
+          title: Соберите фразу
+          skill: plazos
+          rule: plazos
+          items:
+            - es: "Trabajo en esta empresa desde hace tres años."
+              ru: "Я работаю в этой компании уже три года."
+              extra: [durante]
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: plazos
+          rule: plazos
+          items:
+            - q: "Два года я жил в Севилье."
+              a: "Durante dos años viví en Sevilla | Viví en Sevilla durante dos años | Viví dos años en Sevilla"
+              explain: "Durante dos años — законченный срок: viví."
+      - compose:
+          title: Мой опыт
+          skill: [plazos, perifrasis]
+          rule: plazos
+          items:
+            - q: "Расскажите о своём опыте работы или учёбы: где и с какого по какое время, где вы сейчас и с какого времени. Две-три фразы."
+              format: "Desde… hasta… trabajé en… Desde… trabajo en…"
+              words: [12, 60]
+              sentences: 2
+              checks:
+                - label: "сроки: desde… hasta…, durante…"
+                  any: [desde, durante]
+                - label: "место: en una empresa, en un hotel…"
+                  any: [en una, en un, en el, en la]
+              sample: "Desde 2015 hasta 2020 trabajé en un banco de Kiev. Durante dos años estudié español por las tardes. Desde 2021 trabajo en una empresa de turismo en Madrid."
+              sample_ru: "С 2015 по 2020 год я работал в банке в Киеве. Два года по вечерам учил испанский. С 2021 года работаю в туристической компании в Мадриде."
+    quiz:
+      - q: "El museo abre ___ martes a domingo."
+        options: "de | desde | durante"
+        explain: "Дни — de… a…"
+        skill: plazos
+      - q: "Что значит «el sueldo»?"
+        options: "зарплата | договор | компания"
+        explain: "El sueldo — зарплата; договор — el contrato, компания — la empresa."
+
+  - id: estudios
+    kind: dialogue
+    title: "¿Qué estudiaste?"
+    goal: рассказать о своей учёбе
+    version: 2
+    vocab:
+      - "🎓 la carrera [карре́ра] — высшее образование, специальность :: Terminé la carrera en 2015. — Я окончил университет в 2015 году."
+      - "📜 el título [ти́туло] — диплом :: Tengo el título de profesora. — У меня диплом преподавателя."
+      - "✅ aprobar [апроба́р] — сдать (экзамен) :: Aprobé todos los exámenes. — Я сдал все экзамены."
+      - "❌ suspender [суспэндэ́р] — провалить (экзамен) :: Suspendí matemáticas. — Я завалил математику."
+      - "🏫 el instituto [институ́то] — школа (старшие классы) :: En el instituto estudiaba mucho. — В старших классах я много учился."
+      - "📚 el curso [ку́рсо] — курс; учебный год :: Hago un curso de español. — Я хожу на курс испанского."
+    blocks:
+      - learn: [la carrera, el título, aprobar, suspender, el instituto, el curso]
+      - "Том и Ирина в кафе после занятий."
+      - dialogue:
+          id: carrera
+          lines:
+            - "Tom: Irina, ¿qué estudiaste en Ucrania? | Ирина, что ты изучала в Украине?"
+            - "Irina: Estudié la carrera de Historia en Kiev. Terminé en dos mil quince. | Я окончила исторический факультет в Киеве. Закончила в две тысячи пятнадцатом."
+            - "Tom: ¿Y fue difícil? | И было трудно?"
+            - "Irina: Un poco. En el primer curso suspendí un examen, pero después aprobé todo. ¿Y tú? | Немного. На первом курсе завалила один экзамен, но потом сдала всё. А ты?"
+            - "Tom: Yo todavía no tengo el título: estoy en el último curso de la carrera. | А у меня ещё нет диплома: я на последнем курсе."
+            - "Irina: ¿Y por qué estudias español? | А зачем учишь испанский?"
+            - "Tom: Porque después de la carrera me gustaría trabajar en una empresa española. | Потому что после университета я бы хотел работать в испанской компании."
+      - choose:
+          title: Что сказано?
+          source: carrera
+          skill: estudios
+          items:
+            - q: "¿Qué estudió Irina?"
+              options: "Historia. | Matemáticas. | Inglés."
+              explain: "Irina: Estudié la carrera de Historia en Kiev."
+            - q: "¿Qué le pasó en el primer curso?"
+              options: "Suspendió un examen. | Aprobó todo. | Dejó la carrera."
+              explain: "Irina: En el primer curso suspendí un examen, pero después aprobé todo."
+            - q: "¿Tiene Tom el título?"
+              options: "No, todavía no. | Sí, desde el año pasado. | Sí, de Historia."
+              explain: "Tom: Yo todavía no tengo el título: estoy en el último curso."
+            - q: "¿Dónde le gustaría trabajar a Tom?"
+              options: "En una empresa española. | En un instituto. | En la universidad."
+              explain: "Tom: …me gustaría trabajar en una empresa española."
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          free: true
+          skill: estudios
+          rule: none
+          items:
+            - q: "Я сдал все экзамены."
+              a: "Aprobé todos los exámenes | He aprobado todos los exámenes"
+              explain: "Aprobar — сдать."
+              mistakes:
+                "pasé todos los exámenes": "«Сдать экзамен» — **aprobar**: aprobé todos los exámenes."
+            - q: "Я окончил университет в 2015 году."
+              a: "Terminé la carrera en 2015 | Terminé la carrera en dos mil quince | En 2015 terminé la carrera"
+              explain: "Окончить вуз — terminar la carrera."
+      - choose:
+          title: Послушайте
+          free: true
+          skill: estudios
+          rule: none
+          items:
+            - say: "En el instituto suspendí matemáticas dos veces."
+              options: "В старших классах я дважды завалил математику. | В университете я дважды сдал математику. | Я два года преподавал математику в школе."
+              explain: "Suspendí — «завалил»; el instituto — старшие классы школы."
+              noaudio: {q: "Что значит «En el instituto suspendí matemáticas dos veces»?", options: "В старших классах я дважды завалил математику. | В университете я дважды сдал математику. | Я два года преподавал математику в школе."}
+      - build:
+          title: Соберите фразу
+          free: true
+          skill: estudios
+          rule: none
+          items:
+            - es: "Estoy en el último curso de la carrera."
+              ru: "Я на последнем курсе университета."
+      - compose:
+          title: Моя учёба
+          free: true
+          skill: [estudios, plazos]
+          rule: none
+          items:
+            - q: "Расскажите о своей учёбе: где и что вы изучали, когда окончили, что было легко или трудно. Две-три фразы."
+              format: "Estudié… en… Terminé… Me costaba…"
+              words: [12, 60]
+              sentences: 2
+              checks:
+                - label: "что изучали: estudié…"
+                  any: [estudié, estudio, la carrera, el instituto, el curso]
+                - label: "когда: en 2010, desde… hasta…, terminé…"
+                  re: "\\b(19|20)\\d\\d\\b|\\bterminé\\b|\\bdesde\\b|\\bdurante\\b|\\bhace\\b"
+              sample: "Estudié Matemáticas en la universidad de Odesa desde 2008 hasta 2013. Me gustaba mucho la carrera, pero el primer curso fue difícil: suspendí dos exámenes."
+              sample_ru: "Я изучал математику в университете Одессы с 2008 по 2013 год. Учиться мне очень нравилось, но первый курс был трудным: я завалил два экзамена."
+
+  - id: lectura
+    kind: reading
+    title: "Carta de Olga"
+    goal: понять письмо о себе для работодателя и написать своё
+    version: 2
+    vocab:
+      - "✉️ la carta de presentación [ка́рта дэ прэсэнтаθьо́н] — сопроводительное письмо :: Escribo una carta de presentación. — Я пишу сопроводительное письмо."
+      - "🏥 el hospital infantil [оспита́ль инфанти́ль] — детская больница :: Trabajo en un hospital infantil. — Я работаю в детской больнице."
+    blocks:
+      - learn: [la carta de presentación, el hospital infantil]
+      - "Ольга хочет перейти в детскую больницу и пишет сопроводительное письмо."
+      - reading:
+          id: carta_olga
+          title: Carta de presentación
+          text: |
+            Me llamo Olga y soy enfermera. Estudié la carrera en la universidad de Odesa desde dos mil diez hasta dos mil catorce. Después trabajé durante cinco años en un hospital de Odesa.
+
+            En dos mil diecinueve dejé de trabajar allí y vine a España. Primero hice un curso de español y aprobé el examen. Desde dos mil veinte trabajo en un hospital de Valencia, en el turno de mañana.
+
+            Sigo estudiando español por las tardes. Soy responsable y me gusta mucho trabajar con niños: por eso me gustaría trabajar en su hospital infantil. Hablo ucraniano, inglés y español.
+          translation: |
+            Меня зовут Ольга, я медсестра. Я училась в университете Одессы с две тысячи десятого по две тысячи четырнадцатый год. Потом пять лет работала в больнице в Одессе.
+
+            В две тысячи девятнадцатом я ушла оттуда и приехала в Испанию. Сначала прошла курс испанского и сдала экзамен. С две тысячи двадцатого года работаю в больнице в Валенсии, в утреннюю смену.
+
+            По вечерам продолжаю учить испанский. Я ответственная и очень люблю работать с детьми, поэтому хотела бы работать в вашей детской больнице. Говорю по-украински, по-английски и по-испански.
+      - choose:
+          title: Что пишет Ольга?
+          source: carta_olga
+          items:
+            - q: "¿Cuántos años trabajó Olga en Odesa?"
+              options: "Cinco años. | Cuatro años. | Dos años."
+              explain: "Después trabajé durante cinco años en un hospital de Odesa."
+              skill: plazos
+            - q: "¿Qué hizo primero en España?"
+              options: "Un curso de español. | Un curso de enfermera. | Trabajar en un hotel."
+              explain: "Primero hice un curso de español y aprobé el examen."
+            - q: "¿Desde cuándo trabaja en Valencia?"
+              options: "Desde dos mil veinte. | Desde dos mil diecinueve. | Desde dos mil catorce."
+              explain: "Desde dos mil veinte trabajo en un hospital de Valencia."
+              skill: plazos
+            - q: "¿Por qué quiere trabajar en el hospital infantil?"
+              options: "Porque le gusta trabajar con niños. | Porque el sueldo es mejor. | Porque está cerca de su casa."
+              explain: "…me gusta mucho trabajar con niños: por eso me gustaría trabajar en su hospital infantil."
+      - sort:
+          title: Тогда или сейчас?
+          source: carta_olga
+          skill: perifrasis
+          groups:
+            "тогда": ["estudió en Odesa", "trabajó cinco años en Odesa", "hizo un curso de español"]
+            "сейчас": ["trabaja en Valencia", "sigue estudiando español"]
+      - write:
+          title: Ответьте по тексту
+          format: короткий ответ по-испански
+          source: carta_olga
+          items:
+            - q: "¿En qué turno trabaja Olga ahora?"
+              a: "En el turno de mañana | De mañana | En el de mañana"
+              explain: "…en el turno de mañana."
+            - q: "Как в письме сказано «Я всё ещё учу испанский»?"
+              a: "Sigo estudiando español"
+              explain: "Seguir + герундий."
+              skill: perifrasis
+      - choose:
+          title: Послушайте
+          free: true
+          rule: none
+          items:
+            - say: "En dos mil diecinueve dejé de trabajar allí y vine a España."
+              options: "В 2019 году я ушла с той работы и приехала в Испанию. | В 2019 году я начала работать в Испании. | Я продолжаю работать там с 2019 года."
+              explain: "Dejé de trabajar — «перестала работать»; vine — «приехала»."
+              skill: perifrasis
+              noaudio: {q: "Что значит «En dos mil diecinueve dejé de trabajar allí y vine a España»?", options: "В 2019 году я ушла с той работы и приехала в Испанию. | В 2019 году я начала работать в Испании. | Я продолжаю работать там с 2019 года."}
+      - compose:
+          title: Ваше письмо
+          free: true
+          rule: none
+          skill: [plazos, perifrasis, experiencia_trabajo]
+          items:
+            - q: "Напишите короткое сопроводительное письмо, 50–90 слов: кто вы, где учились, где и когда работали, что делаете сейчас и почему хотите эту работу."
+              format: "Me llamo… Estudié… Desde… hasta… trabajé… Ahora… Me gustaría…"
+              words: [40, 120]
+              sentences: 4
+              checks:
+                - label: "учёба: estudié…, la carrera, un curso…"
+                  any: [estudié, la carrera, un curso, el instituto]
+                - label: "опыт и сроки: trabajé…, desde…, durante…"
+                  any: [trabajé, desde, durante]
+                - label: "сейчас: trabajo…, sigo…"
+                  any: [trabajo, sigo, ahora]
+                - label: "почему: me gustaría…, porque…"
+                  any: [me gustaría, porque, por eso]
+              sample: "Me llamo Pablo y soy cocinero. Estudié en una escuela de cocina en Madrid desde 2012 hasta 2014. Después trabajé durante cuatro años en un hotel de Málaga. Desde 2019 trabajo en un restaurante del centro y sigo haciendo cursos de cocina. Soy responsable y me gusta aprender: por eso me gustaría trabajar en su restaurante."
+              sample_ru: "Меня зовут Пабло, я повар. Учился в кулинарной школе в Мадриде с 2012 по 2014 год. Потом четыре года работал в гостинице в Малаге. С 2019 года работаю в ресторане в центре и продолжаю проходить кулинарные курсы. Я ответственный и люблю учиться, поэтому хотел бы работать в вашем ресторане."
+
+  - id: mision
+    kind: practice
+    title: Собеседование
+    goal: понять объявление о работе и пройти собеседование
+    version: 2
+    forms: [hacerle]
+    blocks:
+      - review:
+          title: Вспомним
+          skills: [superlativo, sin_nombre, posesivos]
+          n: 2
+      - "Вы слушаете голосовое сообщение из языковой школы. Послушайте: текста нет."
+      - dialogue:
+          id: oferta_trabajo
+          hidden: true
+          title: Сообщение из школы
+          lines:
+            - "Secretaria: Hola, le llamo de la escuela de idiomas. Hemos leído su currículum y nos gustaría hacerle una entrevista. ¿Puede venir el jueves a las once? Es un trabajo de lunes a viernes, de cuatro a ocho de la tarde. | Здравствуйте, звоню из языковой школы. Мы прочитали ваше резюме и хотели бы пригласить вас на собеседование. Можете прийти в четверг в одиннадцать? Работа с понедельника по пятницу, с четырёх до восьми вечера."
+      - choose:
+          title: Что в сообщении?
+          source: oferta_trabajo
+          items:
+            - q: "¿Para qué llaman?"
+              options: "Para hacerle una entrevista. | Para cancelar una entrevista. | Para hablar del sueldo."
+              explain: "…nos gustaría hacerle una entrevista."
+            - q: "¿Cuándo es la entrevista?"
+              options: "El jueves a las once. | El lunes a las cuatro. | El viernes a las ocho."
+              explain: "¿Puede venir el jueves a las once?"
+            - q: "¿Cuál es el horario del trabajo?"
+              options: "De lunes a viernes, de cuatro a ocho. | De lunes a jueves, de once a cuatro. | Los fines de semana, por la tarde."
+              explain: "Es un trabajo de lunes a viernes, de cuatro a ocho de la tarde."
+              skill: plazos
+      - mission:
+          id: entrevista_escuela
+          title: Собеседование
+          text: "Четверг, одиннадцать часов. Вы на собеседовании в языковой школе. Отвечайте о себе."
+      - chat:
+          id: entrevista_chat
+          title: Собеседование
+          with: Carmen
+          turns:
+            - say: "Buenos días. Hemos leído su currículum. ¿Qué estudió? | Доброе утро. Мы прочитали ваше резюме. Что вы изучали?"
+              task: "Ответьте от себя: что и где вы изучали."
+              skill: estudios
+              compose:
+                format: "Estudié… en…"
+                words: [3, 25]
+                checks:
+                  - label: "estudié…, la carrera, un curso…"
+                    any: [estudié, la carrera, un curso, el instituto, la universidad]
+                sample: "Estudié la carrera de Historia en la universidad de Kiev."
+                sample_ru: "Я окончил исторический факультет Киевского университета."
+            - say: "¿Y tiene experiencia como profesor? | А у вас есть опыт преподавания?"
+              task: "Скажите: да, три года работали в школе, с 2018 по 2021 год."
+              skill: plazos
+              write: "Sí, trabajé tres años en una escuela, desde 2018 hasta 2021 | Sí, trabajé en una escuela desde 2018 hasta 2021 | Sí, durante tres años trabajé en una escuela"
+              format: опыт
+              mistakes:
+                "sí trabajo tres años en una escuela desde 2018 hasta 2021": "Срок закончен — **trabajé**."
+            - say: "¿Y qué hace ahora? | А чем вы занимаетесь сейчас?"
+              task: "Ответьте от себя: что вы делаете сейчас (с seguir или desde)."
+              skill: perifrasis
+              compose:
+                format: "Ahora sigo… / Desde… trabajo…"
+                words: [3, 30]
+                checks:
+                  - label: "сейчас: sigo…, desde…, trabajo…"
+                    any: [sigo, sigue, desde, trabajo, estudio, ahora]
+                sample: "Ahora sigo estudiando español y trabajo en una tienda por la mañana."
+                sample_ru: "Сейчас продолжаю учить испанский и по утрам работаю в магазине."
+            - say: "El trabajo es de cuatro a ocho. ¿Le viene bien? | Работа с четырёх до восьми. Вам удобно?"
+              task: "Ответьте: да, удобно."
+              skill: quedar_cita
+              choose: "Sí, me viene muy bien. | Sí, me vengo muy bien. | Sí, le viene muy bien."
+              explain: "Мне удобно — me viene bien."
+            - say: "¿Cuándo puede empezar? | Когда вы можете начать?"
+              task: "Скажите, что можете начать в понедельник."
+              skill: perifrasis
+              write: "Puedo empezar el lunes | (Puedo empezar) el lunes que viene | El lunes"
+              format: когда
+            - say: "Perfecto. Le llamamos esta semana. ¡Muchas gracias! | Отлично. Позвоним вам на этой неделе. Большое спасибо!"
+      - compose:
+          title: Резюме
+          free: true
+          rule: none
+          skill: [plazos, estudios, perifrasis]
+          items:
+            - q: "Напишите короткое резюме в три части: Estudios (что и когда вы изучали), Experiencia (где работали, с какого по какое время), Idiomas (какие языки знаете)."
+              format: "Estudios: … Experiencia: desde… hasta… Idiomas: …"
+              words: [20, 90]
+              checks:
+                - label: "Estudios"
+                  any: [estudios, estudié, la carrera, el instituto, curso]
+                - label: "Experiencia: desde… hasta…"
+                  any: [experiencia, desde, hasta, durante]
+                - label: "Idiomas"
+                  any: [idiomas, hablo, inglés, español, ucraniano]
+              sample: "Estudios: carrera de Historia, universidad de Kiev (2008–2013). Curso de español en Madrid (2022). Experiencia: profesor de historia en un instituto de Kiev, desde 2013 hasta 2021. Desde 2022: dependiente en una tienda de ropa en Madrid. Idiomas: ucraniano, inglés y español."
+              sample_ru: "Образование: исторический факультет, Киевский университет (2008–2013). Курс испанского в Мадриде (2022). Опыт: учитель истории в школе в Киеве, с 2013 по 2021 год. С 2022 года — продавец в магазине одежды в Мадриде. Языки: украинский, английский и испанский."
+
+  - id: quiz
+    kind: quiz
+    title: "Тест: Mi trabajo, mis estudios"
+    goal: проверить цели темы — опыт, сроки, empezar a / dejar de / volver a / seguir, учёба
+    version: 2
+    check: soft
+    blocks:
+      - "Это тест по теме «Mi trabajo, mis estudios»: двенадцать заданий."
+      - cando:
+          - "рассказать о своём опыте работы и учёбе"
+          - "сказать, когда начали, перестали, снова начали и что продолжаете делать"
+          - "указать сроки: desde… hasta, de… a, durante"
+          - "пройти собеседование и написать резюме"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          rule: none
+          skill: perifrasis
+          items:
+            - say: "Empecé a trabajar aquí hace dos años."
+              a: "Empecé a trabajar aquí hace dos años"
+              noaudio: {q: "Напишите по-испански: «Я начал работать здесь два года назад».", a: "Empecé a trabajar aquí hace dos años | Hace dos años empecé a trabajar aquí"}
+      - choose:
+          title: Послушайте
+          rule: none
+          items:
+            - say: "Sigo viviendo en el mismo barrio."
+              options: "Я всё ещё живу в том же районе. | Я переехал в другой район. | Я снова живу в своём районе."
+              skill: perifrasis
+              noaudio: {q: "Что значит «Sigo viviendo en el mismo barrio»?", options: "Я всё ещё живу в том же районе. | Я переехал в другой район. | Я снова живу в своём районе."}
+            - say: "Trabajé en esa empresa desde 2016 hasta 2020."
+              options: "Я работал в той компании с 2016 по 2020 год. | Я работаю в той компании с 2016 года. | Я работал там 16 лет, до 2020 года."
+              skill: plazos
+              noaudio: {q: "Что значит «Trabajé en esa empresa desde 2016 hasta 2020»?", options: "Я работал в той компании с 2016 по 2020 год. | Я работаю в той компании с 2016 года. | Я работал там 16 лет, до 2020 года."}
+      - write:
+          title: Вставьте слово
+          format: одно слово
+          rule: none
+          items:
+            - q: "Mi abuelo dejó ___ fumar a los sesenta años."
+              a: "de"
+              skill: perifrasis
+            - q: "Después de diez años, volví ___ estudiar."
+              a: "a"
+              skill: perifrasis
+            - q: "Trabajo ___ nueve a cinco."
+              a: "de"
+              skill: plazos
+            - q: "En junio (yo, aprobar) ___ el examen de español."
+              a: "aprobé"
+              skill: estudios
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          rule: none
+          items:
+            - q: "Я всё ещё ищу работу."
+              a: "Sigo buscando trabajo | (Yo) sigo buscando trabajo | Todavía busco trabajo"
+              skill: perifrasis
+            - q: "Три года я работал в ночную смену."
+              a: "Durante tres años trabajé en el turno de noche | Trabajé tres años en el turno de noche | Trabajé en el turno de noche durante tres años"
+              skill: experiencia_trabajo
+      - build:
+          title: Соберите фразу
+          rule: none
+          skill: plazos
+          items:
+            - es: "Trabajo en esta empresa desde 2022."
+              ru: "Я работаю в этой компании с 2022 года."
+              extra: [durante]
+    quiz:
+      - q: "Mañana tengo una ___ de trabajo: estoy un poco nervioso."
+        options: "entrevista | carrera | empresa"
+        explain: "Собеседование — la entrevista."
+        skill: experiencia_trabajo
+      - q: "Что значит «suspender un examen»?"
+        options: "провалить экзамен | сдать экзамен | отменить экзамен"
+        explain: "Suspender — провалить; сдать — aprobar."
+        skill: estudios

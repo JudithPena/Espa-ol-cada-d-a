@@ -44,6 +44,11 @@ def generated_forms(item: VocabItem, features: frozenset[str] | set[str]) -> set
         for core in item.cores:
             for form in morph.adjective_forms(core):
                 out.add(morph.plural(form))
+    if "superlative" in features and (item.pos == "adj" or (item.pos == "word" and len(item.cores) == 1
+                                                             and " " not in item.cores[0] and item.cores[0].isalpha())):
+        # -ísimo от прилагательных (caro/a → carísimo) и неизменяемых слов вроде fácil, grande, mucho
+        for core in item.cores:
+            out.update(morph.superlative(morph.adjective_forms(core)[0] if item.pos == "adj" else core))
     elif item.pos == "verb":
         for inf in item.cores:
             info = morph.verb_info(inf)
@@ -56,6 +61,14 @@ def generated_forms(item: VocabItem, features: frozenset[str] | set[str]) -> set
                 out.add(morph.gerund(inf, info))
             if "participle" in features:
                 out.add(morph.participle(inf, info))
+            if ("preterite_irregular" if morph.is_preterite_irregular(inf) else "preterite") in features:
+                out.update(morph.preterite(inf, info))
+            if "imperfect" in features:
+                out.update(morph.imperfect(inf))
+            if "imperative" in features:
+                out.update(morph.imperative(inf, info))
+            if "conditional" in features:
+                out.update(morph.conditional(inf))
     return {f.lower() for f in out}
 
 
@@ -157,6 +170,29 @@ def _write_texts(d) -> list[str]:
     return out
 
 
+def _compose_item_texts(it) -> list[str]:
+    out = [it["q"], it["format"], it["sample"], it["sample_ru"], it["explain"]]
+    for c in it["checks"]:
+        out += [c["label"], *c["any"], *c["all"], *c["starts"], *c["if"]]
+    return out
+
+
+def _chat_texts(d) -> list[str]:
+    out = [d["title"], d["who"]]
+    for it in d["items"]:
+        out += [*it["line"], it["task"], it["explain"], *_mistake_notes(it)]
+        if it["kind"] == "build":
+            out += [it["es"], it["ru"], *it["alt"]]
+        elif it["kind"] == "write":
+            out += [*it["answers"], it["format"]]
+        elif it["kind"] == "choose":
+            out += it["options"][:1]
+        else:
+            out += _compose_item_texts(it)
+    out += [t for line in d["end"] for t in line]
+    return out
+
+
 # Тексты блоков сценария урока сайта, которые видит ученик (кроме неверных вариантов — см. lesson_distractors).
 SCENARIO_TEXTS = {
     "choose": _choose_texts,
@@ -168,6 +204,8 @@ SCENARIO_TEXTS = {
     "more": lambda d: [d["title"], d["text"]],
     "recap": lambda d: [d["title"], d["phrase"]],
     "review": lambda d: [d["title"]],
+    "compose": lambda d: [d["title"]] + [t for it in d["items"] for t in _compose_item_texts(it)],
+    "chat": _chat_texts,
 }
 
 
@@ -180,6 +218,13 @@ def lesson_distractors(lesson: Lesson) -> list[tuple[str, str]]:
             out += [(f"блок choose, неверный вариант", o) for it in block.data["items"] for o in it["options"][1:]]
         elif block.type == "build":
             out += [(f"блок build, лишняя плитка", x) for it in block.data["items"] for x in it["extra"]]
+        if block.type == "chat":
+            for it in block.data["items"]:
+                if it["kind"] == "choose":
+                    out += [("блок chat, неверный вариант", o) for o in it["options"][1:]]
+                if it["kind"] == "build":
+                    out += [("блок chat, лишняя плитка", x) for x in it["extra"]]
+                out += [("блок chat, ожидаемая ошибка", k) for k in ((it.get("meta") or {}).get("mistakes") or {})]
         if block.type in ("choose", "write"):
             # ожидаемые ошибки ученика («el cafe por favor») пишутся нарочно неверно, как неверные варианты
             out += [(f"блок {block.type}, ожидаемая ошибка", k) for it in block.data["items"]
@@ -204,6 +249,9 @@ class Lexicon:
         self.known_at: list[frozenset[str]] = []
         self.features_at: list[frozenset[str]] = []
         self.first_seen: dict[str, Lesson] = {}
+        # Слова, которые урок вводит явно (карточка, forms, спряжение), без форм, выведенных по грамматике:
+        # «trabaje» после императива — форма знакомого глагола, а не новое слово.
+        self.first_taught: dict[str, Lesson] = {}
         self.names = set(course.names)
         self.items = course.items
         self._build()
@@ -214,6 +262,7 @@ class Lexicon:
         items: list[VocabItem] = []
         for lesson in self.course.lessons:
             before = set(known)
+            taught: set[str] = set()
             new_features = set(lesson.unlocks) - features
             features |= new_features
             if new_features:
@@ -221,12 +270,16 @@ class Lexicon:
                     known |= generated_forms(item, new_features)
             for item in lesson.vocab:
                 items.append(item)
+                taught |= item.base_forms()
                 known |= item.base_forms()
                 known |= generated_forms(item, features)
+            taught |= set(lesson.forms) | conjugation_forms(lesson)
             known |= set(lesson.forms)
             known |= conjugation_forms(lesson)
             for form in known - before:
                 self.first_seen[form] = lesson
+            for form in taught:
+                self.first_taught.setdefault(form, lesson)
             self.known_at.append(frozenset(known))
             self.features_at.append(frozenset(features))
 
@@ -259,8 +312,10 @@ class Lexicon:
             hint = f" (вводится позже: урок {later.number})" if later else ""
             issues.append(Issue(lesson, f"незнакомое слово «{word}»{hint} — {where}"))
         for where, text in lesson_distractors(lesson):
+            if "ожидаемая ошибка" in where:
+                continue   # ключи mistakes ученик не видит: в них слово «из будущего» ничего не подсказывает
             for word in self.unknown_words(text, lesson):
-                later = self.first_seen.get(word.lower())
+                later = self.first_taught.get(word.lower())
                 if later and later.index > lesson.index:
                     issues.append(Issue(lesson, f"слово «{word}» вводится позже (урок {later.number}) — {where}: «{plain(text)[:60]}»"))
         return issues

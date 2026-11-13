@@ -795,8 +795,8 @@ test('приёмка 8 на реальных уроках: numeros/dictado и ho
   }
 });
 
-test('приёмка 10 на реальных итогах: familia/repaso и final/examen — контроль с порогом и слабыми темами', () => {
-  for (const id of ['familia/repaso', 'final/examen']) {
+test('приёмка 10 на реальных итогах: familia/repaso, final/examen и fin_de_nivel/examen — контроль с порогом и слабыми темами', () => {
+  for (const id of ['familia/repaso', 'final/examen', 'fin_de_nivel/examen']) {
     const run = context(site);
     const i = idx(run, id);
     assert.equal(run(`LESSONS[${i}].check`), 'control', `${id}: нет check: control`);
@@ -845,4 +845,90 @@ test('приёмка 13: slide maps match what the engine builds', () => {
     const norm = sig => sig.replace(/V~?(×\d+)?( V~?(×\d+)?)*/g, 'V*');
     assert.equal(norm(run('signature(S.steps)')), norm(maps.get(L.id)), `${L.id}: карта и урок разошлись`);
   }
+});
+
+// ================================================================ A2: письмо по признакам, разговор по шагам, вход в уровень
+const goStep = (run, pred) => run(`S.at = S.steps.findIndex(${pred}); S.state = null; render(); S.at`);
+
+test('A2: compose checks the text by features and never marks it as an error', () => {
+  const run = context(site);
+  run(`startLesson(${idx(run, 'espanol_y_yo/para_que')})`);
+  assert.ok(goStep(run, 'st => st.type === "compose"') >= 0);
+  // Первая попытка без нужной конструкции: не ошибка, а список того, чего не хватает; можно дополнить.
+  run('S.state.value = "Me gusta mucho"; composeCheck()');
+  assert.equal(run('S.state.result'), undefined);
+  assert.deepEqual(J(run, 'S.state.fb.map(c => c.ok)'), [true, false, true]);
+  // Вторая попытка тоже не прошла: показывается образец, итог — «с подсказкой», не «ошибка»; задание не возвращается.
+  const n = run('S.steps.length');
+  run('S.state.value = "Me gusta mucho el idioma"; composeCheck()');
+  assert.equal(run('S.state.result'), 'helped');
+  assert.equal(run('S.steps.length'), n);
+  assert.equal(J(run, 'S.outcomes.at(-1).outcome'), 'helped');
+  assert.match(run('stepFoot(S.steps[S.at])'), /Сравните с образцом/);
+  assert.match(run('stepBody(S.steps[S.at])'), /Образец/);
+
+  // Свой текст, который выполняет условия, засчитывается с первой попытки — и он не обязан совпадать с образцом.
+  run(`startLesson(${idx(run, 'espanol_y_yo/para_que')})`);
+  goStep(run, 'st => st.type === "compose"');
+  run('S.state.value = "Estudio español porque mi familia vive en Valencia."; composeCheck()');
+  assert.equal(run('S.state.result'), 'good');
+  assert.equal(J(run, 'S.outcomes.at(-1).outcome'), 'first');
+  // После para нужен инфинитив: «para viajo» условие не выполняет.
+  run(`startLesson(${idx(run, 'espanol_y_yo/para_que')})`);
+  goStep(run, 'st => st.type === "compose"');
+  run('S.state.value = "Estudio español para viajo mucho"; composeCheck()');
+  assert.deepEqual(J(run, 'S.state.fb.map(c => c.ok)'), [true, true, false]);
+  // «Показать образец» до ответа: ответ показан, а не ошибка.
+  run('composeGive()');
+  assert.equal(run('S.state.result'), 'revealed');
+});
+
+test('A2: compose points at words outside the course without grading them', () => {
+  const run = context(site);
+  const unknown = J(run, 'composeUnknown("Estudio español para trabajar en Madrid con Olga y xyzzy.")');
+  assert.deepEqual(unknown, ['xyzzy']);
+});
+
+test('A2: chat walks turn by turn, keeps the transcript and never requeues a turn', () => {
+  const run = context(site);
+  run(`startLesson(${idx(run, 'espanol_y_yo/mision')})`);
+  const kinds = J(run, 'S.steps.filter(st => st.chat).map(st => st.type + ":" + st.chat.k)');
+  assert.deepEqual(kinds.slice(0, 8), ['build:0', 'write:1', 'write:2', 'write:3', 'write:4', 'write:5', 'compose:6', 'chatlog:7']);
+  // Ход вводом: верный ответ попадает в ленту как реплика ученика.
+  goStep(run, 'st => st.chat?.k === 1');
+  const total = run('S.steps.length');
+  run('S.state.value = "Me llamo Oleg Koval"; writeCheck()');
+  assert.equal(run('S.state.result'), 'good');
+  assert.equal(J(run, 'S.chats[S.steps[S.at].chat.id][1].me'), 'Me llamo Oleg Koval');
+  assert.equal(J(run, 'S.chats[S.steps[S.at].chat.id][1].model'), false);
+  // Дважды неверно: в ленте — образец, разговор идёт дальше, ход в конец урока не уходит.
+  goStep(run, 'st => st.chat?.k === 3');
+  run('S.state.value = "xxx"; writeCheck(); S.state.value = "yyy"; writeCheck()');
+  assert.equal(run('S.state.result'), 'bad');
+  assert.equal(run('S.steps.length'), total);
+  assert.equal(J(run, 'S.chats[S.steps[S.at].chat.id][3].me'), 'Tengo treinta años');
+  assert.equal(J(run, 'S.chats[S.steps[S.at].chat.id][3].model'), true);
+  // Следующий ход показывает предыдущий обмен и новую реплику собеседника.
+  goStep(run, 'st => st.chat?.k === 4');
+  const html = run('stepBody(S.steps[S.at])');
+  assert.match(html, /¿Cuántos años tiene\?/);
+  assert.match(html, /Tengo treinta años/);
+  assert.match(html, /¿De dónde es\?/);
+  // Лента в конце: все реплики собеседника, включая заключительную.
+  goStep(run, 'st => st.type === "chatlog"');
+  assert.match(run('stepBody(S.steps[S.at])'), /Perfecto\. Muchas gracias\./);
+  // Ходы разговора — не материал для повторения навыков.
+  assert.equal(run('skillPool().some(x => x.step.chat || x.step.type === "compose")'), false);
+});
+
+test('A2: the first lesson of the level is open without A1, the rest go in order', () => {
+  const run = context(site);
+  const a2 = idx(run, 'espanol_y_yo/intercambio');
+  run('P = fresh()');
+  assert.equal(run(`isOpen(${a2})`), true);
+  assert.equal(run(`isOpen(${a2 + 1})`), false);
+  // Уровень A1 по-прежнему открывается только после итога A0.
+  const a1 = run('LESSONS.findIndex((L, i) => levelOf(i) === "A1")');
+  assert.equal(run(`isOpen(${a1})`), false);
+  assert.equal(run('levelStats("A2").n > 0'), true);
 });

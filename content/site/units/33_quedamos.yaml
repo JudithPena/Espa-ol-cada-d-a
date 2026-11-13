@@ -1,0 +1,751 @@
+id: quedamos
+number: 33
+level: A2
+title: ¿Quedamos? — встретимся?
+goals:
+  - предложить встречу и ответить на предложение
+  - вежливо отказаться и объяснить причину
+  - договориться, когда и где встретиться
+  - поговорить по телефону о том, что вы сейчас делаете
+
+# Тема 10 карты A2: ¿Te apetece…?, ¿Por qué no…?, ¿Qué tal si…?, es que…; estar + герундий (повторение);
+# встречи, досуг, телефон. Миссия — договориться о встрече по телефону. В A1 (тема 19) уже были ¿Quieres…?,
+# lo siento, otro día, ¿Quedamos…?; в теме 21 — ¿Diga?, oye, luego te llamo.
+lessons:
+  - id: llamada
+    kind: listening
+    title: "¿Te apetece venir?"
+    goal: понять на слух приглашение, отказ и договорённость
+    version: 2
+    # Карта экранов: docs/site_slide_maps/33_quedamos.md
+    vocab:
+      - "🤤 apetecer [апэтэθэ́р] — хотеться (как gustar: me apetece) :: ¿Te apetece un café? — Хочешь кофе?"
+      - "💬 es que… [эс кэ] — дело в том, что…; просто… :: No puedo: es que tengo un examen. — Не могу: у меня экзамен."
+      - "😔 ¡qué pena! [кэ пэ́на] — как жаль! :: ¿No puedes venir? ¡Qué pena! — Не можешь прийти? Как жаль!"
+      - "🤔 ¿por qué no…? [пор кэ но] — почему бы не…?, может…? :: ¿Por qué no vamos al cine? — Может, сходим в кино?"
+      - "🤝 de acuerdo [дэ акуэ́рдо] — договорились, согласен :: — ¿A las ocho? — De acuerdo. — В восемь? — Договорились."
+      - "📞 la llamada [льяма́да] — звонок (по телефону) :: Gracias por la llamada. — Спасибо за звонок."
+    blocks:
+      - "Лусия звонит Тому. Послушайте разговор два раза: текста пока нет."
+      - dialogue:
+          id: cine
+          hidden: true
+          lines:
+            - "Tom: ¿Diga? | Алло?"
+            - "Lucía: ¡Hola, Tom! Soy Lucía. ¿Qué estás haciendo? | Привет, Том! Это Лусия. Что делаешь?"
+            - "Tom: Estoy estudiando: mañana tengo un examen. | Занимаюсь: завтра у меня экзамен."
+            - "Lucía: Vaya… Tengo dos entradas para el cine esta noche. ¿Te apetece venir? | Вот как… У меня два билета в кино на сегодня. Хочешь пойти?"
+            - "Tom: Me apetece mucho, pero no puedo. Es que el examen es muy importante. | Очень хочется, но не могу. Дело в том, что экзамен очень важный."
+            - "Lucía: ¡Qué pena! ¿Y el sábado? ¿Por qué no vamos a la exposición de Picasso? | Как жаль! А в субботу? Может, сходим на выставку Пикассо?"
+            - "Tom: ¡Genial! ¿A qué hora quedamos? | Отлично! Во сколько встретимся?"
+            - "Lucía: ¿Qué tal a las once, en la puerta del museo? | Как насчёт одиннадцати, у входа в музей?"
+            - "Tom: De acuerdo. ¡Hasta el sábado! | Договорились. До субботы!"
+      - choose:
+          title: Что вы поняли?
+          source: cine
+          items:
+            - q: "Что делает Том, когда звонит Лусия?"
+              options: "Estudia. | Ve una película. | Está en el museo."
+              explain: "Tom: Estoy estudiando: mañana tengo un examen."
+            - q: "Куда Лусия зовёт его сегодня вечером?"
+              options: "Al cine. | A un concierto. | A una exposición."
+              explain: "Lucía: Tengo dos entradas para el cine esta noche."
+      - learn: [apetecer, "es que…", "¡qué pena!", "¿por qué no…?", de acuerdo, la llamada]
+      - choose:
+          title: Детали разговора
+          source: cine
+          items:
+            - q: "¿Quién hace la llamada?"
+              options: "Lucía. | Tom. | Pablo."
+              explain: "Lucía: ¡Hola, Tom! Soy Lucía."
+            - q: "Почему Том не может пойти?"
+              options: "Porque mañana tiene un examen importante. | Porque esta noche trabaja hasta muy tarde. | Porque no le gusta el cine."
+              explain: "Tom: Es que el examen es muy importante."
+            - q: "Что Лусия предлагает на субботу?"
+              options: "Ir a la exposición de Picasso. | Ir al cine otra vez. | Estudiar juntos."
+              explain: "Lucía: ¿Por qué no vamos a la exposición de Picasso?"
+            - q: "Где и когда они встретятся?"
+              options: "A las once, en la puerta del museo. | A las once, en la puerta del cine. | A la una, en el museo."
+              explain: "Lucía: ¿Qué tal a las once, en la puerta del museo? Tom: De acuerdo."
+      - text:
+          id: notice
+          slide: new
+          text: "Лусия **предлагает**: ¿Te apetece venir?, ¿Por qué no vamos…? Том **отказывается** и объясняет причину: Es que… А потом **соглашается**: ¡Genial!, De acuerdo."
+      - sort:
+          title: Предложить, отказаться, согласиться
+          source: cine
+          rule: notice
+          groups:
+            "предложить": ["¿Te apetece venir?", "¿Por qué no vamos a la exposición?"]
+            "отказаться": ["No puedo.", "Es que el examen es muy importante."]
+            "согласиться": ["¡Genial!", "De acuerdo."]
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          free: true
+          skill: proponer
+          rule: notice
+          items:
+            - say: "¿Te apetece venir al cine esta noche?"
+              a: "¿Te apetece venir al cine esta noche?"
+              explain: "Apetecer — как gustar: te apetece."
+              noaudio: {q: "Напишите по-испански: «Хочешь пойти в кино сегодня вечером?» (с глаголом apetecer).", a: "¿Te apetece venir al cine esta noche? | ¿Te apetece ir al cine esta noche?"}
+      - choose:
+          title: Что ответить?
+          free: true
+          skill: rechazar
+          rule: notice
+          items:
+            - lines: ["Tom: No puedo ir: es que tengo un examen."]
+              q: "Скажите, что вам жаль."
+              options: "¡Qué pena! | ¡Qué bien! | ¡De acuerdo!"
+              explain: "Как жаль — ¡Qué pena!"
+            - lines: ["Lucía: ¿Te apetece tomar algo después del trabajo?"]
+              q: "Откажитесь и объясните: у вас много работы."
+              options: "Lo siento, es que tengo mucho trabajo. | Lo siento, porque tengo mucho trabajo. | ¡Genial! Tengo mucho trabajo."
+              explain: "Причина отказа — es que…"
+            - say: "Me apetece mucho, pero no puedo."
+              options: "Очень хочется, но не могу. | Мне не хочется, и я не могу. | Я могу, но мне не хочется."
+              explain: "Me apetece mucho — «очень хочется»."
+              noaudio: {q: "Что значит «Me apetece mucho, pero no puedo»?", options: "Очень хочется, но не могу. | Мне не хочется, и я не могу. | Я могу, но мне не хочется."}
+      - build:
+          title: Соберите фразу
+          free: true
+          rule: notice
+          items:
+            - es: "¿Por qué no vamos a la exposición?"
+              ru: "Может, сходим на выставку?"
+              extra: [ir]
+            - es: "No puedo: es que mañana tengo un examen."
+              ru: "Не могу: у меня завтра экзамен."
+
+  - id: proponer
+    kind: grammar
+    title: "¿Qué tal si…? ¿Por qué no…?"
+    goal: предложить план разными способами и ответить «да», «может быть» или «нет»
+    version: 2
+    vocab:
+      - "💡 ¿qué tal si…? [кэ таль си] — а что если…?, может…? :: ¿Qué tal si vamos a la playa? — Может, пойдём на пляж?"
+      - "🤷 a lo mejor [а ло мэхо́р] — может быть :: A lo mejor voy. — Может, и пойду."
+      - "⚖️ depende [дэпэ́ндэ] — смотря как; это зависит :: — ¿Vienes? — Depende. — Придёшь? — Посмотрим."
+    blocks:
+      - "Предложить можно по-разному — и ответить тоже."
+      - learn: ["¿qué tal si…?", a lo mejor, depende]
+      - table:
+          id: proponer
+          title: Как предложить
+          rows:
+            - ["¿Te apetece + инфинитив?", "¿Te apetece ir al cine? — Хочешь в кино?"]
+            - ["¿Quieres + инфинитив?", "¿Quieres cenar con nosotros? — Хочешь поужинать с нами?"]
+            - ["¿Por qué no + глагол (nosotros)?", "¿Por qué no vamos a la playa? — Может, пойдём на пляж?"]
+            - ["¿Qué tal si + глагол (nosotros)?", "¿Qué tal si cenamos en casa? — Может, поужинаем дома?"]
+      - note:
+          id: apetecer
+          text: "**Apetecer** работает как gustar: _me apetece_, _te apetece_, _¿os apetece?_ После ¿Por qué no…? и ¿Qué tal si…? — глагол в форме «мы»: _vamos_, _cenamos_."
+      - choose:
+          title: Выберите вариант
+          skill: proponer
+          rule: apetecer
+          items:
+            - q: "Как спросить друга, хочет ли он пойти в кино?"
+              options: "¿Te apetece ir al cine? | ¿Tú apeteces ir al cine? | ¿Te apetece de ir al cine?"
+              explain: "Apetecer — как gustar: te apetece + инфинитив."
+            - q: "¿Por qué no ___ a la playa mañana?"
+              options: "vamos | ir | fuimos"
+              explain: "После ¿Por qué no…? — глагол в форме «мы»: vamos."
+            - q: "¿Qué tal si ___ en casa esta noche?"
+              options: "cenamos | cenar | cenábamos"
+              explain: "После ¿Qué tal si…? — настоящее время: cenamos."
+      - table:
+          id: responder
+          slide: new
+          title: Как ответить
+          rows:
+            - ["да", "Vale. — Ладно. ¡Genial! — Отлично! De acuerdo. — Договорились."]
+            - ["может быть", "A lo mejor. — Может быть. Depende. — Смотря как."]
+            - ["нет", "Lo siento, no puedo: es que… — Извини, не могу: дело в том, что… Hoy no, ¿otro día? — Сегодня нет, может, в другой раз?"]
+      - sort:
+          title: Да, может быть или нет?
+          rule: responder
+          groups:
+            "да": ["Vale.", "De acuerdo.", "¡Genial!"]
+            "может быть": ["A lo mejor.", "Depende."]
+            "нет": ["Lo siento, no puedo.", "Hoy no, ¿otro día?"]
+      - write:
+          title: Предложите
+          format: вопрос по-испански
+          skill: proponer
+          rule: proponer
+          items:
+            - q: "Предложите другу пойти в кино — с ¿Te apetece…?"
+              a: "¿Te apetece ir al cine? | ¿Te apetece ir al cine [hoy/esta noche/esta tarde]?"
+              explain: "¿Te apetece + инфинитив?"
+              mistakes:
+                "te apeteces ir al cine": "Apetecer — как gustar: **te apetece**."
+            - q: "Предложите пойти на пляж — с ¿Por qué no…?"
+              a: "¿Por qué no vamos a la playa? | ¿Por qué no vamos a la playa [hoy/mañana]?"
+              explain: "¿Por qué no + vamos?"
+              mistakes:
+                "por qué no ir a la playa": "После ¿Por qué no…? — форма «мы»: **vamos**."
+            - q: "Предложите поужинать дома — с ¿Qué tal si…?"
+              a: "¿Qué tal si cenamos en casa? | ¿Qué tal si cenamos en casa [hoy/esta noche]?"
+              explain: "¿Qué tal si + cenamos?"
+      - write:
+          title: Откажитесь
+          format: ответ по-испански
+          skill: rechazar
+          rule: responder
+          items:
+            - q: "Откажитесь и объясните с es que…: у вас завтра экзамен."
+              a: "(Lo siento,) (no puedo,) es que mañana tengo un examen | (Lo siento,) (no puedo,) es que tengo un examen mañana"
+              explain: "Причина — es que…"
+              mistakes:
+                "lo siento porque mañana tengo un examen": "Причину отказа объясняют с **es que**: Lo siento, es que mañana tengo un examen."
+      - choose:
+          title: Послушайте
+          rule: responder
+          items:
+            - say: "A lo mejor voy, pero depende del trabajo."
+              options: "Может, приду, но это зависит от работы. | Точно приду после работы. | Не приду: у меня работа."
+              explain: "A lo mejor — «может быть»; depende del trabajo — «зависит от работы»."
+              noaudio: {q: "Что значит «A lo mejor voy, pero depende del trabajo»?", options: "Может, приду, но это зависит от работы. | Точно приду после работы. | Не приду: у меня работа."}
+      - build:
+          title: Соберите фразу
+          skill: proponer
+          rule: proponer
+          items:
+            - es: "¿Qué tal si vamos a la playa el domingo?"
+              ru: "Может, пойдём на пляж в воскресенье?"
+              extra: [ir]
+      - compose:
+          title: Пригласите друга
+          skill: proponer
+          rule: proponer
+          items:
+            - q: "Напишите другу сообщение: предложите план на субботу — что делать, где и во сколько встретиться."
+              format: "¡Hola! ¿Te apetece…? ¿Qué tal si quedamos…?"
+              words: [10, 50]
+              checks:
+                - label: "предложение: ¿Te apetece…?, ¿Por qué no…?, ¿Qué tal si…?, ¿Quieres…?"
+                  any: [te apetece, por qué no, qué tal si, quieres]
+                - label: "время: a las…"
+                  any: [a las, a la una, por la mañana, por la tarde, por la noche]
+              sample: "¡Hola, Ana! ¿Te apetece ir a la playa el sábado? ¿Qué tal si quedamos a las diez en la estación?"
+              sample_ru: "Привет, Ана! Хочешь в субботу на пляж? Может, встретимся в десять на вокзале?"
+    quiz:
+      - q: "— ¿Vienes a la fiesta? — ___: si termino temprano el trabajo, voy."
+        options: "Depende | De acuerdo | ¡Qué pena!"
+        explain: "Ответ зависит от обстоятельств — Depende."
+        skill: proponer
+      - q: "¿___ si cenamos juntos el viernes?"
+        options: "Qué tal | Por qué no | Te apetece"
+        explain: "¿Qué tal si + глагол?"
+        skill: proponer
+
+  - id: quedar
+    kind: grammar
+    title: "¿Dónde y a qué hora quedamos?"
+    goal: договориться о времени и месте встречи и перенести встречу
+    version: 2
+    vocab:
+      - "📅 ¿te viene bien…? [тэ бьэ́нэ бьэн] — тебе удобно…? :: ¿Te viene bien a las ocho? — Тебе удобно в восемь?"
+      - "👋 nos vemos [нос бэ́мос] — увидимся :: Nos vemos mañana. — Увидимся завтра."
+      - "🗓 la cita [θи́та] — встреча (по договорённости); приём (у врача) :: Tengo una cita con el médico. — У меня приём у врача."
+      - "⏱ puntual [пунтуа́ль] — пунктуальный :: Tom siempre es muy puntual. — Том всегда очень пунктуален."
+      - "❌ cancelar [канθэла́р] — отменить :: Tengo que cancelar la cita. — Мне нужно отменить встречу."
+      - "🤝 quedar con [кэда́р кон] — договориться встретиться (с кем-то) :: He quedado con Ana. — У меня встреча с Аной."
+    blocks:
+      - learn: ["¿te viene bien…?", nos vemos, la cita, puntual, cancelar, quedar con]
+      - table:
+          id: quedar
+          title: "Quedar: когда, где и с кем"
+          rows:
+            - ["quedar **a** + время", "Quedamos a las ocho. — Встречаемся в восемь."]
+            - ["quedar **en** + место", "Quedamos en la plaza. — Встречаемся на площади."]
+            - ["quedar **con** + человек", "He quedado con Ana. — Я договорился встретиться с Аной."]
+      - choose:
+          title: A, en или con?
+          skill: quedar_cita
+          rule: quedar
+          items:
+            - q: "¿Quedamos ___ las siete?"
+              options: "a | en | con"
+              explain: "Время — a: a las siete."
+            - q: "Quedamos ___ la puerta del cine."
+              options: "en | a | con"
+              explain: "Место — en: en la puerta del cine."
+            - q: "Hoy he quedado ___ mis compañeros de trabajo."
+              options: "con | a | en"
+              explain: "Человек — con: con mis compañeros."
+      - note:
+          id: viene_bien
+          slide: new
+          text: "**¿Te viene bien…?** — «тебе удобно…?». Venir здесь работает как gustar: _¿Te viene bien el lunes?_ — _No, me viene mejor el martes_ — «нет, мне удобнее во вторник». О сегодняшних планах в Испании говорят в perfecto: _He quedado con Ana_."
+      - choose:
+          title: Что ответить?
+          skill: quedar_cita
+          rule: viene_bien
+          items:
+            - lines: ["Diego: ¿Te viene bien el lunes a las seis?"]
+              q: "Скажите, что вам удобнее во вторник."
+              options: "No, me viene mejor el martes. | No, me vengo mejor el martes. | No, el martes me viene bueno."
+              explain: "Удобнее — me viene mejor."
+            - say: "He quedado con Pablo a las siete en la puerta del cine."
+              options: "Я договорился встретиться с Пабло в семь у кино. | Пабло пришёл в кино в семь. | Я встретил Пабло в семь у кино."
+              explain: "He quedado con… — «я договорился встретиться с…»."
+              noaudio: {q: "Что значит «He quedado con Pablo a las siete en la puerta del cine»?", options: "Я договорился встретиться с Пабло в семь у кино. | Пабло пришёл в кино в семь. | Я встретил Пабло в семь у кино."}
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: quedar_cita
+          rule: quedar
+          items:
+            - q: "Встречаемся в восемь на площади?"
+              a: "¿Quedamos a las ocho en la plaza? | ¿Quedamos en la plaza a las ocho?"
+              explain: "Время — a las ocho, место — en la plaza."
+              mistakes:
+                "quedamos en las ocho en la plaza": "Время — с **a**: a las ocho."
+            - q: "Я хочу встретиться с Аной в субботу."
+              a: "Quiero quedar con Ana el sábado | El sábado quiero quedar con Ana"
+              explain: "Встретиться с кем-то — quedar con."
+              mistakes:
+                "quiero quedar a ana el sábado": "С человеком — **con**: quedar con Ana."
+            - q: "Тебе удобно в субботу?"
+              a: "¿Te viene bien el sábado?"
+              explain: "¿Te viene bien + день?"
+              mistakes:
+                "te viene bien en sábado": "С днём недели — артикль, без en: **el sábado**."
+            - q: "Мне нужно отменить встречу."
+              a: "Tengo que cancelar la cita"
+              explain: "Tengo que + cancelar."
+      - build:
+          title: Соберите фразу
+          skill: quedar_cita
+          rule: quedar
+          items:
+            - es: "Hoy he quedado con mis amigos en el centro."
+              ru: "Сегодня я договорился встретиться с друзьями в центре."
+              extra: [a]
+            - es: "Lo siento, llego tarde. ¡Nos vemos en diez minutos!"
+              ru: "Извини, я опаздываю. Увидимся через десять минут!"
+      - compose:
+          title: Перенесите встречу
+          skill: [quedar_cita, rechazar]
+          rule: viene_bien
+          items:
+            - q: "Вы договорились встретиться с подругой в пятницу, но не можете. Напишите ей: отмените встречу, объясните причину и предложите другой день."
+              format: "Lo siento, el viernes no puedo: es que… ¿Te viene bien…?"
+              words: [12, 60]
+              checks:
+                - label: "извинение и причина: lo siento, es que…"
+                  any: [es que, porque]
+                - label: "новый день: ¿Te viene bien…?, ¿Qué tal…?, ¿Quedamos…?"
+                  any: [te viene bien, qué tal, quedamos, por qué no]
+              sample: "¡Hola, Marta! Lo siento, el viernes no puedo: es que tengo que trabajar hasta tarde. ¿Te viene bien el sábado? ¿Quedamos a las seis en la plaza?"
+              sample_ru: "Привет, Марта! Извини, в пятницу не могу: мне нужно работать допоздна. Тебе удобно в субботу? Встретимся в шесть на площади?"
+    quiz:
+      - q: "Mañana tengo una ___ con el médico a las diez."
+        options: "cita | llamada | entrada"
+        explain: "Приём у врача — la cita."
+        skill: quedar_cita
+      - q: "Pablo siempre llega a la hora: es muy ___."
+        options: "puntual | tarde | ocupado"
+        explain: "Приходит вовремя — puntual."
+
+  - id: ahora_mismo
+    kind: grammar
+    title: "¿Qué estás haciendo?"
+    goal: сказать по телефону, что вы делаете прямо сейчас
+    version: 2
+    vocab:
+      - "👂 oír [оі́р] — слышать {forms: oigo oyes oye oímos oyen} :: No te oigo bien. — Я тебя плохо слышу."
+      - "📶 la cobertura [кобэрту́ра] — связь, сигнал (мобильной сети) :: Aquí no hay cobertura. — Здесь нет связи."
+      - "📴 colgar [колга́р] — положить трубку :: Tengo que colgar: estoy en el trabajo. — Мне нужно заканчивать: я на работе."
+    forms: [duchándome]
+    blocks:
+      - "В A1 вы уже говорили, что делаете сейчас: _estoy comiendo_, _ahora mismo_, _en este momento_. По телефону это нужно постоянно: что делаешь, можешь ли говорить."
+      - learn: [oír, la cobertura, colgar]
+      - table:
+          id: estoy_haciendo
+          title: "Estar + герундий — что происходит сейчас"
+          rows:
+            - ["estoy, estás, está, estamos, estáis, están", "Estoy cocinando. — Я готовлю (сейчас)."]
+            - ["-ar → -ando; -er, -ir → -iendo", "hablando, comiendo, escribiendo"]
+            - ["особые", "leyendo, durmiendo, diciendo, pidiendo, viniendo"]
+            - ["с местоимением", "Me estoy duchando = Estoy duchándome. — Я в душе."]
+      - note:
+          id: ahora_o_siempre
+          text: "Сравните: _Trabajo en un banco_ — это вообще, всегда; _Ahora estoy trabajando_ — это прямо сейчас. Поэтому на «¿Qué estás haciendo?» отвечают с **estoy** + герундий."
+      - write:
+          title: Что вы делаете сейчас?
+          format: estar + герундий
+          skill: estar_ahora
+          rule: estoy_haciendo
+          items:
+            - q: "— ¿Qué estás haciendo? — (Yo, cocinar) ___."
+              a: "Estoy cocinando"
+              explain: "Yo — estoy; cocinar — cocinando."
+            - q: "Ahora mismo mis hijos (dormir) ___."
+              a: "están durmiendo"
+              explain: "Ellos — están; dormir — durmiendo."
+              mistakes:
+                "están dormiendo": "У dormir особый герундий: **durmiendo**."
+            - q: "¿Qué (tú, decir) ___? No te oigo bien."
+              a: "estás diciendo"
+              explain: "Decir — особый герундий: diciendo."
+              mistakes:
+                "estás deciendo": "У decir особый герундий: **diciendo**."
+            - q: "En este momento (nosotros, comer) ___."
+              a: "estamos comiendo"
+              explain: "Nosotros — estamos; comer — comiendo."
+      - choose:
+          title: Выберите форму
+          skill: estar_ahora
+          rule: ahora_o_siempre
+          items:
+            - q: "— ¿Puedes hablar? — No, ahora mismo ___ en el trabajo."
+              options: "estoy | soy | estaba"
+              explain: "Где сейчас — estoy."
+            - q: "Lo siento, tengo que ___: estoy en el trabajo."
+              options: "colgar | cobertura | oír"
+              explain: "Закончить разговор — colgar."
+            - q: "Mi hermano ___ en un banco: es su trabajo."
+              options: "trabaja | está trabajando | trabajaba"
+              explain: "Это его работа вообще — trabaja."
+            - say: "Te llamo luego: es que en este momento estoy conduciendo."
+              options: "Перезвоню позже: я сейчас за рулём. | Перезвоню позже: я сейчас в душе. | Позвони мне позже: я сейчас за рулём."
+              explain: "Te llamo luego — «перезвоню»; estoy conduciendo — «я за рулём»."
+              noaudio: {q: "Что значит «Te llamo luego: es que en este momento estoy conduciendo»?", options: "Перезвоню позже: я сейчас за рулём. | Перезвоню позже: я сейчас в душе. | Позвони мне позже: я сейчас за рулём."}
+      - build:
+          title: Соберите фразу
+          skill: estar_ahora
+          rule: estoy_haciendo
+          items:
+            - es: "No te oigo bien: aquí no hay cobertura."
+              ru: "Я тебя плохо слышу: здесь нет связи."
+              extra: [soy]
+            - es: "Ahora mismo me estoy duchando."
+              ru: "Я сейчас в душе."
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          skill: estar_ahora
+          rule: ahora_o_siempre
+          items:
+            - q: "Сейчас я не могу говорить: я работаю."
+              a: "Ahora no puedo hablar: estoy trabajando | En este momento no puedo hablar(,) es que estoy trabajando | Ahora mismo no puedo hablar(:) estoy trabajando | Ahora no puedo hablar(,) es que estoy trabajando"
+              explain: "Прямо сейчас — estoy trabajando."
+              mistakes:
+                "ahora no puedo hablar trabajo": "Сейчас, в этот момент, — **estoy trabajando**."
+      - compose:
+          title: О себе
+          skill: estar_ahora
+          rule: estoy_haciendo
+          items:
+            - q: "Вам звонит друг: «¿Qué estás haciendo?» Ответьте одной-двумя фразами: что вы делаете прямо сейчас."
+              format: "Ahora mismo estoy…"
+              words: [3, 30]
+              checks:
+                - label: "estoy + герундий"
+                  re: "\\b(estoy|estamos)\\b \\w+(ando|iendo|yendo)\\b|\\bme estoy \\w+(ando|iendo)\\b"
+              sample: "Ahora mismo estoy cocinando y escuchando música. ¿Te llamo luego?"
+              sample_ru: "Прямо сейчас я готовлю и слушаю музыку. Перезвонить тебе позже?"
+    quiz:
+      - q: "— ¿Diga? — Hola, ¿qué ___ haciendo?"
+        options: "estás | eres | tienes"
+        explain: "Estar + герундий: ¿Qué estás haciendo?"
+        skill: estar_ahora
+      - q: "Habla más alto, por favor: no te ___ bien."
+        options: "oigo | oyes | veo"
+        explain: "Я тебя не слышу — no te oigo."
+        skill: estar_ahora
+
+  - id: lectura
+    kind: reading
+    title: "Mensajes del grupo"
+    goal: понять переписку о планах и ответить в общий чат
+    version: 2
+    vocab:
+      - "👥 el grupo [гру́по] — группа :: Escribo en el grupo de clase. — Я пишу в чат группы."
+      - "🆓 gratis [гра́тис] — бесплатно :: El concierto es gratis. — Концерт бесплатный."
+      - "💡 proponer [пропонэ́р] — предлагать {forms: propongo propones propone proponemos proponen propuse propuso} :: Diego propone ir a un concierto. — Диего предлагает пойти на концерт."
+    blocks:
+      - learn: [el grupo, gratis, proponer]
+      - "Друзья договариваются в общем чате, что делать в субботу."
+      - reading:
+          id: grupo
+          title: Mensajes del grupo
+          text: |
+            Lucía: ¡Hola a todos! ¿Qué tal si hacemos algo el sábado?
+
+            Tom: ¡Genial! Me apetece mucho ir a la playa.
+
+            Irina: Yo por la mañana no puedo: es que trabajo hasta las dos. ¿Por qué no quedamos por la tarde?
+
+            Diego: Por la tarde me viene bien. Hay un concierto en el parque a las ocho y es gratis. ¿Os apetece?
+
+            Lucía: ¡Perfecto! ¿Dónde quedamos?
+
+            Diego: ¿Qué tal a las siete y media en la entrada del parque?
+
+            Tom: Lo siento, a las siete y media no llego: tengo clase hasta las siete y media. ¿Quedamos a las ocho menos cuarto?
+
+            Irina: De acuerdo. ¡Nos vemos el sábado!
+          translation: |
+            Лусия: Всем привет! Может, сделаем что-нибудь в субботу?
+
+            Том: Отлично! Очень хочется на пляж.
+
+            Ирина: Я утром не могу: я работаю до двух. Может, встретимся после обеда?
+
+            Диего: После обеда мне удобно. В парке в восемь концерт, и он бесплатный. Хотите?
+
+            Лусия: Прекрасно! Где встречаемся?
+
+            Диего: Как насчёт половины восьмого у входа в парк?
+
+            Том: Извините, к половине восьмого не успею: у меня занятия до половины восьмого. Давайте без четверти восемь?
+
+            Ирина: Договорились. Увидимся в субботу!
+      - choose:
+          title: Что сказано в чате?
+          source: grupo
+          items:
+            - q: "¿Quién escribe primero en el grupo?"
+              options: "Lucía. | Tom. | Diego."
+              explain: "Lucía: ¡Hola a todos! ¿Qué tal si hacemos algo el sábado?"
+            - q: "¿Por qué no puede Irina por la mañana?"
+              options: "Porque trabaja hasta las dos. | Porque tiene clase. | Porque va a la playa con Tom."
+              explain: "Irina: Yo por la mañana no puedo: es que trabajo hasta las dos."
+              skill: rechazar
+            - q: "¿Qué propone Diego?"
+              options: "Ir a un concierto en el parque. | Ir a la playa por la mañana. | Cenar en un restaurante del centro."
+              explain: "Diego: Hay un concierto en el parque a las ocho y es gratis. ¿Os apetece?"
+            - q: "¿Cuánto cuesta el concierto?"
+              options: "Nada: es gratis. | Ocho euros. | No lo dicen."
+              explain: "…y es gratis."
+            - q: "¿Por qué no le viene bien a Tom quedar a las siete y media?"
+              options: "Tiene clase hasta esa hora. | El concierto empieza antes. | Trabaja hasta las dos."
+              explain: "Tom: …tengo clase hasta las siete y media."
+              skill: quedar_cita
+      - write:
+          title: Ответьте по тексту
+          format: короткий ответ по-испански
+          source: grupo
+          items:
+            - q: "¿A qué hora quedan al final?"
+              a: "A las ocho menos cuarto | Quedan a las ocho menos cuarto"
+              explain: "Tom: ¿Quedamos a las ocho menos cuarto? — Irina: De acuerdo."
+              skill: quedar_cita
+            - q: "Как Диего спрашивает всех «Хотите?»"
+              a: "¿Os apetece?"
+              explain: "Os — «вам» (всем): ¿Os apetece?"
+              skill: proponer
+      - choose:
+          title: Послушайте
+          free: true
+          rule: none
+          items:
+            - say: "Lo siento, a esa hora no llego: tengo clase."
+              options: "Извини, к этому времени не успею: у меня занятия. | Извини, в это время я свободен. | Извини, я пришёл на урок вовремя."
+              explain: "No llego — «не успею»; tengo clase — «у меня занятия»."
+              skill: rechazar
+              noaudio: {q: "Что значит «Lo siento, a esa hora no llego: tengo clase»?", options: "Извини, к этому времени не успею: у меня занятия. | Извини, в это время я свободен. | Извини, я пришёл на урок вовремя."}
+      - compose:
+          title: Ответ в чат
+          free: true
+          rule: none
+          skill: [proponer, rechazar, quedar_cita]
+          items:
+            - q: "Ответьте в чат группы: можете ли вы прийти в субботу на концерт? Если нет — объясните причину и предложите другое время или другой план."
+              format: "¡Hola! El sábado… Es que… ¿Qué tal si…?"
+              words: [10, 60]
+              checks:
+                - label: "можете или нет: puedo, no puedo, me viene bien…"
+                  any: [puedo, no puedo, me viene bien, no me viene bien, de acuerdo, vale, genial, perfecto]
+                - label: "причина или план: es que…, ¿qué tal si…?, ¿por qué no…?"
+                  any: [es que, porque, qué tal si, por qué no, te apetece, os apetece, quedamos]
+              sample: "¡Hola a todos! El sábado por la tarde no puedo: es que tengo que trabajar. ¿Por qué no quedamos el domingo? ¿Os apetece ir a la playa?"
+              sample_ru: "Всем привет! В субботу после обеда не могу: мне нужно работать. Может, встретимся в воскресенье? Хотите на пляж?"
+
+  - id: mision
+    kind: practice
+    title: Договориться по телефону
+    goal: понять отмену встречи и по телефону договориться о новой
+    version: 2
+    blocks:
+      - review:
+          title: Вспомним
+          skills: [fondo_hechos, estaba_gerundio, conectores]
+          n: 2
+      - "Диего оставил вам голосовое сообщение. Послушайте: текста нет."
+      - dialogue:
+          id: audio_diego
+          hidden: true
+          title: Сообщение от Диего
+          lines:
+            - "Diego: Hola, soy Diego. Lo siento mucho, pero el viernes no puedo ir a la cena: es que tengo que trabajar hasta tarde. ¿Te viene bien el sábado? Te llamo mañana. ¡Un abrazo! | Привет, это Диего. Мне очень жаль, но в пятницу я не смогу прийти на ужин: мне нужно работать допоздна. Тебе удобно в субботу? Позвоню завтра. Обнимаю!"
+      - choose:
+          title: Что в сообщении?
+          source: audio_diego
+          items:
+            - q: "¿Qué día no puede Diego?"
+              options: "El viernes. | El sábado. | Mañana."
+              explain: "…el viernes no puedo ir a la cena."
+            - q: "¿Por qué no puede?"
+              options: "Tiene que trabajar hasta tarde. | Está enfermo. | Tiene una cita con el médico."
+              explain: "…es que tengo que trabajar hasta tarde."
+              skill: rechazar
+            - q: "¿Qué propone?"
+              options: "Quedar el sábado. | Cancelar la cena para siempre. | Cenar el viernes más tarde."
+              explain: "¿Te viene bien el sábado?"
+              skill: quedar_cita
+      - mission:
+          id: llamar
+          title: Договориться по телефону
+          text: "На следующий день вы звоните Диего, чтобы договориться о встрече в выходные."
+      - chat:
+          id: diego
+          title: Звонок Диего
+          with: Diego
+          turns:
+            - say: "¿Diga? | Алло?"
+              task: "Поздоровайтесь и спросите, что он делает."
+              skill: estar_ahora
+              write: "Hola(,) Diego. ¿Qué [estás haciendo/haces]? | Hola. ¿Qué [estás haciendo/haces]? | Hola(,) Diego(,) soy yo. ¿Qué [estás haciendo/haces]?"
+              format: приветствие и вопрос
+              mistakes:
+                "hola diego qué eres haciendo": "Что делаешь сейчас — с **estar**: ¿Qué estás haciendo?"
+            - say: "Estoy cocinando. ¿Y tú? | Готовлю. А ты?"
+              task: "Ответьте от себя, что вы делаете прямо сейчас."
+              skill: estar_ahora
+              compose:
+                format: "Estoy…"
+                words: [2, 20]
+                checks:
+                  - label: "estoy + герундий"
+                    re: "\\b(estoy|estamos)\\b \\w+(ando|iendo|yendo)\\b|\\bme estoy \\w+(ando|iendo)\\b"
+                sample: "Estoy en casa, estoy leyendo un libro."
+                sample_ru: "Я дома, читаю книгу."
+            - say: "Oye, ¿te apetece hacer algo este fin de semana? | Слушай, хочешь чем-нибудь заняться в эти выходные?"
+              task: "Предложите пойти в кино в субботу — с ¿Por qué no…?"
+              skill: proponer
+              write: "¿Por qué no vamos al cine el sábado? | Sí, ¿por qué no vamos al cine el sábado? | ¿Por qué no vamos el sábado al cine?"
+              format: предложение
+              mistakes:
+                "por qué no ir al cine el sábado": "После ¿Por qué no…? — форма «мы»: **vamos**."
+            - say: "El sábado no puedo: es que voy a una boda. ¿Qué tal el domingo? | В субботу не могу: я иду на свадьбу. Как насчёт воскресенья?"
+              task: "Согласитесь: в воскресенье вам удобно."
+              skill: quedar_cita
+              choose: "Vale, el domingo me viene bien. | Vale, el domingo me vengo bien. | ¡Qué pena! El domingo me viene bien."
+              explain: "Удобно — me viene bien; ¡Qué pena! — когда жаль, а здесь вы согласны."
+            - say: "¿A qué hora quedamos? | Во сколько встретимся?"
+              task: "Предложите встретиться в шесть у входа в кино."
+              skill: quedar_cita
+              write: "¿Qué tal a las seis en la puerta del cine? | ¿Quedamos a las seis en la puerta del cine? | (Quedamos) a las seis en la puerta del cine | A las seis(,) en la puerta del cine"
+              format: время и место
+              mistakes:
+                "en las seis en la puerta del cine": "Время — с **a**: a las seis."
+            - say: "Perfecto. ¡Nos vemos el domingo! | Отлично. Увидимся в воскресенье!"
+      - compose:
+          title: Отказ и новый план
+          free: true
+          rule: none
+          skill: [rechazar, proponer, quedar_cita]
+          items:
+            - q: "Подруга пишет: «¿Te apetece ir al cine el viernes?» Ответьте: откажитесь, объясните причину и предложите свой план — что, где и во сколько."
+              format: "Lo siento, el viernes no puedo: es que… ¿Qué tal si…?"
+              words: [15, 70]
+              checks:
+                - label: "отказ: lo siento, no puedo…"
+                  any: [lo siento, no puedo, qué pena]
+                - label: "причина: es que…"
+                  any: [es que, porque]
+                - label: "новый план: ¿Qué tal si…?, ¿Por qué no…?, ¿Te viene bien…?"
+                  any: [qué tal si, qué tal, por qué no, te viene bien, te apetece, quedamos]
+                - label: "время: a las…"
+                  any: [a las, a la una, por la mañana, por la tarde, por la noche]
+              sample: "¡Hola, Ana! Lo siento, el viernes no puedo: es que tengo que trabajar hasta las nueve. ¿Qué tal si vamos al cine el sábado? ¿Quedamos a las seis en la puerta del cine?"
+              sample_ru: "Привет, Ана! Извини, в пятницу не могу: мне нужно работать до девяти. Может, сходим в кино в субботу? Встретимся в шесть у входа в кинотеатр?"
+
+  - id: quiz
+    kind: quiz
+    title: "Тест: ¿Quedamos?"
+    goal: проверить цели темы — предложить, отказаться, договориться, рассказать, что делаете сейчас
+    version: 2
+    check: soft
+    blocks:
+      - "Это тест по теме «¿Quedamos?»: двенадцать заданий."
+      - cando:
+          - "предложить встречу: ¿Te apetece…?, ¿Por qué no…?, ¿Qué tal si…?"
+          - "вежливо отказаться: lo siento, es que…"
+          - "договориться: quedar a / en / con, ¿te viene bien…?"
+          - "сказать по телефону, что вы делаете: estoy + герундий"
+      - write:
+          title: Диктант
+          format: фраза по-испански
+          rule: none
+          skill: quedar_cita
+          items:
+            - say: "¿Te viene bien a las ocho en la plaza?"
+              a: "¿Te viene bien a las ocho en la plaza?"
+              noaudio: {q: "Напишите по-испански: «Тебе удобно в восемь на площади?»", a: "¿Te viene bien a las ocho en la plaza? | ¿Te viene bien en la plaza a las ocho?"}
+      - choose:
+          title: Послушайте
+          rule: none
+          items:
+            - say: "Lo siento, no puedo: es que tengo una cita con el médico."
+              options: "Извини, не могу: у меня приём у врача. | Извини, не могу: врач заболел. | Извини, могу только после врача."
+              skill: rechazar
+              noaudio: {q: "Что значит «Lo siento, no puedo: es que tengo una cita con el médico»?", options: "Извини, не могу: у меня приём у врача. | Извини, не могу: врач заболел. | Извини, могу только после врача."}
+            - say: "¿Por qué no quedamos el domingo por la tarde?"
+              options: "Может, встретимся в воскресенье после обеда? | Почему ты не пришёл в воскресенье? | Почему мы не встретились в воскресенье?"
+              skill: proponer
+              noaudio: {q: "Что значит «¿Por qué no quedamos el domingo por la tarde?»", options: "Может, встретимся в воскресенье после обеда? | Почему ты не пришёл в воскресенье? | Почему мы не встретились в воскресенье?"}
+      - write:
+          title: Вставьте слово
+          format: одно слово
+          rule: none
+          items:
+            - q: "¿___ apetece venir a la fiesta, Ana?"
+              a: "Te"
+              skill: proponer
+            - q: "No puedo ir, es ___ estoy enfermo."
+              a: "que"
+              skill: rechazar
+            - q: "¿Quedamos ___ las siete?"
+              a: "a"
+              skill: quedar_cita
+            - q: "Hoy he quedado ___ Pablo en el centro."
+              a: "con"
+              skill: quedar_cita
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          rule: none
+          items:
+            - q: "Сейчас я готовлю."
+              a: "(Ahora) estoy cocinando | Estoy cocinando ahora | Ahora mismo estoy cocinando"
+              skill: estar_ahora
+              mistakes:
+                "ahora cocino": "Прямо сейчас, в процессе, — **estoy cocinando**."
+            - q: "Может, сходим в кино? (с ¿Por qué no…?)"
+              a: "¿Por qué no vamos al cine?"
+              skill: proponer
+      - build:
+          title: Соберите фразу
+          rule: none
+          skill: estar_ahora
+          items:
+            - es: "Lo siento, tengo que colgar: estoy en el trabajo."
+              ru: "Извини, мне нужно заканчивать: я на работе."
+              extra: [soy]
+    quiz:
+      - q: "— ¿Vienes? — A lo ___: depende del trabajo."
+        options: "mejor | bien | menos"
+        explain: "A lo mejor — «может быть»."
+        skill: proponer
+      - q: "¿No puedes venir? ¡Qué ___!"
+        options: "pena | susto | suerte"
+        explain: "Жаль — ¡Qué pena!"
+        skill: rechazar
