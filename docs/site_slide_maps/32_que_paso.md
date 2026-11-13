@@ -162,24 +162,24 @@
 
 - **Цель:** понять чужую историю, объяснить опоздание и рассказать о случае из жизни.
 - **Длина:** 15 шагов, около 13 минут. **Новая лексика:** нет.
-- **Интерактив:** выбор 6, ввод 4, письмо 2; на слух и с голосом собеседника — 6. **Самостоятельное воспроизведение:** ввод, сборка и письмо — 6 заданий.
+- **Интерактив:** выбор 6, ввод 4, письмо 2; на слух и с голосом собеседника — 5. **Самостоятельное воспроизведение:** ввод, сборка и письмо — 6 заданий.
 
 | Шаг | Экран / тип блока | Что видит или делает ученик | Источник |
 |---|---|---|---|
-| 1 | C~: выбор на слух | на слух «Ahora hay más edificios y menos árboles.» → Теперь здесь больше зданий и меньше дер… | — |
-| 2 | I: ввод | У меня нет столько времени, сколько раньше. → No tengo tanto tiempo como antes | — |
+| 1 | I: ввод | El taxi / caro / el autobús (+) → El taxi es más caro que el autobús | — |
+| 2 | C: выбор | Mi piso no es ___ grande como tu piso. → tan | — |
 | 3 | T: dialogue | Сообщение от Пабло | — |
 | 4 | C: выбор | ¿Dónde estaba Pablo? → En la playa. | `audio_pablo` |
 | 5 | C: выбор | ¿Qué estaban haciendo? → Jugaban al fútbol. | `audio_pablo` |
 | 6 | C: выбор | ¿Qué hizo el perro? → Se fue con la pelota. | `audio_pablo` |
 | 7 | C: выбор | ¿Cómo terminó la historia? → El perro jugó con ellos. | `audio_pablo` |
 | 8 | T: mission | Рассказ о происшествии | — |
-| 9 | H: ход разговора (ввод) | Lucía: ¡Por fin! Te esperamos una hora. ¿Qué te pasó? → написать: Perdí el autobús | — |
+| 9 | H: ход разговора (ввод) | Lucía: ¡Ayer te esperamos una hora! ¿Qué te pasó? → написать: Ayer perdí el autobús | — |
 | 10 | H: ход разговора (ввод) | Lucía: ¿Y por qué no me llamaste? → написать: No tenía batería | — |
-| 11 | H: ход разговора (ввод) | Lucía: ¿Y cómo viniste? → написать: Vine a pie y llovía mucho | — |
+| 11 | H: ход разговора (ввод) | Lucía: ¿Y cómo viniste al final? → написать: Vine a pie y llovía mucho | — |
 | 12 | H: ход разговора (письмо) | Lucía: ¡Qué mala suerte! ¿Y pasó algo más? → ответить от себя; образец: Sí, mientras corría, me caí en la calle. | — |
 | 13 | H: ход разговора (выбор) | Lucía: ¡Qué susto! ¿Y estás bien? → выбрать: Sí, por suerte no me pasó nada. | — |
-| 14 | HL: лента разговора | весь разговор «Опоздание»; Lucía: ¡Menos mal! Bueno, vamos a cenar. | — |
+| 14 | HL: лента разговора | весь разговор «Опоздание»; Lucía: ¡Menos mal! Bueno, el sábado cenamos otra vez, ¿v… | — |
 | 15 | O: письмо по признакам | Напишите 5–7 фраз о случае из жизни — настоящем или придума…; образец: El verano pasado estaba de vacaciones e… | — |
 
 Сигнатура: `R×2 T(dialogue) C@audio_pablo×4 T(mission) HI×3 HO HC HL O`

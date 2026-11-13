@@ -34,7 +34,7 @@
 | 18 | C: выбор | Скажите, что она была шумнее, чем сейчас. → Era más ruidosa que ahora. | — |
 | 19 | C~: выбор на слух | на слух «Ahora hay más edificios y menos árboles.» → Теперь здесь больше зданий и меньше дер… | — |
 | 20 | B: сборка | Antes había menos tráfico que ahora. | — |
-| 21 | B: сборка | Mi abuelo trabajaba en una fábrica. | — |
+| 21 | B: сборка | Ahora el barrio es más ruidoso que antes. | — |
 
 Сигнатура: `T(text+dialogue) C@antes_aqui×2 W×6 C@antes_aqui×4 T(text+examples) S M I~ C C~ B×2`
 
@@ -60,8 +60,8 @@
 | 12 | T: table + note | Особые формы | — |
 | 13 | C: выбор | Mi hermano tiene veinte años y yo treinta: él es ___ que yo. → menor | — |
 | 14 | C: выбор | Este restaurante es muy bueno: es ___ que el restaurante de… → mejor | — |
-| 15 | C: выбор | El café de este bar es muy ___: no me gusta nada. → malo | — |
-| 16 | C~: выбор на слух | на слух «Mi hermana es menor que yo.» → Моя сестра младше меня. | — |
+| 15 | C~: выбор на слух | на слух «Mi hermana es menor que yo.» → Моя сестра младше меня. | — |
+| 16 | C: выбор | El café de este bar es muy ___: no me gusta nada. → malo | — |
 | 17 | I: ввод | Мой испанский хуже, чем мой английский. → Mi español es peor que mi inglés | — |
 | 18 | I: ввод | Мой брат старше меня. → Mi hermano es mayor que yo | — |
 | 19 | B: сборка | El autobús es más lento que el metro. | — |
@@ -70,7 +70,7 @@
 | 22 | Q: тест | Mi hermano es más alto ___ yo. → que | — |
 | 23 | Q: тест | Mi español no es muy bueno: es ___ que mi inglés. → peor | — |
 
-Сигнатура: `T(text+table+note) I×4 W×4 C×2 T(table+note) C×3 C~ I×2 B×2 O Q×2`
+Сигнатура: `T(text+table+note) I×4 W×4 C×2 T(table+note) C×2 C~ C I×2 B×2 O Q×2`
 
 ## Урок `como_era/tan_como` — «Tan grande como, tanto como»
 
@@ -131,7 +131,7 @@
 | 18 | I: ввод | У неё были кудрявые волосы. → Ella tenía el pelo rizado | — |
 | 19 | I: ввод | В молодости бабушка носила очки. → De joven mi abuela llevaba gafas | — |
 | 20 | B: сборка | Mi abuelo era alto y llevaba bigote. | — |
-| 21 | B: сборка | Ahora está calvo y tiene barba blanca. | — |
+| 21 | B: сборка | De joven tenía el pelo negro y rizado. | — |
 | 22 | O: письмо по признакам | Опишите человека из вашего детства — учителя, соседа, бабуш…; образец: Mi profesora de inglés era joven y muy … | — |
 | 23 | Q: тест | De joven mi tío ___ el pelo muy largo. → tenía | — |
 | 24 | Q: тест | Что значит «Ahora está calvo»? → Теперь он лысый. | — |
@@ -204,8 +204,8 @@
 
 | Шаг | Экран / тип блока | Что видит или делает ученик | Источник |
 |---|---|---|---|
-| 1 | I: ввод | Todos los veranos (nosotros, ir) ___ a la playa. → íbamos | — |
-| 2 | I: ввод | Раньше я много курил, а теперь хожу в спортзал. → Antes fumaba mucho y ahora voy al gimna… | — |
+| 1 | I: ввод | ¿Cómo (ser) ___ tu escuela? → era | — |
+| 2 | I: ввод | Я больше не курю. → Ya no fumo | — |
 | 3 | T: dialogue | Сообщение от Диего | — |
 | 4 | C: выбор | ¿Dónde está Diego? → En casa de sus padres, en México. | `audio_diego` |
 | 5 | C: выбор | ¿Qué había antes en su pueblo? → Solo una calle y una tienda. | `audio_diego` |

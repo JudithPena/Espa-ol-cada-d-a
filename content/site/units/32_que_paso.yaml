@@ -502,7 +502,7 @@ lessons:
 
             Salí de casa muy rápido. Llovía mucho y, claro, no tenía paraguas. Mientras corría a la parada del autobús, me caí en la calle y se rompió la pantalla de mi móvil.
 
-            Por fin llegué a la universidad, muy mojado y muy nervioso. Entré en la clase y, de repente, vi que no había nadie. Entonces llegó un compañero y me dijo: «¿No leíste el mensaje de la profesora? Hoy no hay examen: está enferma».
+            Por fin llegué a la universidad, muy mojado y muy nervioso. Entré en la clase y, de repente, vi que no había nadie. Entonces llegó un compañero y me dijo: «¿No has leído el mensaje de la profesora? Hoy no hay examen: está enferma».
 
             Al final volví a casa, me duché y dormí toda la mañana. El examen fue el jueves… y todo salió bien.
           translation: |
@@ -618,16 +618,16 @@ lessons:
       - mission:
           id: retraso
           title: Рассказ о происшествии
-          text: "Вы пришли к Лусии на ужин на час позже. Объясните, что случилось по дороге."
+          text: "Вчера вы опоздали к Лусии на ужин на целый час. Сегодня она звонит и спрашивает, что случилось."
       - chat:
           id: lucia
           title: Опоздание
           with: Lucía
           turns:
-            - say: "¡Por fin! Te esperamos una hora. ¿Qué te pasó? | Наконец-то! Мы ждали тебя час. Что случилось?"
+            - say: "¡Ayer te esperamos una hora! ¿Qué te pasó? | Вчера мы ждали тебя целый час! Что случилось?"
               task: "Скажите, что опоздали на автобус."
               skill: fondo_hechos
-              write: "Perdí el autobús | Lo siento, perdí el autobús | Perdí el autobús, lo siento | Es que perdí el autobús"
+              write: "(Ayer) perdí el autobús | Lo siento, perdí el autobús | Perdí el autobús, lo siento | Es que perdí el autobús"
               format: что случилось
               mistakes:
                 "perdía el autobús": "Опоздание — событие: **perdí**."
@@ -638,7 +638,7 @@ lessons:
               format: объяснение
               mistakes:
                 "no tuve batería": "Положение дел — **tenía**: no tenía batería."
-            - say: "¿Y cómo viniste? | А как ты добрался?"
+            - say: "¿Y cómo viniste al final? | А как ты в итоге добрался?"
               task: "Скажите, что пришли пешком, а шёл сильный дождь."
               skill: fondo_hechos
               write: "Vine a pie y llovía mucho | Vine a pie y estaba lloviendo mucho | Vine a pie(,) pero llovía mucho"
@@ -661,7 +661,7 @@ lessons:
               skill: fondo_hechos
               choose: "Sí, por suerte no me pasó nada. | Sí, por suerte no me pasaba nada. | Sí, por suerte no me pasa nada."
               explain: "Обошлось — это итог, событие: no me pasó nada."
-            - say: "¡Menos mal! Bueno, vamos a cenar. | Слава богу! Ну, пойдём ужинать."
+            - say: "¡Menos mal! Bueno, el sábado cenamos otra vez, ¿vale? | Слава богу! Ну что, в субботу ужинаем снова, договорились?"
       - compose:
           title: Рассказ о происшествии
           free: true

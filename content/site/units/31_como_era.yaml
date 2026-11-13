@@ -126,7 +126,7 @@ lessons:
             - es: "Antes había menos tráfico que ahora."
               ru: "Раньше машин было меньше, чем сейчас."
               extra: [más]
-            - "Mi abuelo trabajaba en una fábrica. — Мой дедушка работал на фабрике."
+            - "Ahora el barrio es más ruidoso que antes. — Теперь район шумнее, чем раньше."
 
   - id: mas_menos
     kind: grammar
@@ -207,13 +207,17 @@ lessons:
             - q: "Este restaurante es muy bueno: es ___ que el restaurante de ayer."
               options: "mejor | más bueno | peor"
               explain: "О качестве — mejor."
-            - q: "El café de este bar es muy ___: no me gusta nada."
-              options: "malo | mala | peor"
-              explain: "El café — мужской род: malo."
             - say: "Mi hermana es menor que yo."
               options: "Моя сестра младше меня. | Моя сестра старше меня. | Моя сестра ниже меня."
               explain: "Menor — «младше», mayor — «старше»; «ниже» — más baja."
               noaudio: {q: "Что значит «Mi hermana es menor que yo»?", options: "Моя сестра младше меня. | Моя сестра старше меня. | Моя сестра ниже меня."}
+      - choose:
+          title: Какое слово?
+          rule: none
+          items:
+            - q: "El café de este bar es muy ___: no me gusta nada."
+              options: "malo | mala | peor"
+              explain: "El café — мужской род: malo."
       - write:
           title: Скажите по-испански
           format: фраза по-испански
@@ -476,8 +480,8 @@ lessons:
             - es: "Mi abuelo era alto y llevaba bigote."
               ru: "Мой дедушка был высоким и носил усы."
               extra: [fue]
-            - es: "Ahora está calvo y tiene barba blanca."
-              ru: "Сейчас он лысый и с белой бородой."
+            - es: "De joven tenía el pelo negro y rizado."
+              ru: "В молодости у него были чёрные кудрявые волосы."
       - compose:
           title: Человек из детства
           free: true
@@ -579,6 +583,12 @@ lessons:
               explain: "Más ligeros que los de antes."
               mistakes:
                 "los móviles de ahora son más ligeros que las de antes": "Móviles — мужской род: **los** de antes."
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          free: true
+          rule: none
+          items:
             - q: "Фильм длится два часа."
               a: "La película dura dos horas"
               explain: "Durar — правильный глагол: dura."
