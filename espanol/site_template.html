@@ -1807,7 +1807,15 @@ function writeStep(b, it, li) {
   return { type: "write", title: b.title, accents: b.accents, chars: b.chars, ...it, mistakes: it.mistakes || {},
            key: `${LESSONS[li]?.id}|${norm(it.q || it.say || it.a[0])}`, ...refsOf(it, li, b) };
 }
+// Варианты задания итога (vg — группа равноценных заданий): показываем одно, при пересдаче — следующее по кругу.
+function pickVariants(items, li) {
+  if (!items.some(it => it.vg != null)) return items;
+  const n = (P.ctl && P.ctl[LESSONS[li]?.id]?.n) || 0, groups = {};
+  items.forEach(it => { if (it.vg != null) (groups[it.vg] = groups[it.vg] || []).push(it); });
+  return items.filter(it => it.vg == null || groups[it.vg][n % groups[it.vg].length] === it);
+}
 function blockSteps(b, li) {
+  if (["choose", "write", "build"].includes(b.t)) b = { ...b, items: pickVariants(b.items, li) };
   if (b.t === "choose") return b.items.map(it => chooseStep(b, it, li));
   if (b.t === "write") return b.items.map(it => writeStep(b, it, li));
   if (b.t === "match") return [{ type: "match", title: b.title, pairs: b.pairs, key: `${LESSONS[li]?.id}|${norm(b.pairs[0][0])}`, ...refsOf(b, li, b) }];
@@ -2557,11 +2565,23 @@ function enterStep() {
 // не засчитан, следующий закрыт с объяснением; не сдан soft — честная оценка, но дальше пускаем.
 const PASS = 0.8;
 const scoreOf = outcomes => outcomes.length ? outcomes.reduce((a, o) => a + OUTCOME_SCORE[o.outcome], 0) / outcomes.length : 0;
+// «По темам» на экране итога: строка на навык. Навыки, которые проверены одними и теми же заданиями, — одна строка
+// (с двумя заголовками). Ошибка — задание с баллом меньше 0,5 (с подсказкой, показан ответ, неверно); исправил сам —
+// верно. Тема слабая (красная, ✗), только когда ошибок в ней не меньше двух и верно не больше одного задания: одна
+// случайная ошибка из двух — «повторить» (жёлтая, ↻), а не «слабо» (аудит MYTHOS, SYS-06). Без ошибок — ✓.
+const isWrong = o => OUTCOME_SCORE[o.outcome] < 0.5;
 function topics(outcomes) {
-  const by = {};
-  for (const o of outcomes) for (const tag of o.skill?.length ? o.skill : ["_"]) (by[tag] = by[tag] || []).push(o);
-  return Object.entries(by).filter(([tag]) => tag !== "_" && SKILLS[tag]).map(([tag, list]) => ({ tag, title: SKILLS[tag].title, score: scoreOf(list), li: skillLesson(tag) }))
-    .sort((a, b) => a.score - b.score);
+  const by = {}, rows = new Map();
+  outcomes.forEach((o, k) => { for (const tag of o.skill?.length ? o.skill : ["_"]) (by[tag] = by[tag] || []).push(k); });
+  for (const [tag, ks] of Object.entries(by)) {
+    if (tag === "_" || !SKILLS[tag]) continue;
+    const key = ks.join(","), row = rows.get(key), li = skillLesson(tag);
+    if (row) { row.tags.push(tag); row.title += " · " + SKILLS[tag].title; if (row.li < 0) row.li = li; continue; }
+    const list = ks.map(k => outcomes[k]), wrong = list.filter(isWrong).length;
+    rows.set(key, { tag, tags: [tag], title: SKILLS[tag].title, score: scoreOf(list), n: list.length, wrong,
+                    weak: wrong >= 2 && list.length - wrong <= 1, li });
+  }
+  return [...rows.values()].sort((a, b) => b.weak - a.weak || !a.wrong - !b.wrong || a.score - b.score);
 }
 function finish() {
   const n = S.outcomes.length, acc = n ? S.firstTry / n : 0, score = scoreOf(S.outcomes);
@@ -3580,7 +3600,7 @@ function resultView() {
     <p class="muted">Здесь нечего было проверить без звука: задания на слух отложены. Пройдите урок, когда звук заработает.</p>${again}${home}</div>`;
   const control = r.check && lesson;
   const topicsHTML = control && r.topics.length ? `<div class="panel topics"><b>По темам</b><ul>${r.topics.map(t =>
-    `<li class="${t.score >= PASS ? "ok" : t.score < 0.6 ? "weak" : "mid"}"><span>${t.score >= PASS ? "✓" : "↻"} ${esc(t.title)} — ${Math.round(t.score * 100)}&nbsp;%</span>${t.score < PASS && t.li >= 0 ? `<button class="btn ghost sm" data-lesson="${t.li}" data-free>Урок ${LESSONS[t.li].n}</button>` : ""}</li>`).join("")}</ul></div>` : "";
+    `<li class="${!t.wrong ? "ok" : t.weak ? "weak" : "mid"}"><span>${!t.wrong ? "✓" : t.weak ? "✗" : "↻"} ${esc(t.title)} — верно ${t.n - t.wrong} из ${t.n}</span>${t.wrong && t.li >= 0 ? `<button class="btn ghost sm" data-lesson="${t.li}" data-free>Урок ${LESSONS[t.li].n}</button>` : ""}</li>`).join("")}</ul></div>` : "";
   const failed = control && r.score < PASS;   // как в finish(): по точному баллу, а не по округлённым процентам
   const title = !lesson ? "Повторение закончено!" : failed ? "Нужно повторить" : r.check === "control" ? `${esc(L.title)}: сдано!` : `Урок ${L.n} пройден!`;
   const lead = failed ? `<p class="verdict">Результат ${pct}&nbsp;% — нужно ${PASS * 100}&nbsp;%. ${r.check === "control" ? "Следующий урок откроется, когда итог будет сдан." : "Урок засчитан, но эти темы стоит повторить."}</p>`

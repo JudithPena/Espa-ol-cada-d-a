@@ -540,7 +540,8 @@ def _choose(d) -> dict:
                       # пояснение к неверному варианту: ключ — вариант как текст
                       "mistakes": {plain(k): _html(v) for k, v in (it.get("meta") or {}).get("mistakes", {}).items()},
                       **({"noaudio": {"q": _html(na["q"]), "o": [[_html(o), plain(o)] for o in na["options"]],
-                                      "explain": _html(na["explain"])}} if na else {})})
+                                      "explain": _html(na["explain"])}} if na else {}),
+                      **({"vg": it["vg"]} if "vg" in it else {})})
     return {"t": "choose", "title": _html(d["title"]), "items": items}
 
 
@@ -561,6 +562,7 @@ def _write(d) -> dict:
         # пояснение к ожидаемой ошибке ввода: ключ — ответ ученика (страница сравнивает без регистра и ударений)
         "mistakes": {plain(k): _html(v) for k, v in (it.get("meta") or {}).get("mistakes", {}).items()},
         **({"noaudio": noaudio(it["noaudio"], it["format"] or d["format"])} if it.get("noaudio") else {}),
+        **({"vg": it["vg"]} if "vg" in it else {}),
     } for it in d["items"]]}
 
 
@@ -609,7 +611,8 @@ SCENARIO = {
                        "groups": [[_html(name), [[plain(x), _say(x)] for x in xs]] for name, xs in d["groups"]]},
     "build": lambda d: {"t": "build", "title": _html(d["title"]),
                         "items": [{"es": plain(it["es"]), "ru": plain(it["ru"]), "alt": [plain(a) for a in it["alt"]],
-                                   "extra": [plain(x) for x in it["extra"]], **_task_meta(it.get("meta") or {})}
+                                   "extra": [plain(x) for x in it["extra"]], **_task_meta(it.get("meta") or {}),
+                                   **({"vg": it["vg"]} if "vg" in it else {})}
                                   for it in d["items"]]},
     "mission": lambda d: {"t": "mission", "title": _html(d["title"]), "html": _html(d["text"])},
     "more": lambda d: {"t": "more", "title": _html(d["title"]), "html": _html(d["text"]), "join": True},

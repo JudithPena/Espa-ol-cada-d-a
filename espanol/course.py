@@ -456,6 +456,27 @@ def _meta(spec: dict, where: str) -> dict:
     return meta
 
 
+VARIANT_INHERIT = ("skill", "source", "free", "rule", "format", "answer")
+
+
+def _with_variants(items: list, w: str) -> list:
+    """Варианты задания итога (аудит MYTHOS, этап 5): «variants: [...]» у задания — равноценные замены для пересдачи.
+    Разворачиваются в обычные задания блока с общей группой `vg` (все проверки видят каждый вариант), а страница
+    показывает из группы одно — по номеру попытки."""
+    out = []
+    for g, it in enumerate(items):
+        if not (isinstance(it, dict) and it.get("variants")):
+            out.append(it)
+            continue
+        base = {k: v for k, v in it.items() if k != "variants"}
+        out.append({**base, "vg": g})
+        for v in _items(it["variants"]):
+            if not isinstance(v, dict):
+                raise ContentError(f"{w}: вариант задания — словарь с теми же полями, что у задания")
+            out.append({**{k: base[k] for k in VARIANT_INHERIT if k in base}, **v, "vg": g})
+    return out
+
+
 def _parse_block(btype: str, value: Any, w: str) -> Block:
 
     if btype in ("text", "rule", "tip", "note", "latam", "culture", "task", "header"):
@@ -784,6 +805,8 @@ def _scenario_block(btype: str, value: Any, w: str) -> Block:
     if spec is None:
         spec = {"pairs": value} if btype == "match" else {"groups": value} if btype == "sort" else {"items": value}
     head = {"title": str(spec.get("title") or "").strip()}
+    if btype in ("choose", "write", "build") and any(isinstance(it, dict) and it.get("variants") for it in _items(spec.get("items"))):
+        spec = {**spec, "items": _with_variants(_items(spec.get("items")), w)}
     if btype == "choose":
         items = []
         for it in _items(spec.get("items")):
@@ -794,6 +817,7 @@ def _scenario_block(btype: str, value: Any, w: str) -> Block:
                 "explain": str(it.get("explain") or "").strip(), "say": str(it.get("say") or "").strip(),
                 "lines": [_line(x, w) for x in _items(it.get("lines"))], "img": str(it.get("img") or "").strip(),
                 "meta": _item_meta(it, w), "noaudio": _noaudio(it.get("noaudio"), "choose", w),
+                **({"vg": it["vg"]} if "vg" in it else {}),
             })
         return Block(btype, {**head, "items": items})
     if btype == "write":
@@ -809,7 +833,7 @@ def _scenario_block(btype: str, value: Any, w: str) -> Block:
                     raise ContentError(f"{w}: строка ввода — «вопрос => ответ | другой ответ»: {it!r}")
                 q, answers = q.strip(), _alts(a)
                 extra = {"explain": "", "say": "", "format": "", "img": "", "answer": "", "meta": {"mistakes": {}}, "noaudio": None}
-            items.append({"q": q, "answers": answers, **extra})
+            items.append({"q": q, "answers": answers, **extra, **({"vg": it["vg"]} if isinstance(it, dict) and "vg" in it else {})})
         accents = str(spec.get("accents") or "soft")
         if accents not in ("soft", "strict"):
             raise ContentError(f"{w}: accents — soft или strict")
@@ -843,7 +867,8 @@ def _scenario_block(btype: str, value: Any, w: str) -> Block:
                 meta = _meta(it, w)
             else:
                 (es, ru), alt, extra, meta = split_pair(it, w), [], [], {}
-            items.append({"es": es, "ru": ru, "alt": alt, "extra": extra, "meta": meta})
+            items.append({"es": es, "ru": ru, "alt": alt, "extra": extra, "meta": meta,
+                          **({"vg": it["vg"]} if isinstance(it, dict) and "vg" in it else {})})
         return Block(btype, {**head, "items": items})
     raise ContentError(f"{w}: не обработан")  # pragma: no cover
 

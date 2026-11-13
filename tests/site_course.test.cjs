@@ -487,13 +487,17 @@ test('приёмка 10: control checks — under 80 % is not a pass and shows w
   const res = run('resultView()');
   assert.match(res, /Нужно повторить/);
   assert.match(res, /Результат 70&nbsp;% — нужно 80&nbsp;%/);   // неразрывный пробел: «%» не отрывается от числа
-  assert.match(res, /спасибо — 67&nbsp;%/);
+  // Одна ошибка из трёх — «повторить» (↻), не «слабо»; ошибка, исправленная самим, — не ошибка.
+  assert.match(res, /class="mid"><span>↻ спасибо — верно 2 из 3/);
+  assert.match(res, /class="ok"><span>✓ приветствие — верно 2 из 2/);
   assert.match(res, /Пройти ещё раз/);
   assert.match(run('view.level = "A0"; courseView()'), /Откроется после итога/);
   // Подсказки и показанные ответы не дают сдать: 0,25 и 0.
   play([{outcome: 'helped', skill: ['greet']}, {outcome: 'revealed', skill: ['greet']}, {outcome: 'first', skill: ['thanks']},
         {outcome: 'first', skill: ['thanks']}, {outcome: 'first', skill: ['thanks']}]);
   assert.equal(run('!!P.done["u/c"]'), false);
+  // Ошибочны оба задания темы — слабая тема (SYS-06), она первой в списке.
+  assert.match(run('resultView()'), /По темам<\/b><ul><li class="weak"><span>✗ приветствие — верно 0 из 2/);
   // 80 % и выше — сдан, следующий урок открыт.
   play([{outcome: 'first', skill: ['greet']}, {outcome: 'fixed', skill: ['greet']}, {outcome: 'first', skill: ['thanks']},
         {outcome: 'first', skill: ['thanks']}, {outcome: 'first', skill: ['thanks']}]);
@@ -503,6 +507,46 @@ test('приёмка 10: control checks — under 80 % is not a pass and shows w
   run('startLesson(3); S.outcomes = [{outcome: "first", skill: []}, {outcome: "bad", skill: []}]; S.firstTry = 1; finish()');
   assert.equal(run('!!P.done["u/t"]'), true);
   assert.match(run('resultView()'), /Нужно повторить/);
+});
+
+// Аудит MYTHOS, этап 5: у задания итога — равноценные варианты (variants), при пересдаче берётся следующий;
+// попытка без номера (старая запись P.ctl) — первый вариант. Навыки, проверенные одними заданиями, — одна строка.
+test('Э5: exam variants rotate on retake, keep skills; skills of the same items share one result row', () => {
+  const data = mini([
+    {id: 'c', kind: 'review', version: 2, check: 'control', goal: 'итог', blocks: [
+      {choose: {skill: 'greet', items: [
+        {q: 'A1', options: 'Hola. | Adiós.', variants: [{q: 'A2', options: 'Hola. | Adiós.'}, {q: 'A3', options: 'Adiós. | Hola.'}]},
+        {q: 'B1', options: 'Hola. | Adiós.', skill: 'thanks', variants: [{q: 'B2', options: 'Hola. | Adiós.'}]},
+        {q: 'C', options: 'sí | no'}]}},
+      {write: {skill: ['thanks', 'polite'], items: [{q: 'W1', a: 'gracias', variants: [{q: 'W2', a: 'adiós'}]}]}}]},
+    {id: 'n', kind: 'vocab', version: 2, goal: 'g', blocks: [{choose: {free: true, items: [{q: '?', options: 'sí | no'}]}}]}],
+    {greet: {title: 'приветствие', lesson: 'u/c'}, thanks: {title: 'спасибо', lesson: 'u/c'}, polite: {title: 'вежливость', lesson: 'u/c'}});
+  const run = context(data);
+  const qs = () => J(run, 'S.steps.filter(isGraded).map(s => s.q)');
+  const attempt = () => { run('S.outcomes = S.steps.filter(isGraded).map(s => ({outcome: "first", skill: s.skill})); S.firstTry = S.outcomes.length; finish()'); };
+  run('startLesson(1)');
+  assert.deepEqual(qs(), ['A1', 'B1', 'C', 'W1']);
+  assert.deepEqual(J(run, 'S.steps.filter(isGraded)[1].skill'), ['thanks'], 'навык задания заменяет навык блока');
+  attempt(); run('startLesson(1)');
+  assert.deepEqual(qs(), ['A2', 'B2', 'C', 'W2'], 'пересдача — следующие варианты');
+  assert.deepEqual(J(run, 'S.steps.filter(isGraded)[1].skill'), ['thanks'], 'вариант наследует навык задания');
+  assert.deepEqual(J(run, 'S.steps.filter(isGraded)[3].a'), ['adiós']);
+  attempt(); run('startLesson(1)');
+  assert.deepEqual(qs(), ['A3', 'B1', 'C', 'W1'], 'по кругу: у каждой группы свой размер');
+  // Старая запись попытки без номера — первый вариант.
+  run('P.ctl["u/c"] = {best: 70}; startLesson(1)');
+  assert.deepEqual(qs(), ['A1', 'B1', 'C', 'W1']);
+  // «По темам»: у thanks есть ещё B, поэтому thanks и polite — разные строки.
+  run('S.outcomes = S.steps.filter(isGraded).map((s, k) => ({outcome: k === 3 ? "bad" : "first", skill: s.skill})); S.firstTry = 3; finish()');
+  const rows = J(run, 'S.topics.map(t => t.title + ":" + (t.n - t.wrong) + "/" + t.n)');
+  assert.deepEqual(rows.sort(), ['вежливость:0/1', 'приветствие:2/2', 'спасибо:1/2'].sort());
+  // Навыки ровно одних заданий сливаются в строку «спасибо · вежливость».
+  const merged = mini([{id: 'c', kind: 'review', version: 2, check: 'control', goal: 'итог', blocks: [
+    {write: {skill: ['thanks', 'polite'], items: [{q: 'W1', a: 'gracias'}, {q: 'W2', a: 'adiós'}]}}]}],
+    {thanks: {title: 'спасибо', lesson: 'u/c'}, polite: {title: 'вежливость', lesson: 'u/c'}});
+  const r2 = context(merged);
+  r2('startLesson(1); S.outcomes = S.steps.filter(isGraded).map(s => ({outcome: "bad", skill: s.skill})); S.firstTry = 0; finish()');
+  assert.deepEqual(J(r2, 'S.topics.map(t => [t.title, t.weak])'), [['спасибо · вежливость', true]]);
 });
 
 test('приёмка 11: «Повторить правило» shows the rule the task is bound to, not the nearest screen', () => {
