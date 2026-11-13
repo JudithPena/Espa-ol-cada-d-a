@@ -62,7 +62,11 @@ def test_theory_art_is_served_on_demand_but_fragments_remain_portable(course, tm
     out = build_site(course, load_cards(CONTENT), tmp_path / "index.html", units={0})
     page = out.read_text(encoding="utf-8")
     assets = {p.read_bytes(): p.relative_to(tmp_path).as_posix() for p in (tmp_path / "g").glob("*.webp")}
-    assert len(assets) == 45
+    # Grammar scenes are externalized, and unit 12 has one separately bundled
+    # distance diagram. Check the exact assets rather than a stale total count.
+    expected = {base64.b64decode(scene["image"].split(",", 1)[1]) for scene in art}
+    expected.add((CONTENT / "art" / "grammar" / "unit12_distance_triptych.webp").read_bytes())
+    assert set(assets) == expected
     for scene in art:
         data = base64.b64decode(scene["image"].split(",", 1)[1])
         resources = "\n".join(p.read_text() for p in (tmp_path / "d" / "grammar").rglob("*.json"))
