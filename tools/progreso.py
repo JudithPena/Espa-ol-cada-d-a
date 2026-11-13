@@ -57,7 +57,7 @@ for n, title, what in PLAN:
 table = "| № | Тема | Что в ней | Уроков | Слов | Статус |\n|---|---|---|---|---|---|\n" + "\n".join(rows) + "\n"
 now = (f"- Готово тем: **{done} из {len(PLAN)}**. Уроков A2: **{sum(v[0] for v in stats.values())}**, "
        f"новых слов и выражений: **{sum(v[1] for v in stats.values())}**.\n"
-       + (f"- В работе: тема {nxt} — {titles[nxt]}.\n" if nxt in titles else "- Все темы уровня готовы.\n"))
+       + (f"- В работе: тема {nxt} — {titles[nxt]}{'' if titles[nxt][-1:] in '?!.' else '.'}\n" if nxt in titles else "- Все темы уровня готовы.\n"))
 
 
 def section(name: str, body: str, src: str) -> str:

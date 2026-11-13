@@ -10,8 +10,8 @@
 
 ## Сейчас
 
-- Готово тем: **7 из 19**. Уроков A2: **56**, новых слов и выражений: **224**.
-- В работе: тема 31 — Cómo era.
+- Готово тем: **8 из 19**. Уроков A2: **64**, новых слов и выражений: **255**.
+- В работе: тема 32 — ¿Qué pasó?
 
 ## Темы
 
@@ -24,8 +24,8 @@
 | 28 | De viaje | вокзал, аэропорт, гостиница; lo, la, los, las; ir / irse; предлоги пути | 8 | 40 | ✅ готово |
 | 29 | En el mercado + КТ-1 | количества и меры; algo / nada, alguno / ninguno; ¿Me pone…?; контрольная точка 1 | 9 | 38 | ✅ готово |
 | 30 | Cuando era pequeño | pretérito imperfecto: формы, привычки; antes / ahora; ya no, todavía | 7 | 26 | ✅ готово |
-| 31 | Cómo era | imperfecto в описании; más / menos… que, tan… como, mejor / peor | — | — | ⏭ следующая |
-| 32 | ¿Qué pasó? | indefinido и imperfecto вместе; cuando, de repente, entonces, al final; estaba + герундий | — | — | ⬜ не начата |
+| 31 | Cómo era | imperfecto в описании; más / menos… que, tan… como, mejor / peor | 8 | 31 | ✅ готово |
+| 32 | ¿Qué pasó? | indefinido и imperfecto вместе; cuando, de repente, entonces, al final; estaba + герундий | — | — | ⏭ следующая |
 | 33 | ¿Quedamos? | предложить, согласиться, отказаться: ¿Te apetece…?, ¿Por qué no…?, es que… | — | — | ⬜ не начата |
 | 34 | Te lo recomiendo | императив (tú, usted); le / les, se lo; рецепты и советы | — | — | ⬜ не начата |
 | 35 | Por la ciudad + КТ-2 | дорога, разрешение и просьба: ¿Puedo…?, ¿Te importa…?; se безличное; контрольная точка 2 | — | — | ⬜ не начата |
@@ -64,6 +64,7 @@
 | 12.11.2026 | Тема 28 «De viaje» (8 уроков). Заведён этот файл. |
 | 12.11.2026 | Тема 29 «En el mercado» (9 уроков) с контрольной точкой 1 по темам 24–29. |
 | 13.11.2026 | Тема 30 «Cuando era pequeño» (7 уроков): imperfecto — привычки и описание в прошлом, antes / ahora, ya no / todavía; новый персонаж — бабушка (Abuela). |
+| 13.11.2026 | Тема 31 «Cómo era» (8 уроков): imperfecto в описании мест и людей, más / menos… que, mejor / peor, mayor / menor, tan… como, tanto como, los de antes / los de ahora. |
 
 ## Что не проверено
 
