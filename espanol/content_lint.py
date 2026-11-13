@@ -204,9 +204,10 @@ def warnings(course: Course, lexicon: Lexicon | None = None) -> list[tuple[str, 
         # TST-05, SYS-10: размер урока
         if len(lesson.vocab) > MAX_NEW_WORDS:
             add("words", f"{len(lesson.vocab)} новых слов (не больше {MAX_NEW_WORDS}): разделите порции между уроками")
+        shown = [b for b in lesson.blocks if not b.meta.get("bank")]   # банк повторения в уроке не показывается
         writes = [(b, it) for b in lesson.blocks if b.type == "write" for it in b.data["items"]]
-        ear = any(it.get("say") for b in lesson.blocks if b.type in ("choose", "write") for it in b.data["items"])
-        produce = writes or any(b.type in ("build", "compose", "chat") for b in lesson.blocks)
+        ear = any(it.get("say") for b in shown if b.type in ("choose", "write") for it in b.data["items"])
+        produce = any(b.type in ("write", "build", "compose", "chat") for b in shown)
         # SYS-04: урок со словами без пункта на слух
         if any(b.type == "learn" for b in lesson.blocks) and not ear and lesson.kind not in ("quiz", "final", "review"):
             add("ear", "урок со словами без задания на слух (say): добавьте хотя бы два")

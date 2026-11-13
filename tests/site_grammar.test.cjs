@@ -1132,7 +1132,7 @@ test('failed 3.2 reviews its own rule, preserves review position and resets only
  run('gStart(COURSE.grammar[0].id,"exercise:3.2");gMove(1);for(let i=0;i<3;i++){gResponse(G.steps[G.at]).value="wrong";gCheck();if(i<2)gMove(1);}');
  const oldId=run('gAttempt(gUnit(),gUnit().exercises[1]).id');
  run('gReviewTheory();');
- assert.ok(run('gPlayerView()').includes('Один предмет, но слово во множественном числе'));
+ assert.ok(run('gPlayerView()').includes(unit3.sections[7].title));
  assert.ok(run('gPlayerView()').includes('Попробовать ещё раз'));
  run('gExit();gStart(COURSE.grammar[0].id,"all",true);');
  assert.equal(run('gAttempt(gUnit(),gUnit().exercises[1]).status'),'review');
