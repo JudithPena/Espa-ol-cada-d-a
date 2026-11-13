@@ -751,6 +751,9 @@ def lesson_data(lesson: Lesson, cards: dict[str, WordCard], lexicon=None) -> dic
                 out[0]["slide"] = block.meta["slide"]
             if block.meta.get("join"):
                 out[0]["join"] = True
+            if block.meta.get("bank"):
+                for piece in out:
+                    piece["bank"] = True
         pieces.append(list(range(len(blocks), len(blocks) + len(out))))
         blocks += out
     resolve_refs(lesson, blocks, pieces)

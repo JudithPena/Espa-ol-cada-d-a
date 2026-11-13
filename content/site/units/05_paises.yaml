@@ -136,6 +136,28 @@ lessons:
             - q: "Marco es de Italia y Clara ___. (Клара тоже из Италии)"
               a: "también"
 
+      - choose:
+          title: Что ответить?
+          bank: true
+          skill: tambien
+          items:
+            - lines: ["Marco: Soy de Italia."]
+              q: "Вы тоже из Италии."
+              options: "¡Yo también! | ¡Tú también! | ¡Él también!"
+              explain: "«Я тоже» — yo también."
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: tambien
+          format: фраза по-испански
+          items:
+            - q: "Marco: Soy de Italia. — Ответьте: «Я тоже»."
+              a: "Yo también"
+            - q: "Скажите: «Я из Испании, и Пабло тоже»."
+              a: "(Yo) soy de España y Pablo también"
+            - q: "Скажите: «Ана из Украины, и Ирина тоже»."
+              a: "Ana es de Ucrania y Irina también"
+
   - id: nacionalidad
     kind: grammar
     title: "Национальности: ucraniano — ucraniana"
@@ -335,6 +357,27 @@ lessons:
           items:
             - "Hablo inglés, pero no hablo francés. — Я говорю по-английски, но не по-французски."
 
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: y_e
+          format: фраза по-испански
+          items:
+            - q: "Скажите: «Я говорю по-испански и по-итальянски»."
+              a: "(Yo) hablo español e italiano"
+              mistakes: {"hablo español y italiano": "Перед i- союз y меняется на **e**: español **e** italiano."}
+            - q: "Напишите: «Пабло и Иван»."
+              a: "Pablo e Iván"
+              mistakes: {"pablo y iván": "Перед I- союз y меняется на **e**: Pablo **e** Iván."}
+      - choose:
+          title: Выберите
+          bank: true
+          skill: y_e
+          items:
+            - q: "Hablo inglés ___ italiano."
+              options: "e | y"
+              explain: "Перед словом на i- вместо y — e: inglés e italiano."
+
   - id: lectura
     kind: reading
     title: Друзья со всего мира
@@ -401,6 +444,29 @@ lessons:
             - say: "Vivo en Madrid, pero soy de Kiev."
               options: "Живу в Мадриде, но я из Киева. | Я из Мадрида, но живу в Киеве. | Живу в Киеве и в Мадриде."
               noaudio: {q: "Что значит «Vivo en Madrid, pero soy de Kiev»?", options: "Живу в Мадриде, но я из Киева. | Я из Мадрида, но живу в Киеве. | Живу в Киеве и в Мадриде."}
+
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: vivir_en
+          format: фраза по-испански
+          items:
+            - q: "Diego: ¿Dónde vives? — Ответьте: «Я живу в Валенсии»."
+              a: "(Yo) vivo en Valencia"
+              mistakes: {"vive en valencia": "О себе — **vivo**: Vivo en Valencia."}
+            - q: "Спросите сеньора Гарсию: «Где вы живёте?»"
+              a: "¿Dónde vive (usted)?"
+              mistakes: {"dónde vives": "Сеньору Гарсии — на «вы»: ¿Dónde **vive** usted?"}
+            - q: "Скажите: «Мой друг живёт в Барселоне»."
+              a: "Mi amigo vive en Barcelona"
+      - choose:
+          title: Выберите
+          bank: true
+          skill: vivir_en
+          items:
+            - q: "¿Dónde ___ tú?"
+              options: "vives | vive | vivo"
+              explain: "С tú — vives."
     forms: [mis, amigos]
     quiz:
       - q: ¿De dónde es Sofía?

@@ -247,6 +247,16 @@ lessons:
             - say: "Estoy contento porque tengo un piso nuevo."
               options: "Я рад, потому что у меня новая квартира. | Я рад, потому что у меня новая работа. | Я устал, потому что у меня новая квартира."
               noaudio: {q: "Что значит «Estoy contento porque tengo un piso nuevo.»?", options: "Я рад, потому что у меня новая квартира. | Я рад, потому что у меня новая работа. | Я устал, потому что у меня новая квартира."}
+
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: porque
+          items:
+            - q: "Diego: ¿Por qué estudias español? — «Потому что моя подруга живёт в Испании»."
+              a: "(Estudio español) porque mi amiga vive en España"
+              format: фраза по-испански
+              mistakes: {"por qué mi amiga vive en españa": "В ответе — **porque** одним словом, без знака ´."}
     forms: [vaya]
 
   - id: practica

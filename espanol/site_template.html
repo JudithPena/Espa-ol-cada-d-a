@@ -1824,17 +1824,25 @@ const wordCore = es => norm(es.replace(/^(?:el\/la|el|la|los|las|un|una)\s+/i, "
 // Ссылки задания (их разрешает сборка, espanol/site.py): src — блок-источник урока (диалог, текст, миссия),
 // rule — блоки объяснения для «📖 Повторить правило», skill — навыки; li — урок, к которому они относятся.
 const refsOf = (x, li, b) => ({ li, src: x.src, free: !!x.free, rule: x.rule || [], skill: x.skill || [], ctx: !!b.ctx && x.src == null && !x.free });
+// Ключ задания (повторение навыков, «уже показано», спорные ответы): урок и вопрос; если при общем вопросе
+// («Что нужно сделать?», «Запишите слово.») есть звучащая фраза или реплика — и она, иначе разные задания слились бы в одно.
+function taskKey(li, it, first, kind = "") {
+  const line = it.lines?.length ? it.lines[it.lines.length - 1] : null;
+  const ctx = it.say || (line ? line[3] || line[1] : "") || it.img || "";
+  const extra = it.q && ctx ? "|" + norm(ctx) : !it.q && kind ? "|" + kind : "";   // диктовка без вопроса ≠ выбор той же фразы
+  return `${LESSONS[li]?.id}|${norm(it.q || it.say || first)}${extra}`;
+}
 function chooseStep(b, it, li) {
   const order = shuffle(it.o.map((_, k) => k));
   return { type: "mc", mode: "choose", title: b.title, q: it.q, html: true, say: it.say, lines: it.lines, cast: it.cast, img: it.img,
            options: order.map(k => it.o[k][0]), plain: order.map(k => it.o[k][1]), correct: order.indexOf(0), explain: it.explain,
-           mistakes: it.mistakes || {}, noaudio: it.noaudio, key: `${LESSONS[li]?.id}|${norm(it.q || it.say || it.o[0][1])}`, ...refsOf(it, li, b) };
+           mistakes: it.mistakes || {}, noaudio: it.noaudio, key: taskKey(li, it, it.o[0][1]), ...refsOf(it, li, b) };
 }
 // Задание на слух не выкидываем, даже если звука нет: страница покажет статус, «Попробовать снова» и
 // «Нет возможности слушать» (альтернатива noaudio или задание откладывается до звука).
 function writeStep(b, it, li) {
   return { type: "write", title: b.title, accents: b.accents, chars: b.chars, ...it, mistakes: it.mistakes || {},
-           key: `${LESSONS[li]?.id}|${norm(it.q || it.say || it.a[0])}`, ...refsOf(it, li, b) };
+           key: taskKey(li, it, it.a[0], "w"), ...refsOf(it, li, b) };
 }
 // Варианты задания итога (vg — группа равноценных заданий): показываем одно, при пересдаче — следующее по кругу.
 function pickVariants(items, li) {
@@ -1991,7 +1999,7 @@ function skillPool(upto = LESSONS.length) {
     if (!L.scripted || !P.done[L.id]) continue;
     L.blocks.forEach(b => {
       const made = ["choose", "write", "match", "sort", "build"].includes(b.t) ? blockSteps(b, k) : [];
-      made.forEach(st => { if (!isCtx(st) && !st.mission) st.skill.forEach(tag => SKILLS[tag] && out.push({ tag, li: k, key: st.key, step: st })); });
+      made.forEach(st => { if (!isCtx(st) && !st.mission) st.skill.forEach(tag => SKILLS[tag] && out.push({ tag, li: k, key: st.key, step: st, bank: !!b.bank })); });
     });
   }
   return out;
@@ -2007,7 +2015,8 @@ function pickSkillSteps(tags, n, perTag = 2, upto = LESSONS.length) {
     for (const tag of tags) {
       if (out.length >= n) break;
       const seen = P.skills[tag]?.seen || [];
-      const cand = shuffle(pool.filter(x => x.tag === tag && !used.has(x.key))).sort((a, b) => wasSeen(seen, a.key) - wasSeen(seen, b.key));
+      // Сначала не показанные недавно, среди них — задания банка повторения (новые примеры, а не задания урока).
+      const cand = shuffle(pool.filter(x => x.tag === tag && !used.has(x.key))).sort((a, b) => wasSeen(seen, a.key) - wasSeen(seen, b.key) || b.bank - a.bank);
       if (!cand.length) continue;
       used.add(cand[0].key);
       const fresh = cand[0].step.type === "mc" ? { ...cand[0].step, ...reshuffle(cand[0].step) } : { ...cand[0].step };
@@ -2118,7 +2127,7 @@ function startScript(i) {
   const placed = new Set(L.blocks.filter(b => b.t === "learn").flatMap(b => b.words));
   L.words.filter(w => !placed.has(w.es)).forEach(w => steps.push({ type: "word", word: w }));
   // Слова, которые спрашивают задания урока: recap проверяет только остальные.
-  const asked = askedTexts(L.blocks.flatMap(b => ["choose", "write", "match", "sort", "build"].includes(b.t) ? blockSteps(b, i) : []).concat(quizSteps(L, i)));
+  const asked = askedTexts(L.blocks.flatMap(b => !b.bank && ["choose", "write", "match", "sort", "build"].includes(b.t) ? blockSteps(b, i) : []).concat(quizSteps(L, i)));
   let mission = "";
   for (const sc of screens) {
     if (Array.isArray(sc)) {
@@ -2128,6 +2137,7 @@ function startScript(i) {
       continue;
     }
     const b = sc.ex;
+    if (b.bank) continue;   // банк повторения навыков — не в уроке, а в повторении (ENG-09)
     if (b.t === "learn") { b.words.forEach(es => { const w = L.words.find(x => x.es === es); if (w) steps.push({ type: "word", word: w }); }); continue; }
     if (b.t === "recap") { steps.push(...recapSteps(i, b, asked)); continue; }
     if (b.t === "review") { steps.push(...reviewSteps(i, b)); continue; }

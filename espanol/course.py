@@ -96,7 +96,7 @@ SOURCE_BLOCKS = {"dialogue", "reading", "mission"}
 RULE_TARGETS = {"rule", "tip", "note", "text", "compare", "table", "list", "examples", "conjugation", "more"}
 # Служебные поля блока урока сайта (docs/site_lessons_guide.md): id блока, граница экрана, источник,
 # правило и навык задания. В уроках канала их нет, рендер канала их не видит (Block.meta).
-META_KEYS = ("id", "slide", "source", "free", "rule", "skill", "evidence")
+META_KEYS = ("id", "slide", "source", "free", "rule", "skill", "evidence", "bank")
 CHECKS = ("", "control", "soft")
 
 DEFAULT_SETTINGS: dict[str, Any] = {
@@ -434,6 +434,17 @@ def parse_block(raw: Any, where: str) -> Block:
         value = {k: v for k, v in value.items() if k not in META_KEYS}
     block = _parse_block(btype, value, w)
     block.meta = {**block.meta, **meta}
+    if block.meta.get("bank"):
+        # Банк повторения навыков (аудит MYTHOS, ENG-09, SYS-11): задания, которых нет в самом уроке, — их берёт только
+        # повторение «Фразы и конструкции» и блоки review после этого урока. Задания самостоятельные и с навыком.
+        if btype not in ("choose", "write", "build"):
+            raise ContentError(f"{w}: bank: true бывает только у choose, write и build")
+        if block.meta.get("source"):
+            raise ContentError(f"{w}: у банка повторения нет источника — задания самостоятельные")
+        block.meta["free"] = True
+        items = block.data.get("items", []) if isinstance(block.data, dict) else []
+        if not block.meta.get("skill") and not all((it.get("meta") or {}).get("skill") for it in items):
+            raise ContentError(f"{w}: у заданий банка повторения нужен навык (skill)")
     return block
 
 
@@ -447,6 +458,8 @@ def _meta(spec: dict, where: str) -> dict:
         raise ContentError(f"{where}: slide может быть только new")
     if "free" in meta:
         meta["free"] = bool(meta["free"])
+    if "bank" in meta:
+        meta["bank"] = bool(meta["bank"])
     if "skill" in meta:
         meta["skill"] = [str(x).strip() for x in _items(meta["skill"]) if str(x).strip()]
     if "evidence" in meta:   # цитата из источника, из которой следует ответ (аудит MYTHOS, TST-01)

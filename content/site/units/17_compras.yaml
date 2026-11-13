@@ -458,6 +458,43 @@ lessons:
               ru: "Скажите: «Беру. Можно заплатить картой?»"
               extra: [lo]
 
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: necesitar
+          format: фраза по-испански
+          items:
+            - q: "Скажите продавщице: «Мне нужна куртка»."
+              a: "(Yo) necesito una chaqueta(, por favor)"
+            - q: "Скажите: «Мне нужны новые туфли»."
+              a: "Necesito (unos) zapatos nuevos"
+            - q: "Скажите: «Нам нужен новый стол»."
+              a: "(Nosotros) necesitamos una mesa nueva"
+              mistakes: {"necesitamos un mesa nueva": "Mesa — женского рода: **una** mesa **nueva**."}
+      - choose:
+          title: Выберите
+          bank: true
+          skill: necesitar
+          items:
+            - q: "Mi hermano ___ una talla más grande."
+              options: "necesita | necesito | necesitas"
+              explain: "О брате — necesita."
+            - q: "¿Qué ___ (vosotros)?"
+              options: "necesitáis | necesitan | necesitamos"
+              explain: "С vosotros — necesitáis."
+
+      - write:
+          title: В магазине
+          bank: true
+          skill: shopping
+          format: фраза по-испански
+          items:
+            - q: "Спросите: «Где примерочная?»"
+              a: "(Perdone, )¿dónde está el probador?"
+            - q: "Скажите о куртке (la chaqueta): «Беру»."
+              a: "(Sí, )me la llevo"
+              mistakes: {"me lo llevo": "Chaqueta — женского рода: me **la** llevo."}
+
   - id: quiz
     kind: quiz
     title: Покупки

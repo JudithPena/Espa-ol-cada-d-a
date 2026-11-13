@@ -329,6 +329,20 @@ lessons:
             - say: "Abre de lunes a viernes."
               options: "Открыто с понедельника по пятницу. | Открыто с пятницы по понедельник. | Закрыто с понедельника по пятницу."
               noaudio: {q: "Что значит «Abre de lunes a viernes.»?", options: "Открыто с понедельника по пятницу. | Открыто с пятницы по понедельник. | Закрыто с понедельника по пятницу."}
+
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: opening_hours
+          format: фраза по-испански
+          items:
+            - q: "Спросите: «Во сколько открывается банк?»"
+              a: "¿A qué hora abre el banco? | El banco, ¿a qué hora abre?"
+            - q: "Скажите: «По воскресеньям магазин закрыт»."
+              a: "Los domingos la tienda está cerrada | La tienda está cerrada los domingos"
+              mistakes: {"los domingos la tienda está cerrado": "Tienda — женского рода: **cerrada**."}
+            - q: "Скажите: «Музей открыт с десяти до шести»."
+              a: "El museo está abierto de diez a seis | El museo abre de diez a seis"
     forms: [siesta]
 
   - id: escucha

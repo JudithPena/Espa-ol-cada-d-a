@@ -352,6 +352,37 @@ lessons:
               explain: "О блюде вообще — **es** muy buena; о том, какой суп на вкус сейчас, говорят и **está** muy buena."
               mistakes: {"la sopa está muy bien": "«Хороший» — это **buena**: она согласуется с la sopa. bien — «хорошо», о том, как что-то делают.", "la sopa es muy bien": "«Хороший» — это **buena**: она согласуется с la sopa. bien — «хорошо», о том, как что-то делают.", "la sopa es muy bueno": "la sopa — женского рода: **buena**."}
 
+      - choose:
+          title: Выберите
+          bank: true
+          skill: bueno_bien
+          items:
+            - q: "La paella está muy ___."
+              options: "buena | bien | bueno"
+              explain: "Какая еда — buena (прилагательное, paella женского рода)."
+            - q: "Ana cocina muy ___."
+              options: "bien | buena | bueno"
+              explain: "Как готовит — bien (наречие)."
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: bueno_bien
+          items:
+            - q: "Скажите: «Я хорошо готовлю»."
+              a: "(Yo) cocino bien"
+              format: фраза по-испански
+              mistakes: {"cocino bueno": "Как готовите — **bien**: cocino bien."}
+
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: bueno_bien
+          items:
+            - q: "Скажите: «Паэлья очень вкусная»."
+              a: "La paella está muy buena | La paella es muy buena"
+              format: фраза по-испански
+              mistakes: {"la paella está muy bien": "Какая еда — **buena**; bien — «хорошо» (как?)."}
+
   - id: bar
     kind: dialogue
     title: En el bar
@@ -435,6 +466,27 @@ lessons:
               q: "Сколько платить?"
               options: "7 € | 17 € | 70 €"
               noaudio: {q: "Что значит «Son siete euros»?", options: "7 € | 17 € | 70 €"}
+
+      - write:
+          title: В кафе
+          bank: true
+          skill: order_food
+          format: фраза по-испански
+          items:
+            - q: "Camarero: ¿Qué quiere tomar? — «Мне, пожалуйста, чай с молоком»."
+              a: "Para mí, un té con leche(, por favor) | Un té con leche, por favor | Quiero un té con leche(, por favor)"
+            - q: "Попросите счёт и спросите, сколько с вас."
+              a: "La cuenta, por favor. ¿Cuánto es? | ¿Cuánto es? La cuenta, por favor"
+            - q: "Camarero: ¿Algo más? — «Ещё бутерброд с сыром, пожалуйста»."
+              a: "(Y) un bocadillo de queso(, por favor)"
+      - choose:
+          title: Что ответить?
+          bank: true
+          skill: order_food
+          items:
+            - lines: ["Camarero: ¿Qué quieren tomar?"]
+              options: "Para mí, un zumo de naranja. | Por mí, un zumo de naranja. | Para mí, la cuenta."
+              explain: "«Мне…» в кафе — para mí."
 
   - id: lectura
     kind: reading

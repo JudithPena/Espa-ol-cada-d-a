@@ -316,3 +316,15 @@ def test_exam_variants_expand_with_one_group_and_keep_shape():
     with pytest.raises(ContentError, match="noaudio"):
         parse_block({"choose": {"items": [{"say": "Hola", "options": "sí | no", "noaudio": na,
                                            "variants": [{"say": "Adiós", "options": "sí | no"}]}]}}, "t")
+
+
+def test_review_bank_blocks_need_skill_and_no_source():
+    """ENG-09 / SYS-11: bank: true — банк повторения навыков; задания самостоятельные (free) и с навыком."""
+    b = parse_block({"choose": {"bank": True, "skill": "greet", "items": [{"q": "¿?", "options": "sí | no"}]}}, "t")
+    assert b.meta["bank"] and b.meta["free"]
+    with pytest.raises(ContentError, match="навык"):
+        parse_block({"write": {"bank": True, "items": [{"q": "x", "a": "sí"}]}}, "t")
+    with pytest.raises(ContentError, match="источник"):
+        parse_block({"choose": {"bank": True, "skill": "greet", "source": "d", "items": [{"q": "¿?", "options": "sí | no"}]}}, "t")
+    with pytest.raises(ContentError, match="bank"):
+        parse_block({"match": {"bank": True, "skill": "greet", "pairs": ["sí — да", "no — нет"]}}, "t")

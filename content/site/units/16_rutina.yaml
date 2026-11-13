@@ -64,6 +64,18 @@ lessons:
               ru: "Я встаю, принимаю душ и одеваюсь."
               extra: [te]
 
+      - choose:
+          title: Выберите
+          bank: true
+          skill: daily_routine
+          items:
+            - q: "Primero me ___ y luego me visto."
+              options: "ducho | ducha | duchas"
+              explain: "О себе — me ducho."
+            - q: "¿A qué hora ___ de casa? (tú)"
+              options: "sales | sale | salgo"
+              explain: "С tú — sales."
+
   - id: reflexivos
     kind: grammar
     title: "Me levanto, te levantas: возвратные глаголы"

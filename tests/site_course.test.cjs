@@ -572,6 +572,34 @@ test('Э5: exam variants rotate on retake, keep skills; skills of the same items
   assert.deepEqual(J(r2, 'S.topics.map(t => [t.title, t.weak])'), [['спасибо · вежливость', true]]);
 });
 
+// ENG-09 / SYS-11: банк повторения навыков — блоки bank: true. В уроке их нет; повторение навыка берёт сначала их.
+test('ENG-09: review bank blocks are not in the lesson, and skill review prefers them', () => {
+  const data = mini([{id: 'g', kind: 'grammar', version: 2, goal: 'g', blocks: [
+    {choose: {free: true, skill: 'greet', items: [{q: 'L1', options: 'Hola. | Adiós.'}, {q: 'L2', options: 'Hola. | Adiós.'}]}},
+    {choose: {bank: true, skill: 'greet', items: [{q: 'B1', options: 'Hola. | Adiós.'}]}},
+    {write: {bank: true, skill: 'greet', items: [{q: 'B2', a: 'hola'}]}}]}],
+    {greet: {title: 'приветствие', lesson: 'u/g'}});
+  const run = context(data);
+  run('startLesson(1)');
+  assert.deepEqual(J(run, 'S.steps.filter(isGraded).map(s => s.q)'), ['L1', 'L2'], 'банк в уроке не показывается');
+  run('P.done["u/g"] = {stars: 3}; P.skills.greet = {s: 1, due: 0, seen: []}');
+  assert.deepEqual(J(run, 'skillPool().map(x => x.step.q + (x.bank ? "*" : ""))').sort(), ['B1*', 'B2*', 'L1', 'L2']);
+  assert.deepEqual(J(run, 'pickSkillSteps(["greet"], 2).map(s => s.q)').sort(), ['B1', 'B2'], 'сначала новые примеры из банка');
+  // Показанные недавно задания банка уступают заданиям урока.
+  run('P.skills.greet.seen = [keyHash(skillPool().find(x => x.step.q === "B1").key), keyHash(skillPool().find(x => x.step.q === "B2").key)]');
+  assert.deepEqual(J(run, 'pickSkillSteps(["greet"], 2).map(s => s.q)').sort(), ['L1', 'L2']);
+});
+
+// Ключ задания различает задания с общим вопросом («Что нужно сделать?» + разная фраза, «¿Dónde está el gato?» + разная
+// картинка, выбор и диктовка одной фразы): иначе повторение навыков считает их одним заданием.
+test('ENG-09: every review task of the real course has its own key', () => {
+  const run = context(site);
+  const dup = J(run, `(() => { LESSONS.forEach(L => P.done[L.id] = {stars: 3}); const seen = new Map(), out = [];
+    skillPool().forEach(x => { const k = x.tag + "|" + x.key; if (seen.has(k) && seen.get(k) !== x.step) out.push(k); seen.set(k, x.step); });
+    return out; })()`);
+  assert.deepEqual(dup, []);
+});
+
 test('приёмка 11: «Повторить правило» shows the rule the task is bound to, not the nearest screen', () => {
   const data = mini([{id: 'g', kind: 'grammar', version: 2, goal: 'g', blocks: [
     {rule: {id: 'gracias', text: 'Правило про **gracias**.'}},

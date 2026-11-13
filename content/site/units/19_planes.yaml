@@ -151,6 +151,30 @@ lessons:
               options: "Что ты будешь делать в субботу? | Что ты делал в субботу? | Что ты делаешь по субботам?"
               noaudio: {q: "Что значит «¿Qué vas a hacer el sábado?»?", options: "Что ты будешь делать в субботу? | Что ты делал в субботу? | Что ты делаешь по субботам?"}
 
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: personal_a
+          format: фраза по-испански
+          items:
+            - q: "Скажите: «В субботу я навещу бабушку»."
+              a: "El sábado voy a visitar a mi abuela | El sábado visito a mi abuela"
+              mistakes: {"el sábado voy a visitar mi abuela": "Перед человеком — **a**: visitar **a** mi abuela."}
+            - q: "Скажите: «Я хочу увидеть Ану»."
+              a: "(Yo) quiero ver a Ana"
+              mistakes: {"quiero ver ana": "Перед человеком — **a**: ver **a** Ana."}
+            - q: "Скажите: «Мы собираемся посетить музей»."
+              a: "(Nosotros) vamos a visitar el museo"
+              mistakes: {"vamos a visitar a el museo": "Перед местом a не нужна: visitar **el** museo."}
+      - choose:
+          title: Выберите
+          bank: true
+          skill: personal_a
+          items:
+            - q: "Mañana voy a visitar ___."
+              options: "a mis abuelos | mis abuelos | al mis abuelos"
+              explain: "Перед человеком — a: visitar a mis abuelos."
+
   - id: tener_que
     kind: grammar
     title: "Tengo que: что нужно сделать"
@@ -296,6 +320,19 @@ lessons:
             - say: "¿Quedamos a las ocho?"
               options: "Встретимся в восемь? | Ты придёшь в восемь? | Встречаемся в девять?"
               noaudio: {q: "Что значит «¿Quedamos a las ocho?»?", options: "Встретимся в восемь? | Ты придёшь в восемь? | Встречаемся в девять?"}
+
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: invite
+          format: фраза по-испански
+          items:
+            - q: "Пригласите Ану в кино в пятницу."
+              a: "(Ana, )¿quieres ir al cine el viernes? | ¿Vamos al cine el viernes?"
+            - q: "Откажитесь: «Извини, я не могу. Давай в другой день»."
+              a: "Lo siento, no puedo. Otro día | Lo siento, no puedo. ¿Otro día?"
+            - q: "Согласитесь: «Отлично! Во сколько встречаемся?»"
+              a: "¡[Genial/Perfecto]! ¿A qué hora quedamos?"
 
   - id: lectura
     kind: reading

@@ -73,6 +73,15 @@ lessons:
               options: "Остановка рядом с супермаркетом. | Остановка перед супермаркетом. | Супермаркет рядом с парком."
               noaudio: {q: "Что значит «La parada está al lado del supermercado.»?", options: "Остановка рядом с супермаркетом. | Остановка перед супермаркетом. | Супермаркет рядом с парком."}
 
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: city_places
+          format: слово с артиклем
+          items:
+            - q: "Как по-испански «аптека»?"
+              a: "la farmacia"
+
   - id: ir
     kind: grammar
     title: "¿Adónde vas? Глагол ir"
@@ -330,6 +339,18 @@ lessons:
             - say: "Perdone, ¿hay un banco por aquí?"
               options: "Извините, здесь есть банк? | Извините, а где здесь вокзал? | Простите, это банк?"
               noaudio: {q: "Что значит «Perdone, ¿hay un banco por aquí?»?", options: "Извините, здесь есть банк? | Извините, а где здесь вокзал? | Простите, это банк?"}
+
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: directions
+          format: фраза по-испански
+          items:
+            - q: "Спросите прохожего: «Извините, где аптека?»"
+              a: "[Perdone/Perdona], ¿dónde está la farmacia?"
+              mistakes: {"perdone, dónde es la farmacia": "Где находится — **está**: ¿dónde está la farmacia?"}
+            - q: "Объясните: «Прямо и потом направо»."
+              a: "(Es) todo recto y a la derecha"
     forms: [perdona]
 
   - id: lectura

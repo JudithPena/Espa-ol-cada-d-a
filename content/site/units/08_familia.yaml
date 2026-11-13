@@ -87,6 +87,48 @@ lessons:
               options: "У тебя есть дети? | У тебя есть братья и сёстры? | У тебя есть родители?"
               noaudio: {q: "Что значит «¿Tienes hijos?»?", options: "У тебя есть дети? | У тебя есть братья и сёстры? | У тебя есть родители?"}
 
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: family_plural
+          items:
+            - q: "Как сказать «родители»?"
+              a: "los padres"
+              format: слово с артиклем
+            - q: "Скажите: «У меня есть брат и сестра» — одним словом «двое…»."
+              a: "(Yo) tengo dos hermanos"
+              format: фраза по-испански
+              mistakes: {"tengo dos hermanas": "Брат и сестра вместе — мужской род: dos **hermanos**."}
+            - q: "Как одним словом сказать «бабушка и дедушка»?"
+              a: "los abuelos"
+              format: слово с артиклем
+      - choose:
+          title: Выберите
+          bank: true
+          skill: family_plural
+          items:
+            - q: "Carlos y Marta son mis ___."
+              options: "hermanos | hermanas | hermano"
+              explain: "Брат и сестра вместе — мужской род, множественное число: hermanos."
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: tener_have
+          format: фраза по-испански
+          items:
+            - q: "Спросите: «У тебя есть дети?»"
+              a: "¿Tienes hijos?"
+            - q: "Скажите: «У меня есть сестра и два брата»."
+              a: "(Yo) tengo una hermana y dos hermanos"
+      - choose:
+          title: Что ответить?
+          bank: true
+          skill: tener_have
+          items:
+            - lines: ["Ana: ¿Tienes hermanos?"]
+              options: "No, no tengo hermanos. | No, no tienes hermanos. | No, no tiene hermanos."
+              explain: "О себе — tengo."
+
   - id: posesivos
     kind: grammar
     title: "Ещё родные. Мой, твой, наш. Глагол tener"
@@ -199,6 +241,26 @@ lessons:
             - say: "Su marido es médico."
               options: "Её муж — врач. | Мой муж — врач. | Её брат — врач."
               noaudio: {q: "Что значит «Su marido es médico.»?", options: "Её муж — врач. | Мой муж — врач. | Её брат — врач."}
+
+      - choose:
+          title: Выберите
+          bank: true
+          skill: tener_forms
+          items:
+            - q: "Nosotros ___ dos gatos."
+              options: "tenemos | tienen | tenéis"
+              explain: "С nosotros — tenemos."
+            - q: "¿Vosotros ___ hijos?"
+              options: "tenéis | tienen | tenemos"
+              explain: "С vosotros — tenéis."
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: tener_forms
+          items:
+            - q: "Скажите: «У них есть собака»."
+              a: "(Ellos) tienen un perro | (Ellas) tienen un perro"
+              format: фраза по-испански
 
   - id: lectura
     kind: reading
@@ -357,6 +419,27 @@ lessons:
             - es: "Mira, es la casa de mi abuela."
               ru: "Смотри, это дом моей бабушки."
               extra: [del]
+
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: del
+          items:
+            - q: "Как сказать «дом дедушки»?"
+              a: "la casa del abuelo"
+              format: de + el = del
+              mistakes: {"la casa de el abuelo": "de + el сливаются: **del** abuelo."}
+            - q: "Как сказать «номер телефона врача» (врач — мужчина)?"
+              a: "el número de teléfono del médico | el teléfono del médico"
+              format: de + el = del
+      - choose:
+          title: Выберите
+          bank: true
+          skill: del
+          items:
+            - q: "Es la casa ___ abuelo."
+              options: "del | de el | de la"
+              explain: "de + el всегда сливаются в del."
     allow: [Rufo]
     forms: [del]
 

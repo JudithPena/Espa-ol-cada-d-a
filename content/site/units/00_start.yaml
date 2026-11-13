@@ -138,6 +138,40 @@ lessons:
               skill: stress
               explain: "Ударение падает на `ú`, хотя слово кончается на гласную, поэтому над `ú` нужен значок: música."
               noaudio: {q: "Напишите по-испански слово, которое читается [ла му́сика].", a: "la música | música"}
+
+      - write:
+          title: Послушайте и запишите
+          bank: true
+          skill: vowels
+          format: слово с артиклем
+          items:
+            - say: "el café"
+              q: "Запишите слово (напиток)."
+              a: "el café"
+              noaudio: {q: "Как пишется «эль кафэ́» (кофе)?", a: "el café"}
+            - say: "la música"
+              q: "Запишите слово (искусство)."
+              a: "la música"
+              noaudio: {q: "Как пишется «ла му́сика» (музыка)?", a: "la música"}
+
+      - write:
+          title: Поставьте знак ударения
+          bank: true
+          skill: stress
+          format: слово со знаком ´
+          items:
+            - q: "`musica` (музыка)"
+              a: "música"
+            - q: "`cafe` (кофе)"
+              a: "café"
+      - choose:
+          title: Послушайте и выберите
+          bank: true
+          skill: vowels
+          items:
+            - say: "el hotel"
+              options: "el hotel | el café | el taxi"
+              noaudio: {q: "Какое слово значит «гостиница»?", options: "el hotel | el café | el taxi"}
     quiz:
       - q: Где ударение в имени «Isabel»?
         options: "i-sa-BEL | i-SA-bel"
@@ -246,6 +280,27 @@ lessons:
               rule: hjg
               skill: spell_hjg
               noaudio: {q: "Напишите по-испански слово, которое читается [эль хамо́н].", a: "el jamón | jamón"}
+
+      - write:
+          title: Послушайте и запишите
+          bank: true
+          format: слово по-испански
+          items:
+            - say: "la paella"
+              q: "Запишите слово (блюдо)."
+              a: "la paella"
+              skill: spell_ll_n
+              noaudio: {q: "Как пишется «ла паэ́йа» (паэлья)?", a: "la paella"}
+            - say: "mañana"
+              q: "Запишите слово (когда?)."
+              a: "mañana"
+              skill: spell_ll_n
+              noaudio: {q: "Как пишется «манья́на» (завтра)?", a: "mañana"}
+            - say: "el jamón"
+              q: "Запишите слово (еда)."
+              a: "el jamón"
+              skill: spell_hjg
+              noaudio: {q: "Как пишется «эль хамо́н» (хамон)?", a: "el jamón"}
     quiz:
       - q: В каком слове буква `u` не читается?
         options: "queso | música | Hugo"

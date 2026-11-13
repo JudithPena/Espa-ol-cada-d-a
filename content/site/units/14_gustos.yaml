@@ -146,6 +146,19 @@ lessons:
               options: "Вам (друзья) нравится кофе? | Тебе нравится кофе? | Им нравится кофе?"
               noaudio: {q: "Что значит «¿Os gusta el café?»?", options: "Вам (друзья) нравится кофе? | Тебе нравится кофе? | Им нравится кофе?"}
 
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: gustar_pron
+          format: фраза по-испански
+          items:
+            - q: "Скажите: «Ему нравится плавать»."
+              a: "(A él) le gusta nadar"
+              mistakes: {"me gusta nadar": "О нём — **le** gusta."}
+            - q: "Скажите: «Нам нравится танцевать»."
+              a: "(A nosotros) nos gusta bailar"
+              mistakes: {"nos gustan bailar": "Нравится действие — **gusta**: nos gusta bailar."}
+
   - id: vocab2
     kind: vocab
     title: Спорт, кино, природа
@@ -297,6 +310,39 @@ lessons:
             - say: "No me gusta nada el café."
               options: "Я совсем не люблю кофе. | Я очень люблю кофе. | Я не очень люблю кофе."
               noaudio: {q: "Что значит «No me gusta nada el café.»?", options: "Я совсем не люблю кофе. | Я очень люблю кофе. | Я не очень люблю кофе."}
+
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: encanta
+          format: фраза по-испански
+          items:
+            - q: "Скажите: «Я обожаю пляж»."
+              a: "(A mí) me encanta la playa"
+              mistakes: {"me encanto la playa": "Нравится пляж — **me encanta**."}
+            - q: "Скажите: «Мне совсем не нравится футбол»."
+              a: "No me gusta nada el fútbol | El fútbol no me gusta nada"
+            - q: "Скажите: «Я обожаю испанские сериалы»."
+              a: "(A mí) me encantan las series españolas"
+              mistakes: {"me encanta las series españolas": "Сериалов много — **me encantan**."}
+      - choose:
+          title: Выберите
+          bank: true
+          skill: encanta
+          items:
+            - q: "A Ana le ___ los perros."
+              options: "encantan | encanta | encantas"
+              explain: "Perros — их много: le encantan."
+
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: agree
+          items:
+            - q: "Ana: Me gusta el cine. — Ответьте: «Мне тоже»."
+              a: "A mí también | A mí también me gusta"
+              format: фраза по-испански
+              mistakes: {"yo también": "С gustar — **a mí también**."}
 
   - id: dialogo
     kind: dialogue

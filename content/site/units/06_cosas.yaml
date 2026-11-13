@@ -235,6 +235,30 @@ lessons:
               options: "el mapa | la mapa | un mapa"
               noaudio: {q: "Что значит «el mapa»?", options: "el mapa | la mapa | un mapa"}
 
+      - write:
+          title: ¿Qué es esto?
+          bank: true
+          skill: el_vs_un
+          format: фраза по-испански
+          items:
+            - q: "¿Qué es esto? — Ответьте: «Это стул»."
+              a: "(Es) una silla"
+              mistakes: {"es la silla": "Предмет называем впервые — **una**: Es una silla."}
+            - q: "¿Qué es esto? — Ответьте: «Это карта»."
+              a: "(Es) un mapa"
+              mistakes: {"es una mapa": "Mapa — мужского рода: **un** mapa."}
+            - q: "¿Qué es esto? — Ответьте: «Это фото»."
+              a: "(Es) una foto"
+              mistakes: {"es un foto": "Foto — женского рода: **una** foto."}
+      - choose:
+          title: Выберите
+          bank: true
+          skill: el_vs_un
+          items:
+            - q: "— ¿Qué es esto? — Es ___ libro. ___ libro es de Ana."
+              options: "un / El | el / Un | un / Un"
+              explain: "Впервые называем — un libro; дальше говорим о том же самом — el libro."
+
   - id: vocab2
     kind: vocab
     title: В комнате

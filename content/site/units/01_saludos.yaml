@@ -134,6 +134,16 @@ lessons:
               skill: farewell
               rule: hasta
 
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: greeting_time
+          format: приветствие по-испански
+          items:
+            - q: "Утром поздоровайтесь с соседкой."
+              a: "(Hola, )buenos días"
+              mistakes: {"buenas noches": "Утром — **buenos días**; buenas noches — поздно вечером."}
+
   - id: vocab2
     kind: vocab
     title: "¿Qué tal? Как дела?"
@@ -387,6 +397,24 @@ lessons:
               ru: "Добрый день, сеньора! Как вы поживаете?"
               extra: [estás]
 
+      - choose:
+          title: Как правильно написать?
+          bank: true
+          skill: marks
+          items:
+            - q: "Как правильно написать вопрос «Как дела?»"
+              options: "¿Qué tal? | ?Qué tal? | ¿Qué tal¿"
+              explain: "В начале вопроса — перевёрнутый знак ¿, в конце — обычный ?."
+            - q: "Как правильно написать «Привет!»?"
+              options: "¡Hola! | !Hola! | ¡Hola¡"
+              explain: "В начале восклицания — перевёрнутый ¡, в конце — обычный !."
+            - q: "Как правильно написать вопрос «Как вы?»"
+              options: "¿Cómo está usted? | Cómo está usted? | ¿Cómo está usted"
+              explain: "У вопроса два знака: ¿ в начале и ? в конце."
+            - q: "Как правильно написать «А ты?»"
+              options: "¿Y tú? | ?Y tú? | ¿Y tú¿"
+              explain: "Короткий вопрос — тоже с двумя знаками: ¿Y tú?"
+
   - id: dialogue
     kind: dialogue
     title: Утро в офисе
@@ -531,6 +559,18 @@ lessons:
               explain: "На извинение можно ответить _No pasa nada_ — «ничего страшного». _De nada_ говорят в ответ на благодарность."
               mistakes:
                 "De nada.": "_De nada_ говорят в ответ на благодарность. На извинение отвечают _No pasa nada_ — «ничего страшного»."
+
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: polite
+          items:
+            - q: "Скажите: «Большое спасибо!»"
+              a: "Muchas gracias"
+              format: фраза по-испански
+            - q: "Вам сказали «Gracias». Ответьте: «Не за что»."
+              a: "De nada"
+              format: фраза по-испански
 
   - id: practice
     kind: practice

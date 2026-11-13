@@ -596,6 +596,16 @@ lessons:
               sample: "Me llamo Olga. Soy de Ucrania, de Odesa. Vivo en Valencia. Hablo ucraniano, inglés y un poco de español."
               sample_ru: "Меня зовут Ольга. Я из Украины, из Одессы. Живу в Валенсии. Говорю по-украински, по-английски и немного по-испански."
 
+      - write:
+          title: Заполните анкету
+          bank: true
+          skill: datos_personales
+          items:
+            - q: "Nacionalidad: — вы украинец (вы — мужчина)."
+              a: "ucraniano"
+              format: национальность
+              mistakes: {"ucrania": "Нужна национальность, а не страна: **ucraniano**.", "ucraniana": "Вы — мужчина: **ucraniano**."}
+
   - id: quiz
     kind: quiz
     title: Мой дом

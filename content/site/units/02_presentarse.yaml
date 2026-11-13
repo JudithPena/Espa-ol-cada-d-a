@@ -148,6 +148,18 @@ lessons:
                 "me llamo pablo": "Имя есть — добавьте «очень приятно»: **encantado** или **mucho gusto**."
                 "hola me llamo pablo": "Имя есть — добавьте «очень приятно»: **encantado** или **mucho gusto**."
 
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: encantado
+          format: фраза по-испански
+          items:
+            - q: "Ana: Me llamo Ana. — Ответьте (вы — женщина): «Очень приятно»."
+              a: "Encantada | Mucho gusto"
+              mistakes: {"encantado": "Вы — женщина: **encantada**."}
+            - q: "Pablo: Encantado. — Ответьте: «Взаимно»."
+              a: "Igualmente"
+
   - id: grammar
     kind: grammar
     title: "Я, ты, он, она: глагол ser"
@@ -271,6 +283,38 @@ lessons:
                 "me llamo lucía": "Me llamo — «меня зовут». О другом человеке — **se llama**: Se llama Lucía."
                 "te llamas lucía": "Te llamas — «тебя зовут». О другом человеке — **se llama**: Se llama Lucía."
                 "es lucía": "Es Lucía — «это Лусия». «Её зовут» — **se llama** Lucía."
+
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: accent_meaning
+          items:
+            - q: "Как по-испански «он»?"
+              a: "él"
+              format: местоимение, со значком ´
+              mistakes: {"el": "«Он» — **él** со значком ´; el без значка — артикль."}
+            - q: "— ¿Eres Pablo? — Ответьте: «Да, я Пабло»."
+              a: "Sí, soy Pablo | Sí, yo soy Pablo"
+              format: фраза по-испански
+              mistakes: {"si, soy pablo": "«Да» — **sí** со значком ´; `si` без значка — «если»."}
+      - choose:
+          title: Выберите
+          bank: true
+          skill: accent_meaning
+          items:
+            - q: "___ es Pablo. (Он)"
+              options: "Él | El"
+              explain: "«Он» — él со значком ´. El без значка — артикль: el café."
+
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: accent_meaning
+          items:
+            - q: "Как по-испански «ты»?"
+              a: "tú"
+              format: местоимение, со значком ´
+              mistakes: {"tu": "«Ты» — **tú** со значком ´; `tu` без значка — «твой»."}
 
   - id: dialogue
     kind: dialogue

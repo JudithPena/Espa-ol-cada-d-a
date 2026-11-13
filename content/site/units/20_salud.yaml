@@ -68,6 +68,16 @@ lessons:
               options: "Я мою голову. | Я мою руки. | Я мою ноги."
               noaudio: {q: "Что значит «Me lavo la cabeza.»?", options: "Я мою голову. | Я мою руки. | Я мою ноги."}
 
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: body
+          format: слово с артиклем
+          items:
+            - q: "Как по-испански «кисть руки»?"
+              a: "la mano"
+              mistakes: {"el mano": "Mano — женского рода, хотя на -o: **la** mano."}
+
   - id: doler
     kind: grammar
     title: Me duele la cabeza
@@ -301,6 +311,30 @@ lessons:
               noaudio: {q: "Как принимать таблетки: «Tome una pastilla tres veces al día»?", options: "по одной три раза в день | по три один раз в день | одну в день"}
             - lines: ["Médica: Aquí tiene la receta. ¡Que se mejore!"]
               options: "Muchas gracias. | ¡Que te mejores! | De nada."
+
+      - choose:
+          title: Что ответить?
+          bank: true
+          skill: doctor
+          items:
+            - lines: ["Médica: ¿Qué le pasa?"]
+              options: "Me duele el estómago. | Me duelo el estómago. | Tengo duele el estómago."
+              explain: "Болит живот — me duele el estómago."
+            - lines: ["Médico: Tome estas pastillas dos veces al día."]
+              options: "¿Puedo ir a trabajar? | ¿Desde cuándo? | ¡Que se mejore!"
+              explain: "Пациент может спросить, можно ли ему работать. ¡Que se mejore! и ¿Desde cuándo? говорит врач."
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: doctor
+          format: фраза по-испански
+          items:
+            - q: "Médico: ¿Desde cuándo le duele? — «С пятницы»."
+              a: "(Me duele) desde el viernes"
+            - q: "Скажите врачу: «У меня температура с воскресенья»."
+              a: "(Yo) tengo fiebre desde el domingo | Desde el domingo tengo fiebre"
+            - q: "Пожелайте другу: «Выздоравливай!»"
+              a: "¡Que te mejores! | ¡Que te mejores, amigo!"
     forms: [vez]
 
   - id: quiz

@@ -265,6 +265,31 @@ lessons:
               options: "Какая твоя мама? | Как дела у твоей мамы? | Где твоя мама?"
               noaudio: {q: "Что значит «¿Cómo es tu madre?»?", options: "Какая твоя мама? | Как дела у твоей мамы? | Где твоя мама?"}
 
+      - choose:
+          title: Выберите
+          bank: true
+          skill: como_es
+          items:
+            - q: "— ¿___ es tu hermana? — Es alta y simpática."
+              options: "Cómo | Qué | Dónde"
+              explain: "«Какая она?» — ¿Cómo es?"
+            - lines: ["Pablo: ¿Cómo es Laura?"]
+              options: "Es alta y muy simpática. | Está alta y muy simpática. | Es Laura."
+              explain: "Какой человек по характеру и внешности — es."
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: como_es
+          format: фраза по-испански
+          items:
+            - q: "Спросите Ану о её брате: «Какой он?»"
+              a: "¿Cómo es tu hermano? | Ana, ¿cómo es tu hermano?"
+            - q: "Ответьте: ваш друг высокий и очень весёлый."
+              a: "(Mi amigo) es alto y muy divertido | (Mi amigo) es muy divertido y alto"
+              mistakes: {"está alto y muy divertido": "Какой человек — **es**: es alto y muy divertido."}
+            - q: "Спросите друга: «Какой у тебя преподаватель?»"
+              a: "¿Cómo es tu profesor? | ¿Cómo es tu profesora?"
+
   - id: colores
     kind: vocab
     title: Цвета

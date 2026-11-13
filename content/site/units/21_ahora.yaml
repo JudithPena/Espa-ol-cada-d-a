@@ -122,6 +122,15 @@ lessons:
               options: "Мы прямо сейчас едим. | Мы обычно едим в это время. | Они прямо сейчас едят."
               noaudio: {q: "Что значит «Ahora mismo estamos comiendo.»?", options: "Мы прямо сейчас едим. | Мы обычно едим в это время. | Они прямо сейчас едят."}
 
+      - choose:
+          title: Выберите
+          bank: true
+          skill: now_habit
+          items:
+            - q: "Normalmente ___ en casa, pero hoy ___ en un restaurante."
+              options: "como / estoy comiendo | estoy comiendo / como | como / como"
+              explain: "Обычно — como; прямо сейчас — estoy comiendo."
+
   - id: practica
     kind: practice
     title: ¿Qué están haciendo?
@@ -229,6 +238,28 @@ lessons:
             - say: "Luego te llamo."
               options: "Я тебе потом позвоню. | Позвони мне потом. | Я тебе сейчас позвоню."
               noaudio: {q: "Что значит «Luego te llamo.»?", options: "Я тебе потом позвоню. | Позвони мне потом. | Я тебе сейчас позвоню."}
+
+      - write:
+          title: По телефону
+          bank: true
+          skill: phone_call
+          format: фраза по-испански
+          items:
+            - q: "Звонит телефон. Ответьте, как отвечают в Испании."
+              a: "¿Diga? | ¿Sí?"
+            - q: "Вы звоните Ане: «Привет, Ана. Это Пабло»."
+              a: "(Hola, Ana. )Soy Pablo | Hola, Ana, soy Pablo"
+              mistakes: {"hola, ana. es pablo": "По телефону о себе — **soy**: Soy Pablo."}
+            - q: "Скажите: «Я сейчас занят. Перезвоню тебе»."
+              a: "(Ahora) estoy [ocupado/ocupada]. Luego te llamo"
+      - choose:
+          title: Что ответить?
+          bank: true
+          skill: phone_call
+          items:
+            - lines: ["Ana: ¿Diga?"]
+              options: "Hola, Ana. Soy Pablo. | Hola, Ana. Es Pablo. | Hola, Ana. Estoy Pablo."
+              explain: "По телефону представляются так: soy…"
     quiz:
       - q: ¿Qué está haciendo Ana?
         options: "Está cocinando. | Está estudiando. | Está durmiendo."

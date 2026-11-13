@@ -492,6 +492,73 @@ lessons:
                 "tu número es seis cinco cero": "Tu número — «твой номер». О своём номере говорят **mi** número."
                 "su número es seis cinco cero": "Su número — «ваш номер». О своём номере говорят **mi** número."
 
+      - choose:
+          title: Выберите
+          bank: true
+          skill: mi_tu_su
+          items:
+            - q: "Señor García, ¿cuál es ___ número de teléfono?"
+              options: "su | tu | mi"
+              explain: "Сеньору Гарсии — на «вы»: su número, «ваш номер»."
+            - q: "Ana, ¿cuál es ___ teléfono?"
+              options: "tu | su | mi"
+              explain: "Ане — на «ты»: tu teléfono, «твой телефон»."
+      - write:
+          title: Напишите по-испански
+          bank: true
+          skill: mi_tu_su
+          format: фраза по-испански
+          items:
+            - q: "Спросите друга: «Какой твой номер телефона?»"
+              a: "¿Cuál es tu número de teléfono? | ¿Cuál es tu número? | ¿Cuál es tu teléfono?"
+              mistakes: {"cuál es su número de teléfono": "Другу — на «ты»: **tu** número."}
+            - q: "Спросите сеньору Лопес: «Какой ваш номер телефона?»"
+              a: "¿Cuál es su número de teléfono? | ¿Cuál es su número? | ¿Cuál es su teléfono?"
+              mistakes: {"cuál es tu número de teléfono": "Сеньоре Лопес — на «вы»: **su** número."}
+            - q: "Скажите: «Мой номер — шесть, два, девять…»"
+              a: "Mi número es (el) seis, dos, nueve | Mi teléfono es (el) seis, dos, nueve"
+              mistakes: {"tu número es seis, dos, nueve": "О своём номере — **mi** número."}
+      - write:
+          title: Послушайте и запишите цифрами
+          bank: true
+          skill: phone
+          items:
+            - say: "Mi número es el seis, cero, siete, uno, cuatro, ocho, dos, nueve, tres."
+              q: "Запишите номер."
+              a: "607148293 | 607 148 293"
+              answer: phone
+              format: цифры
+              noaudio: {q: "Номер записан словами: seis, cero, siete, uno, cuatro, ocho, dos, nueve, tres. Запишите его цифрами.", a: "607148293 | 607 148 293"}
+      - write:
+          title: Напишите
+          bank: true
+          skill: phone
+          items:
+            - q: "Запишите цифрами: seis, nueve, cero, dos."
+              a: "6902 | 69 02"
+              answer: phone
+              format: цифры
+            - q: "Напишите словами номер 6 1 2."
+              a: "seis, uno, dos | seis uno dos"
+              format: числа словами по-испански
+      - choose:
+          title: Что ответить?
+          bank: true
+          skill: phone
+          items:
+            - lines: ["Ana: ¿Cuál es tu número de teléfono?"]
+              options: "Es el seis, dos, cuatro, cero, uno. | Tengo seis, dos, cuatro, cero, uno. | Soy seis, dos, cuatro, cero, uno."
+              explain: "Номер «есть» — es el seis, dos…"
+
+      - choose:
+          title: Послушайте и выберите
+          bank: true
+          skill: phone
+          items:
+            - say: "seis, ocho, tres"
+              options: "683 | 638 | 863"
+              noaudio: {q: "Какие цифры: seis, ocho, tres?", options: "683 | 638 | 863"}
+
   - id: dictado
     kind: listening
     title: Диктант чисел
