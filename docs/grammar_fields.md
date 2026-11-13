@@ -42,6 +42,7 @@
 | `formulas` | массив [строка] | нет |
 | `schemeGrid` | логическое | нет |
 | `agreement` | массив [scheme] | нет |
+| `distanceMap` | объект | нет |
 
 ## group
 
