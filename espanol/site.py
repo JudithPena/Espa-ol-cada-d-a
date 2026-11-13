@@ -1117,6 +1117,13 @@ def build_site(course: Course, cards: dict[str, WordCard], out: str | Path, unit
     out = Path(out)
     if not fragment:
         write_theory_illustrations(site["grammar"], out.parent)
+        # Compact, approved artwork for the three distance clues in unit 12.
+        # Stored as a separate static resource instead of bloating the HTML.
+        if any(unit.get("number") == 12 for unit in site["grammar"]):
+            artwork = ART / "grammar" / "unit12_distance_triptych.webp"
+            destination = out.parent / "g" / artwork.name
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(artwork, destination)
     if audio_cache and not fragment:
         from .site_audio import record
         site["audio"] = record(site, out.parent, audio_cache)

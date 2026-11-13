@@ -677,6 +677,72 @@ main { padding-block: 16px 110px; }
 .gscheme-arrow { color: var(--accent); display: block; width: 24px; height: 24px; }
 .gscheme-arrow svg { display: block; width: 100%; height: 100%; overflow: visible; }
 .gscheme-note { font-size: 13px; color: var(--muted); margin-top: 8px; }
+
+/* Unit 12: semantic and responsive distance diagram, opt-in via section.distanceMap. */
+.gdist { display:grid; gap:18px; min-width:0; padding:clamp(13px,2vw,22px); border:1px solid var(--line); border-top:4px solid var(--accent); border-radius:22px; background:var(--surface); box-shadow:0 8px 22px #163a8412; }
+.gdist-header { display:grid; gap:5px; }
+.gdist-eyebrow { color:var(--accent); font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; }
+.gdist-header h3 { margin:0; font-size:clamp(22px,2.5vw,29px); line-height:1.25; }
+.gdist-top { display:grid; grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr); align-items:stretch; gap:14px; }
+.gdist-scene { position:relative; display:block; width:100%; min-width:0; padding:0; border:0; border-radius:16px; background:#f9efdf; overflow:hidden; cursor:zoom-in; }
+.gdist-scene img { display:block; width:100%; height:100%; min-height:220px; max-height:305px; aspect-ratio:3 / 2; object-fit:cover; }
+.gdist-scene > span { position:absolute; bottom:9px; right:9px; width:30px; height:30px; border-radius:50%; background:#fff; color:#233f92; line-height:30px; font-size:22px; }
+.gdist-scene:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
+.gdist-visual { display:flex; flex-direction:column; justify-content:center; gap:14px; min-width:0; padding:15px; border-radius:16px; background:linear-gradient(140deg,color-mix(in srgb,var(--accent-soft) 65%,var(--surface)),var(--surface)); }
+.gdist-guide { margin:0; font-size:14px; line-height:1.5; color:var(--muted); }
+.gdist-axis { position:relative; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:3px; padding-top:12px; }
+.gdist-axis::before { content:""; position:absolute; top:26px; left:17%; right:17%; height:3px; border-radius:3px; background:linear-gradient(90deg,#2753c7,#74a4ed,#bdd2ee); }
+.gdist-stop { position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:7px; min-width:0; text-align:center; }
+.gdist-dot { display:grid; place-items:center; width:30px; height:30px; flex:none; border:3px solid var(--surface); border-radius:50%; background:#2b51c9; color:#fff; font-size:13px; font-weight:800; box-shadow:0 0 0 2px #7292e8; }
+.gdist-stop-2 .gdist-dot { background:#557fce; box-shadow:0 0 0 2px #adc5f5; }
+.gdist-stop-3 .gdist-dot { background:#7d9fba; box-shadow:0 0 0 2px #c5d6e8; }
+.gdist-stop strong { color:var(--accent); font-size:clamp(17px,2vw,24px); line-height:1.2; }
+.gdist-stop > span:last-child { color:var(--ink); font-size:12px; line-height:1.35; }
+.gdist-direction { display:flex; justify-content:space-between; color:var(--muted); font-size:12px; font-weight:700; }
+.gdist-detail { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.12fr); gap:18px; }
+.gdist-detail h4 { margin:0 0 9px; font-size:17px; }
+.gdist-examples, .gdist-forms { min-width:0; }
+.gdist-example-row { display:grid; grid-template-columns:140px minmax(0,1fr); align-items:start; gap:10px; padding:11px 0; border-bottom:1px solid var(--line); }
+.gdist-example-row:last-child { border-bottom:0; }
+.gdist-example-name { display:flex; align-items:flex-start; gap:8px; min-width:0; }
+.gdist-example-number { display:grid; place-items:center; flex:none; width:26px; height:26px; border:2px solid var(--accent); border-radius:50%; font-size:12px; font-weight:800; color:var(--accent); }
+.gdist-example-name > div { min-width:0; }
+.gdist-example-name strong { display:block; color:var(--accent); font-size:19px; }
+.gdist-example-name small { display:block; color:var(--muted); font-size:12px; line-height:1.35; }
+.gdist-example-row ul { display:grid; gap:6px; min-width:0; margin:0; padding:0; list-style:none; }
+.gdist-example-row li { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 7px; line-height:1.3; }
+.gdist-example-row li b { font-size:15px; }
+.gdist-example-row li span { color:var(--muted); font-size:12px; }
+.gdist-forms { align-self:start; padding:14px; border-radius:15px; background:color-mix(in srgb,var(--accent-soft) 35%,var(--surface)); }
+.gdist-forms p { margin:0 0 12px; font-size:13px; line-height:1.45; color:var(--muted); }
+.gdist-forms .gforms-wide .tbl { width:100%; margin:0; border-collapse:separate; border-spacing:0; table-layout:fixed; background:var(--surface); }
+.gdist-forms .tbl th, .gdist-forms .tbl td { padding:8px 4px; font-size:13px; text-align:center; white-space:normal; overflow-wrap:normal; }
+.gdist-forms .tbl td:first-child { color:var(--accent); font-weight:800; }
+.gdist-forms .gforms-mobile { margin-top:0; }
+.gdist-tip { display:flex; gap:10px; align-items:flex-start; margin:0; padding:13px 16px; border-radius:14px; background:var(--accent-soft); color:var(--ink); font-size:14px; line-height:1.5; }
+.gdist-tip > span { flex:none; color:var(--accent); font-size:22px; line-height:1; }
+@media(max-width:900px) {
+  .gdist-top, .gdist-detail { grid-template-columns:1fr; }
+  .gdist-scene img { height:auto; min-height:0; max-height:300px; object-fit:contain; }
+  .gdist-visual { padding:16px; }
+}
+@media(max-width:600px) {
+  .gdist { gap:14px; padding:12px; border-radius:17px; }
+  .gdist-header h3 { font-size:22px; }
+  .gdist-visual { padding:11px; gap:10px; }
+  .gdist-guide { font-size:13px; }
+  .gdist-stop { gap:5px; }
+  .gdist-stop strong { font-size:17px; }
+  .gdist-stop > span:last-child { font-size:11px; }
+  .gdist-example-row { grid-template-columns:1fr; gap:8px; }
+  .gdist-example-row ul { padding-left:35px; }
+  .gdist-forms { padding:12px; }
+  .gdist-forms .gforms-mobile { grid-template-columns:1fr; }
+  .gdist-forms .gforms-mobile section { padding:11px; }
+  .gdist-forms .gforms-mobile dl { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .gdist-tip { padding:11px 12px; font-size:13px; }
+}
+
 .gword-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-block: 20px; }
 .gword-group { background: var(--accent-soft); border-radius: 18px; padding: 20px; min-width: 0; }
 .gword-group h3 { font-size: 16px; margin: 0 0 8px; }
@@ -747,6 +813,29 @@ main { padding-block: 16px 110px; }
 .gdistance-person { font-weight: 700; }
 .gdistance-dot { font-size: 25px; line-height: 1; }
 .gdistance-zone small { font-size: 12px; }
+
+/* Visual distance clues for unit 12: real mini-scenes instead of abstract dots. */
+.gdistance-illustrated { gap:10px; margin:12px 0 18px; }
+.gdistance-illustrated .gdistance-zone { gap:7px; padding:10px 9px 12px; border:2px solid var(--line); background:var(--surface); border-radius:17px; transition:background-color .15s ease,border-color .15s ease; }
+.gdistance-illustrated .gdistance-zone.is-active { border-color:var(--accent); background:var(--accent-soft); box-shadow:0 3px 12px rgb(40 73 177 / .1); }
+.gdistance-illustrated .gdistance-person { color:var(--ink); font-size:15px; font-weight:800; }
+.gdistance-illustrated .gdistance-zone.is-active .gdistance-person { color:var(--accent); }
+.gdistance-illustrated .gdistance-art { display:block; width:100%; max-width:184px; height:auto; aspect-ratio:200/163; border-radius:12px; overflow:hidden; background-image:url("g/unit12_distance_triptych.webp"); background-repeat:no-repeat; background-size:300% 100%; }
+.gdistance-illustrated .gdistance-art-near { background-position:0% 50%; }
+.gdistance-illustrated .gdistance-art-listener { background-position:50% 50%; }
+.gdistance-illustrated .gdistance-art-far { background-position:100% 50%; }
+.gdistance-illustrated .gdistance-zone small { color:var(--muted); line-height:1.35; font-size:12px; }
+@media (max-width:600px) {
+  .gdistance-illustrated { gap:6px; margin:8px 0 12px; }
+  .gdistance-illustrated .gdistance-zone { gap:5px; padding:7px 4px 9px; border-radius:12px; }
+  .gdistance-illustrated .gdistance-person { font-size:13px; }
+  .gdistance-illustrated .gdistance-art { border-radius:8px; }
+  .gdistance-illustrated .gdistance-zone small { font-size:10px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .gdistance-illustrated .gdistance-zone { transition:none; }
+}
+
 .gscene { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); align-items: center; gap: 22px; margin: 16px 0 22px; padding: 14px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); }
 .gscene-image-only { grid-template-columns: minmax(0,1fr); width: 100%; max-width: 640px; padding: 8px; justify-self: center; }
 .gscene-image-only .gscene-image img { height: min(30dvh,240px); aspect-ratio: auto; object-fit: contain; }

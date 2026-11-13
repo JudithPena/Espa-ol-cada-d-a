@@ -783,12 +783,34 @@ function gOpenArt() {
   dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
   document.body.appendChild(dialog); dialog.showModal();
 }
+function gDemonstrativesDistance(section) {
+  const groups = section.wordGroups || [];
+  const table = section.table;
+  if (groups.length !== 3 || !table || table.rows?.length !== 3) {
+    return gArtFigure(section.illustration) + (groups.length ? grammarWordGroups(groups) : '');
+  }
+  const meta = [
+    {form:'este', position:'Рядом со мной', marker:'1'},
+    {form:'ese', position:'Рядом с собеседником', marker:'2'},
+    {form:'aquel', position:'Далеко от нас', marker:'3'}
+  ];
+  const stops=meta.map((m,i)=>`<div class="gdist-stop gdist-stop-${i+1}"><span class="gdist-dot">${m.marker}</span><strong lang="es">${m.form}</strong><span>${esc(m.position)}</span></div>`).join('');
+  const examples=groups.map((g,i)=>`<div class="gdist-example-row"><div class="gdist-example-name"><span class="gdist-example-number">${i+1}</span><div><strong lang="es">${meta[i].form}</strong><small>${esc(g.title)}</small></div></div><ul>${g.words.map(([es,ru])=>`<li><b lang="es">${esc(es)}</b><span>${esc(ru)}</span></li>`).join('')}</ul></div>`).join('');
+  const art=section.illustration;
+  const scene=art ? `<button class="gdist-scene" data-gart aria-label="Увеличить иллюстрацию с тремя расстояниями"><img src="${esc(art.image)}" alt="${esc(art.alt)}" width="1200" height="800" decoding="async"><span aria-hidden="true">⤢</span></button>` : '';
+  return `<section class="gdist" aria-label="Схема расстояний для este, ese, aquel">
+    <header class="gdist-header"><span class="gdist-eyebrow">Наглядная схема</span><h3>${esc(section.distanceMap.title)}</h3></header>
+    <div class="gdist-top">${scene}<div class="gdist-visual"><p class="gdist-guide">Смотри, где находится предмет относительно тебя и собеседника:</p><div class="gdist-axis" aria-label="Рядом со мной — este, рядом с собеседником — ese, далеко — aquel">${stops}</div><div class="gdist-direction" aria-hidden="true"><span>близко</span><span>дальше →</span></div></div></div>
+    <div class="gdist-detail"><div class="gdist-examples"><h4>Покажи на предмет</h4>${examples}</div><div class="gdist-forms"><h4>Формы по роду и числу</h4><p>Расстояние выбрали — теперь подбери форму к существительному.</p>${gTheoryTable(table)}</div></div>
+    <p class="gdist-tip"><span aria-hidden="true">✦</span>${esc(section.distanceMap.note)}</p>
+  </section>`;
+}
 function gTheory(section) {
-  const art=gArtFigure(section.illustration), formsFirst=section.presentation==='paradigm' && section.table;
+  const art=section.distanceMap ? gDemonstrativesDistance(section) : gArtFigure(section.illustration), formsFirst=section.presentation==='paradigm' && section.table;
   const copy=section.paragraphs.map((p,i)=>`<p class="gtheory-paragraph${i?'':' is-lead'}">${gTheoryText(p)}</p>`);
   return `<article class="gtheory gtheory-${esc(section.presentation || 'examples')}"><div class="gtheory-copy">${copy[0] || ''}${section.formulas ? `<div class="gformulas" aria-label="Модель правила">${section.formulas.map(f=>`<div>${gTheoryText(f)}</div>`).join('')}</div>`:''}</div>${formsFirst?'':art}
     ${section.dialogues ? gTheoryDialogues(section.dialogues) : ''}
-    ${section.wordGroups ? grammarWordGroups(section.wordGroups) : ""}${section.schemes ? `<div${section.schemeGrid ? ' class="gsummary-cards"' : ""}>${grammarSchemes(section.schemes)}</div>` : ""}${section.table ? gTheoryTable(section.table) : ""}${formsFirst?art:''}
+    ${section.wordGroups && !section.distanceMap ? grammarWordGroups(section.wordGroups) : ""}${section.schemes ? `<div${section.schemeGrid ? ' class="gsummary-cards"' : ""}>${grammarSchemes(section.schemes)}</div>` : ""}${section.table && !section.distanceMap ? gTheoryTable(section.table) : ""}${formsFirst?art:''}
     ${section.agreement ? `<div class="gagreement">${section.agreement.map(w => `<div><small>${esc(w.label)}</small><b>${esc(w.from)}</b><span>↓</span><b>${esc(w.to)}</b></div>`).join("")}</div>` : ""}
     <div class="gtheory-copy">${copy.slice(1).join('')}</div><div class="gtheory-examples">${(section.examples || []).map(([es,ru]) => `<div class="gexample">${playBtn(es)} <b lang="es">${esc(es)}</b><small>${esc(ru)}</small></div>`).join("")}</div>
     ${section.notes?.length ? `<aside class="gnotes"><b>Обрати внимание</b>${section.notes.map(n => `<p>${esc(n)}</p>`).join("")}</aside>` : ""}</article>`;
@@ -924,9 +946,15 @@ function gClock(clock) {
   const time = `${String(clock.hour).padStart(2,'0')}:${String(clock.minute).padStart(2,'0')}`;
   return `<div class="gclock" role="img" aria-label="Часы: ${time}"><svg viewBox="0 0 160 160" aria-hidden="true"><circle class="gclock-face" cx="80" cy="80" r="74"/>${Array.from({length:12},(_,i)=>{const angle=(i+1)*Math.PI/6; return `<text x="${80+59*Math.sin(angle)}" y="${80-59*Math.cos(angle)}">${i+1}</text>`;}).join('')}<path class="gclock-hour" d="M80 80V43" transform="rotate(${clock.hour%12*30+clock.minute/2} 80 80)"/><path class="gclock-minute" d="M80 80V28" transform="rotate(${clock.minute*6} 80 80)"/><circle cx="80" cy="80" r="4" fill="currentColor"/></svg><span>${time}</span></div>`;
 }
-function gDistance(distance) {
+function gDistanceArt(key) {
+  // Unit 12: approved illustrated scenes from one lightweight triptych.
+  // Text labels remain visible for accessibility and the same clues work on mobile.
+  const scene = ['near','listener','far'].includes(key) ? key : 'near';
+  return `<span class="gdistance-art gdistance-art-${scene}" aria-hidden="true"></span>`;
+}
+function gDistance(distance, illustrated = false) {
   if (!distance) return "";
-  return `<div class="gdistance" aria-label="Расположение предмета">${[['near','Я','У меня'],['listener','Ты','У собеседника'],['far','Там','Далеко от обоих']].map(([key,person,label])=>`<div class="gdistance-zone ${key===distance?'is-active':''}"><span class="gdistance-person">${person}</span><span class="gdistance-dot" aria-hidden="true">${key===distance?'●':'·'}</span><small>${label}</small>${key===distance?'<span class="sr-only">Здесь находится предмет</span>':''}</div>`).join('')}</div>`;
+  return `<div class="gdistance${illustrated?' gdistance-illustrated':''}" aria-label="Расположение предмета">${[['near','Я','У меня'],['listener','Ты','У собеседника'],['far','Там','Далеко от обоих']].map(([key,person,label])=>`<div class="gdistance-zone ${key===distance?'is-active':''}"><span class="gdistance-person">${person}</span>${illustrated ? gDistanceArt(key) : `<span class="gdistance-dot" aria-hidden="true">${key===distance?'●':'·'}</span>`}<small>${label}</small>${key===distance?'<span class="sr-only">Здесь находится предмет</span>':''}</div>`).join('')}</div>`;
 }
 function gPicture(q) {
   if (!q.image) return "";
@@ -989,7 +1017,7 @@ function gPlayerView(failure=null) {
     const clues = q.clues ? `<div class="gclues" aria-label="Слова для ответа">${q.clues.map(([es,ru])=>`<span><b lang="es">${esc(es)}</b><small>${esc(ru)}</small></span>`).join("")}</div>` : "";
     const inline = group.inlineAnswer && mode==='input' && !q.options && q.prompt.includes("___");
     const sentence = mode==='gaps' ? options : q.gapParts ? grammarInputHelp(q,group,"g-answer-format")+gGapSentence(q,response,group) : inline ? `<div class="gfill-sentence"><p lang="es">${esc(q.prompt.split("___")[0])}</p>${options}<p lang="es">${esc(q.prompt.split("___").slice(1).join("___"))}</p></div>` : `${q.context ? `<p class="gquestion-sentence" lang="es">${gBlank(q.prompt)}</p>` : ""}${options}`;
-    const question = `${who}${source}${clues}${gRatings(q.ratings)}${gFacts(q.facts)}${gClock(q.clock)}${gDistance(q.distance)}${q.translation ? `<p class="muted gquestion-translation">${esc(q.translation)}</p>` : ""}${['build','gaps'].includes(mode)?'':gAnswerHint(q)}${sentence}`;
+    const question = `${who}${source}${clues}${gRatings(q.ratings)}${gFacts(q.facts)}${gClock(q.clock)}${gDistance(q.distance, gUnit()?.number === 12)}${q.translation ? `<p class="muted gquestion-translation">${esc(q.translation)}</p>` : ""}${['build','gaps'].includes(mode)?'':gAnswerHint(q)}${sentence}`;
     content = group.family ? `<div class="gfamily-work"><details class="gplay-family" ${G.treeOpen === false ? "" : "open"}><summary>Семейное дерево</summary>${grammarFamily({...group.family, activeName:block?.person})}</details><div class="ganswer-area">${question}${group.vocabulary ? `<details class="gvocab"><summary>Слова родства</summary>${grammarTable(group.vocabulary)}</details>` : ""}</div></div>`
       : `<div class="gquestion-work ${q.image ? "has-image" : ""}">${gPicture(q)}<div class="ganswer-area">${question}${group.vocabulary ? `<details class="gvocab"><summary>Слова для упражнения</summary>${grammarTable(group.vocabulary)}</details>` : ""}</div></div>`;
     if (group.title === "Мини-проверка" && group.instruction) content = `<p class="muted ginstruction">${esc(group.instruction.replace(/ Затем нажми.*$/, ""))}</p>` + content;
