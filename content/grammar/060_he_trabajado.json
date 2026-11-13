@@ -440,18 +440,18 @@
             "interaction": "choice"
           },
           {
-            "context": "Ты только что оставил кофе на столе, а чашка уже пустая.",
-            "prompt": "¿Quién ___ mi café?",
+            "context": "Свет только что погас: кто-то его выключил.",
+            "prompt": "¿Quién ___ la luz?",
             "answers": [
-              "ha tomado"
+              "ha apagado"
             ],
-            "explain": "Спрашиваем, кто это сделал: после quién глагол стоит в третьем лице — ha tomado.",
+            "explain": "Спрашиваем, кто это сделал: после quién глагол стоит в третьем лице — ha apagado.",
             "sourceRef": "extra",
             "learningAction": "выбор по контексту",
             "options": [
-              "ha tomado",
-              "has tomado",
-              "hemos tomado"
+              "ha apagado",
+              "has apagado",
+              "hemos apagado"
             ],
             "interaction": "gap-choice"
           }
