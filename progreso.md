@@ -10,8 +10,8 @@
 
 ## Сейчас
 
-- Готово тем: **14 из 19**. Уроков A2: **109**, новых слов и выражений: **391**.
-- В работе: тема 38 — Mi trabajo, mis estudios.
+- Готово тем: **15 из 19**. Уроков A2: **116**, новых слов и выражений: **412**.
+- В работе: тема 39 — La gente.
 
 ## Темы
 
@@ -31,8 +31,8 @@
 | 35 | Por la ciudad + КТ-2 | дорога, разрешение и просьба: ¿Puedo…?, ¿Te importa…?; se безличное; контрольная точка 2 | 9 | 24 | ✅ готово |
 | 36 | Me encuentro mal | симптомы и советы: me gustaría, podrías, deberías; врач и аптека | 7 | 19 | ✅ готово |
 | 37 | De compras | el más…, -ísimo; este / ese без существительного; el mío / la mía; обмен покупки | 8 | 21 | ✅ готово |
-| 38 | Mi trabajo, mis estudios | empezar a, dejar de, volver a, seguir + герундий; desde… hasta, durante; резюме | — | — | ⏭ следующая |
-| 39 | La gente | ser / estar с прилагательными; parecerse, llevarse bien; me parece; характер и чувства | — | — | ⬜ не начата |
+| 38 | Mi trabajo, mis estudios | empezar a, dejar de, volver a, seguir + герундий; desde… hasta, durante; резюме | 7 | 21 | ✅ готово |
+| 39 | La gente | ser / estar с прилагательными; parecerse, llevarse bien; me parece; характер и чувства | — | — | ⏭ следующая |
 | 40 | Planes y deseos | pensar + инфинитив, me gustaría; si + настоящее; планы и праздники | — | — | ⬜ не начата |
 | 41 | El mundo hispano | повторение времён; se dice, se come; Испания и Америка | — | — | ⬜ не начата |
 | 42 | Итог A2 | рассказ о поездке 100–120 слов и итог уровня (check: control) | — | — | ⬜ не начата |
@@ -76,6 +76,7 @@
 | 13.11.2026 | Тема 35 «Por la ciudad» (9 уроков) с контрольной точкой 2 по темам 30–35: дорога на «ты» и «вы» (sigue / siga, al lado de, enfrente de), метро (línea, bajarse, transbordo), ¿Puedo…?, ¿Te importa…?, se безличное; новая роль — турист. |
 | 13.11.2026 | Тема 36 «Me encuentro mal» (7 уроков): симптомы (encontrarse, tos, gripe, dolor), condicional (me gustaría, ¿podría…?, deberías), советы о здоровье, аптека (algo para…, cada ocho horas, no hace falta); голоса — врач и фармацевт. Движок: condicional для проверки «только пройденные слова». |
 | 13.11.2026 | Тема 37 «De compras» (8 уроков): обмен покупки (quería cambiar, me queda estrecho, el tique), el más… de / el mejor, -ísimo, выбор без существительного (este, el azul, el de rayas, ¿cuál?), el mío / el tuyo / el suyo, техника и гарантия, отзывы покупателей. Движок: -ísimo. |
+| 13.11.2026 | Тема 38 «Mi trabajo, mis estudios» (7 уроков): собеседование Ли на слух, empezar a / dejar de / volver a / seguir + герундий, сроки desde… hasta / de… a / durante, учёба (carrera, aprobar, suspender), письмо Ольги, миссия «Собеседование», резюме. |
 
 ## Что не проверено
 
