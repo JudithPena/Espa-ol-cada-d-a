@@ -12,33 +12,47 @@ A1. Итог A1 (`final/examen`) — контроль: порог 80 %, балл
 
 ## Урок `final/repaso` — «Большое повторение A1: неделя в Севилье»
 
-- **Длина:** 20 шагов, 10 минут. **Повторяется:** весь курс.
-- **Порядок:** «финишная прямая; шесть ситуаций подряд» → гостиница → дорога в музей → обед в баре → магазин → аптека →
-  звонок домой; в каждой ситуации — реплики, ввод или сборка.
-- **Убрано / объединено:** задания каждой ситуации привязаны к своей миссии (`hotel`, `camino`, `comida`, `tienda`,
-  `farmacia`, `llamada`) и к навыку; оба задания на слух — с альтернативой; пояснения к «me duele mi cabeza», «en el
-  tren», «voy ir».
+- **Длина:** 36 шагов, 15 минут. **Повторяется:** весь курс — 24 задания в одиннадцати ситуациях (аудит MYTHOS, U23-04:
+  было 13 заданий, не было тем 9–11, 14–16 и 18).
+- **Порядок:** «финишная прямая; одиннадцать ситуаций подряд» → гостиница → номер без телевизора (hay) → завтрак
+  (quiero) → дорога в музей → когда закрывается музей (на слух) → новая знакомая Ракель (a mí también, внешность на
+  слух, me gusta + инфинитив) → обед в баре → магазин → рюкзак в автобусе (es grande y roja) → аптека → звонок домой
+  (сделали, делаете, погода, будете делать, распорядок, дата возвращения).
+- **Убрано / объединено:** задания каждой ситуации привязаны к своей миссии и к навыку; задания на слух — с
+  альтернативой; пояснения к ожидаемым ошибкам ввода («me duele mi cabeza», «en el tren», «voy ir», «es grande y rojo»,
+  «me gustan leer»).
 
 | Шаг | Экран / тип блока | Что видит или делает ученик | Учебная цель | Что должен уже знать | Связь с предыдущим/следующим | Источник |
 |---|---|---|---|---|---|---|
-| 1 | T: text | шесть ситуаций подряд, новых слов нет | вход | весь курс | — | — |
+| 1 | T: text | одиннадцать ситуаций подряд, новых слов нет | вход | весь курс | — | — |
 | 2 | T: mission `hotel` | вы приехали в гостиницу | ситуация | — | — | — |
-| 3–4 | C ×2 (реплика) | как вас зовут; комната № 12 на втором этаже | me llamo; числа | темы 2, 4 | миссия | `hotel` |
-| 5 | T: mission `camino` | спросить дорогу к музею | ситуация | — | — | — |
-| 6 | B | Perdone, ¿dónde está el museo? | спросить дорогу | тема 12 | миссия | `camino` |
-| 7 | C~ | на слух «Todo recto y la segunda calle…» | понять дорогу | тема 12 | миссия | `camino` (без звука: фраза записана) |
-| 8 | T: mission `comida` | обед в баре | ситуация | — | — | — |
-| 9 | C (реплика) | ¿Qué quiere tomar? | заказать | тема 13 | миссия | `comida` |
-| 10 | I | попросите счёт | la cuenta | тема 13 | миссия | `comida` |
-| 11 | T: mission `tienda` | футболка в подарок брату | ситуация | — | — | — |
-| 12–13 | C, C~ | ¿Qué busca?; на слух «Esta cuesta veinticinco euros» | купить | тема 17 | миссия | `tienda` (без звука: фраза записана) |
-| 14 | T: mission `farmacia` | болит голова, вы в аптеке | ситуация | — | — | — |
-| 15–16 | I, C | «у меня болит голова»; ¡Que se mejore! | doler; ответить | тема 20 | миссия | `farmacia` |
-| 17 | T: mission `llamada` | звонок маме: сделали, делаете, будете делать | ситуация | — | итог | — |
-| 18–19 | C ×2 (реплика) | ¿Qué has hecho?; ¿Qué estás haciendo? | he + причастие; estar + герундий | темы 21–22 | миссия | `llamada` |
-| 20 | I | ¿Y mañana? — поеду в Мадрид на поезде | ir a; en tren | темы 12, 19 | миссия | `llamada` |
+| 3–5 | C ×3 (реплика) | как вас зовут; комната № 12 на втором этаже; ¿Qué tal el viaje? — estoy cansada | me llamo; числа; ser / estar | темы 2, 4, 11 | миссия | `hotel` |
+| 6 | T: mission `habitacion` | в номере нет телевизора | ситуация | — | — | — |
+| 7 | I | En la habitación no hay tele | hay | тема 10 | миссия | `habitacion` |
+| 8 | T: mission `desayuno` | завтрак в гостинице | ситуация | — | — | — |
+| 9 | C (реплика) | ¿Qué quiere desayunar? — Quiero… | чередование в корне | тема 16 | миссия | `desayuno` |
+| 10 | T: mission `camino` | спросить дорогу к музею | ситуация | — | — | — |
+| 11 | B | Perdone, ¿dónde está el museo? | спросить дорогу | тема 12 | миссия | `camino` |
+| 12 | C~ | на слух «Todo recto y la segunda calle…» | понять дорогу | тема 12 | миссия | `camino` (без звука: фраза записана) |
+| 13 | T: mission `horario` | до скольких работает музей | ситуация | — | — | — |
+| 14 | C~ | на слух «cierra a las ocho y media» | время на слух | тема 15 | миссия | `horario` (без звука: фраза записана) |
+| 15 | T: mission `raquel` | знакомство с экскурсоводом Ракель | ситуация | — | — | — |
+| 16–17 | C, C~ | Me encanta Sevilla — ¡A mí también!; на слух — брат Ракель: alto, rubio, ojos azules | согласиться; внешность | темы 9, 14 | миссия | `raquel` (без звука: фраза записана) |
+| 18 | I | Me gusta leer y viajar | gustar | тема 14 | миссия | `raquel` |
+| 19 | T: mission `comida` | обед в баре | ситуация | — | — | — |
+| 20 | C (реплика) | ¿Qué quiere tomar? | заказать | тема 13 | миссия | `comida` |
+| 21 | I | попросите счёт | la cuenta | тема 13 | миссия | `comida` |
+| 22 | T: mission `tienda` | футболка в подарок брату | ситуация | — | — | — |
+| 23–24 | C, C~ | ¿Qué busca?; на слух «Esta cuesta veinticinco euros» | купить | тема 17 | миссия | `tienda` (без звука: фраза записана) |
+| 25 | T: mission `mochila` | рюкзак остался в автобусе | ситуация | — | — | — |
+| 26 | I | Es grande y roja | согласование прилагательных | тема 9 | миссия | `mochila` |
+| 27 | T: mission `farmacia` | болит голова, вы в аптеке | ситуация | — | — | — |
+| 28–29 | I, C | «у меня болит голова»; ¡Que se mejore! | doler; ответить | тема 20 | миссия | `farmacia` |
+| 30 | T: mission `llamada` | звонок маме | ситуация | — | итог | — |
+| 31–33 | C ×3 (реплика) | ¿Qué has hecho?; ¿Qué estás haciendo?; ¿Qué tiempo hace? — Hace mucho calor | he + причастие; estar + герундий; погода, mucho | темы 18, 21–22 | миссия | `llamada` |
+| 34–36 | I ×3 | ¿Y mañana? — voy a ir a Madrid en tren; me levanto a las ocho y me ducho; el veinte de junio | ir a; возвратные; даты | темы 12, 16, 18, 19 | миссия | `llamada` |
 
-Сигнатура: `T(text) T(mission) C@hotel×2 T(mission) B C~@camino T(mission) C@comida I@comida T(mission) C@tienda C~@tienda T(mission) I@farmacia C@farmacia T(mission) C@llamada×2 I@llamada`
+Сигнатура: `T(text) T(mission) C@hotel×3 T(mission) I@habitacion T(mission) C@desayuno T(mission) B C~@camino T(mission) C~@horario T(mission) C@raquel C~@raquel I@raquel T(mission) C@comida I@comida T(mission) C@tienda C~@tienda T(mission) I@mochila T(mission) I@farmacia C@farmacia T(mission) C@llamada×3 I@llamada×3`
 
 ## Урок `final/lectura` — «Неделя в Мадриде»
 

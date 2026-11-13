@@ -432,6 +432,8 @@ lessons:
             - "Diego: ¡Hablas muy bien! | Ты отлично говоришь!"
             - "Irina: Gracias. Pero más despacio, por favor. | Спасибо. Но помедленнее, пожалуйста."
             - "Diego: ¡Vale! ¿Dónde vives? | Хорошо! Где ты живёшь?"
+            - "Irina: Perdón, no entiendo. Repite, por favor. | Извини, не понимаю. Повтори, пожалуйста."
+            - "Diego: ¿Dónde vives? | Где ты живёшь?"
             - "Irina: Vivo en Madrid. ¿Y tú? | Живу в Мадриде. А ты?"
             - "Diego: ¡Yo también! | Я тоже!"
       - choose:
@@ -538,7 +540,9 @@ lessons:
     kind: review
     title: Большое повторение
     goal: проверить себя по темам 1–5 — приветствия, знакомство, числа, страны
-    version: 2
+    version: 3
+    # Аудит MYTHOS, U05-05: 15 заданий вместо 9 — ввод по каждой из пяти тем (прощание, ¿Quién es?, ¿Qué significa…?,
+    # возраст десятками, y → e) и число на слух; «Ana es de Italia» → Paula: Ана — из Украины (docs/site_characters.md).
     blocks:
       - "Позади пять тем — больше сотни слов и фраз. Сегодня новых слов нет, только повторение."
       - match:
@@ -573,17 +577,48 @@ lessons:
               options: "Я из Аргентины, но живу в Испании. | Я из Испании, но живу в Аргентине. | Я из Аргентины и живу в Аргентине."
               noaudio: {q: "Что значит «Soy de Argentina, pero vivo en España»?", options: "Я из Аргентины, но живу в Испании. | Я из Испании, но живу в Аргентине. | Я из Аргентины и живу в Аргентине."}
       - write:
+          title: Послушайте и запишите цифрами
+          skill: [numbers_ear, tens]
+          rule: none
+          items:
+            - say: "La señora López tiene sesenta y cuatro años."
+              q: "Сколько лет сеньоре Лопес?"
+              a: "64"
+              answer: number
+              format: цифры
+              mistakes: {"74": "Sesenta — 60, setenta — 70: sesenta y cuatro — **64**.", "46": "Sesenta — 60, cuatro — 4: sesenta y cuatro — **64**."}
+              noaudio: {q: "«La señora López tiene sesenta y cuatro años.» Сколько ей лет? Запишите цифрами.", a: "64"}
+      - write:
           title: Напишите по-испански
           format: фраза по-испански
           rule: none
           items:
-            - q: "Ana es de Italia. Es ___"
+            - q: "Paula es de Italia. Es ___"
               a: "italiana"
               format: национальность, одно слово
               skill: nationality
             - q: "Меня зовут Иван, я из Украины."
               a: "Me llamo Iván y soy de Ucrania | Me llamo Iván, soy de Ucrania | Me llamo Iván. Soy de Ucrania | Soy Iván, de Ucrania"
               skill: de_donde
+            - q: "Вечером вы прощаетесь с соседом до завтра."
+              a: "(Adiós, )hasta mañana | Buenas noches(, hasta mañana)"
+              skill: farewell
+              mistakes: {"buenos días, hasta mañana": "Вечером прощаются **buenas noches**; buenos días — утреннее приветствие."}
+            - q: "Сеньор Гарсия спрашивает: ¿Quién es? — Ответьте: «Это моя подруга Ана»."
+              a: "(Ella) es mi amiga Ana | Es Ana, mi amiga"
+              skill: ser_forms
+              mistakes: {"soy mi amiga ana": "О подруге — **es**: Es mi amiga Ana.", "es mi amigo ana": "Ана — женщина: mi **amiga**."}
+            - q: "Спросите, что значит слово «tarea»."
+              a: "¿Qué significa «tarea»? | ¿Qué significa la palabra «tarea»?"
+              skill: ask_in_class
+            - q: "Señora López: ¿Cuántos años tiene usted? — Ответьте: вам тридцать два года."
+              a: "(Yo) tengo [treinta y dos/32] (años)"
+              skill: tens
+              mistakes: {"soy treinta y dos años": "Возраст «имеют»: **tengo** treinta y dos años.", "tengo treinta dos años": "Между десятками и единицами — **y**: treinta y dos."}
+            - q: "Скажите: «Я говорю по-испански и по-английски»."
+              a: "(Yo) hablo español e inglés"
+              skill: y_e
+              mistakes: {"hablo español y inglés": "Перед i- союз y меняется на **e**: español **e** inglés."}
       - build:
           title: Соберите фразу
           skill: ask_in_class

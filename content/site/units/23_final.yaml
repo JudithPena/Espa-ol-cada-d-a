@@ -12,9 +12,11 @@ lessons:
     kind: review
     title: "Большое повторение A1: неделя в Севилье"
     goal: провести неделю в испанском городе — от гостиницы до звонка домой — на материале всего курса
-    version: 2
+    version: 3
+    # Аудит MYTHOS, U23-04: 24 задания вместо 13 — добавлены темы 9–11, 14–16 и 18 (внешность и описание вещи, hay в
+    # номере, ser / estar, gustar и согласие, расписание на слух, распорядок и чередование в корне, погода и даты).
     blocks:
-      - "Вы на финишной прямой! Новых слов нет: всё, что нужно, вы уже знаете. Проведите неделю в Севилье — шесть ситуаций подряд."
+      - "Вы на финишной прямой! Новых слов нет: всё, что нужно, вы уже знаете. Проведите неделю в Севилье — одиннадцать ситуаций подряд."
       - mission:
           id: hotel
           title: Гостиница
@@ -30,6 +32,33 @@ lessons:
               q: "Какая у вас комната?"
               options: "№ 12 на втором этаже | № 12 на первом этаже | № 2 на двенадцатом этаже"
               skill: numbers
+            - lines: ["Recepcionista: ¿Qué tal el viaje?"]
+              options: "Bien, pero estoy muy cansada. | Bien, pero soy muy cansada. | Bien, pero estoy muy cansado."
+              explain: "Состояние сейчас — estar: estoy cansada. Вы — Марта, поэтому cansada."
+              skill: ser_estar
+      - mission:
+          id: habitacion
+          title: В номере
+          text: "В номере большая кровать и шкаф, а телевизора нет. Вы звоните на ресепшен."
+      - write:
+          source: habitacion
+          skill: hay_esta
+          items:
+            - q: "Recepcionista: ¿Todo bien en la habitación? — Скажите: «В номере нет телевизора»."
+              a: "(En la habitación) no hay [tele/televisión] | No hay [tele/televisión] en la habitación"
+              format: фраза с hay по-испански
+              mistakes: {"en la habitación no está tele": "Есть ли что-то — **hay**: no hay tele.", "en la habitación no hay la tele": "После hay не ставят el, la: no hay **tele**."}
+      - mission:
+          id: desayuno
+          title: Завтрак
+          text: "Утром вы завтракаете в кафе гостиницы."
+      - choose:
+          source: desayuno
+          skill: stem_change
+          items:
+            - lines: ["Camarero: Buenos días. ¿Qué quiere desayunar?"]
+              options: "Quiero un café con leche y una tostada. | Quero un café con leche y una tostada. | Quiere un café con leche y una tostada."
+              explain: "У querer в корне `e` → `ie`: quiero. Quiere — «он хочет» или «вы хотите»."
       - mission:
           id: camino
           title: Дорога в музей
@@ -49,6 +78,44 @@ lessons:
               q: "Как пройти?"
               options: "прямо и вторая улица налево, это близко | прямо и первая улица направо, это далеко | вторая улица направо, это близко"
               noaudio: {q: "Как пройти: «Todo recto y la segunda calle a la izquierda. Está cerca»?", options: "прямо и вторая улица налево, это близко | прямо и первая улица направо, это далеко | вторая улица направо, это близко"}
+      - mission:
+          id: horario
+          title: Когда закрывается музей?
+          text: "У входа в музей вы спрашиваете, до скольких он работает."
+      - choose:
+          source: horario
+          skill: [time_ear, opening_hours]
+          items:
+            - say: "Hoy el museo cierra a las ocho y media. Los lunes está cerrado."
+              q: "Во сколько сегодня закрывается музей?"
+              options: "в 20:30 | в 18:30 | в 20:15"
+              explain: "Cierra a las ocho y media — закрывается в половине девятого вечера, в 20:30."
+              noaudio: {q: "«Hoy el museo cierra a las ocho y media. Los lunes está cerrado.» Во сколько сегодня закрывается музей?", options: "в 20:30 | в 18:30 | в 20:15"}
+      - mission:
+          id: raquel
+          title: Новая знакомая
+          text: "В кафе музея вы знакомитесь с Ракель — она экскурсовод из Севильи."
+      - choose:
+          source: raquel
+          items:
+            - lines: ["Raquel: Me encanta Sevilla. ¿Y a ti?"]
+              options: "¡A mí también! | ¡A mí tampoco! | ¡Yo también me encanta!"
+              explain: "Согласиться с «Me encanta…» — a mí también. A mí tampoco — согласие с отрицанием."
+              skill: agree
+            - say: "Mi hermano es alto y rubio, y tiene los ojos azules."
+              q: "Как выглядит брат Ракель?"
+              options: "высокий блондин с голубыми глазами | высокий брюнет с голубыми глазами | невысокий блондин с зелёными глазами"
+              explain: "Alto — высокий, rubio — светловолосый, los ojos azules — голубые глаза."
+              skill: appearance
+              noaudio: {q: "«Mi hermano es alto y rubio, y tiene los ojos azules.» Как выглядит брат Ракель?", options: "высокий блондин с голубыми глазами | высокий брюнет с голубыми глазами | невысокий блондин с зелёными глазами"}
+      - write:
+          source: raquel
+          skill: gustar
+          items:
+            - q: "Raquel: ¿Qué te gusta hacer en tu tiempo libre? — Ответьте: «Мне нравится читать и путешествовать»."
+              a: "(A mí) me gusta leer y viajar | (A mí) me gusta viajar y leer"
+              format: фраза по-испански
+              mistakes: {"me gustan leer y viajar": "Нравятся действия (инфинитивы) — всё равно **gusta**: me gusta leer y viajar.", "yo gusto leer y viajar": "«Мне нравится» — **me gusta**."}
       - mission:
           id: comida
           title: Обед в баре
@@ -83,6 +150,18 @@ lessons:
               noaudio: {q: "Сколько стоит футболка: «Esta cuesta veinticinco euros»?", options: "25 € | 35 € | 52 €"}
               skill: [numbers_ear, prices]
       - mission:
+          id: mochila
+          title: Рюкзак в автобусе
+          text: "Вечером вы забыли в автобусе рюкзак — большой и красный — и звоните в автобусную компанию."
+      - write:
+          source: mochila
+          skill: adj_agreement
+          items:
+            - q: "Empleado: ¿Cómo es su mochila? — Ответьте: «Он большой и красный»."
+              a: "(Mi mochila) es grande y roja | (Mi mochila) es roja y grande"
+              format: фраза по-испански
+              mistakes: {"es grande y rojo": "Mochila — женского рода: **roja**.", "está grande y roja": "Какая вещь — **ser**: es grande y roja."}
+      - mission:
           id: farmacia
           title: Аптека
           text: "Утром у вас болит голова. Вы в аптеке."
@@ -114,6 +193,10 @@ lessons:
             - lines: ["Madre: ¿Y qué estás haciendo ahora?"]
               options: "Estoy descansando en el hotel. | Descanso siempre en el hotel. | He descansado en el hotel."
               skill: estar_gerund
+            - lines: ["Madre: ¿Qué tiempo hace en Sevilla?"]
+              options: "Hace mucho calor y sol. | Está mucho calor y sol. | Hace muy calor y sol."
+              explain: "О погоде — hace; перед существительным calor — mucho, а не muy."
+              skill: [weather, muy_mucho]
       - write:
           source: llamada
           skill: [ir_a_inf, transport]
@@ -122,6 +205,16 @@ lessons:
               a: "Mañana voy a ir a Madrid en tren | Voy a ir a Madrid en tren | Mañana voy a Madrid en tren"
               format: фраза по-испански
               mistakes: {"mañana voy a ir a madrid en el tren": "Перед транспортом артикль не ставят: **en tren**.", "mañana voy ir a madrid en tren": "После ir нужно **a**: voy a ir."}
+            - q: "Madre: ¿A qué hora te levantas en el hotel? — «Я встаю в восемь и принимаю душ»."
+              a: "(Yo) me levanto a las ocho y (luego) me ducho | (Yo) me levanto a las ocho y después me ducho"
+              format: фраза по-испански
+              skill: reflexive
+              mistakes: {"levanto a las ocho y ducho": "Возвратный глагол — с местоимением: **me** levanto, **me** ducho.", "me levanta a las ocho y me ducha": "О себе — окончание -o: me levant**o**, me duch**o**."}
+            - q: "Madre: ¿Cuándo vuelves a casa? — «Двадцатого июня»."
+              a: "(Vuelvo) el [veinte/20] de junio | (Vuelvo a casa) el [veinte/20] de junio"
+              format: дата по-испански
+              skill: dates
+              mistakes: {"vuelvo veinte junio": "Дата: el veinte **de** junio.", "vuelvo en el veinte de junio": "Перед датой — **el**, без en: el veinte de junio."}
 
   - id: lectura
     kind: reading
@@ -140,7 +233,7 @@ lessons:
           text: |
             ¡Hola! Me llamo Natalia y ahora mismo estoy en Madrid con mi novio. Es mi primer viaje a España.
 
-            Esta semana hemos visto muchas cosas: hemos visitado el museo del Prado, hemos paseado por el parque del Retiro y hemos comido tapas en muchos bares. ¡Me encanta la comida española!
+            Esta semana hemos visto muchas cosas: hemos visitado el museo del Prado, hemos paseado por el parque del Retiro y hemos comido tapas en muchos bares. ¡Me encanta la comida española! Pero hemos paseado mucho, y ahora me duele todo el cuerpo: la espalda, los brazos, las piernas…
 
             Madrid es una ciudad muy grande y muy bonita. Hay mucha gente en las calles, también por la noche. Aquí la gente cena muy tarde, a las diez o a las once.
 
@@ -150,7 +243,7 @@ lessons:
           translation: |
             Привет! Меня зовут Наталья, и прямо сейчас я в Мадриде с моим парнем. Это моя первая поездка в Испанию.
 
-            На этой неделе мы видели много всего: побывали в музее Прадо, погуляли по парку Ретиро и ели тапас во многих барах. Я обожаю испанскую еду!
+            На этой неделе мы видели много всего: побывали в музее Прадо, погуляли по парку Ретиро и ели тапас во многих барах. Я обожаю испанскую еду! Но мы много гуляли, и теперь у меня болит всё тело: спина, руки, ноги…
 
             Мадрид — очень большой и очень красивый город. На улицах много людей, даже ночью. Здесь ужинают очень поздно, в десять или в одиннадцать.
 

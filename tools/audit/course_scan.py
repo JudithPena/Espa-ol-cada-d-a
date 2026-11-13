@@ -3,7 +3,7 @@
 
     python tools/audit/course_scan.py inventory        # объём по темам и урокам
     python tools/audit/course_scan.py balance          # распознавание / воспроизведение / слух по урокам
-    python tools/audit/course_scan.py recycle          # слова, которые после своей темы почти не встречаются
+    python tools/audit/course_scan.py recycle [-v] [--window N]  # слова, которые после своей темы не встречаются (в ближайших N темах)
     python tools/audit/course_scan.py distractors      # самые частые неверные варианты и «верный — самый длинный»
     python tools/audit/course_scan.py situations       # ситуационные формулировки («Вы не знаете…», «Попросите…»)
     python tools/audit/course_scan.py sources          # вопросы к диалогу / тексту вместе с источником
@@ -26,7 +26,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from espanol.course import load_course          # noqa: E402
-from espanol.lexicon import lesson_texts        # noqa: E402
+from espanol.lexicon import generated_forms, lesson_texts   # noqa: E402
 from espanol.markup import plain                # noqa: E402
 from espanol.tokens import spanish_words        # noqa: E402
 
@@ -94,8 +94,13 @@ def cmd_balance(c):
         print(f"{L.id} | {L.kind} | {len(L.vocab)} | {k['recog']} | {k['listen']} | {k['dictation']} | {k['prod']} | {k['build']} | {prod:.0%}")
 
 
+# Все грамматические возможности курса: слово «встречено» и во множественном числе, и в любой форме глагола (SYS-08).
+_ALL_FEATURES = {"plural", "present_ar", "present_er_ir", "present_stem", "reflexive", "gerund", "participle", "preterite",
+                 "preterite_irregular", "imperfect", "imperative", "conditional", "superlative"}
+
+
 def _forms(item):
-    return {f for f in item.base_forms() if len(f) > 2}
+    return {f.lower() for f in item.base_forms() | generated_forms(item, _ALL_FEATURES) if len(f) > 2}
 
 
 def cmd_recycle(c):
@@ -115,15 +120,20 @@ def cmd_recycle(c):
                 continue
             later_lessons = [lessons[j] for j in range(i + 1, len(lessons)) if forms & texts[j]]
             other_units = {x.unit.number for x in later_lessons if x.unit.number != L.unit.number}
-            by_unit[L.unit.number].append((item.es, len(later_lessons), len(other_units)))
-    print("тема | слов | не встречаются в других темах | из них ни разу после своего урока")
+            by_unit[L.unit.number].append((item.es, len(later_lessons), sorted(other_units)))
+    window = int(sys.argv[sys.argv.index("--window") + 1]) if "--window" in sys.argv else None
+    head = "тема | слов | не встречаются в других темах | из них ни разу после своего урока"
+    print(head + (f" | не возвращаются в ближайших {window} темах" if window else ""))
     for u in sorted(by_unit):
         rows = by_unit[u]
-        lonely = [r for r in rows if r[2] == 0]
+        lonely = [r for r in rows if not r[2]]
         never = [r for r in rows if r[1] == 0]
-        print(f"{u:02d} | {len(rows)} | {len(lonely)} | {len(never)}")
+        far = [r for r in rows if window and not any(x <= u + window for x in r[2])]
+        print(f"{u:02d} | {len(rows)} | {len(lonely)} | {len(never)}" + (f" | {len(far)}" if window else ""))
         if "-v" in sys.argv:
             print("    не в других темах:", ", ".join(r[0] for r in lonely))
+            if window:
+                print(f"    не в ближайших {window} темах:", ", ".join(r[0] for r in far))
 
 
 def cmd_distractors(c):
