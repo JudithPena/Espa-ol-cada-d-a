@@ -176,9 +176,9 @@ lessons:
 
   - id: lectura
     kind: reading
-    title: La familia de Pablo
+    title: La familia de Álex
     goal: понять рассказ о семье и ответить на вопросы
-    version: 2
+    version: 3
     vocab:
       - "⬆️ mayor [майо́р] — старший; пожилой {pos: adj}"
       - "⬇️ pequeño/a [пэкэ́ньо, пэкэ́нья] — маленький; младший"
@@ -194,51 +194,56 @@ lessons:
           id: pablo
           title: Mi familia
           text: |
-            Hola. Me llamo Pablo. Tengo diecisiete años y estudio en la escuela.
+            Hola. Me llamo Álex. Tengo diecisiete años y estudio en la escuela.
 
-            Mi padre se llama Antonio. Es ingeniero y trabaja mucho. Mi madre se llama Isabel. Es profesora de inglés.
+            Mi padre se llama Antonio. Es médico y trabaja mucho. Mi madre se llama Isabel. Es profesora de inglés.
 
-            Tengo una hermana y un hermano. Mi hermana mayor se llama Carmen. Tiene veinte años y estudia en la universidad. Mi hermano pequeño se llama Luis. Tiene doce años.
+            Tengo una hermana y un hermano. Mi hermana se llama Carmen. Tiene veinte años y estudia en la universidad. Mi hermano mayor se llama Pablo. Es ingeniero y trabaja en una oficina. Yo soy el pequeño de la familia.
 
             Mis abuelos viven en Sevilla. Mi abuelo tiene un perro, Rufo. ¡Y nosotros tenemos un gato!
 
-            Mi tía Elena vive en Argentina. Su marido es argentino. Tienen dos hijos: mis primos Diego y Sofía.
+            Mi tía Rosa vive en Argentina. Su marido es argentino. Tienen dos hijos: mis primos Diego y Sofía.
           translation: |
-            Привет. Меня зовут Пабло. Мне семнадцать лет, я учусь в школе.
+            Привет. Меня зовут Алекс. Мне семнадцать лет, я учусь в школе.
 
-            Моего отца зовут Антонио. Он инженер и много работает. Маму зовут Исабель. Она преподаёт английский.
+            Моего отца зовут Антонио. Он врач и много работает. Маму зовут Исабель. Она преподаёт английский.
 
-            У меня есть сестра и брат. Мою старшую сестру зовут Кармен. Ей двадцать лет, она учится в университете. Младшего брата зовут Луис. Ему двенадцать лет.
+            У меня есть сестра и брат. Сестру зовут Кармен. Ей двадцать лет, она учится в университете. Старшего брата зовут Пабло. Он инженер и работает в офисе. А я в семье младший.
 
             Бабушка с дедушкой живут в Севилье. У дедушки есть собака Руфо. А у нас кот!
 
-            Моя тётя Елена живёт в Аргентине. Её муж — аргентинец. У них двое детей — мои двоюродные брат и сестра Диего и София.
+            Моя тётя Роса живёт в Аргентине. Её муж — аргентинец. У них двое детей — мои двоюродные брат и сестра Диего и София.
       - choose:
           title: Responde
           source: pablo
           items:
-            - q: "¿Qué es el padre de Pablo?"
-              options: "Es ingeniero. | Es profesor. | Es médico."
+            - q: "¿Qué es el padre de Álex?"
+              options: "Es médico. | Es ingeniero. | Es profesor."
+              explain: "Mi padre se llama Antonio. Es médico. Ingeniero — его старший брат Пабло."
             - q: "¿Dónde viven sus abuelos?"
               options: "En Sevilla. | En Argentina. | En Madrid."
-            - q: "¿Diego y Sofía son hermanos de Pablo?"
+            - q: "¿Diego y Sofía son hermanos de Álex?"
               options: "No, son sus primos. | Sí, son sus hermanos. | No, son sus tíos."
-              explain: "Tienen dos hijos: mis primos Diego y Sofía. — Диего и Софья — двоюродные брат и сестра Пабло."
+              explain: "Tienen dos hijos: mis primos Diego y Sofía. — Диего и Софья — двоюродные брат и сестра Алекса."
               skill: family
-            - q: "¿Quién es Luis?"
-              options: "El hermano pequeño de Pablo. | El hermano mayor de Pablo. | El primo de Pablo."
-              explain: "Mi hermano pequeño se llama Luis. Tiene doce años."
+            - q: "¿Quién es Pablo?"
+              options: "El hermano mayor de Álex. | El hermano pequeño de Álex. | El primo de Álex."
+              explain: "Mi hermano mayor se llama Pablo."
+            - q: "¿Quién es el pequeño de la familia?"
+              options: "Álex. | Pablo. | Carmen."
+              explain: "Yo soy el pequeño de la familia. — говорит Алекс: ему семнадцать, Кармен двадцать, Пабло — старший брат."
+              skill: family
               skill: family
             - q: "¿Cuántos años tiene Carmen?"
-              options: "Tiene veinte años. | Tiene doce años. | Tiene diecisiete años."
+              options: "Tiene veinte años. | Tiene diecisiete años. | Tiene diez años."
     allow: [Rufo]
     quiz:
-      - q: ¿Cuántos años tiene Luis?
-        options: "doce | veinte | diecisiete"
+      - q: ¿Cuántos años tiene Álex?
+        options: "diecisiete | veinte | doce"
         source: pablo
         skill: tener_age
       - q: ¿Quién tiene un perro?
-        options: "el abuelo de Pablo | Pablo | la tía Elena"
+        options: "el abuelo de Álex | Pablo | la tía Rosa"
         explain: "Mi abuelo tiene un perro, Rufo. ¡Y nosotros tenemos un gato!"
         source: pablo
 

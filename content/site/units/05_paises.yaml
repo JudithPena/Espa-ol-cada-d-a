@@ -376,38 +376,38 @@ lessons:
     kind: dialogue
     title: В языковой школе
     goal: рассказать о себе — откуда вы, где живёте, на каких языках говорите
-    version: 2
+    version: 3
     blocks:
-      - "Пабло и Ирина знакомятся в языковой школе в Мадриде."
+      - "Диего и Ирина знакомятся в языковой школе в Мадриде."
       - dialogue:
           id: school
           lines:
-            - "Pablo: ¡Hola! Me llamo Pablo. ¿Cómo te llamas? | Привет! Меня зовут Пабло. Как тебя зовут?"
-            - "Irina: Hola, Pablo. Me llamo Irina. | Привет, Пабло. Меня зовут Ирина."
-            - "Pablo: Encantado. ¿De dónde eres, Irina? | Очень приятно. Откуда ты, Ирина?"
+            - "Diego: ¡Hola! Me llamo Diego. ¿Cómo te llamas? | Привет! Меня зовут Диего. Как тебя зовут?"
+            - "Irina: Hola, Diego. Me llamo Irina. | Привет, Диего. Меня зовут Ирина."
+            - "Diego: Encantado. ¿De dónde eres, Irina? | Очень приятно. Откуда ты, Ирина?"
             - "Irina: Soy de Ucrania, de Leópolis. ¿Y tú? | Я из Украины, из Львова. А ты?"
-            - "Pablo: Yo soy mexicano. ¿Hablas inglés? | Я мексиканец. Ты говоришь по-английски?"
+            - "Diego: Yo soy mexicano. ¿Hablas inglés? | Я мексиканец. Ты говоришь по-английски?"
             - "Irina: Sí, hablo inglés y un poco de español. | Да, говорю по-английски и немного по-испански."
-            - "Pablo: ¡Hablas muy bien! | Ты отлично говоришь!"
+            - "Diego: ¡Hablas muy bien! | Ты отлично говоришь!"
             - "Irina: Gracias. Pero más despacio, por favor. | Спасибо. Но помедленнее, пожалуйста."
-            - "Pablo: ¡Vale! ¿Dónde vives? | Хорошо! Где ты живёшь?"
+            - "Diego: ¡Vale! ¿Dónde vives? | Хорошо! Где ты живёшь?"
             - "Irina: Vivo en Madrid. ¿Y tú? | Живу в Мадриде. А ты?"
-            - "Pablo: ¡Yo también! | Я тоже!"
+            - "Diego: ¡Yo también! | Я тоже!"
       - choose:
           title: Responde
           source: school
           items:
-            - q: "¿Pablo es español?"
+            - q: "¿Diego es español?"
               options: "No, es mexicano. | Sí, es español. | No, es argentino."
-              explain: "Pablo: Yo soy mexicano. — Пабло мексиканец."
+              explain: "Diego: Yo soy mexicano. — Диего мексиканец."
               skill: nationality
             - q: "¿Qué habla Irina?"
               options: "Inglés y un poco de español. | Español e italiano. | Francés e inglés."
               explain: "Irina: Sí, hablo inglés y un poco de español."
               skill: hablar_lang
-            - q: "¿Dónde vive Pablo?"
+            - q: "¿Dónde vive Diego?"
               options: "En Madrid. | En Leópolis. | En México."
-              explain: "Irina: Vivo en Madrid. ¿Y tú? — Pablo: ¡Yo también! — Пабло тоже живёт в Мадриде."
+              explain: "Irina: Vivo en Madrid. ¿Y tú? — Diego: ¡Yo también! — Диего тоже живёт в Мадриде."
               skill: vivir_en
       - mission:
           id: exchange

@@ -111,7 +111,7 @@ lessons:
           title: Responde
           skill: trabajar_en
           items:
-            - q: "Lucía es profesora. ¿Dónde trabaja?"
+            - q: "Marta es profesora. ¿Dónde trabaja?"
               options: "Trabaja en una escuela. | Trabaja en un hospital. | Trabaja en un restaurante."
             - q: "Javier es médico. ¿Dónde trabaja?"
               options: "Trabaja en un hospital. | Trabaja en una escuela. | Estudia en la universidad."
@@ -183,7 +183,7 @@ lessons:
           title: Кто это?
           skill: pronouns_plural
           items:
-            - q: "Лусия и Елена говорят о себе: «мы»."
+            - q: "Лусия и Ольга говорят о себе: «мы»."
               options: "nosotras | nosotros | ellas"
             - q: "Вы говорите о Диего и Ане: «они»."
               options: "ellos | ellas | nosotros"
@@ -309,7 +309,7 @@ lessons:
     kind: dialogue
     title: ¿Sois estudiantes?
     goal: обратиться к группе людей на «вы» — vosotros и ustedes
-    version: 2
+    version: 3
     blocks:
       - "Это разговор на вечеринке. Посмотрите, как обращаются к группе людей."
       - dialogue:
@@ -317,21 +317,21 @@ lessons:
           lines:
             - "Lucía: Hola, ¿sois estudiantes? | Привет, вы студенты?"
             - "Diego: Sí, somos estudiantes. Estudiamos en la universidad. ¿Y vosotras? | Да, мы студенты. Учимся в университете. А вы?"
-            - "Lucía: Nosotras trabajamos. Yo soy enfermera y Elena es abogada. | Мы работаем. Я медсестра, а Елена юрист."
+            - "Lucía: Nosotras trabajamos. Yo soy abogada y Olga es enfermera. | Мы работаем. Я юрист, а Ольга медсестра."
             - "Diego: ¿Dónde trabajáis? | Где вы работаете?"
-            - "Elena: Lucía trabaja en un hospital y yo trabajo en una oficina. | Лусия работает в больнице, а я в офисе."
+            - "Olga: Lucía trabaja en una oficina y yo trabajo en un hospital. | Лусия работает в офисе, а я в больнице."
             - "Diego: ¿Y habláis inglés? | А вы говорите по-английски?"
-            - "Elena: Sí, hablamos inglés y un poco de francés. ¿Y vosotros? | Да, говорим по-английски и немного по-французски. А вы?"
+            - "Olga: Sí, hablamos inglés y un poco de francés. ¿Y vosotros? | Да, говорим по-английски и немного по-французски. А вы?"
             - "Diego: Nosotros hablamos inglés y estudiamos alemán. | Мы говорим по-английски и учим немецкий."
       - choose:
           title: Responde
           source: party
           items:
-            - q: "¿Qué es Elena?"
-              options: "Es abogada. | Es enfermera. | Es estudiante."
-              explain: "Lucía: Yo soy enfermera y Elena es abogada."
+            - q: "¿Qué es Olga?"
+              options: "Es enfermera. | Es abogada. | Es estudiante."
+              explain: "Lucía: Yo soy abogada y Olga es enfermera."
             - q: "¿Dónde trabaja Lucía?"
-              options: "En un hospital. | En una oficina. | En la universidad."
+              options: "En una oficina. | En un hospital. | En la universidad."
             - q: "¿Qué estudian Diego y su amigo?"
               options: "Alemán. | Inglés. | Francés."
               explain: "Diego: Nosotros hablamos inglés y estudiamos alemán."
