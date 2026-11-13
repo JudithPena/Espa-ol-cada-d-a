@@ -209,65 +209,379 @@ lessons:
   - id: examen
     kind: final
     title: Итоговый тест A1
-    goal: проверить грамматику всего курса — двенадцать вопросов
-    version: 2
-    # Контроль уровня A1 (docs/a0_a1_fixes_plan.md, раздел 4): порог 80 %, ошибки не переспрашиваются,
-    # у каждого вопроса — навык: по ним экран результата показывает сильные и слабые темы со ссылками на уроки.
+    goal: показать всё, что умеете на уровне A1, — на слух, в чтении и своими словами
+    version: 3
+    # Контроль уровня A1 (аудит MYTHOS, этап 5: SYS-06, U23-01). 30 заданий: слух 6, чтение 4, ввод 8, сборка,
+    # пересказ и исправление 4, выбор формы 8 — 15 навыков по 2 задания (14 из спецификации и анкета: урок
+    # «Анкета» перенесён в A1, тема 10). У каждого задания есть вариант (variants): при пересдаче показывается он.
+    # Порог 80 %, ошибки не переспрашиваются.
     check: control
-    auto_quiz: 2
+    allow: [Alcalá, C]   # C/ Alcalá — так сокращают calle в адресе
     blocks:
-      - "Итоговый тест по всему курсу: двенадцать вопросов по грамматике. Чтобы завершить уровень A1, нужно 80 %."
+      - "🏁 **Итоговый тест A1.** Чтобы завершить уровень, наберите 80 %."
       - choose:
-          title: Итоговый тест A1
+          title: Послушайте и выберите
           items:
-            - q: "— ¿Cómo te llamas? — ..."
-              options: "Me llamo Irina. | Soy llamo Irina. | Mi llamo Irina."
-              explain: "Глагол llamarse возвратный, поэтому перед ним ставится местоимение: _me llamo, te llamas, se llama_."
-              skill: me_llamo
+            - say: "Hoy no voy al trabajo: voy al médico y después a la farmacia."
+              q: "Куда идёт говорящий?"
+              options: "к врачу, потом в аптеку | на работу, потом в аптеку | в аптеку, потом к врачу"
+              explain: "Сначала al médico — к врачу, потом a la farmacia — в аптеку. Al trabajo — на работу — сегодня нет."
+              skill: ir_a
+              noaudio: {q: "«Hoy no voy al trabajo: voy al médico y después a la farmacia.» Куда идёт говорящий?", options: "к врачу, потом в аптеку | на работу, потом в аптеку | в аптеку, потом к врачу"}
+              variants:
+                - say: "El sábado vamos al cine y después a un bar del centro."
+                  q: "Куда идут говорящие в субботу?"
+                  options: "в кино, потом в бар | в бар, потом в кино | в кино, потом в парк"
+                  explain: "Vamos al cine y después a un bar — сначала в кино, потом в бар."
+                  noaudio: {q: "«El sábado vamos al cine y después a un bar del centro.» Куда идут говорящие в субботу?", options: "в кино, потом в бар | в бар, потом в кино | в кино, потом в парк"}
+      - write:
+          title: Ответьте по-испански
+          items:
+            - q: "Ana: ¿Adónde vas? — Ответьте: вы идёте в банк, а потом — в супермаркет."
+              a: "(Yo) (primero) voy al banco y [luego/después] (voy) al supermercado | (Yo) voy al banco y al supermercado"
+              format: фраза по-испански
+              skill: ir_a
+              mistakes: {"voy a el banco y luego a el supermercado": "a + el = **al**: voy al banco, al supermercado.", "voy en el banco y luego en el supermercado": "Куда — **a**: voy al banco."}
+              variants:
+                - q: "Ana: ¿Adónde vas? — Ответьте: вы идёте в библиотеку, а потом — на рынок."
+                  a: "(Yo) (primero) voy a la biblioteca y [luego/después] (voy) al mercado | (Yo) voy a la biblioteca y al mercado"
+                  mistakes: {"voy al biblioteca y luego al mercado": "Biblioteca — женского рода: a **la** biblioteca.", "voy a la biblioteca y luego a el mercado": "a + el = **al**: al mercado."}
+      - choose:
+          title: Выберите
+          items:
+            - q: "— ¿___ un banco por aquí? — Sí, ___ al lado de la estación."
+              options: "Hay / está | Está / hay | Hay / hay"
+              explain: "Есть ли где-то что-то — hay. Где находится уже названный банк — está."
+              skill: hay_esta
+              variants:
+                - q: "En mi barrio ___ dos supermercados, y uno ___ al lado de mi casa."
+                  options: "hay / está | están / hay | hay / hay"
+                  explain: "Сколько чего есть — hay. Где находится один из них — está."
             - q: "Ella ___ ucraniana, pero ahora ___ en Madrid."
               options: "es / está | está / es | es / es"
-              explain: "Когда говорят о происхождении, используют ser: _es ucraniana_. А когда говорят, где человек находится сейчас, используют estar: _está en Madrid_."
+              explain: "Происхождение — ser: es ucraniana. Где человек сейчас — estar: está en Madrid."
               skill: ser_estar
-            - q: "En la mesa ___ dos libros."
-              options: "hay | están | son"
-              explain: "Если вы сообщаете, что где-то что-то есть, то используйте **hay**. Эта форма не меняется: _hay un libro, hay dos libros_."
-              skill: hay
-            - q: "Nosotros ___ en una oficina."
-              options: "trabajamos | trabajan | trabajáis"
-              explain: "С местоимением nosotros глагол на -ar получает окончание -amos: _trabajamos, hablamos, estudiamos_."
-              skill: present_ar
-            - q: "Mis hermanas son muy ___"
-              options: "simpáticas | simpáticos | simpática"
-              explain: "Прилагательное согласуется с существительным в роде и числе. Слово hermanas стоит в женском роде и во множественном числе, поэтому нужно _simpáticas_."
+              variants:
+                - q: "Hoy ___ lunes y mis amigos ___ en la playa."
+                  options: "es / están | está / son | es / son"
+                  explain: "День недели — ser: hoy es lunes. Где люди находятся — estar: están en la playa."
+            - q: "Tengo dos camisetas ___."
+              options: "blancas | blancos | blanca"
+              explain: "Camisetas — женского рода, множественное число: blancas."
               skill: adj_agreement
-            - q: "A mí me ___ las tapas."
-              options: "encantan | encanta | encanto"
-              explain: "Как и в случае с gustar, форма зависит от того, что нравится. Слово tapas стоит во множественном числе, поэтому нужно _me encantan_."
-              skill: encanta
-            - q: "¿Cuánto ___ estos zapatos?"
-              options: "cuestan | cuesta | costan"
-              explain: "У глагола costar в корне `o` превращается в `ue`, а слово zapatos стоит во множественном числе. Поэтому правильно сказать _cuestan_."
-              skill: prices
-            - q: "¿A qué hora ___ normalmente? (ты встаёшь)"
-              options: "te levantas | se levanta | levantas te"
-              explain: "Глагол levantarse возвратный. Если вы обращаетесь на «ты», то нужно местоимение te, и оно ставится перед глаголом: _te levantas_."
+              variants:
+                - q: "Pablo y Lucía son muy ___."
+                  options: "trabajadores | trabajadoras | trabajador"
+                  explain: "Мужчина и женщина вместе — мужской род, множественное число: trabajadores."
+      - write:
+          title: Ответьте по-испански
+          items:
+            - q: "Ana: ¿Dónde está el museo? — Ответьте: музей рядом с парком."
+              a: "(El museo) está [al lado/cerca] del parque"
+              format: фраза по-испански
+              skill: hay_esta
+              mistakes: {"hay al lado del parque": "Где находится музей — **está**: Está al lado del parque.", "está al lado de el parque": "de + el = **del**: al lado del parque.", "es al lado del parque": "Где находится — **estar**: está al lado del parque."}
+              variants:
+                - q: "Ana: ¿Hay una farmacia por aquí? — Ответьте: да, рядом с банком есть аптека."
+                  a: "(Sí, )hay una (farmacia) [al lado/cerca] del banco | Sí, [al lado/cerca] del banco hay una (farmacia)"
+                  mistakes: {"sí, está una farmacia al lado del banco": "Есть ли где-то что-то — **hay**: hay una farmacia.", "sí, hay una farmacia al lado de el banco": "de + el = **del**: al lado del banco."}
+      - build:
+          title: Соберите фразу
+          items:
+            - es: "Mis hermanas son altas y muy simpáticas."
+              ru: "Мои сёстры высокие и очень симпатичные."
+              extra: [altos, simpáticos]
+              skill: adj_agreement
+              variants:
+                - es: "Tengo un coche rojo y dos bicis blancas."
+                  ru: "У меня красная машина и два белых велосипеда."
+                  extra: [roja, blancos]
+      - write:
+          title: Исправьте ошибку
+          items:
+            - q: "Исправьте ошибку: «Mi hermano es cansado hoy.»"
+              a: "Mi hermano está cansado hoy | Hoy mi hermano está cansado"
+              format: фраза по-испански
+              skill: ser_estar
+              mistakes: {"mi hermano es cansado hoy": "Состояние сейчас — **estar**: está cansado."}
+              variants:
+                - q: "Исправьте ошибку: «Marta está profesora.»"
+                  a: "Marta es profesora"
+                  mistakes: {"marta está profesora": "Профессия — **ser**: Marta es profesora."}
+      - choose:
+          title: Послушайте и выберите
+          items:
+            - say: "La clase empieza a las diez menos cuarto."
+              q: "Во сколько начинается занятие?"
+              options: "9:45 | 10:15 | 10:45"
+              explain: "Diez menos cuarto — «десять без четверти», то есть 9:45."
+              skill: [time, a_que_hora]
+              noaudio: {q: "«La clase empieza a las diez menos cuarto.» Во сколько начинается занятие?", options: "9:45 | 10:15 | 10:45"}
+              variants:
+                - say: "El museo abre a las nueve y media y cierra a las seis."
+                  q: "Во сколько открывается музей?"
+                  options: "9:30 | 10:30 | 6:00"
+                  explain: "Abre a las nueve y media — открывается в 9:30; cierra a las seis — закрывается в шесть."
+                  noaudio: {q: "«El museo abre a las nueve y media y cierra a las seis.» Во сколько открывается музей?", options: "9:30 | 10:30 | 6:00"}
+      - choose:
+          title: Выберите
+          items:
+            - q: "Mis padres ___ en Sevilla y ___ mucho pescado."
+              options: "viven / comen | vivís / coméis | vivimos / comemos"
+              explain: "Mis padres — «они»: viven, comen."
+              skill: present_er_ir
+              variants:
+                - q: "¿Vosotros ___ español en la escuela?"
+                  options: "aprendéis | aprenden | aprendemos"
+                  explain: "С vosotros у глагола на -er окончание -éis: aprendéis."
+            - q: "A mis padres ___ mucho viajar."
+              options: "les gusta | les gustan | le gusta"
+              explain: "Нравится действие (viajar) — gusta. Нравится «им» — les: les gusta."
+              skill: [gustar, gustar_pron]
+              variants:
+                - q: "¿A ti ___ las películas de miedo?"
+                  options: "te gustan | te gusta | le gustan"
+                  explain: "Películas — их много: gustan. «Тебе» — te: te gustan."
+            - q: "En verano yo no ___ dormir bien."
+              options: "puedo | podo | puedes"
+              explain: "У poder в корне `o` → `ue`: puedo. Puedes — «ты можешь»."
+              skill: stem_change
+              variants:
+                - q: "Mis hijos ___ a casa a las cinco."
+                  options: "vuelven | volven | vuelve"
+                  explain: "У volver в корне `o` → `ue`: vuelven. Hijos — их много, поэтому -en."
+      - write:
+          title: Ответьте по-испански
+          items:
+            - q: "Ana: ¿Te gusta el fútbol? — Ответьте: нет, но вам нравится баскетбол."
+              a: "No, pero (a mí) me gusta el baloncesto"
+              format: фраза по-испански
+              skill: [gustar, gustar_pron]
+              mistakes: {"no, pero me gusta baloncesto": "С gustar существительное идёт с артиклем: me gusta **el** baloncesto.", "no, pero me gustan el baloncesto": "Баскетбол — один: me **gusta**.", "no, pero yo gusto el baloncesto": "«Мне нравится» — **me gusta**."}
+              variants:
+                - q: "Ana: ¿Qué le gusta hacer a tu hermana? — Ответьте: ей нравится танцевать и петь."
+                  a: "(A mi hermana) le gusta bailar y cantar | (A ella) le gusta bailar y cantar"
+                  mistakes: {"le gustan bailar y cantar": "Нравятся действия (инфинитивы) — всё равно **gusta**: le gusta bailar y cantar.", "me gusta bailar y cantar": "О сестре — **le** gusta."}
+            - q: "Ana: ¿A qué hora vuelves a casa? — Ответьте: вы возвращаетесь в семь."
+              a: "(Yo) vuelvo (a casa) a las siete"
+              format: фраза по-испански
+              skill: stem_change
+              mistakes: {"volvo a casa a las siete": "У volver в корне `o` → `ue`: vuelvo.", "vuelve a casa a las siete": "О себе — **vuelvo**."}
+              variants:
+                - q: "Camarero: ¿Qué quieren tomar? — Ответьте за себя и друга: мы хотим два кофе с молоком."
+                  a: "(Nosotros) queremos dos cafés con leche(, por favor)"
+                  mistakes: {"quieremos dos cafés con leche": "С nosotros корень не меняется: **queremos**.", "quiero dos cafés con leche": "За себя и друга — «мы»: **queremos**."}
+      - write:
+          title: Перескажите
+          items:
+            - q: "Перескажите о себе: «Mi hermano se levanta a las seis y se afeita.»"
+              a: "(Yo) me levanto a las seis y me afeito"
+              format: фраза по-испански
               skill: reflexive
-            - q: "Hoy hace ___ frío."
-              options: "mucho | muy | mucha"
-              explain: "Здесь frío является существительным, поэтому перед ним ставится _mucho_: _hace mucho frío, hace mucho calor_. А muy ставится перед прилагательными: _muy bonito_."
-              skill: muy_mucho
-            - q: "Mañana ___ visitar el museo."
-              options: "voy a | he | estoy"
-              explain: "Если вы говорите о планах, то используйте ir a с инфинитивом: _Mañana voy a visitar el museo._"
-              skill: ir_a_inf
-            - q: "Ahora mismo ___ (yo, comer)."
-              options: "estoy comiendo | estoy comer | soy comiendo"
-              explain: "Если действие происходит прямо сейчас, то нужен глагол estar с герундием: _estoy comiendo_."
-              skill: estar_gerund
-            - q: "Esta semana ___ dos películas."
-              options: "hemos visto | hemos vido | estamos visto"
-              explain: "У глагола ver неправильное причастие **visto**, поэтому правильно сказать _hemos visto_."
-              skill: participle
+              mistakes: {"me levanta a las seis y me afeita": "О себе — окончание -o: me **levanto**, me **afeito**.", "levanto a las seis y afeito": "Возвратный глагол — с местоимением: **me** levanto, **me** afeito.", "se levanto a las seis y se afeito": "О себе — **me**: me levanto, me afeito."}
+              variants:
+                - q: "Перескажите от лица «мы» (вы и брат): «Me acuesto a las once.»"
+                  a: "(Nosotros) nos acostamos a las once"
+                  mistakes: {"nos acuestamos a las once": "С nosotros корень не меняется: nos **acostamos**.", "me acostamos a las once": "«Мы» — **nos** acostamos."}
+      - write:
+          title: Послушайте и запишите цифрами
+          items:
+            - say: "Estos zapatos cuestan ciento ochenta y cinco euros."
+              q: "Сколько стоят эти туфли?"
+              a: "185"
+              answer: number
+              format: цифры
+              skill: [prices, big_numbers]
+              mistakes: {"85": "Ciento — сто: ciento ochenta y cinco — **185**.", "175": "Ochenta — 80, setenta — 70: ciento ochenta y cinco — **185**."}
+              noaudio: {q: "«Estos zapatos cuestan ciento ochenta y cinco euros.» Сколько стоят эти туфли? Запишите цифрами.", a: "185"}
+              variants:
+                - say: "El abrigo cuesta trescientos cuarenta euros."
+                  q: "Сколько стоит пальто?"
+                  a: "340"
+                  mistakes: {"240": "Trescientos — 300, doscientos — 200: trescientos cuarenta — **340**.", "314": "Trescientos — 300, cuarenta — 40: trescientos cuarenta — **340**."}
+                  noaudio: {q: "«El abrigo cuesta trescientos cuarenta euros.» Сколько стоит пальто? Запишите цифрами.", a: "340"}
+      - write:
+          title: Ответьте по-испански
+          items:
+            - q: "Ana: ¿Cuánto cuesta tu abrigo? — Ответьте полной фразой: пальто стоит сто пятьдесят евро."
+              a: "(Mi abrigo) cuesta [ciento cincuenta/150] euros"
+              format: фраза по-испански
+              skill: [prices, big_numbers]
+              mistakes: {"cuesta cien cincuenta euros": "Сто с чем-то — **ciento**: ciento cincuenta.", "cuestan ciento cincuenta euros": "Пальто одно — **cuesta**.", "costa ciento cincuenta euros": "У costar в корне `o` → `ue`: cuesta."}
+              variants:
+                - q: "Ana: ¿Cuánto cuestan tus zapatos? — Ответьте полной фразой: туфли стоят двести сорок евро."
+                  a: "(Mis zapatos) cuestan [doscientos cuarenta/240] euros"
+                  mistakes: {"cuesta doscientos cuarenta euros": "Туфли — их много: **cuestan**.", "cuestan dos cientos cuarenta euros": "Двести — одним словом: **doscientos**.", "cuestan doscientas cuarenta euros": "Euros — мужского рода: **doscientos** euros."}
+      - choose:
+          title: Послушайте и выберите
+          items:
+            - say: "Hoy es el tres de marzo. Hace frío y llueve."
+              q: "Что вы узнали о сегодняшнем дне?"
+              options: "3 марта, холодно, идёт дождь | 3 мая, холодно, идёт дождь | 3 марта, жарко и солнечно"
+              explain: "El tres de marzo — 3 марта; hace frío — холодно; llueve — идёт дождь."
+              skill: [weather, dates]
+              noaudio: {q: "«Hoy es el tres de marzo. Hace frío y llueve.» Что вы узнали о сегодняшнем дне?", options: "3 марта, холодно, идёт дождь | 3 мая, холодно, идёт дождь | 3 марта, жарко и солнечно"}
+              variants:
+                - say: "Mañana es el quince de agosto. Va a hacer mucho calor."
+                  q: "Что вы узнали о завтрашнем дне?"
+                  options: "15 августа, будет очень жарко | 15 апреля, будет очень жарко | 15 августа, будет холодно"
+                  explain: "El quince de agosto — 15 августа; va a hacer mucho calor — будет очень жарко."
+                  noaudio: {q: "«Mañana es el quince de agosto. Va a hacer mucho calor.» Что вы узнали о завтрашнем дне?", options: "15 августа, будет очень жарко | 15 апреля, будет очень жарко | 15 августа, будет холодно"}
+      - write:
+          title: Ответьте по-испански
+          items:
+            - q: "Друг из Киева спрашивает: ¿Qué tiempo hace hoy en Madrid? — Ответьте: сегодня пятое мая, солнечно и жарко."
+              a: "(Hoy) es (el) [cinco/5] de mayo (y) hace sol y (hace) calor | (Hoy) es (el) [cinco/5] de mayo (y) hace calor y (hace) sol"
+              format: две фразы по-испански
+              skill: [weather, dates]
+              mistakes: {"hoy es el cinco de mayo. Está sol y calor": "О погоде — **hace**: hace sol, hace calor.", "hoy es mayo el cinco. Hace sol y calor": "Дата: **el cinco de mayo**."}
+              variants:
+                - q: "Друг из Киева спрашивает: ¿Qué tiempo hace hoy en Madrid? — Ответьте: сегодня двадцатое декабря, холодно и идёт снег."
+                  a: "(Hoy) es (el) [veinte/20] de diciembre (y) hace frío y nieva | (Hoy) es (el) [veinte/20] de diciembre (y) nieva y hace frío"
+                  mistakes: {"hoy es el veinte de diciembre. Está frío y nieva": "О погоде — **hace**: hace frío.", "hoy es el veinte de diciembre. Hace frío y neva": "У nevar в корне `e` → `ie`: nieva."}
+      - choose:
+          title: Послушайте и выберите
+          items:
+            - say: "Esta noche no puedo ir al cine: tengo que estudiar. Pero el sábado vamos a cenar en un restaurante, ¿vale?"
+              q: "Что говорящий будет делать сегодня вечером и в субботу?"
+              options: "сегодня — учиться, в субботу — ужин в ресторане | сегодня — кино, в субботу — учиться | сегодня — ужин в ресторане, в субботу — кино"
+              explain: "Tengo que estudiar — «мне нужно учиться» (сегодня); vamos a cenar — «мы поужинаем» (в субботу)."
+              skill: [ir_a_inf, tener_que]
+              noaudio: {q: "«Esta noche no puedo ir al cine: tengo que estudiar. Pero el sábado vamos a cenar en un restaurante, ¿vale?» Что говорящий будет делать сегодня вечером и в субботу?", options: "сегодня — учиться, в субботу — ужин в ресторане | сегодня — кино, в субботу — учиться | сегодня — ужин в ресторане, в субботу — кино"}
+              variants:
+                - say: "Mañana voy a visitar a mis abuelos, pero primero tengo que ir al banco."
+                  q: "Что говорящий собирается делать завтра?"
+                  options: "навестить бабушку с дедушкой, но сначала сходить в банк | сходить в банк, а потом на работу | навестить родителей, но сначала сходить в банк"
+                  explain: "Voy a visitar a mis abuelos — навестить бабушку и дедушку; primero tengo que ir al banco — сначала нужно в банк."
+                  noaudio: {q: "«Mañana voy a visitar a mis abuelos, pero primero tengo que ir al banco.» Что говорящий собирается делать завтра?", options: "навестить бабушку с дедушкой, но сначала сходить в банк | сходить в банк, а потом на работу | навестить родителей, но сначала сходить в банк"}
+      - build:
+          title: Соберите фразу
+          items:
+            - es: "Hoy tengo que trabajar, pero mañana voy a descansar."
+              ru: "Сегодня мне нужно работать, но завтра я собираюсь отдыхать."
+              alt: ["Mañana voy a descansar, pero hoy tengo que trabajar."]
+              extra: [estoy, de]
+              skill: [ir_a_inf, tener_que]
+              variants:
+                - es: "Mañana vamos a viajar, pero hoy tenemos que trabajar."
+                  ru: "Завтра мы поедем путешествовать, но сегодня нам нужно работать."
+                  alt: ["Hoy tenemos que trabajar, pero mañana vamos a viajar."]
+                  extra: [van, tienen]
+      - choose:
+          title: Что ответить?
+          items:
+            - lines: ["Ana: ¿Qué te pasa?"]
+              options: "Me duelen los pies y tengo sed. | Me duele los pies y tengo sed. | Me duelen los pies y estoy sed."
+              explain: "Pies — их много: me duelen. Жажда «имеется»: tengo sed."
+              skill: [doler, tener_states]
+              variants:
+                - lines: ["Ana: ¿Qué te duele?"]
+                  options: "Me duele la cabeza y tengo frío. | Me duelo la cabeza y tengo frío. | Me duele la cabeza y estoy frío."
+                  explain: "Болит голова — me duele: болит она, а не «я». Мне холодно — tengo frío."
+            - lines: ["Ana: ¿Qué estás haciendo?"]
+              options: "Estoy leyendo. Ya he terminado el trabajo. | Estoy leendo. Ya he terminado el trabajo. | Estoy leyendo. Ya he terminando el trabajo."
+              explain: "Leer → leyendo: между гласными `i` пишется как `y`. Причастие terminar — terminado: he terminado."
+              skill: [estar_gerund, perfect]
+              variants:
+                - lines: ["Ana: ¿Qué estáis haciendo?"]
+                  options: "Estamos viendo una serie. Ya hemos visto dos películas. | Estamos vendo una serie. Ya hemos visto dos películas. | Estamos viendo una serie. Ya hemos vido dos películas."
+                  explain: "Герундий ver — viendo. Причастие — неправильное: visto, hemos visto."
+      - write:
+          title: Ответьте по-испански
+          items:
+            - q: "Médica: ¿Qué le pasa? — Ответьте: у вас болит горло и температура."
+              a: "(A mí) me duele la garganta y (también) tengo fiebre | Tengo fiebre y (también) me duele la garganta"
+              format: фраза по-испански
+              skill: [doler, tener_states]
+              mistakes: {"me duelo la garganta y tengo fiebre": "Болит горло: **me duele** la garganta.", "me duele la garganta y estoy fiebre": "Температура «имеется»: **tengo** fiebre."}
+              variants:
+                - q: "Médico: ¿Qué le pasa? — Ответьте: у вас болят ноги, и вы очень хотите пить."
+                  a: "(A mí) me duelen [las piernas/los pies] y tengo mucha sed | Tengo mucha sed y me duelen [las piernas/los pies]"
+                  mistakes: {"me duele las piernas y tengo mucha sed": "Ноги — их много: me **duelen**.", "me duelen las piernas y tengo mucho sed": "Sed — женского рода: **mucha** sed."}
+      - write:
+          title: Послушайте и запишите цифрами
+          items:
+            - say: "Mi número de teléfono es el seis, cuatro, ocho, dos, cero, siete, uno, nueve, tres."
+              q: "Запишите номер телефона."
+              a: "648207193 | 648 207 193 | 6 4 8 2 0 7 1 9 3"
+              answer: phone
+              format: цифры
+              skill: datos_personales
+              noaudio: {q: "Номер продиктовали словами: seis, cuatro, ocho, dos, cero, siete, uno, nueve, tres. Запишите его цифрами.", a: "648207193 | 648 207 193"}
+              variants:
+                - say: "Mi número de teléfono es el seis, tres, nueve, uno, cuatro, cinco, dos, ocho, siete."
+                  a: "639145287 | 639 145 287 | 6 3 9 1 4 5 2 8 7"
+                  noaudio: {q: "Номер продиктовали словами: seis, tres, nueve, uno, cuatro, cinco, dos, ocho, siete. Запишите его цифрами.", a: "639145287 | 639 145 287"}
+      - write:
+          title: Заполните анкету
+          items:
+            - q: "Dirección: — вы живёте на улице Алькала, дом 20."
+              a: "Calle (de) Alcalá, (número) [20/veinte] | C/ Alcalá, [20/veinte]"
+              format: улица и номер дома
+              skill: datos_personales
+              mistakes: {"Alcalá 20": "Перед названием улицы пишут **calle**: Calle Alcalá, 20."}
+              variants:
+                - q: "Nacionalidad: — вы украинка."
+                  a: "ucraniana"
+                  format: национальность
+                  mistakes: {"Ucrania": "Нужна национальность, а не страна: **ucraniana**.", "ucraniano": "Вы — женщина: **ucraniana**."}
+      - reading:
+          id: mensaje
+          title: Laura escribe a Sara
+          text: |
+            ¡Hola, Sara! ¿Qué tal? Yo estoy bien, pero muy ocupada. Ahora mismo estoy esperando el autobús.
+
+            Esta semana trabajo mucho. Me levanto a las siete, me ducho y desayuno un café con leche y una tostada. A las ocho y media salgo de casa. Como en la oficina y vuelvo a casa a las seis. Por la tarde leo o aprendo inglés.
+
+            Hoy he terminado el trabajo temprano y he comprado unos zapatos. ¡Son muy bonitos! ¿Quedamos el sábado?
+
+            Un beso,
+            Laura
+          translation: |
+            Привет, Сара! Как дела? У меня всё хорошо, но я очень занята. Прямо сейчас я жду автобус.
+
+            На этой неделе я много работаю. Встаю в семь, принимаю душ и завтракаю: кофе с молоком и тост. В половине девятого выхожу из дома. Обедаю в офисе и возвращаюсь домой в шесть. Вечером читаю или учу английский.
+
+            Сегодня я рано закончила работу и купила туфли. Они очень красивые! Встретимся в субботу?
+
+            Целую,
+            Лаура
+      - choose:
+          title: Ответьте по тексту
+          source: mensaje
+          items:
+            - q: "¿Qué hace Laura por la tarde?"
+              options: "Lee o aprende inglés. | Come en la oficina. | Vuelve a la oficina."
+              evidence: ["Por la tarde leo o aprendo inglés"]
+              skill: present_er_ir
+              variants:
+                - q: "¿Dónde come Laura?"
+                  options: "En la oficina. | En casa. | En un restaurante."
+                  evidence: ["Como en la oficina"]
+            - q: "¿A qué hora sale Laura de casa?"
+              options: "A las ocho y media. | A las siete. | A las seis."
+              evidence: ["A las ocho y media salgo de casa"]
+              skill: [time, a_que_hora]
+              variants:
+                - q: "¿A qué hora vuelve Laura a casa?"
+                  options: "A las seis. | A las ocho y media. | A las siete."
+                  evidence: ["vuelvo a casa a las seis"]
+            - q: "¿Qué hace Laura después de levantarse?"
+              options: "Se ducha y desayuna. | Sale de casa. | Se acuesta."
+              evidence: ["Me levanto a las siete, me ducho y desayuno"]
+              skill: reflexive
+              variants:
+                - q: "¿Qué hace Laura a las siete?"
+                  options: "Se levanta. | Sale de casa. | Vuelve a casa."
+                  evidence: ["Me levanto a las siete"]
+            - q: "¿Qué está haciendo Laura ahora?"
+              options: "Está esperando el autobús. | Está comprando zapatos. | Está desayunando."
+              evidence: ["Ahora mismo estoy esperando el autobús"]
+              skill: [estar_gerund, perfect]
+              variants:
+                - q: "¿Qué ha hecho Laura hoy?"
+                  options: "Ha comprado unos zapatos. | Ha comido en un restaurante. | Ha comprado una camisa."
+                  evidence: ["he comprado unos zapatos"]
 
   - id: fin
     kind: finale

@@ -473,6 +473,16 @@ def _with_variants(items: list, w: str) -> list:
         for v in _items(it["variants"]):
             if not isinstance(v, dict):
                 raise ContentError(f"{w}: вариант задания — словарь с теми же полями, что у задания")
+            # Вариант равноценен заданию: тот же навык и источник (их берут из задания), та же форма — на слух
+            # или нет, с репликой или без; своя альтернатива без звука (noaudio не наследуется).
+            for k in ("skill", "source", "free", "variants"):
+                if k in v:
+                    raise ContentError(f"{w}: у варианта задания не задают {k} — он берётся из самого задания")
+            for k in ("say", "lines", "img"):
+                if (k in base) != (k in v):
+                    raise ContentError(f"{w}: вариант задания должен быть той же формы, что и задание ({k} есть у одного из них)")
+            if v.get("say") and not v.get("noaudio") and base.get("noaudio"):
+                raise ContentError(f"{w}: у варианта на слух нужна своя альтернатива noaudio")
             out.append({**{k: base[k] for k in VARIANT_INHERIT if k in base}, **v, "vg": g})
     return out
 

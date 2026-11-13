@@ -975,6 +975,37 @@ test('приёмка 10 на реальных итогах: familia/repaso, fina
   }
 });
 
+// Аудит MYTHOS, этап 5: итоги A0 и A1 по спецификации — на каждой попытке (основные задания, варианты, снова основные)
+// одинаковый состав по видам, каждый навык спецификации — хотя бы в двух заданиях (иначе «слабая тема — обе ошибки» не
+// сработает), а соседние попытки дают разные задания.
+test('Э5: A0 and A1 exams match the spec on every attempt and change on retake', () => {
+  const spec = {
+    'familia/repaso': {n: [22, 24], listen: 4, read: 3, produce: 9, choose: 6,
+      skills: ['tu_usted', 'me_llamo', 'tener_age', 'de_donde', 'gender', 'hay', 'profession', 'present_ar', 'ser_forms', 'possessives', 'family']},
+    'final/examen': {n: [28, 30], listen: 6, read: 4, produce: 12, choose: 8,
+      skills: ['adj_agreement', 'hay_esta', 'ser_estar', 'ir_a', 'present_er_ir', 'gustar', 'time', 'reflexive', 'stem_change',
+               'prices', 'weather', 'ir_a_inf', 'doler', 'estar_gerund', 'datos_personales']},
+  };
+  for (const [id, sp] of Object.entries(spec)) {
+    const run = context(site), i = idx(run, id), seen = [];
+    for (const n of [0, 1, 2]) {
+      run(`P = fresh(); P.openAll = true; P.ctl[${JSON.stringify(id)}] = {n: ${n}}; startLesson(${i})`);
+      const st = J(run, `S.steps.filter(isGraded).map(s => ({type: s.type, say: !!s.say, read: s.src != null && LESSONS[${i}].blocks[s.src]?.t === "reading", skill: s.skill, q: s.key}))`);
+      assert.ok(st.length >= sp.n[0] && st.length <= sp.n[1], `${id}, попытка ${n}: ${st.length} заданий`);
+      const listen = st.filter(s => s.say), read = st.filter(s => !s.say && s.read), rest = st.filter(s => !s.say && !s.read);
+      assert.equal(listen.length, sp.listen, `${id}, попытка ${n}: на слух`);
+      assert.equal(read.length, sp.read, `${id}, попытка ${n}: чтение`);
+      assert.equal(rest.filter(s => s.type !== 'mc').length, sp.produce, `${id}, попытка ${n}: ввод и сборка`);
+      assert.equal(rest.filter(s => s.type === 'mc').length, sp.choose, `${id}, попытка ${n}: выбор формы`);
+      for (const tag of sp.skills) assert.ok(st.filter(s => s.skill.includes(tag)).length >= 2, `${id}, попытка ${n}: навык ${tag} меньше чем в двух заданиях`);
+      seen.push(st.map(s => s.q));
+    }
+    // Варианты не совпадают с основными ни в одном задании; третья попытка — снова основные.
+    assert.equal(seen[0].filter((q, k) => q === seen[1][k]).length, 0, `${id}: у части заданий нет варианта`);
+    assert.equal(seen[1].filter((q, k) => q === seen[2][k]).length, 0, `${id}: третья попытка повторяет вторую`);
+  }
+});
+
 // Приёмка 13: у каждого перестроенного урока есть карта слайдов (docs/site_slide_maps), и её сигнатура совпадает
 // с шагами, которые строит движок (node tools/site_steps.cjs <урок> --done).
 test('приёмка 13: slide maps match what the engine builds', () => {

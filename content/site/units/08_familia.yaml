@@ -259,7 +259,6 @@ lessons:
               options: "Álex. | Pablo. | Carmen."
               explain: "Yo soy el pequeño de la familia. — говорит Алекс: ему семнадцать, Кармен двадцать, Пабло — старший брат."
               skill: family
-              skill: family
             - q: "¿Cuántos años tiene Carmen?"
               options: "Tiene veinte años. | Tiene diecisiete años. | Tiene diez años."
       - choose:
@@ -468,94 +467,282 @@ lessons:
   - id: repaso
     kind: review
     title: Итоги уровня A0
-    goal: применить всё из A0 в четырёх жизненных ситуациях
-    version: 2
-    # Контроль уровня A0 (docs/a0_a1_fixes_plan.md, раздел 4): порог 80 %, ошибки не переспрашиваются,
-    # у каждого задания — навык: по ним экран результата показывает сильные и слабые темы.
+    goal: показать всё, что умеете на уровне A0, — на слух, в чтении и своими словами
+    version: 3
+    # Контроль уровня A0 (аудит MYTHOS, этап 5: SYS-06, U08-03). 22 задания: слух 4, чтение 3, ввод 6, сборка
+    # и исправление 3, выбор формы 6 — 11 навыков по 2 задания. У каждого задания есть вариант (variants):
+    # при пересдаче показывается он. Порог 80 %, ошибки не переспрашиваются.
     check: control
     blocks:
-      - "🎉 **Уровень A0 позади!** Прежде чем идти дальше, проверьте себя в четырёх ситуациях. Всё в них — из пройденных тем, нового нет. Чтобы открыть уровень A1, нужно 80 %."
-      - mission:
-          id: colleague
-          title: Новая коллега
-          text: "Вы — Пабло, инженер из Мадрида. В офис пришла новая коллега. Познакомьтесь с ней."
+      - "🎉 **Уровень A0 позади!** Нового в итоге нет. Чтобы открыть уровень A1, наберите 80 %."
       - choose:
-          source: colleague
+          title: Послушайте и выберите
           items:
-            - lines: ["Ana: ¡Buenos días! Me llamo Ana. ¿Y tú?"]
-              options: "Me llamo Pablo. Encantado. | Me llamo Pablo. Encantada. | Se llama Pablo. De nada."
-              explain: "Пабло — мужчина: encantado."
-              skill: [me_llamo, encantado]
-            - lines: ["Ana: ¿De dónde eres?"]
-              options: "Soy de Madrid. ¿Y tú? | Es de Madrid. ¿Y tú? | Soy Madrid. ¿Y tú?"
-              explain: "О себе — soy de: «я из»."
-              skill: de_donde
-            - lines: ["Ana: ¿A qué te dedicas?"]
-              options: "Soy ingeniero. | Soy un ingeniero. | Es ingeniero."
-              explain: "После ser профессию называют без артикля: Soy ingeniero."
-              skill: profession
-      - mission:
-          id: photo
-          title: Фото на телефоне
-          text: "Ана показывает вам фото своей семьи и спрашивает о вашей. У вас есть сестра Марта, ей пятнадцать лет."
+            - say: "Buenos días, señora López. ¿Cómo está usted?"
+              q: "Как говорящий обращается к сеньоре Лопес?"
+              options: "на «вы» | на «ты» | к нескольким людям сразу"
+              explain: "¿Cómo está usted? — вежливое «вы». На «ты» было бы ¿Cómo estás?"
+              skill: tu_usted
+              noaudio: {q: "«Buenos días, señora López. ¿Cómo está usted?» Как говорящий обращается к сеньоре Лопес?", options: "на «вы» | на «ты» | к нескольким людям сразу"}
+              variants:
+                - say: "Hola, Ana. ¿Qué tal? ¿Cómo estás?"
+                  q: "Как говорящий обращается к Ане?"
+                  options: "на «ты» | на «вы» | к нескольким людям сразу"
+                  explain: "¿Cómo estás? — на «ты», как к подруге. Вежливо было бы ¿Cómo está usted?"
+                  noaudio: {q: "«Hola, Ana. ¿Qué tal? ¿Cómo estás?» Как говорящий обращается к Ане?", options: "на «ты» | на «вы» | к нескольким людям сразу"}
+      - write:
+          title: Ответьте по-испански
+          items:
+            - q: "Утром вы встречаете соседку, сеньору Лопес. Поздоровайтесь и спросите на «вы», как у неё дела."
+              a: "(Hola, )buenos días(, señora López). ¿Cómo está (usted)? | Hola(, señora López). ¿Cómo está (usted)?"
+              format: приветствие и вопрос по-испански
+              skill: tu_usted
+              mistakes: {"buenos días, señora López. ¿Cómo estás?": "Соседке — на «вы»: ¿Cómo **está** usted?", "buenas noches, señora López. ¿Cómo está usted?": "Утром здороваются **buenos días**; buenas noches — поздно вечером и на прощание."}
+              variants:
+                - q: "После обеда вы звоните сеньору Гарсии. Поздоровайтесь и спросите на «вы», как у него дела."
+                  a: "(Hola, )buenas tardes(, señor García). ¿Cómo está (usted)? | Hola(, señor García). ¿Cómo está (usted)?"
+                  mistakes: {"buenas tardes, señor García. ¿Cómo estás?": "Сеньору Гарсии — на «вы»: ¿Cómo **está** usted?", "buenos días, señor García. ¿Cómo está usted?": "После обеда здороваются **buenas tardes**."}
+            - q: "Diego: Hola, me llamo Diego. ¿Y tú? — Представьтесь: вас зовут Ирина, и вы рады знакомству."
+              a: "(Hola, )(yo) me llamo Irina. [Encantada/Mucho gusto](, Diego) | (Hola, )[encantada/mucho gusto](, Diego). (Yo) me llamo Irina | (Hola, )soy Irina. [Encantada/Mucho gusto](, Diego)"
+              format: фраза по-испански
+              skill: me_llamo
+              mistakes: {"me llamo Irina. Encantado": "Ирина — женщина: **encantada**.", "se llama Irina. Encantada": "О себе — **me llamo**: Me llamo Irina."}
+              variants:
+                - q: "Señora López: Buenos días. ¿Cómo se llama usted? — Представьтесь: вас зовут Иван, и вы рады знакомству."
+                  a: "(Buenos días. )(Yo) me llamo Iván. [Encantado/Mucho gusto](, señora López) | (Buenos días. )[Encantado/Mucho gusto](, señora López). (Yo) me llamo Iván | (Buenos días. )Soy Iván. [Encantado/Mucho gusto](, señora López)"
+                  mistakes: {"me llamo Iván. Encantada": "Иван — мужчина: **encantado**.", "se llama Iván. Encantado": "О себе — **me llamo**: Me llamo Iván."}
       - choose:
-          source: photo
+          title: Что ответить?
           items:
-            - say: "Mira, es mi familia: mi padre, mi madre y mis dos hermanos."
-              q: "Кто на фото у Аны?"
-              options: "отец, мать и двое братьев (или брат и сестра) | отец, мать и две сестры | дедушка, бабушка и двое детей"
-              explain: "Mis dos hermanos — «два брата» или «брат и сестра»: смешанную группу называют мужским родом."
-              skill: [family, family_plural]
-              noaudio: {q: "«Mira, es mi familia: mi padre, mi madre y mis dos hermanos.» Кто на фото у Аны?", options: "отец, мать и двое братьев (или брат и сестра) | отец, мать и две сестры | дедушка, бабушка и двое детей"}
-            - lines: ["Ana: ¿Tienes hermanos?"]
-              options: "Sí, tengo una hermana. | Sí, tienes una hermana. | Sí, tengo un hermana."
-              explain: "О себе — tengo; hermana — женского рода: una hermana."
-              skill: tener_have
-      - write:
-          source: photo
-          skill: tener_age
-          items:
-            - q: "Ana: ¿Cuántos años tiene tu hermana? — Ответьте: «Ей пятнадцать лет»."
-              a: "Tiene quince años | Mi hermana tiene quince años"
-              format: фраза о возрасте по-испански
-              mistakes: {"tengo quince años": "Tengo — «мне». О сестре — **tiene**: Tiene quince años.", "es quince años": "Возраст «имеют»: **tiene** quince años."}
-      - mission:
-          id: bag
-          title: Что в рюкзаке?
-          text: "Вы помогаете Ане найти ключи. На столе — книга и два мобильных, в рюкзаке — ключи. Ответьте ей."
+            - lines: ["Señor García: ¿Cómo se llama usted?"]
+              options: "Me llamo Ana. | Se llama Ana. | Te llamas Ana."
+              explain: "О себе — me llamo. Se llama — «его (её) зовут» или «вас зовут», te llamas — «тебя зовут»."
+              skill: me_llamo
+              variants:
+                - lines: ["Ana: ¿Cómo se llama tu amigo?"]
+                  options: "Se llama Diego. | Me llamo Diego. | Te llamas Diego."
+                  explain: "О другом человеке — se llama: «его зовут». Me llamo — о себе."
       - choose:
-          source: bag
-          skill: hay
+          title: Послушайте и выберите
           items:
-            - lines: ["Ana: ¿Qué hay en la mesa?"]
-              options: "Hay un libro y dos móviles. | Es un libro y dos móviles. | Hay el libro y los móviles."
-              explain: "Что где есть — hay, и после hay — un, а не el."
+            - say: "Soy de Italia, pero vivo en Madrid. Hablo italiano y un poco de español."
+              q: "Что вы узнали о говорящем?"
+              options: "Из Италии, немного говорит по-испански. | Из Испании, немного говорит по-итальянски. | Из Италии, по-испански не говорит."
+              explain: "Soy de Italia — «я из Италии»; un poco de español — «немного по-испански»."
+              skill: [de_donde, hablar_lang]
+              noaudio: {q: "«Soy de Italia, pero vivo en Madrid. Hablo italiano y un poco de español.» Что вы узнали о говорящем?", options: "Из Италии, немного говорит по-испански. | Из Испании, немного говорит по-итальянски. | Из Италии, по-испански не говорит."}
+              variants:
+                - say: "Soy de Alemania y vivo en Valencia. Hablo alemán, inglés y un poco de español."
+                  options: "Из Германии, немного говорит по-испански. | Из Англии, немного говорит по-немецки. | Из Германии, по-английски не говорит."
+                  explain: "Soy de Alemania — «я из Германии»; hablo alemán, inglés y un poco de español — по-немецки, по-английски и немного по-испански."
+                  noaudio: {q: "«Soy de Alemania y vivo en Valencia. Hablo alemán, inglés y un poco de español.» Что вы узнали о говорящем?", options: "Из Германии, немного говорит по-испански. | Из Англии, немного говорит по-немецки. | Из Германии, по-английски не говорит."}
       - write:
-          source: bag
-          skill: hay
+          title: Ответьте по-испански
           items:
-            - q: "Ana: ¿Y en la mochila? — Скажите: «В рюкзаке — ключи»."
-              a: "En la mochila hay unas llaves | Hay unas llaves | En la mochila hay llaves | Hay llaves en la mochila | Hay unas llaves en la mochila"
-              format: фраза с hay по-испански
-              mistakes: {"en la mochila hay las llaves": "После hay не ставят el, la, los, las: hay **unas** llaves.", "en la mochila son unas llaves": "Что где есть — **hay**: En la mochila hay unas llaves."}
-      - mission:
-          id: phone
-          title: Номер телефона
-          text: "Ана диктует свой номер. Запишите его, а потом назовите свой: шесть, пять, ноль, один, два…"
+            - q: "Diego: ¿De dónde eres? ¿Hablas inglés? — Ответьте: вы из Украины, говорите по-украински и по-английски."
+              a: "(Yo) soy de Ucrania( y) (sí, )(yo) hablo ucraniano e inglés | (Yo) soy [ucraniano/ucraniana]( y) (yo) hablo ucraniano e inglés"
+              format: две фразы по-испански
+              skill: [de_donde, hablar_lang]
+              mistakes: {"soy de Ucrania. Hablo ucraniano y inglés": "Перед i- союз y меняется на **e**: ucraniano **e** inglés.", "soy Ucrania. Hablo ucraniano e inglés": "Откуда вы — **soy de**: Soy de Ucrania."}
+              variants:
+                - q: "Diego: ¿De dónde eres? ¿Hablas inglés? — Ответьте: вы из Колумбии, говорите по-испански и немного по-английски."
+                  a: "(Yo) soy de Colombia( y) (sí, )(yo) hablo español y un poco de inglés | (Yo) soy [colombiano/colombiana]( y) (yo) hablo español y un poco de inglés"
+                  mistakes: {"soy de Colombia. Hablo español y un poco inglés": "«Немного по-английски» — un poco **de** inglés.", "soy Colombia. Hablo español y un poco de inglés": "Откуда вы — **soy de**: Soy de Colombia."}
       - write:
-          source: phone
-          skill: [numbers_ear, phone]
+          title: Послушайте и запишите цифрами
           items:
-            - say: "seis, cuatro, ocho, dos, cero, siete, uno, nueve, tres"
-              q: "Запишите номер Аны цифрами."
-              a: "648207193 | 648 207 193 | 6 4 8 2 0 7 1 9 3"
-              answer: phone
+            - say: "Mi abuelo tiene setenta y cuatro años."
+              q: "Сколько лет дедушке?"
+              a: "74"
+              answer: number
               format: цифры
-              noaudio: {q: "Ана пишет номер словами: seis, cuatro, ocho, dos, cero, siete, uno, nueve, tres. Запишите его цифрами.", a: "648207193 | 648 207 193 | 6 4 8 2 0 7 1 9 3"}
-      - build:
-          source: phone
-          skill: [phone, mi_tu_su]
+              skill: tener_age
+              mistakes: {"47": "Setenta — 70, cuatro — 4: setenta y cuatro — **74**.", "64": "Setenta — 70, sesenta — 60: setenta y cuatro — **74**."}
+              noaudio: {q: "«Mi abuelo tiene setenta y cuatro años.» Сколько лет дедушке? Запишите цифрами.", a: "74"}
+              variants:
+                - say: "Mi madre tiene cuarenta y nueve años."
+                  q: "Сколько лет маме?"
+                  a: "49"
+                  mistakes: {"59": "Cuarenta — 40, cincuenta — 50: cuarenta y nueve — **49**.", "94": "Cuarenta — 40, nueve — 9: cuarenta y nueve — **49**."}
+                  noaudio: {q: "«Mi madre tiene cuarenta y nueve años.» Сколько лет маме? Запишите цифрами.", a: "49"}
+      - write:
+          title: Ответьте по-испански
           items:
-            - es: "Mi número es seis, cinco, cero, uno, dos."
-              ru: "Продиктуйте: «Мой номер — шесть, пять, ноль, один, два…»"
-              extra: [tu]
+            - q: "Diego: ¿Cuántos años tienes? — Ответьте: вам двадцать пять лет."
+              a: "(Yo) tengo [veinticinco/25] (años)"
+              format: фраза о возрасте по-испански
+              skill: tener_age
+              mistakes: {"soy veinticinco años": "Возраст «имеют»: **tengo** veinticinco años.", "tiene veinticinco años": "О себе — **tengo**: Tengo veinticinco años."}
+              variants:
+                - q: "Diego: ¿Y tu hermano? ¿Cuántos años tiene? — Ответьте: ему тридцать один год."
+                  a: "(Mi hermano) tiene [treinta y un/31] años | (Él) tiene [treinta y un/31] años | (Mi hermano) tiene [treinta y uno/31] | (Él) tiene [treinta y uno/31]"
+                  mistakes: {"tiene treinta y uno años": "Перед años — **un**: treinta y un años.", "tengo treinta y un años": "О брате — **tiene**: Tiene treinta y un años."}
+      - choose:
+          title: Выберите
+          items:
+            - q: "En la mesa hay ___ libro y ___ llave."
+              options: "un / una | una / un | el / la"
+              explain: "Libro — мужского рода (un libro), llave — женского (una llave). После hay ставят un, una, а не el, la."
+              skill: gender
+              variants:
+                - q: "Tengo ___ bolígrafo y ___ mochila."
+                  options: "un / una | una / un | unos / unas"
+                  explain: "Bolígrafo — мужского рода: un bolígrafo; mochila — женского: una mochila."
+            - q: "En la mochila hay ___."
+              options: "unos lápices | unos lápizes | un lápices"
+              explain: "Lápiz → lápices: перед -es буква `z` меняется на `c`. Артикль тоже во множественном числе — unos."
+              skill: [hay, plural]
+              variants:
+                - q: "En la mesa hay dos ___."
+                  options: "móviles | móvils | móvil"
+                  explain: "Móvil оканчивается на согласную, поэтому во множественном числе -es: móviles."
+      - write:
+          title: Исправьте ошибку
+          items:
+            - q: "Исправьте ошибку: «Hay una mapa en la mesa.»"
+              a: "Hay un mapa en la mesa | En la mesa hay un mapa"
+              format: фраза по-испански
+              skill: gender
+              mistakes: {"hay una mapa en la mesa": "Mapa — исключение: оканчивается на -a, но мужского рода — **un** mapa."}
+              variants:
+                - q: "Исправьте ошибку: «Tengo un foto de mi familia.»"
+                  a: "(Yo) tengo una foto de mi familia"
+                  mistakes: {"tengo un foto de mi familia": "Foto — женского рода, хотя оканчивается на -o: **una** foto."}
+      - write:
+          title: Ответьте по-испански
+          items:
+            - q: "Ana: ¿Qué hay en la mesa? — Ответьте: на столе — два мобильных и ключи."
+              a: "(En la mesa) hay dos móviles y (unas) llaves | Hay dos móviles y (unas) llaves en la mesa"
+              format: фраза с hay по-испански
+              skill: [hay, plural]
+              mistakes: {"en la mesa hay dos móvils y unas llaves": "Móvil оканчивается на согласную: во множественном числе **-es** — móviles.", "en la mesa hay dos móviles y las llaves": "После hay не ставят el, la, los, las: hay **unas** llaves.", "en la mesa son dos móviles y unas llaves": "Что где есть — **hay**: En la mesa hay dos móviles."}
+              variants:
+                - q: "Ana: ¿Qué hay en la mochila? — Ответьте: в рюкзаке — три книги и карандаши."
+                  a: "(En la mochila) hay tres libros y (unos) lápices | Hay tres libros y (unos) lápices en la mochila"
+                  mistakes: {"en la mochila hay tres libros y unos lápizes": "Lápiz → **lápices**: перед -es буква `z` меняется на `c`.", "en la mochila hay tres libros y los lápices": "После hay не ставят el, la, los, las: hay **unos** lápices."}
+            - q: "Diego: ¿A qué te dedicas? — Ответьте: вы врач (вы — женщина) и работаете в больнице."
+              a: "(Yo) soy médica (y) (yo) trabajo en un hospital | (Yo) trabajo en un hospital (y) (yo) soy médica"
+              format: фраза по-испански
+              skill: [profession, trabajar_en]
+              mistakes: {"soy una médica y trabajo en un hospital": "После ser профессию называют без артикля: soy **médica**.", "soy médico y trabajo en un hospital": "Вы — женщина: **médica**."}
+              variants:
+                - q: "Diego: ¿A qué te dedicas? — Ответьте: вы официант (вы — мужчина) и работаете в ресторане."
+                  a: "(Yo) soy camarero (y) (yo) trabajo en un restaurante | (Yo) trabajo en un restaurante (y) (yo) soy camarero"
+                  mistakes: {"soy un camarero y trabajo en un restaurante": "После ser профессию называют без артикля: soy **camarero**.", "soy camarera y trabajo en un restaurante": "Вы — мужчина: **camarero**."}
+      - choose:
+          title: Выберите
+          items:
+            - q: "Nosotros ___ español en la escuela."
+              options: "estudiamos | estudian | estudiáis"
+              explain: "С nosotros у глагола на -ar окончание -amos: estudiamos."
+              skill: present_ar
+              variants:
+                - q: "¿Vosotros ___ en un hospital?"
+                  options: "trabajáis | trabajan | trabajamos"
+                  explain: "С vosotros у глагола на -ar окончание -áis: trabajáis."
+            - q: "Nosotros ___ de Ucrania."
+              options: "somos | son | sois"
+              explain: "Ser с nosotros — somos."
+              skill: ser_forms
+              variants:
+                - q: "¿Vosotras ___ estudiantes?"
+                  options: "sois | son | somos"
+                  explain: "Ser с vosotros и vosotras — sois."
+      - write:
+          title: Перескажите
+          items:
+            - q: "Перескажите от лица «мы» (вы и ваш друг): «Trabajo en una oficina.»"
+              a: "(Nosotros) trabajamos en una oficina | (Nosotras) trabajamos en una oficina"
+              format: фраза по-испански
+              skill: present_ar
+              mistakes: {"trabajan en una oficina": "«Мы» — окончание **-amos**: trabajamos.", "trabajáis en una oficina": "«Мы» — окончание **-amos**: trabajamos."}
+              variants:
+                - q: "Перескажите о ваших друзьях (они): «Hablo español y un poco de inglés.»"
+                  a: "(Ellos) hablan español y un poco de inglés | (Ellas) hablan español y un poco de inglés | Mis amigos hablan español y un poco de inglés"
+                  mistakes: {"hablamos español y un poco de inglés": "«Они» — окончание **-an**: hablan.", "habla español y un poco de inglés": "Их несколько — **hablan**."}
+      - choose:
+          title: Послушайте и выберите
+          items:
+            - say: "Mira, es mi tía Rosa, la hermana de mi madre."
+              q: "Кто такая Роса?"
+              options: "сестра мамы | сестра папы | мама мамы"
+              explain: "La hermana de mi madre — сестра мамы, то есть тётя (la tía)."
+              skill: family
+              noaudio: {q: "«Mira, es mi tía Rosa, la hermana de mi madre.» Кто такая Роса?", options: "сестра мамы | сестра папы | мама мамы"}
+              variants:
+                - say: "Mira, es mi primo Luis, el hijo de mi tío."
+                  q: "Кто такой Луис?"
+                  options: "двоюродный брат | родной брат | дядя"
+                  explain: "El hijo de mi tío — сын дяди, то есть двоюродный брат (el primo)."
+                  noaudio: {q: "«Mira, es mi primo Luis, el hijo de mi tío.» Кто такой Луис?", options: "двоюродный брат | родной брат | дядя"}
+      - choose:
+          title: Выберите
+          items:
+            - q: "Ana y yo tenemos un gato. Es ___ gato."
+              options: "nuestro | nuestra | nuestros"
+              explain: "Gato — мужского рода, единственное число: nuestro gato."
+              skill: possessives
+              variants:
+                - q: "Mis padres tienen una casa en Kiev. Es ___ casa."
+                  options: "su | sus | mi"
+                  explain: "Дом родителей — «их дом»: su casa. Casa — одна, поэтому su, а не sus."
+      - build:
+          title: Соберите фразу
+          items:
+            - es: "Mis hermanos y sus hijos viven en Kiev."
+              ru: "Мои братья и их дети живут в Киеве."
+              extra: [mi, su]
+              skill: possessives
+              variants:
+                - es: "Nuestra madre es profesora y nuestro padre es médico."
+                  ru: "Наша мама — учительница, а наш папа — врач."
+                  alt: ["Nuestro padre es médico y nuestra madre es profesora."]
+                  extra: [nuestros, una]
+      - reading:
+          id: carta
+          title: Me llamo Beatriz
+          text: |
+            ¡Hola! Me llamo Beatriz. Soy de Valencia, pero vivo en Madrid. Soy profesora y trabajo en una escuela.
+
+            Mi marido se llama Jorge. Él también es de Valencia. Es médico y trabaja en un hospital.
+
+            Tenemos dos hijos: Inés y Mario. Inés tiene ocho años y Mario tiene cinco. Mis padres viven en Valencia.
+          translation: |
+            Привет! Меня зовут Беатрис. Я из Валенсии, но живу в Мадриде. Я учительница и работаю в школе.
+
+            Моего мужа зовут Хорхе. Он тоже из Валенсии. Он врач и работает в больнице.
+
+            У нас двое детей: Инес и Марио. Инес восемь лет, а Марио пять. Мои родители живут в Валенсии.
+      - choose:
+          title: Ответьте по тексту
+          source: carta
+          items:
+            - q: "¿Dónde trabaja Jorge?"
+              options: "En un hospital. | En una escuela. | En una oficina."
+              evidence: ["Es médico y trabaja en un hospital"]
+              skill: [profession, trabajar_en]
+              variants:
+                - q: "¿Qué es Beatriz?"
+                  options: "Es profesora. | Es médica. | Es estudiante."
+                  evidence: ["Soy profesora y trabajo en una escuela"]
+            - q: "¿Cuántos hijos tienen Beatriz y Jorge?"
+              options: "Dos. | Uno. | Tres."
+              evidence: ["Tenemos dos hijos"]
+              skill: family
+              variants:
+                - q: "¿Quién es Mario?"
+                  options: "El hijo de Beatriz y Jorge. | El marido de Beatriz. | El padre de Jorge."
+                  evidence: ["Tenemos dos hijos: Inés y Mario"]
+      - write:
+          title: Ответьте по тексту
+          source: carta
+          items:
+            - q: "¿De dónde son Beatriz y Jorge? — Ответьте фразой по тексту."
+              a: "(Beatriz y Jorge) son de Valencia | (Ellos) son de Valencia | (Los dos) son de Valencia"
+              format: фраза по-испански
+              skill: ser_forms
+              mistakes: {"somos de Valencia": "О них — **son**: Son de Valencia.", "es de Valencia": "Их двое — **son**: Son de Valencia."}
+              variants:
+                - q: "¿De dónde es Jorge? — Ответьте фразой по тексту."
+                  a: "(Jorge) es de Valencia | (Él) es de Valencia | (Jorge) también es de Valencia | (Él) también es de Valencia"
+                  mistakes: {"soy de Valencia": "О Хорхе — **es**: Es de Valencia.", "son de Valencia": "Хорхе один — **es**: Es de Valencia."}

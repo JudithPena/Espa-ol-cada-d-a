@@ -292,3 +292,27 @@ def test_content_lint_catches_audit_errors(tmp_path):
     keys = [k for k, _ in warnings(course)]
     assert "u/q|tense|comimos" in keys
     assert "u/w|words" in keys
+
+
+def test_exam_variants_expand_with_one_group_and_keep_shape():
+    """Аудит MYTHOS, этап 5: variants у задания итога — равноценные замены для пересдачи. Разворачиваются в задания
+    блока с общей группой vg и навыком задания; вариант другой формы (на слух / без звука, с репликой / без),
+    со своим навыком или без альтернативы noaudio — ошибка содержания."""
+    b = parse_block({"choose": {"items": [{"q": "A", "options": "sí | no", "skill": "greet",
+                                          "variants": [{"q": "B", "options": "no | sí"}, {"q": "C", "options": "sí | no"}]},
+                                         {"q": "D", "options": "sí | no"}]}}, "t")
+    items = b.data["items"]
+    assert [(it["q"], it.get("vg")) for it in items] == [("A", 0), ("B", 0), ("C", 0), ("D", None)]
+    assert all(it["meta"]["skill"] == ["greet"] for it in items[:3])
+    w = parse_block({"write": {"items": [{"q": "x", "a": "1", "answer": "number", "variants": [{"q": "y", "a": "2"}]}]}}, "t")
+    assert [it.get("answer") for it in w.data["items"]] == ["number", "number"]   # тип ответа наследуется
+    na = {"q": "¿?", "options": "sí | no"}
+    bad = [{"q": "B", "options": "no | sí", "skill": "other"},          # свой навык
+           {"say": "Hola", "options": "sí | no", "noaudio": na},          # на слух, а задание — нет
+           {"q": "B", "options": "no | sí", "source": "d"}]               # свой источник
+    for v in bad:
+        with pytest.raises(ContentError):
+            parse_block({"choose": {"items": [{"q": "A", "options": "sí | no", "variants": [v]}]}}, "t")
+    with pytest.raises(ContentError, match="noaudio"):
+        parse_block({"choose": {"items": [{"say": "Hola", "options": "sí | no", "noaudio": na,
+                                           "variants": [{"say": "Adiós", "options": "sí | no"}]}]}}, "t")
