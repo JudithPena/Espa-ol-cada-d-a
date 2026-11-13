@@ -720,7 +720,7 @@ test('тема 01: старое прохождение «Утро в офисе�
   run('startPhraseReview()');
   assert.ok(run('S.steps.length') >= 1, 'повторение навыков работает со старыми ключами');
   const i = idx(run, 'saludos/dialogue');
-  assert.equal(run(`LESSONS[${i}].version`), 3);
+  assert.ok(run(`LESSONS[${i}].version`) >= 3);   // 4 с 13.11 (задания на слух, аудит MYTHOS)
   assert.equal(run(`isDone(${i})`), true, 'старое прохождение не стёрто');
   assert.equal(run(`isOutdated(${i})`), true);
   assert.equal(run('P.done["saludos/dialogue"].stars'), 3);

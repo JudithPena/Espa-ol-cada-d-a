@@ -14,7 +14,7 @@ lessons:
     kind: vocab
     title: Привет и пока
     goal: здороваться утром, днём и вечером и прощаться
-    version: 2
+    version: 3
     # Карта экранов: docs/site_slide_maps/01_saludos.md
     vocab:
       - "☀️ buenos días [буэ́нос ди́ас] — доброе утро; добрый день (до обеда) :: ¡Buenos días, María! — Доброе утро, Мария!"
@@ -94,12 +94,26 @@ lessons:
             - "hasta luego — до встречи"
             - "hasta mañana — до завтра"
             - "adiós — до свидания"
+      - choose:
+          title: Послушайте и выберите
+          rule: day
+          skill: greeting_time
+          items:
+            - say: "¡Buenas noches!"
+              q: "Когда так говорят?"
+              options: "поздно вечером | утром | днём"
+              noaudio: {q: "Когда говорят «¡Buenas noches!»?", options: "поздно вечером | утром | днём"}
       - dialogue:
           id: porch
           title: Вечером у подъезда
           lines:
             - "Pablo: ¡Hola, Lucía! ¡Buenas tardes! | Привет, Лусия! Добрый вечер!"
             - "Lucía: ¡Buenas tardes, Pablo! | Добрый вечер, Пабло!"
+      - dialogue:
+          id: porch_bye
+          title: Через минуту — до завтра
+          join: true
+          lines:
             - "Pablo: ¡Hasta mañana, Lucía! | До завтра, Лусия!"
             - "Lucía: ¡Adiós, Pablo! | Пока, Пабло!"
       - choose:
@@ -124,7 +138,7 @@ lessons:
     kind: vocab
     title: "¿Qué tal? Как дела?"
     goal: спросить, как дела, и ответить в одно-два слова
-    version: 2
+    version: 3
     vocab:
       - "❓ ¿Qué tal? [кэ таль] — как дела? :: ¡Hola, Ana! ¿Qué tal? — Привет, Ана! Как дела?"
       - "🙂 bien [бьен] — хорошо :: Bien, gracias. — Хорошо, спасибо."
@@ -164,6 +178,19 @@ lessons:
             - q: "😕 У вас болит голова, всё плохо."
               options: "Mal... | Regular... | Bien..."
       - learn: ["¿Y tú?"]
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          skill: how_are_you
+          items:
+            - say: "Regular."
+              q: "Как дела у Лусии?"
+              options: "так себе | очень хорошо | плохо"
+              noaudio: {q: "Лусия отвечает: «Regular». Как у неё дела?", options: "так себе | очень хорошо | плохо"}
+            - say: "Mal."
+              q: "Как дела у Пабло?"
+              options: "плохо | хорошо | так себе"
+              noaudio: {q: "Пабло отвечает: «Mal». Как у него дела?", options: "плохо | хорошо | так себе"}
       - tip:
           id: y_tu
           text: |
@@ -209,7 +236,7 @@ lessons:
     kind: grammar
     title: «Ты» и «вы». Знаки ¿? и ¡!
     goal: выбрать «ты» или «вы» и правильно записать вопрос и восклицание
-    version: 2
+    version: 3
     vocab:
       - "🧑 tú [ту] — ты"
       - "🎩 usted [устэ́д] — вы (вежливо, одному человеку)"
@@ -294,6 +321,20 @@ lessons:
             - q: "Вы здороваетесь с пожилым соседом. Его фамилия — Гарсия."
               options: "Buenos días, señor García. | Buenos días, señora García. | ¡Hola, García! ¿Qué tal?"
               explain: "К мужчине обращаются señor, к женщине — señora. С пожилым соседом говорят вежливо и называют его по фамилии с señor."
+      - choose:
+          title: "Послушайте: на «ты» или на «вы»?"
+          free: true
+          rule: tu_usted
+          skill: tu_usted
+          items:
+            - say: "Buenos días, señora. ¿Cómo está usted?"
+              q: "Как обращаются к человеку?"
+              options: "на «вы» | на «ты»"
+              noaudio: {q: "«Buenos días, señora. ¿Cómo está usted?» — это на «ты» или на «вы»?", options: "на «вы» | на «ты»"}
+            - say: "¡Hola, Pablo! ¿Cómo estás?"
+              q: "Как обращаются к человеку?"
+              options: "на «ты» | на «вы»"
+              noaudio: {q: "«¡Hola, Pablo! ¿Cómo estás?» — это на «ты» или на «вы»?", options: "на «ты» | на «вы»"}
       - header: Перевёрнутые знаки
       - compare:
           id: marks
@@ -350,7 +391,7 @@ lessons:
     kind: dialogue
     title: Утро в офисе
     goal: поблагодарить, извиниться и попросить кофе
-    version: 3
+    version: 4
     vocab:
       - "🙏 por favor [пор фабо́р] — пожалуйста (просьба) :: Un café, por favor. — Кофе, пожалуйста. {forms: un}"
       - "🙏 muchas gracias [му́час гра́θиас] — большое спасибо"
@@ -417,6 +458,19 @@ lessons:
             - q: "Что сеньора Лопес отвечает на извинение?"
               options: "No pasa nada. | De nada. | Por favor."
               explain: "Señora López: No pasa nada. — «ничего страшного»: так отвечают на извинение. De nada говорят в ответ на благодарность."
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          skill: polite
+          items:
+            - say: "No pasa nada."
+              q: "Вы извинились. Что вам ответили?"
+              options: "Ничего страшного. | Не за что. | Пожалуйста."
+              noaudio: {q: "Вы извинились, а вам ответили «No pasa nada». Что это значит?", options: "Ничего страшного. | Не за что. | Пожалуйста."}
+            - say: "De nada."
+              q: "Вы поблагодарили. Что вам ответили?"
+              options: "Не за что. | Ничего страшного. | Большое спасибо."
+              noaudio: {q: "Вы поблагодарили, а вам ответили «De nada». Что это значит?", options: "Не за что. | Ничего страшного. | Большое спасибо."}
       - note:
           id: un_cafe
           text: |
@@ -560,7 +614,7 @@ lessons:
     kind: quiz
     title: Приветствия
     goal: поздороваться, спросить, как дела, выбрать «ты» или «вы» и попрощаться в любой ситуации
-    version: 2
+    version: 3
     check: soft
     blocks:
       - "Это тест по теме «Приветствия». Отвечайте быстро, как в живом разговоре."
@@ -578,6 +632,17 @@ lessons:
             - "regular — так себе"
             - "perdón — извините"
             - "vale — ладно"
+      - write:
+          title: Ответьте
+          format: фраза по-испански
+          items:
+            - q: "Сеньор Гарсия: Buenos días. ¿Cómo está usted? — У вас всё хорошо. Ответьте и спросите в ответ."
+              a: "Muy bien, gracias. ¿Y usted? | [Muy bien/Bien], gracias. ¿Y usted?"
+              skill: tu_usted
+              mistakes: {"bien gracias y tu": "С сеньором Гарсией — на «вы»: **¿Y usted?**", "muy bien gracias y tu": "С сеньором Гарсией — на «вы»: **¿Y usted?**"}
+            - q: "17:00. Вы уходите с работы, завтра снова придёте. Попрощайтесь с Лусией."
+              a: "Hasta mañana, Lucía | Hasta mañana | Adiós, Lucía. Hasta mañana | Adiós, hasta mañana"
+              skill: farewell
     quiz:
       - q: Что сказать коллеге в 10 утра?
         options: "¡Buenos días! | ¡Buenas tardes! | ¡Buenas noches!"
@@ -587,9 +652,9 @@ lessons:
         options: "¿Cómo está usted? | ¿Cómo estás? | ¿Y tú?"
         explain: "Слово usted означает вежливое «вы». Вопрос ¿Cómo estás? задают на «ты», а ¿Y tú? значит «а ты?»."
         skill: tu_usted
-      - q: "— ¿Qué tal? — ..."
-        options: "Muy bien, gracias. | De nada. | Hasta luego."
-        explain: "На вопрос ¿Qué tal? отвечают, как у вас дела: Muy bien, gracias. А de nada значит «не за что», и hasta luego значит «до встречи»."
+      - q: "— ¿Qué tal? — ... (у вас всё отлично)"
+        options: "Muy bien, gracias. | Regular. | Mal."
+        explain: "Всё отлично — muy bien. Regular — «так себе», mal — «плохо»."
         skill: how_are_you
       - q: Как сказать «до завтра»?
         options: "¡Hasta mañana! | ¡Hasta luego! | ¡Buenas noches!"

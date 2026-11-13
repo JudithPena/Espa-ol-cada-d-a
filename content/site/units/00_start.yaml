@@ -76,6 +76,9 @@ lessons:
             1. Если слово заканчивается на гласную или на согласные `n` и `s`, то ударение падает на **предпоследний** слог: **ca**sa, **ta**xi, **ho**la, **Car**men, **Car**los.
             2. Если слово заканчивается на любую другую согласную, то ударение падает на **последний** слог: ho**tel**, Ma**drid**, Isa**bel**.
             3. Если над гласной стоит значок ´, то ударение падает именно туда, даже когда первые два правила говорят иначе: ca**fé**, **mú**sica, An**drés**.
+      - more:
+          title: Сколько слогов в «Diego»?
+          text: "Гласные `i` и `u` рядом с другой гласной читаются с ней в **один слог**: `Die-go`, `Ma-rio`, `Ser-gio`. Поэтому в Diego два слога, и ударение по правилу 1 — на первом: [дьэ́го]."
       - learn: [el café, el hotel, la música]
       - choose:
           title: Где ударение?
@@ -333,15 +336,24 @@ lessons:
     version: 2
     check: soft
     blocks:
-      - match:
-          title: Соедините пары
-          pairs:
-            - "la plaza — площадь"
-            - "el perro — собака"
-            - "la guitarra — гитара"
-            - "gracias — спасибо"
-            - "mañana — завтра"
-            - "la casa — дом"
+      - choose:
+          title: Какое слово вы услышали?
+          items:
+            - say: "la guitarra"
+              options: "la guitarra | la guitara | la gitarra"
+              explain: "Двойное `rr` звучит раскатисто; «ги» пишется `gui`: guitarra."
+              skill: spell_hjg
+              noaudio: {q: "Как пишется слово, которое звучит [ла гита́рра]?", options: "la guitarra | la guitara | la gitarra"}
+            - say: "la plaza"
+              options: "la plaza | la plasa | la placa"
+              explain: "Межзубный звук перед `a` пишется `z`: plaza."
+              skill: spell_czr
+              noaudio: {q: "Как пишется слово, которое звучит [ла пла́θа]?", options: "la plaza | la plasa | la placa"}
+            - say: "mañana"
+              options: "mañana | manana | maniana"
+              explain: "«нь» — одна буква `ñ`: mañana."
+              skill: spell_ll_n
+              noaudio: {q: "Как пишется слово, которое звучит [манья́на]?", options: "mañana | manana | maniana"}
       - write:
           title: Послушайте и напишите
           format: слово по-испански
@@ -357,10 +369,6 @@ lessons:
               explain: "«Кэ» пишется `que`."
               noaudio: {q: "Напишите по-испански слово, которое читается [эль кэ́со].", a: "el queso | queso"}
     quiz:
-      - q: Как пишется слово, которое звучит [гита́рра]?
-        options: "guitarra | gitarra | jitarra"
-        explain: "В сочетаниях `gue` и `gui` буква `u` не читается, поэтому мы говорим [гита́рра]."
-        skill: spell_hjg
       - q: Как пишется слово, которое звучит [хамо́н]?
         options: "jamón | hamón | gamón"
         explain: "Буква `j` читается как русское «х», поэтому jamón звучит как [хамо́н]."
