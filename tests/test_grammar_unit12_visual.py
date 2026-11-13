@@ -33,3 +33,21 @@ def test_distance_map_is_opt_in_and_mobile_layout_is_present():
     assert ".gdist-axis" in template
     assert ".gdist-forms .gforms-mobile" in template
     assert "@media(max-width:600px)" in template
+
+
+def test_unit12_first_mini_check_covers_all_three_distances_without_changing_existing_items():
+    from espanol.grammar import load_grammar
+    unit = next(u for u in load_grammar() if u["number"] == 12)
+    mini = unit["sections"][0]["check"]
+    assert mini["id"] == "check-a"
+    assert mini["revision"] == 2
+    assert [q["distance"] for q in mini["questions"]] == ["near", "listener", "far"]
+    assert [q["answers"] for q in mini["questions"]] == [["este"], ["esas"], ["aquel"]]
+    assert mini["questions"][2]["options"] == ["aquella", "este", "aquel"]
+    assert "ese" in mini["questions"][2]["explain"]
+    assert "gDistance(q.distance, gUnit()?.number === 12)" in (Path(__file__).resolve().parents[1] / "espanol/grammar_player.js").read_text(encoding="utf-8")
+    player = (Path(__file__).resolve().parents[1] / "espanol/grammar_player.js").read_text(encoding="utf-8")
+    assert "function gDistanceArt(key)" in player
+    assert "gdistance-dot" in player  # Legacy distance display preserved outside unit 12.
+    styles = (Path(__file__).resolve().parents[1] / "espanol/site_template.html").read_text(encoding="utf-8")
+    assert ".gdistance-illustrated .gdistance-art" in styles

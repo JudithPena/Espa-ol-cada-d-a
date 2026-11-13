@@ -86,8 +86,25 @@
             "sourceRef": "mini",
             "context": "Выбери слово по подсказке.",
             "distance": "listener"
+          },
+          {
+            "prompt": "Mira ___ árbol que está al fondo del parque.",
+            "answers": [
+              "aquel"
+            ],
+            "explain": "Дерево находится далеко от вас обоих: aquel árbol подчёркивает удалённость. Árbol — мужского рода. В разговоре возможно и ese, но здесь мы тренируем именно указание вдаль.",
+            "options": [
+              "aquella",
+              "este",
+              "aquel"
+            ],
+            "translation": "Ты показываешь другу дерево в самом конце парка — далеко от вас обоих.",
+            "sourceRef": "mini",
+            "context": "Выбери форму, которая подчёркивает большое расстояние.",
+            "distance": "far"
           }
-        ]
+        ],
+        "revision": 2
       },
       "illustration": {
         "image": "art/theory-004-014/012a.webp",
