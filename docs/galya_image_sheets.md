@@ -19,3 +19,36 @@ Create one square 1024x1024 image: a 2x2 grid of four separate flat vector illus
 ```
 Create one square 1024x1024 image: a 2x2 grid of four separate flat vector illustrations, divided by thin white gutters (no borders, no captions). Warm pastel colors, clean outlines, light background, large simple objects, minimal detail, the same style in all four panels, each panel readable on a phone screen. When a person is needed, she is the same friendly middle-aged woman with dark shoulder-length hair. No text, letters, numbers, logos or watermarks anywhere (clocks and calendars show only hands and icons). Panels, left to right, top to bottom: (1) a stylized map of a region with green hills, a river, mountains and a few villages, the region outlined with a thick colored line; (2) a passport open on a desk with a large round entry stamp and a small airplane icon next to it, a hand holding the passport; (3) a schoolgirl-style scene for an adult: a woman sitting at a desk looking at an exam paper with a big red X mark, a sad face and a pencil in her hand; in the corner a small cancelled-event icon (a concert ticket crossed out); (4) leave this panel empty: a plain light cream background;
 ```
+
+
+# Шестой список (18 слов): листы 4–8
+
+## Лист 4: hacer_caso, atrevido, trascendental, motin
+
+```
+Create one square 1024x1024 image: a 2x2 grid of four separate flat vector illustrations, divided by thin white gutters (no borders, no captions). Warm pastel colors, clean outlines, light background, large simple objects, minimal detail, the same style in all four panels, each panel readable on a phone screen. When the scene has the recurring hero, he is a friendly man about 60 with short gray hair; when a profession is named, show a person of that profession instead. No text, letters, numbers, logos or watermarks anywhere (clocks and calendars show only hands and icons). Panels, left to right, top to bottom: (1) a mother pointing a finger to a coat, a boy in front of her putting the coat on and nodding, a small check-mark icon above him; (2) a bold young woman in a bright daring outfit with a confident wink, other people looking at her in surprise; (3) a big important-looking calendar day circled in gold, a man in a suit standing before it with a serious face, a large glowing star above; (4) sailors on an old ship's deck raising fists, the captain at the wheel looking shocked, a torn rope flying;
+```
+
+## Лист 5: atreverse, consecuencia, darse_cuenta, decidir
+
+```
+Create one square 1024x1024 image: a 2x2 grid of four separate flat vector illustrations, divided by thin white gutters (no borders, no captions). Warm pastel colors, clean outlines, light background, large simple objects, minimal detail, the same style in all four panels, each panel readable on a phone screen. When the scene has the recurring hero, he is a friendly man about 60 with short gray hair; when a profession is named, show a person of that profession instead. No text, letters, numbers, logos or watermarks anywhere (clocks and calendars show only hands and icons). Panels, left to right, top to bottom: (1) a girl standing at the edge of a swimming pool, one foot lifted over the water, her face half scared and half determined, a small heart icon above her; (2) a glass vase tipped over from a table with spilled water on the floor and a surprised cat running away, an arrow of cause leading from the table to the puddle; (3) a woman at a desk suddenly touching her cheek with wide eyes, a bright light bulb above her head, a forgotten phone lying on the shelf behind her; (4) a man at a fork in the road with two paths, one hand pointing firmly to the right path, a check-mark icon above his head;
+```
+
+## Лист 6: destruir, escala, evitar, extremadamente
+
+```
+Create one square 1024x1024 image: a 2x2 grid of four separate flat vector illustrations, divided by thin white gutters (no borders, no captions). Warm pastel colors, clean outlines, light background, large simple objects, minimal detail, the same style in all four panels, each panel readable on a phone screen. When the scene has the recurring hero, he is a friendly man about 60 with short gray hair; when a profession is named, show a person of that profession instead. No text, letters, numbers, logos or watermarks anywhere (clocks and calendars show only hands and icons). Panels, left to right, top to bottom: (1) a tall brick building collapsing into rubble with dust clouds, a crane nearby; (2) an airplane on an airport runway and a long flight route drawn as a dotted line with a stop at a middle airport; (3) a woman stepping aside from a big puddle on the sidewalk, her path drawn as a curved dotted line around it; (4) a man covered in thick snow with a very red nose, a huge thermometer next to him showing the extreme cold, the thermometer drawn as a tall red bar going out of the panel;
+```
+
+## Лист 7: fijo, negarse_a, nombrar, occidental
+
+```
+Create one square 1024x1024 image: a 2x2 grid of four separate flat vector illustrations, divided by thin white gutters (no borders, no captions). Warm pastel colors, clean outlines, light background, large simple objects, minimal detail, the same style in all four panels, each panel readable on a phone screen. When the scene has the recurring hero, he is a friendly man about 60 with short gray hair; when a profession is named, show a person of that profession instead. No text, letters, numbers, logos or watermarks anywhere (clocks and calendars show only hands and icons). Panels, left to right, top to bottom: (1) a landline phone on a desk with a cable, a calendar page and a clock beside it, a small pin icon fixed to the calendar; (2) a little boy sitting at a table with arms crossed and his head turned away from a plate of broccoli, his mother holding the spoon in the background; (3) a director in a suit placing a gold badge on the shoulder of a smiling employee in front of a group of coworkers, applause icons; (4) a world globe turned to show Europe and the Atlantic, the western edge of the map highlighted with a bright arrow pointing left;
+```
+
+## Лист 8: pasto, rocio
+
+```
+Create one square 1024x1024 image: a 2x2 grid of four separate flat vector illustrations, divided by thin white gutters (no borders, no captions). Warm pastel colors, clean outlines, light background, large simple objects, minimal detail, the same style in all four panels, each panel readable on a phone screen. When the scene has the recurring hero, he is a friendly man about 60 with short gray hair; when a profession is named, show a person of that profession instead. No text, letters, numbers, logos or watermarks anywhere (clocks and calendars show only hands and icons). Panels, left to right, top to bottom: (1) a green meadow with a cow and two sheep eating tall grass, a wooden fence and hills behind; (2) a spider web covered with sparkling dew drops on a green leaf at sunrise, the sun rising behind; (3) empty plain light background, nothing drawn; (4) empty plain light background, nothing drawn;
+```
