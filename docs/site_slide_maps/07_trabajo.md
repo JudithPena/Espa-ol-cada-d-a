@@ -68,8 +68,9 @@
 | 16 | T: header + conjugation + text | ser: somos, sois, son | правило 3 | soy, eres, es | к выбору | — |
 | 17–19 | C ×3 | somos / sois / son | выбрать форму ser | правило 3 | итог | — |
 
-Сигнатура: `T(text+examples) W×5 T(compare+compare) C×3 T(header+rule+conjugation+more) I×4 T(header+conjugation+text) C×3 C~×2`
+Сигнатура: `T(text+examples) W×5 T(compare+compare) C×3 T(header+rule+conjugation+more) I×4 T(header+conjugation+text) C×3 I×3 C~×2`
 - **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Nosotros trabajamos…; ¿Vosotros habláis inglés? (SYS-04). Версия 3.
+- **13.11.2026, ремонт по аудиту MYTHOS:** после выбора форм ser — ввод somos, sois, son (U07-04).
 
 ## Урок `trabajo/lectura` — «Mis amigos y su trabajo»
 

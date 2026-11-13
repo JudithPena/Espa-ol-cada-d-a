@@ -66,8 +66,9 @@ es; `accent_meaning` — значок ´ меняет смысл (él / el, sí 
 | 17–19 | C ×3 | ¿Cómo ___ llamas?; Él ___ llama; Ана показывает фото: ¿Quién es? | формы llamarse, es | таблицы | узнавание | — |
 | 20 | I | «Её зовут Лусия.» → Se llama Lucía | воспроизвести se llama | таблица llamarse | итог | — |
 
-Сигнатура: `T(text+examples) W×4 T(rule+table) I×4 T(compare) C×2 W×2 T(table+more+more) C×3 C~×2 I`
+Сигнатура: `T(text+examples) W×4 T(rule+table) I×4 T(compare) C×2 W×2 T(table+more+more) C×3 B C~×2 I`
 - **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Ella se llama María; ¿Quién es? (SYS-04). Версия 4.
+- **13.11.2026, ремонт по аудиту MYTHOS:** сборка «¿Quién es? — Es Carlos.» (U02-06).
 
 ## Урок `presentarse/dialogue` — «На вечеринке»
 

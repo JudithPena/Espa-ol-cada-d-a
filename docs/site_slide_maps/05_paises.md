@@ -120,8 +120,9 @@
 | 7–10 | C ×4 | где живёт Иван; Софья мексиканка?; Пьер говорит по-украински?; Sofía es ___ de Iván | понять текст | текст | вопросы к тексту | `amigos` |
 | 11–12 | Q ×2 | откуда Софья; где живёт Пьер | понять текст | текст | итог | `amigos` |
 
-Сигнатура: `W×4 C T(reading+note) C@amigos×4 C~×2 Q@amigos×2`
+Сигнатура: `W×4 C T(text+table+reading+note) C@amigos×4 C~×2 Q@amigos×2`
 - **13.11.2026, ремонт по аудиту MYTHOS:** на слух: ¿Dónde vives?; Vivo en Madrid, pero soy de Kiev (SYS-04). Версия 3.
+- **13.11.2026, ремонт по аудиту MYTHOS:** перед текстом — мини-таблица vivir (vivo, vives, vive) с пояснением «-es, -e вместо -as, -a» (U05-03).
 
 ## Урок `paises/dialogo` — «В языковой школе»
 

@@ -238,6 +238,20 @@ lessons:
               options: "sois | son | somos"
             - q: "Ellas ___ médicas."
               options: "son | sois | es"
+      - write:
+          title: Вставьте форму ser
+          format: форма глагола ser
+          skill: ser_forms
+          items:
+            - q: "Nosotros ___ de Ucrania."
+              a: "somos"
+              mistakes: {"son": "«Мы» — **somos**.", "sois": "«Мы» — **somos**; sois — «вы»."}
+            - q: "¿Vosotras ___ profesoras?"
+              a: "sois"
+              mistakes: {"son": "К подругам на «вы» (vosotras) — **sois**."}
+            - q: "Ellos ___ ingenieros."
+              a: "son"
+              mistakes: {"somos": "«Они» — **son**."}
       - choose:
           title: Послушайте и выберите
           skill: present_ar
