@@ -396,6 +396,23 @@ def imperfect(infinitive: str) -> list[str]:
     return [stem + e for e in ("ía", "ías", "ía", "íamos", "íais", "ían")]
 
 
+def superlative(adjective: str) -> list[str]:
+    """Абсолютная степень на -ísimo: caro → carísimo, rico → riquísimo, largo → larguísimo, feliz → felicísimo,
+    fácil → facilísimo, amable → amabilísimo. Четыре формы: -ísimo, -ísima, -ísimos, -ísimas."""
+    word = strip_accents(adjective.lower())
+    if word.endswith("ble"):
+        stem = word[:-3] + "bil"
+    else:
+        stem = word[:-1] if word[-1:] in "aeo" else word
+        if stem.endswith("c"):
+            stem = stem[:-1] + "qu"
+        elif stem.endswith("g"):
+            stem = stem[:-1] + "gu"
+        elif stem.endswith("z"):
+            stem = stem[:-1] + "c"
+    return [stem + e for e in ("ísimo", "ísima", "ísimos", "ísimas")]
+
+
 # Основы condicional, отличные от инфинитива (те же, что у будущего времени).
 CONDITIONAL_STEMS = {"tener": "tendr", "poder": "podr", "querer": "querr", "saber": "sabr", "poner": "pondr",
                      "salir": "saldr", "venir": "vendr", "decir": "dir", "hacer": "har", "haber": "habr",

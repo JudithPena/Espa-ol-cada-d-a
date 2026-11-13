@@ -130,6 +130,19 @@ def test_conditional_forms(site):
     assert "hablaría" in generated_forms(hablar, {"conditional"}) and "hablaría" not in generated_forms(hablar, set())
 
 
+@pytest.mark.parametrize("adj, form", [("caro", "carísimo"), ("rico", "riquísimo"), ("largo", "larguísimo"),
+                                        ("feliz", "felicísimo"), ("fácil", "facilísimo"), ("amable", "amabilísimo"),
+                                        ("bueno", "buenísimo"), ("mucho", "muchísimo"), ("grande", "grandísimo")])
+def test_superlative(adj, form):
+    assert m.superlative(adj)[0] == form
+
+
+def test_superlative_feature(site):
+    by_es = {item.es: item for item in site.items}
+    caro = by_es["caro/a"]
+    assert "carísimas" in generated_forms(caro, {"superlative"}) and "carísimas" not in generated_forms(caro, {"plural"})
+
+
 # ---------------------------------------------------------------- письмо и разговор
 
 COMPOSE = {"compose": {"title": "О себе", "free": True, "items": [{

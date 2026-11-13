@@ -10,8 +10,8 @@
 
 ## Сейчас
 
-- Готово тем: **13 из 19**. Уроков A2: **101**, новых слов и выражений: **370**.
-- В работе: тема 37 — De compras.
+- Готово тем: **14 из 19**. Уроков A2: **109**, новых слов и выражений: **391**.
+- В работе: тема 38 — Mi trabajo, mis estudios.
 
 ## Темы
 
@@ -30,8 +30,8 @@
 | 34 | Te lo recomiendo | императив (tú, usted); le / les, se lo; рецепты и советы | 7 | 25 | ✅ готово |
 | 35 | Por la ciudad + КТ-2 | дорога, разрешение и просьба: ¿Puedo…?, ¿Te importa…?; se безличное; контрольная точка 2 | 9 | 24 | ✅ готово |
 | 36 | Me encuentro mal | симптомы и советы: me gustaría, podrías, deberías; врач и аптека | 7 | 19 | ✅ готово |
-| 37 | De compras | el más…, -ísimo; este / ese без существительного; el mío / la mía; обмен покупки | — | — | ⏭ следующая |
-| 38 | Mi trabajo, mis estudios | empezar a, dejar de, volver a, seguir + герундий; desde… hasta, durante; резюме | — | — | ⬜ не начата |
+| 37 | De compras | el más…, -ísimo; este / ese без существительного; el mío / la mía; обмен покупки | 8 | 21 | ✅ готово |
+| 38 | Mi trabajo, mis estudios | empezar a, dejar de, volver a, seguir + герундий; desde… hasta, durante; резюме | — | — | ⏭ следующая |
 | 39 | La gente | ser / estar с прилагательными; parecerse, llevarse bien; me parece; характер и чувства | — | — | ⬜ не начата |
 | 40 | Planes y deseos | pensar + инфинитив, me gustaría; si + настоящее; планы и праздники | — | — | ⬜ не начата |
 | 41 | El mundo hispano | повторение времён; se dice, se come; Испания и Америка | — | — | ⬜ не начата |
@@ -46,6 +46,7 @@
 |---|---|
 | Формы indefinido, imperfecto и императива для проверки «только пройденные слова» | ✅ |
 | Condicional (me gustaría, podrías, deberías) для той же проверки — с темы 36 (13.11) | ✅ |
+| Формы на -ísimo (carísimo, riquísimo) — с темы 37 (13.11) | ✅ |
 | Шаблоны допустимых ответов `(…)` и `[a/b]` | ✅ |
 | Письмо по признакам (`compose`): без «неверно», с образцом | ✅ |
 | Признаки письма и текст ученика сравниваются одинаково, без ударений (исправлено 13.11) | ✅ |
@@ -74,6 +75,7 @@
 | 13.11.2026 | Тема 34 «Te lo recomiendo» (7 уроков): императив на «ты» и «вы», le / les, se lo, местоимения после императива; рецепты тортильи и гаспачо; новый голос — Ли. В теме 32 возвращено слово lluvia. Движок: формы freír, проверка «слово позже» без форм по грамматике и скрытых ключей mistakes. |
 | 13.11.2026 | Тема 35 «Por la ciudad» (9 уроков) с контрольной точкой 2 по темам 30–35: дорога на «ты» и «вы» (sigue / siga, al lado de, enfrente de), метро (línea, bajarse, transbordo), ¿Puedo…?, ¿Te importa…?, se безличное; новая роль — турист. |
 | 13.11.2026 | Тема 36 «Me encuentro mal» (7 уроков): симптомы (encontrarse, tos, gripe, dolor), condicional (me gustaría, ¿podría…?, deberías), советы о здоровье, аптека (algo para…, cada ocho horas, no hace falta); голоса — врач и фармацевт. Движок: condicional для проверки «только пройденные слова». |
+| 13.11.2026 | Тема 37 «De compras» (8 уроков): обмен покупки (quería cambiar, me queda estrecho, el tique), el más… de / el mejor, -ísimo, выбор без существительного (este, el azul, el de rayas, ¿cuál?), el mío / el tuyo / el suyo, техника и гарантия, отзывы покупателей. Движок: -ísimo. |
 
 ## Что не проверено
 

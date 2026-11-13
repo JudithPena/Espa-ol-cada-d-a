@@ -58,6 +58,7 @@ FEATURES = {
     "imperfect": "pretérito imperfecto",
     "imperative": "утвердительный императив (tú, usted, vosotros, ustedes)",
     "conditional": "condicional simple (me gustaría, podrías, deberías, tendría)",
+    "superlative": "абсолютная степень на -ísimo (carísimo, riquísimo, facilísimo)",
 }
 
 BLOCK_TYPES = {

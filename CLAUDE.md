@@ -111,7 +111,7 @@ Telegram-курс испанского с нуля до A1: канал **@espano
   движка — `docs/a2_build_progress.md`. С `progreso.md` начинается продолжение.
 - Темы A2 — `content/site/units/24_…` и дальше (`level: A2`, id темы без цифр). Новые возможности только для A2+:
   шаблоны ответов `(…)` и `[a/b]`, блок `compose` (письмо по признакам: «неверно» не бывает, после ответа — образец),
-  блок `chat` (разговор по шагам с лентой), темы `preterite`, `preterite_irregular`, `imperfect`, `imperative`, `conditional` для `unlocks`.
+  блок `chat` (разговор по шагам с лентой), темы `preterite`, `preterite_irregular`, `imperfect`, `imperative`, `conditional`, `superlative` для `unlocks`.
   Правила — раздел «Блоки и возможности уровня A2» в `docs/site_lessons_guide.md`.
 - Карта экранов темы A2 собирается из сценария: `node tools/site_map_gen.cjs --unit N --write`; новые id уроков —
   `python tools/site_ids_snapshot.py`; тесты — `tests/test_site_a2.py` и тесты «A2:» в `tests/site_course.test.cjs`.

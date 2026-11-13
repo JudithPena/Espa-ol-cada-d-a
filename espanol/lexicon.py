@@ -44,6 +44,11 @@ def generated_forms(item: VocabItem, features: frozenset[str] | set[str]) -> set
         for core in item.cores:
             for form in morph.adjective_forms(core):
                 out.add(morph.plural(form))
+    if "superlative" in features and (item.pos == "adj" or (item.pos == "word" and len(item.cores) == 1
+                                                             and " " not in item.cores[0] and item.cores[0].isalpha())):
+        # -ísimo от прилагательных (caro/a → carísimo) и неизменяемых слов вроде fácil, grande, mucho
+        for core in item.cores:
+            out.update(morph.superlative(morph.adjective_forms(core)[0] if item.pos == "adj" else core))
     elif item.pos == "verb":
         for inf in item.cores:
             info = morph.verb_info(inf)

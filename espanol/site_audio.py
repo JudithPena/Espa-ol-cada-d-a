@@ -54,6 +54,7 @@ CAST: dict[str, tuple[str, str, str]] = {
     "Turista": ("m", M + "@-2Hz", "turista"),
     "Médico": ("m", M + "@-12Hz", "medico"),
     "Farmacéutico": ("m", M + "@+2Hz", "farmaceutico"),
+    "Dependiente": ("m", M + "@-6Hz", "dependiente"),
     "Hugo": ("m", M + "@+6Hz", "hugo"),
     "Sergio": ("m", M + "@-4Hz", "sergio"),
     "Camarero": ("m", M + "@-14Hz", "camarero"),
