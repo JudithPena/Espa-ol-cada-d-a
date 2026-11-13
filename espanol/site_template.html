@@ -2520,7 +2520,7 @@ function tabsBar() {
 function stepTitle(L) { return `${L.emoji} ${L.kindLabel}${L.words.length ? " · " + words(L.words.length) : ""}`; }
 const rowNote = L => L.goal ? esc(L.goal) : stepTitle(L);
 
-const LEVELS = ["A0", "A1", "A2", "B1", "B2", "C1", "C2"];
+const LEVELS = ["A0", "A1", "A2", "B1", "B2", "C1"];   // C2 в курсе не будет (решение автора 13.11.2026)
 const levelOf = i => COURSE.units.find(u => u.number === LESSONS[i].unit)?.level;
 function levelStats(lv) {
   const idx = LESSONS.map((L, i) => levelOf(i) === lv ? i : -1).filter(i => i >= 0);
