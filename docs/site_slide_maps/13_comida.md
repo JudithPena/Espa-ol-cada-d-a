@@ -29,7 +29,7 @@ bien; `order_food` — para mí, quiero, la cuenta.
 
 Сигнатура: `T(text) W×3 T(rule) C×2 W×3 T(tip+more) M C~ I×3`
 
-## Урок `comida/comida1` — «Еда, фрукты и овощи»
+## Урок `comida/comida1` — «Еда»
 
 - **Длина:** 30 шагов, 8 минут. **Новая лексика:** 15 продуктов тремя порциями по 5.
 - **Порядок:** пять продуктов → pescado / pez → пары → пять продуктов → перевод → ввод → пять фруктов и овощей →
@@ -51,7 +51,28 @@ bien; `order_food` — para mí, quiero, la cuenta.
 | 25 | M | пять пар | значения | — | — | — |
 | 26–27 | C ×2 | plátano amarillo; manzana roja o verde | согласовать цвет | цвета | итог | — |
 
-Сигнатура: `W×5 T(tip) M W×5 C×2 I×4 W×5 T(note+more) M C×2`
+Сигнатура: `W×5 T(tip) M W×3 I×5 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** 8 слов вместо 15 (U13-04): фрукты, овощи, картофель, помидор — в новом уроке «Фрукты и овощи»; на слух: ¿Carne o pescado?; Hay huevos y pan; «Хлеба нет» — и No tenemos pan. Версия 3.
+
+## Урок `comida/frutas` — «Фрукты и овощи» (добавлен 13.11.2026, аудит MYTHOS, U13-04, SYS-10)
+
+- **Длина:** 16 шагов, 5–6 минут. **Новая лексика:** la patata, el tomate, la fruta, la manzana, la naranja, el plátano,
+  la verdura — вынесены из урока «Еда», где было 15 слов.
+- **Порядок:** картофель и помидор → тортилья, томатный суп → фрукты и овощи → «фрукты» в единственном числе → пары →
+  цвет фруктов → на слух (яблоки и апельсины; помидоров нет) → ввод.
+
+| Шаг | Экран / тип блока | Что видит или делает ученик | Учебная цель | Что должен уже знать | Связь с предыдущим/следующим | Источник |
+|---|---|---|---|---|---|---|
+| 1–2 | W ×2 | la patata, el tomate | слова | — | — | — |
+| 3–4 | C ×2 | Tortilla de patatas; Sopa de tomate | понять | de | — | — |
+| 5–9 | W ×5 | fruta, manzana, naranja, plátano, verdura | слова | — | — | — |
+| 10 | T: note + more | la fruta — в ед. ч.; banana, papa в Латинской Америке | заметить | — | — | — |
+| 11 | M | пять пар | значения | — | — | — |
+| 12–13 | C ×2 | цвет банана и яблока | согласовать | цвета | — | — |
+| 14–15 | C~ ×2 | Hay manzanas y naranjas; No hay tomates | на слух | hay | — | — (без звука: текстом) |
+| 16–17 | I ×2 | яблоко и банан; овощной суп | ввод | — | итог | — |
+
+Сигнатура: `W×2 C×2 W×5 T(note+more) M C×2 C~×2 I×2`
 
 ## Урок `comida/er_ir` — «Глаголы на -er и -ir»
 
@@ -72,7 +93,8 @@ bien; `order_food` — para mí, quiero, la cuenta.
 | 14–15 | C ×2 | vivís; escribimos | -ir в «мы / вы» | правило 2 | узнавание | — |
 | 16–17 | I ×2 | abre; vivimos | воспроизвести | правила 1–2 | итог | — |
 
-Сигнатура: `T(text+examples) W×4 T(conjugation+rule) I×4 W×2 T(conjugation+compare) C×2 I×2`
+Сигнатура: `T(text+examples) W×4 T(conjugation+rule) I×4 W×2 T(conjugation+compare) C×2 I×2 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: ¿Qué bebes?; Leemos mucho (SYS-04). Версия 3.
 
 ## Урок `comida/comidas` — «Завтрак, обед и ужин»
 
@@ -137,7 +159,8 @@ bien; `order_food` — para mí, quiero, la cuenta.
 | 5–8 | C ×4 | что на завтрак; где завтракают; что на первое; какой ужин | понять текст | текст | вопросы к тексту | `spain` |
 | 9–10 | Q ×2 | что большое; что едят в барах | понять текст | текст | итог | `spain` |
 
-Сигнатура: `W×3 T(reading+culture) C@spain×4 Q@spain×2`
+Сигнатура: `W×3 T(reading+culture) C@spain×4 C~×2 Q@spain×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: En España la cena es tarde; De primero, sopa… (SYS-04). Версия 3.
 
 ## Урок `comida/quiz` — «Еда и напитки» (тест темы, `check: soft`)
 
@@ -150,4 +173,5 @@ bien; `order_food` — para mí, quiero, la cuenta.
 | 2 | M | la leche, el pollo, beber, la cena, la cuenta | значения | тема | разминка | — |
 | 3–7 | Q ×5 | comemos; vivís; la cuenta; el agua; el pescado | применить тему | тема | итог | — |
 
-Сигнатура: `T(text+cando) M Q×5`
+Сигнатура: `T(text+cando) M I×2 Q×5`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ввод: «Обычно я завтракаю кофе с молоком», «Мы пьём воду» (SYS-03). Версия 3.

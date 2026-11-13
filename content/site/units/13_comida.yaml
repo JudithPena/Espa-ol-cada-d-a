@@ -79,9 +79,9 @@ lessons:
 
   - id: comida1
     kind: vocab
-    title: Еда, фрукты и овощи
-    goal: назвать основные продукты, фрукты и овощи
-    version: 2
+    title: Еда
+    goal: назвать основные продукты — хлеб, мясо, рыбу, рис, яйца
+    version: 3
     vocab:
       - "🍞 el pan [пан] — хлеб"
       - "🥩 la carne [ка́рнэ] — мясо"
@@ -91,13 +91,6 @@ lessons:
       - "🥗 la ensalada [энсала́да] — салат"
       - "🍲 la sopa [со́па] — суп"
       - "🥚 el huevo [уэ́бо] — яйцо"
-      - "🥔 la patata [пата́та] — картофель"
-      - "🍅 el tomate [тома́тэ] — помидор"
-      - "🍓 la fruta [фру́та] — фрукты"
-      - "🍎 la manzana [манθа́на] — яблоко"
-      - "🍊 la naranja [нара́нха] — апельсин"
-      - "🍌 el plátano [пла́тано] — банан"
-      - "🥦 la verdura [бэрду́ра] — овощи (обычно мн. ч.: las verduras)"
     blocks:
       - learn: [el pan, la carne, el pescado, el pollo, el arroz]
       - tip:
@@ -112,7 +105,46 @@ lessons:
             - "el pescado — рыба"
             - "el pollo — курица"
             - "el arroz — рис"
-      - learn: [la ensalada, la sopa, el huevo, la patata, el tomate]
+      - learn: [la ensalada, la sopa, el huevo]
+      - write:
+          title: Traduce
+          format: фраза по-испански
+          skill: food
+          items:
+            - "рыба с рисом => pescado con arroz | el pescado con arroz"
+            - "курица и салат => pollo y ensalada | el pollo y la ensalada"
+            - "суп и хлеб => sopa y pan | la sopa y el pan"
+            - "Хлеба нет. => No hay pan | No tenemos pan"
+            - q: "Есть яйца?"
+              a: "¿Hay huevos?"
+              mistakes: {"¿hay los huevos?": "После **hay** артикль не ставят: ¿Hay huevos?"}
+      - choose:
+          title: Послушайте и выберите
+          skill: food
+          items:
+            - say: "¿Carne o pescado?"
+              options: "Мясо или рыба? | Мясо и рыба. | Курица или рыба?"
+              noaudio: {q: "Что значит «¿Carne o pescado?»?", options: "Мясо или рыба? | Мясо и рыба. | Курица или рыба?"}
+            - say: "Hay huevos y pan."
+              options: "Есть яйца и хлеб. | Нет ни яиц, ни хлеба. | Есть яйца, но нет хлеба."
+              noaudio: {q: "Что значит «Hay huevos y pan.»?", options: "Есть яйца и хлеб. | Нет ни яиц, ни хлеба. | Есть яйца, но нет хлеба."}
+
+  - id: frutas
+    kind: vocab
+    title: Фрукты и овощи
+    goal: назвать фрукты и овощи и сказать, какого они цвета
+    version: 2
+    # Аудит MYTHOS (U13-04, SYS-10): в уроке «Еда, фрукты и овощи» было 15 слов — фрукты и овощи вынесены сюда.
+    vocab:
+      - "🥔 la patata [пата́та] — картофель"
+      - "🍅 el tomate [тома́тэ] — помидор"
+      - "🍓 la fruta [фру́та] — фрукты"
+      - "🍎 la manzana [манθа́на] — яблоко"
+      - "🍊 la naranja [нара́нха] — апельсин"
+      - "🍌 el plátano [пла́тано] — банан"
+      - "🥦 la verdura [бэрду́ра] — овощи (обычно мн. ч.: las verduras)"
+    blocks:
+      - learn: [la patata, el tomate]
       - choose:
           title: Traduce
           skill: food
@@ -121,17 +153,6 @@ lessons:
               options: "Тортилья с картофелем. | Томатный суп. | Салат с яйцом."
             - q: "Sopa de tomate."
               options: "Томатный суп. | Салат из помидоров. | Курица с помидорами."
-      - write:
-          title: Traduce
-          format: фраза по-испански
-          skill: food
-          items:
-            - "рыба с рисом => pescado con arroz | el pescado con arroz"
-            - "курица и салат => pollo y ensalada | el pollo y la ensalada"
-            - "Хлеба нет. => No hay pan"
-            - q: "Есть яйца?"
-              a: "¿Hay huevos?"
-              mistakes: {"¿hay los huevos?": "После **hay** артикль не ставят: ¿Hay huevos?"}
       - learn: [la fruta, la manzana, la naranja, el plátano, la verdura]
       - note:
           id: fruta
@@ -157,13 +178,30 @@ lessons:
               options: "amarillo. | amarilla. | azul."
             - q: "🍎 La manzana es..."
               options: "roja o verde. | rojo o verde. | negra."
+      - choose:
+          title: Послушайте и выберите
+          skill: food
+          items:
+            - say: "Hay manzanas y naranjas."
+              options: "Есть яблоки и апельсины. | Есть яблоки, но нет апельсинов. | Есть бананы и апельсины."
+              noaudio: {q: "Что значит «Hay manzanas y naranjas.»?", options: "Есть яблоки и апельсины. | Есть яблоки, но нет апельсинов. | Есть бананы и апельсины."}
+            - say: "No hay tomates."
+              options: "Помидоров нет. | Помидоры есть. | Картошки нет."
+              noaudio: {q: "Что значит «No hay tomates.»?", options: "Помидоров нет. | Помидоры есть. | Картошки нет."}
+      - write:
+          title: Traduce
+          format: слова по-испански
+          skill: food
+          items:
+            - "яблоко и банан => una manzana y un plátano | la manzana y el plátano | manzana y plátano"
+            - "овощной суп => sopa de verduras | una sopa de verduras | la sopa de verduras"
     forms: [banana, papa]
 
   - id: er_ir
     kind: grammar
     title: "Глаголы на -er и -ir"
     goal: сказать, что вы едите, пьёте, читаете и пишете
-    version: 2
+    version: 3
     unlocks: [present_er_ir]
     vocab:
       - "🍽 comer [комэ́р] — есть; обедать"
@@ -234,12 +272,22 @@ lessons:
             - q: "Nosotros ___ (vivir) en Sevilla."
               a: "vivimos"
               mistakes: {"vivemos": "У глаголов на -ir «мы» — **-imos**: vivimos."}
+      - choose:
+          title: Послушайте и выберите
+          skill: present_er_ir
+          items:
+            - say: "¿Qué bebes?"
+              options: "Что ты пьёшь? | Что ты ешь? | Что ты читаешь?"
+              noaudio: {q: "Что значит «¿Qué bebes?»?", options: "Что ты пьёшь? | Что ты ешь? | Что ты читаешь?"}
+            - say: "Leemos mucho."
+              options: "Мы много читаем. | Они много читают. | Мы много пишем."
+              noaudio: {q: "Что значит «Leemos mucho.»?", options: "Мы много читаем. | Они много читают. | Мы много пишем."}
 
   - id: comidas
     kind: vocab
     title: Завтрак, обед и ужин
     goal: рассказать, что вы едите на завтрак, обед и ужин
-    version: 2
+    version: 3
     vocab:
       - "🥐 el desayuno [дэсаю́но] — завтрак"
       - "🍝 la comida [коми́да] — обед; еда"
@@ -276,7 +324,7 @@ lessons:
           format: фраза по-испански
           items:
             - q: "Ты обедаешь дома?"
-              a: "¿Comes en casa?"
+              a: "¿Comes en casa? | ¿Tú comes en casa?"
               rule: comer
               skill: present_er_ir
             - q: "Обычно я ужинаю дома."
@@ -392,7 +440,7 @@ lessons:
     kind: reading
     title: Как едят в Испании
     goal: понять текст о том, как и когда едят в Испании
-    version: 2
+    version: 3
     vocab:
       - "🍞 la tostada [тоста́да] — тост, поджаренный хлеб"
       - "🕙 tarde [та́рдэ] — поздно"
@@ -431,6 +479,17 @@ lessons:
               options: "Sopa o ensalada. | Carne o pescado. | Fruta."
             - q: "¿Cómo es la cena?"
               options: "Muy tarde, pero pequeña. | Muy tarde y grande. | Pequeña y en un bar."
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          skill: food
+          items:
+            - say: "En España la cena es tarde."
+              options: "В Испании ужинают поздно. | В Испании обедают поздно. | В Испании ужинают рано."
+              noaudio: {q: "Что значит «En España la cena es tarde.»?", options: "В Испании ужинают поздно. | В Испании обедают поздно. | В Испании ужинают рано."}
+            - say: "De primero, sopa; de segundo, pescado."
+              options: "На первое — суп, на второе — рыба. | На первое — рыба, на второе — суп. | Суп и рыба — на ужин."
+              noaudio: {q: "Что значит «De primero, sopa; de segundo, pescado.»?", options: "На первое — суп, на второе — рыба. | На первое — рыба, на второе — суп. | Суп и рыба — на ужин."}
     quiz:
       - q: ¿Qué es grande en España?
         options: "la comida | el desayuno | la cena"
@@ -443,7 +502,7 @@ lessons:
     kind: quiz
     title: Еда и напитки
     goal: назвать продукты и напитки, спрягать глаголы на -er и -ir и заказать в кафе
-    version: 2
+    version: 3
     check: soft
     blocks:
       - "Это тест по теме «Еда и напитки»."
@@ -460,6 +519,17 @@ lessons:
             - "beber — пить"
             - "la cena — ужин"
             - "la cuenta — счёт"
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          items:
+            - q: "Скажите: «Обычно я завтракаю кофе с молоком»."
+              a: "Normalmente desayuno café con leche | Normalmente desayuno un café con leche | (Yo) desayuno (un) café con leche"
+              skill: food
+            - q: "Скажите: «Мы пьём воду»."
+              a: "Bebemos agua | (Nosotros) bebemos agua"
+              skill: present_er_ir
+              mistakes: {"bebimos agua": "Сейчас, в настоящем: **bebemos**."}
     quiz:
       - q: "Nosotros ___ en un restaurante."
         options: "comemos | coméis | comen"

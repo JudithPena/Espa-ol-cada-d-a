@@ -11,8 +11,8 @@ lessons:
   - id: vocab1
     kind: vocab
     title: Места в городе
-    goal: назвать самые нужные места в городе
-    version: 2
+    goal: назвать самые нужные места в городе — магазин, аптеку, банк, вокзал
+    version: 3
     vocab:
       - "🏙 la ciudad [θьуда́д] — город"
       - "🌳 el parque [па́ркэ] — парк"
@@ -20,14 +20,8 @@ lessons:
       - "🛒 el supermercado [супэрмэрка́до] — супермаркет"
       - "💊 la farmacia [фарма́θья] — аптека"
       - "🏦 el banco [ба́нко] — банк"
-      - "🖼 el museo [мусэ́о] — музей"
       - "🚉 la estación [эстаθьо́н] — вокзал; станция"
       - "🚏 la parada [пара́да] — остановка"
-      - "🎬 el cine [θи́нэ] — кино; кинотеатр"
-      - "🍷 el bar [бар] — бар, кафе"
-      - "📚 la biblioteca [библьотэ́ка] — библиотека"
-      - "🧺 el mercado [мэрка́до] — рынок"
-      - "✈️ el aeropuerto [аэропуэ́рто] — аэропорт"
     blocks:
       - "Новая тема — город: аптека и банк, вокзал, кино и рынок."
       - learn: [la ciudad, el parque, la tienda, el supermercado]
@@ -41,7 +35,7 @@ lessons:
             - "el parque — парк"
             - "la tienda — магазин"
             - "el supermercado — супермаркет"
-      - learn: [la farmacia, el banco, el museo, la estación, la parada]
+      - learn: [la farmacia, el banco, la estación, la parada]
       - choose:
           title: "¿Dónde...?"
           skill: city_places
@@ -49,31 +43,17 @@ lessons:
             - q: "Где покупают лекарства?"
               options: "En la farmacia. | En el banco. | En la parada."
             - q: "Где садятся на поезд?"
-              options: "En la estación. | En el museo. | En la farmacia."
+              options: "En la estación. | En el parque. | En la farmacia."
             - q: "Где ждут автобус?"
-              options: "En la parada. | En el banco. | En el museo."
-      - learn: [el cine, el bar, la biblioteca, el mercado, el aeropuerto]
-      - note: "**el bar** в Испании — не ночной клуб, а обычное кафе, где завтракают, пьют кофе и едят тапас: _Hay un bar en la plaza._"
+              options: "En la parada. | En el banco. | En la tienda."
       - match:
           title: Соедините пары
           rule: none
           pairs:
+            - "la farmacia — аптека"
             - "el banco — банк"
-            - "el museo — музей"
-            - "el bar — бар, кафе"
-            - "el aeropuerto — аэропорт"
-            - "el cine — кинотеатр"
-      - choose:
-          title: "¿Dónde...?"
-          rule: none
-          skill: city_places
-          items:
-            - q: "Где смотрят фильмы?"
-              options: "En el cine. | En la biblioteca. | En el mercado."
-            - q: "Где берут книги?"
-              options: "En la biblioteca. | En el bar. | En el aeropuerto."
-            - q: "Где покупают фрукты на прилавках?"
-              options: "En el mercado. | En el aeropuerto. | En el cine."
+            - "la estación — вокзал; станция"
+            - "la parada — остановка"
       - write:
           title: Traduce
           format: фраза по-испански
@@ -82,18 +62,40 @@ lessons:
             - "Рядом с парком есть магазин. => Al lado del parque hay una tienda | Hay una tienda al lado del parque"
           rule: none
           skill: [city_places, hay]
+      - choose:
+          title: Послушайте и выберите
+          skill: city_places
+          items:
+            - say: "Hay una farmacia en la estación."
+              options: "На вокзале есть аптека. | На вокзале есть банк. | Рядом с вокзалом есть аптека."
+              noaudio: {q: "Что значит «Hay una farmacia en la estación.»?", options: "На вокзале есть аптека. | На вокзале есть банк. | Рядом с вокзалом есть аптека."}
+            - say: "La parada está al lado del supermercado."
+              options: "Остановка рядом с супермаркетом. | Остановка перед супермаркетом. | Супермаркет рядом с парком."
+              noaudio: {q: "Что значит «La parada está al lado del supermercado.»?", options: "Остановка рядом с супермаркетом. | Остановка перед супермаркетом. | Супермаркет рядом с парком."}
 
   - id: ir
     kind: grammar
     title: "¿Adónde vas? Глагол ir"
     goal: сказать, куда вы идёте или едете
-    version: 2
+    version: 3
     vocab:
+      - "🖼 el museo [мусэ́о] — музей"
+      - "🎬 el cine [θи́нэ] — кино; кинотеатр"
       - "🚶 ir [ир] — идти, ехать"
       - "❓ ¿Adónde vas? [адо́ндэ бас] — куда ты идёшь?"
       - "➡️ a [а] — в, на (куда); к :: Voy a la tienda. — Я иду в магазин."
       - "🤝 con [кон] — с :: Voy al cine con mi amiga. — Я иду в кино с подругой."
     blocks:
+      - learn: [el museo, el cine]
+      - choose:
+          title: "¿Dónde...?"
+          rule: none
+          skill: city_places
+          items:
+            - q: "Где смотрят фильмы?"
+              options: "En el cine. | En el museo. | En el banco."
+            - q: "Где смотрят картины?"
+              options: "En el museo. | En el cine. | En la farmacia."
       - "Посмотрите на примеры с глаголом **ir** — «идти, ехать». Какой маленький предлог стоит после него?"
       - examples:
           items:
@@ -111,7 +113,7 @@ lessons:
           skill: ir_a
           items:
             - "(yo) ___ al banco. => voy"
-            - "Nosotros ___ a la biblioteca. => vamos"
+            - "Nosotros ___ al museo. => vamos"
             - "¿Adónde ___ (vosotros)? => vais"
       - compare:
           id: al
@@ -156,13 +158,24 @@ lessons:
             - es: "Voy al cine con mi amiga."
               ru: "Я иду в кино с подругой."
               extra: [el]
+      - choose:
+          title: Послушайте и выберите
+          skill: ir_a
+          items:
+            - say: "¿Adónde vas?"
+              options: "Куда ты идёшь? | Где ты? | Откуда ты?"
+              noaudio: {q: "Что значит «¿Adónde vas?»?", options: "Куда ты идёшь? | Где ты? | Откуда ты?"}
+            - say: "Vamos al museo."
+              options: "Мы идём в музей. | Они идут в музей. | Мы в музее."
+              noaudio: {q: "Что значит «Vamos al museo.»?", options: "Мы идём в музей. | Они идут в музей. | Мы в музее."}
 
   - id: transporte
     kind: vocab
     title: Транспорт
     goal: сказать, на чём вы едете
-    version: 2
+    version: 3
     vocab:
+      - "✈️ el aeropuerto [аэропуэ́рто] — аэропорт"
       - "🚇 el metro [мэ́тро] — метро"
       - "🚌 el autobús [аутобу́с] — автобус"
       - "🚗 el coche [ко́чэ] — машина, автомобиль"
@@ -171,7 +184,7 @@ lessons:
       - "🚶 a pie [а пьэ] — пешком"
       - "💼 el trabajo [траба́хо] — работа"
     blocks:
-      - learn: [el metro, el autobús, el coche, el tren, la bici]
+      - learn: [el aeropuerto, el metro, el autobús, el coche, el tren, la bici]
       - rule:
           id: en_transport
           text: "На чём вы едете — **en** + транспорт без артикля: _Voy en metro._ _Ana va en tren._ _Vamos en taxi._"
@@ -214,13 +227,20 @@ lessons:
               rule: a_pie
               mistakes: {"vamos al parque en pie": "Пешком — **a pie**."}
           skill: transport
+      - choose:
+          title: Выберите
+          rule: en_transport
+          items:
+            - q: "Voy ___ aeropuerto en tren."
+              options: "al | a la | en"
+              explain: "a + el = al: **al** aeropuerto; на поезде — en tren."
     forms: [bicicleta, carro, auto, camión, colectivo]
 
   - id: direcciones
     kind: dialogue
     title: Как пройти?
     goal: спросить дорогу и понять ответ
-    version: 2
+    version: 3
     vocab:
       - "🙇 perdone [пэрдо́нэ] — извините (вежливо, чтобы обратиться)"
       - "📍 por aquí [пор аки́] — поблизости, здесь"
@@ -299,19 +319,44 @@ lessons:
             - es: "La farmacia está entre el banco y el cine."
               ru: "Tom: ¿Y la farmacia? — «Аптека между банком и кинотеатром»."
               extra: [de]
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          skill: directions
+          items:
+            - say: "Todo recto y la primera a la derecha."
+              options: "Прямо и первая направо. | Прямо и первая налево. | Прямо и вторая направо."
+              noaudio: {q: "Что значит «Todo recto y la primera a la derecha.»?", options: "Прямо и первая направо. | Прямо и первая налево. | Прямо и вторая направо."}
+            - say: "Perdone, ¿hay un banco por aquí?"
+              options: "Извините, здесь есть банк? | Извините, а где здесь вокзал? | Простите, это банк?"
+              noaudio: {q: "Что значит «Perdone, ¿hay un banco por aquí?»?", options: "Извините, здесь есть банк? | Извините, а где здесь вокзал? | Простите, это банк?"}
     forms: [perdona]
 
   - id: lectura
     kind: reading
     title: Mi barrio
     goal: понять описание района и рассказать о своём
-    version: 2
+    version: 3
     vocab:
+      - "🍷 el bar [бар] — бар, кафе"
+      - "📚 la biblioteca [библьотэ́ка] — библиотека"
+      - "🧺 el mercado [мэрка́до] — рынок"
       - "🏘 el barrio [ба́рьо] — район, квартал"
       - "😌 tranquilo/a [транки́ло, транки́ла] — спокойный, тихий"
       - "➕ mucho/a [му́чо, му́ча] — много (+ существительное) :: muchos bares — много баров"
       - "👥 la gente [хэ́нтэ] — люди"
     blocks:
+      - learn: [el bar, la biblioteca, el mercado]
+      - note: "**el bar** в Испании — не ночной клуб, а обычное кафе, где завтракают, пьют кофе и едят тапас: _Hay un bar en la plaza._"
+      - choose:
+          title: "¿Dónde...?"
+          rule: none
+          skill: city_places
+          items:
+            - q: "Где берут книги?"
+              options: "En la biblioteca. | En el bar. | En el mercado."
+            - q: "Где покупают фрукты на прилавках?"
+              options: "En el mercado. | En la biblioteca. | En el cine."
       - learn: [el barrio, tranquilo/a, mucho/a, la gente]
       - text:
           id: gente
@@ -349,6 +394,17 @@ lessons:
               options: "Un parque y una biblioteca. | Un museo y un cine. | El aeropuerto."
             - q: "¿Cómo va Clara al trabajo?"
               options: "En coche. | En metro. | A pie."
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          skill: city_places
+          items:
+            - say: "En mi barrio hay mucha gente."
+              options: "В моём районе много людей. | В моём районе мало людей. | В моём районе много баров."
+              noaudio: {q: "Что значит «En mi barrio hay mucha gente.»?", options: "В моём районе много людей. | В моём районе мало людей. | В моём районе много баров."}
+            - say: "Mi barrio es muy tranquilo."
+              options: "Мой район очень тихий. | Мой район очень красивый. | Мой район очень шумный."
+              noaudio: {q: "Что значит «Mi barrio es muy tranquilo.»?", options: "Мой район очень тихий. | Мой район очень красивый. | Мой район очень шумный."}
     quiz:
       - q: ¿Dónde está la estación de metro?
         options: "al lado del mercado | al lado del parque | en la calle de Javier"
@@ -361,7 +417,7 @@ lessons:
     kind: quiz
     title: Город
     goal: назвать места в городе, сказать, куда и на чём вы едете, и спросить дорогу
-    version: 2
+    version: 3
     check: soft
     blocks:
       - "Это тест по теме «Город»."
@@ -379,6 +435,18 @@ lessons:
             - "el tren — поезд"
             - "a la izquierda — налево"
             - "el barrio — район"
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          items:
+            - q: "Скажите: «Я еду на работу на метро»."
+              a: "Voy al trabajo en metro | (Yo) voy [al trabajo en metro/en metro al trabajo]"
+              skill: transport
+              mistakes: {"voy al trabajo en el metro": "Перед транспортом артикль не ставят: **en metro**."}
+            - q: "Спросите прохожего: «Извините, здесь есть аптека?»"
+              a: "Perdone, ¿hay una farmacia por aquí? | ¿Hay una farmacia por aquí? | Perdone, ¿hay una farmacia aquí?"
+              skill: directions
+              mistakes: {"perdon hay una farmacia por aqui": "К незнакомому человеку, чтобы привлечь внимание, — **perdone**."}
     quiz:
       - q: "Mañana ___ al museo. (мы)"
         options: "vamos | van | vais"
@@ -442,7 +510,7 @@ lessons:
           items:
             - {q: "¿Dónde ___ las llaves?", a: "están", format: одна форма глагола, skill: hay_esta}
             - {q: "Мои подруги очень весёлые.", a: "Mis amigas son muy divertidas", skill: adj_agreement}
-            - {q: "Я иду в банк.", a: "Voy al banco", skill: ir_a, mistakes: {"voy a el banco": "a + el сливаются: **al** banco."}}
+            - {q: "Я иду в банк.", a: "Voy al banco | (Yo) voy al banco", skill: ir_a, mistakes: {"voy a el banco": "a + el сливаются: **al** banco."}}
       - build:
           title: Соберите фразу
           rule: none

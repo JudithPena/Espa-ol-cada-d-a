@@ -47,7 +47,8 @@ a Ana le gusta; `agree` — a mí también / tampoco / sí / no; `encanta` — m
 | 10–14 | I ×5 | gusta, gustan… | gusta или gustan | правило 1 | ввод | — |
 | 15–17 | C ×3 | le gusta; ¿Te gusta bailar?; me gusta la fruta | местоимение и артикль | правило 2 | итог | — |
 
-Сигнатура: `T(text+examples) W×3 T(compare) S W×2 T(table+note) I×5 C×3`
+Сигнатура: `T(text+examples) W×3 T(compare) S W×2 T(table+note) I×5 C×3 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Nos gusta la música; ¿Os gusta el café? (SYS-04). Версия 3.
 
 ## Урок `gustos/vocab2` — «Спорт, кино, природа»
 
@@ -66,7 +67,8 @@ a Ana le gusta; `agree` — a mí también / tampoco / sí / no; `encanta` — m
 | 10 | M | пять пар | значения | — | — | — |
 | 11–13 | I ×3 | нравится спорт; нравятся сериалы; тебе нравятся горы? | воспроизвести | gustar | итог | — |
 
-Сигнатура: `W×3 C W×4 T(culture) M I×3`
+Сигнатура: `W×3 C W×4 T(culture) M I×3 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Me gusta la playa, pero no la montaña; ¿Te gusta el baloncesto?; ответы с A mí… тоже принимаются. Версия 3.
 
 ## Урок `gustos/tambien` — «A mí también, a mí tampoco»
 
@@ -87,7 +89,8 @@ a Ana le gusta; `agree` — a mí también / tampoco / sí / no; `encanta` — m
 | 13 | C | 😖 футбол — ужас | выбрать степень | шкала | — | — |
 | 14 | I | обожаю шоколад | воспроизвести | шкала | итог | — |
 
-Сигнатура: `W×4 T(compare) C×4 W×2 T(table) C I`
+Сигнатура: `W×4 T(compare) C×4 W×2 T(table) C I×3 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ввод реакции: A mí también / A mí tampoco (U14-01); на слух: A mí tampoco; No me gusta nada el café. Версия 3.
 
 ## Урок `gustos/dialogo` — «¿Qué te gusta hacer?»
 
@@ -109,7 +112,8 @@ a Ana le gusta; `agree` — a mí también / tampoco / sí / no; `encanta` — m
 | 12 | I | ¿Playa o montaña? | ответить | тема | миссия | `exchange` |
 | 13 | B | No me gusta nada el fútbol | шкала | тема | миссия | `exchange` |
 
-Сигнатура: `W×4 T(text+dialogue+note) C@lucia×2 C T(mission) C@exchange×2 I@exchange B`
+Сигнатура: `W×4 T(table+text+dialogue+note) C@lucia×2 C T(mission) C@exchange×2 I@exchange B C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** таблица hago / haces / hace (U14-02); на слух: ¿Qué te gusta hacer el fin de semana?; Juego al baloncesto… Версия 3.
 
 ## Урок `gustos/lectura` — «Анкета для языкового обмена»
 
@@ -126,7 +130,8 @@ a Ana le gusta; `agree` — a mí también / tampoco / sí / no; `encanta` — m
 | 7–11 | C ×5 | откуда; что ищет; какой украинский; что практикует; что спрашивает | понять текст | текст | вопросы к тексту | `marta` |
 | 12 | S | le gusta / no le gusta | понять текст | текст | итог | `marta` |
 
-Сигнатура: `W×5 T(text+reading) C@marta×5 S`
+Сигнатура: `W×5 T(text+reading) C@marta×5 S C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Busco un intercambio; El español no es difícil (SYS-04). Версия 3.
 
 ## Урок `gustos/quiz` — «Мне нравится» (тест темы, `check: soft`)
 
@@ -139,4 +144,5 @@ a Ana le gusta; `agree` — a mí también / tampoco / sí / no; `encanta` — m
 | 2 | M | bailar, la playa, el fin de semana, a mí también, buscar | значения | тема | разминка | — |
 | 3–7 | Q ×5 | gustan; le; tampoco; me encanta viajar; ¿Qué te gusta hacer? | применить тему | тема | итог | — |
 
-Сигнатура: `T(text+cando) M Q×5`
+Сигнатура: `T(text+cando) M I×2 Q×5`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ввод: «Мне нравится читать. А тебе?», «Моему брату нравятся машины» (SYS-03). Версия 3.

@@ -28,7 +28,8 @@
 | 24–26 | C ×3 | где фильмы, книги, фрукты | место ↔ действие | — | — | — |
 | 26–27 | I ×2 | «в городе два супермаркета»; «рядом с парком магазин» | hay + места | hay | итог | — |
 
-Сигнатура: `T(text) W×4 T(tip) M W×5 C×3 W×5 T(note) M C×3 I×2`
+Сигнатура: `T(text) W×4 T(tip) M W×4 C×3 M I×2 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** 8 слов вместо 14 (U12-01, SYS-10): el museo, el cine — в уроке ir, el aeropuerto — в transporte, el bar, la biblioteca, el mercado — в lectura (они есть в тексте о районе); вторые пары — по второй порции; на слух: Hay una farmacia en la estación; La parada está al lado del supermercado. Версия 3.
 
 ## Урок `ciudad/ir` — «¿Adónde vas? Глагол ir»
 
@@ -49,7 +50,8 @@
 | 15 | C | «Я иду домой» | a casa | note | — | — |
 | 16 | B | Voy al cine con mi amiga | ir + al + con | правило | итог | — |
 
-Сигнатура: `T(text+examples) W×4 T(conjugation) I×3 T(compare) C×4 T(note) C B`
+Сигнатура: `W×2 C×2 T(text+examples) W×4 T(conjugation) I×3 T(compare) C×4 T(note) C B C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** первым циклом — el museo, el cine; на слух: ¿Adónde vas?; Vamos al museo; «Я иду в банк» — и Yo voy al banco. Версия 3.
 
 ## Урок `ciudad/transporte` — «Транспорт»
 
@@ -67,7 +69,8 @@
 | 10–14 | C ×4, C~ | ___ metro; ___ (пешком); на машине; на поезде; на слух «en bici» | en / a pie | правила | узнавание | — (без звука: фраза записана) |
 | 13–14 | I ×2 | «на работу на автобусе», «в парк пешком» | воспроизвести | правила | итог | — |
 
-Сигнатура: `W×5 T(rule) W×2 T(rule+more) C×4 C~ I×2`
+Сигнатура: `W×6 T(rule) W×2 T(rule+more) C×4 C~ I×2 C`
+- **13.11.2026, ремонт по аудиту MYTHOS:** + el aeropuerto и выбор «Voy ___ aeropuerto en tren». Версия 3.
 
 ## Урок `ciudad/direcciones` — «Как пройти?»
 
@@ -93,7 +96,8 @@
 | 17 | I | ¿Está lejos? — нет, очень близко | ответить | cerca | — | — |
 | 18 | B | La farmacia está entre el banco y el cine | описать место | entre | итог | — |
 
-Сигнатура: `T(text) W×2 T(note) C W×5 M T(dialogue) C@tom×2 T(mission) C@street I B`
+Сигнатура: `T(text) W×2 T(note) C W×5 M T(dialogue) C@tom×2 T(mission) C@street I B C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Todo recto y la primera a la derecha; Perdone, ¿hay un banco por aquí? (SYS-04). Версия 3.
 
 ## Урок `ciudad/lectura` — «Mi barrio»
 
@@ -110,7 +114,8 @@
 | 9–11 | C ×3 | тихий ли район; что рядом; как ездит Клара | понять текст | текст | вопросы к тексту | `barrio` |
 | 12–13 | Q ×2 | где метро; какой район у Клары | понять текст | текст | итог | `barrio` |
 
-Сигнатура: `W×4 T(text) C×2 T(reading) C@barrio×3 Q@barrio×2`
+Сигнатура: `W×3 T(note) C×2 W×4 T(text) C×2 T(reading) C@barrio×3 C~×2 Q@barrio×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** первым циклом — el bar, la biblioteca, el mercado (из урока vocab1) и «¿Dónde...?»; на слух: En mi barrio hay mucha gente; Mi barrio es muy tranquilo. Версия 3.
 
 ## Урок `ciudad/quiz` — «Город» (тест темы, `check: soft`)
 
@@ -123,7 +128,8 @@
 | 2 | M | la calle, el banco, el tren, a la izquierda, el barrio | значения | тема | разминка | — |
 | 3–8 | Q ×6 | vamos; al parque; en autobús; ¿Adónde?; todo recto; perdone | применить тему | тема | итог | — |
 
-Сигнатура: `T(text+cando) M Q×6`
+Сигнатура: `T(text+cando) M I×2 Q×6`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ввод: «Я еду на работу на метро», «Извините, здесь есть аптека?» (SYS-03). Версия 3.
 
 ## Урок `ciudad/repaso` — «Повторение» (темы 9–12)
 

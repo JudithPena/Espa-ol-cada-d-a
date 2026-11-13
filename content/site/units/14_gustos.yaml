@@ -12,7 +12,7 @@ lessons:
     kind: vocab
     title: Свободное время
     goal: сказать, чем вы занимаетесь в свободное время
-    version: 2
+    version: 3
     vocab:
       - "🕊 el tiempo libre [тьэ́мпо ли́брэ] — свободное время"
       - "💃 bailar [байла́р] — танцевать"
@@ -56,7 +56,7 @@ lessons:
             - {q: "Мы много путешествуем.", a: "Viajamos mucho", rule: regular}
             - {q: "Они бегают в парке.", a: "Corren en el parque | Ellos corren en el parque", rule: regular}
             - q: "Я смотрю телевизор."
-              a: "Veo la tele"
+              a: "Veo la tele | (Yo) veo la televisión | Yo veo la tele"
               rule: ver
               mistakes: {"vo la tele": "У ver форма «я» — **veo**."}
 
@@ -64,7 +64,7 @@ lessons:
     kind: grammar
     title: "Me gusta, me gustan"
     goal: сказать, что вам нравится и что нет
-    version: 2
+    version: 3
     vocab:
       - "❤️ gustar [густа́р] — нравиться {forms: gusta gustan}"
       - "🙂 me gusta [мэ гу́ста] — мне нравится :: Me gusta el café. — Мне нравится кофе."
@@ -135,12 +135,22 @@ lessons:
             - q: "Я люблю фрукты."
               options: "Me gusta la fruta. | Me gusta fruta. | Me gustan fruta."
               explain: "Перед существительным нужен артикль, даже когда речь о фруктах вообще: la fruta."
+      - choose:
+          title: Послушайте и выберите
+          skill: gustar
+          items:
+            - say: "Nos gusta la música."
+              options: "Нам нравится музыка. | Мне нравится музыка. | Им нравится музыка."
+              noaudio: {q: "Что значит «Nos gusta la música.»?", options: "Нам нравится музыка. | Мне нравится музыка. | Им нравится музыка."}
+            - say: "¿Os gusta el café?"
+              options: "Вам (друзья) нравится кофе? | Тебе нравится кофе? | Им нравится кофе?"
+              noaudio: {q: "Что значит «¿Os gusta el café?»?", options: "Вам (друзья) нравится кофе? | Тебе нравится кофе? | Им нравится кофе?"}
 
   - id: vocab2
     kind: vocab
     title: Спорт, кино, природа
     goal: рассказать, что вам нравится — спорт, кино, отдых
-    version: 2
+    version: 3
     vocab:
       - "🏅 el deporte [дэпо́ртэ] — спорт"
       - "⚽ el fútbol [фу́тболь] — футбол"
@@ -174,18 +184,28 @@ lessons:
           skill: gustar
           items:
             - q: "Мне нравится спорт."
-              a: "Me gusta el deporte"
+              a: "(A mí) me gusta el deporte"
               mistakes: {"me gusta deporte": "Перед существительным нужен артикль: me gusta **el** deporte."}
             - q: "Мне нравятся сериалы."
-              a: "Me gustan las series"
+              a: "(A mí) me gustan las series"
               mistakes: {"me gusta las series": "Сериалов много — **gustan**.", "me gustan series": "Перед существительным нужен артикль: **las** series."}
             - "Тебе нравятся горы? => ¿Te gusta la montaña? | ¿Te gustan las montañas?"
+      - choose:
+          title: Послушайте и выберите
+          skill: gustar
+          items:
+            - say: "Me gusta la playa, pero no la montaña."
+              options: "Мне нравится пляж, но не горы. | Мне нравятся горы, но не пляж. | Мне нравятся и пляж, и горы."
+              noaudio: {q: "Что значит «Me gusta la playa, pero no la montaña.»?", options: "Мне нравится пляж, но не горы. | Мне нравятся горы, но не пляж. | Мне нравятся и пляж, и горы."}
+            - say: "¿Te gusta el baloncesto?"
+              options: "Тебе нравится баскетбол? | Тебе нравится футбол? | Ты играешь в баскетбол?"
+              noaudio: {q: "Что значит «¿Te gusta el baloncesto?»?", options: "Тебе нравится баскетбол? | Тебе нравится футбол? | Ты играешь в баскетбол?"}
 
   - id: tambien
     kind: grammar
     title: "A mí también, a mí tampoco"
     goal: согласиться или не согласиться с собеседником
-    version: 2
+    version: 3
     vocab:
       - "❓ ¿Y a ti? [и а ти] — а тебе?"
       - "👍 a mí también [а ми тамбье́н] — мне тоже (нравится)"
@@ -254,21 +274,48 @@ lessons:
           skill: encanta
           items:
             - q: "Обожаю шоколад."
-              a: "Me encanta el chocolate"
+              a: "(A mí) me encanta el chocolate"
               mistakes: {"me encanta chocolate": "Перед существительным нужен артикль: me encanta **el** chocolate."}
+      - write:
+          title: Ответьте
+          format: ответ по-испански
+          skill: agree
+          items:
+            - q: "Ana: Me gusta el cine. — Вам тоже нравится."
+              a: "A mí también | Yo también | A mí también me gusta"
+              mistakes: {"a mi tampoco": "Вам тоже **нравится** — **también**; tampoco — «тоже нет»."}
+            - q: "Ana: No me gusta el fútbol. — Вам тоже не нравится."
+              a: "A mí tampoco | Yo tampoco | A mí tampoco me gusta"
+              mistakes: {"a mi tambien": "Согласие с отрицанием — **tampoco**: A mí tampoco."}
+      - choose:
+          title: Послушайте и выберите
+          skill: agree
+          items:
+            - say: "A mí tampoco."
+              options: "Мне тоже нет. | Мне тоже. | А мне да."
+              noaudio: {q: "Что значит «A mí tampoco.»?", options: "Мне тоже нет. | Мне тоже. | А мне да."}
+            - say: "No me gusta nada el café."
+              options: "Я совсем не люблю кофе. | Я очень люблю кофе. | Я не очень люблю кофе."
+              noaudio: {q: "Что значит «No me gusta nada el café.»?", options: "Я совсем не люблю кофе. | Я очень люблю кофе. | Я не очень люблю кофе."}
 
   - id: dialogo
     kind: dialogue
     title: ¿Qué te gusta hacer?
     goal: расспросить о хобби и рассказать о своих
-    version: 2
+    version: 3
     vocab:
-      - "🛠 hacer [аθэ́р] — делать"
+      - "🛠 hacer [аθэ́р] — делать {forms: hago haces hace}"
       - "❓ ¿Qué te gusta hacer? [кэ тэ гу́ста аθэ́р] — что ты любишь делать?"
       - "📅 el fin de semana [фин дэ сэма́на] — выходные {pl: los fines de semana}"
       - "⚽ jugar [хуга́р] — играть {forms: juego juegas juega} :: Juego al fútbol. — Я играю в футбол."
     blocks:
       - learn: [hacer, "¿Qué te gusta hacer?", el fin de semana, jugar]
+      - table:
+          title: "hacer — делать"
+          rows:
+            - ["yo", "**hago**"]
+            - ["tú", "haces"]
+            - ["él / ella / usted", "hace"]
       - "Лусия и Диего знакомятся на языковом обмене."
       - dialogue:
           id: lucia
@@ -329,12 +376,23 @@ lessons:
             - es: "No me gusta nada el fútbol."
               ru: "Скажите: «Мне совсем не нравится футбол»."
               extra: [gustan]
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          skill: hobbies
+          items:
+            - say: "¿Qué te gusta hacer el fin de semana?"
+              options: "Что ты любишь делать на выходных? | Что ты делаешь на выходных? | Что ты будешь делать на выходных?"
+              noaudio: {q: "Что значит «¿Qué te gusta hacer el fin de semana?»?", options: "Что ты любишь делать на выходных? | Что ты делаешь на выходных? | Что ты будешь делать на выходных?"}
+            - say: "Juego al baloncesto con mis amigos."
+              options: "Я играю в баскетбол с друзьями. | Я играю в футбол с друзьями. | Я смотрю баскетбол с друзьями."
+              noaudio: {q: "Что значит «Juego al baloncesto con mis amigos.»?", options: "Я играю в баскетбол с друзьями. | Я играю в футбол с друзьями. | Я смотрю баскетбол с друзьями."}
 
   - id: lectura
     kind: reading
     title: Анкета для языкового обмена
     goal: понять анкету и рассказать, что любит человек
-    version: 2
+    version: 3
     vocab:
       - "🔍 buscar [буска́р] — искать"
       - "🔄 el intercambio [интэрка́мбьо] — обмен; языковой обмен"
@@ -379,12 +437,23 @@ lessons:
           groups:
             "😊 le gusta": [leer, viajar, bailar, las series]
             "😖 no le gusta": [el fútbol]
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          skill: gustar
+          items:
+            - say: "Busco un intercambio."
+              options: "Ищу партнёра для языкового обмена. | Я нашла партнёра для обмена. | Ищу работу."
+              noaudio: {q: "Что значит «Busco un intercambio.»?", options: "Ищу партнёра для языкового обмена. | Я нашла партнёра для обмена. | Ищу работу."}
+            - say: "El español no es difícil."
+              options: "Испанский не трудный. | Испанский очень трудный. | Испанский трудный, но интересный."
+              noaudio: {q: "Что значит «El español no es difícil.»?", options: "Испанский не трудный. | Испанский очень трудный. | Испанский трудный, но интересный."}
 
   - id: quiz
     kind: quiz
     title: Мне нравится
     goal: рассказать о хобби, сказать, что нравится, и согласиться или не согласиться
-    version: 2
+    version: 3
     check: soft
     blocks:
       - "Тест по теме «Мне нравится»."
@@ -401,6 +470,18 @@ lessons:
             - "el fin de semana — выходные"
             - "a mí también — мне тоже"
             - "buscar — искать"
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          items:
+            - q: "Скажите: «Мне нравится читать. А тебе?»"
+              a: "Me gusta leer. ¿Y a ti? | (A mí) me gusta leer, ¿y a ti?"
+              skill: gustar
+              mistakes: {"me gusta leer y tu": "«А тебе?» — **¿Y a ti?**: после a — ti."}
+            - q: "Скажите: «Моему брату нравятся машины»."
+              a: "A mi hermano le gustan los coches | Le gustan los coches a mi hermano"
+              skill: gustar
+              mistakes: {"a mi hermano le gusta los coches": "Машин много — **gustan**.", "mi hermano gusta los coches": "О другом человеке — **a mi hermano le gustan**."}
     quiz:
       - q: "Me ___ los perros."
         options: "gustan | gusta | gusto"
