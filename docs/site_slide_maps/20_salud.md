@@ -25,7 +25,8 @@
 | 12 | M | шесть пар | значения | — | — | — |
 | 13–14 | I ×2 | две руки и две ноги; я мою руки | воспроизвести | me lavo | итог | — |
 
-Сигнатура: `W×4 T(rule) C×2 W×4 M I×2`
+Сигнатура: `W×4 T(rule) C×2 W×4 M I×2 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Tengo dos brazos y dos piernas; Me lavo la cabeza; ответы с местоимением (TST-02). Версия 3.
 
 ## Урок `salud/doler` — «Me duele la cabeza»
 
@@ -46,7 +47,8 @@
 | 11–13 | C ×3 | болит горло; a mi madre le…; ¿Qué te duele? | применить | правила 1–2 | узнавание | — |
 | 14–15 | I ×2 | болят зубы; у него болит спина | воспроизвести | правила 1–2 | итог | — |
 
-Сигнатура: `W×2 T(text+compare) I×4 W×2 T(rule) C×3 I×2`
+Сигнатура: `W×2 T(text+compare) I×4 W×2 T(rule) C×3 I×2 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Me duele la garganta; ¿Qué te duele?; «У меня болят зубы» — и los dientes. Версия 3.
 
 ## Урок `salud/tener` — «Tengo hambre, tengo frío»
 
@@ -71,7 +73,8 @@
 | 18 | T: note `hace_tengo` | hace frío — погода; tengo frío — мне | различить | погода | к выбору | — |
 | 19–20 | C ×2 | En invierno hace…; Los niños tienen calor | hace / tener | заметка | итог | — |
 
-Сигнатура: `W×4 T(text) C×2 M W×4 M T(rule) I×3 T(note) C×2`
+Сигнатура: `W×4 T(text) C×2 M W×4 M T(rule) I×3 T(note) C×2 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Tengo hambre; Tenemos mucho calor; ответы с местоимением. Версия 3.
 
 ## Урок `salud/medico` — «У врача»
 
@@ -109,7 +112,8 @@
 | 2 | M | cabeza, espalda, tener sueño, pastilla, niño | значения | тема | разминка | — |
 | 3–7 | Q ×5 | duelen; tengo sed; la mano; me duele la cabeza; hace / tengo | применить тему | тема | итог | — |
 
-Сигнатура: `T(text+cando) M Q×5`
+Сигнатура: `T(text+cando) M I×2 Q×5`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ввод жалобы врачу (горло и температура, U20-02) и «Я хочу пить» (SYS-03). Версия 3.
 
 ## Урок `salud/repaso` — «Повторение» (темы 17–20)
 

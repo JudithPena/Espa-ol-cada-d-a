@@ -12,7 +12,7 @@ lessons:
     kind: vocab
     title: ¿Qué tiempo hace?
     goal: рассказать, какая сегодня погода
-    version: 2
+    version: 3
     vocab:
       - "🌡 ¿Qué tiempo hace? [кэ тьэ́мпо а́θэ] — какая погода?"
       - "🥵 hace calor [а́θэ кало́р] — жарко"
@@ -76,7 +76,7 @@ lessons:
     kind: vocab
     title: Времена года
     goal: назвать времена года и сказать, какое у вас любимое
-    version: 2
+    version: 3
     vocab:
       - "🗓 la estación del año [эстаθьо́н дэль а́ньо] — время года"
       - "🌸 la primavera [примабэ́ра] — весна"
@@ -122,14 +122,24 @@ lessons:
           skill: seasons
           items:
             - q: "Зимой идёт снег."
-              a: "En invierno nieva"
+              a: "En invierno nieva | Nieva en invierno"
               mistakes: {"en el invierno nieva": "«Когда» — **en** без артикля: en invierno."}
             - q: "Моё любимое время года — лето."
               a: "Mi estación (del año) favorita es el verano | El verano es mi estación (del año) favorita"
               mistakes: {"mi estación favorita es verano": "О самом времени года — с артиклем: **el verano**."}
             - q: "Осенью пасмурно."
-              a: "En otoño está nublado"
+              a: "En otoño está nublado | Está nublado en otoño"
               mistakes: {"en otoño es nublado": "Облачно — **está** nublado.", "en otoño hace nublado": "Облачно — **está** nublado."}
+      - choose:
+          title: Послушайте и выберите
+          skill: seasons
+          items:
+            - say: "En verano hace mucho calor."
+              options: "Летом очень жарко. | Зимой очень холодно. | Летом очень холодно."
+              noaudio: {q: "Что значит «En verano hace mucho calor.»?", options: "Летом очень жарко. | Зимой очень холодно. | Летом очень холодно."}
+            - say: "Mi estación favorita es la primavera."
+              options: "Моё любимое время года — весна. | Моё любимое время года — осень. | Весной я много работаю."
+              noaudio: {q: "Что значит «Mi estación favorita es la primavera.»?", options: "Моё любимое время года — весна. | Моё любимое время года — осень. | Весной я много работаю."}
 
   - id: meses1
     kind: vocab
@@ -139,25 +149,39 @@ lessons:
     vocab:
       - "📅 el mes [мэс] — месяц"
       - "❓ ¿Cuándo? [куа́ндо] — когда?"
-      - "1️⃣ enero [энэ́ро] — январь"
-      - "2️⃣ febrero [фэбрэ́ро] — февраль"
-      - "3️⃣ marzo [ма́рθо] — март"
-      - "4️⃣ abril [абри́ль] — апрель"
-      - "5️⃣ mayo [ма́йо] — май"
-      - "6️⃣ junio [ху́ньо] — июнь"
-      - "7️⃣ julio [ху́льо] — июль"
-      - "8️⃣ agosto [аго́сто] — август"
-      - "9️⃣ septiembre [сэптьэ́мбрэ] — сентябрь"
-      - "🔟 octubre [окту́брэ] — октябрь"
-      - "1️⃣1️⃣ noviembre [нобьэ́мбрэ] — ноябрь"
-      - "1️⃣2️⃣ diciembre [диθьэ́мбрэ] — декабрь"
       - "🎂 el cumpleaños [кумплэа́ньос] — день рождения"
       - "📆 la fecha [фэ́ча] — дата"
     blocks:
       - text:
           id: en_mes
           text: "Месяцы похожи на русские, а пишутся с маленькой буквы. «В каком месяце» — **en**: _en enero_, _en mayo_."
-      - learn: [el mes, "¿Cuándo?", enero, febrero, marzo, abril]
+      - learn: [el mes, "¿Cuándo?"]
+      - compare:
+          style: small
+          title: Месяцы
+          cards:
+            - {head: enero, label: январь}
+            - {head: febrero, label: февраль}
+            - {head: marzo, label: март}
+            - {head: abril, label: апрель}
+            - {head: mayo, label: май}
+            - {head: junio, label: июнь}
+            - {head: julio, label: июль}
+            - {head: agosto, label: август}
+            - {head: septiembre, label: сентябрь}
+            - {head: octubre, label: октябрь}
+            - {head: noviembre, label: ноябрь}
+            - {head: diciembre, label: декабрь}
+          note: "Нажмите на месяц, чтобы послушать. Все двенадцать похожи на русские — их не нужно учить по карточкам."
+      - build:
+          title: Расставьте по порядку
+          rule: none
+          skill: dates
+          items:
+            - es: "enero, febrero, marzo, abril"
+              ru: "Первые четыре месяца года — по порядку."
+            - es: "septiembre, octubre, noviembre, diciembre"
+              ru: "Последние четыре месяца года — по порядку."
       - choose:
           title: Выберите
           skill: dates
@@ -176,7 +200,6 @@ lessons:
             - q: "Какой месяц идёт после marzo?"
               a: "abril"
               mistakes: {"febrero": "febrero — перед marzo, а после него — **abril**."}
-      - learn: [mayo, junio, julio, agosto]
       - choose:
           title: Послушайте и выберите
           skill: dates
@@ -184,7 +207,6 @@ lessons:
             - say: "Voy a España en julio."
               options: "Я еду в Испанию в июле. | Я еду в Испанию в июне. | Я еду в Испанию в августе."
               noaudio: {q: "Что значит «Voy a España en julio»?", options: "Я еду в Испанию в июле. | Я еду в Испанию в июне. | Я еду в Испанию в августе."}
-      - learn: [septiembre, octubre, noviembre, diciembre]
       - match:
           title: Соедините пары
           pairs:
@@ -220,7 +242,8 @@ lessons:
               q: "Ваш день рождения — двенадцатого октября."
               options: "Es el doce de octubre. | Es en doce de octubre. | Es doce octubre."
             - q: "¿Qué fecha es hoy? — 25.12"
-              options: "Hoy es el veinticinco de diciembre. | Hoy es el veinticinco diciembre. | Hoy es en diciembre veinticinco."
+              options: "Hoy es veinticinco de diciembre. | Hoy es veinticinco diciembre. | Hoy es en diciembre veinticinco."
+              explain: "После hoy es дату говорят и без артикля, и с ним: Hoy es (el) veinticinco de diciembre. Главное — de между числом и месяцем."
       - write:
           title: Послушайте и запишите цифрами
           format: число и месяц цифрами, например 5.3
@@ -234,12 +257,13 @@ lessons:
             - say: "el tres de mayo"
               a: "3.5 | 03.05 | 3/5 | 3 5"
               noaudio: {q: "Запишите цифрами: el tres de mayo", a: "3.5 | 03.05 | 3/5 | 3 5"}
+    forms: [enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre]
 
   - id: muy_mucho
     kind: grammar
     title: Muy или mucho?
     goal: выбрать muy или mucho
-    version: 2
+    version: 3
     vocab:
       - "🌡 el grado [гра́до] — градус :: Hoy hace treinta grados. — Сегодня тридцать градусов."
     blocks:
@@ -281,12 +305,22 @@ lessons:
           items:
             - q: "Hoy hace treinta grados: hace ___ calor."
               options: "mucho | muy | mucha"
+      - choose:
+          title: Послушайте и выберите
+          skill: muy_mucho
+          items:
+            - say: "Hace mucho frío."
+              options: "Очень холодно. | Немного холодно. | Очень жарко."
+              noaudio: {q: "Что значит «Hace mucho frío.»?", options: "Очень холодно. | Немного холодно. | Очень жарко."}
+            - say: "Estoy muy cansado."
+              options: "Я очень устал. | Я немного устал. | Я очень занят."
+              noaudio: {q: "Что значит «Estoy muy cansado.»?", options: "Я очень устал. | Я немного устал. | Я очень занят."}
 
   - id: lectura
     kind: reading
     title: Климат Испании
     goal: понять текст о климате и рассказать о погоде у себя
-    version: 2
+    version: 3
     vocab:
       - "🌍 el clima [кли́ма] — климат"
       - "⬆️ el norte [но́ртэ] — север"
@@ -361,13 +395,24 @@ lessons:
             - es: "En Kiev nieva mucho en invierno."
               ru: "Расскажите: «В Киеве зимой много снега»."
               extra: [muy]
+      - choose:
+          title: Послушайте и выберите
+          free: true
+          skill: weather
+          items:
+            - say: "En el norte llueve mucho."
+              options: "На севере много дождей. | На юге много дождей. | На севере мало дождей."
+              noaudio: {q: "Что значит «En el norte llueve mucho.»?", options: "На севере много дождей. | На юге много дождей. | На севере мало дождей."}
+            - say: "En el sur hace sol casi todo el año."
+              options: "На юге солнечно почти весь год. | На севере солнечно почти весь год. | На юге жарко только летом."
+              noaudio: {q: "Что значит «En el sur hace sol casi todo el año.»?", options: "На юге солнечно почти весь год. | На севере солнечно почти весь год. | На юге жарко только летом."}
     forms: [oeste]
 
   - id: quiz
     kind: quiz
     title: Погода и даты
     goal: рассказать о погоде, назвать времена года, месяцы и дату, выбрать muy или mucho
-    version: 2
+    version: 3
     check: soft
     blocks:
       - "Это тест по теме «Погода и даты»."
@@ -385,6 +430,18 @@ lessons:
             - "la fecha — дата"
             - "el grado — градус"
             - "el norte — север"
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          items:
+            - q: "Скажите: «Сегодня холодно и идёт дождь»."
+              a: "Hoy hace frío y llueve | Hace frío y llueve hoy | Hoy llueve y hace frío"
+              skill: weather
+              mistakes: {"hoy es frio y llueve": "О погоде — **hace** frío."}
+            - q: "Спросите друга: «Когда у тебя день рождения?»"
+              a: "¿Cuándo es tu cumpleaños? | ¿Tu cumpleaños cuándo es?"
+              skill: dates
+              mistakes: {"cuando es tu cumpleano": "Пишется с `s`: **cumpleaños**."}
     quiz:
       - q: Как сказать «Холодно»?
         options: "Hace frío. | Es frío. | Está frío."

@@ -27,7 +27,8 @@ a перед человеком; `tener_que` — tengo que / hay que; `invite` �
 | 12 | T: note `para` | planes para el sábado; para mí | para — «на» | para mí | к сборке | — |
 | 13 | B | ¿Qué planes tienes para el fin de semana? | вопрос о планах | заметка | итог | — |
 
-Сигнатура: `T(text) W×3 C W×3 M I×2 T(note) B`
+Сигнатура: `T(text) W×3 C W×3 M I×2 T(note) B C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Esta noche ceno con mis padres; La semana que viene no trabajo (SYS-04). Версия 3.
 
 ## Урок `planes/ir_a` — «Voy a + инфинитив: ближайшее будущее»
 
@@ -48,7 +49,8 @@ a перед человеком; `tener_que` — tengo que / hay que; `invite` �
 | 12–13 | C ×2 | a mis abuelos; el museo | a перед человеком | правило 2 | узнавание | — |
 | 14–17 | I ×4 | буду отдыхать; собираемся путешествовать; встречаюсь с друзьями; пойдём на вечеринку | воспроизвести | правило 1 | итог | — |
 
-Сигнатура: `T(text+examples+compare) C I×4 W×4 T(note) C×2 I×4`
+Сигнатура: `T(text+examples+compare) C I×4 W×4 T(note) C×2 I×4 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Vamos a descansar en casa; ¿Qué vas a hacer el sábado?; «Мы собираемся путешествовать» — и с Nosotros. Версия 3.
 
 ## Урок `planes/tener_que` — «Tengo que: что нужно сделать»
 
@@ -66,7 +68,8 @@ a перед человеком; `tener_que` — tengo que / hay que; `invite` �
 | 9 | T: rule `sin_que` | quiero, puedo + инфинитив без que | правило 2 | quiero, puedo | к выбору | — |
 | 10 | C | Hoy no puedo ir | без que | правило 2 | итог | — |
 
-Сигнатура: `W×3 T(compare) C×2 I×2 T(rule) C`
+Сигнатура: `W×3 T(compare) C×2 I×2 T(rule) C C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Tengo que trabajar mañana; Hay que comprar pan; ответы с местоимением и mamá (TST-02). Версия 3.
 
 ## Урок `planes/invitacion` — «Пойдём в кино?»
 
@@ -89,7 +92,8 @@ a перед человеком; `tener_que` — tengo que / hay que; `invite` �
 | 12 | B | ¿Quieres ir a la playa el domingo? | пригласить | тема | миссия | `beach` |
 | 13 | C (реплика) | ¿A qué hora quedamos? | договориться | тема | миссия | `beach` |
 
-Сигнатура: `W×2 C W×3 S T(dialogue+dialogue) C@no_puedo C@genial T(mission) B C@beach`
+Сигнатура: `W×2 C W×3 S T(dialogue+dialogue) C@no_puedo C@genial T(mission) B C@beach C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Lo siento, no puedo; ¿Quedamos a las ocho? (SYS-04). Версия 3.
 
 ## Урок `planes/lectura` — «Планы на лето»
 
@@ -108,7 +112,8 @@ a перед человеком; `tener_que` — tengo que / hay que; `invite` �
 | 10 | S | Мадрид / Валенсия | понять текст | текст | — | `irina` |
 | 11–12 | Q ×2 | сколько недель; что после Валенсии | понять текст | текст | итог | `irina` |
 
-Сигнатура: `W×3 T(text+reading+more) C@irina×5 S Q@irina×2`
+Сигнатура: `W×3 T(text+reading+more) C@irina×5 S C~×2 Q@irina×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Vamos a conocer Sevilla; Las vacaciones empiezan en julio (SYS-04). Версия 3.
 
 ## Урок `planes/quiz` — «Планы» (тест темы, `check: soft`)
 
@@ -121,4 +126,5 @@ a перед человеком; `tener_que` — tengo que / hay que; `invite` �
 | 2 | M | esta noche, descansar, comprar, lo siento, vacaciones | значения | тема | разминка | — |
 | 3–7 | Q ×5 | voy a; vas a; tengo que; lo siento; la semana que viene | применить тему | тема | итог | — |
 
-Сигнатура: `T(text+cando) M Q×5`
+Сигнатура: `T(text+cando) M I×2 Q×5`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ввод: «В субботу я буду отдыхать», отказ «Извини, не могу: мне нужно работать» (U19-02, SYS-03). Версия 3.

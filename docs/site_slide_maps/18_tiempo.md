@@ -51,7 +51,8 @@ septiembre; `muy_mucho` — muy или mucho. Повторяется `numbers_ea
 | 12 | T: culture | лето в Аргентине — в январе | культура | — | — | — |
 | 13–15 | I ×3 | зимой идёт снег; любимое время года — лето; осенью пасмурно | воспроизвести | правило | итог | — |
 
-Сигнатура: `T(text) W×5 M T(compare) C W×2 T(culture) I×3`
+Сигнатура: `T(text) W×5 M T(compare) C W×2 T(culture) I×3 C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: En verano hace mucho calor; Mi estación favorita es la primavera; «Зимой идёт снег», «Осенью пасмурно» — и с обстоятельством в конце (TST-02). Версия 3.
 
 ## Урок `tiempo/meses1` — «Месяцы и даты»
 
@@ -78,7 +79,8 @@ septiembre; `muy_mucho` — muy или mucho. Повторяется `numbers_ea
 | 28–30 | C ×3 | en septiembre; ¿Cuándo es tu cumpleaños?; ¿Qué fecha es hoy? | en / el | правило | — | — |
 | 31–32 | I~ ×2 | на слух 14.11, 3.5 | дата на слух | числа | итог | — (без звука: дата словами) |
 
-Сигнатура: `T(text) W×6 C×3 I W×4 C~ W×4 M W×2 T(rule) I×3 C×3 I~×2`
+Сигнатура: `T(text) W×2 T(compare) B×2 C×3 I C~ M W×2 T(rule) I×3 C×3 I~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** 4 слова вместо 16 (U18-03, SYS-10): двенадцать месяцев — плитками с озвучкой (compare) и сборкой «расставьте по порядку», без карточки на каждый месяц (они — формы урока, в повторение слов не идут); дата после hoy es — без артикля, с пояснением, что можно и с ним (U18-05).
 
 ## Урок `tiempo/muy_mucho` — «Muy или mucho?»
 
@@ -94,7 +96,8 @@ septiembre; `muy_mucho` — muy или mucho. Повторяется `numbers_ea
 | 3–7 | I ×5 | mucho, muy, mucha, mucho, muchos | выбрать | правило | ввод | — |
 | 8 | C | hace ___ calor | mucho | правило | итог | — |
 
-Сигнатура: `W T(text+compare) I×5 C`
+Сигнатура: `W T(text+compare) I×5 C C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: Hace mucho frío; Estoy muy cansado (SYS-04). Версия 3.
 
 ## Урок `tiempo/lectura` — «Климат Испании»
 
@@ -117,7 +120,8 @@ septiembre; `muy_mucho` — muy или mucho. Повторяется `numbers_ea
 | 13 | I | ¿Cuándo es tu cumpleaños? | дата | тема | миссия | `kiev` |
 | 14 | B | En Kiev nieva mucho en invierno | mucho | тема | миссия | `kiev` |
 
-Сигнатура: `W×4 T(text+reading+more) C@clima×4 S T(mission) C@kiev I@kiev B`
+Сигнатура: `W×4 T(text+reading+more) C@clima×4 S T(mission) C@kiev I@kiev B C~×2`
+- **13.11.2026, ремонт по аудиту MYTHOS:** на слух: En el norte llueve mucho; En el sur hace sol casi todo el año (SYS-04). Версия 3.
 
 ## Урок `tiempo/quiz` — «Погода и даты» (тест темы, `check: soft`)
 
@@ -130,4 +134,5 @@ septiembre; `muy_mucho` — muy или mucho. Повторяется `numbers_ea
 | 2 | M | verano, hace viento, fecha, grado, norte | значения | тема | разминка | — |
 | 3–7 | Q ×5 | hace frío; mucho calor; после junio; el cinco de mayo; llueve | применить тему | тема | итог | — |
 
-Сигнатура: `T(text+cando) M Q×5`
+Сигнатура: `T(text+cando) M I×2 Q×5`
+- **13.11.2026, ремонт по аудиту MYTHOS:** ввод: «Сегодня холодно и идёт дождь», «Когда у тебя день рождения?» (SYS-03). Версия 3.

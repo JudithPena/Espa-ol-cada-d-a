@@ -12,7 +12,7 @@ lessons:
     kind: vocab
     title: Тело
     goal: назвать части тела
-    version: 2
+    version: 3
     vocab:
       - "🧍 el cuerpo [куэ́рпо] — тело"
       - "🗣 la cabeza [кабэ́θа] — голова"
@@ -55,14 +55,24 @@ lessons:
               a: "dos manos y dos pies"
               mistakes: {"dos manos y dos pie": "pie во множественном — **pies**."}
             - q: "Я мою руки."
-              a: "Me lavo las manos"
+              a: "Me lavo las manos | (Yo) me lavo las manos"
               mistakes: {"me lavo mis manos": "С частями тела — артикль, а не mi: me lavo **las** manos.", "lavo las manos": "Руки моют себе — нужно **me**: me lavo las manos."}
+      - choose:
+          title: Послушайте и выберите
+          skill: body
+          items:
+            - say: "Tengo dos brazos y dos piernas."
+              options: "У меня две руки и две ноги. | У меня две кисти и две ступни. | У меня две руки и два глаза."
+              noaudio: {q: "Что значит «Tengo dos brazos y dos piernas.»?", options: "У меня две руки и две ноги. | У меня две кисти и две ступни. | У меня две руки и два глаза."}
+            - say: "Me lavo la cabeza."
+              options: "Я мою голову. | Я мою руки. | Я мою ноги."
+              noaudio: {q: "Что значит «Me lavo la cabeza.»?", options: "Я мою голову. | Я мою руки. | Я мою ноги."}
 
   - id: doler
     kind: grammar
     title: Me duele la cabeza
     goal: сказать, что болит
-    version: 2
+    version: 3
     vocab:
       - "🤕 doler [долэ́р] — болеть :: Me duele la cabeza. — У меня болит голова."
       - "❓ ¿Qué te duele? [кэ тэ дуэ́лэ] — что у тебя болит?"
@@ -116,17 +126,27 @@ lessons:
           skill: doler
           items:
             - q: "У меня болят зубы."
-              a: "Me duelen las muelas"
+              a: "Me duelen las muelas | (A mí) me duelen [las muelas/los dientes]"
               mistakes: {"me duele las muelas": "Зубов несколько — **duelen**.", "me duelen mis muelas": "С частями тела — артикль: **las** muelas."}
             - q: "У него болит спина."
               a: "Le duele la espalda | A él le duele la espalda"
               mistakes: {"le duele su espalda": "С частями тела — артикль: **la** espalda."}
+      - choose:
+          title: Послушайте и выберите
+          skill: doler
+          items:
+            - say: "Me duele la garganta."
+              options: "У меня болит горло. | У меня болит голова. | У меня болят зубы."
+              noaudio: {q: "Что значит «Me duele la garganta.»?", options: "У меня болит горло. | У меня болит голова. | У меня болят зубы."}
+            - say: "¿Qué te duele?"
+              options: "Что у тебя болит? | Что с тобой? | Где ты?"
+              noaudio: {q: "Что значит «¿Qué te duele?»?", options: "Что у тебя болит? | Что с тобой? | Где ты?"}
 
   - id: tener
     kind: grammar
     title: "Tengo hambre, tengo frío"
     goal: описать самочувствие — хочу есть, мне холодно, температура
-    version: 2
+    version: 3
     vocab:
       - "🍽 tener hambre [тэнэ́р а́мбрэ] — хотеть есть"
       - "🥤 tener sed [тэнэ́р сэд] — хотеть пить"
@@ -175,13 +195,13 @@ lessons:
           skill: tener_states
           items:
             - q: "Я очень хочу есть."
-              a: "Tengo mucha hambre"
+              a: "Tengo mucha hambre | (Yo) tengo mucha hambre"
               mistakes: {"tengo mucho hambre": "hambre — женского рода: **mucha** hambre.", "tengo muy hambre": "После tener — существительное, поэтому **mucha**: tengo mucha hambre."}
             - q: "Мне очень холодно."
-              a: "Tengo mucho frío"
+              a: "Tengo mucho frío | (Yo) tengo mucho frío"
               mistakes: {"tengo muy frío": "После tener — существительное, поэтому **mucho**: tengo mucho frío."}
             - q: "Он боится собак."
-              a: "Tiene miedo de los perros"
+              a: "Tiene miedo de los perros | (Él) tiene miedo de los perros"
               mistakes: {"tiene miedo los perros": "Чего боятся — через **de**: tiene miedo de los perros."}
       - note:
           id: hace_tengo
@@ -194,6 +214,16 @@ lessons:
               options: "hace | tengo | es"
             - q: "Los niños ___ calor."
               options: "tienen | hacen | están"
+      - choose:
+          title: Послушайте и выберите
+          skill: tener_states
+          items:
+            - say: "Tengo hambre."
+              options: "Я хочу есть. | Я хочу пить. | Мне холодно."
+              noaudio: {q: "Что значит «Tengo hambre.»?", options: "Я хочу есть. | Я хочу пить. | Мне холодно."}
+            - say: "Tenemos mucho calor."
+              options: "Нам очень жарко. | Нам очень холодно. | Им очень жарко."
+              noaudio: {q: "Что значит «Tenemos mucho calor.»?", options: "Нам очень жарко. | Нам очень холодно. | Им очень жарко."}
 
   - id: medico
     kind: dialogue
@@ -277,7 +307,7 @@ lessons:
     kind: quiz
     title: Здоровье
     goal: назвать части тела, сказать, что болит, описать самочувствие и объясниться у врача
-    version: 2
+    version: 3
     check: soft
     blocks:
       - "Это тест по теме «Здоровье»."
@@ -295,6 +325,18 @@ lessons:
             - "tener sueño — хотеть спать"
             - "la pastilla — таблетка"
             - "el niño — ребёнок"
+      - write:
+          title: Скажите по-испански
+          format: фраза по-испански
+          items:
+            - q: "Скажите врачу: «У меня болит горло и температура»"
+              a: "Me duele la garganta y tengo fiebre | (A mí) me duele la garganta y tengo fiebre | Tengo fiebre y me duele la garganta"
+              skill: doler
+              mistakes: {"me duelo la garganta y tengo fiebre": "Болит горло — **me duele** la garganta."}
+            - q: "Скажите: «Я хочу пить»"
+              a: "Tengo sed | (Yo) tengo sed | Tengo mucha sed"
+              skill: tener_states
+              mistakes: {"quiero beber": "«Хочу пить» говорят через tener: **tengo sed**."}
     quiz:
       - q: "Me ___ los pies."
         options: "duelen | duele | duelo"
@@ -355,7 +397,7 @@ lessons:
           rule: none
           items:
             - q: "У меня болит голова."
-              a: "Me duele la cabeza"
+              a: "Me duele la cabeza | (A mí) me duele la cabeza"
               skill: doler
               mistakes: {"me duele mi cabeza": "С частями тела — артикль: me duele **la** cabeza."}
             - q: "Мой день рождения — двадцатого мая."
