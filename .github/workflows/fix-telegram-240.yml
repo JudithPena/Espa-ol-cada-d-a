@@ -1,0 +1,34 @@
+name: Исправление транскрипции в Telegram №240
+
+# Одноразовая правка уже опубликованного поста; после выполнения workflow удалить.
+on:
+  push:
+    branches: [ccr-f4c9bfd6-txio5n]
+    paths:
+      - "content/units/10_casa.yaml"
+
+permissions:
+  contents: read
+
+jobs:
+  fix-post-240:
+    if: github.event.head_commit.message == 'fix: correct balcon reading in Telegram lesson 67'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Шрифт для эмодзи
+        continue-on-error: true
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends fonts-noto-color-emoji
+      - name: Установить зависимости
+        run: pip install -r requirements.txt
+      - name: Исправить существующий пост (без повторной публикации)
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ENABLE_AUDIO: ${{ vars.ENABLE_AUDIO || '1' }}
+        run: python -m espanol send 67 --edit 240
