@@ -1,0 +1,1259 @@
+{
+  "widths": [
+    320,
+    390,
+    768,
+    1280
+  ],
+  "questions": 340,
+  "theory": 32,
+  "images": 0,
+  "failures": [],
+  "checks": [
+    "tocaríais rejects omitted accent",
+    "importaría rejects omitted accent",
+    "vendrían rejects omitted accent"
+  ],
+  "recovery": {
+    "browser": "Chromium via Playwright (Linux)",
+    "widths": [
+      320,
+      390,
+      768,
+      1280
+    ],
+    "cases": [
+      {
+        "width": 320,
+        "unit": 71,
+        "route": "exercise:71.1",
+        "question_index": 0,
+        "screenshots": [
+          "docs/grammar_units/browser71_72/u71_320_exercise_71_1_q0_error_3.png"
+        ],
+        "layouts": {
+          "initial": {
+            "viewport": 320,
+            "documentWidth": 320,
+            "playerWidth": 320,
+            "bodyWidth": 320,
+            "bodyClient": 320,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 320,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "keyboard_emulation": {
+            "viewport": 320,
+            "documentWidth": 320,
+            "playerWidth": 320,
+            "bodyWidth": 320,
+            "bodyClient": 320,
+            "footTop": 389.40625,
+            "bodyBottom": 389.40625,
+            "playerRight": 320,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "error_1": {
+            "viewport": 320,
+            "documentWidth": 320,
+            "playerWidth": 320,
+            "bodyWidth": 320,
+            "bodyClient": 320,
+            "footTop": 506.203125,
+            "bodyBottom": 506.203125,
+            "playerRight": 320,
+            "overflowedControls": [],
+            "feedbackHeight": 301,
+            "feedbackClient": 220
+          },
+          "error_2": {
+            "viewport": 320,
+            "documentWidth": 320,
+            "playerWidth": 320,
+            "bodyWidth": 320,
+            "bodyClient": 320,
+            "footTop": 506.203125,
+            "bodyBottom": 506.203125,
+            "playerRight": 320,
+            "overflowedControls": [],
+            "feedbackHeight": 337,
+            "feedbackClient": 220
+          },
+          "error_3": {
+            "viewport": 320,
+            "documentWidth": 320,
+            "playerWidth": 320,
+            "bodyWidth": 320,
+            "bodyClient": 320,
+            "footTop": 393.8125,
+            "bodyBottom": 393.8125,
+            "playerRight": 320,
+            "overflowedControls": [],
+            "feedbackHeight": 382,
+            "feedbackClient": 220
+          },
+          "theory": {
+            "viewport": 320,
+            "documentWidth": 320,
+            "playerWidth": 320,
+            "bodyWidth": 320,
+            "bodyClient": 320,
+            "footTop": 675.40625,
+            "bodyBottom": 675.40625,
+            "playerRight": 320,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "retry": {
+            "viewport": 320,
+            "documentWidth": 320,
+            "playerWidth": 320,
+            "bodyWidth": 320,
+            "bodyClient": 320,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 320,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          }
+        },
+        "initial": {
+          "score": "{\"correct\":1,\"total\":9}",
+          "group": "71.1",
+          "questions": 9
+        },
+        "status": "passed"
+      },
+      {
+        "width": 320,
+        "unit": 71,
+        "route": "exercise:71.4",
+        "question_index": 5,
+        "screenshots": [
+          "docs/grammar_units/browser71_72/u71_320_exercise_71_4_q5_error_3.png"
+        ],
+        "layouts": {
+          "initial": {
+            "viewport": 320,
+            "documentWidth": 320,
+            "playerWidth": 320,
+            "bodyWidth": 320,
+            "bodyClient": 320,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 320,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "keyboard_emulation": {
+            "viewport": 320,
+            "documentWidth": 320,
+            "playerWidth": 320,
+            "bodyWidth": 320,
+            "bodyClient": 320,
+            "footTop": 389.40625,
+            "bodyBottom": 389.40625,
+            "playerRight": 320,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "error_1": {
+            "viewport": 320,
+            "documentWidth": 320,
+            "playerWidth": 320,
+            "bodyWidth": 320,
+            "bodyClient": 320,
+            "footTop": 506.203125,
+            "bodyBottom": 506.203125,
+            "playerRight": 320,
+            "overflowedControls": [],
+            "feedbackHeight": 245,
+            "feedbackClient": 220
+          },
+          "error_2": {
+            "viewport": 320,
+            "documentWidth": 320,
+            "playerWidth": 320,
+            "bodyWidth": 320,
+            "bodyClient": 320,
+            "footTop": 506.203125,
+            "bodyBottom": 506.203125,
+            "playerRight": 320,
+            "overflowedControls": [],
+            "feedbackHeight": 495,
+            "feedbackClient": 220
+          },
+          "error_3": {
+            "viewport": 320,
+            "documentWidth": 320,
+            "playerWidth": 320,
+            "bodyWidth": 320,
+            "bodyClient": 320,
+            "footTop": 393.8125,
+            "bodyBottom": 393.8125,
+            "playerRight": 320,
+            "overflowedControls": [],
+            "feedbackHeight": 466,
+            "feedbackClient": 220
+          },
+          "theory": {
+            "viewport": 320,
+            "documentWidth": 320,
+            "playerWidth": 320,
+            "bodyWidth": 320,
+            "bodyClient": 320,
+            "footTop": 675.40625,
+            "bodyBottom": 675.40625,
+            "playerRight": 320,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "retry": {
+            "viewport": 320,
+            "documentWidth": 320,
+            "playerWidth": 320,
+            "bodyWidth": 320,
+            "bodyClient": 320,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 320,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          }
+        },
+        "initial": {
+          "score": "{\"correct\":1,\"total\":8}",
+          "group": "71.4",
+          "questions": 8
+        },
+        "status": "passed"
+      },
+      {
+        "width": 320,
+        "unit": 72,
+        "route": "exercise:72.4",
+        "question_index": 0,
+        "screenshots": [
+          "docs/grammar_units/browser71_72/u72_320_exercise_72_4_q0_error_3.png"
+        ],
+        "layouts": {
+          "initial": {
+            "viewport": 320,
+            "documentWidth": 320,
+            "playerWidth": 320,
+            "bodyWidth": 320,
+            "bodyClient": 320,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 320,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "keyboard_emulation": {
+            "viewport": 320,
+            "documentWidth": 320,
+            "playerWidth": 320,
+            "bodyWidth": 320,
+            "bodyClient": 320,
+            "footTop": 389.40625,
+            "bodyBottom": 389.40625,
+            "playerRight": 320,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "error_1": {
+            "viewport": 320,
+            "documentWidth": 320,
+            "playerWidth": 320,
+            "bodyWidth": 320,
+            "bodyClient": 320,
+            "footTop": 506.203125,
+            "bodyBottom": 506.203125,
+            "playerRight": 320,
+            "overflowedControls": [],
+            "feedbackHeight": 245,
+            "feedbackClient": 220
+          },
+          "error_2": {
+            "viewport": 320,
+            "documentWidth": 320,
+            "playerWidth": 320,
+            "bodyWidth": 320,
+            "bodyClient": 320,
+            "footTop": 506.203125,
+            "bodyBottom": 506.203125,
+            "playerRight": 320,
+            "overflowedControls": [],
+            "feedbackHeight": 281,
+            "feedbackClient": 220
+          },
+          "error_3": {
+            "viewport": 320,
+            "documentWidth": 320,
+            "playerWidth": 320,
+            "bodyWidth": 320,
+            "bodyClient": 320,
+            "footTop": 393.8125,
+            "bodyBottom": 393.8125,
+            "playerRight": 320,
+            "overflowedControls": [],
+            "feedbackHeight": 382,
+            "feedbackClient": 220
+          },
+          "theory": {
+            "viewport": 320,
+            "documentWidth": 320,
+            "playerWidth": 320,
+            "bodyWidth": 320,
+            "bodyClient": 320,
+            "footTop": 675.40625,
+            "bodyBottom": 675.40625,
+            "playerRight": 320,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "retry": {
+            "viewport": 320,
+            "documentWidth": 320,
+            "playerWidth": 320,
+            "bodyWidth": 320,
+            "bodyClient": 320,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 320,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          }
+        },
+        "initial": {
+          "score": "{\"correct\":1,\"total\":7}",
+          "group": "72.4",
+          "questions": 7
+        },
+        "status": "passed"
+      },
+      {
+        "width": 390,
+        "unit": 71,
+        "route": "exercise:71.1",
+        "question_index": 0,
+        "screenshots": [
+          "docs/grammar_units/browser71_72/u71_390_exercise_71_1_q0_error_3.png",
+          "docs/grammar_units/browser71_72/u71_390_exercise_71_1_q0_theory.png",
+          "docs/grammar_units/browser71_72/u71_390_exercise_71_1_q0_returned_to_error.png",
+          "docs/grammar_units/browser71_72/u71_390_exercise_71_1_q0_retry.png"
+        ],
+        "layouts": {
+          "initial": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "playerWidth": 390,
+            "bodyWidth": 390,
+            "bodyClient": 390,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 390,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "keyboard_emulation": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "playerWidth": 390,
+            "bodyWidth": 390,
+            "bodyClient": 390,
+            "footTop": 389.40625,
+            "bodyBottom": 389.40625,
+            "playerRight": 390,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "error_1": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "playerWidth": 390,
+            "bodyWidth": 390,
+            "bodyClient": 390,
+            "footTop": 506.203125,
+            "bodyBottom": 506.203125,
+            "playerRight": 390,
+            "overflowedControls": [],
+            "feedbackHeight": 273,
+            "feedbackClient": 220
+          },
+          "error_2": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "playerWidth": 390,
+            "bodyWidth": 390,
+            "bodyClient": 390,
+            "footTop": 506.203125,
+            "bodyBottom": 506.203125,
+            "playerRight": 390,
+            "overflowedControls": [],
+            "feedbackHeight": 309,
+            "feedbackClient": 220
+          },
+          "error_3": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "playerWidth": 390,
+            "bodyWidth": 390,
+            "bodyClient": 390,
+            "footTop": 418.609375,
+            "bodyBottom": 418.609375,
+            "playerRight": 390,
+            "overflowedControls": [],
+            "feedbackHeight": 309,
+            "feedbackClient": 220
+          },
+          "theory": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "playerWidth": 390,
+            "bodyWidth": 390,
+            "bodyClient": 390,
+            "footTop": 675.40625,
+            "bodyBottom": 675.40625,
+            "playerRight": 390,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "retry": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "playerWidth": 390,
+            "bodyWidth": 390,
+            "bodyClient": 390,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 390,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          }
+        },
+        "initial": {
+          "score": "{\"correct\":1,\"total\":9}",
+          "group": "71.1",
+          "questions": 9
+        },
+        "status": "passed"
+      },
+      {
+        "width": 390,
+        "unit": 71,
+        "route": "exercise:71.4",
+        "question_index": 5,
+        "screenshots": [
+          "docs/grammar_units/browser71_72/u71_390_exercise_71_4_q5_error_3.png",
+          "docs/grammar_units/browser71_72/u71_390_exercise_71_4_q5_theory.png",
+          "docs/grammar_units/browser71_72/u71_390_exercise_71_4_q5_returned_to_error.png",
+          "docs/grammar_units/browser71_72/u71_390_exercise_71_4_q5_retry.png"
+        ],
+        "layouts": {
+          "initial": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "playerWidth": 390,
+            "bodyWidth": 390,
+            "bodyClient": 390,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 390,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "keyboard_emulation": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "playerWidth": 390,
+            "bodyWidth": 390,
+            "bodyClient": 390,
+            "footTop": 389.40625,
+            "bodyBottom": 389.40625,
+            "playerRight": 390,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "error_1": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "playerWidth": 390,
+            "bodyWidth": 390,
+            "bodyClient": 390,
+            "footTop": 508.640625,
+            "bodyBottom": 508.640625,
+            "playerRight": 390,
+            "overflowedControls": [],
+            "feedbackHeight": 218,
+            "feedbackClient": 218
+          },
+          "error_2": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "playerWidth": 390,
+            "bodyWidth": 390,
+            "bodyClient": 390,
+            "footTop": 506.203125,
+            "bodyBottom": 506.203125,
+            "playerRight": 390,
+            "overflowedControls": [],
+            "feedbackHeight": 383,
+            "feedbackClient": 220
+          },
+          "error_3": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "playerWidth": 390,
+            "bodyWidth": 390,
+            "bodyClient": 390,
+            "footTop": 418.609375,
+            "bodyBottom": 418.609375,
+            "playerRight": 390,
+            "overflowedControls": [],
+            "feedbackHeight": 393,
+            "feedbackClient": 220
+          },
+          "theory": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "playerWidth": 390,
+            "bodyWidth": 390,
+            "bodyClient": 390,
+            "footTop": 675.40625,
+            "bodyBottom": 675.40625,
+            "playerRight": 390,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "retry": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "playerWidth": 390,
+            "bodyWidth": 390,
+            "bodyClient": 390,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 390,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          }
+        },
+        "initial": {
+          "score": "{\"correct\":1,\"total\":8}",
+          "group": "71.4",
+          "questions": 8
+        },
+        "status": "passed"
+      },
+      {
+        "width": 390,
+        "unit": 72,
+        "route": "exercise:72.4",
+        "question_index": 0,
+        "screenshots": [
+          "docs/grammar_units/browser71_72/u72_390_exercise_72_4_q0_error_3.png",
+          "docs/grammar_units/browser71_72/u72_390_exercise_72_4_q0_theory.png",
+          "docs/grammar_units/browser71_72/u72_390_exercise_72_4_q0_returned_to_error.png",
+          "docs/grammar_units/browser71_72/u72_390_exercise_72_4_q0_retry.png"
+        ],
+        "layouts": {
+          "initial": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "playerWidth": 390,
+            "bodyWidth": 390,
+            "bodyClient": 390,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 390,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "keyboard_emulation": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "playerWidth": 390,
+            "bodyWidth": 390,
+            "bodyClient": 390,
+            "footTop": 389.40625,
+            "bodyBottom": 389.40625,
+            "playerRight": 390,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "error_1": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "playerWidth": 390,
+            "bodyWidth": 390,
+            "bodyClient": 390,
+            "footTop": 508.640625,
+            "bodyBottom": 508.640625,
+            "playerRight": 390,
+            "overflowedControls": [],
+            "feedbackHeight": 218,
+            "feedbackClient": 218
+          },
+          "error_2": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "playerWidth": 390,
+            "bodyWidth": 390,
+            "bodyClient": 390,
+            "footTop": 506.203125,
+            "bodyBottom": 506.203125,
+            "playerRight": 390,
+            "overflowedControls": [],
+            "feedbackHeight": 281,
+            "feedbackClient": 220
+          },
+          "error_3": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "playerWidth": 390,
+            "bodyWidth": 390,
+            "bodyClient": 390,
+            "footTop": 418.609375,
+            "bodyBottom": 418.609375,
+            "playerRight": 390,
+            "overflowedControls": [],
+            "feedbackHeight": 309,
+            "feedbackClient": 220
+          },
+          "theory": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "playerWidth": 390,
+            "bodyWidth": 390,
+            "bodyClient": 390,
+            "footTop": 675.40625,
+            "bodyBottom": 675.40625,
+            "playerRight": 390,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "retry": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "playerWidth": 390,
+            "bodyWidth": 390,
+            "bodyClient": 390,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 390,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          }
+        },
+        "initial": {
+          "score": "{\"correct\":1,\"total\":7}",
+          "group": "72.4",
+          "questions": 7
+        },
+        "status": "passed"
+      },
+      {
+        "width": 768,
+        "unit": 71,
+        "route": "exercise:71.1",
+        "question_index": 0,
+        "screenshots": [
+          "docs/grammar_units/browser71_72/u71_768_exercise_71_1_q0_error_3.png"
+        ],
+        "layouts": {
+          "initial": {
+            "viewport": 768,
+            "documentWidth": 768,
+            "playerWidth": 768,
+            "bodyWidth": 768,
+            "bodyClient": 768,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 768,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "error_1": {
+            "viewport": 768,
+            "documentWidth": 768,
+            "playerWidth": 768,
+            "bodyWidth": 768,
+            "bodyClient": 768,
+            "footTop": 535.015625,
+            "bodyBottom": 535.015625,
+            "playerRight": 768,
+            "overflowedControls": [],
+            "feedbackHeight": 191,
+            "feedbackClient": 191
+          },
+          "error_2": {
+            "viewport": 768,
+            "documentWidth": 768,
+            "playerWidth": 768,
+            "bodyWidth": 768,
+            "bodyClient": 768,
+            "footTop": 506.203125,
+            "bodyBottom": 506.203125,
+            "playerRight": 768,
+            "overflowedControls": [],
+            "feedbackHeight": 248,
+            "feedbackClient": 220
+          },
+          "error_3": {
+            "viewport": 768,
+            "documentWidth": 768,
+            "playerWidth": 768,
+            "bodyWidth": 768,
+            "bodyClient": 768,
+            "footTop": 443.40625,
+            "bodyBottom": 443.40625,
+            "playerRight": 768,
+            "overflowedControls": [],
+            "feedbackHeight": 223,
+            "feedbackClient": 220
+          },
+          "theory": {
+            "viewport": 768,
+            "documentWidth": 768,
+            "playerWidth": 768,
+            "bodyWidth": 768,
+            "bodyClient": 768,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 768,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "retry": {
+            "viewport": 768,
+            "documentWidth": 768,
+            "playerWidth": 768,
+            "bodyWidth": 768,
+            "bodyClient": 768,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 768,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          }
+        },
+        "initial": {
+          "score": "{\"correct\":1,\"total\":9}",
+          "group": "71.1",
+          "questions": 9
+        },
+        "status": "passed"
+      },
+      {
+        "width": 768,
+        "unit": 71,
+        "route": "exercise:71.4",
+        "question_index": 5,
+        "screenshots": [
+          "docs/grammar_units/browser71_72/u71_768_exercise_71_4_q5_error_3.png"
+        ],
+        "layouts": {
+          "initial": {
+            "viewport": 768,
+            "documentWidth": 768,
+            "playerWidth": 768,
+            "bodyWidth": 768,
+            "bodyClient": 768,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 768,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "error_1": {
+            "viewport": 768,
+            "documentWidth": 768,
+            "playerWidth": 768,
+            "bodyWidth": 768,
+            "bodyClient": 768,
+            "footTop": 559.8125,
+            "bodyBottom": 559.8125,
+            "playerRight": 768,
+            "overflowedControls": [],
+            "feedbackHeight": 166,
+            "feedbackClient": 166
+          },
+          "error_2": {
+            "viewport": 768,
+            "documentWidth": 768,
+            "playerWidth": 768,
+            "bodyWidth": 768,
+            "bodyClient": 768,
+            "footTop": 506.203125,
+            "bodyBottom": 506.203125,
+            "playerRight": 768,
+            "overflowedControls": [],
+            "feedbackHeight": 314,
+            "feedbackClient": 220
+          },
+          "error_3": {
+            "viewport": 768,
+            "documentWidth": 768,
+            "playerWidth": 768,
+            "bodyWidth": 768,
+            "bodyClient": 768,
+            "footTop": 443.40625,
+            "bodyBottom": 443.40625,
+            "playerRight": 768,
+            "overflowedControls": [],
+            "feedbackHeight": 248,
+            "feedbackClient": 220
+          },
+          "theory": {
+            "viewport": 768,
+            "documentWidth": 768,
+            "playerWidth": 768,
+            "bodyWidth": 768,
+            "bodyClient": 768,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 768,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "retry": {
+            "viewport": 768,
+            "documentWidth": 768,
+            "playerWidth": 768,
+            "bodyWidth": 768,
+            "bodyClient": 768,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 768,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          }
+        },
+        "initial": {
+          "score": "{\"correct\":1,\"total\":8}",
+          "group": "71.4",
+          "questions": 8
+        },
+        "status": "passed"
+      },
+      {
+        "width": 768,
+        "unit": 72,
+        "route": "exercise:72.4",
+        "question_index": 0,
+        "screenshots": [
+          "docs/grammar_units/browser71_72/u72_768_exercise_72_4_q0_error_3.png"
+        ],
+        "layouts": {
+          "initial": {
+            "viewport": 768,
+            "documentWidth": 768,
+            "playerWidth": 768,
+            "bodyWidth": 768,
+            "bodyClient": 768,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 768,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "error_1": {
+            "viewport": 768,
+            "documentWidth": 768,
+            "playerWidth": 768,
+            "bodyWidth": 768,
+            "bodyClient": 768,
+            "footTop": 559.8125,
+            "bodyBottom": 559.8125,
+            "playerRight": 768,
+            "overflowedControls": [],
+            "feedbackHeight": 166,
+            "feedbackClient": 166
+          },
+          "error_2": {
+            "viewport": 768,
+            "documentWidth": 768,
+            "playerWidth": 768,
+            "bodyWidth": 768,
+            "bodyClient": 768,
+            "footTop": 506.203125,
+            "bodyBottom": 506.203125,
+            "playerRight": 768,
+            "overflowedControls": [],
+            "feedbackHeight": 223,
+            "feedbackClient": 220
+          },
+          "error_3": {
+            "viewport": 768,
+            "documentWidth": 768,
+            "playerWidth": 768,
+            "bodyWidth": 768,
+            "bodyClient": 768,
+            "footTop": 443.40625,
+            "bodyBottom": 443.40625,
+            "playerRight": 768,
+            "overflowedControls": [],
+            "feedbackHeight": 223,
+            "feedbackClient": 220
+          },
+          "theory": {
+            "viewport": 768,
+            "documentWidth": 768,
+            "playerWidth": 768,
+            "bodyWidth": 768,
+            "bodyClient": 768,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 768,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "retry": {
+            "viewport": 768,
+            "documentWidth": 768,
+            "playerWidth": 768,
+            "bodyWidth": 768,
+            "bodyClient": 768,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 768,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          }
+        },
+        "initial": {
+          "score": "{\"correct\":1,\"total\":7}",
+          "group": "72.4",
+          "questions": 7
+        },
+        "status": "passed"
+      },
+      {
+        "width": 1280,
+        "unit": 71,
+        "route": "exercise:71.1",
+        "question_index": 0,
+        "screenshots": [
+          "docs/grammar_units/browser71_72/u71_1280_exercise_71_1_q0_error_3.png"
+        ],
+        "layouts": {
+          "initial": {
+            "viewport": 1280,
+            "documentWidth": 1280,
+            "playerWidth": 1280,
+            "bodyWidth": 1280,
+            "bodyClient": 1280,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 1280,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "error_1": {
+            "viewport": 1280,
+            "documentWidth": 1280,
+            "playerWidth": 1280,
+            "bodyWidth": 1280,
+            "bodyClient": 1280,
+            "footTop": 535.015625,
+            "bodyBottom": 535.015625,
+            "playerRight": 1280,
+            "overflowedControls": [],
+            "feedbackHeight": 191,
+            "feedbackClient": 191
+          },
+          "error_2": {
+            "viewport": 1280,
+            "documentWidth": 1280,
+            "playerWidth": 1280,
+            "bodyWidth": 1280,
+            "bodyClient": 1280,
+            "footTop": 506.203125,
+            "bodyBottom": 506.203125,
+            "playerRight": 1280,
+            "overflowedControls": [],
+            "feedbackHeight": 248,
+            "feedbackClient": 220
+          },
+          "error_3": {
+            "viewport": 1280,
+            "documentWidth": 1280,
+            "playerWidth": 1280,
+            "bodyWidth": 1280,
+            "bodyClient": 1280,
+            "footTop": 443.40625,
+            "bodyBottom": 443.40625,
+            "playerRight": 1280,
+            "overflowedControls": [],
+            "feedbackHeight": 223,
+            "feedbackClient": 220
+          },
+          "theory": {
+            "viewport": 1280,
+            "documentWidth": 1280,
+            "playerWidth": 1280,
+            "bodyWidth": 1280,
+            "bodyClient": 1280,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 1280,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "retry": {
+            "viewport": 1280,
+            "documentWidth": 1280,
+            "playerWidth": 1280,
+            "bodyWidth": 1280,
+            "bodyClient": 1280,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 1280,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          }
+        },
+        "initial": {
+          "score": "{\"correct\":1,\"total\":9}",
+          "group": "71.1",
+          "questions": 9
+        },
+        "status": "passed"
+      },
+      {
+        "width": 1280,
+        "unit": 71,
+        "route": "exercise:71.4",
+        "question_index": 5,
+        "screenshots": [
+          "docs/grammar_units/browser71_72/u71_1280_exercise_71_4_q5_error_3.png"
+        ],
+        "layouts": {
+          "initial": {
+            "viewport": 1280,
+            "documentWidth": 1280,
+            "playerWidth": 1280,
+            "bodyWidth": 1280,
+            "bodyClient": 1280,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 1280,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "error_1": {
+            "viewport": 1280,
+            "documentWidth": 1280,
+            "playerWidth": 1280,
+            "bodyWidth": 1280,
+            "bodyClient": 1280,
+            "footTop": 559.8125,
+            "bodyBottom": 559.8125,
+            "playerRight": 1280,
+            "overflowedControls": [],
+            "feedbackHeight": 166,
+            "feedbackClient": 166
+          },
+          "error_2": {
+            "viewport": 1280,
+            "documentWidth": 1280,
+            "playerWidth": 1280,
+            "bodyWidth": 1280,
+            "bodyClient": 1280,
+            "footTop": 506.203125,
+            "bodyBottom": 506.203125,
+            "playerRight": 1280,
+            "overflowedControls": [],
+            "feedbackHeight": 314,
+            "feedbackClient": 220
+          },
+          "error_3": {
+            "viewport": 1280,
+            "documentWidth": 1280,
+            "playerWidth": 1280,
+            "bodyWidth": 1280,
+            "bodyClient": 1280,
+            "footTop": 443.40625,
+            "bodyBottom": 443.40625,
+            "playerRight": 1280,
+            "overflowedControls": [],
+            "feedbackHeight": 248,
+            "feedbackClient": 220
+          },
+          "theory": {
+            "viewport": 1280,
+            "documentWidth": 1280,
+            "playerWidth": 1280,
+            "bodyWidth": 1280,
+            "bodyClient": 1280,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 1280,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "retry": {
+            "viewport": 1280,
+            "documentWidth": 1280,
+            "playerWidth": 1280,
+            "bodyWidth": 1280,
+            "bodyClient": 1280,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 1280,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          }
+        },
+        "initial": {
+          "score": "{\"correct\":1,\"total\":8}",
+          "group": "71.4",
+          "questions": 8
+        },
+        "status": "passed"
+      },
+      {
+        "width": 1280,
+        "unit": 72,
+        "route": "exercise:72.4",
+        "question_index": 0,
+        "screenshots": [
+          "docs/grammar_units/browser71_72/u72_1280_exercise_72_4_q0_error_3.png"
+        ],
+        "layouts": {
+          "initial": {
+            "viewport": 1280,
+            "documentWidth": 1280,
+            "playerWidth": 1280,
+            "bodyWidth": 1280,
+            "bodyClient": 1280,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 1280,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "error_1": {
+            "viewport": 1280,
+            "documentWidth": 1280,
+            "playerWidth": 1280,
+            "bodyWidth": 1280,
+            "bodyClient": 1280,
+            "footTop": 559.8125,
+            "bodyBottom": 559.8125,
+            "playerRight": 1280,
+            "overflowedControls": [],
+            "feedbackHeight": 166,
+            "feedbackClient": 166
+          },
+          "error_2": {
+            "viewport": 1280,
+            "documentWidth": 1280,
+            "playerWidth": 1280,
+            "bodyWidth": 1280,
+            "bodyClient": 1280,
+            "footTop": 506.203125,
+            "bodyBottom": 506.203125,
+            "playerRight": 1280,
+            "overflowedControls": [],
+            "feedbackHeight": 223,
+            "feedbackClient": 220
+          },
+          "error_3": {
+            "viewport": 1280,
+            "documentWidth": 1280,
+            "playerWidth": 1280,
+            "bodyWidth": 1280,
+            "bodyClient": 1280,
+            "footTop": 443.40625,
+            "bodyBottom": 443.40625,
+            "playerRight": 1280,
+            "overflowedControls": [],
+            "feedbackHeight": 223,
+            "feedbackClient": 220
+          },
+          "theory": {
+            "viewport": 1280,
+            "documentWidth": 1280,
+            "playerWidth": 1280,
+            "bodyWidth": 1280,
+            "bodyClient": 1280,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 1280,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          },
+          "retry": {
+            "viewport": 1280,
+            "documentWidth": 1280,
+            "playerWidth": 1280,
+            "bodyWidth": 1280,
+            "bodyClient": 1280,
+            "footTop": 738.203125,
+            "bodyBottom": 738.203125,
+            "playerRight": 1280,
+            "overflowedControls": [],
+            "feedbackHeight": 0,
+            "feedbackClient": 0
+          }
+        },
+        "initial": {
+          "score": "{\"correct\":1,\"total\":7}",
+          "group": "72.4",
+          "questions": 7
+        },
+        "status": "passed"
+      }
+    ],
+    "failures": [],
+    "limitations": [
+      "Native Android/iOS keyboards are not available; the 520px viewport checks reduced visible height only."
+    ]
+  }
+}
