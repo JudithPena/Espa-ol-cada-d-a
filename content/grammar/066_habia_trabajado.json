@@ -1,0 +1,1134 @@
+{
+  "id": "066_habia_trabajado",
+  "number": 66,
+  "title": "Había trabajado",
+  "subtitle": "Pretérito pluscuamperfecto: что произошло раньше другого события в прошлом",
+  "level": "A2",
+  "learningOrder": [
+    "section:0",
+    "section:1",
+    "exercise:66.1",
+    "section:2",
+    "exercise:66.2",
+    "section:3",
+    "exercise:66.3",
+    "summary"
+  ],
+  "sections": [
+    {
+      "title": "Как сказать, что действие уже было завершено",
+      "presentation": "paradigm",
+      "paragraphs": [
+        "В perfecto ты уже использовал `he trabajado`: haber в настоящем времени и причастие. Чтобы перенести такую конструкцию в прошлое, поставь **haber в imperfecto**: `había trabajado` — «уже поработал к тому моменту». Это и есть **pretérito pluscuamperfecto**.",
+        "Меняется только haber, а причастие остаётся неизменным: había trabajado, habíamos comido, habían vivido. Причастие образуется на -ado / -ido; знакомые неправильные формы сохраняются: hecho, visto, abierto, vuelto. Если у глагола есть me, te, se, местоимение ставится перед haber: `se había afeitado`, не между haber и причастием."
+      ],
+      "formulas": [
+        "**haber в imperfecto** + **participio** → había + trabajado / comido / vivido"
+      ],
+      "table": {
+        "heads": [
+          "Кто",
+          "haber + participio"
+        ],
+        "rows": [
+          [
+            "yo",
+            "había trabajado"
+          ],
+          [
+            "tú",
+            "habías trabajado"
+          ],
+          [
+            "usted, él, ella",
+            "había trabajado"
+          ],
+          [
+            "nosotros, nosotras",
+            "habíamos trabajado"
+          ],
+          [
+            "vosotros, vosotras",
+            "habíais trabajado"
+          ],
+          [
+            "ustedes, ellos, ellas",
+            "habían trabajado"
+          ]
+        ]
+      },
+      "examples": [
+        [
+          "Cuando me llamaste, ya había escrito el correo.",
+          "Когда ты мне позвонил, я уже написал письмо."
+        ],
+        [
+          "Al verla, no la reconocí: se había cortado el pelo.",
+          "Увидев её, я не узнал её: она подстриглась."
+        ]
+      ],
+      "check": {
+        "id": "check-1",
+        "title": "Мини-проверка",
+        "instruction": "Определи форму haber и место местоимения в pluscuamperfecto.",
+        "questions": [
+          {
+            "context": "Ты рассказываешь о себе: к вечеру работа была закончена.",
+            "prompt": "Para las siete yo ___ el informe.",
+            "answers": [
+              "había terminado"
+            ],
+            "options": [
+              "había terminado",
+              "habías terminado",
+              "habían terminado"
+            ],
+            "interaction": "choice",
+            "explain": "Для yo нужна форма había. После haber стоит terminado, а не герундий.",
+            "sourceRef": "extra",
+            "learningAction": "выбор по контексту"
+          },
+          {
+            "context": "Что меняется, если говорить не об одном человеке, а о нас?",
+            "prompt": "Yo había comido. → Nosotros ___ .",
+            "answers": [
+              "habíamos comido"
+            ],
+            "options": [
+              "habíamos comido",
+              "había comido",
+              "habíais comido"
+            ],
+            "interaction": "choice",
+            "explain": "Для nosotros форма haber — habíamos. Причастие comido не меняется.",
+            "sourceRef": "extra",
+            "learningAction": "преобразование"
+          },
+          {
+            "context": "Выбери предложение с правильным местом возвратного местоимения.",
+            "prompt": "Уже к вечеру он побрился.",
+            "answers": [
+              "Se había afeitado."
+            ],
+            "options": [
+              "Había se afeitado.",
+              "Se había afeitado.",
+              "Había afeitádose."
+            ],
+            "interaction": "choice",
+            "explain": "Местоимение se стоит перед вспомогательным haber: se había afeitado.",
+            "sourceRef": "extra",
+            "learningAction": "распознавание"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Два события в прошлом: что случилось раньше",
+      "presentation": "comparison",
+      "paragraphs": [
+        "Ты уже различаешь событие в прошлом и фон, на котором оно происходило. Теперь представь два **законченных события**: банк закрылся в 14:00, а ты пришёл в 14:15. Позднее событие передаём обычным **indefinido** (`llegué`), а более раннее — **pluscuamperfecto** (`había cerrado`).",
+        "Отсчёт ведём не от сегодняшнего дня, а от другого момента в прошлом. Поэтому `Cuando llegué, el banco había cerrado` — банк закрылся до моего прихода. А `Cuando llegué, el banco cerró` сообщает о закрытии при моём приходе или после него; смысл другой. Само по себе pluscuamperfecto не сообщает точную дату: её задаёт ситуация."
+      ],
+      "schemes": [
+        {
+          "label": "14:00 → 14:15",
+          "fromLabel": "раньше: банк",
+          "from": "El banco había cerrado.",
+          "toLabel": "позже: я",
+          "to": "Llegué al banco a las 14:15.",
+          "note": "Закрытие предшествовало приходу."
+        },
+        {
+          "label": "Смысл меняется",
+          "fromLabel": "закрылся раньше",
+          "from": "Cuando llegué, había cerrado.",
+          "toLabel": "закрылся при мне",
+          "to": "Cuando llegué, cerró."
+        }
+      ],
+      "dialogues": [
+        {
+          "title": "Опоздал на сеанс",
+          "lines": [
+            [
+              "¿Por qué no viste la película?",
+              "Почему ты не посмотрел фильм?"
+            ],
+            [
+              "Cuando llegué al cine, la película ya había empezado.",
+              "Когда я пришёл в кинотеатр, фильм уже начался."
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-2",
+        "title": "Мини-проверка",
+        "instruction": "Различи более раннее событие и событие, которое наступило позже.",
+        "questions": [
+          {
+            "context": "Поезд ушёл в 09:00, а Элена пришла на вокзал в 09:20.",
+            "prompt": "Cuando Elena llegó, el tren ya ___.",
+            "answers": [
+              "había salido"
+            ],
+            "options": [
+              "había salido",
+              "habían salido",
+              "había saliendo"
+            ],
+            "interaction": "choice",
+            "explain": "Поезд (el tren) ушёл раньше прихода Элены. Haber — había, причастие — salido.",
+            "sourceRef": "extra",
+            "learningAction": "выбор по контексту"
+          },
+          {
+            "context": "Что было первым?",
+            "prompt": "Cuando entramos, Ana había encendido las luces.",
+            "answers": [
+              "Ана включила свет до нашего прихода."
+            ],
+            "options": [
+              "Ана включила свет до нашего прихода.",
+              "Ана включила свет одновременно с нашим приходом.",
+              "Ана включила свет после нашего прихода."
+            ],
+            "interaction": "choice",
+            "explain": "Había encendido — более раннее действие. Entramos — момент, относительно которого оно произошло.",
+            "sourceRef": "extra",
+            "learningAction": "объяснение различия"
+          },
+          {
+            "context": "Ты вошёл в комнату и только тогда услышал, как началась музыка.",
+            "prompt": "Когда я вошёл, музыка началась.",
+            "answers": [
+              "Cuando entré, empezó la música."
+            ],
+            "options": [
+              "Cuando entré, empezó la música.",
+              "Cuando entré, la música había empezado."
+            ],
+            "interaction": "choice",
+            "explain": "По условию музыка началась после твоего входа, поэтому empezó — indefinido; había empezado означало бы, что музыка началась раньше.",
+            "sourceRef": "extra",
+            "learningAction": "распознавание"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Почему так получилось: причина в более раннем прошлом",
+      "presentation": "examples",
+      "paragraphs": [
+        "Pluscuamperfecto полезен не только в рассказах «сначала — потом». Когда ты объясняешь, **почему в прошлом что-то произошло или не получилось**, причиной может быть событие ещё раньше: `No tenía las llaves: las había dejado en casa`. Сначала забыл ключи, потом оказался без них.",
+        "Результат часто стоит в indefinido: `no pude`, `llegó tarde`, `no la reconocimos`. А pluscuamperfecto показывает уже завершившуюся причину. Но не всякая причина требует этого времени: если описываешь состояние в тот момент, обычно нужен imperfecto, например `No salí porque estaba enfermo`."
+      ],
+      "dialogues": [
+        {
+          "title": "У закрытой двери",
+          "lines": [
+            [
+              "¿Por qué volviste a la oficina?",
+              "Почему ты вернулся в офис?"
+            ],
+            [
+              "Había olvidado mi cartera allí.",
+              "Я забыл там кошелёк."
+            ]
+          ]
+        }
+      ],
+      "schemes": [
+        {
+          "label": "Причина → результат",
+          "fromLabel": "раньше",
+          "from": "Había perdido el billete.",
+          "toLabel": "позже",
+          "to": "No pude subir al tren.",
+          "note": "Объясняем прошлый результат более ранним действием."
+        }
+      ],
+      "examples": [
+        [
+          "Julia estaba contenta: había encontrado trabajo.",
+          "Хулия радовалась: она нашла работу."
+        ],
+        [
+          "No entendí la película porque no había leído el libro.",
+          "Я не понял фильм, потому что раньше не прочитал книгу."
+        ]
+      ],
+      "check": {
+        "id": "check-3",
+        "title": "Мини-проверка",
+        "instruction": "Выбери, как объяснить прошлый результат: более ранним действием или состоянием.",
+        "questions": [
+          {
+            "context": "Вы с друзьями вернулись: прежде вы забыли документы дома.",
+            "prompt": "Tuvimos que volver porque ___ los documentos.",
+            "answers": [
+              "habíamos olvidado"
+            ],
+            "options": [
+              "habíamos olvidado",
+              "había olvidado",
+              "habíais olvidado"
+            ],
+            "interaction": "choice",
+            "explain": "Говорит группа о себе — nosotros: habíamos olvidado. Забыли документы раньше, чем пришлось вернуться.",
+            "sourceRef": "extra",
+            "learningAction": "выбор по контексту"
+          },
+          {
+            "context": "Какое предложение называет причину, которая случилась раньше?",
+            "prompt": "Выбери объяснение результата.",
+            "answers": [
+              "No pude abrir la caja porque había perdido la llave."
+            ],
+            "options": [
+              "No pude abrir la caja porque había perdido la llave.",
+              "No abrí la caja porque estaba cansado.",
+              "Abro la caja porque encuentro la llave."
+            ],
+            "interaction": "choice",
+            "explain": "Había perdido — более ранняя законченная причина, объясняющая no pude abrir.",
+            "sourceRef": "extra",
+            "learningAction": "объяснение различия"
+          },
+          {
+            "context": "В одной фразе причина — состояние, а не более раннее действие.",
+            "prompt": "Ayer no salí porque ___ enfermo.",
+            "answers": [
+              "estaba"
+            ],
+            "options": [
+              "estaba",
+              "había estado",
+              "habían estado"
+            ],
+            "interaction": "choice",
+            "explain": "Здесь объясняем, в каком состоянии был человек в тот момент: estaba enfermo. Pluscuamperfecto не обязателен для любой причины.",
+            "sourceRef": "extra",
+            "learningAction": "выбор по контексту"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Ya и todavía no: «уже» и «ещё не» к прошлому моменту",
+      "presentation": "comparison",
+      "paragraphs": [
+        "Когда тебя спрашивают, что было готово к определённому моменту в прошлом, удобно добавить **ya** («уже») или **todavía no** («ещё не»). `Cuando llegaron los invitados, yo ya había preparado la mesa` — стол был готов; `todavía no había preparado la mesa` — ещё не был готов.",
+        "Смысл зависит от контрольного момента: к приходу гостей действие либо завершилось, либо нет. В отрицании можно поставить todavía в конце: `No había preparado la mesa todavía`. С возвратным глаголом порядок такой: `todavía no se había vestido`; местоимение se остаётся перед haber."
+      ],
+      "schemes": [
+        {
+          "label": "К приходу гостей",
+          "fromLabel": "уже",
+          "from": "Ya había preparado la mesa.",
+          "toLabel": "ещё нет",
+          "to": "Todavía no había preparado la mesa.",
+          "note": "Один момент в прошлом — два противоположных результата."
+        }
+      ],
+      "examples": [
+        [
+          "Cuando empezó la clase, Pablo ya había llegado.",
+          "Когда урок начался, Пабло уже пришёл."
+        ],
+        [
+          "A las ocho, sus padres todavía no se habían despertado.",
+          "В восемь его родители ещё не проснулись."
+        ]
+      ],
+      "notes": [
+        "Ya можно поставить перед haber: ya había salido. В отрицании возможны оба порядка: todavía no había salido и no había salido todavía."
+      ],
+      "check": {
+        "id": "check-4",
+        "title": "Мини-проверка",
+        "instruction": "Различи «уже» и «ещё не» к конкретному моменту прошлого.",
+        "questions": [
+          {
+            "context": "Вчера в полдень ресторан ещё не открылся.",
+            "prompt": "A las doce, el restaurante ___ .",
+            "answers": [
+              "todavía no había abierto"
+            ],
+            "options": [
+              "todavía no había abierto",
+              "ya había abierto",
+              "todavía había abierto"
+            ],
+            "interaction": "choice",
+            "explain": "Todavía no había abierto означает «к полудню ещё не открылся». Ya había abierto означало бы обратное.",
+            "sourceRef": "extra",
+            "learningAction": "выбор по контексту"
+          },
+          {
+            "context": "Какой смысл у фразы?",
+            "prompt": "Al llegar, ya habían limpiado el piso.",
+            "answers": [
+              "Уборка закончилась до нашего прихода."
+            ],
+            "options": [
+              "Уборка закончилась до нашего прихода.",
+              "Уборка началась после нашего прихода.",
+              "Они убирают квартиру сейчас."
+            ],
+            "interaction": "choice",
+            "explain": "Ya habían limpiado обозначает действие, которое уже завершилось к моменту прихода.",
+            "sourceRef": "extra",
+            "learningAction": "объяснение различия"
+          },
+          {
+            "context": "Выбери правильный порядок слов.",
+            "prompt": "Мария ещё не оделась, когда позвонили в дверь.",
+            "answers": [
+              "María todavía no se había vestido."
+            ],
+            "options": [
+              "María todavía no se había vestido.",
+              "María todavía se no había vestido.",
+              "María todavía no había se vestido."
+            ],
+            "interaction": "choice",
+            "explain": "Отрицание no стоит перед se, а возвратное местоимение — перед había: no se había vestido.",
+            "sourceRef": "extra",
+            "learningAction": "распознавание"
+          }
+        ]
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "66.1",
+      "title": "66.1 · Какое событие произошло раньше",
+      "instruction": "Соедини события по смыслу: вписывай pluscuamperfecto для более раннего действия. В конце выбери форму и собери фразу из плиток.",
+      "theorySections": [
+        0,
+        1
+      ],
+      "inlineAnswer": true,
+      "accentPolicy": "strict",
+      "inputLabel": "Форма pluscuamperfecto",
+      "inputFormat": {
+        "instruction": "Впиши только недостающую форму haber и причастие (при необходимости — с местоимением). Знаки ударения обязательны.",
+        "placeholder": "Форма pluscuamperfecto"
+      },
+      "preview": {
+        "source": "La reunión acabó. Llegué a la oficina. → Cuando llegué a la oficina, la reunión ___.",
+        "sentenceParts": [
+          "Cuando llegué a la oficina, la reunión ",
+          "."
+        ],
+        "answer": "había acabado",
+        "targetPrefix": "",
+        "translation": "Когда я пришёл в офис, собрание уже закончилось."
+      },
+      "questions": [
+        {
+          "context": "Самолёт вылетел, а через двадцать минут мы приехали в аэропорт.",
+          "prompt": "Cuando llegamos al aeropuerto, el avión ya ___.",
+          "answers": [
+            "se había ido"
+          ],
+          "explain": "Уже вылетел раньше нашего приезда: el avión se había ido. Местоимение se ставится перед había.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "66.1.2",
+          "learningAction": "воспроизведение",
+          "translation": "Когда мы приехали в аэропорт, самолёт уже улетел.",
+          "clues": [
+            [
+              "irse",
+              "уехать, уйти, улететь"
+            ]
+          ]
+        },
+        {
+          "context": "К моменту, когда Аурора захотела купить продукты, магазины были уже закрыты.",
+          "prompt": "Cuando Aurora quiso comprar comida, las tiendas ya ___.",
+          "answers": [
+            "habían cerrado"
+          ],
+          "explain": "Магазины (ellas) закрылись раньше: habían cerrado. Подлежащее во множественном числе.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "66.1.3",
+          "learningAction": "воспроизведение",
+          "clues": [
+            [
+              "cerrar",
+              "закрывать(ся)"
+            ]
+          ]
+        },
+        {
+          "context": "Соня позвонила только после того, как я закончил ужин.",
+          "prompt": "Cuando Sonia me llamó, yo ya ___.",
+          "answers": [
+            "había cenado"
+          ],
+          "explain": "Ужин закончился до звонка: yo había cenado. Форма yo — había.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "66.1.4",
+          "learningAction": "воспроизведение",
+          "clues": [
+            [
+              "cenar",
+              "ужинать"
+            ]
+          ]
+        },
+        {
+          "context": "Сначала произошла авария, а потом нас остановили на трассе.",
+          "prompt": "Cuando nos pararon en la carretera, ya ___ un accidente.",
+          "answers": [
+            "había habido"
+          ],
+          "explain": "Había habido — правильная форма pluscuamperfecto от haber в значении «произойти, иметь место»: сначала была авария, потом нас остановили.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "66.1.5",
+          "learningAction": "воспроизведение",
+          "translation": "Когда нас остановили на дороге, там уже произошла авария.",
+          "clues": [
+            [
+              "haber un accidente",
+              "произойти аварии"
+            ]
+          ]
+        },
+        {
+          "context": "Роберто успел купить билеты до приезда друзей.",
+          "prompt": "Cuando llegaron sus amigos, Roberto ya ___ las entradas.",
+          "answers": [
+            "había comprado"
+          ],
+          "options": [
+            "había comprado",
+            "habían comprado",
+            "habíamos comprado"
+          ],
+          "interaction": "choice",
+          "explain": "Роберто — один человек: había comprado. Покупка была закончена к приезду друзей.",
+          "sourceRef": "extra",
+          "learningAction": "выбор по контексту"
+        },
+        {
+          "context": "Вы вдвоём уже закончили работу, когда пришёл начальник.",
+          "prompt": "Собери часть фразы: Cuando llegó el jefe, nosotros ya ___.",
+          "answers": [
+            "habíamos terminado el trabajo"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "habíamos",
+            "terminado",
+            "el",
+            "trabajo",
+            "había",
+            "terminando"
+          ],
+          "explain": "Nosotros требует habíamos. После haber — причастие terminado, не герундий.",
+          "sourceRef": "extra",
+          "learningAction": "построение фразы"
+        }
+      ]
+    },
+    {
+      "id": "66.2",
+      "title": "66.2 · Объясни последствия более ранними действиями",
+      "instruction": "Свяжи прошлую причину с результатом через porque. Часть ответов впиши, часть выбери или собери из плиток.",
+      "theorySections": [
+        0,
+        1,
+        2
+      ],
+      "inlineAnswer": true,
+      "phraseInput": true,
+      "accentPolicy": "strict",
+      "inputLabel": "Причина в pluscuamperfecto",
+      "inputFormat": {
+        "instruction": "Впиши только недостающую часть после porque: pluscuamperfecto с нужными словами. Знаки ударения обязательны.",
+        "placeholder": "Причина в прошлом"
+      },
+      "preview": {
+        "source": "No pude comprar nada porque ___.",
+        "sentenceParts": [
+          "No pude comprar nada porque ",
+          "."
+        ],
+        "answer": "me había dejado la tarjeta de crédito",
+        "targetPrefix": "",
+        "translation": "Я ничего не смог купить, потому что забыл кредитную карту."
+      },
+      "questions": [
+        {
+          "context": "Родители оставили свет включённым и были вынуждены вернуться домой.",
+          "prompt": "Mis padres tuvieron que volver a casa porque ___.",
+          "answers": [
+            "se habían dejado las luces encendidas"
+          ],
+          "explain": "Причина раньше результата: se habían dejado las luces encendidas. Mis padres — ellos, поэтому habían.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "66.2.2",
+          "learningAction": "воспроизведение",
+          "clues": [
+            [
+              "dejarse algo",
+              "забыть что-то где-то"
+            ]
+          ]
+        },
+        {
+          "context": "Феликс и Ракель забыли ключи внутри квартиры и не смогли попасть домой.",
+          "prompt": "No pudieron entrar en casa porque ___.",
+          "answers": [
+            "se habían dejado las llaves dentro"
+          ],
+          "options": [
+            "se habían dejado las llaves dentro",
+            "se había dejado las llaves dentro",
+            "me había dejado las llaves dentro"
+          ],
+          "interaction": "choice",
+          "explain": "Феликс и Ракель — двое, поэтому se habían dejado. Оставленные раньше ключи объясняют, почему они не вошли.",
+          "sourceRef": "66.2.3",
+          "learningAction": "выбор по контексту"
+        },
+        {
+          "context": "Ты не ел весь день и упал в обморок.",
+          "prompt": "Собери причину: Te desmayaste porque ___.",
+          "answers": [
+            "no habías comido nada"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "no",
+            "habías",
+            "comido",
+            "nada",
+            "habían",
+            "comiendo"
+          ],
+          "explain": "Обращение на tú: no habías comido nada. Сначала не поел, потом потерял сознание.",
+          "sourceRef": "66.2.4",
+          "learningAction": "построение фразы"
+        },
+        {
+          "context": "Палома покрасила волосы, поэтому друзья её не узнали.",
+          "prompt": "No la reconocimos porque ___.",
+          "answers": [
+            "se había teñido el pelo"
+          ],
+          "explain": "Изменение внешности раньше: se había teñido el pelo. Se перед había, participio teñido с ñ.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "66.2.5",
+          "learningAction": "воспроизведение",
+          "clues": [
+            [
+              "teñirse el pelo",
+              "красить волосы"
+            ]
+          ]
+        },
+        {
+          "context": "Мила много занималась и успешно сдала все экзамены.",
+          "prompt": "Mila aprobó todo porque ___.",
+          "answers": [
+            "había estudiado mucho"
+          ],
+          "options": [
+            "había estudiado mucho",
+            "habían estudiado mucho",
+            "habías estudiado mucho"
+          ],
+          "interaction": "choice",
+          "explain": "Мила одна: había estudiado. Подготовка состоялась раньше сдачи экзаменов.",
+          "sourceRef": "66.2.6",
+          "learningAction": "выбор по контексту"
+        },
+        {
+          "context": "Виктор немного опоздал из-за аварии, которая случилась ранее.",
+          "prompt": "Víctor llegó tarde porque ___.",
+          "answers": [
+            "había tenido un pequeño accidente"
+          ],
+          "explain": "Сначала Víctor había tenido un pequeño accidente, затем llegó tarde. Haber для Víctor — había.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "66.2.7",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Преподаватель уже ушёл, и поговорить с ним не удалось.",
+          "prompt": "Собери причину: No pude hablar con él porque ___.",
+          "answers": [
+            "se había ido"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "se",
+            "había",
+            "ido",
+            "habían",
+            "fue"
+          ],
+          "explain": "Se había ido: уход был раньше твоей неудачной попытки поговорить.",
+          "sourceRef": "66.2.8",
+          "learningAction": "построение фразы"
+        },
+        {
+          "context": "Рамон не купил продукты, поэтому семья осталась без обеда дома.",
+          "prompt": "No pudimos comer en casa porque Ramón no ___.",
+          "answers": [
+            "había comprado comida"
+          ],
+          "explain": "Рамон раньше не купил продукты: no había comprado comida. Отрицание относится к более раннему действию.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "66.2.9",
+          "learningAction": "воспроизведение",
+          "clues": [
+            [
+              "comprar comida",
+              "покупать продукты"
+            ]
+          ]
+        },
+        {
+          "context": "Алисия не смогла открыть дверь, поскольку раньше забыла ключ на работе.",
+          "prompt": "Alicia no pudo abrir la puerta porque ___ la llave en la oficina.",
+          "answers": [
+            "había dejado"
+          ],
+          "explain": "Пропущенное действие завершилось раньше: Alicia había dejado la llave en la oficina.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "extra",
+          "learningAction": "воспроизведение",
+          "clues": [
+            [
+              "dejar",
+              "оставлять"
+            ]
+          ]
+        },
+        {
+          "context": "Результат в прошлом связан с более ранним событием. Выбери подходящую фразу.",
+          "prompt": "Вчера Марта была счастлива: ей раньше предложили работу.",
+          "answers": [
+            "Marta estaba feliz porque le habían ofrecido un trabajo."
+          ],
+          "options": [
+            "Marta estaba feliz porque le habían ofrecido un trabajo.",
+            "Marta estaba feliz porque le había ofrecido un trabajo."
+          ],
+          "interaction": "choice",
+          "explain": "Работу предложили Марте другие люди, неопределённое множественное подлежащее: le habían ofrecido. Единственное число потребовало бы названного предлагающего.",
+          "sourceRef": "extra",
+          "learningAction": "применение в ситуации"
+        }
+      ]
+    },
+    {
+      "id": "66.3",
+      "title": "66.3 · Что успели и не успели сделать к приходу Хавьера",
+      "instruction": "Хавьер зашёл к друзьям утром. По описанию ситуации выбери ya или todavía no и напиши, что было сделано до его прихода.",
+      "theorySections": [
+        0,
+        1,
+        3
+      ],
+      "inlineAnswer": true,
+      "phraseInput": true,
+      "accentPolicy": "strict",
+      "inputLabel": "Ya / todavía no + pluscuamperfecto",
+      "inputFormat": {
+        "instruction": "Впиши недостающую часть с ya или todavía no, если эти слова не напечатаны. Знаки ударения обязательны.",
+        "placeholder": "Фраза о прошлом"
+      },
+      "preview": {
+        "source": "Fernando ___ todavía.",
+        "sentenceParts": [
+          "Fernando ",
+          " todavía."
+        ],
+        "answer": "no se había levantado",
+        "targetPrefix": "",
+        "translation": "Когда Хавьер пришёл, Фернандо ещё не встал с кровати."
+      },
+      "questions": [
+        {
+          "context": "У Лидии на полу разбросаны вещи: к приходу Хавьера она ещё не прибрала комнату.",
+          "prompt": "Cuando Javier llegó, Lidia ___ la habitación.",
+          "answers": [
+            "todavía no había recogido",
+            "no había recogido todavía"
+          ],
+          "explain": "Комната ещё не была убрана: todavía no había recogido или no había recogido todavía. Оба порядка правильны.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "66.3.2",
+          "learningAction": "воспроизведение",
+          "clues": [
+            [
+              "recoger",
+              "прибирать, убирать"
+            ]
+          ]
+        },
+        {
+          "context": "Мигель уже заправил кровать: она ровно застелена.",
+          "prompt": "Cuando Javier entró, Miguel ya ___ la cama.",
+          "answers": [
+            "había hecho"
+          ],
+          "explain": "Ya había hecho la cama: кровать уже была заправлена до прихода Хавьера. Hacer имеет причастие hecho.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "66.3.3",
+          "learningAction": "воспроизведение",
+          "clues": [
+            [
+              "hacer la cama",
+              "заправлять кровать"
+            ]
+          ]
+        },
+        {
+          "context": "Роса всё ещё в пижаме, хотя Хавьер уже пришёл.",
+          "prompt": "Cuando Javier llamó, Rosa ___ .",
+          "answers": [
+            "todavía no se había vestido",
+            "no se había vestido todavía"
+          ],
+          "explain": "Todavía no se había vestido — к звонку Хавьера Роса ещё не оделась. Местоимение se стоит перед había.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "66.3.4",
+          "learningAction": "воспроизведение",
+          "clues": [
+            [
+              "vestirse",
+              "одеваться"
+            ]
+          ]
+        },
+        {
+          "context": "На столе остались пустые чашки: Анхель и Пилар уже позавтракали.",
+          "prompt": "Cuando llegó Javier, Ángel y Pilar ya ___.",
+          "answers": [
+            "habían desayunado"
+          ],
+          "explain": "Ángel y Pilar — двое: habían desayunado. Ya сообщает, что завтрак закончился до прихода Хавьера.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "66.3.5",
+          "learningAction": "воспроизведение",
+          "clues": [
+            [
+              "desayunar",
+              "завтракать"
+            ]
+          ]
+        },
+        {
+          "context": "Магазин открылся в девять; Луис пришёл в половине десятого.",
+          "prompt": "Cuando Luis llegó, la tienda ___ .",
+          "answers": [
+            "ya había abierto"
+          ],
+          "options": [
+            "ya había abierto",
+            "todavía no había abierto",
+            "ya habían abierto"
+          ],
+          "interaction": "choice",
+          "explain": "Открытие было в девять, приход — в 9:30: ya había abierto. La tienda — ед. число.",
+          "sourceRef": "extra",
+          "learningAction": "выбор по контексту"
+        },
+        {
+          "context": "К приходу врача дети ещё не проснулись.",
+          "prompt": "Собери пропущенную часть: Cuando llegó el médico, los niños ___.",
+          "answers": [
+            "todavía no se habían despertado"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "todavía",
+            "no",
+            "se",
+            "habían",
+            "despertado",
+            "había",
+            "despertando"
+          ],
+          "explain": "Los niños — ellos: habían. Todavía no и местоимение se стоят перед haber.",
+          "sourceRef": "extra",
+          "learningAction": "построение фразы"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "heads": [
+      "Ситуация",
+      "Форма",
+      "Пример"
+    ],
+    "rows": [
+      [
+        "Сделано раньше другого события",
+        "había + participio",
+        "Cuando llegué, ya había cerrado."
+      ],
+      [
+        "Раньше → позже",
+        "pluscuamperfecto → indefinido",
+        "El tren había salido. Llegamos después."
+      ],
+      [
+        "Причина прошлого результата",
+        "había + participio",
+        "No pude entrar: había perdido la llave."
+      ],
+      [
+        "Уже к тому моменту",
+        "ya había…",
+        "Ya habían terminado."
+      ],
+      [
+        "Ещё не к тому моменту",
+        "todavía no había…",
+        "Todavía no se había vestido."
+      ]
+    ],
+    "topicMap": {
+      "lead": "Сначала произошло одно событие, потом — другое. Смотри на более раннее.",
+      "formula": [
+        [
+          "РАНЬШЕ",
+          "había trabajado"
+        ],
+        [
+          "ПОЗЖЕ",
+          "llegué / llamó / ocurrió"
+        ]
+      ],
+      "cards": [
+        {
+          "title": "Форма: haber + причастие",
+          "tone": "violet",
+          "pairStyle": "columns",
+          "pairs": [
+            [
+              "yo / él / ella",
+              "había trabajado"
+            ],
+            [
+              "tú",
+              "habías trabajado"
+            ],
+            [
+              "nosotros",
+              "habíamos trabajado"
+            ],
+            [
+              "vosotros",
+              "habíais trabajado"
+            ],
+            [
+              "ellos / ustedes",
+              "habían trabajado"
+            ]
+          ],
+          "note": "Причастие не меняется: trabajado / comido / vivido."
+        },
+        {
+          "title": "Линия времени",
+          "tone": "blue",
+          "pairs": [
+            [
+              "14:00 — cerró",
+              "раньше"
+            ],
+            [
+              "14:15 — llegué",
+              "позже"
+            ]
+          ],
+          "examples": [
+            [
+              "Cuando llegué, el banco había cerrado.",
+              "Когда я пришёл, банк уже закрылся."
+            ]
+          ],
+          "note": "Отсчитываем от прошлого события, а не от сегодняшнего дня."
+        },
+        {
+          "title": "Почему так вышло",
+          "tone": "peach",
+          "examples": [
+            [
+              "No pude pagar: había olvidado la tarjeta.",
+              "Не смог заплатить: забыл карту."
+            ]
+          ],
+          "note": "Раньше — причина, позже — результат."
+        },
+        {
+          "title": "Уже или ещё нет",
+          "tone": "mint",
+          "pairStyle": "columns",
+          "pairs": [
+            [
+              "ya había salido",
+              "уже ушёл"
+            ],
+            [
+              "todavía no había salido",
+              "ещё не ушёл"
+            ]
+          ],
+          "note": "Оба выражения относятся к моменту в прошлом."
+        },
+        {
+          "title": "С местоимениями и отрицанием",
+          "tone": "rose",
+          "examples": [
+            [
+              "Se había vestido.",
+              "Он уже оделся."
+            ],
+            [
+              "Todavía no se había vestido.",
+              "Он ещё не оделся."
+            ]
+          ],
+          "note": "se — перед haber; no — перед se."
+        },
+        {
+          "title": "Не путай времена",
+          "tone": "violet",
+          "pairStyle": "columns",
+          "pairs": [
+            [
+              "había comido",
+              "поел ДО прошлого момента"
+            ],
+            [
+              "comí",
+              "поел (прошлое событие)"
+            ],
+            [
+              "comía",
+              "ел обычно / в тот момент"
+            ]
+          ],
+          "note": "Решает смысл рассказа, а не одно слово cuando."
+        }
+      ],
+      "takeaway": "Сначала действие завершилось: había + participio. Потом случилось другое событие; ya и todavía no уточняют, успели ли к тому моменту."
+    }
+  }
+}
