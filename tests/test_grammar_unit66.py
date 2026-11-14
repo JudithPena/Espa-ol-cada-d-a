@@ -44,7 +44,7 @@ def test_contract_and_variety():
     assert [len(g["questions"]) for g in u["exercises"]]==[6,10,6]
     assert len(u["summary"]["topicMap"]["cards"])==6
     assert all(len(s["check"]["questions"])==3 for s in u["sections"])
-    assert sum(bool(q.get("tiles")) for g in u["exercises"] for q in g["questions"])==3
+    assert sum(bool(q.get("tiles")) for g in u["exercises"] for q in g["questions"])==4
     assert len({q["learningAction"] for g in u["exercises"] for q in g["questions"]})>=3
     for s in u["sections"]:
         assert s["presentation"] in ("paradigm","comparison","examples")
