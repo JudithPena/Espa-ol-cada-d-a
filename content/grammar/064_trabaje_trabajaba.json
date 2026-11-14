@@ -1,0 +1,1370 @@
+{
+  "id": "064_trabaje_trabajaba",
+  "number": 64,
+  "title": "Trabajé / trabajaba",
+  "subtitle": "Pretérito indefinido или pretérito imperfecto: событие или фон",
+  "level": "A2",
+  "learningOrder": [
+    "section:0",
+    "section:1",
+    "exercise:64.1",
+    "section:2",
+    "exercise:64.2",
+    "exercise:64.3",
+    "exercise:64.4",
+    "summary"
+  ],
+  "sections": [
+    {
+      "title": "Один раз в конкретный момент или обычно",
+      "presentation": "comparison",
+      "paragraphs": [
+        "Imperfecto уже знаком как время привычек, indefinido — как время событий. Теперь их нужно различать в одном рассказе. Если действие случилось **один раз, в конкретный момент** — ayer, el domingo pasado, la semana pasada, hace un mes, — берём **indefinido**. Если оно **повторялось обычно** — normalmente, siempre, todos los días, los domingos, — **imperfecto**.",
+        "Indefinido считает события: было, закончилось, и можно сказать когда. Imperfecto говорит о том, как обычно бывало, не выделяя отдельных случаев. Граница: решает смысл, а не отдельное слово. `El domingo` — одно воскресенье, `los domingos` — все воскресенья: `El domingo fuimos al campo`, но `Cuando era pequeño, íbamos siempre al campo los domingos`."
+      ],
+      "schemes": [
+        {
+          "label": "Сладкое",
+          "fromLabel": "один раз",
+          "from": "La semana pasada comí con Luis.",
+          "toLabel": "обычно",
+          "to": "De pequeña, comía mucho chocolate."
+        },
+        {
+          "label": "Прогулка",
+          "fromLabel": "один раз",
+          "from": "Aquella tarde dimos un paseo por el centro.",
+          "toLabel": "обычно",
+          "to": "Dábamos un paseo todas las tardes."
+        }
+      ],
+      "check": {
+        "id": "check-1",
+        "title": "Мини-проверка",
+        "instruction": "Определи, один это случай или обычное действие, и выбери время.",
+        "questions": [
+          {
+            "context": "Каждую субботу в детстве дедушка готовил одно и то же.",
+            "prompt": "Los sábados mi abuelo ___ churros.",
+            "answers": [
+              "hacía"
+            ],
+            "options": [
+              "hacía",
+              "hizo"
+            ],
+            "interaction": "gap-choice",
+            "explain": "Los sábados — каждую субботу, это привычка: hacía. Hizo рассказало бы об одной субботе.",
+            "sourceRef": "extra",
+            "learningAction": "выбор по контексту",
+            "translation": "По субботам дедушка готовил чуррос."
+          },
+          {
+            "context": "Что сообщает эта фраза?",
+            "prompt": "Los viernes cenábamos pizza.",
+            "answers": [
+              "Так бывало каждую пятницу."
+            ],
+            "options": [
+              "Так бывало каждую пятницу.",
+              "Так было в одну конкретную пятницу.",
+              "Так будет в эту пятницу."
+            ],
+            "interaction": "choice",
+            "explain": "Los viernes и imperfecto cenábamos говорят о повторявшемся действии. Об одной пятнице сказали бы el viernes cenamos.",
+            "sourceRef": "extra",
+            "learningAction": "объяснение различия"
+          },
+          {
+            "context": "В какой фразе речь об одном случае?",
+            "prompt": "Выбери фразу.",
+            "answers": [
+              "El lunes fui al dentista."
+            ],
+            "options": [
+              "El lunes fui al dentista.",
+              "Los lunes iba al dentista."
+            ],
+            "interaction": "choice",
+            "explain": "El lunes — один понедельник, fui — indefinido. Los lunes iba — так бывало каждый понедельник.",
+            "sourceRef": "extra",
+            "learningAction": "распознавание"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Закончилось или шло в тот момент",
+      "presentation": "comparison",
+      "paragraphs": [
+        "Второе различие — законченность. **Indefinido** показывает действие или ситуацию **целиком, уже завершёнными**: `El verano pasado estuvimos en Managua`. **Imperfecto** показывает их **в развитии**, изнутри: ситуация шла, и в этот момент что-то случилось.",
+        "Поэтому в одной фразе времена часто сочетаются: длящийся фон — imperfecto, событие, которое в него врывается, — indefinido. По-русски так же: в «мы были в Манагуа, когда началась забастовка» «были» — фон, «началась» — событие. Граница: если обе части — законченные события, идущие одно за другим, обе стоят в indefinido: `Cuando llegó, cenamos`."
+      ],
+      "schemes": [
+        {
+          "label": "Поездка в Манагуа",
+          "fromLabel": "ситуация закончилась",
+          "from": "El verano pasado estuvimos en Managua.",
+          "toLabel": "ситуация шла, и…",
+          "to": "Estábamos en Managua cuando comenzó la huelga."
+        }
+      ],
+      "check": {
+        "id": "check-2",
+        "title": "Мини-проверка",
+        "instruction": "Реши, шло ли действие в тот момент или оно закончилось, и выбери форму.",
+        "questions": [
+          {
+            "context": "Свет погас посреди готовки.",
+            "prompt": "Yo ___ la cena cuando se fue la luz.",
+            "answers": [
+              "preparaba"
+            ],
+            "options": [
+              "preparaba",
+              "preparé"
+            ],
+            "interaction": "gap-choice",
+            "explain": "Готовка шла, и в этот момент погас свет: фон — preparaba, событие — se fue.",
+            "sourceRef": "extra",
+            "learningAction": "выбор по контексту",
+            "translation": "Я готовил ужин, когда отключили свет."
+          },
+          {
+            "context": "Что сообщает эта фраза?",
+            "prompt": "Cuando llegué, mis amigos cenaban.",
+            "answers": [
+              "Ужин уже шёл, когда я пришёл."
+            ],
+            "options": [
+              "Ужин уже шёл, когда я пришёл.",
+              "Друзья сели ужинать после моего прихода.",
+              "Друзья ужинают каждый день."
+            ],
+            "interaction": "choice",
+            "explain": "Cenaban — действие в развитии в момент llegué. Если бы ужин начался после прихода, было бы cenaron.",
+            "sourceRef": "extra",
+            "learningAction": "объяснение различия"
+          },
+          {
+            "context": "Поездка длилась два месяца и давно закончилась.",
+            "prompt": "El año pasado ___ dos meses en Lima.",
+            "answers": [
+              "vivimos"
+            ],
+            "options": [
+              "vivimos",
+              "vivíamos"
+            ],
+            "interaction": "gap-choice",
+            "explain": "Ситуация показана целиком, с длительностью и концом: vivimos. Vivíamos нужен фон для другого события.",
+            "sourceRef": "extra",
+            "learningAction": "выбор по контексту",
+            "translation": "В прошлом году мы два месяца жили в Лиме."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Событие и обстоятельства вокруг него",
+      "presentation": "examples",
+      "paragraphs": [
+        "В рассказе о прошлом **indefinido** называет **сами события** — что произошло. **Imperfecto** описывает **обстоятельства вокруг них**: погоду, обстановку, внешность, что происходило рядом. `Ayer fuimos a la playa. Hacía mucho calor y había mucha gente`.",
+        "Если убрать из рассказа фразы в imperfecto, сюжет останется: события идут цепочкой. Если убрать фразы в indefinido, останется картина без действия. Граница: законченную жизнь или период можно оценить целиком, и тогда нужен indefinido — `Mi bisabuelo fue un gran pintor`, а обстоятельство вокруг — imperfecto: `Su padre era carpintero`."
+      ],
+      "dialogues": [
+        {
+          "title": "В полиции",
+          "lines": [
+            [
+              "¿Qué pasó?",
+              "Что случилось?"
+            ],
+            [
+              "Los ladrones **entraron** mientras **dormíamos** la siesta.",
+              "Воры вошли, пока мы спали после обеда."
+            ],
+            [
+              "¿**Vio** usted al culpable?",
+              "Вы видели виновного?"
+            ],
+            [
+              "Sí. **Era** alto, **tenía** los ojos verdes y **llevaba** una gorra negra.",
+              "Да. Он был высокий, с зелёными глазами и в чёрной кепке."
+            ]
+          ]
+        }
+      ],
+      "examples": [
+        [
+          "Mi bisabuelo fue un gran pintor. Nació en Cádiz en 1912.",
+          "Мой прадед был великим художником. Он родился в Кадисе в 1912 году."
+        ]
+      ],
+      "notes": [
+        "После mientras («пока») обычно стоит imperfecto: это действие-фон, на котором произошло событие."
+      ],
+      "check": {
+        "id": "check-3",
+        "title": "Мини-проверка",
+        "instruction": "Отличи событие от обстоятельств и выбери форму.",
+        "questions": [
+          {
+            "context": "Ты описываешь приезд в горы.",
+            "prompt": "Llegamos al hotel a medianoche. ___ mucho frío.",
+            "answers": [
+              "Hacía"
+            ],
+            "options": [
+              "Hacía",
+              "Hizo"
+            ],
+            "interaction": "gap-choice",
+            "explain": "Погода в момент приезда — обстоятельство, фон: hacía. Событие здесь — llegamos.",
+            "sourceRef": "extra",
+            "learningAction": "выбор по контексту",
+            "translation": "Мы приехали в отель в полночь. Было очень холодно."
+          },
+          {
+            "context": "Какая часть рассказа — событие?",
+            "prompt": "Era tarde y llovía. De repente sonó el timbre.",
+            "answers": [
+              "sonó el timbre"
+            ],
+            "options": [
+              "sonó el timbre",
+              "era tarde",
+              "llovía"
+            ],
+            "interaction": "choice",
+            "explain": "Sonó — indefinido, это то, что произошло. Era tarde и llovía описывают обстановку.",
+            "sourceRef": "extra",
+            "learningAction": "распознавание"
+          },
+          {
+            "context": "Звонок в дверь раздался во время душа.",
+            "prompt": "Mientras yo ___, alguien llamó a la puerta.",
+            "answers": [
+              "me duchaba"
+            ],
+            "options": [
+              "me duchaba",
+              "me duché"
+            ],
+            "interaction": "gap-choice",
+            "explain": "Mientras вводит действие-фон: me duchaba. Событие на этом фоне — llamó.",
+            "sourceRef": "extra",
+            "learningAction": "выбор по контексту",
+            "translation": "Пока я принимал душ, кто-то позвонил в дверь."
+          }
+        ]
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "64.1",
+      "title": "64.1 · Один раз, обычно или в тот момент",
+      "instruction": "Выбери время глагола. Где в фразе два пропуска, выбери пару форм.",
+      "theorySections": [
+        0,
+        1
+      ],
+      "preview": {
+        "source": "Ayer no fui a trabajar. ___ enfermo.",
+        "sentenceParts": [
+          "Ayer no fui a trabajar. ",
+          " enfermo."
+        ],
+        "answer": "Estaba",
+        "targetPrefix": "",
+        "translation": "Вчера я не пошёл на работу. Я был болен."
+      },
+      "questions": [
+        {
+          "context": "Ты спрашиваешь друга о его жизни на Канарах.",
+          "prompt": "¿___ mucho a la playa cuando ___ en Las Palmas?",
+          "answers": [
+            "Ibas — vivías"
+          ],
+          "options": [
+            "Ibas — vivías",
+            "Ibas — viviste"
+          ],
+          "interaction": "choice",
+          "explain": "Речь о том, что бывало часто, пока друг жил в Лас-Пальмас: ibas. Жизнь там — фон этой привычки: vivías.",
+          "sourceRef": "64.1.2",
+          "learningAction": "выбор по контексту",
+          "translation": "Ты часто ходил на пляж, когда жил в Лас-Пальмас?"
+        },
+        {
+          "context": "Рассказ о прошлых выходных.",
+          "prompt": "El domingo pasado ___ en la sierra.",
+          "answers": [
+            "estuvimos"
+          ],
+          "options": [
+            "estuvimos",
+            "estábamos"
+          ],
+          "interaction": "gap-choice",
+          "explain": "El domingo pasado — конкретный законченный день: estuvimos. Estábamos ждал бы события на этом фоне.",
+          "sourceRef": "64.1.3a",
+          "learningAction": "выбор по контексту",
+          "translation": "В прошлое воскресенье мы были в горах."
+        },
+        {
+          "context": "Пожилой мужчина вспоминает молодость.",
+          "prompt": "Cuando ___ joven, ___ mucho al cine.",
+          "answers": [
+            "era — iba"
+          ],
+          "options": [
+            "era — iba",
+            "fui — fui"
+          ],
+          "interaction": "choice",
+          "explain": "Молодость — период-фон: era. Ходил в кино часто, это привычка: iba.",
+          "sourceRef": "64.1.4",
+          "learningAction": "выбор по контексту",
+          "translation": "Когда я был молодым, я часто ходил в кино."
+        },
+        {
+          "context": "Каждое воскресенье детства семья ездила за город.",
+          "prompt": "De niños, los domingos ___ al campo con mis tíos.",
+          "answers": [
+            "íbamos"
+          ],
+          "options": [
+            "íbamos",
+            "fuimos"
+          ],
+          "interaction": "gap-choice",
+          "explain": "Los domingos — каждое воскресенье, привычка: íbamos.",
+          "sourceRef": "extra",
+          "learningAction": "выбор по контексту",
+          "translation": "В детстве по воскресеньям мы ездили за город с дядей и тётей."
+        },
+        {
+          "context": "Дождь начался, когда Каролина была в поле.",
+          "prompt": "Carolina ___ en medio del campo cuando ___ a llover.",
+          "answers": [
+            "estaba — empezó"
+          ],
+          "options": [
+            "estaba — empezó",
+            "estuvo — empezaba"
+          ],
+          "interaction": "choice",
+          "explain": "Каролина уже была в поле — фон: estaba. Дождь начался — событие: empezó.",
+          "sourceRef": "64.1.5",
+          "learningAction": "выбор по контексту",
+          "translation": "Каролина была посреди поля, когда начался дождь."
+        },
+        {
+          "context": "Ты спрашиваешь двух друзей о прошлой субботе.",
+          "prompt": "¿Qué ___ el sábado pasado?",
+          "answers": [
+            "hicisteis"
+          ],
+          "options": [
+            "hicisteis",
+            "hacías"
+          ],
+          "interaction": "gap-choice",
+          "explain": "Спрашиваешь двоих о конкретном законченном дне: hicisteis. Hacías — форма для одного собеседника и для фона.",
+          "sourceRef": "64.1.6",
+          "learningAction": "выбор по контексту",
+          "translation": "Что вы делали в прошлую субботу?"
+        },
+        {
+          "context": "Ты спрашиваешь, где был собеседник в начале матча.",
+          "prompt": "¿Dónde ___ cuando ___ el partido?",
+          "answers": [
+            "estabas — empezó"
+          ],
+          "options": [
+            "estabas — empezó",
+            "estuviste — empezaba"
+          ],
+          "interaction": "choice",
+          "explain": "Где ты находился — фон: estabas. Матч начался — событие: empezó.",
+          "sourceRef": "64.1.7",
+          "learningAction": "выбор по контексту",
+          "translation": "Где ты был, когда начался матч?"
+        }
+      ]
+    },
+    {
+      "id": "64.2",
+      "title": "64.2 · Отличи событие от обстоятельств",
+      "instruction": "Выбери время глагола: событие или обстоятельство вокруг него. Где пропусков два, выбери пару форм.",
+      "theorySections": [
+        2
+      ],
+      "questions": [
+        {
+          "context": "Лыжная поездка не удалась.",
+          "prompt": "No pudimos esquiar porque no ___ nieve.",
+          "answers": [
+            "había"
+          ],
+          "options": [
+            "había",
+            "hubo"
+          ],
+          "interaction": "gap-choice",
+          "explain": "Отсутствие снега — обстоятельство, причина, почему не получилось: había. Событие здесь — no pudimos esquiar.",
+          "sourceRef": "64.1.3b",
+          "learningAction": "выбор по контексту",
+          "translation": "Мы не смогли покататься на лыжах, потому что не было снега."
+        },
+        {
+          "context": "Ты рассказываешь о вчерашней встрече с Марисой.",
+          "prompt": "Anoche ___ a Marisa. ___ un vestido precioso.",
+          "answers": [
+            "vi — Llevaba"
+          ],
+          "options": [
+            "vi — Llevaba",
+            "veía — Llevó"
+          ],
+          "interaction": "choice",
+          "explain": "Встреча — событие: vi. Во что она была одета — описание в тот момент: llevaba.",
+          "sourceRef": "64.1.8",
+          "learningAction": "выбор по контексту",
+          "translation": "Вчера вечером я видел Марису. На ней было чудесное платье."
+        },
+        {
+          "context": "Лукас видел тебя на улице.",
+          "prompt": "¿Qué ___ en la calle cuando te ___ Lucas?",
+          "answers": [
+            "hacías — vio"
+          ],
+          "options": [
+            "hacías — vio",
+            "hiciste — veía"
+          ],
+          "interaction": "choice",
+          "explain": "Что ты делал — действие-фон: hacías. Лукас тебя увидел — событие: vio.",
+          "sourceRef": "64.1.9",
+          "learningAction": "выбор по контексту",
+          "translation": "Что ты делал на улице, когда тебя увидел Лукас?"
+        },
+        {
+          "context": "Рассказ о краже в доме.",
+          "prompt": "Los ladrones ___ por la ventana del baño.",
+          "answers": [
+            "entraron"
+          ],
+          "options": [
+            "entraron",
+            "entraban"
+          ],
+          "interaction": "gap-choice",
+          "explain": "Воры вошли — само событие рассказа: entraron.",
+          "sourceRef": "extra",
+          "learningAction": "выбор по контексту",
+          "translation": "Воры влезли через окно ванной."
+        },
+        {
+          "context": "Биография бабушки.",
+          "prompt": "Mi abuela fue una gran cocinera. Su madre ___ panadera.",
+          "answers": [
+            "era"
+          ],
+          "options": [
+            "era",
+            "fue"
+          ],
+          "interaction": "gap-choice",
+          "explain": "Профессия матери — обстоятельство, фон биографии: era.",
+          "sourceRef": "extra",
+          "learningAction": "выбор по контексту",
+          "translation": "Моя бабушка была прекрасной поварихой. Её мать была булочницей."
+        },
+        {
+          "context": "Почему в этой фразе два разных времени?",
+          "prompt": "Cuando salimos del cine, llovía muchísimo.",
+          "answers": [
+            "Salimos — событие, llovía — обстоятельство в тот момент."
+          ],
+          "options": [
+            "Salimos — событие, llovía — обстоятельство в тот момент.",
+            "Оба действия — привычки.",
+            "Дождь начался после выхода из кино."
+          ],
+          "interaction": "choice",
+          "explain": "Выход из кино — событие, дождь уже шёл: это обстановка вокруг него.",
+          "sourceRef": "extra",
+          "learningAction": "объяснение различия"
+        }
+      ]
+    },
+    {
+      "id": "64.3",
+      "title": "64.3 · Дополни диалоги",
+      "instruction": "Поставь глаголы с карточек в indefinido или imperfecto. Впиши форму в каждый пропуск реплики. В конце исправь две ошибки.",
+      "theorySections": [
+        0,
+        1,
+        2
+      ],
+      "inlineAnswer": true,
+      "accentPolicy": "strict",
+      "inputLabel": "Форма глагола",
+      "inputFormat": {
+        "instruction": "Впиши форму indefinido или imperfecto, у глагола с se — вместе с местоимением. Знак ударения обязателен.",
+        "placeholder": "Форма глагола"
+      },
+      "preview": {
+        "source": "¿Cuándo ___ a Maruja?",
+        "sentenceParts": [
+          "¿Cuándo ",
+          " a Maruja?"
+        ],
+        "answer": "conociste",
+        "targetPrefix": "",
+        "translation": "Когда ты познакомился с Марухой?"
+      },
+      "questions": [
+        {
+          "context": "Друг отвечает, когда познакомился с Марухой.",
+          "prompt": "—¿Cuándo conociste a Maruja? —La ___ cuando ___ en Bogotá.",
+          "answers": [
+            "conocí vivía"
+          ],
+          "explain": "Знакомство — событие: conocí. Жизнь в Боготе — фон: vivía.",
+          "gapParts": [
+            "—¿Cuándo conociste a Maruja? —La ",
+            " cuando ",
+            " en Bogotá."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "clues": [
+            [
+              "conocer",
+              "познакомиться"
+            ],
+            [
+              "vivir",
+              "жить"
+            ]
+          ],
+          "translation": "—Когда ты познакомился с Марухой? —Я познакомился с ней, когда жил в Боготе.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "64.2.1",
+          "learningAction": "ответ на реплику"
+        },
+        {
+          "context": "Ты звонил соседям вчера вечером и спрашиваешь их.",
+          "prompt": "—¿Dónde ___ cuando ___ anoche?",
+          "answers": [
+            "estaban llamé"
+          ],
+          "explain": "Где они находились — фон: estaban (ustedes). Звонок — событие: llamé (yo).",
+          "gapParts": [
+            "—¿Dónde ",
+            " cuando ",
+            " anoche?"
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "clues": [
+            [
+              "estar",
+              "быть — ustedes"
+            ],
+            [
+              "llamar",
+              "звонить — yo"
+            ]
+          ],
+          "translation": "—Где вы были, когда я звонил вчера вечером?",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "64.2.2a",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Соседи отвечают.",
+          "prompt": "—___ dormidos y no ___ el teléfono.",
+          "answers": [
+            "Estábamos oímos"
+          ],
+          "explain": "Состояние в тот момент — estábamos. Не услышали тот звонок — событие: oímos.",
+          "gapParts": [
+            "—",
+            " dormidos y no ",
+            " el teléfono."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "clues": [
+            [
+              "estar",
+              "быть — nosotros"
+            ],
+            [
+              "oír",
+              "слышать — nosotros"
+            ]
+          ],
+          "translation": "—Мы спали и не услышали телефон.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "64.2.2b",
+          "learningAction": "ответ на реплику"
+        },
+        {
+          "context": "Ты расспрашиваешь знакомую о жизни в Эквадоре.",
+          "prompt": "—¿Qué ___ cuando ___ en Ecuador?",
+          "answers": [
+            "hacías vivías"
+          ],
+          "explain": "Чем она обычно занималась в тот период — hacías; жизнь там — фон: vivías.",
+          "gapParts": [
+            "—¿Qué ",
+            " cuando ",
+            " en Ecuador?"
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "clues": [
+            [
+              "hacer",
+              "делать — tú"
+            ],
+            [
+              "vivir",
+              "жить — tú"
+            ]
+          ],
+          "translation": "—Чем ты занималась, когда жила в Эквадоре?",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "64.2.3a",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Ты продолжаешь расспрашивать.",
+          "prompt": "¿Por qué ___ a España?",
+          "answers": [
+            "te viniste"
+          ],
+          "explain": "Переезд — одно законченное событие: te viniste, местоимение te перед глаголом.",
+          "clues": [
+            [
+              "venirse",
+              "переехать сюда — tú"
+            ]
+          ],
+          "translation": "Почему ты переехала в Испанию?",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "64.2.3b",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Знакомая отвечает.",
+          "prompt": "—___ maestra. No ___ trabajo allí.",
+          "answers": [
+            "Era tenía"
+          ],
+          "explain": "Профессия и положение в то время — обстоятельства: era, tenía.",
+          "gapParts": [
+            "—",
+            " maestra. No ",
+            " trabajo allí."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "clues": [
+            [
+              "ser",
+              "быть — yo"
+            ],
+            [
+              "tener",
+              "иметь — yo"
+            ]
+          ],
+          "translation": "—Я была учительницей. У меня не было там работы.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "64.2.3c",
+          "learningAction": "ответ на реплику"
+        },
+        {
+          "context": "Исправь выделенную форму глагола.",
+          "prompt": "Cuando era niño, ___ al colegio en bici todos los días.",
+          "answers": [
+            "iba"
+          ],
+          "explain": "Todos los días — привычка: iba, а не одно событие.",
+          "sourceLabel": "Фраза с ошибкой",
+          "sourceParts": [
+            "Cuando era niño, ",
+            "fui",
+            " al colegio en bici todos los días."
+          ],
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "extra",
+          "learningAction": "исправление ошибки",
+          "inputFormat": {
+            "instruction": "Впиши только исправленную форму глагола. Знак ударения обязателен.",
+            "placeholder": "Форма глагола"
+          }
+        },
+        {
+          "context": "Исправь выделенную форму глагола.",
+          "prompt": "___ en la ducha cuando sonó el teléfono.",
+          "answers": [
+            "Estaba"
+          ],
+          "explain": "Нахождение в душе — фон, на котором раздался звонок: estaba.",
+          "sourceLabel": "Фраза с ошибкой",
+          "sourceParts": [
+            "",
+            "Estuve",
+            " en la ducha cuando sonó el teléfono."
+          ],
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "extra",
+          "learningAction": "исправление ошибки",
+          "inputFormat": {
+            "instruction": "Впиши только исправленную форму глагола. Знак ударения обязателен.",
+            "placeholder": "Форма глагола"
+          }
+        }
+      ]
+    },
+    {
+      "id": "64.4",
+      "title": "64.4 · Расскажи страшную историю",
+      "instruction": "Дополни рассказ: поставь глаголы с карточек в indefinido или imperfecto. Рассказывает мужчина о том, что случилось с ним в детстве.",
+      "theorySections": [
+        0,
+        1,
+        2
+      ],
+      "inlineAnswer": true,
+      "accentPolicy": "strict",
+      "inputLabel": "Форма глагола",
+      "inputFormat": {
+        "instruction": "Впиши форму indefinido или imperfecto, у глагола с se — вместе с местоимением. Знак ударения обязателен.",
+        "placeholder": "Форма глагола"
+      },
+      "preview": {
+        "source": "Una noche, cuando ___ once o doce años, mis padres salieron.",
+        "sentenceParts": [
+          "Una noche, cuando ",
+          " once o doce años, mis padres salieron."
+        ],
+        "answer": "tenía",
+        "targetPrefix": "",
+        "translation": "Однажды ночью, когда мне было одиннадцать или двенадцать лет, родители ушли из дома."
+      },
+      "questions": [
+        {
+          "context": "Родители ушли вечером.",
+          "prompt": "Una noche mis padres ___ y me ___ solo.",
+          "answers": [
+            "salieron dejaron"
+          ],
+          "explain": "Ушли и оставили — события, одно за другим: salieron, dejaron.",
+          "gapParts": [
+            "Una noche mis padres ",
+            " y me ",
+            " solo."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "clues": [
+            [
+              "salir",
+              "выходить, уходить"
+            ],
+            [
+              "dejar",
+              "оставлять"
+            ]
+          ],
+          "translation": "Однажды вечером родители ушли и оставили меня одного.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "64.3.2+3",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Как мальчик себя чувствовал.",
+          "prompt": "___ feliz porque ___ adulto.",
+          "answers": [
+            "Estaba me sentía"
+          ],
+          "explain": "Чувства в тот момент — обстоятельства: estaba, me sentía.",
+          "gapParts": [
+            "",
+            " feliz porque ",
+            " adulto."
+          ],
+          "gapWordCounts": [
+            1,
+            2
+          ],
+          "clues": [
+            [
+              "estar",
+              "быть"
+            ],
+            [
+              "sentirse",
+              "чувствовать себя"
+            ]
+          ],
+          "translation": "Я был счастлив, потому что чувствовал себя взрослым.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "64.3.4+5",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Что мальчик делал вечером.",
+          "prompt": "Me ___ algo para cenar, ___ la tele y sobre las doce ___ a mi habitación.",
+          "answers": [
+            "preparé vi me fui"
+          ],
+          "explain": "Цепочка законченных действий: preparé, vi, me fui.",
+          "gapParts": [
+            "Me ",
+            " algo para cenar, ",
+            " la tele y sobre las doce ",
+            " a mi habitación."
+          ],
+          "gapWordCounts": [
+            1,
+            1,
+            2
+          ],
+          "clues": [
+            [
+              "preparar",
+              "готовить"
+            ],
+            [
+              "ver",
+              "смотреть"
+            ],
+            [
+              "irse",
+              "уходить"
+            ]
+          ],
+          "translation": "Я приготовил себе что-то на ужин, посмотрел телевизор и около двенадцати ушёл в свою комнату.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "64.3.6+7+8",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Внезапный звук.",
+          "prompt": "De repente, ___ un ruido en el piso de abajo.",
+          "answers": [
+            "oí"
+          ],
+          "explain": "De repente вводит событие: oí.",
+          "clues": [
+            [
+              "oír",
+              "слышать"
+            ]
+          ],
+          "translation": "Вдруг я услышал шум внизу.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "64.3.9",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Как мальчик отреагировал.",
+          "prompt": "___ con llave la puerta de mi habitación y ___.",
+          "answers": [
+            "Cerré escuché"
+          ],
+          "explain": "Два действия подряд: cerré, escuché.",
+          "gapParts": [
+            "",
+            " con llave la puerta de mi habitación y ",
+            "."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "clues": [
+            [
+              "cerrar",
+              "закрывать"
+            ],
+            [
+              "escuchar",
+              "слушать"
+            ]
+          ],
+          "translation": "Я запер дверь своей комнаты на ключ и прислушался.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "64.3.10+11",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Мальчик решился выйти.",
+          "prompt": "Al cabo de un rato ___ la puerta y ___ las escaleras con mucho miedo.",
+          "answers": [
+            "abrí bajé"
+          ],
+          "explain": "Al cabo de un rato — следующие события: abrí, bajé.",
+          "gapParts": [
+            "Al cabo de un rato ",
+            " la puerta y ",
+            " las escaleras con mucho miedo."
+          ],
+          "gapWordCounts": [
+            1,
+            1
+          ],
+          "clues": [
+            [
+              "abrir",
+              "открывать"
+            ],
+            [
+              "bajar",
+              "спускаться"
+            ]
+          ],
+          "translation": "Через некоторое время я открыл дверь и с большим страхом спустился по лестнице.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "64.3.12+13",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Что мальчик увидел внизу.",
+          "prompt": "___ algo que ___ cerca de una ventana.",
+          "answers": [
+            "Había se movía"
+          ],
+          "explain": "Что было и что происходило в тот момент — обстановка: había, se movía.",
+          "gapParts": [
+            "",
+            " algo que ",
+            " cerca de una ventana."
+          ],
+          "gapWordCounts": [
+            1,
+            2
+          ],
+          "clues": [
+            [
+              "haber (hay)",
+              "быть, иметься"
+            ],
+            [
+              "moverse",
+              "двигаться"
+            ]
+          ],
+          "translation": "Возле окна что-то двигалось.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "64.3.14+15",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Неожиданное движение.",
+          "prompt": "De repente, una sombra negra ___ sobre mí.",
+          "answers": [
+            "saltó"
+          ],
+          "explain": "De repente — событие: saltó.",
+          "clues": [
+            [
+              "saltar",
+              "прыгать"
+            ]
+          ],
+          "translation": "Вдруг на меня прыгнула чёрная тень.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "64.3.16",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Кем оказалась тень.",
+          "prompt": "___ un gato.",
+          "answers": [
+            "Era"
+          ],
+          "explain": "Кем было то, что прыгнуло, — описание: era.",
+          "clues": [
+            [
+              "ser",
+              "быть"
+            ]
+          ],
+          "translation": "Это была кошка.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "64.3.17",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Чем всё закончилось.",
+          "prompt": "___ y cuando ___ mis padres, me ___ tirado en el suelo.",
+          "answers": [
+            "Me desmayé regresaron encontraron"
+          ],
+          "explain": "Цепочка событий: me desmayé, regresaron, encontraron.",
+          "gapParts": [
+            "",
+            " y cuando ",
+            " mis padres, me ",
+            " tirado en el suelo."
+          ],
+          "gapWordCounts": [
+            2,
+            1,
+            1
+          ],
+          "clues": [
+            [
+              "desmayarse",
+              "упасть в обморок"
+            ],
+            [
+              "regresar",
+              "возвращаться"
+            ],
+            [
+              "encontrar",
+              "находить"
+            ]
+          ],
+          "translation": "Я упал в обморок, и когда родители вернулись, они нашли меня лежащим на полу.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "64.3.18+19+20",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Почему в рассказе estaba и me sentía стоят в imperfecto?",
+          "prompt": "Estaba feliz porque me sentía adulto.",
+          "answers": [
+            "Это состояние мальчика в тот вечер, фон событий."
+          ],
+          "options": [
+            "Это состояние мальчика в тот вечер, фон событий.",
+            "Это события, которые шли одно за другим.",
+            "Это то, что мальчик делал каждый вечер."
+          ],
+          "interaction": "choice",
+          "explain": "Estaba и me sentía описывают, каким было настроение, а сюжет двигают preparé, vi, me fui.",
+          "sourceRef": "extra",
+          "learningAction": "объяснение различия"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "heads": [
+      "Смысл",
+      "Время",
+      "Пример"
+    ],
+    "rows": [
+      [
+        "Один раз, конкретный момент",
+        "indefinido",
+        "El domingo fuimos al campo."
+      ],
+      [
+        "Обычно, повторялось",
+        "imperfecto",
+        "Los domingos íbamos al campo."
+      ],
+      [
+        "Ситуация целиком, закончилась",
+        "indefinido",
+        "Estuvimos un mes en Lima."
+      ],
+      [
+        "Шло, и тут…",
+        "imperfecto + indefinido",
+        "Dormía cuando sonó el teléfono."
+      ],
+      [
+        "Событие",
+        "indefinido",
+        "Los ladrones entraron."
+      ],
+      [
+        "Обстановка, внешность",
+        "imperfecto",
+        "Hacía frío. Era alto."
+      ]
+    ],
+    "topicMap": {
+      "lead": "Рассказ о прошлом: события и всё, что вокруг них",
+      "formula": [
+        [
+          "событие",
+          "trabajé"
+        ],
+        [
+          "фон и привычка",
+          "trabajaba"
+        ]
+      ],
+      "cards": [
+        {
+          "title": "Один раз → indefinido",
+          "tone": "peach",
+          "chips": [
+            "ayer",
+            "el domingo",
+            "la semana pasada",
+            "hace un mes",
+            "aquella tarde"
+          ],
+          "examples": [
+            [
+              "El domingo fuimos al campo.",
+              "В воскресенье мы ездили за город."
+            ]
+          ]
+        },
+        {
+          "title": "Обычно → imperfecto",
+          "tone": "violet",
+          "chips": [
+            "normalmente",
+            "siempre",
+            "todos los días",
+            "los domingos"
+          ],
+          "examples": [
+            [
+              "Los domingos íbamos al campo.",
+              "По воскресеньям мы ездили за город."
+            ]
+          ]
+        },
+        {
+          "title": "Одно слово — разный смысл",
+          "tone": "mint",
+          "pairStyle": "columns",
+          "pairs": [
+            [
+              "el domingo — fuimos",
+              "los domingos — íbamos"
+            ],
+            [
+              "aquella tarde — dimos",
+              "todas las tardes — dábamos"
+            ]
+          ],
+          "note": "Решает смысл: один случай или привычка."
+        },
+        {
+          "title": "Шло — и вдруг",
+          "tone": "blue",
+          "examples": [
+            [
+              "Estábamos en Managua cuando comenzó la huelga.",
+              "Мы были в Манагуа, когда началась забастовка."
+            ],
+            [
+              "Dormía cuando sonó el teléfono.",
+              "Я спал, когда зазвонил телефон."
+            ]
+          ],
+          "note": "Фон — imperfecto, событие — indefinido."
+        },
+        {
+          "title": "Событие и обстановка",
+          "tone": "rose",
+          "examples": [
+            [
+              "Ayer fuimos a la playa. Hacía calor.",
+              "Вчера мы ездили на пляж. Было жарко."
+            ],
+            [
+              "Vi al ladrón. Llevaba una gorra.",
+              "Я видел вора. Он был в кепке."
+            ]
+          ],
+          "note": "Без imperfecto сюжет останется, без indefinido — только картина."
+        },
+        {
+          "title": "Mientras и законченный период",
+          "tone": "violet",
+          "examples": [
+            [
+              "Mientras cenábamos, llamó Ana.",
+              "Пока мы ужинали, позвонила Ана."
+            ],
+            [
+              "Estuvimos un mes en Lima.",
+              "Мы пробыли месяц в Лиме."
+            ]
+          ],
+          "note": "После mientras обычно imperfecto; период с длительностью и концом — indefinido."
+        }
+      ],
+      "takeaway": "Спроси себя: это событие (что случилось?) или фон и привычка (как было, что шло, как обычно бывало?)."
+    }
+  }
+}

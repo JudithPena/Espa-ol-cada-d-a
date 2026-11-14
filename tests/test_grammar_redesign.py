@@ -21,7 +21,7 @@ def test_redesign_preserves_all_question_keys_indices_and_accepted_answers():
 
 def test_all_units_interleave_theory_with_practice_and_keep_independent_writing():
     units = load_grammar()
-    assert len(units) == 63
+    assert len(units) == 64
     for unit in units:
         routes = unit['learningOrder']
         practice = next(i for i, r in enumerate(routes) if r.startswith('exercise:'))
