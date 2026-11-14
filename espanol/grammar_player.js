@@ -728,7 +728,8 @@ const G_UNIT_ICONS = {
   '044_ser_estar': '🎭',
   '043_estoy_estas_esta': '🌡️',
   '042_soy_eres_es': '🪪',
-  '073_abre_la_ventana': '🪟'
+  '073_abre_la_ventana': '🪟',
+  '074_no_abras_la_ventana': '🙅'
 };
 function gUnitComplete(unit) {
   const routes=gRoutes(unit);
