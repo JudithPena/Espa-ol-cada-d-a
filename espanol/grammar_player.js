@@ -724,6 +724,7 @@ const G_UNIT_ICONS = {
   '061_he_viajado_mucho': '🧳',
   '062_he_trabajado_trabaje': '↔️',
   '063_trabajaba_comia_vivia': '📼',
+  '064_trabaje_trabajaba': '🎞️',
   '071_trabajaria_comeria_viviria': '💭',
   '072_habria_podria': '🙏',
   '059_durmio_leyo_hizo': '🌀',
