@@ -1,0 +1,1109 @@
+{
+  "id": "065_estaba_trabajando",
+  "number": 65,
+  "title": "Estaba trabajando / trabajé",
+  "subtitle": "Estaba + gerundio и pretérito indefinido: процесс и событие",
+  "level": "A2",
+  "learningOrder": [
+    "section:0",
+    "exercise:65.1",
+    "section:1",
+    "exercise:65.2",
+    "section:2",
+    "exercise:65.3",
+    "summary"
+  ],
+  "sections": [
+    {
+      "title": "Estaba + gerundio: что происходило в тот момент",
+      "presentation": "paradigm",
+      "paragraphs": [
+        "Estoy + gerundio показывает действие, которое идёт сейчас. Если поставить **estar в imperfecto**, получится действие, которое **шло в определённый момент прошлого**: вчера в восемь, когда что-то случилось. `Cuando entró el jefe, Bruno estaba leyendo el periódico`.",
+        "Время и лицо показывает только estar, а герундий у всех лиц один. Местоимение ставим перед estar или присоединяем к герундию, как в настоящем: `me estaba duchando` = `estaba duchándome`. Граница: estaba + gerundio не говорит, чем действие кончилось, — только что оно было в процессе."
+      ],
+      "formulas": [
+        "estaba / estabas / estaba / estábamos / estabais / estaban + **gerundio**"
+      ],
+      "table": {
+        "heads": [
+          "Кто",
+          "Форма"
+        ],
+        "rows": [
+          [
+            "yo",
+            "estaba trabajando"
+          ],
+          [
+            "tú",
+            "estabas comiendo"
+          ],
+          [
+            "usted, él, ella",
+            "estaba viviendo"
+          ],
+          [
+            "nosotros, nosotras",
+            "estábamos trabajando"
+          ],
+          [
+            "vosotros, vosotras",
+            "estabais comiendo"
+          ],
+          [
+            "ustedes, ellos, ellas",
+            "estaban viviendo"
+          ]
+        ]
+      },
+      "dialogues": [
+        {
+          "title": "Звонок вечером",
+          "lines": [
+            [
+              "Anoche te llamé a las ocho. ¿Dónde estabas?",
+              "Вчера я звонил тебе в восемь. Где ты был?"
+            ],
+            [
+              "Estaba en el jardín. **Estaba regando** los rosales.",
+              "Я был в саду. Поливал розы."
+            ]
+          ]
+        }
+      ],
+      "check": {
+        "id": "check-1",
+        "title": "Мини-проверка",
+        "instruction": "Выбери форму estar + gerundio или объясни, что она сообщает.",
+        "questions": [
+          {
+            "context": "Вчера в десять вечера братья сидели у телевизора.",
+            "prompt": "A las diez mis hermanos ___ la tele.",
+            "answers": [
+              "estaban viendo"
+            ],
+            "options": [
+              "estaban viendo",
+              "estaba viendo",
+              "están viendo"
+            ],
+            "interaction": "gap-choice",
+            "explain": "Mis hermanos — ellos, прошлое: estaban viendo. Están viendo — это сейчас.",
+            "sourceRef": "extra",
+            "learningAction": "выбор по контексту",
+            "translation": "В десять мои братья смотрели телевизор."
+          },
+          {
+            "context": "Что сообщает эта фраза?",
+            "prompt": "A las siete estábamos cenando.",
+            "answers": [
+              "В семь ужин уже шёл."
+            ],
+            "options": [
+              "В семь ужин уже шёл.",
+              "В семь мы начали ужинать.",
+              "Мы ужинаем каждый день в семь."
+            ],
+            "interaction": "choice",
+            "explain": "Estábamos cenando — действие в процессе в момент a las siete. Начало ужина передало бы cenamos.",
+            "sourceRef": "extra",
+            "learningAction": "объяснение различия"
+          },
+          {
+            "context": "В какой фразе местоимение стоит правильно?",
+            "prompt": "Выбери фразу.",
+            "answers": [
+              "Me estaba vistiendo."
+            ],
+            "options": [
+              "Me estaba vistiendo.",
+              "Estaba me vistiendo."
+            ],
+            "interaction": "choice",
+            "explain": "Местоимение ставим перед estar или присоединяем к герундию (estaba vistiéndome), но не между ними.",
+            "sourceRef": "extra",
+            "learningAction": "распознавание"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Процесс и событие, которое его прерывает",
+      "presentation": "comparison",
+      "paragraphs": [
+        "Estaba + gerundio описывает **обстоятельства вокруг события**: что происходило, когда что-то случилось. Само событие — **короткое действие, которое прерывает процесс**, — стоит в **indefinido**: `Cuando llegó el presidente, yo estaba aparcando y Mar y Luis estaban cruzando la calle`.",
+        "Процесс как бы растянут во времени, а событие — точка на нём, поэтому фон и событие так часто стоят рядом. Граница: если действия идут одно за другим, оба в indefinido. В `Comimos cuando llegaron los amigos de Ana` сначала пришли друзья, потом все поели."
+      ],
+      "schemes": [
+        {
+          "label": "Друзья Аны",
+          "fromLabel": "ели, и тут пришли",
+          "from": "Estábamos comiendo cuando llegaron los amigos de Ana.",
+          "toLabel": "пришли, потом поели",
+          "to": "Comimos cuando llegaron los amigos de Ana."
+        }
+      ],
+      "check": {
+        "id": "check-2",
+        "title": "Мини-проверка",
+        "instruction": "Реши, процесс это или событие, и выбери форму.",
+        "questions": [
+          {
+            "context": "Звонок застал тебя за письмом.",
+            "prompt": "Cuando me llamaste, ___ un correo.",
+            "answers": [
+              "estaba escribiendo"
+            ],
+            "options": [
+              "estaba escribiendo",
+              "escribí"
+            ],
+            "interaction": "gap-choice",
+            "explain": "Письмо было в процессе, звонок его прервал: estaba escribiendo. Escribí значило бы, что ты написал письмо после звонка.",
+            "sourceRef": "extra",
+            "learningAction": "выбор по контексту",
+            "translation": "Когда ты позвонил, я писал письмо."
+          },
+          {
+            "context": "Сначала прозвенел будильник, потом ты встал.",
+            "prompt": "Cuando sonó el despertador, ___.",
+            "answers": [
+              "me levanté"
+            ],
+            "options": [
+              "me levanté",
+              "me estaba levantando"
+            ],
+            "interaction": "gap-choice",
+            "explain": "Действия идут одно за другим, поэтому оба в indefinido: sonó, me levanté.",
+            "sourceRef": "extra",
+            "learningAction": "выбор по контексту",
+            "translation": "Когда прозвенел будильник, я встал."
+          },
+          {
+            "context": "Чем отличаются эти фразы?",
+            "prompt": "Estábamos saliendo cuando empezó a llover. — Salimos cuando empezó a llover.",
+            "answers": [
+              "В первой дождь застал нас при выходе, во второй мы вышли, когда дождь уже начался."
+            ],
+            "options": [
+              "В первой дождь застал нас при выходе, во второй мы вышли, когда дождь уже начался.",
+              "Разницы в смысле нет.",
+              "В первой мы вышли, когда дождь закончился."
+            ],
+            "interaction": "choice",
+            "explain": "Estábamos saliendo — процесс, который прервал дождь. Salimos — следующее событие после начала дождя.",
+            "sourceRef": "extra",
+            "learningAction": "объяснение различия"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Глаголы, которые обычно не ставят в estaba + gerundio",
+      "presentation": "examples",
+      "paragraphs": [
+        "С некоторыми глаголами estaba + gerundio **обычно не используют**: вместо него берём простой **imperfecto**. `Tenía algo de fiebre cuando me llamaste` — у меня была небольшая температура, когда ты позвонил.",
+        "В основном это глаголы знания, желания, чувства, обладания и впечатления: у них нет процесса, который можно застать на середине. Тот же список не любит estar + gerundio и в настоящем времени: no entiendo, necesito ayuda. Граница: «обычно» не значит «никогда» — с ir и venir в разговоре можно услышать estaba yendo, но обычнее iba, venía."
+      ],
+      "wordGroups": [
+        {
+          "title": "Знание, желание, чувство",
+          "words": [
+            [
+              "comprender",
+              "понимать"
+            ],
+            [
+              "entender",
+              "понимать"
+            ],
+            [
+              "saber",
+              "знать"
+            ],
+            [
+              "querer",
+              "хотеть, любить"
+            ],
+            [
+              "necesitar",
+              "нуждаться"
+            ],
+            [
+              "amar",
+              "любить"
+            ],
+            [
+              "preferir",
+              "предпочитать"
+            ],
+            [
+              "odiar",
+              "ненавидеть"
+            ]
+          ]
+        },
+        {
+          "title": "Впечатление, обладание, движение",
+          "words": [
+            [
+              "parecer",
+              "казаться"
+            ],
+            [
+              "tener",
+              "иметь"
+            ],
+            [
+              "llevar",
+              "носить (одежду)"
+            ],
+            [
+              "ir",
+              "идти, ехать"
+            ],
+            [
+              "venir",
+              "приходить"
+            ]
+          ]
+        }
+      ],
+      "notes": [
+        "Не говорят «Estaba teniendo algo de fiebre cuando me llamaste»: правильно «Tenía algo de fiebre cuando me llamaste»."
+      ],
+      "check": {
+        "id": "check-3",
+        "title": "Мини-проверка",
+        "instruction": "Выбери форму, которую обычно используют с глаголом состояния.",
+        "questions": [
+          {
+            "context": "Ты встретил друга, он куда-то спешил.",
+            "prompt": "Cuando te vi, ___ mucha prisa.",
+            "answers": [
+              "tenías"
+            ],
+            "options": [
+              "tenías",
+              "estabas teniendo"
+            ],
+            "interaction": "gap-choice",
+            "explain": "Tener prisa — состояние, а с tener estar + gerundio обычно не используют: tenías.",
+            "sourceRef": "extra",
+            "learningAction": "выбор по контексту",
+            "translation": "Когда я тебя увидел, ты очень торопился."
+          },
+          {
+            "context": "Ана не пришла на встречу.",
+            "prompt": "Ana no vino porque ___ estudiar para un examen.",
+            "answers": [
+              "necesitaba"
+            ],
+            "options": [
+              "necesitaba",
+              "estaba necesitando"
+            ],
+            "interaction": "gap-choice",
+            "explain": "Necesitar — глагол необходимости, обычно в простом imperfecto: necesitaba.",
+            "sourceRef": "extra",
+            "learningAction": "выбор по контексту",
+            "translation": "Ана не пришла, потому что ей нужно было готовиться к экзамену."
+          },
+          {
+            "context": "Какой глагол обычно не ставят в estaba + gerundio?",
+            "prompt": "Выбери глагол.",
+            "answers": [
+              "saber"
+            ],
+            "options": [
+              "saber",
+              "trabajar",
+              "correr"
+            ],
+            "interaction": "choice",
+            "explain": "Saber — знание, у него нет процесса: sabía. Trabajar и correr легко ставятся в estaba trabajando, estaba corriendo.",
+            "sourceRef": "extra",
+            "learningAction": "распознавание"
+          }
+        ]
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "65.1",
+      "title": "65.1 · Что делали свидетели аварии",
+      "instruction": "Вчера в шесть вечера на перекрёстке случилась авария. Полиция опрашивает свидетелей. По описанию на карточке впиши, что делал каждый в тот момент.",
+      "theorySections": [
+        0
+      ],
+      "inlineAnswer": true,
+      "accentPolicy": "strict",
+      "inputLabel": "estar + gerundio",
+      "inputFormat": {
+        "instruction": "Впиши estar в imperfecto и герундий. Знак ударения обязателен.",
+        "placeholder": "estar + gerundio"
+      },
+      "vocabulary": {
+        "heads": [
+          "Выражение",
+          "Перевод"
+        ],
+        "rows": [
+          [
+            "aparcar",
+            "парковаться"
+          ],
+          [
+            "cruzar la calle",
+            "переходить улицу"
+          ],
+          [
+            "echar una carta",
+            "опускать письмо в ящик"
+          ],
+          [
+            "esperar el autobús",
+            "ждать автобус"
+          ],
+          [
+            "hablar por teléfono",
+            "говорить по телефону"
+          ],
+          [
+            "leer el periódico",
+            "читать газету"
+          ],
+          [
+            "mirar un escaparate",
+            "смотреть на витрину"
+          ]
+        ]
+      },
+      "preview": {
+        "source": "Ricardo: No vi nada. En ese momento ___ el periódico.",
+        "sentenceParts": [
+          "Ricardo: No vi nada. En ese momento ",
+          " el periódico."
+        ],
+        "answer": "estaba comprando",
+        "targetPrefix": "",
+        "translation": "Рикардо: Я ничего не видел. В тот момент я покупал газету."
+      },
+      "questions": [
+        {
+          "context": "Мар и её парень стояли на остановке.",
+          "prompt": "Mar: Mi novio y yo lo vimos todo. ___ el autobús.",
+          "answers": [
+            "Estábamos esperando"
+          ],
+          "explain": "Мар говорит о себе и парне — nosotros: estábamos esperando.",
+          "facts": {
+            "label": "Что было видно",
+            "items": [
+              [
+                "Мар и её парень",
+                "стоят на остановке"
+              ]
+            ]
+          },
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "65.1.2",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Самуэль и его девушка ничего не видели.",
+          "prompt": "Samuel: Mi novia y yo no vimos nada. Ella ___ por teléfono y yo ___ el periódico.",
+          "answers": [
+            "estaba hablando estaba leyendo"
+          ],
+          "explain": "Девушка — ella: estaba hablando. Самуэль о себе — yo: estaba leyendo. У yo и ella форма estaba одна.",
+          "gapParts": [
+            "Samuel: Mi novia y yo no vimos nada. Ella ",
+            " por teléfono y yo ",
+            " el periódico."
+          ],
+          "gapWordCounts": [
+            2,
+            2
+          ],
+          "facts": {
+            "label": "Что было видно",
+            "items": [
+              [
+                "Девушка Самуэля",
+                "с телефоном у уха"
+              ],
+              [
+                "Самуэль",
+                "с газетой"
+              ]
+            ]
+          },
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "65.1.3",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Сеньор Маркес с женой стояли у магазина.",
+          "prompt": "Sr. Márquez: Mi mujer y yo no vimos nada. ___ un escaparate.",
+          "answers": [
+            "Estábamos mirando"
+          ],
+          "explain": "Он с женой — nosotros: estábamos mirando.",
+          "facts": {
+            "label": "Что было видно",
+            "items": [
+              [
+                "Сеньор Маркес с женой",
+                "смотрят на витрину магазина"
+              ]
+            ]
+          },
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "65.1.4",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Томас шёл по пешеходному переходу.",
+          "prompt": "Tomás: Lo vi todo. En ese momento ___ la calle.",
+          "answers": [
+            "estaba cruzando"
+          ],
+          "explain": "Томас о себе — yo: estaba cruzando.",
+          "facts": {
+            "label": "Что было видно",
+            "items": [
+              [
+                "Томас",
+                "на пешеходном переходе"
+              ]
+            ]
+          },
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "65.1.5",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Майте и её родители ничего не видели.",
+          "prompt": "Maite: No vimos nada. Mis padres ___ y yo ___ una carta.",
+          "answers": [
+            "estaban aparcando estaba echando"
+          ],
+          "explain": "Родители — ellos: estaban aparcando. Майте о себе — yo: estaba echando.",
+          "gapParts": [
+            "Maite: No vimos nada. Mis padres ",
+            " y yo ",
+            " una carta."
+          ],
+          "gapWordCounts": [
+            2,
+            2
+          ],
+          "facts": {
+            "label": "Что было видно",
+            "items": [
+              [
+                "Родители Майте",
+                "ставят машину у тротуара"
+              ],
+              [
+                "Майте",
+                "у почтового ящика"
+              ]
+            ]
+          },
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "65.1.6",
+          "learningAction": "воспроизведение"
+        }
+      ]
+    },
+    {
+      "id": "65.2",
+      "title": "65.2 · Процесс или событие",
+      "instruction": "Поставь глагол с карточки в нужную форму: процесс в тот момент — estar + gerundio, событие — indefinido. В последних двух заданиях собери фразу из слов.",
+      "theorySections": [
+        1,
+        0
+      ],
+      "inlineAnswer": true,
+      "accentPolicy": "strict",
+      "inputLabel": "Форма глагола",
+      "inputFormat": {
+        "instruction": "Впиши форму прошедшего времени глагола с карточки: estar + gerundio, imperfecto или indefinido. У глагола с se — вместе с местоимением. Знак ударения обязателен.",
+        "placeholder": "Форма глагола"
+      },
+      "questions": [
+        {
+          "context": "Софья заметила тебя на улице.",
+          "prompt": "Cuando me vio Sofía, ___ con unas amigas.",
+          "answers": [
+            "estaba hablando",
+            "hablaba"
+          ],
+          "explain": "Разговор шёл в тот момент, когда Софья тебя увидела: estaba hablando. Простой imperfecto hablaba тоже верен.",
+          "clues": [
+            [
+              "hablar",
+              "разговаривать — yo"
+            ]
+          ],
+          "translation": "Когда Софья меня увидела, я разговаривал с подругами.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "65.2.1",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Свет погас вечером.",
+          "prompt": "¿Qué ___ cuando se apagó la luz?",
+          "answers": [
+            "estabas haciendo",
+            "hacías"
+          ],
+          "explain": "Вопрос о том, что шло в момент события: estabas haciendo. Hacías тоже верно.",
+          "clues": [
+            [
+              "hacer",
+              "делать — tú"
+            ]
+          ],
+          "translation": "Что ты делал, когда погас свет?",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "65.2.2",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Вы вошли — и ровно тогда преподаватель начал урок.",
+          "prompt": "La clase ___ cuando llegamos.",
+          "answers": [
+            "empezó"
+          ],
+          "explain": "Урок начался вместе с вашим приходом, это два события подряд: empezó.",
+          "clues": [
+            [
+              "empezar",
+              "начинаться"
+            ]
+          ],
+          "translation": "Урок начался, когда мы пришли.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "65.2.3",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Ты спрашиваешь соседку о погоде.",
+          "prompt": "¿___ cuando usted salió?",
+          "answers": [
+            "Estaba nevando",
+            "Nevaba"
+          ],
+          "explain": "Снег шёл в момент выхода — фон: estaba nevando. Nevaba тоже верно.",
+          "clues": [
+            [
+              "nevar",
+              "идти (о снеге)"
+            ]
+          ],
+          "translation": "Шёл снег, когда Вы вышли?",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "65.2.4",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Педрито получил травму на футболе.",
+          "prompt": "Pedrito ___ y ___ una pierna cuando estaba jugando al fútbol.",
+          "answers": [
+            "se cayó se rompió"
+          ],
+          "explain": "Упал и сломал — события на фоне игры: se cayó, se rompió.",
+          "gapParts": [
+            "Pedrito ",
+            " y ",
+            " una pierna cuando estaba jugando al fútbol."
+          ],
+          "gapWordCounts": [
+            2,
+            2
+          ],
+          "clues": [
+            [
+              "caerse",
+              "падать"
+            ],
+            [
+              "romperse",
+              "сломать себе"
+            ]
+          ],
+          "translation": "Педрито упал и сломал ногу, когда играл в футбол.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "65.2.5",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Телефон зазвонил, когда ты был в душе.",
+          "prompt": "___ cuando sonó el teléfono.",
+          "answers": [
+            "Me estaba duchando",
+            "Estaba duchándome",
+            "Me duchaba"
+          ],
+          "explain": "Душ — процесс, звонок его прервал. Местоимение перед estar или в конце герундия; me duchaba тоже верно.",
+          "clues": [
+            [
+              "ducharse",
+              "принимать душ — yo"
+            ]
+          ],
+          "translation": "Я принимал душ, когда зазвонил телефон.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "65.2.6",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Начальник пришёл, и после этого Фина и Селия ушли.",
+          "prompt": "Cuando llegó el jefe, Fina y Celia ___.",
+          "answers": [
+            "se fueron"
+          ],
+          "explain": "Сначала пришёл начальник, потом они ушли: два события подряд, se fueron.",
+          "clues": [
+            [
+              "irse",
+              "уходить"
+            ]
+          ],
+          "translation": "Когда пришёл начальник, Фина и Селия ушли.",
+          "inputChars": [
+            "á",
+            "é",
+            "í",
+            "ó",
+            "ú",
+            "ü",
+            "ñ"
+          ],
+          "sourceRef": "65.2.7",
+          "learningAction": "воспроизведение"
+        },
+        {
+          "context": "Звонок в дверь разбудил тебя.",
+          "prompt": "Собери фразу. Два слова лишние.",
+          "answers": [
+            "estaba durmiendo cuando sonó el timbre",
+            "cuando sonó el timbre estaba durmiendo"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "estaba",
+            "durmiendo",
+            "cuando",
+            "sonó",
+            "el",
+            "timbre",
+            "durmió",
+            "estuvo"
+          ],
+          "explain": "Сон — процесс, звонок — событие: estaba durmiendo, sonó.",
+          "sourceRef": "extra",
+          "learningAction": "построение фразы",
+          "answerHint": "Я спал, когда позвонили в дверь."
+        },
+        {
+          "context": "Сначала пришли гости, потом все поели.",
+          "prompt": "Собери фразу. Два слова лишние.",
+          "answers": [
+            "comimos cuando llegaron los invitados",
+            "cuando llegaron los invitados comimos"
+          ],
+          "interaction": "build",
+          "tiles": [
+            "comimos",
+            "cuando",
+            "llegaron",
+            "los",
+            "invitados",
+            "comíamos",
+            "llegaban"
+          ],
+          "explain": "Действия идут одно за другим, оба в indefinido: llegaron, comimos.",
+          "sourceRef": "extra",
+          "learningAction": "построение фразы",
+          "answerHint": "Мы поели, когда пришли гости."
+        }
+      ]
+    },
+    {
+      "id": "65.3",
+      "title": "65.3 · Imperfecto или estaba + gerundio",
+      "instruction": "Выбери форму, которую обычно используют в такой фразе.",
+      "theorySections": [
+        2,
+        1
+      ],
+      "preview": {
+        "source": "—¿Qué te pasaba anoche? —___ mucho sueño.",
+        "sentenceParts": [
+          "—¿Qué te pasaba anoche? —",
+          " mucho sueño."
+        ],
+        "answer": "Tenía",
+        "targetPrefix": "",
+        "translation": "—Что с тобой было вчера вечером? —Мне очень хотелось спать."
+      },
+      "questions": [
+        {
+          "context": "Тере видела тебя вчера на улице.",
+          "prompt": "¿Adónde ___ ayer cuando te vio Tere?",
+          "answers": [
+            "ibas"
+          ],
+          "options": [
+            "ibas",
+            "estabas yendo"
+          ],
+          "interaction": "gap-choice",
+          "explain": "С ir обычно берут простой imperfecto: ibas. Estabas yendo встречается в разговоре, но обычнее ibas.",
+          "sourceRef": "65.3.2",
+          "learningAction": "выбор по контексту",
+          "translation": "Куда ты шёл вчера, когда тебя увидела Тере?"
+        },
+        {
+          "context": "Сёстры были в поездке всю прошлую неделю.",
+          "prompt": "—¿Dónde estaban tus hermanas la semana pasada? —___ por Argentina.",
+          "answers": [
+            "Estaban viajando",
+            "Viajaban"
+          ],
+          "options": [
+            "Estaban viajando",
+            "Viajaban",
+            "Estaba viajando"
+          ],
+          "interaction": "gap-choice",
+          "explain": "Viajar — обычный глагол действия, поэтому верны обе формы: estaban viajando подчёркивает процесс, viajaban — простой фон. Estaba — форма для одного человека, а сестёр несколько.",
+          "sourceRef": "65.3.3",
+          "learningAction": "выбор по контексту",
+          "translation": "—Где были твои сёстры на прошлой неделе? —Путешествовали по Аргентине."
+        },
+        {
+          "context": "Начо был в красивом чилийском пончо.",
+          "prompt": "Cuando nos encontramos con Nacho, ___ un poncho chileno muy bonito.",
+          "answers": [
+            "llevaba"
+          ],
+          "options": [
+            "llevaba",
+            "estaba llevando"
+          ],
+          "interaction": "gap-choice",
+          "explain": "Llevar в значении «быть одетым» — глагол из списка: llevaba.",
+          "sourceRef": "65.3.4a",
+          "learningAction": "выбор по контексту",
+          "translation": "Когда мы встретили Начо, на нём было очень красивое чилийское пончо."
+        },
+        {
+          "context": "Как выглядел Начо в пончо.",
+          "prompt": "Llevaba un poncho chileno. ___ un mapuche.",
+          "answers": [
+            "Parecía"
+          ],
+          "options": [
+            "Parecía",
+            "Estaba pareciendo"
+          ],
+          "interaction": "gap-choice",
+          "explain": "Parecer — впечатление, обычно в простом imperfecto: parecía.",
+          "sourceRef": "65.3.4b",
+          "learningAction": "выбор по контексту",
+          "translation": "На нём было чилийское пончо. Он был похож на мапуче."
+        },
+        {
+          "context": "Ученики уже болтали, когда вошёл преподаватель.",
+          "prompt": "Cuando entró el profesor, los alumnos ___.",
+          "answers": [
+            "estaban hablando"
+          ],
+          "options": [
+            "estaban hablando",
+            "hablaron"
+          ],
+          "interaction": "gap-choice",
+          "explain": "Разговор уже шёл, когда вошёл преподаватель: estaban hablando. Hablaron значило бы, что заговорили после.",
+          "sourceRef": "extra",
+          "learningAction": "выбор по контексту",
+          "translation": "Когда вошёл преподаватель, ученики разговаривали."
+        },
+        {
+          "context": "Друзья попали в аварию по дороге.",
+          "prompt": "¿De dónde ___ cuando tuvieron el accidente?",
+          "answers": [
+            "venían"
+          ],
+          "options": [
+            "venían",
+            "estaban viniendo"
+          ],
+          "interaction": "gap-choice",
+          "explain": "С venir обычно берут простой imperfecto: venían.",
+          "sourceRef": "65.3.5",
+          "learningAction": "выбор по контексту",
+          "translation": "Откуда они ехали, когда попали в аварию?"
+        },
+        {
+          "context": "Ты объясняешь, зачем ходил к Аните.",
+          "prompt": "Fui a ver a Anita porque ___ su ayuda.",
+          "answers": [
+            "necesitaba"
+          ],
+          "options": [
+            "necesitaba",
+            "estaba necesitando"
+          ],
+          "interaction": "gap-choice",
+          "explain": "Necesitar — глагол из списка: necesitaba.",
+          "sourceRef": "65.3.6",
+          "learningAction": "выбор по контексту",
+          "translation": "Я пошёл к Аните, потому что мне нужна была её помощь."
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "heads": [
+      "Смысл",
+      "Форма",
+      "Пример"
+    ],
+    "rows": [
+      [
+        "Шло в тот момент",
+        "estaba + gerundio",
+        "A las ocho estaba regando."
+      ],
+      [
+        "Процесс + событие",
+        "estaba + gerundio + indefinido",
+        "Estábamos comiendo cuando llegaron."
+      ],
+      [
+        "Одно за другим",
+        "indefinido + indefinido",
+        "Comimos cuando llegaron."
+      ],
+      [
+        "Глаголы состояния",
+        "imperfecto",
+        "Tenía fiebre. Necesitaba ayuda."
+      ],
+      [
+        "Местоимение",
+        "перед estar или в конце герундия",
+        "Me estaba duchando. Estaba duchándome."
+      ]
+    ],
+    "topicMap": {
+      "lead": "Что шло в тот момент и что случилось",
+      "formula": [
+        [
+          "estar в imperfecto",
+          "estaba, estabas…"
+        ],
+        [
+          "gerundio",
+          "trabajando, comiendo"
+        ]
+      ],
+      "cards": [
+        {
+          "title": "Форма",
+          "tone": "violet",
+          "pairStyle": "columns",
+          "pairs": [
+            [
+              "yo, él, ella",
+              "estaba leyendo"
+            ],
+            [
+              "nosotros",
+              "estábamos leyendo"
+            ],
+            [
+              "vosotros",
+              "estabais leyendo"
+            ],
+            [
+              "ellos",
+              "estaban leyendo"
+            ]
+          ],
+          "note": "Меняется только estar."
+        },
+        {
+          "title": "В конкретный момент",
+          "tone": "blue",
+          "chips": [
+            "a las ocho",
+            "anoche",
+            "en ese momento"
+          ],
+          "examples": [
+            [
+              "A las ocho estaba regando las plantas.",
+              "В восемь я поливал цветы."
+            ]
+          ]
+        },
+        {
+          "title": "Процесс и событие",
+          "tone": "peach",
+          "examples": [
+            [
+              "Estábamos comiendo cuando llegaron.",
+              "Мы ели, когда они пришли."
+            ]
+          ],
+          "note": "Процесс — estaba + gerundio, событие — indefinido."
+        },
+        {
+          "title": "Одно за другим",
+          "tone": "mint",
+          "examples": [
+            [
+              "Comimos cuando llegaron.",
+              "Мы поели, когда они пришли."
+            ]
+          ],
+          "note": "Оба действия — indefinido."
+        },
+        {
+          "title": "Обычно без estaba + gerundio",
+          "tone": "rose",
+          "chips": [
+            "saber",
+            "entender",
+            "querer",
+            "necesitar",
+            "parecer",
+            "tener",
+            "llevar",
+            "ir",
+            "venir"
+          ],
+          "examples": [
+            [
+              "Tenía fiebre cuando me llamaste.",
+              "У меня была температура, когда ты позвонил."
+            ]
+          ]
+        },
+        {
+          "title": "Местоимение",
+          "tone": "violet",
+          "examples": [
+            [
+              "Me estaba duchando.",
+              "Я принимал душ."
+            ],
+            [
+              "Estaba duchándome.",
+              "Я принимал душ."
+            ]
+          ],
+          "note": "Не между estar и герундием."
+        }
+      ],
+      "takeaway": "Процесс, который застали на середине, — estaba + gerundio; событие — indefinido; состояние — простой imperfecto."
+    }
+  }
+}
