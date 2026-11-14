@@ -902,7 +902,7 @@ test('the group-name mini-check keeps errors and repeats them without losing liv
 test('every mini-check in all 17 units renders choices and completes by clicking',()=>{
  const units=fs.readdirSync('content/grammar').filter(f=>/^\d{3}_.+\.json$/.test(f)).sort()
   .map(f=>JSON.parse(fs.readFileSync('content/grammar/'+f,'utf8')));
- assert.equal(units.length,62);
+ assert.equal(units.length,63);
  for(const unit of units){
   const run=context([unit]);
   for(const [index,section] of unit.sections.entries()){
@@ -1052,7 +1052,7 @@ test('all typing screens show a persistent format and example without changing g
   })())`));
   typed+=result.typed;legacy+=result.legacy;
  }
- assert.equal(typed,1570);assert.equal(legacy,210); // Fable 8: unit 2 now has 26 typed instead of 38
+ assert.equal(typed,1603);assert.equal(legacy,212); // Fable 8: unit 2 now has 26 typed instead of 38
 });
 
 test('quantity answers accept digits or words while the field explains the quantity format', () => {
@@ -1107,7 +1107,7 @@ test('all exercises reveal each wrong answer, stop at three errors and never awa
   const at=run('G.at');run('gMove(1)');assert.equal(run('G.at'),at);
   count++;
  }
- assert.equal(count,243);
+ assert.equal(count,247);
 });
 
 test('exit, route restart, whole-unit restart and reload preserve the failed or active attempt', () => {
@@ -1303,7 +1303,7 @@ test('171 grammar exercises require real corrections that spend remaining lives'
   assert.equal(run(`gAttempt(gUnit(),gUnit().exercises.find(g=>g.id===${JSON.stringify(group.id)})).errors`),2);
   count++;
  }
- assert.equal(count,235);
+ assert.equal(count,239);
 });
 
 test('correction queue and drafts survive reload and keep the next section locked',()=>{
@@ -1440,7 +1440,7 @@ test('grammar list gives each theme a distinct icon and marks only fully complet
  const run=context(units);
  run('view.grammar=null;');
  const icons=run('COURSE.grammar.map(u=>G_UNIT_ICONS[u.id])');
- assert.ok(icons.every(Boolean));assert.equal(new Set(icons).size,62);
+ assert.ok(icons.every(Boolean));assert.equal(new Set(icons).size,63);
  assert.ok(!run('grammarView()').includes('gcompleted-badge'));
  // Completing the exercises alone leaves mini-checks and theory unfinished.
  run(`const doneUnit=COURSE.grammar[0];for(const g of doneUnit.exercises)P.grammar[grammarKey(doneUnit,g)]={correct:0,total:g.questions.length};`);
@@ -1451,7 +1451,7 @@ test('grammar list gives each theme a distinct icon and marks only fully complet
  assert.equal(run('gUnitComplete(COURSE.grammar[0])'),true);
  const html=run('grammarView()');
  assert.equal((html.match(/gcompleted-badge/g)||[]).length,1);
- assert.ok(html.includes('Пройдено тем: 1 из 62'));
+ assert.ok(html.includes('Пройдено тем: 1 из 63'));
  assert.match(html,/class="mcard gcomplete" data-grammar="001_el_hijo_la_hija"/);
  assert.match(html,/class="mcard " data-grammar="002_el_libro_la_mesa"/);
  run('delete P.grammarRead[COURSE.grammar[0].id+"/summary"];');
@@ -1803,7 +1803,7 @@ test('multi-answer audit keeps regional, contextual and equally valid choices gr
    }
   }
  }
- assert.equal(questions,2822);assert.equal(alternatives,413);assert.equal(warnings,25); // Fable 8: unit 2 73→57, one additional gorila alternative
+ assert.equal(questions,2870);assert.equal(alternatives,416);assert.equal(warnings,25); // Fable 8: unit 2 73→57, one additional gorila alternative
 });
 
 test('yellow mini-check choices preserve all three lives and complete normally',()=>{
@@ -1841,7 +1841,7 @@ test('all 17 completion screens derive the next lesson from course order and pre
    assert.ok(html.includes('Все уроки раздела пройдены!'));assert.ok(!html.includes('data-gnext-unit'));
    handlers.click({target:{closest:s=>s==='button, .spoiler, [data-say], [data-line]'?{dataset:{grammarList:''}}:null,classList:{contains:()=>false}}});
    assert.equal(run('G'),null);assert.equal(run('view.grammar'),null);assert.equal(run('view.tab'),'grammar');
-   assert.equal((run('grammarView()').match(/data-grammar="/g)||[]).length,62);
+   assert.equal((run('grammarView()').match(/data-grammar="/g)||[]).length,63);
   }
   assert.equal(run('JSON.stringify(P)'),before);
  }
@@ -2047,7 +2047,7 @@ test('all grammar choice sets receive valid, balanced attempt orders without cha
    assert.deepEqual(result,{},`${u.number}/${g.id}: ${JSON.stringify(result)}`);
   }
  }
- assert.equal(standard,1042);assert.equal(guided,9); // Fable 8: unit 2 has four fewer multiple-choice tasks
+ assert.equal(standard,1055);assert.equal(guided,9); // Fable 8: unit 2 has four fewer multiple-choice tasks
  assert.equal(run('JSON.stringify(COURSE.grammar)'),before);
 });
 

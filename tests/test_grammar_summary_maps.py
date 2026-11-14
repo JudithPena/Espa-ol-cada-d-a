@@ -7,7 +7,7 @@ from espanol.grammar import load_grammar, GRAMMAR
 def test_summary_maps_keep_fallback_and_resolve_existing_illustrations():
     for u in load_grammar():
         m=u['summary'].get('topicMap')
-        if u['number'] not in (60,61,62):
+        if u['number'] not in (60,61,62,63):
             assert m is None
             continue
         assert u['summary']['rows'] and u['summary']['heads']

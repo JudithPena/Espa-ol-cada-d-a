@@ -87,6 +87,10 @@ CASES = (
     (62, "section:3", "choice"), (62, "exercise:62.1", "choice"), (62, "exercise:62.2", "choice"),
     (62, "exercise:62.3", "choice"), (62, "exercise:62.4", "input"), (62, "exercise:62.4", "gaps", 4),
     (62, "exercise:62.5", "build"), (62, "exercise:62.5", "input", 1),
+    (63, "section:0", "choice"), (63, "section:1", "choice"), (63, "section:2", "choice"),
+    (63, "section:3", "choice"), (63, "exercise:63.1", "gaps"), (63, "exercise:63.1", "input", 2),
+    (63, "exercise:63.2", "input"), (63, "exercise:63.2", "build", 6), (63, "exercise:63.3", "gaps"),
+    (63, "exercise:63.3", "input", 1), (63, "exercise:63.4", "input"), (63, "exercise:63.4", "choice", 8),
 )
 # Additional **successful submissions** with real keyboard/button interactions.
 # Each case starts a fresh session: do not accidentally satisfy a later answer by previous context.
