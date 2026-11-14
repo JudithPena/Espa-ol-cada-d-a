@@ -5,14 +5,14 @@ on:
   push:
     branches: [ccr-f4c9bfd6-txio5n]
     paths:
-      - "content/units/10_casa.yaml"
+      - ".github/workflows/fix-telegram-240.yml"
 
 permissions:
   contents: read
 
 jobs:
   fix-post-240:
-    if: github.event.head_commit.message == 'fix: correct balcon reading in Telegram lesson 67'
+    if: "github.event.head_commit.message == 'fix: run telegram post 240 repair'"
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
