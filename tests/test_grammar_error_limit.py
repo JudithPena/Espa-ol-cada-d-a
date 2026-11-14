@@ -8,8 +8,8 @@ from espanol.grammar import load_grammar
 
 def test_every_exercise_has_a_review_block_in_learning_order():
     units = load_grammar()
-    assert len(units) == 67
-    assert sum(len(u['exercises']) for u in units) == 262
+    assert len(units) == 71
+    assert sum(len(u['exercises']) for u in units) == 277
     for unit in units:
         for group in unit['exercises']:
             assert group['theorySections']
