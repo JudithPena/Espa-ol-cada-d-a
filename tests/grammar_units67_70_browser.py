@@ -57,7 +57,13 @@ with sync_playwright() as p:
                     page.evaluate('''n=>{const u=COURSE.grammar.find(u=>u.number===n);P.grammarRead||={};for(const s of u.sections)P.grammar[grammarKey(u,s.check)]={correct:3,total:3};for(const g of u.exercises)P.grammar[grammarKey(u,g)]={correct:g.questions.length,total:g.questions.length};gStart(u.id,'summary');render();}''',number)
                     f.check_layout(page,f'{number} summary {width}')
                     assert 'Что запомнить' in page.locator('body').inner_text()
-                    page.screenshot(path=str(OUT/f'u{number}_summary_{width}.png'),full_page=True)
+                    # The map scrolls inside the player: enlarge the viewport so the whole map is in one screenshot.
+                    page.set_viewport_size({'width':width,'height':3200 if width<768 else 1700})
+                    f.check_layout(page,f'{number} summary tall {width}')
+                    clipped=page.evaluate('()=>[...document.querySelectorAll(".gplayer *")].filter(el=>{const r=el.getBoundingClientRect();return r.width>0&&r.right>innerWidth+1}).length')
+                    assert clipped==0,(number,width,'summary elements beyond the right edge',clipped)
+                    page.screenshot(path=str(OUT/f'u{number}_summary_{width}.png'))
+                    page.set_viewport_size({'width':width,'height':850})
                     continue
                 page.evaluate(f.PREPARE,{'number':number,'route':route,'qi':0})
                 group=(unit['sections'][int(route.split(':')[1])]['check'] if route.startswith('section:') else next(g for g in unit['exercises'] if g['id']==route.split(':')[1]))

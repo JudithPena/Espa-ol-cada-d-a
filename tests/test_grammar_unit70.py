@@ -89,4 +89,12 @@ def test_preference_items_accept_both_forms():
 
 def test_size():
     qs = [q for g in unit()["exercises"] for q in g["questions"]]
-    assert len(qs) == 31
+    assert len(qs) == 33
+
+
+def test_no_single_form_passes_every_input():
+    ex1, ex2 = unit()["exercises"][:2]
+    assert any(q["answers"] == ["pintaremos"] for q in ex1["questions"])
+    assert any(q["answers"] == ["Va a chocar"] for q in ex1["questions"])
+    assert any(q["answers"] == ["va a morder"] for q in ex2["questions"])
+    assert sum(bool(q.get("options")) for q in ex2["questions"]) == 2

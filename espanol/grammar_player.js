@@ -725,7 +725,7 @@ const G_UNIT_ICONS = {
   '067_trabajare_comere_vivire': '🌦️',
   '068_habre_podre': '🔮',
   '069_voy_a_salir': '🎒',
-  '070_hare_hago_voy_a_hacer': '🚦',
+  '070_hare_hago': '🚦',
   '059_durmio_leyo_hizo': '🌀',
   '046_hay': '🥛',
   '045_tengo_tienes_tiene': '👜',
