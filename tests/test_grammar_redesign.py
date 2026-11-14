@@ -29,7 +29,7 @@ def test_all_units_interleave_theory_with_practice_and_keep_independent_writing(
         assert routes[-1] == 'summary'
         assert all(s['paragraphs'] and s['presentation'] for s in unit['sections'])
     questions = [q for u in units for g in u['exercises'] for q in g['questions']]
-    assert sum(bool(q.get('tiles')) for q in questions) == 223  # Stage 6: +2 unit-13 word-bank tasks
+    assert sum(bool(q.get('tiles')) for q in questions) == 224  # Stage 6: +2 unit-13 word-bank tasks
     assert sum(not q.get('options') and not q.get('tiles') for q in questions) > 100
     assert all(2 <= len(q['options']) <= 6 for q in questions if q.get('options'))
     for q in questions:
