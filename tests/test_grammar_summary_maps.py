@@ -7,11 +7,12 @@ from espanol.grammar import load_grammar, GRAMMAR
 def test_summary_maps_keep_fallback_and_resolve_existing_illustrations():
     for u in load_grammar():
         m=u['summary'].get('topicMap')
-        if u['number'] not in (60,61):
+        if u['number'] not in (60,61,73,74,75,76,77,78):
             assert m is None
             continue
         assert u['summary']['rows'] and u['summary']['heads']
-        assert len(m['cards'])==6
+        # 60–61: шесть карточек; юниты повелительного наклонения 73–78 — от четырёх до пяти.
+        assert len(m['cards'])==6 if u['number'] in (60,61) else 4<=len(m['cards'])<=5
         assert u['learningOrder'][-1]=='summary'
         for c in m['cards']:
             if 'illustrationSection' in c:
