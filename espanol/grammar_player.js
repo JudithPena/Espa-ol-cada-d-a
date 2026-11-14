@@ -731,7 +731,8 @@ const G_UNIT_ICONS = {
   '073_abre_la_ventana': '🪟',
   '074_no_abras_la_ventana': '🙅',
   '075_cierra_la_ventana': '🔐',
-  '076_pon_la_mesa': '🍽️'
+  '076_pon_la_mesa': '🍽️',
+  '077_lavate': '🫧'
 };
 function gUnitComplete(unit) {
   const routes=gRoutes(unit);
